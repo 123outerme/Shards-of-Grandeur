@@ -2,9 +2,13 @@ extends Node2D
 
 var mapInstance = null
 
+@onready var SaveHandler: SaveHandler = get_node("/root/SaveHandler")
+@onready var PlayerResources = get_node("/root/PlayerResources")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_map("TestMap1")
+	SaveHandler.load_data()
+	load_map(PlayerResources.playerInfo.map)
 	pass # Replace with function body.
 
 
@@ -14,6 +18,7 @@ func _process(delta):
 
 func entered_warp(newMapName, newMapPos, isUnderground):
 	load_map(newMapName)
+	PlayerResources.playerInfo.map = newMapName
 	var player = get_node("/root/Overworld/Player")
 	player.position = newMapPos
 	pass
