@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bntkk3phm8mpu"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_ou2oy"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_tgx8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -15,7 +15,7 @@ size = Vector2(8, 8)
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_ou2oy")
+script = ExtResource("1_m8p6c")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dwn8i")
