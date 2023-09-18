@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3rsvv5iihm7t"]
+
+[ext_resource type="Script" path="res://Prefabs/Overworld/WarpZone.gd" id="1_hbepu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36syh"]
+size = Vector2(8, 8)
+
+[node name="WarpZone" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hbepu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_36syh")

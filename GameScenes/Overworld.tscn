@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bouh62bdgnqo8"]
+
+[ext_resource type="PackedScene" uid="uid://bntkk3phm8mpu" path="res://Prefabs/Entities/Player.tscn" id="1_uhp2v"]
+[ext_resource type="PackedScene" uid="uid://b71vgd64ow4rm" path="res://Prefabs/Overworld/MapLoader.tscn" id="2_iixf4"]
+
+[node name="Overworld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_uhp2v")]
+disable_mode = 2
+
+[node name="MapLoader" parent="." instance=ExtResource("2_iixf4")]
