@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
+
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_egh5a"]
+[ext_resource type="Script" path="res://Scripts/NPCs/NPCMoveTrigger.gd" id="2_8tkyg"]
+[ext_resource type="Script" path="res://Scripts/NPCs/NPCMovement.gd" id="2_fvlbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbwlw"]
+atlas = ExtResource("1_egh5a")
+region = Rect2(104, 8, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jblse"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycftu"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk2vr"]
+size = Vector2(16, 16)
+
+[node name="NPC" type="CharacterBody2D"]
+
+[node name="NPCSprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_fbwlw")
+
+[node name="ColliderShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jblse")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+target_desired_distance = 1.0
+path_max_distance = 10.0
+radius = 8.0
+neighbor_distance = 50.0
+max_speed = 2.0
+debug_enabled = true
+script = ExtResource("2_fvlbl")
+
+[node name="TalkArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="TalkAreaShape" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource("RectangleShape2D_ycftu")
+
+[node name="MoveTrigger" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_8tkyg")
+
+[node name="MoveTriggerShape" type="CollisionShape2D" parent="MoveTrigger"]
+shape = SubResource("RectangleShape2D_wk2vr")
+
+[connection signal="target_reached" from="NavAgent" to="NavAgent" method="_on_target_reached"]
+[connection signal="area_entered" from="MoveTrigger" to="MoveTrigger" method="_on_area_entered"]

@@ -10,7 +10,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_hbepu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="WarpArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_36syh")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -14,7 +14,6 @@ func _process(delta):
 
 func load_data(save_path):
 	playerInfo = PlayerInfo.new()
-	print(playerInfo.gold)
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo

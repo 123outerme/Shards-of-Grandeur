@@ -7,16 +7,7 @@ const SPEED = 80
 
 func _physics_process(delta):
 	if not disableMovement:
-		velocity = Vector2.ZERO
-		if Input.is_action_pressed("move_up"):
-			velocity += Vector2.UP
-		if Input.is_action_pressed("move_down"):
-			velocity += Vector2.DOWN
-		if Input.is_action_pressed("move_left"):
-			velocity += Vector2.LEFT
-		if Input.is_action_pressed("move_right"):
-			velocity += Vector2.RIGHT
-		velocity = velocity.normalized() * SPEED
+		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
 		move_and_slide()
 	
 	if Input.is_action_just_pressed("game_pause"):
