@@ -18,6 +18,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [node name="NPC" type="CharacterBody2D"]
+motion_mode = 1
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_fbwlw")
@@ -29,10 +30,10 @@ shape = SubResource("RectangleShape2D_jblse")
 path_desired_distance = 1.0
 target_desired_distance = 1.0
 path_max_distance = 10.0
+path_postprocessing = 1
 radius = 8.0
 neighbor_distance = 50.0
 max_speed = 2.0
-debug_enabled = true
 script = ExtResource("2_fvlbl")
 
 [node name="TalkArea" type="Area2D" parent="."]
