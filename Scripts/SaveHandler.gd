@@ -23,3 +23,12 @@ func load_data():
 		var scr = get_node_or_null("/root/" + script)
 		if scr != null and scr.has_method("load_data"):
 			scr.call("load_data", save_file_location)
+			
+func new_game():
+	for script in saved_scripts:
+		var scr = get_node_or_null("/root/" + script)
+		if scr != null and scr.has_method("new_game"):
+			scr.call("new_game", save_file_location)
+			
+func save_file_exists():
+	return true
