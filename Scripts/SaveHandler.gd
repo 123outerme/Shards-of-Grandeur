@@ -3,6 +3,8 @@ extends Node
 var saved_scripts: Array = ["PlayerResources"]
 var save_file_location: String = "user://"
 
+var save_exists_file: String = "user://playerInfo.tres"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -31,4 +33,4 @@ func new_game():
 			scr.call("new_game", save_file_location)
 			
 func save_file_exists():
-	return true
+	return FileAccess.file_exists(save_exists_file)
