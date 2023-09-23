@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bntkk3phm8mpu"]
+[gd_scene load_steps=12 format=3 uid="uid://bntkk3phm8mpu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_tgx8p"]
 [ext_resource type="Script" path="res://Scripts/Player/TextBox.gd" id="3_lvwjn"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="4_kyqbp"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="5_wr0ar"]
+[ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/InventoryPanel.tscn" id="6_w56l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
 size = Vector2(7, 7)
@@ -82,6 +83,10 @@ fit_content = true
 position = Vector2(620, 100)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_f4r8l")
+
+[node name="InventoryPanelNode" parent="." instance=ExtResource("6_w56l3")]
+position = Vector2(-160, -120)
+scale = Vector2(0.25, 0.25)
 
 [node name="Camera" type="Camera2D" parent="."]
 ignore_rotation = false

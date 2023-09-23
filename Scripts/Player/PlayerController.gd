@@ -5,18 +5,22 @@ const SPEED = 80
 @export var disableMovement: bool
 
 @onready var textBox: TextBox = get_node("TextBoxRoot")
+@onready var inventoryPanel: InventoryMenu = get_node("InventoryPanelNode")
 
 var talkNPC: NPCScript = null
 
 func _input(event):
-		if event.is_action_pressed("game_pause"):
-			SaveHandler.save_data()
-	
-		if event.is_action_pressed("game_interact") and talkNPC != null:
-			if textBox.is_textbox_complete():
-				advance_dialogue()
-			else:
-				textBox.show_text_instant()
+	if event.is_action_pressed("game_pause"):
+		SaveHandler.save_data()
+
+	if event.is_action_pressed("game_interact") and talkNPC != null:
+		if textBox.is_textbox_complete():
+			advance_dialogue()
+		else:
+			textBox.show_text_instant()
+			
+	if event.is_action_pressed("game_inventory"):
+		inventoryPanel.toggle()
 
 func _physics_process(_delta):
 	if not disableMovement:

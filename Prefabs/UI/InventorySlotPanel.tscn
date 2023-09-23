@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=3 uid="uid://xascm0kyyw75"]
+
+[ext_resource type="StyleBox" uid="uid://cvp1dlscuv1lg" path="res://Themes/ListItemPanel.tres" id="1_psbn8"]
+[ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventorySlotPanel.gd" id="2_6x7us"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="2_sthgl"]
+[ext_resource type="Resource" uid="uid://by25xcn3dfsog" path="res://GameData/Items/testItemSlot.tres" id="3_3u3x6"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_4ev4x"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="7_5a212"]
+
+[sub_resource type="Theme" id="Theme_wuysd"]
+default_font_size = 18
+Panel/styles/panel = ExtResource("1_psbn8")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8w3s"]
+atlas = ExtResource("2_sthgl")
+region = Rect2(96, 56, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k380f"]
+atlas = ExtResource("2_sthgl")
+region = Rect2(96, 32, 8, 8)
+
+[node name="InventorySlotPanel" type="Panel" groups=["InventorySlotPanel"]]
+custom_minimum_size = Vector2(1120, 76)
+theme = SubResource("Theme_wuysd")
+script = ExtResource("2_6x7us")
+inventorySlot = ExtResource("3_3u3x6")
+isShopItem = true
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(38, 38)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_f8w3s")
+
+[node name="CenterItemName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -38.0
+offset_right = 324.0
+offset_bottom = 38.0
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemName" type="RichTextLabel" parent="CenterItemName"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_4ev4x")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+text = "Item Name Goes Here"
+fit_content = true
+
+[node name="CenterItemType" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = -38.0
+offset_right = 480.0
+offset_bottom = 38.0
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemType" type="RichTextLabel" parent="CenterItemType"]
+clip_contents = false
+layout_mode = 2
+text = "Item Type Here"
+fit_content = true
+
+[node name="CenterItemCount" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 65.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemCount" type="RichTextLabel" parent="CenterItemCount"]
+clip_contents = false
+layout_mode = 2
+text = "x9,999 / 9,999"
+fit_content = true
+
+[node name="CenterItemCost" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 665.0
+offset_right = 765.0
+offset_bottom = 76.0
+alignment = 1
+
+[node name="GoldSprite" type="Sprite2D" parent="CenterItemCost"]
+position = Vector2(-15, 38)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_k380f")
+
+[node name="ItemCost" type="RichTextLabel" parent="CenterItemCost"]
+clip_contents = false
+layout_mode = 2
+text = "456,789"
+fit_content = true
+
+[node name="CenterButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -38.0
+offset_right = -20.0
+offset_bottom = 38.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+layout_mode = 2
+theme = ExtResource("7_5a212")
+alignment = 2
+
+[node name="UseButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Use"
+
+[node name="TrashButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Trash"
+
+[node name="BuyButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Sell
+"
+
+[connection signal="pressed" from="CenterButtons/HBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/TrashButton" to="." method="_on_trash_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]

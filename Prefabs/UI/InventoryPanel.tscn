@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://drjv6mqrkwq3n"]
 
+[ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventoryMenu.gd" id="1_2iwyw"]
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://Themes/PopupUI.tres" id="1_l8qo6"]
-[ext_resource type="Script" path="res://Scripts/Menus/InventoryMenu.gd" id="1_tsw3s"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_2st5a"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="3_ud1n6"]
 
 [node name="InventoryPanelNode" type="Node2D"]
-script = ExtResource("1_tsw3s")
+visible = false
+script = ExtResource("1_2iwyw")
 
 [node name="InventoryPanel" type="Control" parent="."]
 layout_mode = 3
@@ -34,6 +35,19 @@ theme = ExtResource("2_2st5a")
 bbcode_enabled = true
 text = "[center]Inventory[/center]"
 fit_content = true
+
+[node name="ToggleShopInventoryButton" type="Button" parent="InventoryPanel/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_top = 28.0
+offset_right = -29.0
+offset_bottom = 68.0
+grow_horizontal = 0
+text = "Show Your Inventory"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InventoryPanel/Panel"]
 layout_mode = 1
@@ -73,11 +87,6 @@ layout_mode = 2
 toggle_mode = true
 text = "Key Items"
 
-[node name="AllItemsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-text = "All Items"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -108,3 +117,11 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
+
+[connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ShardsButton" to="." method="_on_shards_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/WeaponsButton" to="." method="_on_weapons_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ArmorButton" to="." method="_on_armor_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/KeyItemsButton" to="." method="_on_key_items_button_toggled"]
+[connection signal="pressed" from="InventoryPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
