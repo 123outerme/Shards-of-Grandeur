@@ -46,10 +46,11 @@ shape = SubResource("RectangleShape2D_8bipu")
 
 [node name="NPC" parent="." instance=ExtResource("3_ver5i")]
 position = Vector2(0, -59)
+displayName = "Coconut Head"
+saveName = "coconuthead"
 
 [node name="NavAgent" parent="NPC" index="2"]
-target_points = Array[Vector2]([Vector2(0, -39)])
-loops = 0
+targetPoints = Array[Vector2]([Vector2(0, -42)])
 maxSpeed = 30
 
 [node name="TalkAreaShape" parent="NPC/TalkArea" index="0"]

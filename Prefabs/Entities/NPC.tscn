@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=9 format=3 uid="uid://bsalesakrx8yy"]
 
+[ext_resource type="Script" path="res://Scripts/NPCs/NPCscript.gd" id="1_1dp2i"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_egh5a"]
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCMoveTrigger.gd" id="2_8tkyg"]
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCMovement.gd" id="2_fvlbl"]
@@ -17,8 +18,9 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk2vr"]
 size = Vector2(16, 16)
 
-[node name="NPC" type="CharacterBody2D"]
+[node name="NPC" type="CharacterBody2D" groups=["Persist"]]
 motion_mode = 1
+script = ExtResource("1_1dp2i")
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_fbwlw")
@@ -27,8 +29,8 @@ texture = SubResource("AtlasTexture_fbwlw")
 shape = SubResource("RectangleShape2D_jblse")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 1.0
-target_desired_distance = 1.0
+path_desired_distance = 0.5
+target_desired_distance = 0.5
 path_max_distance = 10.0
 path_postprocessing = 1
 radius = 8.0
