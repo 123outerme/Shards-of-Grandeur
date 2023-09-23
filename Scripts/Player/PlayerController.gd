@@ -4,7 +4,6 @@ class_name PlayerController
 const SPEED = 80
 @export var disableMovement: bool
 
-@onready var SaveHandler: SaveHandler = get_node("/root/SaveHandler")
 @onready var textBox: TextBox = get_node("TextBoxRoot")
 
 var talkNPC: NPCScript = null

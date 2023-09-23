@@ -2,9 +2,6 @@ extends Node2D
 
 var mapInstance = null
 
-@onready var SaveHandler: SaveHandler = get_node("/root/SaveHandler")
-@onready var PlayerResources = get_node("/root/PlayerResources")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SaveHandler.load_data()

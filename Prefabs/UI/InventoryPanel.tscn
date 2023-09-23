@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://drjv6mqrkwq3n"]
+
+[ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://Themes/PopupUI.tres" id="1_l8qo6"]
+[ext_resource type="Script" path="res://Scripts/Menus/InventoryMenu.gd" id="1_tsw3s"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_2st5a"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="3_ud1n6"]
+
+[node name="InventoryPanelNode" type="Node2D"]
+script = ExtResource("1_tsw3s")
+
+[node name="InventoryPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+theme = ExtResource("1_l8qo6")
+
+[node name="Panel" type="Panel" parent="InventoryPanel"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+
+[node name="InventoryTitle" type="RichTextLabel" parent="InventoryPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme = ExtResource("2_2st5a")
+bbcode_enabled = true
+text = "[center]Inventory[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 80.0
+offset_right = 300.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme = ExtResource("3_ud1n6")
+alignment = 1
+
+[node name="HealingButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Healing"
+
+[node name="ShardsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Shards"
+
+[node name="WeaponsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Weapons"
+
+[node name="ArmorButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Armor"
+
+[node name="KeyItemsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Key Items"
+
+[node name="AllItemsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "All Items"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 128.0
+offset_right = -80.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/Panel/ScrollContainer"]
+custom_minimum_size = Vector2(1120, 76)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="InventoryPanel/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -64.0
+offset_right = 25.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"

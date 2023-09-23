@@ -40,15 +40,12 @@ theme = ExtResource("1_7on86")
 theme_type_variation = &"Standard"
 script = ExtResource("2_wmxf2")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 960.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -63,21 +60,21 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 keep_pressed_outside = true
 text = "New Game"
 icon = SubResource("AtlasTexture_g6d7l")
 expand_icon = true
 
-[node name="ResumeGameButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeGameButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 keep_pressed_outside = true
 text = "Resume Game"
 icon = SubResource("AtlasTexture_crfo8")
 expand_icon = true
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 keep_pressed_outside = true
 text = "Settings
@@ -85,21 +82,21 @@ text = "Settings
 icon = SubResource("AtlasTexture_1nyix")
 expand_icon = true
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 keep_pressed_outside = true
 text = "Quit Game"
 icon = SubResource("AtlasTexture_pafe4")
 expand_icon = true
 
-[node name="TitleText" type="RichTextLabel" parent="."]
+[node name="TitleText" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -110.0
+offset_left = -100.0
 offset_top = 250.0
-offset_right = 110.0
+offset_right = 100.0
 offset_bottom = 300.0
 grow_horizontal = 2
 theme = ExtResource("2_irsbb")
@@ -109,17 +106,17 @@ bbcode_enabled = true
 text = "[center]Uvutu DX[/center]"
 fit_content = true
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(490, 275)
+[node name="PlayerSprite" type="Sprite2D" parent="Panel"]
+position = Vector2(500, 275)
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_ovyey")
 
-[node name="GuardSprite" type="Sprite2D" parent="."]
-position = Vector2(780, 275)
+[node name="GuardSprite" type="Sprite2D" parent="Panel"]
+position = Vector2(770, 275)
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_mthhv")
 
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

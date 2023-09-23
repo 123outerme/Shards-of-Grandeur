@@ -19,9 +19,10 @@ func load_data(save_path):
 		player.disableMovement = playerInfo.disableMovement
 
 func save_data(save_path):
-	playerInfo.position = player.position
-	playerInfo.disableMovement = player.disableMovement
-	playerInfo.save_data(save_path, playerInfo)
+	if player != null:
+		playerInfo.position = player.position
+		playerInfo.disableMovement = player.disableMovement
+		playerInfo.save_data(save_path, playerInfo)
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()

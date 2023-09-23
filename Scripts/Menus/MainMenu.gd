@@ -1,8 +1,6 @@
 extends Control
 
-@onready var SaveHandler: SaveHandler = get_node("/root/SaveHandler")
-@onready var SceneLoader: SceneLoader = get_node("/root/SceneLoader")
-@onready var resumeGameButton: Button = get_node("VBoxContainer/ResumeGameButton")
+@onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
