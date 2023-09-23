@@ -12,3 +12,7 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("game_pause"):
 		SaveHandler.save_data()
+	
+	if Input.is_action_just_pressed("game_interact"):
+		var textBox: TextBox = get_node("TextBoxRoot")
+		textBox.set_textbox_text("Test text that will hopefully crawl across the screen . . .", "Test Speaker")
