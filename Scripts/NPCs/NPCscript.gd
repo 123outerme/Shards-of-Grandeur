@@ -48,6 +48,8 @@ func load_data(save_path):
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.disableMovement
 		NavAgent.start_movement()
+		if data.dialogueIndex >= 0:
+			player.restore_dialogue(self)
 	return
 
 func _on_move_trigger_area_entered(area):
@@ -55,7 +57,7 @@ func _on_move_trigger_area_entered(area):
 		NavAgent.start_movement()
 
 func _on_talk_area_area_entered(area):
-	if area.name == "PlayerEventCollider":
+	if area.name == "PlayerEventCollider" and data.dialogueIndex < 0:
 		player.set_talk_npc(self)
 		reset_dialogue()
 

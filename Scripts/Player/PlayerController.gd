@@ -40,3 +40,10 @@ func advance_dialogue():
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
+	
+func restore_dialogue(npc: NPCScript):
+	talkNPC = npc
+	var dialogueText = talkNPC.get_cur_dialogue_item()
+	if dialogueText != null:
+		disableMovement = true
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
