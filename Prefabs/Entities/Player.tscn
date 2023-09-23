@@ -34,12 +34,10 @@ shape = SubResource("RectangleShape2D_dwn8i")
 texture = SubResource("AtlasTexture_4nskj")
 
 [node name="TextBoxRoot" type="Node2D" parent="."]
-visible = false
 scale = Vector2(0.25, 0.25)
 script = ExtResource("3_lvwjn")
 
 [node name="TextContainer" type="PanelContainer" parent="TextBoxRoot"]
-anchors_preset = -1
 offset_left = -640.0
 offset_top = 80.0
 offset_right = 640.0
@@ -60,8 +58,6 @@ layout_mode = 2
 [node name="SpeakerText" type="RichTextLabel" parent="TextBoxRoot/TextContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_wr0ar")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
 theme_override_font_sizes/normal_font_size = 44
 theme_override_font_sizes/bold_font_size = 44
 theme_override_font_sizes/italics_font_size = 44
@@ -74,8 +70,6 @@ fit_content = true
 [node name="TextBoxText" type="RichTextLabel" parent="TextBoxRoot/TextContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_wr0ar")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
 theme_override_font_sizes/normal_font_size = 28
 theme_override_font_sizes/bold_font_size = 28
 theme_override_font_sizes/italics_font_size = 28
