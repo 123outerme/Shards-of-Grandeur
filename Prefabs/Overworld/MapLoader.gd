@@ -14,8 +14,8 @@ func _ready():
 func entered_warp(newMapName, newMapPos, isUnderground):
 	var player = get_node("/root/Overworld/Player")
 	player.position = newMapPos
-	load_map(newMapName)
 	PlayerResources.playerInfo.map = newMapName
+	load_map(newMapName)
 	pass
 
 func load_map(mapName):

@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCscript.gd" id="1_1dp2i"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_egh5a"]
-[ext_resource type="Script" path="res://Scripts/NPCs/NPCMoveTrigger.gd" id="2_8tkyg"]
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCMovement.gd" id="2_fvlbl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbwlw"]
@@ -48,10 +47,11 @@ shape = SubResource("RectangleShape2D_ycftu")
 [node name="MoveTrigger" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("2_8tkyg")
 
 [node name="MoveTriggerShape" type="CollisionShape2D" parent="MoveTrigger"]
 shape = SubResource("RectangleShape2D_wk2vr")
 
 [connection signal="target_reached" from="NavAgent" to="NavAgent" method="_on_target_reached"]
-[connection signal="area_entered" from="MoveTrigger" to="MoveTrigger" method="_on_area_entered"]
+[connection signal="area_entered" from="TalkArea" to="." method="_on_talk_area_area_entered"]
+[connection signal="area_exited" from="TalkArea" to="." method="_on_talk_area_area_exited"]
+[connection signal="area_entered" from="MoveTrigger" to="." method="_on_move_trigger_area_entered"]

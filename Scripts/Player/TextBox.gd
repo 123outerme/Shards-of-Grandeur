@@ -29,15 +29,25 @@ func _process(delta):
 	pass
 
 func set_textbox_text(text: String, speaker: String):
-	TextBoxText.text = text
-	TextBoxText.visible_characters = 0
-	text_visible_chars_partial = 0
+	advance_textbox(text)
 	SpeakerText.text = speaker + ":"
 	visible = true
 	SpeakerText.visible_characters = 0
 	speaker_visible_chars_partial = 0
 	ReadySprite.visible = false
 	
+func advance_textbox(text: String):
+	TextBoxText.text = text
+	TextBoxText.visible_characters = 0
+	text_visible_chars_partial = 0
+	
+func is_textbox_complete() -> bool:
+	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
 
 func hide_textbox():
 	visible = false
+
+func show_text_instant():
+	print('show instant')
+	SpeakerText.visible_characters = len(SpeakerText.text)
+	TextBoxText.visible_characters = len(TextBoxText.text)

@@ -7,6 +7,11 @@ class_name NPCData
 @export var selectedTarget: int = 0
 @export var loops: int = 0
 @export var disableMovement: bool = false
+@export var previousDisableMove: bool = false
+
+@export_category("NPCData - Dialogue")
+@export var dialogueItems: Array = []
+@export var dialogueIndex: int = -1
 
 func _init(
 	i_saveName = "npc",
@@ -14,12 +19,18 @@ func _init(
 	i_selectedTarget = 0,
 	i_loops = 0,
 	i_disableMovement = false,
+	i_previousDisableMove = false,
+	i_dialogueItems = [],
+	i_dialogueIndex = -1,
 ):
 	saveName = i_saveName
 	position = i_position
 	selectedTarget = i_selectedTarget
 	loops = i_loops
 	disableMovement = i_disableMovement
+	previousDisableMove = i_previousDisableMove
+	dialogueItems = i_dialogueItems
+	dialogueIndex = i_dialogueIndex
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file()):

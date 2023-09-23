@@ -34,6 +34,7 @@ shape = SubResource("RectangleShape2D_dwn8i")
 texture = SubResource("AtlasTexture_4nskj")
 
 [node name="TextBoxRoot" type="Node2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 script = ExtResource("3_lvwjn")
 
@@ -64,7 +65,6 @@ theme_override_font_sizes/italics_font_size = 44
 theme_override_font_sizes/bold_italics_font_size = 44
 theme_override_font_sizes/mono_font_size = 44
 bbcode_enabled = true
-text = "Speaker Name:"
 fit_content = true
 
 [node name="TextBoxText" type="RichTextLabel" parent="TextBoxRoot/TextContainer/MarginContainer/VBoxContainer"]
@@ -76,7 +76,6 @@ theme_override_font_sizes/italics_font_size = 28
 theme_override_font_sizes/bold_italics_font_size = 28
 theme_override_font_sizes/mono_font_size = 28
 bbcode_enabled = true
-text = "Text that should be displayed..."
 fit_content = true
 
 [node name="ReadySprite" type="Sprite2D" parent="TextBoxRoot"]
