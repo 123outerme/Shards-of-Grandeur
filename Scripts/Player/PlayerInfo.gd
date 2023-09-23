@@ -22,7 +22,7 @@ class_name PlayerInfo
 @export var exitingBattle: bool
 @export var encounteredName: String
 
-var save_file = "playerInfo.tres"
+var save_file = "playerinfo.tres"
 
 func _init(
 	i_map = "TestMap1",
