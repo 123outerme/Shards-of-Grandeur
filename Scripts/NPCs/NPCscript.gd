@@ -73,11 +73,16 @@ func get_cur_dialogue_item():
 	return data.dialogueItems[data.dialogueIndex]
 
 func advance_dialogue():
+	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue again
+		reset_dialogue()
+	
 	data.dialogueIndex += 1
 	if data.dialogueIndex >= len(data.dialogueItems):
-		reset_dialogue()
+		data.dialogueIndex = -1
+		data.dialogueItems = []
 		NavAgent.disableMovement = data.previousDisableMove
-	else:
+	
+	if data.dialogueIndex == 0:
 		data.previousDisableMove = NavAgent.disableMovement
 		NavAgent.disableMovement = true
 

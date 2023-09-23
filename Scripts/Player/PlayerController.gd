@@ -36,7 +36,6 @@ func advance_dialogue():
 	else:
 		disableMovement = false
 		textBox.hide_textbox()
-		talkNPC.reset_dialogue()
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
@@ -47,3 +46,4 @@ func restore_dialogue(npc: NPCScript):
 	if dialogueText != null:
 		disableMovement = true
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+		textBox.show_text_instant()

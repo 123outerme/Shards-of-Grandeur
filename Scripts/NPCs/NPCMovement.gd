@@ -5,7 +5,7 @@ class_name NPCMovement
 
 @export var targetPoints: Array[Vector2] = []
 @export var selectedTarget: int = 0
-@export var loops: int = -1
+@export var loops: int = 0 # -1 to loop indefinitely
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
 
@@ -28,10 +28,11 @@ func update_target_pos():
 	if len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
 		if selectedTarget == 0:
-			loops -= 1
-			if loops == 0:
+			if loops == 0 or len(targetPoints) == 1:
 				disableMovement = true
 				return
+			if loops > 0:
+				loops -= 1 # don't need to keep track of loops when looping indefinitely
 		target_position = targetPoints[selectedTarget]
 
 func start_movement():

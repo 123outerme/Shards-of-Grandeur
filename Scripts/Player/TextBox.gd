@@ -48,6 +48,5 @@ func hide_textbox():
 	visible = false
 
 func show_text_instant():
-	print('show instant')
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
