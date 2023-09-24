@@ -13,6 +13,10 @@ class_name NPCData
 @export var dialogueItems: Array = []
 @export var dialogueIndex: int = -1
 
+@export_category("NPCData - Shopkeeping")
+@export var inventory: Inventory
+@export var hasShop: bool = false
+
 func _init(
 	i_saveName = "npc",
 	i_position = Vector2(),
@@ -22,6 +26,8 @@ func _init(
 	i_previousDisableMove = false,
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
+	i_inventory = Inventory.new(),
+	i_hasShop = false,
 ):
 	saveName = i_saveName
 	position = i_position
@@ -31,6 +37,8 @@ func _init(
 	previousDisableMove = i_previousDisableMove
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
+	inventory = i_inventory
+	hasShop = i_hasShop
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file()):

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx00oa0dadpvj"]
+
+[ext_resource type="Script" path="res://Scripts/Player/TextBox.gd" id="1_osatr"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_qnltp"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="3_00gxq"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="4_e64jd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrkvq"]
+bg_color = Color(0, 0, 0, 0.686275)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4r8l"]
+atlas = ExtResource("4_e64jd")
+region = Rect2(16, 0, 8, 8)
+
+[node name="TextBoxRoot" type="Node2D"]
+visible = false
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_osatr")
+
+[node name="TextContainer" type="PanelContainer" parent="."]
+offset_left = -640.0
+offset_top = 80.0
+offset_right = 640.0
+offset_bottom = 480.0
+theme = ExtResource("2_qnltp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrkvq")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SpeakerText" type="RichTextLabel" parent="TextContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_00gxq")
+theme_override_font_sizes/normal_font_size = 44
+theme_override_font_sizes/bold_font_size = 44
+theme_override_font_sizes/italics_font_size = 44
+theme_override_font_sizes/bold_italics_font_size = 44
+theme_override_font_sizes/mono_font_size = 44
+bbcode_enabled = true
+fit_content = true
+
+[node name="TextBoxText" type="RichTextLabel" parent="TextContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_00gxq")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+bbcode_enabled = true
+fit_content = true
+
+[node name="ReadySprite" type="Sprite2D" parent="."]
+position = Vector2(620, 100)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_f4r8l")

@@ -9,6 +9,7 @@ size = Vector2(2, 2)
 [node name="OverworldMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 tile_set = ExtResource("1_dfi0r")
 format = 2
 layer_0/name = "Background"
@@ -17,7 +18,7 @@ layer_0/tile_data = PackedInt32Array(65535, 196608, 1, -1, 0, 0, -65536, 0, 0, -
 layer_1/name = "Midground"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
+layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = -10
 layer_1/tile_data = PackedInt32Array()

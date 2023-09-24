@@ -11,16 +11,24 @@ class_name NPCScript
 @export_category("NPC Dialogue")
 @export_multiline var stdDialogue: Array[String]
 
-@onready var NavAgent: NPCMovement = get_node("NavAgent")
-@onready var player: PlayerController = get_node("/root/Overworld/Player")
+@export_category("NPC Shop")
+@export var hasShop: bool = false
+@export var inventory: Inventory
 
+@onready var NavAgent: NPCMovement = get_node("NavAgent")
+
+var player: PlayerController = null
 var npcsDir: String = "npcs/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	data = NPCData.new()
 	data.position = position
-	pass # Replace with function body.
+	data.inventory = inventory
+	call_deferred("fetch_player")
+
+func fetch_player():
+	player = get_node("../Player")
 
 func save_data(save_path):
 	data.saveName = saveName
@@ -28,6 +36,7 @@ func save_data(save_path):
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
 	data.disableMovement = NavAgent.disableMovement
+	data.inventory = inventory
 	data.save_data(save_path + npcsDir, data)
 	return
 	
@@ -45,6 +54,7 @@ func load_data(save_path):
 		NavAgent.start_movement()
 		if data.dialogueIndex >= 0:
 			player.restore_dialogue(self)
+		inventory = data.inventory
 	return
 
 func _on_move_trigger_area_entered(area):
@@ -59,7 +69,6 @@ func _on_talk_area_area_entered(area):
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		player.set_talk_npc(null)
-		pass # Replace with function body.
 
 func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):

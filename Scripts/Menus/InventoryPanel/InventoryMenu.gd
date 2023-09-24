@@ -1,10 +1,6 @@
 extends Node2D
 class_name InventoryMenu
 
-@export_category("InventoryPanel - Context")
-@export var inShop: bool = false
-@export var showPlayerInventory = false
-
 @export_category("InventoryPanel - Filters")
 @export var selectedFilter: Item.Type = Item.Type.ALL
 @export var battleFilter: bool = false
@@ -20,6 +16,13 @@ class_name InventoryMenu
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
+
+@export_category("InventoryPanel - Shops")
+@export var inShop: bool = false
+@export var showPlayerInventory = false
+var shopInventory: Inventory = null
+
+var currentInventory: Inventory
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,9 +41,12 @@ func load_inventory_panel():
 	for panel in existingPanels:
 		panel.queue_free()
 	
+	currentInventory = PlayerResources.inventory
+	if inShop and not showPlayerInventory:
+		currentInventory = shopInventory
+	
 	var invSlotPanel = load("res://Prefabs/UI/InventorySlotPanel.tscn")
-	print(len(PlayerResources.inventory.inventorySlots))
-	for slot in PlayerResources.inventory.inventorySlots:
+	for slot in currentInventory.inventorySlots:
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
 			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 			instantiatedPanel.isShopItem = inShop
@@ -85,7 +91,7 @@ func update_filter_buttons():
 
 func _on_toggle_shop_inventory_button_pressed():
 	showPlayerInventory = not showPlayerInventory
-	update_toggle_inv_button()
+	load_inventory_panel()
 
 func _on_back_button_pressed():
 	toggle() # hide inventory panel

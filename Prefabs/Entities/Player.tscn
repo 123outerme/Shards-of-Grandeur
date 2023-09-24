@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bntkk3phm8mpu"]
+[gd_scene load_steps=8 format=3 uid="uid://bntkk3phm8mpu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_tgx8p"]
-[ext_resource type="Script" path="res://Scripts/Player/TextBox.gd" id="3_lvwjn"]
-[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="4_kyqbp"]
-[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="5_wr0ar"]
+[ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/InventoryPanel.tscn" id="6_w56l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -14,17 +12,11 @@ size = Vector2(7, 7)
 atlas = ExtResource("1_tgx8p")
 region = Rect2(16, 8, 8, 8)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrkvq"]
-bg_color = Color(0, 0, 0, 0.686275)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4r8l"]
-atlas = ExtResource("1_tgx8p")
-region = Rect2(16, 0, 8, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lcm7"]
 size = Vector2(8, 8)
 
 [node name="Player" type="CharacterBody2D" groups=["AutonomousMove"]]
+z_index = -10
 motion_mode = 1
 script = ExtResource("1_m8p6c")
 
@@ -34,57 +26,11 @@ shape = SubResource("RectangleShape2D_dwn8i")
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_4nskj")
 
-[node name="TextBoxRoot" type="Node2D" parent="."]
-visible = false
-scale = Vector2(0.25, 0.25)
-script = ExtResource("3_lvwjn")
-
-[node name="TextContainer" type="PanelContainer" parent="TextBoxRoot"]
-offset_left = -640.0
-offset_top = 80.0
-offset_right = 640.0
-offset_bottom = 480.0
-theme = ExtResource("4_kyqbp")
-theme_override_styles/panel = SubResource("StyleBoxFlat_qrkvq")
-
-[node name="MarginContainer" type="MarginContainer" parent="TextBoxRoot/TextContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextBoxRoot/TextContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="SpeakerText" type="RichTextLabel" parent="TextBoxRoot/TextContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_wr0ar")
-theme_override_font_sizes/normal_font_size = 44
-theme_override_font_sizes/bold_font_size = 44
-theme_override_font_sizes/italics_font_size = 44
-theme_override_font_sizes/bold_italics_font_size = 44
-theme_override_font_sizes/mono_font_size = 44
-bbcode_enabled = true
-fit_content = true
-
-[node name="TextBoxText" type="RichTextLabel" parent="TextBoxRoot/TextContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_wr0ar")
-theme_override_font_sizes/normal_font_size = 28
-theme_override_font_sizes/bold_font_size = 28
-theme_override_font_sizes/italics_font_size = 28
-theme_override_font_sizes/bold_italics_font_size = 28
-theme_override_font_sizes/mono_font_size = 28
-bbcode_enabled = true
-fit_content = true
-
-[node name="ReadySprite" type="Sprite2D" parent="TextBoxRoot"]
-position = Vector2(620, 100)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_f4r8l")
+[node name="TextBoxRoot" parent="." instance=ExtResource("3_ljo0p")]
+z_index = 2
 
 [node name="InventoryPanelNode" parent="." instance=ExtResource("6_w56l3")]
+z_index = 2
 position = Vector2(-160, -120)
 scale = Vector2(0.25, 0.25)
 

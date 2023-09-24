@@ -1,20 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgyixkapey8tg"]
+[gd_scene load_steps=12 format=3 uid="uid://dgyixkapey8tg"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_av58i"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_drds8"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="3_ver5i"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/Potion.tres" id="4_hlu0k"]
+[ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="5_eahra"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="6_8831t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bipu"]
-size = Vector2(8, 1)
+[sub_resource type="Resource" id="Resource_tb31n"]
+script = ExtResource("5_eahra")
+item = ExtResource("4_hlu0k")
+count = 5
+
+[sub_resource type="Resource" id="Resource_g1j12"]
+script = ExtResource("6_8831t")
+inventorySlots = Array[ExtResource("5_eahra")]([SubResource("Resource_tb31n")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg1ui"]
 size = Vector2(20, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bipu"]
+size = Vector2(8, 1)
+
 [node name="OverworldMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 tile_set = ExtResource("1_av58i")
 format = 2
 layer_0/name = "Background"
@@ -23,7 +36,7 @@ layer_0/tile_data = PackedInt32Array(-1, 196608, 2, -65536, 196608, 2, 65535, 19
 layer_1/name = "Midground"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
+layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = -10
 layer_1/tile_data = PackedInt32Array(-393218, 196608, 3, -393217, 196608, 3, -458752, 196608, 3, -458751, 196608, 3, -458750, 196608, 3, -458749, 196608, 3, -458748, 196608, 3, -393219, 196608, 3, -458754, 983040, 1, 65531, 196608, 3, 65532, 196608, 3, 65533, 196608, 3, 2, 196608, 3, 3, 196608, 3, 4, 196608, 3, 65534, 196608, 3, 1, 196608, 3)
@@ -35,6 +48,26 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
+[node name="NPC" parent="TileMap" instance=ExtResource("3_ver5i")]
+y_sort_enabled = true
+position = Vector2(0, -59)
+displayName = "Coconut Head"
+saveName = "coconuthead"
+stdDialogue = Array[String](["Hello there! I'm giving a silly quest to travelers.", "This is my second line of dialogue. Isn't this neat?"])
+hasShop = true
+inventory = SubResource("Resource_g1j12")
+
+[node name="NavAgent" parent="TileMap/NPC" index="2"]
+targetPoints = Array[Vector2]([Vector2(0, -42)])
+maxSpeed = 30
+
+[node name="TalkAreaShape" parent="TileMap/NPC/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_p1hmx")
+
+[node name="MoveTriggerShape" parent="TileMap/NPC/MoveTrigger" index="0"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_gg1ui")
+
 [node name="WarpZone" parent="." instance=ExtResource("2_drds8")]
 position = Vector2(-4, 12)
 mapName = "TestMap2"
@@ -44,22 +77,5 @@ mapPos = Vector2(36, -2)
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_8bipu")
 
-[node name="NPC" parent="." instance=ExtResource("3_ver5i")]
-position = Vector2(0, -59)
-displayName = "Coconut Head"
-saveName = "coconuthead"
-stdDialogue = Array[String](["Hello there! I'm giving a silly quest to travelers.", "This is my second line of dialogue. Isn't this neat?"])
-
-[node name="NavAgent" parent="NPC" index="2"]
-targetPoints = Array[Vector2]([Vector2(0, -42)])
-maxSpeed = 30
-
-[node name="TalkAreaShape" parent="NPC/TalkArea" index="0"]
-shape = SubResource("RectangleShape2D_p1hmx")
-
-[node name="MoveTriggerShape" parent="NPC/MoveTrigger" index="0"]
-position = Vector2(0, 19)
-shape = SubResource("RectangleShape2D_gg1ui")
-
+[editable path="TileMap/NPC"]
 [editable path="WarpZone"]
-[editable path="NPC"]
