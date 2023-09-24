@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=6 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventoryMenu.gd" id="1_2iwyw"]
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://Themes/PopupUI.tres" id="1_l8qo6"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_2st5a"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="3_ud1n6"]
+[ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/ItemDetailsPanel.tscn" id="5_81t4p"]
 
 [node name="InventoryPanelNode" type="Node2D"]
 visible = false
@@ -118,6 +119,9 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="ItemDetailsPanel" parent="." instance=ExtResource("5_81t4p")]
+visible = false
+
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ShardsButton" to="." method="_on_shards_button_toggled"]
@@ -125,3 +129,6 @@ text = "Back"
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ArmorButton" to="." method="_on_armor_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/KeyItemsButton" to="." method="_on_key_items_button_toggled"]
 [connection signal="pressed" from="InventoryPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ItemDetailsPanel/Panel/BackButton" to="." method="_on_details_back_button_pressed"]
+
+[editable path="ItemDetailsPanel"]

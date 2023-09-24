@@ -18,6 +18,8 @@ class_name InventoryMenu
 @onready var weaponFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/WeaponsButton")
 @onready var armorFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ArmorButton")
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
+@onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
+@onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,21 +48,25 @@ func load_inventory_panel():
 			instantiatedPanel.inventoryMenu = self
 			instantiatedPanel.inventorySlot = slot
 			vboxViewport.add_child(instantiatedPanel)
+	
+func buy_item(slot: InventorySlot):
+	PlayerResources.inventory.add_item(slot.item)
+	PlayerResources.playerInfo.gold -= slot.item.cost
+	# TODO remove item from NPC's inventory
+	pass
+	
+func sell_item(slot: InventorySlot):
+	PlayerResources.inventory.trash_item(slot)
+	PlayerResources.playerInfo.gold += slot.item.cost
+	# TODO add item to NPC's inventory
+	pass
 
-func use_item(item: InventorySlot):
-	pass
-	
-func trash_item(item: InventorySlot):
-	pass
-	
-func buy_item(item: InventorySlot):
-	pass
-	
-func sell_item(item: InventorySlot):
-	pass
-
-func view_item_details(item: InventorySlot):
-	pass
+func view_item_details(slot: InventorySlot):
+	backButton.disabled = true
+	itemDetailsPanel.item = slot.item
+	itemDetailsPanel.count = slot.count
+	itemDetailsPanel.visible = true
+	itemDetailsPanel.load_item_details()
 
 func filter_by(type: Item.Type = Item.Type.ALL):
 	selectedFilter = type
@@ -83,6 +89,9 @@ func _on_toggle_shop_inventory_button_pressed():
 
 func _on_back_button_pressed():
 	toggle() # hide inventory panel
+	
+func _on_details_back_button_pressed():
+	backButton.disabled = false
 
 func _on_healing_button_toggled(button_pressed):
 	if button_pressed:

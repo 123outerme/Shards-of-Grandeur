@@ -24,11 +24,12 @@ func load_data(save_path):
 		inventory = newInv
 
 func save_data(save_path):
-	if player != null:
+	if player != null and playerInfo != null:
 		playerInfo.position = player.position
 		playerInfo.disableMovement = player.disableMovement
 		playerInfo.save_data(save_path, playerInfo)
-	inventory.save_data(save_path, inventory)
+	if inventory != null:
+		inventory.save_data(save_path, inventory)
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
