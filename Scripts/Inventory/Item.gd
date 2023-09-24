@@ -56,3 +56,5 @@ func _init(
 	consumable = i_consumable
 	equippable = i_equippable
 	
+func use(target):
+	pass # "virtual" function - does nothing. Override in inherting classes!

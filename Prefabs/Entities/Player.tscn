@@ -39,9 +39,11 @@ shape = SubResource("RectangleShape2D_6lcm7")
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 2
+scale = Vector2(0.25, 0.25)
 
 [node name="TextBoxRoot" parent="UI" instance=ExtResource("3_ljo0p")]
+visible = false
 
 [node name="InventoryPanelNode" parent="UI" instance=ExtResource("6_w56l3")]
-position = Vector2(-160, -120)
-scale = Vector2(0.25, 0.25)
+visible = false
+position = Vector2(-640, -480)

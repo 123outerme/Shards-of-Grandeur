@@ -23,7 +23,7 @@ func add_item(item: Item) -> bool:
 	return true
 	
 func use_item(item: Item, target):
-	# TODO use item (based on type?)
+	item.use(target)
 	for slot in inventorySlots:
 		if slot.item == item and item.usable:
 			trash_item(slot) # remove one of the appropriate items
