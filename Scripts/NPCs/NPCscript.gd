@@ -92,6 +92,9 @@ func advance_dialogue():
 		NavAgent.disableMovement = data.previousDisableMove
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
+		for tracker in PlayerResources.questInventory.get_cur_trackers_for_target(saveName):
+			if tracker.get_current_step().type == QuestStep.Type.TALK:
+				tracker.add_current_step_progress()
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = NavAgent.disableMovement

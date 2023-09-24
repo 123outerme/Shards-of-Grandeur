@@ -44,18 +44,18 @@ func _physics_process(_delta):
 		move_and_slide()
 		
 func _process(delta):
-	if npcTalkBtns.visible:
+	if npcTalkBtns.visible and talkNPC != null:
 		position_talk_btns()
 
 func advance_dialogue():
 	talkNPC.advance_dialogue()
 	var dialogueText = talkNPC.get_cur_dialogue_item()
-	if dialogueText != null:
-		if talkNPC.data.dialogueIndex == 0:
+	if dialogueText != null: # if there is dialogue to display
+		if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the dialogue
 			disableMovement = true
 			set_talk_btns_vis(false)
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
-		else:
+		else: # this is continuing the dialogue
 			textBox.advance_textbox(dialogueText)
 	else:
 		disableMovement = false

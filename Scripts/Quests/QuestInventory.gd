@@ -25,6 +25,14 @@ func get_quest_tracker_for_step(step: QuestStep) -> QuestTracker:
 		if questTracker.get_step_index(step) >= 0:
 			return questTracker
 	return null
+	
+func get_cur_trackers_for_target(targetName: String) -> Array[QuestTracker]:
+	var trackers: Array[QuestTracker] = []
+	for questTracker in quests:
+		var curStep = questTracker.get_current_step()
+		if curStep.turnInName == targetName:
+			trackers.append(questTracker)
+	return trackers
 
 func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 	var hasCompleted: bool = true
@@ -42,11 +50,11 @@ func accept_quest(q: Quest):
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)
 	
-func turn_in_step(step: QuestStep):
-	var tracker = get_quest_tracker_for_step(step)
+func turn_in_cur_step(tracker: QuestTracker):
 	var allDone: bool = tracker.turn_in_step()
 	if allDone:
 		quests.erase(tracker)
+	# TODO yield rewards
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_name):

@@ -54,7 +54,9 @@ func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	load_quests_panel()
 
 func turn_in(questTracker: QuestTracker):
-	PlayerResources.questInventory.turn_in_step(questTracker.get_current_step())
+	PlayerResources.questInventory.turn_in_cur_step(questTracker)
+	# TODO show player rewards
+	load_quests_panel()
 	
 func show_details(questTracker: QuestTracker):
 	pass # TODO
