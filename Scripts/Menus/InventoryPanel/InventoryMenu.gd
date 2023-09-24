@@ -7,6 +7,7 @@ class_name InventoryMenu
 @export var lockFilters: bool = false
 
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
+@onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var toggleShopButton: Button = get_node("InventoryPanel/Panel/ToggleShopInventoryButton")
 
 @onready var healingFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/HealingButton")
@@ -42,9 +43,14 @@ func load_inventory_panel():
 		panel.queue_free()
 	
 	currentInventory = PlayerResources.inventory
-	if inShop and not showPlayerInventory:
-		currentInventory = shopInventory
-	
+	inventoryTitle.text = '[center]Inventory[/center]'
+	if inShop:
+		if not showPlayerInventory:
+			currentInventory = shopInventory
+			inventoryTitle.text = '[center]Shop Inventory[/center]'
+		else:
+			inventoryTitle.text = '[center]Your Inventory[/center]'
+
 	var invSlotPanel = load("res://Prefabs/UI/InventorySlotPanel.tscn")
 	for slot in currentInventory.inventorySlots:
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:

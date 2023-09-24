@@ -4,8 +4,8 @@ class_name PlayerController
 const SPEED = 80
 @export var disableMovement: bool
 
-@onready var textBox: TextBox = get_node("TextBoxRoot")
-@onready var inventoryPanel: InventoryMenu = get_node("InventoryPanelNode")
+@onready var textBox: TextBox = get_node("UI/TextBoxRoot")
+@onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
 @onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
 @onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
@@ -14,7 +14,7 @@ var talkNPC: NPCScript = null
 
 func _input(event):
 	if event.is_action_pressed("game_pause"):
-		SaveHandler.save_data()
+		pass # TODO
 
 	if event.is_action_pressed("game_interact") and talkNPC != null:
 		if textBox.is_textbox_complete():

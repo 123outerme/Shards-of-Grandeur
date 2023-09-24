@@ -34,12 +34,12 @@ func set_textbox_text(text: String, speaker: String):
 	visible = true
 	SpeakerText.visible_characters = 0
 	speaker_visible_chars_partial = 0
-	ReadySprite.visible = false
 	
 func advance_textbox(text: String):
 	TextBoxText.text = text
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
+	ReadySprite.visible = false
 	
 func is_textbox_complete() -> bool:
 	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
