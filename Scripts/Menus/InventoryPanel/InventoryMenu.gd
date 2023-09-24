@@ -65,13 +65,11 @@ func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
 	PlayerResources.playerInfo.gold -= slot.item.cost
 	# TODO remove item from NPC's inventory
-	pass
 	
 func sell_item(slot: InventorySlot):
 	PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
 	# TODO add item to NPC's inventory
-	pass
 
 func view_item_details(slot: InventorySlot):
 	backButton.disabled = true
@@ -108,34 +106,29 @@ func _on_details_back_button_pressed():
 func _on_healing_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.HEALING)
-	else:
-		if selectedFilter == Item.Type.HEALING:
-			filter_by()
+	elif selectedFilter == Item.Type.HEALING:
+		filter_by()
 
 func _on_shards_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.SHARD)
-	else:
-		if selectedFilter == Item.Type.SHARD:
-			filter_by()
+	elif selectedFilter == Item.Type.SHARD:
+		filter_by()
 
 func _on_weapons_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.WEAPON)
-	else:
-		if selectedFilter == Item.Type.WEAPON:
-			filter_by()
+	elif selectedFilter == Item.Type.WEAPON:
+		filter_by()
 	
 func _on_armor_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.ARMOR)
-	else:
-		if selectedFilter == Item.Type.ARMOR:
-			filter_by()
+	elif selectedFilter == Item.Type.ARMOR:
+		filter_by()
 
 func _on_key_items_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.KEY_ITEM)
-	else:
-		if selectedFilter == Item.Type.KEY_ITEM:
-			filter_by()
+	elif selectedFilter == Item.Type.KEY_ITEM:
+		filter_by()

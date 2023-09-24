@@ -22,7 +22,6 @@ func _process(delta):
 		if vel.length() > maxSpeed * delta:
 			vel = vel.normalized() * maxSpeed * delta
 		NPC.position += vel
-	pass
 
 func update_target_pos():
 	if len(targetPoints) > 0:
@@ -42,4 +41,3 @@ func start_movement():
 func _on_target_reached():
 	if not disableMovement:
 		update_target_pos()
-	pass # Replace with function body.
