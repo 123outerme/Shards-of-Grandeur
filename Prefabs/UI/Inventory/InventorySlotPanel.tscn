@@ -1,16 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://xascm0kyyw75"]
+[gd_scene load_steps=8 format=3 uid="uid://xascm0kyyw75"]
 
-[ext_resource type="StyleBox" uid="uid://cvp1dlscuv1lg" path="res://Themes/ListItemPanel.tres" id="1_psbn8"]
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://Themes/ListItemPanelTheme.tres" id="1_b0c2f"]
 [ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventorySlotPanel.gd" id="2_6x7us"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="2_sthgl"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_4ev4x"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="7_5a212"]
-
-[sub_resource type="Theme" id="Theme_wuysd"]
-default_font_size = 18
-Panel/styles/panel = ExtResource("1_psbn8")
-RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
-RichTextLabel/constants/outline_size = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8w3s"]
 atlas = ExtResource("2_sthgl")
@@ -22,7 +16,7 @@ region = Rect2(96, 32, 8, 8)
 
 [node name="InventorySlotPanel" type="Panel" groups=["InventorySlotPanel"]]
 custom_minimum_size = Vector2(1120, 76)
-theme = SubResource("Theme_wuysd")
+theme = ExtResource("1_b0c2f")
 script = ExtResource("2_6x7us")
 isShopItem = true
 

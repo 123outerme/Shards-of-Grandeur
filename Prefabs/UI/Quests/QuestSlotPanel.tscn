@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://djlw8n7ljagv2"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://Themes/ListItemPanelTheme.tres" id="1_o51tf"]
+[ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestSlotPanel.gd" id="2_6ihcm"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="2_ya8i3"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="4_l4ou6"]
+
+[node name="QuestSlotPanel" type="Panel" groups=["QuestSlotPanel"]]
+custom_minimum_size = Vector2(1120, 76)
+offset_right = 1120.0
+offset_bottom = 76.0
+theme = ExtResource("1_o51tf")
+script = ExtResource("2_6ihcm")
+
+[node name="CenterQuestName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -38.0
+offset_right = 316.0
+offset_bottom = 38.0
+grow_vertical = 2
+alignment = 1
+
+[node name="QuestName" type="RichTextLabel" parent="CenterQuestName"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("4_l4ou6")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+text = "Quest Name Goes Here"
+fit_content = true
+
+[node name="QuestStepName" type="RichTextLabel" parent="CenterQuestName"]
+clip_contents = false
+layout_mode = 2
+text = "Quest Step Name Goes Here"
+fit_content = true
+
+[node name="CenterProgress" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = -38.0
+offset_right = 840.0
+offset_bottom = 38.0
+grow_vertical = 2
+alignment = 1
+
+[node name="QuestProgress" type="RichTextLabel" parent="CenterProgress"]
+clip_contents = false
+layout_mode = 2
+text = "Defeat 123456789012345! (234 / 567)"
+fit_content = true
+
+[node name="CenterButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -38.0
+offset_right = -20.0
+offset_bottom = 38.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+layout_mode = 2
+theme = ExtResource("2_ya8i3")
+alignment = 2
+
+[node name="TurnInButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Turn In"
+
+[node name="DetailsButton" type="Button" parent="CenterButtons/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Details"
+
+[connection signal="pressed" from="CenterButtons/HBoxContainer/TurnInButton" to="." method="_on_turn_in_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]

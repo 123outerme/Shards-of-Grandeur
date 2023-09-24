@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=9 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_tgx8p"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
+[ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="5_q3a5u"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="6_w56l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -45,5 +46,9 @@ scale = Vector2(0.25, 0.25)
 visible = false
 
 [node name="InventoryPanelNode" parent="UI" instance=ExtResource("6_w56l3")]
+visible = false
+position = Vector2(-640, -480)
+
+[node name="QuestsPanelNode" parent="UI" instance=ExtResource("5_q3a5u")]
 visible = false
 position = Vector2(-640, -480)

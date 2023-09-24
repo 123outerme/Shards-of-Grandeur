@@ -10,7 +10,7 @@ enum Type {
 	ALL = -1,
 }
 
-static func TypeToString(t: Type):
+static func TypeToString(t: Type) -> String:
 	match t:
 		Type.HEALING:
 			return "Healing"
@@ -49,6 +49,7 @@ func _init(
 ):
 	itemSprite = i_sprite
 	itemName = i_name
+	itemDescription = i_itemDescription
 	itemType = i_type
 	cost = i_cost
 	maxCount = i_maxCount

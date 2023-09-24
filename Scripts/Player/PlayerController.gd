@@ -6,6 +6,7 @@ const SPEED = 80
 
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
+@onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
 @onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
 @onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
@@ -25,7 +26,15 @@ func _input(event):
 	if event.is_action_pressed("game_inventory"):
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
+		inventoryPanel.lockFilters = false
 		inventoryPanel.toggle()
+		questsPanel.visible = false
+		
+	if event.is_action_pressed("game_quests"):
+		questsPanel.turnInTargetName = ''
+		questsPanel.lockFilters = false
+		questsPanel.toggle()
+		inventoryPanel.visible = false
 
 func _physics_process(_delta):
 	if not disableMovement:
@@ -47,7 +56,7 @@ func advance_dialogue():
 		textBox.hide_textbox()
 		npcTalkBtns.visible = true
 		shopButton.visible = talkNPC.hasShop
-		turnInButton.visible = false # TODO
+		turnInButton.visible = len(talkNPC.turningInSteps) > 0
 		var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
 		var newY = -10.0
 		if conversationPosDiff.y > 0.1:

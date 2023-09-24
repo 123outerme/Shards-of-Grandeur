@@ -2,6 +2,7 @@ extends Node2D
 
 @export var playerInfo: PlayerInfo
 @export var inventory: Inventory
+@export var questInventory: QuestInventory
 
 var player = null
 
@@ -22,6 +23,10 @@ func load_data(save_path):
 	var newInv = inventory.load_data(save_path)
 	if newInv != null:
 		inventory = newInv
+	questInventory = QuestInventory.new()
+	var newQuestInv = questInventory.load_data(save_path)
+	if newQuestInv != null:
+		questInventory = newQuestInv
 
 func save_data(save_path):
 	if player != null and playerInfo != null:
@@ -30,9 +35,13 @@ func save_data(save_path):
 		playerInfo.save_data(save_path, playerInfo)
 	if inventory != null:
 		inventory.save_data(save_path, inventory)
+	if questInventory != null:
+		questInventory.save_data(save_path, questInventory)
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
 	playerInfo.save_data(save_path, playerInfo)
 	inventory = Inventory.new()
 	inventory.save_data(save_path, inventory)
+	questInventory = QuestInventory.new()
+	questInventory.save_data(save_path, questInventory)

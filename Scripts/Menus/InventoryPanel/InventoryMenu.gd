@@ -6,6 +6,11 @@ class_name InventoryMenu
 @export var battleFilter: bool = false
 @export var lockFilters: bool = false
 
+@export_category("InventoryPanel - Shops")
+@export var inShop: bool = false
+@export var showPlayerInventory = false
+var shopInventory: Inventory = null
+
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var toggleShopButton: Button = get_node("InventoryPanel/Panel/ToggleShopInventoryButton")
@@ -17,11 +22,6 @@ class_name InventoryMenu
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
-
-@export_category("InventoryPanel - Shops")
-@export var inShop: bool = false
-@export var showPlayerInventory = false
-var shopInventory: Inventory = null
 
 var currentInventory: Inventory
 
@@ -92,6 +92,12 @@ func update_filter_buttons():
 	weaponFilterBtn.button_pressed = selectedFilter == Item.Type.WEAPON
 	armorFilterBtn.button_pressed = selectedFilter == Item.Type.ARMOR
 	keyItemFilterBtn.button_pressed = selectedFilter == Item.Type.KEY_ITEM
+	
+	healingFilterBtn.disabled = lockFilters
+	shardFilterBtn.disabled = lockFilters
+	weaponFilterBtn.disabled = lockFilters
+	armorFilterBtn.disabled = lockFilters
+	keyItemFilterBtn.disabled = lockFilters
 
 func _on_toggle_shop_inventory_button_pressed():
 	showPlayerInventory = not showPlayerInventory

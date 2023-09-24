@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://jwuut14phi64"]
+
+[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_iw6nk"]
+[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_u577o"]
+
+[sub_resource type="Resource" id="Resource_6pwfd"]
+script = ExtResource("2_u577o")
+name = "Talk to Him"
+description = "Coconut Head just needs someone to speak with, continuously, for just a little while."
+type = 0
+count = 3
+objectiveName = "coconuthead"
+turnInName = "coconuthead"
+displayObjName = "Coconut Head"
+displayTurnInName = "Coconut Head"
+turnInDialogue = Array[String](["Thank you for speaking with me.", "I have another task for you, however.", "Please defeat one Rat. They make me crazy."])
+inProgressDialogue = Array[String](["Please, continue speaking with me!"])
+
+[sub_resource type="Resource" id="Resource_dgear"]
+script = ExtResource("2_u577o")
+name = "Rats..."
+description = "Coconut Head would like you to defeat a Rat for him. He was crazy once. They locked him in a room. A rubber room. A rubber room with rats. Rats? Rats make him crazy. Crazy?"
+type = 2
+count = 1
+objectiveName = "rat"
+turnInName = "coconuthead"
+displayObjName = "Rat"
+displayTurnInName = "Coconut Head"
+turnInDialogue = Array[String](["I can finally breathe easy, now that one less Rat exists.", "Please take this off my hands, actually."])
+inProgressDialogue = Array[String](["I might be just a little crazy, but defeat that rat.", "Crazy? Well, I was crazy once. They locked me in a room..."])
+
+[resource]
+script = ExtResource("1_iw6nk")
+questName = "Talk to Coconut Head"
+description = "Coconut head wants to speak with you. He has a quest that involves alleviating his boredom. He also was scanning the floor and nearly jumped at the site of a rat."
+steps = Array[ExtResource("2_u577o")]([SubResource("Resource_6pwfd"), SubResource("Resource_dgear")])
+prerequisiteQuestNames = Array[String]([])
+startDialogue = Array[String](["After this, please talk to me some more!"])

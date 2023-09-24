@@ -11,6 +11,11 @@ class_name NPCScript
 @export_category("NPC Dialogue")
 @export_multiline var stdDialogue: Array[String]
 
+@export_category("NPC Quests")
+@export var quests: Array[Quest] = []
+var acceptableQuests: Array[Quest] = []
+var turningInSteps: Array[QuestStep] = []
+
 @export_category("NPC Shop")
 @export var hasShop: bool = false
 @export var inventory: Inventory
@@ -81,12 +86,14 @@ func advance_dialogue():
 		reset_dialogue()
 	
 	data.dialogueIndex += 1
-	if data.dialogueIndex >= len(data.dialogueItems):
+	if data.dialogueIndex >= len(data.dialogueItems): # conversation is over
 		data.dialogueIndex = -1
 		data.dialogueItems = []
 		NavAgent.disableMovement = data.previousDisableMove
+		for q in acceptableQuests:
+			PlayerResources.questInventory.accept_quest(q)
 	
-	if data.dialogueIndex == 0:
+	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = NavAgent.disableMovement
 		NavAgent.disableMovement = true
 
@@ -94,4 +101,28 @@ func reset_dialogue():
 	data.dialogueIndex = -1
 	data.dialogueItems = []
 	data.dialogueItems.append_array(stdDialogue)
-	# TODO: gather quest-related dialogue
+	fetch_quest_dialogue_info()
+	for q in acceptableQuests:
+		data.dialogueItems.append_array(q.startDialogue)
+	for q in quests:
+		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_quest(q)
+		if questTracker != null:
+			var curStep = questTracker.get_current_step()
+			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS:
+				data.dialogueItems.append_array(curStep.inProgressDialogue)
+	for s in turningInSteps:
+		data.dialogueItems.append_array(s.turnInDialogue)
+
+func fetch_quest_dialogue_info():
+	acceptableQuests = []
+	turningInSteps = []
+	for q in quests:
+		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_quest(q)
+		if questTracker == null:
+			if PlayerResources.questInventory.has_completed_prereqs(q.prerequisiteQuestNames):
+				acceptableQuests.append(q)
+		else:
+			var curStep: QuestStep = questTracker.get_current_step()
+			if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
+					and curStep.turnInName == saveName:
+				turningInSteps.append(curStep)
