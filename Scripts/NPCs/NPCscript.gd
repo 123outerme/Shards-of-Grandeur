@@ -28,7 +28,7 @@ func _ready():
 	call_deferred("fetch_player")
 
 func fetch_player():
-	player = get_node("../Player")
+	player = PlayerFinder.player
 
 func save_data(save_path):
 	data.saveName = saveName

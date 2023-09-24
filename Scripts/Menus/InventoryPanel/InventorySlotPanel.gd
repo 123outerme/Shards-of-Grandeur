@@ -43,18 +43,23 @@ func load_inventory_slot_panel():
 	
 func _on_use_button_pressed():
 	PlayerResources.inventory.use_item(inventorySlot.item, null) # TODO pick target
+	load_inventory_slot_panel()
 
 func _on_equip_button_pressed():
 	PlayerResources.inventory.equip_item(inventorySlot)
+	load_inventory_slot_panel()
 
 func _on_trash_button_pressed():
 	PlayerResources.inventory.trash_item(inventorySlot)
+	load_inventory_slot_panel()
 
 func _on_buy_button_pressed():
 	inventoryMenu.buy_item(inventorySlot)
+	load_inventory_slot_panel()
 	
 func _on_sell_button_pressed():
 	inventoryMenu.sell_item(inventorySlot)
+	load_inventory_slot_panel()
 
 func _on_details_button_pressed():
 	inventoryMenu.view_item_details(inventorySlot)

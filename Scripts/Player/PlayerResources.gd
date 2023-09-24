@@ -14,7 +14,7 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
-	player = get_node_or_null("/root/" + playerInfo.scene + "/Player")
+	player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
 		player.disableMovement = playerInfo.disableMovement

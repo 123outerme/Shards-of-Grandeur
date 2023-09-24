@@ -64,12 +64,12 @@ func load_inventory_panel():
 func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
 	PlayerResources.playerInfo.gold -= slot.item.cost
-	# TODO remove item from NPC's inventory
+	shopInventory.trash_item(slot)
 	
 func sell_item(slot: InventorySlot):
 	PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
-	# TODO add item to NPC's inventory
+	shopInventory.add_item(slot.item)
 
 func view_item_details(slot: InventorySlot):
 	backButton.disabled = true

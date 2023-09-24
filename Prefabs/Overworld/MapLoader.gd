@@ -2,13 +2,16 @@ extends Node2D
 
 var mapInstance: Node = null
 
-@onready var player: CharacterBody2D = get_node("../Player")
+@onready var player: CharacterBody2D = get_node_or_null("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SaveHandler.load_data()
 	load_map(PlayerResources.playerInfo.map)
-	pass # Replace with function body.
+	if player != null:
+		PlayerFinder.player = player
+	else:
+		player = PlayerFinder.player
 
 func entered_warp(newMapName, newMapPos, isUnderground):
 	player.position = newMapPos
@@ -30,3 +33,4 @@ func reparent_player():
 	var tilemap = get_node('/' + mapInstance.get_path().get_concatenated_names().c_escape() + '/TileMap')
 	tilemap.add_child(player)
 	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
+	PlayerFinder.player = player
