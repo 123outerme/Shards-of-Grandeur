@@ -2,7 +2,7 @@ extends Node2D
 
 var mapInstance: Node = null
 
-@onready var player: CharacterBody2D = get_node_or_null("../Player")
+@onready var player: PlayerController = get_node_or_null("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +15,7 @@ func _ready():
 
 func entered_warp(newMapName, newMapPos, isUnderground):
 	player.position = newMapPos
+	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
 	load_map(newMapName)
 

@@ -22,6 +22,9 @@ class_name PlayerInfo
 @export var exitingBattle: bool
 @export var encounteredName: String
 
+@export_category("PlayerInfo: UI State")
+@export var talkBtnsVisible: bool = false
+
 var save_file = "playerinfo.tres"
 
 func _init(
@@ -37,7 +40,8 @@ func _init(
 	i_movepool = ["Slice"],
 	i_inBattle = false,
 	i_exitingBattle = false,
-	i_encounteredName = ""
+	i_encounteredName = "",
+	i_talkBtnsVisible = false,
 ):
 	map = i_map
 	inUnderworld = i_inUnderworld
@@ -52,6 +56,7 @@ func _init(
 	inBattle = i_inBattle
 	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName
+	talkBtnsVisible = i_talkBtnsVisible
 
 
 func load_data(save_path):

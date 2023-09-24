@@ -29,17 +29,23 @@ func _input(event):
 		inventoryPanel.lockFilters = false
 		inventoryPanel.toggle()
 		questsPanel.visible = false
+		npcTalkBtns.visible = not inventoryPanel.visible
 		
 	if event.is_action_pressed("game_quests"):
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
 		inventoryPanel.visible = false
+		npcTalkBtns.visible = not questsPanel.visible
 
 func _physics_process(_delta):
 	if not disableMovement:
 		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
 		move_and_slide()
+		
+func _process(delta):
+	if npcTalkBtns.visible:
+		position_talk_btns()
 
 func advance_dialogue():
 	talkNPC.advance_dialogue()
@@ -47,26 +53,37 @@ func advance_dialogue():
 	if dialogueText != null:
 		if talkNPC.data.dialogueIndex == 0:
 			disableMovement = true
-			npcTalkBtns.visible = false
+			set_talk_btns_vis(false)
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		else:
 			textBox.advance_textbox(dialogueText)
 	else:
 		disableMovement = false
 		textBox.hide_textbox()
-		npcTalkBtns.visible = true
+		set_talk_btns_vis(true)
+		position_talk_btns()
+
+func set_talk_btns_vis(vis: bool):
+	npcTalkBtns.visible = vis
+	PlayerResources.playerInfo.talkBtnsVisible = vis
+	if talkNPC != null:
 		shopButton.visible = talkNPC.hasShop
 		turnInButton.visible = len(talkNPC.turningInSteps) > 0
-		var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
-		var newY = -10.0
-		if conversationPosDiff.y > 0.1:
-			newY *= -1
-		conversationPosDiff.y = newY
-		npcTalkBtns.position = talkNPC.position - conversationPosDiff
+
+func position_talk_btns():
+	var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
+	var newY = -10.0
+	if conversationPosDiff.y > 0.1:
+		newY *= -1
+	conversationPosDiff.y = newY
+	npcTalkBtns.position = talkNPC.position - conversationPosDiff
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
-	npcTalkBtns.visible = false
+	if npc == null:
+		set_talk_btns_vis(false)
+		shopButton.visible = false
+		turnInButton.visible = false
 	
 func restore_dialogue(npc: NPCScript):
 	talkNPC = npc
@@ -75,6 +92,8 @@ func restore_dialogue(npc: NPCScript):
 		disableMovement = true
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
+	set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
+	position_talk_btns()
 
 func _on_shop_button_pressed():
 	inventoryPanel.inShop = true
@@ -84,5 +103,12 @@ func _on_shop_button_pressed():
 	npcTalkBtns.visible = false
 
 func _on_turn_in_button_pressed():
-	# TODO
+	questsPanel.turnInTargetName = talkNPC.saveName
+	questsPanel.toggle()
 	npcTalkBtns.visible = false
+	
+func _on_inventory_back_button_pressed():
+	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+
+func _on_quests_back_button_pressed():
+	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible

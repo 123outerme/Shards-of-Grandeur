@@ -57,8 +57,8 @@ func load_data(save_path):
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.disableMovement
 		NavAgent.start_movement()
-		if data.dialogueIndex >= 0:
-			player.restore_dialogue(self)
+		fetch_player()
+		player.restore_dialogue(self)
 		inventory = data.inventory
 	return
 

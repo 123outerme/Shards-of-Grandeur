@@ -52,3 +52,10 @@ position = Vector2(-640, -480)
 [node name="QuestsPanelNode" parent="UI" instance=ExtResource("5_q3a5u")]
 visible = false
 position = Vector2(-640, -480)
+
+[connection signal="pressed" from="UI/InventoryPanelNode/InventoryPanel/Panel/BackButton" to="." method="_on_inventory_back_button_pressed"]
+[connection signal="pressed" from="UI/QuestsPanelNode/QuestsPanel/Panel/BackButton" to="." method="_on_quests_back_button_pressed"]
+
+[editable path="UI/InventoryPanelNode"]
+[editable path="UI/InventoryPanelNode/ItemDetailsPanel"]
+[editable path="UI/QuestsPanelNode"]
