@@ -29,6 +29,7 @@ func fetch_saved_scripts():
 		saved_scripts.append("/" + node.get_path().get_concatenated_names().c_escape())
 
 func save_data():
+	create_save_subdirs()
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
@@ -36,6 +37,7 @@ func save_data():
 			scr.call("save_data", save_file_location)
 
 func load_data():
+	create_save_subdirs()
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
@@ -59,3 +61,10 @@ func new_game():
 			
 func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
+
+func create_save_subdirs():
+	for subdir in subdirs:
+		if not DirAccess.dir_exists_absolute(save_file_location + subdir):
+			var err = DirAccess.make_dir_absolute(save_file_location + subdir)
+			if err > 0:
+				print("DirAccess open create dir error " + String.num(err))

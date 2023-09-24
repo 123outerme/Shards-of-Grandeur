@@ -23,11 +23,6 @@ func _ready():
 	pass # Replace with function body.
 
 func save_data(save_path):
-	if not DirAccess.dir_exists_absolute(save_path + npcsDir):
-		var err = DirAccess.make_dir_absolute(save_path + npcsDir)
-		if err > 0:
-			print("DirAccess open create dir error " + String.num(err))
-			
 	data.saveName = saveName
 	data.position = position
 	data.selectedTarget = NavAgent.selectedTarget

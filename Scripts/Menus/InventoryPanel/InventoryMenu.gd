@@ -37,6 +37,7 @@ func load_inventory_panel():
 		panel.queue_free()
 	
 	var invSlotPanel = load("res://Prefabs/UI/InventorySlotPanel.tscn")
+	print(len(PlayerResources.inventory.inventorySlots))
 	for slot in PlayerResources.inventory.inventorySlots:
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
 			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
