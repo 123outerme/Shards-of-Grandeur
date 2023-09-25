@@ -39,7 +39,7 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 	for name in prereqNames:
 		var completedPrereq: bool = false
 		var tracker: QuestTracker = get_quest_tracker_by_name(name)
-		if tracker != null and tracker.get_step_status(tracker.get_current_step()) == QuestTracker.Status.COMPLETED:
+		if tracker != null and tracker.get_current_status() == QuestTracker.Status.COMPLETED:
 			completedPrereq = true
 		hasCompleted = hasCompleted and completedPrereq
 	return hasCompleted

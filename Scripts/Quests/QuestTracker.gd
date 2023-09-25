@@ -35,9 +35,19 @@ func _init(i_quest = null, i_progress: Array[int] = [0], i_curStep = 0):
 	stepProgressCounts = i_progress
 	currentStep = i_curStep
 
+func get_current_status() -> Status:
+	if currentStep >= len(quest.steps):
+		return Status.COMPLETED
+	
+	var curStep = get_current_step()
+	if curStep != null:
+		return get_step_status(curStep)
+	
+	return Status.NOT_STARTED
+
 func get_current_step() -> QuestStep:
-	if currentStep >= 0 and currentStep < len(quest.steps):
-		return quest.steps[currentStep]
+	if currentStep >= 0:
+		return quest.steps[min(currentStep, len(quest.steps) - 1)] # cap at last array element
 	return null
 	
 func get_step_index(step: QuestStep) -> int:
@@ -85,7 +95,7 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 	return '???'
 
 func turn_in_step() -> bool:
-	if get_step_status(get_current_step()) == Status.READY_TO_TURN_IN_STEP:
+	if get_current_status() == Status.READY_TO_TURN_IN_STEP:
 		currentStep += 1
 		stepProgressCounts.append(0)
 		# TODO: update progress automatically for collect-quest steps, etc.

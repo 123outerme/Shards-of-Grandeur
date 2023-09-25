@@ -2,7 +2,7 @@ extends Node2D
 class_name QuestsMenu
 
 @export_category("Quests Panel - Filters")
-@export var selectedFilter: QuestTracker.Status
+@export var selectedFilter: QuestTracker.Status = QuestTracker.Status.ALL
 @export var turnInTargetName: String
 @export var lockFilters: bool = false
 
@@ -33,11 +33,12 @@ func load_quests_panel():
 	
 	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")
 	for questTracker in PlayerResources.questInventory.quests:
-		var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
-		instantiatedPanel.questTracker = questTracker
-		instantiatedPanel.turnInName = turnInTargetName
-		instantiatedPanel.questsMenu = self
-		vboxViewport.add_child(instantiatedPanel)
+		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == questTracker.get_current_status():
+			var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
+			instantiatedPanel.questTracker = questTracker
+			instantiatedPanel.turnInName = turnInTargetName
+			instantiatedPanel.questsMenu = self
+			vboxViewport.add_child(instantiatedPanel)
 
 func update_filter_buttons():
 	inProgressButton.button_pressed = selectedFilter == QuestTracker.Status.IN_PROGRESS
