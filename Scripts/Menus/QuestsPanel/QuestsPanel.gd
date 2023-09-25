@@ -13,6 +13,7 @@ class_name QuestsMenu
 @onready var notCompletedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/NotCompletedButton")
 @onready var vboxViewport: VBoxContainer = get_node("QuestsPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var backButton: Button = get_node("QuestsPanel/Panel/BackButton")
+@onready var questDetailsPanel: QuestDetailsPanel = get_node("QuestDetailsPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,7 +60,10 @@ func turn_in(questTracker: QuestTracker):
 	load_quests_panel()
 	
 func show_details(questTracker: QuestTracker):
-	pass # TODO
+	backButton.disabled = true
+	questDetailsPanel.questTracker = questTracker
+	questDetailsPanel.visible = true
+	questDetailsPanel.load_quest_details()
 
 func _on_in_progress_button_toggled(button_pressed):
 	if button_pressed:
@@ -87,3 +91,6 @@ func _on_not_completed_button_toggled(button_pressed):
 	
 func _on_back_button_pressed():
 	toggle()
+
+func _on_quest_details_back_button_pressed():
+	backButton.disabled = false

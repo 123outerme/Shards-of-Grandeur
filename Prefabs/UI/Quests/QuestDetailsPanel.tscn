@@ -1,0 +1,180 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw6gj40op07vr"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_60ioc"]
+[ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestDetailsPanel.gd" id="2_k8rm2"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_qo0lb"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/InnerPanel.tres" id="4_5vbr7"]
+
+[node name="QuestDetailsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_60ioc")
+script = ExtResource("2_k8rm2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1200.0
+offset_bottom = 880.0
+
+[node name="QuestName" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 25.0
+offset_right = 250.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = ExtResource("2_qo0lb")
+bbcode_enabled = true
+text = "[center]Quest Name Goes Here[/center]"
+fit_content = true
+
+[node name="QuestDescription" type="RichTextLabel" parent="Panel"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.142
+anchor_right = 1.0
+anchor_bottom = 0.142
+offset_left = 110.0
+offset_top = -33.6
+offset_right = -110.0
+offset_bottom = 34.4
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "[center]Quest details go here. I am allowing for quite a bit of details, hopefully I have enough space for everything I want to fit. A little backstory is always cool.[/center]"
+
+[node name="StepDetailPanel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 152.0
+offset_right = 1010.0
+offset_bottom = 394.0
+theme_override_styles/panel = ExtResource("4_5vbr7")
+
+[node name="StepName" type="RichTextLabel" parent="Panel/StepDetailPanel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 471.0
+offset_bottom = 36.0
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 21
+theme_override_font_sizes/italics_font_size = 21
+theme_override_font_sizes/bold_italics_font_size = 21
+theme_override_font_sizes/mono_font_size = 21
+bbcode_enabled = true
+text = "[center]Quest Step Name Goes Here[/center]"
+scroll_active = false
+
+[node name="StepDescription" type="RichTextLabel" parent="Panel/StepDetailPanel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 38.0
+offset_right = 471.0
+offset_bottom = 169.0
+text = "These will be the details for the current quest step. This should provide enough space for a good description of what's going on in the story, hopefully all this text isn't too busy. It's important to communicate all this without being too troubled."
+
+[node name="StepStatus" type="RichTextLabel" parent="Panel/StepDetailPanel"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 6.0
+offset_right = -5.0
+offset_bottom = 32.0
+grow_horizontal = 0
+bbcode_enabled = true
+text = "[center]Defeat 123456789012345! (234 / 567)[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="TurnInTo" type="RichTextLabel" parent="Panel/StepDetailPanel"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -49.0
+offset_right = -122.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 21
+theme_override_font_sizes/italics_font_size = 21
+theme_override_font_sizes/bold_italics_font_size = 21
+theme_override_font_sizes/mono_font_size = 21
+text = "Turn In To:"
+fit_content = true
+scroll_active = false
+
+[node name="StepTurnInTarget" type="RichTextLabel" parent="Panel/StepDetailPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -17.0
+offset_right = -26.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Turn In To Target Name[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 397.0
+offset_right = -110.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(900, 76)
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -60.0
+offset_right = 25.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
