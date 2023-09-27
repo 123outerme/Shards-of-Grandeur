@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw6gj40op07vr"]
+[gd_scene load_steps=7 format=3 uid="uid://cw6gj40op07vr"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_60ioc"]
 [ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestDetailsPanel.gd" id="2_k8rm2"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_qo0lb"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/InnerPanel.tres" id="4_5vbr7"]
+[ext_resource type="PackedScene" uid="uid://b11xiyik10j7i" path="res://Prefabs/UI/RewardPanel.tscn" id="5_let4i"]
+[ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="6_pbljs"]
 
 [node name="QuestDetailsPanel" type="Control"]
 layout_mode = 3
@@ -145,6 +147,27 @@ bbcode_enabled = true
 text = "[center]Turn In To Target Name[/center]"
 fit_content = true
 
+[node name="RewardPanel" parent="Panel/StepDetailPanel" instance=ExtResource("5_let4i")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -70.0
+offset_right = 440.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GoldGroup" parent="Panel/StepDetailPanel/RewardPanel" index="1"]
+anchors_preset = 13
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -177,4 +200,11 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="ItemDetailsPanel" parent="." instance=ExtResource("6_pbljs")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/StepDetailPanel/RewardPanel/ItemGroup/ItemSpriteButton" to="." method="_on_item_sprite_button_pressed"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Panel/StepDetailPanel/RewardPanel"]

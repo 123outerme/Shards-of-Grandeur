@@ -10,6 +10,8 @@ var selectedStep: QuestStep = null
 @onready var stepDescription: RichTextLabel = get_node("Panel/StepDetailPanel/StepDescription")
 @onready var stepStatus: RichTextLabel = get_node("Panel/StepDetailPanel/StepStatus")
 @onready var stepTurnIn: RichTextLabel = get_node("Panel/StepDetailPanel/StepTurnInTarget")
+@onready var rewardPanel: RewardPanel = get_node("Panel/StepDetailPanel/RewardPanel")
+@onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +30,12 @@ func load_quest_details():
 	stepDescription.text = selectedStep.description
 	stepStatus.text = '[center]' + questTracker.get_step_status_str(selectedStep, true) + '[/center]'
 	stepTurnIn.text = '[center]' + selectedStep.displayTurnInName + '[/center]'
+	rewardPanel.reward = selectedStep.reward
+	rewardPanel.load_reward_panel(itemDetailsPanel)
 
 func _on_back_button_pressed():
 	visible = false
+
+func _on_item_sprite_button_pressed():
+	itemDetailsPanel.visible = true
+	itemDetailsPanel.load_item_details()
