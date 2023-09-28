@@ -39,6 +39,7 @@ scroll_active = false
 [node name="GoldGroup" type="Control" parent="."]
 custom_minimum_size = Vector2(102, 70)
 layout_mode = 1
+anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -51,9 +52,10 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GoldGroup"]
 custom_minimum_size = Vector2(32, 70)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 32.0
-offset_bottom = 70.0
 alignment = 1
 
 [node name="SpriteControl" type="Control" parent="GoldGroup/VBoxContainer"]

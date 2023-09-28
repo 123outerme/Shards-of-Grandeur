@@ -38,8 +38,7 @@ func load_inventory_panel():
 	update_toggle_inv_button()
 	update_filter_buttons()
 	
-	var existingPanels = get_tree().get_nodes_in_group("InventorySlotPanel")
-	for panel in existingPanels:
+	for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 		panel.queue_free()
 	
 	currentInventory = PlayerResources.inventory

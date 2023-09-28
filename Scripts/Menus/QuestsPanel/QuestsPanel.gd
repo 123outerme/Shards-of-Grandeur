@@ -27,8 +27,7 @@ func toggle():
 func load_quests_panel():
 	update_filter_buttons()
 	
-	var existingPanels = get_tree().get_nodes_in_group("QuestSlotPanel")
-	for panel in existingPanels:
+	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
 	
 	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")

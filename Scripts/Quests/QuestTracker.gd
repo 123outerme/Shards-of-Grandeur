@@ -93,6 +93,12 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 	if status == Status.READY_TO_TURN_IN_STEP:
 		return 'Turn in to ' + step.displayTurnInName + '!'
 	return '???'
+	
+func get_known_steps() -> Array[QuestStep]:
+	var knownSteps: Array[QuestStep] = []
+	for i in range(min(currentStep, len(quest.steps) - 1), -1, -1): # for each step from current step down to the first (or all steps if current step >= # of steps)
+		knownSteps.append(quest.steps[i]) # add the known quest step
+	return knownSteps
 
 func turn_in_step() -> bool:
 	if get_current_status() == Status.READY_TO_TURN_IN_STEP:

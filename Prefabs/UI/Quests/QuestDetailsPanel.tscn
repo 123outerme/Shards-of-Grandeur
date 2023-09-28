@@ -162,11 +162,13 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="GoldGroup" parent="Panel/StepDetailPanel/RewardPanel" index="1"]
-anchors_preset = 13
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="VBoxContainer" parent="Panel/StepDetailPanel/RewardPanel/GoldGroup" index="0"]
+grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1

@@ -11,6 +11,7 @@ var selectedStep: QuestStep = null
 @onready var stepStatus: RichTextLabel = get_node("Panel/StepDetailPanel/StepStatus")
 @onready var stepTurnIn: RichTextLabel = get_node("Panel/StepDetailPanel/StepTurnInTarget")
 @onready var rewardPanel: RewardPanel = get_node("Panel/StepDetailPanel/RewardPanel")
+@onready var vboxViewport: VBoxContainer = get_node("Panel/ScrollContainer/VBoxContainer")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +33,17 @@ func load_quest_details():
 	stepTurnIn.text = '[center]' + selectedStep.displayTurnInName + '[/center]'
 	rewardPanel.reward = selectedStep.reward
 	rewardPanel.load_reward_panel(itemDetailsPanel)
+	
+	for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
+		panel.queue_free()
+	
+	var questStepPanel = load("res://Prefabs/UI/Quests/QuestStepPanel.tscn")
+	for step in questTracker.get_known_steps():
+		var instantiatedPanel: QuestStepPanel = questStepPanel.instantiate()
+		instantiatedPanel.step = step
+		instantiatedPanel.questTracker = questTracker
+		instantiatedPanel.detailsPanel = self
+		vboxViewport.add_child(instantiatedPanel)
 
 func _on_back_button_pressed():
 	visible = false

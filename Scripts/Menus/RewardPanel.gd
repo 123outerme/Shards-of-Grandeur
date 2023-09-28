@@ -16,6 +16,7 @@ func _ready():
 
 func load_reward_panel(itemDetailsPanel: ItemDetailsPanel):
 	if reward != null:
+		visible = true
 		expLabel.text = '[center]' + String.num(reward.experience) + ' Exp.[/center]'
 		goldLabel.text = String.num(reward.gold)
 		if reward.item != null:

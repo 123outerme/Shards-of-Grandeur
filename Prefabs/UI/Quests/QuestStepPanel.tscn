@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1dwjrgj738b6"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://Themes/ListItemPanelTheme.tres" id="1_wylru"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="2_5y0cn"]
+[ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestStepPanel.gd" id="2_tob7s"]
+
+[node name="QuestStepPanel" type="Panel" groups=["QuestStepPanel"]]
+custom_minimum_size = Vector2(900, 70)
+theme = ExtResource("1_wylru")
+script = ExtResource("2_tob7s")
+
+[node name="CenterStepName" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 308.0
+alignment = 1
+
+[node name="StepName" type="RichTextLabel" parent="CenterStepName"]
+clip_contents = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Quest Step Name Goes Here"
+fit_content = true
+
+[node name="CenterStepProgress" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 340.0
+offset_right = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StepProgress" type="RichTextLabel" parent="CenterStepProgress"]
+clip_contents = false
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Defeat 123456789012345! (234 / 567)[/center]"
+fit_content = true
+
+[node name="CenterButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -3.0
+offset_right = -20.0
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+layout_mode = 2
+theme = ExtResource("2_5y0cn")
+alignment = 2
+
+[node name="ViewButton" type="Button" parent="CenterButtons/HBoxContainer"]
+layout_mode = 2
+text = "View"
+
+[connection signal="pressed" from="CenterButtons/HBoxContainer/ViewButton" to="." method="_on_view_button_pressed"]
