@@ -69,9 +69,9 @@ func get_step_status(step: QuestStep) -> Status:
 	var idx = get_step_index(step)
 	if idx >= 0 and idx < len(stepProgressCounts):
 		var progress = get_step_progress(step)
-		if progress == -1:
-			return Status.COMPLETED
 		if progress >= step.count:
+			if progress == -1 or currentStep > idx:
+				return Status.COMPLETED
 			return Status.READY_TO_TURN_IN_STEP
 		return Status.IN_PROGRESS
 	return Status.NOT_STARTED
@@ -89,7 +89,7 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 		st += ' ' + step.displayObjName + ' (' + String.num(get_step_progress(step)) + ' / ' + String.num(step.count) + ')!'
 		return st
 	if status == Status.COMPLETED:
-		return 'Turned in to ' + step.displayTurnInName
+		return 'Turned in to ' + step.displayTurnInName + '.'
 	if status == Status.READY_TO_TURN_IN_STEP:
 		return 'Turn in to ' + step.displayTurnInName + '!'
 	return '???'

@@ -29,14 +29,14 @@ func _input(event):
 		inventoryPanel.lockFilters = false
 		inventoryPanel.toggle()
 		questsPanel.visible = false
-		npcTalkBtns.visible = not inventoryPanel.visible
+		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 		
 	if event.is_action_pressed("game_quests"):
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
 		inventoryPanel.visible = false
-		npcTalkBtns.visible = not questsPanel.visible
+		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 func _physics_process(_delta):
 	if not disableMovement:
