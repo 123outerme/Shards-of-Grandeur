@@ -7,6 +7,7 @@ const SPEED = 80
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
+@onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
 @onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
 @onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
 @onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
@@ -14,8 +15,12 @@ const SPEED = 80
 var talkNPC: NPCScript = null
 
 func _input(event):
-	if event.is_action_pressed("game_pause"):
-		pass # TODO
+	if event.is_action_pressed("game_pause"): # TODO replace with pause menu
+		statsPanel.stats = PlayerResources.playerInfo.stats
+		statsPanel.toggle()
+		inventoryPanel.visible = false
+		questsPanel.visible = false
+		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if event.is_action_pressed("game_interact") and talkNPC != null:
 		if textBox.is_textbox_complete():
@@ -28,6 +33,7 @@ func _input(event):
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
 		inventoryPanel.toggle()
+		statsPanel.visible = false
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 		
@@ -35,6 +41,7 @@ func _input(event):
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
+		statsPanel.visible = false
 		inventoryPanel.visible = false
 		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 

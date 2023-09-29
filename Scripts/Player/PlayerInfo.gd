@@ -12,7 +12,8 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var stats: Stats
+@export var stats: Stats = Stats.new("Player", "player")
+@export var combatant: Combatant = Combatant.new(Stats.new("Player", "player"))
 @export var gold: int = 10
 
 @export_category("PlayerInfo: Battle")
@@ -32,6 +33,8 @@ func _init(
 	i_underworldDepth = 0,
 	i_savedPosition = Vector2(),
 	i_scene = "Overworld",
+	i_stats = Stats.new("Player", "player"),
+	i_combatant = Combatant.new(Stats.new("Player", "player")),
 	i_gold = 10,
 	i_inBattle = false,
 	i_exitingBattle = false,
@@ -44,6 +47,8 @@ func _init(
 	underworldDepth = i_underworldDepth
 	savedPosition = i_savedPosition
 	scene = i_scene
+	stats = i_stats
+	combatant = i_combatant
 	gold = i_gold
 	inBattle = i_inBattle
 	exitingBattle = i_exitingBattle

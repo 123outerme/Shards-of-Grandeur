@@ -1,6 +1,10 @@
 extends Resource
 class_name Stats
 
+@export_category("Stats - Name")
+@export var displayName: String = 'Entity'
+@export var saveName: String = 'uninstantiated_entity'
+
 @export_category("Stats - Statline")
 @export var level: int = 1
 @export var maxHp: int = 20
@@ -20,6 +24,8 @@ class_name Stats
 @export var movepool: Array = ["Slice"]
 
 func _init(
+	i_displayName = 'Entity',
+	i_saveName = 'uninstantiated_entity',
 	i_level = 1,
 	i_maxHp = 50,
 	i_physAttack = 1,
@@ -33,6 +39,8 @@ func _init(
 	i_moves = ["Slice"],
 	i_movepool = ["Slice"]
 ):
+	displayName = i_displayName
+	saveName = i_saveName
 	level = i_level
 	maxHp = i_maxHp
 	physAttack = i_physAttack
