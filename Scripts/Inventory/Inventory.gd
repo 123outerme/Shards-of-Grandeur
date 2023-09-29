@@ -28,15 +28,26 @@ func use_item(item: Item, target):
 		if slot.item == item and item.usable:
 			trash_item(slot) # remove one of the appropriate items
 	
-func equip_item(inventorySlot: InventorySlot):
+func equip_item(inventorySlot: InventorySlot, equip: bool = true):
+	var item: Item = inventorySlot.item
+	if not equip:
+		item = null
+	
 	if inventorySlot.item is Weapon:
-		PlayerResources.playerInfo.stats.equippedWeapon = inventorySlot.item
+		PlayerResources.playerInfo.stats.equippedWeapon = item
 	if inventorySlot.item is Armor:
-		PlayerResources.playerInfo.stats.equippedArmor = inventorySlot.item
+		PlayerResources.playerInfo.stats.equippedArmor = item
+
+func is_equipped(item: Item) -> bool:
+	if item is Weapon:
+		return PlayerResources.playerInfo.stats.equippedWeapon == item
+	if item is Armor:
+		return PlayerResources.playerInfo.stats.equippedArmor == item
+	return false
 
 func trash_item(inventorySlot: InventorySlot):
 	inventorySlot.count -= 1
-	if inventorySlot.count == 0:
+	if inventorySlot.count <= 0:
 		inventorySlots.erase(inventorySlot)
 	
 func load_data(save_path):

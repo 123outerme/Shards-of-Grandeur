@@ -13,6 +13,7 @@ var shopInventory: Inventory = null
 
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
+@onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
 @onready var toggleShopButton: Button = get_node("InventoryPanel/Panel/ToggleShopInventoryButton")
 
 @onready var healingFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/HealingButton")
@@ -40,6 +41,8 @@ func get_display_inventory():
 	currentInventory = PlayerResources.inventory
 	if inShop and not showPlayerInventory:
 		currentInventory = shopInventory
+	#else:
+		#currentInventory.add_item(load("res://GameData/Items/Weapon/StdIssueSword.tres"))
 
 func load_inventory_panel():
 	get_display_inventory()
@@ -50,6 +53,7 @@ func load_inventory_panel():
 		panel.queue_free()
 	
 	inventoryTitle.text = '[center]Inventory[/center]'
+	goldCount.text = TextUtils.NumToCommaString(PlayerResources.playerInfo.gold)
 	if inShop:
 		if not showPlayerInventory:
 			inventoryTitle.text = '[center]Shop Inventory[/center]'
@@ -62,6 +66,7 @@ func load_inventory_panel():
 			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 			instantiatedPanel.isShopItem = inShop
 			instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
+			instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item)
 			instantiatedPanel.inventoryMenu = self
 			instantiatedPanel.inventorySlot = slot
 			vboxViewport.add_child(instantiatedPanel)

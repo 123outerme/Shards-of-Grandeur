@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgyixkapey8tg"]
+[gd_scene load_steps=17 format=3 uid="uid://dgyixkapey8tg"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_av58i"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_drds8"]
@@ -7,15 +7,27 @@
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/Potion.tres" id="4_hlu0k"]
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="5_eahra"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="6_8831t"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/StdIssueSword.tres" id="6_al278"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/StdIssueMail.tres" id="7_nxbh0"]
 
 [sub_resource type="Resource" id="Resource_tb31n"]
 script = ExtResource("5_eahra")
 item = ExtResource("4_hlu0k")
 count = 5
 
+[sub_resource type="Resource" id="Resource_gdkht"]
+script = ExtResource("5_eahra")
+item = ExtResource("6_al278")
+count = 1
+
+[sub_resource type="Resource" id="Resource_dex0x"]
+script = ExtResource("5_eahra")
+item = ExtResource("7_nxbh0")
+count = 1
+
 [sub_resource type="Resource" id="Resource_g1j12"]
 script = ExtResource("6_8831t")
-inventorySlots = Array[ExtResource("5_eahra")]([SubResource("Resource_tb31n")])
+inventorySlots = Array[ExtResource("5_eahra")]([SubResource("Resource_tb31n"), SubResource("Resource_gdkht"), SubResource("Resource_dex0x")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hmx"]
 

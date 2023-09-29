@@ -14,6 +14,7 @@ class_name InventorySlotPanel
 @onready var itemCost: RichTextLabel = get_node("CenterItemCost/ItemCost")
 @onready var useButton: Button = get_node("CenterButtons/HBoxContainer/UseButton")
 @onready var equipButton: Button = get_node("CenterButtons/HBoxContainer/EquipButton")
+@onready var unequipButton: Button = get_node("CenterButtons/HBoxContainer/UnequipButton")
 @onready var trashButton: Button = get_node("CenterButtons/HBoxContainer/TrashButton")
 @onready var buyButton: Button = get_node("CenterButtons/HBoxContainer/BuyButton")
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
@@ -30,15 +31,15 @@ func load_inventory_slot_panel():
 	itemName.text = inventorySlot.item.itemName
 	itemType.text = Item.TypeToString(inventorySlot.item.itemType)
 	itemCount.text = 'x' + TextUtils.NumToCommaString(inventorySlot.count)
-	if inventorySlot.item.maxCount > 0:
+	if inventorySlot.item.maxCount > 1:
 		itemCount.append_text(' / ' + TextUtils.NumToCommaString(inventorySlot.item.maxCount))
 	itemCost.text = TextUtils.NumToCommaString(inventorySlot.item.cost)	
-	useButton.visible = not isShopItem
+	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
 	useButton.disabled = not inventorySlot.item.usable
-	equipButton.visible = not isShopItem and inventorySlot.item.equippable
-	equipButton.disabled = isEquipped
+	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
+	unequipButton.visible = not isShopItem and isEquipped
 	trashButton.visible = not isShopItem
-	trashButton.disabled = not inventorySlot.item.consumable
+	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable)
 	buyButton.visible = isShopItem and not isPlayerItem
 	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
 	sellButton.visible = isShopItem and isPlayerItem
@@ -47,23 +48,28 @@ func load_inventory_slot_panel():
 	
 func _on_use_button_pressed():
 	PlayerResources.inventory.use_item(inventorySlot.item, null) # TODO pick target
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 
 func _on_equip_button_pressed():
 	PlayerResources.inventory.equip_item(inventorySlot)
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - another item may have been unequipped
 
+func _on_unequip_button_pressed():
+	PlayerResources.inventory.equip_item(inventorySlot, false)
+	isEquipped = false
+	load_inventory_slot_panel()
+	
 func _on_trash_button_pressed():
 	PlayerResources.inventory.trash_item(inventorySlot)
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
 
 func _on_buy_button_pressed():
 	inventoryMenu.buy_item(inventorySlot)
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
 	
 func _on_sell_button_pressed():
 	inventoryMenu.sell_item(inventorySlot)
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
 
 func _on_details_button_pressed():
 	inventoryMenu.view_item_details(inventorySlot)

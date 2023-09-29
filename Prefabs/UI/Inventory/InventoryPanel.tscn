@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=8 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventoryMenu.gd" id="1_jk776"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_88mhw"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="3_826lm"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="4_obp0q"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="4_onx6o"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="5_u77dw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb27x"]
+atlas = ExtResource("4_obp0q")
+region = Rect2(96, 32, 8, 8)
 
 [node name="InventoryPanelNode" type="Node2D"]
 script = ExtResource("1_jk776")
@@ -36,8 +41,55 @@ bbcode_enabled = true
 text = "[center]Your Inventory[/center]"
 fit_content = true
 
+[node name="GoldCountGroup" type="Control" parent="InventoryPanel/Panel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = 132.0
+offset_bottom = 108.0
+
+[node name="GoldLabel" type="RichTextLabel" parent="InventoryPanel/Panel/GoldCountGroup"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Your Gold:[/center]"
+fit_content = true
+
+[node name="GoldSprControl" type="Control" parent="InventoryPanel/Panel/GoldCountGroup"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="GoldSprite" type="Sprite2D" parent="InventoryPanel/Panel/GoldCountGroup/GoldSprControl"]
+position = Vector2(16, 16)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_gb27x")
+
+[node name="GoldCount" type="RichTextLabel" parent="InventoryPanel/Panel/GoldCountGroup"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -13.0
+offset_right = 102.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "456,789"
+fit_content = true
+
 [node name="ToggleShopInventoryButton" type="Button" parent="InventoryPanel/Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
