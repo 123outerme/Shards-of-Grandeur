@@ -86,7 +86,7 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 			st += 'Collect'
 		if step.type == QuestStep.Type.DEFEAT:
 			st += 'Defeat'
-		st += ' ' + step.displayObjName + ' (' + String.num(get_step_progress(step)) + ' / ' + String.num(step.count) + ')!'
+		st += ' ' + step.displayObjName + ' (' + TextUtils.NumToCommaString(get_step_progress(step)) + ' / ' + TextUtils.NumToCommaString(step.count) + ')!'
 		return st
 	if status == Status.COMPLETED:
 		return 'Turned in to ' + step.displayTurnInName + '.'

@@ -15,7 +15,6 @@ atlas = ExtResource("5_32krc")
 region = Rect2(112, 48, 8, 8)
 
 [node name="StatLinePanel" type="Panel"]
-anchors_preset = -1
 offset_right = 560.0
 offset_bottom = 355.0
 theme = ExtResource("1_o2kql")
@@ -399,9 +398,27 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="SaveStatChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+[node name="SaveChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme = ExtResource("1_o2kql")
-text = "Save Changes"
+text = "Save"
 expand_icon = true
+
+[node name="CancelChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+layout_mode = 2
+theme = ExtResource("1_o2kql")
+text = "Cancel"
+
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_physatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_physatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_magicatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_magicatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_resistance_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_resistance_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_affinity_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_affinity_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_speed_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_speed_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/SaveChangesButton" to="." method="_on_save_changes_button_pressed"]
+[connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/CancelChangesButton" to="." method="_on_cancel_changes_button_pressed"]

@@ -17,6 +17,7 @@ var talkNPC: NPCScript = null
 func _input(event):
 	if event.is_action_pressed("game_pause"): # TODO replace with pause menu
 		statsPanel.stats = PlayerResources.playerInfo.stats
+		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
 		inventoryPanel.visible = false
 		questsPanel.visible = false

@@ -2,6 +2,7 @@ extends Node2D
 class_name StatsMenu
 
 @export var stats: Stats = null
+@export var curHp: int = -1
 @export var readOnly: bool = false
 
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
@@ -22,6 +23,7 @@ func load_stats_panel():
 	
 	statsTitle.text = '[center]' + stats.displayName + ' - Stats[/center]'
 	statlinePanel.stats = stats
+	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
 	statlinePanel.load_statline_panel()
 

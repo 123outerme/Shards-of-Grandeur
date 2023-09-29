@@ -29,7 +29,10 @@ func use_item(item: Item, target):
 			trash_item(slot) # remove one of the appropriate items
 	
 func equip_item(inventorySlot: InventorySlot):
-	pass
+	if inventorySlot.item is Weapon:
+		PlayerResources.playerInfo.stats.equippedWeapon = inventorySlot.item
+	if inventorySlot.item is Armor:
+		PlayerResources.playerInfo.stats.equippedArmor = inventorySlot.item
 
 func trash_item(inventorySlot: InventorySlot):
 	inventorySlot.count -= 1

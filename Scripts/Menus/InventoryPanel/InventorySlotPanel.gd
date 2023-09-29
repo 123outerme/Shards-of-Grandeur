@@ -4,6 +4,7 @@ class_name InventorySlotPanel
 @export var inventorySlot: InventorySlot = null
 @export var isShopItem: bool = false
 @export var isPlayerItem: bool = true
+@export var isEquipped: bool = false
 @export var inventoryMenu: InventoryMenu
 
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
@@ -28,17 +29,20 @@ func load_inventory_slot_panel():
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
 	itemType.text = Item.TypeToString(inventorySlot.item.itemType)
-	itemCount.text = 'x' + String.num(inventorySlot.count)
+	itemCount.text = 'x' + TextUtils.NumToCommaString(inventorySlot.count)
 	if inventorySlot.item.maxCount > 0:
-		itemCount.append_text(' / ' + String.num(inventorySlot.item.maxCount))
-	itemCost.text = String.num(inventorySlot.item.cost)	
+		itemCount.append_text(' / ' + TextUtils.NumToCommaString(inventorySlot.item.maxCount))
+	itemCost.text = TextUtils.NumToCommaString(inventorySlot.item.cost)	
 	useButton.visible = not isShopItem
 	useButton.disabled = not inventorySlot.item.usable
 	equipButton.visible = not isShopItem and inventorySlot.item.equippable
+	equipButton.disabled = isEquipped
 	trashButton.visible = not isShopItem
 	trashButton.disabled = not inventorySlot.item.consumable
 	buyButton.visible = isShopItem and not isPlayerItem
+	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
 	sellButton.visible = isShopItem and isPlayerItem
+	#sellButton.disabled = # if NPC cannot hold the item (at max capacity)
 	
 	
 func _on_use_button_pressed():

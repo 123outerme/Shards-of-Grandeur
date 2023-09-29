@@ -27,7 +27,7 @@ func _init(
 	i_displayName = 'Entity',
 	i_saveName = 'uninstantiated_entity',
 	i_level = 1,
-	i_maxHp = 50,
+	i_maxHp = 20,
 	i_physAttack = 1,
 	i_magicAttack = 1,
 	i_resistance = 1,
@@ -37,7 +37,7 @@ func _init(
 	i_weapon = null,
 	i_armor = null,
 	i_moves = ["Slice"],
-	i_movepool = ["Slice"]
+	i_movepool = ["Slice"],
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -109,3 +109,37 @@ func level_up(newLvs: int):
 	affinity += stat
 	speed += stat
 	statPts += pts
+
+func copy() -> Stats:
+	return Stats.new(
+		displayName,
+		saveName,
+		level,
+		maxHp,
+		physAttack,
+		magicAttack,
+		resistance,
+		affinity,
+		speed,
+		statPts,
+		equippedWeapon,
+		equippedArmor,
+		moves,
+		movepool,
+	)
+	
+func save_from_object(s: Stats):
+	displayName = s.displayName
+	saveName = s.saveName
+	level = s.level
+	maxHp = s.maxHp
+	physAttack = s.physAttack
+	magicAttack = s.magicAttack
+	resistance = s.resistance
+	affinity = s.affinity
+	speed = s.speed
+	statPts = s.statPts
+	equippedWeapon = s.equippedWeapon
+	equippedArmor = s.equippedArmor
+	moves = s.moves
+	movepool = s.movepool

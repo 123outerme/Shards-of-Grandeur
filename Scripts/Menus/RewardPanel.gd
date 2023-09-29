@@ -17,8 +17,8 @@ func _ready():
 func load_reward_panel(itemDetailsPanel: ItemDetailsPanel):
 	if reward != null:
 		visible = true
-		expLabel.text = '[center]' + String.num(reward.experience) + ' Exp.[/center]'
-		goldLabel.text = String.num(reward.gold)
+		expLabel.text = '[center]' + TextUtils.NumToCommaString(reward.experience) + ' Exp.[/center]'
+		goldLabel.text = TextUtils.NumToCommaString(reward.gold)
 		if reward.item != null:
 			itemGroup.visible = true
 			itemSpriteBtn.texture_normal = reward.item.itemSprite
