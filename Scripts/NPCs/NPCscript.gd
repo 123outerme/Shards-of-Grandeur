@@ -103,7 +103,7 @@ func advance_dialogue():
 func reset_dialogue():
 	data.dialogueIndex = -1
 	data.dialogueItems = []
-	data.dialogueItems.append_array(stdDialogue)
+	#data.dialogueItems.append_array(stdDialogue) show base dialogue
 	fetch_quest_dialogue_info()
 	for q in acceptableQuests:
 		data.dialogueItems.append_array(q.startDialogue)
@@ -115,6 +115,8 @@ func reset_dialogue():
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
+	if len(data.dialogueItems) == 0: # only show base dialogue if no other dialogue is present (?)
+		data.dialogueItems.append_array(stdDialogue)
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []

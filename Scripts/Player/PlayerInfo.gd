@@ -12,10 +12,8 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var statPoints: int
-@export var statPtPool: int
+@export var stats: Stats
 @export var gold: int = 10
-@export var movepool: Array = ["Slice"]
 
 @export_category("PlayerInfo: Battle")
 @export var inBattle: bool
@@ -34,10 +32,7 @@ func _init(
 	i_underworldDepth = 0,
 	i_savedPosition = Vector2(),
 	i_scene = "Overworld",
-	i_statPoints = 0,
-	i_statPtPool = 0,
 	i_gold = 10,
-	i_movepool = ["Slice"],
 	i_inBattle = false,
 	i_exitingBattle = false,
 	i_encounteredName = "",
@@ -49,10 +44,7 @@ func _init(
 	underworldDepth = i_underworldDepth
 	savedPosition = i_savedPosition
 	scene = i_scene
-	statPoints = i_statPoints
-	statPtPool = i_statPtPool
 	gold = i_gold
-	movepool = i_movepool
 	inBattle = i_inBattle
 	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName

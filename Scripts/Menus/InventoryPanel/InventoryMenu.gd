@@ -32,20 +32,26 @@ func _ready():
 func toggle():
 	visible = not visible
 	if visible:
+		get_display_inventory()
+		check_filters()
 		load_inventory_panel()
 
+func get_display_inventory():
+	currentInventory = PlayerResources.inventory
+	if inShop and not showPlayerInventory:
+		currentInventory = shopInventory
+
 func load_inventory_panel():
+	get_display_inventory()
 	update_toggle_inv_button()
 	update_filter_buttons()
 	
 	for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 		panel.queue_free()
 	
-	currentInventory = PlayerResources.inventory
 	inventoryTitle.text = '[center]Inventory[/center]'
 	if inShop:
 		if not showPlayerInventory:
-			currentInventory = shopInventory
 			inventoryTitle.text = '[center]Shop Inventory[/center]'
 		else:
 			inventoryTitle.text = '[center]Your Inventory[/center]'
@@ -84,6 +90,15 @@ func filter_by(type: Item.Type = Item.Type.ALL):
 func update_toggle_inv_button():
 	toggleShopButton.visible = inShop
 	toggleShopButton.text = "Show Shop's Inventory" if showPlayerInventory else 'Show Your Inventory'
+	
+func check_filters():
+	var count: int = 0
+	for slot in currentInventory.inventorySlots:
+		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
+			count += 1
+	
+	if count == 0: # reset filter if no items would be shown
+		selectedFilter = Item.Type.ALL
 
 func update_filter_buttons():
 	healingFilterBtn.button_pressed = selectedFilter == Item.Type.HEALING

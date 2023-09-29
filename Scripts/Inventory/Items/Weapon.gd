@@ -1,8 +1,5 @@
 extends Item
-class_name Healing
-
-@export_category("Healing")
-@export var healBy: int = 50
+class_name Weapon
 
 func _init(
 	i_sprite = null,
@@ -14,10 +11,5 @@ func _init(
 	i_usable = true,
 	i_consumable = true,
 	i_equippable = false,
-	i_healBy = 50,
 ):
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_consumable, i_equippable)
-	healBy = i_healBy
-
-func use(target):
-	pass # todo heal target
