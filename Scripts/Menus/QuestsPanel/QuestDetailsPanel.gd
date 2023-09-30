@@ -45,8 +45,12 @@ func load_quest_details():
 		instantiatedPanel.detailsPanel = self
 		vboxViewport.add_child(instantiatedPanel)
 
-func _on_back_button_pressed():
+func hide_panel():
+	itemDetailsPanel.visible = false
 	visible = false
+
+func _on_back_button_pressed():
+	hide_panel()
 
 func _on_item_sprite_button_pressed():
 	itemDetailsPanel.visible = true

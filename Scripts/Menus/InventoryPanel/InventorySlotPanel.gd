@@ -39,12 +39,11 @@ func load_inventory_slot_panel():
 	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
 	unequipButton.visible = not isShopItem and isEquipped
 	trashButton.visible = not isShopItem
-	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable)
+	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
 	buyButton.visible = isShopItem and not isPlayerItem
 	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
-	sellButton.visible = isShopItem and isPlayerItem
-	#sellButton.disabled = # if NPC cannot hold the item (at max capacity)
-	
+	sellButton.visible = isShopItem and isPlayerItem and not isEquipped
+	sellButton.disabled = isShopItem and not isPlayerItem and inventorySlot.count >= inventorySlot.item.maxCount	
 	
 func _on_use_button_pressed():
 	PlayerResources.inventory.use_item(inventorySlot.item, null) # TODO pick target

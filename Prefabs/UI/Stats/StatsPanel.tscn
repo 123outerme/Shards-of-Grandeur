@@ -69,6 +69,12 @@ offset_right = 600.0
 offset_bottom = -125.0
 grow_vertical = 0
 
+[node name="ItemDetailsPanel" parent="StatsPanel/Panel/EquipmentPanel" index="2"]
+offset_left = -40.0
+offset_top = -480.0
+offset_right = -40.0
+offset_bottom = -480.0
+
 [node name="BackButton" type="Button" parent="StatsPanel/Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -85,3 +91,6 @@ grow_vertical = 0
 text = "Back"
 
 [connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="StatsPanel/Panel/EquipmentPanel"]
+[editable path="StatsPanel/Panel/EquipmentPanel/ItemDetailsPanel"]

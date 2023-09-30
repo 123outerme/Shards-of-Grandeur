@@ -23,6 +23,9 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_quests_panel()
+	else:
+		questDetailsPanel.hide_panel()
+		
 		
 func load_quests_panel():
 	update_filter_buttons()

@@ -36,6 +36,8 @@ func toggle():
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()
+	else:
+		itemDetailsPanel.visible = false
 
 func get_display_inventory():
 	currentInventory = PlayerResources.inventory
