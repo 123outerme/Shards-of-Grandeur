@@ -7,6 +7,8 @@ class_name StatsMenu
 
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
 @onready var statlinePanel: StatLinePanel = get_node("StatsPanel/Panel/StatLinePanel")
+@onready var moveListPanel: MoveListPanel = get_node("StatsPanel/Panel/MoveListPanel")
+@onready var equipmentPanel: EquipmentPanel = get_node("StatsPanel/Panel/EquipmentPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +28,12 @@ func load_stats_panel():
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
 	statlinePanel.load_statline_panel()
+	moveListPanel.moves = stats.moves
+	moveListPanel.movepool = stats.movepool
+	moveListPanel.load_move_list_panel()
+	equipmentPanel.weapon = stats.equippedWeapon
+	equipmentPanel.armor = stats.equippedArmor
+	equipmentPanel.load_equipment_panel()
 
 func _on_back_button_pressed():
 	toggle()

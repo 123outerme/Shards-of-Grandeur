@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=9 format=3 uid="uid://bhg4i01ukcdvd"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_gqtms"]
+[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_sro0k"]
+[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_sn1i1"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="3_chyjv"]
+
+[sub_resource type="Resource" id="Resource_ahrn6"]
+script = ExtResource("1_sro0k")
+experience = 40
+gold = 8
+
+[sub_resource type="Resource" id="Resource_tgrxo"]
+script = ExtResource("2_sn1i1")
+reward = SubResource("Resource_ahrn6")
+weight = 0.8
+
+[sub_resource type="Resource" id="Resource_7n7yi"]
+script = ExtResource("1_sro0k")
+experience = 40
+gold = 8
+item = ExtResource("3_chyjv")
+
+[sub_resource type="Resource" id="Resource_1iew8"]
+script = ExtResource("2_sn1i1")
+reward = SubResource("Resource_7n7yi")
+weight = 0.2
+
+[resource]
+script = ExtResource("1_gqtms")
+currentHp = -1
+equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
+teamTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedString.gd")]([])
+dropTable = Array[ExtResource("2_sn1i1")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
+innateStatCategories = Array[int]([0, 4])

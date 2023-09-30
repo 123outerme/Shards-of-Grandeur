@@ -1,6 +1,14 @@
 extends Resource
 class_name Stats
 
+enum Category {
+	PHYS_ATK = 0,
+	MAGIC_ATK = 1,
+	RESISTANCE = 2,
+	AFFINITY = 3,
+	SPEED = 4
+}
+
 @export_category("Stats - Name")
 @export var displayName: String = 'Entity'
 @export var saveName: String = 'uninstantiated_entity'
@@ -20,8 +28,8 @@ class_name Stats
 @export var equippedArmor: Armor = null
 
 @export_category("Stats - Moves")
-@export var moves: Array = ["Slice"]
-@export var movepool: Array = ["Slice"]
+@export var moves: Array[String] = ["Slice"]
+@export var movepool: Array[String] = ["Slice"]
 
 func _init(
 	i_displayName = 'Entity',
@@ -36,8 +44,8 @@ func _init(
 	i_statPts = 0,
 	i_weapon = null,
 	i_armor = null,
-	i_moves = ["Slice"],
-	i_movepool = ["Slice"],
+	i_moves: Array[String] = ["Slice"],
+	i_movepool: Array[String] = ["Slice"],
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -95,6 +103,11 @@ static func get_required_exp(lv: int) -> int:
 	
 static func floating_stat_pt_gain(lv: int) -> int:
 	return floor(0.1 * lv + 1)
+	
+static func scale_reward_by_level(reward: Reward, initialLv: int, currentLv: int) -> Reward:
+	var scaledReward: Reward = reward.copy()
+	# TODO
+	return scaledReward
 
 func level_up(newLvs: int):
 	var stat = 0

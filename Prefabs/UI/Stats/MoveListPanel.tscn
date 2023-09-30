@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://di4m6wwpbc3pl"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_1ql7x"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/InnerPanel.tres" id="2_rmryu"]
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MoveListPanel/MoveListPanel.gd" id="3_opjam"]
+[ext_resource type="PackedScene" uid="uid://634c2d1oqhb3" path="res://Prefabs/UI/Stats/MoveListItemPanel.tscn" id="3_u3r7c"]
+
+[node name="MoveListPanel" type="Panel"]
+offset_right = 560.0
+offset_bottom = 355.0
+theme = ExtResource("1_1ql7x")
+theme_override_styles/panel = ExtResource("2_rmryu")
+script = ExtResource("3_opjam")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveListItemPanel1" parent="VBoxContainer" instance=ExtResource("3_u3r7c")]
+layout_mode = 2
+
+[node name="MoveListItemPanel2" parent="VBoxContainer" instance=ExtResource("3_u3r7c")]
+layout_mode = 2
+
+[node name="MoveListItemPanel3" parent="VBoxContainer" instance=ExtResource("3_u3r7c")]
+layout_mode = 2
+
+[node name="MoveListItemPanel4" parent="VBoxContainer" instance=ExtResource("3_u3r7c")]
+layout_mode = 2
+
+[node name="EditMovesButton" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.834
+anchor_right = 0.5
+anchor_bottom = 0.93
+offset_left = -101.0
+offset_top = -0.0700073
+offset_right = 101.0
+offset_bottom = -0.150024
+text = "Edit Moves"
