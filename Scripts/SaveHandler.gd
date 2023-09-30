@@ -2,10 +2,9 @@ extends Node
 
 var saved_scripts: Array
 var save_file_location: String = "user://"
+var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
 
 var subdirs: Array = ["npcs/"]
-
-var save_exists_file: String = "user://playerinfo.tres" # this file should always exist if a save game exists
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,11 +19,11 @@ func _notification(what):
 		get_tree().quit() # then quit
 
 func fetch_saved_scripts():
-	saved_scripts = ["PlayerResources"]
+	saved_scripts = ["PlayerResources"] # singletons to be saved
 	for item in len(saved_scripts):
 		saved_scripts[item] = "/root/" + saved_scripts[item]
 	
-	var persist_nodes = get_tree().get_nodes_in_group("Persist")
+	var persist_nodes = get_tree().get_nodes_in_group("Persist") # all objects in the group to be saved (persisted)
 	for node in persist_nodes:
 		saved_scripts.append("/" + node.get_path().get_concatenated_names().c_escape())
 

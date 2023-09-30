@@ -29,3 +29,10 @@ func _init(
 	currentHp = i_curHp
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
+
+static func load_combatant_resource(saveName: String) -> Combatant:
+	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres")
+	# TODO level up combatant to proper level if necessary
+	if combatant.currentHp == -1:
+		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
+	return combatant

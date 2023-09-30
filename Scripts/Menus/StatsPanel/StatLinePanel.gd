@@ -55,12 +55,12 @@ func load_statline_panel():
 	if curHp == -1:
 		hp = statsCopy.maxHp
 	
-	hpText.text = TextUtils.NumToCommaString(hp) + ' / ' + TextUtils.NumToCommaString(statsCopy.maxHp)
-	physAtkText.text = TextUtils.NumToCommaString(statsCopy.physAttack)
-	magicAtkText.text = TextUtils.NumToCommaString(statsCopy.magicAttack)
-	resistanceText.text = TextUtils.NumToCommaString(statsCopy.resistance)
-	affinityText.text = TextUtils.NumToCommaString(statsCopy.affinity)
-	speedText.text = TextUtils.NumToCommaString(statsCopy.speed)
+	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
+	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
+	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)
+	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)
+	affinityText.text = TextUtils.num_to_comma_string(statsCopy.affinity)
+	speedText.text = TextUtils.num_to_comma_string(statsCopy.speed)
 	statPtsText.text = String.num(statsCopy.statPts)
 	
 	physAtkBtns.visible = not readOnly

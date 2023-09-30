@@ -17,4 +17,4 @@ func _init(
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_consumable, i_equippable)
 
 func get_combatant() -> Combatant:
-	return load("res://GameData/Combatants/" + combatantSaveName + ".tres") as Combatant
+	return Combatant.load_combatant_resource(combatantSaveName)

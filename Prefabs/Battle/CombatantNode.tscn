@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=7 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_1suy0"]
 [ext_resource type="Script" path="res://Scripts/Battle/CombatantNode.gd" id="1_d8qkc"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_o4uc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_elhaw"]
 atlas = ExtResource("1_1suy0")
@@ -10,6 +11,13 @@ region = Rect2(112, 56, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e22wm"]
 atlas = ExtResource("1_1suy0")
 region = Rect2(96, 56, 8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldn4c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.819608)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
@@ -32,3 +40,46 @@ stretch_mode = 0
 
 [node name="CombatantSprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_e22wm")
+
+[node name="HPTag" type="Panel" parent="."]
+offset_left = 6.0
+offset_top = -9.0
+offset_right = 74.0
+offset_bottom = 9.0
+theme = ExtResource("3_o4uc1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldn4c")
+
+[node name="LvText" type="RichTextLabel" parent="HPTag"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -5.0
+offset_right = 88.0
+offset_bottom = 35.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/normal_font_size = 24
+text = "Lv 999"
+
+[node name="HPText" type="RichTextLabel" parent="HPTag"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -5.0
+offset_right = 108.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/normal_font_size = 24
+text = "5,250 / 5,250"
+fit_content = true
+scroll_active = false

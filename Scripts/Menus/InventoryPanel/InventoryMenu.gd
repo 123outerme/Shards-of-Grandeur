@@ -55,7 +55,7 @@ func load_inventory_panel():
 		panel.queue_free()
 	
 	inventoryTitle.text = '[center]Inventory[/center]'
-	goldCount.text = TextUtils.NumToCommaString(PlayerResources.playerInfo.gold)
+	goldCount.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.gold)
 	if inShop:
 		if not showPlayerInventory:
 			inventoryTitle.text = '[center]Shop Inventory[/center]'

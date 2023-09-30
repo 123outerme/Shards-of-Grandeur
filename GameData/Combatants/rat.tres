@@ -1,14 +1,19 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=9 format=3 uid="uid://bhg4i01ukcdvd"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=18 format=3 uid="uid://bhg4i01ukcdvd"]
 
+[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://GameData/Items/Shard/rat_shard.tres" id="1_ew7yv"]
 [ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_gqtms"]
 [ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_sro0k"]
 [ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_sn1i1"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="3_chyjv"]
+[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedString.gd" id="6_7xnel"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="6_ltg86"]
+[ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="7_sv8tt"]
 
 [sub_resource type="Resource" id="Resource_ahrn6"]
 script = ExtResource("1_sro0k")
 experience = 40
 gold = 8
+item = ExtResource("1_ew7yv")
 
 [sub_resource type="Resource" id="Resource_tgrxo"]
 script = ExtResource("2_sn1i1")
@@ -26,10 +31,46 @@ script = ExtResource("2_sn1i1")
 reward = SubResource("Resource_7n7yi")
 weight = 0.2
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_14hls"]
+atlas = ExtResource("6_ltg86")
+region = Rect2(72, 8, 8, 8)
+
+[sub_resource type="Resource" id="Resource_hula1"]
+script = ExtResource("7_sv8tt")
+displayName = "Entity"
+saveName = "uninstantiated_entity"
+level = 1
+maxHp = 20
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+moves = Array[String](["Slice"])
+movepool = Array[String](["Slice"])
+
+[sub_resource type="Resource" id="Resource_b3lik"]
+script = ExtResource("6_7xnel")
+string = "rat"
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_41kde"]
+script = ExtResource("6_7xnel")
+string = "ant"
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_8n3fm"]
+script = ExtResource("6_7xnel")
+string = ""
+weight = 0.1
+
 [resource]
 script = ExtResource("1_gqtms")
+sprite = SubResource("AtlasTexture_14hls")
+stats = SubResource("Resource_hula1")
 currentHp = -1
 equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
-teamTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedString.gd")]([])
+teamTable = Array[ExtResource("6_7xnel")]([SubResource("Resource_b3lik"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
 dropTable = Array[ExtResource("2_sn1i1")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
 innateStatCategories = Array[int]([0, 4])

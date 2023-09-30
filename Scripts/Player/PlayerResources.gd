@@ -3,6 +3,7 @@ extends Node2D
 @export var playerInfo: PlayerInfo
 @export var inventory: Inventory
 @export var questInventory: QuestInventory
+@export var loaded: bool = false
 
 var player = null
 
@@ -15,6 +16,9 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
+		playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats to Combatant obj
+		if playerInfo.combatant.currentHp == -1: # if -1, set to maxHp
+			playerInfo.combatant.currentHp = playerInfo.stats.maxHp
 	player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
@@ -27,6 +31,7 @@ func load_data(save_path):
 	var newQuestInv = questInventory.load_data(save_path)
 	if newQuestInv != null:
 		questInventory = newQuestInv
+	loaded = true
 
 func save_data(save_path):
 	if player != null and playerInfo != null:
@@ -45,3 +50,4 @@ func new_game(save_path):
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()
 	questInventory.save_data(save_path, questInventory)
+	loaded = true
