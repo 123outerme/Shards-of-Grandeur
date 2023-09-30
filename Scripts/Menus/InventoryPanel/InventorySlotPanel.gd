@@ -56,7 +56,7 @@ func _on_equip_button_pressed():
 func _on_unequip_button_pressed():
 	PlayerResources.inventory.equip_item(inventorySlot, false)
 	isEquipped = false
-	load_inventory_slot_panel()
+	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item order may have changed
 	
 func _on_trash_button_pressed():
 	PlayerResources.inventory.trash_item(inventorySlot)

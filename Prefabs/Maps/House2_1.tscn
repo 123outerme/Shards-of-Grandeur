@@ -1,36 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgyixkapey8tg"]
+[gd_scene load_steps=17 format=3 uid="uid://dgyixkapey8tg"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_av58i"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_drds8"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="3_ver5i"]
 [ext_resource type="Resource" uid="uid://jwuut14phi64" path="res://GameData/Quests/talk_to_coconut_head.tres" id="3_y1pq8"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="4_q70pw"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Items/Healing.gd" id="5_0frlg"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/potion.tres" id="4_jcxpf"]
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="5_eahra"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="6_8831t"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="7_01hqm"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="7_8hraa"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3utg1"]
-atlas = ExtResource("4_q70pw")
-region = Rect2(96, 24, 8, 8)
-
-[sub_resource type="Resource" id="Resource_svbhf"]
-script = ExtResource("5_0frlg")
-healBy = 50
-itemSprite = SubResource("AtlasTexture_3utg1")
-itemName = "Potion"
-itemType = 0
-itemDescription = "This is a simple potion, but that's all one needs to get through tough times. Drink it to restore 50 HP. They are commonly found in stores across the land."
-cost = 10
-maxCount = 50
-usable = true
-consumable = true
-equippable = false
-
 [sub_resource type="Resource" id="Resource_tb31n"]
 script = ExtResource("5_eahra")
-item = SubResource("Resource_svbhf")
+item = ExtResource("4_jcxpf")
 count = 5
 
 [sub_resource type="Resource" id="Resource_gdkht"]

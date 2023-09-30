@@ -63,7 +63,7 @@ func load_inventory_panel():
 			inventoryTitle.text = '[center]Your Inventory[/center]'
 
 	var invSlotPanel = load("res://Prefabs/UI/Inventory/InventorySlotPanel.tscn")
-	for slot in currentInventory.inventorySlots:
+	for slot in currentInventory.get_sorted_slots():
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
 			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 			instantiatedPanel.isShopItem = inShop

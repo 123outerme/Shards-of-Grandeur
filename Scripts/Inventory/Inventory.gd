@@ -49,7 +49,25 @@ func trash_item(inventorySlot: InventorySlot):
 	inventorySlot.count -= 1
 	if inventorySlot.count <= 0:
 		inventorySlots.erase(inventorySlot)
+
+func get_sorted_slots() -> Array[InventorySlot]:
+	var slots: Array[InventorySlot] = []
+	slots.append_array(inventorySlots)
+	slots.sort_custom(sort_by_equipped)
+	return slots
+
+func sort_by_equipped(a: InventorySlot, b: InventorySlot) -> bool:
+	var aEquipped: bool = PlayerResources.playerInfo.stats.equippedArmor == a.item \
+			or PlayerResources.playerInfo.stats.equippedWeapon == a.item
+	var bEquipped: bool = PlayerResources.playerInfo.stats.equippedArmor == b.item \
+			or PlayerResources.playerInfo.stats.equippedWeapon == b.item
+	if aEquipped and not bEquipped:
+		return true
+	if bEquipped and not aEquipped:
+		return false	
+	return a.item.itemName.naturalnocasecmp_to(b.item.itemName) < 0 # compare names (including natural number comparisons)
 	
+
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_name):
 		return load(save_path + save_name)
