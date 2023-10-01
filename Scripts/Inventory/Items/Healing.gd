@@ -12,11 +12,12 @@ func _init(
 	i_cost = 0,
 	i_maxCount = 0,
 	i_usable = true,
+	i_battleUsable = true,
 	i_consumable = true,
 	i_equippable = false,
 	i_healBy = 50,
 ):
-	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_consumable, i_equippable)
+	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable)
 	healBy = i_healBy
 
 func use(target):

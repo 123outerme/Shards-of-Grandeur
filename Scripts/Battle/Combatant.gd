@@ -17,22 +17,46 @@ class_name Combatant
 @export var dropTable: Array[WeightedReward] = []
 @export var innateStatCategories: Array[Stats.Category] = []
 
-func _init(
-	i_stats = Stats.new(),
-	i_curHp = -1,
-	i_statChanges = StatChanges.new(),
-	i_statusEffect = null,
-	i_sprite = null,
-):
-	sprite = i_sprite
-	stats = i_stats
-	currentHp = i_curHp
-	statChanges = i_statChanges
-	statusEffect = i_statusEffect
-
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres")
 	# TODO level up combatant to proper level if necessary
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
+
+func _init(
+	i_stats = Stats.new(),
+	i_curHp = -1,
+	i_statChanges = StatChanges.new(),
+	i_statusEffect = null,
+	i_sprite = null,
+	i_equipmentTable: Array[WeightedEquipment] = [],
+	i_teamTable: Array[WeightedString] = [],
+	i_dropTable: Array[WeightedReward] = [],
+	i_innateStats: Array[Stats.Category] = [],
+):
+	stats = i_stats
+	if i_curHp != -1:
+		currentHp = i_curHp
+	else:
+		currentHp = stats.maxHp
+	statChanges = i_statChanges
+	statusEffect = i_statusEffect
+	sprite = i_sprite
+	equipmentTable = i_equipmentTable
+	teamTable = i_teamTable
+	dropTable = i_dropTable
+	innateStatCategories = i_innateStats
+
+func copy() -> Combatant:
+	return Combatant.new(
+		stats.copy(),
+		currentHp,
+		statChanges,
+		statusEffect,
+		sprite,
+		equipmentTable,
+		teamTable,
+		dropTable,
+		innateStatCategories,
+	)

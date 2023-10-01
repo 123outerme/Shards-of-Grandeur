@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=12 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://Prefabs/Battle/CombatantNode.tscn" id="2_fgh53"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleTextBox.gd" id="2_o6pah"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_u488y"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleCam.gd" id="4_tdxwi"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/AllCommands.gd" id="6_60wgx"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TextBoxText.gd" id="6_61qkc"]
+[ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
+[ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="10_4t0i5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -48,9 +53,9 @@ metadata/_edit_lock_ = true
 
 [node name="BattleCam" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+script = ExtResource("4_tdxwi")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
-script = ExtResource("2_o6pah")
 
 [node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox"]
 offset_left = -152.0
@@ -64,19 +69,161 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer"]
 layout_mode = 2
+theme = ExtResource("6_dm6gn")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 0
 metadata/_edit_lock_ = true
 
-[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 28
-theme_override_font_sizes/bold_font_size = 28
-theme_override_font_sizes/italics_font_size = 28
-theme_override_font_sizes/bold_italics_font_size = 28
-theme_override_font_sizes/mono_font_size = 28
+script = ExtResource("7_ghrgg")
+
+[node name="SummonPrompt" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_right = 0.498
+offset_left = -299.592
+offset_top = 48.0
+offset_right = 300.408
+offset_bottom = 87.0
+grow_horizontal = 2
 bbcode_enabled = true
-text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
+text = "[center]Would you like to summon a minion?[/center]"
 fit_content = true
+
+[node name="YesSummon" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -25.0
+offset_right = -9.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Summon"
+
+[node name="NoSummon" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -25.0
+offset_right = 96.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No"
+
+[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("6_60wgx")
+
+[node name="MovesButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+custom_minimum_size = Vector2(130, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -92.0
+offset_right = -8.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Moves"
+
+[node name="InventoryButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+custom_minimum_size = Vector2(130, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -92.0
+offset_right = 136.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Inventory"
+
+[node name="GuardButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+custom_minimum_size = Vector2(130, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -28.0
+offset_right = -8.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Guard"
+
+[node name="EscapeButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+custom_minimum_size = Vector2(130, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -28.0
+offset_right = 136.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Escape"
+
+[node name="BackToPlayerButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.5
+offset_top = -80.0
+offset_right = 78.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back to
+Player Command"
+
+[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
+script = ExtResource("6_61qkc")
+
+[node name="UI" type="Node2D" parent="BattleCam"]
+scale = Vector2(0.25, 0.25)
+
+[node name="InventoryPanelNode" parent="BattleCam/UI" instance=ExtResource("10_4t0i5")]
+visible = false
+position = Vector2(-640, -480)
+inBattle = true
+
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]

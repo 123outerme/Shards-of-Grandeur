@@ -3,7 +3,8 @@ class_name InventoryMenu
 
 @export_category("InventoryPanel - Filters")
 @export var selectedFilter: Item.Type = Item.Type.ALL
-@export var battleFilter: bool = false
+@export var inBattle: bool = false
+@export var summoning: bool = false
 @export var lockFilters: bool = false
 
 @export_category("InventoryPanel - Shops")
@@ -50,6 +51,12 @@ func load_inventory_panel():
 	get_display_inventory()
 	update_toggle_inv_button()
 	update_filter_buttons()
+	# lock all filters so that they can be unlocked as the inventory slots get created
+	healingFilterBtn.disabled = true
+	shardFilterBtn.disabled = true
+	weaponFilterBtn.disabled = true
+	armorFilterBtn.disabled = true
+	keyItemFilterBtn.disabled = true
 	
 	for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 		panel.queue_free()
@@ -69,9 +76,22 @@ func load_inventory_panel():
 			instantiatedPanel.isShopItem = inShop
 			instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
 			instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item)
+			instantiatedPanel.inBattle = inBattle
+			instantiatedPanel.summoning = summoning
 			instantiatedPanel.inventoryMenu = self
 			instantiatedPanel.inventorySlot = slot
 			vboxViewport.add_child(instantiatedPanel)
+			# unlock filter button for filter of item's type
+		if slot.item.itemType == Item.Type.HEALING:
+			healingFilterBtn.disabled = lockFilters
+		if slot.item.itemType == Item.Type.SHARD:
+			shardFilterBtn.disabled = lockFilters
+		if slot.item.itemType == Item.Type.WEAPON:
+			weaponFilterBtn.disabled = lockFilters
+		if slot.item.itemType == Item.Type.ARMOR:
+			armorFilterBtn.disabled = lockFilters
+		if slot.item.itemType == Item.Type.KEY_ITEM:
+			keyItemFilterBtn.disabled = lockFilters
 	
 func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
@@ -113,12 +133,6 @@ func update_filter_buttons():
 	weaponFilterBtn.button_pressed = selectedFilter == Item.Type.WEAPON
 	armorFilterBtn.button_pressed = selectedFilter == Item.Type.ARMOR
 	keyItemFilterBtn.button_pressed = selectedFilter == Item.Type.KEY_ITEM
-	
-	healingFilterBtn.disabled = lockFilters
-	shardFilterBtn.disabled = lockFilters
-	weaponFilterBtn.disabled = lockFilters
-	armorFilterBtn.disabled = lockFilters
-	keyItemFilterBtn.disabled = lockFilters
 
 func _on_toggle_shop_inventory_button_pressed():
 	showPlayerInventory = not showPlayerInventory

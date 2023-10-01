@@ -37,6 +37,8 @@ func save_data(save_path):
 	if player != null and playerInfo != null:
 		playerInfo.position = player.position
 		playerInfo.disableMovement = player.disableMovement
+		if playerInfo.combatant.currentHp == -1:
+			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		playerInfo.save_data(save_path, playerInfo)
 	if inventory != null:
 		inventory.save_data(save_path, inventory)

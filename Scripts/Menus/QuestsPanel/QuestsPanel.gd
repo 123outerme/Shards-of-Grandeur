@@ -29,6 +29,11 @@ func toggle():
 		
 func load_quests_panel():
 	update_filter_buttons()
+	# lock all filter buttons to be unlocked when creating quest slot panels
+	inProgressButton.disabled = true
+	readyToTurnInButton.disabled = true
+	completedButton.disabled = true
+	notCompletedButton.disabled = true
 	
 	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
@@ -41,17 +46,20 @@ func load_quests_panel():
 			instantiatedPanel.turnInName = turnInTargetName
 			instantiatedPanel.questsMenu = self
 			vboxViewport.add_child(instantiatedPanel)
+		if questTracker.get_current_status() == QuestTracker.Status.IN_PROGRESS:
+			inProgressButton.disabled = lockFilters
+		if questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP:
+			readyToTurnInButton.disabled = lockFilters
+		if questTracker.get_current_status() == QuestTracker.Status.COMPLETED:
+			completedButton.disabled = lockFilters
+		if questTracker.get_current_status() == QuestTracker.Status.INCOMPLETE:
+			notCompletedButton.disabled = lockFilters
 
 func update_filter_buttons():
 	inProgressButton.button_pressed = selectedFilter == QuestTracker.Status.IN_PROGRESS
 	readyToTurnInButton.button_pressed = selectedFilter == QuestTracker.Status.READY_TO_TURN_IN_STEP
 	completedButton.button_pressed = selectedFilter == QuestTracker.Status.COMPLETED
 	notCompletedButton.button_pressed = selectedFilter == QuestTracker.Status.INCOMPLETE
-	
-	inProgressButton.disabled = lockFilters
-	readyToTurnInButton.disabled = lockFilters
-	completedButton.disabled = lockFilters
-	notCompletedButton.disabled = lockFilters
 
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	selectedFilter = type

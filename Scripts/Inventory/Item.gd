@@ -33,6 +33,7 @@ static func TypeToString(t: Type) -> String:
 @export var cost: int
 @export var maxCount: int
 @export var usable: bool = true
+@export var battleUsable: bool = true
 @export var consumable: bool = true
 @export var equippable: bool = false
 
@@ -44,6 +45,7 @@ func _init(
 	i_cost = 0,
 	i_maxCount = 0,
 	i_usable = true,
+	i_battleUsable = true,
 	i_consumable = true,
 	i_equippable = false,
 ):
@@ -54,6 +56,7 @@ func _init(
 	cost = i_cost
 	maxCount = i_maxCount
 	usable = i_usable
+	battleUsable = i_battleUsable
 	consumable = i_consumable
 	equippable = i_equippable
 	

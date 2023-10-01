@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgyixkapey8tg"]
+[gd_scene load_steps=19 format=3 uid="uid://dgyixkapey8tg"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_av58i"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_drds8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="6_8831t"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="7_01hqm"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="7_8hraa"]
+[ext_resource type="Resource" uid="uid://bjlcwbjqmmsp0" path="res://GameData/Items/Shard/ant_shard.tres" id="8_guc2n"]
 
 [sub_resource type="Resource" id="Resource_tb31n"]
 script = ExtResource("5_eahra")
@@ -25,9 +26,14 @@ script = ExtResource("5_eahra")
 item = ExtResource("7_01hqm")
 count = 1
 
+[sub_resource type="Resource" id="Resource_ytkgv"]
+script = ExtResource("5_eahra")
+item = ExtResource("8_guc2n")
+count = 2
+
 [sub_resource type="Resource" id="Resource_g1j12"]
 script = ExtResource("6_8831t")
-inventorySlots = Array[ExtResource("5_eahra")]([SubResource("Resource_tb31n"), SubResource("Resource_gdkht"), SubResource("Resource_dex0x")])
+inventorySlots = Array[ExtResource("5_eahra")]([SubResource("Resource_tb31n"), SubResource("Resource_gdkht"), SubResource("Resource_dex0x"), SubResource("Resource_ytkgv")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hmx"]
 

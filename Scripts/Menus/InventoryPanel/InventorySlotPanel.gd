@@ -5,6 +5,8 @@ class_name InventorySlotPanel
 @export var isShopItem: bool = false
 @export var isPlayerItem: bool = true
 @export var isEquipped: bool = false
+@export var inBattle: bool = false
+@export var summoning: bool = false
 @export var inventoryMenu: InventoryMenu
 
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
@@ -33,15 +35,22 @@ func load_inventory_slot_panel():
 	itemCount.text = 'x' + TextUtils.num_to_comma_string(inventorySlot.count)
 	if inventorySlot.item.maxCount > 1:
 		itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
-	itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)	
+	itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
+	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
-	useButton.disabled = not inventorySlot.item.usable
-	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
-	unequipButton.visible = not isShopItem and isEquipped
+	var battleUseDisabled: bool = inventorySlot.item.itemType == Item.Type.SHARD and not summoning
+	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or battleUseDisabled
+	
+	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped and not inBattle
+	
+	unequipButton.visible = not isShopItem and isEquipped and not inBattle
+	
 	trashButton.visible = not isShopItem
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
+	
 	buyButton.visible = isShopItem and not isPlayerItem
 	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
+	
 	sellButton.visible = isShopItem and isPlayerItem and not isEquipped
 	sellButton.disabled = isShopItem and not isPlayerItem and inventorySlot.count >= inventorySlot.item.maxCount	
 	

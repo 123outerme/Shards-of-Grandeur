@@ -4,7 +4,7 @@ var saved_scripts: Array
 var save_file_location: String = "user://"
 var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
 
-var subdirs: Array = ["npcs/"]
+var subdirs: Array = ["./", "npcs/"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,11 +45,6 @@ func load_data():
 			
 func new_game():
 	fetch_saved_scripts()
-	for script_path in saved_scripts:
-		var scr = get_node_or_null(NodePath(script_path))
-		if scr != null and scr.has_method("new_game"):
-			scr.call("new_game", save_file_location)
-			
 	for subdir in subdirs: # for each save subdirectory
 		var files = DirAccess.get_files_at(save_file_location + subdir)
 		for filepath in files: # remove all files inside the subdir
@@ -57,6 +52,11 @@ func new_game():
 		var err = DirAccess.remove_absolute(save_file_location + subdir) # then remove the subdir itself
 		if err > 0:
 			print("Remove save subdir error " + String.num(err))
+	
+	for script_path in saved_scripts:
+		var scr = get_node_or_null(NodePath(script_path))
+		if scr != null and scr.has_method("new_game"):
+			scr.call("new_game", save_file_location)
 			
 func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
