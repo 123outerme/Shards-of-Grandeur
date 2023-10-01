@@ -36,6 +36,7 @@ static func TypeToString(t: Type) -> String:
 @export var battleUsable: bool = true
 @export var consumable: bool = true
 @export var equippable: bool = false
+@export var battleTargets: BattleCommand.Targets = BattleCommand.Targets.SELF
 
 func _init(
 	i_sprite = null,
@@ -48,6 +49,7 @@ func _init(
 	i_battleUsable = true,
 	i_consumable = true,
 	i_equippable = false,
+	i_targets = BattleCommand.Targets.SELF,
 ):
 	itemSprite = i_sprite
 	itemName = i_name
@@ -59,6 +61,7 @@ func _init(
 	battleUsable = i_battleUsable
 	consumable = i_consumable
 	equippable = i_equippable
+	battleTargets = i_targets
 	
 func use(target: Combatant):
 	print("If you're seeing this, implement Item.use() in item type:", itemType)

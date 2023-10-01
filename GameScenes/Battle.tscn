@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=15 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://Prefabs/Battle/CombatantNode.tscn" id="2_fgh53"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_u488y"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleCam.gd" id="4_tdxwi"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/AllCommands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Targets.gd" id="9_qy758"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="10_4t0i5"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattlePanels.gd" id="10_7n25e"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleUI.gd" id="10_ier4v"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="11_05pqh"]
 
@@ -53,12 +54,9 @@ metadata/_edit_lock_ = true
 position = Vector2(68, 45)
 metadata/_edit_lock_ = true
 
-[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
+[node name="BattleCam" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
-script = ExtResource("4_tdxwi")
-menuState = null
-commandingMinion = null
-battleController = NodePath("..")
+script = ExtResource("10_ier4v")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
 
@@ -224,6 +222,75 @@ Player Command"
 visible = false
 layout_mode = 2
 
+[node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("9_qy758")
+battleUI = NodePath("../../../..")
+
+[node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -76.0
+offset_right = 58.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Targets:[/center]"
+fit_content = true
+
+[node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -19.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Player Name, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
+fit_content = true
+
+[node name="ConfirmButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = 36.0
+offset_right = -6.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm"
+
+[node name="BackButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 82.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
 [node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
@@ -236,17 +303,17 @@ offset_right = 1204.0
 offset_bottom = 224.0
 text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
 
-[node name="UI" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
+[node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("10_ier4v")
+script = ExtResource("10_7n25e")
 battleUI = NodePath("..")
 
-[node name="InventoryPanelNode" parent="BattleCam/UI" instance=ExtResource("10_4t0i5")]
+[node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
 visible = false
 position = Vector2(-640, -480)
 inBattle = true
 
-[node name="QuestsPanelNode" parent="BattleCam/UI" instance=ExtResource("11_05pqh")]
+[node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("11_05pqh")]
 visible = false
 position = Vector2(-640, -480)
 
@@ -256,4 +323,6 @@ position = Vector2(-640, -480)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/InventoryButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/GuardButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_guard_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/EscapeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_escape_button_pressed"]
-[connection signal="item_used" from="BattleCam/UI/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
+[connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]

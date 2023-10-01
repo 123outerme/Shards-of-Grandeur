@@ -6,6 +6,8 @@ enum Role {
 	ENEMY = 1
 }
 
+signal toggled(button_pressed: bool, combatantNode: CombatantNode)
+
 @export_category("CombatantNode - Details")
 @export var combatant: Combatant = null
 @export var role: Role = Role.ALLY
@@ -29,11 +31,8 @@ func load_combatant_node():
 		visible = true
 		sprite.texture = combatant.sprite
 		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
-		selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
-		selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 		update_hp_tag()
-	
-	selectCombatantBtn.visible = false
+		update_select_btn(false)
 
 func update_hp_tag():
 	if not is_alive():
@@ -49,8 +48,23 @@ func update_hp_tag():
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
-		
+
+func update_select_btn(show: bool, disable: bool = false):
+	selectCombatantBtn.visible = show
+	selectCombatantBtn.disabled = disable
+	selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
+	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
+
+func set_selected(selected: bool = true):
+	selectCombatantBtn.button_pressed = selected
+	
+func is_selected() -> bool:
+	return selectCombatantBtn.button_pressed
+
 func is_alive() -> bool:
 	if combatant == null:
 		return false
 	return combatant.currentHp > 0
+
+func _on_select_combatant_btn_toggled(button_pressed):
+	toggled.emit(button_pressed, self)

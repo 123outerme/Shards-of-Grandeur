@@ -66,6 +66,7 @@ func summon_minion(shard: Shard):
 	
 func save_data(save_path):
 	state.menu = battleUI.menuState
+	state.prevMenu = battleUI.prevMenu
 	state.playerCombatant = playerCombatant.combatant
 	state.minionCombatant = minionCombatant.combatant
 	state.enemyCombatant1 = enemyCombatant1.combatant
@@ -78,4 +79,5 @@ func load_data(save_path):
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
-	battleUI.set_menu_state(state.menu)
+	battleUI.prevMenu = state.prevMenu
+	battleUI.set_menu_state(state.menu, false)

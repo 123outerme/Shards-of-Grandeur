@@ -21,6 +21,7 @@ enum Menu {
 
 @export_category("BattleData - Menu State")
 @export var menu: Menu = Menu.SUMMON
+@export var prevMenu: Menu = Menu.SUMMON
 @export var commandingMinion: bool = false
 
 var save_file: String = 'battle.tres'

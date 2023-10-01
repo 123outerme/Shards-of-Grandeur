@@ -14,8 +14,11 @@ func _init(
 	i_battleUsable = true,
 	i_consumable = true,
 	i_equippable = false,
+	i_targets = BattleCommand.Targets.NONE,
+	i_combatantSaveName = '',
 ):
-	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable)
+	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+	combatantSaveName = i_combatantSaveName
 
 func use(target: Combatant):
 	pass # TODO: learn a move from the shard. May be implemented in the Overworld/Pause scenes instead
