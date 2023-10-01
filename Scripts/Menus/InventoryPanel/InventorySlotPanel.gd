@@ -56,6 +56,7 @@ func load_inventory_slot_panel():
 	
 func _on_use_button_pressed():
 	PlayerResources.inventory.use_item(inventorySlot.item, null) # TODO pick target
+	inventoryMenu.item_used.emit(inventorySlot.item)
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 
 func _on_equip_button_pressed():
@@ -73,11 +74,9 @@ func _on_trash_button_pressed():
 
 func _on_buy_button_pressed():
 	inventoryMenu.buy_item(inventorySlot)
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
 	
 func _on_sell_button_pressed():
 	inventoryMenu.sell_item(inventorySlot)
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
 
 func _on_details_button_pressed():
 	inventoryMenu.view_item_details(inventorySlot)

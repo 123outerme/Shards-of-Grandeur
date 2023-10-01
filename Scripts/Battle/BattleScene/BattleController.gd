@@ -18,26 +18,18 @@ func _ready():
 	
 	if state.enemyCombatant1 == null: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant
-		playerCombatant.leftSide = true
-		playerCombatant.spriteFacesRight = true
-		playerCombatant.role = CombatantNode.Role.ALLY
-		
 		minionCombatant.combatant = null
-		minionCombatant.leftSide = true
-		minionCombatant.role = CombatantNode.Role.ALLY
 		
 		if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
 			PlayerResources.playerInfo.encounteredName = 'ant' # TEMP failsafe - could be improved?
 		
 		enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName).copy()
-		enemyCombatant1.role = CombatantNode.Role.ENEMY
 		
 		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '':
 			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string).copy()
 		else:
 			enemyCombatant2.combatant = null
-		enemyCombatant2.role = CombatantNode.Role.ENEMY
 		
 		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '':
@@ -45,7 +37,6 @@ func _ready():
 		else:
 			enemyCombatant3.combatant = null
 		enemyCombatant3.leftSide = false
-		enemyCombatant3.role = CombatantNode.Role.ENEMY
 	else:
 		playerCombatant.combatant = state.playerCombatant
 		minionCombatant.combatant = state.minionCombatant
@@ -53,6 +44,17 @@ func _ready():
 		enemyCombatant2.combatant = state.enemyCombatant2
 		enemyCombatant3.combatant = state.enemyCombatant3
 		
+	playerCombatant.leftSide = true
+	playerCombatant.spriteFacesRight = true
+	playerCombatant.role = CombatantNode.Role.ALLY
+	
+	minionCombatant.leftSide = true
+	minionCombatant.role = CombatantNode.Role.ALLY
+	
+	enemyCombatant1.role = CombatantNode.Role.ENEMY
+	enemyCombatant2.role = CombatantNode.Role.ENEMY
+	enemyCombatant3.role = CombatantNode.Role.ENEMY
+	
 	for node in combatantNodes:
 		node.load_combatant_node()
 	

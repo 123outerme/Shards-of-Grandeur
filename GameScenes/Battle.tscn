@@ -6,9 +6,9 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_u488y"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleCam.gd" id="4_tdxwi"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/AllCommands.gd" id="6_60wgx"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TextBoxText.gd" id="6_61qkc"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="10_4t0i5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
@@ -212,11 +212,16 @@ grow_vertical = 0
 text = "Back to
 Player Command"
 
-[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("9_ul6ls")
+
+[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
 visible = false
 layout_mode = 2
+offset_right = 1204.0
+offset_bottom = 224.0
 text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
-script = ExtResource("6_61qkc")
 
 [node name="UI" type="Node2D" parent="BattleCam"]
 scale = Vector2(0.25, 0.25)
@@ -226,4 +231,6 @@ visible = false
 position = Vector2(-640, -480)
 inBattle = true
 
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
+[connection signal="item_used" from="BattleCam/UI/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]

@@ -60,3 +60,26 @@ func copy() -> Combatant:
 		dropTable,
 		innateStatCategories,
 	)
+
+func level_up_nonplayer(newLv: int):
+	var lvDiff: int = newLv - stats.level
+	if lvDiff > 0:
+		stats.level_up(lvDiff)
+		# if there are innate stat categories to allocate to
+		if len(innateStatCategories) > 0:
+			while stats.statPts > 0:
+				# randomly allocate stats to the innate stat categories
+				var randomCategory: Stats.Category = innateStatCategories[randi_range(0, len(innateStatCategories))]
+				if randomCategory == Stats.Category.PHYS_ATK:
+					stats.physAttack += 1
+				if randomCategory == Stats.Category.MAGIC_ATK:
+					stats.magicAttack += 1
+				if randomCategory == Stats.Category.RESISTANCE:
+					stats.resistance += 1
+				if randomCategory == Stats.Category.AFFINITY:
+					stats.affinity += 1
+				if randomCategory == Stats.Category.SPEED:
+					stats.speed += 1
+				stats.statPts -= 1
+	else:
+		print("level up nonplayer err: level diff is negative")

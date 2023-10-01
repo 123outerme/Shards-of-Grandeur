@@ -1,6 +1,8 @@
 extends Node2D
 class_name InventoryMenu
 
+signal item_used(item: Item)
+
 @export_category("InventoryPanel - Filters")
 @export var selectedFilter: Item.Type = Item.Type.ALL
 @export var inBattle: bool = false
@@ -97,11 +99,13 @@ func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
 	PlayerResources.playerInfo.gold -= slot.item.cost
 	shopInventory.trash_item(slot)
+	load_inventory_panel()
 	
 func sell_item(slot: InventorySlot):
 	PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
 	shopInventory.add_item(slot.item)
+	load_inventory_panel()
 
 func view_item_details(slot: InventorySlot):
 	backButton.disabled = true
