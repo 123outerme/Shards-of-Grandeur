@@ -67,7 +67,7 @@ func calculate_damage(user: Combatant, target: Combatant) -> int:
 	var targetStats: Stats = target.statChanges.apply(target.stats)
 	
 	# TODO figure out damage calculation
-	return 0
+	return 1
 
 func get_is_escaping(user: Combatant) -> bool:
 	return true # TODO calculate if user escapes the battle based on the random num generated
@@ -84,9 +84,9 @@ func get_command_results(user: Combatant) -> String:
 		else:
 			resultsText += ' used ' + move.moveName
 		if move.power > 0:
-			resultsText += ', dealing'
+			resultsText += ', dealing '
 		elif move.power < 0:
-			resultsText += ', healing'
+			resultsText += ', healing '
 		else:
 			resultsText += '' # TODO consider what to say with non-damaging buffs/debuffs	
 	
@@ -114,9 +114,9 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
-					resultsText += ' dealing insult to injury on ' + targetName
+					resultsText += '... insult to injury on ' + targetName
 				else:
-					resultsText += ' but too little, too late for ' + target.disp_name() # don't use 'self'
+					resultsText += '... but too little, too late for ' + target.disp_name() # don't use 'self'
 			if i < len(targets) - 1:
 				if len(targets) > 2:
 					resultsText += ','
@@ -125,7 +125,7 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '.'
-		if type == Type.MOVE and move.statChanges.has_changes():
+		if type == Type.MOVE and move.statChanges.has_stat_changes():
 			resultsText += ' ' + user.disp_name() + ' boosts '
 			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
 			for i in range(len(multipliers)):
@@ -137,6 +137,8 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += ' '
 					if i == len(multipliers) - 2:
 						resultsText += 'and '
+				else:
+					resultsText += '.'
 	if type == Type.ESCAPE:
 		if get_is_escaping(user):
 			resultsText = user.disp_name() + ' escaped the battle successfully!'

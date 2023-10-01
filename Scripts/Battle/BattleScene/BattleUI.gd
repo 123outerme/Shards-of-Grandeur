@@ -50,7 +50,7 @@ func apply_menu_state():
 	
 	results.visible = menuState == BattleState.Menu.RESULTS
 	if results.visible:
-		battleController.turnExecutor.play_turn()
+		battleController.turnExecutor.update_turn_text()
 
 func return_to_player_command():
 	commandingMinion = false
@@ -62,8 +62,14 @@ func complete_command():
 		commandingMinion = true
 		set_menu_state(BattleState.Menu.ALL_COMMANDS)
 	else:
+		# TODO prepare enemy commands
 		battleController.turnExecutor.start_simulation()
 		set_menu_state(BattleState.Menu.RESULTS)
+
+func update_hp_tags():
+	for node in battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		combatantNode.update_hp_tag()
 
 func round_complete():
 	battleController.state.turnNumber += 1

@@ -13,4 +13,4 @@ func show_text(newText: String):
 	textBoxText.text = newText
 
 func _on_ok_button_pressed():
-	pass # Replace with function body.
+	battleUI.battleController.turnExecutor.finish_turn()
