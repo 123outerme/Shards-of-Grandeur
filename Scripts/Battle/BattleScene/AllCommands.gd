@@ -14,7 +14,7 @@ func _ready():
 	
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion
-	commandLabel.text = '[right]' + commandingCombatant.combatant.stats.displayName + '[/right]'
+	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.stats.displayName + '[/center]'
 
 func _on_moves_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.MOVES)
