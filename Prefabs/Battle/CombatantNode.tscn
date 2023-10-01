@@ -23,10 +23,16 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
+[node name="CombatantNode" type="Node2D" node_paths=PackedStringArray("selectCombatantBtn", "sprite", "hpTag", "lvText", "hpText") groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
+selectCombatantBtn = NodePath("SelectCombatantBtn")
+sprite = NodePath("CombatantSprite")
+hpTag = NodePath("HPTag")
+lvText = NodePath("HPTag/LvText")
+hpText = NodePath("HPTag/LvText/HPText")
 
 [node name="SelectCombatantBtn" type="TextureButton" parent="."]
+visible = false
 custom_minimum_size = Vector2(8, 8)
 anchors_preset = 8
 anchor_left = 0.5

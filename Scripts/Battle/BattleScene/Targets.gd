@@ -37,14 +37,13 @@ func load_targets():
 		if combatantNode.role == CombatantNode.Role.ALLY: # if node role is Ally
 			if targets == BattleCommand.Targets.NON_SELF_ALLY and combatantNode != battleUI.commandingCombatant \
 					# if node is non-self and targeting non-self ally
-					or BattleCommand.Targets.ALLY: # or if targeting ally
+					or targets == BattleCommand.Targets.ALLY: # or if targeting ally
 				combatantNode.update_select_btn(true) # show target btn
 		if combatantNode.role == combatantNode.Role.ENEMY and targets == BattleCommand.Targets.ENEMY:
 			combatantNode.update_select_btn(true) # if enemy and targeting enemy, show target btn
 		combatantNode.toggled.connect(_on_combatant_selected)
 	update_targets_listing()
 	update_confirm_btn()
-	
 	
 func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):
 	var names: Array[String] = []
@@ -79,9 +78,10 @@ func update_confirm_btn():
 func reset_targets():
 	for node in battleUI.battleController.combatantNodes:
 		var cNode: CombatantNode = node as CombatantNode
-		cNode.toggled.disconnect(_on_combatant_selected)
-		cNode.set_selected(false)
-		cNode.update_select_btn(false)
+		if cNode.is_alive():
+			cNode.toggled.disconnect(_on_combatant_selected)
+			cNode.set_selected(false)
+			cNode.update_select_btn(false)
 
 func _on_combatant_selected(button_pressed: bool, combatantNode: CombatantNode):
 	update_targets_listing(button_pressed, combatantNode)
@@ -98,4 +98,5 @@ func _on_confirm_button_pressed():
 	battleUI.complete_command()
 
 func _on_back_button_pressed():
+	reset_targets()
 	battleUI.set_menu_state(referringMenu)

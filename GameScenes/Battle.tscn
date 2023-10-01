@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=16 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/AllCommands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/MovesMenu.gd" id="9_fgnxg"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Targets.gd" id="9_qy758"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="10_4t0i5"]
@@ -132,10 +133,24 @@ grow_vertical = 2
 text = "No"
 
 [node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
-visible = false
 layout_mode = 2
 script = ExtResource("6_60wgx")
 battleUI = NodePath("../../../..")
+
+[node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 124.0
+offset_top = -56.0
+offset_right = 424.0
+offset_bottom = -17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]Player Name Here[/right]"
+fit_content = true
 
 [node name="MovesButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
 custom_minimum_size = Vector2(130, 51)
@@ -218,9 +233,91 @@ grow_vertical = 0
 text = "Back to
 Player Command"
 
-[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
+script = ExtResource("9_fgnxg")
+battleUI = NodePath("../../../..")
+
+[node name="MoveButton1" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -84.0
+offset_right = -10.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="MoveButton2" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -84.0
+offset_right = 206.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="MoveButton3" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -24.0
+offset_right = -10.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="MoveButton4" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -24.0
+offset_right = 206.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="BackButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 36.0
+offset_right = 42.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
 
 [node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
@@ -299,9 +396,26 @@ battleUI = NodePath("../../../..")
 
 [node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
 layout_mode = 2
-offset_right = 1204.0
-offset_bottom = 224.0
-text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
+anchor_right = 1.0
+anchor_bottom = 0.696
+offset_bottom = 0.095993
+text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. Every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
+
+[node name="OkButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -58.0
+offset_right = 40.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "OK"
 
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
 scale = Vector2(0.25, 0.25)
@@ -323,6 +437,12 @@ position = Vector2(-640, -480)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/InventoryButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/GuardButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_guard_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/EscapeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_escape_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/BackToPlayerButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_back_to_player_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton1" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_1_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton2" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_2_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton3" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_3_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton4" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_4_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]

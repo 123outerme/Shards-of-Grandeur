@@ -86,15 +86,15 @@ func load_inventory_panel():
 			vboxViewport.add_child(instantiatedPanel)
 			# unlock filter button for filter of item's type
 		if slot.item.itemType == Item.Type.HEALING:
-			healingFilterBtn.disabled = lockFilters
+			healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING
 		if slot.item.itemType == Item.Type.SHARD:
-			shardFilterBtn.disabled = lockFilters
+			shardFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.SHARD
 		if slot.item.itemType == Item.Type.WEAPON:
-			weaponFilterBtn.disabled = lockFilters
+			weaponFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.WEAPON
 		if slot.item.itemType == Item.Type.ARMOR:
-			armorFilterBtn.disabled = lockFilters
+			armorFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.ARMOR
 		if slot.item.itemType == Item.Type.KEY_ITEM:
-			keyItemFilterBtn.disabled = lockFilters
+			keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
 	
 func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
@@ -129,7 +129,7 @@ func check_filters():
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
 			count += 1
 	
-	if count == 0: # reset filter if no items would be shown
+	if count == 0 and not summoning: # reset filter if no items would be shown (and we aren't summoning)
 		selectedFilter = Item.Type.ALL
 
 func update_filter_buttons():
@@ -151,30 +151,40 @@ func _on_details_back_button_pressed():
 	backButton.disabled = false
 
 func _on_healing_button_toggled(button_pressed):
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
 	if button_pressed:
 		filter_by(Item.Type.HEALING)
 	elif selectedFilter == Item.Type.HEALING:
 		filter_by()
 
 func _on_shards_button_toggled(button_pressed):
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
 	if button_pressed:
 		filter_by(Item.Type.SHARD)
 	elif selectedFilter == Item.Type.SHARD:
 		filter_by()
 
 func _on_weapons_button_toggled(button_pressed):
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
 	if button_pressed:
 		filter_by(Item.Type.WEAPON)
 	elif selectedFilter == Item.Type.WEAPON:
 		filter_by()
 	
 func _on_armor_button_toggled(button_pressed):
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
 	if button_pressed:
 		filter_by(Item.Type.ARMOR)
 	elif selectedFilter == Item.Type.ARMOR:
 		filter_by()
 
 func _on_key_items_button_toggled(button_pressed):
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
 	if button_pressed:
 		filter_by(Item.Type.KEY_ITEM)
 	elif selectedFilter == Item.Type.KEY_ITEM:

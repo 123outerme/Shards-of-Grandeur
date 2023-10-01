@@ -17,8 +17,8 @@ func _ready():
 	battleUI.battleController = self
 	if not PlayerResources.loaded:
 		SaveHandler.load_data()
-	
-	if state.enemyCombatant1 == null: # new battle
+	var newBattle: bool = state.enemyCombatant1 == null
+	if newBattle: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant
 		minionCombatant.combatant = null
 		
@@ -57,8 +57,12 @@ func _ready():
 	enemyCombatant2.role = CombatantNode.Role.ENEMY
 	enemyCombatant3.role = CombatantNode.Role.ENEMY
 	
+	battleUI.commandingMinion = state.commandingMinion
+	battleUI.prevMenu = state.prevMenu
+	battleUI.set_menu_state(state.menu, false)
+	
 	for node in combatantNodes:
-		node.load_combatant_node()
+		node.load_combatant_node(not newBattle)
 	
 func summon_minion(shard: Shard):
 	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).copy()
@@ -79,5 +83,3 @@ func load_data(save_path):
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
-	battleUI.prevMenu = state.prevMenu
-	battleUI.set_menu_state(state.menu, false)

@@ -10,7 +10,7 @@ var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
 
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
-@onready var moves: Control = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
+@onready var moves: MovesMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
 @onready var targets: TargetsMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Targets")
 @onready var results: Results = get_node("BattleTextBox/TextContainer/MarginContainer/Results")
 
@@ -23,11 +23,13 @@ func set_menu_state(newState: BattleState.Menu, savePrevState: bool = true):
 	if savePrevState:
 		prevMenu = menuState
 	menuState = newState
-	commandingCombatant = battleController.playerCombatant if commandingMinion else battleController.minionCombatant
+	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
 	apply_menu_state()
 
 func apply_menu_state():
 	summonMenu.visible = menuState == BattleState.Menu.SUMMON
+	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
+		inventoryPanel.selectedFilter = Item.Type.ALL
 	
 	allCommands.visible = menuState == BattleState.Menu.ALL_COMMANDS or menuState == BattleState.Menu.ITEMS
 	if allCommands.visible:
@@ -38,6 +40,8 @@ func apply_menu_state():
 		open_inventory(false)
 	
 	moves.visible = menuState == BattleState.Menu.MOVES
+	if moves.visible:
+		moves.load_moves()
 	
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
@@ -45,6 +49,11 @@ func apply_menu_state():
 		targets.load_targets()
 	
 	results.visible = menuState == BattleState.Menu.RESULTS
+
+func return_to_player_command():
+	commandingMinion = false
+	commandingCombatant = battleController.playerCombatant
+	set_menu_state(BattleState.Menu.ALL_COMMANDS)
 
 func complete_command():
 	if not commandingMinion and battleController.minionCombatant.is_alive():
@@ -55,8 +64,8 @@ func complete_command():
 
 func open_inventory(forSummon: bool):
 	inventoryPanel.summoning = forSummon
+	inventoryPanel.lockFilters = forSummon
 	if forSummon:
-		inventoryPanel.lockFilters = true
 		inventoryPanel.selectedFilter = Item.Type.SHARD
 	inventoryPanel.toggle()
 

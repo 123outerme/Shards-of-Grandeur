@@ -14,17 +14,18 @@ signal toggled(button_pressed: bool, combatantNode: CombatantNode)
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
 
-@onready var selectCombatantBtn: TextureButton = get_node("SelectCombatantBtn")
-@onready var sprite: Sprite2D = get_node("CombatantSprite")
-@onready var hpTag: Panel = get_node("HPTag")
-@onready var lvText: RichTextLabel = get_node("HPTag/LvText")
-@onready var hpText: RichTextLabel = get_node("HPTag/LvText/HPText")
+@export_category("CombatantNode - Tree")
+@export var selectCombatantBtn: TextureButton
+@export var sprite: Sprite2D
+@export var hpTag: Panel
+@export var lvText: RichTextLabel
+@export var hpText: RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func load_combatant_node():
+func load_combatant_node(usePreviousBtnState: bool = false):
 	if not is_alive():
 		visible = false
 	else:
@@ -32,7 +33,7 @@ func load_combatant_node():
 		sprite.texture = combatant.sprite
 		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_hp_tag()
-		update_select_btn(false)
+		update_select_btn(selectCombatantBtn.visible if usePreviousBtnState else false)
 
 func update_hp_tag():
 	if not is_alive():
@@ -50,6 +51,9 @@ func update_hp_tag():
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
 
 func update_select_btn(show: bool, disable: bool = false):
+	if not is_alive():
+		return
+		
 	selectCombatantBtn.visible = show
 	selectCombatantBtn.disabled = disable
 	selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
