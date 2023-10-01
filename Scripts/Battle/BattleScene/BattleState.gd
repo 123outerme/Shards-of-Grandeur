@@ -24,10 +24,34 @@ enum Menu {
 @export var prevMenu: Menu = Menu.SUMMON
 @export var commandingMinion: bool = false
 
+@export_category("BattleData - Turns")
+@export var turnNumber: int = 1
+@export var turnQueue: TurnQueue = TurnQueue.new()
+
 var save_file: String = 'battle.tres'
 
-func _init():
-	pass # TODO
+func _init(
+	i_playerCombatant = null,
+	i_minionCombatant = null,
+	i_enemyCombatant1 = null,
+	i_enemyCombatant2 = null,
+	i_enemyCombatant3 = null,
+	i_menu = Menu.SUMMON,
+	i_prevMenu = Menu.SUMMON,
+	i_cmdMinion = false,
+	i_turnNumber = 1,
+	i_turnQueue = TurnQueue.new(),
+):
+	playerCombatant = i_playerCombatant
+	minionCombatant = i_minionCombatant
+	enemyCombatant1 = i_enemyCombatant1
+	enemyCombatant2 = i_enemyCombatant2
+	enemyCombatant3 = i_enemyCombatant3
+	menu = i_menu
+	prevMenu = i_prevMenu
+	commandingMinion = i_cmdMinion
+	turnNumber = i_turnNumber
+	turnQueue = i_turnQueue
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file):

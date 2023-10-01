@@ -49,6 +49,8 @@ func apply_menu_state():
 		targets.load_targets()
 	
 	results.visible = menuState == BattleState.Menu.RESULTS
+	if results.visible:
+		battleController.turnExecutor.play_turn()
 
 func return_to_player_command():
 	commandingMinion = false
@@ -60,7 +62,12 @@ func complete_command():
 		commandingMinion = true
 		set_menu_state(BattleState.Menu.ALL_COMMANDS)
 	else:
+		battleController.turnExecutor.start_simulation()
 		set_menu_state(BattleState.Menu.RESULTS)
+
+func round_complete():
+	battleController.state.turnNumber += 1
+	return_to_player_command()
 
 func open_inventory(forSummon: bool):
 	inventoryPanel.summoning = forSummon

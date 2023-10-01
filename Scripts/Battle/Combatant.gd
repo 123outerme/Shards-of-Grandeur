@@ -64,6 +64,12 @@ func copy() -> Combatant:
 		innateStatCategories,
 	)
 
+func disp_name() -> String:
+	return stats.displayName
+
+func save_name() -> String:
+	return stats.saveName
+
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level
 	if lvDiff > 0:

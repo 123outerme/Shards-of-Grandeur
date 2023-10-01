@@ -35,3 +35,30 @@ func apply(s: Stats) -> Stats:
 	newStats.affinity *= affinityMultiplier
 	newStats.speed *= speedMultiplier
 	return newStats
+
+func has_stat_changes() -> bool:
+	return physAttackMultiplier != 1.0 \
+			or magicAttackMultiplier != 1.0 \
+			or resistanceMultiplier != 1.0 \
+			or affinityMultiplier != 1.0 \
+			or speedMultiplier != 1.0
+
+func get_multipliers_text() -> Array[StatMultiplierText]:
+	var texts: Array[StatMultiplierText] = []
+	
+	if physAttackMultiplier != 1.0:
+		texts.append(StatMultiplierText.new('Phys Atk', physAttackMultiplier))
+	
+	if magicAttackMultiplier != 1.0:
+		texts.append(StatMultiplierText.new('Magic Atk', magicAttackMultiplier))
+		
+	if resistanceMultiplier != 1.0:
+		texts.append(StatMultiplierText.new('Resistance', resistanceMultiplier))
+		
+	if affinityMultiplier != 1.0:
+		texts.append(StatMultiplierText.new('Affinity', affinityMultiplier))
+		
+	if speedMultiplier != 1.0:
+		texts.append(StatMultiplierText.new('Speed', speedMultiplier))
+		
+	return texts

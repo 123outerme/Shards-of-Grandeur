@@ -11,6 +11,9 @@ class_name BattleController
 @onready var enemyCombatant3: CombatantNode = get_node("TileMap/EnemyCombatant3")
 
 @onready var battleUI: BattleUI = get_node("BattleCam")
+@onready var turnExecutor: TurnExecutor = get_node("TurnExecutor")
+
+var savePath: String = '' # store save path to delete battle data after battle completely ends
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,6 +72,7 @@ func summon_minion(shard: Shard):
 	minionCombatant.load_combatant_node()
 	
 func save_data(save_path):
+	savePath = save_path
 	state.menu = battleUI.menuState
 	state.prevMenu = battleUI.prevMenu
 	state.playerCombatant = playerCombatant.combatant
@@ -77,9 +81,15 @@ func save_data(save_path):
 	state.enemyCombatant2 = enemyCombatant2.combatant
 	state.enemyCombatant3 = enemyCombatant3.combatant
 	state.commandingMinion = battleUI.commandingMinion
+	state.turnQueue = turnExecutor.turnQueue
 	state.save_data(save_path, state)
 
 func load_data(save_path):
+	savePath = save_path
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
+		turnExecutor.turnQueue = state.turnQueue
+
+func leave_battle():
+	state.delete_data(savePath)

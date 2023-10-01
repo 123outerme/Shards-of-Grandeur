@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=17 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattlePanels.gd" id="10_7n25e"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleUI.gd" id="10_ier4v"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="11_05pqh"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TurnExecutor.gd" id="15_2cnm6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -133,6 +134,7 @@ grow_vertical = 2
 text = "No"
 
 [node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
 layout_mode = 2
 script = ExtResource("6_60wgx")
 battleUI = NodePath("../../../..")
@@ -420,6 +422,14 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
 
+[node name="BattleOver" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LevelUp" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("10_7n25e")
@@ -433,6 +443,11 @@ inBattle = true
 [node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("11_05pqh")]
 visible = false
 position = Vector2(-640, -480)
+
+[node name="TurnExecutor" type="Node2D" parent="." node_paths=PackedStringArray("battleController", "battleUI")]
+script = ExtResource("15_2cnm6")
+battleController = NodePath("..")
+battleUI = NodePath("../BattleCam")
 
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
@@ -448,4 +463,5 @@ position = Vector2(-640, -480)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
