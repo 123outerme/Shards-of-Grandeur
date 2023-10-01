@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=14 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="10_4t0i5"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleUI.gd" id="10_ier4v"]
+[ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="11_05pqh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -54,6 +56,8 @@ metadata/_edit_lock_ = true
 [node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
 zoom = Vector2(4, 4)
 script = ExtResource("4_tdxwi")
+menuState = null
+commandingMinion = null
 battleController = NodePath("..")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
@@ -217,6 +221,7 @@ text = "Back to
 Player Command"
 
 [node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
@@ -231,13 +236,19 @@ offset_right = 1204.0
 offset_bottom = 224.0
 text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. It does not need a vertical layout group, and every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
 
-[node name="UI" type="Node2D" parent="BattleCam"]
+[node name="UI" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
 scale = Vector2(0.25, 0.25)
+script = ExtResource("10_ier4v")
+battleUI = NodePath("..")
 
 [node name="InventoryPanelNode" parent="BattleCam/UI" instance=ExtResource("10_4t0i5")]
 visible = false
 position = Vector2(-640, -480)
 inBattle = true
+
+[node name="QuestsPanelNode" parent="BattleCam/UI" instance=ExtResource("11_05pqh")]
+visible = false
+position = Vector2(-640, -480)
 
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]

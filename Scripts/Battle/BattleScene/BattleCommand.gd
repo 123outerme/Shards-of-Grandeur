@@ -10,7 +10,7 @@ enum Type {
 
 @export var type: Type = Type.NONE
 @export var move: Move = null
-@export var item: Item = null
+@export var slot: InventorySlot = null
 @export var targets: Array[Combatant]
 
 static func command_guard(combatant: Combatant) -> BattleCommand:
@@ -32,10 +32,10 @@ static func command_escape() -> BattleCommand:
 func _init(
 	i_type = Type.NONE,
 	i_move = null,
-	i_item = null,
+	i_slot = null,
 	i_targets: Array[Combatant] = [],
 ):
 	type = i_type
 	move = i_move
-	item = i_item
+	slot = i_slot
 	targets = i_targets

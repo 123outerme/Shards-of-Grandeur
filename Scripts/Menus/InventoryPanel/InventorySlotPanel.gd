@@ -41,9 +41,11 @@ func load_inventory_slot_panel():
 	var battleUseDisabled: bool = inventorySlot.item.itemType == Item.Type.SHARD and not summoning
 	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or battleUseDisabled
 	
-	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped and not inBattle
+	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
+	equipButton.disabled = inBattle
 	
-	unequipButton.visible = not isShopItem and isEquipped and not inBattle
+	unequipButton.visible = not isShopItem and isEquipped
+	unequipButton.disabled = inBattle
 	
 	trashButton.visible = not isShopItem
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
@@ -55,8 +57,9 @@ func load_inventory_slot_panel():
 	sellButton.disabled = isShopItem and not isPlayerItem and inventorySlot.count >= inventorySlot.item.maxCount	
 	
 func _on_use_button_pressed():
-	PlayerResources.inventory.use_item(inventorySlot.item, null) # TODO pick target
-	inventoryMenu.item_used.emit(inventorySlot.item)
+	if not inBattle: # if not in battle use it immediately. Otherwise, 
+		PlayerResources.inventory.use_item(inventorySlot.item, PlayerResources.player.combatant)
+	inventoryMenu.item_used.emit(inventorySlot)
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 
 func _on_equip_button_pressed():

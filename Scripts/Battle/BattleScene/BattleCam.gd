@@ -7,6 +7,7 @@ class_name BattleUI
 
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
+@onready var moves: Control = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
 @onready var results: Results = get_node("BattleTextBox/TextContainer/MarginContainer/Results")
 
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
@@ -25,8 +26,11 @@ func apply_menu_state():
 	if allCommands.visible:
 		allCommands.commandingMinion = commandingMinion
 		allCommands.commandingCombatant = battleController.playerCombatant if commandingMinion else battleController.minionCombatant
+		allCommands.load_all_commands()
 	if menuState == BattleState.Menu.ITEMS:
 		open_inventory(false)
+	
+	moves.visible = menuState == BattleState.Menu.MOVES
 	
 	results.visible = menuState == BattleState.Menu.RESULTS
 
@@ -44,14 +48,17 @@ func open_inventory(forSummon: bool):
 		inventoryPanel.selectedFilter = Item.Type.SHARD
 	inventoryPanel.toggle()
 
-func _on_inventory_panel_node_item_used(item: Item):
+func _on_inventory_panel_node_item_used(slot: InventorySlot):
 	if menuState == BattleState.Menu.SUMMON:
-		var shard = item as Shard
+		PlayerResources.inventory.trash_item(slot)
+		var shard = slot.item as Shard
 		battleController.summon_minion(shard)
 		set_menu_state(BattleState.Menu.ALL_COMMANDS)
 	if menuState == BattleState.Menu.ITEMS:
 		if commandingMinion:
-			pass # TODO: set minion command
+			battleController.minionCombatant.combatant.command = \
+					BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
 		else:
 			pass # TODO: set player command
+		set_menu_state(BattleState.Menu.PICK_TARGETS)
 	inventoryPanel.toggle()

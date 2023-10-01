@@ -22,7 +22,7 @@ func add_item(item: Item) -> bool:
 	)
 	return true
 	
-func use_item(item: Item, target):
+func use_item(item: Item, target: Combatant):
 	item.use(target)
 	for slot in inventorySlots:
 		if slot.item == item and item.usable:

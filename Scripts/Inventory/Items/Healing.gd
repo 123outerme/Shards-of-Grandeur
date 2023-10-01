@@ -20,5 +20,5 @@ func _init(
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable)
 	healBy = i_healBy
 
-func use(target):
-	pass # todo heal target
+func use(target: Combatant):
+	target.currentHp = min(target.currentHp + healBy, target.stats.maxHp)

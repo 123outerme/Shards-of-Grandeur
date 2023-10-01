@@ -1,7 +1,7 @@
 extends Node2D
 class_name InventoryMenu
 
-signal item_used(item: Item)
+signal item_used(slot: InventorySlot)
 signal back_pressed
 
 @export_category("InventoryPanel - Filters")

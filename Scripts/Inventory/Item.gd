@@ -60,5 +60,6 @@ func _init(
 	consumable = i_consumable
 	equippable = i_equippable
 	
-func use(target):
+func use(target: Combatant):
+	print("If you're seeing this, implement Item.use() in item type:", itemType)
 	pass # "virtual" function - does nothing. Override in inherting classes!
