@@ -24,6 +24,8 @@ func _process(delta):
 		NPC.position += vel
 
 func update_target_pos():
+	if disableMovement:
+		return
 	if len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
 		if selectedTarget == 0:
@@ -39,5 +41,7 @@ func start_movement():
 		target_position = targetPoints[selectedTarget]
 
 func _on_target_reached():
-	if not disableMovement:
-		update_target_pos()
+	update_target_pos()
+
+func _on_navigation_finished():
+	update_target_pos()

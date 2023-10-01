@@ -74,6 +74,8 @@ func _on_talk_area_area_entered(area):
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		player.set_talk_npc(null)
+		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
+			NavAgent.disableMovement = data.previousDisableMove # unpause
 
 func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
@@ -89,7 +91,6 @@ func advance_dialogue():
 	if data.dialogueIndex >= len(data.dialogueItems): # conversation is over
 		data.dialogueIndex = -1
 		data.dialogueItems = []
-		NavAgent.disableMovement = data.previousDisableMove
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
 		for tracker in PlayerResources.questInventory.get_cur_trackers_for_target(saveName):

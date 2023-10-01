@@ -29,8 +29,8 @@ texture = SubResource("AtlasTexture_fbwlw")
 shape = SubResource("RectangleShape2D_jblse")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 0.5
-target_desired_distance = 0.5
+path_desired_distance = 0.75
+target_desired_distance = 0.75
 path_max_distance = 10.0
 path_postprocessing = 1
 radius = 8.0
@@ -52,6 +52,7 @@ collision_mask = 2
 [node name="MoveTriggerShape" type="CollisionShape2D" parent="MoveTrigger"]
 shape = SubResource("RectangleShape2D_wk2vr")
 
+[connection signal="navigation_finished" from="NavAgent" to="NavAgent" method="_on_navigation_finished"]
 [connection signal="target_reached" from="NavAgent" to="NavAgent" method="_on_target_reached"]
 [connection signal="area_entered" from="TalkArea" to="." method="_on_talk_area_area_entered"]
 [connection signal="area_exited" from="TalkArea" to="." method="_on_talk_area_area_exited"]
