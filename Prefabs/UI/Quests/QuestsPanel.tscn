@@ -107,7 +107,6 @@ text = "Back"
 [node name="QuestDetailsPanel" parent="." instance=ExtResource("5_vvd6v")]
 visible = false
 
-[connection signal="pressed" from="QuestsPanel/Panel/HBoxContainer/InProgressButton" to="." method="_on_in_progress_button_pressed"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/InProgressButton" to="." method="_on_in_progress_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton" to="." method="_on_ready_to_turn_in_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/CompletedButton" to="." method="_on_completed_button_toggled"]

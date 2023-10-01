@@ -1,4 +1,5 @@
 extends Node2D
+class_name BattleController
 
 @export var state: BattleState = BattleState.new()
 
@@ -13,6 +14,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	battleUI.battleController = self
 	if not PlayerResources.loaded:
 		SaveHandler.load_data()
 	
@@ -57,6 +59,10 @@ func _ready():
 	
 	for node in combatantNodes:
 		node.load_combatant_node()
+	
+func summon_minion(shard: Shard):
+	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).copy()
+	minionCombatant.load_combatant_node()
 	
 func save_data(save_path):
 	state.menu = battleUI.menuState

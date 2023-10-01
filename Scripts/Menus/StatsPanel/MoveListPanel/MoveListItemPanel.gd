@@ -1,6 +1,6 @@
 extends Panel
 
-@export var move: String = ''
+@export var move: Move = null
 
 @onready var moveName: RichTextLabel = get_node("MoveName")
 
@@ -9,7 +9,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func load_move_list_item_panel():
-	if move != '':
-		moveName.text = move
+	if move != null:
+		moveName.text = move.moveName
 	else:
 		moveName.text = '-----'

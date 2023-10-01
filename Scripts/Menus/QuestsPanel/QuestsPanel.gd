@@ -1,6 +1,8 @@
 extends Node2D
 class_name QuestsMenu
 
+signal back_pressed
+
 @export_category("Quests Panel - Filters")
 @export var selectedFilter: QuestTracker.Status = QuestTracker.Status.ALL
 @export var turnInTargetName: String
@@ -102,6 +104,7 @@ func _on_not_completed_button_toggled(button_pressed):
 	
 func _on_back_button_pressed():
 	toggle()
+	back_pressed.emit()
 
 func _on_quest_details_back_button_pressed():
 	backButton.disabled = false

@@ -17,6 +17,9 @@ class_name Combatant
 @export var dropTable: Array[WeightedReward] = []
 @export var innateStatCategories: Array[Stats.Category] = []
 
+@export_category("Combatant - In Battle")
+@export var command: BattleCommand = null
+
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres")
 	# TODO level up combatant to proper level if necessary

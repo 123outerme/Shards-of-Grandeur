@@ -1,7 +1,7 @@
 extends Control
 class_name SummonMenu
 
-var battleUI: BattleUI = null
+@export var battleUI: BattleUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

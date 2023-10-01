@@ -1,8 +1,8 @@
 extends Panel
 class_name MoveListPanel
 
-@export var moves: Array[String] = []
-@export var movepool: Array[String] = []
+@export var moves: Array[Move] = []
+@export var movepool: Array[Move] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,5 +14,5 @@ func load_move_list_panel():
 		if i < len(moves):
 			itemPanel.move = moves[i]
 		else:
-			itemPanel.move = ''
+			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()

@@ -12,9 +12,6 @@ enum Role {
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
 
-@export_category("CombatantNode - Command")
-@export var command: BattleCommand = BattleCommand.new()
-
 @onready var selectCombatantBtn: TextureButton = get_node("SelectCombatantBtn")
 @onready var sprite: Sprite2D = get_node("CombatantSprite")
 @onready var hpTag: Panel = get_node("HPTag")
@@ -26,7 +23,7 @@ func _ready():
 	pass # Replace with function body.
 
 func load_combatant_node():
-	if combatant == null:
+	if not is_alive():
 		visible = false
 	else:
 		visible = true
@@ -39,9 +36,10 @@ func load_combatant_node():
 	selectCombatantBtn.visible = false
 
 func update_hp_tag():
-	if combatant == null:
+	if not is_alive():
 		return
 	
+	hpTag.visible = true
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
@@ -51,3 +49,8 @@ func update_hp_tag():
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
+		
+func is_alive() -> bool:
+	if combatant == null:
+		return false
+	return combatant.currentHp > 0

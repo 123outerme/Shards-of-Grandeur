@@ -114,9 +114,9 @@ func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = talkNPC.saveName
 	questsPanel.toggle()
 	npcTalkBtns.visible = false
-	
-func _on_inventory_back_button_pressed():
+
+func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 
-func _on_quests_back_button_pressed():
+func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible

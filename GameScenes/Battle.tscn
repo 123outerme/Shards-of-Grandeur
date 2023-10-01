@@ -51,9 +51,10 @@ metadata/_edit_lock_ = true
 position = Vector2(68, 45)
 metadata/_edit_lock_ = true
 
-[node name="BattleCam" type="Camera2D" parent="."]
+[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
 zoom = Vector2(4, 4)
 script = ExtResource("4_tdxwi")
+battleController = NodePath("..")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
 
@@ -76,9 +77,11 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 0
 metadata/_edit_lock_ = true
 
-[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
 layout_mode = 2
 script = ExtResource("7_ghrgg")
+battleUI = NodePath("../../../..")
 
 [node name="SummonPrompt" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
 layout_mode = 1
@@ -126,10 +129,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "No"
 
-[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("6_60wgx")
+battleUI = NodePath("../../../..")
 
 [node name="MovesButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
 custom_minimum_size = Vector2(130, 51)
@@ -212,12 +216,16 @@ grow_vertical = 0
 text = "Back to
 Player Command"
 
-[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
 layout_mode = 2
 script = ExtResource("9_ul6ls")
+battleUI = NodePath("../../../..")
 
 [node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
-visible = false
 layout_mode = 2
 offset_right = 1204.0
 offset_bottom = 224.0
@@ -233,4 +241,8 @@ inBattle = true
 
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/MovesButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_moves_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/InventoryButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/GuardButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_guard_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/EscapeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_escape_button_pressed"]
 [connection signal="item_used" from="BattleCam/UI/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]

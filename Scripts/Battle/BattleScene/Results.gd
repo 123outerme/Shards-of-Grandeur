@@ -1,7 +1,7 @@
 extends Control
 class_name Results
 
-var battleUI: BattleUI = null
+@export var battleUI: BattleUI
 
 @onready var textBoxText: RichTextLabel = get_node("TextBoxText")
 

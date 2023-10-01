@@ -2,6 +2,7 @@ extends Node2D
 class_name InventoryMenu
 
 signal item_used(item: Item)
+signal back_pressed
 
 @export_category("InventoryPanel - Filters")
 @export var selectedFilter: Item.Type = Item.Type.ALL
@@ -144,6 +145,7 @@ func _on_toggle_shop_inventory_button_pressed():
 
 func _on_back_button_pressed():
 	toggle() # hide inventory panel
+	back_pressed.emit()
 	
 func _on_details_back_button_pressed():
 	backButton.disabled = false

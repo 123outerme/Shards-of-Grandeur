@@ -19,3 +19,19 @@ func _init(
 	resistanceMultiplier = i_resistance
 	affinityMultiplier = i_affinity
 	speedMultiplier = i_speed
+
+func stack(changes: StatChanges):
+	physAttackMultiplier += changes.physAttackMultiplier
+	magicAttackMultiplier += changes.magicAttackMultiplier
+	resistanceMultiplier += changes.resistanceMultiplier
+	affinityMultiplier += changes.affinityMultiplier
+	speedMultiplier += changes.speedMultiplier
+
+func apply(s: Stats) -> Stats:
+	var newStats = s.copy()
+	newStats.physAttack *= physAttackMultiplier
+	newStats.magicAttack *= magicAttackMultiplier
+	newStats.resistance *= resistanceMultiplier
+	newStats.affinity *= affinityMultiplier
+	newStats.speed *= speedMultiplier
+	return newStats

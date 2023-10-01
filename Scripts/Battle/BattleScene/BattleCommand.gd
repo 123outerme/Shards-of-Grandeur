@@ -9,10 +9,33 @@ enum Type {
 }
 
 @export var type: Type = Type.NONE
-#@export var move: Move = null
+@export var move: Move = null
 @export var item: Item = null
-@export var targets: Array
-#@export var user: 
+@export var targets: Array[Combatant]
 
-func _init():
-	pass
+static func command_guard(combatant: Combatant) -> BattleCommand:
+	return BattleCommand.new(
+		Type.MOVE,
+		load("res://GameData/Moves/guard.tres") as Move,
+		null,
+		[combatant]
+	)
+
+static func command_escape() -> BattleCommand:
+	return BattleCommand.new(
+		Type.ESCAPE,
+		null,
+		null,
+		[]
+	)
+
+func _init(
+	i_type = Type.NONE,
+	i_move = null,
+	i_item = null,
+	i_targets: Array[Combatant] = [],
+):
+	type = i_type
+	move = i_move
+	item = i_item
+	targets = i_targets

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Move" load_steps=4 format=3 uid="uid://crei2j1v6q4jn"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Move.gd" id="1_c8hut"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatChanges.gd" id="2_qoywy"]
+
+[sub_resource type="Resource" id="Resource_d4h4h"]
+script = ExtResource("2_qoywy")
+physAttackMultiplier = 1.2
+magicAttackMultiplier = 1.0
+resistanceMultiplier = 1.0
+affinityMultiplier = 1.0
+speedMultiplier = 1.1
+
+[resource]
+script = ExtResource("1_c8hut")
+moveName = "Slice"
+power = 50
+category = 0
+targets = 4
+statusChance = 0.0
+statChanges = SubResource("Resource_d4h4h")
