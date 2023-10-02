@@ -58,16 +58,43 @@ func _init(
 func execute_command(user: Combatant):
 	for target in targets:
 		var damage = calculate_damage(user, target)
-		target.currentHp -= damage
+		target.currentHp = max(target.currentHp - damage, 0) # bound to be at least 0
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
+
+# logistic curve designed to dampen early-level ratio differences (ie lv 1 to lv 2 is a 2x increase, lv 10 to lv 11 is a 1.1x)
+func dmg_logistic(userLv: int, targetLv: int) -> float:
+	const lowBound: int = 1 # level-scaling "appears" to be Lv 1 at minimum
+	var highBound: float = userLv # level-scaling approaches the actual user's level at maximum
+	const e: float = 2.7182818 # approx.
+	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
+	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
 
 func calculate_damage(user: Combatant, target: Combatant) -> int:
 	var userStats: Stats = user.statChanges.apply(user.stats)
 	var targetStats: Stats = target.statChanges.apply(target.stats)
 	
-	# TODO figure out damage calculation
-	return 1
+	if type == Type.MOVE:
+		var atkStat: float = userStats.physAttack # use physical for physical attacks
+		if move.category == Move.DmgCategory.MAGIC:
+			atkStat = userStats.magicAttack # use magic for magic attacks
+		if move.power < 0:
+			atkStat = userStats.affinity # use affinity for heal calculations
+		
+		var atkExpression: float = atkStat + 5
+		var resExpression: float = targetStats.resistance + 5
+		var apparentLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
+		# scaled so that increases early on don't jack up the ratio intensely
+		
+		var damage: int = roundi( move.power * (apparentLv / 4.0) * (atkExpression / resExpression) )
+		
+		return damage if damage > 0 else 1 # always do at least 1 damage
+	if type == Type.USE_ITEM: 
+		if slot.item is Healing:
+			var healItem: Healing = slot.item as Healing
+			return healItem.healBy # static heal amount; not affected by affinity stat
+	
+	return 0 # otherwise there was no damage
 
 func get_is_escaping(user: Combatant) -> bool:
 	return true # TODO calculate if user escapes the battle based on the random num generated

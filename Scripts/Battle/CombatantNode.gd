@@ -14,6 +14,8 @@ signal toggled(button_pressed: bool, combatantNode: CombatantNode)
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
 
+var aliveOverride: bool = false
+
 @export_category("CombatantNode - Tree")
 @export var selectCombatantBtn: TextureButton
 @export var sprite: Sprite2D
@@ -37,6 +39,7 @@ func load_combatant_node(usePreviousBtnState: bool = false):
 
 func update_hp_tag():
 	if not is_alive():
+		visible = false
 		return
 	
 	hpTag.visible = true
@@ -50,11 +53,11 @@ func update_hp_tag():
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
 
-func update_select_btn(show: bool, disable: bool = false):
+func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
 		return
 		
-	selectCombatantBtn.visible = show
+	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
 	selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
@@ -68,7 +71,7 @@ func is_selected() -> bool:
 func is_alive() -> bool:
 	if combatant == null:
 		return false
-	return combatant.currentHp > 0
+	return aliveOverride or combatant.currentHp > 0
 
 func _on_select_combatant_btn_toggled(button_pressed):
 	toggled.emit(button_pressed, self)

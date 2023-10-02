@@ -14,7 +14,7 @@ var itemDetailsPanel: ItemDetailsPanel = null
 func _ready():
 	pass # Replace with function body.
 
-func load_reward_panel(itemDetailsPanel: ItemDetailsPanel):
+func load_reward_panel(panel: ItemDetailsPanel):
 	if reward != null:
 		visible = true
 		expLabel.text = '[center]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/center]'
@@ -25,6 +25,7 @@ func load_reward_panel(itemDetailsPanel: ItemDetailsPanel):
 			itemName.text = reward.item.itemName
 		else:
 			itemGroup.visible = false
+		itemDetailsPanel = panel
 		itemDetailsPanel.item = reward.item
 	else:
 		visible = false

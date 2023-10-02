@@ -113,9 +113,9 @@ func level_up(newLvs: int):
 	var stat = 0
 	var pts = 0
 	for i in range(1, newLvs + 1):
-		maxHp += hp_gain(level + i)
-		stat += stat_gain(level + i)
-		pts += floating_stat_pt_gain(level + i)
+		maxHp += Stats.hp_gain(level + i)
+		stat += Stats.stat_gain(level + i)
+		pts += Stats.floating_stat_pt_gain(level + i)
 	physAttack += stat
 	magicAttack += stat
 	resistance += stat

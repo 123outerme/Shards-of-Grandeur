@@ -8,8 +8,8 @@ var turnQueue: TurnQueue = TurnQueue.new()
 func start_simulation():
 	var combatants: Array[Combatant] = []
 	for node in battleController.combatantNodes:
-		var combatantNode = node as CombatantNode
-		if combatantNode.combatant != null:
+		var combatantNode: CombatantNode = node as CombatantNode
+		if combatantNode.is_alive():
 			if combatantNode.combatant.command == null:
 				combatantNode.combatant.command = BattleCommand.new()
 			combatants.append(combatantNode.combatant)

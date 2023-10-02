@@ -21,19 +21,19 @@ func _init(
 	speedMultiplier = i_speed
 
 func stack(changes: StatChanges):
-	physAttackMultiplier += changes.physAttackMultiplier
-	magicAttackMultiplier += changes.magicAttackMultiplier
-	resistanceMultiplier += changes.resistanceMultiplier
-	affinityMultiplier += changes.affinityMultiplier
-	speedMultiplier += changes.speedMultiplier
+	physAttackMultiplier += changes.physAttackMultiplier - 1.0
+	magicAttackMultiplier += changes.magicAttackMultiplier - 1.0
+	resistanceMultiplier += changes.resistanceMultiplier - 1.0
+	affinityMultiplier += changes.affinityMultiplier - 1.0
+	speedMultiplier += changes.speedMultiplier - 1.0
 
 func apply(s: Stats) -> Stats:
 	var newStats = s.copy()
-	newStats.physAttack *= physAttackMultiplier
-	newStats.magicAttack *= magicAttackMultiplier
-	newStats.resistance *= resistanceMultiplier
-	newStats.affinity *= affinityMultiplier
-	newStats.speed *= speedMultiplier
+	newStats.physAttack = roundi(newStats.physAttack * physAttackMultiplier)
+	newStats.magicAttack = roundi(newStats.magicAttack * magicAttackMultiplier)
+	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)
+	newStats.affinity = roundi(newStats.affinity * affinityMultiplier)
+	newStats.speed *= roundi(newStats.speed * speedMultiplier)
 	return newStats
 
 func has_stat_changes() -> bool:
