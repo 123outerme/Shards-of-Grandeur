@@ -55,7 +55,7 @@ func load_data(save_path):
 		position = data.position
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
-		NavAgent.disableMovement = data.disableMovement
+		NavAgent.disableMovement = data.previousDisableMove
 		NavAgent.start_movement()
 		fetch_player()
 		player.restore_dialogue(self)
@@ -98,7 +98,7 @@ func advance_dialogue():
 				tracker.add_current_step_progress()
 	
 	if data.dialogueIndex == 0: # conversation just started
-		data.previousDisableMove = NavAgent.disableMovement
+		data.previousDisableMove = false
 		NavAgent.disableMovement = true
 
 func reset_dialogue():

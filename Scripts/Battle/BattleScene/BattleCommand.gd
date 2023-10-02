@@ -58,7 +58,7 @@ func _init(
 func execute_command(user: Combatant):
 	for target in targets:
 		var damage = calculate_damage(user, target)
-		target.currentHp = max(target.currentHp - damage, 0) # bound to be at least 0
+		target.currentHp = min(max(target.currentHp - damage, 0), target.stats.maxHp) # bound to be at least 0 and no more than max HP
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
 
@@ -88,11 +88,11 @@ func calculate_damage(user: Combatant, target: Combatant) -> int:
 		
 		var damage: int = roundi( move.power * (apparentLv / 4.0) * (atkExpression / resExpression) )
 		
-		return damage if damage > 0 else 1 # always do at least 1 damage
+		return damage
 	if type == Type.USE_ITEM: 
 		if slot.item is Healing:
 			var healItem: Healing = slot.item as Healing
-			return healItem.healBy # static heal amount; not affected by affinity stat
+			return -1 * healItem.healBy # static heal amount; not affected by affinity stat (negative to do healing and not damage)
 	
 	return 0 # otherwise there was no damage
 
@@ -121,7 +121,7 @@ func get_command_results(user: Combatant) -> String:
 		actionTargets = slot.item.battleTargets
 		resultsText = user.disp_name() + ' used ' + slot.item.itemName
 		if slot.item.itemType == Item.Type.HEALING:
-			resultsText += '! Healed'
+			resultsText += '! Healed '
 		#TODO do specific text for other types of in-battle items besides healing?
 	
 	# damage/healing/stat change effects

@@ -53,8 +53,8 @@ func load_inventory_slot_panel():
 	buyButton.visible = isShopItem and not isPlayerItem
 	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
 	
-	sellButton.visible = isShopItem and isPlayerItem and not isEquipped
-	sellButton.disabled = isShopItem and not isPlayerItem and inventorySlot.count >= inventorySlot.item.maxCount	
+	sellButton.visible = isShopItem and isPlayerItem
+	sellButton.disabled = isEquipped # TODO: prevent sale when partner's inventory can't hold any more
 	
 func _on_use_button_pressed():
 	if not inBattle: # if not in battle use it immediately. Otherwise, 

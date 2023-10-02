@@ -76,6 +76,7 @@ func show_details(questTracker: QuestTracker):
 	backButton.disabled = true
 	questDetailsPanel.questTracker = questTracker
 	questDetailsPanel.visible = true
+	questDetailsPanel.selectedStep = null
 	questDetailsPanel.load_quest_details()
 
 func _on_in_progress_button_toggled(button_pressed):

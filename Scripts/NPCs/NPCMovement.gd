@@ -16,7 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not disableMovement:
+	if not disableMovement and loops != 0:
 		var nextPos = get_next_path_position()
 		var vel = nextPos - NPC.position
 		if vel.length() > maxSpeed * delta:
@@ -37,7 +37,7 @@ func update_target_pos():
 		target_position = targetPoints[selectedTarget]
 
 func start_movement():
-	if not disableMovement:
+	if not disableMovement and loops != 0:
 		target_position = targetPoints[selectedTarget]
 
 func _on_target_reached():
