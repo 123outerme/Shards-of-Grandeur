@@ -31,4 +31,8 @@ func update_turn_text():
 
 func finish_turn():
 	turnQueue.pop() # remove the turn from the queue
+	for node in battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		if combatantNode.is_alive():
+			combatantNode.combatant.update_downed()
 	play_turn() # go to the next turn

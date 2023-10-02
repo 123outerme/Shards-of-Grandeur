@@ -131,7 +131,7 @@ func get_command_results(user: Combatant) -> String:
 			var targetName = target.disp_name()
 			if target == user:
 				targetName = 'self'
-			if target.currentHp > 0:
+			if not target.downed:
 				var damage: int = calculate_damage(user, target)
 				if damage != 0:
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))

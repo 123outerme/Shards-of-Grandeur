@@ -71,7 +71,7 @@ func is_selected() -> bool:
 func is_alive() -> bool:
 	if combatant == null:
 		return false
-	return aliveOverride or combatant.currentHp > 0
+	return not combatant.downed
 
 func _on_select_combatant_btn_toggled(button_pressed):
 	toggled.emit(button_pressed, self)

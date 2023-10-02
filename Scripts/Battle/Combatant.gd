@@ -19,6 +19,7 @@ class_name Combatant
 
 @export_category("Combatant - In Battle")
 @export var command: BattleCommand = null
+@export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres")
@@ -69,6 +70,9 @@ func disp_name() -> String:
 
 func save_name() -> String:
 	return stats.saveName
+
+func update_downed():
+	downed = currentHp <= 0
 
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level
