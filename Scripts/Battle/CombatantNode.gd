@@ -14,8 +14,6 @@ signal toggled(button_pressed: bool, combatantNode: CombatantNode)
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
 
-var aliveOverride: bool = false
-
 @export_category("CombatantNode - Tree")
 @export var selectCombatantBtn: TextureButton
 @export var sprite: Sprite2D

@@ -13,4 +13,7 @@ func show_text(newText: String):
 	textBoxText.text = newText
 
 func _on_ok_button_pressed():
-	battleUI.battleController.turnExecutor.finish_turn()
+	var result: TurnExecutor.TurnResult = battleUI.battleController.turnExecutor.finish_turn()
+	if result != TurnExecutor.TurnResult.NOTHING:
+		battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
+		battleUI.set_menu_state(BattleState.Menu.BATTLE_COMPLETE)

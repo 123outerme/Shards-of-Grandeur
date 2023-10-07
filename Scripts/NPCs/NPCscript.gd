@@ -75,7 +75,7 @@ func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		player.set_talk_npc(null)
 		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
-			NavAgent.disableMovement = data.previousDisableMove # unpause
+			unpause_movement()
 
 func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
@@ -93,13 +93,10 @@ func advance_dialogue():
 		data.dialogueItems = []
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
-		for tracker in PlayerResources.questInventory.get_cur_trackers_for_target(saveName):
-			if tracker.get_current_step().type == QuestStep.Type.TALK:
-				tracker.add_current_step_progress()
+		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = false
-		NavAgent.disableMovement = true
 
 func reset_dialogue():
 	data.dialogueIndex = -1
@@ -132,3 +129,9 @@ func fetch_quest_dialogue_info():
 			if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 					and curStep.turnInName == saveName:
 				turningInSteps.append(curStep)
+
+func pause_movement():
+	NavAgent.disableMovement = true
+	
+func unpause_movement():
+	NavAgent.disableMovement = data.previousDisableMove # unpause

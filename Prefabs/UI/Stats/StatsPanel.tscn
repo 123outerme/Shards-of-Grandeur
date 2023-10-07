@@ -40,12 +40,30 @@ bbcode_enabled = true
 text = "[center]Combatant Name Here - Stats[/center]"
 fit_content = true
 
+[node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 54.0
+offset_right = 75.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "[center]Level Up![/center]"
+
 [node name="StatLinePanel" parent="StatsPanel/Panel" instance=ExtResource("4_1k046")]
 layout_mode = 1
 offset_left = 40.0
 offset_top = 98.0
 offset_right = 600.0
-offset_bottom = 453.0
+offset_bottom = 502.0
 
 [node name="MoveListPanel" parent="StatsPanel/Panel" instance=ExtResource("6_mask2")]
 layout_mode = 1
@@ -55,7 +73,7 @@ anchor_right = 1.0
 offset_left = -600.0
 offset_top = 98.0
 offset_right = -40.0
-offset_bottom = 453.0
+offset_bottom = 502.0
 grow_horizontal = 0
 
 [node name="EquipmentPanel" parent="StatsPanel/Panel" instance=ExtResource("5_h5547")]
@@ -64,9 +82,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -480.0
+offset_top = -431.0
 offset_right = 600.0
-offset_bottom = -125.0
+offset_bottom = -76.0
 grow_vertical = 0
 
 [node name="ItemDetailsPanel" parent="StatsPanel/Panel/EquipmentPanel" index="2"]

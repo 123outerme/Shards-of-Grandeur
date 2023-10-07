@@ -16,13 +16,13 @@ region = Rect2(112, 48, 8, 8)
 
 [node name="StatLinePanel" type="Panel"]
 offset_right = 560.0
-offset_bottom = 355.0
+offset_bottom = 404.0
 theme = ExtResource("1_o2kql")
 theme_override_styles/panel = ExtResource("1_sfbvn")
 script = ExtResource("1_3asyh")
 
 [node name="StatsVBox" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +35,37 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_nb4ah")
 alignment = 1
+
+[node name="LevelDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="LevelLabel" type="RichTextLabel" parent="StatsVBox/LevelDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Level:"
+fit_content = true
+
+[node name="Level" type="RichTextLabel" parent="StatsVBox/LevelDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "100"
+fit_content = true
+scroll_active = false
 
 [node name="HpDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -64,6 +95,37 @@ offset_right = 552.0
 offset_bottom = 17.0
 grow_vertical = 2
 text = "5,250 / 5,250"
+fit_content = true
+scroll_active = false
+
+[node name="ExpDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="ExpLabel" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 50.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Exp:"
+fit_content = true
+
+[node name="Exp" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "14,171 / 14,171"
 fit_content = true
 scroll_active = false
 
@@ -399,13 +461,14 @@ grow_vertical = 2
 alignment = 1
 
 [node name="SaveChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(68, 32)
 layout_mode = 2
 theme = ExtResource("1_o2kql")
 text = "Save"
 expand_icon = true
 
 [node name="CancelChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
 theme = ExtResource("1_o2kql")
 text = "Cancel"

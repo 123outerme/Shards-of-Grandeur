@@ -8,7 +8,11 @@ class_name StatLinePanel
 var statsCopy: Stats = null
 var modified: bool = false
 
+@onready var levelText: RichTextLabel = get_node("StatsVBox/LevelDisplay/Level")
+
 @onready var hpText: RichTextLabel = get_node("StatsVBox/HpDisplay/Hp")
+
+@onready var expText: RichTextLabel = get_node("StatsVBox/ExpDisplay/Exp")
 
 @onready var physAtkText: RichTextLabel = get_node("StatsVBox/PhysAtkDisplay/PhysAtk")
 @onready var physAtkBtns: HBoxContainer = get_node("StatsVBox/PhysAtkDisplay/ButtonsHBox")
@@ -55,7 +59,9 @@ func load_statline_panel():
 	if curHp == -1:
 		hp = statsCopy.maxHp
 	
+	levelText.text = String.num(statsCopy.level)
 	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
+	expText.text = TextUtils.num_to_comma_string(statsCopy.exp) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(statsCopy.level))
 	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
 	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)
 	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)

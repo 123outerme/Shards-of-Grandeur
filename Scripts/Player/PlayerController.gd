@@ -19,6 +19,10 @@ func _input(event):
 		statsPanel.stats = PlayerResources.playerInfo.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
+		if statsPanel.visible:
+			SceneLoader.pause_autonomous_movers()
+		else:
+			SceneLoader.unpause_autonomous_movers()
 		inventoryPanel.visible = false
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
@@ -34,6 +38,10 @@ func _input(event):
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
 		inventoryPanel.toggle()
+		if inventoryPanel.visible:
+			SceneLoader.pause_autonomous_movers()
+		else:
+			SceneLoader.unpause_autonomous_movers()
 		statsPanel.visible = false
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
@@ -42,6 +50,10 @@ func _input(event):
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
+		if questsPanel.visible:
+			SceneLoader.pause_autonomous_movers()
+		else:
+			SceneLoader.unpause_autonomous_movers()
 		statsPanel.visible = false
 		inventoryPanel.visible = false
 		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
@@ -60,13 +72,14 @@ func advance_dialogue():
 	var dialogueText = talkNPC.get_cur_dialogue_item()
 	if dialogueText != null: # if there is dialogue to display
 		if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the dialogue
-			disableMovement = true
+			SceneLoader.pause_autonomous_movers()
+			SceneLoader.unpauseExcludedMover = talkNPC
 			set_talk_btns_vis(false)
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		else: # this is continuing the dialogue
 			textBox.advance_textbox(dialogueText)
 	else:
-		disableMovement = false
+		SceneLoader.unpause_autonomous_movers()
 		textBox.hide_textbox()
 		set_talk_btns_vis(true)
 		position_talk_btns()
@@ -102,6 +115,12 @@ func restore_dialogue(npc: NPCScript):
 		textBox.show_text_instant()
 	set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
 	position_talk_btns()
+
+func pause_movement():
+	disableMovement = true
+
+func unpause_movement():
+	disableMovement = false
 
 func _on_shop_button_pressed():
 	inventoryPanel.inShop = true

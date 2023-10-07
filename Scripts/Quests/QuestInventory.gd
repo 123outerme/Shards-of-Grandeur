@@ -50,6 +50,11 @@ func accept_quest(q: Quest):
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)
 	
+func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
+	for tracker in get_cur_trackers_for_target(target):
+			if tracker.get_current_step().type == type:
+				tracker.add_current_step_progress(progress)
+
 func turn_in_cur_step(tracker: QuestTracker):
 	var allDone: bool = tracker.turn_in_step()
 	if allDone:

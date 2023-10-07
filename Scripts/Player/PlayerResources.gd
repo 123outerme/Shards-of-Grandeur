@@ -11,6 +11,18 @@ var player = null
 func _ready():
 	pass # Replace with function body.
 
+func accept_rewards(rewards: Array[Reward]) -> int:
+	var gainedLevels: int = 0
+	for reward in rewards:
+		playerInfo.gold += reward.gold
+		gainedLevels += playerInfo.stats.add_exp(reward.experience)
+		inventory.add_item(reward.item)
+	if gainedLevels > 0:
+		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
+		playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy
+	
+	return gainedLevels
+
 func load_data(save_path):
 	playerInfo = PlayerInfo.new()
 	var newPlayerInfo = playerInfo.load_data(save_path)

@@ -8,7 +8,7 @@ enum Menu {
 	ITEMS = 3,
 	PICK_TARGETS = 4,
 	RESULTS = 5,
-	REWARDS = 6,
+	BATTLE_COMPLETE = 6,
 	LEVEL_UP = 7
 }
 
@@ -28,6 +28,9 @@ enum Menu {
 @export var turnNumber: int = 1
 @export var turnQueue: TurnQueue = TurnQueue.new()
 
+@export_category("BattleData - Rewards")
+@export var rewards: Array[Reward] = []
+
 var save_file: String = 'battle.tres'
 
 func _init(
@@ -41,6 +44,7 @@ func _init(
 	i_cmdMinion = false,
 	i_turnNumber = 1,
 	i_turnQueue = TurnQueue.new(),
+	i_rewards: Array[Reward] = [],
 ):
 	playerCombatant = i_playerCombatant
 	minionCombatant = i_minionCombatant
@@ -52,6 +56,7 @@ func _init(
 	commandingMinion = i_cmdMinion
 	turnNumber = i_turnNumber
 	turnQueue = i_turnQueue
+	rewards = i_rewards
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file):

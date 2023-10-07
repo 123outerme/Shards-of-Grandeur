@@ -7,14 +7,17 @@ class_name BattleUI
 
 var commandingCombatant: CombatantNode = null
 var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
+var playerWins: bool = true
 
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
 @onready var moves: MovesMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
 @onready var targets: TargetsMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Targets")
 @onready var results: Results = get_node("BattleTextBox/TextContainer/MarginContainer/Results")
+@onready var battleComplete: BattleCompleteMenu = get_node("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
 
 @onready var inventoryPanel: InventoryMenu = get_node("UIPanels/InventoryPanelNode")
+@onready var statsPanel: StatsMenu = get_node("UIPanels/StatsPanelNode")
 
 func _ready():
 	pass
@@ -51,6 +54,24 @@ func apply_menu_state():
 	results.visible = menuState == BattleState.Menu.RESULTS
 	if results.visible:
 		battleController.turnExecutor.update_turn_text()
+		
+	battleComplete.visible = menuState == BattleState.Menu.BATTLE_COMPLETE
+	if battleComplete.visible:
+		battleComplete.playerWins = playerWins
+		battleComplete.rewards = battleController.state.rewards
+		if playerWins and len(battleComplete.rewards) == 0:
+			for node in battleController.combatantNodes:
+				var combatantNode: CombatantNode = node as CombatantNode
+				if combatantNode.role == CombatantNode.Role.ENEMY:
+					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
+					if dropIdx > -1:
+						battleComplete.rewards.append(Stats.scale_reward_by_level(combatantNode.combatant.dropTable[dropIdx].reward, 1, combatantNode.combatant.stats.level))
+					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
+			battleController.state.rewards = battleComplete.rewards
+		battleComplete.load_battle_over_menu()
+	
+	if menuState == BattleState.Menu.LEVEL_UP:
+		open_stats(battleController.playerCombatant.combatant, true)
 
 func return_to_player_command():
 	commandingMinion = false
@@ -75,6 +96,9 @@ func round_complete():
 	battleController.state.turnNumber += 1
 	return_to_player_command()
 
+func end_battle():
+	battleController.end_battle()
+
 func open_inventory(forSummon: bool):
 	inventoryPanel.summoning = forSummon
 	inventoryPanel.lockFilters = forSummon
@@ -93,3 +117,15 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
 	inventoryPanel.toggle()
+
+func open_stats(combatant: Combatant, levelUp: bool):
+	statsPanel.levelUp = levelUp
+	statsPanel.stats = combatant.stats
+	statsPanel.curHp = combatant.currentHp
+	statsPanel.readOnly = not levelUp
+	statsPanel.visible = false # force it to be turned on
+	statsPanel.toggle()
+
+func _on_stats_panel_node_back_pressed():
+	if menuState == BattleState.Menu.LEVEL_UP:
+		battleController.end_battle()

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://blpo1fotn5w3g"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://blpo1fotn5w3g"]
 
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_dgril"]
 
@@ -61,6 +61,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4
 vertices = PackedVector2Array(-4, 1.5, 4, 1.5, 4, 4, -4, 4)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-4, 1.5, 4, 1.5, 4, 4, -4, 4)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gotnp"]
+vertices = PackedVector2Array(-4, -4, 4, -4, 4, 1.5, -4, 1.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 1.5, -4, 1.5)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sscmq"]
 vertices = PackedVector2Array(-4, 2, 4, 2, 4, 4, -4, 4)
@@ -178,7 +183,7 @@ use_texture_padding = false
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/next_alternative_id = 2
+3:2/next_alternative_id = 3
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
@@ -187,6 +192,10 @@ use_texture_padding = false
 3:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/1/physics_layer_0/angular_velocity = 0.0
 3:2/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_ujya4")
+3:2/2 = 2
+3:2/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/2/physics_layer_0/angular_velocity = 0.0
+3:2/2/navigation_layer_0/polygon = SubResource("NavigationPolygon_gotnp")
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0

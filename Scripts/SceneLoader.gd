@@ -1,21 +1,37 @@
 extends Node
 
-var previousScene
+var currentScene
+var unpauseExcludedMover: Node2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	previousScene = get_node_or_null("/root/MainMenu")
+	currentScene = get_tree().get_first_node_in_group('Scenes')
+
+func load_battle():
+	load_scene(preload("res://GameScenes/Battle.tscn"))
 
 func load_overworld():
-	var overworldScene = load("res://GameScenes/Overworld.tscn")
-	var overworldInstance = overworldScene.instantiate()
-	add_sibling.call_deferred(overworldInstance)
-	previousScene.queue_free()
-	previousScene = overworldInstance
+	load_scene(preload("res://GameScenes/Overworld.tscn"))
 	
 func load_main_menu():
-	var mainMenuScene = load("res://GameScenes/MainMenu.tscn")
-	var mainMenuInstance = mainMenuScene.instantiate()
-	add_sibling.call_deferred(mainMenuInstance)
-	previousScene.queue_free()
-	previousScene = mainMenuInstance
+	load_scene(preload("res://GameScenes/MainMenu.tscn"))
+	
+func load_scene(scene):
+	var sceneInstance = scene.instantiate()
+	add_sibling.call_deferred(sceneInstance)
+	if currentScene != null:
+		currentScene.queue_free()
+	currentScene = sceneInstance
+
+func pause_autonomous_movers():
+	var movers = get_tree().get_nodes_in_group('AutonomousMove')
+	for mover in movers:
+		if mover.has_method('pause_movement'):
+			mover.pause_movement()
+
+func unpause_autonomous_movers():
+	var movers = get_tree().get_nodes_in_group('AutonomousMove')
+	for mover in movers:
+		if mover.has_method('unpause_movement') and mover != unpauseExcludedMover:
+			mover.unpause_movement()
+	unpauseExcludedMover = null

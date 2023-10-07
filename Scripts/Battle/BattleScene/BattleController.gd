@@ -3,6 +3,8 @@ class_name BattleController
 
 @export var state: BattleState = BattleState.new()
 
+@onready var tilemap: TileMap = get_node("TileMap")
+
 @onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("CombatantNode")
 @onready var playerCombatant: CombatantNode = get_node("TileMap/PlayerCombatant")
 @onready var minionCombatant: CombatantNode = get_node("TileMap/MinionCombatant")
@@ -91,5 +93,10 @@ func load_data(save_path):
 		state = newState
 		turnExecutor.turnQueue = state.turnQueue
 
-func leave_battle():
+func end_battle():
+	tilemap.queue_free()
+	PlayerResources.playerInfo.combatant = playerCombatant.combatant.copy()
+	PlayerResources.playerInfo.stats = playerCombatant.combatant.stats.copy()
+	SaveHandler.save_data()
 	state.delete_data(savePath)
+	SceneLoader.load_overworld()

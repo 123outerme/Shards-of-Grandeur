@@ -1,11 +1,15 @@
 extends Node2D
 class_name StatsMenu
 
+signal back_pressed
+
 @export var stats: Stats = null
 @export var curHp: int = -1
+@export var levelUp: bool = false
 @export var readOnly: bool = false
 
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
+@onready var levelUpLabel: RichTextLabel = get_node("StatsPanel/Panel/LevelUpLabel")
 @onready var statlinePanel: StatLinePanel = get_node("StatsPanel/Panel/StatLinePanel")
 @onready var moveListPanel: MoveListPanel = get_node("StatsPanel/Panel/MoveListPanel")
 @onready var equipmentPanel: EquipmentPanel = get_node("StatsPanel/Panel/EquipmentPanel")
@@ -25,6 +29,7 @@ func load_stats_panel():
 		return
 	
 	statsTitle.text = '[center]' + stats.displayName + ' - Stats[/center]'
+	levelUpLabel.visible = levelUp
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
@@ -39,3 +44,4 @@ func load_stats_panel():
 
 func _on_back_button_pressed():
 	toggle()
+	back_pressed.emit()

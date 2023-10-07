@@ -15,6 +15,7 @@ enum Category {
 
 @export_category("Stats - Statline")
 @export var level: int = 1
+@export var exp: int = 0
 @export var maxHp: int = 20
 @export var physAttack: int = 1
 @export var magicAttack: int = 1
@@ -35,6 +36,7 @@ func _init(
 	i_displayName = 'Entity',
 	i_saveName = 'uninstantiated_entity',
 	i_level = 1,
+	i_exp = 0,
 	i_maxHp = 20,
 	i_physAttack = 1,
 	i_magicAttack = 1,
@@ -50,6 +52,7 @@ func _init(
 	displayName = i_displayName
 	saveName = i_saveName
 	level = i_level
+	exp = i_exp
 	maxHp = i_maxHp
 	physAttack = i_physAttack
 	magicAttack = i_magicAttack
@@ -62,10 +65,11 @@ func _init(
 	moves = i_moves
 	movepool = i_movepool
 
-static func calculate_base_stats(lv: int) -> Stats:
+static func calculate_base_stats(lv: int, experience: int) -> Stats:
 	var stat = calculate_stat_category(lv)
 	return Stats.new(
 		lv,
+		experience,
 		calculate_max_hp(lv),
 		stat,
 		stat,
@@ -109,6 +113,17 @@ static func scale_reward_by_level(reward: Reward, initialLv: int, currentLv: int
 	# TODO
 	return scaledReward
 
+func add_exp(addingExp: int) -> int:
+	var newLevel: int = level
+	exp += addingExp
+	while exp > get_required_exp(newLevel):
+		exp -= get_required_exp(newLevel)
+		newLevel += 1 # increment and check if requirement is satisfied
+	var levelDiff: int = newLevel - level
+	level += levelDiff
+	level_up(levelDiff)
+	return levelDiff # return the difference
+
 func level_up(newLvs: int):
 	var stat = 0
 	var pts = 0
@@ -128,6 +143,7 @@ func copy() -> Stats:
 		displayName,
 		saveName,
 		level,
+		exp,
 		maxHp,
 		physAttack,
 		magicAttack,
