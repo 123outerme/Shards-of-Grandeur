@@ -95,5 +95,5 @@ func level_up_nonplayer(newLv: int):
 				if randomCategory == Stats.Category.SPEED:
 					stats.speed += 1
 				stats.statPts -= 1
-	else:
-		print("level up nonplayer err: level diff is negative")
+	elif lvDiff < 0:
+		printerr("level up nonplayer err: level diff is negative")

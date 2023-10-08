@@ -160,31 +160,54 @@ text = "1,170"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/PhysAtkDisplay"]
+[node name="Extras" type="Control" parent="StatsVBox/PhysAtkDisplay"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -42.0
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/PhysAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/ButtonsHBox"]
+[node name="IncreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/ButtonsHBox"]
+[node name="DecreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
 
 [node name="MagicAtkDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -217,31 +240,54 @@ text = "1,170"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/MagicAtkDisplay"]
+[node name="Extras" type="Control" parent="StatsVBox/MagicAtkDisplay"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -42.0
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/MagicAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/ButtonsHBox"]
+[node name="IncreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/ButtonsHBox"]
+[node name="DecreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
 
 [node name="ResistanceDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -274,31 +320,54 @@ text = "1,170"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/ResistanceDisplay"]
+[node name="Extras" type="Control" parent="StatsVBox/ResistanceDisplay"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -42.0
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/ResistanceDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/ButtonsHBox"]
+[node name="IncreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/ButtonsHBox"]
+[node name="DecreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
 
 [node name="AffinityDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -331,31 +400,54 @@ text = "1,170"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/AffinityDisplay"]
+[node name="Extras" type="Control" parent="StatsVBox/AffinityDisplay"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -42.0
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/AffinityDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/ButtonsHBox"]
+[node name="IncreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/ButtonsHBox"]
+[node name="DecreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/AffinityDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
 
 [node name="SpeedDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -388,31 +480,54 @@ text = "1,170"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/SpeedDisplay"]
+[node name="Extras" type="Control" parent="StatsVBox/SpeedDisplay"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -42.0
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/SpeedDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/ButtonsHBox"]
+[node name="IncreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/ButtonsHBox"]
+[node name="DecreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/SpeedDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
 
 [node name="StatPtsDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -473,15 +588,15 @@ layout_mode = 2
 theme = ExtResource("1_o2kql")
 text = "Cancel"
 
-[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_physatk_inc_button_pressed"]
-[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_physatk_dec_button_pressed"]
-[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_magicatk_inc_button_pressed"]
-[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_magicatk_dec_button_pressed"]
-[connection signal="pressed" from="StatsVBox/ResistanceDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_resistance_inc_button_pressed"]
-[connection signal="pressed" from="StatsVBox/ResistanceDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_resistance_dec_button_pressed"]
-[connection signal="pressed" from="StatsVBox/AffinityDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_affinity_inc_button_pressed"]
-[connection signal="pressed" from="StatsVBox/AffinityDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_affinity_dec_button_pressed"]
-[connection signal="pressed" from="StatsVBox/SpeedDisplay/ButtonsHBox/IncreaseButton" to="." method="_on_speed_inc_button_pressed"]
-[connection signal="pressed" from="StatsVBox/SpeedDisplay/ButtonsHBox/DecreaseButton" to="." method="_on_speed_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_physatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_physatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_magicatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_magicatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_resistance_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_resistance_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_affinity_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_affinity_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_speed_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_speed_dec_button_pressed"]
 [connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/SaveChangesButton" to="." method="_on_save_changes_button_pressed"]
 [connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/CancelChangesButton" to="." method="_on_cancel_changes_button_pressed"]

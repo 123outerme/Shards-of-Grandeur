@@ -15,6 +15,7 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var role: Role = Role.ALLY
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
+@export var battlePosition: String = ''
 
 @export_category("CombatantNode - Tree")
 @export var selectCombatantBtn: TextureButton
@@ -27,7 +28,7 @@ signal details_clicked(combatantNode: CombatantNode)
 func _ready():
 	pass # Replace with function body.
 
-func load_combatant_node(usePreviousBtnState: bool = false):
+func load_combatant_node():
 	if not is_alive():
 		visible = false
 	else:
@@ -35,7 +36,7 @@ func load_combatant_node(usePreviousBtnState: bool = false):
 		sprite.texture = combatant.sprite
 		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_hp_tag()
-		update_select_btn(selectCombatantBtn.visible if usePreviousBtnState else false)
+		update_select_btn(false)
 
 func update_hp_tag():
 	if not is_alive():

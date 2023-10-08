@@ -15,7 +15,6 @@ func load_game():
 		load_overworld()
 
 func load_battle():
-	SaveHandler.save_data()
 	load_scene(preload("res://GameScenes/Battle.tscn"))
 
 func load_overworld():

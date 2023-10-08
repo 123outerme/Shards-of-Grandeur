@@ -65,11 +65,11 @@ func _init(
 	moves = i_moves
 	movepool = i_movepool
 
-static func calculate_base_stats(lv: int, experience: int) -> Stats:
+static func calculate_base_stats(lv: int, carriedOverExp: int = 0) -> Stats:
 	var stat = calculate_stat_category(lv)
 	return Stats.new(
 		lv,
-		experience,
+		carriedOverExp,
 		calculate_max_hp(lv),
 		stat,
 		stat,

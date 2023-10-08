@@ -43,22 +43,37 @@ func has_stat_changes() -> bool:
 			or affinityMultiplier != 1.0 \
 			or speedMultiplier != 1.0
 
+func get_phys_atk_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Phys Atk', physAttackMultiplier)
+	
+func get_magic_atk_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Magic Atk', magicAttackMultiplier)
+
+func get_resistance_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Resistance', resistanceMultiplier)
+
+func get_affinity_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Affinity', affinityMultiplier)
+
+func get_speed_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Speed', speedMultiplier)
+
 func get_multipliers_text() -> Array[StatMultiplierText]:
 	var texts: Array[StatMultiplierText] = []
 	
 	if physAttackMultiplier != 1.0:
-		texts.append(StatMultiplierText.new('Phys Atk', physAttackMultiplier))
+		texts.append(get_phys_atk_multiplier())
 	
 	if magicAttackMultiplier != 1.0:
-		texts.append(StatMultiplierText.new('Magic Atk', magicAttackMultiplier))
+		texts.append(get_magic_atk_multiplier())
 		
 	if resistanceMultiplier != 1.0:
-		texts.append(StatMultiplierText.new('Resistance', resistanceMultiplier))
+		texts.append(get_resistance_multiplier())
 		
 	if affinityMultiplier != 1.0:
-		texts.append(StatMultiplierText.new('Affinity', affinityMultiplier))
+		texts.append(get_affinity_multiplier())
 		
 	if speedMultiplier != 1.0:
-		texts.append(StatMultiplierText.new('Speed', speedMultiplier))
+		texts.append(get_speed_multiplier())
 		
 	return texts

@@ -24,7 +24,7 @@ func _ready():
 	enemySprite.texture = combatant.sprite
 
 func _process(delta):
-	if not disableMovement:
+	if not disableMovement and SceneLoader.mapLoader != null:
 		if not patrolling and SceneLoader.mapLoader.mapNavReady:
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()
@@ -34,7 +34,7 @@ func _process(delta):
 		position += vel
 
 func get_next_patrol_target():
-	if not SceneLoader.mapLoader.mapNavReady:
+	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:
 		return
 	var angleRadians = randf_range(0, 2 * PI)
 	var radius: float = randf_range(0, patrolRange)
@@ -98,4 +98,5 @@ func _on_encounter_collider_area_entered(area):
 		PlayerResources.playerInfo.encounteredName = combatant.save_name()
 		PlayerResources.playerInfo.encounteredLevel = combatantLevel
 		encounteredPlayer = true
+		SaveHandler.save_data()
 		SceneLoader.load_battle()

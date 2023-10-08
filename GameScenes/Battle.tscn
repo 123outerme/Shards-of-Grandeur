@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=21 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yw58v"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleUI.gd" id="10_ier4v"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="11_05pqh"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleCompleteMenu.gd" id="12_ip5fm"]
+[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/FlowOfBattle.gd" id="14_wt520"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TurnExecutor.gd" id="15_2cnm6"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://Prefabs/UI/Stats/StatsPanel.tscn" id="17_tq7tc"]
@@ -41,35 +42,41 @@ layer_1/tile_data = PackedInt32Array(-851987, 524288, 0, -851986, 524288, 0, -85
 
 [node name="PlayerCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
+battlePosition = "You"
 metadata/_edit_lock_ = true
 
 [node name="MinionCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
+battlePosition = "Minion"
 metadata/_edit_lock_ = true
 
 [node name="EnemyCombatant1" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(36, 12)
+battlePosition = "Center"
 metadata/_edit_lock_ = true
 
 [node name="EnemyCombatant2" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(52, -12)
+battlePosition = "Top"
 metadata/_edit_lock_ = true
 
 [node name="EnemyCombatant3" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(68, 36)
+battlePosition = "Bottom"
 metadata/_edit_lock_ = true
 
-[node name="BattleCam" type="Camera2D" parent="."]
+[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
 zoom = Vector2(4, 4)
 script = ExtResource("10_ier4v")
+battleController = NodePath("..")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
 
 [node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox"]
 offset_left = -152.0
-offset_top = 49.5
-offset_right = 1068.0
-offset_bottom = 299.5
+offset_top = 50.0
+offset_right = 1064.0
+offset_bottom = 298.0
 scale = Vector2(0.25, 0.25)
 theme = ExtResource("2_u488y")
 theme_override_styles/panel = SubResource("StyleBoxFlat_75ng8")
@@ -504,6 +511,46 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("10_7n25e")
 battleUI = NodePath("..")
 
+[node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" node_paths=PackedStringArray("battleController")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_u488y")
+script = ExtResource("14_wt520")
+battleController = NodePath("../../..")
+
+[node name="ToggleFobButton" type="Button" parent="BattleCam/UIPanels/FlowOfBattle"]
+layout_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 384.0
+offset_top = -440.0
+offset_right = 592.0
+offset_bottom = -316.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 28
+toggle_mode = true
+text = "Read the
+Flow of Battle"
+
+[node name="TabContainer" type="TabContainer" parent="BattleCam/UIPanels/FlowOfBattle"]
+visible = false
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -588.0
+offset_top = -306.0
+offset_right = 592.0
+offset_bottom = 430.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
 visible = false
 position = Vector2(-640, -480)
@@ -545,5 +592,6 @@ battleUI = NodePath("../BattleCam")
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
+[connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]

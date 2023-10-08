@@ -157,7 +157,7 @@ func get_command_results(user: Combatant) -> String:
 			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
 			for i in range(len(multipliers)):
 				var multiplier: StatMultiplierText = multipliers[i]
-				resultsText += multiplier.statName + ' ' + String.num(multiplier.multiplier) + 'x'
+				resultsText += multiplier.print_multiplier()
 				if i < len(multipliers) - 1:
 					if len(multipliers) > 2:
 						resultsText += ','
