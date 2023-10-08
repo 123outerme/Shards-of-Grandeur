@@ -63,9 +63,12 @@ func turn_in_cur_step(tracker: QuestTracker) -> int:
 	return newLvs
 
 func load_data(save_path):
+	var data = null
 	if ResourceLoader.exists(save_path + save_name):
-		return load(save_path + save_name)
-	return null
+		data = load(save_path + save_name)
+		if data != null:
+			return data.duplicate(true)
+	return data
 
 func save_data(save_path, data):
 	var err = ResourceSaver.save(data, save_path + save_name)

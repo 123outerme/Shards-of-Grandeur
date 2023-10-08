@@ -29,8 +29,8 @@ enum Category {
 @export var equippedArmor: Armor = null
 
 @export_category("Stats - Moves")
-@export var moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
-@export var movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
+@export var moves: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move]
+@export var movepool: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move]
 
 func _init(
 	i_displayName = 'Entity',
@@ -46,8 +46,8 @@ func _init(
 	i_statPts = 0,
 	i_weapon = null,
 	i_armor = null,
-	i_moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
-	i_movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
+	i_moves: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move],
+	i_movepool: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move],
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -109,7 +109,7 @@ static func floating_stat_pt_gain(lv: int) -> int:
 	return floor(0.1 * lv + 1)
 	
 static func scale_reward_by_level(reward: Reward, initialLv: int, currentLv: int) -> Reward:
-	var scaledReward: Reward = reward.copy()
+	var scaledReward: Reward = reward.duplicate(true)
 	# TODO
 	return scaledReward
 
@@ -137,25 +137,6 @@ func level_up(newLvs: int):
 	affinity += stat
 	speed += stat
 	statPts += pts
-
-func copy() -> Stats:
-	return Stats.new(
-		displayName,
-		saveName,
-		level,
-		experience,
-		maxHp,
-		physAttack,
-		magicAttack,
-		resistance,
-		affinity,
-		speed,
-		statPts,
-		equippedWeapon,
-		equippedArmor,
-		moves,
-		movepool,
-	)
 	
 func save_from_object(s: Stats):
 	displayName = s.displayName

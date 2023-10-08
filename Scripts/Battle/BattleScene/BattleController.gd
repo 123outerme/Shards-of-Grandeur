@@ -27,13 +27,13 @@ func _ready():
 func load_into_battle():
 	var newBattle: bool = state.enemyCombatant1 == null
 	if newBattle: # new battle
-		playerCombatant.combatant = PlayerResources.playerInfo.combatant
+		playerCombatant.combatant = PlayerResources.playerInfo.combatant.duplicate(true)
 		minionCombatant.combatant = null
 		
 		if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
 			PlayerResources.playerInfo.encounteredName = 'ant' # TEMP failsafe - could be improved?
 		
-		enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName).copy()
+		enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName)
 		
 		var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
 		enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
@@ -43,7 +43,7 @@ func load_into_battle():
 		# if level < 10, give a static 50% chance to not have a second combatant, before team table calc
 		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string).copy()
+			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
 			enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 			enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
 		else:
@@ -53,7 +53,7 @@ func load_into_battle():
 		# if level < 15, give a static 50% chance to not have a third combatant, before team table calc
 		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-			enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string).copy()
+			enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
 			enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 			enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
 		else:
@@ -86,7 +86,7 @@ func load_into_battle():
 	battleUI.set_menu_state(state.menu, false)
 	
 func summon_minion(shard: Shard):
-	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).copy()
+	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).duplicate(true)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
@@ -115,11 +115,6 @@ func load_data(save_path):
 			battleLoaded = true
 
 func end_battle():
-	PlayerResources.playerInfo.combatant = playerCombatant.combatant
-	# PlayerResources.playerInfo.combatant.stats.save_from_object(playerCombatant.combatant.stats)
-	PlayerResources.playerInfo.stats.save_from_object(playerCombatant.combatant.stats)
-	PlayerResources.playerInfo.combatant.statChanges.reset()
-	print(PlayerResources.playerInfo.stats.experience)
 	battleEnded = true
 	SaveHandler.save_data()
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors

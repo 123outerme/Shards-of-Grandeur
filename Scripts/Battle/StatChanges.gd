@@ -35,7 +35,7 @@ func stack(changes: StatChanges):
 	speedMultiplier += changes.speedMultiplier - 1.0
 
 func apply(s: Stats) -> Stats:
-	var newStats = s.copy()
+	var newStats = s.duplicate(true)
 	newStats.physAttack = roundi(newStats.physAttack * physAttackMultiplier)
 	newStats.magicAttack = roundi(newStats.magicAttack * magicAttackMultiplier)
 	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)

@@ -5,7 +5,7 @@ var save_file_location: String = "user://"
 var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
 var battle_file = save_file_location + "battle.tres" # this file should exist if the game was saved in battle
 
-var subdirs: Array = ["./", "npcs/", "enemies/"]
+var subdirs: Array = ["npcs/", "enemies/", "./"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +54,7 @@ func new_game():
 			DirAccess.remove_absolute(save_file_location + subdir + filepath)
 		var err = DirAccess.remove_absolute(save_file_location + subdir) # then remove the subdir itself
 		if err > 0:
-			print("Remove save subdir error " + String.num(err))
+			print("Remove save subdir" + subdir + " error " + String.num(err))
 	
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
@@ -72,4 +72,4 @@ func create_save_subdirs():
 		if not DirAccess.dir_exists_absolute(save_file_location + subdir):
 			var err = DirAccess.make_dir_absolute(save_file_location + subdir)
 			if err > 0:
-				print("DirAccess open create dir error " + String.num(err))
+				print("DirAccess create dir " + subdir + " error " + String.num(err))

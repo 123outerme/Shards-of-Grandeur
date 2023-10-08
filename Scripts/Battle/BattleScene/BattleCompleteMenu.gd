@@ -30,14 +30,11 @@ func load_battle_over_menu():
 			instantiatedPanel.load_reward_panel(itemDetailsPanel)
 
 func _on_ok_button_pressed():
-	PlayerResources.playerInfo.stats.save_from_object(battleUI.battleController.playerCombatant.combatant.stats)
-	PlayerResources.playerInfo.combatant = battleUI.battleController.playerCombatant.combatant.copy()
+	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)
 	# copy player changes to PlayerResources
 	var levels: int = PlayerResources.accept_rewards(rewards)
-	print(PlayerResources.playerInfo.stats.experience)
 	# copy rewards changes back to battle combatant
-	battleUI.battleController.playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
-	print(battleUI.battleController.playerCombatant.combatant.stats.experience)
+	#battleUI.battleController.playerCombatant.combatant.save_from_object(PlayerResources.playerInfo.combatant.duplicate(true))
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

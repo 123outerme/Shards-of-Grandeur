@@ -18,9 +18,12 @@ func _init(
 	disableMovement = i_disableMove
 
 func load_data(save_path):
+	var data = null
 	if ResourceLoader.exists(save_path):
-		return load(save_path)
-	return null
+		data = load(save_path)
+		if data != null:
+			return data.duplicate(true)
+	return data
 
 func save_data(save_path, data):
 	var err = ResourceSaver.save(data, save_path)

@@ -22,8 +22,7 @@ class_name Combatant
 @export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres")
-	# TODO level up combatant to proper level if necessary
+	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres").duplicate(true)
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
@@ -51,19 +50,6 @@ func _init(
 	teamTable = i_teamTable
 	dropTable = i_dropTable
 	innateStatCategories = i_innateStats
-
-func copy() -> Combatant:
-	return Combatant.new(
-		stats.copy(),
-		currentHp,
-		statChanges,
-		statusEffect,
-		sprite,
-		equipmentTable,
-		teamTable,
-		dropTable,
-		innateStatCategories,
-	)
 
 func disp_name() -> String:
 	return stats.displayName
@@ -97,3 +83,29 @@ func level_up_nonplayer(newLv: int):
 				stats.statPts -= 1
 	elif lvDiff < 0:
 		printerr("level up nonplayer err: level diff is negative")
+
+func save_from_object(c: Combatant):
+	stats.save_from_object(c.stats)
+	currentHp = c.currentHp
+	
+	if c.statChanges != null:
+		statChanges = c.statChanges.duplicate(true)
+	else:
+		statChanges = null
+		
+	if c.statusEffect != null:
+		statusEffect = c.statusEffect.duplicate(true)
+	else:
+		statusEffect = null
+	
+	equipmentTable = c.equipmentTable.duplicate(true)
+	teamTable = c.teamTable.duplicate(true)	
+	dropTable = c.dropTable.duplicate(true)	
+	innateStatCategories = c.innateStatCategories.duplicate(true)
+	
+	if c.command != null:
+		command = c.command.duplicate(true)
+	else:
+		command = null
+	
+	downed = c.downed

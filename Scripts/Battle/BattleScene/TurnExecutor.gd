@@ -36,7 +36,8 @@ func update_turn_text():
 	battleUI.results.show_text(combatant.command.get_command_results(combatant))
 
 func finish_turn() -> TurnResult:
-	turnQueue.pop() # remove the turn from the queue
+	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
+	lastCombatant.command = null # remove the command from the previous turn's combatant
 	var alliesDown: int = 0
 	var enemiesDown: int = 0
 	for node in battleController.combatantNodes:

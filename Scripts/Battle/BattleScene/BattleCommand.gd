@@ -21,7 +21,7 @@ enum Type {
 @export var type: Type = Type.NONE
 @export var move: Move = null
 @export var slot: InventorySlot = null
-@export var targets: Array[Combatant]
+@export var targets: Array[Combatant] = []
 @export var randomNum: float = 0
 
 static func command_guard(combatant: Combatant) -> BattleCommand:
