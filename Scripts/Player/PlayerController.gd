@@ -97,7 +97,7 @@ func position_talk_btns():
 	if conversationPosDiff.y > 0.1:
 		newY *= -1
 	conversationPosDiff.y = newY
-	npcTalkBtns.position = talkNPC.position - conversationPosDiff
+	npcTalkBtns.position = Vector2(talkNPC.position.x, talkNPC.position.y - newY) #talkNPC.position - conversationPosDiff
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
@@ -136,6 +136,8 @@ func _on_turn_in_button_pressed():
 
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	SceneLoader.unpause_autonomous_movers()
 
 func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	SceneLoader.unpause_autonomous_movers()

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name OverworldEnemy
 
 @export var combatant: Combatant
+@export var combatantLevel: int = 1
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
 @export var patrolling: bool = false
@@ -71,7 +72,7 @@ func delete_data(save_path):
 	var err = DirAccess.remove_absolute(save_path)
 	# SaveHandler.save_file_location is the same as save_path in the save/load functions
 	if err != 0:
-		printerr("OverworldEnemy DirAccess remove error: " + err)
+		printerr("OverworldEnemy DirAccess remove error: ", err)
 
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":
@@ -93,5 +94,6 @@ func _on_nav_agent_target_reached():
 func _on_encounter_collider_area_entered(area):
 	if area.name == "PlayerEventCollider":
 		PlayerResources.playerInfo.encounteredName = combatant.save_name()
+		PlayerResources.playerInfo.encounteredLevel = combatantLevel
 		encounteredPlayer = true
 		SceneLoader.load_battle()

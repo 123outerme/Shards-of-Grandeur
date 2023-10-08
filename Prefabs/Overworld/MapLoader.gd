@@ -28,6 +28,7 @@ func load_map(mapName):
 	add_child.call_deferred(mapInstance)
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
+	SceneLoader.call_deferred('unpause_autonomous_movers')
 
 func reparent_player():
 	player.get_parent().remove_child(player)

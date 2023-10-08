@@ -41,8 +41,9 @@ func pause_autonomous_movers():
 func unpause_autonomous_movers():
 	var movers = get_tree().get_nodes_in_group('AutonomousMove')
 	for mover in movers:
-		if mover.has_method('unpause_movement') and mover != unpauseExcludedMover:
-			mover.unpause_movement()
+		if mover.has_method('unpause_movement'):
+			if mover != unpauseExcludedMover:
+				mover.unpause_movement()
 		else:
 			printerr('Autonomous mover ', mover.name, ' has no unpause_movement function!!')
 	unpauseExcludedMover = null

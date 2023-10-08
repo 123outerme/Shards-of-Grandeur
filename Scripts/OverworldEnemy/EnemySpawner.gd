@@ -3,6 +3,7 @@ class_name EnemySpawner
 
 @export var spawnerId: String
 @export var combatant: Combatant
+@export var combatantLevel: int = 1
 @export var enemy: OverworldEnemy = null
 @export var spawnRange: float = 48.0
 @export var enemyPatrolRange: float = 32.0
@@ -17,12 +18,13 @@ func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider':
 		var angleRadians = randf_range(0, 2 * PI)
 		var radius: float = randf_range(0, spawnRange)
-		var enemyPos: Vector2 = position + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
+		var enemyPos: Vector2 = position + (Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius)
 		# generate random point on unit circle and ensure it's exactly on the circle, multiplied by a random radius
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.position = enemyPos
 		enemy.combatant = combatant
+		enemy.combatantLevel = combatantLevel
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		enemy.saveFile = save_file()

@@ -20,6 +20,7 @@ class_name PlayerInfo
 @export var inBattle: bool
 @export var exitingBattle: bool
 @export var encounteredName: String
+@export var encounteredLevel: int = 1
 
 @export_category("PlayerInfo: UI State")
 @export var talkBtnsVisible: bool = false
@@ -39,6 +40,7 @@ func _init(
 	i_inBattle = false,
 	i_exitingBattle = false,
 	i_encounteredName = "",
+	i_encounteredLevel = 1,
 	i_talkBtnsVisible = false,
 ):
 	map = i_map
@@ -53,6 +55,7 @@ func _init(
 	inBattle = i_inBattle
 	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName
+	encounteredLevel = i_encounteredLevel
 	talkBtnsVisible = i_talkBtnsVisible
 
 

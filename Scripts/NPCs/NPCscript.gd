@@ -58,6 +58,7 @@ func load_data(save_path):
 		NavAgent.disableMovement = data.previousDisableMove
 		NavAgent.start_movement()
 		fetch_player()
+		fetch_quest_dialogue_info()
 		player.restore_dialogue(self)
 		inventory = data.inventory
 	return
@@ -69,12 +70,12 @@ func _on_move_trigger_area_entered(area):
 func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueIndex < 0:
 		player.set_talk_npc(self)
-		reset_dialogue()
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		player.set_talk_npc(null)
 		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
+			data.previousDisableMove = false # ensure movement is unpaused no matter what
 			unpause_movement()
 
 func get_cur_dialogue_item():
@@ -84,7 +85,7 @@ func get_cur_dialogue_item():
 	return data.dialogueItems[data.dialogueIndex]
 
 func advance_dialogue():
-	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue again
+	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue
 		reset_dialogue()
 	
 	data.dialogueIndex += 1
@@ -96,7 +97,7 @@ func advance_dialogue():
 		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
 	
 	if data.dialogueIndex == 0: # conversation just started
-		data.previousDisableMove = false
+		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 
 func reset_dialogue():
 	data.dialogueIndex = -1
@@ -134,4 +135,6 @@ func pause_movement():
 	NavAgent.disableMovement = true
 	
 func unpause_movement():
-	NavAgent.disableMovement = data.previousDisableMove # unpause
+	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
+	if not NavAgent.disableMovement:
+		NavAgent.update_target_pos()
