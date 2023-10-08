@@ -3,8 +3,9 @@ extends Node
 var saved_scripts: Array
 var save_file_location: String = "user://"
 var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
+var battle_file = save_file_location + "battle.tres" # this file should exist if the game was saved in battle
 
-var subdirs: Array = ["./", "npcs/"]
+var subdirs: Array = ["./", "npcs/", "enemies/"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,6 +61,9 @@ func new_game():
 			
 func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
+
+func is_save_in_battle():
+	return FileAccess.file_exists(battle_file)
 
 func create_save_subdirs():
 	for subdir in subdirs:

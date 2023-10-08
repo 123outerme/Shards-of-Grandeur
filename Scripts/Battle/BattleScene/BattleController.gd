@@ -15,8 +15,6 @@ class_name BattleController
 @onready var battleUI: BattleUI = get_node("BattleCam")
 @onready var turnExecutor: TurnExecutor = get_node("TurnExecutor")
 
-var savePath: String = '' # store save path to delete battle data after battle completely ends
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battleUI.battleController = self
@@ -74,7 +72,6 @@ func summon_minion(shard: Shard):
 	minionCombatant.load_combatant_node()
 	
 func save_data(save_path):
-	savePath = save_path
 	state.menu = battleUI.menuState
 	state.prevMenu = battleUI.prevMenu
 	state.playerCombatant = playerCombatant.combatant
@@ -87,7 +84,6 @@ func save_data(save_path):
 	state.save_data(save_path, state)
 
 func load_data(save_path):
-	savePath = save_path
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
@@ -98,5 +94,5 @@ func end_battle():
 	PlayerResources.playerInfo.combatant = playerCombatant.combatant.copy()
 	PlayerResources.playerInfo.stats = playerCombatant.combatant.stats.copy()
 	SaveHandler.save_data()
-	state.delete_data(savePath)
+	state.delete_data(SaveHandler.save_file_location) # same as save_path in save/load data functions
 	SceneLoader.load_overworld()

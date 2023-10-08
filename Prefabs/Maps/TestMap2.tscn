@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://drnk2cpif0naj"]
+[gd_scene load_steps=6 format=3 uid="uid://drnk2cpif0naj"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yr6py"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_wx20h"]
+[ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="3_1li8v"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_kdibv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yi6i"]
 size = Vector2(2, 2)
@@ -36,5 +38,11 @@ mapName = "House2_1"
 
 [node name="WarpArea" parent="WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_8yi6i")
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_1li8v")]
+position = Vector2(0, 96)
+spawnerId = "testmap2spawner"
+combatant = ExtResource("4_kdibv")
+tilemap = NodePath("../TileMap")
 
 [editable path="WarpZone"]

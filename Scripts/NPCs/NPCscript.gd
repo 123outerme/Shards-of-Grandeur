@@ -51,7 +51,7 @@ func load_data(save_path):
 	var newData = data.load_data(save_path + npcsDir)
 	if newData != null:
 		data = newData
-		# only load the new NPC data if we've 
+		# only load the new NPC data if it exists
 		position = data.position
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops

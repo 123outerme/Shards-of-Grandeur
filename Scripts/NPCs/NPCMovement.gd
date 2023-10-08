@@ -13,7 +13,6 @@ class_name NPCMovement
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not disableMovement and loops != 0:

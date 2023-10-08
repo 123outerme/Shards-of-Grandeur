@@ -16,8 +16,8 @@ func _on_settings_button_pressed():
 
 func _on_resume_game_button_pressed():
 	SaveHandler.load_data()
-	SceneLoader.load_overworld()
+	SceneLoader.load_game()
 
 func _on_new_game_button_pressed():
 	SaveHandler.new_game()
-	SceneLoader.load_overworld()
+	SceneLoader.load_game()

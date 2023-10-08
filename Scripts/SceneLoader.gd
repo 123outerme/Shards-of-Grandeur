@@ -7,7 +7,14 @@ var unpauseExcludedMover: Node2D = null
 func _ready():
 	currentScene = get_tree().get_first_node_in_group('Scenes')
 
+func load_game():
+	if SaveHandler.is_save_in_battle():
+		load_battle()
+	else:
+		load_overworld()
+
 func load_battle():
+	SaveHandler.save_data()
 	load_scene(preload("res://GameScenes/Battle.tscn"))
 
 func load_overworld():
@@ -28,10 +35,14 @@ func pause_autonomous_movers():
 	for mover in movers:
 		if mover.has_method('pause_movement'):
 			mover.pause_movement()
+		else:
+			printerr('Autonomous mover ', mover.name, ' has no pause_movement function!!')
 
 func unpause_autonomous_movers():
 	var movers = get_tree().get_nodes_in_group('AutonomousMove')
 	for mover in movers:
 		if mover.has_method('unpause_movement') and mover != unpauseExcludedMover:
 			mover.unpause_movement()
+		else:
+			printerr('Autonomous mover ', mover.name, ' has no unpause_movement function!!')
 	unpauseExcludedMover = null
