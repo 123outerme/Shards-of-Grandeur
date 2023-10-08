@@ -62,7 +62,7 @@ func apply_menu_state():
 		if playerWins and len(battleComplete.rewards) == 0:
 			for node in battleController.combatantNodes:
 				var combatantNode: CombatantNode = node as CombatantNode
-				if combatantNode.role == CombatantNode.Role.ENEMY:
+				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
 					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
 					if dropIdx > -1:
 						battleComplete.rewards.append( \
@@ -73,7 +73,7 @@ func apply_menu_state():
 		battleComplete.load_battle_over_menu()
 	
 	if menuState == BattleState.Menu.LEVEL_UP:
-		open_stats(battleController.playerCombatant.combatant, true)
+		open_stats(PlayerResources.playerInfo.combatant, true)
 
 func return_to_player_command():
 	commandingMinion = false

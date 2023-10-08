@@ -16,8 +16,8 @@ func start_simulation():
 	for node in battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
 		if combatantNode.is_alive():
-			if combatantNode.combatant.command == null:
-				combatantNode.combatant.command = BattleCommand.new()
+			if combatantNode.role == CombatantNode.Role.ENEMY:
+				combatantNode.get_command(battleController.combatantNodes)
 			combatants.append(combatantNode.combatant)
 	turnQueue = TurnQueue.new(combatants)
 	play_turn() # start the first turn
@@ -41,7 +41,7 @@ func finish_turn() -> TurnResult:
 	var enemiesDown: int = 0
 	for node in battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
-		if combatantNode.is_alive():
+		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		if not combatantNode.is_alive(): # if combatant is not alive (after being updated)
 			if combatantNode.role == CombatantNode.Role.ALLY:

@@ -87,6 +87,8 @@ func calculate_damage(user: Combatant, target: Combatant) -> int:
 		# scaled so that increases early on don't jack up the ratio intensely
 		
 		var damage: int = roundi( move.power * (apparentLv / 4.0) * (atkExpression / resExpression) )
+		if move.power > 0 and damage <= 0:
+			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		
 		return damage
 	if type == Type.USE_ITEM: 

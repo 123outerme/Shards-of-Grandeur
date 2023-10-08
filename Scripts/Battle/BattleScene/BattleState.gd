@@ -66,9 +66,10 @@ func load_data(save_path):
 func save_data(save_path, data):
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
-		printerr("BattleState ResourceSaver error: " + err)
+		printerr("BattleState ResourceSaver error: ", err)
 
 func delete_data(save_path):
-	var err = DirAccess.remove_absolute(save_path + save_file)
-	if err != 0:
-		printerr("BattleState DirAccess remove error: " + err)
+	if FileAccess.file_exists(save_path + save_file):
+		var err = DirAccess.remove_absolute(save_path + save_file)
+		if err != 0:
+			printerr("BattleState DirAccess remove error: ", err)

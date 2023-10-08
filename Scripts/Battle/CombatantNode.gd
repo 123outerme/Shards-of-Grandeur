@@ -24,6 +24,11 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var lvText: RichTextLabel
 @export var hpText: RichTextLabel
 
+static func get_opposite_role(r: Role) -> Role:
+	if r == Role.ALLY:
+		return Role.ENEMY
+	return Role.ALLY
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -68,6 +73,30 @@ func set_selected(selected: bool = true):
 	
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
+
+func get_command(nodes: Array[Node]):
+	if combatant.command == null and is_alive():
+		var move: Move = combatant.stats.moves[0] # TODO: pick move better
+		var targets: Array[Combatant] = []
+		if move.targets == BattleCommand.Targets.SELF:
+			targets = [combatant]
+		else:
+			var validTargetRole: Role = Role.ENEMY
+			if move.targets == BattleCommand.Targets.ALLY or move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.NON_SELF_ALLY:
+				validTargetRole = Role.ALLY
+			if role == Role.ENEMY:
+				validTargetRole = CombatantNode.get_opposite_role(validTargetRole) # an enemy's enemy is an ally, an enemy's ally is an enemy
+			var validTargets: Array[Combatant] = []
+			for node in nodes:
+				var combatantNode: CombatantNode = node as CombatantNode
+				if combatantNode.is_alive() and combatantNode.role == validTargetRole and not (move.targets == BattleCommand.Targets.NON_SELF_ALLY and combatantNode == self):
+					validTargets.append(combatantNode.combatant)
+			if move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.ALL_ENEMIES:
+				targets.append_array(validTargets)
+			else:
+				targets = [validTargets[randi_range(0, len(validTargets) - 1)]] # pick a random target
+				# TODO: pick target better
+		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targets, randf())
 
 func is_alive() -> bool:
 	if combatant == null:

@@ -3,6 +3,7 @@ class_name TargetsMenu
 
 @export var battleUI: BattleUI
 
+@onready var commandText: RichTextLabel = get_node("CommandText")
 @onready var targetsListing: RichTextLabel = get_node("TargetsListing")
 @onready var confirmButton: Button = get_node("ConfirmButton")
 
@@ -14,6 +15,15 @@ func _ready():
 	pass
 
 func load_targets():
+	commandText.text = '[center]' + battleUI.commandingCombatant.combatant.disp_name() + ' will use '
+	
+	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE:
+		commandText.text += battleUI.commandingCombatant.combatant.command.move.moveName
+	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
+		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
+	
+	commandText.text += '.[/center]'
+	
 	for node in battleUI.battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
 		if not combatantNode.is_alive():

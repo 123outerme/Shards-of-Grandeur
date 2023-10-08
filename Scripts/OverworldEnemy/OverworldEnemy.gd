@@ -71,10 +71,11 @@ func load_data(save_path) -> bool:
 	return false
 	
 func delete_data(save_path):
-	var err = DirAccess.remove_absolute(save_path)
-	# SaveHandler.save_file_location is the same as save_path in the save/load functions
-	if err != 0:
-		printerr("OverworldEnemy DirAccess remove error: ", err)
+	if FileAccess.file_exists(save_path):
+		var err = DirAccess.remove_absolute(save_path)
+		# SaveHandler.save_file_location is the same as save_path in the save/load functions
+		if err != 0:
+			printerr("OverworldEnemy DirAccess remove error: ", err)
 
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":

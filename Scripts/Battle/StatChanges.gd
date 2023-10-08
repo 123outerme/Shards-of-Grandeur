@@ -20,6 +20,13 @@ func _init(
 	affinityMultiplier = i_affinity
 	speedMultiplier = i_speed
 
+func reset():
+	physAttackMultiplier = 1.0
+	magicAttackMultiplier = 1.0
+	resistanceMultiplier = 1.0
+	affinityMultiplier = 1.0
+	speedMultiplier = 1.0
+
 func stack(changes: StatChanges):
 	physAttackMultiplier += changes.physAttackMultiplier - 1.0
 	magicAttackMultiplier += changes.magicAttackMultiplier - 1.0

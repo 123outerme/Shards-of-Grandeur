@@ -12,7 +12,7 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var stats: Stats = (preload("res://GameData/Combatants/player.tres") as Combatant).stats
+@export var stats: Stats = (preload("res://GameData/Combatants/player.tres") as Combatant).stats.copy()
 @export var combatant: Combatant = (preload("res://GameData/Combatants/player.tres") as Combatant).copy()
 @export var gold: int = 10
 
@@ -34,7 +34,7 @@ func _init(
 	i_underworldDepth = 0,
 	i_savedPosition = Vector2(),
 	i_scene = "Overworld",
-	i_stats = (preload("res://GameData/Combatants/player.tres") as Combatant).stats,
+	i_stats = (preload("res://GameData/Combatants/player.tres") as Combatant).stats.copy(),
 	i_combatant = (preload("res://GameData/Combatants/player.tres") as Combatant).copy(),
 	i_gold = 10,
 	i_inBattle = false,

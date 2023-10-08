@@ -340,6 +340,17 @@ layout_mode = 2
 script = ExtResource("9_qy758")
 battleUI = NodePath("../../../..")
 
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Combatant Name Here will use Move or Item Name Here[/center]"
+fit_content = true
+
 [node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
 layout_mode = 1
 anchors_preset = 8
@@ -347,14 +358,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = -76.0
-offset_right = 58.0
-offset_bottom = -37.0
+offset_left = -90.0
+offset_top = -64.0
+offset_right = 90.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center]Targets:[/center]"
+text = "[center]Targeting:[/center]"
 fit_content = true
 
 [node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]

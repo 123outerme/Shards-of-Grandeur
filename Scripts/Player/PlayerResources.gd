@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var playerInfo: PlayerInfo
-@export var inventory: Inventory
-@export var questInventory: QuestInventory
+@export var playerInfo: PlayerInfo = PlayerInfo.new()
+@export var inventory: Inventory = Inventory.new()
+@export var questInventory: QuestInventory = QuestInventory.new()
 @export var loaded: bool = false
 
 var player = null
@@ -21,8 +21,8 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 		inventory.add_item(reward.item)
 	if gainedLevels > 0:
 		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
-		playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy
-	
+	print(PlayerResources.playerInfo.stats.experience)
+	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy	
 	return gainedLevels
 
 func load_data(save_path):

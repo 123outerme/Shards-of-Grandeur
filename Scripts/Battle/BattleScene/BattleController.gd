@@ -4,6 +4,7 @@ class_name BattleController
 @export var state: BattleState = BattleState.new()
 
 var battleLoaded: bool = false
+var battleEnded: bool = false
 
 @onready var tilemap: TileMap = get_node("TileMap")
 
@@ -91,16 +92,19 @@ func summon_minion(shard: Shard):
 	minionCombatant.load_combatant_node()
 	
 func save_data(save_path):
-	state.menu = battleUI.menuState
-	state.prevMenu = battleUI.prevMenu
-	state.playerCombatant = playerCombatant.combatant
-	state.minionCombatant = minionCombatant.combatant
-	state.enemyCombatant1 = enemyCombatant1.combatant
-	state.enemyCombatant2 = enemyCombatant2.combatant
-	state.enemyCombatant3 = enemyCombatant3.combatant
-	state.commandingMinion = battleUI.commandingMinion
-	state.turnQueue = turnExecutor.turnQueue
-	state.save_data(save_path, state)
+	if battleEnded:
+		state.delete_data(SaveHandler.save_file_location) # same as save_path in save/load data functions
+	else:
+		state.menu = battleUI.menuState
+		state.prevMenu = battleUI.prevMenu
+		state.playerCombatant = playerCombatant.combatant
+		state.minionCombatant = minionCombatant.combatant
+		state.enemyCombatant1 = enemyCombatant1.combatant
+		state.enemyCombatant2 = enemyCombatant2.combatant
+		state.enemyCombatant3 = enemyCombatant3.combatant
+		state.commandingMinion = battleUI.commandingMinion
+		state.turnQueue = turnExecutor.turnQueue
+		state.save_data(save_path, state)
 
 func load_data(save_path):
 	var newState = state.load_data(save_path)
@@ -111,9 +115,12 @@ func load_data(save_path):
 			battleLoaded = true
 
 func end_battle():
-	tilemap.queue_free()
-	PlayerResources.playerInfo.combatant = playerCombatant.combatant.copy()
-	PlayerResources.playerInfo.stats = playerCombatant.combatant.stats.copy()
+	PlayerResources.playerInfo.combatant = playerCombatant.combatant
+	# PlayerResources.playerInfo.combatant.stats.save_from_object(playerCombatant.combatant.stats)
+	PlayerResources.playerInfo.stats.save_from_object(playerCombatant.combatant.stats)
+	PlayerResources.playerInfo.combatant.statChanges.reset()
+	print(PlayerResources.playerInfo.stats.experience)
+	battleEnded = true
 	SaveHandler.save_data()
-	state.delete_data(SaveHandler.save_file_location) # same as save_path in save/load data functions
+	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld()

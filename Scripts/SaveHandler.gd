@@ -35,6 +35,8 @@ func save_data():
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("save_data"):
 			scr.call("save_data", save_file_location)
+		else:
+			print('SAVE ERROR ON ', script_path)
 
 func load_data():
 	create_save_subdirs()
