@@ -14,6 +14,8 @@ func _ready():
 func accept_rewards(rewards: Array[Reward]) -> int:
 	var gainedLevels: int = 0
 	for reward in rewards:
+		if reward == null:
+			continue # skip this reward if it's null
 		playerInfo.gold += reward.gold
 		gainedLevels += playerInfo.stats.add_exp(reward.experience)
 		inventory.add_item(reward.item)

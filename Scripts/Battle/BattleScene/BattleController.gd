@@ -30,15 +30,23 @@ func _ready():
 		
 		enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName).copy()
 		
+		var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
+		enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
+		enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
+		
 		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '':
 			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string).copy()
+			enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
+			enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
 		else:
 			enemyCombatant2.combatant = null
 		
 		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '':
 			enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string).copy()
+			enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
+			enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
 		else:
 			enemyCombatant3.combatant = null
 		enemyCombatant3.leftSide = false
@@ -69,6 +77,8 @@ func _ready():
 	
 func summon_minion(shard: Shard):
 	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).copy()
+	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
+	minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
 	
 func save_data(save_path):

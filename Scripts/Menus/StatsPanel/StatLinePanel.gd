@@ -61,7 +61,7 @@ func load_statline_panel():
 	
 	levelText.text = String.num(statsCopy.level)
 	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
-	expText.text = TextUtils.num_to_comma_string(statsCopy.exp) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(statsCopy.level))
+	expText.text = TextUtils.num_to_comma_string(statsCopy.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(statsCopy.level))
 	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
 	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)
 	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)

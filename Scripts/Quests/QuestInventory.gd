@@ -55,11 +55,12 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 			if tracker.get_current_step().type == type:
 				tracker.add_current_step_progress(progress)
 
-func turn_in_cur_step(tracker: QuestTracker):
+func turn_in_cur_step(tracker: QuestTracker) -> int:
+	var newLvs: int = PlayerResources.accept_rewards([tracker.get_current_step().reward])
 	var allDone: bool = tracker.turn_in_step()
 	if allDone:
 		quests.erase(tracker)
-	# TODO yield rewards
+	return newLvs
 
 func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_name):

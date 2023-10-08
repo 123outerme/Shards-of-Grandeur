@@ -78,6 +78,7 @@ func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level
 	if lvDiff > 0:
 		stats.level_up(lvDiff)
+		currentHp = stats.maxHp
 		# if there are innate stat categories to allocate to
 		if len(innateStatCategories) > 0:
 			while stats.statPts > 0:

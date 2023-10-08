@@ -47,5 +47,9 @@ func load_data(save_path):
 		# enemy.restore_from_load()
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 
+func delete_enemy():
+	if enemy != null:
+		enemy.delete_data(SaveHandler.save_file_location + save_file())
+
 func save_file() -> String:
 	return enemiesDir + spawnerId + '_enemy.tres'

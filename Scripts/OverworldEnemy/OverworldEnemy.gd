@@ -25,7 +25,7 @@ func _ready():
 
 func _process(delta):
 	if not disableMovement:
-		if not patrolling:
+		if not patrolling and SceneLoader.mapLoader.mapNavReady:
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()
 		var vel = nextPos - position
@@ -34,6 +34,8 @@ func _process(delta):
 		position += vel
 
 func get_next_patrol_target():
+	if not SceneLoader.mapLoader.mapNavReady:
+		return
 	var angleRadians = randf_range(0, 2 * PI)
 	var radius: float = randf_range(0, patrolRange)
 	var patrolPos: Vector2 = homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius

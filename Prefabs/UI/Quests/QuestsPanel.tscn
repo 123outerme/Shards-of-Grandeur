@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://qv1m7rspcxl3"]
+[gd_scene load_steps=7 format=3 uid="uid://qv1m7rspcxl3"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_ns7gd"]
 [ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestsPanel.gd" id="1_pvo7n"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_r1cnh"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="3_b8156"]
 [ext_resource type="PackedScene" uid="uid://cw6gj40op07vr" path="res://Prefabs/UI/Quests/QuestDetailsPanel.tscn" id="5_vvd6v"]
+[ext_resource type="PackedScene" uid="uid://cfqwn58f1kvle" path="res://Prefabs/UI/Quests/QuestRewardPanel.tscn" id="6_jdq72"]
 
 [node name="QuestsPanelNode" type="Node2D"]
 script = ExtResource("1_pvo7n")
@@ -107,12 +108,26 @@ text = "Back"
 [node name="QuestDetailsPanel" parent="." instance=ExtResource("5_vvd6v")]
 visible = false
 
+[node name="QuestRewardPanel" parent="." node_paths=PackedStringArray("itemDetailsPanel") instance=ExtResource("6_jdq72")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 190.0
+offset_top = 230.0
+offset_right = 190.0
+offset_bottom = 230.0
+grow_horizontal = 1
+grow_vertical = 1
+itemDetailsPanel = NodePath("../QuestDetailsPanel/ItemDetailsPanel")
+
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/InProgressButton" to="." method="_on_in_progress_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton" to="." method="_on_ready_to_turn_in_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/CompletedButton" to="." method="_on_completed_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/NotCompletedButton" to="." method="_on_not_completed_button_toggled"]
 [connection signal="pressed" from="QuestsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="QuestDetailsPanel/Panel/BackButton" to="." method="_on_quest_details_back_button_pressed"]
+[connection signal="ok_pressed" from="QuestRewardPanel" to="." method="_on_quest_reward_panel_ok_pressed"]
 
 [editable path="QuestDetailsPanel"]
 [editable path="QuestDetailsPanel/Panel/StepDetailPanel/RewardPanel"]

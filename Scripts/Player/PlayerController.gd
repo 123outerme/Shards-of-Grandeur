@@ -141,3 +141,28 @@ func _on_inventory_panel_node_back_pressed():
 func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+
+func _on_stats_panel_node_back_pressed():
+	statsPanel.levelUp = false
+	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	SceneLoader.unpause_autonomous_movers()
+
+func _on_quests_panel_node_turn_in_step_to(saveName):
+	if saveName == talkNPC.saveName:
+		talkNPC.fetch_quest_dialogue_info()
+		turnInButton.visible = len(talkNPC.turningInSteps) > 0 # recompute if turn in button still needs to be shown
+
+func _on_quests_panel_node_level_up(newLevels: int):
+	if newLevels == 0:
+		return
+	statsPanel.levelUp = true	
+	statsPanel.stats = PlayerResources.playerInfo.stats
+	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused
+	inventoryPanel.visible = false
+	questsPanel.visible = false
+	npcTalkBtns.visible = false # make sure talk buttons are hidden
+	statsPanel.visible = false # show stats panel for sure
+	statsPanel.toggle()
+
+

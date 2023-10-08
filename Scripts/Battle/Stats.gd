@@ -15,7 +15,7 @@ enum Category {
 
 @export_category("Stats - Statline")
 @export var level: int = 1
-@export var exp: int = 0
+@export var experience: int = 0
 @export var maxHp: int = 20
 @export var physAttack: int = 1
 @export var magicAttack: int = 1
@@ -52,7 +52,7 @@ func _init(
 	displayName = i_displayName
 	saveName = i_saveName
 	level = i_level
-	exp = i_exp
+	experience = i_exp
 	maxHp = i_maxHp
 	physAttack = i_physAttack
 	magicAttack = i_magicAttack
@@ -115,9 +115,9 @@ static func scale_reward_by_level(reward: Reward, initialLv: int, currentLv: int
 
 func add_exp(addingExp: int) -> int:
 	var newLevel: int = level
-	exp += addingExp
-	while exp > get_required_exp(newLevel):
-		exp -= get_required_exp(newLevel)
+	experience += addingExp
+	while experience > Stats.get_required_exp(newLevel):
+		experience -= Stats.get_required_exp(newLevel)
 		newLevel += 1 # increment and check if requirement is satisfied
 	var levelDiff: int = newLevel - level
 	level += levelDiff
@@ -143,7 +143,7 @@ func copy() -> Stats:
 		displayName,
 		saveName,
 		level,
-		exp,
+		experience,
 		maxHp,
 		physAttack,
 		magicAttack,
@@ -161,6 +161,7 @@ func save_from_object(s: Stats):
 	displayName = s.displayName
 	saveName = s.saveName
 	level = s.level
+	experience = s.experience
 	maxHp = s.maxHp
 	physAttack = s.physAttack
 	magicAttack = s.magicAttack

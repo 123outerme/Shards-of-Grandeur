@@ -31,8 +31,13 @@ hpTag = NodePath("HPTag")
 lvText = NodePath("HPTag/LvText")
 hpText = NodePath("HPTag/LvText/HPText")
 
+[node name="ClickCombatantBtn" type="TextureButton" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
 [node name="SelectCombatantBtn" type="TextureButton" parent="."]
-visible = false
 custom_minimum_size = Vector2(8, 8)
 anchors_preset = 8
 anchor_left = 0.5
@@ -97,4 +102,5 @@ text = "5,250 / 5,250"
 fit_content = true
 scroll_active = false
 
+[connection signal="pressed" from="ClickCombatantBtn" to="." method="_on_click_combatant_btn_pressed"]
 [connection signal="toggled" from="SelectCombatantBtn" to="." method="_on_select_combatant_btn_toggled"]

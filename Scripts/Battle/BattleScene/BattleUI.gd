@@ -65,7 +65,9 @@ func apply_menu_state():
 				if combatantNode.role == CombatantNode.Role.ENEMY:
 					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
 					if dropIdx > -1:
-						battleComplete.rewards.append(Stats.scale_reward_by_level(combatantNode.combatant.dropTable[dropIdx].reward, 1, combatantNode.combatant.stats.level))
+						battleComplete.rewards.append( \
+								Stats.scale_reward_by_level(combatantNode.combatant.dropTable[dropIdx].reward, combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+						)
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards
 		battleComplete.load_battle_over_menu()
@@ -118,7 +120,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
 	inventoryPanel.toggle()
 
-func open_stats(combatant: Combatant, levelUp: bool):
+func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.levelUp = levelUp
 	statsPanel.stats = combatant.stats
 	statsPanel.curHp = combatant.currentHp

@@ -7,9 +7,11 @@ enum Role {
 }
 
 signal toggled(button_pressed: bool, combatantNode: CombatantNode)
+signal details_clicked(combatantNode: CombatantNode)
 
 @export_category("CombatantNode - Details")
 @export var combatant: Combatant = null
+@export var initialCombatantLv: int = 1
 @export var role: Role = Role.ALLY
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
@@ -73,3 +75,6 @@ func is_alive() -> bool:
 
 func _on_select_combatant_btn_toggled(button_pressed):
 	toggled.emit(button_pressed, self)
+
+func _on_click_combatant_btn_pressed():
+	details_clicked.emit(self)

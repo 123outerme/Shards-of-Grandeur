@@ -35,7 +35,6 @@ func _on_ok_button_pressed():
 	# copy player changes to PlayerResources
 	print(PlayerResources.playerInfo.combatant.currentHp)
 	var levels: int = PlayerResources.accept_rewards(rewards)
-	print(PlayerResources.playerInfo.stats.exp)
 	# copy rewards changes back to battle combatant
 	battleUI.battleController.playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 	if levels > 0:

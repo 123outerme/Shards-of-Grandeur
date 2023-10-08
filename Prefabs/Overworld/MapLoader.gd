@@ -1,11 +1,14 @@
 extends Node2D
+class_name MapLoader
 
 var mapInstance: Node = null
+var mapNavReady: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SceneLoader.mapLoader = self
 	SaveHandler.load_data()
 	load_map(PlayerResources.playerInfo.map)
 	if player != null:
@@ -21,7 +24,9 @@ func entered_warp(newMapName, newMapPos, isUnderground):
 
 func load_map(mapName):
 	SaveHandler.save_data()
+	mapNavReady = false
 	if mapInstance != null:
+		destroy_overworld_enemies()
 		mapInstance.queue_free()
 	var mapScene = load("res://Prefabs/Maps/" + mapName + ".tscn")
 	mapInstance = mapScene.instantiate()
@@ -36,3 +41,9 @@ func reparent_player():
 	tilemap.add_child(player)
 	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
 	PlayerFinder.player = player
+	mapNavReady = true
+
+func destroy_overworld_enemies():
+	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):
+		if spawnerNode.has_method('delete_enemy'):
+			spawnerNode.delete_enemy()

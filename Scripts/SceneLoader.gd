@@ -2,6 +2,7 @@ extends Node
 
 var currentScene
 var unpauseExcludedMover: Node2D = null
+var mapLoader: MapLoader = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,7 @@ func load_scene(scene):
 	var sceneInstance = scene.instantiate()
 	add_sibling.call_deferred(sceneInstance)
 	if currentScene != null:
+		mapLoader = null
 		currentScene.queue_free()
 	currentScene = sceneInstance
 
