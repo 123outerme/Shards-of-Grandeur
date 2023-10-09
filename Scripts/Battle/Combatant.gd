@@ -22,7 +22,7 @@ class_name Combatant
 @export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres") #.duplicate(true)
+	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
@@ -69,7 +69,7 @@ func level_up_nonplayer(newLv: int):
 		if len(innateStatCategories) > 0:
 			while stats.statPts > 0:
 				# randomly allocate stats to the innate stat categories
-				var randomCategory: Stats.Category = innateStatCategories[randi_range(0, len(innateStatCategories))]
+				var randomCategory: Stats.Category = innateStatCategories[randi_range(0, len(innateStatCategories) - 1)]
 				if randomCategory == Stats.Category.PHYS_ATK:
 					stats.physAttack += 1
 				if randomCategory == Stats.Category.MAGIC_ATK:
@@ -84,8 +84,13 @@ func level_up_nonplayer(newLv: int):
 	elif lvDiff < 0:
 		printerr("level up nonplayer err: level diff is negative")
 
+func copy() -> Combatant:
+	var newCombatant: Combatant = Combatant.new()
+	newCombatant.save_from_object(self)
+	return newCombatant
+
 func save_from_object(c: Combatant):
-	stats.save_from_object(c.stats)
+	stats = c.stats.copy()
 	currentHp = c.currentHp
 	
 	if c.statChanges != null:
@@ -98,13 +103,14 @@ func save_from_object(c: Combatant):
 	else:
 		statusEffect = null
 	
+	sprite = c.sprite
 	equipmentTable = c.equipmentTable.duplicate(false)
 	teamTable = c.teamTable.duplicate(false)
 	dropTable = c.dropTable.duplicate(false)
 	innateStatCategories = c.innateStatCategories.duplicate(false)
 	
 	if c.command != null:
-		command = c.command.duplicate(true)
+		command = c.command.duplicate(false)
 	else:
 		command = null
 	

@@ -4,12 +4,15 @@ class_name TurnExecutor
 enum TurnResult {
 	NOTHING = 0,
 	PLAYER_WIN = 1,
-	ENEMY_WIN = 2
+	ENEMY_WIN = 2,
+	ESCAPE = 3,
 }
 
 @export var battleController: BattleController
 @export var battleUI: BattleUI
+
 var turnQueue: TurnQueue = TurnQueue.new()
+var escaping: bool = false
 
 func start_simulation():
 	var combatants: Array[Combatant] = []
@@ -25,7 +28,7 @@ func start_simulation():
 func play_turn():
 	var combatant: Combatant = turnQueue.peek_next()
 	if combatant != null:
-		combatant.command.execute_command(combatant) # perform all necessary calculations
+		escaping = combatant.command.execute_command(combatant) # perform all necessary calculations
 		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
@@ -53,5 +56,9 @@ func finish_turn() -> TurnResult:
 		return TurnResult.ENEMY_WIN
 	if enemiesDown == 3: # all enemies are down:
 		return TurnResult.PLAYER_WIN
+	battleUI.update_hp_tags()
 	play_turn() # go to the next turn
+	if escaping: # if escaping
+		turnQueue.empty() # end the round immediately
+		return TurnResult.ESCAPE
 	return TurnResult.NOTHING

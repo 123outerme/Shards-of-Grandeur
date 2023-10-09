@@ -12,8 +12,8 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var stats: Stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.duplicate(true)
-@export var combatant: Combatant = (load("res://GameData/Combatants/player.tres") as Combatant).duplicate(true)
+@export var stats: Stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.copy()
+@export var combatant: Combatant = (load("res://GameData/Combatants/player.tres") as Combatant).copy()
 @export var gold: int = 10
 
 @export_category("PlayerInfo: Battle")
@@ -34,8 +34,8 @@ func _init(
 	i_underworldDepth = 0,
 	i_savedPosition = Vector2(),
 	i_scene = "Overworld",
-	i_stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.duplicate(true),
-	i_combatant = (load("res://GameData/Combatants/player.tres") as Combatant).duplicate(true),
+	i_stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.copy(),
+	i_combatant = (load("res://GameData/Combatants/player.tres") as Combatant).copy(),
 	i_gold = 10,
 	i_inBattle = false,
 	i_exitingBattle = false,
@@ -63,10 +63,10 @@ func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file):
 		data = load(save_path + save_file)
 		if data != null:
-			return data.duplicate(true)
+			return data
 	return data
 
 func save_data(save_path, data):
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
-		printerr("PlayerInfo ResourceSaver error: " + err)
+		printerr("PlayerInfo ResourceSaver error: ", err)

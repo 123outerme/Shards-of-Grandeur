@@ -59,6 +59,7 @@ visible = false
 position = Vector2(-640, -480)
 
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
+[connection signal="item_used" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_back_pressed"]
 [connection signal="level_up" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_level_up"]
 [connection signal="turn_in_step_to" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_turn_in_step_to"]

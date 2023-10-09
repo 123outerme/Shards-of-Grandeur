@@ -61,7 +61,7 @@ func load_statline_panel():
 		return
 		
 	if statsCopy == null:
-		statsCopy = stats.duplicate(true)
+		statsCopy = stats.copy()
 	
 	var hp: int = curHp
 	if curHp == -1:
@@ -169,6 +169,6 @@ func _on_save_changes_button_pressed():
 	load_statline_panel()
 
 func _on_cancel_changes_button_pressed():
-	statsCopy = stats.duplicate(true) # copy original stats back into editing stats
+	statsCopy = stats.copy() # copy original stats back into editing stats
 	modified = false
 	load_statline_panel()

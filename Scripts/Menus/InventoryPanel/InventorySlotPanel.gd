@@ -57,8 +57,8 @@ func load_inventory_slot_panel():
 	sellButton.disabled = isEquipped # TODO: prevent sale when partner's inventory can't hold any more
 	
 func _on_use_button_pressed():
-	if not inBattle: # if not in battle use it immediately. Otherwise, 
-		PlayerResources.inventory.use_item(inventorySlot.item, PlayerResources.player.combatant)
+	if not inBattle: # if not in battle use it immediately
+		PlayerResources.inventory.use_item(inventorySlot.item, PlayerResources.playerInfo.combatant)
 	inventoryMenu.item_used.emit(inventorySlot)
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 

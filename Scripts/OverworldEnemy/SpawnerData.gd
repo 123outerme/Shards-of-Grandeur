@@ -22,7 +22,7 @@ func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_file()):
 		data = load(save_path + save_file())
 		if data != null:
-			return data.duplicate(true)
+			return data #.duplicate(true)
 	return data
 
 func save_data(save_path, data):

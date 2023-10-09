@@ -27,7 +27,7 @@ func _ready():
 func load_into_battle():
 	var newBattle: bool = state.enemyCombatant1 == null
 	if newBattle: # new battle
-		playerCombatant.combatant = PlayerResources.playerInfo.combatant.duplicate(true)
+		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 		minionCombatant.combatant = null
 		
 		if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
@@ -86,7 +86,7 @@ func load_into_battle():
 	battleUI.set_menu_state(state.menu, false)
 	
 func summon_minion(shard: Shard):
-	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName).duplicate(true)
+	minionCombatant.combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
@@ -103,7 +103,7 @@ func save_data(save_path):
 		state.enemyCombatant2 = enemyCombatant2.combatant
 		state.enemyCombatant3 = enemyCombatant3.combatant
 		state.commandingMinion = battleUI.commandingMinion
-		state.turnQueue = turnExecutor.turnQueue
+		state.turnQueue = turnExecutor.turnQueue #.duplicate(false)
 		state.save_data(save_path, state)
 
 func load_data(save_path):

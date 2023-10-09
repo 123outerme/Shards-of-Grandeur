@@ -76,8 +76,8 @@ func apply_menu_state():
 		open_stats(PlayerResources.playerInfo.combatant, true)
 
 func return_to_player_command():
-	commandingMinion = false
-	commandingCombatant = battleController.playerCombatant
+	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
+	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
 	set_menu_state(BattleState.Menu.ALL_COMMANDS)
 
 func complete_command():
@@ -85,7 +85,6 @@ func complete_command():
 		commandingMinion = true
 		set_menu_state(BattleState.Menu.ALL_COMMANDS)
 	else:
-		# TODO prepare enemy commands
 		battleController.turnExecutor.start_simulation()
 		set_menu_state(BattleState.Menu.RESULTS)
 

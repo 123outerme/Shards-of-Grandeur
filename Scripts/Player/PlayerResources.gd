@@ -21,11 +21,11 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 		inventory.add_item(reward.item)
 	if gainedLevels > 0:
 		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
-	playerInfo.combatant.stats = playerInfo.stats.duplicate(true) # copy stats into combatant's copy	
+	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy	
 	return gainedLevels
 
 func copy_combatant_to_info(combatant: Combatant):
-	playerInfo.combatant.save_from_object(combatant.duplicate(true))
+	playerInfo.combatant.save_from_object(combatant.copy())
 	playerInfo.stats.save_from_object(combatant.stats)
 
 func load_data(save_path):
@@ -34,7 +34,7 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
-		playerInfo.combatant.stats = playerInfo.stats.duplicate(true) # copy stats to Combatant obj
+		playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats to Combatant obj
 		if playerInfo.combatant.currentHp == -1: # if -1, set to maxHp
 			playerInfo.combatant.currentHp = playerInfo.stats.maxHp
 	player = PlayerFinder.player
@@ -56,7 +56,7 @@ func save_data(save_path):
 		if player != null:
 			playerInfo.position = player.position
 			playerInfo.disableMovement = player.disableMovement
-		playerInfo.combatant.stats = playerInfo.stats.duplicate(true)
+		playerInfo.combatant.stats = playerInfo.stats.copy()
 		if playerInfo.combatant.currentHp == -1:
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		playerInfo.save_data(save_path, playerInfo)

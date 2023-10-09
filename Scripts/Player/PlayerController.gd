@@ -134,6 +134,9 @@ func _on_turn_in_button_pressed():
 	questsPanel.toggle()
 	npcTalkBtns.visible = false
 
+func _on_inventory_panel_node_item_used(slot):
+	pass # TODO: add a little display to explain you used an item, what it did/is doing, and tell you if that was the last
+
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
@@ -164,5 +167,3 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	npcTalkBtns.visible = false # make sure talk buttons are hidden
 	statsPanel.visible = false # show stats panel for sure
 	statsPanel.toggle()
-
-

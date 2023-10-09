@@ -24,6 +24,9 @@ func pop() -> Combatant:
 	reload()
 	return combatant
 
+func empty():
+	combatants = []
+
 func reload():
 	combatants = combatants.filter(filter_turns)
 	combatants.sort_custom(sort_turns)

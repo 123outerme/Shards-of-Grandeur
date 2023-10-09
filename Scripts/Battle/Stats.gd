@@ -29,8 +29,8 @@ enum Category {
 @export var equippedArmor: Armor = null
 
 @export_category("Stats - Moves")
-@export var moves: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move]
-@export var movepool: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move]
+@export var moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
+@export var movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
 
 func _init(
 	i_displayName = 'Entity',
@@ -46,8 +46,8 @@ func _init(
 	i_statPts = 0,
 	i_weapon = null,
 	i_armor = null,
-	i_moves: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move],
-	i_movepool: Array[Move] = [load("res://GameData/Moves/slice.tres").duplicate(true) as Move],
+	i_moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
+	i_movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -65,17 +65,23 @@ func _init(
 	moves = i_moves
 	movepool = i_movepool
 
-static func calculate_base_stats(lv: int, carriedOverExp: int = 0) -> Stats:
-	var stat = calculate_stat_category(lv)
+static func calculate_base_stats(oldStats: Stats, newLv: int) -> Stats:
+	var stat = calculate_stat_category(newLv)
 	return Stats.new(
-		lv,
-		carriedOverExp,
-		calculate_max_hp(lv),
+		oldStats.displayName,
+		oldStats.saveName,
+		newLv,
+		oldStats.experience,
+		calculate_max_hp(newLv),
 		stat,
 		stat,
 		stat,
 		stat,
 		stat,
+		oldStats.equippedWeapon,
+		oldStats.equippedArmor,
+		oldStats.moves,
+		oldStats.movepool,
 	)
 
 static func calculate_max_hp(lv: int) -> int:
@@ -138,7 +144,12 @@ func level_up(newLvs: int):
 	affinity += stat
 	speed += stat
 	statPts += pts
-	
+
+func copy() -> Stats:
+	var newStats = Stats.new()
+	newStats.save_from_object(self)
+	return newStats
+
 func save_from_object(s: Stats):
 	displayName = s.displayName
 	saveName = s.saveName

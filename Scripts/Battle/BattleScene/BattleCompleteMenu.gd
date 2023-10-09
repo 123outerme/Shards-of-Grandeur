@@ -34,10 +34,11 @@ func _on_ok_button_pressed():
 	# copy player changes to PlayerResources
 	var levels: int = PlayerResources.accept_rewards(rewards)
 	# copy rewards changes back to battle combatant
-	#battleUI.battleController.playerCombatant.combatant.save_from_object(PlayerResources.playerInfo.combatant.duplicate(true))
+	#battleUI.battleController.playerCombatant.combatant.save_from_object(PlayerResources.playerInfo.combatant.copy())
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:
 		if PlayerResources.playerInfo.combatant.currentHp <= 0:
 			PlayerResources.playerInfo.combatant.currentHp = 1
+			PlayerResources.playerInfo.combatant.downed = false
 		battleUI.end_battle()

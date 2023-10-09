@@ -78,4 +78,4 @@ func load_data(save_path):
 func save_data(save_path, data):
 	var err = ResourceSaver.save(data, save_path + save_name)
 	if err != 0:
-		printerr("Inventory ResourceSaver error: " + err)
+		printerr("Inventory ResourceSaver error: ", err)
