@@ -11,14 +11,65 @@ theme = ExtResource("1_7pta3")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r0w5j")
 script = ExtResource("2_qpcow")
 
-[node name="MoveName" type="RichTextLabel" parent="."]
+[node name="CenterMoveName" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -13.0
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 200.0
-offset_bottom = 13.0
 grow_vertical = 2
+alignment = 1
+
+[node name="MoveName" type="RichTextLabel" parent="CenterMoveName"]
+layout_mode = 2
 text = "Move Name Goes Here"
 fit_content = true
+
+[node name="CenterRole" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_right = 0.417
+anchor_bottom = 1.0
+offset_left = -0.184021
+offset_right = 122.816
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RoleText" type="RichTextLabel" parent="CenterRole"]
+layout_mode = 2
+text = "Single Target"
+fit_content = true
+
+[node name="CenterType" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.696
+anchor_right = 0.696
+anchor_bottom = 1.0
+offset_left = -0.192017
+offset_right = 74.808
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="DamageType" type="RichTextLabel" parent="CenterType"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Physical"
+fit_content = true
+
+[node name="DetailsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -20.0
+offset_right = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Details"

@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0s2dmndrj7t7"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_fmbi4"]
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MoveListPanel/MoveDetailsPanel.gd" id="2_kuf31"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="3_bhs4n"]
+[ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://Themes/NestedUI/LargerTextPanel.tres" id="3_yyfev"]
+
+[node name="MoveDetailsPanel" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_fmbi4")
+script = ExtResource("2_kuf31")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1200.0
+offset_bottom = 880.0
+theme = ExtResource("3_yyfev")
+
+[node name="MoveName" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme = ExtResource("3_bhs4n")
+bbcode_enabled = true
+text = "[center]Move Name Goes Here[/center]"
+fit_content = true
+
+[node name="MovePower" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 70.0
+offset_right = 150.0
+offset_bottom = 110.0
+text = "100 Power"
+
+[node name="DamageCategory" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -920.0
+offset_top = 70.0
+offset_right = -816.0
+offset_bottom = 110.0
+grow_horizontal = 0
+text = "Physical"
+
+[node name="MoveTargets" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 70.0
+offset_right = 808.0
+offset_bottom = 110.0
+
+[node name="RequiredLv" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -252.0
+offset_top = 70.0
+offset_right = -24.0
+offset_bottom = 104.0
+grow_horizontal = 0
+text = "Required Level: 100"
+fit_content = true
+
+[node name="MoveRole" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 120.0
+offset_right = -24.0
+offset_bottom = 154.0
+grow_horizontal = 0
+text = "Single Target"
+fit_content = true
+
+[node name="MoveStatChanges" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MoveStatusEffect" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MoveStatusChance" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = -40.0
+offset_bottom = -40.0
+
+[node name="MoveDescription" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 247.0
+offset_right = -24.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

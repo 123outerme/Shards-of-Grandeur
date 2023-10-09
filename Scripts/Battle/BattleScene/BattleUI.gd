@@ -66,7 +66,7 @@ func apply_menu_state():
 					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
 					if dropIdx > -1:
 						battleComplete.rewards.append( \
-								Stats.scale_reward_by_level(combatantNode.combatant.dropTable[dropIdx].reward, combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+								combatantNode.combatant.dropTable[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
 						)
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards

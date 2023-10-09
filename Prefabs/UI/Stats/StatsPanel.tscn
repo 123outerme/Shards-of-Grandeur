@@ -76,6 +76,12 @@ offset_right = -40.0
 offset_bottom = 502.0
 grow_horizontal = 0
 
+[node name="MoveDetailsPanel" parent="StatsPanel/Panel/MoveListPanel" index="2"]
+offset_left = -680.0
+offset_top = -98.0
+offset_right = -680.0
+offset_bottom = -98.0
+
 [node name="EquipmentPanel" parent="StatsPanel/Panel" instance=ExtResource("5_h5547")]
 layout_mode = 1
 anchors_preset = 2
@@ -110,5 +116,6 @@ text = "Back"
 
 [connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 
+[editable path="StatsPanel/Panel/MoveListPanel"]
 [editable path="StatsPanel/Panel/EquipmentPanel"]
 [editable path="StatsPanel/Panel/EquipmentPanel/ItemDetailsPanel"]

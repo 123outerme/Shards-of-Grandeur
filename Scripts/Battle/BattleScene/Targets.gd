@@ -17,41 +17,28 @@ func _ready():
 func load_targets():
 	commandText.text = '[center]' + battleUI.commandingCombatant.combatant.disp_name() + ' will use '
 	
+	var targets: BattleCommand.Targets = BattleCommand.Targets.NONE
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE:
 		commandText.text += battleUI.commandingCombatant.combatant.command.move.moveName
+		targets = battleUI.commandingCombatant.combatant.command.move.targets
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
+		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
 	
 	commandText.text += '.[/center]'
 	
+	var allCombatantNodes: Array[CombatantNode] = []
 	for node in battleUI.battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
-		if not combatantNode.is_alive():
-			continue # go to the next node, this combatant is not alive
-		
-		var targets: BattleCommand.Targets = BattleCommand.Targets.NONE
-		
-		if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE:
-			targets = battleUI.commandingCombatant.combatant.command.move.targets
-				
-		if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
-			targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
-		
-		if (targets == BattleCommand.Targets.ALL_ALLIES and combatantNode.role == CombatantNode.Role.ALLY) \
-				or (targets == BattleCommand.Targets.ALL_ENEMIES and combatantNode.role == CombatantNode.Role.ENEMY) \
-				or (targets == BattleCommand.Targets.SELF and combatantNode == battleUI.commandingCombatant):
-			combatantNode.update_select_btn(true, false)
-			combatantNode.select_combatant()
-			# if targeting all enemies, all allies, or just self, target is obvious, select and lock chosen type
-		
-		if combatantNode.role == CombatantNode.Role.ALLY: # if node role is Ally
-			if targets == BattleCommand.Targets.NON_SELF_ALLY and combatantNode != battleUI.commandingCombatant \
-					# if node is non-self and targeting non-self ally
-					or targets == BattleCommand.Targets.ALLY: # or if targeting ally
-				combatantNode.update_select_btn(true) # show target btn
-		if combatantNode.role == combatantNode.Role.ENEMY and targets == BattleCommand.Targets.ENEMY:
-			combatantNode.update_select_btn(true) # if enemy and targeting enemy, show target btn
-		combatantNode.toggled.connect(_on_combatant_selected)
+		allCombatantNodes.append(combatantNode)
+		if combatantNode.is_alive():
+			combatantNode.toggled.connect(_on_combatant_selected)
+		combatantNode.update_select_btn(false)
+	
+	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
+	for targetableCombatant in targetableCombatants:
+		targetableCombatant.update_select_btn(true, BattleCommand.is_command_multi_target(targets))
+	
 	update_targets_listing()
 	update_confirm_btn()
 	

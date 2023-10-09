@@ -24,11 +24,6 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var lvText: RichTextLabel
 @export var hpText: RichTextLabel
 
-static func get_opposite_role(r: Role) -> Role:
-	if r == Role.ALLY:
-		return Role.ENEMY
-	return Role.ALLY
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -74,28 +69,37 @@ func set_selected(selected: bool = true):
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
 
-func get_command(nodes: Array[Node]):
+func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
+	if targets == BattleCommand.Targets.SELF:
+		return [self]
+	
+	var targetableList: Array[CombatantNode] = []
+	for combatantNode in allCombatantNodes:
+		if not combatantNode.is_alive():
+			continue # skip this combatant if not alive
+		if self == combatantNode and (targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.NON_SELF_ALLY):
+			continue # skip user if user is not targetable
+		
+		if targets == BattleCommand.Targets.ALL or targets == BattleCommand.Targets.ALL_EXCEPT_SELF:
+			targetableList.append(combatantNode)
+		else:
+			var targetRole: CombatantNode.Role = combatantNode.role
+			if ((targets == BattleCommand.Targets.ALL_ALLIES or targets == BattleCommand.Targets.ALLY or targets == BattleCommand.Targets.NON_SELF_ALLY) and targetRole == role) or \
+					((targets == BattleCommand.Targets.ALL_ENEMIES or targets == BattleCommand.Targets.ENEMY) and targetRole != role):
+				targetableList.append(combatantNode)
+	return targetableList
+
+func get_command(combatantNodes: Array[CombatantNode]):
 	if combatant.command == null and is_alive():
 		var move: Move = combatant.stats.moves[0] # TODO: pick move better
+		var targetableCombatants: Array[CombatantNode] = get_targetable_combatant_nodes(combatantNodes, move.targets)
 		var targetPositions: Array[String] = []
-		if move.targets == BattleCommand.Targets.SELF:
-			targetPositions = [battlePosition]
+		if BattleCommand.is_command_multi_target(move.targets):
+			for targetableCombatant in targetableCombatants:
+				targetPositions.append(targetableCombatant.battlePosition)
 		else:
-			var validTargetRole: Role = Role.ENEMY
-			if move.targets == BattleCommand.Targets.ALLY or move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.NON_SELF_ALLY:
-				validTargetRole = Role.ALLY
-			if role == Role.ENEMY:
-				validTargetRole = CombatantNode.get_opposite_role(validTargetRole) # an enemy's enemy is an ally, an enemy's ally is an enemy
-			var validTargetPositions: Array[String] = []
-			for node in nodes:
-				var combatantNode: CombatantNode = node as CombatantNode
-				if combatantNode.is_alive() and combatantNode.role == validTargetRole and not (move.targets == BattleCommand.Targets.NON_SELF_ALLY and combatantNode == self):
-					validTargetPositions.append(combatantNode.battlePosition)
-			if move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.ALL_ENEMIES:
-				targetPositions.append_array(validTargetPositions)
-			else:
-				targetPositions = [validTargetPositions[randi_range(0, len(validTargetPositions) - 1)]] # pick a random target
-				# TODO: pick target better
+			targetPositions = [targetableCombatants[randi_range(0, len(targetableCombatants) - 1)].battlePosition] # pick a random target
+			# TODO: pick target better
 		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targetPositions, randf())
 
 func is_alive() -> bool:

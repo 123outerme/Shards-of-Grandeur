@@ -3,6 +3,10 @@ class_name MoveListPanel
 
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
+@export var readOnly: bool = false
+
+@onready var editMovesButton: Button = get_node("EditMovesButton")
+@onready var moveDetailsPanel: MoveDetailsPanel = get_node("MoveDetailsPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,3 +20,8 @@ func load_move_list_panel():
 		else:
 			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()
+	editMovesButton.visible = not readOnly
+
+func _on_move_list_item_details_pressed(move: Move):
+	moveDetailsPanel.move = move
+	moveDetailsPanel.load_move_details_panel()

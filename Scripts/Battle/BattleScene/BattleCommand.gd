@@ -9,6 +9,8 @@ enum Targets {
 	ALL_ALLIES = 4, # multi-target all allies on player's side
 	ENEMY = 5, # single-target one combatant on enemy side
 	ALL_ENEMIES = 6, # multi-target one combatant on enemy side
+	ALL_EXCEPT_SELF = 7, # multi-target every combatant except for self
+	ALL = 8, # multi-target EVERY combatant, including self
 }
 
 enum Type {
@@ -25,6 +27,31 @@ enum Type {
 @export var randomNum: float = 0
 
 var targets: Array[Combatant] = []
+
+static func targets_to_string(t: Targets) -> String:
+	match t:
+		Targets.NONE:
+			return 'None'
+		Targets.SELF:
+			return 'Self Only'
+		Targets.NON_SELF_ALLY:
+			return 'Any One Ally (Except Self)'
+		Targets.ALLY:
+			return 'Any One Ally'
+		Targets.ALL_ALLIES:
+			return 'All Allies'
+		Targets.ENEMY:
+			return 'Any One Enemy'
+		Targets.ALL_ENEMIES:
+			return 'All Enemies'
+		Targets.ALL_EXCEPT_SELF:
+			return 'All Combatants (Except Self)'
+		Targets.ALL:
+			return 'All Combatants'
+	return 'UNKNOWN'
+
+static func is_command_multi_target(t: Targets) -> bool:
+	return t == BattleCommand.Targets.ALL_ALLIES or t == BattleCommand.Targets.ALL_ENEMIES or t == BattleCommand.Targets.ALL_EXCEPT_SELF or t == BattleCommand.Targets.ALL
 
 static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 	return BattleCommand.new(
@@ -88,8 +115,8 @@ func calculate_damage(user: Combatant, target: Combatant) -> int:
 		var atkStat: float = userStats.physAttack # use physical for physical attacks
 		if move.category == Move.DmgCategory.MAGIC:
 			atkStat = userStats.magicAttack # use magic for magic attacks
-		if move.power < 0:
-			atkStat = userStats.affinity # use affinity for heal calculations
+		if move.category == Move.DmgCategory.AFFINITY:
+			atkStat = userStats.affinity # use affinity for affinity-based attacks
 		
 		var atkExpression: float = atkStat + 5
 		var resExpression: float = targetStats.resistance + 5

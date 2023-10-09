@@ -16,11 +16,14 @@ var escaping: bool = false
 
 func start_simulation():
 	var combatants: Array[Combatant] = []
+	var allCombatantNodes: Array[CombatantNode] = []
 	for node in battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
+		allCombatantNodes.append(combatantNode)
+	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
 			if combatantNode.role == CombatantNode.Role.ENEMY:
-				combatantNode.get_command(battleController.combatantNodes)
+				combatantNode.get_command(allCombatantNodes)
 			combatants.append(combatantNode.combatant)
 	turnQueue = TurnQueue.new(combatants)
 	play_turn() # start the first turn

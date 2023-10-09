@@ -113,11 +113,6 @@ static func get_required_exp(lv: int) -> int:
 	
 static func floating_stat_pt_gain(lv: int) -> int:
 	return floor(0.1 * lv + 1)
-	
-static func scale_reward_by_level(reward: Reward, initialLv: int, currentLv: int) -> Reward:
-	var scaledReward: Reward = reward.duplicate(false)
-	# TODO
-	return scaledReward
 
 func add_exp(addingExp: int) -> int:
 	var newLevel: int = level

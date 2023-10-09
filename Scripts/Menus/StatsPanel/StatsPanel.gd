@@ -36,6 +36,7 @@ func load_stats_panel():
 	statlinePanel.load_statline_panel()
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool
+	moveListPanel.readOnly = readOnly
 	moveListPanel.load_move_list_panel()
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
