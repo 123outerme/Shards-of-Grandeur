@@ -22,7 +22,7 @@ class_name Combatant
 @export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres").duplicate(true)
+	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres") #.duplicate(true)
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
@@ -98,10 +98,10 @@ func save_from_object(c: Combatant):
 	else:
 		statusEffect = null
 	
-	equipmentTable = c.equipmentTable.duplicate(true)
-	teamTable = c.teamTable.duplicate(true)	
-	dropTable = c.dropTable.duplicate(true)	
-	innateStatCategories = c.innateStatCategories.duplicate(true)
+	equipmentTable = c.equipmentTable.duplicate(false)
+	teamTable = c.teamTable.duplicate(false)
+	dropTable = c.dropTable.duplicate(false)
+	innateStatCategories = c.innateStatCategories.duplicate(false)
 	
 	if c.command != null:
 		command = c.command.duplicate(true)
