@@ -32,6 +32,7 @@ func reload():
 func filter_turns(value: Combatant) -> bool:
 	return value != null and value.currentHp > 0
 
+'''
 func combatant_stable_sort(): # insertion sort - there will never be more than 5 items in this queue so I don't care
 	for i in range(1, len(combatants)):
 		var c = combatants[i]
@@ -40,10 +41,11 @@ func combatant_stable_sort(): # insertion sort - there will never be more than 5
 			combatants[j + 1] = combatants[j]
 			j -= 1
 		combatants[j + 1] = c
+'''
 
-func sort_turns(a: Combatant, b: Combatant) -> int:
+func sort_turns(a: Combatant, b: Combatant) -> bool:
 	if a.stats.speed > b.stats.speed:
-		return -1 # b moves after a
+		return true # a goes before b
 	if a.stats.speed < b.stats.speed:
-		return 1 # a moves after b
-	return 0
+		return false # a goes after b
+	return true # default: a goes before b

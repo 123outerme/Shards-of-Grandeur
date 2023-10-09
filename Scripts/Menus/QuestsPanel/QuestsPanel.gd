@@ -35,6 +35,7 @@ func toggle():
 		
 		
 func load_quests_panel():
+	PlayerResources.questInventory.update_collect_quests() # update collect quests
 	update_filter_buttons()
 	# lock all filter buttons to be unlocked when creating quest slot panels
 	inProgressButton.disabled = true

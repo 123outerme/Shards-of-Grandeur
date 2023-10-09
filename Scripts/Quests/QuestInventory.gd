@@ -30,7 +30,7 @@ func get_cur_trackers_for_target(targetName: String) -> Array[QuestTracker]:
 	var trackers: Array[QuestTracker] = []
 	for questTracker in quests:
 		var curStep = questTracker.get_current_step()
-		if curStep.turnInName == targetName:
+		if curStep.objectiveName == targetName:
 			trackers.append(questTracker)
 	return trackers
 
@@ -49,6 +49,20 @@ func accept_quest(q: Quest):
 		return
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)
+
+func update_collect_quests():
+	for tracker in quests:
+		if tracker.get_current_step().type == QuestStep.Type.COLLECT_ITEM:
+			var count: int = 0
+			for slot in PlayerResources.inventory.slots:
+				if slot.item.itemName == tracker.get_current_step().objectiveName:
+					count += slot.count
+			tracker.set_current_step_progress(count)
+
+func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
+	for tracker in get_cur_trackers_for_target(target):
+		if tracker.get_current_step().type == type:
+			tracker.set_current_step_progress(progress)
 	
 func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 	for tracker in get_cur_trackers_for_target(target):
@@ -70,9 +84,9 @@ func get_sorted_trackers() -> Array[QuestTracker]:
 
 func sort_by_pinned(a: QuestTracker, b: QuestTracker) -> bool:
 	if a.pinned and not b.pinned:
-		return true
+		return true # a goes before b
 	if b.pinned and not a.pinned:
-		return false
+		return false # b goes before a
 	return a.quest.questName.naturalnocasecmp_to(b.quest.questName) < 0 # compare names (including natural number comparisons)
 
 func load_data(save_path):

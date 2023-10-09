@@ -16,4 +16,10 @@ func _on_ok_button_pressed():
 	var result: TurnExecutor.TurnResult = battleUI.battleController.turnExecutor.finish_turn()
 	if result != TurnExecutor.TurnResult.NOTHING:
 		battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
+		if battleUI.playerWins:
+			for node in battleUI.battleController.combatantNodes:
+				var combatantNode: CombatantNode = node as CombatantNode
+				if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
+					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
+					print('progress defeat quest for ', combatantNode.combatant.save_name())
 		battleUI.set_menu_state(BattleState.Menu.BATTLE_COMPLETE)

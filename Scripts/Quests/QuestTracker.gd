@@ -108,7 +108,13 @@ func turn_in_step() -> bool:
 		stepProgressCounts.append(0)
 		# TODO: update progress automatically for collect-quest steps, etc.
 	return currentStep >= len(quest.steps)
-		
+
+func set_current_step_progress(count: int = 0):
+	var idx = get_step_index(get_current_step())
+	if idx == -1:
+		return
+	stepProgressCounts[idx] = min(count, quest.steps[idx].count)
+
 func add_current_step_progress(count: int = 1):
 	var idx = get_step_index(get_current_step())
 	if idx == -1:
