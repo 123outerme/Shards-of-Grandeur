@@ -28,17 +28,17 @@ var modified: bool = false
 @onready var magicAtkDown: Button = get_node("StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
 @onready var magicAtkModifier: RichTextLabel = get_node("StatsVBox/MagicAtkDisplay/Extras/StatModifier")
 
-@onready var resistanceText: RichTextLabel = get_node("StatsVBox/ResistanceDisplay/Resistance")
-@onready var resistanceBtns: HBoxContainer = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox")
-@onready var resistanceUp: Button = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
-@onready var resistanceDown: Button = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
-@onready var resistanceModifier: RichTextLabel = get_node("StatsVBox/ResistanceDisplay/Extras/StatModifier")
-
 @onready var affinityText: RichTextLabel = get_node("StatsVBox/AffinityDisplay/Affinity")
 @onready var affinityBtns: HBoxContainer = get_node("StatsVBox/AffinityDisplay/Extras/ButtonsHBox")
 @onready var affinityUp: Button = get_node("StatsVBox/AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
 @onready var affinityDown: Button = get_node("StatsVBox/AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
 @onready var affinityModifier: RichTextLabel = get_node("StatsVBox/AffinityDisplay/Extras/StatModifier")
+
+@onready var resistanceText: RichTextLabel = get_node("StatsVBox/ResistanceDisplay/Resistance")
+@onready var resistanceBtns: HBoxContainer = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox")
+@onready var resistanceUp: Button = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
+@onready var resistanceDown: Button = get_node("StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
+@onready var resistanceModifier: RichTextLabel = get_node("StatsVBox/ResistanceDisplay/Extras/StatModifier")
 
 @onready var speedText: RichTextLabel = get_node("StatsVBox/SpeedDisplay/Speed")
 @onready var speedBtns: HBoxContainer = get_node("StatsVBox/SpeedDisplay/Extras/ButtonsHBox")

@@ -3,43 +3,43 @@ class_name StatChanges
 
 @export var physAttackMultiplier: float = 1.0
 @export var magicAttackMultiplier: float = 1.0
-@export var resistanceMultiplier: float = 1.0
 @export var affinityMultiplier: float = 1.0
+@export var resistanceMultiplier: float = 1.0
 @export var speedMultiplier: float = 1.0
 
 func _init(
 	i_phys = 1.0,
 	i_magic = 1.0,
-	i_resistance = 1.0,
 	i_affinity = 1.0,
+	i_resistance = 1.0,
 	i_speed = 1.0,
 ):
 	physAttackMultiplier = i_phys
 	magicAttackMultiplier = i_magic
-	resistanceMultiplier = i_resistance
 	affinityMultiplier = i_affinity
+	resistanceMultiplier = i_resistance
 	speedMultiplier = i_speed
 
 func reset():
 	physAttackMultiplier = 1.0
 	magicAttackMultiplier = 1.0
-	resistanceMultiplier = 1.0
 	affinityMultiplier = 1.0
+	resistanceMultiplier = 1.0
 	speedMultiplier = 1.0
 
 func stack(changes: StatChanges):
 	physAttackMultiplier += changes.physAttackMultiplier - 1.0
 	magicAttackMultiplier += changes.magicAttackMultiplier - 1.0
-	resistanceMultiplier += changes.resistanceMultiplier - 1.0
 	affinityMultiplier += changes.affinityMultiplier - 1.0
+	resistanceMultiplier += changes.resistanceMultiplier - 1.0
 	speedMultiplier += changes.speedMultiplier - 1.0
 
 func apply(s: Stats) -> Stats:
 	var newStats = s.copy()
 	newStats.physAttack = roundi(newStats.physAttack * physAttackMultiplier)
 	newStats.magicAttack = roundi(newStats.magicAttack * magicAttackMultiplier)
-	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)
 	newStats.affinity = roundi(newStats.affinity * affinityMultiplier)
+	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)
 	newStats.speed *= roundi(newStats.speed * speedMultiplier)
 	return newStats
 
@@ -56,11 +56,11 @@ func get_phys_atk_multiplier() -> StatMultiplierText:
 func get_magic_atk_multiplier() -> StatMultiplierText:
 	return StatMultiplierText.new('Magic Atk', magicAttackMultiplier)
 
-func get_resistance_multiplier() -> StatMultiplierText:
-	return StatMultiplierText.new('Resistance', resistanceMultiplier)
-
 func get_affinity_multiplier() -> StatMultiplierText:
 	return StatMultiplierText.new('Affinity', affinityMultiplier)
+
+func get_resistance_multiplier() -> StatMultiplierText:
+	return StatMultiplierText.new('Resistance', resistanceMultiplier)
 
 func get_speed_multiplier() -> StatMultiplierText:
 	return StatMultiplierText.new('Speed', speedMultiplier)
@@ -73,14 +73,14 @@ func get_multipliers_text() -> Array[StatMultiplierText]:
 	
 	if magicAttackMultiplier != 1.0:
 		texts.append(get_magic_atk_multiplier())
-		
-	if resistanceMultiplier != 1.0:
-		texts.append(get_resistance_multiplier())
-		
+	
 	if affinityMultiplier != 1.0:
 		texts.append(get_affinity_multiplier())
-		
+	
+	if resistanceMultiplier != 1.0:
+		texts.append(get_resistance_multiplier())
+	
 	if speedMultiplier != 1.0:
 		texts.append(get_speed_multiplier())
-		
+	
 	return texts
