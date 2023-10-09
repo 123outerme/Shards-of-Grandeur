@@ -1,7 +1,7 @@
 extends Node
 
 var saved_scripts: Array
-var save_file_location: String = "user://"
+var save_file_location: String = "user://save/"
 var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
 var battle_file = save_file_location + "battle.tres" # this file should exist if the game was saved in battle
 

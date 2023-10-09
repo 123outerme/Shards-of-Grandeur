@@ -33,12 +33,12 @@ static func command_guard(combatant: Combatant) -> BattleCommand:
 		1.0, # consistent effects
 	)
 
-static func command_escape() -> BattleCommand:
+static func command_escape(allCombatants: Array[Combatant]) -> BattleCommand:
 	return BattleCommand.new(
 		Type.ESCAPE,
 		null,
 		null,
-		[],
+		allCombatants,
 		randf(),
 	)
 
@@ -55,12 +55,16 @@ func _init(
 	targets = i_targets
 	randomNum = i_randomNum
 
-func execute_command(user: Combatant):
+func execute_command(user: Combatant) -> bool:
+	if type == Type.ESCAPE:
+		return get_is_escaping(user)
+		
 	for target in targets:
 		var damage = calculate_damage(user, target)
 		target.currentHp = min(max(target.currentHp - damage, 0), target.stats.maxHp) # bound to be at least 0 and no more than max HP
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
+	return false
 
 # logistic curve designed to dampen early-level ratio differences (ie lv 1 to lv 2 is a 2x increase, lv 10 to lv 11 is a 1.1x)
 func dmg_logistic(userLv: int, targetLv: int) -> float:
