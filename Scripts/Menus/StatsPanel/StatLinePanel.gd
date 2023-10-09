@@ -46,6 +46,7 @@ var modified: bool = false
 @onready var speedDown: Button = get_node("StatsVBox/SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
 @onready var speedModifier: RichTextLabel = get_node("StatsVBox/SpeedDisplay/Extras/StatModifier")
 
+@onready var statPtsDisplay: Control = get_node("StatsVBox/StatPtsDisplay")
 @onready var statPtsText: RichTextLabel = get_node("StatsVBox/StatPtsDisplay/StatPts")
 @onready var statPtsBtns: HBoxContainer = get_node("StatsVBox/StatPtsDisplay/ButtonsHBox")
 @onready var saveStatChanges: Button = get_node("StatsVBox/StatPtsDisplay/ButtonsHBox/SaveChangesButton")
@@ -65,6 +66,8 @@ func load_statline_panel():
 	var hp: int = curHp
 	if curHp == -1:
 		hp = statsCopy.maxHp
+		
+	statPtsDisplay.visible = not battleStats
 	
 	levelText.text = String.num(statsCopy.level)
 	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
@@ -74,7 +77,6 @@ func load_statline_panel():
 	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)
 	affinityText.text = TextUtils.num_to_comma_string(statsCopy.affinity)
 	speedText.text = TextUtils.num_to_comma_string(statsCopy.speed)
-	statPtsText.visible = not battleStats
 	statPtsText.text = String.num(statsCopy.statPts)
 	
 	physAtkBtns.visible = not readOnly
@@ -82,7 +84,7 @@ func load_statline_panel():
 	resistanceBtns.visible = not readOnly
 	affinityBtns.visible = not readOnly
 	speedBtns.visible = not readOnly
-	statPtsBtns.visible = not readOnly and not battleStats
+	statPtsBtns.visible = not readOnly
 	
 	physAtkModifier.visible = battleStats
 	magicAtkModifier.visible = battleStats

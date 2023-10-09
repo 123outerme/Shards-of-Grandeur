@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://drnk2cpif0naj"]
+[gd_scene load_steps=8 format=3 uid="uid://drnk2cpif0naj"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yr6py"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_wx20h"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="3_1li8v"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_kdibv"]
+[ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="4_wy32f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yi6i"]
 size = Vector2(2, 2)
+
+[sub_resource type="Resource" id="Resource_1odwj"]
+script = ExtResource("4_wy32f")
+spawnerId = "testmap2rat"
+disabled = false
+spawnedLastEncounter = false
 
 [node name="OverworldMap" type="Node2D"]
 
@@ -41,7 +48,7 @@ shape = SubResource("RectangleShape2D_8yi6i")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_1li8v")]
 position = Vector2(0, 96)
-spawnerId = "testmap2spawner"
+spawnerData = SubResource("Resource_1odwj")
 combatant = ExtResource("4_kdibv")
 tilemap = NodePath("../TileMap")
 

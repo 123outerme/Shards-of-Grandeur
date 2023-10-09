@@ -23,10 +23,10 @@ func entered_warp(newMapName, newMapPos, isUnderground):
 	load_map(newMapName)
 
 func load_map(mapName):
+	#destroy_overworld_enemies()
 	SaveHandler.save_data()
 	mapNavReady = false
 	if mapInstance != null:
-		destroy_overworld_enemies()
 		mapInstance.queue_free()
 	var mapScene = load("res://Prefabs/Maps/" + mapName + ".tscn")
 	mapInstance = mapScene.instantiate()

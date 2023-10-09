@@ -2,16 +2,15 @@ extends CharacterBody2D
 class_name OverworldEnemy
 
 @export var combatant: Combatant
-@export var combatantLevel: int = 1
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
 @export var patrolling: bool = false
 @export var patrolWaitSecs: float = 1.0
 @export var enemyData: OverworldEnemyData = OverworldEnemyData.new()
 
+var spawner: EnemySpawner = null
 var homePoint: Vector2
 var patrolRange: float
-var saveFile: String
 var encounteredPlayer: bool = false
 
 @onready var enemySprite: Sprite2D = get_node("EnemySprite")
@@ -21,7 +20,10 @@ var encounteredPlayer: bool = false
 # so all that needs to be used for save/load functionality is the save_path coming through
 
 func _ready():
+	combatant = enemyData.combatant
 	enemySprite.texture = combatant.sprite
+	position = enemyData.position
+	disableMovement = enemyData.disableMovement
 
 func _process(delta):
 	if not disableMovement and SceneLoader.mapLoader != null:
@@ -49,34 +51,6 @@ func pause_movement():
 func unpause_movement():
 	disableMovement = false
 
-func save_data(save_path):
-	if not encounteredPlayer:
-		enemyData.combatant = combatant
-		enemyData.position = position
-		enemyData.disableMovement = disableMovement
-		enemyData.save_data(save_path, enemyData)
-	else:
-		delete_data(save_path)
-	return
-	
-func load_data(save_path) -> bool:
-	enemyData = OverworldEnemyData.new(combatant)
-	var newData = enemyData.load_data(save_path)
-	if newData != null:
-		enemyData = newData # only load the new enemy data if it exists
-		combatant = enemyData.combatant
-		position = enemyData.position
-		disableMovement = enemyData.disableMovement
-		return true
-	return false
-	
-func delete_data(save_path):
-	if FileAccess.file_exists(save_path):
-		var err = DirAccess.remove_absolute(save_path)
-		# SaveHandler.save_file_location is the same as save_path in the save/load functions
-		if err != 0:
-			printerr("OverworldEnemy DirAccess remove error: ", err)
-
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":
 		patrolling = false
@@ -95,9 +69,10 @@ func _on_nav_agent_target_reached():
 	get_next_patrol_target()
 
 func _on_encounter_collider_area_entered(area):
-	if area.name == "PlayerEventCollider":
+	if area.name == "PlayerEventCollider" and spawner != null:
 		PlayerResources.playerInfo.encounteredName = combatant.save_name()
-		PlayerResources.playerInfo.encounteredLevel = combatantLevel
+		PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
+		spawner.spawnerData.spawnedLastEncounter = true
 		encounteredPlayer = true
 		SaveHandler.save_data()
 		SceneLoader.load_battle()

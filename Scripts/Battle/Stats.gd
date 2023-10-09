@@ -120,7 +120,7 @@ func add_exp(addingExp: int) -> int:
 		experience -= Stats.get_required_exp(newLevel)
 		newLevel += 1 # increment and check if requirement is satisfied
 	var levelDiff: int = newLevel - level
-	level += levelDiff
+	#print(levelDiff, ' diff. ', newLevel, ' vs ', level)
 	level_up(levelDiff)
 	return levelDiff # return the difference
 
@@ -128,9 +128,10 @@ func level_up(newLvs: int):
 	var stat = 0
 	var pts = 0
 	for i in range(1, newLvs + 1):
-		maxHp += Stats.hp_gain(level + i)
-		stat += Stats.stat_gain(level + i)
-		pts += Stats.floating_stat_pt_gain(level + i)
+		level += 1 # add one level every loop iteration to add a total of `newLvs` levels
+		maxHp += Stats.hp_gain(level)
+		stat += Stats.stat_gain(level)
+		pts += Stats.floating_stat_pt_gain(level)
 	physAttack += stat
 	magicAttack += stat
 	resistance += stat

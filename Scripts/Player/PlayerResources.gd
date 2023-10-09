@@ -27,7 +27,6 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 func copy_combatant_to_info(combatant: Combatant):
 	playerInfo.combatant.save_from_object(combatant.duplicate(true))
 	playerInfo.stats.save_from_object(combatant.stats)
-	print('copy done')
 
 func load_data(save_path):
 	if playerInfo == null:

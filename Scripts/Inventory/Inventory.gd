@@ -9,18 +9,18 @@ func _init(i_slots: Array[InventorySlot] = []):
 	inventorySlots = i_slots
 	
 func add_item(item: Item) -> bool:
+	var found: bool = false
 	for slot in inventorySlots:
 		if slot.item == item:
+			found = true
 			if slot.count < slot.item.maxCount or slot.item.maxCount == 0:
 				slot.count += 1
 				return true
-			else:
-				return false
 	# if not found, add a new slot
-	inventorySlots.append(
-		InventorySlot.new(item)
-	)
-	return true
+	if not found:
+		inventorySlots.append(InventorySlot.new(item))
+		return true
+	return false
 	
 func use_item(item: Item, target: Combatant):
 	item.use(target)

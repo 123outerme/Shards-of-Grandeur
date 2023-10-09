@@ -115,6 +115,7 @@ func load_data(save_path):
 			battleLoaded = true
 
 func end_battle():
+	PlayerResources.copy_combatant_to_info(PlayerResources.playerInfo.combatant)
 	battleEnded = true
 	SaveHandler.save_data()
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
