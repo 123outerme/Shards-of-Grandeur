@@ -37,8 +37,9 @@ layout_mode = 0
 offset_left = 24.0
 offset_top = 70.0
 offset_right = 150.0
-offset_bottom = 110.0
+offset_bottom = 104.0
 text = "100 Power"
+fit_content = true
 
 [node name="DamageCategory" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -48,16 +49,24 @@ anchor_right = 1.0
 offset_left = -920.0
 offset_top = 70.0
 offset_right = -816.0
-offset_bottom = 110.0
+offset_bottom = 71.0
 grow_horizontal = 0
 text = "Physical"
+fit_content = true
 
 [node name="MoveTargets" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = 368.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
 offset_top = 70.0
-offset_right = 808.0
-offset_bottom = 110.0
+offset_right = 220.0
+offset_bottom = 104.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Targets All Combatants (Except Self)[/center]"
+fit_content = true
 
 [node name="RequiredLv" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -69,7 +78,22 @@ offset_top = 70.0
 offset_right = -24.0
 offset_bottom = 104.0
 grow_horizontal = 0
-text = "Required Level: 100"
+bbcode_enabled = true
+text = "[right]Required Level: 100[/right]"
+fit_content = true
+
+[node name="MoveStatChanges" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 124.0
+offset_right = 861.0
+offset_bottom = 158.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+text = "+100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed"
 fit_content = true
 
 [node name="MoveRole" type="RichTextLabel" parent="Panel"]
@@ -82,25 +106,23 @@ offset_top = 120.0
 offset_right = -24.0
 offset_bottom = 154.0
 grow_horizontal = 0
-text = "Single Target"
+bbcode_enabled = true
+text = "[right]Single Target[/right]"
 fit_content = true
-
-[node name="MoveStatChanges" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="MoveStatusEffect" type="RichTextLabel" parent="Panel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 24.0
+offset_top = 170.0
+offset_right = 64.0
+offset_bottom = 210.0
 
 [node name="MoveStatusChance" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = -80.0
-offset_top = -80.0
-offset_right = -40.0
-offset_bottom = -40.0
+layout_mode = 1
+offset_left = 100.0
+offset_top = 170.0
+offset_right = 140.0
+offset_bottom = 210.0
 
 [node name="MoveDescription" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
