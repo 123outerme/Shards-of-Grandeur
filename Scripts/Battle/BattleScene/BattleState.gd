@@ -26,7 +26,7 @@ enum Menu {
 
 @export_category("BattleData - Turns")
 @export var turnNumber: int = 1
-@export var turnQueue: TurnQueue = TurnQueue.new()
+@export var turnList: Array[Combatant] = []
 
 @export_category("BattleData - Rewards")
 @export var rewards: Array[Reward] = []
@@ -43,7 +43,7 @@ func _init(
 	i_prevMenu = Menu.SUMMON,
 	i_cmdMinion = false,
 	i_turnNumber = 1,
-	i_turnQueue = TurnQueue.new(),
+	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
 ):
 	playerCombatant = i_playerCombatant
@@ -55,7 +55,7 @@ func _init(
 	prevMenu = i_prevMenu
 	commandingMinion = i_cmdMinion
 	turnNumber = i_turnNumber
-	turnQueue = i_turnQueue
+	turnList = i_turnList
 	rewards = i_rewards
 
 func load_data(save_path):

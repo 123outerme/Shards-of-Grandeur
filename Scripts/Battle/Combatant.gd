@@ -37,6 +37,8 @@ func _init(
 	i_teamTable: Array[WeightedString] = [],
 	i_dropTable: Array[WeightedReward] = [],
 	i_innateStats: Array[Stats.Category] = [],
+	i_command = null,
+	i_downed = false,
 ):
 	stats = i_stats
 	if i_curHp != -1:
@@ -50,6 +52,8 @@ func _init(
 	teamTable = i_teamTable
 	dropTable = i_dropTable
 	innateStatCategories = i_innateStats
+	command = i_command
+	downed = i_downed
 
 func disp_name() -> String:
 	return stats.displayName

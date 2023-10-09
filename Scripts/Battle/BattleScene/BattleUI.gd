@@ -93,6 +93,13 @@ func update_hp_tags():
 		var combatantNode: CombatantNode = node as CombatantNode
 		combatantNode.update_hp_tag()
 
+func update_downed():
+	for node in battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		if combatantNode.combatant != null:
+			combatantNode.combatant.update_downed()
+		combatantNode.visible = combatantNode.is_alive()
+
 func round_complete():
 	battleController.state.turnNumber += 1
 	return_to_player_command()

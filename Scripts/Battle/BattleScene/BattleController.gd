@@ -103,14 +103,14 @@ func save_data(save_path):
 		state.enemyCombatant2 = enemyCombatant2.combatant
 		state.enemyCombatant3 = enemyCombatant3.combatant
 		state.commandingMinion = battleUI.commandingMinion
-		state.turnQueue = turnExecutor.turnQueue #.duplicate(false)
+		state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
 		state.save_data(save_path, state)
 
 func load_data(save_path):
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
-		turnExecutor.turnQueue = state.turnQueue
+		turnExecutor.turnQueue = TurnQueue.new(state.turnList)
 		if not battleLoaded:
 			battleLoaded = true
 

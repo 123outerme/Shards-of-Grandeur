@@ -21,24 +21,29 @@ enum Type {
 @export var type: Type = Type.NONE
 @export var move: Move = null
 @export var slot: InventorySlot = null
-@export var targets: Array[Combatant] = []
+@export var targetPositions: Array[String] = []
 @export var randomNum: float = 0
 
-static func command_guard(combatant: Combatant) -> BattleCommand:
+var targets: Array[Combatant] = []
+
+static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 	return BattleCommand.new(
 		Type.MOVE,
 		load("res://GameData/Moves/guard.tres") as Move,
 		null,
-		[combatant],
+		[combatantNode.battlePosition],
 		1.0, # consistent effects
 	)
 
-static func command_escape(allCombatants: Array[Combatant]) -> BattleCommand:
+static func command_escape(allCombatants: Array[CombatantNode]) -> BattleCommand:
+	var allPositions: Array[String] = []
+	for combatantNode in allCombatants:
+		allPositions.append(combatantNode.battlePosition)
 	return BattleCommand.new(
 		Type.ESCAPE,
 		null,
 		null,
-		allCombatants,
+		allPositions,
 		randf(),
 	)
 
@@ -46,16 +51,17 @@ func _init(
 	i_type = Type.NONE,
 	i_move = null,
 	i_slot = null,
-	i_targets: Array[Combatant] = [],
+	i_targets: Array[String] = [],
 	i_randomNum = 0.0,
 ):
 	type = i_type
 	move = i_move
 	slot = i_slot
-	targets = i_targets
+	targetPositions = i_targets
 	randomNum = i_randomNum
 
-func execute_command(user: Combatant) -> bool:
+func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
+	get_targets_from_combatant_nodes(combatantNodes)
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 		
@@ -179,3 +185,10 @@ func get_command_results(user: Combatant) -> String:
 			resultsText = user.disp_name() + ' tried to escape, but could not get away!'
 	
 	return resultsText
+
+func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
+	targets = []
+	for targetPos in targetPositions:
+		for combatantNode in combatantNodes:
+			if targetPos == combatantNode.battlePosition:
+				targets.append(combatantNode.combatant)

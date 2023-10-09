@@ -71,7 +71,7 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 
 func turn_in_cur_step(tracker: QuestTracker) -> int:
 	var newLvs: int = PlayerResources.accept_rewards([tracker.get_current_step().reward])
-	var allDone: bool = tracker.turn_in_step()
+	var _allDone: bool = tracker.turn_in_step()
 	# TODO: anything need to be done with the all done flag?
 	return newLvs
 

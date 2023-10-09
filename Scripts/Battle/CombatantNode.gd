@@ -77,26 +77,26 @@ func is_selected() -> bool:
 func get_command(nodes: Array[Node]):
 	if combatant.command == null and is_alive():
 		var move: Move = combatant.stats.moves[0] # TODO: pick move better
-		var targets: Array[Combatant] = []
+		var targetPositions: Array[String] = []
 		if move.targets == BattleCommand.Targets.SELF:
-			targets = [combatant]
+			targetPositions = [battlePosition]
 		else:
 			var validTargetRole: Role = Role.ENEMY
 			if move.targets == BattleCommand.Targets.ALLY or move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.NON_SELF_ALLY:
 				validTargetRole = Role.ALLY
 			if role == Role.ENEMY:
 				validTargetRole = CombatantNode.get_opposite_role(validTargetRole) # an enemy's enemy is an ally, an enemy's ally is an enemy
-			var validTargets: Array[Combatant] = []
+			var validTargetPositions: Array[String] = []
 			for node in nodes:
 				var combatantNode: CombatantNode = node as CombatantNode
 				if combatantNode.is_alive() and combatantNode.role == validTargetRole and not (move.targets == BattleCommand.Targets.NON_SELF_ALLY and combatantNode == self):
-					validTargets.append(combatantNode.combatant)
+					validTargetPositions.append(combatantNode.battlePosition)
 			if move.targets == BattleCommand.Targets.ALL_ALLIES or move.targets == BattleCommand.Targets.ALL_ENEMIES:
-				targets.append_array(validTargets)
+				targetPositions.append_array(validTargetPositions)
 			else:
-				targets = [validTargets[randi_range(0, len(validTargets) - 1)]] # pick a random target
+				targetPositions = [validTargetPositions[randi_range(0, len(validTargetPositions) - 1)]] # pick a random target
 				# TODO: pick target better
-		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targets, randf())
+		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targetPositions, randf())
 
 func is_alive() -> bool:
 	if combatant == null:
@@ -107,4 +107,5 @@ func _on_select_combatant_btn_toggled(button_pressed):
 	toggled.emit(button_pressed, self)
 
 func _on_click_combatant_btn_pressed():
+	print('show details for ', combatant.save_name())
 	details_clicked.emit(self)

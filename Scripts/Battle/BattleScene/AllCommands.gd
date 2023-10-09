@@ -23,14 +23,14 @@ func _on_inventory_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.ITEMS)
 	
 func _on_guard_button_pressed():
-	commandingCombatant.combatant.command = BattleCommand.command_guard(commandingCombatant.combatant)
+	commandingCombatant.combatant.command = BattleCommand.command_guard(commandingCombatant)
 	battleUI.complete_command()
 
 func _on_escape_button_pressed():
-	var allCombatants: Array[Combatant] = []
+	var allCombatants: Array[CombatantNode] = []
 	for node in battleUI.battleController.combatantNodes:
 		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatants.append(combatantNode.combatant)
+		allCombatants.append(combatantNode)
 	
 	commandingCombatant.combatant.command = BattleCommand.command_escape(allCombatants)
 	battleUI.complete_command()

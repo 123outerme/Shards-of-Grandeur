@@ -12,14 +12,12 @@ func push(combatant: Combatant):
 	reload()
 		
 func peek_next() -> Combatant:
-	#reload()
 	if len(combatants) == 0:
 		return null
 	
 	return combatants.front()
 
 func pop() -> Combatant:
-	#reload()
 	var combatant = combatants.pop_front()
 	reload()
 	return combatant
@@ -31,6 +29,9 @@ func reload():
 	combatants = combatants.filter(filter_turns)
 	combatants.sort_custom(sort_turns)
 	#combatant_stable_sort()
+
+func copy() -> TurnQueue:
+	return TurnQueue.new(combatants)
 
 func filter_turns(value: Combatant) -> bool:
 	return value != null and value.currentHp > 0

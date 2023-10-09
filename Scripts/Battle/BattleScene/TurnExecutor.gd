@@ -26,16 +26,25 @@ func start_simulation():
 	play_turn() # start the first turn
 
 func play_turn():
+	var allCombatants: Array[CombatantNode] = []
+	for node in battleUI.battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		allCombatants.append(combatantNode)
 	var combatant: Combatant = turnQueue.peek_next()
 	if combatant != null:
-		escaping = combatant.command.execute_command(combatant) # perform all necessary calculations
+		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
 		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
 		battleUI.round_complete()
 	
 func update_turn_text():
+	var allCombatants: Array[CombatantNode] = []
+	for node in battleUI.battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		allCombatants.append(combatantNode)
 	var combatant: Combatant = turnQueue.peek_next()
+	combatant.command.get_targets_from_combatant_nodes(allCombatants)
 	battleUI.results.show_text(combatant.command.get_command_results(combatant))
 
 func finish_turn() -> TurnResult:
@@ -56,7 +65,7 @@ func finish_turn() -> TurnResult:
 		return TurnResult.ENEMY_WIN
 	if enemiesDown == 3: # all enemies are down:
 		return TurnResult.PLAYER_WIN
-	battleUI.update_hp_tags()
+	battleUI.update_downed()
 	play_turn() # go to the next turn
 	if escaping: # if escaping
 		turnQueue.empty() # end the round immediately
