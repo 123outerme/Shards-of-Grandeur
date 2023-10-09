@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://djlw8n7ljagv2"]
+[gd_scene load_steps=8 format=3 uid="uid://djlw8n7ljagv2"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://Themes/ListItemPanel/ListItemPanelTheme.tres" id="1_o51tf"]
 [ext_resource type="Script" path="res://Scripts/Menus/QuestsPanel/QuestSlotPanel.gd" id="2_6ihcm"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="2_ya8i3"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="4_l4ou6"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="5_b88iv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1gdb"]
+atlas = ExtResource("5_b88iv")
+region = Rect2(112, 56, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvwh7"]
+atlas = ExtResource("5_b88iv")
+region = Rect2(32, 56, 8, 8)
 
 [node name="QuestSlotPanel" type="Panel" groups=["QuestSlotPanel"]]
 custom_minimum_size = Vector2(1120, 76)
@@ -12,12 +21,27 @@ offset_bottom = 76.0
 theme = ExtResource("1_o51tf")
 script = ExtResource("2_6ihcm")
 
+[node name="PinButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -20.0
+offset_right = 48.0
+offset_bottom = 20.0
+grow_vertical = 2
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_u1gdb")
+texture_pressed = SubResource("AtlasTexture_tvwh7")
+stretch_mode = 0
+
 [node name="CenterQuestName" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_right = 316.0
+offset_left = 59.0
+offset_right = 359.0
 grow_vertical = 2
 alignment = 1
 
@@ -42,11 +66,11 @@ fit_content = true
 [node name="CenterProgress" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.304
-anchor_right = 0.304
+anchor_left = 0.384
+anchor_right = 0.384
 anchor_bottom = 1.0
-offset_left = -0.480011
-offset_right = 499.52
+offset_left = -56.08
+offset_right = 353.92
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -63,7 +87,7 @@ anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -450.0
+offset_left = -400.0
 offset_right = -20.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -84,5 +108,6 @@ custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Details"
 
+[connection signal="toggled" from="PinButton" to="." method="_on_pin_button_toggled"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/TurnInButton" to="." method="_on_turn_in_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]

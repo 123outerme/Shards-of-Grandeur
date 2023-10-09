@@ -29,11 +29,13 @@ static func StatusToString(s: Status) -> String:
 @export var quest: Quest = null
 @export var stepProgressCounts: Array[int] = [0]
 @export var currentStep: int = 0
+@export var pinned: bool = false
 
-func _init(i_quest = null, i_progress: Array[int] = [0], i_curStep = 0):
+func _init(i_quest = null, i_progress: Array[int] = [0], i_curStep = 0, i_pinned = false):
 	quest = i_quest
 	stepProgressCounts = i_progress
 	currentStep = i_curStep
+	pinned = i_pinned
 
 func get_current_status() -> Status:
 	if currentStep >= len(quest.steps):

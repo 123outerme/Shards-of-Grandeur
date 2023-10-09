@@ -62,6 +62,19 @@ func turn_in_cur_step(tracker: QuestTracker) -> int:
 		quests.erase(tracker)
 	return newLvs
 
+func get_sorted_trackers() -> Array[QuestTracker]:
+	var trackers: Array[QuestTracker] = []
+	trackers.append_array(quests)
+	trackers.sort_custom(sort_by_pinned)
+	return trackers
+
+func sort_by_pinned(a: QuestTracker, b: QuestTracker) -> bool:
+	if a.pinned and not b.pinned:
+		return true
+	if b.pinned and not a.pinned:
+		return false
+	return a.quest.questName.naturalnocasecmp_to(b.quest.questName) < 0 # compare names (including natural number comparisons)
+
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_name):

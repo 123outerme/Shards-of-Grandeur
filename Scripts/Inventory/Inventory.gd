@@ -64,9 +64,9 @@ func sort_by_equipped(a: InventorySlot, b: InventorySlot) -> bool:
 	if aEquipped and not bEquipped:
 		return true
 	if bEquipped and not aEquipped:
-		return false	
+		return false
 	return a.item.itemName.naturalnocasecmp_to(b.item.itemName) < 0 # compare names (including natural number comparisons)
-	
+
 
 func load_data(save_path):
 	var data = null
