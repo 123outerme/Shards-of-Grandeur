@@ -114,6 +114,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
 [connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="StatsPanel/Panel/MoveListPanel"]

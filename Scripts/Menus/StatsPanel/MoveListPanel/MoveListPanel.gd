@@ -1,6 +1,8 @@
 extends Panel
 class_name MoveListPanel
 
+signal move_details_visiblity_changed(visible: bool)
+
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
 @export var readOnly: bool = false
@@ -25,3 +27,7 @@ func load_move_list_panel():
 func _on_move_list_item_details_pressed(move: Move):
 	moveDetailsPanel.move = move
 	moveDetailsPanel.load_move_details_panel()
+	move_details_visiblity_changed.emit(true)
+
+func _on_move_details_panel_back_pressed():
+	move_details_visiblity_changed.emit(false)
