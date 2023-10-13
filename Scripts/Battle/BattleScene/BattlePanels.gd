@@ -7,6 +7,7 @@ class_name BattlePanels
 var inventoryWasVisible: bool = false
 @onready var questsMenu: QuestsMenu = get_node("QuestsPanelNode")
 var questsWereVisible: bool = false
+@onready var flowOfBattle: FlowOfBattle = get_node("FlowOfBattle")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

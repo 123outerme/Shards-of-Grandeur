@@ -23,6 +23,7 @@ enum Menu {
 @export var menu: Menu = Menu.SUMMON
 @export var prevMenu: Menu = Menu.SUMMON
 @export var commandingMinion: bool = false
+@export var fobButtonEnabled: bool = true
 
 @export_category("BattleData - Turns")
 @export var turnNumber: int = 1
@@ -42,6 +43,7 @@ func _init(
 	i_menu = Menu.SUMMON,
 	i_prevMenu = Menu.SUMMON,
 	i_cmdMinion = false,
+	i_fobBtnEnabled = true,
 	i_turnNumber = 1,
 	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
@@ -54,6 +56,7 @@ func _init(
 	menu = i_menu
 	prevMenu = i_prevMenu
 	commandingMinion = i_cmdMinion
+	fobButtonEnabled = i_fobBtnEnabled
 	turnNumber = i_turnNumber
 	turnList = i_turnList
 	rewards = i_rewards

@@ -5,11 +5,18 @@ class_name FlowOfBattle
 
 var battleStatsPanelScene = preload("res://Prefabs/Battle/BattleStatsPanel.tscn")
 
+@onready var fobButton: Button = get_node("ToggleFobButton")
 @onready var fobTabs: TabContainer = get_node("TabContainer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func set_fob_button_enabled(enabled: bool = true):
+	fobButton.disabled = not enabled
+
+func get_fob_button_enabled() -> bool:
+	return fobButton.disabled
 
 func _on_toggle_fob_button_toggled(button_pressed: bool):
 	fobTabs.visible = button_pressed
@@ -24,3 +31,4 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 	else:
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
+		set_fob_button_enabled(false)

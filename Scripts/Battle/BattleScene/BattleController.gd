@@ -16,6 +16,7 @@ var battleEnded: bool = false
 @onready var enemyCombatant3: CombatantNode = get_node("TileMap/EnemyCombatant3")
 
 @onready var battleUI: BattleUI = get_node("BattleCam")
+@onready var battlePanels: BattlePanels = get_node("BattleCam/UIPanels")
 @onready var turnExecutor: TurnExecutor = get_node("TurnExecutor")
 
 # Called when the node enters the scene tree for the first time.
@@ -109,6 +110,7 @@ func save_data(save_path):
 		state.enemyCombatant2 = enemyCombatant2.combatant
 		state.enemyCombatant3 = enemyCombatant3.combatant
 		state.commandingMinion = battleUI.commandingMinion
+		state.fobButtonEnabled = battlePanels.flowOfBattle.get_fob_button_enabled()
 		state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
 		state.save_data(save_path, state)
 
@@ -116,6 +118,7 @@ func load_data(save_path):
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
+		battlePanels.flowOfBattle.set_fob_button_enabled(state.fobButtonEnabled)
 		turnExecutor.turnQueue = TurnQueue.new(state.turnList)
 		if not battleLoaded:
 			battleLoaded = true

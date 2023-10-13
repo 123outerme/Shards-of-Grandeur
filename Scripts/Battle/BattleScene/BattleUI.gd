@@ -16,6 +16,7 @@ var playerWins: bool = true
 @onready var results: Results = get_node("BattleTextBox/TextContainer/MarginContainer/Results")
 @onready var battleComplete: BattleCompleteMenu = get_node("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
 
+@onready var battlePanels: BattlePanels = get_node("UIPanels")
 @onready var inventoryPanel: InventoryMenu = get_node("UIPanels/InventoryPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UIPanels/StatsPanelNode")
 
@@ -33,6 +34,7 @@ func apply_menu_state():
 	summonMenu.visible = menuState == BattleState.Menu.SUMMON
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
+		battlePanels.flowOfBattle.set_fob_button_enabled() # show the FoB button again
 	
 	allCommands.visible = menuState == BattleState.Menu.ALL_COMMANDS or menuState == BattleState.Menu.ITEMS
 	if allCommands.visible:
@@ -104,6 +106,7 @@ func round_complete():
 		if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
 			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.AFTER_ROUND)
 	
+	battlePanels.flowOfBattle.set_fob_button_enabled()
 	return_to_player_command()
 
 func end_battle():
