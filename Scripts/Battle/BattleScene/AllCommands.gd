@@ -27,10 +27,7 @@ func _on_guard_button_pressed():
 	battleUI.complete_command()
 
 func _on_escape_button_pressed():
-	var allCombatants: Array[CombatantNode] = []
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatants.append(combatantNode)
+	var allCombatants: Array[CombatantNode] = battleUI.battleController.get_all_combatant_nodes()
 	
 	commandingCombatant.combatant.command = BattleCommand.command_escape(allCombatants)
 	battleUI.complete_command()

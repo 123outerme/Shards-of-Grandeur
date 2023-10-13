@@ -60,8 +60,7 @@ func apply_menu_state():
 		battleComplete.playerWins = playerWins
 		battleComplete.rewards = battleController.state.rewards
 		if playerWins and len(battleComplete.rewards) == 0:
-			for node in battleController.combatantNodes:
-				var combatantNode: CombatantNode = node as CombatantNode
+			for combatantNode in battleController.get_all_combatant_nodes():
 				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
 					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
 					if dropIdx > -1:
@@ -89,21 +88,19 @@ func complete_command():
 		set_menu_state(BattleState.Menu.RESULTS)
 
 func update_hp_tags():
-	for node in battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	for combatantNode in battleController.get_all_combatant_nodes():
 		combatantNode.update_hp_tag()
 
 func update_downed():
-	for node in battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	for combatantNode in battleController.get_all_combatant_nodes():
 		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		combatantNode.visible = combatantNode.is_alive()
 
 func round_complete():
 	battleController.state.turnNumber += 1
-	for node in battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
+	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
 			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.AFTER_ROUND)
 	

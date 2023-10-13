@@ -27,10 +27,8 @@ func load_targets():
 	
 	commandText.text += '.[/center]'
 	
-	var allCombatantNodes: Array[CombatantNode] = []
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatantNodes.append(combatantNode)
+	var allCombatantNodes: Array[CombatantNode] = battleUI.battleController.get_all_combatant_nodes()
+	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
 			combatantNode.toggled.connect(_on_combatant_selected)
 		combatantNode.update_select_btn(false)
@@ -44,8 +42,7 @@ func load_targets():
 	
 func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):
 	var names: Array[String] = []
-	for node in battleUI.battleController.combatantNodes:
-		var cNode: CombatantNode = node as CombatantNode
+	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if singleSelect and combatantNode != null:
 			if button_pressed and combatantNode != cNode:
 				cNode.set_selected(false) # single select: deselect anything not just selected
@@ -66,15 +63,13 @@ func update_targets_listing(button_pressed: bool = false, combatantNode: Combata
 	
 func update_confirm_btn():
 	var confirmDisabled: bool = true
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	for combatantNode in battleUI.battleController.get_all_combatant_nodes():
 		if combatantNode.is_selected():
 			confirmDisabled = false
 	confirmButton.disabled = confirmDisabled
 
 func reset_targets():
-	for node in battleUI.battleController.combatantNodes:
-		var cNode: CombatantNode = node as CombatantNode
+	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if cNode.is_alive():
 			cNode.toggled.disconnect(_on_combatant_selected)
 			cNode.set_selected(false)
@@ -86,8 +81,7 @@ func _on_combatant_selected(button_pressed: bool, combatantNode: CombatantNode):
 
 func _on_confirm_button_pressed():
 	battleUI.commandingCombatant.combatant.command.targetPositions = []
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	for combatantNode in battleUI.battleController.get_all_combatant_nodes():
 		if combatantNode.is_selected():
 			battleUI.commandingCombatant.combatant.command.targetPositions.append(combatantNode.battlePosition)
 	

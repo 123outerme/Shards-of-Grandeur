@@ -16,27 +16,23 @@ var escaping: bool = false
 
 func start_simulation():
 	var combatants: Array[Combatant] = []
-	var allCombatantNodes: Array[CombatantNode] = []
-	for node in battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatantNodes.append(combatantNode)
+	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
 			if combatantNode.role == CombatantNode.Role.ENEMY:
 				combatantNode.get_command(allCombatantNodes)
 			combatants.append(combatantNode.combatant)
+			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			if combatantNode.combatant.statusEffect != null:
 				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.BEFORE_ROUND)
 	turnQueue = TurnQueue.new(combatants)
 	play_turn() # start the first turn
 
 func play_turn():
-	var allCombatants: Array[CombatantNode] = []
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatants.append(combatantNode)
+	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
 	if combatant != null:	
+		combatant.command.get_targets_from_combatant_nodes(allCombatants) # make sure to get all commands before applying statuses
 		if combatant.statusEffect != null:
 			combatant.statusEffect.apply_status(combatant, StatusEffect.ApplyTiming.BEFORE_DMG_CALC)
 		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
@@ -48,15 +44,12 @@ func play_turn():
 		battleUI.round_complete()
 	
 func update_turn_text():
-	var allCombatants: Array[CombatantNode] = []
-	for node in battleUI.battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
-		allCombatants.append(combatantNode)
+	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
 	combatant.command.get_targets_from_combatant_nodes(allCombatants)
 	var text: String = combatant.command.get_command_results(combatant)
 	if combatant.statusEffect != null:
-		text += combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+		text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
 	battleUI.results.show_text(text)
 
 func finish_turn() -> TurnResult:
@@ -64,8 +57,7 @@ func finish_turn() -> TurnResult:
 	lastCombatant.command = null # remove the command from the previous turn's combatant
 	var alliesDown: int = 0
 	var enemiesDown: int = 0
-	for node in battleController.combatantNodes:
-		var combatantNode: CombatantNode = node as CombatantNode
+	for combatantNode in battleController.get_all_combatant_nodes():
 		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		if not combatantNode.is_alive(): # if combatant is not alive (after being updated)

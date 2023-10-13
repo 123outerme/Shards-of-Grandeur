@@ -90,7 +90,13 @@ func summon_minion(shard: Shard):
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
-	
+
+func get_all_combatant_nodes() -> Array[CombatantNode]:
+	var allCombatantNodes: Array[CombatantNode] = []
+	for node in combatantNodes:
+		allCombatantNodes.append(node as CombatantNode)
+	return allCombatantNodes
+
 func save_data(save_path):
 	if battleEnded:
 		state.delete_data(SaveHandler.save_file_location) # same as save_path in save/load data functions
