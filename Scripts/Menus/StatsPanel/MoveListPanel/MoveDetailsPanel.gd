@@ -13,7 +13,6 @@ signal back_pressed
 @onready var moveRole: RichTextLabel = get_node("Panel/MoveRole")
 @onready var moveStatChanges: RichTextLabel = get_node("Panel/MoveStatChanges")
 @onready var moveStatusEffect: RichTextLabel = get_node("Panel/MoveStatusEffect")
-@onready var moveStatusChance: RichTextLabel = get_node("Panel/MoveStatusChance")
 @onready var moveDescription: RichTextLabel = get_node("Panel/MoveDescription")
 
 # Called when the node enters the scene tree for the first time.
@@ -42,8 +41,10 @@ func load_move_details_panel():
 			if idx == len(multipliers) - 2:
 				moveStatChanges.text += ' and'
 			moveStatChanges.text += ' '
-	#moveStatusEffect.text = ''
-	#moveStatusChance.text = ''
+	if move.statusEffect != null:
+		moveStatusEffect.text = '[center]Applies' + move.statusEffect.status_effect_to_string() + ' (' + String.num(move.statusChance, 0) + '% Chance)[/center]'
+	else:
+		moveStatusEffect.text = ''
 	moveDescription.text = move.description
 	
 func _on_back_button_pressed():

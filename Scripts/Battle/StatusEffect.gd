@@ -5,10 +5,13 @@ enum Type {
 	NONE = 0, # no effect
 	EXHAUSTION = 1, # move-last
 	BLEED = 2, # damage over time
-	CURSE_OF_RECOIL = 3, # take recoil damage after every damaging move (+ increases damage dealt??)
+	BESERK = 3, # take recoil damage after every damaging move - other names could be Reckless, Overextertion, etc.
 	WEAKNESS = 4, # reduces outgoing physical damage
 	NEGATED = 5, # reduces outgoing magic damage
 	JINXED = 6, # reduces outgoing affinity damage
+	MANIC = 7, # positive; move-first
+	REFLECT = 8, # TODO better name; causes recoil damage when hit with attack
+	INTERCEPTION = 9, # TODO better name; "attracts" a percentage of damage dealt to allies to self
 	# other ones could be positive effects?
 }
 
@@ -22,8 +25,9 @@ enum Potency {
 enum ApplyTiming {
 	BEFORE_ROUND = 0,
 	BEFORE_DMG_CALC = 1,
-	AFTER_DMG_CALC = 2,
-	AFTER_ROUND = 3
+	DURING_DMG_CALC = 2,
+	AFTER_DMG_CALC = 3,
+	AFTER_ROUND = 4,
 }
 
 static func status_type_to_string(t: Type) -> String:
@@ -34,14 +38,20 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Exhaustion'
 		Type.BLEED:
 			return 'Bleed'
-		Type.CURSE_OF_RECOIL:
-			return 'Curse of Recoil'
+		Type.BESERK:
+			return 'Beserk'
 		Type.WEAKNESS:
 			return 'Weakness'
 		Type.NEGATED:
 			return 'Negated'
 		Type.JINXED:
 			return 'Jinxed'
+		Type.MANIC:
+			return 'Manic'
+		Type.REFLECT:
+			return 'Reflect'
+		Type.INTERCEPTION:
+			return 'Interception'
 	return 'UNKNOWN'
 
 static func potency_to_string(p: Potency) -> String:
@@ -78,3 +88,6 @@ func apply_status(combatant: Combatant, timing: ApplyTiming): # each status effe
 
 func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
 	return '' # each status effect needs to implement this separately
+
+func status_effect_to_string() -> String:
+	return potency_to_string(potency) + ' ' + status_type_to_string(type)

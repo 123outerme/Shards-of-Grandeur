@@ -1,5 +1,5 @@
 extends StatusEffect
-class_name CurseOfRecoil
+class_name Beserk
 
 var percentDamageDict: Dictionary = {
 	Potency.NONE: 0.0,
