@@ -5,7 +5,7 @@ enum Type {
 	NONE = 0, # no effect
 	EXHAUSTION = 1, # move-last
 	BLEED = 2, # damage over time
-	BESERK = 3, # take recoil damage after every damaging move - other names could be Reckless, Overextertion, etc.
+	BERSERK = 3, # take recoil damage after every damaging move - other names could be Reckless, Overextertion, etc.
 	WEAKNESS = 4, # reduces outgoing physical damage
 	NEGATED = 5, # reduces outgoing magic damage
 	JINXED = 6, # reduces outgoing affinity damage
@@ -38,8 +38,8 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Exhaustion'
 		Type.BLEED:
 			return 'Bleed'
-		Type.BESERK:
-			return 'Beserk'
+		Type.BERSERK:
+			return 'Berserk'
 		Type.WEAKNESS:
 			return 'Weakness'
 		Type.NEGATED:

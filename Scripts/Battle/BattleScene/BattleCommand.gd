@@ -95,8 +95,11 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	for target in targets:
 		var damage = calculate_damage(user, target)
 		target.currentHp = min(max(target.currentHp - damage, 0), target.stats.maxHp) # bound to be at least 0 and no more than max HP
+		if type == Type.MOVE and move.statusChance >= randomNum:
+			target.statusEffect = move.statusEffect
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
+		
 	return false
 
 # logistic curve designed to dampen early-level ratio differences (ie lv 1 to lv 2 is a 2x increase, lv 10 to lv 11 is a 1.1x)

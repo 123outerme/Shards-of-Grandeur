@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Move" load_steps=6 format=3 uid="uid://poj2favclae8"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Move.gd" id="1_gg36t"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatChanges.gd" id="2_crxuv"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatusEffects/Berserk.gd" id="3_vei2f"]
+
+[sub_resource type="Resource" id="Resource_m5uq4"]
+script = ExtResource("2_crxuv")
+physAttackMultiplier = 1.5
+magicAttackMultiplier = 1.5
+affinityMultiplier = 1.5
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_kvw7b"]
+script = ExtResource("3_vei2f")
+type = 3
+potency = 1
+turnsLeft = 3
+
+[resource]
+script = ExtResource("1_gg36t")
+moveName = "Battle Trance"
+requiredLv = 1
+role = 3
+power = 0
+category = 2
+targets = 1
+statChanges = SubResource("Resource_m5uq4")
+statusEffect = SubResource("Resource_kvw7b")
+statusChance = 1.0
+description = "Entering a trance-like state, the user becomes blinded with rage. All attacking moves performed for 3 turns are dealt with a reckless amount of power behind them."

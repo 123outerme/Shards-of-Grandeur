@@ -25,6 +25,8 @@ func start_simulation():
 			if combatantNode.role == CombatantNode.Role.ENEMY:
 				combatantNode.get_command(allCombatantNodes)
 			combatants.append(combatantNode.combatant)
+			if combatantNode.combatant.statusEffect != null:
+				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.BEFORE_ROUND)
 	turnQueue = TurnQueue.new(combatants)
 	play_turn() # start the first turn
 
@@ -34,8 +36,12 @@ func play_turn():
 		var combatantNode: CombatantNode = node as CombatantNode
 		allCombatants.append(combatantNode)
 	var combatant: Combatant = turnQueue.peek_next()
-	if combatant != null:
+	if combatant != null:	
+		if combatant.statusEffect != null:
+			combatant.statusEffect.apply_status(combatant, StatusEffect.ApplyTiming.BEFORE_DMG_CALC)
 		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
+		if combatant.statusEffect != null:
+			combatant.statusEffect.apply_status(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
 		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
@@ -48,7 +54,10 @@ func update_turn_text():
 		allCombatants.append(combatantNode)
 	var combatant: Combatant = turnQueue.peek_next()
 	combatant.command.get_targets_from_combatant_nodes(allCombatants)
-	battleUI.results.show_text(combatant.command.get_command_results(combatant))
+	var text: String = combatant.command.get_command_results(combatant)
+	if combatant.statusEffect != null:
+		text += combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+	battleUI.results.show_text(text)
 
 func finish_turn() -> TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue

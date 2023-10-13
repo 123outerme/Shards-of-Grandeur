@@ -1,5 +1,5 @@
 extends StatusEffect
-class_name Beserk
+class_name Berserk
 
 var percentDamageDict: Dictionary = {
 	Potency.NONE: 0.0,
@@ -12,7 +12,7 @@ func _init(
 	i_potency: Potency = Potency.NONE,
 	i_turnsLeft = 0
 ):
-	super(Type.CURSE_OF_RECOIL, i_potency, i_turnsLeft)
+	super(Type.BERSERK, i_potency, i_turnsLeft)
 
 func get_recoil_damage(combatant: Combatant) -> int:
 	var damage: int = 0
@@ -23,7 +23,7 @@ func get_recoil_damage(combatant: Combatant) -> int:
 	return roundi(damage * percentDamageDict[potency])
 
 func apply_status(combatant: Combatant, timing: ApplyTiming):
-	if timing == ApplyTiming.AFTER_DMG_CALC:
+	if timing == ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant) > 0:
 		combatant.currentHp = max(combatant.currentHp - get_recoil_damage(combatant), 1) # recoil can never knock you out!
 	super.apply_status(combatant, timing)
 

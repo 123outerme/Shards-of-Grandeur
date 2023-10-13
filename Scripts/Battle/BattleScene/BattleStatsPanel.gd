@@ -6,6 +6,7 @@ class_name BattleStatsPanel
 
 @onready var combatantName: RichTextLabel = get_node("CombatantName")
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
+@onready var statusEffectText: RichTextLabel = get_node("StatusEffect")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,3 +26,7 @@ func load_battle_stats_panel():
 	statLinePanel.curHp = combatant.currentHp
 	statLinePanel.statChanges = combatant.statChanges
 	statLinePanel.load_statline_panel()
+	if combatant.statusEffect != null:
+		statusEffectText.text = '[center]Experiencing ' + combatant.statusEffect.status_effect_to_string() + '[/center]'
+	else:
+		statusEffectText.text = ''

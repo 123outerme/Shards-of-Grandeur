@@ -102,6 +102,11 @@ func update_downed():
 
 func round_complete():
 	battleController.state.turnNumber += 1
+	for node in battleController.combatantNodes:
+		var combatantNode: CombatantNode = node as CombatantNode
+		if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
+			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.AFTER_ROUND)
+	
 	return_to_player_command()
 
 func end_battle():

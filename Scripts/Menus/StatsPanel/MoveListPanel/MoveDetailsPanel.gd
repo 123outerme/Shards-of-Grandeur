@@ -42,7 +42,7 @@ func load_move_details_panel():
 				moveStatChanges.text += ' and'
 			moveStatChanges.text += ' '
 	if move.statusEffect != null:
-		moveStatusEffect.text = '[center]Applies' + move.statusEffect.status_effect_to_string() + ' (' + String.num(move.statusChance, 0) + '% Chance)[/center]'
+		moveStatusEffect.text = '[center]Applies ' + move.statusEffect.status_effect_to_string() + ' (' + String.num(move.statusChance * 100.0, 0) + '% Chance)[/center]'
 	else:
 		moveStatusEffect.text = ''
 	moveDescription.text = move.description

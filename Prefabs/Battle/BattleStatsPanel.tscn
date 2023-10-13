@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcegueepscj4j"]
+[gd_scene load_steps=6 format=3 uid="uid://bcegueepscj4j"]
 
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://Themes/NestedUI/PopupUI.tres" id="1_2bqyy"]
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://Prefabs/UI/Stats/StatLinePanel.tscn" id="2_8a5kd"]
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleStatsPanel.gd" id="2_im2eg"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_oa2h7"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="5_i4t0w"]
 
 [node name="BattleStatsPanel" type="Panel" groups=["BattleStatsPanel"]]
 anchors_preset = 15
@@ -40,3 +41,20 @@ offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 readOnly = true
+
+[node name="StatusEffect" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -583.5
+offset_top = -266.0
+offset_right = 583.5
+offset_bottom = -226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_i4t0w")
+bbcode_enabled = true
+text = "[center]Experiencing Overwhelming Exhaustion[/center]"
