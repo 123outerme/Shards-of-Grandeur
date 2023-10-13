@@ -1,5 +1,80 @@
 extends Resource
 class_name StatusEffect
 
-func _init():
-	pass
+enum Type {
+	NONE = 0, # no effect
+	EXHAUSTION = 1, # move-last
+	BLEED = 2, # damage over time
+	CURSE_OF_RECOIL = 3, # take recoil damage after every damaging move (+ increases damage dealt??)
+	WEAKNESS = 4, # reduces outgoing physical damage
+	NEGATED = 5, # reduces outgoing magic damage
+	JINXED = 6, # reduces outgoing affinity damage
+	# other ones could be positive effects?
+}
+
+enum Potency {
+	NONE = 0,
+	WEAK = 1,
+	STRONG = 2,
+	OVERWHELMING = 3,
+}
+
+enum ApplyTiming {
+	BEFORE_ROUND = 0,
+	BEFORE_DMG_CALC = 1,
+	AFTER_DMG_CALC = 2,
+	AFTER_ROUND = 3
+}
+
+static func status_type_to_string(t: Type) -> String:
+	match t:
+		Type.NONE:
+			return 'None'
+		Type.EXHAUSTION:
+			return 'Exhaustion'
+		Type.BLEED:
+			return 'Bleed'
+		Type.CURSE_OF_RECOIL:
+			return 'Curse of Recoil'
+		Type.WEAKNESS:
+			return 'Weakness'
+		Type.NEGATED:
+			return 'Negated'
+		Type.JINXED:
+			return 'Jinxed'
+	return 'UNKNOWN'
+
+static func potency_to_string(p: Potency) -> String:
+	match p:
+		Potency.NONE:
+			return 'None'
+		Potency.WEAK:
+			return 'Weak'
+		Potency.STRONG:
+			return 'Strong'
+		Potency.OVERWHELMING:
+			return 'Overwhelming'
+	return 'UNKNOWN'
+
+@export var type: Type = Type.NONE
+@export var potency: Potency = Potency.NONE
+@export var turnsLeft: int = 0
+
+func _init(
+	i_type: Type = Type.NONE,
+	i_potency: Potency = Potency.NONE,
+	i_turnsLeft = 0,
+):
+	type = i_type
+	potency = i_potency
+	turnsLeft = i_turnsLeft
+
+func apply_status(combatant: Combatant, timing: ApplyTiming): # each status effect needs to implement this then call super's version
+	if timing == ApplyTiming.AFTER_ROUND:
+		turnsLeft -= 1
+		if turnsLeft == 0:
+			type = Type.NONE
+			potency = Potency.NONE
+
+func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
+	return '' # each status effect needs to implement this separately
