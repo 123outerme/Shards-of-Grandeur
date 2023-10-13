@@ -24,7 +24,7 @@ func load_move_details_panel():
 	if move == null:
 		visible = false
 		return
-	
+
 	visible = true
 	moveName.text = '[center]' + move.moveName + '[/center]'
 	movePower.text = str(move.power) + ' Power'

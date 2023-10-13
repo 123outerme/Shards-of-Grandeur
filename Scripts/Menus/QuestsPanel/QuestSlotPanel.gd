@@ -24,7 +24,7 @@ func load_quest_slot_panel():
 	questName.text = questTracker.quest.questName
 	stepName.text = curStep.name
 	progress.text = questTracker.get_step_status_str(curStep)
-	turnInButton.visible = curStep.turnInName == turnInName
+	turnInButton.visible = curStep.turnInName == turnInName and questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP
 
 func _on_pin_button_toggled(button_pressed: bool):
 	questTracker.pinned = button_pressed
