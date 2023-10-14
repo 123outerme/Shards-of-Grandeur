@@ -29,3 +29,9 @@ func apply_status(combatant: Combatant, timing: ApplyTiming):
 	
 func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
 	return ''
+
+func copy() -> StatusEffect:
+	return Jinxed.new(
+		potency,
+		turnsLeft
+	)

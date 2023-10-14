@@ -25,3 +25,9 @@ func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
 	if timing == ApplyTiming.AFTER_ROUND:
 		return combatant.disp_name() + ' takes ' + str(get_bleed_damage(combatant)) + ' bleed damage from ' + status_effect_to_string() + '!'
 	return ''
+
+func copy() -> StatusEffect:
+	return Bleed.new(
+		potency,
+		turnsLeft
+	)

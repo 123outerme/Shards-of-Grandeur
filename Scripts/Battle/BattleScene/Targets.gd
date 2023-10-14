@@ -25,6 +25,7 @@ func load_targets():
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
 		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
 	
+	singleSelect = not BattleCommand.is_command_multi_target(targets)
 	commandText.text += '.[/center]'
 	
 	var allCombatantNodes: Array[CombatantNode] = battleUI.battleController.get_all_combatant_nodes()
@@ -35,7 +36,7 @@ func load_targets():
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
 	for targetableCombatant in targetableCombatants:
-		targetableCombatant.update_select_btn(true, BattleCommand.is_command_multi_target(targets))
+		targetableCombatant.update_select_btn(true, not singleSelect)
 	
 	update_targets_listing()
 	update_confirm_btn()
@@ -43,9 +44,12 @@ func load_targets():
 func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):
 	var names: Array[String] = []
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
-		if singleSelect and combatantNode != null:
-			if button_pressed and combatantNode != cNode:
-				cNode.set_selected(false) # single select: deselect anything not just selected
+		if combatantNode != null:
+			if singleSelect:
+				if button_pressed and combatantNode != cNode:
+					cNode.set_selected(false) # single select: deselect anything not just selected
+		if not singleSelect and cNode.is_alive() and cNode.selectCombatantBtn.visible:
+			cNode.set_selected(true)
 		if cNode.is_selected():
 			names.append(cNode.combatant.stats.displayName)
 		
@@ -56,7 +60,9 @@ func update_targets_listing(button_pressed: bool = false, combatantNode: Combata
 		for i in range(len(names)):
 			listing += names[i]
 			if len(names) > 1 and i < len(names) - 1: # if multiple names and not at the last name
-				listing += ', '
+				if len(names) > 2:
+					listing += ','
+				listing += ' '
 				if i == len(names) - 2: # if this is the second-to-last item, append "and" to the string for the last
 					listing += 'and '
 		targetsListing.text = '[center]' + listing + '[/center]'

@@ -123,6 +123,10 @@ func load_data(save_path):
 		if not battleLoaded:
 			battleLoaded = true
 
+func reset_intermediate_state_strs():
+	state.calcdStateStrings = []
+	state.calcdStateIndex = 0
+
 func end_battle():
 	PlayerResources.copy_combatant_to_info(PlayerResources.playerInfo.combatant)
 	battleEnded = true

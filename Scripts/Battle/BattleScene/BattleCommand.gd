@@ -95,8 +95,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	for target in targets:
 		var damage = calculate_damage(user, target)
 		target.currentHp = min(max(target.currentHp - damage, 0), target.stats.maxHp) # bound to be at least 0 and no more than max HP
-		if type == Type.MOVE and move.statusChance >= randomNum:
-			target.statusEffect = move.statusEffect
+		if type == Type.MOVE and move.statusChance >= randomNum and move.statusEffect != null and target.statusEffect == null:
+			target.statusEffect = move.statusEffect.copy()
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
 	if type == Type.USE_ITEM:
@@ -159,7 +159,7 @@ func get_command_results(user: Combatant) -> String:
 		elif move.power < 0:
 			resultsText += ', healing '
 		else:
-			resultsText += '' # TODO consider what to say with non-damaging buffs/debuffs	
+			resultsText += ', '
 	
 	if type == Type.USE_ITEM:
 		actionTargets = slot.item.battleTargets
@@ -183,8 +183,15 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
-					if type == Type.MOVE and move.statusChance >= randomNum:
+					if type == Type.MOVE and move.statusChance >= randomNum and move.statusEffect != null:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
+				else:
+					if type == Type.MOVE and move.statusEffect != null:
+						if move.statusChance >= randomNum and target.statusEffect.type == move.statusEffect.type:
+							resultsText += 'afflicting '
+						else:
+							resultsText += 'failing to afflict '
+						resultsText += move.statusEffect.status_effect_to_string() + ' on ' + targetName
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
 					resultsText += '... insult to injury on ' + targetName

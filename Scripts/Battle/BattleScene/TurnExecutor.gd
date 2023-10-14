@@ -27,7 +27,6 @@ func start_simulation():
 			if combatantNode.combatant.statusEffect != null:
 				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.BEFORE_ROUND)
 	turnQueue = TurnQueue.new(combatants)
-	play_turn() # start the first turn
 
 func play_turn():
 	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()

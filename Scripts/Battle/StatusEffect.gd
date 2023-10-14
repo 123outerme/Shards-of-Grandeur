@@ -85,9 +85,17 @@ func apply_status(combatant: Combatant, timing: ApplyTiming): # each status effe
 		if turnsLeft == 0:
 			type = Type.NONE
 			potency = Potency.NONE
+			combatant.statusEffect = null
 
 func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
 	return '' # each status effect needs to implement this separately
 
 func status_effect_to_string() -> String:
 	return potency_to_string(potency) + ' ' + status_type_to_string(type)
+
+func copy() -> StatusEffect:
+	return StatusEffect.new(
+		type,
+		potency,
+		turnsLeft
+	)

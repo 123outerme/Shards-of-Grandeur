@@ -33,3 +33,9 @@ func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
 		return combatant.disp_name() + "'s " + StatusEffect.potency_to_string(potency) \
 				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + str(get_recoil_damage(combatant)) + ' recoil damage!'
 	return ''
+
+func copy() -> StatusEffect:
+	return Berserk.new(
+		potency,
+		turnsLeft
+	)

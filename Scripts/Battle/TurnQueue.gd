@@ -49,6 +49,11 @@ func combatant_stable_sort(): # insertion sort - there will never be more than 5
 '''
 
 func sort_turns(a: Combatant, b: Combatant) -> bool:
+	if a.get_exhaustion_level() < b.get_exhaustion_level():
+		return true # a is less exhausted than b
+	if a.get_exhaustion_level() > b.get_exhaustion_level():
+		return false # a is more exhausted than b
+	# otherwise, exhaustion levels are the same
 	if a.stats.speed > b.stats.speed:
 		return true # a goes before b
 	if a.stats.speed < b.stats.speed:

@@ -64,6 +64,11 @@ func save_name() -> String:
 func update_downed():
 	downed = currentHp <= 0
 
+func get_exhaustion_level() -> StatusEffect.Potency:
+	if statusEffect == null or statusEffect.type != StatusEffect.Type.EXHAUSTION:
+		return StatusEffect.Potency.NONE # if no status or not exhaustion
+	return statusEffect.potency # return exhaustion potency
+
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level
 	if lvDiff > 0:

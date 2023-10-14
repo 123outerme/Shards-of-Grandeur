@@ -58,6 +58,7 @@ func apply_menu_state():
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
 			or menuState == BattleState.Menu.POST_ROUND
 	if results.visible:
+		battleController.reset_intermediate_state_strs()
 		battleController.turnExecutor.update_turn_text()
 		return # returns specifically here because of skipping post-round text
 		
@@ -85,7 +86,9 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 	if menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND or menuState == BattleState.Menu.POST_ROUND:
 		var newMenuState: BattleState.Menu = BattleState.Menu.ALL_COMMANDS # default: advance from PRE_BATTLE to ALL_COMMANDS
 		if menuState == BattleState.Menu.PRE_ROUND:
-			newMenuState = BattleState.Menu.RESULTS
+			set_menu_state(BattleState.Menu.RESULTS) # prevent recursion by just setting here
+			battleController.turnExecutor.play_turn() # start the first turn
+			return
 		if menuState == BattleState.Menu.POST_ROUND:
 			if result != TurnExecutor.TurnResult.NOTHING:
 				newMenuState = BattleState.Menu.BATTLE_COMPLETE
