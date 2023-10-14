@@ -3,9 +3,10 @@ class_name TurnQueue
 
 @export var combatants: Array[Combatant] = []
 
-func _init(i_combatants: Array[Combatant] = []):
+func _init(i_combatants: Array[Combatant] = [], sort: bool = true):
 	combatants = i_combatants
-	reload()
+	if sort:
+		reload()
 
 func push(combatant: Combatant):
 	combatants.append(combatant)

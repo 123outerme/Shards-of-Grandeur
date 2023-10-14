@@ -183,11 +183,14 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
+					if type == Type.MOVE and move.statusChance >= randomNum:
+						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
 					resultsText += '... insult to injury on ' + targetName
 				else:
 					resultsText += '... but too little, too late for ' + target.disp_name() # don't use 'self'
+		
 			if i < len(targets) - 1:
 				if len(targets) > 2:
 					resultsText += ','

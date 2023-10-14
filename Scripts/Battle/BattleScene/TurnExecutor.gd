@@ -42,7 +42,7 @@ func play_turn():
 		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
-		battleUI.round_complete()
+		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 	
 func update_turn_text() -> bool:
 	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()

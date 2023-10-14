@@ -40,8 +40,8 @@ func load_into_battle():
 		enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 		enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
 		
-		var rngBeginnerNoEnemy: float = randf() if playerCombatant.combatant.stats.level < 10 else 1.0
-		# if level < 10, give a static 50% chance to not have a second combatant, before team table calc
+		var rngBeginnerNoEnemy: float = randf() - 0.3 + (0.05 * max(playerCombatant.combatant.stats.level, 6)) if playerCombatant.combatant.stats.level < 10 else 1.0
+		# if level < 10, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
 		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
@@ -50,8 +50,8 @@ func load_into_battle():
 		else:
 			enemyCombatant2.combatant = null
 		
-		rngBeginnerNoEnemy = randf() if playerCombatant.combatant.stats.level < 15 else 1.0
-		# if level < 15, give a static 50% chance to not have a third combatant, before team table calc
+		rngBeginnerNoEnemy = randf() - 0.6 + (0.1 * max(playerCombatant.combatant.stats.level, 6)) if playerCombatant.combatant.stats.level < 15 else 1.0
+		# if level < 15, give a 0% chance to have a third combatant + 10% per level after 1 up to 50%, before team table calc
 		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 			enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
@@ -119,7 +119,7 @@ func load_data(save_path):
 	if newState != null:
 		state = newState
 		battlePanels.flowOfBattle.set_fob_button_enabled(state.fobButtonEnabled)
-		turnExecutor.turnQueue = TurnQueue.new(state.turnList)
+		turnExecutor.turnQueue = TurnQueue.new(state.turnList, false)
 		if not battleLoaded:
 			battleLoaded = true
 
