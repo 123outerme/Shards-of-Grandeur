@@ -9,7 +9,7 @@ func _init(
 ):
 	super(Type.EXHAUSTION, i_potency, i_turnsLeft)
 
-func apply_status(combatant: Combatant, timing: ApplyTiming):
+func apply_status(_combatant: Combatant, _timing: ApplyTiming):
 	pass
 	
 func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:

@@ -16,7 +16,7 @@ enum Category {
 @export_category("Stats - Statline")
 @export var level: int = 1
 @export var experience: int = 0
-@export var maxHp: int = 20
+@export var maxHp: int = 50
 @export var physAttack: int = 1
 @export var magicAttack: int = 1
 @export var resistance: int = 1
@@ -37,7 +37,7 @@ func _init(
 	i_saveName = 'uninstantiated_entity',
 	i_level = 1,
 	i_exp = 0,
-	i_maxHp = 20,
+	i_maxHp = 50,
 	i_physAttack = 1,
 	i_magicAttack = 1,
 	i_resistance = 1,
@@ -85,7 +85,7 @@ static func calculate_base_stats(oldStats: Stats, newLv: int) -> Stats:
 	)
 
 static func calculate_max_hp(lv: int) -> int:
-	var hp = 20
+	var hp = 50
 	for i in range(lv):
 		hp += hp_gain(i)
 	return hp

@@ -135,7 +135,7 @@ func _on_turn_in_button_pressed():
 	npcTalkBtns.visible = false
 
 func _on_inventory_panel_node_item_used(slot):
-	pass # TODO: add a little display to explain you used an item, what it did/is doing, and tell you if that was the last
+	pass # TODO: if Shard, trigger learning a move (or adjusting combatant's moveset?)
 
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible

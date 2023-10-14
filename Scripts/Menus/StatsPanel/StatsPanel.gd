@@ -47,5 +47,5 @@ func _on_back_button_pressed():
 	toggle()
 	back_pressed.emit()
 
-func _on_move_list_panel_move_details_visiblity_changed(visible: bool):
-	backButton.disabled = visible
+func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool):
+	backButton.disabled = newVisible

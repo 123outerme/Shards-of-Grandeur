@@ -16,7 +16,7 @@ func _ready():
 	else:
 		player = PlayerFinder.player
 
-func entered_warp(newMapName, newMapPos, isUnderground):
+func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
 	player.position = newMapPos
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
