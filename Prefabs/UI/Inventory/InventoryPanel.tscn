@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=9 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventoryMenu.gd" id="1_jk776"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_88mhw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="4_obp0q"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="4_onx6o"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="5_u77dw"]
+[ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://Prefabs/UI/Inventory/ItemUsePanel.tscn" id="7_lpeho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gb27x"]
 atlas = ExtResource("4_obp0q")
@@ -173,6 +174,10 @@ text = "Back"
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("5_u77dw")]
 visible = false
 
+[node name="ItemUsePanel" parent="." instance=ExtResource("7_lpeho")]
+visible = false
+
+[connection signal="item_used" from="." to="." method="_on_item_used"]
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ShardsButton" to="." method="_on_shards_button_toggled"]

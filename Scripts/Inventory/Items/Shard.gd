@@ -26,3 +26,6 @@ func use(target: Combatant):
 
 func get_combatant() -> Combatant:
 	return Combatant.load_combatant_resource(combatantSaveName)
+
+func get_use_message(_target: Combatant) -> String:
+	return ''

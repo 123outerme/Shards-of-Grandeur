@@ -24,3 +24,6 @@ func _init(
 
 func use(target: Combatant):
 	target.currentHp = min(target.currentHp + healBy, target.stats.maxHp)
+
+func get_use_message(target: Combatant) -> String:
+	return 'Using the ' + itemName + ', ' + target.disp_name() + ' recovers ' + str(healBy) + 'HP.'

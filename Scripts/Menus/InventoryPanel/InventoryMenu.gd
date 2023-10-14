@@ -15,6 +15,9 @@ signal back_pressed
 @export var showPlayerInventory = false
 var shopInventory: Inventory = null
 
+@export_category("InventoryPanel - Item Use Behavior")
+@export var showItemUsePanel: bool = false
+
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
@@ -27,6 +30,7 @@ var shopInventory: Inventory = null
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
+@onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 
 var currentInventory: Inventory
 
@@ -189,3 +193,9 @@ func _on_key_items_button_toggled(button_pressed):
 		filter_by(Item.Type.KEY_ITEM)
 	elif selectedFilter == Item.Type.KEY_ITEM:
 		filter_by()
+
+func _on_item_used(slot: InventorySlot):
+	if slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
+		itemUsePanel.item = slot.item
+		itemUsePanel.target = PlayerResources.playerInfo.combatant
+		itemUsePanel.load_item_use_panel()

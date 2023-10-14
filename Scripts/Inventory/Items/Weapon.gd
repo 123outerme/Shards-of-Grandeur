@@ -15,3 +15,6 @@ func _init(
 	i_targets = BattleCommand.Targets.NONE,
 ):
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+
+func get_use_message(_target: Combatant) -> String:
+	return ''
