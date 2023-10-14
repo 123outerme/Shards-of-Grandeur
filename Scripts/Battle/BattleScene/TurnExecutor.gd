@@ -13,6 +13,7 @@ enum TurnResult {
 
 var turnQueue: TurnQueue = TurnQueue.new()
 var escaping: bool = false
+var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
 
 func start_simulation():
 	var combatants: Array[Combatant] = []
@@ -43,14 +44,30 @@ func play_turn():
 	else:
 		battleUI.round_complete()
 	
-func update_turn_text():
+func update_turn_text() -> bool:
 	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
-	var combatant: Combatant = turnQueue.peek_next()
-	combatant.command.get_targets_from_combatant_nodes(allCombatants)
-	var text: String = combatant.command.get_command_results(combatant)
-	if combatant.statusEffect != null:
-		text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+	var text: String = ''
+	
+	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
+		if len(battleController.state.calcdStateStrings) == 0:
+			calculate_intermediate_state_strings(allCombatants)
+			if len(battleController.state.calcdStateStrings) == 0:
+				battleUI.advance_intermediate_state(result)
+				return false
+			else:
+				text = battleController.state.calcdStateStrings[0]
+		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
+			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
+	
+	if battleUI.menuState == BattleState.Menu.RESULTS:
+		var combatant: Combatant = turnQueue.peek_next()
+		combatant.command.get_targets_from_combatant_nodes(allCombatants)
+		text = combatant.command.get_command_results(combatant)
+		if combatant.statusEffect != null:
+			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+	
 	battleUI.results.show_text(text)
+	return text != ''
 
 func finish_turn() -> TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
@@ -65,13 +82,38 @@ func finish_turn() -> TurnResult:
 				alliesDown += 1 # ally down
 			else:
 				enemiesDown += 1 # enemy down
-	if alliesDown == 2: # all allies are down:
-		return TurnResult.ENEMY_WIN
-	if enemiesDown == 3: # all enemies are down:
-		return TurnResult.PLAYER_WIN
 	battleUI.update_downed()
+	if alliesDown == 2: # all allies are down:
+		result = TurnResult.ENEMY_WIN
+		return result
+	if enemiesDown == 3: # all enemies are down:
+		result = TurnResult.PLAYER_WIN
+		return result
 	play_turn() # go to the next turn
 	if escaping: # if escaping
 		turnQueue.empty() # end the round immediately
-		return TurnResult.ESCAPE
-	return TurnResult.NOTHING
+		result = TurnResult.ESCAPE
+	else:
+		result = TurnResult.NOTHING
+	return result
+
+func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode]):
+	battleController.state.calcdStateStrings = []
+	for combatantNode in allCombatantNodes:
+		if combatantNode.is_alive():
+			if battleUI.menuState == BattleState.Menu.PRE_BATTLE:
+				pass # TODO generate pre-battle texts (equipment only)
+			
+			if battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
+				var timing: StatusEffect.ApplyTiming = StatusEffect.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else StatusEffect.ApplyTiming.AFTER_ROUND
+				var statusEffectString: String = ''
+				if combatantNode.combatant.statusEffect != null:
+					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, timing)
+				# TODO generate equipment pre/post round effect strings
+				if statusEffectString != '':
+					battleController.state.calcdStateStrings.append(statusEffectString)
+
+func advance_precalcd_text() -> bool:
+	battleController.state.calcdStateIndex += 1
+	update_turn_text()
+	return battleController.state.calcdStateIndex >= len(battleController.state.calcdStateStrings)

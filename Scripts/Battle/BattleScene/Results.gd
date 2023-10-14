@@ -2,6 +2,7 @@ extends Control
 class_name Results
 
 @export var battleUI: BattleUI
+var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
 
 @onready var textBoxText: RichTextLabel = get_node("TextBoxText")
 
@@ -13,12 +14,13 @@ func show_text(newText: String):
 	textBoxText.text = newText
 
 func _on_ok_button_pressed():
-	var result: TurnExecutor.TurnResult = battleUI.battleController.turnExecutor.finish_turn()
-	if result != TurnExecutor.TurnResult.NOTHING:
-		battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
-		if battleUI.playerWins:
-			for combatantNode in battleUI.battleController.get_all_combatant_nodes():
-				if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
-					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
-					print('progress defeat quest for ', combatantNode.combatant.save_name())
-		battleUI.set_menu_state(BattleState.Menu.BATTLE_COMPLETE)
+	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
+		if battleUI.battleController.turnExecutor.advance_precalcd_text(): # if was final
+			battleUI.advance_intermediate_state(result)
+		return # don't fall-through and potentially run the results code below
+	
+	if battleUI.menuState == BattleState.Menu.RESULTS:
+		result = battleUI.battleController.turnExecutor.finish_turn()
+		if result != TurnExecutor.TurnResult.NOTHING:
+			battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
+			battleUI.set_menu_state(BattleState.Menu.POST_ROUND)

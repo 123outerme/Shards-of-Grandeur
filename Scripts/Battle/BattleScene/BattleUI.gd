@@ -53,9 +53,12 @@ func apply_menu_state():
 		targets.referringMenu = prevMenu
 		targets.load_targets()
 	
-	results.visible = menuState == BattleState.Menu.RESULTS
+	results.visible = menuState == BattleState.Menu.RESULTS \
+			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
+			or menuState == BattleState.Menu.POST_ROUND
 	if results.visible:
 		battleController.turnExecutor.update_turn_text()
+		return # returns specifically here because of skipping post-round text
 		
 	battleComplete.visible = menuState == BattleState.Menu.BATTLE_COMPLETE
 	if battleComplete.visible:
@@ -76,6 +79,19 @@ func apply_menu_state():
 	if menuState == BattleState.Menu.LEVEL_UP:
 		open_stats(PlayerResources.playerInfo.combatant, true)
 
+func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING):
+	if menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND or menuState == BattleState.Menu.POST_ROUND:
+		var newMenuState: BattleState.Menu = BattleState.Menu.ALL_COMMANDS # default: advance from PRE_BATTLE to ALL_COMMANDS
+		if menuState == BattleState.Menu.PRE_ROUND:
+			newMenuState = BattleState.Menu.RESULTS
+		if menuState == BattleState.Menu.POST_ROUND:
+			if result != TurnExecutor.TurnResult.NOTHING:
+				newMenuState = BattleState.Menu.BATTLE_COMPLETE
+			else:
+				round_complete()
+				return
+		set_menu_state(newMenuState)
+
 func return_to_player_command():
 	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
 	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
@@ -88,7 +104,7 @@ func complete_command():
 		set_menu_state(BattleState.Menu.ALL_COMMANDS)
 	else:
 		battleController.turnExecutor.start_simulation()
-		set_menu_state(BattleState.Menu.RESULTS)
+		set_menu_state(BattleState.Menu.PRE_ROUND)
 
 func update_hp_tags():
 	for combatantNode in battleController.get_all_combatant_nodes():

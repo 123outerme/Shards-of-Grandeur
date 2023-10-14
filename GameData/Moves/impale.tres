@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Move" load_steps=4 format=3 uid="uid://dtco7uib2bx3l"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Move.gd" id="1_eva6j"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatusEffects/Bleed.gd" id="2_u5uq1"]
+
+[sub_resource type="Resource" id="Resource_fpap4"]
+script = ExtResource("2_u5uq1")
+type = 2
+potency = 2
+turnsLeft = 4
+
+[resource]
+script = ExtResource("1_eva6j")
+moveName = "Impale"
+requiredLv = 1
+role = 1
+power = 40
+category = 0
+targets = 5
+statusEffect = SubResource("Resource_fpap4")
+statusChance = 1.0
+description = "The user runs an opponent straight through with a long, sharp weapon. An artery is certain to be hit with this technique, causing quite the bad day for the recipient."

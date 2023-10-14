@@ -3,13 +3,16 @@ class_name BattleState
 
 enum Menu {
 	SUMMON = 0,
-	ALL_COMMANDS = 1,
-	MOVES = 2,
-	ITEMS = 3,
-	PICK_TARGETS = 4,
-	RESULTS = 5,
-	BATTLE_COMPLETE = 6,
-	LEVEL_UP = 7
+	PRE_BATTLE = 1,
+	ALL_COMMANDS = 2,
+	MOVES = 3,
+	ITEMS = 4,
+	PICK_TARGETS = 5,
+	PRE_ROUND = 6,
+	RESULTS = 7,
+	POST_ROUND = 8,
+	BATTLE_COMPLETE = 9,
+	LEVEL_UP = 10
 }
 
 @export_category("BattleData - Combatants")
@@ -24,6 +27,8 @@ enum Menu {
 @export var prevMenu: Menu = Menu.SUMMON
 @export var commandingMinion: bool = false
 @export var fobButtonEnabled: bool = true
+@export var calcdStateStrings: Array[String] = []
+@export var calcdStateIndex: int = 0
 
 @export_category("BattleData - Turns")
 @export var turnNumber: int = 1

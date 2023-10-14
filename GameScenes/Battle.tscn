@@ -567,6 +567,11 @@ visible = false
 position = Vector2(-640, -480)
 inBattle = true
 
+[node name="InventoryPanelNode2" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
+visible = false
+position = Vector2(-640, -480)
+inBattle = true
+
 [node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("11_05pqh")]
 visible = false
 position = Vector2(-640, -480)
@@ -605,4 +610,5 @@ battleUI = NodePath("../BattleCam")
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
+[connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode2" to="BattleCam" method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
