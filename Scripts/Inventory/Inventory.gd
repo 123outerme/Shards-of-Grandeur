@@ -25,7 +25,7 @@ func add_item(item: Item) -> bool:
 func use_item(item: Item, target: Combatant):
 	item.use(target)
 	for slot in inventorySlots:
-		if slot.item == item and item.usable:
+		if slot.item == item and item.consumable:
 			trash_item(slot) # remove one of the appropriate items
 	
 func equip_item(inventorySlot: InventorySlot, equip: bool = true):

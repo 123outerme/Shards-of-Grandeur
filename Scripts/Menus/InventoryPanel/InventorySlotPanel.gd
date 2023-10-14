@@ -8,6 +8,7 @@ class_name InventorySlotPanel
 @export var inBattle: bool = false
 @export var summoning: bool = false
 @export var inventoryMenu: InventoryMenu
+@export var queuedForBattleUse: bool = false
 
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
@@ -29,16 +30,19 @@ func load_inventory_slot_panel():
 	if inventorySlot == null:
 		return
 	
+	var displayCount: int = inventorySlot.count
+	if queuedForBattleUse:
+		displayCount -= 1
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
 	itemType.text = Item.TypeToString(inventorySlot.item.itemType)
-	itemCount.text = 'x' + TextUtils.num_to_comma_string(inventorySlot.count)
+	itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
 	if inventorySlot.item.maxCount > 1:
 		itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
 	itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
 	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
-	var battleUseDisabled: bool = inventorySlot.item.itemType == Item.Type.SHARD and not summoning
+	var battleUseDisabled: bool = (inventorySlot.item.itemType == Item.Type.SHARD and not summoning) or displayCount <= 0
 	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or battleUseDisabled
 	
 	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped

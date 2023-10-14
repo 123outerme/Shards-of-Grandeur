@@ -79,6 +79,7 @@ func apply_menu_state():
 func return_to_player_command():
 	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
 	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
+	inventoryPanel.slotQueuedForBattleUse = null
 	set_menu_state(BattleState.Menu.ALL_COMMANDS)
 
 func complete_command():
@@ -117,6 +118,9 @@ func open_inventory(forSummon: bool):
 	inventoryPanel.lockFilters = forSummon
 	if forSummon:
 		inventoryPanel.selectedFilter = Item.Type.SHARD
+	else:
+		if commandingMinion and battleController.playerCombatant.is_alive():
+			inventoryPanel.slotQueuedForBattleUse = battleController.playerCombatant.combatant.command.slot
 	inventoryPanel.toggle()
 
 func _on_inventory_panel_node_item_used(slot: InventorySlot):

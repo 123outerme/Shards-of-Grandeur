@@ -16,6 +16,7 @@ signal back_pressed
 var shopInventory: Inventory = null
 
 @export_category("InventoryPanel - Item Use Behavior")
+@export var slotQueuedForBattleUse: InventorySlot = null
 @export var showItemUsePanel: bool = false
 
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
@@ -87,6 +88,8 @@ func load_inventory_panel():
 			instantiatedPanel.summoning = summoning
 			instantiatedPanel.inventoryMenu = self
 			instantiatedPanel.inventorySlot = slot
+			if slotQueuedForBattleUse == slot:
+				instantiatedPanel.queuedForBattleUse = true
 			vboxViewport.add_child(instantiatedPanel)
 			# unlock filter button for filter of item's type
 		if slot.item.itemType == Item.Type.HEALING:

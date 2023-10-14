@@ -99,6 +99,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 			target.statusEffect = move.statusEffect
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
+	if type == Type.USE_ITEM:
+		PlayerResources.inventory.trash_item(slot)
 		
 	return false
 
