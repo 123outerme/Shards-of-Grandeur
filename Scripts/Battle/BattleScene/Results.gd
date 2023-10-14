@@ -23,4 +23,5 @@ func _on_ok_button_pressed():
 		result = battleUI.battleController.turnExecutor.finish_turn()
 		if result != TurnExecutor.TurnResult.NOTHING:
 			battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
+			battleUI.escapes = result == TurnExecutor.TurnResult.ESCAPE
 			battleUI.set_menu_state(BattleState.Menu.POST_ROUND)

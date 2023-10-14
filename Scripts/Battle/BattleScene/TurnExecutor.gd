@@ -89,12 +89,12 @@ func finish_turn() -> TurnResult:
 	if enemiesDown == 3: # all enemies are down:
 		result = TurnResult.PLAYER_WIN
 		return result
-	play_turn() # go to the next turn
 	if escaping: # if escaping
 		turnQueue.empty() # end the round immediately
 		result = TurnResult.ESCAPE
-	else:
-		result = TurnResult.NOTHING
+		return result
+	play_turn() # go to the next turn	
+	result = TurnResult.NOTHING
 	return result
 
 func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode]):

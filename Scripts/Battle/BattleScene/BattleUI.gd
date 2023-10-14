@@ -8,6 +8,7 @@ class_name BattleUI
 var commandingCombatant: CombatantNode = null
 var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
 var playerWins: bool = true
+var escapes: bool = false
 
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
@@ -63,6 +64,7 @@ func apply_menu_state():
 	battleComplete.visible = menuState == BattleState.Menu.BATTLE_COMPLETE
 	if battleComplete.visible:
 		battleComplete.playerWins = playerWins
+		battleComplete.playerEscapes = escapes
 		battleComplete.rewards = battleController.state.rewards
 		if playerWins and len(battleComplete.rewards) == 0:
 			for combatantNode in battleController.get_all_combatant_nodes():

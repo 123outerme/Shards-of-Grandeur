@@ -5,12 +5,14 @@ class_name BattleCompleteMenu
 @export var itemDetailsPanel: ItemDetailsPanel
 
 var playerWins: bool = true
+var playerEscapes: bool = false
 var rewards: Array[Reward] = []
 
 @onready var rewardsVBox: VBoxContainer = get_node("RewardsVBox")
 @onready var battleWinLabel: RichTextLabel = get_node("BattleWinLabel")
 @onready var battleRewardsLabel: RichTextLabel = get_node("BattleRewardsLabel")
 @onready var battleLoseLabel: RichTextLabel = get_node("BattleLoseLabel")
+@onready var battleEscapeLabel: RichTextLabel = get_node("BattleEscapeLabel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +22,8 @@ func load_battle_over_menu():
 	rewardsVBox.visible = playerWins
 	battleWinLabel.visible = playerWins
 	battleRewardsLabel.visible = playerWins
-	battleLoseLabel.visible = not playerWins
+	battleLoseLabel.visible = not playerWins and not playerEscapes
+	battleEscapeLabel.visible = not playerWins and playerEscapes
 	if playerWins:
 		var rewardPanel = load("res://Prefabs/UI/RewardPanel.tscn")
 		for reward in rewards:
