@@ -6,7 +6,7 @@ class_name Inventory
 
 var save_name: String = "inventory.tres"
 
-func _init(i_slots: Array[InventorySlot] = [], i_playerInv = false):
+func _init(i_playerInv = false, i_slots: Array[InventorySlot] = []):
 	inventorySlots = i_slots
 	isPlayerInventory = i_playerInv
 	

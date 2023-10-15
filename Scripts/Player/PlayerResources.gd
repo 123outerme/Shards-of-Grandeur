@@ -23,7 +23,7 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 	if gainedLevels > 0:
 		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
 		minions.level_up_minions(playerInfo.stats.level) # level up all stored minions
-	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy	
+	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy
 	return gainedLevels
 
 func copy_combatant_to_info(combatant: Combatant):
@@ -43,7 +43,7 @@ func load_data(save_path):
 	if player != null:
 		player.position = playerInfo.position
 		player.disableMovement = playerInfo.disableMovement
-	inventory = Inventory.new()
+	inventory = Inventory.new(true)
 	var newInv = inventory.load_data(save_path)
 	if newInv != null:
 		inventory = newInv
@@ -76,7 +76,7 @@ func save_data(save_path):
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
 	playerInfo.save_data(save_path, playerInfo)
-	inventory = Inventory.new()
+	inventory = Inventory.new(true)
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()
 	questInventory.save_data(save_path, questInventory)
