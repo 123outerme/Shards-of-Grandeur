@@ -24,6 +24,10 @@ func load_battle_over_menu():
 	battleRewardsLabel.visible = playerWins
 	battleLoseLabel.visible = not playerWins and not playerEscapes
 	battleEscapeLabel.visible = not playerWins and playerEscapes
+	
+	for panel in get_tree().get_nodes_in_group('RewardPanel'):
+		panel.queue_free() # destroy all previously loaded reward panels (if any)
+	
 	if playerWins:
 		var rewardPanel = load("res://Prefabs/UI/RewardPanel.tscn")
 		for reward in rewards:

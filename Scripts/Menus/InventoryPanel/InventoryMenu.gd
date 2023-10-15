@@ -83,7 +83,7 @@ func load_inventory_panel():
 			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 			instantiatedPanel.isShopItem = inShop
 			instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
-			instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item)
+			instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item) or (instantiatedPanel.isPlayerItem and PlayerResources.minions.which_minion_equipped(slot.item) != '')
 			instantiatedPanel.inBattle = inBattle
 			instantiatedPanel.summoning = summoning
 			instantiatedPanel.inventoryMenu = self

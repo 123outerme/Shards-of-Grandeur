@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqtu7xjqahxq"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_tlgo2"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/NestedUI/InnerPanel.tres" id="2_1odjq"]
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MinionsPanel/MinionsPanel.gd" id="3_e76mr"]
+
+[node name="MinionsPanel" type="Panel"]
+offset_right = 560.0
+offset_bottom = 355.0
+theme = ExtResource("1_tlgo2")
+theme_override_styles/panel = ExtResource("2_1odjq")
+script = ExtResource("3_e76mr")
+
+[node name="MinionsTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Minions:[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 26.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2

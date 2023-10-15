@@ -162,8 +162,12 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.curHp = combatant.currentHp
 	statsPanel.readOnly = not levelUp
 	statsPanel.visible = false # force it to be turned on
+	statsPanel.isPlayer = combatant == PlayerResources.playerInfo.combatant or combatant == battleController.playerCombatant.combatant
 	statsPanel.toggle()
 
 func _on_stats_panel_node_back_pressed():
 	if menuState == BattleState.Menu.LEVEL_UP:
 		battleController.end_battle()
+
+func _on_combatant_details_clicked(combatantNode: CombatantNode):
+	open_stats(combatantNode.combatant)

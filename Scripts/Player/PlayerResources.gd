@@ -3,6 +3,7 @@ extends Node
 @export var playerInfo: PlayerInfo = PlayerInfo.new()
 @export var inventory: Inventory = Inventory.new()
 @export var questInventory: QuestInventory = QuestInventory.new()
+@export var minions: PlayerMinions = PlayerMinions.new()
 @export var loaded: bool = false
 
 var player = null
@@ -21,6 +22,7 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 		inventory.add_item(reward.item)
 	if gainedLevels > 0:
 		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
+		minions.level_up_minions(playerInfo.stats.level) # level up all stored minions
 	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy	
 	return gainedLevels
 
@@ -49,6 +51,10 @@ func load_data(save_path):
 	var newQuestInv = questInventory.load_data(save_path)
 	if newQuestInv != null:
 		questInventory = newQuestInv
+	minions = PlayerMinions.new()
+	var newMinions = minions.load_data(save_path)
+	if newMinions != null:
+		minions = newMinions
 	loaded = true
 
 func save_data(save_path):
@@ -64,6 +70,8 @@ func save_data(save_path):
 		inventory.save_data(save_path, inventory)
 	if questInventory != null:
 		questInventory.save_data(save_path, questInventory)
+	if minions != null:
+		minions.save_data(save_path, minions)
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
@@ -72,4 +80,6 @@ func new_game(save_path):
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()
 	questInventory.save_data(save_path, questInventory)
+	minions = PlayerMinions.new()
+	minions.save_data(save_path, minions)
 	loaded = true

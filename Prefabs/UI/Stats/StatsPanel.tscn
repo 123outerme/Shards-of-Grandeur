@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=8 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/StatsPanel.gd" id="1_ek2t8"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_0j471"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://Prefabs/UI/Stats/StatLinePanel.tscn" id="4_1k046"]
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://Prefabs/UI/Stats/EquipmentPanel.tscn" id="5_h5547"]
 [ext_resource type="PackedScene" uid="uid://di4m6wwpbc3pl" path="res://Prefabs/UI/Stats/MoveListPanel.tscn" id="6_mask2"]
+[ext_resource type="PackedScene" uid="uid://dqtu7xjqahxq" path="res://Prefabs/UI/Stats/MinionsPanel.tscn" id="7_saoq4"]
 
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_ek2t8")
@@ -99,6 +100,20 @@ offset_top = -529.0
 offset_right = -40.0
 offset_bottom = -529.0
 
+[node name="MinionsPanel" parent="StatsPanel/Panel" instance=ExtResource("7_saoq4")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -431.0
+offset_right = -40.0
+offset_bottom = -76.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="BackButton" type="Button" parent="StatsPanel/Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -115,6 +130,7 @@ grow_vertical = 0
 text = "Back"
 
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="stats_clicked" from="StatsPanel/Panel/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="StatsPanel/Panel/MoveListPanel"]

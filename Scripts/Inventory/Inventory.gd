@@ -2,11 +2,13 @@ extends Resource
 class_name Inventory
 
 @export var inventorySlots: Array[InventorySlot]
+@export var isPlayerInventory: bool = false
 
 var save_name: String = "inventory.tres"
 
-func _init(i_slots: Array[InventorySlot] = []):
+func _init(i_slots: Array[InventorySlot] = [], i_playerInv = false):
 	inventorySlots = i_slots
+	isPlayerInventory = i_playerInv
 	
 func add_item(item: Item) -> bool:
 	var found: bool = false
@@ -15,13 +17,21 @@ func add_item(item: Item) -> bool:
 			found = true
 			if slot.count < slot.item.maxCount or slot.item.maxCount == 0:
 				slot.count += 1
+				add_shard_minion_entry(item)
 				return true
 	# if not found, add a new slot
 	if not found:
 		inventorySlots.append(InventorySlot.new(item))
+		add_shard_minion_entry(item)
 		return true
 	return false
-	
+
+func add_shard_minion_entry(item: Item):
+	if isPlayerInventory and item.itemType == Item.Type.SHARD:
+		var shard: Shard = item as Shard
+		var minion: Combatant = PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
+		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.stats.level) # if necessary, this will level up the new minion
+
 func use_item(item: Item, target: Combatant):
 	item.use(target)
 	for slot in inventorySlots:

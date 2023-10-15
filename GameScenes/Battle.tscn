@@ -608,6 +608,11 @@ script = ExtResource("15_2cnm6")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
+[connection signal="details_clicked" from="TileMap/PlayerCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
+[connection signal="details_clicked" from="TileMap/MinionCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
+[connection signal="details_clicked" from="TileMap/EnemyCombatant1" to="BattleCam" method="_on_combatant_details_clicked"]
+[connection signal="details_clicked" from="TileMap/EnemyCombatant2" to="BattleCam" method="_on_combatant_details_clicked"]
+[connection signal="details_clicked" from="TileMap/EnemyCombatant3" to="BattleCam" method="_on_combatant_details_clicked"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/MovesButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_moves_button_pressed"]
