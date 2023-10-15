@@ -24,7 +24,7 @@ enum Type {
 @export var move: Move = null
 @export var slot: InventorySlot = null
 @export var targetPositions: Array[String] = []
-@export var randomNum: float = 0
+@export var randomNums: Array[float] = []
 
 var targets: Array[Combatant] = []
 
@@ -59,7 +59,7 @@ static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 		load("res://GameData/Moves/guard.tres") as Move,
 		null,
 		[combatantNode.battlePosition],
-		1.0, # consistent effects
+		[1.0], # consistent effects
 	)
 
 static func command_escape(allCombatants: Array[CombatantNode]) -> BattleCommand:
@@ -71,7 +71,6 @@ static func command_escape(allCombatants: Array[CombatantNode]) -> BattleCommand
 		null,
 		null,
 		allPositions,
-		randf(),
 	)
 
 func _init(
@@ -79,24 +78,36 @@ func _init(
 	i_move = null,
 	i_slot = null,
 	i_targets: Array[String] = [],
-	i_randomNum = 0.0,
+	i_randomNums = [],
 ):
 	type = i_type
 	move = i_move
 	slot = i_slot
 	targetPositions = i_targets
-	randomNum = i_randomNum
+	if i_randomNums == [] and len(targetPositions) > 0: # if random nums are unset and the target positions are set:
+		for target in targetPositions:
+			i_randomNums.append(randf()) # get a random number for each
+	elif len(i_randomNums) < len(targetPositions): # if some but not all random nums are set
+		for i in range(len(randomNums), len(targetPositions)):
+			randomNums.append(randomNums.back()) # append the last number to the end of the list of random nums
+	randomNums = i_randomNums
+	
+func set_targets(newTargets: Array[String]):
+	targetPositions = newTargets.duplicate(false)
+	if len(randomNums) == 0: # if random nums haven't been generated yet
+		for target in targetPositions:
+			randomNums.append(randf()) # generate random numbers now
 
 func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
 	get_targets_from_combatant_nodes(combatantNodes)
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 		
-	for target in targets:
-		var damage = calculate_damage(user, target)
-		target.currentHp = min(max(target.currentHp - damage, 0), target.stats.maxHp) # bound to be at least 0 and no more than max HP
-		if type == Type.MOVE and move.statusChance >= randomNum and move.statusEffect != null and target.statusEffect == null:
-			target.statusEffect = move.statusEffect.copy()
+	for idx in len(targets):
+		var damage = calculate_damage(user, targets[idx])
+		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
+		if type == Type.MOVE and move.statusChance >= randomNums[idx] and move.statusEffect != null and targets[idx].statusEffect == null:
+			targets[idx].statusEffect = move.statusEffect.copy()
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
 	if type == Type.USE_ITEM:
@@ -183,11 +194,11 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
-					if type == Type.MOVE and move.statusChance >= randomNum and move.statusEffect != null:
+					if type == Type.MOVE and move.statusChance >= randomNums[i] and move.statusEffect != null:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
 					if type == Type.MOVE and move.statusEffect != null:
-						if move.statusChance >= randomNum and target.statusEffect.type == move.statusEffect.type:
+						if move.statusChance >= randomNums[i] and target.statusEffect.type == move.statusEffect.type:
 							resultsText += 'afflicting '
 						else:
 							resultsText += 'failing to afflict '
