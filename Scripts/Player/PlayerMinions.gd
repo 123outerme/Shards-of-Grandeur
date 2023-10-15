@@ -37,7 +37,7 @@ func level_up_minions(newLevel: int):
 func which_minion_equipped(item: Item) -> String:
 	var dispName: String = ''
 	for minion in get_minion_list():
-		if minion.stats.equippedWeapon.itemName == item.itemName or minion.stats.equippedArmor.itemName == item.itemName:
+		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or (minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName):
 			dispName = minion.disp_name()
 	return dispName
 

@@ -32,6 +32,7 @@ var shopInventory: Inventory = null
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
+@onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
 
 var currentInventory: Inventory
 
@@ -202,3 +203,21 @@ func _on_item_used(slot: InventorySlot):
 		itemUsePanel.item = slot.item
 		itemUsePanel.target = PlayerResources.playerInfo.combatant
 		itemUsePanel.load_item_use_panel()
+		backButton.disabled = true
+	elif slot.item.itemType == Item.Type.SHARD:
+		itemUsePanel.item = slot.item
+		shardLearnPanel.shard = slot.item as Shard
+		shardLearnPanel.load_shard_learn_panel()
+		backButton.disabled = true
+
+func _on_item_use_panel_ok_pressed():
+	backButton.disabled = false
+
+func _on_shard_learn_panel_back_pressed():
+	backButton.disabled = false
+	load_inventory_panel()
+
+func _on_shard_learn_panel_learned_move(move: Move):
+	itemUsePanel.target = PlayerResources.playerInfo.combatant
+	itemUsePanel.learnedMove = move
+	itemUsePanel.load_item_use_panel()

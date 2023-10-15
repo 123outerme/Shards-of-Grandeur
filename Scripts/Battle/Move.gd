@@ -26,6 +26,7 @@ enum Role {
 @export var statusEffect: StatusEffect = null
 @export var statusChance: float = 0.0
 @export_multiline var description: String = ''
+@export_multiline var moveLearnedText: String = ''
 
 static func dmg_category_to_string(c: DmgCategory) -> String:
 	match c:
@@ -62,6 +63,8 @@ func _init(
 	i_statusEffect = null,
 	i_statusChance = 0.0,
 	i_statChanges = StatChanges.new(),
+	i_description = '',
+	i_moveLearnedText = '',
 	
 ):
 	moveName = i_moveName
@@ -72,4 +75,6 @@ func _init(
 	statusEffect = i_statusEffect
 	statusChance = i_statusChance
 	statChanges = i_statChanges
+	description = i_description
+	moveLearnedText = i_moveLearnedText
 	

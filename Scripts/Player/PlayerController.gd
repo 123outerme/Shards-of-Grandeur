@@ -134,9 +134,6 @@ func _on_turn_in_button_pressed():
 	questsPanel.toggle()
 	npcTalkBtns.visible = false
 
-func _on_inventory_panel_node_item_used(slot):
-	pass # TODO: if Shard, trigger learning a move (or adjusting combatant's moveset?)
-
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()

@@ -43,7 +43,7 @@ func show_select_buttons(showing: bool = true, exception: Move = null):
 func show_learn_buttons(showing: bool = true):
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
 		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		moveListItemPanel.movepoolLearn = showing
+		moveListItemPanel.movepoolLearn = showing and not (moveListItemPanel.move in PlayerResources.playerInfo.stats.movepool)
 		moveListItemPanel.load_move_list_item_panel()
 
 func _on_details_button_clicked(move: Move):

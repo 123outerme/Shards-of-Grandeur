@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=19 format=3 uid="uid://dak21fe0w5q3m"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=20 format=3 uid="uid://dak21fe0w5q3m"]
 
 [ext_resource type="Resource" uid="uid://bjlcwbjqmmsp0" path="res://GameData/Items/Shard/ant_shard.tres" id="1_1msty"]
 [ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_ngepj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="3_tcx1r"]
 [ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedString.gd" id="4_w518t"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://GameData/Moves/slice.tres" id="7_mwna2"]
+[ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://GameData/Moves/stamina_drain.tres" id="8_fmjhk"]
 
 [sub_resource type="Resource" id="Resource_sjst6"]
 script = ExtResource("1_q0ynk")
@@ -49,8 +50,8 @@ resistance = 1
 affinity = 1
 speed = 1
 statPts = 0
-moves = Array[Object]([ExtResource("7_mwna2")])
-movepool = Array[Object]([ExtResource("7_mwna2")])
+moves = Array[Object]([ExtResource("7_mwna2"), ExtResource("8_fmjhk")])
+movepool = Array[Object]([ExtResource("7_mwna2"), ExtResource("8_fmjhk")])
 
 [sub_resource type="Resource" id="Resource_d55qo"]
 script = ExtResource("4_w518t")

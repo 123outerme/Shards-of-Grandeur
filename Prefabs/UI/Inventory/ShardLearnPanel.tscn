@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmj1y0ptr5di5"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/ShardLearnPanel.gd" id="1_7uxiu"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_63ib4"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="3_a0wr6"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="4_xxner"]
+[ext_resource type="PackedScene" uid="uid://caulhsqfxcmcu" path="res://Prefabs/UI/Stats/MovePoolPanel.tscn" id="5_nm2lk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7xvj"]
+atlas = ExtResource("3_a0wr6")
+region = Rect2(96, 56, 8, 8)
+
+[node name="ShardLearnPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_63ib4")
+script = ExtResource("1_7uxiu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1200.0
+offset_bottom = 880.0
+
+[node name="ShardSpriteControl" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 20.0
+offset_right = 128.0
+offset_bottom = 84.0
+
+[node name="ShardSprite" type="Sprite2D" parent="Panel/ShardSpriteControl"]
+position = Vector2(32, 32)
+scale = Vector2(8, 8)
+texture = SubResource("AtlasTexture_v7xvj")
+
+[node name="LearnPanelTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -429.0
+offset_top = 24.0
+offset_right = 429.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme = ExtResource("4_xxner")
+bbcode_enabled = true
+text = "[center]Learn a Move From Combatant Name Here[/center]"
+fit_content = true
+
+[node name="MovePoolPanel" parent="Panel" instance=ExtResource("5_nm2lk")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -215.0
+offset_right = 290.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -52.0
+offset_right = 25.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="learn_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_learn_button_clicked"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

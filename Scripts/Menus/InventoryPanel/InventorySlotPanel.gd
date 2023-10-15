@@ -43,7 +43,7 @@ func load_inventory_slot_panel():
 	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
 	var battleUseDisabled: bool = (inventorySlot.item.itemType == Item.Type.SHARD and not summoning) or displayCount <= 0
-	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or battleUseDisabled
+	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or (battleUseDisabled and inBattle)
 	
 	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
 	equipButton.disabled = inBattle
