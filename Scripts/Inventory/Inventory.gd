@@ -29,7 +29,7 @@ func add_item(item: Item) -> bool:
 func add_shard_minion_entry(item: Item):
 	if isPlayerInventory and item.itemType == Item.Type.SHARD:
 		var shard: Shard = item as Shard
-		var minion: Combatant = PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
+		PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
 		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.stats.level) # if necessary, this will level up the new minion
 
 func use_item(item: Item, target: Combatant):

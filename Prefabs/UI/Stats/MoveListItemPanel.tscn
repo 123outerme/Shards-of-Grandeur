@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0w5j"]
 
-[node name="MoveListItemPanel" type="Panel"]
+[node name="MoveListItemPanel" type="Panel" groups=["MoveListItemPanel"]]
 custom_minimum_size = Vector2(552, 69)
 theme = ExtResource("1_7pta3")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r0w5j")
@@ -24,7 +24,12 @@ layout_mode = 2
 text = "Move Name Goes Here"
 fit_content = true
 
-[node name="CenterRole" type="VBoxContainer" parent="."]
+[node name="MoveLevel" type="RichTextLabel" parent="CenterMoveName"]
+layout_mode = 2
+text = " Lv 100"
+fit_content = true
+
+[node name="CenterDetails" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.417
@@ -36,24 +41,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="RoleText" type="RichTextLabel" parent="CenterRole"]
+[node name="RoleText" type="RichTextLabel" parent="CenterDetails"]
 layout_mode = 2
 text = "Single Target"
 fit_content = true
 
-[node name="CenterType" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.696
-anchor_right = 0.696
-anchor_bottom = 1.0
-offset_left = -0.192017
-offset_right = 74.808
-grow_horizontal = 0
-grow_vertical = 2
-alignment = 1
-
-[node name="DamageType" type="RichTextLabel" parent="CenterType"]
+[node name="DamageType" type="RichTextLabel" parent="CenterDetails"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Physical"
@@ -66,7 +59,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -72.0
+offset_left = -80.0
 offset_top = -20.0
 offset_right = -4.0
 offset_bottom = 20.0
@@ -74,4 +67,72 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "Details"
 
+[node name="ReplaceButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_right = -100.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Replace"
+
+[node name="SelectButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_right = -100.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Select"
+
+[node name="LearnButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_right = -100.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Learn"
+
+[node name="CancelButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_right = -100.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Cancel"
+
 [connection signal="pressed" from="DetailsButton" to="." method="_on_details_button_pressed"]
+[connection signal="pressed" from="ReplaceButton" to="." method="_on_replace_button_pressed"]
+[connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="LearnButton" to="." method="_on_learn_button_pressed"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

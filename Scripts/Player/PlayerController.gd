@@ -158,9 +158,10 @@ func _on_quests_panel_node_turn_in_step_to(saveName):
 func _on_quests_panel_node_level_up(newLevels: int):
 	if newLevels == 0:
 		return
-	statsPanel.levelUp = true	
+	statsPanel.levelUp = true
 	statsPanel.stats = PlayerResources.playerInfo.stats
 	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+	statsPanel.isPlayer = true
 	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused
 	inventoryPanel.visible = false
 	questsPanel.visible = false

@@ -22,6 +22,7 @@ var savedIsPlayer: bool = false
 @onready var equipmentPanel: EquipmentPanel = get_node("StatsPanel/Panel/EquipmentPanel")
 @onready var minionsPanel: MinionsPanel = get_node("StatsPanel/Panel/MinionsPanel")
 @onready var backButton: Button = get_node("StatsPanel/Panel/BackButton")
+@onready var editMovesPanel: EditMovesPanel = get_node("StatsPanel/Panel/EditMovesPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,13 +58,6 @@ func load_stats_panel():
 	else:
 		minionsPanel.visible = false
 
-func _on_back_button_pressed():
-	if not isMinionStats:
-		toggle()
-		back_pressed.emit()
-	else:
-		restore_previous_stats_panel()
-
 func restore_previous_stats_panel():
 	stats = savedStats
 	curHp = savedCurHp
@@ -71,6 +65,13 @@ func restore_previous_stats_panel():
 	isPlayer = savedIsPlayer
 	isMinionStats = false
 	load_stats_panel()
+
+func _on_back_button_pressed():
+	if not isMinionStats:
+		toggle()
+		back_pressed.emit()
+	else:
+		restore_previous_stats_panel()
 
 func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool):
 	backButton.disabled = newVisible
@@ -87,3 +88,24 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		isPlayer = false
 		isMinionStats = true
 		load_stats_panel()
+
+func _on_move_list_panel_edit_moves():
+	editMovesPanel.moves = stats.moves
+	editMovesPanel.movepool = stats.movepool
+	editMovesPanel.level = stats.level
+	editMovesPanel.load_edit_moves_panel()
+	backButton.disabled = true
+
+func _on_edit_moves_panel_back_pressed():
+	backButton.disabled = false
+
+func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
+	if slot >= len(stats.moves):
+		for i in range(4):
+			if slot == i:
+				stats.moves.append(newMove)
+			elif i >= len(stats.moves):
+				stats.moves.append(null)
+	else:
+		stats.moves[slot] = newMove
+	load_stats_panel()

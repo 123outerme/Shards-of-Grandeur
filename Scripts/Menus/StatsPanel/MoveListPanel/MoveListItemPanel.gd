@@ -1,13 +1,29 @@
 extends Panel
+class_name MoveListItemPanel
 
 signal details_pressed(move: Move)
+signal replace_pressed(move: Move, slot: int)
+signal select_pressed(move: Move)
+signal learn_pressed(move: Move)
+signal cancel_pressed
 
 @export var move: Move = null
+@export var showDetailsButton: bool = true
+@export var editShowReplace: bool = false
+@export var movepoolSelect: bool = false
+@export var movepoolLearn: bool = false
+@export var movepoolCancel: bool = false
+@export var moveSlot: int = -1
 
 @onready var moveName: RichTextLabel = get_node("CenterMoveName/MoveName")
-@onready var roleText: RichTextLabel = get_node("CenterRole/RoleText")
-@onready var damageType: RichTextLabel = get_node("CenterType/DamageType")
+@onready var moveLevel: RichTextLabel = get_node("CenterMoveName/MoveLevel")
+@onready var roleText: RichTextLabel = get_node("CenterDetails/RoleText")
+@onready var damageType: RichTextLabel = get_node("CenterDetails/DamageType")
 @onready var detailsButton: Button = get_node("DetailsButton")
+@onready var replaceButton: Button = get_node("ReplaceButton")
+@onready var selectButton: Button = get_node("SelectButton")
+@onready var learnButton: Button = get_node("LearnButton")
+@onready var cancelButton: Button = get_node("CancelButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,14 +32,36 @@ func _ready():
 func load_move_list_item_panel():
 	if move != null:
 		moveName.text = move.moveName
+		moveLevel.text = ' Lv ' + str(move.requiredLv)
 		roleText.text = Move.role_to_string(move.role)
 		damageType.text = Move.dmg_category_to_string(move.category)
-		detailsButton.visible = true
+		detailsButton.visible = showDetailsButton
+		replaceButton.visible = editShowReplace
+		selectButton.visible = movepoolSelect
+		learnButton.visible = movepoolLearn
+		cancelButton.visible = movepoolCancel
 	else:
 		moveName.text = '-----'
+		moveLevel.text = ''
 		roleText.text = ''
 		damageType.text = ''
 		detailsButton.visible = false
+		replaceButton.visible = editShowReplace
+		selectButton.visible = false
+		learnButton.visible = false
+		cancelButton.visible = false
 
 func _on_details_button_pressed():
 	details_pressed.emit(move)
+
+func _on_replace_button_pressed():
+	replace_pressed.emit(move, moveSlot)
+
+func _on_select_button_pressed():
+	select_pressed.emit(move)
+
+func _on_learn_button_pressed():
+	learn_pressed.emit(move)
+
+func _on_cancel_button_pressed():
+	cancel_pressed.emit()

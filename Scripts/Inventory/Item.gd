@@ -64,11 +64,11 @@ func _init(
 	battleTargets = i_targets
 	
 func use(_target: Combatant):
-	print("If you're seeing this, implement Item.use() in item type:", TypeToString(itemType))
+	print("If you're seeing this, implement Item.use() in item type:", Item.TypeToString(itemType))
 	pass # "virtual" function - does nothing. Override in inherting classes!
 
 func get_use_message(_target: Combatant) -> String:
-	return "If you're seeing this, implement Item.get_use_message() in item type " + TypeToString(itemType)
+	return "If you're seeing this, implement Item.get_use_message() in item type " + Item.TypeToString(itemType)
 
 func get_as_subclass():
 	if itemType == Type.HEALING:
