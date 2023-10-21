@@ -62,10 +62,11 @@ static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 		[1.0], # consistent effects
 	)
 
-static func command_escape(allCombatants: Array[CombatantNode]) -> BattleCommand:
+static func command_escape(user: CombatantNode, allCombatants: Array[CombatantNode]) -> BattleCommand:
 	var allPositions: Array[String] = []
 	for combatantNode in allCombatants:
-		allPositions.append(combatantNode.battlePosition)
+		if user.role != combatantNode.role: # only targets are enemies
+			allPositions.append(combatantNode.battlePosition)
 	return BattleCommand.new(
 		Type.ESCAPE,
 		null,
@@ -106,7 +107,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	for idx in len(targets):
 		var damage = calculate_damage(user, targets[idx])
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
-		if type == Type.MOVE and move.statusChance >= randomNums[idx] and move.statusEffect != null and targets[idx].statusEffect == null:
+		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
 	if type == Type.MOVE:
 		user.statChanges.stack(move.statChanges)
@@ -163,19 +164,35 @@ func calculate_escape_chance(user: Combatant, target: Combatant) -> float:
 	# otherwise, exhaustion levels are equal -> check speed stats
 	var userStats = user.statChanges.apply(user.stats)
 	var targetStats = target.statChanges.apply(target.stats)
+	# 90% flee base rate + 30% of (speed difference over speed totals)
+	# => 90% flee base rate that increases as player speed increases (~proportional to stat scaling)
+	# and decreases as target speed increases (~proportional to stat scaling
 	return 0.9 + 0.3 * (userStats.speed - targetStats.speed) / (userStats.speed + targetStats.speed)
 
 func which_target_prevents_escape(user: Combatant) -> int:
 	var targetIdx = -1
 	for idx in range(len(targets)):
 		# if the best random number generated for the targets fails the escape chance, that target is blocking escape
-		if randomNums.max() < 1.0 - calculate_escape_chance(user, targets[idx]):
+		if randomNums.max() > calculate_escape_chance(user, targets[idx]):
 			targetIdx = idx
 	
 	return targetIdx
 
 func get_is_escaping(user: Combatant) -> bool:
 	return which_target_prevents_escape(user) < 0
+
+func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
+	# no move, no status, or no chance: auto-fail
+	if move == null or move.statusEffect == null or move.statusChance == 0:
+		return false
+	
+	# status chance = 100%: auto-pass
+	if move.statusChance == 1:
+		return true
+	
+	var userStats = user.statChanges.apply(user.stats)
+	var targetStats = targets[targetIdx].statChanges.apply(targets[targetIdx].stats)
+	return randomNums[targetIdx] <= move.statusChance + 0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity) 
 
 func get_command_results(user: Combatant) -> String:
 	var resultsText: String = user.disp_name() + ' passed.'
@@ -221,7 +238,7 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
 					if type == Type.MOVE and move.statusEffect != null:
-						if move.statusChance >= randomNums[i] and target.statusEffect.type == move.statusEffect.type:
+						if does_target_get_status(user, i) and target.statusEffect.type == move.statusEffect.type:
 							resultsText += 'afflicting '
 						else:
 							resultsText += 'failing to afflict '
