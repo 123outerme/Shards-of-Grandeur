@@ -151,8 +151,31 @@ func calculate_damage(user: Combatant, target: Combatant) -> int:
 	
 	return 0 # otherwise there was no damage
 
+func calculate_escape_chance(user: Combatant, target: Combatant) -> float:
+	# if target has Exhaustion status effect, and user doesn't have Exhaustion or has less potent Exhaustion, auto-pass
+	if user.get_exhaustion_level() < target.get_exhaustion_level():
+		return true
+		
+	# if user has Exhaustion, and target doesn't have Exhaustion or has less potent Exhaustion, auto-fail
+	if user.get_exhaustion_level() > target.get_exhaustion_level():
+		return false
+
+	# otherwise, exhaustion levels are equal -> check speed stats
+	var userStats = user.statChanges.apply(user.stats)
+	var targetStats = target.statChanges.apply(target.stats)
+	return 0.9 + 0.3 * (userStats.speed - targetStats.speed) / (userStats.speed + targetStats.speed)
+
+func which_target_prevents_escape(user: Combatant) -> int:
+	var targetIdx = -1
+	for idx in range(len(targets)):
+		# if the best random number generated for the targets fails the escape chance, that target is blocking escape
+		if randomNums.max() < 1.0 - calculate_escape_chance(user, targets[idx]):
+			targetIdx = idx
+	
+	return targetIdx
+
 func get_is_escaping(user: Combatant) -> bool:
-	return true # TODO calculate if user escapes the battle based on the random num generated
+	return which_target_prevents_escape(user) < 0
 
 func get_command_results(user: Combatant) -> String:
 	var resultsText: String = user.disp_name() + ' passed.'
@@ -232,10 +255,11 @@ func get_command_results(user: Combatant) -> String:
 				else:
 					resultsText += '.'
 	if type == Type.ESCAPE:
-		if get_is_escaping(user):
+		var preventEscapingIdx: int = which_target_prevents_escape(user)
+		if preventEscapingIdx < 0:
 			resultsText = user.disp_name() + ' escaped the battle successfully!'
 		else:
-			resultsText = user.disp_name() + ' tried to escape, but could not get away!'
+			resultsText = user.disp_name() + ' tried to escape, but ' + targets[preventEscapingIdx].disp_name() + ' blocked the way!'
 	
 	return resultsText
 
