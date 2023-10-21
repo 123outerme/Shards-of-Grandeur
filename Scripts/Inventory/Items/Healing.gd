@@ -3,6 +3,7 @@ class_name Healing
 
 @export_category("Healing")
 @export var healBy: int = 50
+@export var statusStrengthHeal: StatusEffect.Potency = StatusEffect.Potency.NONE
 
 func _init(
 	i_sprite = null,
@@ -17,13 +18,29 @@ func _init(
 	i_equippable = false,
 	i_targets = BattleCommand.Targets.ALLY,
 	i_healBy = 50,
+	i_statusStrengthHeal = StatusEffect.Potency.NONE,
 ):
 	
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
 	healBy = i_healBy
+	statusStrengthHeal = i_statusStrengthHeal
 
 func use(target: Combatant):
 	target.currentHp = min(target.currentHp + healBy, target.stats.maxHp)
+	if target.statusEffect != null and target.statusEffect.potency <= statusStrengthHeal:
+		target.statusEffect = null
 
 func get_use_message(target: Combatant) -> String:
-	return 'Using the ' + itemName + ', ' + target.disp_name() + ' recovers ' + str(healBy) + 'HP.'
+	var useMessage: String = 'Using the ' + itemName + ', ' + target.disp_name()
+	
+	if healBy > 0:
+		useMessage += ' recovers ' + str(healBy) + 'HP'
+	
+	var curedOfStatus: bool = statusStrengthHeal != StatusEffect.Potency.NONE
+	if healBy > 0 and curedOfStatus:
+		useMessage += ' and'
+	
+	if curedOfStatus:
+		useMessage += ' is cured of all statuses!'
+	
+	return useMessage
