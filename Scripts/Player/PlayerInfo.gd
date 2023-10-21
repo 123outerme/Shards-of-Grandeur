@@ -22,6 +22,10 @@ class_name PlayerInfo
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
 
+@export_category("PlayerInfo: Overworld State")
+@export var pickedUpItems: Array[String] = []
+@export var pickedUpItem: PickedUpItem = null
+
 @export_category("PlayerInfo: UI State")
 @export var talkBtnsVisible: bool = false
 
@@ -41,6 +45,8 @@ func _init(
 	i_exitingBattle = false,
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
+	i_pickedUpItems: Array[String] = [],
+	i_pickedUpItem = null,
 	i_talkBtnsVisible = false,
 ):
 	map = i_map
@@ -56,7 +62,12 @@ func _init(
 	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
+	pickedUpItems = i_pickedUpItems
+	pickedUpItem = i_pickedUpItem
 	talkBtnsVisible = i_talkBtnsVisible
+
+func has_picked_up(uniqueId: String) -> bool:
+	return pickedUpItems.has(uniqueId)
 
 func load_data(save_path):
 	var data = null

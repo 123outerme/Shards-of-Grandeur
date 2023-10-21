@@ -3,6 +3,7 @@ class_name PlayerController
 
 const SPEED = 80
 @export var disableMovement: bool
+var pickedUpItem: PickedUpItem = null
 
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
@@ -27,7 +28,7 @@ func _input(event):
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
-	if event.is_action_pressed("game_interact") and talkNPC != null:
+	if event.is_action_pressed("game_interact") and (talkNPC != null or pickedUpItem != null):
 		if textBox.is_textbox_complete():
 			advance_dialogue()
 		else:
@@ -68,21 +69,25 @@ func _process(delta):
 		position_talk_btns()
 
 func advance_dialogue():
-	talkNPC.advance_dialogue()
-	var dialogueText = talkNPC.get_cur_dialogue_item()
-	if dialogueText != null: # if there is dialogue to display
-		if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the dialogue
-			SceneLoader.pause_autonomous_movers()
-			SceneLoader.unpauseExcludedMover = talkNPC
-			set_talk_btns_vis(false)
-			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
-		else: # this is continuing the dialogue
-			textBox.advance_textbox(dialogueText)
-	else:
-		SceneLoader.unpause_autonomous_movers()
-		textBox.hide_textbox()
-		set_talk_btns_vis(true)
-		position_talk_btns()
+	if talkNPC != null:
+		talkNPC.advance_dialogue()
+		var dialogueText = talkNPC.get_cur_dialogue_item()
+		if dialogueText != null: # if there is dialogue to display
+			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the dialogue
+				SceneLoader.pause_autonomous_movers()
+				SceneLoader.unpauseExcludedMover = talkNPC
+				set_talk_btns_vis(false)
+				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+			else: # this is continuing the dialogue
+				textBox.advance_textbox(dialogueText)
+		else:
+			SceneLoader.unpause_autonomous_movers()
+			textBox.hide_textbox()
+			set_talk_btns_vis(true)
+			position_talk_btns()
+	elif pickedUpItem != null:
+		pickedUpItem.savedTextIdx += 1
+		put_pick_up_text()
 
 func set_talk_btns_vis(vis: bool):
 	npcTalkBtns.visible = vis
@@ -110,17 +115,56 @@ func restore_dialogue(npc: NPCScript):
 	talkNPC = npc
 	var dialogueText = talkNPC.get_cur_dialogue_item()
 	if dialogueText != null:
-		disableMovement = true
+		SceneLoader.pause_autonomous_movers()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
 	set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
 	position_talk_btns()
+
+func restore_picked_up_item_text(groundItem: PickedUpItem):
+	pickedUpItem = groundItem
+	if pickedUpItem != null:
+		SceneLoader.pause_autonomous_movers()
+		put_pick_up_text()
+		textBox.show_text_instant()
 
 func pause_movement():
 	disableMovement = true
 
 func unpause_movement():
 	disableMovement = false
+
+func pick_up(groundItem: GroundItem):
+	if PlayerResources.playerInfo.has_picked_up(groundItem.pickedUpItem.uniqueId):
+		return
+	
+	pickedUpItem = groundItem.pickedUpItem
+	pickedUpItem.wasPickedUp = PlayerResources.inventory.add_item(pickedUpItem.item)
+	if pickedUpItem.wasPickedUp:
+		PlayerResources.playerInfo.pickedUpItems.append(pickedUpItem.uniqueId)
+		groundItem.queue_free()
+	pickedUpItem.savedTextIdx = 0
+	put_pick_up_text()
+
+func put_pick_up_text():
+	var hasNextDialogue: bool = true
+	if not pickedUpItem.wasPickedUp:
+		if pickedUpItem.savedTextIdx > 0:
+			hasNextDialogue = false
+		else:
+			textBox.set_textbox_text('Your inventory is too full for this ' + pickedUpItem.item.itemName + '!', 'Inventory Full')
+	else:
+		if pickedUpItem.savedTextIdx >= len(pickedUpItem.pickUpTexts):
+			hasNextDialogue = false
+		else:
+			textBox.set_textbox_text(pickedUpItem.pickUpTexts[pickedUpItem.savedTextIdx], 'Picked Up ' + pickedUpItem.item.itemName)
+	
+	if not hasNextDialogue:
+		SceneLoader.unpause_autonomous_movers()
+		textBox.hide_textbox()
+		pickedUpItem = null
+	else:
+		SceneLoader.pause_autonomous_movers()
 
 func _on_shop_button_pressed():
 	inventoryPanel.inShop = true

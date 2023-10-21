@@ -41,6 +41,7 @@ script = ExtResource("2_fvlbl")
 [node name="TalkArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+monitorable = false
 
 [node name="TalkAreaShape" type="CollisionShape2D" parent="TalkArea"]
 shape = SubResource("RectangleShape2D_ycftu")
@@ -48,6 +49,7 @@ shape = SubResource("RectangleShape2D_ycftu")
 [node name="MoveTrigger" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+monitorable = false
 
 [node name="MoveTriggerShape" type="CollisionShape2D" parent="MoveTrigger"]
 shape = SubResource("RectangleShape2D_wk2vr")

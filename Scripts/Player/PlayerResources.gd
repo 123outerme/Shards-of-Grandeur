@@ -43,6 +43,7 @@ func load_data(save_path):
 	if player != null:
 		player.position = playerInfo.position
 		player.disableMovement = playerInfo.disableMovement
+		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
 	inventory = Inventory.new(true)
 	var newInv = inventory.load_data(save_path)
 	if newInv != null:
@@ -62,6 +63,7 @@ func save_data(save_path):
 		if player != null:
 			playerInfo.position = player.position
 			playerInfo.disableMovement = player.disableMovement
+			playerInfo.pickedUpItem = player.pickedUpItem
 		playerInfo.combatant.stats = playerInfo.stats.copy()
 		if playerInfo.combatant.currentHp == -1:
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
