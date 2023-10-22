@@ -9,6 +9,7 @@ class_name InventorySlotPanel
 @export var summoning: bool = false
 @export var inventoryMenu: InventoryMenu
 @export var queuedForBattleUse: bool = false
+@export var equipContextStats: Stats = null
 
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
@@ -67,11 +68,11 @@ func _on_use_button_pressed():
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 
 func _on_equip_button_pressed():
-	PlayerResources.inventory.equip_item(inventorySlot)
+	PlayerResources.inventory.equip_item(inventorySlot, true, equipContextStats)
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - another item may have been unequipped
 
 func _on_unequip_button_pressed():
-	PlayerResources.inventory.equip_item(inventorySlot, false)
+	PlayerResources.inventory.equip_item(inventorySlot, false, equipContextStats)
 	isEquipped = false
 	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item order may have changed
 	

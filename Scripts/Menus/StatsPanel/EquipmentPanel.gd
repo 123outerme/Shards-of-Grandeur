@@ -1,8 +1,12 @@
 extends Panel
 class_name EquipmentPanel
 
+signal attempt_equip_weapon
+signal attempt_equip_armor
+
 @export var weapon: Weapon = null
 @export var armor: Armor = null
+@export var notEquippedSprite: Texture = null
 var statsPanel: StatsMenu = null
 
 @onready var weaponSprite: TextureButton = get_node("WeaponControl/WeaponSprite")
@@ -21,22 +25,20 @@ func _ready():
 
 func load_equipment_panel():
 	if weapon != null:
-		weaponSprite.disabled = false
 		weaponSprite.texture_normal = weapon.itemSprite
 		weaponName.text = weapon.itemName
 		weaponEffects.text = '[center]' + weapon.get_effect_text() + '[/center]'
 	else:
-		weaponSprite.disabled = true
+		weaponSprite.texture_normal = notEquippedSprite
 		weaponName.text = 'None Equipped'
 		weaponEffects.text = ''
 	
 	if armor != null:
-		armorSprite.disabled = false
 		armorSprite.texture_normal = armor.itemSprite
 		armorName.text = armor.itemName
 		armorEffects.text = '[center]' + armor.get_effect_text() + '[/center]'
 	else:
-		armorSprite.disabled = true
+		armorSprite.texture_normal = notEquippedSprite
 		armorName.text = 'None Equipped'
 		armorEffects.text = ''
 
@@ -49,6 +51,8 @@ func _on_weapon_sprite_pressed():
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
 		statsPanel.backButton.disabled = true
+	else:
+		attempt_equip_weapon.emit()
 
 func _on_armor_sprite_pressed():
 	if armor != null:
@@ -56,6 +60,8 @@ func _on_armor_sprite_pressed():
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
 		statsPanel.backButton.disabled = true
+	else:
+		attempt_equip_armor.emit()
 
 func _on_item_details_back_button_pressed():
 	statsPanel.backButton.disabled = false

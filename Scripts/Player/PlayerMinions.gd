@@ -35,11 +35,11 @@ func level_up_minions(newLevel: int):
 			minion.stats.level_up(levelDiff)
 
 func which_minion_equipped(item: Item) -> String:
-	var dispName: String = ''
+	var saveName: String = ''
 	for minion in get_minion_list():
 		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or (minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName):
-			dispName = minion.disp_name()
-	return dispName
+			saveName = minion.save_name()
+	return saveName
 
 func load_data(save_path):
 	var data = null

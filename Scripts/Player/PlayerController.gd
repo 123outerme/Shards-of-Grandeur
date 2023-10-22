@@ -181,10 +181,29 @@ func _on_turn_in_button_pressed():
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+	inventoryPanel.lockFilters = false
 
 func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+
+func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
+	inventoryPanel.selectedFilter = Item.Type.WEAPON
+	inventoryPanel.lockFilters = true
+	inventoryPanel.equipContextStats = stats
+	statsPanel.visible = false
+	statsPanel.reset_panel_to_player()
+	SceneLoader.pause_autonomous_movers()
+	inventoryPanel.toggle()
+
+func _on_stats_panel_node_attempt_equip_armor_to(stats: Stats):
+	inventoryPanel.selectedFilter = Item.Type.ARMOR
+	inventoryPanel.lockFilters = true
+	inventoryPanel.equipContextStats = stats
+	statsPanel.visible = false
+	statsPanel.reset_panel_to_player()
+	SceneLoader.pause_autonomous_movers()
+	inventoryPanel.toggle()
 
 func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false

@@ -11,6 +11,10 @@
 
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_ek2t8")
+curHp = null
+levelUp = null
+readOnly = null
+isPlayer = null
 
 [node name="StatsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -137,6 +141,8 @@ layout_mode = 1
 
 [connection signal="edit_moves" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="attempt_equip_armor" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
+[connection signal="attempt_equip_weapon" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]

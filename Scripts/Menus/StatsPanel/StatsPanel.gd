@@ -1,6 +1,8 @@
 extends Node2D
 class_name StatsMenu
 
+signal attempt_equip_weapon_to(stats: Stats)
+signal attempt_equip_armor_to(stats: Stats)
 signal back_pressed
 
 @export var stats: Stats = null
@@ -69,6 +71,10 @@ func restore_previous_stats_panel():
 	changingCombatant = true
 	load_stats_panel()
 
+func reset_panel_to_player():
+	if isMinionStats:
+		restore_previous_stats_panel()
+
 func _on_back_button_pressed():
 	if not isMinionStats:
 		toggle()
@@ -113,3 +119,11 @@ func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 	else:
 		stats.moves[slot] = newMove
 	load_stats_panel()
+
+func _on_equipment_panel_attempt_equip_weapon():
+	if not readOnly:
+		attempt_equip_weapon_to.emit(stats)
+
+func _on_equipment_panel_attempt_equip_armor():
+	if not readOnly:
+		attempt_equip_armor_to.emit(stats)

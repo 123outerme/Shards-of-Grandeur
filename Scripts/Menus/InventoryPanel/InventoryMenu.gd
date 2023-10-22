@@ -18,6 +18,7 @@ var shopInventory: Inventory = null
 @export_category("InventoryPanel - Item Use Behavior")
 @export var slotQueuedForBattleUse: InventorySlot = null
 @export var showItemUsePanel: bool = false
+@export var equipContextStats: Stats = null
 
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
@@ -91,6 +92,7 @@ func load_inventory_panel():
 			instantiatedPanel.inventorySlot = slot
 			if slotQueuedForBattleUse == slot:
 				instantiatedPanel.queuedForBattleUse = true
+			instantiatedPanel.equipContextStats = equipContextStats
 			vboxViewport.add_child(instantiatedPanel)
 			# unlock filter button for filter of item's type
 		if slot.item.itemType == Item.Type.HEALING:

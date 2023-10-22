@@ -38,21 +38,35 @@ func use_item(item: Item, target: Combatant):
 		if slot.item == item and item.consumable:
 			trash_item(slot) # remove one of the appropriate items
 	
-func equip_item(inventorySlot: InventorySlot, equip: bool = true):
+func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats = null):
 	var item: Item = inventorySlot.item
-	if not equip:
-		item = null
+	var noContext: bool = contextStats == null
+	
+	if contextStats == null:
+		contextStats = PlayerResources.playerInfo.stats
+	
+	var minionEquipped: String = PlayerResources.minions.which_minion_equipped(item)
 	
 	if inventorySlot.item is Weapon:
-		PlayerResources.playerInfo.stats.equippedWeapon = item
+		if equip:
+			contextStats.equippedWeapon = item
+		else:
+			if minionEquipped != '':
+				contextStats = PlayerResources.minions.get_minion(minionEquipped).stats
+			contextStats.equippedWeapon = null
 	if inventorySlot.item is Armor:
-		PlayerResources.playerInfo.stats.equippedArmor = item
+		if equip:
+			contextStats.equippedArmor = item
+		else:
+			if minionEquipped != '':
+				contextStats = PlayerResources.minions.get_minion(minionEquipped).stats
+			contextStats.equippedArmor = null
 
 func is_equipped(item: Item) -> bool:
 	if item is Weapon:
-		return PlayerResources.playerInfo.stats.equippedWeapon == item
+		return PlayerResources.playerInfo.stats.equippedWeapon == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	if item is Armor:
-		return PlayerResources.playerInfo.stats.equippedArmor == item
+		return PlayerResources.playerInfo.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
 func trash_item(inventorySlot: InventorySlot):
@@ -67,10 +81,8 @@ func get_sorted_slots() -> Array[InventorySlot]:
 	return slots
 
 func sort_by_equipped(a: InventorySlot, b: InventorySlot) -> bool:
-	var aEquipped: bool = PlayerResources.playerInfo.stats.equippedArmor == a.item \
-			or PlayerResources.playerInfo.stats.equippedWeapon == a.item
-	var bEquipped: bool = PlayerResources.playerInfo.stats.equippedArmor == b.item \
-			or PlayerResources.playerInfo.stats.equippedWeapon == b.item
+	var aEquipped: bool = is_equipped(a.item)
+	var bEquipped: bool = is_equipped(b.item)
 	if aEquipped and not bEquipped:
 		return true
 	if bEquipped and not aEquipped:
