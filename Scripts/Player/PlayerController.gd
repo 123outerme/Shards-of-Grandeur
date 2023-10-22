@@ -16,7 +16,10 @@ var pickedUpItem: PickedUpItem = null
 var talkNPC: NPCScript = null
 
 func _unhandled_input(event):
-	if event.is_action_pressed("game_pause"): # TODO replace with pause menu
+	if event.is_action_pressed("game_pause"):
+		pass # TODO replace with pause menu
+	
+	if event.is_action_pressed("game_stats"):
 		statsPanel.stats = PlayerResources.playerInfo.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
@@ -29,9 +32,10 @@ func _unhandled_input(event):
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
-	if event.is_action_pressed("game_interact") and (talkNPC != null or pickedUpItem != null):
+	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
+			and (talkNPC != null or pickedUpItem != null):
 		if textBox.is_textbox_complete():
-			advance_dialogue()
+			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
 			textBox.show_text_instant()
 			
@@ -70,8 +74,10 @@ func _process(delta):
 	if npcTalkBtns.visible and talkNPC != null:
 		position_talk_btns()
 
-func advance_dialogue():
+func advance_dialogue(canStart: bool = true):
 	if talkNPC != null:
+		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
+			return
 		talkNPC.advance_dialogue()
 		var dialogueText = talkNPC.get_cur_dialogue_item()
 		if dialogueText != null: # if there is dialogue to display

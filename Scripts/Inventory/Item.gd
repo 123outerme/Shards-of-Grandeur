@@ -62,7 +62,7 @@ func _init(
 	consumable = i_consumable
 	equippable = i_equippable
 	battleTargets = i_targets
-	
+
 func use(_target: Combatant):
 	print("If you're seeing this, implement Item.use() in item type:", Item.TypeToString(itemType))
 	pass # "virtual" function - does nothing. Override in inherting classes!
