@@ -24,7 +24,8 @@ func _input(event):
 			SceneLoader.pause_autonomous_movers()
 		else:
 			SceneLoader.unpause_autonomous_movers()
-		inventoryPanel.visible = false
+		inventoryPanel.visible = true
+		inventoryPanel.toggle()
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
@@ -56,7 +57,8 @@ func _input(event):
 		else:
 			SceneLoader.unpause_autonomous_movers()
 		statsPanel.visible = false
-		inventoryPanel.visible = false
+		inventoryPanel.visible = true
+		inventoryPanel.toggle()
 		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 func _physics_process(_delta):
@@ -181,7 +183,6 @@ func _on_turn_in_button_pressed():
 func _on_inventory_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
-	inventoryPanel.lockFilters = false
 
 func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible

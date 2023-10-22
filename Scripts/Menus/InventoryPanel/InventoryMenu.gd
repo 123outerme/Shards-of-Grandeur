@@ -49,6 +49,10 @@ func toggle():
 		load_inventory_panel()
 	else:
 		itemDetailsPanel.visible = false
+		if equipContextStats != null:
+			lockFilters = false
+			selectedFilter = Item.Type.ALL
+		equipContextStats = null
 
 func get_display_inventory():
 	currentInventory = PlayerResources.inventory

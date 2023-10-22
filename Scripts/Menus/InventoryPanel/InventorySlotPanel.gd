@@ -15,6 +15,7 @@ class_name InventorySlotPanel
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
 @onready var itemType: RichTextLabel = get_node("CenterItemType/ItemType")
 @onready var itemCount: RichTextLabel = get_node("CenterItemCount/ItemCount")
+@onready var equippedTo: RichTextLabel = get_node("CenterEqiuppedTo/EquippedTo")
 @onready var itemCost: RichTextLabel = get_node("CenterItemCost/ItemCost")
 @onready var useButton: Button = get_node("CenterButtons/HBoxContainer/UseButton")
 @onready var equipButton: Button = get_node("CenterButtons/HBoxContainer/EquipButton")
@@ -51,6 +52,14 @@ func load_inventory_slot_panel():
 	
 	unequipButton.visible = not isShopItem and isEquipped
 	unequipButton.disabled = inBattle
+	if unequipButton.visible:
+		var stats: Stats = PlayerResources.playerInfo.stats
+		var minionName = PlayerResources.minions.which_minion_equipped(inventorySlot.item)
+		if minionName != '':
+			stats = PlayerResources.minions.get_minion(minionName).stats
+		equippedTo.text = '[right]Equipped to:\n' + stats.displayName + '[/right]'
+	else:
+		equippedTo.text = ''
 	
 	trashButton.visible = not isShopItem
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped

@@ -67,8 +67,8 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -65.0
-offset_right = 65.0
+offset_left = -71.0
+offset_right = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -85,8 +85,8 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 105.0
-offset_right = 205.0
+offset_left = 89.0
+offset_right = 158.0
 alignment = 1
 
 [node name="GoldSprite" type="Sprite2D" parent="CenterItemCost"]
@@ -98,6 +98,27 @@ texture = SubResource("AtlasTexture_k380f")
 clip_contents = false
 layout_mode = 2
 text = "456,789"
+fit_content = true
+
+[node name="CenterEqiuppedTo" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = -1.0
+offset_right = 271.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="EquippedTo" type="RichTextLabel" parent="CenterEqiuppedTo"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[right]Equipped to:
+Combatant Name Here[/right]"
 fit_content = true
 
 [node name="CenterButtons" type="VBoxContainer" parent="."]

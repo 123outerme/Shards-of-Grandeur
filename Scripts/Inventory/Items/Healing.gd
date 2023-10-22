@@ -53,7 +53,7 @@ func get_effect_text() -> String:
 	
 	if healBy > 0:
 		effectText += 'Heal a Combatant by ' + TextUtils.num_to_comma_string(healBy) + ' HP'
-		outsideOfBattleText = ', or Use Outside of Battle to Heal Yourself' + TextUtils.num_to_comma_string(healBy) + ' HP'
+		outsideOfBattleText = ', or Use Outside of Battle to Heal Yourself ' + TextUtils.num_to_comma_string(healBy) + ' HP'
 	
 	var curedOfStatus: bool = statusStrengthHeal != StatusEffect.Potency.NONE
 	if curedOfStatus:
