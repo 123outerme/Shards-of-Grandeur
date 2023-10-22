@@ -234,7 +234,7 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += ', dealing '
 		elif move.power < 0:
 			resultsText += ', healing '
-		else:
+		elif move.statusEffect != null:
 			resultsText += ', '
 	
 	if type == Type.USE_ITEM:
@@ -259,6 +259,9 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
+						if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING and (slot.item as Healing).statusStrengthHeal != StatusEffect.Potency.NONE:
+							var healItem: Healing = slot.item as Healing
+							resultsText += ' and cured ' + StatusEffect.potency_to_string(healItem.statusStrengthHeal) + ' status effects.'
 					if type == Type.MOVE and move.statusChance >= randomNums[i] and move.statusEffect != null:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
@@ -285,7 +288,7 @@ func get_command_results(user: Combatant) -> String:
 		if type == Type.MOVE and move.statChanges.has_stat_changes():
 			resultsText += ' ' + user.disp_name() + ' boosts '
 			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
-			resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers)
+			resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)
 		if preventEscapingIdx < 0:

@@ -53,7 +53,7 @@ func apply_menu_state():
 	if targets.visible:
 		targets.referringMenu = prevMenu
 		targets.load_targets()
-	
+
 	results.visible = menuState == BattleState.Menu.RESULTS \
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
 			or menuState == BattleState.Menu.POST_ROUND
@@ -97,6 +97,16 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 				return
 		set_menu_state(newMenuState)
 
+func start_pre_battle():
+	for combatantNode in battleController.get_all_combatant_nodes():
+		# apply pre-battle effects
+		if combatantNode.is_alive():
+			if combatantNode.combatant.stats.equippedWeapon != null:
+				combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+			if combatantNode.combatant.stats.equippedArmor != null:
+				combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+	set_menu_state(BattleState.Menu.PRE_BATTLE)
+
 func return_to_player_command():
 	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
 	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
@@ -123,11 +133,6 @@ func update_downed():
 
 func round_complete():
 	battleController.state.turnNumber += 1
-	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
-	for combatantNode in allCombatantNodes:
-		if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
-			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
-	
 	battlePanels.flowOfBattle.set_fob_button_enabled()
 	return_to_player_command()
 
@@ -149,7 +154,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		PlayerResources.inventory.trash_item(slot)
 		var shard = slot.item as Shard
 		battleController.summon_minion(shard)
-		set_menu_state(BattleState.Menu.PRE_BATTLE)
+		start_pre_battle()
 	if menuState == BattleState.Menu.ITEMS:
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])

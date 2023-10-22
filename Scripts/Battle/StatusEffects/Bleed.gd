@@ -20,6 +20,7 @@ func get_bleed_damage(combatant: Combatant) -> int:
 func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
 		combatant.currentHp = max(combatant.currentHp - get_bleed_damage(combatant), 0)
+	super.apply_status(combatant, timing)
 	
 func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:

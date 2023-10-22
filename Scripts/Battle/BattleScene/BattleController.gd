@@ -132,6 +132,10 @@ func end_battle():
 	battleEnded = true
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
+	if minionCombatant.combatant != null:
+		minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # reset max HP for next time minion will be summoned
+		minionCombatant.combatant.statChanges.reset()
+		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
 	SaveHandler.save_data()
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld()

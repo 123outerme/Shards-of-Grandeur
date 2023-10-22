@@ -24,6 +24,7 @@ func start_simulation():
 				combatantNode.get_command(allCombatantNodes)
 			combatants.append(combatantNode.combatant)
 			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
+			# apply before-round effects
 			if combatantNode.combatant.statusEffect != null:
 				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
 			if combatantNode.combatant.stats.equippedWeapon != null:
@@ -35,15 +36,23 @@ func start_simulation():
 func play_turn():
 	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
-	if combatant != null:	
+	if combatant != null: # apply before-damage-calc status
 		combatant.command.get_targets_from_combatant_nodes(allCombatants) # make sure to get all commands before applying statuses
 		if combatant.statusEffect != null:
 			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
-		if combatant.statusEffect != null:
+		if combatant.statusEffect != null: # apply after-damage-calc status
 			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		update_turn_text()
 	else:
+		for combatantNode in battleController.get_all_combatant_nodes(): # apply after-round effects
+			if combatantNode.is_alive():
+				if combatantNode.combatant.statusEffect != null:
+					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
+				if combatantNode.combatant.stats.equippedWeapon != null:
+					combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
+				if combatantNode.combatant.stats.equippedArmor != null:
+					combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
 		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 	
 func update_turn_text() -> bool:
@@ -69,7 +78,6 @@ func update_turn_text() -> bool:
 			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
 	battleUI.results.show_text(text)
-	battleUI.update_hp_tags()
 	return text != ''
 
 func finish_turn() -> TurnResult:
@@ -124,6 +132,7 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''
+				
 				if combatantNode.combatant.stats.equippedWeapon != null:
 					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, timing)
 				if combatantNode.combatant.stats.equippedArmor != null:

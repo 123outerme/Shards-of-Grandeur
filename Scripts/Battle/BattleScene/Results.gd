@@ -12,6 +12,7 @@ func _ready():
 
 func show_text(newText: String):
 	textBoxText.text = newText
+	battleUI.update_hp_tags()
 
 func _on_ok_button_pressed():
 	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:

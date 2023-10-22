@@ -9,8 +9,8 @@ func _init(
 ):
 	super(Type.EXHAUSTION, i_potency, i_turnsLeft)
 
-func apply_status(_combatant: Combatant, _timing: BattleCommand.ApplyTiming):
-	pass
+func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
+	super.apply_status(combatant, timing)
 	
 func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:

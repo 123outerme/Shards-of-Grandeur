@@ -26,6 +26,7 @@ func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
 		combatant.statChanges.stack(statChangesDict[potency])
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		combatant.statChanges.stack(reverseStatChangesDict[potency])
+	super.apply_status(combatant, timing)
 	
 func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
 	return ''
