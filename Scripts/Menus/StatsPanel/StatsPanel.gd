@@ -14,6 +14,7 @@ var savedStats: Stats = null
 var savedCurHp: int = -1
 var savedLvUp: bool = false
 var savedIsPlayer: bool = false
+var changingCombatant: bool = false
 
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
 @onready var levelUpLabel: RichTextLabel = get_node("StatsPanel/Panel/LevelUpLabel")
@@ -42,7 +43,7 @@ func load_stats_panel():
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
-	statlinePanel.load_statline_panel()
+	statlinePanel.load_statline_panel(changingCombatant)
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool
 	moveListPanel.readOnly = readOnly
@@ -57,6 +58,7 @@ func load_stats_panel():
 		minionsPanel.load_minions_panel()
 	else:
 		minionsPanel.visible = false
+	changingCombatant = false
 
 func restore_previous_stats_panel():
 	stats = savedStats
@@ -64,6 +66,7 @@ func restore_previous_stats_panel():
 	levelUp = savedLvUp
 	isPlayer = savedIsPlayer
 	isMinionStats = false
+	changingCombatant = true
 	load_stats_panel()
 
 func _on_back_button_pressed():
@@ -87,6 +90,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		levelUp = false
 		isPlayer = false
 		isMinionStats = true
+		changingCombatant = true
 		load_stats_panel()
 
 func _on_move_list_panel_edit_moves():

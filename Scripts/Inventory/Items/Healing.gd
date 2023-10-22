@@ -39,6 +39,8 @@ func get_use_message(target: Combatant) -> String:
 	var curedOfStatus: bool = statusStrengthHeal != StatusEffect.Potency.NONE
 	if healBy > 0 and curedOfStatus:
 		useMessage += ' and'
+	else:
+		useMessage += '.'
 	
 	if curedOfStatus:
 		useMessage += ' is cured of all statuses!'

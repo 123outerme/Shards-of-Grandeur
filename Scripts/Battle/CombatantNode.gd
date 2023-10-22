@@ -18,6 +18,7 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var battlePosition: String = ''
 
 @export_category("CombatantNode - Tree")
+@export var clickCombatantBtn: TextureButton
 @export var selectCombatantBtn: TextureButton
 @export var sprite: Sprite2D
 @export var hpTag: Panel
@@ -37,6 +38,7 @@ func load_combatant_node():
 		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_hp_tag()
 		update_select_btn(false)
+		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
 
 func update_hp_tag():
 	if not is_alive():

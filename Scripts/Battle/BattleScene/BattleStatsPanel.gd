@@ -5,8 +5,9 @@ class_name BattleStatsPanel
 @export var battlePosition: String = ''
 
 @onready var combatantName: RichTextLabel = get_node("CombatantName")
-@onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
 @onready var statusEffectText: RichTextLabel = get_node("StatusEffect")
+@onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
+@onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,3 +31,7 @@ func load_battle_stats_panel():
 		statusEffectText.text = '[center]Experiencing ' + combatant.statusEffect.status_effect_to_string() + '[/center]'
 	else:
 		statusEffectText.text = ''
+	
+	equipmentPanel.weapon = combatant.stats.equippedWeapon
+	equipmentPanel.armor = combatant.stats.equippedArmor
+	equipmentPanel.load_equipment_panel()

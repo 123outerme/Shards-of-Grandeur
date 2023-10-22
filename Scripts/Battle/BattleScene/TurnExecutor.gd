@@ -42,7 +42,6 @@ func play_turn():
 		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
 		if combatant.statusEffect != null:
 			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
-		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
 		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
@@ -70,6 +69,7 @@ func update_turn_text() -> bool:
 			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
 	battleUI.results.show_text(text)
+	battleUI.update_hp_tags()
 	return text != ''
 
 func finish_turn() -> TurnResult:

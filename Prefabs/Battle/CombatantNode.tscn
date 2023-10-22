@@ -23,8 +23,9 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="CombatantNode" type="Node2D" node_paths=PackedStringArray("selectCombatantBtn", "sprite", "hpTag", "lvText", "hpText") groups=["CombatantNode"]]
+[node name="CombatantNode" type="Node2D" node_paths=PackedStringArray("clickCombatantBtn", "selectCombatantBtn", "sprite", "hpTag", "lvText", "hpText") groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
+clickCombatantBtn = NodePath("ClickCombatantBtn")
 selectCombatantBtn = NodePath("SelectCombatantBtn")
 sprite = NodePath("CombatantSprite")
 hpTag = NodePath("HPTag")

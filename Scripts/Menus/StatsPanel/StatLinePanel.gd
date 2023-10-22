@@ -56,11 +56,11 @@ var modified: bool = false
 func _ready():
 	pass # Replace with function body.
 
-func load_statline_panel():
+func load_statline_panel(recopyStats: bool = false):
 	if stats == null:
 		return
 		
-	if statsCopy == null:
+	if statsCopy == null or recopyStats:
 		statsCopy = stats.copy()
 	
 	var hp: int = curHp
