@@ -40,13 +40,10 @@ func use_item(item: Item, target: Combatant):
 	
 func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats = null):
 	var item: Item = inventorySlot.item
-	var noContext: bool = contextStats == null
-	
 	if contextStats == null:
 		contextStats = PlayerResources.playerInfo.stats
 	
 	var minionEquipped: String = PlayerResources.minions.which_minion_equipped(item)
-	
 	if inventorySlot.item is Weapon:
 		if equip:
 			contextStats.equippedWeapon = item

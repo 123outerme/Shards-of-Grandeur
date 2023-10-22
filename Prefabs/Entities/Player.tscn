@@ -59,6 +59,9 @@ position = Vector2(-640, -480)
 [node name="StatsPanelNode" parent="UI" instance=ExtResource("6_a850r")]
 visible = false
 position = Vector2(-640, -480)
+curHp = -1
+levelUp = false
+readOnly = false
 isPlayer = true
 
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]

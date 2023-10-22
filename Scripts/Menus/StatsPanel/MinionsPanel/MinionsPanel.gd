@@ -39,10 +39,10 @@ func load_minions_panel():
 		cancelName.disabled = true
 	else:
 		var minionSlotPanel = load("res://Prefabs/UI/Stats/MinionSlotPanel.tscn")
-		for minion in PlayerResources.minions.get_minion_list():
+		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
 			instantiatedPanel.readOnly = readOnly
-			instantiatedPanel.combatant = minion
+			instantiatedPanel.combatant = listed_minion
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
 			vboxContainer.add_child(instantiatedPanel)
 	

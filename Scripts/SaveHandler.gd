@@ -46,7 +46,7 @@ func load_data():
 		if scr != null and scr.has_method("load_data"):
 			scr.call("load_data", save_file_location)
 			
-func new_game():
+func new_game(characterName: String):
 	fetch_saved_scripts()
 	for subdir in subdirs: # for each save subdirectory
 		if DirAccess.dir_exists_absolute(save_file_location + subdir):
@@ -62,7 +62,9 @@ func new_game():
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("new_game"):
 			scr.call("new_game", save_file_location)
-			
+		if scr != null and scr.has_method("name_player"):
+			scr.call("name_player", save_file_location, characterName)
+	
 func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
 

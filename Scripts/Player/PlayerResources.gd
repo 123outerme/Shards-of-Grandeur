@@ -77,7 +77,6 @@ func save_data(save_path):
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
-	playerInfo.save_data(save_path, playerInfo)
 	inventory = Inventory.new(true)
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()
@@ -85,3 +84,7 @@ func new_game(save_path):
 	minions = PlayerMinions.new()
 	minions.save_data(save_path, minions)
 	loaded = true
+
+func name_player(save_path, characterName: String):
+	playerInfo.combatant.stats.displayName = characterName
+	playerInfo.save_data(save_path, playerInfo)

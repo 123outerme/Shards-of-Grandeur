@@ -116,7 +116,59 @@ position = Vector2(770, 275)
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_mthhv")
 
+[node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleText" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -236.5
+offset_top = 127.0
+offset_right = 236.5
+offset_bottom = 177.0
+grow_horizontal = 2
+theme = ExtResource("2_irsbb")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Create A New Game?[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/NewGameConfirmPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.5
+offset_top = -20.0
+offset_right = 210.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Panel/NewGameConfirmPanel/HBoxContainer"]
+layout_mode = 2
+text = "Yes, New Game!"
+
+[node name="NoButton" type="Button" parent="Panel/NewGameConfirmPanel/HBoxContainer"]
+layout_mode = 2
+text = "No, Never Mind..."
+
 [connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

@@ -41,7 +41,10 @@ func load_stats_panel():
 	if stats == null:
 		return
 	
-	statsTitle.text = '[center]' + stats.displayName + ' - Stats[/center]'
+	var dispName: String = stats.displayName
+	if minion != null:
+		dispName = minion.disp_name()
+	statsTitle.text = '[center]' + dispName + ' - Stats[/center]'
 	levelUpLabel.visible = levelUp
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
