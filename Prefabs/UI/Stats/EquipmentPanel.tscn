@@ -63,6 +63,15 @@ offset_bottom = 60.0
 text = "Item Name Goes Here"
 fit_content = true
 
+[node name="WeaponEffects" type="RichTextLabel" parent="WeaponControl"]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 552.0
+offset_bottom = 170.0
+bbcode_enabled = true
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
+
 [node name="ArmorControl" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -100,6 +109,15 @@ offset_right = 240.0
 offset_bottom = 60.0
 text = "Item Name Goes Here"
 fit_content = true
+
+[node name="ArmorEffects" type="RichTextLabel" parent="ArmorControl"]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 552.0
+offset_bottom = 170.0
+bbcode_enabled = true
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
 
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("5_ie6a0")]
 visible = false

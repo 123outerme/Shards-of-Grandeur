@@ -149,7 +149,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		PlayerResources.inventory.trash_item(slot)
 		var shard = slot.item as Shard
 		battleController.summon_minion(shard)
-		set_menu_state(BattleState.Menu.ALL_COMMANDS)
+		set_menu_state(BattleState.Menu.PRE_BATTLE)
 	if menuState == BattleState.Menu.ITEMS:
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])

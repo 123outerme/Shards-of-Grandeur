@@ -204,7 +204,7 @@ func _on_item_used(slot: InventorySlot):
 		itemUsePanel.target = PlayerResources.playerInfo.combatant
 		itemUsePanel.load_item_use_panel()
 		backButton.disabled = true
-	elif slot.item.itemType == Item.Type.SHARD:
+	elif slot.item.itemType == Item.Type.SHARD and not inBattle:
 		itemUsePanel.item = slot.item
 		shardLearnPanel.shard = slot.item as Shard
 		shardLearnPanel.load_shard_learn_panel()

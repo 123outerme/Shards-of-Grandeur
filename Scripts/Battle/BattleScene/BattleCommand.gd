@@ -104,7 +104,7 @@ func _init(
 	i_move = null,
 	i_slot = null,
 	i_targets: Array[String] = [],
-	i_randomNums = [],
+	i_randomNums: Array[float] = [],
 ):
 	type = i_type
 	move = i_move
@@ -299,5 +299,5 @@ func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
 	targets = []
 	for targetPos in targetPositions:
 		for combatantNode in combatantNodes:
-			if targetPos == combatantNode.battlePosition:
+			if targetPos == combatantNode.battlePosition and combatantNode.combatant != null:
 				targets.append(combatantNode.combatant)

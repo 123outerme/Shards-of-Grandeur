@@ -86,10 +86,11 @@ func _on_combatant_selected(button_pressed: bool, combatantNode: CombatantNode):
 	update_confirm_btn()
 
 func _on_confirm_button_pressed():
-	battleUI.commandingCombatant.combatant.command.targetPositions = []
+	var targetPositions: Array[String] = []
 	for combatantNode in battleUI.battleController.get_all_combatant_nodes():
 		if combatantNode.is_selected():
-			battleUI.commandingCombatant.combatant.command.targetPositions.append(combatantNode.battlePosition)
+			targetPositions.append(combatantNode.battlePosition)
+	battleUI.commandingCombatant.combatant.command.set_targets(targetPositions)
 	
 	reset_targets()
 	battleUI.complete_command()

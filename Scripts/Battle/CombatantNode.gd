@@ -100,7 +100,7 @@ func get_command(combatantNodes: Array[CombatantNode]):
 		else:
 			targetPositions = [targetableCombatants[randi_range(0, len(targetableCombatants) - 1)].battlePosition] # pick a random target
 			# TODO: pick target better
-		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targetPositions, randf())
+		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, move, null, targetPositions)
 
 func is_alive() -> bool:
 	if combatant == null:

@@ -7,9 +7,11 @@ var statsPanel: StatsMenu = null
 
 @onready var weaponSprite: TextureButton = get_node("WeaponControl/WeaponSprite")
 @onready var weaponName: RichTextLabel = get_node("WeaponControl/WeaponName")
+@onready var weaponEffects: RichTextLabel = get_node("WeaponControl/WeaponEffects")
 
 @onready var armorSprite: TextureButton = get_node("ArmorControl/ArmorSprite")
 @onready var armorName: RichTextLabel = get_node("ArmorControl/ArmorName")
+@onready var armorEffects: RichTextLabel = get_node("ArmorControl/ArmorEffects")
 
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 
@@ -22,17 +24,21 @@ func load_equipment_panel():
 		weaponSprite.disabled = false
 		weaponSprite.texture_normal = weapon.itemSprite
 		weaponName.text = weapon.itemName
+		weaponEffects.text = '[center]' + weapon.get_effect_text() + '[/center]'
 	else:
 		weaponSprite.disabled = true
 		weaponName.text = 'None Equipped'
+		weaponEffects.text = ''
 	
 	if armor != null:
 		armorSprite.disabled = false
 		armorSprite.texture_normal = armor.itemSprite
 		armorName.text = armor.itemName
+		armorEffects.text = '[center]' + armor.get_effect_text() + '[/center]'
 	else:
 		armorSprite.disabled = true
 		armorName.text = 'None Equipped'
+		armorEffects.text = ''
 
 func hide_panel():
 	itemDetailsPanel.visible = false
