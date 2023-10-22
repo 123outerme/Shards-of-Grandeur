@@ -12,6 +12,7 @@ signal back_pressed
 @export var isPlayer: bool = false
 
 var isMinionStats: bool = false
+var minion: Combatant = null
 var savedStats: Stats = null
 var savedCurHp: int = -1
 var savedLvUp: bool = false
@@ -54,16 +55,14 @@ func load_stats_panel():
 	equipmentPanel.armor = stats.equippedArmor
 	equipmentPanel.statsPanel = self
 	equipmentPanel.load_equipment_panel()
-	if isPlayer:
-		minionsPanel.readOnly = readOnly
-		minionsPanel.visible = true
-		minionsPanel.load_minions_panel()
-	else:
-		minionsPanel.visible = false
+	minionsPanel.minion = minion
+	minionsPanel.readOnly = readOnly
+	minionsPanel.load_minions_panel()
 	changingCombatant = false
 
 func restore_previous_stats_panel():
 	stats = savedStats
+	minion = null
 	curHp = savedCurHp
 	levelUp = savedLvUp
 	isPlayer = savedIsPlayer
@@ -91,6 +90,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 	savedLvUp = levelUp
 	savedIsPlayer = isPlayer
 	if combatant != null and combatant.stats != null:
+		minion = combatant
 		stats = combatant.stats
 		curHp = -1
 		levelUp = false

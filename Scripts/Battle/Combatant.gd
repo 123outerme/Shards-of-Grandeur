@@ -5,6 +5,7 @@ class_name Combatant
 @export var sprite: Texture2D = null
 
 @export_category("Combatant - Stats")
+@export var nickname: String = ''
 @export var stats: Stats = Stats.new()
 @export var currentHp: int = -1
 @export var statChanges: StatChanges = StatChanges.new()
@@ -28,6 +29,7 @@ static func load_combatant_resource(saveName: String) -> Combatant:
 	return combatant
 
 func _init(
+	i_nickname = '',
 	i_stats = Stats.new(),
 	i_curHp = -1,
 	i_statChanges = StatChanges.new(),
@@ -40,6 +42,7 @@ func _init(
 	i_command = null,
 	i_downed = false,
 ):
+	nickname = i_nickname
 	stats = i_stats
 	if i_curHp != -1:
 		currentHp = i_curHp
@@ -56,6 +59,8 @@ func _init(
 	downed = i_downed
 
 func disp_name() -> String:
+	if nickname != '':
+		return nickname
 	return stats.displayName
 
 func save_name() -> String:

@@ -15,7 +15,7 @@ var pickedUpItem: PickedUpItem = null
 
 var talkNPC: NPCScript = null
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("game_pause"): # TODO replace with pause menu
 		statsPanel.stats = PlayerResources.playerInfo.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp

@@ -4,8 +4,16 @@ class_name MinionsPanel
 signal stats_clicked(combatant: Combatant)
 
 @export var readOnly: bool = false
+@export var minion: Combatant = null
 
-@onready var vboxContainer: VBoxContainer = get_node("ScrollContainer/VBoxContainer")
+@onready var playerView: Control = get_node("PlayerView")
+@onready var vboxContainer: VBoxContainer = get_node("PlayerView/ScrollContainer/VBoxContainer")
+
+@onready var minionView: Control = get_node("MinionView")
+@onready var minionName: RichTextLabel = get_node("MinionView/MinionName")
+@onready var nameInput: LineEdit = get_node("MinionView/NameInput")
+@onready var confirmName: Button = get_node("MinionView/NameFormControls/ConfirmButton")
+@onready var cancelName: Button = get_node("MinionView/NameFormControls/CancelButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +25,53 @@ func load_minions_panel():
 			panel.stats_clicked.disconnect(_on_stats_clicked)
 		panel.queue_free()
 	
-	var minionSlotPanel = load("res://Prefabs/UI/Stats/MinionSlotPanel.tscn")
-	for minion in PlayerResources.minions.get_minion_list():
-		var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
-		instantiatedPanel.readOnly = readOnly
-		instantiatedPanel.combatant = minion
-		instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
-		vboxContainer.add_child(instantiatedPanel)
+	if minion != null:
+		nameInput.placeholder_text = minion.stats.displayName
+		minionName.text = '[center]'
+		if minion.nickname != '':
+			minionName.text += minion.nickname + '\n(' + minion.stats.displayName + ')'
+			nameInput.text = minion.disp_name()
+		else:
+			nameInput.text = ''
+			minionName.text += minion.stats.displayName
+		minionName.text += ':[/center]'
+		confirmName.disabled = true
+		cancelName.disabled = true
+	else:
+		var minionSlotPanel = load("res://Prefabs/UI/Stats/MinionSlotPanel.tscn")
+		for minion in PlayerResources.minions.get_minion_list():
+			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
+			instantiatedPanel.readOnly = readOnly
+			instantiatedPanel.combatant = minion
+			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
+			vboxContainer.add_child(instantiatedPanel)
+	
+	minionView.visible = minion != null
+	playerView.visible = minion == null
 
 func _on_stats_clicked(combatant: Combatant):
 	stats_clicked.emit(combatant)
+
+func _on_name_input_text_changed(new_text: String):
+	confirmName.disabled = false
+	cancelName.disabled = false
+
+func _on_name_input_text_submitted(new_text: String):
+	minion.nickname = new_text
+	nameInput.release_focus()
+	confirmName.disabled = true
+	cancelName.disabled = true
+
+func _on_confirm_button_pressed():
+	minion.nickname = nameInput.text
+	confirmName.disabled = true
+	cancelName.disabled = true
+
+func _on_cancel_button_pressed():
+	nameInput.text = minion.nickname
+
+func _on_name_input_focus_entered():
+	pass # Replace with function body.
+
+func _on_name_input_focus_exited():
+	pass # Replace with function body.
