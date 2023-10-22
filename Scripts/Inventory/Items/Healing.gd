@@ -44,3 +44,17 @@ func get_use_message(target: Combatant) -> String:
 		useMessage += ' is cured of all statuses!'
 	
 	return useMessage
+
+func get_effect_text() -> String:
+	var effectText: String = 'Use in Battle to '
+	var outsideOfBattleText: String = ''
+	
+	if healBy > 0:
+		effectText += 'Heal a Combatant by ' + TextUtils.num_to_comma_string(healBy) + ' HP'
+		outsideOfBattleText = ', or Use Outside of Battle to Heal Yourself' + TextUtils.num_to_comma_string(healBy) + ' HP'
+	
+	var curedOfStatus: bool = statusStrengthHeal != StatusEffect.Potency.NONE
+	if curedOfStatus:
+		effectText += ' and cure of all ' + StatusEffect.potency_to_string(statusStrengthHeal) + ' status effects'
+		
+	return effectText + outsideOfBattleText

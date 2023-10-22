@@ -7,6 +7,7 @@ class_name ItemDetailsPanel
 @onready var itemName: RichTextLabel = get_node("Panel/ItemName")
 @onready var itemSprite: Sprite2D = get_node("Panel/ItemSprite")
 @onready var itemType: RichTextLabel = get_node("Panel/ItemType")
+@onready var itemEffect: RichTextLabel = get_node("Panel/ItemEffect")
 @onready var itemDescription: RichTextLabel = get_node("Panel/ItemDescription")
 @onready var itemCost: RichTextLabel = get_node("Panel/ItemCostGroup/ItemCost")
 @onready var itemCount: RichTextLabel = get_node("Panel/ItemCount")
@@ -22,6 +23,7 @@ func load_item_details():
 	itemName.text = '[center]' + item.itemName + '[/center]'
 	itemSprite.texture = item.itemSprite
 	itemType.text = '[center]' + Item.TypeToString(item.itemType) + '[/center]'
+	itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
 	itemDescription.text = item.itemDescription
 	itemCost.text = String.num(item.cost)
 	if count > 0:

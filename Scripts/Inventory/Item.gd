@@ -70,6 +70,9 @@ func use(_target: Combatant):
 func get_use_message(_target: Combatant) -> String:
 	return "If you're seeing this, implement Item.get_use_message() in item type " + Item.TypeToString(itemType)
 
+func get_effect_text() -> String:
+	return "If you're seeing this, implement Item.get_effect_text() in item type" + Item.TypeToString(itemType)
+
 func get_as_subclass():
 	if itemType == Type.HEALING:
 		return self as Healing

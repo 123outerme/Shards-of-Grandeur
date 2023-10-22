@@ -25,7 +25,11 @@ func start_simulation():
 			combatants.append(combatantNode.combatant)
 			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			if combatantNode.combatant.statusEffect != null:
-				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.BEFORE_ROUND)
+				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
+			if combatantNode.combatant.stats.equippedWeapon != null:
+				combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
+			if combatantNode.combatant.stats.equippedArmor != null:
+				combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
 	turnQueue = TurnQueue.new(combatants)
 
 func play_turn():
@@ -34,10 +38,10 @@ func play_turn():
 	if combatant != null:	
 		combatant.command.get_targets_from_combatant_nodes(allCombatants) # make sure to get all commands before applying statuses
 		if combatant.statusEffect != null:
-			combatant.statusEffect.apply_status(combatant, StatusEffect.ApplyTiming.BEFORE_DMG_CALC)
+			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
 		if combatant.statusEffect != null:
-			combatant.statusEffect.apply_status(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		battleUI.update_hp_tags()
 		update_turn_text()
 	else:
@@ -63,7 +67,7 @@ func update_turn_text() -> bool:
 		combatant.command.get_targets_from_combatant_nodes(allCombatants)
 		text = combatant.command.get_command_results(combatant)
 		if combatant.statusEffect != null:
-			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, StatusEffect.ApplyTiming.AFTER_DMG_CALC)
+			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
 	battleUI.results.show_text(text)
 	return text != ''
@@ -101,14 +105,35 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
 			if battleUI.menuState == BattleState.Menu.PRE_BATTLE:
-				pass # TODO generate pre-battle texts (equipment only)
+				var equippedWeaponText: String = ''
+				var equippedArmorText: String = ''
+				if combatantNode.combatant.stats.equippedWeapon != null:
+					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+				if combatantNode.combatant.stats.equippedArmor != null:
+					equippedArmorText = combatantNode.combatant.stats.equippedArmor.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+				if equippedWeaponText != '' or equippedArmorText != '':
+					if equippedWeaponText != '' and equippedArmorText != '':
+						equippedWeaponText += ' '
+					battleController.state.calcdStateStrings.append(equippedWeaponText + equippedArmorText)
 			
 			if battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
-				var timing: StatusEffect.ApplyTiming = StatusEffect.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else StatusEffect.ApplyTiming.AFTER_ROUND
+				var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else BattleCommand.ApplyTiming.AFTER_ROUND
 				var statusEffectString: String = ''
 				if combatantNode.combatant.statusEffect != null:
 					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, timing)
-				# TODO generate equipment pre/post round effect strings
+				
+				var equippedWeaponText: String = ''
+				var equippedArmorText: String = ''
+				if combatantNode.combatant.stats.equippedWeapon != null:
+					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, timing)
+				if combatantNode.combatant.stats.equippedArmor != null:
+					equippedArmorText = combatantNode.combatant.stats.equippedArmor.get_apply_text(combatantNode.combatant, timing)
+				if equippedWeaponText != '' or equippedArmorText != '':
+					if equippedWeaponText != '' and equippedArmorText != '':
+						equippedWeaponText += ' '
+					if statusEffectString != '':
+						statusEffectString += ' '
+					statusEffectString += equippedWeaponText + equippedArmorText
 				if statusEffectString != '':
 					battleController.state.calcdStateStrings.append(statusEffectString)
 

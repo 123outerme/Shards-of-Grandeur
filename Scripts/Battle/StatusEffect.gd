@@ -22,14 +22,6 @@ enum Potency {
 	OVERWHELMING = 3,
 }
 
-enum ApplyTiming {
-	BEFORE_ROUND = 0,
-	BEFORE_DMG_CALC = 1,
-	DURING_DMG_CALC = 2,
-	AFTER_DMG_CALC = 3,
-	AFTER_ROUND = 4,
-}
-
 static func status_type_to_string(t: Type) -> String:
 	match t:
 		Type.NONE:
@@ -79,19 +71,19 @@ func _init(
 	potency = i_potency
 	turnsLeft = i_turnsLeft
 
-func apply_status(combatant: Combatant, timing: ApplyTiming): # each status effect needs to implement this then call super's version
-	if timing == ApplyTiming.AFTER_ROUND:
+func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming): # each status effect needs to implement this then call super's version
+	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
 		turnsLeft -= 1
 		if turnsLeft == 0:
 			type = Type.NONE
 			potency = Potency.NONE
 			combatant.statusEffect = null
 
-func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
+func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
 	return '' # each status effect needs to implement this separately
 
 func status_effect_to_string() -> String:
-	return potency_to_string(potency) + ' ' + status_type_to_string(type)
+	return StatusEffect.potency_to_string(potency) + ' ' + StatusEffect.status_type_to_string(type)
 
 func copy() -> StatusEffect:
 	return StatusEffect.new(

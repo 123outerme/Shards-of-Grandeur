@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://esbe7p26orvx"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=6 format=3 uid="uid://esbe7p26orvx"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory/Items/Weapon.gd" id="1_2iadh"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_86lt8"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatChanges.gd" id="3_pemgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4vag"]
 atlas = ExtResource("1_86lt8")
 region = Rect2(96, 0, 8, 8)
 
+[sub_resource type="Resource" id="Resource_akfqq"]
+script = ExtResource("3_pemgs")
+physAttackMultiplier = 1.1
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
 [resource]
 script = ExtResource("1_2iadh")
+statChanges = SubResource("Resource_akfqq")
+timing = 0
 itemSprite = SubResource("AtlasTexture_h4vag")
 itemName = "Standard Issue Sword"
 itemType = 2

@@ -69,15 +69,31 @@ bbcode_enabled = true
 text = "[center]Item Type Here[/center]"
 fit_content = true
 
+[node name="ItemEffect" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -253.0
+offset_right = -135.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
+
 [node name="ItemDescription" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 60.0
-offset_top = -216.0
-offset_right = -60.0
+offset_left = 135.0
+offset_top = -122.0
+offset_right = -135.0
 offset_bottom = 238.0
 grow_horizontal = 2
 grow_vertical = 2

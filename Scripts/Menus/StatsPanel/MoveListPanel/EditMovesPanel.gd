@@ -64,8 +64,8 @@ func _on_move_pool_panel_cancel_button_clicked():
 	selectedMove = null
 	update_menu_state()
 
-func _on_move_list_panel_move_details_visiblity_changed(visible: bool):
-	backButton.disabled = visible
+func _on_move_list_panel_move_details_visiblity_changed(newVis: bool):
+	backButton.disabled = newVis
 	update_menu_state()
 
 func _on_back_button_pressed():

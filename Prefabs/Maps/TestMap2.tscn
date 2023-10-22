@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drnk2cpif0naj"]
+[gd_scene load_steps=14 format=3 uid="uid://drnk2cpif0naj"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yr6py"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="2_tflra"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="4_j11kn"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_kdibv"]
 [ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="4_wy32f"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="5_8pdll"]
 
 [sub_resource type="Resource" id="Resource_ld7dg"]
 script = ExtResource("4_j11kn")
@@ -16,6 +17,10 @@ item = ExtResource("3_s0y3x")
 pickUpTexts = Array[String](["This sword looks like it has been slightly deformed due to the extreme heat here, but it's certainly better than nothing."])
 savedTextIdx = 0
 wasPickedUp = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yth4"]
+atlas = ExtResource("5_8pdll")
+region = Rect2(16, 24, 8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yi6i"]
 size = Vector2(2, 2)
@@ -53,6 +58,7 @@ layer_2/tile_data = PackedInt32Array()
 [node name="GroundItem" parent="TileMap" instance=ExtResource("2_tflra")]
 position = Vector2(60, 20)
 pickedUpItem = SubResource("Resource_ld7dg")
+disguiseSprite = SubResource("AtlasTexture_3yth4")
 
 [node name="WarpZone" parent="." instance=ExtResource("2_wx20h")]
 position = Vector2(36, -12)

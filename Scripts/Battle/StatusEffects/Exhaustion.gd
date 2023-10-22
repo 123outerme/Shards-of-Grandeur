@@ -9,11 +9,11 @@ func _init(
 ):
 	super(Type.EXHAUSTION, i_potency, i_turnsLeft)
 
-func apply_status(_combatant: Combatant, _timing: ApplyTiming):
+func apply_status(_combatant: Combatant, _timing: BattleCommand.ApplyTiming):
 	pass
 	
-func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
-	if timing == ApplyTiming.BEFORE_ROUND:
+func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
+	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:
 		return combatant.disp_name() + " can't keep up due to " + status_effect_to_string() + '!'
 	return ''
 

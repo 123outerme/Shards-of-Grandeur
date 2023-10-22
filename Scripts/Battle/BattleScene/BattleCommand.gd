@@ -20,6 +20,15 @@ enum Type {
 	ESCAPE = 3,
 }
 
+enum ApplyTiming {
+	BEFORE_BATTLE = 0,
+	BEFORE_ROUND = 1,
+	BEFORE_DMG_CALC = 2,
+	DURING_DMG_CALC = 3,
+	AFTER_DMG_CALC = 4,
+	AFTER_ROUND = 5,
+}
+
 @export var type: Type = Type.NONE
 @export var move: Move = null
 @export var slot: InventorySlot = null
@@ -48,6 +57,22 @@ static func targets_to_string(t: Targets) -> String:
 			return 'All Combatants (Except Self)'
 		Targets.ALL:
 			return 'All Combatants'
+	return 'UNKNOWN'
+
+static func apply_timing_to_string(t: ApplyTiming) -> String:
+	match t:
+		ApplyTiming.BEFORE_BATTLE:
+			return 'Before The Battle Begins'
+		ApplyTiming.BEFORE_ROUND:
+			return 'Before A Round Begins'
+		ApplyTiming.BEFORE_DMG_CALC:
+			return "Before The User's Turn Starts"
+		ApplyTiming.DURING_DMG_CALC:
+			return "During The User's Turn"
+		ApplyTiming.AFTER_DMG_CALC:
+			return "After The User's Turn Ends"
+		ApplyTiming.AFTER_ROUND:
+			return 'After The Round Ends'
 	return 'UNKNOWN'
 
 static func is_command_multi_target(t: Targets) -> bool:
@@ -260,17 +285,7 @@ func get_command_results(user: Combatant) -> String:
 		if type == Type.MOVE and move.statChanges.has_stat_changes():
 			resultsText += ' ' + user.disp_name() + ' boosts '
 			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
-			for i in range(len(multipliers)):
-				var multiplier: StatMultiplierText = multipliers[i]
-				resultsText += multiplier.print_multiplier()
-				if i < len(multipliers) - 1:
-					if len(multipliers) > 2:
-						resultsText += ','
-					resultsText += ' '
-					if i == len(multipliers) - 2:
-						resultsText += 'and '
-				else:
-					resultsText += '.'
+			resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers)
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)
 		if preventEscapingIdx < 0:

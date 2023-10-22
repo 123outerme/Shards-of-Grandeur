@@ -23,13 +23,13 @@ func get_recoil_damage(combatant: Combatant) -> int:
 	
 	return roundi(damage * percentDamageDict[potency])
 
-func apply_status(combatant: Combatant, timing: ApplyTiming):
-	if timing == ApplyTiming.AFTER_DMG_CALC:
+func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
+	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		combatant.currentHp = max(combatant.currentHp - get_recoil_damage(combatant), 1) # recoil can never knock you out!
 	super.apply_status(combatant, timing)
 
-func get_status_effect_str(combatant: Combatant, timing: ApplyTiming) -> String:
-	if timing == ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant) > 0:
+func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
+	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant) > 0:
 		return combatant.disp_name() + "'s " + StatusEffect.potency_to_string(potency) \
 				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + str(get_recoil_damage(combatant)) + ' recoil damage!'
 	return ''

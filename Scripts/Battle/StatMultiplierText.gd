@@ -2,7 +2,19 @@ class_name StatMultiplierText
 
 var statName: String
 var multiplier: float
-	
+
+static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplierText]) -> String:
+	var multipliersStr = ''
+	for idx in range(len(multiplierTexts)):
+		multipliersStr += multiplierTexts[idx].print_multiplier()
+		if idx < len(multiplierTexts) - 1:
+			if len(multiplierTexts) > 2:
+				multipliersStr += ','
+			if idx == len(multiplierTexts) - 2:
+				multipliersStr += ' and'
+			multipliersStr += ' '
+	return multipliersStr
+
 func _init(i_name = '', i_multiplier = 1.0):
 	statName = i_name
 	multiplier = i_multiplier

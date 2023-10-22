@@ -33,14 +33,7 @@ func load_move_details_panel():
 	moveRole.text = '[right]' + Move.role_to_string(move.role) + '[/right]'
 	moveStatChanges.text = ''
 	var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
-	for idx in range(len(multipliers)):
-		moveStatChanges.text += multipliers[idx].print_multiplier()
-		if idx < len(multipliers) - 1:
-			if len(multipliers) > 2:
-				moveStatChanges.text += ','
-			if idx == len(multipliers) - 2:
-				moveStatChanges.text += ' and'
-			moveStatChanges.text += ' '
+	moveStatChanges.text += StatMultiplierText.multiplier_text_list_to_string(multipliers)
 	if move.statusEffect != null:
 		moveStatusEffect.text = '[center]Applies ' + move.statusEffect.status_effect_to_string() + ' (' + String.num(move.statusChance * 100.0, 0) + '% Chance)[/center]'
 	else:

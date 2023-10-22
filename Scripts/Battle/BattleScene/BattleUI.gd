@@ -126,7 +126,7 @@ func round_complete():
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
-			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, StatusEffect.ApplyTiming.AFTER_ROUND)
+			combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
 	
 	battlePanels.flowOfBattle.set_fob_button_enabled()
 	return_to_player_command()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bouh62bdgnqo8"]
 
 [ext_resource type="PackedScene" uid="uid://bg5qq63652kwu" path="res://Prefabs/Entities/Player.tscn" id="1_uhp2v"]
-[ext_resource type="PackedScene" uid="uid://b71vgd64ow4rm" path="res://Prefabs/Overworld/MapLoader.tscn" id="2_iixf4"]
+[ext_resource type="Script" path="res://Prefabs/Overworld/MapLoader.gd" id="2_13duy"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_f6th3"]
 
 [node name="Overworld" type="Node2D" groups=["Scenes"]]
@@ -36,7 +36,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Turn In"
 
-[node name="MapLoader" parent="." instance=ExtResource("2_iixf4")]
+[node name="MapLoader" type="Node" parent="."]
+script = ExtResource("2_13duy")
 
 [node name="Player" parent="." instance=ExtResource("1_uhp2v")]
 disable_mode = 2

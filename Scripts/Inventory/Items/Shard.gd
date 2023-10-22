@@ -20,12 +20,14 @@ func _init(
 	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
 	combatantSaveName = i_combatantSaveName
 
-func use(target: Combatant):
-	pass # TODO: learn a move from the shard. May be implemented in the Overworld/Pause scenes instead
-	# Battle scene already handles summoning from Shard
+func use(_target: Combatant):
+	pass # all using of Shard handled in Player/Battle scenes
 
 func get_combatant() -> Combatant:
 	return Combatant.load_combatant_resource(combatantSaveName)
 
 func get_use_message(_target: Combatant) -> String:
 	return ''
+
+func get_effect_text() -> String:
+	return 'Use to Learn a Move ' + get_combatant().disp_name() + ' Knows, or Use in Battle to Summon!'

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name MapLoader
 
 var mapInstance: Node = null
