@@ -3,8 +3,10 @@ class_name PlayerController
 
 const SPEED = 80
 @export var disableMovement: bool
+@export var facingLeft: bool = false
 var pickedUpItem: PickedUpItem = null
 
+@onready var sprite: Sprite2D = get_node("PlayerSprite")
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
@@ -68,6 +70,11 @@ func _unhandled_input(event):
 func _physics_process(_delta):
 	if not disableMovement:
 		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
+		if velocity.x < 0:
+			facingLeft = true
+		if velocity.x > 0:
+			facingLeft = false
+		sprite.flip_h = facingLeft
 		move_and_slide()
 		
 func _process(delta):
