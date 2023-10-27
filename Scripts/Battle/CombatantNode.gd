@@ -114,6 +114,8 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 			if combatantNode.role != role:
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
 				for move in combatant.stats.moves:
+					if move == null:
+						continue
 					if not opponentHasStatus and move.statusEffect != null and BattleCommand.is_command_enemy_targeting(move.targets):
 						pickedMove = move
 						break
@@ -124,6 +126,8 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 			var moveChoices: Array[int] = []
 			for moveIdx in range(len(combatant.stats.moves)):
 				var move: Move = combatant.stats.moves[moveIdx]
+				if move == null:
+					continue
 				if BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.DEBUFF:
 					moveChoices.append(moveIdx)
 			if len(moveChoices) > 0 and randomValue > combatant.aiOverrideWeight: # 65% of the time pick a debuff
@@ -134,6 +138,8 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 		var moveChoices: Array[int] = []
 		for moveIdx in range(len(combatant.stats.moves)):
 			var move: Move = combatant.stats.moves[moveIdx]
+			if move == null:
+				continue
 			if not BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.BUFF:
 				moveChoices.append(moveIdx)
 		if len(moveChoices) > 0:
@@ -144,6 +150,8 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 		var moveChoices: Array[int] = []
 		for moveIdx in range(len(combatant.stats.moves)):
 			var move: Move = combatant.stats.moves[moveIdx]
+			if move == null:
+				continue
 			if (not BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.HEAL) or move.role == Move.Role.OTHER:
 				moveChoices.append(moveIdx)
 		if len(moveChoices) > 0:
@@ -151,18 +159,22 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 	
 	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove == null: # pick the absolute strongest move
 		if combatant.aiType == Combatant.AiType.DAMAGE and randomValue > combatant.aiOverrideWeight:
-			pickedMove = combatant.stats.moves.pick_random() # if damage AI is overrided, just pick a random move
+			pickedMove = combatant.stats.moves.filter(filter_null).pick_random() # if damage AI is overrided, just pick a random move
 		else:
 			var approxMaxDmg: float = 0
 			for move in combatant.stats.moves: # for each move	
-				if move != null:
-					var approxDmg: float = currentStats.get_stat_for_dmg_category(move.category) * move.power
-					# TODO maybe take into account AOE moves hitting multiple targets?
-					if pickedMove == null or \
-							(approxMaxDmg < approxDmg and BattleCommand.is_command_enemy_targeting(move.targets)): # if this move is approx. stronger
-						pickedMove = move # pick it instead
+				if move == null:
+					continue
+				var approxDmg: float = currentStats.get_stat_for_dmg_category(move.category) * move.power
+				# TODO maybe take into account AOE moves hitting multiple targets?
+				if pickedMove == null or \
+						(approxMaxDmg < approxDmg and BattleCommand.is_command_enemy_targeting(move.targets)): # if this move is approx. stronger
+					pickedMove = move # pick it instead
 	
 	return pickedMove
+
+func filter_null(a) -> bool:
+	return a != null
 
 func ai_pick_single_target(move: Move, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''
