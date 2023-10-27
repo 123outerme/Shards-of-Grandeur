@@ -119,6 +119,7 @@ func copy() -> Combatant:
 
 func save_from_object(c: Combatant):
 	stats = c.stats.copy()
+	nickname = c.nickname
 	currentHp = c.currentHp
 	
 	if c.statChanges != null:
@@ -132,6 +133,8 @@ func save_from_object(c: Combatant):
 		statusEffect = null
 	
 	sprite = c.sprite
+	aiType = c.aiType
+	aiOverrideWeight = c.aiOverrideWeight
 	equipmentTable = c.equipmentTable.duplicate(false)
 	teamTable = c.teamTable.duplicate(false)
 	dropTable = c.dropTable.duplicate(false)
