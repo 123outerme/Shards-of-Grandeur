@@ -11,6 +11,8 @@ enum Targets {
 	ALL_ENEMIES = 6, # multi-target one combatant on enemy side
 	ALL_EXCEPT_SELF = 7, # multi-target every combatant except for self
 	ALL = 8, # multi-target EVERY combatant, including self
+	#ANY = 9, # single-target any combatant
+	#ANY_EXCEPT_SELF = 10, # single-target any except self
 }
 
 enum Type {
@@ -77,6 +79,9 @@ static func apply_timing_to_string(t: ApplyTiming) -> String:
 
 static func is_command_multi_target(t: Targets) -> bool:
 	return t == BattleCommand.Targets.ALL_ALLIES or t == BattleCommand.Targets.ALL_ENEMIES or t == BattleCommand.Targets.ALL_EXCEPT_SELF or t == BattleCommand.Targets.ALL
+
+static func is_command_enemy_targeting(t: Targets) -> bool:
+	return t == BattleCommand.Targets.ALL or t == BattleCommand.Targets.ALL_ENEMIES or t == BattleCommand.Targets.ALL_EXCEPT_SELF or t == BattleCommand.Targets.ENEMY
 
 static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 	return BattleCommand.new(

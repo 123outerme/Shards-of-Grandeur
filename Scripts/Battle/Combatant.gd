@@ -1,6 +1,14 @@
 extends Resource
 class_name Combatant
 
+enum AiType {
+	NONE = 0,
+	DAMAGE = 1,
+	SUPPORT = 2,
+	BUFFER = 3,
+	DEBUFFER = 4,
+}
+
 @export_category("Combatant - Sprite")
 @export var sprite: Texture2D = null
 
@@ -12,6 +20,8 @@ class_name Combatant
 @export var statusEffect: StatusEffect = null
 
 @export_category("Combatant - Encounter")
+@export var aiType: AiType = AiType.NONE
+@export var aiOverrideWeight: float = 0.35
 @export var equipmentTable: Array[WeightedEquipment] = []
 @export var teamTable: Array[WeightedString] = []
 # NOTE: having a weighted combatant caused recursion errors, so this is the workaround
@@ -35,6 +45,8 @@ func _init(
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
 	i_sprite = null,
+	i_aiType = AiType.NONE,
+	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
 	i_teamTable: Array[WeightedString] = [],
 	i_dropTable: Array[WeightedReward] = [],
@@ -51,6 +63,8 @@ func _init(
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	sprite = i_sprite
+	aiType = i_aiType
+	aiOverrideWeight = i_overrideWeight
 	equipmentTable = i_equipmentTable
 	teamTable = i_teamTable
 	dropTable = i_dropTable

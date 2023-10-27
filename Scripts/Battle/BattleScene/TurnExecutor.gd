@@ -72,10 +72,11 @@ func update_turn_text() -> bool:
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
-		combatant.command.get_targets_from_combatant_nodes(allCombatants)
-		text = combatant.command.get_command_results(combatant)
-		if combatant.statusEffect != null:
-			text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+		if combatant != null:
+			combatant.command.get_targets_from_combatant_nodes(allCombatants)
+			text = combatant.command.get_command_results(combatant)
+			if combatant.statusEffect != null:
+				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
 	battleUI.results.show_text(text)
 	return text != ''

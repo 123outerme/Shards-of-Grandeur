@@ -140,6 +140,13 @@ func level_up(newLvs: int):
 	speed += stat
 	statPts += pts
 
+func get_stat_for_dmg_category(category: Move.DmgCategory) -> int:
+	if category == Move.DmgCategory.PHYSICAL:
+		return physAttack
+	if category == Move.DmgCategory.MAGIC:
+		return magicAttack
+	return affinity
+
 func copy() -> Stats:
 	var newStats = Stats.new()
 	newStats.save_from_object(self)
