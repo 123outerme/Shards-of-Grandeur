@@ -84,6 +84,12 @@ func update_turn_text() -> bool:
 func finish_turn() -> TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
 	lastCombatant.command = null # remove the command from the previous turn's combatant
+	result = check_battle_end_conditions()
+	if result == TurnResult.NOTHING:
+		play_turn() # go to the next turn
+	return result
+
+func check_battle_end_conditions() -> TurnResult:
 	var alliesDown: int = 0
 	var enemiesDown: int = 0
 	for combatantNode in battleController.get_all_combatant_nodes():
@@ -96,18 +102,13 @@ func finish_turn() -> TurnResult:
 				enemiesDown += 1 # enemy down
 	battleUI.update_downed()
 	if alliesDown == 2: # all allies are down:
-		result = TurnResult.ENEMY_WIN
-		return result
+		return TurnResult.ENEMY_WIN
 	if enemiesDown == 3: # all enemies are down:
-		result = TurnResult.PLAYER_WIN
-		return result
+		return TurnResult.PLAYER_WIN
 	if escaping: # if escaping
 		turnQueue.empty() # end the round immediately
-		result = TurnResult.ESCAPE
-		return result
-	play_turn() # go to the next turn	
-	result = TurnResult.NOTHING
-	return result
+		return TurnResult.ESCAPE
+	return TurnResult.NOTHING
 
 func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode]):
 	battleController.state.calcdStateStrings = []

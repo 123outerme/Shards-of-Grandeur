@@ -111,7 +111,7 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 	if combatant.aiType == Combatant.AiType.DEBUFFER and randomValue > combatant.aiOverrideWeight:
 		# first, check if any opponent has no status and there's a move that can give status
 		for combatantNode in combatantNodes:
-			if combatantNode.role != role:
+			if combatantNode.role != role and combatantNode.is_alive():
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
 				for move in combatant.stats.moves:
 					if move == null:
@@ -162,7 +162,7 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 			pickedMove = combatant.stats.moves.filter(filter_null).pick_random() # if damage AI is overrided, just pick a random move
 		else:
 			var approxMaxDmg: float = 0
-			for move in combatant.stats.moves: # for each move	
+			for move in combatant.stats.moves: # for each move
 				if move == null:
 					continue
 				var approxDmg: float = currentStats.get_stat_for_dmg_category(move.category) * move.power

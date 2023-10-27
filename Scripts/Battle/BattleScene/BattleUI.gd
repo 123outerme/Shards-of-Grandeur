@@ -90,6 +90,8 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 			battleController.turnExecutor.play_turn() # start the first turn
 			return
 		if menuState == BattleState.Menu.POST_ROUND:
+			if result == TurnExecutor.TurnResult.NOTHING: # check again before completing round
+				result = battleController.turnExecutor.check_battle_end_conditions()
 			if result != TurnExecutor.TurnResult.NOTHING:
 				newMenuState = BattleState.Menu.BATTLE_COMPLETE
 			else:
