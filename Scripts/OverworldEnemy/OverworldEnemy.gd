@@ -4,7 +4,7 @@ class_name OverworldEnemy
 @export var combatant: Combatant
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
-@export var patrolling: bool = false
+@export var patrolling: bool = true
 @export var patrolWaitSecs: float = 1.0
 @export var enemyData: OverworldEnemyData = OverworldEnemyData.new()
 
@@ -24,6 +24,8 @@ func _ready():
 	enemySprite.sprite_frames = combatant.spriteFrames
 	position = enemyData.position
 	disableMovement = enemyData.disableMovement
+	if patrolling:
+		get_next_patrol_target()
 
 func _process(delta):
 	if not disableMovement and SceneLoader.mapLoader != null:
@@ -40,6 +42,8 @@ func _process(delta):
 			enemySprite.flip_h = true
 		if vel.length() > 0:
 			enemySprite.play('walk')
+		else:
+			enemySprite.play('stand')
 
 func get_next_patrol_target():
 	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:

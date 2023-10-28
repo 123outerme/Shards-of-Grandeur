@@ -56,9 +56,9 @@ func update_hp_tag():
 	hpText.size.x = len(hpText.text) * 13 - 10 # magic number
 	hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
-		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
 	else:
-		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
@@ -66,7 +66,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
-	selectCombatantBtn.size = Vector2(16,16) + Vector2(4, 4) # set size of selecting button to sprite size + 4px
+	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 
 func set_selected(selected: bool = true):

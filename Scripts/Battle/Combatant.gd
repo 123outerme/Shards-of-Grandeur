@@ -11,6 +11,7 @@ enum AiType {
 
 @export_category("Combatant - Sprite")
 @export var spriteFrames: SpriteFrames = null
+@export var maxSize: Vector2 = Vector2(16, 16)
 
 @export_category("Combatant - Stats")
 @export var nickname: String = ''
@@ -45,6 +46,7 @@ func _init(
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
 	i_sprite = null,
+	i_maxSize = Vector2(16, 16),
 	i_aiType = AiType.NONE,
 	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
@@ -63,6 +65,7 @@ func _init(
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	spriteFrames = i_sprite
+	maxSize = i_maxSize
 	aiType = i_aiType
 	aiOverrideWeight = i_overrideWeight
 	equipmentTable = i_equipmentTable
