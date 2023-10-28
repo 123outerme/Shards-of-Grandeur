@@ -6,7 +6,7 @@ const SPEED = 80
 @export var facingLeft: bool = false
 var pickedUpItem: PickedUpItem = null
 
-@onready var sprite: Sprite2D = get_node("PlayerSprite")
+@onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
@@ -75,6 +75,10 @@ func _physics_process(_delta):
 		if velocity.x > 0:
 			facingLeft = false
 		sprite.flip_h = facingLeft
+		if velocity.length() > 0:
+			sprite.play('walk')
+		else:
+			sprite.play('stand')
 		move_and_slide()
 		
 func _process(delta):

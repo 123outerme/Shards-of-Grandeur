@@ -1,21 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_tgx8p"]
+[ext_resource type="Texture2D" uid="uid://cocecamiaesyj" path="res://Graphics/player.png" id="2_cjp5p"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/PlayerWalk.tres" id="3_i10j5"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="5_q3a5u"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://Prefabs/UI/Stats/StatsPanel.tscn" id="6_a850r"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://Prefabs/UI/Inventory/InventoryPanel.tscn" id="6_w56l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
-size = Vector2(7, 7)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4nskj"]
-atlas = ExtResource("1_tgx8p")
-region = Rect2(16, 8, 8, 8)
+size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lcm7"]
-size = Vector2(8, 8)
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["AutonomousMove"]]
 z_index = -10
@@ -26,7 +23,14 @@ script = ExtResource("1_m8p6c")
 shape = SubResource("RectangleShape2D_dwn8i")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_4nskj")
+visible = false
+texture = ExtResource("2_cjp5p")
+
+[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_i10j5")
+animation = &"stand"
+autoplay = "stand"
+speed_scale = 2.0
 
 [node name="Camera" type="Camera2D" parent="."]
 ignore_rotation = false
@@ -42,6 +46,7 @@ shape = SubResource("RectangleShape2D_6lcm7")
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 2
+z_as_relative = false
 scale = Vector2(0.25, 0.25)
 
 [node name="TextBoxRoot" parent="UI" instance=ExtResource("3_ljo0p")]
