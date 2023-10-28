@@ -28,7 +28,7 @@ signal details_clicked(combatantNode: CombatantNode)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func load_combatant_node():
 	if not is_alive():
@@ -37,7 +37,7 @@ func load_combatant_node():
 		visible = true
 		animatedSprite.sprite_frames = combatant.spriteFrames
 		if combatant.spriteFrames == null:
-			animatedSprite.sprite_frames = load("res://Graphics/animations/Player.tres")
+			animatedSprite.sprite_frames = load("res://Graphics/animations/Player.tres") # TEMP prevent crashing
 		animatedSprite.play('stand')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_hp_tag()
