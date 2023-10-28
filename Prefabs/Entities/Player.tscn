@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
 [ext_resource type="Texture2D" uid="uid://cocecamiaesyj" path="res://Graphics/player.png" id="2_cjp5p"]
-[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/PlayerWalk.tres" id="3_i10j5"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/Player.tres" id="3_hnc4w"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="5_q3a5u"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://Prefabs/UI/Stats/StatsPanel.tscn" id="6_a850r"]
@@ -27,8 +27,8 @@ visible = false
 texture = ExtResource("2_cjp5p")
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("3_i10j5")
-animation = &"stand"
+sprite_frames = ExtResource("3_hnc4w")
+animation = &"walk"
 autoplay = "stand"
 speed_scale = 2.0
 

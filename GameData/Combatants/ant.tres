@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=20 format=3 uid="uid://dak21fe0w5q3m"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=18 format=3 uid="uid://dak21fe0w5q3m"]
 
 [ext_resource type="Resource" uid="uid://bjlcwbjqmmsp0" path="res://GameData/Items/Shard/ant_shard.tres" id="1_1msty"]
 [ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_ngepj"]
 [ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_q0ynk"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="2_mctfp"]
 [ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_wwg5g"]
 [ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="3_jpupe"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="3_tcx1r"]
@@ -32,10 +31,6 @@ item = ExtResource("3_tcx1r")
 script = ExtResource("2_wwg5g")
 reward = SubResource("Resource_fgrke")
 weight = 0.2
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78y7w"]
-atlas = ExtResource("2_mctfp")
-region = Rect2(72, 0, 8, 8)
 
 [sub_resource type="Resource" id="Resource_aus05"]
 script = ExtResource("3_jpupe")
@@ -70,11 +65,11 @@ weight = 0.15
 
 [resource]
 script = ExtResource("1_ngepj")
-sprite = SubResource("AtlasTexture_78y7w")
 nickname = ""
 stats = SubResource("Resource_aus05")
 currentHp = -1
 aiType = 4
+aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
 teamTable = Array[ExtResource("4_w518t")]([SubResource("Resource_d55qo"), SubResource("Resource_3il2r"), SubResource("Resource_xdgd7")])
 dropTable = Array[ExtResource("2_wwg5g")]([SubResource("Resource_y24ox"), SubResource("Resource_j0nse")])

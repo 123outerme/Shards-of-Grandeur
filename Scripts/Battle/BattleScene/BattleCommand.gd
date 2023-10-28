@@ -271,7 +271,8 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
 					if type == Type.MOVE and move.statusEffect != null:
-						if does_target_get_status(user, i) and target.statusEffect.type == move.statusEffect.type:
+						if move.statusEffect != null and target.statusEffect != null and \
+								does_target_get_status(user, i) and target.statusEffect.type == move.statusEffect.type:
 							resultsText += 'afflicting '
 						else:
 							resultsText += 'failing to afflict '

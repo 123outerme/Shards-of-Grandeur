@@ -78,6 +78,10 @@ func update_turn_text() -> bool:
 			if combatant.statusEffect != null:
 				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
+		for combatantNode in allCombatants:
+			if combatantNode.combatant == combatant:
+				combatantNode.play_animation('attack')
+		
 	battleUI.results.show_text(text)
 	return text != ''
 

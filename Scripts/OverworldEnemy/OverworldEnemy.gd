@@ -13,7 +13,7 @@ var homePoint: Vector2
 var patrolRange: float
 var encounteredPlayer: bool = false
 
-@onready var enemySprite: Sprite2D = get_node("EnemySprite")
+@onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
@@ -21,7 +21,7 @@ var encounteredPlayer: bool = false
 
 func _ready():
 	combatant = enemyData.combatant
-	enemySprite.texture = combatant.sprite
+	enemySprite.sprite_frames = combatant.spriteFrames
 	position = enemyData.position
 	disableMovement = enemyData.disableMovement
 
@@ -34,6 +34,12 @@ func _process(delta):
 		if vel.length() > maxSpeed * delta:
 			vel = vel.normalized() * maxSpeed * delta
 		position += vel
+		if vel.x < 0:
+			enemySprite.flip_h = false
+		if vel.x > 0:
+			enemySprite.flip_h = true
+		if vel.length() > 0:
+			enemySprite.play('walk')
 
 func get_next_patrol_target():
 	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:

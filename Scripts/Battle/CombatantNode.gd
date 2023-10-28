@@ -20,7 +20,8 @@ signal details_clicked(combatantNode: CombatantNode)
 @export_category("CombatantNode - Tree")
 @export var clickCombatantBtn: TextureButton
 @export var selectCombatantBtn: TextureButton
-@export var sprite: Sprite2D
+#@export var sprite: Sprite2D
+@export var animatedSprite: AnimatedSprite2D
 @export var hpTag: Panel
 @export var lvText: RichTextLabel
 @export var hpText: RichTextLabel
@@ -34,8 +35,11 @@ func load_combatant_node():
 		visible = false
 	else:
 		visible = true
-		sprite.texture = combatant.sprite
-		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
+		animatedSprite.sprite_frames = combatant.spriteFrames
+		if combatant.spriteFrames == null:
+			animatedSprite.sprite_frames = load("res://Graphics/animations/Player.tres")
+		animatedSprite.play('stand')
+		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_hp_tag()
 		update_select_btn(false)
 		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
@@ -62,7 +66,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
-	selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
+	selectCombatantBtn.size = Vector2(16,16) + Vector2(4, 4) # set size of selecting button to sprite size + 4px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 
 func set_selected(selected: bool = true):
@@ -70,6 +74,9 @@ func set_selected(selected: bool = true):
 	
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
+
+func play_animation(animationName: String):
+	animatedSprite.play(animationName)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
@@ -208,3 +215,6 @@ func _on_select_combatant_btn_toggled(button_pressed):
 func _on_click_combatant_btn_pressed():
 	print('show details for ', combatant.save_name())
 	details_clicked.emit(self)
+
+func _on_animated_sprite_animation_finished():
+	animatedSprite.play('stand')

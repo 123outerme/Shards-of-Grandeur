@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://chea0046uctgc"]
+[gd_scene load_steps=6 format=3 uid="uid://chea0046uctgc"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_6yr5t"]
+[ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="2_1l8um"]
+[ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="3_2wtv2"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_hofab"]
+
+[sub_resource type="Resource" id="Resource_ix4ns"]
+script = ExtResource("3_2wtv2")
+spawnerId = "testmap3rat"
+disabled = false
+spawnedLastEncounter = false
 
 [node name="OverworldMap" type="Node2D"]
 
@@ -25,3 +34,9 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-131070, 65537, 0, -65538, 65537, 0, -196609, 2, 0, -262144, 65538, 0, -262143, 131074, 0, -196615, 1, 0, -327687, 1, 0, -393223, 1, 0, -393224, 1, 0, -458760, 1, 0, -458759, 1, 0, -458758, 1, 0, -458757, 1, 0, -458755, 1, 0, -458754, 1, 0, -458753, 1, 0, -524283, 1, 0, -524282, 1, 0, -524281, 1, 0, -458745, 1, 0, -458750, 1, 0, -458752, 1, 0, -393218, 1, 0, -393222, 1, 0, -393221, 1, 0, -131080, 1, 0, -131079, 1, 0, -65543, 1, 0, -8, 1, 0, 65528, 1, 0, 65529, 1, 0, 131064, 1, 0, 131065, 1, 0, 196600, 1, 0, 196601, 1, 0, 262138, 1, 0, 262139, 1, 0, 327674, 1, 0, 327675, 1, 0, 393208, 1, 0, 393209, 1, 0, 393210, 1, 0, 393213, 1, 0, 393214, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327684, 1, 0, 196612, 1, 0, 262148, 1, 0, 196613, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 196615, 1, 0, 131079, 1, 0, 131078, 1, 0, 65542, 1, 0, 65543, 1, 0, 7, 1, 0, -65530, 1, 0, -65529, 1, 0, -131065, 1, 0, -131066, 1, 0, -196601, 1, 0, -262138, 1, 0, -327674, 1, 0, -327673, 1, 0, -393209, 1, 0, 327676, 65537, 0, 393212, 65537, 0, 393211, 65537, 0, 262137, 65537, 0, 262136, 65537, 0, -7, 65537, 0, -65544, 65537, 0, -524288, 65537, 0, -524287, 65537, 0, -524286, 65537, 0, -524285, 65537, 0, -524284, 65537, 0, -458748, 65537, 0, -458747, 65537, 0, -393217, 65537, 0, -393219, 65537, 0, 6, 65537, 0, 262151, 1, 0, 327683, 65537, 0, 327677, 65537, 0, 327678, 65537, 0, 327679, 131073, 0, 262150, 131073, 0, 196614, 131073, 0, -196602, 131073, 0, -458746, 131073, 0, -393210, 65537, 0, -262137, 65537, 0, -458751, 131073, 0, -458749, 131073, 0, -458756, 131073, 0, -393220, 131073, 0, -196613, 131073, 0, -327688, 131073, 0, -262152, 131073, 0, -196616, 131073, 0, -262151, 131073, 0, 327672, 65537, 0, 327673, 65537, 0, 262149, 65537, 0)
+
+[node name="EnemySpawner" parent="TileMap" node_paths=PackedStringArray("tilemap") instance=ExtResource("2_1l8um")]
+position = Vector2(71, 40)
+spawnerData = SubResource("Resource_ix4ns")
+combatant = ExtResource("4_hofab")
+tilemap = NodePath("..")

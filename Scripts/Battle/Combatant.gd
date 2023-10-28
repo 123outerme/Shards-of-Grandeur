@@ -10,7 +10,7 @@ enum AiType {
 }
 
 @export_category("Combatant - Sprite")
-@export var sprite: Texture2D = null
+@export var spriteFrames: SpriteFrames = null
 
 @export_category("Combatant - Stats")
 @export var nickname: String = ''
@@ -62,7 +62,7 @@ func _init(
 		currentHp = stats.maxHp
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
-	sprite = i_sprite
+	spriteFrames = i_sprite
 	aiType = i_aiType
 	aiOverrideWeight = i_overrideWeight
 	equipmentTable = i_equipmentTable
@@ -132,7 +132,7 @@ func save_from_object(c: Combatant):
 	else:
 		statusEffect = null
 	
-	sprite = c.sprite
+	spriteFrames = c.spriteFrames
 	aiType = c.aiType
 	aiOverrideWeight = c.aiOverrideWeight
 	equipmentTable = c.equipmentTable.duplicate(false)
