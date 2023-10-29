@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=8 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_1suy0"]
 [ext_resource type="Script" path="res://Scripts/Battle/CombatantNode.gd" id="1_d8qkc"]
@@ -11,10 +11,6 @@ region = Rect2(112, 56, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_45o34"]
 atlas = ExtResource("1_1suy0")
 region = Rect2(32, 40, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e22wm"]
-atlas = ExtResource("1_1suy0")
-region = Rect2(96, 56, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cr0ag"]
 
@@ -57,10 +53,6 @@ toggle_mode = true
 texture_normal = SubResource("AtlasTexture_elhaw")
 texture_pressed = SubResource("AtlasTexture_45o34")
 stretch_mode = 0
-
-[node name="CombatantSprite" type="Sprite2D" parent="."]
-visible = false
-texture = SubResource("AtlasTexture_e22wm")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cr0ag")
