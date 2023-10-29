@@ -28,8 +28,8 @@ func _ready():
 		get_next_patrol_target()
 
 func _process(delta):
-	if not disableMovement and SceneLoader.mapLoader != null:
-		if not patrolling and SceneLoader.mapLoader.mapNavReady:
+	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady:
+		if not patrolling:
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()
 		var vel = nextPos - position

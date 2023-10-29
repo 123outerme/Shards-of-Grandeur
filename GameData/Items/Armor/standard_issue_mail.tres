@@ -1,12 +1,8 @@
-[gd_resource type="Resource" script_class="Armor" load_steps=6 format=3 uid="uid://jhhxu2gbjenp"]
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://jhhxu2gbjenp"]
 
+[ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://Graphics/items/rusty_armor.png" id="1_gi3s1"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Items/Armor.gd" id="1_hl3b4"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_ka6hk"]
 [ext_resource type="Script" path="res://Scripts/Battle/StatChanges.gd" id="3_hhbhg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kuvvv"]
-atlas = ExtResource("1_ka6hk")
-region = Rect2(96, 16, 8, 8)
 
 [sub_resource type="Resource" id="Resource_a0rth"]
 script = ExtResource("3_hhbhg")
@@ -20,10 +16,10 @@ speedMultiplier = 1.0
 script = ExtResource("1_hl3b4")
 statChanges = SubResource("Resource_a0rth")
 timing = 0
-itemSprite = SubResource("AtlasTexture_kuvvv")
-itemName = "Standard Issue Mail"
+itemSprite = ExtResource("1_gi3s1")
+itemName = "Standard Issue Plate"
 itemType = 3
-itemDescription = "This chainmail piece is fashioned of crude iron and not much else. It is as protective as it needs to be for the kingdom's many soldiers."
+itemDescription = "This rusty plate armor is fashioned of crude iron and not much else. It is as protective as it needs to be for the kingdom's many soldiers."
 cost = 50
 maxCount = 1
 usable = false
