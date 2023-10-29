@@ -134,12 +134,15 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 		
+	var appliedStatus: bool = false
 	for idx in len(targets):
 		var damage = calculate_damage(user, targets[idx])
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
-	if type == Type.MOVE:
+			appliedStatus = true
+	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not appliedStatus):
+		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		user.statChanges.stack(move.statChanges)
 	if type == Type.USE_ITEM:
 		PlayerResources.inventory.trash_item(slot)
@@ -291,7 +294,7 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '.'
-		if type == Type.MOVE and move.statChanges.has_stat_changes():
+		if type == Type.MOVE and move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
 			resultsText += ' ' + user.disp_name() + ' boosts '
 			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
 			resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
