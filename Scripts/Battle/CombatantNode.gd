@@ -26,6 +26,8 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var lvText: RichTextLabel
 @export var hpText: RichTextLabel
 
+var tmpAllCombatantNodes: Array[CombatantNode] = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -114,74 +116,95 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 	var pickedMove: Move = null
 	var currentStats: Stats = combatant.statChanges.apply(combatant.stats)
 	var randomValue: float = randf()
+	tmpAllCombatantNodes = combatantNodes
+	var moveCandidates: Array[Move] = combatant.stats.moves.filter(ai_filter_move_candidates)
+	tmpAllCombatantNodes = []
+	if len(moveCandidates) == 0: # if no moves fit the stricter criteria
+		moveCandidates = combatant.stats.moves.filter(filter_out_null) # just don't use a null move
 	
 	if combatant.aiType == Combatant.AiType.DEBUFFER and randomValue > combatant.aiOverrideWeight:
 		# first, check if any opponent has no status and there's a move that can give status
 		for combatantNode in combatantNodes:
 			if combatantNode.role != role and combatantNode.is_alive():
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
-				for move in combatant.stats.moves:
-					if move == null:
-						continue
+				for move in moveCandidates:
 					if not opponentHasStatus and move.statusEffect != null and BattleCommand.is_command_enemy_targeting(move.targets):
 						pickedMove = move
 						break
 			if pickedMove != null:
 				break
-		# if no statusing needs to be done, potentially pick a random move that debuffs
+		# if no statusing needs to be done, pick a random move that debuffs
 		if pickedMove == null:
 			var moveChoices: Array[int] = []
-			for moveIdx in range(len(combatant.stats.moves)):
-				var move: Move = combatant.stats.moves[moveIdx]
-				if move == null:
-					continue
+			for moveIdx in range(len(moveCandidates)):
+				var move: Move = moveCandidates[moveIdx]
 				if BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.DEBUFF:
 					moveChoices.append(moveIdx)
 			if len(moveChoices) > 0 and randomValue > combatant.aiOverrideWeight: # 65% of the time pick a debuff
-				pickedMove = combatant.stats.moves[moveChoices.pick_random()]
+				pickedMove = moveCandidates[moveChoices.pick_random()]
 	
 	if combatant.aiType == Combatant.AiType.BUFFER and randomValue > combatant.aiOverrideWeight:
-		# 65% of the time, pick a buff
+		# if random chance > override, pick a buff
 		var moveChoices: Array[int] = []
-		for moveIdx in range(len(combatant.stats.moves)):
-			var move: Move = combatant.stats.moves[moveIdx]
-			if move == null:
-				continue
+		for moveIdx in range(len(moveCandidates)):
+			var move: Move = moveCandidates[moveIdx]
 			if not BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.BUFF:
 				moveChoices.append(moveIdx)
 		if len(moveChoices) > 0:
-			pickedMove = combatant.stats.moves[moveChoices.pick_random()]
+			pickedMove = moveCandidates[moveChoices.pick_random()]
 			
 	if combatant.aiType == Combatant.AiType.SUPPORT and randomValue > combatant.aiOverrideWeight:
-		# 65% of the time, pick a support/heal move
+		# if random chance > override, pick a support/heal move
+		# first, check if any allies need healing
+		for combatantNode in combatantNodes:
+			if combatantNode.role == role and combatantNode.is_alive():
+				var needsHealing: bool = combatantNode.combatant.currentHp < roundi(combatantNode.combatant.stats.maxHp / 2.0)
+				for move in moveCandidates:
+					if needsHealing and move.power < 0 and BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.HEAL:
+						pickedMove = move
+						break
+			if pickedMove != null:
+				break
+		# otherwise, pick a random support (role == Other) move
 		var moveChoices: Array[int] = []
-		for moveIdx in range(len(combatant.stats.moves)):
-			var move: Move = combatant.stats.moves[moveIdx]
-			if move == null:
-				continue
-			if (not BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.HEAL) or move.role == Move.Role.OTHER:
+		for moveIdx in range(len(moveCandidates)):
+			var move: Move = moveCandidates[moveIdx]
+			if move.role == Move.Role.OTHER:
 				moveChoices.append(moveIdx)
 		if len(moveChoices) > 0:
-			pickedMove = combatant.stats.moves[moveChoices.pick_random()]
+			pickedMove = moveCandidates[moveChoices.pick_random()]
 	
 	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove == null: # pick the absolute strongest move
 		if combatant.aiType == Combatant.AiType.DAMAGE and randomValue > combatant.aiOverrideWeight:
-			pickedMove = combatant.stats.moves.filter(filter_null).pick_random() # if damage AI is overrided, just pick a random move
+			pickedMove = moveCandidates.pick_random() # if damage AI is overrided, just pick a random move
 		else:
 			var approxMaxDmg: float = 0
-			for move in combatant.stats.moves: # for each move
-				if move == null:
-					continue
+			for move in moveCandidates: # for each move
 				var approxDmg: float = currentStats.get_stat_for_dmg_category(move.category) * move.power
-				# TODO maybe take into account AOE moves hitting multiple targets?
+				if BattleCommand.is_command_multi_target(move.targets): # if multi-targeting
+					approxDmg *= len(get_targetable_combatant_nodes(combatantNodes, move.targets)) # take into account the amount of targetable combatants
 				if pickedMove == null or \
 						(approxMaxDmg < approxDmg and BattleCommand.is_command_enemy_targeting(move.targets)): # if this move is approx. stronger
 					pickedMove = move # pick it instead
 	
 	return pickedMove
 
-func filter_null(a) -> bool:
+func filter_out_null(a) -> bool:
 	return a != null
+
+func ai_filter_move_candidates(a: Move) -> bool:
+	if a == null:
+		return false
+	if a.statusEffect != null: # if move has a status
+		var enemyTargeting: bool = BattleCommand.is_command_enemy_targeting(a.targets)
+		if a.power == 0 or (a.power > 0 and not enemyTargeting) or (a.power < 0 and enemyTargeting): # if move is purely status or deals damage to an ally to apply status/heals an enemy to apply status:
+			var affects: bool = false
+			for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, a.targets):
+				if combatantNode.combatant.statusEffect == null:
+					affects = true # if the combatant can be statused, it can be affected
+					break
+			return affects
+	return true
 
 func ai_pick_single_target(move: Move, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''
