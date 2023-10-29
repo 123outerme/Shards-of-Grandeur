@@ -11,7 +11,7 @@ size = Vector2(16, 16)
 size = Vector2(17, 17)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qaacd"]
-radius = 40.0
+radius = 56.0
 
 [node name="OverworldEnemy" type="CharacterBody2D" groups=["AutonomousMove"]]
 z_index = -10
@@ -19,7 +19,7 @@ y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_cgamv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7d1jr")
 
 [node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="."]
@@ -40,12 +40,14 @@ collision_mask = 2
 input_pickable = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterCollider"]
+[node name="EncounterColliderShape" type="CollisionShape2D" parent="EncounterCollider"]
 shape = SubResource("RectangleShape2D_m26a0")
 
 [node name="ChaseRange" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseRange"]
+[node name="ChaseRangeShape" type="CollisionShape2D" parent="ChaseRange"]
 shape = SubResource("CircleShape2D_qaacd")
 
 [connection signal="navigation_finished" from="NavAgent" to="." method="_on_nav_agent_navigation_finished"]

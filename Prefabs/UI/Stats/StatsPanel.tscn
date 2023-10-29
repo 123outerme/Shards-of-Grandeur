@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=10 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/StatsPanel.gd" id="1_ek2t8"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_0j471"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/Player.tres" id="3_i2uux"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="3_r0bwb"]
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://Prefabs/UI/Stats/StatLinePanel.tscn" id="4_1k046"]
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://Prefabs/UI/Stats/EquipmentPanel.tscn" id="5_h5547"]
@@ -26,6 +27,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel"]
+position = Vector2(64, 52)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_i2uux")
+animation = &"walk"
 
 [node name="StatsTitle" type="RichTextLabel" parent="StatsPanel/Panel"]
 layout_mode = 1

@@ -77,6 +77,7 @@ func save_data(save_path):
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
+	playerInfo.combatant.spriteFrames = load('res://Graphics/animations/Player.tres')
 	inventory = Inventory.new(true)
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()

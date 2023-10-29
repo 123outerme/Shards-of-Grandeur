@@ -19,6 +19,7 @@ var savedLvUp: bool = false
 var savedIsPlayer: bool = false
 var changingCombatant: bool = false
 
+@onready var animatedCombatantSprite: AnimatedSprite2D = get_node("StatsPanel/Panel/AnimatedCombatantSprite")
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
 @onready var levelUpLabel: RichTextLabel = get_node("StatsPanel/Panel/LevelUpLabel")
 @onready var statlinePanel: StatLinePanel = get_node("StatsPanel/Panel/StatLinePanel")
@@ -44,6 +45,13 @@ func load_stats_panel():
 	var dispName: String = stats.displayName
 	if minion != null:
 		dispName = minion.disp_name()
+	
+	var spriteFrames: SpriteFrames = PlayerResources.playerInfo.combatant.spriteFrames
+	if minion != null:
+		spriteFrames = minion.spriteFrames
+	animatedCombatantSprite.sprite_frames = spriteFrames
+	animatedCombatantSprite.play('walk')
+	
 	statsTitle.text = '[center]' + dispName + ' - Stats[/center]'
 	levelUpLabel.visible = levelUp
 	statlinePanel.stats = stats

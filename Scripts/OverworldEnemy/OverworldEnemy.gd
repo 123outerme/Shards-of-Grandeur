@@ -49,7 +49,7 @@ func get_next_patrol_target():
 	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:
 		return
 	var angleRadians = randf_range(0, 2 * PI)
-	var radius: float = randf_range(0, patrolRange)
+	var radius: float = randf_range(0, patrolRange / 2.0) # range is diameter, so half that
 	var patrolPos: Vector2 = homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
 	# generate random point on unit circle and ensure it's exactly on the circle, multiplied by a random radius
 	# all for a random position inside a circle of size `patrolRange` centered around the home point
