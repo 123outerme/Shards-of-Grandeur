@@ -87,6 +87,7 @@ func _process(delta):
 
 func advance_dialogue(canStart: bool = true):
 	if talkNPC != null:
+		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
 			return
 		talkNPC.advance_dialogue()

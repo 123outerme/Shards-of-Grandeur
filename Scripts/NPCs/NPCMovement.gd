@@ -25,6 +25,10 @@ func _process(delta):
 			NPC.npcSprite.play('walk')
 		else:
 			NPC.npcSprite.play('stand')
+		if vel.x < 0:
+			NPC.npcSprite.flip_h = true
+		if vel.x > 0:
+			NPC.npcSprite.flip_h = false
 
 func update_target_pos():
 	if disableMovement:

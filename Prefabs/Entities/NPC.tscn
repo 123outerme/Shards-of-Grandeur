@@ -6,13 +6,13 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_518hb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jblse"]
-size = Vector2(8, 8)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycftu"]
-size = Vector2(16, 16)
+size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk2vr"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
 [node name="NPC" type="CharacterBody2D" groups=["AutonomousMove", "Persist"]]
 z_index = -10
@@ -26,11 +26,11 @@ sprite_frames = SubResource("SpriteFrames_518hb")
 shape = SubResource("RectangleShape2D_jblse")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 0.75
-target_desired_distance = 0.75
-path_max_distance = 10.0
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+path_max_distance = 16.0
 path_postprocessing = 1
-radius = 8.0
+radius = 16.0
 neighbor_distance = 50.0
 max_speed = 2.0
 script = ExtResource("2_fvlbl")

@@ -86,7 +86,6 @@ func get_cur_dialogue_item():
 	return data.dialogueItems[data.dialogueIndex]
 
 func advance_dialogue():
-	npcSprite.play('talk')
 	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue
 		reset_dialogue()
 	
@@ -97,6 +96,9 @@ func advance_dialogue():
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
 		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
+		npcSprite.play('stand')
+	else:
+		npcSprite.play('talk')
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
@@ -138,8 +140,6 @@ func pause_movement():
 	
 func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
-	if not NavAgent.disableMovement:
-		NavAgent.update_target_pos()
 
 func _on_npc_sprite_animation_finished():
 	npcSprite.play('stand')
