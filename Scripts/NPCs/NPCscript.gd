@@ -20,6 +20,7 @@ var turningInSteps: Array[QuestStep] = []
 @export var hasShop: bool = false
 @export var inventory: Inventory
 
+@onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
 @onready var NavAgent: NPCMovement = get_node("NavAgent")
 
 var player: PlayerController = null
@@ -85,6 +86,7 @@ func get_cur_dialogue_item():
 	return data.dialogueItems[data.dialogueIndex]
 
 func advance_dialogue():
+	npcSprite.play('talk')
 	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue
 		reset_dialogue()
 	
@@ -138,3 +140,6 @@ func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
 	if not NavAgent.disableMovement:
 		NavAgent.update_target_pos()
+
+func _on_npc_sprite_animation_finished():
+	npcSprite.play('stand')

@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=9 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
-[ext_resource type="Texture2D" uid="uid://cocecamiaesyj" path="res://Graphics/characters/player/player.png" id="2_8srq3"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/Player.tres" id="3_hnc4w"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="5_q3a5u"]
@@ -21,10 +20,6 @@ script = ExtResource("1_m8p6c")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dwn8i")
-
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_8srq3")
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_hnc4w")

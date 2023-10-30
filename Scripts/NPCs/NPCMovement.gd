@@ -1,7 +1,7 @@
 extends NavigationAgent2D
 class_name NPCMovement
 
-@onready var NPC: CharacterBody2D = get_parent()
+@onready var NPC: NPCScript = get_parent()
 
 @export var targetPoints: Array[Vector2] = []
 @export var selectedTarget: int = 0
@@ -21,6 +21,10 @@ func _process(delta):
 		if vel.length() > maxSpeed * delta:
 			vel = vel.normalized() * maxSpeed * delta
 		NPC.position += vel
+		if vel.length() > 0:
+			NPC.npcSprite.play('walk')
+		else:
+			NPC.npcSprite.play('stand')
 
 func update_target_pos():
 	if disableMovement:

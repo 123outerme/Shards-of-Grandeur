@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=7 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCscript.gd" id="1_1dp2i"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_egh5a"]
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCMovement.gd" id="2_fvlbl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbwlw"]
-atlas = ExtResource("1_egh5a")
-region = Rect2(104, 8, 8, 8)
+[sub_resource type="SpriteFrames" id="SpriteFrames_518hb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jblse"]
 size = Vector2(8, 8)
@@ -22,8 +19,8 @@ z_index = -10
 motion_mode = 1
 script = ExtResource("1_1dp2i")
 
-[node name="NPCSprite" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_fbwlw")
+[node name="NPCSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_518hb")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jblse")
@@ -54,6 +51,7 @@ monitorable = false
 [node name="MoveTriggerShape" type="CollisionShape2D" parent="MoveTrigger"]
 shape = SubResource("RectangleShape2D_wk2vr")
 
+[connection signal="animation_finished" from="NPCSprite" to="." method="_on_npc_sprite_animation_finished"]
 [connection signal="navigation_finished" from="NavAgent" to="NavAgent" method="_on_navigation_finished"]
 [connection signal="target_reached" from="NavAgent" to="NavAgent" method="_on_target_reached"]
 [connection signal="area_entered" from="TalkArea" to="." method="_on_talk_area_area_entered"]
