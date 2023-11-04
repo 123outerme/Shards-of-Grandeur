@@ -21,6 +21,7 @@ var turningInSteps: Array[QuestStep] = []
 @export var inventory: Inventory
 
 @onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
+@onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
 @onready var NavAgent: NPCMovement = get_node("NavAgent")
 
 var player: PlayerController = null
@@ -63,6 +64,9 @@ func load_data(save_path):
 		player.restore_dialogue(self)
 		inventory = data.inventory
 	return
+
+func get_collision_size() -> Vector2:
+	return (colliderShape.shape as RectangleShape2D).get_rect().size
 
 func _on_move_trigger_area_entered(area):
 	if area.name == "PlayerEventCollider":

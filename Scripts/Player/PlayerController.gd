@@ -118,7 +118,7 @@ func set_talk_btns_vis(vis: bool):
 
 func position_talk_btns():
 	var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
-	var newY = -10.0
+	var newY = -1.0 * talkNPC.get_collision_size().y
 	if conversationPosDiff.y > 0.1:
 		newY *= -1
 	conversationPosDiff.y = newY
