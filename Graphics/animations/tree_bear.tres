@@ -1,0 +1,64 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://cg3nfu3ph42vi"]
+
+[ext_resource type="Texture2D" uid="uid://cmqw1yl8orkh1" path="res://Graphics/characters/tree_bear/tree_bear_stand.png" id="1_2mnee"]
+[ext_resource type="Texture2D" uid="uid://yeclkqot251k" path="res://Graphics/characters/tree_bear/tree_bear_walk.png" id="2_0b1c2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl7dp"]
+atlas = ExtResource("1_2mnee")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8bgx"]
+atlas = ExtResource("1_2mnee")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rny7w"]
+atlas = ExtResource("2_0b1c2")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ng37"]
+atlas = ExtResource("2_0b1c2")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sugof"]
+atlas = ExtResource("2_0b1c2")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mww0"]
+atlas = ExtResource("2_0b1c2")
+region = Rect2(96, 0, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl7dp")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8bgx")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rny7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ng37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sugof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mww0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]

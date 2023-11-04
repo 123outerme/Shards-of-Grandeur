@@ -49,6 +49,11 @@ func toggle():
 		load_inventory_panel()
 	else:
 		itemDetailsPanel.visible = false
+		itemUsePanel.visible = false
+		if shardLearnPanel.visible:
+			shardLearnPanel.credit_back_shard()
+		shardLearnPanel.visible = false
+		backButton.disabled = false
 		if equipContextStats != null:
 			lockFilters = false
 			selectedFilter = Item.Type.ALL

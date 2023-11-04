@@ -134,7 +134,7 @@ func save_from_object(c: Combatant):
 		statusEffect = c.statusEffect.duplicate(true)
 	else:
 		statusEffect = null
-	
+	maxSize = c.maxSize
 	spriteFrames = c.spriteFrames
 	aiType = c.aiType
 	aiOverrideWeight = c.aiOverrideWeight

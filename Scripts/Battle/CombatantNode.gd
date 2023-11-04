@@ -42,8 +42,8 @@ func load_combatant_node():
 			animatedSprite.sprite_frames = load("res://Graphics/animations/Player.tres") # TEMP prevent crashing
 		animatedSprite.play('stand')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
-		update_hp_tag()
 		update_select_btn(false)
+		update_hp_tag()
 		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
 
 func update_hp_tag():
