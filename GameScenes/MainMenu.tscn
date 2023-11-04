@@ -3,31 +3,16 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_7on86"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="2_irsbb"]
 [ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="2_wmxf2"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="3_te60g"]
+[ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://Graphics/items/rusty_armor.png" id="3_sd787"]
+[ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://Graphics/items/book.png" id="4_jytbv"]
+[ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://Graphics/characters/player/player_walk.png" id="5_6dq4x"]
+[ext_resource type="Texture2D" uid="uid://35ye7k3xtbym" path="res://Graphics/items/rat_shard.png" id="5_lxnsk"]
+[ext_resource type="Texture2D" uid="uid://bamq0i0s6h4l5" path="res://Graphics/ui/knight.png" id="6_1iwcp"]
+[ext_resource type="Texture2D" uid="uid://68gav8dpyr0p" path="res://Graphics/structures/house.png" id="6_luo1l"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_crfo8"]
-atlas = ExtResource("3_te60g")
-region = Rect2(96, 16, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6d7l"]
-atlas = ExtResource("3_te60g")
-region = Rect2(96, 8, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1nyix"]
-atlas = ExtResource("3_te60g")
-region = Rect2(96, 48, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pafe4"]
-atlas = ExtResource("3_te60g")
-region = Rect2(64, 56, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ovyey"]
-atlas = ExtResource("3_te60g")
-region = Rect2(16, 8, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mthhv"]
-atlas = ExtResource("3_te60g")
-region = Rect2(16, 16, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
+atlas = ExtResource("5_6dq4x")
+region = Rect2(0, 0, 16, 16)
 
 [node name="MainMenu" type="Control" groups=["Scenes"]]
 layout_mode = 3
@@ -55,38 +40,42 @@ anchor_bottom = 0.5
 offset_left = -100.0
 offset_top = -74.0
 offset_right = 100.0
-offset_bottom = 74.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 
 [node name="ResumeGameButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
 text = "Resume Game"
-icon = SubResource("AtlasTexture_crfo8")
+icon = ExtResource("3_sd787")
 expand_icon = true
 
 [node name="NewGameButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
 text = "New Game"
-icon = SubResource("AtlasTexture_g6d7l")
+icon = ExtResource("4_jytbv")
 expand_icon = true
 
 [node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
 text = "Settings
 "
-icon = SubResource("AtlasTexture_1nyix")
+icon = ExtResource("5_lxnsk")
 expand_icon = true
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
 text = "Quit Game"
-icon = SubResource("AtlasTexture_pafe4")
+icon = ExtResource("6_luo1l")
 expand_icon = true
 
 [node name="TitleText" type="RichTextLabel" parent="Panel"]
@@ -108,13 +97,13 @@ fit_content = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="Panel"]
 position = Vector2(500, 275)
-scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_ovyey")
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_nrgl8")
 
 [node name="GuardSprite" type="Sprite2D" parent="Panel"]
-position = Vector2(770, 275)
-scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_mthhv")
+position = Vector2(802, 245)
+scale = Vector2(4, 4)
+texture = ExtResource("6_1iwcp")
 
 [node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
 visible = false
@@ -167,6 +156,7 @@ layout_mode = 2
 text = "No, Never Mind..."
 
 [node name="PlayerNamePanel" type="Panel" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -6,7 +6,7 @@ const SPEED = 80
 @export var facingLeft: bool = false
 var pickedUpItem: PickedUpItem = null
 
-@onready var sprite: Sprite2D = get_node("PlayerSprite")
+@onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
@@ -75,6 +75,10 @@ func _physics_process(_delta):
 		if velocity.x > 0:
 			facingLeft = false
 		sprite.flip_h = facingLeft
+		if velocity.length() > 0:
+			sprite.play('walk')
+		else:
+			sprite.play('stand')
 		move_and_slide()
 		
 func _process(delta):
@@ -83,6 +87,7 @@ func _process(delta):
 
 func advance_dialogue(canStart: bool = true):
 	if talkNPC != null:
+		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
 			return
 		talkNPC.advance_dialogue()
@@ -113,7 +118,7 @@ func set_talk_btns_vis(vis: bool):
 
 func position_talk_btns():
 	var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
-	var newY = -10.0
+	var newY = -1.0 * talkNPC.get_collision_size().y
 	if conversationPosDiff.y > 0.1:
 		newY *= -1
 	conversationPosDiff.y = newY

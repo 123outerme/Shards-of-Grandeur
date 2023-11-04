@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=10 format=3 uid="uid://bpgc37i10vly7"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=9 format=3 uid="uid://bpgc37i10vly7"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_ds8ta"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="2_yfvmc"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/a_player.tres" id="2_rslue"]
 [ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="3_6aala"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://GameData/Moves/slice.tres" id="3_nhtum"]
 [ext_resource type="Resource" uid="uid://poj2favclae8" path="res://GameData/Moves/battle_trance.tres" id="4_wad5n"]
 [ext_resource type="Resource" uid="uid://dtco7uib2bx3l" path="res://GameData/Moves/impale.tres" id="5_caai4"]
 [ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://GameData/Moves/stamina_drain.tres" id="6_io01r"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8qlx3"]
-atlas = ExtResource("2_yfvmc")
-region = Rect2(16, 8, 8, 8)
 
 [sub_resource type="Resource" id="Resource_7v8dd"]
 script = ExtResource("3_6aala")
@@ -30,7 +26,8 @@ movepool = Array[Object]([ExtResource("3_nhtum"), ExtResource("4_wad5n"), ExtRes
 
 [resource]
 script = ExtResource("1_ds8ta")
-sprite = SubResource("AtlasTexture_8qlx3")
+spriteFrames = ExtResource("2_rslue")
+maxSize = Vector2(16, 16)
 nickname = ""
 stats = SubResource("Resource_7v8dd")
 currentHp = -1

@@ -6,7 +6,7 @@ signal stats_clicked(combatant: Combatant)
 @export var combatant: Combatant = null
 @export var readOnly: bool = false
 
-@onready var minionSprite: Sprite2D = get_node("SpriteControl/MinionSprite")
+@onready var minionSprite: AnimatedSprite2D = get_node("SpriteControl/MinionSprite")
 @onready var minionName: RichTextLabel = get_node("MinionName")
 @onready var statsButton: Button = get_node("StatsButton")
 
@@ -19,7 +19,10 @@ func load_minion_slot_panel():
 		visible = false
 		return
 	
-	minionSprite.texture = combatant.sprite
+	minionSprite.sprite_frames = combatant.spriteFrames
+	if combatant.spriteFrames == null:
+		minionSprite.sprite_frames = load('res://Graphics/animations/a_player.tres') # TEMP
+	minionSprite.play('walk')
 	minionName.text = combatant.disp_name()
 	statsButton.disabled = readOnly
 

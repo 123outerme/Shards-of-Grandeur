@@ -4,7 +4,7 @@ class_name OverworldEnemy
 @export var combatant: Combatant
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
-@export var patrolling: bool = false
+@export var patrolling: bool = true
 @export var patrolWaitSecs: float = 1.0
 @export var enemyData: OverworldEnemyData = OverworldEnemyData.new()
 
@@ -13,7 +13,7 @@ var homePoint: Vector2
 var patrolRange: float
 var encounteredPlayer: bool = false
 
-@onready var enemySprite: Sprite2D = get_node("EnemySprite")
+@onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
@@ -21,25 +21,35 @@ var encounteredPlayer: bool = false
 
 func _ready():
 	combatant = enemyData.combatant
-	enemySprite.texture = combatant.sprite
+	enemySprite.sprite_frames = combatant.spriteFrames
 	position = enemyData.position
 	disableMovement = enemyData.disableMovement
+	if patrolling:
+		get_next_patrol_target()
 
 func _process(delta):
-	if not disableMovement and SceneLoader.mapLoader != null:
-		if not patrolling and SceneLoader.mapLoader.mapNavReady:
+	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady:
+		if not patrolling:
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()
 		var vel = nextPos - position
 		if vel.length() > maxSpeed * delta:
 			vel = vel.normalized() * maxSpeed * delta
 		position += vel
+		if vel.x < 0:
+			enemySprite.flip_h = false
+		if vel.x > 0:
+			enemySprite.flip_h = true
+		if vel.length() > 0:
+			enemySprite.play('walk')
+		else:
+			enemySprite.play('stand')
 
 func get_next_patrol_target():
 	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:
 		return
 	var angleRadians = randf_range(0, 2 * PI)
-	var radius: float = randf_range(0, patrolRange)
+	var radius: float = randf_range(0, patrolRange / 2.0) # range is diameter, so half that
 	var patrolPos: Vector2 = homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
 	# generate random point on unit circle and ensure it's exactly on the circle, multiplied by a random radius
 	# all for a random position inside a circle of size `patrolRange` centered around the home point

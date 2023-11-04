@@ -1,0 +1,71 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://ckrlpy4ifbvap"]
+
+[ext_resource type="Texture2D" uid="uid://c22oc44ivh245" path="res://Graphics/characters/rat/rat_attack.png" id="1_sx67n"]
+[ext_resource type="Texture2D" uid="uid://ra20hb867klu" path="res://Graphics/characters/rat/rat_walk.png" id="2_dncdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vy3n"]
+atlas = ExtResource("1_sx67n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y775"]
+atlas = ExtResource("1_sx67n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehlla"]
+atlas = ExtResource("1_sx67n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7gdc"]
+atlas = ExtResource("1_sx67n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rriyq"]
+atlas = ExtResource("1_sx67n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nw6e"]
+atlas = ExtResource("2_dncdw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlaeh"]
+atlas = ExtResource("2_dncdw")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vy3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y775")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehlla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7gdc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rriyq")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nw6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlaeh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

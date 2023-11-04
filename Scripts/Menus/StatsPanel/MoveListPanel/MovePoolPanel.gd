@@ -9,6 +9,7 @@ signal cancel_button_clicked
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
 @export var level: int = 1
+@export var hideMovesInMoveList: bool = false
 
 @onready var vboxContainer: VBoxContainer = get_node("ScrollContainer/VBoxContainer")
 
@@ -22,7 +23,8 @@ func load_move_pool_panel():
 	
 	var moveListItemPanel = preload("res://Prefabs/UI/Stats/MoveListItemPanel.tscn")
 	for move in movepool:
-		if move.requiredLv <= level:
+		if move.requiredLv <= level and \
+				not (hideMovesInMoveList and (move in moves)):
 			var instantiatedPanel: MoveListItemPanel = moveListItemPanel.instantiate()
 			instantiatedPanel.move = move
 			instantiatedPanel.details_pressed.connect(_on_details_button_clicked)

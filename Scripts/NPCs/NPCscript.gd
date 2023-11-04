@@ -20,6 +20,8 @@ var turningInSteps: Array[QuestStep] = []
 @export var hasShop: bool = false
 @export var inventory: Inventory
 
+@onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
+@onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
 @onready var NavAgent: NPCMovement = get_node("NavAgent")
 
 var player: PlayerController = null
@@ -63,6 +65,9 @@ func load_data(save_path):
 		inventory = data.inventory
 	return
 
+func get_collision_size() -> Vector2:
+	return (colliderShape.shape as RectangleShape2D).get_rect().size
+
 func _on_move_trigger_area_entered(area):
 	if area.name == "PlayerEventCollider":
 		NavAgent.start_movement()
@@ -95,6 +100,9 @@ func advance_dialogue():
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
 		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
+		npcSprite.play('stand')
+	else:
+		npcSprite.play('talk')
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
@@ -136,5 +144,6 @@ func pause_movement():
 	
 func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
-	if not NavAgent.disableMovement:
-		NavAgent.update_target_pos()
+
+func _on_npc_sprite_animation_finished():
+	npcSprite.play('stand')

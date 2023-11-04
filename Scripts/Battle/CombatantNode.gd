@@ -20,7 +20,8 @@ signal details_clicked(combatantNode: CombatantNode)
 @export_category("CombatantNode - Tree")
 @export var clickCombatantBtn: TextureButton
 @export var selectCombatantBtn: TextureButton
-@export var sprite: Sprite2D
+#@export var sprite: Sprite2D
+@export var animatedSprite: AnimatedSprite2D
 @export var hpTag: Panel
 @export var lvText: RichTextLabel
 @export var hpText: RichTextLabel
@@ -29,17 +30,20 @@ var tmpAllCombatantNodes: Array[CombatantNode] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func load_combatant_node():
 	if not is_alive():
 		visible = false
 	else:
 		visible = true
-		sprite.texture = combatant.sprite
-		sprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
-		update_hp_tag()
+		animatedSprite.sprite_frames = combatant.spriteFrames
+		if combatant.spriteFrames == null:
+			animatedSprite.sprite_frames = load("res://Graphics/animations/a_player.tres") # TEMP prevent crashing
+		animatedSprite.play('stand')
+		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_select_btn(false)
+		update_hp_tag()
 		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
 
 func update_hp_tag():
@@ -54,9 +58,9 @@ func update_hp_tag():
 	hpText.size.x = len(hpText.text) * 13 - 10 # magic number
 	hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
-		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
 	else:
-		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
@@ -64,7 +68,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
-	selectCombatantBtn.size = combatant.sprite.get_size() + Vector2(4, 4) # set size of selecting button to sprite size + 4px
+	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 
 func set_selected(selected: bool = true):
@@ -72,6 +76,9 @@ func set_selected(selected: bool = true):
 	
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
+
+func play_animation(animationName: String):
+	animatedSprite.play(animationName)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
@@ -231,3 +238,6 @@ func _on_select_combatant_btn_toggled(button_pressed):
 func _on_click_combatant_btn_pressed():
 	print('show details for ', combatant.save_name())
 	details_clicked.emit(self)
+
+func _on_animated_sprite_animation_finished():
+	animatedSprite.play('stand')

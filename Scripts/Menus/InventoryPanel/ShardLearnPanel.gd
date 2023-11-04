@@ -23,7 +23,7 @@ func load_shard_learn_panel():
 	
 	combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
 	combatant.stats.level = PlayerResources.playerInfo.stats.level
-	shardSprite.texture = combatant.sprite
+	shardSprite.texture = shard.itemSprite
 	learnPanelTitle.text = '[center]Learn a Move From ' + combatant.disp_name() + '[/center]'
 	movePoolPanel.moves = combatant.stats.moves
 	movePoolPanel.movepool = combatant.stats.movepool
@@ -32,9 +32,12 @@ func load_shard_learn_panel():
 	movePoolPanel.show_learn_buttons(true)
 	visible = true
 
+func credit_back_shard():
+	PlayerResources.inventory.add_item(shard as Item) # add the shard back to the inventory after using it up
+
 func _on_back_button_pressed():
 	visible = false
-	PlayerResources.inventory.add_item(shard as Item) # add the shard back to the inventory after using it up
+	credit_back_shard()
 	back_pressed.emit()
 
 func _on_move_pool_panel_learn_button_clicked(move: Move):

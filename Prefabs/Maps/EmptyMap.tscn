@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1hm2qdbk2wrv"]
 
-[ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_o7yci"]
+[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_12b5c"]
 
 [node name="OverworldMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1_o7yci")
+tile_set = ExtResource("1_12b5c")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = -20
@@ -24,3 +24,10 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Collision"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 0)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()

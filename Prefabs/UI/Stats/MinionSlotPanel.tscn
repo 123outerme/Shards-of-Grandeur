@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://84ixct37xa74"]
+[gd_scene load_steps=5 format=3 uid="uid://84ixct37xa74"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MinionsPanel/MinionSlotPanel.gd" id="1_mfddu"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_nhnmf"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="3_wa004"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjlhe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1ocm"]
-atlas = ExtResource("3_wa004")
-region = Rect2(96, 56, 8, 8)
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3y6f"]
 
 [node name="MinionSlotPanel" type="Panel" groups=["MinionSlotPanel"]]
 custom_minimum_size = Vector2(548, 69)
@@ -21,15 +18,16 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 16.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 56.0
+offset_bottom = 24.0
 grow_vertical = 2
 
-[node name="MinionSprite" type="Sprite2D" parent="SpriteControl"]
-position = Vector2(16, 16)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_e1ocm")
+[node name="MinionSprite" type="AnimatedSprite2D" parent="SpriteControl"]
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_k3y6f")
 
 [node name="MinionName" type="RichTextLabel" parent="."]
 layout_mode = 1
