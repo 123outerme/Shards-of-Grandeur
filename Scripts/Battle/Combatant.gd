@@ -87,6 +87,11 @@ func get_exhaustion_level() -> StatusEffect.Potency:
 	if statusEffect == null or statusEffect.type != StatusEffect.Type.EXHAUSTION:
 		return StatusEffect.Potency.NONE # if no status or not exhaustion
 	return statusEffect.potency # return exhaustion potency
+	
+func get_manic_level() -> StatusEffect.Potency:
+	if statusEffect == null or statusEffect.type != StatusEffect.Type.MANIC:
+		return StatusEffect.Potency.NONE # if no status or not exhaustion
+	return statusEffect.potency # return manic potency
 
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level

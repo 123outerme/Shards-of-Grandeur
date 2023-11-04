@@ -53,7 +53,11 @@ func sort_turns(a: Combatant, b: Combatant) -> bool:
 		return true # a is less exhausted than b
 	if a.get_exhaustion_level() > b.get_exhaustion_level():
 		return false # a is more exhausted than b
-	# otherwise, exhaustion levels are the same
+	if a.get_manic_level() < b.get_manic_level():
+		return false # b is more manic than a
+	if a.get_manic_level() > b.get_manic_level():
+		return true # a is more manic than b
+	# otherwise, "turn priority" levels are the same
 	if a.stats.speed > b.stats.speed:
 		return true # a goes before b
 	if a.stats.speed < b.stats.speed:
