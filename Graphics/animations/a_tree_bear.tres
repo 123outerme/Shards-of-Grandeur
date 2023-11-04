@@ -1,11 +1,32 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://cg3nfu3ph42vi"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://cg3nfu3ph42vi"]
 
 [ext_resource type="Texture2D" uid="uid://cmqw1yl8orkh1" path="res://Graphics/characters/tree_bear/tree_bear_stand.png" id="1_2mnee"]
+[ext_resource type="Texture2D" uid="uid://bpmd0pcdwbvtc" path="res://Graphics/characters/tree_bear/tree_bear_attack.png" id="1_d15iy"]
 [ext_resource type="Texture2D" uid="uid://yeclkqot251k" path="res://Graphics/characters/tree_bear/tree_bear_walk.png" id="2_0b1c2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dl7dp"]
-atlas = ExtResource("1_2mnee")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ioek"]
+atlas = ExtResource("1_d15iy")
 region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et4wq"]
+atlas = ExtResource("1_d15iy")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5dwq"]
+atlas = ExtResource("1_d15iy")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sss04"]
+atlas = ExtResource("1_d15iy")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o17de"]
+atlas = ExtResource("1_d15iy")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn0up"]
+atlas = ExtResource("1_d15iy")
+region = Rect2(192, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8bgx"]
 atlas = ExtResource("1_2mnee")
@@ -31,11 +52,26 @@ region = Rect2(96, 0, 32, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dl7dp")
+"texture": SubResource("AtlasTexture_5ioek")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_et4wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5dwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sss04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o17de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn0up")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 4.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,

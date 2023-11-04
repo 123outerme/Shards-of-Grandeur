@@ -39,7 +39,7 @@ func load_combatant_node():
 		visible = true
 		animatedSprite.sprite_frames = combatant.spriteFrames
 		if combatant.spriteFrames == null:
-			animatedSprite.sprite_frames = load("res://Graphics/animations/Player.tres") # TEMP prevent crashing
+			animatedSprite.sprite_frames = load("res://Graphics/animations/a_player.tres") # TEMP prevent crashing
 		animatedSprite.play('stand')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_select_btn(false)

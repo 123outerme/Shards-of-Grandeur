@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_m8p6c"]
-[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/Player.tres" id="3_hnc4w"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://Graphics/animations/a_player.tres" id="2_p76r0"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://Prefabs/UI/TextBox.tscn" id="3_ljo0p"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://Prefabs/UI/Quests/QuestsPanel.tscn" id="5_q3a5u"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://Prefabs/UI/Stats/StatsPanel.tscn" id="6_a850r"]
@@ -22,7 +22,7 @@ script = ExtResource("1_m8p6c")
 shape = SubResource("RectangleShape2D_dwn8i")
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("3_hnc4w")
+sprite_frames = ExtResource("2_p76r0")
 animation = &"walk"
 autoplay = "stand"
 speed_scale = 2.0

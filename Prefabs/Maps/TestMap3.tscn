@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="3_2wtv2"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_hofab"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="5_spsav"]
-[ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/dr_hudson.tres" id="6_ehp77"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="6_os3it"]
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="7_cye5e"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="8_e8erg"]
+[ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="9_2t0js"]
 
 [sub_resource type="Resource" id="Resource_ix4ns"]
 script = ExtResource("3_2wtv2")
@@ -72,8 +72,8 @@ hasShop = true
 inventory = SubResource("Resource_3tyr3")
 
 [node name="NPCSprite" parent="TileMap/NPC" index="0"]
-sprite_frames = ExtResource("6_ehp77")
-animation = &"stand"
+sprite_frames = ExtResource("9_2t0js")
+animation = &"talk"
 
 [node name="ColliderShape" parent="TileMap/NPC" index="1"]
 debug_color = Color(0, 0.6, 0.701961, 0)
