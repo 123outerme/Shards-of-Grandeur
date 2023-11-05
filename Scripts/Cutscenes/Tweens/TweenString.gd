@@ -4,7 +4,7 @@ class_name TweenString
 @export var value: String
 
 func _init(
-	i_actor = null,
+	i_actor = '',
 	i_isPlayer = false,
 	i_propertyName = '',
 	i_easeType = Tween.EASE_IN_OUT,

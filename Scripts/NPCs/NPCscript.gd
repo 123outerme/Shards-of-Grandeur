@@ -165,10 +165,9 @@ func play_animation(animation: String):
 
 func face_horiz(xDirection: int):
 	if xDirection < 0:
-		npcSprite.flip_h = not facesRight
-	if xDirection > 0:
 		npcSprite.flip_h = facesRight
-
+	if xDirection > 0:
+		npcSprite.flip_h = not facesRight
 
 func _on_npc_sprite_animation_finished():
 	play_animation('stand')

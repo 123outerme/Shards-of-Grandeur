@@ -3,7 +3,8 @@ class_name TweenVector2
 
 @export var value: Vector2
 
-func _init(i_actor = null,
+func _init(
+	i_actor = '',
 	i_isPlayer = false,
 	i_propertyName = '',
 	i_easeType = Tween.EASE_IN_OUT,

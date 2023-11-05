@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=6 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://Prefabs/Overworld/CutsceneTrigger.tscn" id="2_1jl0p"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="2_kq4m3"]
+[ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="3_cef0f"]
 [ext_resource type="Resource" uid="uid://bsdegy6cj3f12" path="res://GameData/animations/test_cutscene.tres" id="3_ti8qw"]
 
 [node name="OverworldMap" type="Node2D"]
@@ -35,5 +37,27 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, -9, 65539, 65537, 196599, 65539, 65537, -65545, 65539, 65537, 65576, 65539, 65537, 40, 65539, 65537, -65496, 65539, 65537, -131032, 65539, 65537, 131112, 65539, 65537)
 
-[node name="CutsceneTrigger" parent="." instance=ExtResource("2_1jl0p")]
+[node name="NPC" parent="TileMap" instance=ExtResource("2_kq4m3")]
+position = Vector2(38, 16)
+displayName = "Dr. Hudson"
+saveName = "dr_hudson_intro"
+anyActDialogue = Array[String](["Come along now, we have work to do."])
+
+[node name="NPCSprite" parent="TileMap/NPC" index="0"]
+sprite_frames = ExtResource("3_cef0f")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/NPC" index="1"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="TalkAreaShape" parent="TileMap/NPC/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTriggerShape" parent="TileMap/NPC/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="CutsceneTrigger" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("2_1jl0p")]
 cutscene = ExtResource("3_ti8qw")
+rootNode = NodePath("..")
+
+[editable path="TileMap/NPC"]

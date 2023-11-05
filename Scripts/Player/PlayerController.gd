@@ -167,14 +167,14 @@ func set_talk_npc(npc: NPCScript):
 		turnInButton.visible = false
 	
 func restore_dialogue(npc: NPCScript):
-	talkNPC = npc
-	var dialogueText = talkNPC.get_cur_dialogue_item()
-	if dialogueText != null:
+	var dialogueText = npc.get_cur_dialogue_item()
+	if dialogueText != null and talkNPC == null:
+		talkNPC = npc
 		SceneLoader.pause_autonomous_movers()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
-	set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
-	position_talk_btns()
+		set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
+		position_talk_btns()
 
 func restore_picked_up_item_text(groundItem: PickedUpItem):
 	pickedUpItem = groundItem
