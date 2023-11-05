@@ -69,9 +69,5 @@ func _on_confirm_button_pressed():
 
 func _on_cancel_button_pressed():
 	nameInput.text = minion.nickname
-
-func _on_name_input_focus_entered():
-	pass # Replace with function body.
-
-func _on_name_input_focus_exited():
-	pass # Replace with function body.
+	confirmName.disabled = true
+	cancelName.disabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chea0046uctgc"]
+[gd_scene load_steps=15 format=3 uid="uid://chea0046uctgc"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_6yr5t"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="2_1l8um"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="7_cye5e"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="8_e8erg"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="9_2t0js"]
+[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="10_o8pli"]
 
 [sub_resource type="Resource" id="Resource_ix4ns"]
 script = ExtResource("3_2wtv2")
@@ -25,6 +26,9 @@ count = 1
 script = ExtResource("8_e8erg")
 inventorySlots = Array[ExtResource("7_cye5e")]([SubResource("Resource_vkch6")])
 isPlayerInventory = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j88gs"]
+size = Vector2(9, 4)
 
 [node name="OverworldMap" type="Node2D"]
 
@@ -89,4 +93,13 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTriggerShape" parent="TileMap/NPC/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="WarpZone" parent="." instance=ExtResource("10_o8pli")]
+position = Vector2(7.5, -44)
+mapName = "TestMap3House"
+mapPos = Vector2(8, 64)
+
+[node name="WarpArea" parent="WarpZone" index="0"]
+shape = SubResource("RectangleShape2D_j88gs")
+
 [editable path="TileMap/NPC"]
+[editable path="WarpZone"]

@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://cf41bbmbxr4yj"]
+
+[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_wyl2n"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://GameData/Items/Armor/standard_issue_mail.tres" id="2_ein1b"]
+[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_yietv"]
+[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="3_rivu3"]
+
+[sub_resource type="Resource" id="Resource_r4r2c"]
+script = ExtResource("3_rivu3")
+experience = 10
+gold = 5
+item = ExtResource("2_ein1b")
+
+[sub_resource type="Resource" id="Resource_d3slh"]
+script = ExtResource("2_yietv")
+name = "Defeat A Giant Rat"
+description = "The Giant Rat is a surprisingly fearsome opponent. Defeat one!"
+reward = SubResource("Resource_r4r2c")
+type = 2
+count = 1
+objectiveName = "rat"
+turnInName = "house_dr_hudson"
+displayObjName = "Rat"
+displayTurnInName = "Dr. Hudson"
+turnInDialogue = Array[String](["Thank you for defeating the Giant Rat. I trust you've brought me its Shard, yes?"])
+inProgressDialogue = Array[String](["Be sure to defeat a Giant Rat and bring back its shard for me!"])
+
+[sub_resource type="Resource" id="Resource_3ka5m"]
+script = ExtResource("3_rivu3")
+experience = 10
+gold = 50
+
+[sub_resource type="Resource" id="Resource_vkcvp"]
+script = ExtResource("2_yietv")
+name = "Hand Over The Shard"
+description = "The deed is done. Bring the Rat Shard to Dr. Hudson outside."
+reward = SubResource("Resource_3ka5m")
+type = 1
+count = 1
+objectiveName = "Rat Shard"
+turnInName = "dr_hudson"
+displayObjName = "Rat Shard"
+displayTurnInName = "Dr. Hudson"
+turnInDialogue = Array[String](["Great. The experiment is all ready to go, I just need to offer the right incantation."])
+inProgressDialogue = Array[String](["The deed is done, all that's left to do now is part with the Giant Rat's shard. Bring it to me outside. You did pick that up, right?"])
+
+[sub_resource type="Resource" id="Resource_u5rt4"]
+script = ExtResource("2_yietv")
+name = "Watch the Experiment"
+description = "Watch the experiment unfold and see what Dr. Hudson has to say."
+type = 0
+count = 1
+objectiveName = "dr_hudson"
+turnInName = "dr_hudson"
+displayObjName = "Dr. Hudson"
+displayTurnInName = "Dr. Hudson"
+turnInDialogue = Array[String](["I think it worked. I learned a new attack by communing with this Rat! I hope you will do the same on your journey."])
+inProgressDialogue = Array[String](["Great, now prepare yourself for the greatest experiment ever seen!", "...", "Hah hoo wah hee ha ho ho ho, hah hoo wah he ha ho ho ho, hahoowaheehahoho hahoowaheehahoho hahoowaheehahoho hahoowaheehahoho HO!"])
+
+[resource]
+script = ExtResource("1_wyl2n")
+questName = "Supply Run"
+description = "Dr. Hudson needs supplies to complete an experiment. See what this is all about!"
+steps = Array[ExtResource("2_yietv")]([SubResource("Resource_d3slh"), SubResource("Resource_vkcvp"), SubResource("Resource_u5rt4")])
+prerequisiteQuestNames = Array[String]([])
+startDialogue = Array[String](["It appears I have found my keys, @. Now that I am here, I have a few experiments I would like to run, but first I need some supplies.", "You can start by defeating a Giant Rat for me. Make sure you bring back its Shard!"])

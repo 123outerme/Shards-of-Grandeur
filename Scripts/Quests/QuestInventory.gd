@@ -54,7 +54,7 @@ func update_collect_quests():
 	for tracker in quests:
 		if tracker.get_current_step().type == QuestStep.Type.COLLECT_ITEM:
 			var count: int = 0
-			for slot in PlayerResources.inventory.slots:
+			for slot in PlayerResources.inventory.inventorySlots:
 				if slot.item.itemName == tracker.get_current_step().objectiveName:
 					count += slot.count
 			tracker.set_current_step_progress(count)
@@ -70,9 +70,13 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 				tracker.add_current_step_progress(progress)
 
 func turn_in_cur_step(tracker: QuestTracker) -> int:
-	var newLvs: int = PlayerResources.accept_rewards([tracker.get_current_step().reward])
+	var curStep: QuestStep = tracker.get_current_step()
+	var newLvs: int = PlayerResources.accept_rewards([curStep.reward])
+	if curStep.type == QuestStep.Type.COLLECT_ITEM:
+		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)
+	
 	var _allDone: bool = tracker.turn_in_step()
-	# TODO: anything need to be done with the all done flag?
+	
 	return newLvs
 
 func get_sorted_trackers() -> Array[QuestTracker]:

@@ -11,6 +11,8 @@ func _init(i_playerInv = false, i_slots: Array[InventorySlot] = []):
 	isPlayerInventory = i_playerInv
 	
 func add_item(item: Item) -> bool:
+	if item == null:
+		return false
 	var found: bool = false
 	for slot in inventorySlots:
 		if slot.item == item:
@@ -66,10 +68,15 @@ func is_equipped(item: Item) -> bool:
 		return PlayerResources.playerInfo.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
-func trash_item(inventorySlot: InventorySlot):
-	inventorySlot.count -= 1
+func trash_item(inventorySlot: InventorySlot, count: int = 1):
+	inventorySlot.count -= count
 	if inventorySlot.count <= 0:
 		inventorySlots.erase(inventorySlot)
+
+func trash_items_by_name(itemName: String, count: int = 1):
+	for slot in inventorySlots:
+		if slot.item.itemName == itemName:
+			trash_item(slot, count)
 
 func get_sorted_slots() -> Array[InventorySlot]:
 	var slots: Array[InventorySlot] = []

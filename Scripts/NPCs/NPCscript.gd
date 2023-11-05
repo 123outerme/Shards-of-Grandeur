@@ -114,16 +114,17 @@ func reset_dialogue():
 	fetch_quest_dialogue_info()
 	for q in acceptableQuests:
 		data.dialogueItems.append_array(q.startDialogue)
-	for q in quests:
-		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_quest(q)
+	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
-			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS:
+			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS and questTracker.get_current_step().turnInName == saveName:
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
 	if len(data.dialogueItems) == 0: # only show base dialogue if no other dialogue is present (?)
 		data.dialogueItems.append_array(stdDialogue)
+	for itemIdx in range(len(data.dialogueItems)):
+		data.dialogueItems[itemIdx] = TextUtils.substitute_playername(data.dialogueItems[itemIdx])
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
@@ -133,11 +134,12 @@ func fetch_quest_dialogue_info():
 		if questTracker == null:
 			if PlayerResources.questInventory.has_completed_prereqs(q.prerequisiteQuestNames):
 				acceptableQuests.append(q)
-		else:
-			var curStep: QuestStep = questTracker.get_current_step()
-			if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-					and curStep.turnInName == saveName:
-				turningInSteps.append(curStep)
+	
+	for questTracker in PlayerResources.questInventory.quests:
+		var curStep: QuestStep = questTracker.get_current_step()
+		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
+				and curStep.turnInName == saveName:
+			turningInSteps.append(curStep)
 
 func pause_movement():
 	NavAgent.disableMovement = true
