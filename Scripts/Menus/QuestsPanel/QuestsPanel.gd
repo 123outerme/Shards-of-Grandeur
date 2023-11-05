@@ -7,12 +7,20 @@ signal level_up(newLevels: int)
 
 @export_category("Quests Panel - Filters")
 @export var selectedFilter: QuestTracker.Status = QuestTracker.Status.ALL
-@export var turnInTargetName: String
+@export var turnInTargetName: String = ''
 @export var lockFilters: bool = false
 
 var rewardNewLvs: int = 0
+var actNames: Array[String] = [
+	'Prologue', # act 0
+	'act1placeholder', # act 1
+	'act2placeholder', # act 2
+	'act3placeholder', # act 3
+	'act4placeholder', # act 4
+]
 
 @onready var questsTitle: RichTextLabel = get_node("QuestsPanel/Panel/QuestsTitle")
+@onready var actTitle: RichTextLabel = get_node("QuestsPanel/Panel/ActTitle")
 @onready var inProgressButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/InProgressButton")
 @onready var readyToTurnInButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton")
 @onready var completedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/CompletedButton")
@@ -62,6 +70,13 @@ func load_quests_panel():
 			completedButton.disabled = lockFilters
 		else: # if not completed
 			notCompletedButton.disabled = lockFilters
+		
+		if turnInTargetName != '':
+			questsTitle.text = '[center]Turn In Quests[/center]'
+		else:
+			questsTitle.text = '[center]Quests[/center]'
+			
+		actTitle.text = 'Act ' + String.num(PlayerResources.questInventory.currentAct) + ': ' + actNames[PlayerResources.questInventory.currentAct]
 
 func update_filter_buttons():
 	inProgressButton.button_pressed = selectedFilter == QuestTracker.Status.IN_PROGRESS
