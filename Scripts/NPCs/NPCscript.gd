@@ -117,7 +117,7 @@ func reset_dialogue():
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
-			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS and questTracker.get_current_step().turnInName == saveName:
+			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS and questTracker.get_prev_step().turnInName == saveName:
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)

@@ -52,6 +52,11 @@ func get_current_step() -> QuestStep:
 		return quest.steps[min(currentStep, len(quest.steps) - 1)] # cap at last array element
 	return null
 	
+func get_prev_step() -> QuestStep:
+	if currentStep >= 1:
+		return quest.steps[min(currentStep, len(quest.steps) - 1) - 1] # cap at second-to-last array element
+	return quest.steps[0] # if on first step, consider it to also be prev step
+	
 func get_step_index(step: QuestStep) -> int:
 	for idx in range(len(quest.steps)):
 		if step == quest.steps[idx]:
