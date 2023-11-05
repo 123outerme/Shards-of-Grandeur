@@ -60,7 +60,7 @@ func load_quests_panel():
 			readyToTurnInButton.disabled = lockFilters
 		if questTracker.get_current_status() == QuestTracker.Status.COMPLETED:
 			completedButton.disabled = lockFilters
-		if questTracker.get_current_status() == QuestTracker.Status.INCOMPLETE:
+		else: # if not completed
 			notCompletedButton.disabled = lockFilters
 
 func update_filter_buttons():

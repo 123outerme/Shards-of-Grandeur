@@ -6,6 +6,8 @@ class_name Quest
 @export_multiline var description: String
 @export var steps: Array[QuestStep]
 @export var prerequisiteQuestNames: Array[String]
+@export var availableAtAct: int = 0
+@export var unavailableAfterAct: int = 5
 
 @export_category("Quest - Dialogue")
 @export_multiline var startDialogue: Array[String]

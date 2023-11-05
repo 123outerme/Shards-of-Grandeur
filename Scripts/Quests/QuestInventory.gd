@@ -2,11 +2,13 @@ extends Resource
 class_name QuestInventory
 
 @export var quests: Array[QuestTracker] = []
+@export var currentAct: int = 0
 
 var save_name: String = "quests.tres"
 
-func _init(i_quests: Array[QuestTracker] = []):
+func _init(i_quests: Array[QuestTracker] = [], i_act = 0):
 	quests = i_quests
+	currentAct = i_act
 
 func get_quest_tracker_by_quest(q: Quest) -> QuestTracker:
 	for questTracker in quests:
@@ -34,6 +36,9 @@ func get_cur_trackers_for_target(targetName: String) -> Array[QuestTracker]:
 			trackers.append(questTracker)
 	return trackers
 
+func can_start_quest(q: Quest) -> bool:
+	return has_completed_prereqs(q.prerequisiteQuestNames) and act_is_within_quest_range(q) and get_quest_tracker_by_quest(q) == null
+
 func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 	var hasCompleted: bool = true
 	for name in prereqNames:
@@ -43,6 +48,9 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 			completedPrereq = true
 		hasCompleted = hasCompleted and completedPrereq
 	return hasCompleted
+
+func act_is_within_quest_range(q: Quest) -> bool:
+	return currentAct >= q.availableAtAct and currentAct <= q.unavailableAfterAct
 
 func accept_quest(q: Quest):
 	if get_quest_tracker_by_quest(q) != null:

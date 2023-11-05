@@ -117,7 +117,8 @@ func reset_dialogue():
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
-			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS and questTracker.get_prev_step().turnInName == saveName:
+			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
+					and questTracker.get_prev_step().turnInName == saveName and PlayerResources.questInventory.act_is_within_quest_range(questTracker.quest):
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
@@ -130,15 +131,13 @@ func fetch_quest_dialogue_info():
 	acceptableQuests = []
 	turningInSteps = []
 	for q in quests:
-		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_quest(q)
-		if questTracker == null:
-			if PlayerResources.questInventory.has_completed_prereqs(q.prerequisiteQuestNames):
-				acceptableQuests.append(q)
+		if PlayerResources.questInventory.can_start_quest(q):
+			acceptableQuests.append(q)
 	
 	for questTracker in PlayerResources.questInventory.quests:
 		var curStep: QuestStep = questTracker.get_current_step()
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and curStep.turnInName == saveName:
+				and curStep.turnInName == saveName and PlayerResources.questInventory.act_is_within_quest_range(questTracker.quest):
 			turningInSteps.append(curStep)
 
 func pause_movement():
