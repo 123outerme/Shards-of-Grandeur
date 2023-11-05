@@ -52,6 +52,7 @@ func fetch_player():
 
 func save_data(save_path):
 	data.saveName = saveName
+	data.flipH = npcSprite.flip_h
 	data.position = position
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
@@ -67,6 +68,7 @@ func load_data(save_path):
 		data = newData
 		# only load the new NPC data if it exists
 		position = data.position
+		npcSprite.flip_h = data.flipH
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.previousDisableMove
@@ -117,6 +119,7 @@ func advance_dialogue():
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
+		face_player()
 
 func reset_dialogue():
 	data.dialogueIndex = -1
@@ -160,10 +163,13 @@ func pause_movement():
 func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
 
+func face_player():
+	face_horiz(player.position.x - position.x)
+
 func play_animation(animation: String):
 	npcSprite.play(animation)
 
-func face_horiz(xDirection: int):
+func face_horiz(xDirection: float):
 	if xDirection < 0:
 		npcSprite.flip_h = facesRight
 	if xDirection > 0:

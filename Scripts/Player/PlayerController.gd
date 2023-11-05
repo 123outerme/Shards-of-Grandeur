@@ -170,6 +170,7 @@ func restore_dialogue(npc: NPCScript):
 	var dialogueText = npc.get_cur_dialogue_item()
 	if dialogueText != null and talkNPC == null:
 		talkNPC = npc
+		talkNPC.face_player()
 		SceneLoader.pause_autonomous_movers()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()

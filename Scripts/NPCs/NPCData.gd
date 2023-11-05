@@ -4,6 +4,7 @@ class_name NPCData
 @export var saveName: String = "NPC"
 @export_category("NPCData - Position")
 @export var position: Vector2
+@export var flipH: bool = false
 @export var selectedTarget: int = 0
 @export var loops: int = 0
 @export var disableMovement: bool = false
@@ -20,6 +21,7 @@ class_name NPCData
 func _init(
 	i_saveName = "npc",
 	i_position = Vector2(),
+	i_flipH = false,
 	i_selectedTarget = 0,
 	i_loops = 0,
 	i_disableMovement = false,
@@ -31,6 +33,7 @@ func _init(
 ):
 	saveName = i_saveName
 	position = i_position
+	flipH = i_flipH
 	selectedTarget = i_selectedTarget
 	loops = i_loops
 	disableMovement = i_disableMovement
