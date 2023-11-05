@@ -18,7 +18,7 @@ func _ready():
 	start_cutscene()
 
 func _process(delta):
-	if playing and not disabled:
+	if playing and not disabled and not isPaused:
 		timer += delta
 		
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer)
