@@ -2,10 +2,10 @@ extends Resource
 class_name PlayerInfo
 
 @export_category("PlayerInfo: Location")
-@export var position: Vector2
+@export var position: Vector2 = Vector2(-50, 0)
 @export var flipH: bool = false
 @export var disableMovement: bool = false
-@export var map: String = "TestMap1"
+@export var map: String = "IntroMap"
 @export var inUnderworld: bool
 @export var underworldMap: String
 @export var underworldDepth: int
@@ -34,11 +34,11 @@ class_name PlayerInfo
 var save_file = "playerinfo.tres"
 
 func _init(
-	i_map = "TestMap1",
+	i_map = "IntroMap",
 	i_inUnderworld = false,
 	i_underworldMap = "",
 	i_underworldDepth = 0,
-	i_savedPosition = Vector2(),
+	i_savedPosition = Vector2(-50,0),
 	i_flipH = false,
 	i_scene = "Overworld",
 	i_stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.copy(),

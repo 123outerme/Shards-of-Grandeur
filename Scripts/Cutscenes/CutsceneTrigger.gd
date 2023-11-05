@@ -23,14 +23,15 @@ func _process(delta):
 		
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer)
 		
-		if PlayerFinder.player.is_in_dialogue():
+		if PlayerFinder.player.is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:
 			return
 		
 		if lastFrame != null and frame != lastFrame and lastFrame.endTextBoxTexts != null \
 				and len(lastFrame.endTextBoxTexts) > 0 and not lastFrame.get_text_was_triggered():
 			PlayerFinder.player.set_cutscene_texts(lastFrame.endTextBoxTexts, lastFrame.endTextBoxSpeaker)
 			lastFrame.set_text_was_triggered()
-			return
+			if lastFrame.endTextBoxPauses:
+				return
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -92,9 +93,13 @@ func toggle_pause_cutscene():
 
 func end_cutscene():
 	SceneLoader.unpause_autonomous_movers()
+	if PlayerFinder.player.is_in_dialogue():
+		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
+		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
+	else:
+		PlayerFinder.player.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
 	disabled = true
 	playing = false
-	PlayerFinder.player.show_letterbox(false)
 	queue_free() # delete self
 
 func _on_area_entered(area):

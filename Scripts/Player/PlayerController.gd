@@ -30,7 +30,6 @@ func _unhandled_input(event):
 		else:
 			pass #SceneLoader.pause_autonomous_movers() # or unpause
 		# todo open pause menu
-		
 	
 	if event.is_action_pressed("game_stats"):
 		statsPanel.stats = PlayerResources.playerInfo.stats
@@ -46,7 +45,7 @@ func _unhandled_input(event):
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null or (inCutscene and len(cutsceneTexts) > 0)):
+			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0):
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
@@ -132,7 +131,7 @@ func advance_dialogue(canStart: bool = true):
 	elif pickedUpItem != null:
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
-	elif inCutscene and len(cutsceneTexts) > 0:
+	elif len(cutsceneTexts) > 0:
 		cutsceneTextBoxIndex += 1
 		if cutsceneTextBoxIndex < len(cutsceneTexts):
 			textBox.set_textbox_text(cutsceneTexts[cutsceneTextBoxIndex], cutsceneSpeaker)
@@ -140,6 +139,9 @@ func advance_dialogue(canStart: bool = true):
 			cutsceneTextBoxIndex = 0
 			cutsceneTexts = []
 			textBox.hide_textbox()
+			if not inCutscene: # cutscene is over now (ended while text box was still open)
+				disableMovement = false # re-enable movement
+				show_letterbox(false) # disable letterbox
 
 func is_in_dialogue() -> bool:
 	return textBox.visible
