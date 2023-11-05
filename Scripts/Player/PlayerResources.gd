@@ -30,6 +30,9 @@ func copy_combatant_to_info(combatant: Combatant):
 	playerInfo.combatant.save_from_object(combatant.copy())
 	playerInfo.stats.save_from_object(combatant.stats)
 
+func get_cur_act_save_str() -> String:
+	return 'act' + String.num_int64(questInventory.currentAct)
+
 func load_data(save_path):
 	if playerInfo == null:
 		playerInfo = PlayerInfo.new()

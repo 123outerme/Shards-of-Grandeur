@@ -30,8 +30,8 @@ func load_map(mapName):
 		mapInstance.queue_free()
 	var mapScene = null
 	# if this act has a specific map for this act, load it
-	if FileAccess.file_exists("res://Prefabs/Maps/" + mapName + "_a" + String.num_int64(PlayerResources.questInventory.currentAct) + ".tscn"):
-		mapScene = load("res://Prefabs/Maps/" + mapName + "_a" + String.num_int64(PlayerResources.questInventory.currentAct) + ".tscn")
+	if FileAccess.file_exists("res://Prefabs/Maps/" + mapName + "_" + PlayerResources.get_cur_act_save_str() + ".tscn"):
+		mapScene = load("res://Prefabs/Maps/" + mapName + "_" + PlayerResources.get_cur_act_save_str() + ".tscn")
 	else: # otherwise load the generic map
 		mapScene = load("res://Prefabs/Maps/" + mapName + ".tscn")
 	mapInstance = mapScene.instantiate()

@@ -9,7 +9,13 @@ class_name NPCScript
 @export var data: NPCData
 
 @export_category("NPC Dialogue")
-@export_multiline var stdDialogue: Array[String]
+@export_multiline var act0Dialogue: Array[String]
+@export_multiline var act1Dialogue: Array[String]
+@export_multiline var act2Dialogue: Array[String]
+@export_multiline var act3Dialogue: Array[String]
+@export_multiline var act4Dialogue: Array[String]
+@export_multiline var anyActDialogue: Array[String]
+var stdDialogue: Dictionary
 
 @export_category("NPC Quests")
 @export var quests: Array[Quest] = []
@@ -33,6 +39,12 @@ func _ready():
 	data.position = position
 	data.inventory = inventory
 	call_deferred("fetch_player")
+	stdDialogue['act0'] = act0Dialogue
+	stdDialogue['act1'] = act1Dialogue
+	stdDialogue['act2'] = act2Dialogue
+	stdDialogue['act3'] = act3Dialogue
+	stdDialogue['act4'] = act4Dialogue
+	stdDialogue['any'] = anyActDialogue
 
 func fetch_player():
 	player = PlayerFinder.player
@@ -123,7 +135,10 @@ func reset_dialogue():
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
 	if len(data.dialogueItems) == 0: # only show base dialogue if no other dialogue is present (?)
-		data.dialogueItems.append_array(stdDialogue)
+		if stdDialogue.has(PlayerResources.get_cur_act_save_str()) and len(stdDialogue[PlayerResources.get_cur_act_save_str()]) > 0:
+			data.dialogueItems.append_array(stdDialogue[PlayerResources.get_cur_act_save_str()])
+		elif stdDialogue.has('any'):
+			data.dialogueItems.append_array(stdDialogue['any'])
 	for itemIdx in range(len(data.dialogueItems)):
 		data.dialogueItems[itemIdx] = TextUtils.substitute_playername(data.dialogueItems[itemIdx])
 
