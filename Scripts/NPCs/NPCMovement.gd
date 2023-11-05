@@ -6,12 +6,14 @@ class_name NPCMovement
 @export var targetPoints: Array[Vector2] = []
 @export var selectedTarget: int = 0
 @export var loops: int = 0 # -1 to loop indefinitely
+@export var waitsForMoveTrigger: bool = true
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if not waitsForMoveTrigger:
+		start_movement()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
