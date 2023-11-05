@@ -4,6 +4,7 @@ class_name NPCScript
 @export_category("NPC Names")
 @export var displayName: String
 @export var saveName: String
+@export var facesRight: bool = true
 
 @export_category("NPC Persistent Data")
 @export var data: NPCData
@@ -57,7 +58,6 @@ func save_data(save_path):
 	data.disableMovement = NavAgent.disableMovement
 	data.inventory = inventory
 	data.save_data(save_path + npcsDir, data)
-	return
 	
 func load_data(save_path):
 	data = NPCData.new()
@@ -75,7 +75,6 @@ func load_data(save_path):
 		fetch_quest_dialogue_info()
 		player.restore_dialogue(self)
 		inventory = data.inventory
-	return
 
 func get_collision_size() -> Vector2:
 	return (colliderShape.shape as RectangleShape2D).get_rect().size
@@ -112,9 +111,9 @@ func advance_dialogue():
 		for q in acceptableQuests:
 			PlayerResources.questInventory.accept_quest(q)
 		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
-		npcSprite.play('stand')
+		play_animation('stand')
 	else:
-		npcSprite.play('talk')
+		play_animation('talk')
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
@@ -140,7 +139,7 @@ func reset_dialogue():
 		elif stdDialogue.has('any'):
 			data.dialogueItems.append_array(stdDialogue['any'])
 	for itemIdx in range(len(data.dialogueItems)):
-		data.dialogueItems[itemIdx] = TextUtils.substitute_playername(data.dialogueItems[itemIdx])
+		data.dialogueItems[itemIdx] = data.dialogueItems[itemIdx]
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
@@ -161,5 +160,15 @@ func pause_movement():
 func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
 
+func play_animation(animation: String):
+	npcSprite.play(animation)
+
+func face_horiz(xDirection: int):
+	if xDirection < 0:
+		npcSprite.flip_h = not facesRight
+	if xDirection > 0:
+		npcSprite.flip_h = facesRight
+
+
 func _on_npc_sprite_animation_finished():
-	npcSprite.play('stand')
+	play_animation('stand')

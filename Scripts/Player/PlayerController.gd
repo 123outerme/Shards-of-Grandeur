@@ -5,8 +5,13 @@ const SPEED = 80
 @export var disableMovement: bool
 @export var facingLeft: bool = false
 var pickedUpItem: PickedUpItem = null
+var inCutscene: bool = false
+var cutsceneTexts: Array[String] = []
+var cutsceneSpeaker: String = ''
+var cutsceneTextBoxIndex: int = 0
 
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
+@onready var letterbox: Control = get_node("Camera/Letterbox")
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
@@ -19,7 +24,13 @@ var talkNPC: NPCScript = null
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_pause"):
-		pass # TODO replace with pause menu
+		if inCutscene:
+			var cutsceneTrigger: CutsceneTrigger = get_tree().get_first_node_in_group('CutsceneTrigger') as CutsceneTrigger
+			cutsceneTrigger.toggle_pause_cutscene()
+		else:
+			pass #SceneLoader.pause_autonomous_movers() # or unpause
+		# todo open pause menu
+		
 	
 	if event.is_action_pressed("game_stats"):
 		statsPanel.stats = PlayerResources.playerInfo.stats
@@ -35,7 +46,7 @@ func _unhandled_input(event):
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null):
+			and (talkNPC != null or pickedUpItem != null or (inCutscene and len(cutsceneTexts) > 0)):
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
@@ -76,14 +87,27 @@ func _physics_process(_delta):
 			facingLeft = false
 		sprite.flip_h = facingLeft
 		if velocity.length() > 0:
-			sprite.play('walk')
+			play_animation('walk')
 		else:
-			sprite.play('stand')
+			play_animation('stand')
 		move_and_slide()
 		
 func _process(delta):
 	if npcTalkBtns.visible and talkNPC != null:
 		position_talk_btns()
+
+func show_letterbox(showing: bool = true):
+	letterbox.visible = showing
+	inCutscene = showing
+
+func play_animation(animation: String):
+	sprite.play(animation)
+
+func face_horiz(xDirection: int):
+	if xDirection > 0:
+		sprite.flip_h = false
+	if xDirection < 0:
+		sprite.flip_h = true
 
 func advance_dialogue(canStart: bool = true):
 	if talkNPC != null:
@@ -108,6 +132,17 @@ func advance_dialogue(canStart: bool = true):
 	elif pickedUpItem != null:
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
+	elif inCutscene and len(cutsceneTexts) > 0:
+		cutsceneTextBoxIndex += 1
+		if cutsceneTextBoxIndex < len(cutsceneTexts):
+			textBox.set_textbox_text(cutsceneTexts[cutsceneTextBoxIndex], cutsceneSpeaker)
+		else:
+			cutsceneTextBoxIndex = 0
+			cutsceneTexts = []
+			textBox.hide_textbox()
+
+func is_in_dialogue() -> bool:
+	return textBox.visible
 
 func set_talk_btns_vis(vis: bool):
 	npcTalkBtns.visible = vis
@@ -186,6 +221,12 @@ func put_pick_up_text():
 	else:
 		SceneLoader.pause_autonomous_movers()
 
+func set_cutscene_texts(texts: Array[String], speaker: String):
+	cutsceneTexts = texts
+	cutsceneSpeaker = speaker
+	cutsceneTextBoxIndex = 0
+	textBox.set_textbox_text(texts[0], speaker)
+	
 func _on_shop_button_pressed():
 	inventoryPanel.inShop = true
 	inventoryPanel.showPlayerInventory = false

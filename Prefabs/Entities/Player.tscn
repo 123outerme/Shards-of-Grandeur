@@ -31,6 +31,40 @@ speed_scale = 2.0
 ignore_rotation = false
 zoom = Vector2(4, 4)
 
+[node name="Letterbox" type="Control" parent="Camera"]
+visible = false
+z_index = 2
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera/Letterbox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Camera/Letterbox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
 [node name="PlayerEventCollider" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2

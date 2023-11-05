@@ -29,8 +29,8 @@ func _process(delta):
 	pass
 
 func set_textbox_text(text: String, speaker: String):
-	advance_textbox(text)
-	SpeakerText.text = speaker + ":"
+	advance_textbox(TextUtils.substitute_playername(text))
+	SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
 	visible = true
 	SpeakerText.visible_characters = 0
 	speaker_visible_chars_partial = 0

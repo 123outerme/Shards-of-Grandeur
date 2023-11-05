@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=11 format=3 uid="uid://bsdegy6cj3f12"]
+
+[ext_resource type="Script" path="res://Scripts/Cutscenes/ActorSpriteAnim.gd" id="1_afvla"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/CutsceneFrame.gd" id="1_bnuw6"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/Tweens/TweenVector2.gd" id="1_kii5j"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/Cutscene.gd" id="2_fxk8v"]
+
+[sub_resource type="Resource" id="Resource_dfqhc"]
+script = ExtResource("1_afvla")
+isPlayer = true
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_7sxww"]
+script = ExtResource("1_kii5j")
+value = Vector2(40, 0)
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7qcm0"]
+script = ExtResource("1_bnuw6")
+frameLength = 2.0
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([SubResource("Resource_7sxww")])
+actorAnims = Array[ExtResource("1_afvla")]([SubResource("Resource_dfqhc")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_q533s"]
+script = ExtResource("1_afvla")
+isPlayer = true
+animation = "attack"
+
+[sub_resource type="Resource" id="Resource_vaku5"]
+script = ExtResource("1_kii5j")
+value = Vector2(0, 0)
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_jb8fe"]
+script = ExtResource("1_bnuw6")
+frameLength = 2.0
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([SubResource("Resource_vaku5")])
+actorAnims = Array[ExtResource("1_afvla")]([SubResource("Resource_q533s")])
+endTextBoxSpeaker = "@"
+endTextBoxTexts = Array[String](["Wow... how peaceful is it right now."])
+
+[resource]
+script = ExtResource("2_fxk8v")
+cutsceneFrames = Array[ExtResource("1_bnuw6")]([SubResource("Resource_7qcm0"), SubResource("Resource_jb8fe")])
+saveName = "test_cutscene"
