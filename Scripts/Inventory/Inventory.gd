@@ -68,6 +68,12 @@ func is_equipped(item: Item) -> bool:
 		return PlayerResources.playerInfo.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
+func is_slot_for_item_full(item: Item) -> bool:
+	for slot in inventorySlots:
+		if slot.item == item:
+			return slot.count >= slot.item.maxCount
+	return false
+
 func trash_item(inventorySlot: InventorySlot, count: int = 1):
 	inventorySlot.count -= count
 	if inventorySlot.count <= 0:

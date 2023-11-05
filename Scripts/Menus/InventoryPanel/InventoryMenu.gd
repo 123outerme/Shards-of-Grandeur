@@ -35,7 +35,8 @@ var shopInventory: Inventory = null
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 @onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
 
-var currentInventory: Inventory
+var currentInventory: Inventory = null
+var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,10 +62,14 @@ func toggle():
 
 func get_display_inventory():
 	currentInventory = PlayerResources.inventory
-	if inShop and not showPlayerInventory:
-		currentInventory = shopInventory
-	#else:
-		#currentInventory.add_item(load("res://GameData/Items/Weapon/StdIssueSword.tres"))
+	otherInventory = null
+	if inShop:
+		if not showPlayerInventory:
+			currentInventory = shopInventory
+			otherInventory = PlayerResources.inventory
+		else:
+			otherInventory = shopInventory
+		
 
 func load_inventory_panel():
 	get_display_inventory()
@@ -99,8 +104,9 @@ func load_inventory_panel():
 			instantiatedPanel.summoning = summoning
 			instantiatedPanel.inventoryMenu = self
 			instantiatedPanel.inventorySlot = slot
-			if slotQueuedForBattleUse == slot:
-				instantiatedPanel.queuedForBattleUse = true
+			instantiatedPanel.queuedForBattleUse = slotQueuedForBattleUse == slot
+			if otherInventory != null:
+				instantiatedPanel.canOtherPartyHold = not otherInventory.is_slot_for_item_full(slot.item)
 			instantiatedPanel.equipContextStats = equipContextStats
 			vboxViewport.add_child(instantiatedPanel)
 			# unlock filter button for filter of item's type

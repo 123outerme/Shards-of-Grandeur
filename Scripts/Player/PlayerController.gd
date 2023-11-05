@@ -208,17 +208,16 @@ func _on_quests_panel_node_back_pressed():
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON
-	inventoryPanel.lockFilters = true
-	inventoryPanel.equipContextStats = stats
-	statsPanel.visible = false
-	statsPanel.reset_panel_to_player()
-	SceneLoader.pause_autonomous_movers()
-	inventoryPanel.toggle()
-
+	equip_to_combatant_helper(stats)
 func _on_stats_panel_node_attempt_equip_armor_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.ARMOR
+	equip_to_combatant_helper(stats)
+
+func equip_to_combatant_helper(stats: Stats):
 	inventoryPanel.lockFilters = true
 	inventoryPanel.equipContextStats = stats
+	inventoryPanel.inShop = false
+	inventoryPanel.shopInventory = null
 	statsPanel.visible = false
 	statsPanel.reset_panel_to_player()
 	SceneLoader.pause_autonomous_movers()

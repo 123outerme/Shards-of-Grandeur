@@ -10,6 +10,7 @@ class_name InventorySlotPanel
 @export var inventoryMenu: InventoryMenu
 @export var queuedForBattleUse: bool = false
 @export var equipContextStats: Stats = null
+@export var canOtherPartyHold: bool = false
 
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
@@ -65,10 +66,10 @@ func load_inventory_slot_panel():
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
 	
 	buyButton.visible = isShopItem and not isPlayerItem
-	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold
+	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold
 	
 	sellButton.visible = isShopItem and isPlayerItem
-	sellButton.disabled = isEquipped # TODO: prevent sale when partner's inventory can't hold any more
+	sellButton.disabled = isEquipped or not canOtherPartyHold
 	
 func _on_use_button_pressed():
 	if not inBattle: # if not in battle use it immediately
