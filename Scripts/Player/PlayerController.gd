@@ -165,7 +165,7 @@ func advance_dialogue(canStart: bool = true):
 	elif len(cutsceneTexts) > 0:
 		cutsceneTextBoxIndex += 1
 		if cutsceneTextBoxIndex < len(cutsceneTexts):
-			textBox.set_textbox_text(cutsceneTexts[cutsceneTextBoxIndex], cutsceneSpeaker)
+			textBox.advance_textbox(cutsceneTexts[cutsceneTextBoxIndex])
 		else:
 			cutsceneTextBoxIndex = 0
 			cutsceneTexts = []
