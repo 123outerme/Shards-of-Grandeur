@@ -5,8 +5,9 @@ class_name CutsceneFrame
 @export var actorTweens: Array[ActorTween] = []
 @export var actorAnims: Array[ActorSpriteAnim] = []
 @export var endTextBoxSpeaker: String = ''
-@export var endTextBoxTexts: Array[String] = []
+@export_multiline var endTextBoxTexts: Array[String] = []
 @export var endTextBoxPauses: bool = true
+@export var endHoldCamera: bool = false
 var endTextTriggered: bool = false
 
 func _init(
@@ -15,7 +16,8 @@ func _init(
 	i_actorAnims: Array[ActorSpriteAnim] = [],
 	i_endTextSpeaker = '',
 	i_endTexts: Array[String] = [],
-	i_endTextPauses = true
+	i_endTextPauses = true,
+	i_endHoldCam = false,
 ):
 	frameLength = i_frameLength
 	actorTweens = i_actorTweens
@@ -23,6 +25,7 @@ func _init(
 	endTextBoxSpeaker = i_endTextSpeaker
 	endTextBoxTexts = i_endTexts
 	endTextBoxPauses = i_endTextPauses
+	endHoldCamera = i_endHoldCam
 	endTextTriggered = false
 	
 func get_text_was_triggered() -> bool:

@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cagsvf2xkywmu"]
+[gd_scene load_steps=5 format=3 uid="uid://cagsvf2xkywmu"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_dfi0r"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_ngqbd"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_84ocw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3h1o"]
 size = Vector2(2, 2)
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_ngqbd")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

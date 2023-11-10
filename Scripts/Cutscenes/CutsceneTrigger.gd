@@ -19,18 +19,25 @@ func _ready():
 
 func _process(delta):
 	if playing and not disabled and not isPaused:
-		timer += delta
+		
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer)
+		timer += delta
 		
 		if PlayerFinder.player.is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:
+			if frame != lastFrame:
+				timer -= delta
 			return
 		
-		if lastFrame != null and frame != lastFrame and lastFrame.endTextBoxTexts != null \
-				and len(lastFrame.endTextBoxTexts) > 0 and not lastFrame.get_text_was_triggered():
-			PlayerFinder.player.set_cutscene_texts(lastFrame.endTextBoxTexts, lastFrame.endTextBoxSpeaker)
-			lastFrame.set_text_was_triggered()
-			if lastFrame.endTextBoxPauses:
-				return
+		if lastFrame != null and frame != lastFrame:
+			if lastFrame.endHoldCamera and not PlayerFinder.player.holdingCamera:
+				PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
+			if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
+				PlayerFinder.player.snap_camera_back_to_player()
+			
+			if lastFrame.endTextBoxTexts != null and len(lastFrame.endTextBoxTexts) > 0 \
+					and not lastFrame.get_text_was_triggered():
+				PlayerFinder.player.set_cutscene_texts(lastFrame.endTextBoxTexts, lastFrame.endTextBoxSpeaker)
+				lastFrame.set_text_was_triggered()
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -56,12 +63,9 @@ func _process(delta):
 			else:
 				node = rootNode.get_node(actorTween.actorTreePath)
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
-			if not actorTween is TweenCallback:
-				tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
-				if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
-					node.call('face_horiz', actorTween.value.x - node.position.x)
-			else:
-				tween.tween_callback(actorTween.value)
+			tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
+			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
+				node.call('face_horiz', actorTween.value.x - node.position.x)
 			tweens.append(tween)
 
 func start_cutscene():
@@ -71,7 +75,6 @@ func start_cutscene():
 	if playing:
 		PlayerFinder.player.show_letterbox()
 		SceneLoader.pause_autonomous_movers()
-		PlayerResources.playerInfo.set_cutscene_seen(cutscene.saveName)
 
 func pause_cutscene():
 	for tween in tweens:
@@ -97,8 +100,11 @@ func end_cutscene():
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
 	else:
 		PlayerFinder.player.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
+	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
+		PlayerFinder.player.snap_camera_back_to_player()
 	disabled = true
 	playing = false
+	PlayerResources.playerInfo.set_cutscene_seen(cutscene.saveName)
 	queue_free() # delete self
 
 func _on_area_entered(area):

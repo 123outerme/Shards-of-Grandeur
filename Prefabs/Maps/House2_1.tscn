@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://dgyixkapey8tg"]
+[gd_scene load_steps=20 format=3 uid="uid://dgyixkapey8tg"]
 
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_av58i"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_u3l5k"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_drds8"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="3_ver5i"]
 [ext_resource type="Resource" uid="uid://jwuut14phi64" path="res://GameData/Quests/talk_to_coconut_head.tres" id="3_y1pq8"]
@@ -45,6 +46,7 @@ size = Vector2(20, 30)
 size = Vector2(8, 1)
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_u3l5k")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

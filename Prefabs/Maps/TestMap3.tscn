@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://chea0046uctgc"]
+[gd_scene load_steps=16 format=3 uid="uid://chea0046uctgc"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_6yr5t"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_xfthc"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="2_1l8um"]
 [ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="3_2wtv2"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://GameData/Combatants/rat.tres" id="4_hofab"]
@@ -31,6 +32,7 @@ isPlayerInventory = false
 size = Vector2(9, 4)
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_xfthc")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

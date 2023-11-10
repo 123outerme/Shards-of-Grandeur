@@ -75,7 +75,8 @@ func load_data(save_path):
 		NavAgent.start_movement()
 		fetch_player()
 		fetch_quest_dialogue_info()
-		player.restore_dialogue(self)
+		if data.dialogueIndex > -1:
+			player.restore_dialogue(self)
 		inventory = data.inventory
 
 func get_collision_size() -> Vector2:

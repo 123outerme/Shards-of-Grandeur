@@ -46,8 +46,13 @@ func _process(delta):
 			enemySprite.play('stand')
 
 func get_next_patrol_target():
-	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:
+	if (SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady):
 		return
+		
+	if patrolRange == 0:
+		disableMovement = true
+		return
+		
 	var angleRadians = randf_range(0, 2 * PI)
 	var radius: float = randf_range(0, patrolRange / 2.0) # range is diameter, so half that
 	var patrolPos: Vector2 = homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
@@ -59,7 +64,8 @@ func pause_movement():
 	disableMovement = true
 
 func unpause_movement():
-	disableMovement = false
+	if patrolRange != 0:
+		disableMovement = false
 
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":

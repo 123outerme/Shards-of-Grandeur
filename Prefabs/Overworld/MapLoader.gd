@@ -17,10 +17,16 @@ func _ready():
 		player = PlayerFinder.player
 
 func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
+	player.fade_out(_fade_out_complete, 0.25)
+	await get_tree().create_timer(0.25).timeout
 	player.position = newMapPos
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
-	load_map(newMapName)
+	for cutsceneTrigger in get_tree().get_nodes_in_group('CutsceneTrigger'):
+		cutsceneTrigger.end_cutscene()
+	if player.holdingCamera:
+		player.snap_camera_back_to_player(0)
+	load_map(PlayerResources.playerInfo.map)
 
 func load_map(mapName):
 	#destroy_overworld_enemies()
@@ -34,7 +40,12 @@ func load_map(mapName):
 		mapScene = load("res://Prefabs/Maps/" + mapName + "_" + PlayerResources.get_cur_act_save_str() + ".tscn")
 	else: # otherwise load the generic map
 		mapScene = load("res://Prefabs/Maps/" + mapName + ".tscn")
+	if mapScene == null:
+		printerr('Map ', mapName, ' could not be found!')
+		get_tree().quit(1)
+		return
 	mapInstance = mapScene.instantiate()
+	mapInstance.map_loaded.connect(_map_loaded)
 	add_child.call_deferred(mapInstance)
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
@@ -52,3 +63,12 @@ func destroy_overworld_enemies():
 	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):
 		if spawnerNode.has_method('delete_enemy'):
 			spawnerNode.delete_enemy()
+
+func _fade_out_complete():
+	pass
+
+func _fade_in_complete():
+	pass
+	
+func _map_loaded():
+	player.call_deferred('fade_in', _fade_in_complete, 0.35)

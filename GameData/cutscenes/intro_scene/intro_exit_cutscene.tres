@@ -1,0 +1,160 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://kh7eona0y4n7"]
+
+[ext_resource type="Script" path="res://Scripts/Cutscenes/Tweens/TweenVector2.gd" id="1_eu3xk"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/ActorSpriteAnim.gd" id="1_lebiy"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/Cutscene.gd" id="1_lfsmn"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/CutsceneFrame.gd" id="2_3g2mg"]
+
+[sub_resource type="Resource" id="Resource_g5yml"]
+script = ExtResource("1_lebiy")
+actorTreePath = ""
+isPlayer = true
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_8a4bs"]
+script = ExtResource("1_lebiy")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_weg8t"]
+script = ExtResource("1_lebiy")
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_rodg8"]
+script = ExtResource("2_3g2mg")
+frameLength = 0.1
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([])
+actorAnims = Array[ExtResource("1_lebiy")]([SubResource("Resource_g5yml"), SubResource("Resource_8a4bs"), SubResource("Resource_weg8t")])
+endTextBoxSpeaker = "Dr. Hudson"
+endTextBoxTexts = Array[String](["Oh dear, you look beat up. You should heal up and see if there's a blacksmith in town. A good set of armor might really save our skin someday."])
+endTextBoxPauses = false
+endHoldCamera = true
+
+[sub_resource type="Resource" id="Resource_wujr4"]
+script = ExtResource("1_eu3xk")
+value = Vector2(640, 8)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_rit3g"]
+script = ExtResource("1_eu3xk")
+value = Vector2(584, 16)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_objja"]
+script = ExtResource("1_eu3xk")
+value = Vector2(510, 8)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_2v5ee"]
+script = ExtResource("2_3g2mg")
+frameLength = 2.0
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([SubResource("Resource_wujr4"), SubResource("Resource_rit3g"), SubResource("Resource_objja")])
+actorAnims = Array[ExtResource("1_lebiy")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = true
+
+[sub_resource type="Resource" id="Resource_4g3la"]
+script = ExtResource("1_lebiy")
+actorTreePath = ""
+isPlayer = true
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_gwfif"]
+script = ExtResource("1_lebiy")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_51dgn"]
+script = ExtResource("1_lebiy")
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_saxk8"]
+script = ExtResource("1_eu3xk")
+value = Vector2(936, 8)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_piipv"]
+script = ExtResource("1_eu3xk")
+value = Vector2(880, 16)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_lttcg"]
+script = ExtResource("1_eu3xk")
+value = Vector2(836, 8)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_fqrxa"]
+script = ExtResource("2_3g2mg")
+frameLength = 7.0
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([SubResource("Resource_saxk8"), SubResource("Resource_piipv"), SubResource("Resource_lttcg")])
+actorAnims = Array[ExtResource("1_lebiy")]([SubResource("Resource_4g3la"), SubResource("Resource_gwfif"), SubResource("Resource_51dgn")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = true
+
+[sub_resource type="Resource" id="Resource_l7lxr"]
+script = ExtResource("1_eu3xk")
+value = Vector2(1008, 8)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_1u1dh"]
+script = ExtResource("2_3g2mg")
+frameLength = 0.1
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([SubResource("Resource_l7lxr")])
+actorAnims = Array[ExtResource("1_lebiy")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = true
+
+[sub_resource type="Resource" id="Resource_b7md5"]
+script = ExtResource("2_3g2mg")
+frameLength = 5.0
+actorTweens = Array[Resource("res://Scripts/Cutscenes/ActorTween.gd")]([])
+actorAnims = Array[ExtResource("1_lebiy")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = true
+
+[resource]
+script = ExtResource("1_lfsmn")
+cutsceneFrames = Array[ExtResource("2_3g2mg")]([SubResource("Resource_rodg8"), SubResource("Resource_2v5ee"), SubResource("Resource_fqrxa"), SubResource("Resource_1u1dh"), SubResource("Resource_b7md5")])
+saveName = "intro_exit"

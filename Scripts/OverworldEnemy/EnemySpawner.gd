@@ -3,6 +3,7 @@ class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
 @export var combatant: Combatant
+@export var disappearAfterCutscene: String = ''
 @export var combatantLevel: int = 1
 @export var spawnRange: float = 48.0
 @export var enemyPatrolRange: float = 32.0
@@ -14,6 +15,10 @@ var overworldEnemyScene = preload("res://Prefabs/Entities/OverworldEnemy.tscn")
 var enemiesDir: String = 'enemies/'
 
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
+
+func _ready():
+	if disappearAfterCutscene != '' and PlayerResources.playerInfo.has_seen_cutscene(disappearAfterCutscene):
+		queue_free() # delete self if player has seen cutscene
 
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled:

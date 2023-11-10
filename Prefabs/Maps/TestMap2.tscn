@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://drnk2cpif0naj"]
+[gd_scene load_steps=15 format=3 uid="uid://drnk2cpif0naj"]
 
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_bnw7u"]
 [ext_resource type="TileSet" uid="uid://blpo1fotn5w3g" path="res://Graphics/TileSet.tres" id="1_yr6py"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="2_tflra"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_wx20h"]
@@ -32,6 +33,7 @@ disabled = false
 spawnedLastEncounter = false
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_bnw7u")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

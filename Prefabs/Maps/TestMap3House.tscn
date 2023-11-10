@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d10cq8gdxhvhv"]
+[gd_scene load_steps=8 format=3 uid="uid://d10cq8gdxhvhv"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_0cmwl"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_uv8c4"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="2_4hwep"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="2_kt366"]
 [ext_resource type="Resource" uid="uid://cf41bbmbxr4yj" path="res://GameData/Quests/dr_hudson_quest.tres" id="3_vu11u"]
@@ -10,6 +11,7 @@
 size = Vector2(9, 4)
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_uv8c4")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

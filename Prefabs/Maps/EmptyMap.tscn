@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1hm2qdbk2wrv"]
+[gd_scene load_steps=3 format=3 uid="uid://d1hm2qdbk2wrv"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_12b5c"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_lrybw"]
 
 [node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_lrybw")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
