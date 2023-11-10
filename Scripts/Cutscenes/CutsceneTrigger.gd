@@ -20,7 +20,6 @@ func _ready():
 func _process(delta):
 	if playing and not disabled and not isPaused:
 		timer += delta
-		
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer)
 		
 		if PlayerFinder.player.is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:

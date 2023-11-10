@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d23cu31e8s3s6"]
+[gd_scene load_steps=8 format=3 uid="uid://d23cu31e8s3s6"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_s8x7h"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/NestedUI/InnerPanel.tres" id="2_6gnoy"]
@@ -6,10 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/EquipmentPanel.gd" id="3_sqrrj"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://Graphics/ui/ui_target_unselected.png" id="5_60ywc"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="5_ie6a0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3b4a"]
-atlas = ExtResource("3_6kule")
-region = Rect2(112, 56, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrdm0"]
 atlas = ExtResource("3_6kule")
@@ -21,7 +17,7 @@ offset_bottom = 355.0
 theme = ExtResource("1_s8x7h")
 theme_override_styles/panel = ExtResource("2_6gnoy")
 script = ExtResource("3_sqrrj")
-notEquippedSprite = SubResource("AtlasTexture_b3b4a")
+notEquippedSprite = ExtResource("5_60ywc")
 
 [node name="WeaponControl" type="Control" parent="."]
 layout_mode = 1
