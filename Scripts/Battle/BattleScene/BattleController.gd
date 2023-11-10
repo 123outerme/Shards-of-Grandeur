@@ -40,7 +40,7 @@ func load_into_battle():
 		enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 		enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
 		
-		var rngBeginnerNoEnemy: float = randf() - 0.3 + (0.05 * (5 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 10 else 1.0
+		var rngBeginnerNoEnemy: float = randf() - 0.3 + (0.05 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 10 else 1.0
 		# if level < 10, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
 		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
@@ -50,7 +50,7 @@ func load_into_battle():
 		else:
 			enemyCombatant2.combatant = null
 		
-		rngBeginnerNoEnemy = randf() - 0.6 + (0.1 * 5 - (max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 15 else 1.0
+		rngBeginnerNoEnemy = randf() - 0.6 + (0.1 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 15 else 1.0
 		# if level < 15, give a 0% chance to have a third combatant + 10% per level after 1 up to 50%, before team table calc
 		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
