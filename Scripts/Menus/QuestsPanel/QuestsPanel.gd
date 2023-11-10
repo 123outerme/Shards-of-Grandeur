@@ -71,12 +71,12 @@ func load_quests_panel():
 		else: # if not completed
 			notCompletedButton.disabled = lockFilters
 		
-		if turnInTargetName != '':
-			questsTitle.text = '[center]Turn In Quests[/center]'
-		else:
-			questsTitle.text = '[center]Quests[/center]'
+	if turnInTargetName != '':
+		questsTitle.text = '[center]Turn In Quests[/center]'
+	else:
+		questsTitle.text = '[center]Quests[/center]'
 			
-		actTitle.text = 'Act ' + String.num(PlayerResources.questInventory.currentAct) + ': ' + actNames[PlayerResources.questInventory.currentAct]
+	actTitle.text = 'Act ' + String.num(PlayerResources.questInventory.currentAct) + ': ' + actNames[PlayerResources.questInventory.currentAct]
 
 func update_filter_buttons():
 	inProgressButton.button_pressed = selectedFilter == QuestTracker.Status.IN_PROGRESS
