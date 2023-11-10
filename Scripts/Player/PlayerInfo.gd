@@ -23,6 +23,7 @@ class_name PlayerInfo
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
 @export var encounteredReward: Reward = null
+@export var encounteredBoss: bool = false
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
@@ -39,6 +40,7 @@ func _init(
 	i_inUnderworld = false,
 	i_underworldMap = "",
 	i_underworldDepth = 0,
+	i_position = Vector2(-50, 0),
 	i_savedPosition = Vector2(-50,0),
 	i_flipH = false,
 	i_scene = "Overworld",
@@ -50,6 +52,7 @@ func _init(
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
 	i_encounteredReward = null,
+	i_encounteredBoss = false,
 	i_pickedUpItems: Array[String] = [],
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
@@ -59,6 +62,7 @@ func _init(
 	inUnderworld = i_inUnderworld
 	underworldMap = i_underworldMap
 	underworldDepth = i_underworldDepth
+	position = i_position
 	savedPosition = i_savedPosition
 	flipH = i_flipH
 	scene = i_scene
@@ -70,6 +74,7 @@ func _init(
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
 	encounteredReward = i_encounteredReward
+	encounteredBoss = i_encounteredBoss
 	pickedUpItems = i_pickedUpItems
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed

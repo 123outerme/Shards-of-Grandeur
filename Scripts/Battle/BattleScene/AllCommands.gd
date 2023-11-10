@@ -7,10 +7,11 @@ var commandingMinion: bool = false
 
 @onready var commandLabel: RichTextLabel = get_node("CommandLabel")
 @onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
+@onready var escapeButton: Button = get_node("EscapeButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	escapeButton.disabled = PlayerResources.playerInfo.encounteredBoss
 	
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion

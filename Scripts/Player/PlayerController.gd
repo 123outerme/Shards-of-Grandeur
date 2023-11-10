@@ -117,17 +117,20 @@ func show_letterbox(showing: bool = true):
 
 func fade_out(callback: Callable, duration: float = 0.5):
 	shade.modulate = Color(0, 0, 0, 0)
+	shade.visible = true
 	var tween = create_tween().tween_property(shade, 'modulate', Color(0, 0, 0, 1.0), duration)
 	tween.finished.connect(callback)
 
 func fade_in(callback: Callable, duration: float = 0.5):
 	fadeInReady = true
 	shade.modulate = Color(0, 0, 0, 1.0)
+	shade.visible = true
 	if fadeInTween != null:
 		fadeInTween.kill()
 	fadeInTween = create_tween()
 	fadeInTween.tween_property(shade, 'modulate', Color(0, 0, 0, 0), duration)
 	fadeInTween.finished.connect(callback)
+	fadeInTween.finished.connect(func(): shade.visible = false)
 	fadeInTween.pause()
 
 func play_animation(animation: String):
@@ -195,6 +198,8 @@ func position_talk_btns():
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
 	if npc == null:
+		textBox.hide_textbox()
+		disableMovement = false
 		set_talk_btns_vis(false)
 		shopButton.visible = false
 		turnInButton.visible = false
@@ -280,12 +285,14 @@ func _on_shop_button_pressed():
 	inventoryPanel.inShop = true
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.shopInventory = talkNPC.inventory
+	disableMovement = true
 	inventoryPanel.toggle()
 	npcTalkBtns.visible = false
 
 func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = talkNPC.saveName
 	questsPanel.toggle()
+	disableMovement = true
 	npcTalkBtns.visible = false
 
 func _on_inventory_panel_node_back_pressed():

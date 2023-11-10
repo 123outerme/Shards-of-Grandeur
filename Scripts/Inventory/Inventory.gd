@@ -18,6 +18,8 @@ func add_item(item: Item) -> bool:
 		if slot.item == item:
 			found = true
 			if slot.count < slot.item.maxCount or slot.item.maxCount == 0:
+				if slot.count < 0:
+					return true # if negative (infinite), don't do anything
 				slot.count += 1
 				add_shard_minion_entry(item)
 				return true
@@ -82,8 +84,11 @@ func count_of(itemType: Item.Type) -> int:
 	return count
 
 func trash_item(inventorySlot: InventorySlot, count: int = 1):
+	var previousCount: int = inventorySlot.count
+	if previousCount < 0: # if negative (infinite), don't bother
+		return
 	inventorySlot.count -= count
-	if inventorySlot.count <= 0:
+	if inventorySlot.count <= 0 :
 		inventorySlots.erase(inventorySlot)
 
 func trash_items_by_name(itemName: String, count: int = 1):

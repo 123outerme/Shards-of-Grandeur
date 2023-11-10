@@ -39,9 +39,12 @@ func load_inventory_slot_panel():
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
 	itemType.text = Item.TypeToString(inventorySlot.item.itemType)
-	itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
-	if inventorySlot.item.maxCount > 1:
-		itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
+	if inventorySlot.count > 0:
+		itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
+		if inventorySlot.item.maxCount > 1:
+			itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
+	else:
+		itemCount.text = ''
 	itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
 	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
