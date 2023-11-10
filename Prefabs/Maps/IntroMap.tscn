@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=26 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="11_rcdfa"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/potion.tres" id="12_sqiql"]
 [ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="13_w31gp"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="15_xc56y"]
+[ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="16_3uh5k"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="16_mxmsh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -41,6 +44,14 @@ size = Vector2(128, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kurt"]
 size = Vector2(16, 64)
+
+[sub_resource type="Resource" id="Resource_ams7q"]
+script = ExtResource("16_3uh5k")
+uniqueId = "intro_sword"
+item = ExtResource("16_mxmsh")
+pickUpTexts = Array[String](["Who left this sword lying around? It's a good thing I was running away... I mean, strategically withdrawing to find this."])
+savedTextIdx = 0
+wasPickedUp = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_qsr2t")
@@ -152,6 +163,10 @@ mapName = "TestMap3"
 
 [node name="WarpArea" parent="WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_2kurt")
+
+[node name="GroundItem" parent="." instance=ExtResource("15_xc56y")]
+position = Vector2(-24, 40)
+pickedUpItem = SubResource("Resource_ams7q")
 
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/HorseCart"]

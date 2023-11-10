@@ -85,7 +85,7 @@ func load_into_battle():
 		node.load_combatant_node()
 	
 	if state.menu == BattleState.Menu.SUMMON and PlayerResources.inventory.count_of(Item.Type.SHARD) == 0:
-		state.menu = BattleState.Menu.ALL_COMMANDS
+		state.menu = BattleState.Menu.PRE_BATTLE
 	
 	battleUI.set_menu_state(state.menu, false)
 	

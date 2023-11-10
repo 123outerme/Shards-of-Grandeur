@@ -62,4 +62,7 @@ func sort_turns(a: Combatant, b: Combatant) -> bool:
 		return true # a goes before b
 	if a.stats.speed < b.stats.speed:
 		return false # a goes after b
+	# if both have equal speed:
+	if b.disp_name() == PlayerResources.playerInfo.combatant.disp_name():
+		return false # prefer the player go first
 	return true # default: a goes before b
