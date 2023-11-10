@@ -70,11 +70,16 @@ func apply_menu_state():
 		if playerWins and len(battleComplete.rewards) == 0:
 			for combatantNode in battleController.get_all_combatant_nodes():
 				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
-					var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
-					if dropIdx > -1:
+					if combatantNode.battlePosition == 'Center' and PlayerResources.playerInfo.encounteredReward != null:
 						battleComplete.rewards.append( \
-								combatantNode.combatant.dropTable[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
-						)
+								PlayerResources.playerInfo.encounteredReward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+							)
+					else:
+						var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
+						if dropIdx > -1:
+							battleComplete.rewards.append( \
+									combatantNode.combatant.dropTable[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+							)
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards
 		battleComplete.load_battle_over_menu()

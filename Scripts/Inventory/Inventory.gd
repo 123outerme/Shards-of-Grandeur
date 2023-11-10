@@ -74,6 +74,13 @@ func is_slot_for_item_full(item: Item) -> bool:
 			return slot.count >= slot.item.maxCount
 	return false
 
+func count_of(itemType: Item.Type) -> int:
+	var count = 0
+	for slot in inventorySlots:
+		if slot.item.itemType == itemType:
+			count += 1
+	return count
+
 func trash_item(inventorySlot: InventorySlot, count: int = 1):
 	inventorySlot.count -= count
 	if inventorySlot.count <= 0:

@@ -84,6 +84,9 @@ func load_into_battle():
 	for node in combatantNodes:
 		node.load_combatant_node()
 	
+	if state.menu == BattleState.Menu.SUMMON and PlayerResources.inventory.count_of(Item.Type.SHARD) == 0:
+		state.menu = BattleState.Menu.ALL_COMMANDS
+	
 	battleUI.set_menu_state(state.menu, false)
 	
 func summon_minion(shard: Shard):

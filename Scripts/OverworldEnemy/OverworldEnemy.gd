@@ -88,6 +88,7 @@ func _on_encounter_collider_area_entered(area):
 	if area.name == "PlayerEventCollider" and spawner != null:
 		PlayerResources.playerInfo.encounteredName = combatant.save_name()
 		PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
+		PlayerResources.playerInfo.encounteredReward = enemyData.setReward
 		spawner.spawnerData.spawnedLastEncounter = true
 		encounteredPlayer = true
 		SaveHandler.save_data()

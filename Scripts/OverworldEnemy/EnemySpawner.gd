@@ -3,6 +3,7 @@ class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
 @export var combatant: Combatant
+@export var setReward: Reward = null
 @export var disappearAfterCutscene: String = ''
 @export var combatantLevel: int = 1
 @export var spawnRange: float = 48.0
@@ -41,7 +42,7 @@ func save_data(save_path):
 			if enemy.encounteredPlayer:
 				delete_enemy()
 			else:
-				spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel)
+				spawnerData.enemyData = OverworldEnemyData.new(combatant, setReward, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel)
 		else:
 			spawnerData.enemyData = null
 		spawnerData.save_data(save_path + enemiesDir, spawnerData)

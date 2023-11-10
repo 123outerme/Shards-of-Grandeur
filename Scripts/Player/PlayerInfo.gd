@@ -22,6 +22,7 @@ class_name PlayerInfo
 @export var exitingBattle: bool
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
+@export var encounteredReward: Reward = null
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
@@ -48,6 +49,7 @@ func _init(
 	i_exitingBattle = false,
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
+	i_encounteredReward = null,
 	i_pickedUpItems: Array[String] = [],
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
@@ -67,6 +69,7 @@ func _init(
 	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
+	encounteredReward = i_encounteredReward
 	pickedUpItems = i_pickedUpItems
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed
