@@ -11,18 +11,15 @@ var cutsceneSpeaker: String = ''
 var cutsceneTextBoxIndex: int = 0
 var holdingCamera: bool = false
 var holdingCameraAt: Vector2
-var fadeInReady: bool = false
-var fadeInTween = null
 
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
-@onready var cam: Camera2D = get_node("Camera")
-@onready var letterbox: Control = get_node("Camera/Letterbox")
-@onready var shade: Control = get_node("Camera/Shade")
+@onready var cam: PlayerCamera = get_node("Camera")
 @onready var uiRoot: Node2D = get_node('UI')
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
+@onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
 @onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
 @onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
 @onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
@@ -32,13 +29,13 @@ var talkNPC: NPCScript = null
 func _unhandled_input(event):
 	if event.is_action_pressed("game_pause"):
 		if inCutscene:
-			var cutsceneTrigger: CutsceneTrigger = get_tree().get_first_node_in_group('CutsceneTrigger') as CutsceneTrigger
-			cutsceneTrigger.toggle_pause_cutscene()
+			for cutsceneTrigger in get_tree().get_nodes_in_group('CutsceneTrigger'):
+				cutsceneTrigger.toggle_pause_cutscene()
+			cam.toggle_cutscene_paused_shade()
 		else:
-			pass #SceneLoader.pause_autonomous_movers() # or unpause
-		# todo open pause menu
+			pausePanel.toggle_pause()
 	
-	if event.is_action_pressed("game_stats") and not inCutscene:
+	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
 		statsPanel.stats = PlayerResources.playerInfo.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
@@ -52,13 +49,13 @@ func _unhandled_input(event):
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0):
+			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) and not pausePanel.isPaused:
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
 			textBox.show_text_instant()
 			
-	if event.is_action_pressed("game_inventory") and not inCutscene:
+	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -71,7 +68,7 @@ func _unhandled_input(event):
 		questsPanel.visible = false
 		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 		
-	if event.is_action_pressed("game_quests") and not inCutscene:
+	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
@@ -101,37 +98,12 @@ func _physics_process(_delta):
 		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
 		cam.position += vel * _delta
 		
-func _process(delta):
+func _process(_delta):
 	if npcTalkBtns.visible and talkNPC != null:
 		position_talk_btns()
 	if holdingCamera:
 		cam.position = holdingCameraAt - position
 		uiRoot.position = holdingCameraAt - position
-	if fadeInReady and fadeInTween != null and cam.position == Vector2(0, 0):
-		fadeInReady = false
-		fadeInTween.play()
-
-func show_letterbox(showing: bool = true):
-	letterbox.visible = showing
-	inCutscene = showing
-
-func fade_out(callback: Callable, duration: float = 0.5):
-	shade.modulate = Color(0, 0, 0, 0)
-	shade.visible = true
-	var tween = create_tween().tween_property(shade, 'modulate', Color(0, 0, 0, 1.0), duration)
-	tween.finished.connect(callback)
-
-func fade_in(callback: Callable, duration: float = 0.5):
-	fadeInReady = true
-	shade.modulate = Color(0, 0, 0, 1.0)
-	shade.visible = true
-	if fadeInTween != null:
-		fadeInTween.kill()
-	fadeInTween = create_tween()
-	fadeInTween.tween_property(shade, 'modulate', Color(0, 0, 0, 0), duration)
-	fadeInTween.finished.connect(callback)
-	fadeInTween.finished.connect(func(): shade.visible = false)
-	fadeInTween.pause()
 
 func play_animation(animation: String):
 	sprite.play(animation)
@@ -175,7 +147,7 @@ func advance_dialogue(canStart: bool = true):
 			textBox.hide_textbox()
 			if not inCutscene: # cutscene is over now (ended while text box was still open)
 				disableMovement = false # re-enable movement
-				show_letterbox(false) # disable letterbox
+				cam.show_letterbox(false) # disable letterbox
 
 func is_in_dialogue() -> bool:
 	return textBox.visible

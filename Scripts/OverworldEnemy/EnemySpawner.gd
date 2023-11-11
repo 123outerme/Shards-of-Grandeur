@@ -20,7 +20,7 @@ var enemiesDir: String = 'enemies/'
 
 func _ready():
 	if disappearAfterCutscene != '' and PlayerResources.playerInfo.has_seen_cutscene(disappearAfterCutscene):
-		queue_free() # delete self if player has seen cutscene
+		spawnerData.disabled = true
 
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled:

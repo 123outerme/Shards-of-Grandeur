@@ -73,7 +73,7 @@ func start_cutscene():
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
 	cutscene.calc_total_time()
 	if playing:
-		PlayerFinder.player.show_letterbox()
+		PlayerFinder.player.cam.show_letterbox()
 		SceneLoader.pause_autonomous_movers()
 
 func pause_cutscene():
@@ -99,7 +99,7 @@ func end_cutscene():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
 	else:
-		PlayerFinder.player.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
+		PlayerFinder.player.cam.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
 	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
 	disabled = true

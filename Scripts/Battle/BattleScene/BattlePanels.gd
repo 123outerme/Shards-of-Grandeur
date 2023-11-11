@@ -4,17 +4,17 @@ class_name BattlePanels
 @export var battleUI: BattleUI
 
 @onready var inventoryMenu: InventoryMenu = get_node("InventoryPanelNode")
-var inventoryWasVisible: bool = false
 @onready var questsMenu: QuestsMenu = get_node("QuestsPanelNode")
-var questsWereVisible: bool = false
+@onready var pauseMenu: PauseMenu = get_node("PauseMenu")
 @onready var flowOfBattle: FlowOfBattle = get_node("FlowOfBattle")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("game_inventory") and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.SUMMON):			
+	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.SUMMON):
 		if battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.ITEMS:
 			var newMenuState: BattleState.Menu = BattleState.Menu.ITEMS # if in all commands, go to items
 			if battleUI.menuState == BattleState.Menu.ITEMS:
@@ -28,6 +28,9 @@ func _unhandled_input(event):
 				inventoryMenu.toggle()
 		questsMenu.visible = false
 
-	if event.is_action_pressed("game_quests"):
+	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
 		questsMenu.toggle()
 		inventoryMenu.visible = false
+	
+	if event.is_action_pressed("game_pause"):
+		pauseMenu.toggle_pause()

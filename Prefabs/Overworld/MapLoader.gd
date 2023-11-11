@@ -17,7 +17,7 @@ func _ready():
 		player = PlayerFinder.player
 
 func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
-	player.fade_out(_fade_out_complete, 0.25)
+	player.cam.fade_out(_fade_out_complete, 0.25)
 	await get_tree().create_timer(0.25).timeout
 	player.position = newMapPos
 	player.set_talk_npc(null)
@@ -57,7 +57,6 @@ func reparent_player():
 	tilemap.add_child(player)
 	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
 	PlayerFinder.player = player
-	mapNavReady = true
 
 func destroy_overworld_enemies():
 	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):
@@ -71,4 +70,5 @@ func _fade_in_complete():
 	pass
 	
 func _map_loaded():
-	player.call_deferred('fade_in', _fade_in_complete, 0.35)
+	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
+	mapNavReady = true

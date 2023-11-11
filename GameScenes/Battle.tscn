@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=22 format=3 uid="uid://crreghbm6x460"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_4hxqd"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TurnExecutor.gd" id="15_2cnm6"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://Prefabs/UI/Inventory/ItemDetailsPanel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://Prefabs/UI/Stats/StatsPanel.tscn" id="17_tq7tc"]
+[ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://Prefabs/UI/PauseMenu.tscn" id="18_h5paw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -601,6 +602,10 @@ visible = false
 position = Vector2(-640, -480)
 
 [node name="StatsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("17_tq7tc")]
+visible = false
+position = Vector2(-640, -480)
+
+[node name="PauseMenu" parent="BattleCam/UIPanels" instance=ExtResource("18_h5paw")]
 visible = false
 position = Vector2(-640, -480)
 
