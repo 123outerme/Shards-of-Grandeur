@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=27 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="15_xc56y"]
 [ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="16_3uh5k"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="16_mxmsh"]
+[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://Prefabs/Overworld/CutscenePlayer.tscn" id="18_dpgom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -124,19 +125,19 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTriggerShape" parent="TileMap/HorseCart/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("2_1jl0p")]
+[node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
 position = Vector2(-48, 0)
 cutscene = ExtResource("6_ko5mb")
-rootNode = NodePath("..")
+cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="IntroCutsceneTrigger" index="0"]
 position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_b1862")
 
-[node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("2_1jl0p")]
+[node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
 position = Vector2(565, 7)
 cutscene = ExtResource("10_l3xjy")
-rootNode = NodePath("..")
+cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
 position = Vector2(0, 1)
@@ -159,7 +160,8 @@ shape = SubResource("RectangleShape2D_vs8ye")
 
 [node name="WarpZone" parent="." instance=ExtResource("11_rcdfa")]
 position = Vector2(1000, 8)
-mapName = "TestMap3"
+mapName = "AllyTown"
+mapPos = Vector2(-552, 116)
 
 [node name="WarpArea" parent="WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_2kurt")
@@ -167,6 +169,9 @@ shape = SubResource("RectangleShape2D_2kurt")
 [node name="GroundItem" parent="." instance=ExtResource("15_xc56y")]
 position = Vector2(-24, 40)
 pickedUpItem = SubResource("Resource_ams7q")
+
+[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("18_dpgom")]
+rootNode = NodePath("..")
 
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/HorseCart"]

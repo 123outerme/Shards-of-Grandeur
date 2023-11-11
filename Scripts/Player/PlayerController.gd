@@ -29,8 +29,8 @@ var talkNPC: NPCScript = null
 func _unhandled_input(event):
 	if event.is_action_pressed("game_pause"):
 		if inCutscene:
-			for cutsceneTrigger in get_tree().get_nodes_in_group('CutsceneTrigger'):
-				cutsceneTrigger.toggle_pause_cutscene()
+			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
+				cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
 		else:
 			pausePanel.toggle_pause()
