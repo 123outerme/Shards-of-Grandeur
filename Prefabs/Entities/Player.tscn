@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://Prefabs/UI/PauseMenu.tscn" id="7_omt6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
-size = Vector2(14, 14)
+size = Vector2(14, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lcm7"]
 size = Vector2(16, 16)
@@ -22,6 +22,7 @@ motion_mode = 1
 script = ExtResource("1_m8p6c")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_dwn8i")
 
 [node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="."]

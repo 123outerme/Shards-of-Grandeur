@@ -40,6 +40,7 @@ func _assign_two_layer_tiles(booleanVal: bool):
 			TileDef.new(1, 2, Vector2i(0,1)),
 			TileDef.new(1, 2, Vector2i(1,1)),
 			TileDef.new(1, 2, Vector2i(2,1)),
+			TileDef.new(1, 5, Vector2i(0,1)),
 		]
 		var topTiles: Array[TileDef] = [
 			TileDef.new(2, 1, Vector2i(0,0)),
@@ -48,8 +49,10 @@ func _assign_two_layer_tiles(booleanVal: bool):
 			TileDef.new(2, 2, Vector2i(0,0)),
 			TileDef.new(2, 2, Vector2i(1,0)),
 			TileDef.new(2, 2, Vector2i(2,0)),
+			TileDef.new(2, 5, Vector2i(0,0)),
 		]
 		var deltas: Array[Vector2i] = [
+			Vector2i(0, -1),
 			Vector2i(0, -1),
 			Vector2i(0, -1),
 			Vector2i(0, -1),
