@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=28 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
@@ -21,6 +21,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jasx5"]
+size = Vector2(72, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1862"]
 size = Vector2(64, 64)
@@ -120,6 +123,7 @@ shape = SubResource("RectangleShape2D_erjr7")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_jasx5")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTriggerShape" parent="TileMap/HorseCart/MoveTrigger" index="0"]
