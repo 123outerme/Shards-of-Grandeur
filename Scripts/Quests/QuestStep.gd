@@ -34,8 +34,8 @@ static func TypeToString(t: Type) -> String:
 @export var displayTurnInName: String
 
 @export_category("Quest Step - Dialogue")
-@export_multiline var turnInDialogue: Array[String]
-@export_multiline var inProgressDialogue: Array[String]
+@export var turnInDialogue: Array[DialogueEntry]
+@export var inProgressDialogue: Array[DialogueEntry]
 
 func _init(
 	i_name = '',
@@ -45,8 +45,8 @@ func _init(
 	i_objectiveName = '',
 	i_turnInName = '',
 	i_reward = null,
-	i_turnInDlg: Array[String] = [],
-	i_inProgressDlg: Array[String] = [],
+	i_turnInDlg: Array[DialogueEntry] = [],
+	i_inProgressDlg: Array[DialogueEntry] = [],
 ):
 	name = i_name
 	description = i_description

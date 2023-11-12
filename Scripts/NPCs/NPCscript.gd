@@ -10,14 +10,8 @@ class_name NPCScript
 @export var data: NPCData
 
 @export_category("NPC Dialogue")
-@export_multiline var act0Dialogue: Array[String]
-@export_multiline var act1Dialogue: Array[String]
-@export_multiline var act2Dialogue: Array[String]
-@export_multiline var act3Dialogue: Array[String]
-@export_multiline var act4Dialogue: Array[String]
-@export_multiline var anyActDialogue: Array[String]
+@export var dialogueEntries: Array[DialogueEntry] = []
 @export var facesPlayer: bool = true
-var stdDialogue: Dictionary
 
 @export_category("NPC Quests")
 @export var quests: Array[Quest] = []
@@ -42,12 +36,6 @@ func _ready():
 	data.position = position
 	data.inventory = inventory
 	call_deferred("fetch_player")
-	stdDialogue['act0'] = act0Dialogue
-	stdDialogue['act1'] = act1Dialogue
-	stdDialogue['act2'] = act2Dialogue
-	stdDialogue['act3'] = act3Dialogue
-	stdDialogue['act4'] = act4Dialogue
-	stdDialogue['any'] = anyActDialogue
 
 func fetch_player():
 	player = PlayerFinder.player
@@ -81,7 +69,7 @@ func load_data(save_path):
 		NavAgent.start_movement()
 		fetch_player()
 		fetch_quest_dialogue_info()
-		if data.dialogueIndex > -1:
+		if data.dialogueLine > -1:
 			player.restore_dialogue(self)
 		inventory = data.inventory
 
@@ -93,7 +81,7 @@ func _on_move_trigger_area_entered(area):
 		NavAgent.start_movement()
 
 func _on_talk_area_area_entered(area):
-	if area.name == "PlayerEventCollider" and data.dialogueIndex < 0:
+	if area.name == "PlayerEventCollider" and data.dialogueLine < 0:
 		player.set_talk_npc(self)
 		talkAlertSprite.visible = true
 
@@ -110,36 +98,50 @@ func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
 		return null
 	
-	return data.dialogueItems[data.dialogueIndex]
+	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+	
+	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines[data.dialogueLine]
 
 func advance_dialogue():
 	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue
 		reset_dialogue()
 	
-	data.dialogueIndex += 1
-	if data.dialogueIndex >= len(data.dialogueItems): # conversation is over
-		data.dialogueIndex = -1
-		data.dialogueItems = []
-		for q in acceptableQuests:
-			PlayerResources.questInventory.accept_quest(q)
-		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
-		play_animation('stand')
-		talkAlertSprite.visible = true
-	else:
-		play_animation('talk')
+	data.dialogueLine += 1
+	if data.dialogueLine >= len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines): # if the last line of this dialogue item
+		data.dialogueItemIdx += 1
+		data.dialogueLine = 0
+		if data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items): # if the last entry of this item
+			if saveName != '':
+				PlayerResources.playerInfo.set_dialogue_seen(saveName, data.dialogueItems[data.dialogueIndex].entryId)
+			data.dialogueIndex += 1
+			data.dialogueItemIdx = 0
+			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
+				PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
+				fetch_quest_dialogue_info()
+				for q in acceptableQuests:
+					PlayerResources.questInventory.accept_quest(q)
+				play_animation('stand')
+				data.dialogueIndex = 0
+				data.dialogueLine = -1
+				data.dialogueItems = []
+				talkAlertSprite.visible = true
+		elif data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
+			play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 	
-	if data.dialogueIndex == 0: # conversation just started
+	if data.dialogueIndex == 0 and data.dialogueItemIdx == 0 and data.dialogueLine == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 		face_player()
 		talkAlertSprite.visible = false
 
+
 func reset_dialogue():
-	data.dialogueIndex = -1
+	data.dialogueIndex = 0
+	data.dialogueItemIdx = 0
+	data.dialogueLine = -1
 	data.dialogueItems = []
-	#data.dialogueItems.append_array(stdDialogue) show base dialogue
-	fetch_quest_dialogue_info()
-	for q in acceptableQuests:
-		data.dialogueItems.append_array(q.startDialogue)
+	for dialogue in dialogueEntries:
+		if dialogue.can_use_dialogue():
+			data.dialogueItems.append(dialogue)
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
@@ -148,26 +150,22 @@ func reset_dialogue():
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
-	if len(data.dialogueItems) == 0: # only show base dialogue if no other dialogue is present (?)
-		if stdDialogue.has(PlayerResources.get_cur_act_save_str()) and len(stdDialogue[PlayerResources.get_cur_act_save_str()]) > 0:
-			data.dialogueItems.append_array(stdDialogue[PlayerResources.get_cur_act_save_str()])
-		elif stdDialogue.has('any'):
-			data.dialogueItems.append_array(stdDialogue['any'])
-	for itemIdx in range(len(data.dialogueItems)):
-		data.dialogueItems[itemIdx] = data.dialogueItems[itemIdx]
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
 	turningInSteps = []
-	for q in quests:
-		if PlayerResources.questInventory.can_start_quest(q):
-			acceptableQuests.append(q)
-	
+	for entry in data.dialogueItems:
+		if entry.startsQuest != null and PlayerResources.questInventory.can_start_quest(entry.startsQuest):
+			acceptableQuests.append(entry.startsQuest)
+
 	for questTracker in PlayerResources.questInventory.quests:
 		var curStep: QuestStep = questTracker.get_current_step()
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and curStep.turnInName == saveName and PlayerResources.questInventory.act_is_within_quest_range(questTracker.quest):
 			turningInSteps.append(curStep)
+
+func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
+	data.dialogueItems.insert(data.dialogueIndex + 1, dialogueEntry)
 
 func pause_movement():
 	NavAgent.disableMovement = true

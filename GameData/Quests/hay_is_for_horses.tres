@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://dakn7l24oxwu2"]
+
+[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_ooolb"]
+[ext_resource type="Resource" uid="uid://dnp7vctcv3hxv" path="res://GameData/dialogue/horsecart/horsecart_3.tres" id="2_2e7ve"]
+[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_iv6q3"]
+[ext_resource type="Resource" uid="uid://dy0dojc0ftass" path="res://GameData/dialogue/horsecart/horsecart_2.tres" id="3_mas41"]
+
+[sub_resource type="Resource" id="Resource_hu7f8"]
+script = ExtResource("2_iv6q3")
+name = "Hay There"
+description = "Talk to the horse."
+type = 0
+count = 1
+objectiveName = "horse_cart_allytown"
+turnInName = "horse_cart_allytown"
+displayObjName = "Horse"
+displayTurnInName = "Horse"
+turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("3_mas41")])
+inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("2_2e7ve")])
+
+[resource]
+script = ExtResource("1_ooolb")
+questName = "Hay is For Horses"
+description = "This horse wants some hay."
+steps = Array[ExtResource("2_iv6q3")]([SubResource("Resource_hu7f8")])
+prerequisiteQuestNames = Array[String]([])
+availableAtAct = 0
+unavailableAfterAct = 5

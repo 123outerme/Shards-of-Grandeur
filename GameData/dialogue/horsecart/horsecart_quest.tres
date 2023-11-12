@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dyuc0isblmygm"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="1_2te42"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="1_3ixxv"]
+[ext_resource type="Resource" uid="uid://dakn7l24oxwu2" path="res://GameData/Quests/hay_is_for_horses.tres" id="3_p31dd"]
+
+[sub_resource type="Resource" id="Resource_vx2ia"]
+script = ExtResource("1_2te42")
+lines = Array[String](["Neigh.
+(I could really use some hay right now...)"])
+animation = "talk"
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[resource]
+script = ExtResource("1_3ixxv")
+entryId = "4"
+items = Array[ExtResource("1_2te42")]([SubResource("Resource_vx2ia")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 5
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String](["horse_cart_allytown#2"])
+stopSayingAfterDialogues = Array[String]([])
+startsQuest = ExtResource("3_p31dd")

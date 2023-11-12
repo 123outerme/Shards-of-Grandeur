@@ -13,6 +13,8 @@ class_name NPCData
 @export_category("NPCData - Dialogue")
 @export var dialogueItems: Array = []
 @export var dialogueIndex: int = -1
+@export var dialogueItemIdx: int = -1
+@export var dialogueLine: int = -1
 
 @export_category("NPCData - Shopkeeping")
 @export var inventory: Inventory
@@ -28,6 +30,8 @@ func _init(
 	i_previousDisableMove = false,
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
+	i_dialogueItemIdx = -1,
+	i_dialogueLine = -1,
 	i_inventory = Inventory.new(),
 	i_hasShop = false,
 ):
@@ -40,6 +44,8 @@ func _init(
 	previousDisableMove = i_previousDisableMove
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
+	dialogueItemIdx = i_dialogueItemIdx
+	dialogueLine = i_dialogueLine
 	inventory = i_inventory
 	hasShop = i_hasShop
 

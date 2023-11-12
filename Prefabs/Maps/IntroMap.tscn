@@ -1,11 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=35 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://Prefabs/Overworld/CutsceneTrigger.tscn" id="2_1jl0p"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="2_kq4m3"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="3_cef0f"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="4_3blma"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://Graphics/animations/a_horse_cart.tres" id="4_haxgc"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="4_igjr6"]
 [ext_resource type="Resource" uid="uid://cy6c7301nx7fg" path="res://GameData/cutscenes/intro_scene/intro_cutscene.tres" id="6_ko5mb"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="7_8f7k4"]
 [ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="8_5uxvf"]
@@ -19,8 +21,42 @@
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="16_mxmsh"]
 [ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://Prefabs/Overworld/CutscenePlayer.tscn" id="18_dpgom"]
 
+[sub_resource type="Resource" id="Resource_he5cd"]
+script = ExtResource("4_3blma")
+lines = Array[String](["Once you've taken care of that Rat, we need to hurry down the road here and get to the next town."])
+animation = "talk"
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_4di2h"]
+script = ExtResource("4_igjr6")
+entryId = "1"
+items = Array[ExtResource("4_3blma")]([SubResource("Resource_he5cd")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 1
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String]([])
+stopSayingAfterDialogues = Array[String]([])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
+
+[sub_resource type="Resource" id="Resource_cvvun"]
+script = ExtResource("4_3blma")
+lines = Array[String](["Neigh!"])
+animation = ""
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_3n8lp"]
+script = ExtResource("4_igjr6")
+entryId = "1"
+items = Array[ExtResource("4_3blma")]([SubResource("Resource_cvvun")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 5
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String]([])
+stopSayingAfterDialogues = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -96,7 +132,7 @@ layer_3/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-anyActDialogue = Array[String](["Once you've taken care of that Rat, we need to hurry down the road here and get to the next town."])
+dialogueEntries = Array[ExtResource("4_igjr6")]([SubResource("Resource_4di2h")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("3_cef0f")
@@ -121,7 +157,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-anyActDialogue = Array[String](["Neigh!"])
+dialogueEntries = Array[ExtResource("4_igjr6")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]

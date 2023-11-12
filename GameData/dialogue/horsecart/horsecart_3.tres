@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dnp7vctcv3hxv"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="1_g8bp4"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="2_gmtbo"]
+
+[sub_resource type="Resource" id="Resource_kfkjw"]
+script = ExtResource("1_g8bp4")
+lines = Array[String](["Neigh?"])
+animation = ""
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[resource]
+script = ExtResource("2_gmtbo")
+entryId = "3"
+items = Array[ExtResource("1_g8bp4")]([SubResource("Resource_kfkjw")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 5
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String]([])
+stopSayingAfterDialogues = Array[String]([])

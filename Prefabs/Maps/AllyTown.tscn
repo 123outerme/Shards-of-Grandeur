@@ -1,12 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=22 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_elkrg"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_y2vlw"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="3_csvla"]
 [ext_resource type="Texture2D" uid="uid://ugso6yyiq538" path="res://Graphics/structures/signpost.png" id="4_i6xd5"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="4_j784j"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="4_wdhhi"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://Graphics/animations/a_horse_cart.tres" id="5_4cu53"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://Graphics/ui/talk_indicator_signpost.png" id="5_jnxxu"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="6_sh5p0"]
+[ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://GameData/dialogue/horsecart/horsecart_1.tres" id="8_gptr3"]
+
+[sub_resource type="Resource" id="Resource_l8o5h"]
+script = ExtResource("4_j784j")
+lines = Array[String](["Welcome To Standstill
+We're Glad To Have Your Company!"])
+animation = "stand"
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_r3rp4"]
+script = ExtResource("4_wdhhi")
+entryId = "1"
+items = Array[ExtResource("4_j784j")]([SubResource("Resource_l8o5h")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 5
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String]([])
+stopSayingAfterDialogues = Array[String]([])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7wn6"]
 atlas = ExtResource("4_i6xd5")
@@ -47,6 +68,23 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
+[sub_resource type="Resource" id="Resource_wxumd"]
+script = ExtResource("4_j784j")
+lines = Array[String](["Ask around, you might find an armorer in these parts! The people of Standstill are very hospitable. Capital City said they were happy to host us on our quest."])
+animation = "talk"
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_n1klu"]
+script = ExtResource("4_wdhhi")
+entryId = "1"
+items = Array[ExtResource("4_j784j")]([SubResource("Resource_wxumd")])
+saysStartingAtAct = 0
+stopsSayingAtAct = 1
+prerequisiteQuests = Array[String]([])
+prerequisiteCutscenes = Array[String]([])
+prerequisiteDialogues = Array[String]([])
+stopSayingAfterDialogues = Array[String]([])
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_elkrg")
 
@@ -82,8 +120,7 @@ layer_3/tile_data = PackedInt32Array(393161, 65539, 65537, 458697, 65539, 65537,
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_csvla")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-anyActDialogue = Array[String](["Welcome To Ally Town
-We're Glad To Have Your Company!"])
+dialogueEntries = Array[ExtResource("4_wdhhi")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/Signpost" index="0"]
@@ -115,7 +152,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(8, 128)
 displayName = "Horse"
 saveName = "horse_cart_allytown"
-anyActDialogue = Array[String](["Neigh!"])
+dialogueEntries = Array[ExtResource("4_wdhhi")]([ExtResource("8_gptr3")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
@@ -152,7 +189,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(0, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_allytown"
-act0Dialogue = Array[String](["Ask around, you might find an armorer in these parts! The people of Ally Town are very hospitable. Capital City said they were happy to host us on our quest."])
+dialogueEntries = Array[ExtResource("4_wdhhi")]([SubResource("Resource_n1klu")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("6_sh5p0")

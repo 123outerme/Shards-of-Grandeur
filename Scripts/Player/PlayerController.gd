@@ -11,6 +11,7 @@ var cutsceneSpeaker: String = ''
 var cutsceneTextBoxIndex: int = 0
 var holdingCamera: bool = false
 var holdingCameraAt: Vector2
+var makingChoice: bool = false
 
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
@@ -49,7 +50,7 @@ func _unhandled_input(event):
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) and not pausePanel.isPaused:
+			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) and not pausePanel.isPaused and not makingChoice:
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
@@ -108,7 +109,7 @@ func _process(_delta):
 func play_animation(animation: String):
 	sprite.play(animation)
 
-func face_horiz(xDirection: int):
+func face_horiz(xDirection: float):
 	if xDirection > 0:
 		facingLeft = false
 		sprite.flip_h = false
@@ -133,8 +134,8 @@ func advance_dialogue(canStart: bool = true):
 			else: # this is continuing the NPC dialogue
 				textBox.advance_textbox(dialogueText)
 		else: # this is the end of NPC dialogue
-			SceneLoader.unpause_autonomous_movers()
 			textBox.hide_textbox()
+			SceneLoader.unpause_autonomous_movers()
 			set_talk_btns_vis(true)
 			position_talk_btns()
 	elif pickedUpItem != null: # picked up dialogue
@@ -149,8 +150,12 @@ func advance_dialogue(canStart: bool = true):
 			cutsceneTexts = []
 			textBox.hide_textbox()
 			if not inCutscene: # cutscene is over now (ended while text box was still open)
-				disableMovement = false # re-enable movement
+				unpause_movement()
 				cam.show_letterbox(false) # disable letterbox
+
+func select_choice(choice: DialogueChoice):
+	talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+	advance_dialogue()
 
 func is_in_dialogue() -> bool:
 	return textBox.visible
@@ -201,7 +206,7 @@ func pause_movement():
 	disableMovement = true
 
 func unpause_movement():
-	disableMovement = false
+	disableMovement = textBox.visible
 	
 func hold_camera_at(pos: Vector2):
 	holdingCameraAt = pos
@@ -244,8 +249,8 @@ func put_pick_up_text():
 			textBox.set_textbox_text(pickedUpItem.pickUpTexts[pickedUpItem.savedTextIdx], 'Picked Up ' + pickedUpItem.item.itemName)
 	
 	if not hasNextDialogue:
-		SceneLoader.unpause_autonomous_movers()
 		textBox.hide_textbox()
+		SceneLoader.unpause_autonomous_movers()
 		pickedUpItem = null
 	else:
 		SceneLoader.pause_autonomous_movers()
