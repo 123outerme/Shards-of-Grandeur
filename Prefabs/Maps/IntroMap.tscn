@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=29 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
@@ -18,6 +18,9 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="16_3uh5k"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="16_mxmsh"]
 [ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://Prefabs/Overworld/CutscenePlayer.tscn" id="18_dpgom"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
+size = Vector2(15, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -100,10 +103,16 @@ sprite_frames = ExtResource("3_cef0f")
 animation = &"stand"
 
 [node name="ColliderShape" parent="TileMap/DrHudson" index="1"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_3ntff")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
+position = Vector2(0, 6)
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/DrHudson" index="4"]
+visible = false
 
 [node name="MoveTriggerShape" parent="TileMap/DrHudson/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
@@ -113,6 +122,7 @@ position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
 anyActDialogue = Array[String](["Neigh!"])
+facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
 sprite_frames = ExtResource("4_haxgc")
@@ -125,6 +135,9 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
 shape = SubResource("RectangleShape2D_jasx5")
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/HorseCart" index="4"]
+visible = false
 
 [node name="MoveTriggerShape" parent="TileMap/HorseCart/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)

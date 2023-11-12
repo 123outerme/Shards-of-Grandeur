@@ -110,8 +110,10 @@ func play_animation(animation: String):
 
 func face_horiz(xDirection: int):
 	if xDirection > 0:
+		facingLeft = false
 		sprite.flip_h = false
 	if xDirection < 0:
+		facingLeft = true
 		sprite.flip_h = true
 
 func advance_dialogue(canStart: bool = true):
@@ -127,6 +129,7 @@ func advance_dialogue(canStart: bool = true):
 				SceneLoader.unpauseExcludedMover = talkNPC
 				set_talk_btns_vis(false)
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+				face_horiz(talkNPC.position.x - position.x)
 			else: # this is continuing the dialogue
 				textBox.advance_textbox(dialogueText)
 		else:

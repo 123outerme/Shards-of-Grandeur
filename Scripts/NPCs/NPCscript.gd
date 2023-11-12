@@ -16,6 +16,7 @@ class_name NPCScript
 @export_multiline var act3Dialogue: Array[String]
 @export_multiline var act4Dialogue: Array[String]
 @export_multiline var anyActDialogue: Array[String]
+@export var facesPlayer: bool = true
 var stdDialogue: Dictionary
 
 @export_category("NPC Quests")
@@ -51,6 +52,8 @@ func fetch_player():
 	player = PlayerFinder.player
 
 func save_data(save_path):
+	if saveName == '':
+		return
 	data.saveName = saveName
 	data.flipH = npcSprite.flip_h
 	data.position = position
@@ -63,6 +66,8 @@ func save_data(save_path):
 func load_data(save_path):
 	data = NPCData.new()
 	data.saveName = saveName
+	if saveName == '':
+		return
 	var newData = data.load_data(save_path + npcsDir)
 	if newData != null:
 		data = newData
@@ -92,7 +97,8 @@ func _on_talk_area_area_entered(area):
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
-		player.set_talk_npc(null)
+		if player.talkNPC == self:
+			player.set_talk_npc(null)
 		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
 			data.previousDisableMove = false # ensure movement is unpaused no matter what
 			unpause_movement()
@@ -165,7 +171,8 @@ func unpause_movement():
 	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
 
 func face_player():
-	face_horiz(player.position.x - position.x)
+	if facesPlayer:
+		face_horiz(player.position.x - position.x)
 
 func play_animation(animation: String):
 	npcSprite.play(animation)
