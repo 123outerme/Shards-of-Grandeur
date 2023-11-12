@@ -117,30 +117,30 @@ func face_horiz(xDirection: int):
 		sprite.flip_h = true
 
 func advance_dialogue(canStart: bool = true):
-	if talkNPC != null:
+	if talkNPC != null: # if in NPC conversation
 		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
 			return
 		talkNPC.advance_dialogue()
 		var dialogueText = talkNPC.get_cur_dialogue_item()
-		if dialogueText != null: # if there is dialogue to display
-			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the dialogue
+		if dialogueText != null: # if there is NPC dialogue to display
+			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
 				SceneLoader.unpauseExcludedMover = talkNPC
 				set_talk_btns_vis(false)
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 				face_horiz(talkNPC.position.x - position.x)
-			else: # this is continuing the dialogue
+			else: # this is continuing the NPC dialogue
 				textBox.advance_textbox(dialogueText)
-		else:
+		else: # this is the end of NPC dialogue
 			SceneLoader.unpause_autonomous_movers()
 			textBox.hide_textbox()
 			set_talk_btns_vis(true)
 			position_talk_btns()
-	elif pickedUpItem != null:
+	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
-	elif len(cutsceneTexts) > 0:
+	elif len(cutsceneTexts) > 0: # cutscene dialogue
 		cutsceneTextBoxIndex += 1
 		if cutsceneTextBoxIndex < len(cutsceneTexts):
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextBoxIndex])

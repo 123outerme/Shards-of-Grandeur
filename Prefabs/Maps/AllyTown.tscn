@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=15 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_elkrg"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_y2vlw"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="3_csvla"]
 [ext_resource type="Texture2D" uid="uid://ugso6yyiq538" path="res://Graphics/structures/signpost.png" id="4_i6xd5"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://Graphics/animations/a_horse_cart.tres" id="5_4cu53"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://Graphics/ui/talk_indicator_signpost.png" id="5_jnxxu"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="6_sh5p0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7wn6"]
@@ -89,6 +90,9 @@ facesPlayer = false
 sprite_frames = SubResource("SpriteFrames_6ltjv")
 animation = &"stand"
 
+[node name="TalkAlertSprite" parent="TileMap/Signpost/NPCSprite" index="0"]
+texture = ExtResource("5_jnxxu")
+
 [node name="ColliderShape" parent="TileMap/Signpost" index="1"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_f7yce")
@@ -108,23 +112,30 @@ visible = false
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="HorseCart" parent="TileMap" instance=ExtResource("3_csvla")]
-position = Vector2(-16, 128)
+position = Vector2(8, 128)
 displayName = "Horse"
 saveName = "horse_cart_allytown"
 anyActDialogue = Array[String](["Neigh!"])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
+position = Vector2(-23, 0)
 sprite_frames = ExtResource("5_4cu53")
 animation = &"stand"
 
+[node name="TalkAlertSprite" parent="TileMap/HorseCart/NPCSprite" index="0"]
+position = Vector2(29, -21)
+
 [node name="ColliderShape" parent="TileMap/HorseCart" index="1"]
-position = Vector2(0, 9)
+position = Vector2(-23, 9)
 shape = SubResource("RectangleShape2D_47d3y")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="NavAgent" parent="TileMap/HorseCart" index="2"]
 disableMovement = true
+
+[node name="TalkArea" parent="TileMap/HorseCart" index="3"]
+position = Vector2(-23, 0)
 
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
 position = Vector2(18, 8)

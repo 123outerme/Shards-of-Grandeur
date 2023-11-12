@@ -29,6 +29,7 @@ var turningInSteps: Array[QuestStep] = []
 @export var inventory: Inventory
 
 @onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
+@onready var talkAlertSprite: Sprite2D = get_node("NPCSprite/TalkAlertSprite")
 @onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
 @onready var NavAgent: NPCMovement = get_node("NavAgent")
 
@@ -94,6 +95,7 @@ func _on_move_trigger_area_entered(area):
 func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueIndex < 0:
 		player.set_talk_npc(self)
+		talkAlertSprite.visible = true
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
@@ -102,6 +104,7 @@ func _on_talk_area_area_exited(area):
 		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
 			data.previousDisableMove = false # ensure movement is unpaused no matter what
 			unpause_movement()
+		talkAlertSprite.visible = false
 
 func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
@@ -121,12 +124,14 @@ func advance_dialogue():
 			PlayerResources.questInventory.accept_quest(q)
 		PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
 		play_animation('stand')
+		talkAlertSprite.visible = true
 	else:
 		play_animation('talk')
 	
 	if data.dialogueIndex == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 		face_player()
+		talkAlertSprite.visible = false
 
 func reset_dialogue():
 	data.dialogueIndex = -1

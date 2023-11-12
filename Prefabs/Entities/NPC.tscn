@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCscript.gd" id="1_1dp2i"]
+[ext_resource type="Texture2D" uid="uid://ybgaeplkp4q0" path="res://Graphics/ui/talk_indicator_standard.png" id="2_ejx50"]
 [ext_resource type="Script" path="res://Scripts/NPCs/NPCMovement.gd" id="2_fvlbl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_518hb"]
@@ -21,6 +22,11 @@ script = ExtResource("1_1dp2i")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_518hb")
+
+[node name="TalkAlertSprite" type="Sprite2D" parent="NPCSprite"]
+visible = false
+position = Vector2(0, -17)
+texture = ExtResource("2_ejx50")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jblse")
