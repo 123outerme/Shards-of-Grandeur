@@ -5,6 +5,7 @@ class_name NPCScript
 @export var displayName: String
 @export var saveName: String
 @export var facesRight: bool = true
+@export var spriteSize: Vector2i = Vector2i(16, 16)
 
 @export_category("NPC Persistent Data")
 @export var data: NPCData
@@ -13,14 +14,12 @@ class_name NPCScript
 @export var dialogueEntries: Array[DialogueEntry] = []
 @export var facesPlayer: bool = true
 
-@export_category("NPC Quests")
-@export var quests: Array[Quest] = []
-var acceptableQuests: Array[Quest] = []
-var turningInSteps: Array[QuestStep] = []
-
 @export_category("NPC Shop")
 @export var hasShop: bool = false
 @export var inventory: Inventory
+
+var acceptableQuests: Array[Quest] = []
+var turningInSteps: Array[QuestStep] = []
 
 @onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
 @onready var talkAlertSprite: Sprite2D = get_node("NPCSprite/TalkAlertSprite")
@@ -96,6 +95,7 @@ func _on_talk_area_area_exited(area):
 
 func get_cur_dialogue_item():
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
+		player.textBox.dialogueItem = null
 		return null
 	
 	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
@@ -139,9 +139,6 @@ func reset_dialogue():
 	data.dialogueItemIdx = 0
 	data.dialogueLine = -1
 	data.dialogueItems = []
-	for dialogue in dialogueEntries:
-		if dialogue.can_use_dialogue():
-			data.dialogueItems.append(dialogue)
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
@@ -150,6 +147,9 @@ func reset_dialogue():
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
+	for dialogue in dialogueEntries:
+		if dialogue.can_use_dialogue():
+			data.dialogueItems.append(dialogue)
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
@@ -165,7 +165,8 @@ func fetch_quest_dialogue_info():
 			turningInSteps.append(curStep)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
-	data.dialogueItems.insert(data.dialogueIndex + 1, dialogueEntry)
+	if dialogueEntry.can_use_dialogue():
+		data.dialogueItems.insert(data.dialogueIndex + 1, dialogueEntry)
 
 func pause_movement():
 	NavAgent.disableMovement = true

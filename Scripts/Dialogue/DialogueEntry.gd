@@ -55,4 +55,7 @@ func can_use_dialogue() -> bool:
 		if PlayerResources.playerInfo.has_seen_dialogue(npcSaveName, dialogueId):
 			return false
 	
+	if startsQuest != null and not PlayerResources.questInventory.can_start_quest(startsQuest):
+		return false
+	
 	return true

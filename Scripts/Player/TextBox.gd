@@ -44,6 +44,7 @@ func advance_textbox(text: String):
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
+	delete_choices()
 
 func is_textbox_complete() -> bool:
 	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
@@ -52,10 +53,23 @@ func add_choices():
 	if dialogueItem == null or PlayerFinder.player.makingChoice:
 		return
 	
+	delete_choices()
 	for idx in range(5):
 		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
-		if idx < len(dialogueItem.choices) and not (dialogueItem.choices[idx].leadsTo != null and not dialogueItem.choices[idx].leadsTo.can_use_dialogue()):
+		
+		if idx < len(dialogueItem.choices) \
+				and not (dialogueItem.choices[idx].leadsTo != null and not dialogueItem.choices[idx].leadsTo.can_use_dialogue()):
 			var choice = dialogueItem.choices[idx]
+			if choice.turnsInQuest != '':
+				var questName = choice.turnsInQuest.split('#')[0]
+				var stepName = choice.turnsInQuest.split('#')[1]
+				var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
+				if questTracker != null:
+					if questTracker.get_step_status(questTracker.get_step_by_name(stepName)) != QuestTracker.Status.READY_TO_TURN_IN_STEP:
+						continue
+				else:
+					continue
+				
 			button.text = choice.choiceBtn
 			button.custom_minimum_size = choice.buttonDims
 			button.visible = true

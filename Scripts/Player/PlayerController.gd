@@ -12,6 +12,7 @@ var cutsceneTextBoxIndex: int = 0
 var holdingCamera: bool = false
 var holdingCameraAt: Vector2
 var makingChoice: bool = false
+var turnInChoice: DialogueChoice = null
 
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
@@ -44,9 +45,10 @@ func _unhandled_input(event):
 			SceneLoader.pause_autonomous_movers()
 		else:
 			SceneLoader.unpause_autonomous_movers()
-		inventoryPanel.visible = true
-		inventoryPanel.toggle()
-		questsPanel.visible = false
+		if inventoryPanel.visible:
+			inventoryPanel.toggle()
+		if questsPanel.visible:
+			questsPanel.toggle
 		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
@@ -66,7 +68,8 @@ func _unhandled_input(event):
 		else:
 			SceneLoader.unpause_autonomous_movers()
 		statsPanel.visible = false
-		questsPanel.visible = false
+		if questsPanel.visible:
+			questsPanel.toggle()
 		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused:
@@ -78,8 +81,8 @@ func _unhandled_input(event):
 		else:
 			SceneLoader.unpause_autonomous_movers()
 		statsPanel.visible = false
-		inventoryPanel.visible = true
-		inventoryPanel.toggle()
+		if inventoryPanel.visible:
+			inventoryPanel.toggle()
 		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 func _physics_process(_delta):
@@ -154,7 +157,16 @@ func advance_dialogue(canStart: bool = true):
 				cam.show_letterbox(false) # disable letterbox
 
 func select_choice(choice: DialogueChoice):
-	talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+	if choice.opensShop:
+		_on_shop_button_pressed()
+		return
+	if choice.turnsInQuest:
+		turnInChoice = choice
+		_on_turn_in_button_pressed()
+		return
+	
+	if choice.leadsTo != null:
+		talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
 	advance_dialogue()
 
 func is_in_dialogue() -> bool:
@@ -166,14 +178,12 @@ func set_talk_btns_vis(vis: bool):
 	if talkNPC != null:
 		shopButton.visible = talkNPC.hasShop
 		turnInButton.visible = len(talkNPC.turningInSteps) > 0
+		position_talk_btns()
+		talkNPC.talkAlertSprite.visible = not vis
 
 func position_talk_btns():
-	var conversationPosDiff: Vector2 = position - talkNPC.position # vector from NPC to player
-	var newY = -1.0 * talkNPC.get_collision_size().y
-	if conversationPosDiff.y > 0.1:
-		newY *= -1
-	conversationPosDiff.y = newY
-	npcTalkBtns.position = Vector2(talkNPC.position.x, talkNPC.position.y - newY) #talkNPC.position - conversationPosDiff
+	if talkNPC != null:
+		npcTalkBtns.global_position = talkNPC.talkAlertSprite.global_position
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
@@ -282,6 +292,17 @@ func _on_inventory_panel_node_back_pressed():
 func _on_quests_panel_node_back_pressed():
 	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+	
+	if turnInChoice != null and turnInChoice.turnsInQuest != '':
+		var questName = turnInChoice.turnsInQuest.split('#')[0]
+		var stepName = turnInChoice.turnsInQuest.split('#')[1]
+		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
+		if questTracker != null:
+			if questTracker.get_step_status(questTracker.get_step_by_name(stepName)) == QuestTracker.Status.COMPLETED:
+				if turnInChoice.leadsTo != null:
+					talkNPC.add_dialogue_entry_in_dialogue(turnInChoice.leadsTo)
+				advance_dialogue()
+		turnInChoice = null
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON

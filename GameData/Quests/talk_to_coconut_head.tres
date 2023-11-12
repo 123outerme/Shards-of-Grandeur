@@ -15,8 +15,8 @@ objectiveName = "coconuthead"
 turnInName = "coconuthead"
 displayObjName = "Coconut Head"
 displayTurnInName = "Coconut Head"
-turnInDialogue = Array[String](["Thank you for speaking with me.", "I have another task for you, however.", "Please defeat one Rat. They make me crazy."])
-inProgressDialogue = Array[String](["Please, continue speaking with me!"])
+turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
 
 [sub_resource type="Resource" id="Resource_2hh88"]
 script = ExtResource("4_sisoo")
@@ -35,8 +35,8 @@ objectiveName = "rat"
 turnInName = "coconuthead"
 displayObjName = "Rat"
 displayTurnInName = "Coconut Head"
-turnInDialogue = Array[String](["I can finally breathe easy, now that one less Rat exists.", "Please take this off my hands, actually."])
-inProgressDialogue = Array[String](["I might be just a little crazy, but defeat that rat.", "Crazy? Well, I was crazy once. They locked me in a room..."])
+turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
 
 [resource]
 script = ExtResource("1_iw6nk")
@@ -46,4 +46,3 @@ steps = Array[ExtResource("2_u577o")]([SubResource("Resource_6pwfd"), SubResourc
 prerequisiteQuestNames = Array[String]([])
 availableAtAct = 0
 unavailableAfterAct = 5
-startDialogue = Array[String](["After this, please talk to me some more!"])
