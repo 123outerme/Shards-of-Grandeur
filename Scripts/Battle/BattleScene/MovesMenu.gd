@@ -8,14 +8,21 @@ func _ready():
 	pass # Replace with function body.
 
 func load_moves():
+	var setFocus: bool = false
 	for i in range(4): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
 		if i < len(battleUI.commandingCombatant.combatant.stats.moves): # if this move slot exists
 			moveBtn.text = battleUI.commandingCombatant.combatant.stats.moves[i].moveName
 			moveBtn.disabled = false
+			if not setFocus:
+				moveBtn.grab_focus()
+				setFocus = true
 		else: # if the move slot doesn't exist
 			moveBtn.text = '-----'
 			moveBtn.disabled = true
+			
+	if not setFocus:
+		get_node("BackButton").grab_focus()
 
 func move_click(idx: int):
 	battleUI.commandingCombatant.combatant.command = BattleCommand.new(

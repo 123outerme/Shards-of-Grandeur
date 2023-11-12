@@ -5,10 +5,14 @@ class_name Results
 var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
 
 @onready var textBoxText: RichTextLabel = get_node("TextBoxText")
+@onready var okBtn: Button = get_node("OkButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func initial_focus():
+	okBtn.grab_focus()
 
 func show_text(newText: String):
 	textBoxText.text = newText

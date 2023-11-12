@@ -12,7 +12,7 @@ var cutsceneTextBoxIndex: int = 0
 var holdingCamera: bool = false
 var holdingCameraAt: Vector2
 var makingChoice: bool = false
-var turnInChoice: DialogueChoice = null
+var pickedChoice: DialogueChoice = null
 
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
@@ -22,9 +22,9 @@ var turnInChoice: DialogueChoice = null
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
 @onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
-@onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
-@onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
-@onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
+#@onready var npcTalkBtns: Node2D = get_node("/root/Overworld/NPCTalkButtons")
+#@onready var shopButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/ShopButton")
+#@onready var turnInButton: Button = get_node("/root/Overworld/NPCTalkButtons/HBoxContainer/TurnInButton")
 
 var talkNPC: NPCScript = null
 
@@ -49,7 +49,7 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle
-		npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
+		#npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
 			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) and not pausePanel.isPaused and not makingChoice:
@@ -70,7 +70,7 @@ func _unhandled_input(event):
 		statsPanel.visible = false
 		if questsPanel.visible:
 			questsPanel.toggle()
-		npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
+		#npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused:
 		questsPanel.turnInTargetName = ''
@@ -83,7 +83,7 @@ func _unhandled_input(event):
 		statsPanel.visible = false
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
-		npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
+		#npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 func _physics_process(_delta):
 	if not disableMovement:
@@ -103,8 +103,8 @@ func _physics_process(_delta):
 		cam.position += vel * _delta
 		
 func _process(_delta):
-	if npcTalkBtns.visible and talkNPC != null:
-		position_talk_btns()
+	#if npcTalkBtns.visible and talkNPC != null:
+		#position_talk_btns()
 	if holdingCamera:
 		cam.position = holdingCameraAt - position
 		uiRoot.position = holdingCameraAt - position
@@ -140,7 +140,7 @@ func advance_dialogue(canStart: bool = true):
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
 			set_talk_btns_vis(true)
-			position_talk_btns()
+			#position_talk_btns()
 	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
@@ -158,10 +158,11 @@ func advance_dialogue(canStart: bool = true):
 
 func select_choice(choice: DialogueChoice):
 	if choice.opensShop:
+		pickedChoice = choice
 		_on_shop_button_pressed()
 		return
 	if choice.turnsInQuest:
-		turnInChoice = choice
+		pickedChoice = choice
 		_on_turn_in_button_pressed()
 		return
 	
@@ -173,17 +174,19 @@ func is_in_dialogue() -> bool:
 	return textBox.visible
 
 func set_talk_btns_vis(vis: bool):
-	npcTalkBtns.visible = vis
+	#npcTalkBtns.visible = vis
 	PlayerResources.playerInfo.talkBtnsVisible = vis
 	if talkNPC != null:
-		shopButton.visible = talkNPC.hasShop
-		turnInButton.visible = len(talkNPC.turningInSteps) > 0
-		position_talk_btns()
+		#shopButton.visible = talkNPC.hasShop
+		#turnInButton.visible = len(talkNPC.turningInSteps) > 0
+		#position_talk_btns()
 		talkNPC.talkAlertSprite.visible = not vis
 
+'''
 func position_talk_btns():
 	if talkNPC != null:
 		npcTalkBtns.global_position = talkNPC.talkAlertSprite.global_position
+'''
 
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
@@ -191,8 +194,8 @@ func set_talk_npc(npc: NPCScript):
 		textBox.hide_textbox()
 		disableMovement = false
 		set_talk_btns_vis(false)
-		shopButton.visible = false
-		turnInButton.visible = false
+		#shopButton.visible = false
+		#turnInButton.visible = false
 	
 func restore_dialogue(npc: NPCScript):
 	var dialogueText = npc.get_cur_dialogue_item()
@@ -203,7 +206,7 @@ func restore_dialogue(npc: NPCScript):
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
 		set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
-		position_talk_btns()
+		#position_talk_btns()
 
 func restore_picked_up_item_text(groundItem: PickedUpItem):
 	pickedUpItem = groundItem
@@ -277,32 +280,36 @@ func _on_shop_button_pressed():
 	inventoryPanel.shopInventory = talkNPC.inventory
 	disableMovement = true
 	inventoryPanel.toggle()
-	npcTalkBtns.visible = false
+	#npcTalkBtns.visible = false
 
 func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = talkNPC.saveName
 	questsPanel.toggle()
 	disableMovement = true
-	npcTalkBtns.visible = false
+	#npcTalkBtns.visible = false
 
 func _on_inventory_panel_node_back_pressed():
-	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+	if pickedChoice != null and pickedChoice.opensShop:
+		textBox.refocus_choice(pickedChoice)
+		pickedChoice = null
 
 func _on_quests_panel_node_back_pressed():
-	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
 	
-	if turnInChoice != null and turnInChoice.turnsInQuest != '':
-		var questName = turnInChoice.turnsInQuest.split('#')[0]
-		var stepName = turnInChoice.turnsInQuest.split('#')[1]
+	if pickedChoice != null and pickedChoice.turnsInQuest != '':
+		var questName = pickedChoice.turnsInQuest.split('#')[0]
+		var stepName = pickedChoice.turnsInQuest.split('#')[1]
 		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
 		if questTracker != null:
 			if questTracker.get_step_status(questTracker.get_step_by_name(stepName)) == QuestTracker.Status.COMPLETED:
-				if turnInChoice.leadsTo != null:
-					talkNPC.add_dialogue_entry_in_dialogue(turnInChoice.leadsTo)
+				if pickedChoice.leadsTo != null:
+					talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
 				advance_dialogue()
-		turnInChoice = null
+		textBox.refocus_choice(pickedChoice)
+		pickedChoice = null
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON
@@ -323,13 +330,13 @@ func equip_to_combatant_helper(stats: Stats):
 
 func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
-	npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
+	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
 
 func _on_quests_panel_node_turn_in_step_to(saveName):
 	if saveName == talkNPC.saveName:
 		talkNPC.fetch_quest_dialogue_info()
-		turnInButton.visible = len(talkNPC.turningInSteps) > 0 # recompute if turn in button still needs to be shown
+		#turnInButton.visible = len(talkNPC.turningInSteps) > 0 # recompute if turn in button still needs to be shown
 
 func _on_quests_panel_node_level_up(newLevels: int):
 	if newLevels == 0:
@@ -341,6 +348,6 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused
 	inventoryPanel.visible = false
 	questsPanel.visible = false
-	npcTalkBtns.visible = false # make sure talk buttons are hidden
+	#npcTalkBtns.visible = false # make sure talk buttons are hidden
 	statsPanel.visible = false # show stats panel for sure
 	statsPanel.toggle()

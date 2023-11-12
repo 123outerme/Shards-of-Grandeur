@@ -6,6 +6,7 @@ var commandingCombatant: CombatantNode = null
 var commandingMinion: bool = false
 
 @onready var commandLabel: RichTextLabel = get_node("CommandLabel")
+@orneady var movesBtn: Button = get_node("MovesButton")
 @onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
 @onready var escapeButton: Button = get_node("EscapeButton")
 
@@ -16,6 +17,7 @@ func _ready():
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.stats.displayName + '[/center]'
+	movesBtn.grab_focus()
 
 func _on_moves_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.MOVES)

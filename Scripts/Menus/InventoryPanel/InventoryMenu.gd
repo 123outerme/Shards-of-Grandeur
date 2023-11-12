@@ -20,6 +20,7 @@ var shopInventory: Inventory = null
 @export var showItemUsePanel: bool = false
 @export var equipContextStats: Stats = null
 
+@onready var scrollContainer: ScrollContainer = get_node("InventoryPanel/Panel/ScrollContainer")
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
@@ -48,6 +49,7 @@ func toggle():
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()
+		scrollContainer.grab_focus()
 	else:
 		itemDetailsPanel.visible = false
 		itemUsePanel.visible = false

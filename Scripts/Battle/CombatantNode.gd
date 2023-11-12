@@ -71,6 +71,9 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 
+func focus_select_btn():
+	selectCombatantBtn.grab_focus()
+
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
 	

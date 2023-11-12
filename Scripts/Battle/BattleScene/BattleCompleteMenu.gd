@@ -13,6 +13,7 @@ var rewards: Array[Reward] = []
 @onready var battleRewardsLabel: RichTextLabel = get_node("BattleRewardsLabel")
 @onready var battleLoseLabel: RichTextLabel = get_node("BattleLoseLabel")
 @onready var battleEscapeLabel: RichTextLabel = get_node("BattleEscapeLabel")
+@onready var okBtn: Button = get_node("OkButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +36,7 @@ func load_battle_over_menu():
 			instantiatedPanel.reward = reward
 			rewardsVBox.add_child(instantiatedPanel)
 			instantiatedPanel.load_reward_panel(itemDetailsPanel)
+	okBtn.grab_focus()
 
 func _on_ok_button_pressed():
 	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)

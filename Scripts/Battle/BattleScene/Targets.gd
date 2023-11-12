@@ -35,8 +35,12 @@ func load_targets():
 		combatantNode.update_select_btn(false)
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
+	var setFocus: bool = false
 	for targetableCombatant in targetableCombatants:
 		targetableCombatant.update_select_btn(true, not singleSelect)
+		if not setFocus:
+			targetableCombatant.focus_select_btn()
+		setFocus = true
 	
 	update_targets_listing()
 	update_confirm_btn()

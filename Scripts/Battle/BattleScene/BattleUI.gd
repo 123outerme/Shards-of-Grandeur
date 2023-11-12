@@ -33,6 +33,9 @@ func set_menu_state(newState: BattleState.Menu, savePrevState: bool = true):
 
 func apply_menu_state():
 	summonMenu.visible = menuState == BattleState.Menu.SUMMON
+	if summonMenu.visible:
+		summonMenu.initial_focus()
+	
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
 		battlePanels.flowOfBattle.set_fob_button_enabled() # show the FoB button again
@@ -58,6 +61,7 @@ func apply_menu_state():
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
 			or menuState == BattleState.Menu.POST_ROUND
 	if results.visible:
+		results.initial_focus()
 		battleController.reset_intermediate_state_strs()
 		battleController.turnExecutor.update_turn_text()
 		return # returns specifically here because of skipping post-round text

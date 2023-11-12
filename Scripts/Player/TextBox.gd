@@ -35,7 +35,9 @@ func _process(delta):
 func set_textbox_text(text: String, speaker: String):
 	advance_textbox(TextUtils.substitute_playername(text))
 	SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
+	delete_choices()
 	visible = true
+	ReadySprite.visible = false
 	SpeakerText.visible_characters = 0
 	speaker_visible_chars_partial = 0
 	
@@ -86,6 +88,13 @@ func delete_choices():
 		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
 		button.visible = false
 
+func refocus_choice(choice: DialogueChoice = null):
+	for idx in range(5):
+		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+		if button != null and button.visible and (choice == null or choice.choiceBtn == button.text):
+			button.grab_focus()
+			return
+
 func _select_choice(idx: int):
 	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
 	PlayerFinder.player.select_choice(dialogueItem.choices[idx])
@@ -99,6 +108,3 @@ func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
 	add_choices()
-
-func _on_choice_button_pressed():
-	print('PRESSED')

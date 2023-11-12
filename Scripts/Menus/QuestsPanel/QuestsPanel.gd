@@ -25,6 +25,7 @@ var actNames: Array[String] = [
 @onready var readyToTurnInButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton")
 @onready var completedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/CompletedButton")
 @onready var notCompletedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/NotCompletedButton")
+@onready var scrollContainer: ScrollContainer = get_node("QuestsPanel/Panel/ScrollContainer")
 @onready var vboxViewport: VBoxContainer = get_node("QuestsPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var backButton: Button = get_node("QuestsPanel/Panel/BackButton")
 @onready var questDetailsPanel: QuestDetailsPanel = get_node("QuestDetailsPanel")
@@ -38,6 +39,7 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_quests_panel()
+		scrollContainer.grab_focus()
 	else:
 		questDetailsPanel.hide_panel()
 		
