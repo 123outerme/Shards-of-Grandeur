@@ -304,11 +304,12 @@ func _on_quests_panel_node_back_pressed():
 		var stepName = pickedChoice.turnsInQuest.split('#')[1]
 		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
 		if questTracker != null:
-			if questTracker.get_step_status(questTracker.get_step_by_name(stepName)) == QuestTracker.Status.COMPLETED:
+			var step: QuestStep = questTracker.get_step_by_name(stepName)
+			var status: QuestTracker.Status = questTracker.get_step_status(step)
+			if status == QuestTracker.Status.COMPLETED:
 				if pickedChoice.leadsTo != null:
 					talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
 				advance_dialogue()
-		pickedChoice = null
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON

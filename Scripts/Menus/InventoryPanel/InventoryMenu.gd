@@ -48,7 +48,7 @@ func toggle():
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()
-		initial_focus.call_deferred()
+		initial_focus()
 	else:
 		itemDetailsPanel.visible = false
 		itemUsePanel.visible = false
@@ -149,14 +149,18 @@ func load_inventory_panel():
 func buy_item(slot: InventorySlot):
 	PlayerResources.inventory.add_item(slot.item)
 	PlayerResources.playerInfo.gold -= slot.item.cost
-	shopInventory.trash_item(slot)
+	var last = shopInventory.trash_item(slot)
 	load_inventory_panel()
+	if last:
+		initial_focus()
 	
 func sell_item(slot: InventorySlot):
-	PlayerResources.inventory.trash_item(slot)
+	var last = PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
 	shopInventory.add_item(slot.item)
 	load_inventory_panel()
+	if last:
+		initial_focus()
 
 func view_item_details(slot: InventorySlot):
 	backButton.disabled = true

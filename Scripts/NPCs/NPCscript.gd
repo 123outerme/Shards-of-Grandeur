@@ -83,6 +83,7 @@ func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueLine < 0:
 		player.set_talk_npc(self)
 		talkAlertSprite.visible = true
+		data.dialogueLine = -1
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
@@ -103,7 +104,7 @@ func get_cur_dialogue_item():
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines[data.dialogueLine]
 
 func advance_dialogue():
-	if len(data.dialogueItems) == 0: # if empty, try computing the dialogue
+	if len(data.dialogueItems) == 0 or data.dialogueLine == -1: # if empty, try computing the dialogue
 		reset_dialogue()
 	
 	data.dialogueLine += 1
@@ -139,6 +140,7 @@ func reset_dialogue():
 	data.dialogueItemIdx = 0
 	data.dialogueLine = -1
 	data.dialogueItems = []
+	fetch_quest_dialogue_info()
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
@@ -154,6 +156,7 @@ func reset_dialogue():
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
 	turningInSteps = []
+	PlayerResources.questInventory.update_collect_quests()
 	for entry in data.dialogueItems:
 		if entry.startsQuest != null and PlayerResources.questInventory.can_start_quest(entry.startsQuest):
 			acceptableQuests.append(entry.startsQuest)

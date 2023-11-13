@@ -17,6 +17,7 @@ class_name InventorySlotPanel
 @onready var itemType: RichTextLabel = get_node("CenterItemType/ItemType")
 @onready var itemCount: RichTextLabel = get_node("CenterItemCount/ItemCount")
 @onready var equippedTo: RichTextLabel = get_node("CenterEqiuppedTo/EquippedTo")
+@onready var centerItemCost: VBoxContainer = get_node("CenterItemCost")
 @onready var itemCost: RichTextLabel = get_node("CenterItemCost/ItemCost")
 @onready var useButton: Button = get_node("CenterButtons/HBoxContainer/UseButton")
 @onready var equipButton: Button = get_node("CenterButtons/HBoxContainer/EquipButton")
@@ -45,7 +46,12 @@ func load_inventory_slot_panel():
 			itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
 	else:
 		itemCount.text = ''
-	itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
+	
+	if inventorySlot.item.cost >= 0:
+		itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
+		centerItemCost.visible = true
+	else:
+		centerItemCost.visible = false
 	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
 	var battleUseDisabled: bool = (inventorySlot.item.itemType == Item.Type.SHARD and not summoning) or displayCount <= 0
@@ -72,7 +78,7 @@ func load_inventory_slot_panel():
 	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold
 	
 	sellButton.visible = isShopItem and isPlayerItem
-	sellButton.disabled = isEquipped or not canOtherPartyHold
+	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
 	
 func _on_use_button_pressed():
 	if not inBattle: # if not in battle use it immediately

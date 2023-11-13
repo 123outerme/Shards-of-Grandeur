@@ -117,7 +117,7 @@ func turn_in_step() -> bool:
 	if get_current_status() == Status.READY_TO_TURN_IN_STEP:
 		currentStep += 1
 		stepProgressCounts.append(0)
-		# TODO: update progress automatically for collect-quest steps, etc.
+		PlayerResources.questInventory.update_collect_quests()
 	return currentStep >= len(quest.steps)
 
 func set_current_step_progress(count: int = 0):

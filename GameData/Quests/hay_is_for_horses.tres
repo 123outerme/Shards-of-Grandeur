@@ -1,19 +1,26 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://dakn7l24oxwu2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://dakn7l24oxwu2"]
 
 [ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_ooolb"]
 [ext_resource type="Resource" uid="uid://dnp7vctcv3hxv" path="res://GameData/dialogue/horsecart/horsecart_3.tres" id="2_2e7ve"]
 [ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_iv6q3"]
+[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="3_kpw43"]
 [ext_resource type="Resource" uid="uid://dlkhn1y7yjjbx" path="res://GameData/dialogue/horsecart/horsecart_quest_turnin.tres" id="4_3icqe"]
+
+[sub_resource type="Resource" id="Resource_mco60"]
+script = ExtResource("3_kpw43")
+experience = 25
+gold = 0
 
 [sub_resource type="Resource" id="Resource_hu7f8"]
 script = ExtResource("2_iv6q3")
 name = "Hay There"
-description = "Talk to the horse."
-type = 0
+description = "Get some hay for this hungry-looking horse."
+reward = SubResource("Resource_mco60")
+type = 1
 count = 1
-objectiveName = "horse_cart_allytown"
+objectiveName = "Haybale"
 turnInName = "horse_cart_allytown"
-displayObjName = "Horse"
+displayObjName = "Haybale"
 displayTurnInName = "Horse"
 turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("4_3icqe")])
 inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("2_2e7ve")])
@@ -25,4 +32,4 @@ description = "This horse wants some hay."
 steps = Array[ExtResource("2_iv6q3")]([SubResource("Resource_hu7f8")])
 prerequisiteQuestNames = Array[String]([])
 availableAtAct = 0
-unavailableAfterAct = 5
+unavailableAfterAct = 2

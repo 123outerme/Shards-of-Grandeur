@@ -9,6 +9,7 @@ class_name ItemDetailsPanel
 @onready var itemType: RichTextLabel = get_node("Panel/ItemType")
 @onready var itemEffect: RichTextLabel = get_node("Panel/ItemEffect")
 @onready var itemDescription: RichTextLabel = get_node("Panel/ItemDescription")
+@onready var itemCostGroup: Control = get_node("Panel/ItemCostGroup")
 @onready var itemCost: RichTextLabel = get_node("Panel/ItemCostGroup/ItemCost")
 @onready var itemCount: RichTextLabel = get_node("Panel/ItemCount")
 @onready var backButton: Button = get_node("Panel/BackButton")
@@ -26,7 +27,13 @@ func load_item_details():
 	itemType.text = '[center]' + Item.TypeToString(item.itemType) + '[/center]'
 	itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
 	itemDescription.text = item.itemDescription
-	itemCost.text = String.num(item.cost)
+	
+	if item.cost >= 0:
+		itemCost.text = String.num(item.cost)
+		itemCostGroup.visible = true
+	else:
+		itemCostGroup.visible = false
+	
 	if count > 0:
 		itemCount.visible = true
 		itemCount.text = 'x' + String.num(count) + ' / ' + String.num(item.maxCount)

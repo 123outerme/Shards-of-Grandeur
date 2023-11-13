@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=32 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_elkrg"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_y2vlw"]
@@ -13,6 +13,10 @@
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/potion.tres" id="9_nw668"]
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="10_6rcuc"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="11_07u46"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="14_b2kwg"]
+[ext_resource type="Resource" uid="uid://wjv7ut6a0hx1" path="res://GameData/Items/key_items/haybale.tres" id="15_0lml1"]
+[ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="15_l5bmg"]
+[ext_resource type="Texture2D" uid="uid://e6b4xqqnncgm" path="res://Graphics/items/haybale.png" id="17_6hys7"]
 
 [sub_resource type="Resource" id="Resource_l8o5h"]
 script = ExtResource("4_j784j")
@@ -97,6 +101,14 @@ prerequisiteQuests = Array[String]([])
 prerequisiteCutscenes = Array[String]([])
 prerequisiteDialogues = Array[String]([])
 stopSayingAfterDialogues = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_a4d24"]
+script = ExtResource("15_l5bmg")
+uniqueId = "allytown_haybale"
+item = ExtResource("15_0lml1")
+pickUpTexts = Array[String](["I hope nobody wants this Haybale, because I'm taking it!"])
+savedTextIdx = 0
+wasPickedUp = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_elkrg")
@@ -225,6 +237,15 @@ visible = false
 [node name="MoveTriggerShape" parent="TileMap/DrHudson/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="Haybale" parent="TileMap" instance=ExtResource("14_b2kwg")]
+position = Vector2(-52, -179)
+pickedUpItem = SubResource("Resource_a4d24")
+disguiseSprite = ExtResource("17_6hys7")
+
+[node name="Sprite2D" parent="TileMap/Haybale" index="1"]
+texture = ExtResource("17_6hys7")
+
 [editable path="TileMap/Signpost"]
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]
+[editable path="TileMap/Haybale"]
