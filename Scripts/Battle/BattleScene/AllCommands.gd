@@ -6,7 +6,7 @@ var commandingCombatant: CombatantNode = null
 var commandingMinion: bool = false
 
 @onready var commandLabel: RichTextLabel = get_node("CommandLabel")
-@orneady var movesBtn: Button = get_node("MovesButton")
+@onready var movesBtn: Button = get_node("MovesButton")
 @onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
 @onready var escapeButton: Button = get_node("EscapeButton")
 

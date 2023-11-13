@@ -25,7 +25,6 @@ var actNames: Array[String] = [
 @onready var readyToTurnInButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton")
 @onready var completedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/CompletedButton")
 @onready var notCompletedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/NotCompletedButton")
-@onready var scrollContainer: ScrollContainer = get_node("QuestsPanel/Panel/ScrollContainer")
 @onready var vboxViewport: VBoxContainer = get_node("QuestsPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var backButton: Button = get_node("QuestsPanel/Panel/BackButton")
 @onready var questDetailsPanel: QuestDetailsPanel = get_node("QuestDetailsPanel")
@@ -39,11 +38,26 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_quests_panel()
-		scrollContainer.grab_focus()
+		initial_focus.call_deferred()
 	else:
 		questDetailsPanel.hide_panel()
+		back_pressed.emit()
+
+func initial_focus():
+	if not inProgressButton.disabled:
+		inProgressButton.grab_focus()
+		return
+	
+	if not readyToTurnInButton.disabled:
+		readyToTurnInButton.grab_focus()
+		return
 		
-		
+	if not completedButton.disabled:
+		completedButton.grab_focus()
+		return
+	
+	backButton.grab_focus()
+
 func load_quests_panel():
 	PlayerResources.questInventory.update_collect_quests() # update collect quests
 	update_filter_buttons()
@@ -56,9 +70,10 @@ func load_quests_panel():
 	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
 	
+	var setFocus: bool = false
 	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")
 	for questTracker in PlayerResources.questInventory.quests:
-		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == questTracker.get_current_status():
+		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == questTracker.get_current_status() or (selectedFilter == QuestTracker.Status.INCOMPLETE and questTracker.get_current_status() != QuestTracker.Status.COMPLETED):
 			var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
 			instantiatedPanel.questTracker = questTracker
 			instantiatedPanel.turnInName = turnInTargetName
@@ -131,7 +146,6 @@ func _on_not_completed_button_toggled(button_pressed):
 	
 func _on_back_button_pressed():
 	toggle()
-	back_pressed.emit()
 
 func _on_quest_details_back_button_pressed():
 	backButton.disabled = false

@@ -26,6 +26,7 @@ func _on_resume_button_pressed():
 	isPaused = false
 	visible = false
 	SceneLoader.unpause_autonomous_movers()
+	PlayerFinder.player.textBox.refocus_choice(PlayerFinder.player.pickedChoice)
 
 func _on_save_quit_button_pressed():
 	SaveHandler.save_data()

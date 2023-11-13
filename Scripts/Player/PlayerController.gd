@@ -36,6 +36,8 @@ func _unhandled_input(event):
 			cam.toggle_cutscene_paused_shade()
 		else:
 			pausePanel.toggle_pause()
+			if not pausePanel.isPaused:
+				textBox.refocus_choice(pickedChoice)
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
 		statsPanel.stats = PlayerResources.playerInfo.stats
@@ -43,12 +45,10 @@ func _unhandled_input(event):
 		statsPanel.toggle()
 		if statsPanel.visible:
 			SceneLoader.pause_autonomous_movers()
-		else:
-			SceneLoader.unpause_autonomous_movers()
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
 		if questsPanel.visible:
-			questsPanel.toggle
+			questsPanel.toggle()
 		#npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
@@ -65,9 +65,8 @@ func _unhandled_input(event):
 		inventoryPanel.toggle()
 		if inventoryPanel.visible:
 			SceneLoader.pause_autonomous_movers()
-		else:
-			SceneLoader.unpause_autonomous_movers()
-		statsPanel.visible = false
+		if statsPanel.visible:
+			statsPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle()
 		#npcTalkBtns.visible = (not inventoryPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
@@ -78,9 +77,8 @@ func _unhandled_input(event):
 		questsPanel.toggle()
 		if questsPanel.visible:
 			SceneLoader.pause_autonomous_movers()
-		else:
-			SceneLoader.unpause_autonomous_movers()
-		statsPanel.visible = false
+		if statsPanel.visible:
+			statsPanel.toggle()
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
 		#npcTalkBtns.visible = (not questsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
@@ -279,11 +277,14 @@ func _on_shop_button_pressed():
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.shopInventory = talkNPC.inventory
 	disableMovement = true
+	textBox.visible = false
+	get_viewport().gui_release_focus()
 	inventoryPanel.toggle()
 	#npcTalkBtns.visible = false
 
 func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = talkNPC.saveName
+	get_viewport().gui_release_focus()
 	questsPanel.toggle()
 	disableMovement = true
 	#npcTalkBtns.visible = false
@@ -291,14 +292,16 @@ func _on_turn_in_button_pressed():
 func _on_inventory_panel_node_back_pressed():
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+	textBox.visible = true
+	textBox.refocus_choice(pickedChoice)
 	if pickedChoice != null and pickedChoice.opensShop:
-		textBox.refocus_choice(pickedChoice)
 		pickedChoice = null
 
 func _on_quests_panel_node_back_pressed():
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
 	
+	textBox.refocus_choice(pickedChoice)
 	if pickedChoice != null and pickedChoice.turnsInQuest != '':
 		var questName = pickedChoice.turnsInQuest.split('#')[0]
 		var stepName = pickedChoice.turnsInQuest.split('#')[1]
@@ -308,7 +311,6 @@ func _on_quests_panel_node_back_pressed():
 				if pickedChoice.leadsTo != null:
 					talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
 				advance_dialogue()
-		textBox.refocus_choice(pickedChoice)
 		pickedChoice = null
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
@@ -332,6 +334,7 @@ func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
+	textBox.refocus_choice(pickedChoice)
 
 func _on_quests_panel_node_turn_in_step_to(saveName):
 	if saveName == talkNPC.saveName:

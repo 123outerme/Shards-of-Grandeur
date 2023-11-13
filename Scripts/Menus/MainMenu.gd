@@ -17,6 +17,7 @@ func _ready():
 	newGameConfirmPanel.visible = false
 	playerNamePanel.visible = false
 	resumeGameButton.visible = SaveHandler.save_file_exists()
+	set_initial_main_menu_focus()
 
 func set_initial_main_menu_focus():
 	if resumeGameButton.visible:

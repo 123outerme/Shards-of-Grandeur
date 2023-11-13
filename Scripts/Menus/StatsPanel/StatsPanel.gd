@@ -37,7 +37,9 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_stats_panel()
-		backButton.grab_focus()
+		backButton.call_deferred('grab_focus')
+	else:
+		back_pressed.emit()
 
 func load_stats_panel():
 	if stats == null:

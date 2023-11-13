@@ -20,7 +20,6 @@ var shopInventory: Inventory = null
 @export var showItemUsePanel: bool = false
 @export var equipContextStats: Stats = null
 
-@onready var scrollContainer: ScrollContainer = get_node("InventoryPanel/Panel/ScrollContainer")
 @onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
@@ -49,7 +48,7 @@ func toggle():
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()
-		scrollContainer.grab_focus()
+		initial_focus.call_deferred()
 	else:
 		itemDetailsPanel.visible = false
 		itemUsePanel.visible = false
@@ -61,6 +60,30 @@ func toggle():
 			lockFilters = false
 			selectedFilter = Item.Type.ALL
 		equipContextStats = null
+		back_pressed.emit()
+
+func initial_focus():
+	if not healingFilterBtn.disabled:
+		healingFilterBtn.grab_focus()
+		return
+		
+	if not shardFilterBtn.disabled:
+		shardFilterBtn.grab_focus()
+		return
+		
+	if not weaponFilterBtn.disabled:
+		weaponFilterBtn.grab_focus()
+		return
+		
+	if not armorFilterBtn.disabled:
+		armorFilterBtn.grab_focus()
+		return
+		
+	if not keyItemFilterBtn.disabled:
+		keyItemFilterBtn.grab_focus()
+		return
+	
+	backButton.grab_focus()
 
 func get_display_inventory():
 	currentInventory = PlayerResources.inventory
@@ -71,7 +94,6 @@ func get_display_inventory():
 			otherInventory = PlayerResources.inventory
 		else:
 			otherInventory = shopInventory
-		
 
 func load_inventory_panel():
 	get_display_inventory()
@@ -94,7 +116,8 @@ func load_inventory_panel():
 			inventoryTitle.text = '[center]Shop Inventory[/center]'
 		else:
 			inventoryTitle.text = '[center]Your Inventory[/center]'
-
+	
+	var setFocus: bool = false
 	var invSlotPanel = load("res://Prefabs/UI/Inventory/InventorySlotPanel.tscn")
 	for slot in currentInventory.get_sorted_slots():
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:

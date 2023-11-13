@@ -98,7 +98,6 @@ func refocus_choice(choice: DialogueChoice = null):
 func _select_choice(idx: int):
 	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
 	PlayerFinder.player.select_choice(dialogueItem.choices[idx])
-	delete_choices()
 
 func hide_textbox():
 	visible = false
