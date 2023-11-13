@@ -37,7 +37,7 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_stats_panel()
-		backButton.call_deferred('grab_focus')
+		backButton.grab_focus()
 	else:
 		back_pressed.emit()
 
@@ -121,7 +121,8 @@ func _on_move_list_panel_edit_moves():
 	backButton.disabled = true
 
 func _on_edit_moves_panel_back_pressed():
-	backButton.disabled = false
+	backButton.disabled = false	
+	backButton.grab_focus()
 
 func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 	if slot >= len(stats.moves):

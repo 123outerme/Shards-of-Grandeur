@@ -276,8 +276,6 @@ func _on_shop_button_pressed():
 	inventoryPanel.inShop = true
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.shopInventory = talkNPC.inventory
-	disableMovement = true
-	textBox.visible = false
 	get_viewport().gui_release_focus()
 	inventoryPanel.toggle()
 	#npcTalkBtns.visible = false
@@ -292,7 +290,6 @@ func _on_turn_in_button_pressed():
 func _on_inventory_panel_node_back_pressed():
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
-	textBox.visible = true
 	textBox.refocus_choice(pickedChoice)
 	if pickedChoice != null and pickedChoice.opensShop:
 		pickedChoice = null

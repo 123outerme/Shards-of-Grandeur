@@ -11,6 +11,7 @@ class_name ItemDetailsPanel
 @onready var itemDescription: RichTextLabel = get_node("Panel/ItemDescription")
 @onready var itemCost: RichTextLabel = get_node("Panel/ItemCostGroup/ItemCost")
 @onready var itemCount: RichTextLabel = get_node("Panel/ItemCount")
+@onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +32,7 @@ func load_item_details():
 		itemCount.text = 'x' + String.num(count) + ' / ' + String.num(item.maxCount)
 	else:
 		itemCount.visible = false
+	backButton.grab_focus()
 
 func _on_back_button_pressed():
 	visible = false

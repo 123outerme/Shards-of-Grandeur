@@ -38,7 +38,7 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_quests_panel()
-		initial_focus.call_deferred()
+		initial_focus()
 	else:
 		questDetailsPanel.hide_panel()
 		back_pressed.emit()
@@ -149,8 +149,10 @@ func _on_back_button_pressed():
 
 func _on_quest_details_back_button_pressed():
 	backButton.disabled = false
+	initial_focus()
 
 func _on_quest_reward_panel_ok_pressed():
 	backButton.disabled = false
+	initial_focus()
 	if rewardNewLvs > 0:
 		level_up.emit(rewardNewLvs)

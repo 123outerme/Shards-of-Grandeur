@@ -199,6 +199,7 @@ func _on_back_button_pressed():
 	
 func _on_details_back_button_pressed():
 	backButton.disabled = false
+	initial_focus()
 
 func _on_healing_button_toggled(button_pressed):
 	if lockFilters: # ignore toggle if filters are supposed to be locked
@@ -254,10 +255,12 @@ func _on_item_used(slot: InventorySlot):
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
+	initial_focus()
 
 func _on_shard_learn_panel_back_pressed():
 	backButton.disabled = false
 	load_inventory_panel()
+	initial_focus()
 
 func _on_shard_learn_panel_learned_move(move: Move):
 	itemUsePanel.target = PlayerResources.playerInfo.combatant
