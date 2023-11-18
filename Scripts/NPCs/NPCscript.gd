@@ -123,8 +123,10 @@ func advance_dialogue() -> bool:
 		if data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items): # if the last entry of this item
 			if saveName != '':
 				PlayerResources.playerInfo.set_dialogue_seen(saveName, data.dialogueItems[data.dialogueIndex].entryId)
+			var startingCutscene: bool = false
 			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
-				cutscenePlayer.play_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
+				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
+				startingCutscene = true
 			data.dialogueIndex += 1
 			data.dialogueItemIdx = 0
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
@@ -132,7 +134,8 @@ func advance_dialogue() -> bool:
 				fetch_quest_dialogue_info()
 				for q in acceptableQuests:
 					PlayerResources.questInventory.accept_quest(q)
-				play_animation('stand')
+				if not startingCutscene:
+					play_animation('stand')
 				data.dialogueIndex = 0
 				data.dialogueLine = -1
 				data.dialogueItems = []

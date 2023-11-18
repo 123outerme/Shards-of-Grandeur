@@ -121,11 +121,12 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, -9, 65539, 65537, 196599, 65539, 65537, -65545, 65539, 65537, 65576, 65539, 65537, 40, 65539, 65537, -65496, 65539, 65537, -131032, 65539, 65537, 131112, 65539, 65537)
 
-[node name="DrHudson" parent="TileMap" instance=ExtResource("2_kq4m3")]
+[node name="DrHudson" parent="TileMap" node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_kq4m3")]
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
 dialogueEntries = Array[ExtResource("4_igjr6")]([ExtResource("4_cycay"), ExtResource("5_yl54e")])
+cutscenePlayer = NodePath("../../CutscenePlayer")
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("3_cef0f")
@@ -200,7 +201,6 @@ setReward = SubResource("Resource_0dhv7")
 bossBattle = true
 specialBattleId = "first_rat"
 storyRequirements = SubResource("Resource_noxp6")
-combatantLevel = 1
 spawnRange = 0.0
 enemyPatrolRange = 8.0
 tilemap = NodePath("../TileMap")

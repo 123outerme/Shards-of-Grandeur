@@ -137,7 +137,7 @@ func advance_dialogue(canStart: bool = true):
 				face_horiz(talkNPC.position.x - position.x)
 			else: # this is continuing the NPC dialogue
 				textBox.advance_textbox(dialogueText)
-		else: # this is the end of NPC dialogue
+		elif not inCutscene: # this is the end of NPC dialogue and it didn't start a cutscene
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
 			set_talk_btns_vis(true)
@@ -192,8 +192,9 @@ func position_talk_btns():
 func set_talk_npc(npc: NPCScript):
 	talkNPC = npc
 	if npc == null:
-		textBox.hide_textbox()
-		disableMovement = false
+		if not inCutscene:
+			textBox.hide_textbox()
+			disableMovement = false
 		set_talk_btns_vis(false)
 		#shopButton.visible = false
 		#turnInButton.visible = false

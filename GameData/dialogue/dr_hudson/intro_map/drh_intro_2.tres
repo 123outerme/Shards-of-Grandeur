@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://df15dkbrsvuev"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://df15dkbrsvuev"]
 
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="1_2b783"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="1_f1dys"]
 [ext_resource type="Script" path="res://Scripts/Quests/StoryRequirements.gd" id="2_eqoen"]
+[ext_resource type="Resource" uid="uid://kh7eona0y4n7" path="res://GameData/cutscenes/intro_scene/intro_exit_cutscene.tres" id="3_pniay"]
 
 [sub_resource type="Resource" id="Resource_15oxy"]
 script = ExtResource("1_2b783")
@@ -28,3 +29,4 @@ script = ExtResource("1_f1dys")
 entryId = "2"
 items = Array[ExtResource("1_2b783")]([SubResource("Resource_15oxy")])
 storyRequirements = SubResource("Resource_tuj1l")
+startsCutscene = ExtResource("3_pniay")
