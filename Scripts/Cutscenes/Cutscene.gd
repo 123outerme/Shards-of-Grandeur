@@ -3,6 +3,7 @@ class_name Cutscene
 
 @export var cutsceneFrames: Array[CutsceneFrame] = []
 @export var saveName: String = ''
+@export var storyRequirements: StoryRequirements = null
 var totalTime: float = 0
 
 func _init(i_frames: Array[CutsceneFrame] = [], i_saveName = ''):

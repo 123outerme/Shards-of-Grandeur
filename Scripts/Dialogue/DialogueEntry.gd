@@ -5,6 +5,7 @@ class_name DialogueEntry
 @export var items: Array[DialogueItem] = []
 @export var storyRequirements: StoryRequirements = null
 @export var startsQuest: Quest = null
+@export var startsCutscene: Cutscene = null
 
 func _init(
 	i_id = '',
@@ -22,6 +23,9 @@ func can_use_dialogue() -> bool:
 		return false
 	
 	if startsQuest != null and not PlayerResources.questInventory.can_start_quest(startsQuest):
+		return false
+		
+	if startsCutscene != null and startsCutscene.storyRequirements != null and not startsCutscene.storyRequirements.is_valid():
 		return false
 	
 	return true

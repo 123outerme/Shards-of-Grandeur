@@ -36,7 +36,7 @@ func _unhandled_input(event):
 			cam.toggle_cutscene_paused_shade()
 		else:
 			pausePanel.toggle_pause()
-			if not pausePanel.isPaused:
+			if not pausePanel.isPaused and textBox.visible:
 				textBox.refocus_choice(pickedChoice)
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
@@ -123,7 +123,10 @@ func advance_dialogue(canStart: bool = true):
 		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
 			return
-		talkNPC.advance_dialogue()
+		var hasDialogue: bool = talkNPC.advance_dialogue()
+		if not hasDialogue:
+			return
+		
 		var dialogueText = talkNPC.get_cur_dialogue_item()
 		if dialogueText != null: # if there is NPC dialogue to display
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
@@ -294,26 +297,28 @@ func _on_turn_in_button_pressed():
 func _on_inventory_panel_node_back_pressed():
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
-	textBox.refocus_choice(pickedChoice)
-	if pickedChoice != null and pickedChoice.opensShop:
-		pickedChoice = null
+	if textBox.visible:
+		textBox.refocus_choice(pickedChoice)
+		if pickedChoice != null and pickedChoice.opensShop:
+			pickedChoice = null
 
 func _on_quests_panel_node_back_pressed():
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
 	
-	textBox.refocus_choice(pickedChoice)
-	if pickedChoice != null and pickedChoice.turnsInQuest != '':
-		var questName = pickedChoice.turnsInQuest.split('#')[0]
-		var stepName = pickedChoice.turnsInQuest.split('#')[1]
-		var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
-		if questTracker != null:
-			var step: QuestStep = questTracker.get_step_by_name(stepName)
-			var status: QuestTracker.Status = questTracker.get_step_status(step)
-			if status == QuestTracker.Status.COMPLETED:
-				if pickedChoice.leadsTo != null:
-					talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
-				advance_dialogue()
+	if textBox.visible:
+		textBox.refocus_choice(pickedChoice)
+		if pickedChoice != null and pickedChoice.turnsInQuest != '':
+			var questName = pickedChoice.turnsInQuest.split('#')[0]
+			var stepName = pickedChoice.turnsInQuest.split('#')[1]
+			var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
+			if questTracker != null:
+				var step: QuestStep = questTracker.get_step_by_name(stepName)
+				var status: QuestTracker.Status = questTracker.get_step_status(step)
+				if status == QuestTracker.Status.COMPLETED:
+					if pickedChoice.leadsTo != null:
+						talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
+					advance_dialogue()
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON
@@ -336,7 +341,8 @@ func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
 	#npcTalkBtns.visible = PlayerResources.playerInfo.talkBtnsVisible
 	SceneLoader.unpause_autonomous_movers()
-	textBox.refocus_choice(pickedChoice)
+	if textBox.visible:
+		textBox.refocus_choice(pickedChoice)
 
 func _on_quests_panel_node_turn_in_step_to(saveName):
 	if saveName == talkNPC.saveName:

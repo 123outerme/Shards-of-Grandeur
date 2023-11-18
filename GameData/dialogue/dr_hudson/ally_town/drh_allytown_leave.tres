@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://c8h7anlgpk7t3"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="1_0iil4"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="1_l758e"]
+
+[sub_resource type="Resource" id="Resource_e8twb"]
+script = ExtResource("1_0iil4")
+lines = Array[String](["Then I shall make preparations for immediate departure. Go ahead and scout out the path ahead, Lightning and I will meet you on the way."])
+animation = "talk"
+choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+
+[resource]
+script = ExtResource("1_l758e")
+entryId = "leave_standstill"
+items = Array[ExtResource("1_0iil4")]([SubResource("Resource_e8twb")])

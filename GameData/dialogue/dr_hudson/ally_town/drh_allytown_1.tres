@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bh7405n87iojt"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueChoice.gd" id="1_0gotc"]
+[ext_resource type="Resource" uid="uid://c8h7anlgpk7t3" path="res://GameData/dialogue/dr_hudson/ally_town/drh_allytown_leave.tres" id="2_ilxw6"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="2_kod0c"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="3_4prmp"]
+
+[sub_resource type="Resource" id="Resource_qwuh8"]
+script = ExtResource("1_0gotc")
+choiceBtn = "Not Ready"
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_3msle"]
+script = ExtResource("1_0gotc")
+choiceBtn = "Ready to Go!"
+leadsTo = ExtResource("2_ilxw6")
+buttonDims = Vector2(220, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_wxumd"]
+script = ExtResource("2_kod0c")
+lines = Array[String](["Ask around, you might find an armorer in these parts! The people of Standstill are very hospitable. Capital City said they were happy to host us on our quest.", "Let me know when you are fully prepared, and we will depart for the Cave at once."])
+animation = "talk"
+choices = Array[ExtResource("1_0gotc")]([SubResource("Resource_qwuh8"), SubResource("Resource_3msle")])
+
+[resource]
+script = ExtResource("3_4prmp")
+entryId = "3"
+items = Array[ExtResource("2_kod0c")]([SubResource("Resource_wxumd")])

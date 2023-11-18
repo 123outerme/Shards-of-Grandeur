@@ -8,6 +8,7 @@ var mapNavReady: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	NavigationServer2D.map_changed.connect(_nav_map_changed)
 	SceneLoader.mapLoader = self
 	SaveHandler.load_data()
 	load_map(PlayerResources.playerInfo.map)
@@ -71,4 +72,6 @@ func _fade_in_complete():
 	
 func _map_loaded():
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
+	
+func _nav_map_changed(arg):
 	mapNavReady = true

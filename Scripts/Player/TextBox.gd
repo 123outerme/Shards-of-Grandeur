@@ -52,7 +52,7 @@ func is_textbox_complete() -> bool:
 	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
 
 func add_choices():
-	if dialogueItem == null or PlayerFinder.player.makingChoice:
+	if dialogueItem == null or PlayerFinder.player.makingChoice or TextBoxText.text != dialogueItem.lines[len(dialogueItem.lines) - 1]:
 		return
 	
 	delete_choices()

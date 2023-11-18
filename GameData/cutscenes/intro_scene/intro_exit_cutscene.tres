@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://kh7eona0y4n7"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://kh7eona0y4n7"]
 
 [ext_resource type="Script" path="res://Scripts/Cutscenes/Tweens/TweenVector2.gd" id="1_eu3xk"]
 [ext_resource type="Script" path="res://Scripts/Cutscenes/ActorSpriteAnim.gd" id="1_lebiy"]
 [ext_resource type="Script" path="res://Scripts/Cutscenes/Cutscene.gd" id="1_lfsmn"]
 [ext_resource type="Script" path="res://Scripts/Cutscenes/CutsceneFrame.gd" id="2_3g2mg"]
+[ext_resource type="Script" path="res://Scripts/Quests/StoryRequirements.gd" id="5_ob8jw"]
 
 [sub_resource type="Resource" id="Resource_g5yml"]
 script = ExtResource("1_lebiy")
@@ -154,7 +155,21 @@ endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = true
 
+[sub_resource type="Resource" id="Resource_lruf7"]
+script = ExtResource("5_ob8jw")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String](["first_rat"])
+invalidAfterQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
 [resource]
 script = ExtResource("1_lfsmn")
 cutsceneFrames = Array[ExtResource("2_3g2mg")]([SubResource("Resource_rodg8"), SubResource("Resource_2v5ee"), SubResource("Resource_fqrxa"), SubResource("Resource_1u1dh"), SubResource("Resource_b7md5")])
 saveName = "intro_exit"
+storyRequirements = SubResource("Resource_lruf7")

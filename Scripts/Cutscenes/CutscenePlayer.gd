@@ -63,7 +63,7 @@ func _process(delta):
 			tweens.append(tween)
 
 func start_cutscene(newCutscene: Cutscene):
-	if playing:
+	if playing or (cutscene.storyRequirements != null and not cutscene.storyRequirements.is_valid()):
 		return
 	cutscene = newCutscene
 	timer = 0

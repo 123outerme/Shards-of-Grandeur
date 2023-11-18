@@ -14,6 +14,7 @@ class_name NPCScript
 @export_category("NPC Dialogue")
 @export var dialogueEntries: Array[DialogueEntry] = []
 @export var facesPlayer: bool = true
+@export var cutscenePlayer: CutscenePlayer
 
 @export_category("NPC Shop")
 @export var hasShop: bool = false
@@ -85,7 +86,9 @@ func _on_move_trigger_area_entered(area):
 func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueLine < 0:
 		player.set_talk_npc(self)
-		talkAlertSprite.visible = true
+		reset_dialogue()
+		if len(data.dialogueItems) > 0:
+			talkAlertSprite.visible = true
 		data.dialogueLine = -1
 
 func _on_talk_area_area_exited(area):
@@ -106,9 +109,12 @@ func get_cur_dialogue_item():
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines[data.dialogueLine]
 
-func advance_dialogue():
+func advance_dialogue() -> bool:
 	if len(data.dialogueItems) == 0 or data.dialogueLine == -1: # if empty, try computing the dialogue
 		reset_dialogue()
+	
+	if len(data.dialogueItems) == 0:
+		return false
 	
 	data.dialogueLine += 1
 	if data.dialogueLine >= len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines): # if the last line of this dialogue item
@@ -117,6 +123,8 @@ func advance_dialogue():
 		if data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items): # if the last entry of this item
 			if saveName != '':
 				PlayerResources.playerInfo.set_dialogue_seen(saveName, data.dialogueItems[data.dialogueIndex].entryId)
+			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
+				cutscenePlayer.play_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 			data.dialogueIndex += 1
 			data.dialogueItemIdx = 0
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
@@ -136,7 +144,7 @@ func advance_dialogue():
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 		face_player()
 		talkAlertSprite.visible = false
-
+	return true
 
 func reset_dialogue():
 	data.dialogueIndex = 0

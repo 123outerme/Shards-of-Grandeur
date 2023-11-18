@@ -54,3 +54,6 @@ func _on_target_reached():
 
 func _on_navigation_finished():
 	update_target_pos()
+
+func _nav_map_changed():
+	print('map changed')
