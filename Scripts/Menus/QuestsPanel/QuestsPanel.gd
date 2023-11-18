@@ -70,7 +70,6 @@ func load_quests_panel():
 	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
 	
-	var setFocus: bool = false
 	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")
 	for questTracker in PlayerResources.questInventory.quests:
 		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == questTracker.get_current_status() or (selectedFilter == QuestTracker.Status.INCOMPLETE and questTracker.get_current_status() != QuestTracker.Status.COMPLETED):

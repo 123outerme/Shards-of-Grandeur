@@ -86,6 +86,8 @@ func apply_menu_state():
 							)
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards
+			if PlayerResources.playerInfo.specialBattleId != '':
+				PlayerResources.playerInfo.set_special_battle_completed(PlayerResources.playerInfo.specialBattleId)
 		battleComplete.load_battle_over_menu()
 	
 	if menuState == BattleState.Menu.LEVEL_UP:

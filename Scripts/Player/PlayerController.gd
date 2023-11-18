@@ -243,7 +243,11 @@ func pick_up(groundItem: GroundItem):
 	if pickedUpItem.wasPickedUp:
 		PlayerResources.playerInfo.pickedUpItems.append(pickedUpItem.uniqueId)
 		groundItem.queue_free()
+		if PlayerResources.questInventory.can_start_quest(groundItem.startsQuest):
+			PlayerResources.questInventory.accept_quest(groundItem.startsQuest)
+	
 	pickedUpItem.savedTextIdx = 0
+	play_animation('stand')
 	put_pick_up_text()
 
 func put_pick_up_text():

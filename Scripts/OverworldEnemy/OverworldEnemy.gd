@@ -90,6 +90,7 @@ func _on_encounter_collider_area_entered(area):
 		PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
 		PlayerResources.playerInfo.encounteredReward = enemyData.setReward
 		PlayerResources.playerInfo.encounteredBoss = enemyData.bossBattle
+		PlayerResources.playerInfo.specialBattleId = enemyData.specialBattleId
 		spawner.spawnerData.spawnedLastEncounter = true
 		encounteredPlayer = true
 		SaveHandler.save_data()

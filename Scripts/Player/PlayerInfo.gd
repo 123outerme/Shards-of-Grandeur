@@ -24,6 +24,8 @@ class_name PlayerInfo
 @export var encounteredLevel: int = 1
 @export var encounteredReward: Reward = null
 @export var encounteredBoss: bool = false
+@export var specialBattleId: String
+@export var completedSpecialBattles: Array[String] = []
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
@@ -54,6 +56,8 @@ func _init(
 	i_encounteredLevel = 1,
 	i_encounteredReward = null,
 	i_encounteredBoss = false,
+	i_specialBattleId = '',
+	i_completedSpecialBattles: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
@@ -77,6 +81,8 @@ func _init(
 	encounteredLevel = i_encounteredLevel
 	encounteredReward = i_encounteredReward
 	encounteredBoss = i_encounteredBoss
+	specialBattleId = i_specialBattleId
+	completedSpecialBattles = i_completedSpecialBattles
 	pickedUpItems = i_pickedUpItems
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed
@@ -93,17 +99,24 @@ func set_cutscene_seen(saveName: String):
 	if not has_seen_cutscene(saveName):
 		cutscenesPlayed.append(saveName)
 
+func has_seen_dialogue(npcSaveName: String, dialogueId: String) -> bool:
+	if dialoguesSeen.has(npcSaveName):
+		return dialogueId in dialoguesSeen[npcSaveName]
+	
+	return false
+
 func set_dialogue_seen(npcSaveName: String, dialogueId: String):
 	if dialoguesSeen.has(npcSaveName) and not (dialogueId in dialoguesSeen[npcSaveName]):
 		dialoguesSeen[npcSaveName].append(dialogueId)
 	else:
 		dialoguesSeen[npcSaveName] = [dialogueId]
 	
-func has_seen_dialogue(npcSaveName: String, dialogueId: String) -> bool:
-	if dialoguesSeen.has(npcSaveName):
-		return dialogueId in dialoguesSeen[npcSaveName]
-	
-	return false
+func has_completed_special_battle(battleId: String) -> bool:
+	return battleId in completedSpecialBattles
+
+func set_special_battle_completed(battleId: String):
+	if not has_completed_special_battle(battleId):
+		completedSpecialBattles.append(battleId)
 
 func load_data(save_path):
 	var data = null

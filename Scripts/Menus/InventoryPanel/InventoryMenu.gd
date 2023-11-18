@@ -117,7 +117,6 @@ func load_inventory_panel():
 		else:
 			inventoryTitle.text = '[center]Your Inventory[/center]'
 	
-	var setFocus: bool = false
 	var invSlotPanel = load("res://Prefabs/UI/Inventory/InventorySlotPanel.tscn")
 	for slot in currentInventory.get_sorted_slots():
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:

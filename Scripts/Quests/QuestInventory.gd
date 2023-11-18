@@ -37,7 +37,9 @@ func get_cur_trackers_for_target(targetName: String) -> Array[QuestTracker]:
 	return trackers
 
 func can_start_quest(q: Quest) -> bool:
-	return has_completed_prereqs(q.prerequisiteQuestNames) and act_is_within_quest_range(q) and get_quest_tracker_by_quest(q) == null
+	if q == null:
+		return false
+	return q.storyRequirements.is_valid() and get_quest_tracker_by_quest(q) == null
 
 func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 	var hasCompleted: bool = true
@@ -56,11 +58,22 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 		hasCompleted = hasCompleted and completedPrereq
 	return hasCompleted
 
-func act_is_within_quest_range(q: Quest) -> bool:
-	return currentAct >= q.availableAtAct and currentAct <= q.unavailableAfterAct
+func has_completed_one_quest_of(questNames: Array[String]) -> bool:
+	for name in questNames:
+		if not '#' in name:
+			var tracker: QuestTracker = get_quest_tracker_by_name(name)
+			if tracker != null and tracker.get_current_status() == QuestTracker.Status.COMPLETED:
+				return true
+		else:
+			var questName: String = name.split('#')[0]
+			var stepName: String = name.split('#')[1]
+			var tracker: QuestTracker = get_quest_tracker_by_name(questName)
+			if tracker != null and tracker.get_step_progress_by_name(stepName) == QuestTracker.Status.COMPLETED:
+				return true
+	return false
 
 func accept_quest(q: Quest):
-	if get_quest_tracker_by_quest(q) != null:
+	if q == null or get_quest_tracker_by_quest(q) != null or not can_start_quest(q):
 		return
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)

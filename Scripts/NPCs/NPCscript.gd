@@ -1,11 +1,12 @@
 extends CharacterBody2D
 class_name NPCScript
 
-@export_category("NPC Names")
+@export_category("NPC General Data")
 @export var displayName: String
 @export var saveName: String
 @export var facesRight: bool = true
 @export var spriteSize: Vector2i = Vector2i(16, 16)
+@export var spawnRequirements: StoryRequirements = null
 
 @export_category("NPC Persistent Data")
 @export var data: NPCData
@@ -35,6 +36,8 @@ func _ready():
 	data.position = position
 	data.inventory = inventory
 	call_deferred("fetch_player")
+	if spawnRequirements != null and not spawnRequirements.is_valid():
+		queue_free() # or alternatively set visible to false?
 
 func fetch_player():
 	player = PlayerFinder.player
@@ -145,7 +148,7 @@ func reset_dialogue():
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
 			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
-					and questTracker.get_prev_step().turnInName == saveName and PlayerResources.questInventory.act_is_within_quest_range(questTracker.quest):
+					and questTracker.get_prev_step().turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
 				data.dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		data.dialogueItems.append_array(s.turnInDialogue)
@@ -164,7 +167,7 @@ func fetch_quest_dialogue_info():
 	for questTracker in PlayerResources.questInventory.quests:
 		var curStep: QuestStep = questTracker.get_current_step()
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and curStep.turnInName == saveName and PlayerResources.questInventory.act_is_within_quest_range(questTracker.quest):
+				and curStep.turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
 			turningInSteps.append(curStep)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):

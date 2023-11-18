@@ -7,6 +7,7 @@ class_name OverworldEnemyData
 @export var disableMovement: bool = false
 @export var combatantLevel: int = 1
 @export var bossBattle: bool = false
+@export var specialBattleId: String = ''
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
 # so all that needs to be used for save/load functionality is the save_path coming through
@@ -18,6 +19,7 @@ func _init(
 	i_disableMove = false,
 	i_combatantLv = 1,
 	i_boss = false,
+	i_specialBattleId = '',
 ):
 	combatant = i_combatant
 	setReward = i_reward
@@ -25,3 +27,4 @@ func _init(
 	disableMovement = i_disableMove
 	combatantLevel = i_combatantLv
 	bossBattle = i_boss
+	specialBattleId = i_specialBattleId

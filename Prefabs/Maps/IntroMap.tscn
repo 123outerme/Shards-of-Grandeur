@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=37 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="1_gvgvl"]
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://Prefabs/Entities/NPC.tscn" id="2_kq4m3"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="3_cef0f"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="4_3blma"]
+[ext_resource type="Resource" uid="uid://c2evqklw38yrd" path="res://GameData/dialogue/dr_hudson/intro_map/drh_intro_1.tres" id="4_cycay"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://Graphics/animations/a_horse_cart.tres" id="4_haxgc"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="4_igjr6"]
+[ext_resource type="Resource" uid="uid://df15dkbrsvuev" path="res://GameData/dialogue/dr_hudson/intro_map/drh_intro_2.tres" id="5_yl54e"]
 [ext_resource type="Resource" uid="uid://cy6c7301nx7fg" path="res://GameData/cutscenes/intro_scene/intro_cutscene.tres" id="6_ko5mb"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://Prefabs/Entities/EnemySpawner.tscn" id="7_8f7k4"]
 [ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="8_5uxvf"]
@@ -18,25 +20,9 @@
 [ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="13_w31gp"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="15_xc56y"]
 [ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="16_3uh5k"]
+[ext_resource type="Script" path="res://Scripts/Quests/StoryRequirements.gd" id="16_gxpwa"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://GameData/Items/Weapon/standard_issue_sword.tres" id="16_mxmsh"]
 [ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://Prefabs/Overworld/CutscenePlayer.tscn" id="18_dpgom"]
-
-[sub_resource type="Resource" id="Resource_he5cd"]
-script = ExtResource("4_3blma")
-lines = Array[String](["Once you've taken care of that Rat, we need to hurry down the road here and get to the next town."])
-animation = "talk"
-choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
-
-[sub_resource type="Resource" id="Resource_4di2h"]
-script = ExtResource("4_igjr6")
-entryId = "1"
-items = Array[ExtResource("4_3blma")]([SubResource("Resource_he5cd")])
-saysStartingAtAct = 0
-stopsSayingAtAct = 1
-prerequisiteQuests = Array[String]([])
-prerequisiteCutscenes = Array[String]([])
-prerequisiteDialogues = Array[String]([])
-stopSayingAfterDialogues = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
@@ -51,12 +37,6 @@ choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
 script = ExtResource("4_igjr6")
 entryId = "1"
 items = Array[ExtResource("4_3blma")]([SubResource("Resource_cvvun")])
-saysStartingAtAct = 0
-stopsSayingAtAct = 5
-prerequisiteQuests = Array[String]([])
-prerequisiteCutscenes = Array[String]([])
-prerequisiteDialogues = Array[String]([])
-stopSayingAfterDialogues = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -81,6 +61,19 @@ script = ExtResource("13_w31gp")
 experience = 50
 gold = 12
 item = ExtResource("12_sqiql")
+
+[sub_resource type="Resource" id="Resource_noxp6"]
+script = ExtResource("16_gxpwa")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["first_rat"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8ye"]
 size = Vector2(128, 64)
@@ -132,7 +125,7 @@ layer_3/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-dialogueEntries = Array[ExtResource("4_igjr6")]([SubResource("Resource_4di2h")])
+dialogueEntries = Array[ExtResource("4_igjr6")]([ExtResource("4_cycay"), ExtResource("5_yl54e")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("3_cef0f")
@@ -163,6 +156,9 @@ facesPlayer = false
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
 sprite_frames = ExtResource("4_haxgc")
 animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TileMap/HorseCart/NPCSprite" index="0"]
+position = Vector2(28, -18)
 
 [node name="ColliderShape" parent="TileMap/HorseCart" index="1"]
 shape = SubResource("RectangleShape2D_erjr7")
@@ -202,7 +198,9 @@ spawnerData = SubResource("Resource_mb2oe")
 combatant = ExtResource("8_bgg5e")
 setReward = SubResource("Resource_0dhv7")
 bossBattle = true
-disappearAfterCutscene = "game_intro_cutscene"
+specialBattleId = "first_rat"
+storyRequirements = SubResource("Resource_noxp6")
+combatantLevel = 1
 spawnRange = 0.0
 enemyPatrolRange = 8.0
 tilemap = NodePath("../TileMap")
