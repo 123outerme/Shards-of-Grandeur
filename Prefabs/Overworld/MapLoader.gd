@@ -19,6 +19,7 @@ func _ready():
 
 func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
 	player.cam.fade_out(_fade_out_complete, 0.25)
+	player.disableMovement = true
 	await get_tree().create_timer(0.25).timeout
 	player.position = newMapPos
 	player.set_talk_npc(null)
@@ -68,7 +69,7 @@ func _fade_out_complete():
 	pass
 
 func _fade_in_complete():
-	pass
+	player.disableMovement = false
 	
 func _map_loaded():
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)

@@ -3,12 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_6tb5g"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_o3m6m"]
 [ext_resource type="Script" path="res://Scripts/Menus/RewardPanel.gd" id="2_fcpgo"]
+[ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://Graphics/items/gold_coin.png" id="3_k7xnt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ij35"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_njic6"]
-atlas = ExtResource("1_6tb5g")
-region = Rect2(96, 32, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ncw4"]
 atlas = ExtResource("1_6tb5g")
@@ -66,8 +63,8 @@ layout_mode = 2
 
 [node name="GoldSprite" type="Sprite2D" parent="GoldGroup/VBoxContainer/SpriteControl"]
 position = Vector2(16, 16)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_njic6")
+scale = Vector2(2, 2)
+texture = ExtResource("3_k7xnt")
 
 [node name="Gold" type="RichTextLabel" parent="GoldGroup"]
 clip_contents = false

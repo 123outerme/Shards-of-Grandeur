@@ -4,15 +4,12 @@
 [ext_resource type="Script" path="res://Scripts/Menus/InventoryPanel/InventorySlotPanel.gd" id="2_6x7us"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="2_sthgl"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_4ev4x"]
+[ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://Graphics/items/gold_coin.png" id="5_7w2qk"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="7_5a212"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8w3s"]
 atlas = ExtResource("2_sthgl")
 region = Rect2(96, 56, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k380f"]
-atlas = ExtResource("2_sthgl")
-region = Rect2(96, 32, 8, 8)
 
 [node name="InventorySlotPanel" type="Panel" groups=["InventorySlotPanel"]]
 custom_minimum_size = Vector2(1120, 76)
@@ -91,8 +88,8 @@ alignment = 1
 
 [node name="GoldSprite" type="Sprite2D" parent="CenterItemCost"]
 position = Vector2(-15, 38)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_k380f")
+scale = Vector2(2, 2)
+texture = ExtResource("5_7w2qk")
 
 [node name="ItemCost" type="RichTextLabel" parent="CenterItemCost"]
 clip_contents = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=34 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_elkrg"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_y2vlw"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="15_l5bmg"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://Graphics/animations/a_lance.tres" id="15_qub8j"]
 [ext_resource type="Texture2D" uid="uid://e6b4xqqnncgm" path="res://Graphics/items/haybale.png" id="17_6hys7"]
+[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://Prefabs/Overworld/WarpZone.tscn" id="20_qgew4"]
 
 [sub_resource type="Resource" id="Resource_l8o5h"]
 script = ExtResource("4_j784j")
@@ -88,6 +89,9 @@ item = ExtResource("15_0lml1")
 pickUpTexts = Array[String](["I hope nobody wants this Haybale, because I'm taking it!"])
 savedTextIdx = 0
 wasPickedUp = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kc6hv"]
+size = Vector2(9, 3)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_elkrg")
@@ -249,8 +253,18 @@ disguiseSprite = ExtResource("17_6hys7")
 [node name="Sprite2D" parent="TileMap/Haybale" index="1"]
 texture = ExtResource("17_6hys7")
 
+[node name="WarpZone" parent="." instance=ExtResource("20_qgew4")]
+position = Vector2(-40, 48)
+mapName = "standstill_general_store"
+mapPos = Vector2(-8, 4)
+
+[node name="WarpArea" parent="WarpZone" index="0"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_kc6hv")
+
 [editable path="TileMap/Signpost"]
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/Lance"]
 [editable path="TileMap/Haybale"]
+[editable path="WarpZone"]

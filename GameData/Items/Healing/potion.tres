@@ -1,17 +1,13 @@
-[gd_resource type="Resource" script_class="Healing" load_steps=4 format=3 uid="uid://qq710006qo2e"]
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://qq710006qo2e"]
 
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://Graphics/SOUVUTU0.png" id="1_4qo0v"]
+[ext_resource type="Texture2D" uid="uid://dfma1f23ys3c5" path="res://Graphics/items/potion.png" id="1_6kwdr"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Items/Healing.gd" id="1_arnjx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3utg1"]
-atlas = ExtResource("1_4qo0v")
-region = Rect2(96, 24, 8, 8)
 
 [resource]
 script = ExtResource("1_arnjx")
 healBy = 50
 statusStrengthHeal = 0
-itemSprite = SubResource("AtlasTexture_3utg1")
+itemSprite = ExtResource("1_6kwdr")
 itemName = "Potion"
 itemType = 0
 itemDescription = "This is a simple potion, but that's all one needs to get through tough times. Drink it to restore 50 HP. They are commonly found in stores across the land."
