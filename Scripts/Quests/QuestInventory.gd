@@ -58,17 +58,17 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 		hasCompleted = hasCompleted and completedPrereq
 	return hasCompleted
 
-func has_completed_one_quest_of(questNames: Array[String]) -> bool:
+func has_reached_status_for_one_quest_of(questNames: Array[String], status: QuestTracker.Status) -> bool:
 	for name in questNames:
 		if not '#' in name:
 			var tracker: QuestTracker = get_quest_tracker_by_name(name)
-			if tracker != null and tracker.get_current_status() == QuestTracker.Status.COMPLETED:
+			if tracker != null and tracker.get_current_status() == status:
 				return true
 		else:
 			var questName: String = name.split('#')[0]
 			var stepName: String = name.split('#')[1]
 			var tracker: QuestTracker = get_quest_tracker_by_name(questName)
-			if tracker != null and tracker.get_step_progress_by_name(stepName) == QuestTracker.Status.COMPLETED:
+			if tracker != null and tracker.get_step_progress_by_name(stepName) == status:
 				return true
 	return false
 
@@ -91,12 +91,12 @@ func update_collect_quests():
 
 func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
 	for tracker in get_cur_trackers_for_target(target):
-		if tracker.get_current_step().type == type:
+		if tracker.get_current_step().type == type and tracker.quest.storyRequirements.is_valid():
 			tracker.set_current_step_progress(progress)
 	
 func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 	for tracker in get_cur_trackers_for_target(target):
-			if tracker.get_current_step().type == type:
+			if tracker.get_current_step().type == type and tracker.quest.storyRequirements.is_valid():
 				tracker.add_current_step_progress(progress)
 
 func turn_in_cur_step(tracker: QuestTracker) -> int:

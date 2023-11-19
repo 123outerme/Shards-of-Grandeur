@@ -6,6 +6,7 @@ enum Status {
 	IN_PROGRESS = 1,
 	READY_TO_TURN_IN_STEP = 2,
 	COMPLETED = 3,
+	FAILED = 4,
 	INCOMPLETE = -1,
 	ALL = -2,
 }
@@ -21,7 +22,9 @@ static func StatusToString(s: Status) -> String:
 		Status.COMPLETED:
 			return 'Completed'
 		Status.INCOMPLETE:
-			return 'Not Completed'
+			return 'Incomplete'
+		Status.FAILED:
+			return 'Failed'
 		Status.ALL:
 			return 'All'
 	return 'Unknown'
@@ -80,6 +83,9 @@ func get_step_progress(step: QuestStep) -> int:
 
 func get_step_status(step: QuestStep) -> Status:
 	var idx = get_step_index(step)
+	if idx == currentStep and not quest.storyRequirements.is_valid():
+		return Status.FAILED
+	
 	if idx >= 0 and idx < len(stepProgressCounts):
 		var progress = get_step_progress(step)
 		if progress >= step.count:

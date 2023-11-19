@@ -87,6 +87,12 @@ layout_mode = 2
 toggle_mode = true
 text = "Not Completed"
 
+[node name="FailedButton" type="Button" parent="QuestsPanel/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Failed"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="QuestsPanel/Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -139,6 +145,7 @@ itemDetailsPanel = NodePath("../QuestDetailsPanel/ItemDetailsPanel")
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton" to="." method="_on_ready_to_turn_in_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/CompletedButton" to="." method="_on_completed_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/NotCompletedButton" to="." method="_on_not_completed_button_toggled"]
+[connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/FailedButton" to="." method="_on_failed_button_toggled"]
 [connection signal="pressed" from="QuestsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="QuestDetailsPanel/Panel/BackButton" to="." method="_on_quest_details_back_button_pressed"]
 [connection signal="ok_pressed" from="QuestRewardPanel" to="." method="_on_quest_reward_panel_ok_pressed"]

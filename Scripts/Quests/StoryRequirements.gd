@@ -12,7 +12,8 @@ class_name StoryRequirements
 @export var prereqSpecialBattles: Array[String] = []
 
 @export_category("Invalidations")
-@export var invalidAfterQuests: Array[String] = []
+@export var invalidAfterCompletingQuests: Array[String] = []
+@export var invalidAfterFailingQuests: Array[String] = []
 @export var invalidAfterCutscenes: Array[String] = []
 @export var invalidAfterDialogues: Array[String] = []
 @export var invalidAfterSpecialBattles: Array[String] = []
@@ -24,7 +25,8 @@ func _init(
 	i_prereqCutscenes: Array[String] = [],
 	i_prereqDialogues: Array[String] = [],
 	i_prereqBattles: Array[String] = [],
-	i_invalidQuests: Array[String] = [],
+	i_invalidCompletedQuests: Array[String] = [],
+	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
 	i_invalidDialogues: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
@@ -35,7 +37,8 @@ func _init(
 	prereqCutscenes = i_prereqCutscenes
 	prereqDialogues = i_prereqDialogues
 	i_prereqBattles = i_prereqBattles
-	invalidAfterQuests = i_invalidQuests
+	invalidAfterCompletingQuests = i_invalidCompletedQuests
+	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
 	invalidAfterDialogues = i_invalidDialogues
 	invalidAfterSpecialBattles = i_invalidBattles
@@ -61,7 +64,10 @@ func is_valid() -> bool:
 		if not PlayerResources.playerInfo.has_completed_special_battle(battle):
 			return false
 	
-	if PlayerResources.questInventory.has_completed_one_quest_of(invalidAfterQuests):
+	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):
+		return false
+		
+	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterFailingQuests, QuestTracker.Status.FAILED):
 		return false
 	
 	for cutscene in invalidAfterCutscenes:
