@@ -3,7 +3,7 @@ class_name FlowOfBattle
 
 @export var battleController: BattleController
 
-var battleStatsPanelScene = preload("res://Prefabs/Battle/BattleStatsPanel.tscn")
+var battleStatsPanelScene = preload("res://prefabs/battle/BattleStatsPanel.tscn")
 
 @onready var fobButton: Button = get_node("ToggleFobButton")
 @onready var fobTabs: TabContainer = get_node("TabContainer")

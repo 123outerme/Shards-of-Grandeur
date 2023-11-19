@@ -97,7 +97,7 @@ func load_quests_panel():
 		panel.queue_free()
 	
 	var firstPanel = true
-	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")
+	var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
 	for questTracker in PlayerResources.questInventory.quests:
 		var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
 		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == trackerStatus \

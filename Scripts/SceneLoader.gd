@@ -15,13 +15,13 @@ func load_game():
 		load_overworld()
 
 func load_battle():
-	call_deferred('load_scene', preload("res://GameScenes/Battle.tscn"))
+	call_deferred('load_scene', preload("res://gamescenes/battle.tscn"))
 
 func load_overworld():
-	call_deferred('load_scene', preload("res://GameScenes/Overworld.tscn"))
+	call_deferred('load_scene', preload("res://gamescenes/overworld.tscn"))
 	
 func load_main_menu():
-	call_deferred('load_scene', preload("res://GameScenes/MainMenu.tscn"))
+	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"))
 	
 func load_scene(scene):
 	var sceneInstance = scene.instantiate()

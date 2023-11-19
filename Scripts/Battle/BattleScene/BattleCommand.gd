@@ -86,7 +86,7 @@ static func is_command_enemy_targeting(t: Targets) -> bool:
 static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
 	return BattleCommand.new(
 		Type.MOVE,
-		load("res://GameData/Moves/guard.tres") as Move,
+		load("res://gamedata/moves/guard.tres") as Move,
 		null,
 		[combatantNode.battlePosition],
 		[1.0], # consistent effects

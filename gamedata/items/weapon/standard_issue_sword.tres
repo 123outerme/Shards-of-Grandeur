@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://esbe7p26orvx"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Weapon.gd" id="1_2iadh"]
+[ext_resource type="Texture2D" uid="uid://cmmmjjhb77ud5" path="res://graphics/items/generic_sword.png" id="1_6l7pu"]
+[ext_resource type="Script" path="res://Scripts/Battle/StatChanges.gd" id="3_pemgs"]
+
+[sub_resource type="Resource" id="Resource_akfqq"]
+script = ExtResource("3_pemgs")
+physAttackMultiplier = 1.1
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_2iadh")
+statChanges = SubResource("Resource_akfqq")
+timing = 0
+itemSprite = ExtResource("1_6l7pu")
+itemName = "Standard Issue Sword"
+itemType = 2
+itemDescription = "This sword is one of many, standard issue to all soldiers in the kingdom. The edge is not bad, and it could do some serious damage, but the swordsmith who made it certainly isn't proud of it."
+cost = 50
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 0

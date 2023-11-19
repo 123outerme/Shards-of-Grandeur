@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm4jsnjutjfu6"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/CombatantNode.gd" id="1_d8qkc"]
+[ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
+[ext_resource type="Texture2D" uid="uid://u5ng7o44k1ln" path="res://graphics/ui/ui_target_selected.png" id="3_ng771"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="3_o4uc1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr0ag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldn4c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.819608)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="CombatantNode" type="Node2D" node_paths=PackedStringArray("clickCombatantBtn", "selectCombatantBtn", "animatedSprite", "hpTag", "lvText", "hpText") groups=["CombatantNode"]]
+script = ExtResource("1_d8qkc")
+clickCombatantBtn = NodePath("ClickCombatantBtn")
+selectCombatantBtn = NodePath("SelectCombatantBtn")
+animatedSprite = NodePath("AnimatedSprite")
+hpTag = NodePath("HPTag")
+lvText = NodePath("HPTag/LvText")
+hpText = NodePath("HPTag/LvText/HPText")
+
+[node name="ClickCombatantBtn" type="TextureButton" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="SelectCombatantBtn" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(8, 8)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+texture_normal = ExtResource("2_7l61i")
+texture_pressed = ExtResource("3_ng771")
+stretch_mode = 5
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cr0ag")
+
+[node name="HPTag" type="Panel" parent="."]
+custom_minimum_size = Vector2(40, 0)
+offset_left = 6.0
+offset_top = -7.0
+offset_right = 69.0
+offset_bottom = 7.0
+theme = ExtResource("3_o4uc1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldn4c")
+
+[node name="LvText" type="RichTextLabel" parent="HPTag"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 78.0
+offset_bottom = 35.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/normal_font_size = 24
+text = "Lv 999"
+scroll_active = false
+
+[node name="HPText" type="RichTextLabel" parent="HPTag/LvText"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -20.0
+offset_right = 160.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "5,250 / 5,250"
+fit_content = true
+scroll_active = false
+
+[connection signal="pressed" from="ClickCombatantBtn" to="." method="_on_click_combatant_btn_pressed"]
+[connection signal="toggled" from="SelectCombatantBtn" to="." method="_on_select_combatant_btn_toggled"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_finished"]

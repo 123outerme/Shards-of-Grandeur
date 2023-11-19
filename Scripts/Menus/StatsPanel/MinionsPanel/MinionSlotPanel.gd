@@ -21,7 +21,7 @@ func load_minion_slot_panel():
 	
 	minionSprite.sprite_frames = combatant.spriteFrames
 	if combatant.spriteFrames == null:
-		minionSprite.sprite_frames = load('res://Graphics/animations/a_player.tres') # TEMP
+		minionSprite.sprite_frames = load('res://graphics/animations/a_player.tres') # TEMP
 	minionSprite.play('walk')
 	minionName.text = combatant.disp_name()
 	statsButton.disabled = readOnly

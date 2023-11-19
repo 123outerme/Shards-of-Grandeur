@@ -1,0 +1,234 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbg1t1b1aah7h"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_30p4j"]
+[ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="2_2u6vw"]
+[ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://graphics/items/rusty_armor.png" id="3_yjhtk"]
+[ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://graphics/items/book.png" id="4_8hvhc"]
+[ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_a7rkf"]
+[ext_resource type="Texture2D" uid="uid://68gav8dpyr0p" path="res://graphics/structures/house.png" id="6_rd1l1"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="7_3tnyx"]
+[ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://graphics/characters/player/player_walk.png" id="8_w3grk"]
+[ext_resource type="Texture2D" uid="uid://bamq0i0s6h4l5" path="res://graphics/ui/knight.png" id="9_iovbg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
+atlas = ExtResource("8_w3grk")
+region = Rect2(0, 0, 16, 16)
+
+[node name="MainMenu" type="Control" groups=["Scenes"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_30p4j")
+theme_type_variation = &"Standard"
+script = ExtResource("2_2u6vw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -74.0
+offset_right = 100.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="ResumeGameButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+keep_pressed_outside = true
+text = "Resume Game"
+icon = ExtResource("3_yjhtk")
+expand_icon = true
+
+[node name="NewGameButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+keep_pressed_outside = true
+text = "New Game"
+icon = ExtResource("4_8hvhc")
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+keep_pressed_outside = true
+text = "Settings"
+icon = ExtResource("5_a7rkf")
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+keep_pressed_outside = true
+text = "Quit Game"
+icon = ExtResource("6_rd1l1")
+expand_icon = true
+
+[node name="TitleText" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 250.0
+offset_right = 100.0
+offset_bottom = 300.0
+grow_horizontal = 2
+theme = ExtResource("7_3tnyx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Uvutu DX[/center]"
+fit_content = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="Panel"]
+position = Vector2(500, 275)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_nrgl8")
+
+[node name="GuardSprite" type="Sprite2D" parent="Panel"]
+position = Vector2(802, 245)
+scale = Vector2(4, 4)
+texture = ExtResource("9_iovbg")
+
+[node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -236.5
+offset_top = 127.0
+offset_right = 236.5
+offset_bottom = 177.0
+grow_horizontal = 2
+theme = ExtResource("7_3tnyx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Create A New Game?[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/NewGameConfirmPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.5
+offset_top = -20.0
+offset_right = 210.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Panel/NewGameConfirmPanel/HBoxContainer"]
+layout_mode = 2
+text = "Yes, New Game!"
+
+[node name="NoButton" type="Button" parent="Panel/NewGameConfirmPanel/HBoxContainer"]
+layout_mode = 2
+text = "No, Never Mind..."
+
+[node name="PlayerNamePanel" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/PlayerNamePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -236.5
+offset_top = 127.0
+offset_right = 236.5
+offset_bottom = 177.0
+grow_horizontal = 2
+theme = ExtResource("7_3tnyx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]What Is Your Name?[/center]"
+fit_content = true
+
+[node name="NameInput" type="LineEdit" parent="Panel/PlayerNamePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -55.0
+offset_right = 146.5
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combatant Name Here"
+placeholder_text = "Enter Your Name!"
+max_length = 20
+clear_button_enabled = true
+caret_blink = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PlayerNamePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -8.0
+offset_right = 152.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Panel/PlayerNamePanel/HBoxContainer"]
+layout_mode = 2
+text = "Confirm & Start!"
+
+[node name="CancelButton" type="Button" parent="Panel/PlayerNamePanel/HBoxContainer"]
+layout_mode = 2
+text = "Cancel! Go Back."
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="text_changed" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_changed"]
+[connection signal="text_submitted" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_submitted"]
+[connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

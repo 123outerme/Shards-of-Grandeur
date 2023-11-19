@@ -29,8 +29,8 @@ enum Category {
 @export var equippedArmor: Armor = null
 
 @export_category("Stats - Moves")
-@export var moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
-@export var movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move]
+@export var moves: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move]
+@export var movepool: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move]
 
 func _init(
 	i_displayName = 'Entity',
@@ -46,8 +46,8 @@ func _init(
 	i_statPts = 0,
 	i_weapon = null,
 	i_armor = null,
-	i_moves: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
-	i_movepool: Array[Move] = [load("res://GameData/Moves/slice.tres") as Move],
+	i_moves: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move],
+	i_movepool: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move],
 ):
 	displayName = i_displayName
 	saveName = i_saveName

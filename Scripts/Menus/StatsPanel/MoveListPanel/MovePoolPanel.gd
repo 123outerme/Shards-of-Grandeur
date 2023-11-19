@@ -24,7 +24,7 @@ func load_move_pool_panel():
 		panel.queue_free()
 	
 	firstMovePanel = null
-	var moveListItemPanel = preload("res://Prefabs/UI/Stats/MoveListItemPanel.tscn")
+	var moveListItemPanel = preload("res://prefabs/ui/stats/move_list_item_panel.tscn")
 	for move in movepool:
 		if move.requiredLv <= level and \
 				not (hideMovesInMoveList and (move in moves)):

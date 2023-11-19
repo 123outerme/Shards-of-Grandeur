@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://di4m6wwpbc3pl"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_0ajv5"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/NestedUI/InnerPanel.tres" id="2_i7w8p"]
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MoveListPanel/MoveListPanel.gd" id="3_ejc2m"]
+[ext_resource type="PackedScene" uid="uid://634c2d1oqhb3" path="res://prefabs/ui/stats/move_list_item_panel.tscn" id="4_g83xo"]
+[ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="5_jgexd"]
+
+[node name="MoveListPanel" type="Panel"]
+offset_right = 560.0
+offset_bottom = 404.0
+theme = ExtResource("1_0ajv5")
+theme_override_styles/panel = ExtResource("2_i7w8p")
+script = ExtResource("3_ejc2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveListItemPanel1" parent="VBoxContainer" instance=ExtResource("4_g83xo")]
+layout_mode = 2
+moveSlot = 0
+
+[node name="MoveListItemPanel2" parent="VBoxContainer" instance=ExtResource("4_g83xo")]
+layout_mode = 2
+moveSlot = 1
+
+[node name="MoveListItemPanel3" parent="VBoxContainer" instance=ExtResource("4_g83xo")]
+layout_mode = 2
+moveSlot = 2
+
+[node name="MoveListItemPanel4" parent="VBoxContainer" instance=ExtResource("4_g83xo")]
+layout_mode = 2
+moveSlot = 3
+
+[node name="EditMovesButton" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -49.0
+offset_right = 101.0
+offset_bottom = -10.0
+text = "Edit Moves"
+
+[node name="MoveDetailsPanel" parent="." instance=ExtResource("5_jgexd")]
+visible = false
+layout_mode = 1
+
+[connection signal="details_pressed" from="VBoxContainer/MoveListItemPanel1" to="." method="_on_move_list_item_details_pressed"]
+[connection signal="replace_pressed" from="VBoxContainer/MoveListItemPanel1" to="." method="_on_move_list_item_panel_replace_pressed"]
+[connection signal="details_pressed" from="VBoxContainer/MoveListItemPanel2" to="." method="_on_move_list_item_details_pressed"]
+[connection signal="replace_pressed" from="VBoxContainer/MoveListItemPanel2" to="." method="_on_move_list_item_panel_replace_pressed"]
+[connection signal="details_pressed" from="VBoxContainer/MoveListItemPanel3" to="." method="_on_move_list_item_details_pressed"]
+[connection signal="replace_pressed" from="VBoxContainer/MoveListItemPanel3" to="." method="_on_move_list_item_panel_replace_pressed"]
+[connection signal="details_pressed" from="VBoxContainer/MoveListItemPanel4" to="." method="_on_move_list_item_details_pressed"]
+[connection signal="replace_pressed" from="VBoxContainer/MoveListItemPanel4" to="." method="_on_move_list_item_panel_replace_pressed"]
+[connection signal="pressed" from="EditMovesButton" to="." method="_on_edit_moves_button_pressed"]
+[connection signal="back_pressed" from="MoveDetailsPanel" to="." method="_on_move_details_panel_back_pressed"]

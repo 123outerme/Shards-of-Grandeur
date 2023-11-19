@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=6 format=3 uid="uid://bpgc37i10vly7"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_ds8ta"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_rslue"]
+[ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="3_6aala"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="3_nhtum"]
+
+[sub_resource type="Resource" id="Resource_7v8dd"]
+script = ExtResource("3_6aala")
+displayName = "Player"
+saveName = "player"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+moves = Array[Object]([ExtResource("3_nhtum")])
+movepool = Array[Object]([ExtResource("3_nhtum")])
+
+[resource]
+script = ExtResource("1_ds8ta")
+spriteFrames = ExtResource("2_rslue")
+maxSize = Vector2(16, 16)
+nickname = ""
+stats = SubResource("Resource_7v8dd")
+currentHp = -1
+aiType = 0
+aiOverrideWeight = 0.0
+equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
+teamTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedString.gd")]([])
+dropTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedReward.gd")]([])
+innateStatCategories = Array[int]([])
+downed = false

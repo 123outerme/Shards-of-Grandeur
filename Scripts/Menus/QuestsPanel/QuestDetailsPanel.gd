@@ -50,7 +50,7 @@ func load_quest_details():
 	for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
 		panel.queue_free()
 	
-	var questStepPanel = load("res://Prefabs/UI/Quests/QuestStepPanel.tscn")
+	var questStepPanel = load("res://prefabs/ui/quests/quest_step_panel.tscn")
 	for step in questTracker.get_known_steps():
 		var instantiatedPanel: QuestStepPanel = questStepPanel.instantiate()
 		instantiatedPanel.step = step

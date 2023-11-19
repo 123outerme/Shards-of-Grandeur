@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1hm2qdbk2wrv"]
+
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_lrybw"]
+[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7egks"]
+
+[node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_lrybw")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_7egks")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = -20
+layer_1/name = "Midground"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = -10
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Foreground"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Navigation"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 0)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()

@@ -38,7 +38,7 @@ func load_minions_panel():
 		confirmName.disabled = true
 		cancelName.disabled = true
 	else:
-		var minionSlotPanel = load("res://Prefabs/UI/Stats/MinionSlotPanel.tscn")
+		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
 			instantiatedPanel.readOnly = readOnly

@@ -34,7 +34,7 @@ enum AiType {
 @export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://GameData/Combatants/" + saveName + ".tres").copy()
+	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant

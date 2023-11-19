@@ -1,0 +1,634 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl2b2giyrbc0i"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/StatLinePanel.gd" id="1_3asyh"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_o2kql"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://Themes/NestedUI/InnerPanel.tres" id="1_sfbvn"]
+[ext_resource type="Theme" uid="uid://bi35gj3oigaai" path="res://Themes/NestedUI/StatLinePanelTheme.tres" id="4_nb4ah"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="5_32krc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr2f1"]
+atlas = ExtResource("5_32krc")
+region = Rect2(96, 40, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4yfk"]
+atlas = ExtResource("5_32krc")
+region = Rect2(112, 48, 8, 8)
+
+[node name="StatLinePanel" type="Panel"]
+offset_right = 560.0
+offset_bottom = 404.0
+theme = ExtResource("1_o2kql")
+theme_override_styles/panel = ExtResource("1_sfbvn")
+script = ExtResource("1_3asyh")
+
+[node name="StatsVBox" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_nb4ah")
+alignment = 1
+
+[node name="LevelDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="LevelLabel" type="RichTextLabel" parent="StatsVBox/LevelDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Level:"
+fit_content = true
+
+[node name="Level" type="RichTextLabel" parent="StatsVBox/LevelDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "100"
+fit_content = true
+scroll_active = false
+
+[node name="HpDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="HpLabel" type="RichTextLabel" parent="StatsVBox/HpDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 40.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "HP:"
+fit_content = true
+
+[node name="Hp" type="RichTextLabel" parent="StatsVBox/HpDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "5,250 / 5,250"
+fit_content = true
+scroll_active = false
+
+[node name="ExpDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="ExpLabel" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 50.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Exp:"
+fit_content = true
+
+[node name="Exp" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "14,171 / 14,171"
+fit_content = true
+scroll_active = false
+
+[node name="PhysAtkDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="PhysAtkLabel" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Physical Attack:"
+fit_content = true
+
+[node name="PhysAtk" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "1,170"
+fit_content = true
+scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/PhysAtkDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/PhysAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
+icon = SubResource("AtlasTexture_qr2f1")
+expand_icon = true
+
+[node name="DecreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
+icon = SubResource("AtlasTexture_e4yfk")
+expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
+
+[node name="MagicAtkDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="MagicAtkLabel" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Magic Attack:"
+fit_content = true
+
+[node name="MagicAtk" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "1,170"
+fit_content = true
+scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/MagicAtkDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/MagicAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
+icon = SubResource("AtlasTexture_qr2f1")
+expand_icon = true
+
+[node name="DecreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
+icon = SubResource("AtlasTexture_e4yfk")
+expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
+
+[node name="AffinityDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="AffinityLabel" type="RichTextLabel" parent="StatsVBox/AffinityDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Affinity:"
+fit_content = true
+
+[node name="Affinity" type="RichTextLabel" parent="StatsVBox/AffinityDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "1,170"
+fit_content = true
+scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/AffinityDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/AffinityDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
+icon = SubResource("AtlasTexture_qr2f1")
+expand_icon = true
+
+[node name="DecreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
+icon = SubResource("AtlasTexture_e4yfk")
+expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/AffinityDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
+
+[node name="ResistanceDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="ResistanceLabel" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Resistance:"
+fit_content = true
+
+[node name="Resistance" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "1,170"
+fit_content = true
+scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/ResistanceDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/ResistanceDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
+icon = SubResource("AtlasTexture_qr2f1")
+expand_icon = true
+
+[node name="DecreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
+icon = SubResource("AtlasTexture_e4yfk")
+expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
+
+[node name="SpeedDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="SpeedLabel" type="RichTextLabel" parent="StatsVBox/SpeedDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Speed:"
+fit_content = true
+
+[node name="Speed" type="RichTextLabel" parent="StatsVBox/SpeedDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "1,170"
+fit_content = true
+scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/SpeedDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/SpeedDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/SaveChangesButton")
+icon = SubResource("AtlasTexture_qr2f1")
+expand_icon = true
+
+[node name="DecreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/CancelChangesButton")
+icon = SubResource("AtlasTexture_e4yfk")
+expand_icon = true
+
+[node name="StatModifier" type="RichTextLabel" parent="StatsVBox/SpeedDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999%[/right]"
+
+[node name="StatPtsDisplay" type="Control" parent="StatsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="StatPtsLabel" type="RichTextLabel" parent="StatsVBox/StatPtsDisplay"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 190.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "Stat Points:"
+fit_content = true
+
+[node name="StatPts" type="RichTextLabel" parent="StatsVBox/StatPtsDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -17.0
+offset_right = 552.0
+offset_bottom = 17.0
+grow_vertical = 2
+text = "560
+"
+fit_content = true
+scroll_active = false
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="StatsVBox/StatPtsDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="SaveChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+custom_minimum_size = Vector2(68, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../CancelChangesButton")
+theme = ExtResource("1_o2kql")
+text = "Save"
+expand_icon = true
+
+[node name="CancelChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SaveChangesButton")
+focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
+theme = ExtResource("1_o2kql")
+text = "Cancel"
+
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_physatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_physatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_magicatk_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_magicatk_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_affinity_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/AffinityDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_affinity_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_resistance_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_resistance_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_speed_inc_button_pressed"]
+[connection signal="pressed" from="StatsVBox/SpeedDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_speed_dec_button_pressed"]
+[connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/SaveChangesButton" to="." method="_on_save_changes_button_pressed"]
+[connection signal="pressed" from="StatsVBox/StatPtsDisplay/ButtonsHBox/CancelChangesButton" to="." method="_on_cancel_changes_button_pressed"]

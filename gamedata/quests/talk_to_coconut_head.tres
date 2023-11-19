@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://jwuut14phi64"]
+
+[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_iw6nk"]
+[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_u577o"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="3_04hlo"]
+[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="4_sisoo"]
+
+[sub_resource type="Resource" id="Resource_6pwfd"]
+script = ExtResource("2_u577o")
+name = "Talk to Him"
+description = "Coconut Head just needs someone to speak with, continuously, for just a little while."
+type = 0
+count = 3
+objectiveName = "coconuthead"
+turnInName = "coconuthead"
+displayObjName = "Coconut Head"
+displayTurnInName = "Coconut Head"
+turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_2hh88"]
+script = ExtResource("4_sisoo")
+experience = 10
+gold = 5
+item = ExtResource("3_04hlo")
+
+[sub_resource type="Resource" id="Resource_dgear"]
+script = ExtResource("2_u577o")
+name = "Rats..."
+description = "Coconut Head would like you to defeat a Rat for him. He was crazy once. They locked him in a room. A rubber room. A rubber room with rats. Rats? Rats make him crazy. Crazy?"
+reward = SubResource("Resource_2hh88")
+type = 2
+count = 1
+objectiveName = "rat"
+turnInName = "coconuthead"
+displayObjName = "Rat"
+displayTurnInName = "Coconut Head"
+turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+
+[resource]
+script = ExtResource("1_iw6nk")
+questName = "Talk to Coconut Head"
+description = "Coconut Head wants to speak with you. He has a quest that involves alleviating his boredom."
+steps = Array[ExtResource("2_u577o")]([SubResource("Resource_6pwfd"), SubResource("Resource_dgear")])
+prerequisiteQuestNames = Array[String]([])
+availableAtAct = 0
+unavailableAfterAct = 5

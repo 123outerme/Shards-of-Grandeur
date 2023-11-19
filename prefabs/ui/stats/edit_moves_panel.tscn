@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm57i83oiea42"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_8vdin"]
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/MoveListPanel/EditMovesPanel.gd" id="2_a3p3t"]
+[ext_resource type="PackedScene" uid="uid://caulhsqfxcmcu" path="res://prefabs/ui/stats/move_pool_panel.tscn" id="3_bwqof"]
+[ext_resource type="PackedScene" uid="uid://di4m6wwpbc3pl" path="res://prefabs/ui/stats/move_list_panel.tscn" id="4_wjqi0"]
+
+[node name="EditMovesPanel" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8vdin")
+script = ExtResource("2_a3p3t")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1200.0
+offset_bottom = 880.0
+
+[node name="MovePoolPanel" parent="Panel" instance=ExtResource("3_bwqof")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -442.0
+offset_right = 290.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+hideMovesInMoveList = true
+
+[node name="MoveListPanel" parent="Panel" instance=ExtResource("4_wjqi0")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 10.0
+offset_right = 280.0
+offset_bottom = 305.0
+grow_horizontal = 2
+readOnly = true
+
+[node name="EditMovesButton" parent="Panel/MoveListPanel" index="1"]
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MoveDetailsPanel" parent="Panel/MoveListPanel" index="2"]
+offset_left = -360.0
+offset_top = -90.0
+offset_right = -360.0
+offset_bottom = -90.0
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -489.0
+offset_right = 40.0
+offset_bottom = -447.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+text = "Back"
+
+[connection signal="cancel_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_cancel_button_clicked"]
+[connection signal="details_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_details_button_clicked"]
+[connection signal="select_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_select_button_clicked"]
+[connection signal="edit_moves_replace_clicked" from="Panel/MoveListPanel" to="." method="_on_move_list_panel_edit_moves_replace_clicked"]
+[connection signal="move_details_visiblity_changed" from="Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Panel/MoveListPanel"]

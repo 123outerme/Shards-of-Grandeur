@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dlkhn1y7yjjbx"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="1_c3247"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="1_s36nl"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueChoice.gd" id="1_uy1pi"]
+[ext_resource type="Script" path="res://Scripts/Quests/StoryRequirements.gd" id="4_gw28j"]
+
+[sub_resource type="Resource" id="Resource_1b6lh"]
+script = ExtResource("1_uy1pi")
+choiceBtn = "(Don't Give)"
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_cxc1e"]
+script = ExtResource("1_uy1pi")
+choiceBtn = "(Give)"
+buttonDims = Vector2(120, 40)
+turnsInQuest = "Hay is For Horses#Hay There"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_13chl"]
+script = ExtResource("1_s36nl")
+lines = Array[String](["Neigh.
+(Thanks! That will really hit the spot...)"])
+animation = "talk"
+choices = Array[ExtResource("1_uy1pi")]([SubResource("Resource_1b6lh"), SubResource("Resource_cxc1e")])
+
+[sub_resource type="Resource" id="Resource_5lmct"]
+script = ExtResource("4_gw28j")
+minAct = 0
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["horse_cart_allytown#1", "horse_cart_allytown#3"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_c3247")
+entryId = "5"
+items = Array[ExtResource("1_s36nl")]([SubResource("Resource_13chl")])
+storyRequirements = SubResource("Resource_5lmct")

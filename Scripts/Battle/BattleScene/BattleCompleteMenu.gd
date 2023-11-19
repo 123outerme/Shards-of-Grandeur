@@ -30,7 +30,7 @@ func load_battle_over_menu():
 		panel.queue_free() # destroy all previously loaded reward panels (if any)
 	
 	if playerWins:
-		var rewardPanel = load("res://Prefabs/UI/RewardPanel.tscn")
+		var rewardPanel = load("res://prefabs/ui/reward_panel.tscn")
 		for reward in rewards:
 			var instantiatedPanel: RewardPanel = rewardPanel.instantiate()
 			instantiatedPanel.reward = reward

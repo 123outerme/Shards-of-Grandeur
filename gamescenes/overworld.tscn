@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bouh62bdgnqo8"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="1_e16t6"]
+[ext_resource type="Script" path="res://prefabs/overworld/MapLoader.gd" id="2_nlq4p"]
+[ext_resource type="PackedScene" uid="uid://bg5qq63652kwu" path="res://prefabs/entities/Player.tscn" id="3_hp74o"]
+
+[node name="Overworld" type="Node2D" groups=["Scenes"]]
+
+[node name="NPCTalkButtons" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NPCTalkButtons"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -5.0
+offset_right = 238.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("1_e16t6")
+alignment = 1
+
+[node name="ShopButton" type="Button" parent="NPCTalkButtons/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Shop"
+
+[node name="TurnInButton" type="Button" parent="NPCTalkButtons/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Turn In"
+
+[node name="MapLoader" type="Node" parent="."]
+script = ExtResource("2_nlq4p")
+
+[node name="Player" parent="." instance=ExtResource("3_hp74o")]
+disable_mode = 2
+
+[connection signal="pressed" from="NPCTalkButtons/HBoxContainer/ShopButton" to="Player" method="_on_shop_button_pressed"]
+[connection signal="pressed" from="NPCTalkButtons/HBoxContainer/TurnInButton" to="Player" method="_on_turn_in_button_pressed"]

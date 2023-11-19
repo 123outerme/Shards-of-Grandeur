@@ -1,0 +1,156 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhtqpe8pcg80v"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/StatsPanel/StatsPanel.gd" id="1_gd13l"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_vg3x4"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_usdlr"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="4_0xt4u"]
+[ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://prefabs/ui/stats/StatLinePanel.tscn" id="5_lltfh"]
+[ext_resource type="PackedScene" uid="uid://di4m6wwpbc3pl" path="res://prefabs/ui/stats/MoveListPanel.tscn" id="6_w55pq"]
+[ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://prefabs/ui/stats/equipment_panel.tscn" id="7_dsgm0"]
+[ext_resource type="PackedScene" uid="uid://dqtu7xjqahxq" path="res://prefabs/ui/stats/MinionsPanel.tscn" id="8_3o74c"]
+[ext_resource type="PackedScene" uid="uid://cm57i83oiea42" path="res://prefabs/ui/stats/edit_moves_panel.tscn" id="9_ue80h"]
+
+[node name="StatsPanelNode" type="Node2D"]
+script = ExtResource("1_gd13l")
+
+[node name="StatsPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+theme = ExtResource("2_vg3x4")
+
+[node name="Panel" type="Panel" parent="StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel"]
+position = Vector2(64, 52)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_usdlr")
+animation = &"walk"
+
+[node name="StatsTitle" type="RichTextLabel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 12.0
+offset_right = 350.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme = ExtResource("4_0xt4u")
+bbcode_enabled = true
+text = "[center]Combatant Name Here - Stats[/center]"
+fit_content = true
+
+[node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 54.0
+offset_right = 75.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "[center]Level Up![/center]"
+
+[node name="StatLinePanel" parent="StatsPanel/Panel" instance=ExtResource("5_lltfh")]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 98.0
+offset_right = 600.0
+offset_bottom = 502.0
+
+[node name="MoveListPanel" parent="StatsPanel/Panel" instance=ExtResource("6_w55pq")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = 98.0
+offset_right = -40.0
+offset_bottom = 502.0
+grow_horizontal = 0
+
+[node name="MoveDetailsPanel" parent="StatsPanel/Panel/MoveListPanel" index="2"]
+offset_left = -680.0
+offset_top = -98.0
+offset_right = -680.0
+offset_bottom = -98.0
+
+[node name="EquipmentPanel" parent="StatsPanel/Panel" instance=ExtResource("7_dsgm0")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -431.0
+offset_right = 600.0
+offset_bottom = -76.0
+grow_vertical = 0
+
+[node name="ItemDetailsPanel" parent="StatsPanel/Panel/EquipmentPanel" index="2"]
+z_index = 1
+offset_left = -40.0
+offset_top = -529.0
+offset_right = -40.0
+offset_bottom = -529.0
+
+[node name="MinionsPanel" parent="StatsPanel/Panel" instance=ExtResource("8_3o74c")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -431.0
+offset_right = -40.0
+offset_bottom = -76.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -56.0
+offset_right = 25.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="EditMovesPanel" parent="StatsPanel/Panel" instance=ExtResource("9_ue80h")]
+visible = false
+layout_mode = 1
+
+[connection signal="edit_moves" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
+[connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="attempt_equip_armor" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
+[connection signal="attempt_equip_weapon" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
+[connection signal="stats_clicked" from="StatsPanel/Panel/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
+[connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]
+[connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]
+
+[editable path="StatsPanel/Panel/MoveListPanel"]
+[editable path="StatsPanel/Panel/EquipmentPanel"]
+[editable path="StatsPanel/Panel/EquipmentPanel/ItemDetailsPanel"]

@@ -14,7 +14,7 @@ class_name EnemySpawner
 @export var enemy: OverworldEnemy = null
 
 
-var overworldEnemyScene = preload("res://Prefabs/Entities/OverworldEnemy.tscn")
+var overworldEnemyScene = preload("res://prefabs/entities/OverworldEnemy.tscn")
 var enemiesDir: String = 'enemies/'
 
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")

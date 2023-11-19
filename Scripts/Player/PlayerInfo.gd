@@ -5,7 +5,7 @@ class_name PlayerInfo
 @export var position: Vector2 = Vector2(-50, 0)
 @export var flipH: bool = false
 @export var disableMovement: bool = false
-@export var map: String = "IntroMap"
+@export var map: String = "intro_map"
 @export var inUnderworld: bool
 @export var underworldMap: String
 @export var underworldDepth: int
@@ -13,8 +13,8 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var stats: Stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.copy()
-@export var combatant: Combatant = (load("res://GameData/Combatants/player.tres") as Combatant).copy()
+@export var stats: Stats = (load("res://gamedata/combatants/player.tres") as Combatant).stats.copy()
+@export var combatant: Combatant = (load("res://gamedata/combatants/player.tres") as Combatant).copy()
 @export var gold: int = 10
 
 @export_category("PlayerInfo: Battle")
@@ -39,7 +39,7 @@ class_name PlayerInfo
 var save_file = "playerinfo.tres"
 
 func _init(
-	i_map = "IntroMap",
+	i_map = "intro_map",
 	i_inUnderworld = false,
 	i_underworldMap = "",
 	i_underworldDepth = 0,
@@ -47,8 +47,8 @@ func _init(
 	i_savedPosition = Vector2(-50,0),
 	i_flipH = false,
 	i_scene = "Overworld",
-	i_stats = (load("res://GameData/Combatants/player.tres") as Combatant).stats.copy(),
-	i_combatant = (load("res://GameData/Combatants/player.tres") as Combatant).copy(),
+	i_stats = (load("res://gamedata/combatants/player.tres") as Combatant).stats.copy(),
+	i_combatant = (load("res://gamedata/combatants/player.tres") as Combatant).copy(),
 	i_gold = 10,
 	i_inBattle = false,
 	i_exitingBattle = false,
