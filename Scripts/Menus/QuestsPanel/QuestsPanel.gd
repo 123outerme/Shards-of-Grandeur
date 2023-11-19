@@ -18,6 +18,8 @@ var actNames: Array[String] = [
 	'act3placeholder', # act 3
 	'act4placeholder', # act 4
 ]
+var lastFocused: Control = null
+var lastInteractedTracker: QuestTracker = null
 
 @onready var questsTitle: RichTextLabel = get_node("QuestsPanel/Panel/QuestsTitle")
 @onready var actTitle: RichTextLabel = get_node("QuestsPanel/Panel/ActTitle")
@@ -57,6 +59,19 @@ func initial_focus():
 		return
 	
 	backButton.grab_focus()
+
+func restore_previous_focus(controlProperty: String):
+	get_last_focused_panel()
+	if lastFocused == null:
+		initial_focus()
+	else:
+		lastFocused[controlProperty].grab_focus()
+
+func get_last_focused_panel():
+	lastFocused = null
+	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
+		if panel.questTracker == lastInteractedTracker:
+			lastFocused = panel
 
 func load_quests_panel():
 	PlayerResources.questInventory.update_collect_quests() # update collect quests
@@ -105,6 +120,7 @@ func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	load_quests_panel()
 
 func turn_in(questTracker: QuestTracker):
+	lastInteractedTracker = questTracker
 	questRewardPanel.reward = questTracker.get_current_step().reward
 	questRewardPanel.load_quest_reward_panel()
 	backButton.disabled = true
@@ -113,6 +129,7 @@ func turn_in(questTracker: QuestTracker):
 	load_quests_panel()
 	
 func show_details(questTracker: QuestTracker):
+	lastInteractedTracker = questTracker
 	backButton.disabled = true
 	questDetailsPanel.questTracker = questTracker
 	questDetailsPanel.visible = true
@@ -148,10 +165,10 @@ func _on_back_button_pressed():
 
 func _on_quest_details_back_button_pressed():
 	backButton.disabled = false
-	initial_focus()
+	restore_previous_focus('detailsButton')
 
 func _on_quest_reward_panel_ok_pressed():
 	backButton.disabled = false
-	initial_focus()
+	restore_previous_focus('detailsButton')
 	if rewardNewLvs > 0:
 		level_up.emit(rewardNewLvs)

@@ -11,6 +11,7 @@ var combatant: Combatant = null
 @onready var shardSprite: Sprite2D = get_node("Panel/ShardSpriteControl/ShardSprite")
 @onready var learnPanelTitle: RichTextLabel = get_node("Panel/LearnPanelTitle")
 @onready var movePoolPanel: MovePoolPanel = get_node("Panel/MovePoolPanel")
+@onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,7 @@ func load_shard_learn_panel():
 		visible = false
 		return
 	
+	backButton.grab_focus()
 	combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
 	combatant.stats.level = PlayerResources.playerInfo.stats.level
 	shardSprite.texture = shard.itemSprite

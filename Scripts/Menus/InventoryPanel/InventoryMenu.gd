@@ -38,6 +38,9 @@ var shopInventory: Inventory = null
 var currentInventory: Inventory = null
 var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
 
+var lastFocused: Control = null
+var lastSlotInteracted: InventorySlot = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -84,6 +87,19 @@ func initial_focus():
 		return
 	
 	backButton.grab_focus()
+
+func restore_last_focus(controlProperty: String):
+	get_last_focused_slot_panel()
+	if lastFocused == null:
+		initial_focus()
+	else:
+		lastFocused[controlProperty].grab_focus()
+
+func get_last_focused_slot_panel():
+	lastFocused = null
+	for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
+		if panel.inventorySlot == lastSlotInteracted:
+			lastFocused = panel
 
 func get_display_inventory():
 	currentInventory = PlayerResources.inventory
@@ -146,22 +162,45 @@ func load_inventory_panel():
 			keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
 	
 func buy_item(slot: InventorySlot):
+	lastSlotInteracted = slot
 	PlayerResources.inventory.add_item(slot.item)
 	PlayerResources.playerInfo.gold -= slot.item.cost
 	var last = shopInventory.trash_item(slot)
 	load_inventory_panel()
 	if last:
 		initial_focus()
+	else:
+		restore_last_focus('buyButton')
 	
 func sell_item(slot: InventorySlot):
+	lastSlotInteracted = slot
 	var last = PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
 	shopInventory.add_item(slot.item)
 	load_inventory_panel()
 	if last:
 		initial_focus()
+	else:
+		restore_last_focus('sellButton')
+
+func equip_pressed(slot: InventorySlot):
+	lastSlotInteracted = slot
+	load_inventory_panel()
+	restore_last_focus('equipButton')
+
+func unequip_pressed(slot: InventorySlot):
+	lastSlotInteracted = slot
+	load_inventory_panel()
+	restore_last_focus('upequipButton')
+	
+func trash_pressed(slot: InventorySlot):
+	lastSlotInteracted = slot
+	load_inventory_panel()
+	restore_last_focus('trashButton')
 
 func view_item_details(slot: InventorySlot):
+	lastSlotInteracted = slot
+	
 	backButton.disabled = true
 	itemDetailsPanel.item = slot.item
 	itemDetailsPanel.count = slot.count
@@ -202,7 +241,7 @@ func _on_back_button_pressed():
 	
 func _on_details_back_button_pressed():
 	backButton.disabled = false
-	initial_focus()
+	restore_last_focus('detailsButton')
 
 func _on_healing_button_toggled(button_pressed):
 	if lockFilters: # ignore toggle if filters are supposed to be locked
@@ -245,6 +284,7 @@ func _on_key_items_button_toggled(button_pressed):
 		filter_by()
 
 func _on_item_used(slot: InventorySlot):
+	lastSlotInteracted = slot
 	if slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
 		itemUsePanel.item = slot.item
 		itemUsePanel.target = PlayerResources.playerInfo.combatant
@@ -258,12 +298,13 @@ func _on_item_used(slot: InventorySlot):
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
-	initial_focus()
+	load_inventory_panel()
+	restore_last_focus('useButton')
 
 func _on_shard_learn_panel_back_pressed():
 	backButton.disabled = false
 	load_inventory_panel()
-	initial_focus()
+	restore_last_focus('useButton')
 
 func _on_shard_learn_panel_learned_move(move: Move):
 	itemUsePanel.target = PlayerResources.playerInfo.combatant

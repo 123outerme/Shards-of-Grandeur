@@ -36,10 +36,23 @@ func load_move_list_item_panel():
 		roleText.text = Move.role_to_string(move.role)
 		damageType.text = Move.dmg_category_to_string(move.category)
 		detailsButton.visible = showDetailsButton
+		detailsButton.focus_neighbor_left = detailsButton.get_path_to(detailsButton)
+		
 		replaceButton.visible = editShowReplace
+		if replaceButton.visible:
+			detailsButton.focus_neighbor_left = detailsButton.get_path_to(replaceButton)
+		
 		selectButton.visible = movepoolSelect
+		if selectButton.visible:
+			detailsButton.focus_neighbor_left = detailsButton.get_path_to(selectButton)
+		
 		learnButton.visible = movepoolLearn
+		if learnButton.visible:
+			detailsButton.focus_neighbor_left = detailsButton.get_path_to(learnButton)
+		
 		cancelButton.visible = movepoolCancel
+		if cancelButton.visible:
+			detailsButton.focus_neighbor_left = detailsButton.get_path_to(cancelButton)
 	else:
 		moveName.text = '-----'
 		moveLevel.text = ''

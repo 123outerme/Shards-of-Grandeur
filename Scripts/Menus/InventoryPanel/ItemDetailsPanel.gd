@@ -1,5 +1,6 @@
 extends Control
 class_name ItemDetailsPanel
+signal back_pressed
 
 @export var item: Item
 @export var count: int = 0
@@ -43,3 +44,4 @@ func load_item_details():
 
 func _on_back_button_pressed():
 	visible = false
+	back_pressed.emit()

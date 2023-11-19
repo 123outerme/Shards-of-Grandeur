@@ -10,6 +10,7 @@ var questsMenu: QuestsMenu
 @onready var stepName: RichTextLabel = get_node("CenterQuestName/QuestStepName")
 @onready var progress: RichTextLabel = get_node("CenterProgress/QuestProgress")
 @onready var turnInButton: Button = get_node("CenterButtons/HBoxContainer/TurnInButton")
+@onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

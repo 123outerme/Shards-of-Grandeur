@@ -10,6 +10,7 @@ signal ok_pressed
 @onready var itemSprite: Sprite2D = get_node("Panel/ItemSpriteControl/ItemSprite")
 @onready var itemUsedTitle: RichTextLabel = get_node("Panel/ItemUsedTitle")
 @onready var itemUsedEffects: RichTextLabel = get_node("Panel/ItemUsedEffects")
+@onready var okButton: Button = get_node('Panel/OkButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,7 @@ func load_item_use_panel():
 			var combatant: Combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
 			itemUseText = 'You learned ' + learnedMove.moveName + ' from ' + combatant.disp_name() + ', absorbing its Shard in the process. ' + learnedMove.moveLearnedText
 		visible = true
+		okButton.grab_focus()
 	
 	if itemUseText == '':
 		visible = false

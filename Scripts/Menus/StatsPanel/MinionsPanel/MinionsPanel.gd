@@ -49,6 +49,12 @@ func load_minions_panel():
 	minionView.visible = minion != null
 	playerView.visible = minion == null
 
+func get_stats_button_for(combatant: Combatant) -> Button:
+	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):
+		if panel.combatant == combatant:
+			return panel.statsButton
+	return null
+
 func _on_stats_clicked(combatant: Combatant):
 	stats_clicked.emit(combatant)
 

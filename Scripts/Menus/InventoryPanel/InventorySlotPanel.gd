@@ -25,6 +25,7 @@ class_name InventorySlotPanel
 @onready var trashButton: Button = get_node("CenterButtons/HBoxContainer/TrashButton")
 @onready var buyButton: Button = get_node("CenterButtons/HBoxContainer/BuyButton")
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
+@onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -84,20 +85,19 @@ func _on_use_button_pressed():
 	if not inBattle: # if not in battle use it immediately
 		PlayerResources.inventory.use_item(inventorySlot.item, PlayerResources.playerInfo.combatant)
 	inventoryMenu.item_used.emit(inventorySlot)
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot might have been all used up
 
 func _on_equip_button_pressed():
 	PlayerResources.inventory.equip_item(inventorySlot, true, equipContextStats)
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - another item may have been unequipped
+	inventoryMenu.equip_pressed(inventorySlot) # rebuild the whole menu - another item may have been unequipped
 
 func _on_unequip_button_pressed():
 	PlayerResources.inventory.equip_item(inventorySlot, false, equipContextStats)
 	isEquipped = false
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item order may have changed
+	inventoryMenu.unequip_pressed(inventorySlot) # rebuild the whole menu - item order may have changed
 	
 func _on_trash_button_pressed():
 	PlayerResources.inventory.trash_item(inventorySlot)
-	inventoryMenu.load_inventory_panel() # rebuild the whole menu - item slot may be all gone
+	inventoryMenu.trash_pressed(inventorySlot) # rebuild the whole menu - item slot may be all gone
 
 func _on_buy_button_pressed():
 	inventoryMenu.buy_item(inventorySlot)

@@ -14,6 +14,7 @@ signal back_pressed
 @onready var moveStatChanges: RichTextLabel = get_node("Panel/MoveStatChanges")
 @onready var moveStatusEffect: RichTextLabel = get_node("Panel/MoveStatusEffect")
 @onready var moveDescription: RichTextLabel = get_node("Panel/MoveDescription")
+@onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,7 @@ func load_move_details_panel():
 	else:
 		moveStatusEffect.text = ''
 	moveDescription.text = move.description
+	backButton.grab_focus()
 	
 func _on_back_button_pressed():
 	visible = false

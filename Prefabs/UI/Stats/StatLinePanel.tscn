@@ -190,12 +190,16 @@ alignment = 1
 [node name="IncreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
 [node name="DecreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
@@ -270,12 +274,18 @@ alignment = 1
 [node name="IncreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
 [node name="DecreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
@@ -350,12 +360,18 @@ alignment = 1
 [node name="IncreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
 [node name="DecreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
@@ -430,12 +446,18 @@ alignment = 1
 [node name="IncreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
 [node name="DecreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
@@ -510,12 +532,18 @@ alignment = 1
 [node name="IncreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/SaveChangesButton")
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
 [node name="DecreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../IncreaseButton")
+focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
+focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/CancelChangesButton")
 icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
@@ -578,6 +606,8 @@ alignment = 1
 [node name="SaveChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
 custom_minimum_size = Vector2(68, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
+focus_neighbor_right = NodePath("../CancelChangesButton")
 theme = ExtResource("1_o2kql")
 text = "Save"
 expand_icon = true
@@ -585,6 +615,8 @@ expand_icon = true
 [node name="CancelChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
 custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../SaveChangesButton")
+focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
 theme = ExtResource("1_o2kql")
 text = "Cancel"
 

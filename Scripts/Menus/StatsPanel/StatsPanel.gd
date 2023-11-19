@@ -19,6 +19,9 @@ var savedLvUp: bool = false
 var savedIsPlayer: bool = false
 var changingCombatant: bool = false
 
+var previousControl: Control = null
+var previousMoveListSlot: int = -1
+
 @onready var animatedCombatantSprite: AnimatedSprite2D = get_node("StatsPanel/Panel/AnimatedCombatantSprite")
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
 @onready var levelUpLabel: RichTextLabel = get_node("StatsPanel/Panel/LevelUpLabel")
@@ -37,9 +40,22 @@ func toggle():
 	visible = not visible
 	if visible:
 		load_stats_panel()
-		backButton.grab_focus()
+		initial_focus()
 	else:
 		back_pressed.emit()
+
+func initial_focus():
+	backButton.grab_focus()
+
+func restore_previous_focus():
+	if previousControl == null:
+		if previousMoveListSlot == -1:
+			initial_focus()
+		else:
+			moveListPanel.get_move_list_item(previousMoveListSlot).detailsButton.grab_focus()
+			previousMoveListSlot = -1
+	else:
+		previousControl.grab_focus()
 
 func load_stats_panel():
 	if stats == null:
@@ -83,6 +99,7 @@ func restore_previous_stats_panel():
 	isMinionStats = false
 	changingCombatant = true
 	load_stats_panel()
+	restore_previous_focus()
 
 func reset_panel_to_player():
 	if isMinionStats:
@@ -95,10 +112,16 @@ func _on_back_button_pressed():
 	else:
 		restore_previous_stats_panel()
 
-func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool):
+func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool, move: Move):
 	backButton.disabled = newVisible
+	if newVisible:
+		previousMoveListSlot = moveListPanel.get_index_of_move(move)
+		previousControl = null
+	else:
+		restore_previous_focus()
 
 func _on_minions_panel_stats_clicked(combatant: Combatant):
+	previousControl = minionsPanel.get_stats_button_for(combatant)
 	savedStats = stats
 	savedCurHp = curHp
 	savedLvUp = levelUp
@@ -114,6 +137,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		load_stats_panel()
 
 func _on_move_list_panel_edit_moves():
+	previousControl = moveListPanel.editMovesButton
 	editMovesPanel.moves = stats.moves
 	editMovesPanel.movepool = stats.movepool
 	editMovesPanel.level = stats.level
@@ -121,8 +145,8 @@ func _on_move_list_panel_edit_moves():
 	backButton.disabled = true
 
 func _on_edit_moves_panel_back_pressed():
-	backButton.disabled = false	
-	backButton.grab_focus()
+	backButton.disabled = false
+	restore_previous_focus()
 
 func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 	if slot >= len(stats.moves):

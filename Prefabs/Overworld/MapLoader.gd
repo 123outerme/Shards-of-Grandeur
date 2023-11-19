@@ -74,5 +74,5 @@ func _fade_in_complete():
 func _map_loaded():
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
 	
-func _nav_map_changed(arg):
+func _nav_map_changed(_arg):
 	mapNavReady = true

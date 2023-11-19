@@ -1,5 +1,6 @@
 extends Control
 class_name QuestDetailsPanel
+signal panel_hidden
 
 @export var questTracker: QuestTracker = null
 var selectedStep: QuestStep = null
@@ -13,11 +14,23 @@ var selectedStep: QuestStep = null
 @onready var rewardPanel: RewardPanel = get_node("Panel/StepDetailPanel/RewardPanel")
 @onready var vboxViewport: VBoxContainer = get_node("Panel/ScrollContainer/VBoxContainer")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
+@onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_quest_details()
-	
+
+func initial_focus():
+	backButton.grab_focus()
+
+func restore_previous_focus():
+	if selectedStep == null:
+		initial_focus()
+	else:
+		for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
+			if panel.step == selectedStep:
+				panel.viewButton.grab_focus()
+
 func load_quest_details():
 	if questTracker == null:
 		return
@@ -44,10 +57,12 @@ func load_quest_details():
 		instantiatedPanel.questTracker = questTracker
 		instantiatedPanel.detailsPanel = self
 		vboxViewport.add_child(instantiatedPanel)
+	restore_previous_focus()
 
 func hide_panel():
 	itemDetailsPanel.visible = false
 	visible = false
+	panel_hidden.emit()
 
 func _on_back_button_pressed():
 	hide_panel()
@@ -55,3 +70,6 @@ func _on_back_button_pressed():
 func _on_item_sprite_button_pressed():
 	itemDetailsPanel.visible = true
 	itemDetailsPanel.load_item_details()
+
+func _on_item_details_panel_back_pressed():
+	rewardPanel.itemSpriteBtn.grab_focus()

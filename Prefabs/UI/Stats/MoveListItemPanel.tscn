@@ -65,6 +65,7 @@ offset_right = -4.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_right = NodePath(".")
 text = "Details"
 
 [node name="ReplaceButton" type="Button" parent="."]
@@ -81,6 +82,7 @@ offset_right = -100.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_left = NodePath(".")
 text = "Replace"
 
 [node name="SelectButton" type="Button" parent="."]
@@ -97,6 +99,7 @@ offset_right = -100.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_left = NodePath(".")
 text = "Select"
 
 [node name="LearnButton" type="Button" parent="."]
@@ -113,6 +116,7 @@ offset_right = -100.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_left = NodePath(".")
 text = "Learn"
 
 [node name="CancelButton" type="Button" parent="."]
@@ -129,6 +133,7 @@ offset_right = -100.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_left = NodePath(".")
 text = "Cancel"
 
 [connection signal="pressed" from="DetailsButton" to="." method="_on_details_button_pressed"]
