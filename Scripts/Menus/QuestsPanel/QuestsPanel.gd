@@ -78,13 +78,21 @@ func load_quests_panel():
 	update_filter_buttons()
 	# lock all filter buttons to be unlocked when creating quest slot panels
 	inProgressButton.disabled = true
+	inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
+	
 	readyToTurnInButton.disabled = true
+	readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(backButton)
+	
 	completedButton.disabled = true
+	completedButton.focus_neighbor_bottom = inProgressButton.get_path_to(completedButton)
+	
 	notCompletedButton.disabled = true
+	notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(backButton)
 	
 	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
 	
+	var firstPanel = true
 	var questSlotPanel = load("res://Prefabs/UI/Quests/QuestSlotPanel.tscn")
 	for questTracker in PlayerResources.questInventory.quests:
 		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == questTracker.get_current_status() or (selectedFilter == QuestTracker.Status.INCOMPLETE and questTracker.get_current_status() != QuestTracker.Status.COMPLETED):
@@ -93,6 +101,13 @@ func load_quests_panel():
 			instantiatedPanel.turnInName = turnInTargetName
 			instantiatedPanel.questsMenu = self
 			vboxViewport.add_child(instantiatedPanel)
+			if firstPanel:
+				inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(instantiatedPanel.detailsButton)
+				readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(instantiatedPanel.detailsButton)
+				completedButton.focus_neighbor_bottom = completedButton.get_path_to(instantiatedPanel.detailsButton)
+				notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(instantiatedPanel.detailsButton)
+				firstPanel = false
+			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
 		if questTracker.get_current_status() == QuestTracker.Status.IN_PROGRESS:
 			inProgressButton.disabled = lockFilters
 		if questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=29 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_elkrg"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://Graphics/Test16Tileset.tres" id="2_y2vlw"]
@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://Graphics/ui/talk_indicator_signpost.png" id="5_jnxxu"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://Graphics/animations/a_dr_hudson.tres" id="6_sh5p0"]
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://GameData/dialogue/horsecart/horsecart_1.tres" id="8_gptr3"]
-[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://GameData/Items/Healing/potion.tres" id="9_nw668"]
-[ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="10_6rcuc"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="11_07u46"]
 [ext_resource type="Resource" uid="uid://bh7405n87iojt" path="res://GameData/dialogue/dr_hudson/ally_town/drh_allytown_1.tres" id="13_yjpxi"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://Prefabs/Entities/GroundItem.tscn" id="14_b2kwg"]
 [ext_resource type="Resource" uid="uid://wjv7ut6a0hx1" path="res://GameData/Items/key_items/haybale.tres" id="15_0lml1"]
@@ -65,16 +62,6 @@ size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
-
-[sub_resource type="Resource" id="Resource_ah5bx"]
-script = ExtResource("10_6rcuc")
-item = ExtResource("9_nw668")
-count = 1
-
-[sub_resource type="Resource" id="Resource_bapfd"]
-script = ExtResource("11_07u46")
-inventorySlots = Array[ExtResource("10_6rcuc")]([SubResource("Resource_ah5bx")])
-isPlayerInventory = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47d3y"]
 size = Vector2(64, 14)
@@ -163,8 +150,6 @@ saveName = "horse_cart_allytown"
 spriteSize = Vector2i(64, 32)
 dialogueEntries = Array[ExtResource("4_wdhhi")]([ExtResource("8_gptr3")])
 facesPlayer = false
-hasShop = true
-inventory = SubResource("Resource_bapfd")
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
 position = Vector2(-23, 0)

@@ -4,6 +4,7 @@ class_name TextBox
 @export var buttonRow: HBoxContainer
 
 var dialogueItem: DialogueItem = null
+var lastChoiceFocused: Button = null
 
 var chars_per_sec: float = 40
 var text_visible_chars_partial: float = 0
@@ -17,7 +18,7 @@ var speaker_visible_chars_partial: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -89,15 +90,14 @@ func delete_choices():
 		button.visible = false
 
 func refocus_choice(choice: DialogueChoice = null):
-	for idx in range(5):
-		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
-		if button != null and button.visible and (choice == null or choice.choiceBtn == button.text):
-			button.grab_focus()
-			return
-
-func _select_choice(idx: int):
-	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
-	PlayerFinder.player.select_choice(dialogueItem.choices[idx])
+	if lastChoiceFocused:
+		lastChoiceFocused.grab_focus()
+	else:
+		for idx in range(5):
+			var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+			if button != null and button.visible and (choice == null or choice.choiceBtn == button.text):
+				button.grab_focus()
+				return
 
 func hide_textbox():
 	visible = false
@@ -107,3 +107,13 @@ func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
 	add_choices()
+
+func _viewport_focus_changed(control):
+	for idx in range(5):
+		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+		if button == control:
+			lastChoiceFocused = button
+	
+func _select_choice(idx: int):
+	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
+	PlayerFinder.player.select_choice(dialogueItem.choices[idx])

@@ -52,7 +52,9 @@ func _unhandled_input(event):
 		#npcTalkBtns.visible = (not statsPanel.visible) and PlayerResources.playerInfo.talkBtnsVisible
 
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) and not pausePanel.isPaused and not makingChoice:
+			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) \
+			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not makingChoice:
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:
