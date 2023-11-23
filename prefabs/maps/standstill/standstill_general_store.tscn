@@ -1,34 +1,34 @@
 [gd_scene load_steps=13 format=3 uid="uid://csr4scjhri6pk"]
 
-[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_j06pn"]
-[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_3aamj"]
-[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/NPC.tscn" id="3_n0hu1"]
-[ext_resource type="Resource" uid="uid://xad4e07xrc5c" path="res://gamedata/dialogue/standstill_shopkeep/shopkeep_1.tres" id="4_foa25"]
-[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="5_amuwx"]
-[ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="6_6xbsi"]
-[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="7_om2c6"]
-[ext_resource type="SpriteFrames" uid="uid://o2o4l8s3bgc5" path="res://graphics/animations/a_shopkeeper.tres" id="8_pw7pc"]
-[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/WarpZone.tscn" id="9_gshvh"]
+[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_jb4c2"]
+[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2fma6"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/NPC.tscn" id="3_5mnio"]
+[ext_resource type="Resource" uid="uid://xad4e07xrc5c" path="res://gamedata/dialogue/standstill_shopkeep/shopkeep_1.tres" id="4_2kxuu"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="5_1p2sq"]
+[ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="6_slqt0"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="7_qr60q"]
+[ext_resource type="SpriteFrames" uid="uid://o2o4l8s3bgc5" path="res://graphics/animations/a_shopkeeper.tres" id="8_yiv63"]
+[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/WarpZone.tscn" id="9_jik55"]
 
 [sub_resource type="Resource" id="Resource_4gxqb"]
-script = ExtResource("6_6xbsi")
-item = ExtResource("5_amuwx")
+script = ExtResource("6_slqt0")
+item = ExtResource("5_1p2sq")
 count = -1
 
 [sub_resource type="Resource" id="Resource_k2kr0"]
-script = ExtResource("7_om2c6")
-inventorySlots = Array[ExtResource("6_6xbsi")]([SubResource("Resource_4gxqb")])
+script = ExtResource("7_qr60q")
+inventorySlots = Array[ExtResource("6_slqt0")]([SubResource("Resource_4gxqb")])
 isPlayerInventory = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdbj2"]
 size = Vector2(24, 41)
 
 [node name="OverworldMap" type="Node2D"]
-script = ExtResource("1_j06pn")
+script = ExtResource("1_jb4c2")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("2_3aamj")
+tile_set = ExtResource("2_2fma6")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = -20
@@ -62,16 +62,16 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array()
 
-[node name="Shopkeep" parent="TileMap" instance=ExtResource("3_n0hu1")]
+[node name="Shopkeep" parent="TileMap" instance=ExtResource("3_5mnio")]
 position = Vector2(-8, -85)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep"
-dialogueEntries = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("4_foa25")])
+dialogueEntries = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([ExtResource("4_2kxuu")])
 hasShop = true
 inventory = SubResource("Resource_k2kr0")
 
 [node name="NPCSprite" parent="TileMap/Shopkeep" index="0"]
-sprite_frames = ExtResource("8_pw7pc")
+sprite_frames = ExtResource("8_yiv63")
 animation = &"stand"
 frame_progress = 0.00454362
 
@@ -87,9 +87,9 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="MoveTriggerShape" parent="TileMap/Shopkeep/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="WarpZone" parent="TileMap" instance=ExtResource("9_gshvh")]
+[node name="WarpZone" parent="TileMap" instance=ExtResource("9_jik55")]
 position = Vector2(-8, 17)
-mapName = "AllyTown"
+mapName = "standstill"
 mapPos = Vector2(-40, 72)
 
 [editable path="TileMap/Shopkeep"]

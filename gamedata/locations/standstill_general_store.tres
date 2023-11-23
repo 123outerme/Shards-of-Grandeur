@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=4 format=3 uid="uid://8l1jga7f7hc7"]
+
+[ext_resource type="Script" path="res://Scripts/overworld/MapEntry.gd" id="1_1hw5s"]
+[ext_resource type="Script" path="res://Scripts/overworld/WorldLocation.gd" id="2_g6vwq"]
+
+[sub_resource type="Resource" id="Resource_eau5n"]
+script = ExtResource("1_1hw5s")
+path = "standstill/standstill_general_store"
+
+[resource]
+script = ExtResource("2_g6vwq")
+maps = Array[ExtResource("1_1hw5s")]([SubResource("Resource_eau5n")])

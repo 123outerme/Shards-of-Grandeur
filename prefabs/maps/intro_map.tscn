@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/CutsceneTrigger.tscn" id="2_1jl0p"]
-[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/Test16Tileset.tres" id="2_im1n5"]
+[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_im1n5"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/NPC.tscn" id="2_kq4m3"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="4_3blma"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="4_igjr6"]
@@ -212,7 +212,7 @@ shape = SubResource("RectangleShape2D_vs8ye")
 
 [node name="WarpZone" parent="." instance=ExtResource("11_rcdfa")]
 position = Vector2(1000, 8)
-mapName = "AllyTown"
+mapName = "standstill"
 mapPos = Vector2(-552, 116)
 
 [node name="WarpArea" parent="WarpZone" index="0"]

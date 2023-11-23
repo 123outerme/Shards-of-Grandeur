@@ -38,10 +38,14 @@ func load_map(mapName):
 		mapInstance.queue_free()
 	var mapScene = null
 	# if this act has a specific map for this act, load it
-	if FileAccess.file_exists("res://prefabs/maps/" + mapName + "_" + PlayerResources.get_cur_act_save_str() + ".tscn"):
-		mapScene = load("res://prefabs/maps/" + mapName + "_" + PlayerResources.get_cur_act_save_str() + ".tscn")
-	else: # otherwise load the generic map
-		mapScene = load("res://prefabs/maps/" + mapName + ".tscn")
+	if FileAccess.file_exists("res://gamedata/locations/" + mapName + ".tres"):
+		var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
+		if worldLocation != null:
+			mapScene = load(worldLocation.get_map_path_for_location())
+		else:
+			printerr('World location could not be found')
+	else:
+		printerr('idk lol')
 	if mapScene == null:
 		printerr('Map ', mapName, ' could not be found!')
 		get_tree().quit(1)
