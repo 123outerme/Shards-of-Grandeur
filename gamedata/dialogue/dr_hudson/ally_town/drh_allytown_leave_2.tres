@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://vhnccnobqc45"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_a43ci"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vhggc"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ll2v4"]
+
+[sub_resource type="Resource" id="Resource_7xktf"]
+script = ExtResource("1_vhggc")
+lines = Array[String](["Lightning and I will meet you at the edge of town. We'll just need you to keep the road clear a little longer!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_l0bjn"]
+script = ExtResource("2_ll2v4")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["dr_hudson_allytown#leave_standstill"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_a43ci")
+entryId = "leave2"
+items = Array[ExtResource("1_vhggc")]([SubResource("Resource_7xktf")])
+storyRequirements = SubResource("Resource_l0bjn")

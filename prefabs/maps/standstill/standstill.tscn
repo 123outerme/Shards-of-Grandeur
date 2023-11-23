@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=30 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://gamedata/dialogue/horsecart/horsecart_1.tres" id="8_oaplt"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_ygb36"]
 [ext_resource type="Resource" uid="uid://bh7405n87iojt" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_1.tres" id="10_4ix1i"]
+[ext_resource type="Resource" uid="uid://vhnccnobqc45" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_leave_2.tres" id="11_j5vtg"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="11_lx2nn"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="12_uy85b"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="13_eiipr"]
@@ -185,7 +186,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_allytown"
-dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i")])
+dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("11_lx2nn")
