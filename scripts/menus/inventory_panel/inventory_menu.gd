@@ -134,6 +134,7 @@ func load_inventory_panel():
 		else:
 			inventoryTitle.text = '[center]Your Inventory[/center]'
 	
+	var firstPanel: bool = true
 	var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
 	for slot in currentInventory.get_sorted_slots():
 		if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
@@ -150,6 +151,20 @@ func load_inventory_panel():
 				instantiatedPanel.canOtherPartyHold = not otherInventory.is_slot_for_item_full(slot.item)
 			instantiatedPanel.equipContextStats = equipContextStats
 			vboxViewport.add_child(instantiatedPanel)
+			if firstPanel:
+				healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				instantiatedPanel.detailsButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				instantiatedPanel.buyButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				instantiatedPanel.sellButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				instantiatedPanel.equipButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				instantiatedPanel.unequipButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				instantiatedPanel.trashButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
+				firstPanel = false
+			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
 			# unlock filter button for filter of item's type
 		if slot.item.itemType == Item.Type.HEALING:
 			healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING

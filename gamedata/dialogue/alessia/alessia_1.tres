@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://do80x2jnb0txk"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_85x51"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p8lp3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tsnek"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_pitiy"]
+
+[sub_resource type="Resource" id="Resource_ksx8v"]
+script = ExtResource("1_p8lp3")
+choiceBtn = "Goodbye!"
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_n1hjn"]
+script = ExtResource("1_p8lp3")
+choiceBtn = "Shop"
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = true
+
+[sub_resource type="Resource" id="Resource_al8nf"]
+script = ExtResource("1_tsnek")
+lines = Array[String](["What can I do for you, @?"])
+animation = "talk"
+choices = Array[ExtResource("1_p8lp3")]([SubResource("Resource_ksx8v"), SubResource("Resource_n1hjn")])
+
+[sub_resource type="Resource" id="Resource_rc6xt"]
+script = ExtResource("4_pitiy")
+minAct = 0
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["alessia_foundry#intro"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_85x51")
+entryId = "1"
+items = Array[ExtResource("1_tsnek")]([SubResource("Resource_al8nf")])
+storyRequirements = SubResource("Resource_rc6xt")

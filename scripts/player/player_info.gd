@@ -100,8 +100,9 @@ func has_seen_dialogue(npcSaveName: String, dialogueId: String) -> bool:
 	return false
 
 func set_dialogue_seen(npcSaveName: String, dialogueId: String):
-	if dialoguesSeen.has(npcSaveName) and not (dialogueId in dialoguesSeen[npcSaveName]):
-		dialoguesSeen[npcSaveName].append(dialogueId)
+	if dialoguesSeen.has(npcSaveName):
+		if not (dialogueId in dialoguesSeen[npcSaveName]):
+			dialoguesSeen[npcSaveName].append(dialogueId)
 	else:
 		dialoguesSeen[npcSaveName] = [dialogueId]
 	

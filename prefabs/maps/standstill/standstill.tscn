@@ -262,6 +262,14 @@ mapPos = Vector2(-8, 4)
 [node name="WarpArea" parent="WarpInn" index="0"]
 shape = SubResource("RectangleShape2D_kc6hv")
 
+[node name="WarpFoundry" parent="." instance=ExtResource("17_xdako")]
+position = Vector2(167.5, -158)
+mapName = "standstill_foundry"
+mapPos = Vector2(-8, 4)
+
+[node name="WarpArea" parent="WarpFoundry" index="0"]
+shape = SubResource("RectangleShape2D_kc6hv")
+
 [editable path="TileMap/Signpost"]
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]
@@ -269,3 +277,4 @@ shape = SubResource("RectangleShape2D_kc6hv")
 [editable path="TileMap/Haybale"]
 [editable path="WarpGeneralStore"]
 [editable path="WarpInn"]
+[editable path="WarpFoundry"]

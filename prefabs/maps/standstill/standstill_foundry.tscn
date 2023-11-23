@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dri3rvriur56q"]
+[gd_scene load_steps=13 format=3 uid="uid://dri3rvriur56q"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajqdu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vrdj1"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_jifgm"]
+[ext_resource type="Resource" uid="uid://d3wbqlm1g5sul" path="res://gamedata/dialogue/alessia/alessia_intro.tres" id="4_73wvo"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="4_fy0c8"]
 [ext_resource type="SpriteFrames" uid="uid://b6tn0dqx1xtbc" path="res://graphics/animations/a_alessia.tres" id="4_xtevu"]
+[ext_resource type="Resource" uid="uid://do80x2jnb0txk" path="res://gamedata/dialogue/alessia/alessia_1.tres" id="5_72q0a"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_fjsew"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="7_uoa8v"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nmnw1"]
@@ -62,12 +64,13 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(26, -76)
 displayName = "Alessia"
 saveName = "alessia_foundry"
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_73wvo"), ExtResource("5_72q0a")])
 hasShop = true
 inventory = SubResource("Resource_tnptw")
 
 [node name="NPCSprite" parent="TileMap/Alessia" index="0"]
 sprite_frames = ExtResource("4_xtevu")
-animation = &"stands"
+animation = &"stand"
 
 [node name="ColliderShape" parent="TileMap/Alessia" index="1"]
 position = Vector2(0, 4)
@@ -83,6 +86,6 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="WarpZone" parent="." instance=ExtResource("9_nmnw1")]
 position = Vector2(-8, 17)
 mapName = "standstill"
-mapPos = Vector2(-40, 72)
+mapPos = Vector2(168, -140)
 
 [editable path="TileMap/Alessia"]

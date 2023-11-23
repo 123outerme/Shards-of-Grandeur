@@ -34,7 +34,7 @@ func _process(delta):
 			ReadySprite.visible = true
 
 func set_textbox_text(text: String, speaker: String):
-	advance_textbox(TextUtils.substitute_playername(text))
+	advance_textbox(text)
 	SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
 	delete_choices()
 	visible = true
@@ -43,7 +43,7 @@ func set_textbox_text(text: String, speaker: String):
 	speaker_visible_chars_partial = 0
 	
 func advance_textbox(text: String):
-	TextBoxText.text = text
+	TextBoxText.text = TextUtils.substitute_playername(text)
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
@@ -53,7 +53,8 @@ func is_textbox_complete() -> bool:
 	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
 
 func add_choices():
-	if dialogueItem == null or PlayerFinder.player.makingChoice or TextBoxText.text != dialogueItem.lines[len(dialogueItem.lines) - 1]:
+	if dialogueItem == null or PlayerFinder.player.makingChoice \
+			or TextBoxText.text != TextUtils.substitute_playername(dialogueItem.lines[len(dialogueItem.lines) - 1]):
 		return
 	
 	delete_choices()
@@ -73,7 +74,7 @@ func add_choices():
 				else:
 					continue
 				
-			button.text = choice.choiceBtn
+			button.text = TextUtils.substitute_playername(choice.choiceBtn)
 			button.custom_minimum_size = choice.buttonDims
 			button.visible = true
 			if idx == 0:
@@ -95,7 +96,7 @@ func refocus_choice(choice: DialogueChoice = null):
 	else:
 		for idx in range(5):
 			var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
-			if button != null and button.visible and (choice == null or choice.choiceBtn == button.text):
+			if button != null and button.visible and (choice == null or TextUtils.substitute_playername(choice.choiceBtn) == button.text):
 				button.grab_focus()
 				return
 

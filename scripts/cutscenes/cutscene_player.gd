@@ -65,6 +65,7 @@ func _process(delta):
 func start_cutscene(newCutscene: Cutscene):
 	if playing or (newCutscene.storyRequirements != null and not newCutscene.storyRequirements.is_valid()):
 		return
+	SaveHandler.save_data()
 	cutscene = newCutscene
 	timer = 0
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
