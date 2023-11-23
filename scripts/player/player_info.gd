@@ -4,7 +4,6 @@ class_name PlayerInfo
 @export_category("PlayerInfo: Location")
 @export var position: Vector2 = Vector2(-50, 0)
 @export var flipH: bool = false
-@export var disableMovement: bool = false
 @export var map: String = "intro_map"
 @export var inUnderworld: bool
 @export var underworldMap: String
@@ -33,9 +32,6 @@ class_name PlayerInfo
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
 
-@export_category("PlayerInfo: UI State")
-@export var talkBtnsVisible: bool = false
-
 var save_file = "playerinfo.tres"
 
 func _init(
@@ -62,7 +58,6 @@ func _init(
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
-	i_talkBtnsVisible = false,
 ):
 	map = i_map
 	inUnderworld = i_inUnderworld
@@ -87,7 +82,6 @@ func _init(
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
-	talkBtnsVisible = i_talkBtnsVisible
 
 func has_picked_up(uniqueId: String) -> bool:
 	return pickedUpItems.has(uniqueId)

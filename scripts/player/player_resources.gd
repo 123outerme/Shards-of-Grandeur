@@ -46,7 +46,6 @@ func load_data(save_path):
 	if player != null:
 		player.position = playerInfo.position
 		player.facingLeft = playerInfo.flipH
-		player.disableMovement = playerInfo.disableMovement
 		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
 	inventory = Inventory.new(true)
 	var newInv = inventory.load_data(save_path)
@@ -67,7 +66,6 @@ func save_data(save_path):
 		if player != null:
 			playerInfo.position = player.position
 			playerInfo.flipH = player.sprite.flip_h
-			playerInfo.disableMovement = player.disableMovement
 			playerInfo.pickedUpItem = player.pickedUpItem
 		playerInfo.combatant.stats = playerInfo.stats.copy()
 		if playerInfo.combatant.currentHp == -1:

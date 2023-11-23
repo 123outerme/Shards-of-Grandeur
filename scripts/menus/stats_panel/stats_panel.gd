@@ -42,6 +42,10 @@ func toggle():
 		load_stats_panel()
 		initial_focus()
 	else:
+		equipmentPanel.itemDetailsPanel.visible = false
+		moveListPanel.moveDetailsPanel.visible = false
+		editMovesPanel.hide_panel()
+		backButton.disabled = false
 		back_pressed.emit()
 
 func initial_focus():

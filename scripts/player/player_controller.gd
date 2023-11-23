@@ -14,6 +14,7 @@ var holdingCameraAt: Vector2
 var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
 
+@onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
 @onready var uiRoot: Node2D = get_node('UI')
@@ -134,7 +135,6 @@ func advance_dialogue(canStart: bool = true):
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
 				SceneLoader.unpauseExcludedMover = talkNPC
-				set_talk_btns_vis(false)
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 				face_horiz(talkNPC.position.x - position.x)
 			else: # this is continuing the NPC dialogue
@@ -142,7 +142,6 @@ func advance_dialogue(canStart: bool = true):
 		elif not inCutscene: # this is the end of NPC dialogue and it didn't start a cutscene
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
-			set_talk_btns_vis(true)
 			#position_talk_btns()
 	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
@@ -176,15 +175,6 @@ func select_choice(choice: DialogueChoice):
 func is_in_dialogue() -> bool:
 	return textBox.visible
 
-func set_talk_btns_vis(vis: bool):
-	#npcTalkBtns.visible = vis
-	PlayerResources.playerInfo.talkBtnsVisible = vis
-	if talkNPC != null:
-		#shopButton.visible = talkNPC.hasShop
-		#turnInButton.visible = len(talkNPC.turningInSteps) > 0
-		#position_talk_btns()
-		talkNPC.talkAlertSprite.visible = not vis
-
 '''
 func position_talk_btns():
 	if talkNPC != null:
@@ -197,7 +187,6 @@ func set_talk_npc(npc: NPCScript):
 		if not inCutscene:
 			textBox.hide_textbox()
 			disableMovement = false
-		set_talk_btns_vis(false)
 		#shopButton.visible = false
 		#turnInButton.visible = false
 	
@@ -209,7 +198,6 @@ func restore_dialogue(npc: NPCScript):
 		SceneLoader.pause_autonomous_movers()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
-		set_talk_btns_vis(PlayerResources.playerInfo.talkBtnsVisible)
 		#position_talk_btns()
 
 func restore_picked_up_item_text(groundItem: PickedUpItem):

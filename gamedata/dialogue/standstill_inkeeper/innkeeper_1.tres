@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dk6ni0sxklyj5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_f6o8f"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_n0ddb"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_8u23t"]
+
+[sub_resource type="Resource" id="Resource_rafie"]
+script = ExtResource("1_f6o8f")
+lines = Array[String](["Welcome to the Standstill Inn, traveler! Dr. Hudson tells me you are on an important mission. When you get back, these rooms will be ready for you and your party."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_5nkvd"]
+script = ExtResource("3_8u23t")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_n0ddb")
+entryId = "1"
+items = Array[ExtResource("1_f6o8f")]([SubResource("Resource_rafie")])
+storyRequirements = SubResource("Resource_5nkvd")

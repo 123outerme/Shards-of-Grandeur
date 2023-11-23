@@ -27,6 +27,10 @@ var previousMovePoolMove: Move = null
 func _ready():
 	pass # Replace with function body.
 
+func hide_panel():
+	visible = false
+	moveListPanel.moveDetailsPanel.visible = false
+
 func initial_focus():
 	backButton.grab_focus()
 

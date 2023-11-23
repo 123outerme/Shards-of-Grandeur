@@ -63,6 +63,7 @@ func toggle():
 			lockFilters = false
 			selectedFilter = Item.Type.ALL
 		equipContextStats = null
+		backButton.disabled = false
 		back_pressed.emit()
 
 func initial_focus():

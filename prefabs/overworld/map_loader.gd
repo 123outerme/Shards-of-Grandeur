@@ -5,6 +5,7 @@ var mapInstance: Node = null
 var mapNavReady: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
+var useSavedPos: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +21,10 @@ func _ready():
 func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
 	player.cam.fade_out(_fade_out_complete, 0.25)
 	player.disableMovement = true
+	player.collider.set_deferred('disabled', true)
 	await get_tree().create_timer(0.25).timeout
-	player.position = newMapPos
+	PlayerResources.playerInfo.savedPosition = newMapPos
+	useSavedPos = true
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
 	for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
@@ -33,6 +36,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = 
 func load_map(mapName):
 	#destroy_overworld_enemies()
 	SaveHandler.save_data()
+	player.disableMovement = true
 	mapNavReady = false
 	if mapInstance != null:
 		mapInstance.queue_free()
@@ -55,7 +59,6 @@ func load_map(mapName):
 	add_child.call_deferred(mapInstance)
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
-	SceneLoader.call_deferred('unpause_autonomous_movers')
 
 func reparent_player():
 	player.get_parent().remove_child(player)
@@ -73,10 +76,17 @@ func _fade_out_complete():
 	pass
 
 func _fade_in_complete():
-	player.disableMovement = player.inCutscene
+	
+	PlayerFinder.player.collider.set_deferred('disabled', false)
 	
 func _map_loaded():
+	if useSavedPos:
+		PlayerFinder.player.set_deferred('position', PlayerResources.playerInfo.savedPosition)
+		useSavedPos = false
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
+	await get_tree().create_timer(0.15).timeout
+	SceneLoader.call_deferred('unpause_autonomous_movers')
+	PlayerFinder.player.set_deferred('disableMovement', player.inCutscene)
 	
 func _nav_map_changed(_arg):
 	mapNavReady = true
