@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Combatant" load_steps=19 format=3 uid="uid://bhg4i01ukcdvd"]
 
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="1_ew7yv"]
-[ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_gqtms"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_sro0k"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_sn1i1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_gqtms"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_sro0k"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_sn1i1"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_chyjv"]
 [ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="6_5a2u7"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedString.gd" id="6_7xnel"]
-[ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="7_sv8tt"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_7xnel"]
+[ext_resource type="Script" path="res://scripts/battle/stats.gd" id="7_sv8tt"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="7_xsuwx"]
 [ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance.tres" id="8_dlh3b"]
 
@@ -73,7 +73,7 @@ stats = SubResource("Resource_hula1")
 currentHp = -1
 aiType = 1
 aiOverrideWeight = 0.35
-equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
+equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("6_7xnel")]([SubResource("Resource_b3lik"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
 dropTable = Array[ExtResource("2_sn1i1")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
 innateStatCategories = Array[int]([0, 4])

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Combatant" load_steps=18 format=3 uid="uid://dak21fe0w5q3m"]
 
 [ext_resource type="Resource" uid="uid://bjlcwbjqmmsp0" path="res://gamedata/items/shard/ant_shard.tres" id="1_1msty"]
-[ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_ngepj"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_q0ynk"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_wwg5g"]
-[ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="3_jpupe"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ngepj"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_q0ynk"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_wwg5g"]
+[ext_resource type="Script" path="res://scripts/battle/stats.gd" id="3_jpupe"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_tcx1r"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedString.gd" id="4_w518t"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="4_w518t"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="7_mwna2"]
 [ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain.tres" id="8_fmjhk"]
 
@@ -71,7 +71,7 @@ stats = SubResource("Resource_aus05")
 currentHp = -1
 aiType = 4
 aiOverrideWeight = 0.35
-equipmentTable = Array[Resource("res://Scripts/Battle/WeightedThings/WeightedEquipment.gd")]([])
+equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("4_w518t")]([SubResource("Resource_d55qo"), SubResource("Resource_3il2r"), SubResource("Resource_xdgd7")])
 dropTable = Array[ExtResource("2_wwg5g")]([SubResource("Resource_y24ox"), SubResource("Resource_j0nse")])
 innateStatCategories = Array[int]([1, 3])

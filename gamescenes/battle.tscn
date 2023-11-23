@@ -1,27 +1,27 @@
-[gd_scene load_steps=22 format=3 uid="uid://crreghbm6x460"]
+[gd_scene load_steps=22 format=3 uid="uid://c4ir6fh3a3alo"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleController.gd" id="1_b2bd7"]
-[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/CombatantNode.tscn" id="2_fgh53"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
+[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_qkdsy"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_u488y"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/AllCommands.gd" id="6_60wgx"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/SummonMenu.gd" id="7_ghrgg"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/MovesMenu.gd" id="9_fgnxg"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Targets.gd" id="9_qy758"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/Results.gd" id="9_ul6ls"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_ghrgg"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/moves_menu.gd" id="9_fgnxg"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/targets.gd" id="9_qy758"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="10_4t0i5"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattlePanels.gd" id="10_7n25e"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleUI.gd" id="10_ier4v"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_panels.gd" id="10_7n25e"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_ui.gd" id="10_ier4v"]
 [ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://prefabs/ui/quests/quests_panel.tscn" id="11_05pqh"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/BattleCompleteMenu.gd" id="12_ip5fm"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/FlowOfBattle.gd" id="14_wt520"]
-[ext_resource type="Script" path="res://Scripts/Battle/BattleScene/TurnExecutor.gd" id="15_2cnm6"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="12_ip5fm"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75ng8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql8sa"]
 bg_color = Color(0, 0, 0, 0.686275)
 
 [node name="Battle" type="Node2D" groups=["Persist", "Scenes"]]
@@ -88,7 +88,7 @@ offset_right = 1120.0
 offset_bottom = 298.0
 scale = Vector2(0.25, 0.25)
 theme = ExtResource("2_u488y")
-theme_override_styles/panel = SubResource("StyleBoxFlat_75ng8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ql8sa")
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer"]
 layout_mode = 2
@@ -592,11 +592,6 @@ visible = false
 position = Vector2(-640, -480)
 inBattle = true
 
-[node name="InventoryPanelNode2" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
-visible = false
-position = Vector2(-640, -480)
-inBattle = true
-
 [node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("11_05pqh")]
 visible = false
 position = Vector2(-640, -480)
@@ -644,5 +639,4 @@ battleUI = NodePath("../BattleCam")
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
-[connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode2" to="BattleCam" method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]

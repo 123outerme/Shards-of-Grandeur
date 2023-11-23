@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://cf41bbmbxr4yj"]
 
-[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_wyl2n"]
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_wyl2n"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_ein1b"]
-[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_yietv"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="3_rivu3"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_yietv"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_rivu3"]
 
 [sub_resource type="Resource" id="Resource_r4r2c"]
 script = ExtResource("3_rivu3")
@@ -22,8 +22,8 @@ objectiveName = "rat"
 turnInName = "house_dr_hudson"
 displayObjName = "Rat"
 displayTurnInName = "Dr. Hudson"
-turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
-inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [sub_resource type="Resource" id="Resource_3ka5m"]
 script = ExtResource("3_rivu3")
@@ -41,8 +41,8 @@ objectiveName = "Rat Shard"
 turnInName = "dr_hudson"
 displayObjName = "Rat Shard"
 displayTurnInName = "Dr. Hudson"
-turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
-inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [sub_resource type="Resource" id="Resource_u5rt4"]
 script = ExtResource("2_yietv")
@@ -54,8 +54,8 @@ objectiveName = "dr_hudson"
 turnInName = "dr_hudson"
 displayObjName = "Dr. Hudson"
 displayTurnInName = "Dr. Hudson"
-turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
-inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [resource]
 script = ExtResource("1_wyl2n")

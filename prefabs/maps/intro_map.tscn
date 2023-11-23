@@ -1,42 +1,42 @@
 [gd_scene load_steps=37 format=3 uid="uid://cwh0ho74p6tyh"]
 
-[ext_resource type="Script" path="res://Scripts/MapScript.gd" id="1_qsr2t"]
-[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/CutsceneTrigger.tscn" id="2_1jl0p"]
+[ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
+[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_im1n5"]
-[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/NPC.tscn" id="2_kq4m3"]
-[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueItem.gd" id="4_3blma"]
-[ext_resource type="Script" path="res://Scripts/Dialogue/DialogueEntry.gd" id="4_igjr6"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="2_kq4m3"]
 [ext_resource type="Resource" uid="uid://c2evqklw38yrd" path="res://gamedata/dialogue/dr_hudson/intro_map/drh_intro_1.tres" id="4_xxhfb"]
 [ext_resource type="Resource" uid="uid://df15dkbrsvuev" path="res://gamedata/dialogue/dr_hudson/intro_map/drh_intro_2.tres" id="5_5bmok"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="6_ycoji"]
-[ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/EnemySpawner.tscn" id="7_8f7k4"]
-[ext_resource type="Script" path="res://Scripts/OverworldEnemy/SpawnerData.gd" id="8_5uxvf"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="7_4in6g"]
+[ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="7_8f7k4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="8_paddf"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_jtu4n"]
 [ext_resource type="Resource" uid="uid://cy6c7301nx7fg" path="res://gamedata/cutscenes/intro_scene/intro_cutscene.tres" id="11_27a4a"]
-[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/WarpZone.tscn" id="11_rcdfa"]
+[ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="11_rcdfa"]
 [ext_resource type="Resource" uid="uid://kh7eona0y4n7" path="res://gamedata/cutscenes/intro_scene/intro_exit_cutscene.tres" id="12_ci2fb"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="13_w31gp"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="14_6nead"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat.tres" id="15_6dcag"]
-[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/GroundItem.tscn" id="15_xc56y"]
-[ext_resource type="Script" path="res://Scripts/Inventory/PickedUpItem.gd" id="16_3uh5k"]
-[ext_resource type="Script" path="res://Scripts/Quests/StoryRequirements.gd" id="16_gxpwa"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="15_xc56y"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="16_yolhu"]
-[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/CutscenePlayer.tscn" id="18_dpgom"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="17_707g0"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="18_481j8"]
+[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/cutscene_player.tscn" id="18_dpgom"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
 [sub_resource type="Resource" id="Resource_cvvun"]
-script = ExtResource("4_3blma")
+script = ExtResource("7_4in6g")
 lines = Array[String](["Neigh!"])
 animation = ""
-choices = Array[Resource("res://Scripts/Dialogue/DialogueChoice.gd")]([])
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
 
 [sub_resource type="Resource" id="Resource_3n8lp"]
-script = ExtResource("4_igjr6")
+script = ExtResource("8_paddf")
 entryId = "1"
-items = Array[ExtResource("4_3blma")]([SubResource("Resource_cvvun")])
+items = Array[ExtResource("7_4in6g")]([SubResource("Resource_cvvun")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -51,19 +51,19 @@ size = Vector2(64, 64)
 size = Vector2(16, 64)
 
 [sub_resource type="Resource" id="Resource_mb2oe"]
-script = ExtResource("8_5uxvf")
+script = ExtResource("14_6nead")
 spawnerId = "intro_rat"
 disabled = false
 spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_0dhv7"]
-script = ExtResource("13_w31gp")
+script = ExtResource("17_707g0")
 experience = 50
 gold = 12
 item = ExtResource("16_yolhu")
 
 [sub_resource type="Resource" id="Resource_noxp6"]
-script = ExtResource("16_gxpwa")
+script = ExtResource("18_481j8")
 minAct = 0
 maxAct = 5
 prereqQuests = Array[String]([])
@@ -83,7 +83,7 @@ size = Vector2(128, 64)
 size = Vector2(16, 64)
 
 [sub_resource type="Resource" id="Resource_ams7q"]
-script = ExtResource("16_3uh5k")
+script = ExtResource("22_s43kv")
 uniqueId = "intro_sword"
 item = ExtResource("21_0r0hi")
 pickUpTexts = Array[String](["Who left this sword lying around? It's a good thing I was running away... I mean, strategically withdrawing to find this."])
@@ -91,7 +91,7 @@ savedTextIdx = 0
 wasPickedUp = false
 
 [node name="OverworldMap" type="Node2D"]
-script = ExtResource("1_qsr2t")
+script = ExtResource("1_s6d62")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -126,7 +126,7 @@ layer_3/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-dialogueEntries = Array[ExtResource("4_igjr6")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
+dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 cutscenePlayer = NodePath("../../CutscenePlayer")
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -152,7 +152,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-dialogueEntries = Array[ExtResource("4_igjr6")]([SubResource("Resource_3n8lp")])
+dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]

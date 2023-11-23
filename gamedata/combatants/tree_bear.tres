@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="Combatant" load_steps=22 format=3 uid="uid://bm75g5cmva3v0"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/Combatant.gd" id="1_8lgld"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="1_ipbn1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_8lgld"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_ipbn1"]
 [ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="1_pehks"]
 [ext_resource type="SpriteFrames" uid="uid://cg3nfu3ph42vi" path="res://graphics/animations/a_tree_bear.tres" id="2_6cvmb"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedReward.gd" id="2_26yyl"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_26yyl"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="3_udjmq"]
 [ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain.tres" id="4_5u65r"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="4_k1pxj"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedEquipment.gd" id="5_7j7dc"]
-[ext_resource type="Script" path="res://Scripts/Battle/Stats.gd" id="5_uxjdr"]
-[ext_resource type="Script" path="res://Scripts/Battle/WeightedThings/WeightedString.gd" id="6_pt8xe"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="5_7j7dc"]
+[ext_resource type="Script" path="res://scripts/battle/stats.gd" id="5_uxjdr"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_pt8xe"]
 
 [sub_resource type="Resource" id="Resource_ibj77"]
 script = ExtResource("1_ipbn1")
@@ -37,11 +37,9 @@ weight = 0.2
 [sub_resource type="Resource" id="Resource_18tej"]
 script = ExtResource("5_7j7dc")
 armor = ExtResource("4_k1pxj")
-weight = 0.5
 
 [sub_resource type="Resource" id="Resource_jwedp"]
 script = ExtResource("5_7j7dc")
-weight = 0.5
 
 [sub_resource type="Resource" id="Resource_mphvp"]
 script = ExtResource("5_uxjdr")

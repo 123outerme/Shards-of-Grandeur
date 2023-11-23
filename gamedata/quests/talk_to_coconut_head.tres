@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://jwuut14phi64"]
 
-[ext_resource type="Script" path="res://Scripts/Quests/Quest.gd" id="1_iw6nk"]
-[ext_resource type="Script" path="res://Scripts/Quests/QuestStep.gd" id="2_u577o"]
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_iw6nk"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_u577o"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="3_04hlo"]
-[ext_resource type="Script" path="res://Scripts/Reward/Reward.gd" id="4_sisoo"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_sisoo"]
 
 [sub_resource type="Resource" id="Resource_6pwfd"]
 script = ExtResource("2_u577o")
@@ -15,8 +15,8 @@ objectiveName = "coconuthead"
 turnInName = "coconuthead"
 displayObjName = "Coconut Head"
 displayTurnInName = "Coconut Head"
-turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
-inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [sub_resource type="Resource" id="Resource_2hh88"]
 script = ExtResource("4_sisoo")
@@ -35,8 +35,8 @@ objectiveName = "rat"
 turnInName = "coconuthead"
 displayObjName = "Rat"
 displayTurnInName = "Coconut Head"
-turnInDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
-inProgressDialogue = Array[Resource("res://Scripts/Dialogue/DialogueEntry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [resource]
 script = ExtResource("1_iw6nk")
