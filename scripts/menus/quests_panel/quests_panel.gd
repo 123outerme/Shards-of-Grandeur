@@ -99,7 +99,7 @@ func load_quests_panel():
 	
 	var firstPanel = true
 	var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
-	for questTracker in PlayerResources.questInventory.quests:
+	for questTracker in PlayerResources.questInventory.get_sorted_trackers():
 		var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
 		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == trackerStatus \
 				or (selectedFilter == QuestTracker.Status.INCOMPLETE and trackerStatus != QuestTracker.Status.COMPLETED and trackerStatus != QuestTracker.Status.FAILED):
@@ -143,6 +143,11 @@ func update_filter_buttons():
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	selectedFilter = type
 	load_quests_panel()
+
+func pin_button_pressed(questTracker: QuestTracker):
+	lastInteractedTracker = questTracker
+	load_quests_panel()
+	restore_previous_focus('pinButton')
 
 func turn_in(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker

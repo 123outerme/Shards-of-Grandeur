@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=32 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -14,6 +14,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="11_lx2nn"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="12_uy85b"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="13_eiipr"]
+[ext_resource type="Resource" uid="uid://crqjbksl25fej" path="res://gamedata/dialogue/lance/lance_intro.tres" id="13_spupx"]
+[ext_resource type="Resource" uid="uid://e4m48vmk6ybn" path="res://gamedata/dialogue/lance/lance_1.tres" id="14_ltynh"]
 [ext_resource type="Resource" uid="uid://wjv7ut6a0hx1" path="res://gamedata/items/key_items/haybale.tres" id="14_rvd28"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="15_obbqa"]
 [ext_resource type="Texture2D" uid="uid://e6b4xqqnncgm" path="res://graphics/items/haybale.png" id="16_07cud"]
@@ -154,7 +156,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="HorseCart" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(8, 128)
 displayName = "Horse"
-saveName = "horse_cart_allytown"
+saveName = "horse_cart_standstill"
 spriteSize = Vector2i(64, 32)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
@@ -192,7 +194,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="DrHudson" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
-saveName = "dr_hudson_allytown"
+saveName = "dr_hudson_standstill"
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -216,7 +218,8 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="Lance" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(216, -160)
 displayName = "Lance"
-saveName = "lance_allytown"
+saveName = "lance_standstill"
+dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
 sprite_frames = ExtResource("12_uy85b")
@@ -232,8 +235,14 @@ targetPoints = Array[Vector2]([Vector2(200, -160), Vector2(240, -160)])
 loops = -1
 waitsForMoveTrigger = false
 
+[node name="TalkArea" parent="TileMap/Lance" index="3"]
+position = Vector2(0, 4)
+
 [node name="TalkAreaShape" parent="TileMap/Lance/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/Lance" index="4"]
+visible = false
 
 [node name="MoveTriggerShape" parent="TileMap/Lance/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)

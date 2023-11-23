@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://crqjbksl25fej"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_6yf2w"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fheir"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_kh2jp"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_6bmab"]
+[ext_resource type="Resource" uid="uid://brqx2ej3flo72" path="res://gamedata/dialogue/lance/lance_apprentice_no.tres" id="3_li2gi"]
+[ext_resource type="Resource" uid="uid://dv2hjafiad5x2" path="res://gamedata/dialogue/lance/lance_apprentice_accept.tres" id="3_nbedg"]
+
+[sub_resource type="Resource" id="Resource_0u8b6"]
+script = ExtResource("1_6yf2w")
+choiceBtn = "@."
+buttonDims = Vector2(300, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_hloo1"]
+script = ExtResource("1_fheir")
+lines = Array[String](["Hello traveller! What might your name be?"])
+animation = "talk"
+choices = Array[ExtResource("1_6yf2w")]([SubResource("Resource_0u8b6")])
+
+[sub_resource type="Resource" id="Resource_481fh"]
+script = ExtResource("1_6yf2w")
+choiceBtn = "No"
+leadsTo = ExtResource("3_li2gi")
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_un47h"]
+script = ExtResource("1_6yf2w")
+choiceBtn = "Sure!"
+leadsTo = ExtResource("3_nbedg")
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_a65p4"]
+script = ExtResource("1_fheir")
+lines = Array[String](["Good to meet you, @! My name is Lance, and I am a metalsmith apprentice. Well, actually, I won't be very soon.", "You see, Alessia is the master smith around these parts, and she is training me. She's too tough, and I won't make it.", "I need to start shaping a pretty complicated sword very soon, or else I'm going to fail. And I need to collect Tree Bear bark in order to fuel the furnace...", "Say, you look to be pretty well equipped for danger there! Would you mind getting me the bark I need? Defeating about 3 Tree Bears would be plenty for me."])
+animation = "talk"
+choices = Array[ExtResource("1_6yf2w")]([SubResource("Resource_481fh"), SubResource("Resource_un47h")])
+
+[sub_resource type="Resource" id="Resource_e7c0w"]
+script = ExtResource("2_6bmab")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["lance_standstill#intro"])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_kh2jp")
+entryId = "intro"
+items = Array[ExtResource("1_fheir")]([SubResource("Resource_hloo1"), SubResource("Resource_a65p4")])
+storyRequirements = SubResource("Resource_e7c0w")

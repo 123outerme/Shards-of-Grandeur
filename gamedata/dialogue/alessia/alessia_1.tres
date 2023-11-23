@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://do80x2jnb0txk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://do80x2jnb0txk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_85x51"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p8lp3"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tsnek"]
+[ext_resource type="Resource" uid="uid://bv0xdd1t2gie7" path="res://gamedata/dialogue/alessia/alessia_about_lance.tres" id="2_8mkm0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_pitiy"]
 
 [sub_resource type="Resource" id="Resource_ksx8v"]
@@ -19,11 +20,19 @@ buttonDims = Vector2(120, 40)
 turnsInQuest = ""
 opensShop = true
 
+[sub_resource type="Resource" id="Resource_ne0k0"]
+script = ExtResource("1_p8lp3")
+choiceBtn = "Lance?"
+leadsTo = ExtResource("2_8mkm0")
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
 [sub_resource type="Resource" id="Resource_al8nf"]
 script = ExtResource("1_tsnek")
 lines = Array[String](["What can I do for you, @?"])
 animation = "talk"
-choices = Array[ExtResource("1_p8lp3")]([SubResource("Resource_ksx8v"), SubResource("Resource_n1hjn")])
+choices = Array[ExtResource("1_p8lp3")]([SubResource("Resource_ksx8v"), SubResource("Resource_n1hjn"), SubResource("Resource_ne0k0")])
 
 [sub_resource type="Resource" id="Resource_rc6xt"]
 script = ExtResource("4_pitiy")
@@ -41,6 +50,6 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_85x51")
-entryId = "1"
+entryId = ""
 items = Array[ExtResource("1_tsnek")]([SubResource("Resource_al8nf")])
 storyRequirements = SubResource("Resource_rc6xt")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://brqx2ej3flo72"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_hi13c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_juqqj"]
+
+[sub_resource type="Resource" id="Resource_ak6wt"]
+script = ExtResource("1_juqqj")
+lines = Array[String](["I get it, it's not your place to be helping me right now. I only have myself to blame..."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_hi13c")
+entryId = ""
+items = Array[ExtResource("1_juqqj")]([SubResource("Resource_ak6wt")])

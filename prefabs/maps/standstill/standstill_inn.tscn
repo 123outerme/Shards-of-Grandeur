@@ -50,7 +50,11 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
+facesRight = true
+spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_00t18")])
+facesPlayer = true
+hasShop = false
 
 [node name="NPCSprite" parent="TileMap/Innkeeper" index="0"]
 sprite_frames = ExtResource("5_e5gl0")

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://2ycrrv0dbqxt"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_nw4bk"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_brhbv"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_kcg01"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mdmqf"]
+[ext_resource type="Resource" uid="uid://cn2h2aafogaos" path="res://gamedata/dialogue/lance/lance_apprentice_progress_1.tres" id="2_y8nwp"]
+[ext_resource type="Resource" uid="uid://cyxtkc4m2lj2j" path="res://gamedata/dialogue/lance/lance_apprentice_turnin_1.tres" id="4_josly"]
+
+[sub_resource type="Resource" id="Resource_uqsk6"]
+script = ExtResource("2_brhbv")
+experience = 65
+gold = 20
+
+[sub_resource type="Resource" id="Resource_rlbpb"]
+script = ExtResource("2_kcg01")
+name = "Bearing Logs"
+description = "Lance needs the bark of a Tree Bear. Several Bears' worth, actually. He needs enough heat to finish crafting a shiny new sword, and apparently that's what keeps the furnace going the best."
+reward = SubResource("Resource_uqsk6")
+type = 2
+count = 3
+objectiveName = "tree_bear"
+turnInName = "lance_standstill"
+displayObjName = "Tree Bear"
+displayTurnInName = "Lance"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_josly")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_y8nwp")])
+
+[sub_resource type="Resource" id="Resource_cajel"]
+script = ExtResource("2_mdmqf")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_nw4bk")
+questName = "Apprenticeship"
+description = "Lance, the budding metalsmith, is struggling to keep up. He has asked for your help in keeping his job."
+steps = Array[ExtResource("2_kcg01")]([SubResource("Resource_rlbpb")])
+storyRequirements = SubResource("Resource_cajel")

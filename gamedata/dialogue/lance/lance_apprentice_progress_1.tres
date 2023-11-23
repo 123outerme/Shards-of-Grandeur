@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cn2h2aafogaos"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5ms7c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_q6vvq"]
+
+[sub_resource type="Resource" id="Resource_nnvt4"]
+script = ExtResource("1_5ms7c")
+lines = Array[String](["Thanks for agreeing to help me out. Don't forget, I'll need that Tree Bear bark really soon, or else I have to turn in my hammer!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("2_q6vvq")
+entryId = ""
+items = Array[ExtResource("1_5ms7c")]([SubResource("Resource_nnvt4")])

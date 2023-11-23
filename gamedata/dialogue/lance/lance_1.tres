@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://e4m48vmk6ybn"]
+
+[ext_resource type="Resource" uid="uid://brqx2ej3flo72" path="res://gamedata/dialogue/lance/lance_apprentice_no.tres" id="1_knurc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mviho"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_vj74n"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_rxj1d"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_bn2q6"]
+[ext_resource type="Resource" uid="uid://dv2hjafiad5x2" path="res://gamedata/dialogue/lance/lance_apprentice_accept.tres" id="3_dokwr"]
+
+[sub_resource type="Resource" id="Resource_mb1n4"]
+script = ExtResource("2_rxj1d")
+choiceBtn = "No"
+leadsTo = ExtResource("1_knurc")
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_8rmud"]
+script = ExtResource("2_rxj1d")
+choiceBtn = "Sure!"
+leadsTo = ExtResource("3_dokwr")
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_k8sh8"]
+script = ExtResource("1_mviho")
+lines = Array[String](["@, I'm sure you can defeat a Tree Bear or 3 no problem! Could you please get me some Tree Bear bark so I can keep my job?"])
+animation = "talk"
+choices = Array[ExtResource("2_rxj1d")]([SubResource("Resource_mb1n4"), SubResource("Resource_8rmud")])
+
+[sub_resource type="Resource" id="Resource_g2uv3"]
+script = ExtResource("3_bn2q6")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["lance_standstill#intro"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["lance_standstill#apprentice_accept"])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_vj74n")
+entryId = "1"
+items = Array[ExtResource("1_mviho")]([SubResource("Resource_k8sh8")])
+storyRequirements = SubResource("Resource_g2uv3")
