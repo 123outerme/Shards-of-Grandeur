@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
-[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_piudh"]
-[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://Themes/titleTextTheme.tres" id="3_ee204"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_emweo"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="4_7ietu"]
-[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://Themes/ButtonRowTheme.tres" id="5_yffbq"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="5_msabb"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_ay1wk"]
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
@@ -17,7 +17,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 960.0
-theme = ExtResource("2_piudh")
+theme = ExtResource("2_n8oq0")
 
 [node name="Panel" type="Panel" parent="InventoryPanel"]
 layout_mode = 0
@@ -34,7 +34,7 @@ offset_top = 12.0
 offset_right = 150.0
 offset_bottom = 62.0
 grow_horizontal = 2
-theme = ExtResource("3_ee204")
+theme = ExtResource("3_emweo")
 bbcode_enabled = true
 text = "[center]Your Inventory[/center]"
 fit_content = true
@@ -109,7 +109,7 @@ offset_top = 80.0
 offset_right = 300.0
 offset_bottom = 120.0
 grow_horizontal = 2
-theme = ExtResource("5_yffbq")
+theme = ExtResource("5_msabb")
 alignment = 1
 
 [node name="HealingButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]

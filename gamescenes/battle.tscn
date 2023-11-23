@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_qkdsy"]
-[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://Themes/rootTheme.tres" id="2_u488y"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="5_3llq4"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
-[ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://Themes/BattleTextBox/BattleTextBoxMenuTheme.tres" id="6_dm6gn"]
+[ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_gcm1q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_ghrgg"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/moves_menu.gd" id="9_fgnxg"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/targets.gd" id="9_qy758"]
@@ -87,12 +87,12 @@ offset_top = 50.0
 offset_right = 1120.0
 offset_bottom = 298.0
 scale = Vector2(0.25, 0.25)
-theme = ExtResource("2_u488y")
+theme = ExtResource("5_3llq4")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ql8sa")
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer"]
 layout_mode = 2
-theme = ExtResource("6_dm6gn")
+theme = ExtResource("6_gcm1q")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 8
@@ -555,7 +555,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_u488y")
+theme = ExtResource("5_3llq4")
 script = ExtResource("14_wt520")
 battleController = NodePath("../../..")
 
