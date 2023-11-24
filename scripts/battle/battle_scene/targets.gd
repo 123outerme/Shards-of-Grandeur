@@ -6,6 +6,7 @@ class_name TargetsMenu
 @onready var commandText: RichTextLabel = get_node("CommandText")
 @onready var targetsListing: RichTextLabel = get_node("TargetsListing")
 @onready var confirmButton: Button = get_node("ConfirmButton")
+@onready var backButton: Button = get_node("BackButton")
 
 var singleSelect: bool = true
 var referringMenu: BattleState.Menu = BattleState.Menu.MOVES
@@ -41,6 +42,14 @@ func load_targets():
 		if not setFocus:
 			targetableCombatant.focus_select_btn()
 		setFocus = true
+	
+	if not setFocus:
+		backButton.grab_focus()
+	
+	var nodes: Array[CombatantNode] = battleUI.battleController.get_bottom_most_targetable_combatant_nodes()
+	for node in nodes:
+		node.set_buttons_bottom_neighbor(backButton)
+		node.set_buttons_bottom_neighbor(confirmButton)
 	
 	update_targets_listing()
 	update_confirm_btn()
@@ -98,6 +107,7 @@ func _on_confirm_button_pressed():
 	
 	reset_targets()
 	battleUI.complete_command()
+	battleUI.battleController.update_combatant_focus_neighbors()
 
 func _on_back_button_pressed():
 	reset_targets()

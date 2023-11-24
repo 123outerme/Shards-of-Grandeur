@@ -82,8 +82,6 @@ func load_inventory_slot_panel():
 	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
 	
 func _on_use_button_pressed():
-	if not inBattle: # if not in battle use it immediately
-		PlayerResources.inventory.use_item(inventorySlot.item, PlayerResources.playerInfo.combatant)
 	inventoryMenu.item_used.emit(inventorySlot)
 
 func _on_equip_button_pressed():

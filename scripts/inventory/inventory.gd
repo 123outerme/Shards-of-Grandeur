@@ -38,11 +38,13 @@ func add_shard_minion_entry(item: Item):
 		PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
 		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.stats.level) # if necessary, this will level up the new minion
 
-func use_item(item: Item, target: Combatant):
+func use_item(item: Item, target: Combatant) -> bool:
+	var last: bool = false
 	item.use(target)
 	for slot in inventorySlots:
 		if slot.item == item and item.consumable:
-			trash_item(slot) # remove one of the appropriate items
+			last = trash_item(slot) # remove one of the appropriate items
+	return last
 	
 func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats = null):
 	var item: Item = inventorySlot.item

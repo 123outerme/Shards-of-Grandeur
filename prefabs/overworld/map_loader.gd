@@ -5,7 +5,6 @@ var mapInstance: Node = null
 var mapNavReady: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
-var useSavedPos: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,8 +22,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = 
 	player.disableMovement = true
 	player.collider.set_deferred('disabled', true)
 	await get_tree().create_timer(0.25).timeout
-	PlayerResources.playerInfo.savedPosition = newMapPos
-	useSavedPos = true
+	player.position = newMapPos
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
 	for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
@@ -79,9 +77,6 @@ func _fade_in_complete():
 	PlayerFinder.player.collider.set_deferred('disabled', false)
 	
 func _map_loaded():
-	if useSavedPos:
-		PlayerFinder.player.set_deferred('position', PlayerResources.playerInfo.savedPosition)
-		useSavedPos = false
 	await get_tree().create_timer(0.15).timeout
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
 	await get_tree().create_timer(0.15).timeout

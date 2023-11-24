@@ -176,6 +176,8 @@ func load_inventory_panel():
 			armorFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.ARMOR
 		if slot.item.itemType == Item.Type.KEY_ITEM:
 			keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
+	if firstPanel: # if focus still not grabbed by another panel
+		initial_focus() # reset focus
 	
 func buy_item(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -301,6 +303,10 @@ func _on_key_items_button_toggled(button_pressed):
 
 func _on_item_used(slot: InventorySlot):
 	lastSlotInteracted = slot
+	if not inBattle: # if not in battle use it immediately
+		var last = PlayerResources.inventory.use_item(slot.item, PlayerResources.playerInfo.combatant)
+		if last:
+			lastSlotInteracted = null
 	if slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
 		itemUsePanel.item = slot.item
 		itemUsePanel.target = PlayerResources.playerInfo.combatant

@@ -74,6 +74,50 @@ func update_select_btn(showing: bool, disable: bool = false):
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
 
+func set_buttons_left_neighbor(control: Control):
+	selectCombatantBtn.focus_neighbor_left = selectCombatantBtn.get_path_to(control)
+	clickCombatantBtn.focus_neighbor_left = clickCombatantBtn.get_path_to(control)
+	control.focus_neighbor_right = control.get_path_to(selectCombatantBtn)
+	
+func set_buttons_right_neighbor(control: Control):
+	selectCombatantBtn.focus_neighbor_right = selectCombatantBtn.get_path_to(control)
+	clickCombatantBtn.focus_neighbor_right = clickCombatantBtn.get_path_to(control)
+	control.focus_neighbor_left = control.get_path_to(selectCombatantBtn)
+	
+func set_buttons_top_neighbor(control: Control):
+	selectCombatantBtn.focus_neighbor_top = selectCombatantBtn.get_path_to(control)
+	clickCombatantBtn.focus_neighbor_top = clickCombatantBtn.get_path_to(control)
+	control.focus_neighbor_bottom = control.get_path_to(selectCombatantBtn)
+	
+func set_buttons_bottom_neighbor(control: Control):
+	selectCombatantBtn.focus_neighbor_bottom = selectCombatantBtn.get_path_to(control)
+	clickCombatantBtn.focus_neighbor_bottom = clickCombatantBtn.get_path_to(control)
+	control.focus_neighbor_top = control.get_path_to(selectCombatantBtn)
+
+func set_focus_left_combatant_node_neighbor(combatantNode: CombatantNode):
+	selectCombatantBtn.focus_neighbor_left = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
+	clickCombatantBtn.focus_neighbor_left = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
+	combatantNode.selectCombatantBtn.focus_neighbor_right = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
+	combatantNode.clickCombatantBtn.focus_neighbor_right = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
+
+func set_focus_right_combatant_node_neighbor(combatantNode: CombatantNode):
+	selectCombatantBtn.focus_neighbor_right = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
+	clickCombatantBtn.focus_neighbor_right = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
+	combatantNode.selectCombatantBtn.focus_neighbor_left = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
+	combatantNode.clickCombatantBtn.focus_neighbor_left = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
+
+func set_focus_bottom_combatant_node_neighbor(combatantNode: CombatantNode):
+	selectCombatantBtn.focus_neighbor_bottom = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
+	clickCombatantBtn.focus_neighbor_bottom = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
+	combatantNode.selectCombatantBtn.focus_neighbor_top = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
+	combatantNode.clickCombatantBtn.focus_neighbor_top = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
+
+func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
+	selectCombatantBtn.focus_neighbor_top = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
+	clickCombatantBtn.focus_neighbor_top = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
+	combatantNode.selectCombatantBtn.focus_neighbor_bottom = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
+	combatantNode.clickCombatantBtn.focus_neighbor_bottom = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
+
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
 	

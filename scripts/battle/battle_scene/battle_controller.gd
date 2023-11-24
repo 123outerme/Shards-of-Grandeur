@@ -83,6 +83,8 @@ func load_into_battle():
 	
 	for node in combatantNodes:
 		node.load_combatant_node()
+		
+	update_combatant_focus_neighbors()
 	
 	if state.menu == BattleState.Menu.SUMMON and PlayerResources.inventory.count_of(Item.Type.SHARD) == 0:
 		state.menu = BattleState.Menu.PRE_BATTLE
@@ -125,6 +127,41 @@ func load_data(save_path):
 		turnExecutor.turnQueue = TurnQueue.new(state.turnList, false)
 		if not battleLoaded:
 			battleLoaded = true
+
+func update_combatant_focus_neighbors():
+	if enemyCombatant3.is_alive():
+		playerCombatant.set_focus_right_combatant_node_neighbor(enemyCombatant3)
+		enemyCombatant3.set_focus_left_combatant_node_neighbor(playerCombatant)
+		
+	if enemyCombatant2.is_alive():
+		playerCombatant.set_focus_right_combatant_node_neighbor(enemyCombatant2)
+		enemyCombatant2.set_focus_left_combatant_node_neighbor(playerCombatant)
+	
+	if enemyCombatant1.is_alive():
+		playerCombatant.set_focus_right_combatant_node_neighbor(enemyCombatant1)
+		enemyCombatant1.set_focus_left_combatant_node_neighbor(playerCombatant)
+	else:
+		enemyCombatant2.set_focus_bottom_combatant_node_neighbor(enemyCombatant3)
+		enemyCombatant3.set_focus_top_combatant_node_neighbor(enemyCombatant2)
+	
+	if minionCombatant.is_alive():
+		minionCombatant.set_focus_bottom_combatant_node_neighbor(playerCombatant)
+		playerCombatant.set_focus_top_combatant_node_neighbor(minionCombatant)
+
+func get_bottom_most_targetable_combatant_nodes() -> Array[CombatantNode]:
+	var nodes: Array[CombatantNode] = []
+	if playerCombatant.is_alive() and playerCombatant.selectCombatantBtn.visible:
+		nodes.append(playerCombatant)
+	else:
+		nodes.append(minionCombatant)
+		
+	if enemyCombatant3.is_alive() and enemyCombatant3.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant3)
+	elif enemyCombatant1.is_alive() and enemyCombatant1.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant1)
+	elif enemyCombatant2.is_alive() and enemyCombatant2.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant2)
+	return nodes
 
 func reset_intermediate_state_strs():
 	state.calcdStateStrings = []

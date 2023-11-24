@@ -137,12 +137,14 @@ func complete_command():
 func update_hp_tags():
 	for combatantNode in battleController.get_all_combatant_nodes():
 		combatantNode.update_hp_tag()
+	battleController.update_combatant_focus_neighbors()
 
 func update_downed():
 	for combatantNode in battleController.get_all_combatant_nodes():
 		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		combatantNode.visible = combatantNode.is_alive()
+	battleController.update_combatant_focus_neighbors()
 
 func round_complete():
 	battleController.state.turnNumber += 1

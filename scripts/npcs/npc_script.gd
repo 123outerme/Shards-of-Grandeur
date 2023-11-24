@@ -127,6 +127,7 @@ func advance_dialogue() -> bool:
 			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
 				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 				startingCutscene = true
+			update_dialogues_in_between()
 			data.dialogueIndex += 1
 			data.dialogueItemIdx = 0
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
@@ -153,19 +154,24 @@ func reset_dialogue():
 	data.dialogueIndex = 0
 	data.dialogueItemIdx = 0
 	data.dialogueLine = -1
-	data.dialogueItems = []
+	data.dialogueItems = [] # clear before fetching quest info
 	fetch_quest_dialogue_info()
+	data.dialogueItems = fetch_all_dialogues()
+	
+func fetch_all_dialogues() -> Array[DialogueEntry]:
+	var dialogueItems: Array[DialogueEntry] = []
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
 			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
 					and questTracker.get_prev_step().turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
-				data.dialogueItems.append_array(curStep.inProgressDialogue)
+				dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
-		data.dialogueItems.append_array(s.turnInDialogue)
+		dialogueItems.append_array(s.turnInDialogue)
 	for dialogue in dialogueEntries:
 		if dialogue.can_use_dialogue():
-			data.dialogueItems.append(dialogue)
+			dialogueItems.append(dialogue)
+	return dialogueItems
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
@@ -180,6 +186,11 @@ func fetch_quest_dialogue_info():
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and curStep.turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
 			turningInSteps.append(curStep)
+
+func update_dialogues_in_between():
+	for dialogue in dialogueEntries:
+		if not dialogue in data.dialogueItems and dialogue.can_use_dialogue():
+			add_dialogue_entry_in_dialogue(dialogue)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
 	if dialogueEntry.can_use_dialogue():

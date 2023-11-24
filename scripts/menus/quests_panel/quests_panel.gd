@@ -86,13 +86,15 @@ func load_quests_panel():
 	readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(backButton)
 	
 	completedButton.disabled = true
-	completedButton.focus_neighbor_bottom = inProgressButton.get_path_to(completedButton)
+	completedButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
 	
 	notCompletedButton.disabled = true
 	notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(backButton)
 	
 	failedButton.disabled = true
 	failedButton.focus_neighbor_bottom = failedButton.get_path_to(backButton)
+	
+	backButton.focus_neighbor_top = backButton.get_path_to(notCompletedButton)
 	
 	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 		panel.queue_free()
