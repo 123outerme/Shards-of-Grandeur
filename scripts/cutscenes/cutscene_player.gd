@@ -11,6 +11,9 @@ var lastFrame: CutsceneFrame = null
 var nextKeyframeTime: float = 0
 var tweens: Array = []
 var isPaused: bool = false
+var isFadedOut: bool = false
+var isFadingIn: bool = false
+var completeAfterFadeIn: bool = false
 
 func _process(delta):
 	if cutscene != null and playing and not isPaused:
@@ -32,6 +35,13 @@ func _process(delta):
 					and not lastFrame.get_text_was_triggered():
 				PlayerFinder.player.set_cutscene_texts(lastFrame.endTextBoxTexts, lastFrame.endTextBoxSpeaker)
 				lastFrame.set_text_was_triggered()
+				
+			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
+				PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+				isFadedOut = true
+				isFadingIn = false
+			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_IN:
+				PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -92,6 +102,12 @@ func toggle_pause_cutscene():
 		resume_cutscene()
 
 func end_cutscene():
+	if not isFadedOut:
+		complete_cutscene()
+	else:
+		completeAfterFadeIn = true
+
+func complete_cutscene():
 	SceneLoader.unpause_autonomous_movers()
 	if PlayerFinder.player.is_in_dialogue():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
@@ -105,3 +121,14 @@ func end_cutscene():
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished()
 		playingFromTrigger = null
+
+func _fade_out_complete():
+	if completeAfterFadeIn and not isFadingIn:
+		isFadingIn = true
+		PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
+
+func _fade_in_complete():
+	isFadedOut = false
+	isFadingIn = false
+	if completeAfterFadeIn:
+		complete_cutscene()

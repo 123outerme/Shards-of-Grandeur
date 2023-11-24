@@ -1,6 +1,12 @@
 extends Resource
 class_name CutsceneFrame
 
+enum CameraFade {
+	NONE = 0,
+	FADE_OUT = 1,
+	FADE_IN = 2,
+}
+
 @export var frameLength: float = 1
 @export var actorTweens: Array[ActorTween] = []
 @export var actorAnims: Array[ActorSpriteAnim] = []
@@ -8,6 +14,8 @@ class_name CutsceneFrame
 @export_multiline var endTextBoxTexts: Array[String] = []
 @export var endTextBoxPauses: bool = true
 @export var endHoldCamera: bool = false
+@export var endFade: CameraFade = CameraFade.NONE
+@export var endFadeLength: float = 0
 var endTextTriggered: bool = false
 
 func _init(
@@ -18,6 +26,7 @@ func _init(
 	i_endTexts: Array[String] = [],
 	i_endTextPauses = true,
 	i_endHoldCam = false,
+	i_endFade = CameraFade.NONE,
 ):
 	frameLength = i_frameLength
 	actorTweens = i_actorTweens
@@ -26,6 +35,7 @@ func _init(
 	endTextBoxTexts = i_endTexts
 	endTextBoxPauses = i_endTextPauses
 	endHoldCamera = i_endHoldCam
+	endFade = i_endFade
 	endTextTriggered = false
 	
 func get_text_was_triggered() -> bool:

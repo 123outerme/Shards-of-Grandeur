@@ -23,9 +23,12 @@ func show_letterbox(showing: bool = true):
 
 func fade_out(callback: Callable, duration: float = 0.5):
 	shade.visible = true
-	if fadeInTween != null:
+	if fadeInTween != null and fadeInTween.is_valid():
+		fadeInTween.finished.emit()
 		fadeInTween.kill()
-	if fadeOutTween != null:
+		fadeInTween = null
+	if fadeOutTween != null and fadeOutTween.is_valid():
+		fadeOutTween.finished.emit()
 		fadeOutTween.kill()
 	fadeOutTween = create_tween()
 	fadeOutTween.tween_property(shadeColor, 'modulate', Color(0, 0, 0, 1.0), duration)
@@ -35,10 +38,13 @@ func fade_out(callback: Callable, duration: float = 0.5):
 func fade_in(callback: Callable, duration: float = 0.5):
 	fadeInReady = true
 	shade.visible = true
-	if fadeInTween != null:
+	if fadeInTween != null and fadeInTween.is_valid():
+		fadeInTween.finished.emit()
 		fadeInTween.kill()
-	if fadeOutTween != null:
+	if fadeOutTween != null and fadeOutTween.is_valid():
+		fadeOutTween.finished.emit()
 		fadeOutTween.kill()
+		fadeOutTween = null
 	fadeInTween = create_tween()
 	fadeInTween.tween_property(shadeColor, 'modulate', Color(0, 0, 0, 0), duration)
 	fadeInTween.finished.connect(callback)
