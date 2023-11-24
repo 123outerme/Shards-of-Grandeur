@@ -34,7 +34,7 @@ func load_quest_slot_panel():
 		pinButton.focus_neighbor_right = pinButton.get_path_to(detailsButton)
 	loaded = true
 
-func _on_pin_button_toggled(button_pressed: bool, propagate: bool = true):
+func _on_pin_button_toggled(button_pressed: bool):
 	questTracker.pinned = button_pressed
 	if loaded:
 		questsMenu.pin_button_pressed(questTracker)

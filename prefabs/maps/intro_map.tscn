@@ -37,6 +37,7 @@ choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
 script = ExtResource("8_paddf")
 entryId = "1"
 items = Array[ExtResource("7_4in6g")]([SubResource("Resource_cvvun")])
+closesDialogue = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 32)
@@ -133,12 +134,8 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
-facesPlayer = true
 cutscenePlayer = NodePath("../../CutscenePlayer")
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("6_ycoji")
@@ -163,11 +160,8 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
 sprite_frames = ExtResource("9_jtu4n")

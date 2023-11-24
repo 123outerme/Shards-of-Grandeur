@@ -60,6 +60,7 @@ theme_override_constants/separation = 8
 [node name="ResumeButton" type="Button" parent="Control/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+focus_neighbor_top = NodePath("../SaveQuitButton")
 text = "Resume"
 icon = ExtResource("4_4mcnc")
 expand_icon = true
@@ -88,6 +89,7 @@ expand_icon = true
 [node name="SaveQuitButton" type="Button" parent="Control/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../ResumeButton")
 text = "Save & Quit"
 icon = ExtResource("8_apdct")
 

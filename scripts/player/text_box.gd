@@ -35,12 +35,16 @@ func _process(delta):
 
 func set_textbox_text(text: String, speaker: String):
 	advance_textbox(text)
-	SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
+	var newSpeaker: bool = false
+	if SpeakerText.text != TextUtils.substitute_playername(speaker) + ":":
+		SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
+		newSpeaker = true
 	delete_choices()
 	visible = true
 	ReadySprite.visible = false
-	SpeakerText.visible_characters = 0
-	speaker_visible_chars_partial = 0
+	if newSpeaker:
+		SpeakerText.visible_characters = 0
+		speaker_visible_chars_partial = 0
 	
 func advance_textbox(text: String):
 	TextBoxText.text = TextUtils.substitute_playername(text)

@@ -116,6 +116,7 @@ func advance_dialogue() -> bool:
 	if len(data.dialogueItems) == 0:
 		return false
 	
+	var hasDialogue: bool = true
 	data.dialogueLine += 1
 	if data.dialogueLine >= len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines): # if the last line of this dialogue item
 		data.dialogueItemIdx += 1
@@ -127,9 +128,13 @@ func advance_dialogue() -> bool:
 			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
 				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 				startingCutscene = true
-			update_dialogues_in_between()
+			if data.dialogueItems[data.dialogueIndex].closesDialogue:
+				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
 			data.dialogueIndex += 1
 			data.dialogueItemIdx = 0
+			update_dialogues_in_between()
+			while data.dialogueIndex < len(data.dialogueItems) and not data.dialogueItems[data.dialogueIndex].can_use_dialogue():
+				data.dialogueIndex += 1 # skip dialogues that cannot be used
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
 				PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
 				fetch_quest_dialogue_info()
@@ -148,7 +153,7 @@ func advance_dialogue() -> bool:
 		play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 		face_player()
 		talkAlertSprite.visible = false
-	return true
+	return hasDialogue
 
 func reset_dialogue():
 	data.dialogueIndex = 0
@@ -193,8 +198,12 @@ func update_dialogues_in_between():
 			add_dialogue_entry_in_dialogue(dialogue)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
+	var indexOffset = 1
+	if data.dialogueIndex >= len(data.dialogueItems):
+		indexOffset = 0
+	
 	if dialogueEntry.can_use_dialogue():
-		data.dialogueItems.insert(data.dialogueIndex + 1, dialogueEntry)
+		data.dialogueItems.insert(data.dialogueIndex + indexOffset, dialogueEntry)
 
 func pause_movement():
 	NavAgent.disableMovement = true

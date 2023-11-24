@@ -48,6 +48,7 @@ size_flags_vertical = 4
 [node name="ResumeGameButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
 keep_pressed_outside = true
 text = "Resume Game"
 icon = ExtResource("3_yjhtk")
@@ -72,6 +73,7 @@ expand_icon = true
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../ResumeGameButton")
 keep_pressed_outside = true
 text = "Quit Game"
 icon = ExtResource("6_rd1l1")

@@ -6,17 +6,20 @@ class_name DialogueEntry
 @export var storyRequirements: StoryRequirements = null
 @export var startsQuest: Quest = null
 @export var startsCutscene: Cutscene = null
+@export var closesDialogue: bool = false
 
 func _init(
 	i_id = '',
 	i_items: Array[DialogueItem] = [],
 	i_storyRequirements = null,
 	i_startsQuest = null,
+	i_closesDialogue = false,
 ):
 	entryId = i_id
 	items = i_items
 	storyRequirements = i_storyRequirements
 	startsQuest = i_startsQuest
+	closesDialogue = i_closesDialogue
 
 func can_use_dialogue() -> bool:
 	if storyRequirements != null and not storyRequirements.is_valid():

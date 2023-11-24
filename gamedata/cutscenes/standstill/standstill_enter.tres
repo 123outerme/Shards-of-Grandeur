@@ -1,0 +1,246 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=33 format=3 uid="uid://drqc7ms1tgy62"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_l83ch"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_sfute"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rr5xp"]
+
+[sub_resource type="Resource" id="Resource_261h1"]
+script = ExtResource("1_ijdb7")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_kf4oy"]
+script = ExtResource("1_ijdb7")
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_rg0je"]
+script = ExtResource("1_ijdb7")
+actorTreePath = ""
+isPlayer = true
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_ppteb"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-608, 108)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_tp73u"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-624, 108)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_x1gt6"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-552, 116)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_3qyhe"]
+script = ExtResource("1_sfute")
+frameLength = 0.01
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
+actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), SubResource("Resource_rg0je")])
+endTextBoxSpeaker = "Dr. Hudson"
+endTextBoxTexts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land. Alessia is quite the master blacksmith, with the attitude to match.", "You might might also want to visit the general store to stock up on healing Potions while we're here, as there are plenty of monsters to encounter on the way out of town."])
+endTextBoxPauses = false
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_r1jf1"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-146, 108)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ug8h1"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-162, 108)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_e6rbe"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-90, 116)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ligm2"]
+script = ExtResource("1_sfute")
+frameLength = 10.0
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_r1jf1"), SubResource("Resource_ug8h1"), SubResource("Resource_e6rbe")])
+actorAnims = Array[ExtResource("1_ijdb7")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_4ypfc"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-125, 108)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_raqbr"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-141, 108)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_rrkc3"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-90, 84)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_n534g"]
+script = ExtResource("1_sfute")
+frameLength = 0.5
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_4ypfc"), SubResource("Resource_raqbr"), SubResource("Resource_rrkc3")])
+actorAnims = Array[ExtResource("1_ijdb7")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_sor70"]
+script = ExtResource("1_ijdb7")
+actorTreePath = ""
+isPlayer = true
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_e5ssa"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-90, 108)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_up4xj"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-120, 108)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_s8md0"]
+script = ExtResource("1_sfute")
+frameLength = 1.0
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_e5ssa"), SubResource("Resource_up4xj")])
+actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_sor70")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_he6ky"]
+script = ExtResource("1_bsu0g")
+value = Vector2(-8, 88)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_e24o5"]
+script = ExtResource("1_bsu0g")
+value = Vector2(8, 128)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_n7gd6"]
+script = ExtResource("1_sfute")
+frameLength = 3.0
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_he6ky"), SubResource("Resource_e24o5")])
+actorAnims = Array[ExtResource("1_ijdb7")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_t86cw"]
+script = ExtResource("1_ijdb7")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_pt2yx"]
+script = ExtResource("1_ijdb7")
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_7eiko"]
+script = ExtResource("1_ijdb7")
+actorTreePath = ""
+isPlayer = true
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_gksqn"]
+script = ExtResource("1_sfute")
+frameLength = 0.1
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx"), SubResource("Resource_7eiko")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+
+[sub_resource type="Resource" id="Resource_wvqjc"]
+script = ExtResource("2_rr5xp")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_enter"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_l83ch")
+cutsceneFrames = Array[ExtResource("1_sfute")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_gksqn")])
+saveName = "standstill_enter"
+storyRequirements = SubResource("Resource_wvqjc")

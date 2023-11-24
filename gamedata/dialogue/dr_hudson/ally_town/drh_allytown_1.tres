@@ -23,14 +23,14 @@ opensShop = false
 
 [sub_resource type="Resource" id="Resource_wxumd"]
 script = ExtResource("2_kod0c")
-lines = Array[String](["Ask around, you might find an armorer in these parts! The people of Standstill are very hospitable. Capital City said they were happy to host us on our quest.", "Let me know when you are fully prepared, and we will depart for the Cave at once."])
+lines = Array[String](["The people of Standstill are very hospitable, so be sure to make the most of our stop here.", "Let me know when you are fully prepared, and we will depart for the Cave at once."])
 animation = "talk"
 choices = Array[ExtResource("1_42jfg")]([SubResource("Resource_qwuh8"), SubResource("Resource_3msle")])
 
 [sub_resource type="Resource" id="Resource_fr5s4"]
 script = ExtResource("5_fd6dk")
 minAct = 0
-maxAct = 5
+maxAct = 0
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -46,3 +46,4 @@ script = ExtResource("3_4prmp")
 entryId = ""
 items = Array[ExtResource("2_kod0c")]([SubResource("Resource_wxumd")])
 storyRequirements = SubResource("Resource_fr5s4")
+closesDialogue = false
