@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=33 format=3 uid="uid://drqc7ms1tgy62"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://drqc7ms1tgy62"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_l83ch"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_sfute"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rr5xp"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_udvm0"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_y1vms"]
 
 [sub_resource type="Resource" id="Resource_261h1"]
 script = ExtResource("1_ijdb7")
@@ -16,12 +18,6 @@ animation = "walk"
 script = ExtResource("1_ijdb7")
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
-animation = "walk"
-
-[sub_resource type="Resource" id="Resource_rg0je"]
-script = ExtResource("1_ijdb7")
-actorTreePath = ""
-isPlayer = true
 animation = "walk"
 
 [sub_resource type="Resource" id="Resource_ppteb"]
@@ -55,7 +51,7 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 0.01
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
-actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), SubResource("Resource_rg0je")])
+actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), ExtResource("2_udvm0")])
 endTextBoxSpeaker = "Dr. Hudson"
 endTextBoxTexts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land. Alessia is quite the master blacksmith, with the attitude to match.", "You might might also want to visit the general store to stock up on healing Potions while we're here, as there are plenty of monsters to encounter on the way out of town."])
 endTextBoxPauses = false
@@ -141,12 +137,6 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
-[sub_resource type="Resource" id="Resource_sor70"]
-script = ExtResource("1_ijdb7")
-actorTreePath = ""
-isPlayer = true
-animation = "stand"
-
 [sub_resource type="Resource" id="Resource_e5ssa"]
 script = ExtResource("1_bsu0g")
 value = Vector2(-90, 108)
@@ -169,7 +159,7 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 1.0
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_e5ssa"), SubResource("Resource_up4xj")])
-actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_sor70")])
+actorAnims = Array[ExtResource("1_ijdb7")]([ExtResource("5_y1vms")])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -219,17 +209,11 @@ actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 animation = "stand"
 
-[sub_resource type="Resource" id="Resource_7eiko"]
-script = ExtResource("1_ijdb7")
-actorTreePath = ""
-isPlayer = true
-animation = "stand"
-
 [sub_resource type="Resource" id="Resource_gksqn"]
 script = ExtResource("1_sfute")
 frameLength = 0.1
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx"), SubResource("Resource_7eiko")])
+actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx")])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -256,3 +240,4 @@ script = ExtResource("1_l83ch")
 cutsceneFrames = Array[ExtResource("1_sfute")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_gksqn")])
 saveName = "standstill_enter"
 storyRequirements = SubResource("Resource_wvqjc")
+unlockCameraHoldAfter = true

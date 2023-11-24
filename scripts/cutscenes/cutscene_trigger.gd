@@ -6,7 +6,7 @@ class_name CutsceneTrigger
 @export var cutscenePlayer: CutscenePlayer = null
 
 func _ready():
-	if PlayerResources.playerInfo.has_seen_cutscene(cutscene.saveName):
+	if cutscene == null or PlayerResources.playerInfo.has_seen_cutscene(cutscene.saveName):
 		queue_free() # delete self if player has seen cutscene
 
 func cutscene_finished():

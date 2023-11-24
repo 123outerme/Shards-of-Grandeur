@@ -198,12 +198,9 @@ func update_dialogues_in_between():
 			add_dialogue_entry_in_dialogue(dialogue)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
-	var indexOffset = 1
-	if data.dialogueIndex >= len(data.dialogueItems):
-		indexOffset = 0
-	
+	var index: int = mini(data.dialogueIndex + 1, len(data.dialogueItems))
 	if dialogueEntry.can_use_dialogue():
-		data.dialogueItems.insert(data.dialogueIndex + indexOffset, dialogueEntry)
+		data.dialogueItems.insert(index, dialogueEntry)
 
 func pause_movement():
 	NavAgent.disableMovement = true

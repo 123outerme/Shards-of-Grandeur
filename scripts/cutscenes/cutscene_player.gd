@@ -40,8 +40,12 @@ func _process(delta):
 				PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 				isFadedOut = true
 				isFadingIn = false
+			
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_IN:
 				PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+			
+			if lastFrame.givesItem != null:
+				PlayerResources.inventory.add_item(lastFrame.givesItem)
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -102,6 +106,8 @@ func toggle_pause_cutscene():
 		resume_cutscene()
 
 func end_cutscene():
+	if cutscene == null:
+		return
 	if not isFadedOut:
 		complete_cutscene()
 	else:
@@ -114,13 +120,14 @@ func complete_cutscene():
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
 	else:
 		PlayerFinder.player.cam.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
-	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
+	if cutscene.unlockCameraHoldAfter and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
 	PlayerResources.playerInfo.set_cutscene_seen(cutscene.saveName)
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished()
 		playingFromTrigger = null
+	cutscene = null
 
 func _fade_out_complete():
 	if completeAfterFadeIn and not isFadingIn:

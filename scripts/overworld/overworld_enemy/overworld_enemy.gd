@@ -12,6 +12,7 @@ var spawner: EnemySpawner = null
 var homePoint: Vector2
 var patrolRange: float
 var encounteredPlayer: bool = false
+var waitUntilNavReady: bool = false
 
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
@@ -28,6 +29,9 @@ func _ready():
 		get_next_patrol_target()
 
 func _process(delta):
+	if waitUntilNavReady:
+		get_next_patrol_target()
+	
 	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady:
 		if not patrolling:
 			navAgent.target_position = PlayerFinder.player.position
@@ -46,9 +50,12 @@ func _process(delta):
 			enemySprite.play('stand')
 
 func get_next_patrol_target():
-	if (SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady):
+	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:
+		waitUntilNavReady = true
 		return
 		
+	waitUntilNavReady = false
+	
 	if patrolRange == 0:
 		disableMovement = true
 		return

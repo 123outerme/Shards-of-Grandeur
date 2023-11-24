@@ -1,16 +1,11 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://kh7eona0y4n7"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://kh7eona0y4n7"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_eu3xk"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_lebiy"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_lfsmn"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_x3dxf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_3g2mg"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_ob8jw"]
-
-[sub_resource type="Resource" id="Resource_g5yml"]
-script = ExtResource("1_lebiy")
-actorTreePath = ""
-isPlayer = true
-animation = "walk"
 
 [sub_resource type="Resource" id="Resource_8a4bs"]
 script = ExtResource("1_lebiy")
@@ -28,11 +23,13 @@ animation = "walk"
 script = ExtResource("2_3g2mg")
 frameLength = 0.1
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("1_lebiy")]([SubResource("Resource_g5yml"), SubResource("Resource_8a4bs"), SubResource("Resource_weg8t")])
+actorAnims = Array[ExtResource("1_lebiy")]([ExtResource("1_x3dxf"), SubResource("Resource_8a4bs"), SubResource("Resource_weg8t")])
 endTextBoxSpeaker = "Dr. Hudson"
 endTextBoxTexts = Array[String](["Oh dear, you look beat up. You should heal up and see if there's a blacksmith in town. A good set of armor might really save your skin someday.", "I sure am glad this Cave entrance popped up so close to the capital. We need to hurry, before it closes up and moves again!"])
 endTextBoxPauses = false
 endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_wujr4"]
 script = ExtResource("1_eu3xk")
@@ -70,24 +67,8 @@ endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = true
-
-[sub_resource type="Resource" id="Resource_4g3la"]
-script = ExtResource("1_lebiy")
-actorTreePath = ""
-isPlayer = true
-animation = "walk"
-
-[sub_resource type="Resource" id="Resource_gwfif"]
-script = ExtResource("1_lebiy")
-actorTreePath = "TileMap/DrHudson"
-isPlayer = false
-animation = "walk"
-
-[sub_resource type="Resource" id="Resource_51dgn"]
-script = ExtResource("1_lebiy")
-actorTreePath = "TileMap/HorseCart"
-isPlayer = false
-animation = "walk"
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_saxk8"]
 script = ExtResource("1_eu3xk")
@@ -120,11 +101,13 @@ transitionType = 0
 script = ExtResource("2_3g2mg")
 frameLength = 7.0
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_saxk8"), SubResource("Resource_piipv"), SubResource("Resource_lttcg")])
-actorAnims = Array[ExtResource("1_lebiy")]([SubResource("Resource_4g3la"), SubResource("Resource_gwfif"), SubResource("Resource_51dgn")])
+actorAnims = Array[ExtResource("1_lebiy")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_l7lxr"]
 script = ExtResource("1_eu3xk")
@@ -144,6 +127,8 @@ endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_b7md5"]
 script = ExtResource("2_3g2mg")
@@ -154,6 +139,8 @@ endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_lruf7"]
 script = ExtResource("5_ob8jw")
@@ -174,3 +161,4 @@ script = ExtResource("1_lfsmn")
 cutsceneFrames = Array[ExtResource("2_3g2mg")]([SubResource("Resource_rodg8"), SubResource("Resource_2v5ee"), SubResource("Resource_fqrxa"), SubResource("Resource_1u1dh"), SubResource("Resource_b7md5")])
 saveName = "intro_exit"
 storyRequirements = SubResource("Resource_lruf7")
+unlockCameraHoldAfter = false

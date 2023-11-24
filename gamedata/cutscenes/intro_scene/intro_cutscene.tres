@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_hfgy4"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_iirie"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_jjxdk"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_ar3vu"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_m2oxx"]
 
 [sub_resource type="Resource" id="Resource_rcqef"]
 script = ExtResource("2_jjxdk")
@@ -14,6 +16,8 @@ endTextBoxSpeaker = "Dr. Hudson"
 endTextBoxTexts = Array[String](["Alright, @, before we arrive at the Cave, we'll need to stop for supplies. As you may well know, the Spelunking team has been down in that Cave for many days.", "Once we get to them, we'll load up the cart with Shards and take them back to the city. We're depending on you to keep the convoy safe until we reach home again."])
 endTextBoxPauses = false
 endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_74x7j"]
 script = ExtResource("1_ak7bs")
@@ -25,12 +29,6 @@ animation = "walk"
 script = ExtResource("1_ak7bs")
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
-animation = "walk"
-
-[sub_resource type="Resource" id="Resource_wu6th"]
-script = ExtResource("1_ak7bs")
-actorTreePath = ""
-isPlayer = true
 animation = "walk"
 
 [sub_resource type="Resource" id="Resource_og4re"]
@@ -64,11 +62,13 @@ transitionType = 0
 script = ExtResource("2_jjxdk")
 frameLength = 8.0
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_og4re"), SubResource("Resource_wu1qc"), SubResource("Resource_uyqaq")])
-actorAnims = Array[ExtResource("1_ak7bs")]([SubResource("Resource_74x7j"), SubResource("Resource_vdp44"), SubResource("Resource_wu6th")])
+actorAnims = Array[ExtResource("1_ak7bs")]([SubResource("Resource_74x7j"), SubResource("Resource_vdp44"), ExtResource("3_ar3vu")])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_a6k65"]
 script = ExtResource("1_ak7bs")
@@ -82,23 +82,20 @@ actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 animation = "stand"
 
-[sub_resource type="Resource" id="Resource_607oc"]
-script = ExtResource("1_ak7bs")
-actorTreePath = ""
-isPlayer = true
-animation = "stand"
-
 [sub_resource type="Resource" id="Resource_y53a0"]
 script = ExtResource("2_jjxdk")
 frameLength = 0.1
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("1_ak7bs")]([SubResource("Resource_a6k65"), SubResource("Resource_fl5al"), SubResource("Resource_607oc")])
+actorAnims = Array[ExtResource("1_ak7bs")]([SubResource("Resource_a6k65"), SubResource("Resource_fl5al"), ExtResource("5_m2oxx")])
 endTextBoxSpeaker = "Dr. Hudson"
 endTextBoxTexts = Array[String](["What? Is that a Giant Rat on the trail? It looks hungry, but don't let it eat us!"])
 endTextBoxPauses = true
 endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
 
 [resource]
 script = ExtResource("1_hfgy4")
 cutsceneFrames = Array[ExtResource("2_jjxdk")]([SubResource("Resource_rcqef"), SubResource("Resource_lmxde"), SubResource("Resource_y53a0")])
 saveName = "game_intro_cutscene"
+unlockCameraHoldAfter = true

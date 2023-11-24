@@ -204,12 +204,12 @@ func sell_item(slot: InventorySlot):
 func equip_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
 	load_inventory_panel()
-	restore_last_focus('equipButton')
+	restore_last_focus('unequipButton')
 
 func unequip_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
 	load_inventory_panel()
-	restore_last_focus('upequipButton')
+	restore_last_focus('equipButton')
 	
 func trash_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot

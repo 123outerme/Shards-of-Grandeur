@@ -16,6 +16,7 @@ enum CameraFade {
 @export var endHoldCamera: bool = false
 @export var endFade: CameraFade = CameraFade.NONE
 @export var endFadeLength: float = 0
+@export var givesItem: Item = null
 var endTextTriggered: bool = false
 
 func _init(
@@ -27,6 +28,7 @@ func _init(
 	i_endTextPauses = true,
 	i_endHoldCam = false,
 	i_endFade = CameraFade.NONE,
+	i_givesItem = null,
 ):
 	frameLength = i_frameLength
 	actorTweens = i_actorTweens
@@ -36,6 +38,7 @@ func _init(
 	endTextBoxPauses = i_endTextPauses
 	endHoldCamera = i_endHoldCam
 	endFade = i_endFade
+	givesItem = i_givesItem
 	endTextTriggered = false
 	
 func get_text_was_triggered() -> bool:
