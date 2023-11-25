@@ -180,7 +180,7 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
 	turningInSteps = []
-	PlayerResources.questInventory.update_collect_quests()
+	PlayerResources.questInventory.auto_update_quests()
 	for entry in data.dialogueItems:
 		if entry.startsQuest != null and PlayerResources.questInventory.can_start_quest(entry.startsQuest):
 			acceptableQuests.append(entry.startsQuest)

@@ -33,6 +33,11 @@ func copy_combatant_to_info(combatant: Combatant):
 func get_cur_act_save_str() -> String:
 	return 'act' + String.num_int64(questInventory.currentAct)
 
+func set_cutscene_seen(saveName: String):
+	playerInfo.set_cutscene_seen(saveName)
+	questInventory.progress_quest(saveName, QuestStep.Type.CUTSCENE)
+	questInventory.auto_turn_in_cutscene_steps(saveName)
+
 func load_data(save_path):
 	if playerInfo == null:
 		playerInfo = PlayerInfo.new()

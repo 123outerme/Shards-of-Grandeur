@@ -128,7 +128,10 @@ func complete_cutscene():
 		if actorNode != null:
 			actorNode.visible = false
 	
-	PlayerResources.playerInfo.set_cutscene_seen(cutscene.saveName)
+	if cutscene.givesQuest != null:
+		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
+	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished()
 		playingFromTrigger = null

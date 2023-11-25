@@ -10,6 +10,7 @@ var selectedStep: QuestStep = null
 @onready var stepName: RichTextLabel = get_node("Panel/StepDetailPanel/StepName")
 @onready var stepDescription: RichTextLabel = get_node("Panel/StepDetailPanel/StepDescription")
 @onready var stepStatus: RichTextLabel = get_node("Panel/StepDetailPanel/StepStatus")
+@onready var turnInLabel: RichTextLabel = get_node("Panel/StepDetailPanel/TurnInTo")
 @onready var stepTurnIn: RichTextLabel = get_node("Panel/StepDetailPanel/StepTurnInTarget")
 @onready var rewardPanel: RewardPanel = get_node("Panel/StepDetailPanel/RewardPanel")
 @onready var vboxViewport: VBoxContainer = get_node("Panel/ScrollContainer/VBoxContainer")
@@ -43,7 +44,13 @@ func load_quest_details():
 	stepName.text = '[center]' + selectedStep.name + '[/center]'
 	stepDescription.text = selectedStep.description
 	stepStatus.text = '[center]' + questTracker.get_step_status_str(selectedStep, true) + '[/center]'
-	stepTurnIn.text = '[center]' + selectedStep.displayTurnInName + '[/center]'
+	if selectedStep.displayTurnInName != '':
+		stepTurnIn.text = '[center]' + selectedStep.displayTurnInName + '[/center]'
+		stepTurnIn.visible = true
+		turnInLabel.visible = true
+	else:
+		stepTurnIn.visible = false
+		turnInLabel.visible = false
 	rewardPanel.reward = selectedStep.reward
 	rewardPanel.load_reward_panel(itemDetailsPanel)
 	

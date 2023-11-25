@@ -39,7 +39,7 @@ func _ready():
 func toggle():
 	visible = not visible
 	if visible:
-		load_stats_panel()
+		load_stats_panel(true)
 		initial_focus()
 	else:
 		equipmentPanel.itemDetailsPanel.visible = false
@@ -61,7 +61,7 @@ func restore_previous_focus():
 	else:
 		previousControl.grab_focus()
 
-func load_stats_panel():
+func load_stats_panel(fromToggle: bool = false):
 	if stats == null:
 		return
 	
@@ -80,7 +80,7 @@ func load_stats_panel():
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
-	statlinePanel.load_statline_panel(changingCombatant)
+	statlinePanel.load_statline_panel(changingCombatant or fromToggle)
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool
 	moveListPanel.readOnly = readOnly

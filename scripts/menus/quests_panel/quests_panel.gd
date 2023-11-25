@@ -40,7 +40,7 @@ func _ready():
 func toggle():
 	visible = not visible
 	if visible:
-		load_quests_panel()
+		load_quests_panel(true)
 		initial_focus()
 	else:
 		questDetailsPanel.hide_panel()
@@ -75,8 +75,8 @@ func get_last_focused_panel():
 		if panel.questTracker == lastInteractedTracker:
 			lastFocused = panel
 
-func load_quests_panel():
-	PlayerResources.questInventory.update_collect_quests() # update collect quests
+func load_quests_panel(fromToggle: bool = false):
+	PlayerResources.questInventory.auto_update_quests() # update collect quests
 	update_filter_buttons()
 	# lock all filter buttons to be unlocked when creating quest slot panels
 	inProgressButton.disabled = true
@@ -117,6 +117,8 @@ func load_quests_panel():
 				notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(instantiatedPanel.detailsButton)
 				failedButton.focus_neighbor_bottom = failedButton.get_path_to(instantiatedPanel.detailsButton)
 				firstPanel = false
+			if questTracker.get_current_step().turnInName == turnInTargetName and turnInTargetName != '' and fromToggle:
+				instantiatedPanel.turnInButton.call_deferred('grab_focus')
 			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
 		if trackerStatus == QuestTracker.Status.IN_PROGRESS:
 			inProgressButton.disabled = lockFilters
@@ -158,7 +160,7 @@ func turn_in(questTracker: QuestTracker):
 	backButton.disabled = true
 	rewardNewLvs = PlayerResources.questInventory.turn_in_cur_step(questTracker)
 	turn_in_step_to.emit(turnInTargetName)
-	load_quests_panel()
+	load_quests_panel(true) # not from the toggle function, but will focus any other quests that can be turned in
 	
 func show_details(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker

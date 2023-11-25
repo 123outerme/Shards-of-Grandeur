@@ -11,6 +11,7 @@ var loaded: bool = false
 @onready var questName: RichTextLabel = get_node("CenterQuestName/QuestName")
 @onready var stepName: RichTextLabel = get_node("CenterQuestName/QuestStepName")
 @onready var progress: RichTextLabel = get_node("CenterProgress/QuestProgress")
+@onready var mainQuestSprite: Control = get_node("CenterButtons/HBoxContainer/MainQuestSpriteControl")
 @onready var turnInButton: Button = get_node("CenterButtons/HBoxContainer/TurnInButton")
 @onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
 
@@ -28,6 +29,7 @@ func load_quest_slot_panel():
 	questName.text = questTracker.quest.questName
 	stepName.text = curStep.name
 	progress.text = questTracker.get_step_status_str(curStep)
+	mainQuestSprite.visible = questTracker.quest.isMainQuest
 	turnInButton.visible = curStep.turnInName == turnInName and questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP
 	if not turnInButton.visible:
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(pinButton)

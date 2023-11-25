@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=19 format=3 uid="uid://cy6c7301nx7fg"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://cy6c7301nx7fg"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ak7bs"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_hfgy4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_jjxdk"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_ar3vu"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_m2oxx"]
+[ext_resource type="Resource" uid="uid://bh8why6u7cadp" path="res://gamedata/quests/epilogue_main_quest.tres" id="6_0uwqh"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_osrnc"]
 
 [sub_resource type="Resource" id="Resource_rcqef"]
@@ -115,3 +116,5 @@ cutsceneFrames = Array[ExtResource("2_jjxdk")]([SubResource("Resource_rcqef"), S
 saveName = "game_intro_cutscene"
 storyRequirements = SubResource("Resource_gxtk5")
 unlockCameraHoldAfter = true
+deactivateActorsAfter = Array[String]([])
+givesQuest = ExtResource("6_0uwqh")

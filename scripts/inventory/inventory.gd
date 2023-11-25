@@ -22,13 +22,13 @@ func add_item(item: Item) -> bool:
 					return true # if negative (infinite), don't do anything
 				slot.count += 1
 				add_shard_minion_entry(item)
-				PlayerResources.questInventory.update_collect_quests()
+				PlayerResources.questInventory.auto_update_quests()
 				return true
 	# if not found, add a new slot
 	if not found:
 		inventorySlots.append(InventorySlot.new(item))
 		add_shard_minion_entry(item)
-		PlayerResources.questInventory.update_collect_quests()
+		PlayerResources.questInventory.auto_update_quests()
 		return true
 	return false
 
@@ -96,14 +96,14 @@ func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
 	if inventorySlot.count <= 0:
 		inventorySlots.erase(inventorySlot)
 		lastInSlot = true
-	PlayerResources.questInventory.update_collect_quests()
+	PlayerResources.questInventory.auto_update_quests()
 	return lastInSlot
 
 func trash_items_by_name(itemName: String, count: int = 1):
 	for slot in inventorySlots:
 		if slot.item.itemName == itemName:
 			trash_item(slot, count)
-	PlayerResources.questInventory.update_collect_quests()
+	PlayerResources.questInventory.auto_update_quests()
 
 func get_sorted_slots() -> Array[InventorySlot]:
 	var slots: Array[InventorySlot] = []

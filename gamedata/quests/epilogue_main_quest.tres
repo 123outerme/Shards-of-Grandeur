@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://bh8why6u7cadp"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_lqkgd"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_y7ojr"]
+
+[sub_resource type="Resource" id="Resource_oxho3"]
+script = ExtResource("2_y7ojr")
+name = "Get to Standstill"
+description = "The small town Standstill has agreed to support the expedition. When you arrive, you will need to gear up for the rest of the journey,"
+type = 3
+count = 1
+objectiveName = "standstill_enter"
+turnInName = ""
+displayObjName = "Standstill"
+displayTurnInName = ""
+customStatusStr = "Arrive at Standstill!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_5nirr"]
+script = ExtResource("2_y7ojr")
+name = "Gear Up, Get Out"
+description = "The spelunking team is expecting you. Make your preparations, check with Dr. Hudson, and leave for the trail on the other side of town."
+type = 3
+count = 1
+objectiveName = "hilltop_enter"
+turnInName = ""
+displayObjName = "Hilltop"
+displayTurnInName = ""
+customStatusStr = "Leave the Town!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_0hu12"]
+script = ExtResource("2_y7ojr")
+name = "Reach the Cave"
+description = "The cave is a stone's throw away. Secure the trail as best you can and make it to the Cave."
+type = 3
+count = 1
+objectiveName = "hilltop_ambush"
+turnInName = ""
+displayObjName = "Hilltop"
+displayTurnInName = ""
+customStatusStr = "Get to the Cave!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[resource]
+script = ExtResource("1_lqkgd")
+questName = "Protect the Convoy"
+description = "You have been assigned to Dr. Hudson's convoy to transport Shards back from the Cave."
+steps = Array[ExtResource("2_y7ojr")]([SubResource("Resource_oxho3"), SubResource("Resource_5nirr"), SubResource("Resource_0hu12")])
+isMainQuest = true

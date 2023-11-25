@@ -111,6 +111,7 @@ func _map_loaded():
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
 	await get_tree().create_timer(0.15).timeout
 	SceneLoader.call_deferred('unpause_autonomous_movers')
+	player.collider.set_deferred('disabled', false)
 	PlayerFinder.player.set_deferred('disableMovement', player.inCutscene or player.textBox.visible)
 	
 func _nav_map_changed(_arg):

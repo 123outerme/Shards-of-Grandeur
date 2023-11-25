@@ -39,7 +39,7 @@ func get_cur_trackers_for_target(targetName: String) -> Array[QuestTracker]:
 func can_start_quest(q: Quest) -> bool:
 	if q == null:
 		return false
-	return q.storyRequirements.is_valid() and get_quest_tracker_by_quest(q) == null
+	return not (q.storyRequirements != null and not q.storyRequirements.is_valid()) and get_quest_tracker_by_quest(q) == null
 
 func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 	var hasCompleted: bool = true
@@ -77,27 +77,39 @@ func accept_quest(q: Quest):
 		return
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)
-	update_collect_quests()
+	auto_update_quests()
 
-func update_collect_quests():
+func auto_update_quests():
 	for tracker in quests:
 		var step: QuestStep = tracker.get_current_step()
-		if step.type == QuestStep.Type.COLLECT_ITEM and tracker.get_step_status(step) != QuestTracker.Status.COMPLETED:
+		if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or tracker.get_step_status(step) == QuestTracker.Status.FAILED:
+			continue # skip this quest if already completed or failed
+		if step.type == QuestStep.Type.COLLECT_ITEM:
 			var count: int = 0
 			for slot in PlayerResources.inventory.inventorySlots:
 				if slot.item.itemName == tracker.get_current_step().objectiveName:
 					count += slot.count
 			tracker.set_current_step_progress(count)
+		if step.type == QuestStep.Type.CUTSCENE:
+			for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
+				progress_quest(cutscene, step.type)
+				auto_turn_in_cutscene_steps(cutscene)
 
 func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
 	for tracker in get_cur_trackers_for_target(target):
-		if tracker.get_current_step().type == type and tracker.quest.storyRequirements.is_valid():
+		if tracker.get_current_step().type == type and (tracker.quest.storyRequirements == null or tracker.quest.storyRequirements.is_valid()):
 			tracker.set_current_step_progress(progress)
 	
 func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 	for tracker in get_cur_trackers_for_target(target):
-			if tracker.get_current_step().type == type and tracker.quest.storyRequirements.is_valid():
+			if tracker.get_current_step().type == type and (tracker.quest.storyRequirements == null or tracker.quest.storyRequirements.is_valid()):
 				tracker.add_current_step_progress(progress)
+
+func auto_turn_in_cutscene_steps(target: String):
+	for tracker in get_cur_trackers_for_target(target):
+		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
+				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE:
+			turn_in_cur_step(tracker)
 
 func turn_in_cur_step(tracker: QuestTracker) -> int:
 	var curStep: QuestStep = tracker.get_current_step()
@@ -106,7 +118,7 @@ func turn_in_cur_step(tracker: QuestTracker) -> int:
 	if curStep.type == QuestStep.Type.COLLECT_ITEM:
 		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)
 	
-	update_collect_quests()
+	auto_update_quests()
 	return newLvs
 
 func get_sorted_trackers() -> Array[QuestTracker]:

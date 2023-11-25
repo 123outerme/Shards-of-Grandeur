@@ -83,7 +83,7 @@ func get_step_progress(step: QuestStep) -> int:
 
 func get_step_status(step: QuestStep) -> Status:
 	var idx = get_step_index(step)
-	if idx == currentStep and not quest.storyRequirements.is_valid():
+	if idx == currentStep and quest.storyRequirements != null and not quest.storyRequirements.is_valid():
 		return Status.FAILED
 	
 	if idx >= 0 and idx < len(stepProgressCounts):
@@ -106,11 +106,19 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 		if step.type == QuestStep.Type.DEFEAT:
 			st += 'Defeat'
 		st += ' ' + step.displayObjName + ' (' + TextUtils.num_to_comma_string(get_step_progress(step)) + ' / ' + TextUtils.num_to_comma_string(step.count) + ')!'
+		if step.type == QuestStep.Type.CUTSCENE:
+			st = '???'
+		if step.customStatusStr != '':
+			st = step.customStatusStr
 		return st
 	if status == Status.COMPLETED:
-		return 'Turned in to ' + step.displayTurnInName + '.'
+		if step.displayTurnInName != '':
+			return 'Turned in to ' + step.displayTurnInName + '.'
+		return 'Completed.'
 	if status == Status.READY_TO_TURN_IN_STEP:
-		return 'Turn in to ' + step.displayTurnInName + '!'
+		if step.displayTurnInName != '':
+			return 'Turn in to ' + step.displayTurnInName + '!'
+		return 'Ready to Turn In.'
 	return '???'
 	
 func get_known_steps() -> Array[QuestStep]:
@@ -123,7 +131,7 @@ func turn_in_step() -> bool:
 	if get_current_status() == Status.READY_TO_TURN_IN_STEP:
 		currentStep += 1
 		stepProgressCounts.append(0)
-		PlayerResources.questInventory.update_collect_quests()
+		PlayerResources.questInventory.auto_update_quests()
 	return currentStep >= len(quest.steps)
 
 func set_current_step_progress(count: int = 0):

@@ -15,6 +15,7 @@ objectiveName = "coconuthead"
 turnInName = "coconuthead"
 displayObjName = "Coconut Head"
 displayTurnInName = "Coconut Head"
+customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
@@ -35,6 +36,7 @@ objectiveName = "rat"
 turnInName = "coconuthead"
 displayObjName = "Rat"
 displayTurnInName = "Coconut Head"
+customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
@@ -43,6 +45,4 @@ script = ExtResource("1_iw6nk")
 questName = "Talk to Coconut Head"
 description = "Coconut Head wants to speak with you. He has a quest that involves alleviating his boredom."
 steps = Array[ExtResource("2_u577o")]([SubResource("Resource_6pwfd"), SubResource("Resource_dgear")])
-prerequisiteQuestNames = Array[String]([])
-availableAtAct = 0
-unavailableAfterAct = 5
+isMainQuest = false

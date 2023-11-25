@@ -5,6 +5,7 @@ enum Type {
 	TALK = 0,
 	COLLECT_ITEM = 1,
 	DEFEAT = 2,
+	CUTSCENE = 3,
 	ALL = -1,
 }
 
@@ -16,6 +17,8 @@ static func TypeToString(t: Type) -> String:
 			return 'Collect'
 		Type.DEFEAT:
 			return 'Defeat'
+		Type.CUTSCENE:
+			return ''
 		Type.ALL:
 			return 'All'
 	return 'Unknown'
@@ -32,6 +35,7 @@ static func TypeToString(t: Type) -> String:
 @export var turnInName: String
 @export var displayObjName: String
 @export var displayTurnInName: String
+@export var customStatusStr: String
 
 @export_category("Quest Step - Dialogue")
 @export var turnInDialogue: Array[DialogueEntry]
@@ -44,6 +48,9 @@ func _init(
 	i_count = 1,
 	i_objectiveName = '',
 	i_turnInName = '',
+	i_dispObjName = '',
+	i_dispTurnInName = '',
+	i_customStatus = '',
 	i_reward = null,
 	i_turnInDlg: Array[DialogueEntry] = [],
 	i_inProgressDlg: Array[DialogueEntry] = [],
@@ -54,6 +61,9 @@ func _init(
 	count = i_count
 	objectiveName = i_objectiveName
 	turnInName = i_turnInName
+	displayObjName = i_dispObjName
+	displayTurnInName = i_dispTurnInName
+	customStatusStr = i_customStatus
 	reward = i_reward
 	turnInDialogue = i_turnInDlg
 	inProgressDialogue = i_inProgressDlg
