@@ -6,11 +6,12 @@ class_name CutsceneTrigger
 @export var cutscenePlayer: CutscenePlayer = null
 
 func _ready():
-	if cutscene == null or PlayerResources.playerInfo.has_seen_cutscene(cutscene.saveName):
+	if cutscene == null or not cutscene.storyRequirements.is_valid():
 		queue_free() # delete self if player has seen cutscene
 
 func cutscene_finished():
-	queue_free() # delete self
+	cutscene.reset_internals()
+	disabled = not cutscene.storyRequirements.is_valid() # re-check validity
 
 func _on_area_entered(area):
 	if area.name == "PlayerEventCollider" and not disabled and not cutscenePlayer.playing:

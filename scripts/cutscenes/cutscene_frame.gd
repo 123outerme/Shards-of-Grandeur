@@ -46,4 +46,6 @@ func get_text_was_triggered() -> bool:
 
 func set_text_was_triggered(triggered: bool = true):
 	endTextTriggered = triggered
-	
+
+func reset_internals():
+	set_text_was_triggered(false)

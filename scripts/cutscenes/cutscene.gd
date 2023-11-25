@@ -29,3 +29,7 @@ func get_keyframe_at_time(time: float) -> CutsceneFrame:
 func calc_total_time():
 	for frame in cutsceneFrames:
 		totalTime += frame.frameLength
+
+func reset_internals():
+	for frame in cutsceneFrames:
+		frame.reset_internals()
