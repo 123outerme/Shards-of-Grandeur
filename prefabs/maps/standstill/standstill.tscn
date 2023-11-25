@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=41 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -94,7 +94,7 @@ script = ExtResource("21_prdt8")
 minAct = 0
 maxAct = 5
 prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
+prereqCutscenes = Array[String](["standstill_leave"])
 prereqDialogues = Array[String](["dr_hudson_standstill#leave_standstill"])
 prereqSpecialBattles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
@@ -105,6 +105,20 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkf8o"]
 size = Vector2(8, 71)
+
+[sub_resource type="Resource" id="Resource_mke3f"]
+script = ExtResource("21_prdt8")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["dr_hudson_standstill#leave_standstill"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p63hv"]
 size = Vector2(20, 98)
@@ -306,13 +320,23 @@ mapPos = Vector2(-8, 4)
 shape = SubResource("RectangleShape2D_kc6hv")
 
 [node name="WarpRightExit" parent="." instance=ExtResource("17_xdako")]
-position = Vector2(623, 8)
+position = Vector2(623, -8)
 mapName = "hilltop_forest"
-mapPos = Vector2(-830, 546)
+mapPos = Vector2(-830, 520)
 storyRequirements = SubResource("Resource_8lstl")
+useVerticalOffset = true
 
 [node name="WarpArea" parent="WarpRightExit" index="0"]
-position = Vector2(0, -4.5)
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_fkf8o")
+
+[node name="WarpCutsceneRightExit" parent="." instance=ExtResource("17_xdako")]
+position = Vector2(781, 4)
+mapName = "hilltop_forest"
+mapPos = Vector2(-830, 546)
+storyRequirements = SubResource("Resource_mke3f")
+
+[node name="WarpArea" parent="WarpCutsceneRightExit" index="0"]
 shape = SubResource("RectangleShape2D_fkf8o")
 
 [node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
@@ -340,4 +364,5 @@ rootNode = NodePath("..")
 [editable path="WarpInn"]
 [editable path="WarpFoundry"]
 [editable path="WarpRightExit"]
+[editable path="WarpCutsceneRightExit"]
 [editable path="ExitCutsceneTrigger"]

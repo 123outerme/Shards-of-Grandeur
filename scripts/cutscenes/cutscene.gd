@@ -5,6 +5,7 @@ class_name Cutscene
 @export var saveName: String = ''
 @export var storyRequirements: StoryRequirements = null
 @export var unlockCameraHoldAfter: bool = true
+@export var deactivateActorsAfter: Array[String] = []
 var totalTime: float = 0
 
 func _init(
@@ -12,11 +13,13 @@ func _init(
 	i_saveName = '',
 	i_storyRequirements = null,
 	i_unlockCameraAfter = true,
+	i_deactivateActorsAfter: Array[String] = [],
 ):
 	cutsceneFrames = i_frames
 	saveName = i_saveName
 	storyRequirements = i_storyRequirements
 	unlockCameraHoldAfter = i_unlockCameraAfter
+	deactivateActorsAfter = i_deactivateActorsAfter
 
 func get_keyframe_at_time(time: float) -> CutsceneFrame:
 	var accumulator: float = 0

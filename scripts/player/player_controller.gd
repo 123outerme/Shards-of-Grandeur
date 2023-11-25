@@ -181,6 +181,11 @@ func is_in_dialogue() -> bool:
 	return textBox.visible
 
 func set_talk_npc(npc: NPCScript, remove: bool = false):
+	if npc == null:
+		talkNPCcandidates = []
+		talkNPC = null
+		return
+	
 	if npc in talkNPCcandidates and remove:
 			talkNPCcandidates.erase(npc)
 			if not inCutscene:
@@ -188,18 +193,19 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 				disableMovement = false
 	if not npc in talkNPCcandidates and not remove:
 		talkNPCcandidates.append(npc)
-	#talkNPC = talkNPCcandidates[len(talkNPCcandidates) - 1] if len(talkNPCcandidates) > 0 else null
 	
 func restore_dialogue(npc: NPCScript):
 	var dialogueText = npc.get_cur_dialogue_item()
 	if dialogueText != null and talkNPC == null:
+		if not npc in talkNPCcandidates:
+			talkNPCcandidates.append(npc)
 		talkNPC = npc
 		talkNPC.face_player()
+		talkNPC.talkAlertSprite.visible = true
 		SceneLoader.pause_autonomous_movers()
 		pause_movement()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
-		#position_talk_btns()
 
 func restore_picked_up_item_text(groundItem: PickedUpItem):
 	pickedUpItem = groundItem

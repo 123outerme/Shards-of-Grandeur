@@ -123,6 +123,11 @@ func complete_cutscene():
 	if cutscene.unlockCameraHoldAfter and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
+	for actor in cutscene.deactivateActorsAfter:
+		var actorNode = rootNode.get_node_or_null(actor)
+		if actorNode != null:
+			actorNode.visible = false
+	
 	PlayerResources.playerInfo.set_cutscene_seen(cutscene.saveName)
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished()

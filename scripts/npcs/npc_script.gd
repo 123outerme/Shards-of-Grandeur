@@ -53,6 +53,7 @@ func save_data(save_path):
 	data.loops = NavAgent.loops
 	data.disableMovement = NavAgent.disableMovement
 	data.inventory = inventory
+	data.visible = visible
 	data.save_data(save_path + npcsDir, data)
 	
 func load_data(save_path):
@@ -75,6 +76,7 @@ func load_data(save_path):
 		if data.dialogueLine > -1:
 			player.restore_dialogue(self)
 		inventory = data.inventory
+		visible = data.visible
 
 func get_collision_size() -> Vector2:
 	return (colliderShape.shape as RectangleShape2D).get_rect().size

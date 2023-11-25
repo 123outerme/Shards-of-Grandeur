@@ -24,7 +24,7 @@ func _ready():
 		spawnerData.disabled = true
 
 func _on_area_2d_area_entered(area):
-	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and not PlayerFinder.player.inCutscene and not PlayerFinder.player.textBox.visible:
+	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and not PlayerFinder.player.textBox.visible:
 		var angleRadians = randf_range(0, 2 * PI)
 		var radius: float = randf_range(0, spawnRange / 2.0) # range in diameter, so half of that
 		var enemyPos: Vector2 = position + (Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius)

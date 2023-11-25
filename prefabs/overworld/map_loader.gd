@@ -20,11 +20,15 @@ func _ready():
 	else:
 		player = PlayerFinder.player
 
-func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = false):
+func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUnderground: bool = false, useVOffset: bool = false, useHOffset: bool = false):
 	player.cam.fade_out(_fade_out_complete, 0.25)
 	player.disableMovement = true
 	player.collider.set_deferred('disabled', true)
 	await get_tree().create_timer(0.25).timeout
+	if useVOffset:
+		newMapPos.y -= warpPos.y - player.position.y
+	if useHOffset:
+		newMapPos.x -= warpPos.x - player.position.x
 	player.position = newMapPos
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
