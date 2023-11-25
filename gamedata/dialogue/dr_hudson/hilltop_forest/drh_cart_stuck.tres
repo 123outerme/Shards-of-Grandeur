@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b4d2wrrbaa21l"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_07ylg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vgb1i"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_f4djd"]
+
+[sub_resource type="Resource" id="Resource_q8tcr"]
+script = ExtResource("1_vgb1i")
+lines = Array[String](["I'll stay here to free the cart. Don't worry about me, clear the path to the cave!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_suu2u"]
+script = ExtResource("2_f4djd")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_07ylg")
+entryId = ""
+items = Array[ExtResource("1_vgb1i")]([SubResource("Resource_q8tcr")])
+storyRequirements = SubResource("Resource_suu2u")
+closesDialogue = false

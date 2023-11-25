@@ -93,8 +93,7 @@ func _on_talk_area_area_entered(area):
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
-		if player.talkNPC == self:
-			player.set_talk_npc(null)
+		player.set_talk_npc(self, true)
 		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
 			data.previousDisableMove = false # ensure movement is unpaused no matter what
 			unpause_movement()
@@ -145,14 +144,12 @@ func advance_dialogue() -> bool:
 				data.dialogueIndex = 0
 				data.dialogueLine = -1
 				data.dialogueItems = []
-				talkAlertSprite.visible = true
 		elif data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
 			play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 	if data.dialogueIndex == 0 and data.dialogueItemIdx == 0 and data.dialogueLine == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 		play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 		face_player()
-		talkAlertSprite.visible = false
 	return hasDialogue
 
 func reset_dialogue():

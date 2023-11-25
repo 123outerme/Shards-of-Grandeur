@@ -25,6 +25,7 @@ var pickedChoice: DialogueChoice = null
 @onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
 
 var talkNPC: NPCScript = null
+var talkNPCcandidates: Array[NPCScript] = []
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_pause"):
@@ -49,7 +50,7 @@ func _unhandled_input(event):
 			questsPanel.toggle()
 		
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
-			and (talkNPC != null or pickedUpItem != null or len(cutsceneTexts) > 0) \
+			and (len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice:
 		if textBox.is_textbox_complete():
@@ -114,7 +115,13 @@ func face_horiz(xDirection: float):
 		sprite.flip_h = true
 
 func advance_dialogue(canStart: bool = true):
-	if talkNPC != null: # if in NPC conversation
+	if len(talkNPCcandidates) > 0: # if in NPC conversation
+		if talkNPC == null:
+			var minDistance: float = -1.0
+			for npc in talkNPCcandidates:
+				if npc.position.distance_to(position) < minDistance or minDistance == -1.0:
+					minDistance = npc.position.distance_to(position)
+					talkNPC = npc
 		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
 			return
@@ -129,11 +136,17 @@ func advance_dialogue(canStart: bool = true):
 				SceneLoader.unpauseExcludedMover = talkNPC
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 				face_horiz(talkNPC.position.x - position.x)
+				for npc in talkNPCcandidates:
+					if npc != talkNPC:
+						npc.talkAlertSprite.visible = false
 			else: # this is continuing the NPC dialogue
 				textBox.advance_textbox(dialogueText)
 		elif not inCutscene: # this is the end of NPC dialogue and it didn't start a cutscene
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
+			for npc in talkNPCcandidates:
+				npc.talkAlertSprite.visible = true
+			talkNPC = null
 	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
@@ -167,12 +180,15 @@ func select_choice(choice: DialogueChoice):
 func is_in_dialogue() -> bool:
 	return textBox.visible
 
-func set_talk_npc(npc: NPCScript):
-	talkNPC = npc
-	if npc == null:
-		if not inCutscene:
-			textBox.hide_textbox()
-			disableMovement = false
+func set_talk_npc(npc: NPCScript, remove: bool = false):
+	if npc in talkNPCcandidates and remove:
+			talkNPCcandidates.erase(npc)
+			if not inCutscene:
+				textBox.hide_textbox()
+				disableMovement = false
+	if not npc in talkNPCcandidates and not remove:
+		talkNPCcandidates.append(npc)
+	#talkNPC = talkNPCcandidates[len(talkNPCcandidates) - 1] if len(talkNPCcandidates) > 0 else null
 	
 func restore_dialogue(npc: NPCScript):
 	var dialogueText = npc.get_cur_dialogue_item()
