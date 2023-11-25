@@ -5,6 +5,7 @@ class_name PlayerInfo
 @export var position: Vector2 = Vector2(-50, 0)
 @export var flipH: bool = false
 @export var map: String = "intro_map"
+@export var recoverMap: String = "intro_map"
 @export var inUnderworld: bool
 @export var underworldMap: String
 @export var underworldDepth: int

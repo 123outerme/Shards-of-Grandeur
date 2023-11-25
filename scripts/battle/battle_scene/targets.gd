@@ -15,6 +15,9 @@ var referringMenu: BattleState.Menu = BattleState.Menu.MOVES
 func _ready():
 	pass
 
+func initial_focus():
+	backButton.grab_focus()
+
 func load_targets():
 	commandText.text = '[center]' + battleUI.commandingCombatant.combatant.disp_name() + ' will use '
 	
@@ -44,7 +47,7 @@ func load_targets():
 		setFocus = true
 	
 	if not setFocus:
-		backButton.grab_focus()
+		initial_focus()
 	
 	var nodes: Array[CombatantNode] = battleUI.battleController.get_bottom_most_targetable_combatant_nodes()
 	for node in nodes:

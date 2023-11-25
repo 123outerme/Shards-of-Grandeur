@@ -3,9 +3,18 @@ class_name MovesMenu
 
 @export var battleUI: BattleUI
 
+@onready var backButton: Button = get_node("BackButton")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func initial_focus():
+	for i in range(4): # for all 4 buttons
+		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
+		if moveBtn.text != '-----':
+			moveBtn.grab_focus()
+	backButton.grab_focus()
 
 func load_moves():
 	var setFocus: bool = false
@@ -22,7 +31,7 @@ func load_moves():
 			moveBtn.disabled = true
 			
 	if not setFocus:
-		get_node("BackButton").grab_focus()
+		backButton.grab_focus()
 
 func move_click(idx: int):
 	battleUI.commandingCombatant.combatant.command = BattleCommand.new(

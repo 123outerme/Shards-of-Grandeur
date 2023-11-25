@@ -11,7 +11,10 @@ func _ready():
 	NavigationServer2D.map_changed.connect(_nav_map_changed)
 	SceneLoader.mapLoader = self
 	SaveHandler.load_data()
-	load_map(PlayerResources.playerInfo.map)
+	if PlayerResources.playerInfo.combatant.downed:
+		load_recover_map()
+	else:
+		load_map(PlayerResources.playerInfo.map)
 	if player != null:
 		PlayerFinder.player = player
 	else:
@@ -29,34 +32,57 @@ func entered_warp(newMapName: String, newMapPos: Vector2, isUnderground: bool = 
 		cutscenePlayer.end_cutscene()
 	if player.holdingCamera:
 		player.snap_camera_back_to_player(0)
-	load_map(PlayerResources.playerInfo.map)
+	load_map(newMapName)
 
-func load_map(mapName):
+func load_recover_map():
+	var mapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)	
+	PlayerResources.playerInfo.combatant.downed = false
+	if mapEntry != null:
+		player.disableMovement = true
+		player.get_collider().set_deferred('disabled', true)
+		player.position = mapEntry.recoverPosition
+		PlayerResources.playerInfo.position = mapEntry.recoverPosition
+		load_map(PlayerResources.playerInfo.recoverMap)
+
+func load_map(mapName: String):
 	#destroy_overworld_enemies()
-	SaveHandler.save_data()
-	player.disableMovement = true
+	PlayerResources.playerInfo.map = mapName
 	mapNavReady = false
+	player.disableMovement = true
 	if mapInstance != null:
 		mapInstance.queue_free()
 	var mapScene = null
 	# if this act has a specific map for this act, load it
-	if FileAccess.file_exists("res://gamedata/locations/" + mapName + ".tres"):
-		var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
-		if worldLocation != null:
-			mapScene = load(worldLocation.get_map_path_for_location())
-		else:
-			printerr('World location could not be found')
-	else:
-		printerr('idk lol')
+	var mapEntry: MapEntry = get_map_entry_for_map_name(mapName)
+	if mapEntry != null:
+		if mapEntry.isRecoverLocation:
+			PlayerResources.playerInfo.recoverMap = mapName
+		mapScene = load(mapEntry.get_map_path())
 	if mapScene == null:
 		printerr('Map ', mapName, ' could not be found!')
 		get_tree().quit(1)
 		return
+	SaveHandler.save_data()
 	mapInstance = mapScene.instantiate()
 	mapInstance.map_loaded.connect(_map_loaded)
 	add_child.call_deferred(mapInstance)
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
+
+func get_map_entry_for_map_name(mapName: String) -> MapEntry:
+	if FileAccess.file_exists("res://gamedata/locations/" + mapName + ".tres"):
+		var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
+		if worldLocation != null:
+			var mapEntry: MapEntry = worldLocation.get_map_entry_for_location()
+			if mapEntry != null:
+				return mapEntry
+			else:
+				printerr('No map entry could be found')
+		else:
+			printerr('World location could not be found')
+	else:
+		printerr('This world location does not exist')
+	return null
 
 func reparent_player():
 	player.get_parent().remove_child(player)

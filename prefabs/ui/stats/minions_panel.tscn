@@ -79,6 +79,7 @@ offset_right = 128.0
 offset_bottom = -18.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 text = "Combatant Nick Here"
 placeholder_text = "Combatant Name Here"
 max_length = 20
@@ -98,17 +99,25 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="EditButton" type="Button" parent="MinionView/NameFormControls"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Edit"
+
 [node name="ConfirmButton" type="Button" parent="MinionView/NameFormControls"]
+visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Confirm"
 
 [node name="CancelButton" type="Button" parent="MinionView/NameFormControls"]
+visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Cancel"
 
-[connection signal="focus_entered" from="MinionView/NameInput" to="." method="_on_name_input_focus_entered"]
-[connection signal="focus_exited" from="MinionView/NameInput" to="." method="_on_name_input_focus_exited"]
+[connection signal="text_changed" from="MinionView/NameInput" to="." method="_on_name_input_text_changed"]
+[connection signal="text_submitted" from="MinionView/NameInput" to="." method="_on_name_input_text_submitted"]
+[connection signal="pressed" from="MinionView/NameFormControls/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="pressed" from="MinionView/NameFormControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="MinionView/NameFormControls/CancelButton" to="." method="_on_cancel_button_pressed"]

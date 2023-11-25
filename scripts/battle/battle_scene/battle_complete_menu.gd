@@ -47,7 +47,7 @@ func _on_ok_button_pressed():
 	
 	if PlayerResources.playerInfo.combatant.currentHp <= 0:
 		PlayerResources.playerInfo.combatant.currentHp = 1
-		PlayerResources.playerInfo.combatant.downed = false
+		PlayerResources.playerInfo.combatant.downed = true
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

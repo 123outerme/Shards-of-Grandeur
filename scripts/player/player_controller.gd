@@ -32,7 +32,7 @@ func _unhandled_input(event):
 			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
 				cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
-		else:
+		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
 			if not pausePanel.isPaused and textBox.visible:
 				textBox.refocus_choice(pickedChoice)
@@ -254,7 +254,10 @@ func set_cutscene_texts(texts: Array[String], speaker: String):
 	cutsceneSpeaker = speaker
 	cutsceneTextBoxIndex = 0
 	textBox.set_textbox_text(texts[0], speaker)
-	
+
+func get_collider(): # for use before full player initialization in MapLoader
+	return get_node('ColliderShape')
+
 func _on_shop_button_pressed():
 	#get_viewport().gui_release_focus()
 	inventoryPanel.inShop = true

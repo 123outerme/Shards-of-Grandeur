@@ -10,6 +10,8 @@ var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
 var playerWins: bool = true
 var escapes: bool = false
 
+var previousFocus: Control = null
+
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
 @onready var moves: MovesMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
@@ -22,7 +24,7 @@ var escapes: bool = false
 @onready var statsPanel: StatsMenu = get_node("UIPanels/StatsPanelNode")
 
 func _ready():
-	pass
+	get_viewport().gui_focus_changed.connect(_on_focus_changed)
 	
 func set_menu_state(newState: BattleState.Menu, savePrevState: bool = true):
 	if savePrevState:
@@ -154,6 +156,26 @@ func round_complete():
 func end_battle():
 	battleController.end_battle()
 
+func initial_focus():
+	if summonMenu.visible:
+		summonMenu.initial_focus()
+	if allCommands.visible:
+		allCommands.grab_focus()
+	if moves.visible:
+		moves.initial_focus()
+	if targets.visible:
+		targets.initial_focus()
+	if results.visible:
+		results.initial_focus()
+	if battleComplete.visible:
+		battleComplete.okBtn.grab_focus()
+
+func restore_focus():
+	if previousFocus == null:
+		initial_focus()
+	else:
+		previousFocus.grab_focus()
+
 func open_inventory(forSummon: bool):
 	inventoryPanel.summoning = forSummon
 	inventoryPanel.lockFilters = forSummon
@@ -175,6 +197,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
 	inventoryPanel.toggle()
+	restore_focus()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.levelUp = levelUp
@@ -188,6 +211,17 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 func _on_stats_panel_node_back_pressed():
 	if menuState == BattleState.Menu.LEVEL_UP:
 		battleController.end_battle()
+	restore_focus()
 
 func _on_combatant_details_clicked(combatantNode: CombatantNode):
 	open_stats(combatantNode.combatant)
+
+func _on_inventory_panel_node_back_pressed():
+	if menuState == BattleState.Menu.SUMMON:
+		summonMenu.initial_focus()
+	if menuState == BattleState.Menu.ITEMS:
+		allCommands.inventoryBtn.grab_focus()
+
+func _on_focus_changed(control: Control):
+	if not statsPanel.visible and not inventoryPanel.visible:
+		previousFocus = control
