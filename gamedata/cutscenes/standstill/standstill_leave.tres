@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://c131ky3wsh8qx"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=37 format=3 uid="uid://c131ky3wsh8qx"]
 
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="1_5hd1k"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_78clq"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_80yje"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_fdvmy"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_qbpcq"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_4pard"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_cjxeo"]
+[ext_resource type="Resource" uid="uid://b7cjkdr1276fr" path="res://gamedata/cutscenes/reused/playersprite_left.tres" id="4_n3u00"]
+[ext_resource type="Resource" uid="uid://c66vj2jlj5s8j" path="res://gamedata/cutscenes/reused/player_facingLeft.tres" id="5_8mk3x"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="6_y8qcb"]
 
 [sub_resource type="Resource" id="Resource_axtwo"]
@@ -33,24 +34,6 @@ actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 animation = "walk"
 
-[sub_resource type="Resource" id="Resource_15bma"]
-script = ExtResource("1_5hd1k")
-value = true
-actorTreePath = ""
-isPlayer = true
-propertyName = "sprite:flip_h"
-easeType = 2
-transitionType = 0
-
-[sub_resource type="Resource" id="Resource_clxcf"]
-script = ExtResource("1_5hd1k")
-value = true
-actorTreePath = ""
-isPlayer = true
-propertyName = "facingLeft"
-easeType = 2
-transitionType = 0
-
 [sub_resource type="Resource" id="Resource_v0gjc"]
 script = ExtResource("2_4pard")
 value = Vector2(320, -24)
@@ -72,7 +55,7 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_x45md"]
 script = ExtResource("1_fdvmy")
 frameLength = 0.1
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_15bma"), SubResource("Resource_clxcf"), SubResource("Resource_v0gjc"), SubResource("Resource_kcret")])
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("4_n3u00"), ExtResource("5_8mk3x"), SubResource("Resource_v0gjc"), SubResource("Resource_kcret")])
 actorAnims = Array[ExtResource("1_78clq")]([SubResource("Resource_vofs4"), SubResource("Resource_v1a67"), ExtResource("1_qbpcq")])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])

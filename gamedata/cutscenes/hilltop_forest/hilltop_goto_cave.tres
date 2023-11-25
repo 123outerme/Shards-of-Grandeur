@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://d1qhj1lkn2cj3"]
+
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_adr0d"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_hd72m"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_rd1es"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_uoxit"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_2dpat"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_2887w"]
+
+[sub_resource type="Resource" id="Resource_ebtlb"]
+script = ExtResource("1_hd72m")
+frameLength = 0.1
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_adr0d")])
+endTextBoxSpeaker = "@"
+endTextBoxTexts = Array[String](["I think I just saw the cave back there! That's where I'll wait for Dr. Hudson."])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_knium"]
+script = ExtResource("3_2887w")
+value = Vector2(-554, 16)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_j0wry"]
+script = ExtResource("1_hd72m")
+frameLength = 0.5
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_knium")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_2dpat")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_g1moo"]
+script = ExtResource("1_hd72m")
+frameLength = 0.1
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_adr0d")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_d6p30"]
+script = ExtResource("2_uoxit")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_rd1es")
+cutsceneFrames = Array[ExtResource("1_hd72m")]([SubResource("Resource_ebtlb"), SubResource("Resource_j0wry"), SubResource("Resource_g1moo")])
+saveName = "goto_cave"
+storyRequirements = SubResource("Resource_d6p30")
+unlockCameraHoldAfter = true

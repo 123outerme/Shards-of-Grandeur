@@ -93,7 +93,7 @@ func _on_move_list_panel_edit_moves_replace_clicked(move, index):
 	load_edit_moves_panel()
 	restore_focus()
 
-func _on_move_pool_panel_select_button_clicked(move: Move, button: Button):
+func _on_move_pool_panel_select_button_clicked(move: Move):
 	selectedMove = move
 	previousMovePoolMove = move
 	state = MenuState.SELECTING_NEW_SLOT

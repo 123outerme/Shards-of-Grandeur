@@ -3,7 +3,7 @@ class_name MoveListPanel
 
 signal edit_moves
 signal move_details_visiblity_changed(visible: bool, previousButton: Button)
-signal edit_moves_replace_clicked(move: Move, index: int, previousButton: Button)
+signal edit_moves_replace_clicked(move: Move, index: int)
 
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
@@ -84,4 +84,4 @@ func _on_move_list_item_panel_replace_pressed(move, slot):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if itemPanel.move == move:
 			button = itemPanel.detailsButton
-	edit_moves_replace_clicked.emit(move, slot, button)
+	edit_moves_replace_clicked.emit(move, slot)

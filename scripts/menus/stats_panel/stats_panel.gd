@@ -139,6 +139,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		isMinionStats = true
 		changingCombatant = true
 		load_stats_panel()
+		backButton.grab_focus()
 
 func _on_move_list_panel_edit_moves():
 	previousControl = moveListPanel.editMovesButton
