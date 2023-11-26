@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://da65t70i2k816"]
+
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_nnow1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qr5s7"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_4ys2h"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_qbury"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_ouwoh"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_a6sg0"]
+
+[sub_resource type="Resource" id="Resource_0x3yw"]
+script = ExtResource("1_qr5s7")
+frameLength = 0.1
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = "@"
+endTextBoxTexts = Array[String](["What am I doing...? I have to go back to the Cave!"])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_3y250"]
+script = ExtResource("2_4ys2h")
+value = Vector2(-248, -56)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_b3lcg"]
+script = ExtResource("1_qr5s7")
+frameLength = 1.0
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_3y250")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_nnow1")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_1d8j7"]
+script = ExtResource("1_qr5s7")
+frameLength = 0.1
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_ouwoh")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_cwdjy"]
+script = ExtResource("6_a6sg0")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_qbury")
+cutsceneFrames = Array[ExtResource("1_qr5s7")]([SubResource("Resource_0x3yw"), SubResource("Resource_b3lcg"), SubResource("Resource_1d8j7")])
+saveName = "prevent_shortcut"
+storyRequirements = SubResource("Resource_cwdjy")
+unlockCameraHoldAfter = true
+deactivateActorsAfter = Array[String]([])

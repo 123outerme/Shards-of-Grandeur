@@ -11,9 +11,11 @@ func _ready():
 
 func cutscene_finished():
 	cutscene.reset_internals()
-	disabled = not cutscene.storyRequirements.is_valid() # re-check validity
+	if cutscene.storyRequirements != null:
+		disabled = not cutscene.storyRequirements.is_valid() # re-check validity
 
 func _on_area_entered(area):
-	if area.name == "PlayerEventCollider" and not disabled and not cutscenePlayer.playing and cutscene.storyRequirements.is_valid():
+	if area.name == "PlayerEventCollider" and not disabled and not cutscenePlayer.playing \
+			and (cutscene.storyRequirements == null or cutscene.storyRequirements.is_valid()):
 		cutscenePlayer.playingFromTrigger = self
 		cutscenePlayer.start_cutscene(cutscene)
