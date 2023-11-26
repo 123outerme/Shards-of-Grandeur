@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://cy2mfewm30ym5"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://cy2mfewm30ym5"]
 
 [ext_resource type="Texture2D" uid="uid://d36dttylbl38j" path="res://graphics/characters/spelunker1/spelunker1_stand.png" id="1_lent3"]
 [ext_resource type="Texture2D" uid="uid://ci35v7qi84t5x" path="res://graphics/characters/spelunker1/spelunker1_talk.png" id="2_dh3ss"]
@@ -7,6 +7,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_w24gg"]
 atlas = ExtResource("1_lent3")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hklp3"]
+atlas = ExtResource("1_lent3")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vveun"]
 atlas = ExtResource("2_dh3ss")
@@ -53,10 +57,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w24gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hklp3")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 5.0
+"speed": 1.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -67,7 +74,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"talk",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,

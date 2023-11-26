@@ -1,5 +1,6 @@
 extends Node2D
 class_name PauseMenu
+signal resume_game
 
 @export var isPaused: bool = false
 
@@ -26,7 +27,9 @@ func _on_resume_button_pressed():
 	isPaused = false
 	visible = false
 	SceneLoader.unpause_autonomous_movers()
-	PlayerFinder.player.textBox.refocus_choice(PlayerFinder.player.pickedChoice)
+	if PlayerFinder.player != null:
+		PlayerFinder.player.textBox.refocus_choice(PlayerFinder.player.pickedChoice)
+	resume_game.emit()
 
 func _on_save_quit_button_pressed():
 	SaveHandler.save_data()

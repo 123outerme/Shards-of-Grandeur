@@ -210,7 +210,7 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 
 func _on_stats_panel_node_back_pressed():
 	if menuState == BattleState.Menu.LEVEL_UP:
-		battleController.end_battle()
+		end_battle()
 	restore_focus()
 
 func _on_combatant_details_clicked(combatantNode: CombatantNode):
@@ -223,5 +223,5 @@ func _on_inventory_panel_node_back_pressed():
 		allCommands.inventoryBtn.grab_focus()
 
 func _on_focus_changed(control: Control):
-	if not statsPanel.visible and not inventoryPanel.visible:
+	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible:
 		previousFocus = control

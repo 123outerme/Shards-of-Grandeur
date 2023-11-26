@@ -20,8 +20,7 @@ var enemiesDir: String = 'enemies/'
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
 
 func _ready():
-	if storyRequirements != null and not storyRequirements.is_valid():
-		spawnerData.disabled = true
+	pass
 
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and not PlayerFinder.player.textBox.visible:
@@ -65,6 +64,8 @@ func load_data(save_path):
 		if spawnerData.spawnedLastEncounter:
 			spawnerData.spawnedLastEncounter = false
 			spawnerData.disabled = true # disable if it caused the last encounter
+	if storyRequirements != null and not storyRequirements.is_valid():
+		spawnerData.disabled = true
 
 func delete_enemy():
 	enemy.queue_free()

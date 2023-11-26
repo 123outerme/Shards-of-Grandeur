@@ -5,6 +5,7 @@ class_name BattlePanels
 
 @onready var inventoryMenu: InventoryMenu = get_node("InventoryPanelNode")
 @onready var questsMenu: QuestsMenu = get_node("QuestsPanelNode")
+@onready var statsMenu: StatsMenu = get_node("StatsPanelNode")
 @onready var pauseMenu: PauseMenu = get_node("PauseMenu")
 @onready var flowOfBattle: FlowOfBattle = get_node("FlowOfBattle")
 
@@ -32,5 +33,8 @@ func _unhandled_input(event):
 		questsMenu.toggle()
 		inventoryMenu.visible = false
 	
-	if event.is_action_pressed("game_pause"):
+	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible:
 		pauseMenu.toggle_pause()
+
+func _on_pause_menu_resume_game():
+	battleUI.restore_focus()

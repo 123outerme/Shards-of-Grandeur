@@ -89,7 +89,7 @@ func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueLine < 0:
 		player.set_talk_npc(self)
 		reset_dialogue()
-		if len(data.dialogueItems) > 0:
+		if len(data.dialogueItems) > 0 and not player.inCutscene:
 			talkAlertSprite.visible = true
 		data.dialogueLine = -1
 
@@ -168,7 +168,7 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
 			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
-					and questTracker.get_prev_step().turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
+					and questTracker.get_prev_step().turnInName == saveName and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
 				dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		dialogueItems.append_array(s.turnInDialogue)

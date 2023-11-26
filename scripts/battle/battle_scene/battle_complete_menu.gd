@@ -46,7 +46,7 @@ func _on_ok_button_pressed():
 	#battleUI.battleController.playerCombatant.combatant.save_from_object(PlayerResources.playerInfo.combatant.copy())
 	
 	if PlayerResources.playerInfo.combatant.currentHp <= 0:
-		PlayerResources.playerInfo.combatant.currentHp = 1
+		PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 		PlayerResources.playerInfo.combatant.downed = true
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)

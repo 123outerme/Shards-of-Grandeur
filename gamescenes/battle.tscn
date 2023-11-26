@@ -641,3 +641,4 @@ battleUI = NodePath("../BattleCam")
 [connection signal="back_pressed" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_back_pressed"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
+[connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]

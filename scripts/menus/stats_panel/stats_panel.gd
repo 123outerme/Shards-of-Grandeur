@@ -112,7 +112,6 @@ func reset_panel_to_player():
 func _on_back_button_pressed():
 	if not isMinionStats:
 		toggle()
-		back_pressed.emit()
 	else:
 		restore_previous_stats_panel()
 
