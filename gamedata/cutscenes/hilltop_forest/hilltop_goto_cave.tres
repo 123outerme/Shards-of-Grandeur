@@ -10,6 +10,7 @@
 [sub_resource type="Resource" id="Resource_ebtlb"]
 script = ExtResource("1_hd72m")
 frameLength = 0.15
+annotation = "Player stops moving and announces required destination"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_adr0d")])
 endTextBoxSpeaker = "@"
@@ -31,6 +32,7 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_j0wry"]
 script = ExtResource("1_hd72m")
 frameLength = 0.5
+annotation = "Player reverses course back to intended path"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_knium")])
 actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_2dpat")])
 endTextBoxSpeaker = ""
@@ -43,6 +45,7 @@ endFadeLength = 0.0
 [sub_resource type="Resource" id="Resource_g1moo"]
 script = ExtResource("1_hd72m")
 frameLength = 0.1
+annotation = "Player stands and waits for textbox to be closed"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_adr0d")])
 endTextBoxSpeaker = ""

@@ -79,9 +79,11 @@ func _on_edit_moves_button_pressed():
 	edit_moves.emit()
 
 func _on_move_list_item_panel_replace_pressed(move, slot):
+	'''
 	var button: Button = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if itemPanel.move == move:
 			button = itemPanel.detailsButton
+	'''
 	edit_moves_replace_clicked.emit(move, slot)

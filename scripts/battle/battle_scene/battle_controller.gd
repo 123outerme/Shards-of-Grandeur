@@ -30,36 +30,49 @@ func load_into_battle():
 	if newBattle: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 		minionCombatant.combatant = null
+		if PlayerResources.playerInfo.staticEncounter != null:
+			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())
+			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
+			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
 		
-		if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
-			PlayerResources.playerInfo.encounteredName = 'ant' # TEMP failsafe - could be improved?
-		
-		enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName)
-		
-		var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
-		enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
-		enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
-		
-		var rngBeginnerNoEnemy: float = randf() - 0.75 + (0.05 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 10 else 1.0
-		# if level < 10, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
-		var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
-		if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-			enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
-			enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-			enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
+			if PlayerResources.playerInfo.staticEncounter.combatant2 != null:
+				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant2.save_name())
+				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
+				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
+			
+			if PlayerResources.playerInfo.staticEncounter.combatant3 != null:
+				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
+				enemyCombatant2.initialCombatantLv = enemyCombatant3.combatant.stats.level
+				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
 		else:
-			enemyCombatant2.combatant = null
-		
-		rngBeginnerNoEnemy = randf() - 0.6 + (0.1 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 15 else 1.0
-		# if level < 15, give a 0% chance to have a third combatant + 10% per level after 1 up to 50%, before team table calc
-		var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
-		if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-			enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
-			enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
-			enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
-		else:
-			enemyCombatant3.combatant = null
-		enemyCombatant3.leftSide = false
+			if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
+				PlayerResources.playerInfo.encounteredName = 'rat' # TEMP failsafe - could be improved?
+			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName)
+			
+			var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
+			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
+			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
+			
+			var rngBeginnerNoEnemy: float = randf() - 0.75 + (0.05 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 10 else 1.0
+			# if level < 10, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
+			var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
+			if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
+				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
+				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
+				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
+			else:
+				enemyCombatant2.combatant = null
+			
+			rngBeginnerNoEnemy = randf() - 0.6 + (0.1 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 15 else 1.0
+			# if level < 15, give a 0% chance to have a third combatant + 10% per level after 1 up to 50%, before team table calc
+			var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
+			if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
+				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
+				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
+				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
+			else:
+				enemyCombatant3.combatant = null
+			#enemyCombatant3.leftSide = false # what was this doing????
 	else:
 		playerCombatant.combatant = state.playerCombatant
 		minionCombatant.combatant = state.minionCombatant
@@ -75,8 +88,13 @@ func load_into_battle():
 	minionCombatant.role = CombatantNode.Role.ALLY
 	
 	enemyCombatant1.role = CombatantNode.Role.ENEMY
+	enemyCombatant1.spriteFacesRight = enemyCombatant1.combatant.spriteFacesRight
 	enemyCombatant2.role = CombatantNode.Role.ENEMY
+	if enemyCombatant2.combatant != null:
+		enemyCombatant2.spriteFacesRight = enemyCombatant2.combatant.spriteFacesRight
 	enemyCombatant3.role = CombatantNode.Role.ENEMY
+	if enemyCombatant3.combatant != null:
+		enemyCombatant3.spriteFacesRight = enemyCombatant3.combatant.spriteFacesRight
 	
 	battleUI.commandingMinion = state.commandingMinion
 	battleUI.prevMenu = state.prevMenu
@@ -140,6 +158,8 @@ func update_combatant_focus_neighbors():
 	if enemyCombatant1.is_alive():
 		playerCombatant.set_focus_right_combatant_node_neighbor(enemyCombatant1)
 		enemyCombatant1.set_focus_left_combatant_node_neighbor(playerCombatant)
+		enemyCombatant2.set_focus_bottom_combatant_node_neighbor(enemyCombatant1)
+		enemyCombatant3.set_focus_top_combatant_node_neighbor(enemyCombatant1)
 	else:
 		enemyCombatant2.set_focus_bottom_combatant_node_neighbor(enemyCombatant3)
 		enemyCombatant3.set_focus_top_combatant_node_neighbor(enemyCombatant2)
@@ -147,6 +167,8 @@ func update_combatant_focus_neighbors():
 	if minionCombatant.is_alive():
 		minionCombatant.set_focus_bottom_combatant_node_neighbor(playerCombatant)
 		playerCombatant.set_focus_top_combatant_node_neighbor(minionCombatant)
+		
+	
 
 func get_bottom_most_targetable_combatant_nodes() -> Array[CombatantNode]:
 	var nodes: Array[CombatantNode] = []

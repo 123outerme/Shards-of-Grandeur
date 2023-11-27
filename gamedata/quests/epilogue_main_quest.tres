@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://bh8why6u7cadp"]
+[gd_resource type="Resource" script_class="Quest" load_steps=13 format=3 uid="uid://bh8why6u7cadp"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_lqkgd"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_y7ojr"]
+[ext_resource type="Resource" uid="uid://dnkctjc6jccia" path="res://gamedata/dialogue/spelunker/spelunker_saved.tres" id="3_5tyuu"]
+[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="3_c8yf2"]
+[ext_resource type="Resource" uid="uid://df3cu03mvw4jw" path="res://gamedata/dialogue/spelunker/spelunker_ambushed.tres" id="3_vwp4v"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_lrp1d"]
 
 [sub_resource type="Resource" id="Resource_oxho3"]
 script = ExtResource("2_y7ojr")
@@ -45,9 +49,44 @@ customStatusStr = "Get to the Cave!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_wrl1p"]
+script = ExtResource("4_lrp1d")
+experience = 30
+gold = 10
+item = ExtResource("3_c8yf2")
+
+[sub_resource type="Resource" id="Resource_xmsla"]
+script = ExtResource("2_y7ojr")
+name = "Ambush!"
+description = "You've been ambushed! Someone working for the Chain Legion is demanding the Shards your team collected. Are you just going to take that lying down?"
+reward = SubResource("Resource_wrl1p")
+type = 2
+count = 1
+objectiveName = "ambusher"
+turnInName = "spelunker_hilltop"
+displayObjName = "Ambusher"
+displayTurnInName = "Spelunker"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_5tyuu")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_vwp4v")])
+
+[sub_resource type="Resource" id="Resource_l6go8"]
+script = ExtResource("2_y7ojr")
+name = "Return to Standstill"
+description = "Bring the Spelunker and Dr. Hudson back to Standstill."
+type = 3
+count = 1
+objectiveName = "---"
+turnInName = ""
+displayObjName = "---"
+displayTurnInName = ""
+customStatusStr = "Return to the Town!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
 [resource]
 script = ExtResource("1_lqkgd")
 questName = "Protect the Convoy"
 description = "You have been assigned to Dr. Hudson's convoy to transport Shards back from the Cave."
-steps = Array[ExtResource("2_y7ojr")]([SubResource("Resource_oxho3"), SubResource("Resource_5nirr"), SubResource("Resource_0hu12")])
+steps = Array[ExtResource("2_y7ojr")]([SubResource("Resource_oxho3"), SubResource("Resource_5nirr"), SubResource("Resource_0hu12"), SubResource("Resource_xmsla"), SubResource("Resource_l6go8")])
 isMainQuest = true

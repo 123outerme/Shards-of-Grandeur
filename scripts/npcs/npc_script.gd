@@ -129,7 +129,10 @@ func advance_dialogue() -> bool:
 			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
 				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 				startingCutscene = true
-			if data.dialogueItems[data.dialogueIndex].closesDialogue:
+			if data.dialogueItems[data.dialogueIndex].startsStaticEncounter != null: # if it starts a static encounter (auto-closes dialogue)
+				PlayerResources.playerInfo.staticEncounter = data.dialogueItems[data.dialogueIndex].startsStaticEncounter
+				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
+			elif data.dialogueItems[data.dialogueIndex].closesDialogue: # if no static encounter, if it still closes dialogue
 				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
 			data.dialogueIndex += 1
 			data.dialogueItemIdx = 0
@@ -167,13 +170,16 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
-			if questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
-					and questTracker.get_prev_step().turnInName == saveName and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
+			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
+					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
+					and questTracker.get_prev_step().turnInName == saveName \
+					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
 				dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
-		dialogueItems.append_array(s.turnInDialogue)
+		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
+			dialogueItems.append_array(s.turnInDialogue)
 	for dialogue in dialogueEntries:
-		if dialogue.can_use_dialogue():
+		if dialogue != null and dialogue.can_use_dialogue():
 			dialogueItems.append(dialogue)
 	return dialogueItems
 
@@ -188,7 +194,7 @@ func fetch_quest_dialogue_info():
 	for questTracker in PlayerResources.questInventory.quests:
 		var curStep: QuestStep = questTracker.get_current_step()
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and curStep.turnInName == saveName and questTracker.quest.storyRequirements.is_valid():
+				and curStep.turnInName == saveName and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
 			turningInSteps.append(curStep)
 
 func update_dialogues_in_between():

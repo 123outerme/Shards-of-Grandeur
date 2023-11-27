@@ -124,9 +124,11 @@ func advance_dialogue(canStart: bool = true):
 					talkNPC = npc
 		sprite.play('stand')
 		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
+			talkNPC = null
 			return
 		var hasDialogue: bool = talkNPC.advance_dialogue()
 		if not hasDialogue:
+			talkNPC = null
 			return
 		
 		var dialogueText = talkNPC.get_cur_dialogue_item()
@@ -147,6 +149,9 @@ func advance_dialogue(canStart: bool = true):
 			for npc in talkNPCcandidates:
 				npc.talkAlertSprite.visible = true
 			talkNPC = null
+			if PlayerResources.playerInfo.staticEncounter != null:
+				SaveHandler.save_data() # DEBUG. Re-enable after testing
+				SceneLoader.load_battle()
 	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
@@ -280,6 +285,11 @@ func set_cutscene_texts(texts: Array[String], speaker: String):
 func get_collider(): # for use before full player initialization in MapLoader
 	return get_node('ColliderShape')
 
+func menu_closed():
+	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
+			and not textBox.visible and not pausePanel.visible:
+		SceneLoader.unpause_autonomous_movers()
+
 func _on_shop_button_pressed():
 	#get_viewport().gui_release_focus()
 	inventoryPanel.inShop = true
@@ -294,15 +304,14 @@ func _on_turn_in_button_pressed():
 	disableMovement = true
 
 func _on_inventory_panel_node_back_pressed():
-	SceneLoader.unpause_autonomous_movers()
+	menu_closed()
 	if textBox.visible:
 		textBox.refocus_choice(pickedChoice)
 		if pickedChoice != null and pickedChoice.opensShop:
 			pickedChoice = null
 
 func _on_quests_panel_node_back_pressed():
-	SceneLoader.unpause_autonomous_movers()
-	
+	menu_closed()
 	if textBox.visible:
 		textBox.refocus_choice(pickedChoice)
 		if pickedChoice != null and pickedChoice.turnsInQuest != '':
@@ -320,6 +329,7 @@ func _on_quests_panel_node_back_pressed():
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON
 	equip_to_combatant_helper(stats)
+
 func _on_stats_panel_node_attempt_equip_armor_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.ARMOR
 	equip_to_combatant_helper(stats)
@@ -331,12 +341,12 @@ func equip_to_combatant_helper(stats: Stats):
 	inventoryPanel.shopInventory = null
 	statsPanel.visible = false
 	statsPanel.reset_panel_to_player()
-	SceneLoader.pause_autonomous_movers()
+	menu_closed()
 	inventoryPanel.toggle()
 
 func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
-	SceneLoader.unpause_autonomous_movers()
+	menu_closed()
 	if textBox.visible:
 		textBox.refocus_choice(pickedChoice)
 

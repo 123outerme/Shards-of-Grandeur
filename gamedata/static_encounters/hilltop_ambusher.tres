@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=4 format=3 uid="uid://cbcnq61dd0kdk"]
+
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_2uwkn"]
+[ext_resource type="Resource" uid="uid://c7o47jlcha7ax" path="res://gamedata/combatants/ambusher.tres" id="1_emobj"]
+[ext_resource type="Resource" uid="uid://bm75g5cmva3v0" path="res://gamedata/combatants/tree_bear.tres" id="2_yarkn"]
+
+[resource]
+script = ExtResource("1_2uwkn")
+combatant1 = ExtResource("1_emobj")
+combatant1Level = 2
+combatant2 = ExtResource("2_yarkn")
+combatant2Level = 1
+combatant3Level = 1
+specialBattleId = "hilltop_ambusher"
+bossBattle = true
+rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
+useStaticRewards = false

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dnkctjc6jccia"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_dv5bk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ok13b"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qa6wl"]
+
+[sub_resource type="Resource" id="Resource_770qi"]
+script = ExtResource("1_dv5bk")
+choiceBtn = "Hold On..."
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_scic4"]
+script = ExtResource("1_dv5bk")
+choiceBtn = "Yeah."
+buttonDims = Vector2(140, 40)
+turnsInQuest = "Protect the Convoy#Ambush!"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_vnmu6"]
+script = ExtResource("1_ok13b")
+lines = Array[String](["You fought him off! Thank you so much. Let's get the rest of these Shards loaded up and get out of here already."])
+animation = "talk"
+choices = Array[ExtResource("1_dv5bk")]([SubResource("Resource_770qi"), SubResource("Resource_scic4")])
+
+[resource]
+script = ExtResource("1_qa6wl")
+entryId = ""
+items = Array[ExtResource("1_ok13b")]([SubResource("Resource_vnmu6")])
+closesDialogue = false

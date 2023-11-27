@@ -3,11 +3,9 @@ class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
 @export var combatant: Combatant
-@export var setReward: Reward = null
-@export var bossBattle: bool = false
-@export var specialBattleId: String = ''
-@export var storyRequirements: StoryRequirements = null
 @export var combatantLevel: int = 1
+@export var staticEncounter: StaticEncounter = null
+@export var storyRequirements: StoryRequirements = null
 @export var spawnRange: float = 48.0
 @export var enemyPatrolRange: float = 32.0
 @export var tilemap: TileMap
@@ -31,7 +29,7 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(combatant, setReward, enemyPos, false, combatantLevel, bossBattle, specialBattleId)
+		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, combatantLevel, staticEncounter)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
@@ -43,7 +41,7 @@ func save_data(save_path):
 			if enemy.encounteredPlayer:
 				delete_enemy()
 			else:
-				spawnerData.enemyData = OverworldEnemyData.new(combatant, setReward, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, bossBattle, specialBattleId)
+				spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, staticEncounter)
 		else:
 			spawnerData.enemyData = null
 		spawnerData.save_data(save_path + enemiesDir, spawnerData)

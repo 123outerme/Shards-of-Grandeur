@@ -88,8 +88,9 @@ func apply_menu_state():
 							)
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards
-			if PlayerResources.playerInfo.specialBattleId != '':
-				PlayerResources.playerInfo.set_special_battle_completed(PlayerResources.playerInfo.specialBattleId)
+			if PlayerResources.playerInfo.staticEncounter != null:
+				PlayerResources.playerInfo.set_special_battle_completed(PlayerResources.playerInfo.staticEncounter.specialBattleId)
+				PlayerResources.playerInfo.staticEncounter = null
 		battleComplete.load_battle_over_menu()
 	
 	if menuState == BattleState.Menu.LEVEL_UP:
@@ -121,6 +122,7 @@ func start_pre_battle():
 			if combatantNode.combatant.stats.equippedArmor != null:
 				combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
 	set_menu_state(BattleState.Menu.PRE_BATTLE)
+	results.initial_focus()
 
 func return_to_player_command():
 	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
@@ -196,8 +198,8 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
+		restore_focus()
 	inventoryPanel.toggle()
-	restore_focus()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.levelUp = levelUp

@@ -12,6 +12,7 @@ enum AiType {
 @export_category("Combatant - Sprite")
 @export var spriteFrames: SpriteFrames = null
 @export var maxSize: Vector2 = Vector2(16, 16)
+@export var spriteFacesRight: bool = false
 
 @export_category("Combatant - Stats")
 @export var nickname: String = ''
@@ -47,6 +48,7 @@ func _init(
 	i_statusEffect = null,
 	i_sprite = null,
 	i_maxSize = Vector2(16, 16),
+	i_facesRight = false,
 	i_aiType = AiType.NONE,
 	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
@@ -65,6 +67,7 @@ func _init(
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	spriteFrames = i_sprite
+	spriteFacesRight = i_facesRight
 	maxSize = i_maxSize
 	aiType = i_aiType
 	aiOverrideWeight = i_overrideWeight
@@ -141,6 +144,7 @@ func save_from_object(c: Combatant):
 		statusEffect = null
 	maxSize = c.maxSize
 	spriteFrames = c.spriteFrames
+	spriteFacesRight = c.spriteFacesRight
 	aiType = c.aiType
 	aiOverrideWeight = c.aiOverrideWeight
 	equipmentTable = c.equipmentTable.duplicate(false)

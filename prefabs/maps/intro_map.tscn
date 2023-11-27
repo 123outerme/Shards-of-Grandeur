@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=35 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -17,10 +17,9 @@
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="14_6nead"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat.tres" id="15_6dcag"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="15_xc56y"]
-[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="16_yolhu"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="17_707g0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="18_481j8"]
 [ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/cutscene_player.tscn" id="18_dpgom"]
+[ext_resource type="Resource" uid="uid://co8xtwrinpjke" path="res://gamedata/static_encounters/intro_encounter.tres" id="18_ld2et"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 
@@ -56,12 +55,6 @@ script = ExtResource("14_6nead")
 spawnerId = "intro_rat"
 disabled = false
 spawnedLastEncounter = false
-
-[sub_resource type="Resource" id="Resource_0dhv7"]
-script = ExtResource("17_707g0")
-experience = 50
-gold = 12
-item = ExtResource("16_yolhu")
 
 [sub_resource type="Resource" id="Resource_noxp6"]
 script = ExtResource("18_481j8")
@@ -206,9 +199,7 @@ shape = SubResource("RectangleShape2D_dqdkq")
 position = Vector2(534, 7)
 spawnerData = SubResource("Resource_mb2oe")
 combatant = ExtResource("15_6dcag")
-setReward = SubResource("Resource_0dhv7")
-bossBattle = true
-specialBattleId = "first_rat"
+staticEncounter = ExtResource("18_ld2et")
 storyRequirements = SubResource("Resource_noxp6")
 spawnRange = 0.0
 enemyPatrolRange = 8.0

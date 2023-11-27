@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bg68kvsf0cr27"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_4apfq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_6oert"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_6311f"]
+
+[sub_resource type="Resource" id="Resource_mca2j"]
+script = ExtResource("1_6oert")
+choiceBtn = "Fine."
+buttonDims = Vector2(100, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_xdfye"]
+script = ExtResource("1_4apfq")
+lines = Array[String](["Better Shards? All the best stuff is in the cave! There's no time, just fight!"])
+animation = "talk"
+choices = Array[ExtResource("1_6oert")]([SubResource("Resource_mca2j")])
+
+[resource]
+script = ExtResource("1_6311f")
+entryId = ""
+items = Array[ExtResource("1_4apfq")]([SubResource("Resource_xdfye")])
+closesDialogue = false

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://blknpj8h8q45i"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6gsir"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_f6li4"]
+[ext_resource type="Resource" uid="uid://cbcnq61dd0kdk" path="res://gamedata/static_encounters/hilltop_ambusher.tres" id="2_kfa62"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_vhoe3"]
+
+[sub_resource type="Resource" id="Resource_ni0qi"]
+script = ExtResource("1_6gsir")
+lines = Array[String](["What are you, their hired muscle? I don't think you can take on me and my minion!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_2psxj"]
+script = ExtResource("4_vhoe3")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["hilltop_ambush"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["hilltop_ambusher"])
+
+[resource]
+script = ExtResource("1_f6li4")
+entryId = ""
+items = Array[ExtResource("1_6gsir")]([SubResource("Resource_ni0qi")])
+storyRequirements = SubResource("Resource_2psxj")
+closesDialogue = false
+startsStaticEncounter = ExtResource("2_kfa62")

@@ -8,6 +8,7 @@ enum CameraFade {
 }
 
 @export var frameLength: float = 1
+@export_multiline var annotation: String = '' # editor-only usage; has no effect on the actual cutscene 
 @export var actorTweens: Array[ActorTween] = []
 @export var actorAnims: Array[ActorSpriteAnim] = []
 @export var endTextBoxSpeaker: String = ''
@@ -21,6 +22,7 @@ var endTextTriggered: bool = false
 
 func _init(
 	i_frameLength = 1,
+	i_annotation: String = '',
 	i_actorTweens: Array[ActorTween] = [],
 	i_actorAnims: Array[ActorSpriteAnim] = [],
 	i_endTextSpeaker = '',
@@ -31,6 +33,7 @@ func _init(
 	i_givesItem = null,
 ):
 	frameLength = i_frameLength
+	annotation = i_annotation
 	actorTweens = i_actorTweens
 	actorAnims = i_actorAnims
 	endTextBoxSpeaker = i_endTextSpeaker
