@@ -11,6 +11,7 @@ var playerWins: bool = true
 var escapes: bool = false
 
 var previousFocus: Control = null
+var fobFocusMode: bool = false
 
 @onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
@@ -178,6 +179,14 @@ func restore_focus():
 	else:
 		previousFocus.grab_focus()
 
+func toggle_fob_focus_mode():
+	if not battlePanels.flowOfBattle.fobTabs.visible:
+		fobFocusMode = not fobFocusMode
+		if fobFocusMode:
+			battlePanels.flowOfBattle.fobButton.grab_focus()
+		else:
+			restore_focus()
+
 func open_inventory(forSummon: bool):
 	inventoryPanel.summoning = forSummon
 	inventoryPanel.lockFilters = forSummon
@@ -198,7 +207,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
-		restore_focus()
+		targets.initial_focus()
 	inventoryPanel.toggle()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
@@ -225,5 +234,5 @@ func _on_inventory_panel_node_back_pressed():
 		allCommands.inventoryBtn.grab_focus()
 
 func _on_focus_changed(control: Control):
-	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible:
+	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not fobFocusMode:
 		previousFocus = control
