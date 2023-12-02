@@ -70,6 +70,7 @@ func load_data(save_path):
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.previousDisableMove
+		NavAgent.radius = max(spriteSize.x, spriteSize.y) / 2
 		NavAgent.start_movement()
 		fetch_player()
 		fetch_quest_dialogue_info()

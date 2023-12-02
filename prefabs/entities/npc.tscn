@@ -34,10 +34,10 @@ shape = SubResource("RectangleShape2D_jblse")
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
 target_desired_distance = 2.0
-path_max_distance = 16.0
-path_postprocessing = 1
+path_max_distance = 128.0
 radius = 16.0
-neighbor_distance = 50.0
+neighbor_distance = 100.0
+max_neighbors = 5
 max_speed = 2.0
 script = ExtResource("2_fvlbl")
 

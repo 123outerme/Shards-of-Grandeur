@@ -16,6 +16,7 @@ var waitUntilNavReady: bool = false
 
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
+@onready var chaseRangeShape: CollisionShape2D = get_node("ChaseRange/ChaseRangeShape")
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
 # so all that needs to be used for save/load functionality is the save_path coming through
@@ -25,6 +26,11 @@ func _ready():
 	enemySprite.sprite_frames = combatant.spriteFrames
 	position = enemyData.position
 	disableMovement = enemyData.disableMovement
+	navAgent.navigation_layers = combatant.navigationLayer
+	navAgent.radius = (max(combatant.maxSize.x, combatant.maxSize.y) / 2) - 1
+	navAgent.max_speed = maxSpeed
+	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
+	rangeCircle.radius = 48 + (max(combatant.maxSize.x, combatant.maxSize.y) / 2)
 	if patrolling:
 		get_next_patrol_target()
 
@@ -77,10 +83,12 @@ func unpause_movement():
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":
 		patrolling = false
+		navAgent.avoidance_enabled = true
 		
 func _on_chase_range_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		patrolling = true
+		navAgent.avoidance_enabled = false
 		get_next_patrol_target()
 
 func _on_nav_agent_navigation_finished():

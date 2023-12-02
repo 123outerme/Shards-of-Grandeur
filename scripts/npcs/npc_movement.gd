@@ -12,6 +12,7 @@ class_name NPCMovement
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	max_speed = maxSpeed
 	if not waitsForMoveTrigger:
 		start_movement()
 

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="UvutuDX"
 run/main_scene="res://gamescenes/main_menu.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
@@ -133,7 +133,10 @@ game_stats={
 [layer_names]
 
 2d_physics/layer_1="WorldCollision"
+2d_navigation/layer_1="OneTileWide"
 2d_physics/layer_2="EventCollision"
+2d_navigation/layer_2="TwoTilesWide"
+2d_navigation/layer_3="ThreeTilesWide"
 
 [rendering]
 

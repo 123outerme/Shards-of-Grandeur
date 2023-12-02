@@ -28,10 +28,10 @@ sprite_frames = SubResource("SpriteFrames_4maxb")
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 0.75
 target_desired_distance = 0.75
-path_max_distance = 10.0
-path_postprocessing = 1
+path_max_distance = 128.0
 radius = 8.0
-neighbor_distance = 50.0
+neighbor_distance = 100.0
+max_neighbors = 5
 max_speed = 2.0
 
 [node name="EncounterCollider" type="Area2D" parent="."]
