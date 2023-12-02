@@ -12,6 +12,8 @@ config_version=5
 
 config/name="UvutuDX"
 run/main_scene="res://gamescenes/main_menu.tscn"
+config/auto_accept_quit=false
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/use_filter=false
@@ -29,6 +31,7 @@ PlayerFinder="*res://scripts/player_finder.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=960
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [filesystem]
 
@@ -142,3 +145,4 @@ game_stats={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/lossless_compression/force_png=true
