@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=4 format=3 uid="uid://ce4g0qxc138r5"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_d00tx"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_djo6s"]
+
+[sub_resource type="Resource" id="Resource_1ml4k"]
+script = ExtResource("2_djo6s")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String](["hilltop_ambusher"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["after_ambush"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_d00tx")
+cutsceneFrames = Array[Resource("res://scripts/cutscenes/cutscene_frame.gd")]([])
+saveName = "after_ambush"
+storyRequirements = SubResource("Resource_1ml4k")
+unlockCameraHoldAfter = true
+deactivateActorsAfter = Array[String]([])

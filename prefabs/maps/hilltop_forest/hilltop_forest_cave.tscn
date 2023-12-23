@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=48 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -23,6 +23,9 @@
 [ext_resource type="Resource" uid="uid://da65t70i2k816" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_shortcut.tres" id="16_clwh3"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="16_e37k4"]
 [ext_resource type="Resource" uid="uid://c8g3p1lo0jdr3" path="res://gamedata/cutscenes/hilltop_forest/hilltop_ambush.tres" id="16_s3h3f"]
+[ext_resource type="Resource" uid="uid://fvcov57k5drx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_close.tres" id="22_e0qmh"]
+[ext_resource type="Resource" uid="uid://clldvhp6vpt5f" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_far.tres" id="23_uw3nw"]
+[ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fij8e"]
 size = Vector2(64, 14)
@@ -69,8 +72,22 @@ size = Vector2(171, 191)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y32ui"]
 size = Vector2(20, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xofnv"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkx50"]
 size = Vector2(32, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct4s1"]
+size = Vector2(77, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5ym"]
+size = Vector2(67, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vud8"]
+size = Vector2(58, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhwn2"]
+size = Vector2(59, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_filu0"]
 size = Vector2(11, 48)
@@ -104,6 +121,8 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_n4lqr")
+metadata/_edit_horizontal_guides_ = [-185.0]
+metadata/_edit_vertical_guides_ = [-395.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -292,6 +311,9 @@ position = Vector2(-248, -22)
 cutscene = ExtResource("16_clwh3")
 cutscenePlayer = NodePath("../CutscenePlayer")
 
+[node name="CollisionShape2D" parent="StopShortcutCutsceneTrigger" index="0"]
+shape = SubResource("RectangleShape2D_xofnv")
+
 [node name="AmbushCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-571, -97)
 cutscene = ExtResource("16_s3h3f")
@@ -300,6 +322,43 @@ cutscenePlayer = NodePath("../CutscenePlayer")
 [node name="CollisionShape2D" parent="AmbushCutsceneTrigger" index="0"]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_tkx50")
+
+[node name="ReturnToAmbushLeftCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
+position = Vector2(-395, -166)
+cutscene = ExtResource("23_uw3nw")
+cutscenePlayer = NodePath("../CutscenePlayer")
+
+[node name="CollisionShape2D" parent="ReturnToAmbushLeftCutsceneTrigger" index="0"]
+position = Vector2(-85.5, 2.5)
+shape = SubResource("RectangleShape2D_ct4s1")
+
+[node name="ReturnToAmbushCenterCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
+position = Vector2(-395, -166)
+cutscene = ExtResource("22_e0qmh")
+cutscenePlayer = NodePath("../CutscenePlayer")
+
+[node name="CollisionShape2D" parent="ReturnToAmbushCenterCutsceneTrigger" index="0"]
+position = Vector2(-13.5, 2.5)
+shape = SubResource("RectangleShape2D_pq5ym")
+
+[node name="ReturnToAmbushRightCutsceneTrigger3" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
+position = Vector2(-395, -166)
+cutscene = ExtResource("23_uw3nw")
+cutscenePlayer = NodePath("../CutscenePlayer")
+
+[node name="CollisionShape2D" parent="ReturnToAmbushRightCutsceneTrigger3" index="0"]
+position = Vector2(49, 2.5)
+shape = SubResource("RectangleShape2D_5vud8")
+
+[node name="AfterAmbushCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
+position = Vector2(-330, -239)
+cutscene = ExtResource("24_jx57i")
+disabled = true
+cutscenePlayer = NodePath("../CutscenePlayer")
+
+[node name="CollisionShape2D" parent="AfterAmbushCutsceneTrigger" index="0"]
+position = Vector2(-1.5, -6)
+shape = SubResource("RectangleShape2D_hhwn2")
 
 [node name="StandstillWarpZone" parent="." instance=ExtResource("16_e37k4")]
 position = Vector2(-984, 520)
@@ -315,15 +374,18 @@ shape = SubResource("RectangleShape2D_filu0")
 rootNode = NodePath("..")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_pfh5f")
 use_edge_connections = false
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_g0g8f")
 use_edge_connections = false
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
@@ -337,5 +399,10 @@ navigation_layers = 4
 [editable path="EnemySpawner3"]
 [editable path="EnemySpawner4"]
 [editable path="GoToCaveCutsceneTrigger"]
+[editable path="StopShortcutCutsceneTrigger"]
 [editable path="AmbushCutsceneTrigger"]
+[editable path="ReturnToAmbushLeftCutsceneTrigger"]
+[editable path="ReturnToAmbushCenterCutsceneTrigger"]
+[editable path="ReturnToAmbushRightCutsceneTrigger3"]
+[editable path="AfterAmbushCutsceneTrigger"]
 [editable path="StandstillWarpZone"]

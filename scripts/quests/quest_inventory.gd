@@ -68,8 +68,10 @@ func has_reached_status_for_one_quest_of(questNames: Array[String], status: Ques
 			var questName: String = name.split('#')[0]
 			var stepName: String = name.split('#')[1]
 			var tracker: QuestTracker = get_quest_tracker_by_name(questName)
-			if tracker != null and tracker.get_step_progress_by_name(stepName) == status:
-				return true
+			var step: QuestStep = tracker.get_step_by_name(stepName)
+			if step != null:
+				if tracker != null and tracker.get_step_status(step) == status:
+					return true
 	return false
 
 func accept_quest(q: Quest):

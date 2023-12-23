@@ -82,6 +82,8 @@ func get_step_progress(step: QuestStep) -> int:
 	return -1
 
 func get_step_status(step: QuestStep) -> Status:
+	if step == null:
+		return Status.NOT_STARTED # not sure what else to return here
 	var idx = get_step_index(step)
 	if idx == currentStep and quest.storyRequirements != null and not quest.storyRequirements.is_valid():
 		return Status.FAILED

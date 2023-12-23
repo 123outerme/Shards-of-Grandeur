@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://fvcov57k5drx"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_m6me8"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_knpel"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_q02ng"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_v6m6w"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="5_a0ukw"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_a0oxb"]
+
+[sub_resource type="Resource" id="Resource_2ycfn"]
+script = ExtResource("1_m6me8")
+frameLength = 0.1
+annotation = "Text box opens"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = "@"
+endTextBoxTexts = Array[String](["I can't leave yet...!"])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_tob3d"]
+script = ExtResource("3_q02ng")
+value = Vector2(-396, -185)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_qbscm"]
+script = ExtResource("1_m6me8")
+frameLength = 0.5
+annotation = "Player walks back to be in front of cave entrance, Dr. Hudson"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_tob3d")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("2_knpel")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_p3c7j"]
+script = ExtResource("1_m6me8")
+frameLength = 0.1
+annotation = "Pause for text box reading, set player to standing"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_v6m6w")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_sqk6e"]
+script = ExtResource("6_a0oxb")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["hilltop_ambush"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["Protect the Convoy#Ambush!"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("5_a0ukw")
+cutsceneFrames = Array[ExtResource("1_m6me8")]([SubResource("Resource_2ycfn"), SubResource("Resource_qbscm"), SubResource("Resource_p3c7j")])
+saveName = "return_to_ambush"
+storyRequirements = SubResource("Resource_sqk6e")
+unlockCameraHoldAfter = true
+deactivateActorsAfter = Array[String]([])
