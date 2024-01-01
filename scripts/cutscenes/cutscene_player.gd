@@ -66,6 +66,8 @@ func _process(delta):
 				node.call('play_animation', animation.animation)
 		for actorTween in frame.actorTweens:
 			var node = null
+			if actorTween == null:
+				continue # skip null tweens
 			if actorTween.isPlayer:
 				node = PlayerFinder.player
 			else:
@@ -82,7 +84,6 @@ func start_cutscene(newCutscene: Cutscene):
 	SaveHandler.save_data()
 	for npc in get_tree().get_nodes_in_group("NPC"):
 		npc.talkAlertSprite.visible = false
-	PlayerFinder.player.set_talk_npc(null, true)
 	cutscene = newCutscene
 	timer = 0
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
@@ -108,12 +109,14 @@ func toggle_pause_cutscene():
 	else:
 		resume_cutscene()
 
-func end_cutscene():
+func end_cutscene(force: bool = false):
 	if cutscene == null:
 		return
 	if not isFadedOut:
 		complete_cutscene()
 	else:
+		if force: # called when warp zone is entered while faded out; so cutscene can end 
+			PlayerFinder.player.fade_in_unlock_cutscene()
 		completeAfterFadeIn = true
 
 func complete_cutscene():

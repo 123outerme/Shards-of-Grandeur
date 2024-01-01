@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=13 format=3 uid="uid://bh8why6u7cadp"]
+[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://bh8why6u7cadp"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_lqkgd"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_y7ojr"]
@@ -76,7 +76,7 @@ name = "Return to Standstill"
 description = "Bring the Spelunker and Dr. Hudson back to Standstill."
 type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "exit_hilltop_after_ambush"
 turnInName = ""
 displayObjName = "Standstill"
 displayTurnInName = ""
@@ -84,10 +84,30 @@ customStatusStr = "Return to the Town!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_gmhha"]
+script = ExtResource("4_lrp1d")
+experience = 30
+gold = 0
+
+[sub_resource type="Resource" id="Resource_uxnm8"]
+script = ExtResource("2_y7ojr")
+name = "Is This War?"
+description = "Dr. Hudson knows what this \"Chain Legion\" is. Ask him to explain what happened at the Cave."
+reward = SubResource("Resource_gmhha")
+type = 0
+count = 1
+objectiveName = ""
+turnInName = ""
+displayObjName = "Dr. Hudson"
+displayTurnInName = "Dr. Hudson"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
 [resource]
 script = ExtResource("1_lqkgd")
 questName = "Protect the Convoy"
 description = "You have been assigned to Dr. Hudson's convoy to transport Shards back from the Cave."
-steps = Array[ExtResource("2_y7ojr")]([SubResource("Resource_oxho3"), SubResource("Resource_5nirr"), SubResource("Resource_0hu12"), SubResource("Resource_xmsla"), SubResource("Resource_l6go8")])
+steps = Array[ExtResource("2_y7ojr")]([SubResource("Resource_oxho3"), SubResource("Resource_5nirr"), SubResource("Resource_0hu12"), SubResource("Resource_xmsla"), SubResource("Resource_l6go8"), SubResource("Resource_uxnm8")])
 isMainQuest = true
 advanceActActerComplete = true

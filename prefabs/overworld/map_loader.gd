@@ -33,7 +33,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
 	for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-		cutscenePlayer.end_cutscene()
+		cutscenePlayer.end_cutscene(true)
 	if player.holdingCamera:
 		player.snap_camera_back_to_player(0)
 	load_map(newMapName)

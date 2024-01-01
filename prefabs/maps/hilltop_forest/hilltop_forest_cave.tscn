@@ -204,12 +204,13 @@ visible = false
 [node name="MoveTriggerShape" parent="TileMap/DrHudson/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="Spelunker" parent="TileMap" instance=ExtResource("3_plac1")]
+[node name="Spelunker" parent="TileMap" node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("3_plac1")]
 visible = false
 position = Vector2(-383, -221)
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
+cutscenePlayer = NodePath("../../CutscenePlayer")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("8_rmmqw")

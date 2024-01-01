@@ -74,8 +74,11 @@ func load_data(save_path):
 		NavAgent.start_movement()
 		fetch_player()
 		fetch_quest_dialogue_info()
-		if data.dialogueLine > -1:
+		if data.dialogueLine > -1 and data.dialogueIndex < len(data.dialogueItems) \
+				and data.dialogueItemIdx < len(data.dialogueItems[data.dialogueIndex].items):
 			player.restore_dialogue(self)
+		else:
+			reset_dialogue()
 		inventory = data.inventory
 		visible = data.visible
 
@@ -130,6 +133,9 @@ func advance_dialogue() -> bool:
 			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
 				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 				startingCutscene = true
+			if data.dialogueItems[data.dialogueIndex].entryId != '':
+				# attempt to progress Talk quest(s) that require this NPC and dialogue item
+				PlayerResources.questInventory.progress_quest(saveName + ':' + data.dialogueItems[data.dialogueIndex].entryId, QuestStep.Type.TALK)
 			if data.dialogueItems[data.dialogueIndex].startsStaticEncounter != null: # if it starts a static encounter (auto-closes dialogue)
 				PlayerResources.playerInfo.staticEncounter = data.dialogueItems[data.dialogueIndex].startsStaticEncounter
 				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
@@ -141,7 +147,6 @@ func advance_dialogue() -> bool:
 			while data.dialogueIndex < len(data.dialogueItems) and not data.dialogueItems[data.dialogueIndex].can_use_dialogue():
 				data.dialogueIndex += 1 # skip dialogues that cannot be used
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
-				PlayerResources.questInventory.progress_quest(saveName, QuestStep.Type.TALK)
 				fetch_quest_dialogue_info()
 				for q in acceptableQuests:
 					PlayerResources.questInventory.accept_quest(q)

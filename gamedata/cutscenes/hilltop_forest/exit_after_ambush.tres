@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://ckexqmyrnv0sb"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_10kwk"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_ufge2"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_elhrb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_ssafh"]
+
+[sub_resource type="Resource" id="Resource_ayaqq"]
+script = ExtResource("1_10kwk")
+frameLength = 0.1
+annotation = "Dr. Hudson speaks"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = "Dr. Hudson"
+endTextBoxTexts = Array[String](["Let's get these Shards and the spelunkers out of here, that's our first priority. We can't protect this whole place by ourselves anymore."])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_5vwbe"]
+script = ExtResource("1_10kwk")
+frameLength = 0.1
+annotation = "The screen starts to fade out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+
+[sub_resource type="Resource" id="Resource_e34lg"]
+script = ExtResource("1_10kwk")
+frameLength = 0.75
+annotation = "Wait for the screen to be faded out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_hw1na"]
+script = ExtResource("2_ssafh")
+value = Vector2(-984, 520)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_dxid1"]
+script = ExtResource("1_10kwk")
+frameLength = 0.1
+annotation = "Teleport the player back to Standstill"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_hw1na")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_wy764"]
+script = ExtResource("1_10kwk")
+frameLength = 5.0
+annotation = "Wait for warp to load"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_iyu0f"]
+script = ExtResource("2_elhrb")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String](["hilltop_ambusher"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_ufge2")
+cutsceneFrames = Array[ExtResource("1_10kwk")]([SubResource("Resource_ayaqq"), SubResource("Resource_5vwbe"), SubResource("Resource_e34lg"), SubResource("Resource_dxid1"), SubResource("Resource_wy764")])
+saveName = "exit_hilltop_after_ambush"
+storyRequirements = SubResource("Resource_iyu0f")
+unlockCameraHoldAfter = true
+deactivateActorsAfter = Array[String](["TileMap/DrHudson", "TileMap/Spelunker", "TileMap/HorseCart"])

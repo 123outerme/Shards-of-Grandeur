@@ -12,6 +12,9 @@ var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
 var interruptTween: bool = false
 
+var registeredFadeInCallbacks: Array[Callable] = []
+var registeredFadeOutCallbacks: Array[Callable] = []
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if fadeInReady and fadeInTween != null:
@@ -36,6 +39,9 @@ func fade_out(callback: Callable, duration: float = 0.5):
 	fadeOutTween.tween_property(shadeColor, 'modulate', Color(0, 0, 0, 1.0), duration)
 	fadeOutTween.finished.connect(callback)
 	fadeOutTween.finished.connect(_fade_out_complete)
+	for registeredCallback in registeredFadeOutCallbacks:
+		fadeOutTween.finished.connect(registeredCallback)
+	registeredFadeOutCallbacks = []
 
 func fade_in(callback: Callable, duration: float = 0.5):
 	fadeInReady = true
@@ -52,7 +58,22 @@ func fade_in(callback: Callable, duration: float = 0.5):
 	fadeInTween.tween_property(shadeColor, 'modulate', Color(0, 0, 0, 0), duration)
 	fadeInTween.finished.connect(callback)
 	fadeInTween.finished.connect(_fade_in_complete)
+	for registeredCallback in registeredFadeInCallbacks:
+		fadeInTween.finished.connect(registeredCallback)
+	registeredFadeInCallbacks = []
 	fadeInTween.pause()
+
+func connect_to_fade_out(callback: Callable):
+	if fadeOutTween != null and fadeOutTween.is_valid():
+		fadeOutTween.finished.connect(callback)
+	else:
+		registeredFadeOutCallbacks.append(callback)
+
+func connect_to_fade_in(callback: Callable):
+	if fadeInTween != null and fadeInTween.is_valid():
+		fadeInTween.finished.connect(callback)
+	else:
+		registeredFadeInCallbacks.append(callback)
 
 func toggle_cutscene_paused_shade():
 	shade.visible = not shade.visible

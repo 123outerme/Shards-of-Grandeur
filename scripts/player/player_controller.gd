@@ -115,7 +115,7 @@ func face_horiz(xDirection: float):
 		sprite.flip_h = true
 
 func advance_dialogue(canStart: bool = true):
-	if len(talkNPCcandidates) > 0: # if in NPC conversation
+	if len(talkNPCcandidates) > 0 and not inCutscene: # if in NPC conversation
 		if talkNPC == null:
 			var minDistance: float = -1.0
 			for npc in talkNPCcandidates:
@@ -150,12 +150,15 @@ func advance_dialogue(canStart: bool = true):
 				npc.talkAlertSprite.visible = true
 			talkNPC = null
 			if PlayerResources.playerInfo.staticEncounter != null:
-				SaveHandler.save_data() # DEBUG. Re-enable after testing
+				SaveHandler.save_data()
 				SceneLoader.load_battle()
+		else:
+			textBox.hide_textbox() # is this necessary??
+			set_talk_npc(null, true) # is this necessary??
 	elif pickedUpItem != null: # picked up dialogue
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
-	elif len(cutsceneTexts) > 0: # cutscene dialogue
+	if len(cutsceneTexts) > 0: # cutscene dialogue
 		cutsceneTextBoxIndex += 1
 		if cutsceneTextBoxIndex < len(cutsceneTexts):
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextBoxIndex])
@@ -285,6 +288,9 @@ func set_cutscene_texts(texts: Array[String], speaker: String):
 	cutsceneTextBoxIndex = 0
 	textBox.set_textbox_text(texts[0], speaker)
 
+func fade_in_unlock_cutscene(): # for use when faded-out cutscene must end after loading back in
+	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene)
+
 func get_collider(): # for use before full player initialization in MapLoader
 	return get_node('ColliderShape')
 
@@ -369,3 +375,8 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	questsPanel.visible = false
 	statsPanel.visible = false # show stats panel for sure
 	statsPanel.toggle()
+
+func _fade_in_force_unlock_cutscene():
+	inCutscene = false
+	cam.show_letterbox(false)
+	unpause_movement()
