@@ -1,11 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp2s1i6f6s6dw"]
+[gd_scene load_steps=12 format=3 uid="uid://bp2s1i6f6s6dw"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_tslnt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_bad68"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_r0a5c"]
 [ext_resource type="Resource" uid="uid://dk6ni0sxklyj5" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_1.tres" id="4_38wkq"]
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="5_e5gl0"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_njaki"]
+[ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="8_axpn3"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
+[ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
+
+[sub_resource type="Resource" id="Resource_05tf0"]
+script = ExtResource("6_njaki")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["Protect the Convoy#Return to Standstill"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_b7ibc"]
+script = ExtResource("6_njaki")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["Protect the Convoy#Return to Standstill"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_tslnt")
@@ -13,6 +44,7 @@ script = ExtResource("1_tslnt")
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("2_bad68")
+collision_visibility_mode = 2
 format = 2
 layer_0/name = "Midground"
 layer_0/y_sort_enabled = true
@@ -55,9 +87,59 @@ visible = false
 [node name="MoveTriggerShape" parent="TileMap/Innkeeper/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="Spelunker" parent="TileMap" instance=ExtResource("3_r0a5c")]
+position = Vector2(40, -86)
+displayName = "Spelunker"
+saveName = "spelunker_inn"
+spawnRequirements = SubResource("Resource_05tf0")
+
+[node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
+sprite_frames = ExtResource("8_axpn3")
+animation = &"stand"
+frame = 1
+frame_progress = 0.522877
+flip_h = true
+
+[node name="ColliderShape" parent="TileMap/Spelunker" index="1"]
+position = Vector2(0, 4)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="TalkAreaShape" parent="TileMap/Spelunker/TalkArea" index="0"]
+position = Vector2(0, 4)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTriggerShape" parent="TileMap/Spelunker/MoveTrigger" index="0"]
+visible = false
+
+[node name="DrHudson" parent="TileMap" instance=ExtResource("3_r0a5c")]
+position = Vector2(-6, -61)
+displayName = "Dr. Hudson"
+saveName = "dr_hudson_inn"
+spawnRequirements = SubResource("Resource_b7ibc")
+
+[node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
+sprite_frames = ExtResource("10_no4q4")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/DrHudson" index="1"]
+position = Vector2(0, 4.5)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
+position = Vector2(0, 4)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/DrHudson" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TileMap/DrHudson/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="WarpZone" parent="." instance=ExtResource("9_nfbyj")]
 position = Vector2(-8, 17)
 mapName = "standstill"
 mapPos = Vector2(-72, -108)
 
 [editable path="TileMap/Innkeeper"]
+[editable path="TileMap/Spelunker"]
+[editable path="TileMap/DrHudson"]

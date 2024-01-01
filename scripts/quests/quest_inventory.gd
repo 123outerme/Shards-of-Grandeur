@@ -53,8 +53,10 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 			var questName: String = name.split('#')[0]
 			var stepName: String = name.split('#')[1]
 			var tracker: QuestTracker = get_quest_tracker_by_name(questName)
-			if tracker != null and tracker.get_step_progress_by_name(stepName) == QuestTracker.Status.COMPLETED:
-				completedPrereq = true
+			if tracker != null:
+				var step: QuestStep = tracker.get_step_by_name(stepName)
+				if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED:
+					completedPrereq = true
 		hasCompleted = hasCompleted and completedPrereq
 	return hasCompleted
 

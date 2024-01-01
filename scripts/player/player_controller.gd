@@ -288,8 +288,8 @@ func set_cutscene_texts(texts: Array[String], speaker: String):
 	cutsceneTextBoxIndex = 0
 	textBox.set_textbox_text(texts[0], speaker)
 
-func fade_in_unlock_cutscene(): # for use when faded-out cutscene must end after loading back in
-	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene)
+func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
+	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
 func get_collider(): # for use before full player initialization in MapLoader
 	return get_node('ColliderShape')
@@ -376,7 +376,9 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	statsPanel.visible = false # show stats panel for sure
 	statsPanel.toggle()
 
-func _fade_in_force_unlock_cutscene():
+func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
 	inCutscene = false
 	cam.show_letterbox(false)
+	PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
+	PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
 	unpause_movement()

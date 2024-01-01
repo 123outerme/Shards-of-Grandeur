@@ -369,8 +369,9 @@ useVerticalOffset = true
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_filu0")
 
-[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("7_cxs4m")]
-rootNode = NodePath("..")
+[node name="CutscenePlayer" parent="." instance=ExtResource("7_cxs4m")]
+playing = null
+rootNode = null
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)

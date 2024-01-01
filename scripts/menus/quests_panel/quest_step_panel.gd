@@ -20,7 +20,7 @@ func load_quest_step_panel():
 	stepName.text = step.name
 	stepProgress.text = '[center]' + questTracker.get_step_status_str(step) + '[/center]'
 	viewButton.disabled = detailsPanel.selectedStep == step
-		
+
 func _on_view_button_pressed():
 	detailsPanel.selectedStep = step
 	detailsPanel.load_quest_details()

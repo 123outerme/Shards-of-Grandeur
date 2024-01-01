@@ -13,6 +13,7 @@ var selectedStep: QuestStep = null
 @onready var turnInLabel: RichTextLabel = get_node("Panel/StepDetailPanel/TurnInTo")
 @onready var stepTurnIn: RichTextLabel = get_node("Panel/StepDetailPanel/StepTurnInTarget")
 @onready var rewardPanel: RewardPanel = get_node("Panel/StepDetailPanel/RewardPanel")
+@onready var scrollContainer: ScrollContainer = get_node("Panel/ScrollContainer")
 @onready var vboxViewport: VBoxContainer = get_node("Panel/ScrollContainer/VBoxContainer")
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 @onready var backButton: Button = get_node("Panel/BackButton")

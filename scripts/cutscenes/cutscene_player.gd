@@ -120,7 +120,7 @@ func end_cutscene(force: bool = false):
 		complete_cutscene()
 	else:
 		if force: # called when warp zone is entered while faded out; so cutscene can end 
-			PlayerFinder.player.fade_in_unlock_cutscene()
+			PlayerFinder.player.fade_in_unlock_cutscene(cutscene)
 		completeAfterFadeIn = true
 
 func complete_cutscene():
