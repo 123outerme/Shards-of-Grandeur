@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cbhbyv3xl4q5t"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_a8t3c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_ggiqf"]
+[ext_resource type="Resource" uid="uid://ckexqmyrnv0sb" path="res://gamedata/cutscenes/hilltop_forest/exit_after_ambush.tres" id="3_nq7jp"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_dnmmw"]
+
+[sub_resource type="Resource" id="Resource_sow5u"]
+script = ExtResource("1_a8t3c")
+lines = Array[String](["Let's go back to town then."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_e0ig1"]
+script = ExtResource("4_dnmmw")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["exit_hilltop_after_ambush"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_ggiqf")
+entryId = ""
+items = Array[ExtResource("1_a8t3c")]([SubResource("Resource_sow5u")])
+storyRequirements = SubResource("Resource_e0ig1")
+startsCutscene = ExtResource("3_nq7jp")
+closesDialogue = true

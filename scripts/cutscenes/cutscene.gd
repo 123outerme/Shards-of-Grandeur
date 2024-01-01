@@ -5,6 +5,7 @@ class_name Cutscene
 @export var saveName: String = ''
 @export var storyRequirements: StoryRequirements = null
 @export var unlockCameraHoldAfter: bool = true
+@export var activateActorsBefore: Array[String] = []
 @export var deactivateActorsAfter: Array[String] = []
 @export var givesQuest: Quest = null
 var totalTime: float = 0
@@ -14,6 +15,7 @@ func _init(
 	i_saveName = '',
 	i_storyRequirements = null,
 	i_unlockCameraAfter = true,
+	i_activateActorsBefore: Array[String] = [],
 	i_deactivateActorsAfter: Array[String] = [],
 	i_givesQuest = null,
 ):
@@ -21,6 +23,7 @@ func _init(
 	saveName = i_saveName
 	storyRequirements = i_storyRequirements
 	unlockCameraHoldAfter = i_unlockCameraAfter
+	activateActorsBefore = i_activateActorsBefore
 	deactivateActorsAfter = i_deactivateActorsAfter
 	givesQuest = i_givesQuest
 

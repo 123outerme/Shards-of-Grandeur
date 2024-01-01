@@ -91,6 +91,10 @@ func start_cutscene(newCutscene: Cutscene):
 	playing = true
 	PlayerFinder.player.cam.show_letterbox()
 	SceneLoader.pause_autonomous_movers()
+	for actor in cutscene.activateActorsBefore:
+		var actorNode = rootNode.get_node_or_null(actor)
+		if actorNode != null:
+			actorNode.visible = true
 
 func pause_cutscene():
 	for tween in tweens:

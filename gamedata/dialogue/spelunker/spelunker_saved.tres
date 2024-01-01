@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dnkctjc6jccia"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dnkctjc6jccia"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_dv5bk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ok13b"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qa6wl"]
-[ext_resource type="Resource" uid="uid://ckexqmyrnv0sb" path="res://gamedata/cutscenes/hilltop_forest/exit_after_ambush.tres" id="4_3hfxo"]
+[ext_resource type="Resource" uid="uid://cbhbyv3xl4q5t" path="res://gamedata/dialogue/spelunker/spelunker_leave_hilltop.tres" id="2_sd7nv"]
 
 [sub_resource type="Resource" id="Resource_770qi"]
 script = ExtResource("1_dv5bk")
@@ -12,23 +12,10 @@ buttonDims = Vector2(200, 40)
 turnsInQuest = ""
 opensShop = false
 
-[sub_resource type="Resource" id="Resource_sow5u"]
-script = ExtResource("1_ok13b")
-lines = Array[String](["Let's go then."])
-animation = ""
-choices = Array[ExtResource("1_dv5bk")]([])
-
-[sub_resource type="Resource" id="Resource_x2guk"]
-script = ExtResource("1_qa6wl")
-entryId = ""
-items = Array[ExtResource("1_ok13b")]([SubResource("Resource_sow5u")])
-startsCutscene = ExtResource("4_3hfxo")
-closesDialogue = true
-
-[sub_resource type="Resource" id="Resource_scic4"]
+[sub_resource type="Resource" id="Resource_ipr86"]
 script = ExtResource("1_dv5bk")
 choiceBtn = "Yeah."
-leadsTo = SubResource("Resource_x2guk")
+leadsTo = ExtResource("2_sd7nv")
 buttonDims = Vector2(140, 40)
 turnsInQuest = "Protect the Convoy#Ambush!"
 opensShop = false
@@ -37,7 +24,7 @@ opensShop = false
 script = ExtResource("1_ok13b")
 lines = Array[String](["You fought him off! Thank you so much. Let's get the rest of these Shards loaded up and get out of here already."])
 animation = "talk"
-choices = Array[ExtResource("1_dv5bk")]([SubResource("Resource_770qi"), SubResource("Resource_scic4")])
+choices = Array[ExtResource("1_dv5bk")]([SubResource("Resource_770qi"), SubResource("Resource_ipr86")])
 
 [resource]
 script = ExtResource("1_qa6wl")

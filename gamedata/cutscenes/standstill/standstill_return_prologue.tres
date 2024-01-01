@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=4 format=3 uid="uid://cblip8at1gm6p"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_tikaf"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_imgik"]
+
+[sub_resource type="Resource" id="Resource_bt7rn"]
+script = ExtResource("2_imgik")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["exit_hilltop_after_ambush"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_return_prologue"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_tikaf")
+cutsceneFrames = Array[Resource("res://scripts/cutscenes/cutscene_frame.gd")]([])
+saveName = "standstill_return_prologue"
+storyRequirements = SubResource("Resource_bt7rn")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
