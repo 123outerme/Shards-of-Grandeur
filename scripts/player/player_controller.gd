@@ -190,6 +190,9 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 		talkNPCcandidates = []
 		talkNPC = null
 		return
+		
+	if inCutscene:
+		return
 	
 	if npc in talkNPCcandidates and remove:
 			talkNPCcandidates.erase(npc)

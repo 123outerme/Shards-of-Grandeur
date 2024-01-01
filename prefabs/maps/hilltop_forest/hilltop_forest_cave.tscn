@@ -121,8 +121,6 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_n4lqr")
-metadata/_edit_horizontal_guides_ = [-185.0]
-metadata/_edit_vertical_guides_ = [-395.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -353,7 +351,6 @@ shape = SubResource("RectangleShape2D_5vud8")
 [node name="AfterAmbushCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-330, -239)
 cutscene = ExtResource("24_jx57i")
-disabled = true
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="AfterAmbushCutsceneTrigger" index="0"]

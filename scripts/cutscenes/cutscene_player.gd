@@ -82,6 +82,7 @@ func start_cutscene(newCutscene: Cutscene):
 	SaveHandler.save_data()
 	for npc in get_tree().get_nodes_in_group("NPC"):
 		npc.talkAlertSprite.visible = false
+	PlayerFinder.player.set_talk_npc(null, true)
 	cutscene = newCutscene
 	timer = 0
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength

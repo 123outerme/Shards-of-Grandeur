@@ -7,6 +7,7 @@ class_name Quest
 @export var steps: Array[QuestStep]
 @export var storyRequirements: StoryRequirements
 @export var isMainQuest: bool = false
+@export var advanceActActerComplete: bool = false
 
 func _init(
 	i_name = '',
@@ -14,9 +15,11 @@ func _init(
 	i_steps: Array[QuestStep] = [],
 	i_storyRequirements = null,
 	i_mainQuest = false,
+	i_advanceAct = false,
 ):
 	questName = i_name
 	description = i_description
 	steps = i_steps
 	storyRequirements = i_storyRequirements
 	isMainQuest = i_mainQuest
+	advanceActActerComplete = i_advanceAct

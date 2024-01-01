@@ -116,11 +116,15 @@ func auto_turn_in_cutscene_steps(target: String):
 func turn_in_cur_step(tracker: QuestTracker) -> int:
 	var curStep: QuestStep = tracker.get_current_step()
 	var newLvs: int = PlayerResources.accept_rewards([curStep.reward])
-	var _allDone: bool = tracker.turn_in_step()
+	var allDone: bool = tracker.turn_in_step()
 	if curStep.type == QuestStep.Type.COLLECT_ITEM:
 		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)
 	
 	auto_update_quests()
+	
+	if allDone and tracker.quest.advanceActActerComplete:
+		currentAct += 1 # advance act after quest completion
+	
 	return newLvs
 
 func get_sorted_trackers() -> Array[QuestTracker]:
