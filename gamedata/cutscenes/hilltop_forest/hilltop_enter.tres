@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://1kie7pkiqtcx"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=28 format=3 uid="uid://1kie7pkiqtcx"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_100mj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_wd36c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_h6now"]
 [ext_resource type="Resource" uid="uid://c66vj2jlj5s8j" path="res://gamedata/cutscenes/reused/player_facingLeft.tres" id="3_k711j"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="3_kfmox"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="8_y6h7m"]
 
 [sub_resource type="Resource" id="Resource_ufme0"]
 script = ExtResource("1_wd36c")
@@ -49,14 +50,21 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_pkwtl"]
+script = ExtResource("8_y6h7m")
+speaker = "Cart"
+texts = Array[String](["*Crunch!!*"])
+
 [sub_resource type="Resource" id="Resource_wytgg"]
 script = ExtResource("2_l6aqg")
 frameLength = 3.0
 annotation = "Walk slightly before announcing cart getting stuck"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ed41o"), SubResource("Resource_osdbe"), SubResource("Resource_begh3")])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_ufme0"), SubResource("Resource_ccsh7"), ExtResource("2_r1eiw")])
-endTextBoxSpeaker = "Cart"
-endTextBoxTexts = Array[String](["*Crunch!!*"])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_pkwtl")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -80,6 +88,8 @@ frameLength = 0.5
 annotation = "Have everyone stop for a beat"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_4iel7"), SubResource("Resource_8cw6j"), ExtResource("3_kfmox")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("8_y6h7m")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -99,14 +109,21 @@ actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_j4tnp"]
+script = ExtResource("8_y6h7m")
+speaker = "Dr. Hudson"
+texts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime."])
+
 [sub_resource type="Resource" id="Resource_1bcav"]
 script = ExtResource("2_l6aqg")
 frameLength = 0.5
 annotation = "Dr. Hudson announces the problem"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("2_oy774"), ExtResource("3_k711j")])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_cvims"), SubResource("Resource_8loxg"), ExtResource("3_kfmox")])
-endTextBoxSpeaker = "Dr. Hudson"
-endTextBoxTexts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime."])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_j4tnp")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -124,6 +141,8 @@ frameLength = 1.0
 annotation = "Dr. Hudson stops talking and stands"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_i4ctb")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("8_y6h7m")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true

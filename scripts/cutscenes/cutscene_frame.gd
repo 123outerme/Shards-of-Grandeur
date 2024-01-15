@@ -11,8 +11,8 @@ enum CameraFade {
 @export_multiline var annotation: String = '' # editor-only usage; has no effect on the actual cutscene 
 @export var actorTweens: Array[ActorTween] = []
 @export var actorAnims: Array[ActorSpriteAnim] = []
-@export var endTextBoxSpeaker: String = ''
-@export_multiline var endTextBoxTexts: Array[String] = []
+@export var actorAnimSets: Array[ActorAnimSet] = []
+@export var dialogues: Array[CutsceneDialogue] = []
 @export var endTextBoxPauses: bool = true
 @export var endHoldCamera: bool = false
 @export var endFade: CameraFade = CameraFade.NONE
@@ -25,8 +25,8 @@ func _init(
 	i_annotation: String = '',
 	i_actorTweens: Array[ActorTween] = [],
 	i_actorAnims: Array[ActorSpriteAnim] = [],
-	i_endTextSpeaker = '',
-	i_endTexts: Array[String] = [],
+	i_actorAnimSets: Array[ActorAnimSet] = [],
+	i_dialogues: Array[CutsceneDialogue] = [],\
 	i_endTextPauses = true,
 	i_endHoldCam = false,
 	i_endFade = CameraFade.NONE,
@@ -36,8 +36,8 @@ func _init(
 	annotation = i_annotation
 	actorTweens = i_actorTweens
 	actorAnims = i_actorAnims
-	endTextBoxSpeaker = i_endTextSpeaker
-	endTextBoxTexts = i_endTexts
+	actorAnimSets = i_actorAnimSets
+	dialogues = i_dialogues
 	endTextBoxPauses = i_endTextPauses
 	endHoldCamera = i_endHoldCam
 	endFade = i_endFade

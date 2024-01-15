@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cxr66hncv2g4u"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_ut6ma"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_51m4o"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_06lod"]
+
+[sub_resource type="Resource" id="Resource_n3ml7"]
+script = ExtResource("3_51m4o")
+lines = Array[String](["With the Chain Legion being this bold, I fear war is upon us.", "Steelspire is a formidable opponent. The city is almost as large and influential as our Grandstone."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_ak28q"]
+script = ExtResource("4_06lod")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["standstill_return_prologue"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_ut6ma")
+entryId = "explain_prologue"
+items = Array[ExtResource("3_51m4o")]([SubResource("Resource_n3ml7")])
+storyRequirements = SubResource("Resource_ak28q")
+closesDialogue = false

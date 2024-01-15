@@ -85,6 +85,8 @@ func add_choices():
 				button.call_deferred('grab_focus')
 		else:
 			button.visible = false
+			if idx == 0:
+				refocus_choice(null) # focus the first button that is being shown
 		
 	PlayerFinder.player.makingChoice = len(dialogueItem.choices) > 0
 

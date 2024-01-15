@@ -120,7 +120,9 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 	if status == Status.READY_TO_TURN_IN_STEP:
 		if step.displayTurnInName != '':
 			return 'Turn in to ' + step.displayTurnInName + '!'
-		return 'Ready to Turn In.'
+		return 'Ready to Turn In!'
+	if status == Status.FAILED:
+		return 'Failed.'
 	return '???'
 	
 func get_known_steps() -> Array[QuestStep]:

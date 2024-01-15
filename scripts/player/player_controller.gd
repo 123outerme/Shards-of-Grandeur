@@ -6,9 +6,9 @@ const SPEED = 80
 @export var facingLeft: bool = false
 var pickedUpItem: PickedUpItem = null
 var inCutscene: bool = false
-var cutsceneTexts: Array[String] = []
-var cutsceneSpeaker: String = ''
-var cutsceneTextBoxIndex: int = 0
+var cutsceneTexts: Array[CutsceneDialogue] = []
+var cutsceneTextIndex: int = 0
+var cutsceneLineIndex: int = 0
 var holdingCamera: bool = false
 var holdingCameraAt: Vector2
 var makingChoice: bool = false
@@ -103,6 +103,9 @@ func _process(_delta):
 		cam.position = holdingCameraAt - position
 		uiRoot.position = holdingCameraAt - position
 
+func set_sprite_frames(spriteFrames: SpriteFrames):
+	sprite.sprite_frames = spriteFrames
+
 func play_animation(animation: String):
 	sprite.play(animation)
 
@@ -113,6 +116,13 @@ func face_horiz(xDirection: float):
 	if xDirection < 0:
 		facingLeft = true
 		sprite.flip_h = true
+
+func repeat_dialogue_item():
+	if talkNPC == null:
+		return
+	talkNPC.repeat_dialogue_item()
+	var dialogueText = talkNPC.get_cur_dialogue_item()
+	textBox.advance_textbox(dialogueText)
 
 func advance_dialogue(canStart: bool = true):
 	if len(talkNPCcandidates) > 0 and not inCutscene: # if in NPC conversation
@@ -159,16 +169,21 @@ func advance_dialogue(canStart: bool = true):
 		pickedUpItem.savedTextIdx += 1
 		put_pick_up_text()
 	if len(cutsceneTexts) > 0: # cutscene dialogue
-		cutsceneTextBoxIndex += 1
-		if cutsceneTextBoxIndex < len(cutsceneTexts):
-			textBox.advance_textbox(cutsceneTexts[cutsceneTextBoxIndex])
-		else:
-			cutsceneTextBoxIndex = 0
-			cutsceneTexts = []
-			textBox.hide_textbox()
-			if not inCutscene: # cutscene is over now (ended while text box was still open)
-				unpause_movement()
-				cam.show_letterbox(false) # disable letterbox
+		cutsceneLineIndex += 1
+		if cutsceneLineIndex >= len(cutsceneTexts[cutsceneTextIndex].texts): # if this dialogue item is done, move to the next
+			cutsceneLineIndex = 0
+			cutsceneTextIndex += 1
+			if cutsceneTextIndex >= len(cutsceneTexts): # if there are no more dialogue items, close the textbox
+				cutsceneTextIndex = 0
+				cutsceneTexts = []
+				textBox.hide_textbox()
+				if not inCutscene: # cutscene is over now (ended while text box was still open)
+					unpause_movement()
+					cam.show_letterbox(false) # disable letterbox
+			else: # otherwise show the new dialogue item
+				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
+		else: # if it's not done, advance the textbox
+			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex])
 
 func select_choice(choice: DialogueChoice):
 	if choice.opensShop:
@@ -179,9 +194,16 @@ func select_choice(choice: DialogueChoice):
 		pickedChoice = choice
 		_on_turn_in_button_pressed()
 		return
-	
+	if choice.repeatsItem:
+		makingChoice = false
+		talkNPC.repeat_dialogue_item()
+		var dialogueText = talkNPC.get_cur_dialogue_item()
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+		return
+		
 	if choice.leadsTo != null:
 		talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+		
 	makingChoice = false
 	advance_dialogue()
 
@@ -282,13 +304,15 @@ func put_pick_up_text():
 	else:
 		SceneLoader.pause_autonomous_movers()
 
-func set_cutscene_texts(texts: Array[String], speaker: String):
-	cutsceneTexts = texts
-	cutsceneSpeaker = speaker
-	cutsceneTextBoxIndex = 0
-	textBox.set_textbox_text(texts[0], speaker)
+func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
+	cutsceneTexts.append(cutsceneDialogue)
+	if not textBox.visible:
+		cutsceneTextIndex = len(cutsceneTexts) - 1
+		cutsceneLineIndex = 0
+		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
+	inCutscene = false
 	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
 func get_collider(): # for use before full player initialization in MapLoader
@@ -377,8 +401,8 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	statsPanel.toggle()
 
 func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
-	inCutscene = false
-	cam.show_letterbox(false)
-	PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
-	PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
-	unpause_movement()
+	if not inCutscene:
+		cam.show_letterbox(false)
+		PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
+		PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
+		unpause_movement()

@@ -3,6 +3,7 @@ class_name PlayerInfo
 
 @export_category("PlayerInfo: Location")
 @export var position: Vector2 = Vector2(-50, 0)
+@export var spriteFrames: SpriteFrames = null
 @export var flipH: bool = false
 @export var map: String = "intro_map"
 @export var recoverMap: String = "intro_map"
@@ -42,6 +43,7 @@ func _init(
 	i_underworldDepth = 0,
 	i_position = Vector2(-50, 0),
 	i_savedPosition = Vector2(-50,0),
+	i_spriteFrames = null,
 	i_flipH = false,
 	i_scene = "Overworld",
 	i_stats = (load("res://gamedata/combatants/player.tres") as Combatant).stats.copy(),
@@ -66,6 +68,7 @@ func _init(
 	underworldDepth = i_underworldDepth
 	position = i_position
 	savedPosition = i_savedPosition
+	spriteFrames = i_spriteFrames
 	flipH = i_flipH
 	scene = i_scene
 	stats = i_stats

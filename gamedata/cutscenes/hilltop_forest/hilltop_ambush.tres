@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=55 format=3 uid="uid://c8g3p1lo0jdr3"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=62 format=3 uid="uid://c8g3p1lo0jdr3"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_2trho"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_t8muq"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_wyxwv"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_h7amc"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_pkwfi"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="4_0n8c1"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_vqc0e"]
 [ext_resource type="Resource" uid="uid://b7cjkdr1276fr" path="res://gamedata/cutscenes/reused/playersprite_left.tres" id="4_x0pru"]
 [ext_resource type="Resource" uid="uid://c66vj2jlj5s8j" path="res://gamedata/cutscenes/reused/player_facingLeft.tres" id="5_wgo1s"]
@@ -29,6 +30,8 @@ frameLength = 4.0
 annotation = "Player moves towards first stop in front of cave"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_pyny0")])
 actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("1_t8muq")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -36,14 +39,21 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
+[sub_resource type="Resource" id="Resource_npex1"]
+script = ExtResource("4_0n8c1")
+speaker = "Dr. Hudson"
+texts = Array[String](["Here we are, @!"])
+
 [sub_resource type="Resource" id="Resource_yevn4"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.1
 annotation = "Dr. Hudson announces arrival from offscreen"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([])
-endTextBoxSpeaker = "Dr. Hudson"
-endTextBoxTexts = Array[String](["Here we are, @!"])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_npex1")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -73,6 +83,8 @@ frameLength = 0.1
 annotation = "Player turns to look, cutscene waits for textbox to be cleared"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("4_x0pru"), ExtResource("5_wgo1s"), SubResource("Resource_y6fu1"), SubResource("Resource_txtpi")])
 actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("4_vqc0e")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -116,6 +128,8 @@ frameLength = 3.75
 annotation = "Dr. Hudson and the horse walk towards the player"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_5duol"), SubResource("Resource_6l3ku")])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_3y2kr"), SubResource("Resource_t5txp")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -129,14 +143,21 @@ actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 animation = "talk"
 
+[sub_resource type="Resource" id="Resource_8gn56"]
+script = ExtResource("4_0n8c1")
+speaker = "Dr. Hudson"
+texts = Array[String](["Thanks for clearing the way. I'll bring the spelunking team back up."])
+
 [sub_resource type="Resource" id="Resource_yfrg5"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.1
 annotation = "Dr. Hudson thanks the player and announces he's bringing the spelunker up"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_1gshg")])
-endTextBoxSpeaker = "Dr. Hudson"
-endTextBoxTexts = Array[String](["Thanks for clearing the way. I'll bring the spelunking team back up."])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_8gn56")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -154,6 +175,8 @@ frameLength = 0.5
 annotation = "The player stands and waits a beat, then wait for the text box to be closed"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_c2jj5")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -191,6 +214,8 @@ frameLength = 1.5
 annotation = "Dr. Hudson and the player walk towards the cave entrance together, player slightly behind"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_b70xs"), SubResource("Resource_837yk")])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_qyrmv"), ExtResource("1_t8muq")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -204,14 +229,21 @@ actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 animation = "talk"
 
+[sub_resource type="Resource" id="Resource_ln3av"]
+script = ExtResource("4_0n8c1")
+speaker = "Dr. Hudson"
+texts = Array[String](["SPELUNKING TEAM! IT'S DR. HUDSON SPEAKING. GET UP HERE AT ONCE!"])
+
 [sub_resource type="Resource" id="Resource_wvafv"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.1
 annotation = "Dr. Hudson and the player stop, and he calls down to the spelunker"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_oaijm"), ExtResource("4_vqc0e")])
-endTextBoxSpeaker = "Dr. Hudson"
-endTextBoxTexts = Array[String](["SPELUNKING TEAM! IT'S DR. HUDSON SPEAKING. GET UP HERE AT ONCE!"])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_ln3av")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -223,6 +255,8 @@ frameLength = 0.1
 annotation = "Wait for the text box to be closed"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -242,6 +276,8 @@ frameLength = 1.0
 annotation = "Dr. Hudson stands again, then wait for a long beat"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_x5fqc")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -264,14 +300,21 @@ propertyName = "visible"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_8f0i0"]
+script = ExtResource("4_0n8c1")
+speaker = "Spelunker"
+texts = Array[String](["Here you are Doctor, there's more where that came from inside."])
+
 [sub_resource type="Resource" id="Resource_u0q4i"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.1
 annotation = "Make the spelunker visible and start talking to Dr. Hudson, giving him some Shards"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_6kwqi")])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_u71bg")])
-endTextBoxSpeaker = "Spelunker"
-endTextBoxTexts = Array[String](["Here you are Doctor, there's more where that came from inside."])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_8f0i0")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -283,6 +326,8 @@ frameLength = 0.1
 annotation = "Wait for the text box to be cleared"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -320,14 +365,21 @@ propertyName = "npcSprite:flip_h"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_085pv"]
+script = ExtResource("4_0n8c1")
+speaker = "Ambusher"
+texts = Array[String](["Those Shards belong to the Chain Legion! Hand them over!"])
+
 [sub_resource type="Resource" id="Resource_30vif"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.5
 annotation = "The ambusher walks out and speaks as everyone faces him"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_f30ke"), SubResource("Resource_1bs7c"), ExtResource("9_ai8ig"), ExtResource("10_ru0f4")])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_5ix16"), SubResource("Resource_cduf7")])
-endTextBoxSpeaker = "Ambusher"
-endTextBoxTexts = Array[String](["Those Shards belong to the Chain Legion! Hand them over!"])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_085pv")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -345,6 +397,8 @@ frameLength = 0.1
 annotation = "The ambusher stands again and waits for the text box to be closed"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_vw464")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -367,6 +421,8 @@ frameLength = 1.25
 annotation = "The player walks over to defend the spelunker"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_nogvg")])
 actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("1_t8muq")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -374,14 +430,21 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
+[sub_resource type="Resource" id="Resource_up24p"]
+script = ExtResource("4_0n8c1")
+speaker = "Spelunker"
+texts = Array[String](["Here, warrior! Take this Shard and defend me with it! It's just a Rat, but that's the only minion I can offer right now!"])
+
 [sub_resource type="Resource" id="Resource_5edrb"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.5
 annotation = "The player stops and pauses, then the spelunker speaks, offering a Shard"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("4_vqc0e")])
-endTextBoxSpeaker = "Spelunker"
-endTextBoxTexts = Array[String](["Here, warrior! Take this Shard and defend me with it! It's just a Rat, but that's the only minion I can offer right now!"])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_up24p")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -393,6 +456,8 @@ frameLength = 0.5
 annotation = "The player turns to face the spelunker and waits a beat, taking the shard"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("4_x0pru"), ExtResource("5_wgo1s")])
 actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
@@ -407,6 +472,8 @@ frameLength = 0.5
 annotation = "The player turns again to face the ambusher"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("9_ai8ig"), ExtResource("10_ru0f4")])
 actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true

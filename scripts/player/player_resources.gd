@@ -50,6 +50,8 @@ func load_data(save_path):
 	player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
+		if playerInfo.spriteFrames != null:
+			player.set_sprite_frames(playerInfo.spriteFrames)
 		player.facingLeft = playerInfo.flipH
 		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
 	inventory = Inventory.new(true)
@@ -70,6 +72,7 @@ func save_data(save_path):
 	if playerInfo != null:
 		if player != null:
 			playerInfo.position = player.position
+			playerInfo.spriteFrames = player.sprite.sprite_frames
 			playerInfo.flipH = player.sprite.flip_h
 			playerInfo.pickedUpItem = player.pickedUpItem
 		playerInfo.combatant.stats = playerInfo.stats.copy()

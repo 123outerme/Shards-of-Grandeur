@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://bndxbpkm53hbu"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_5kxxa"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ml05n"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_d1wvm"]
+[ext_resource type="Resource" uid="uid://cjadv85pgyepl" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_start_act1.tres" id="2_hk8so"]
+[ext_resource type="Resource" uid="uid://cxr66hncv2g4u" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_explain_prologue.tres" id="3_ps2ui"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_haxjd"]
+
+[sub_resource type="Resource" id="Resource_uppot"]
+script = ExtResource("1_5kxxa")
+choiceBtn = "Hold on..."
+repeatsItem = false
+buttonDims = Vector2(220, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_uia7v"]
+script = ExtResource("1_5kxxa")
+choiceBtn = "Explain again?"
+leadsTo = ExtResource("3_ps2ui")
+repeatsItem = false
+buttonDims = Vector2(300, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_m00ba"]
+script = ExtResource("1_5kxxa")
+choiceBtn = "Let's do it."
+leadsTo = ExtResource("2_hk8so")
+repeatsItem = false
+buttonDims = Vector2(260, 40)
+turnsInQuest = "Protect the Convoy#Is This War?"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_60efa"]
+script = ExtResource("1_ml05n")
+lines = Array[String](["So first, we need to bring the spelunker and the Shards back to Grandstone and speak with the General. Make your preparations for the journey back, and we'll get going."])
+animation = "talk"
+choices = Array[ExtResource("1_5kxxa")]([SubResource("Resource_uppot"), SubResource("Resource_uia7v"), SubResource("Resource_m00ba")])
+
+[sub_resource type="Resource" id="Resource_new0o"]
+script = ExtResource("5_haxjd")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_d1wvm")
+entryId = "prologue_end"
+items = Array[ExtResource("1_ml05n")]([SubResource("Resource_60efa")])
+storyRequirements = SubResource("Resource_new0o")
+closesDialogue = false

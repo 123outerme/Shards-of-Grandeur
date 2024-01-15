@@ -31,9 +31,10 @@ func _process(delta):
 			if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
 				PlayerFinder.player.snap_camera_back_to_player()
 			
-			if lastFrame.endTextBoxTexts != null and len(lastFrame.endTextBoxTexts) > 0 \
+			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
-				PlayerFinder.player.set_cutscene_texts(lastFrame.endTextBoxTexts, lastFrame.endTextBoxSpeaker)
+				for item in lastFrame.dialogues:
+					PlayerFinder.player.queue_cutscene_texts(item)
 				lastFrame.set_text_was_triggered()
 				
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
@@ -56,22 +57,18 @@ func _process(delta):
 		
 		lastFrame = frame
 		tweens = []
+		for animSet in frame.actorAnimSets:
+			var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
+			if node != null and node.has_method('set_sprite_frames'):
+				node.call('set_sprite_frames', animSet.animationSet)
 		for animation in frame.actorAnims:
-			var node = null
-			if animation.isPlayer:
-				node = PlayerFinder.player
-			else:
-				node = rootNode.get_node(animation.actorTreePath)
+			var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
 			if node != null and node.has_method('play_animation'):
 				node.call('play_animation', animation.animation)
 		for actorTween in frame.actorTweens:
-			var node = null
-			if actorTween == null:
-				continue # skip null tweens
-			if actorTween.isPlayer:
-				node = PlayerFinder.player
-			else:
-				node = rootNode.get_node(actorTween.actorTreePath)
+			var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
+			if actorTween == null or node == null:
+				continue # skip null tweens or null actors
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
 			tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
 			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
@@ -89,12 +86,23 @@ func start_cutscene(newCutscene: Cutscene):
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
 	cutscene.calc_total_time()
 	playing = true
+	PlayerFinder.player.cutsceneTexts = []
+	PlayerFinder.player.cutsceneTextIndex = 0
+	PlayerFinder.player.cutsceneLineIndex = 0
 	PlayerFinder.player.cam.show_letterbox()
 	SceneLoader.pause_autonomous_movers()
 	for actor in cutscene.activateActorsBefore:
 		var actorNode = rootNode.get_node_or_null(actor)
 		if actorNode != null:
 			actorNode.visible = true
+
+func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
+	var node = null
+	if isPlayer:
+		node = PlayerFinder.player
+	elif rootNode != null:
+		node = rootNode.get_node_or_null(actorTreePath)
+	return node
 
 func pause_cutscene():
 	for tween in tweens:
@@ -116,15 +124,22 @@ func toggle_pause_cutscene():
 func end_cutscene(force: bool = false):
 	if cutscene == null:
 		return
+	deactivate_actors_after()
+	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	if cutscene.givesQuest != null:
+		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
 	if not isFadedOut:
 		complete_cutscene()
 	else:
-		if force: # called when warp zone is entered while faded out; so cutscene can end 
+		if force: # called when warp zone is entered while faded out; so cutscene can end
 			PlayerFinder.player.fade_in_unlock_cutscene(cutscene)
 		completeAfterFadeIn = true
 
 func complete_cutscene():
 	SceneLoader.unpause_autonomous_movers()
+	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	if cutscene.givesQuest != null:
+		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
 	if PlayerFinder.player.is_in_dialogue():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
@@ -133,19 +148,23 @@ func complete_cutscene():
 	if cutscene.unlockCameraHoldAfter and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
-	for actor in cutscene.deactivateActorsAfter:
-		var actorNode = rootNode.get_node_or_null(actor)
-		if actorNode != null:
-			actorNode.visible = false
-	
-	if cutscene.givesQuest != null:
-		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
-	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished()
 		playingFromTrigger = null
 	cutscene = null
+
+func deactivate_actors_after():
+	if cutscene == null:
+		return
+	
+	for actor in cutscene.deactivateActorsAfter:
+		var actorNode = rootNode.get_node_or_null(actor)
+		if actorNode != null:
+			if 'invisible' in actorNode:
+				actorNode.invisible = true
+			else:
+				actorNode.visible = false
 
 func _fade_out_complete():
 	if completeAfterFadeIn and not isFadingIn:

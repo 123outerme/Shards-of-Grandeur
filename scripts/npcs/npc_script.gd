@@ -28,6 +28,12 @@ var turningInSteps: Array[QuestStep] = []
 @onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
 @onready var NavAgent: NPCMovement = get_node("NavAgent")
 
+var invisible: bool:
+	get:
+		return not visible
+	set(value):
+		_set_invisible(value)
+
 var player: PlayerController = null
 var npcsDir: String = "npcs/"
 
@@ -47,6 +53,7 @@ func save_data(save_path):
 	if saveName == '':
 		return
 	data.saveName = saveName
+	data.animSet = npcSprite.sprite_frames
 	data.flipH = npcSprite.flip_h
 	data.position = position
 	data.selectedTarget = NavAgent.selectedTarget
@@ -65,6 +72,8 @@ func load_data(save_path):
 	if newData != null:
 		data = newData
 		# only load the new NPC data if it exists
+		if data.animSet != null:
+			npcSprite.set_sprite_frames(data.animSet)
 		position = data.position
 		npcSprite.flip_h = data.flipH
 		NavAgent.selectedTarget = data.selectedTarget
@@ -80,7 +89,14 @@ func load_data(save_path):
 		else:
 			reset_dialogue()
 		inventory = data.inventory
-		visible = data.visible
+		invisible = not data.visible
+
+func _set_invisible(value: bool):
+	visible = not value
+	if value:
+		collision_layer = 0
+	else:
+		collision_layer = 0b01
 
 func get_collision_size() -> Vector2:
 	return (colliderShape.shape as RectangleShape2D).get_rect().size
@@ -114,6 +130,9 @@ func get_cur_dialogue_item():
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines[data.dialogueLine]
 
+func repeat_dialogue_item():
+	data.dialogueLine = 0
+
 func advance_dialogue() -> bool:
 	if len(data.dialogueItems) == 0 or data.dialogueLine == -1: # if empty, try computing the dialogue
 		reset_dialogue()
@@ -135,7 +154,7 @@ func advance_dialogue() -> bool:
 				startingCutscene = true
 			if data.dialogueItems[data.dialogueIndex].entryId != '':
 				# attempt to progress Talk quest(s) that require this NPC and dialogue item
-				PlayerResources.questInventory.progress_quest(saveName + ':' + data.dialogueItems[data.dialogueIndex].entryId, QuestStep.Type.TALK)
+				PlayerResources.questInventory.progress_quest(saveName + '#' + data.dialogueItems[data.dialogueIndex].entryId, QuestStep.Type.TALK)
 			if data.dialogueItems[data.dialogueIndex].startsStaticEncounter != null: # if it starts a static encounter (auto-closes dialogue)
 				PlayerResources.playerInfo.staticEncounter = data.dialogueItems[data.dialogueIndex].startsStaticEncounter
 				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
@@ -209,9 +228,15 @@ func update_dialogues_in_between():
 			add_dialogue_entry_in_dialogue(dialogue)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
-	var index: int = mini(data.dialogueIndex + 1, len(data.dialogueItems))
 	if dialogueEntry.can_use_dialogue():
-		data.dialogueItems.insert(index, dialogueEntry)
+		var index: int = data.dialogueItems.find(dialogueEntry, 0)
+		if index != -1: # reuse entry if it exists to support going back in the dialogue tree
+			data.dialogueIndex = index
+			data.dialogueItemIdx = 0
+			data.dialogueLine = 0
+		else:
+			index = mini(data.dialogueIndex + 1, len(data.dialogueItems))
+			data.dialogueItems.insert(index, dialogueEntry)
 
 func pause_movement():
 	NavAgent.disableMovement = true
@@ -222,6 +247,9 @@ func unpause_movement():
 func face_player():
 	if facesPlayer:
 		face_horiz(player.position.x - position.x)
+
+func set_sprite_frames(spriteFrames: SpriteFrames):
+	npcSprite.sprite_frames = spriteFrames
 
 func play_animation(animation: String):
 	npcSprite.play(animation)

@@ -1,0 +1,64 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://c1crhw3srnu01"]
+
+[ext_resource type="Texture2D" uid="uid://b81q8eb128kdn" path="res://graphics/characters/horse_cart/horse_cart_full_stand.png" id="1_eooae"]
+[ext_resource type="Texture2D" uid="uid://b044y51gr6xdn" path="res://graphics/characters/horse_cart/horse_cart_full_walk.png" id="2_d3jty"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opren"]
+atlas = ExtResource("1_eooae")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhte0"]
+atlas = ExtResource("1_eooae")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56eou"]
+atlas = ExtResource("2_d3jty")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13q2i"]
+atlas = ExtResource("2_d3jty")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c2c0"]
+atlas = ExtResource("2_d3jty")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcfs6"]
+atlas = ExtResource("2_d3jty")
+region = Rect2(192, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opren")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhte0")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56eou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13q2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c2c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcfs6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]

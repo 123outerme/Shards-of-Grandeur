@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp2s1i6f6s6dw"]
+[gd_scene load_steps=14 format=3 uid="uid://bp2s1i6f6s6dw"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_tslnt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_bad68"]
@@ -7,13 +7,15 @@
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="5_e5gl0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_njaki"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="8_axpn3"]
+[ext_resource type="Resource" uid="uid://cxr66hncv2g4u" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_explain_prologue.tres" id="8_qm568"]
+[ext_resource type="Resource" uid="uid://bndxbpkm53hbu" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_prologue_end.tres" id="9_460im"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
 
 [sub_resource type="Resource" id="Resource_05tf0"]
 script = ExtResource("6_njaki")
 minAct = 0
-maxAct = 5
+maxAct = 0
 prereqQuests = Array[String](["Protect the Convoy#Return to Standstill"])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -27,7 +29,7 @@ invalidAfterSpecialBattles = Array[String]([])
 [sub_resource type="Resource" id="Resource_b7ibc"]
 script = ExtResource("6_njaki")
 minAct = 0
-maxAct = 5
+maxAct = 0
 prereqQuests = Array[String](["Protect the Convoy#Return to Standstill"])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -116,6 +118,7 @@ position = Vector2(-6, -61)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_inn"
 spawnRequirements = SubResource("Resource_b7ibc")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_qm568"), ExtResource("9_460im")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("10_no4q4")

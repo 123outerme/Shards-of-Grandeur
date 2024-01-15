@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://drqc7ms1tgy62"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://drqc7ms1tgy62"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_sfute"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rr5xp"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_udvm0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="4_13jd0"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_y1vms"]
 
 [sub_resource type="Resource" id="Resource_261h1"]
@@ -47,14 +48,21 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_2bar6"]
+script = ExtResource("4_13jd0")
+speaker = "Dr. Hudson"
+texts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land. Alessia is quite the master blacksmith, with the attitude to match.", "You might might also want to visit the general store to stock up on healing Potions while we're here, as there are plenty of monsters to encounter on the way out of town."])
+
 [sub_resource type="Resource" id="Resource_3qyhe"]
 script = ExtResource("1_sfute")
 frameLength = 0.01
 annotation = "Dr. Hudson exposition about Standstill"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), ExtResource("2_udvm0")])
-endTextBoxSpeaker = "Dr. Hudson"
-endTextBoxTexts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land. Alessia is quite the master blacksmith, with the attitude to match.", "You might might also want to visit the general store to stock up on healing Potions while we're here, as there are plenty of monsters to encounter on the way out of town."])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([SubResource("Resource_2bar6")])
+endTextBoxSpeaker = ""
+endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -93,6 +101,8 @@ frameLength = 10.0
 annotation = "Walk the horse, Dr. Hudson, and player in to town"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_r1jf1"), SubResource("Resource_ug8h1"), SubResource("Resource_e6rbe")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -133,6 +143,8 @@ frameLength = 0.5
 annotation = "Move player out of the way of the cart"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_4ypfc"), SubResource("Resource_raqbr"), SubResource("Resource_rrkc3")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -164,6 +176,8 @@ frameLength = 1.0
 annotation = "Move Dr. Hudson and horse farther along path"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_e5ssa"), SubResource("Resource_up4xj")])
 actorAnims = Array[ExtResource("1_ijdb7")]([ExtResource("5_y1vms")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -195,6 +209,8 @@ frameLength = 3.0
 annotation = "Split Dr. Hudson and horse to final positions"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_he6ky"), SubResource("Resource_e24o5")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
@@ -220,6 +236,8 @@ frameLength = 0.1
 annotation = "Make Dr. Hudson and horse stand"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxSpeaker = ""
 endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true

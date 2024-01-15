@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=48 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -18,7 +18,6 @@
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="8_rmmqw"]
 [ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="9_ojt38"]
 [ext_resource type="Resource" uid="uid://blknpj8h8q45i" path="res://gamedata/dialogue/ambusher/ambusher_battle.tres" id="9_py2uj"]
-[ext_resource type="Resource" uid="uid://cbhbyv3xl4q5t" path="res://gamedata/dialogue/spelunker/spelunker_leave_hilltop.tres" id="10_ctnr1"]
 [ext_resource type="Resource" uid="uid://1kie7pkiqtcx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_enter.tres" id="11_nhvoo"]
 [ext_resource type="Resource" uid="uid://d1qhj1lkn2cj3" path="res://gamedata/cutscenes/hilltop_forest/hilltop_goto_cave.tres" id="12_eq4uj"]
 [ext_resource type="Resource" uid="uid://da65t70i2k816" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_shortcut.tres" id="16_clwh3"]
@@ -210,7 +209,7 @@ visible = false
 position = Vector2(-383, -221)
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
-dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc"), ExtResource("10_ctnr1")])
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 cutscenePlayer = NodePath("../../CutscenePlayer")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -369,9 +368,8 @@ useVerticalOffset = true
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_filu0")
 
-[node name="CutscenePlayer" parent="." instance=ExtResource("7_cxs4m")]
-playing = null
-rootNode = null
+[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("7_cxs4m")]
+rootNode = NodePath("..")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)

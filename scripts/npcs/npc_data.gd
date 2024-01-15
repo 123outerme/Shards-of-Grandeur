@@ -2,6 +2,7 @@ extends Resource
 class_name NPCData
 
 @export var saveName: String = "NPC"
+@export var animSet: SpriteFrames = null
 @export_category("NPCData - Position")
 @export var position: Vector2
 @export var flipH: bool = false
@@ -23,6 +24,7 @@ class_name NPCData
 
 func _init(
 	i_saveName = "npc",
+	i_animSet = null,
 	i_position = Vector2(),
 	i_flipH = false,
 	i_visible = true,
@@ -38,6 +40,7 @@ func _init(
 	i_hasShop = false,
 ):
 	saveName = i_saveName
+	animSet = i_animSet
 	position = i_position
 	flipH = i_flipH
 	visible = i_visible
