@@ -8,7 +8,7 @@ signal back_pressed
 @onready var audioButton: Button = get_node('Panel/VBoxContainer/AudioButton')
 
 @onready var controlsSection: ControlsSection = get_node('Panel/SubsectionPanel/ControlsSection')
-@onready var audioSection: Control = get_node('Panel/SubsectionPanel/AudioSection')
+@onready var audioSection: AudioSection = get_node('Panel/SubsectionPanel/AudioSection')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,3 +35,6 @@ func _on_back_button_pressed():
 
 func _on_controls_button_toggled(toggled_on):
 	controlsSection.toggle_section(toggled_on)
+
+func _on_audio_button_toggled(toggled_on):
+	audioSection.toggle_section(toggled_on)

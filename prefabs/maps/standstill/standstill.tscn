@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=50 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://drqc7ms1tgy62" path="res://gamedata/cutscenes/standstill/standstill_enter.tres" id="22_nx0ge"]
 [ext_resource type="Resource" uid="uid://c131ky3wsh8qx" path="res://gamedata/cutscenes/standstill/standstill_leave.tres" id="23_pq6ae"]
 [ext_resource type="Resource" uid="uid://cblip8at1gm6p" path="res://gamedata/cutscenes/standstill/standstill_return_prologue.tres" id="25_mm3hq"]
+[ext_resource type="Resource" uid="uid://d1qhj1lkn2cj3" path="res://gamedata/cutscenes/standstill/standstill_back_to_drh.tres" id="28_5llnp"]
 
 [sub_resource type="Resource" id="Resource_l8o5h"]
 script = ExtResource("4_2vume")
@@ -153,8 +154,8 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_5pw44")
-metadata/_edit_vertical_guides_ = [-47.0, -72.0, -177.0]
-metadata/_edit_horizontal_guides_ = [-60.0, -52.0, -120.0, -104.0, -82.0, -44.0]
+metadata/_edit_horizontal_guides_ = [3.0]
+metadata/_edit_vertical_guides_ = [596.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -174,7 +175,7 @@ layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
-layer_4/tile_data = PackedInt32Array(393161, 65539, 65537, 458697, 65539, 65537, 524233, 65539, 65537, 589769, 65539, 65537, 655305, 65539, 65537, 720841, 65539, 65537, 327625, 65539, 65537, -131033, 65539, 65537, -65497, 65539, 65537, 39, 65539, 65537, 65575, 65539, 65537)
+layer_4/tile_data = PackedInt32Array(393161, 65539, 65537, 458697, 65539, 65537, 524233, 65539, 65537, 589769, 65539, 65537, 655305, 65539, 65537, 720841, 65539, 65537, 327625, 65539, 65537)
 
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
@@ -304,6 +305,7 @@ visible = false
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Spelunker" parent="TileMap" instance=ExtResource("3_ekhjv")]
+visible = false
 position = Vector2(778, 0)
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
@@ -394,6 +396,11 @@ cutscenePlayer = NodePath("../CutscenePlayer")
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_p63hv")
 
+[node name="BackToDrHCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+position = Vector2(634, 3)
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("28_5llnp")])
+cutscenePlayer = NodePath("../CutscenePlayer")
+
 [node name="ReturnCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(606, -22)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("25_mm3hq")])
@@ -430,4 +437,5 @@ navigation_layers = 4
 [editable path="WarpRightExit"]
 [editable path="WarpCutsceneRightExit"]
 [editable path="ExitCutsceneTrigger"]
+[editable path="BackToDrHCutsceneTrigger"]
 [editable path="ReturnCutsceneTrigger"]
