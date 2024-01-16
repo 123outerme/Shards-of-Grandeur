@@ -66,9 +66,11 @@ func _process(delta):
 			if node != null and node.has_method('play_animation'):
 				node.call('play_animation', animation.animation)
 		for actorTween in frame.actorTweens:
+			if actorTween == null:
+				continue # skip null tweens
 			var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
-			if actorTween == null or node == null:
-				continue # skip null tweens or null actors
+			if node == null:
+				continue # skip null actors
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
 			tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
 			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
@@ -138,6 +140,7 @@ func end_cutscene(force: bool = false):
 func complete_cutscene():
 	SceneLoader.unpause_autonomous_movers()
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	PlayerFinder.player.show_all_talk_alert_sprites()
 	if cutscene.givesQuest != null:
 		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
 	if PlayerFinder.player.is_in_dialogue():
@@ -150,7 +153,7 @@ func complete_cutscene():
 	playing = false
 	
 	if playingFromTrigger != null:
-		playingFromTrigger.cutscene_finished()
+		playingFromTrigger.cutscene_finished(cutscene)
 		playingFromTrigger = null
 	cutscene = null
 

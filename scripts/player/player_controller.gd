@@ -147,7 +147,7 @@ func advance_dialogue(canStart: bool = true):
 				SceneLoader.pause_autonomous_movers()
 				SceneLoader.unpauseExcludedMover = talkNPC
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
-				face_horiz(talkNPC.position.x - position.x)
+				face_horiz(talkNPC.talkArea.global_position.x - global_position.x)
 				for npc in talkNPCcandidates:
 					if npc != talkNPC:
 						npc.talkAlertSprite.visible = false
@@ -202,8 +202,12 @@ func select_choice(choice: DialogueChoice):
 		return
 		
 	if choice.leadsTo != null:
-		talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
-		
+		var reused = talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+		if reused:
+			var dialogueText = talkNPC.get_cur_dialogue_item()
+			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+			return
+	
 	makingChoice = false
 	advance_dialogue()
 
@@ -214,9 +218,6 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 	if npc == null:
 		talkNPCcandidates = []
 		talkNPC = null
-		return
-		
-	if inCutscene:
 		return
 	
 	if npc in talkNPCcandidates and remove:
@@ -239,6 +240,10 @@ func restore_dialogue(npc: NPCScript):
 		pause_movement()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 		textBox.show_text_instant()
+
+func show_all_talk_alert_sprites():
+	for candidate in talkNPCcandidates:
+		candidate.talkAlertSprite.visible = true
 
 func restore_picked_up_item_text(groundItem: PickedUpItem):
 	pickedUpItem = groundItem
@@ -381,7 +386,12 @@ func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
 	menu_closed()
 	if textBox.visible:
-		textBox.refocus_choice(pickedChoice)
+		if pickedChoice != null and pickedChoice.turnsInQuest != '':
+			if pickedChoice.leadsTo != null:
+				talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
+			advance_dialogue()
+		else:
+			textBox.refocus_choice(pickedChoice)
 
 func _on_quests_panel_node_turn_in_step_to(saveName):
 	if saveName == talkNPC.saveName:

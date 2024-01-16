@@ -41,13 +41,16 @@ func load_battle_over_menu():
 func _on_ok_button_pressed():
 	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)
 	# copy player changes to PlayerResources
-	var levels: int = PlayerResources.accept_rewards(rewards)
-	# copy rewards changes back to battle combatant
-	#battleUI.battleController.playerCombatant.combatant.save_from_object(PlayerResources.playerInfo.combatant.copy())
+	var levels: int = 0
+	if playerWins:
+		levels = PlayerResources.accept_rewards(rewards)
 	
 	if PlayerResources.playerInfo.combatant.currentHp <= 0:
-		PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
-		PlayerResources.playerInfo.combatant.downed = true
+		if playerWins: # revive with 10% HP if you win
+			PlayerResources.playerInfo.combatant.currentHp = roundi(0.1 * PlayerResources.playerInfo.combatant.stats.maxHp)
+		else: # otherwise revive with full
+			PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
+	PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes) # stay downed if you lost
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

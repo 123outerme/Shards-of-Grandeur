@@ -179,12 +179,8 @@ layer_4/tile_data = PackedInt32Array(393161, 65539, 65537, 458697, 65539, 65537,
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-saveName = ""
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/Signpost" index="0"]
 sprite_frames = SubResource("SpriteFrames_6ltjv")
@@ -200,8 +196,10 @@ shape = SubResource("RectangleShape2D_f7yce")
 [node name="NavAgent" parent="TileMap/Signpost" index="2"]
 disableMovement = true
 
-[node name="TalkAreaShape" parent="TileMap/Signpost/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/Signpost" index="3"]
 position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TileMap/Signpost/TalkArea" index="0"]
 shape = SubResource("RectangleShape2D_j24gd")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -212,17 +210,14 @@ visible = false
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="HorseCart" parent="TileMap" instance=ExtResource("3_ekhjv")]
-position = Vector2(8, 128)
+position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
-facesRight = true
 spriteSize = Vector2i(64, 32)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
-position = Vector2(-23, 0)
 sprite_frames = ExtResource("9_ygb36")
 animation = &"stand"
 
@@ -230,7 +225,7 @@ animation = &"stand"
 position = Vector2(29, -18)
 
 [node name="ColliderShape" parent="TileMap/HorseCart" index="1"]
-position = Vector2(-23, 9)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_47d3y")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -238,10 +233,9 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 disableMovement = true
 
 [node name="TalkArea" parent="TileMap/HorseCart" index="3"]
-position = Vector2(-23, 0)
+position = Vector2(18, 8)
 
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
-position = Vector2(18, 8)
 shape = SubResource("RectangleShape2D_8ekot")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -255,11 +249,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg")])
-facesPlayer = true
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("11_lx2nn")
@@ -269,8 +259,10 @@ animation = &"stand"
 position = Vector2(0, 4.5)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/DrHudson" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TileMap/DrHudson" index="4"]
@@ -283,11 +275,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh")])
-facesPlayer = true
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
 sprite_frames = ExtResource("12_uy85b")
@@ -316,15 +304,10 @@ visible = false
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Spelunker" parent="TileMap" instance=ExtResource("3_ekhjv")]
-visible = false
 position = Vector2(778, 0)
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-facesRight = true
-spriteSize = Vector2i(16, 16)
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("20_ptwwx"), ExtResource("21_fh845")])
-facesPlayer = true
-hasShop = false
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("22_g7o8t")
@@ -337,8 +320,10 @@ flip_h = true
 position = Vector2(0, 4)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="TalkAreaShape" parent="TileMap/Spelunker/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/Spelunker" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/Spelunker/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTriggerShape" parent="TileMap/Spelunker/MoveTrigger" index="0"]
@@ -398,12 +383,12 @@ shape = SubResource("RectangleShape2D_fkf8o")
 
 [node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(-552, 116)
-cutscene = ExtResource("22_nx0ge")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("22_nx0ge")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(505, 1)
-cutscene = ExtResource("23_pq6ae")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_pq6ae")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
@@ -411,7 +396,7 @@ shape = SubResource("RectangleShape2D_p63hv")
 
 [node name="ReturnCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(606, -22)
-cutscene = ExtResource("25_mm3hq")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("25_mm3hq")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ReturnCutsceneTrigger" index="0"]

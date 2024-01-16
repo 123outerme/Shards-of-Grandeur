@@ -30,7 +30,7 @@ func load_move_list_panel():
 			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()
 	editMovesButton.visible = not readOnly
-	if not readOnly:
+	if not readOnly and lastMovePanel != null:
 		editMovesButton.focus_neighbor_top = editMovesButton.get_path_to(lastMovePanel.detailsButton)
 
 func connect_details_pressed(function: Callable):

@@ -29,7 +29,7 @@ enum Category {
 @export var equippedArmor: Armor = null
 
 @export_category("Stats - Moves")
-@export var moves: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move]
+@export var moves: Array[Move] = []
 @export var movepool: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move]
 
 func _init(
@@ -117,11 +117,10 @@ static func floating_stat_pt_gain(lv: int) -> int:
 func add_exp(addingExp: int) -> int:
 	var newLevel: int = level
 	experience += addingExp
-	while experience > Stats.get_required_exp(newLevel):
+	while experience >= Stats.get_required_exp(newLevel):
 		experience -= Stats.get_required_exp(newLevel)
 		newLevel += 1 # increment and check if requirement is satisfied
 	var levelDiff: int = newLevel - level
-	#print(levelDiff, ' diff. ', newLevel, ' vs ', level)
 	level_up(levelDiff)
 	return levelDiff # return the difference
 

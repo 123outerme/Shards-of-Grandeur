@@ -26,13 +26,21 @@ var turningInSteps: Array[QuestStep] = []
 @onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
 @onready var talkAlertSprite: Sprite2D = get_node("NPCSprite/TalkAlertSprite")
 @onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
-@onready var NavAgent: NPCMovement = get_node("NavAgent")
+@onready var talkArea: Area2D = get_node('TalkArea')
+@onready var talkAreaShape: CollisionShape2D = get_node('TalkArea/TalkAreaShape')
+@onready var NavAgent: NPCMovement = get_node('NavAgent')
 
 var invisible: bool:
 	get:
 		return not visible
 	set(value):
 		_set_invisible(value)
+		
+var flip_h: bool:
+	get:
+		return npcSprite.flip_h
+	set(value):
+		_set_flip_h(value)
 
 var player: PlayerController = null
 var npcsDir: String = "npcs/"
@@ -54,7 +62,7 @@ func save_data(save_path):
 		return
 	data.saveName = saveName
 	data.animSet = npcSprite.sprite_frames
-	data.flipH = npcSprite.flip_h
+	data.flipH = flip_h
 	data.position = position
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
@@ -75,7 +83,7 @@ func load_data(save_path):
 		if data.animSet != null:
 			npcSprite.set_sprite_frames(data.animSet)
 		position = data.position
-		npcSprite.flip_h = data.flipH
+		flip_h = data.flipH
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.previousDisableMove
@@ -97,6 +105,13 @@ func _set_invisible(value: bool):
 		collision_layer = 0
 	else:
 		collision_layer = 0b01
+
+func _set_flip_h(value: bool):
+	if npcSprite.flip_h != value:
+		talkAlertSprite.position.x *= -1.0
+		talkArea.position.x *= -1.0
+		talkAreaShape.position.x *= -1.0
+	npcSprite.flip_h = value
 
 func get_collision_size() -> Vector2:
 	return (colliderShape.shape as RectangleShape2D).get_rect().size
@@ -227,16 +242,18 @@ func update_dialogues_in_between():
 		if not dialogue in data.dialogueItems and dialogue.can_use_dialogue():
 			add_dialogue_entry_in_dialogue(dialogue)
 
-func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry):
+func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry) -> bool:
 	if dialogueEntry.can_use_dialogue():
 		var index: int = data.dialogueItems.find(dialogueEntry, 0)
 		if index != -1: # reuse entry if it exists to support going back in the dialogue tree
 			data.dialogueIndex = index
 			data.dialogueItemIdx = 0
 			data.dialogueLine = 0
+			return true
 		else:
 			index = mini(data.dialogueIndex + 1, len(data.dialogueItems))
 			data.dialogueItems.insert(index, dialogueEntry)
+	return false
 
 func pause_movement():
 	NavAgent.disableMovement = true
@@ -256,9 +273,9 @@ func play_animation(animation: String):
 
 func face_horiz(xDirection: float):
 	if xDirection < 0:
-		npcSprite.flip_h = facesRight
+		flip_h = facesRight
 	if xDirection > 0:
-		npcSprite.flip_h = not facesRight
+		flip_h = not facesRight
 
 func _on_npc_sprite_animation_finished():
 	play_animation('stand')

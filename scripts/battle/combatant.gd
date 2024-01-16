@@ -126,6 +126,14 @@ func level_up_nonplayer(newLv: int):
 	elif lvDiff < 0:
 		printerr("level up nonplayer err: level diff is negative")
 
+func assign_moves_nonplayer():
+	var nextMoveSlot: int = 0
+	stats.moves = []
+	for move: Move in stats.movepool:
+		if move.requiredLv <= stats.level:
+			stats.moves.insert(nextMoveSlot, move)
+			nextMoveSlot = (nextMoveSlot + 1) % 4
+
 func copy() -> Combatant:
 	var newCombatant: Combatant = Combatant.new()
 	newCombatant.save_from_object(self)

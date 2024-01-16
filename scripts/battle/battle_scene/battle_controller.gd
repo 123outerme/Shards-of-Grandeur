@@ -27,6 +27,7 @@ func _ready():
 
 func load_into_battle():
 	var newBattle: bool = state.enemyCombatant1 == null
+	var hasStaticMinion: bool = false
 	if newBattle: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 		minionCombatant.combatant = null
@@ -34,16 +35,38 @@ func load_into_battle():
 			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
+			if len(PlayerResources.playerInfo.staticEncounter.combatant1Moves) == 0:
+				enemyCombatant1.combatant.assign_moves_nonplayer()
+			else:
+				enemyCombatant1.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant1Moves.duplicate()
 		
 			if PlayerResources.playerInfo.staticEncounter.combatant2 != null:
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant2.save_name())
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
+				if len(PlayerResources.playerInfo.staticEncounter.combatant2Moves) == 0:
+					enemyCombatant2.combatant.assign_moves_nonplayer()
+				else:
+					enemyCombatant2.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant2Moves.duplicate()
 			
 			if PlayerResources.playerInfo.staticEncounter.combatant3 != null:
-				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
-				enemyCombatant2.initialCombatantLv = enemyCombatant3.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
+				enemyCombatant3.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
+				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
+				enemyCombatant3.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
+				if len(PlayerResources.playerInfo.staticEncounter.combatant3Moves) == 0:
+					enemyCombatant3.combatant.assign_moves_nonplayer()
+				else:
+					enemyCombatant3.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant3Moves.duplicate()
+			
+			if PlayerResources.playerInfo.staticEncounter.autoAlly != null:
+				hasStaticMinion = true
+				minionCombatant.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.autoAlly.save_name())
+				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
+				minionCombatant.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.autoAllyLevel)
+				if len(PlayerResources.playerInfo.staticEncounter.autoAllyMoves) == 0:
+					minionCombatant.combatant.assign_moves_nonplayer()
+				else:
+					minionCombatant.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.autoAllyMoves.duplicate() 
 		else:
 			if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
 				PlayerResources.playerInfo.encounteredName = 'rat' # TEMP failsafe - could be improved?
@@ -52,6 +75,7 @@ func load_into_battle():
 			var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
+			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
 			var rngBeginnerNoEnemy: float = randf() - 0.75 + (0.05 * (6 - max(playerCombatant.combatant.stats.level, 6))) if playerCombatant.combatant.stats.level < 10 else 1.0
 			# if level < 10, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
@@ -60,6 +84,7 @@ func load_into_battle():
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant2.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant2.combatant = null
 			
@@ -70,6 +95,7 @@ func load_into_battle():
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant3.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant3.combatant = null
 			#enemyCombatant3.leftSide = false # what was this doing????
@@ -104,7 +130,8 @@ func load_into_battle():
 		
 	update_combatant_focus_neighbors()
 	
-	if state.menu == BattleState.Menu.SUMMON and PlayerResources.inventory.count_of(Item.Type.SHARD) == 0:
+	if state.menu == BattleState.Menu.SUMMON and \
+			(PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 or hasStaticMinion):
 		state.menu = BattleState.Menu.PRE_BATTLE
 	
 	battleUI.set_menu_state(state.menu, false)
@@ -112,7 +139,7 @@ func load_into_battle():
 func summon_minion(shard: Shard):
 	minionCombatant.combatant = PlayerResources.minions.get_minion(shard.combatantSaveName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
-	minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
+	#minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
@@ -196,6 +223,7 @@ func end_battle():
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
 	if minionCombatant.combatant != null:
 		minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # reset to max HP for next time minion will be summoned
+		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
 	SaveHandler.save_data()

@@ -20,6 +20,7 @@ func get_minion(saveName: String) -> Combatant:
 		minion = minionList[saveName] as Combatant
 	else:
 		minion = Combatant.load_combatant_resource(saveName)
+		minion.assign_moves_nonplayer()
 		minionList[saveName] = minion
 	return minion
 
@@ -33,6 +34,13 @@ func level_up_minions(newLevel: int):
 		var levelDiff: int = newLevel - minion.stats.level
 		if levelDiff > 0:
 			minion.stats.level_up(levelDiff)
+			minion.currentHp = minion.stats.maxHp
+			for i in range(4): # fill in any empty move slots if possible
+				if i >= len(minion.stats.moves) or minion.stats.moves[i] == null:
+					for move in minion.stats.movepool:
+						if minion.stats.level >= move.requiredLv and not (move in minion.stats.moves):
+							minion.stats.moves.insert(i, move)
+							break
 
 func which_minion_equipped(item: Item) -> String:
 	var saveName: String = ''

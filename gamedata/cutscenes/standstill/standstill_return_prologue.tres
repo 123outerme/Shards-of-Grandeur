@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=66 format=3 uid="uid://cblip8at1gm6p"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=68 format=3 uid="uid://cblip8at1gm6p"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_5o7yl"]
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="1_11qci"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="5_tle33"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="6_crsoq"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_kv5tc"]
+[ext_resource type="Resource" uid="uid://k6f4y1hp2ekl" path="res://gamedata/cutscenes/reused/playersprite_right.tres" id="10_ldi2b"]
+[ext_resource type="Resource" uid="uid://dgkkrra8rcm82" path="res://gamedata/cutscenes/reused/player_facingRight.tres" id="11_77ca6"]
 
 [sub_resource type="Resource" id="Resource_2bvi1"]
 script = ExtResource("2_v33vc")
@@ -146,7 +148,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_w6bsu"]
 script = ExtResource("5_2dnit")
-value = Vector2(480, 8)
+value = Vector2(457, 8)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -195,7 +197,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_t2jfg"]
 script = ExtResource("5_2dnit")
-value = Vector2(435, 8)
+value = Vector2(412, 8)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -244,7 +246,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_magsi"]
 script = ExtResource("5_2dnit")
-value = Vector2(398, -18)
+value = Vector2(375, -18)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -293,7 +295,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_gclo8"]
 script = ExtResource("5_2dnit")
-value = Vector2(361, -44)
+value = Vector2(338, -44)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -342,7 +344,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_754wy"]
 script = ExtResource("5_2dnit")
-value = Vector2(-83, -44)
+value = Vector2(-106, -44)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -391,7 +393,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_cg4fe"]
 script = ExtResource("5_2dnit")
-value = Vector2(-155, -44)
+value = Vector2(-178, -44)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -444,7 +446,7 @@ endFadeLength = 0.0
 
 [sub_resource type="Resource" id="Resource_jcyg7"]
 script = ExtResource("5_2dnit")
-value = Vector2(-170, -44)
+value = Vector2(-193, -44)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -492,7 +494,7 @@ transitionType = 0
 script = ExtResource("1_5o7yl")
 frameLength = 0.1
 annotation = "Hide the Spelunker when he goes in the inn. Make the Horse and player stop walking"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_kyryy")])
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_kyryy"), ExtResource("10_ldi2b"), ExtResource("11_77ca6")])
 actorAnims = Array[ExtResource("6_crsoq")]([SubResource("Resource_h1smh")])
 actorAnimSets = Array[ExtResource("2_v33vc")]([])
 dialogues = Array[ExtResource("5_odgvt")]([])
@@ -504,7 +506,7 @@ endFadeLength = 0.0
 [sub_resource type="Resource" id="Resource_hhwuu"]
 script = ExtResource("1_5o7yl")
 frameLength = 0.1
-annotation = ""
+annotation = "??? Not sure why this is here, maybe it does something?"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("6_crsoq")]([])
 actorAnimSets = Array[ExtResource("2_v33vc")]([])

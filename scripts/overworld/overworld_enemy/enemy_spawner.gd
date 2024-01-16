@@ -6,11 +6,11 @@ class_name EnemySpawner
 @export var combatantLevel: int = 1
 @export var staticEncounter: StaticEncounter = null
 @export var storyRequirements: StoryRequirements = null
+@export var spawnWhenPlayerLocked: bool = false
 @export var spawnRange: float = 48.0
 @export var enemyPatrolRange: float = 32.0
 @export var tilemap: TileMap
 @export var enemy: OverworldEnemy = null
-
 
 var overworldEnemyScene = preload("res://prefabs/entities/overworld_enemy.tscn")
 var enemiesDir: String = 'enemies/'
@@ -21,7 +21,7 @@ func _ready():
 	pass
 
 func _on_area_2d_area_entered(area):
-	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and not PlayerFinder.player.textBox.visible:
+	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and spawnWhenPlayerLocked == PlayerFinder.player.disableMovement:
 		var angleRadians = randf_range(0, 2 * PI)
 		var radius: float = randf_range(0, spawnRange / 2.0) # range in diameter, so half of that
 		var enemyPos: Vector2 = position + (Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius)

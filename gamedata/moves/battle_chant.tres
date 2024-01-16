@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Move" load_steps=4 format=3 uid="uid://8hrdloy8r6ya"]
+
+[ext_resource type="Script" path="res://scripts/battle/move.gd" id="1_ujck1"]
+[ext_resource type="Script" path="res://scripts/battle/stat_changes.gd" id="2_m36ur"]
+
+[sub_resource type="Resource" id="Resource_5ajif"]
+script = ExtResource("2_m36ur")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.3
+speedMultiplier = 1.2
+
+[resource]
+script = ExtResource("1_ujck1")
+moveName = "Battle Chant"
+requiredLv = 3
+role = 3
+power = 0
+category = 2
+targets = 2
+statChanges = SubResource("Resource_5ajif")
+statusChance = 0.0
+description = "The users chants a battle cry, enhancing one of their ally's defense and speed."
+moveLearnedText = "Hearing the Battle Chant, you understand how it is so effective at empowering allies. You cry out a Chant of your own, and hear your voice echo powerfully throughout the area."

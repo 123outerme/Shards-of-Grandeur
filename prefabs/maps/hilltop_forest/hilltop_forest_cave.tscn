@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=49 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://da65t70i2k816" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_shortcut.tres" id="16_clwh3"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="16_e37k4"]
 [ext_resource type="Resource" uid="uid://c8g3p1lo0jdr3" path="res://gamedata/cutscenes/hilltop_forest/hilltop_ambush.tres" id="16_s3h3f"]
+[ext_resource type="Resource" uid="uid://bllektny1dlcx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_right_exit.tres" id="20_myx38"]
 [ext_resource type="Resource" uid="uid://fvcov57k5drx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_close.tres" id="22_e0qmh"]
 [ext_resource type="Resource" uid="uid://clldvhp6vpt5f" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_far.tres" id="23_uw3nw"]
 [ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
@@ -143,7 +144,7 @@ layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
 [node name="HorseCart" parent="TileMap" instance=ExtResource("3_plac1")]
-position = Vector2(-1022, 538)
+position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop"
 spriteSize = Vector2i(64, 32)
@@ -151,7 +152,6 @@ dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([E
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/HorseCart" index="0"]
-position = Vector2(-23, 0)
 sprite_frames = ExtResource("5_masfe")
 animation = &"stand"
 
@@ -159,7 +159,7 @@ animation = &"stand"
 position = Vector2(29, -18)
 
 [node name="ColliderShape" parent="TileMap/HorseCart" index="1"]
-position = Vector2(-23, 9)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_fij8e")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -167,10 +167,9 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 disableMovement = true
 
 [node name="TalkArea" parent="TileMap/HorseCart" index="3"]
-position = Vector2(-23, 0)
+position = Vector2(18, 8)
 
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
-position = Vector2(18, 8)
 shape = SubResource("RectangleShape2D_y1k16")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -194,8 +193,10 @@ animation = &"stand"
 position = Vector2(0, 4.5)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/DrHudson" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/DrHudson/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TileMap/DrHudson" index="4"]
@@ -223,8 +224,10 @@ flip_h = true
 position = Vector2(0, 4)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="TalkAreaShape" parent="TileMap/Spelunker/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/Spelunker" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/Spelunker/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTriggerShape" parent="TileMap/Spelunker/MoveTrigger" index="0"]
@@ -245,8 +248,10 @@ flip_h = true
 position = Vector2(0, 4)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="TalkAreaShape" parent="TileMap/ChainLegionSoldier/TalkArea" index="0"]
+[node name="TalkArea" parent="TileMap/ChainLegionSoldier" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/ChainLegionSoldier/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TileMap/ChainLegionSoldier" index="4"]
@@ -294,12 +299,12 @@ shape = SubResource("RectangleShape2D_5pj3e")
 
 [node name="EnterCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-968, 546)
-cutscene = ExtResource("11_nhvoo")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("11_nhvoo")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="GoToCaveCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-520, 16)
-cutscene = ExtResource("12_eq4uj")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_eq4uj"), ExtResource("20_myx38")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="GoToCaveCutsceneTrigger" index="0"]
@@ -307,7 +312,7 @@ shape = SubResource("RectangleShape2D_y32ui")
 
 [node name="StopShortcutCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-248, -22)
-cutscene = ExtResource("16_clwh3")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("16_clwh3")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="StopShortcutCutsceneTrigger" index="0"]
@@ -315,7 +320,7 @@ shape = SubResource("RectangleShape2D_xofnv")
 
 [node name="AmbushCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-571, -97)
-cutscene = ExtResource("16_s3h3f")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("16_s3h3f")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="AmbushCutsceneTrigger" index="0"]
@@ -324,7 +329,7 @@ shape = SubResource("RectangleShape2D_tkx50")
 
 [node name="ReturnToAmbushLeftCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscene = ExtResource("23_uw3nw")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_uw3nw")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ReturnToAmbushLeftCutsceneTrigger" index="0"]
@@ -333,7 +338,7 @@ shape = SubResource("RectangleShape2D_ct4s1")
 
 [node name="ReturnToAmbushCenterCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscene = ExtResource("22_e0qmh")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("22_e0qmh")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ReturnToAmbushCenterCutsceneTrigger" index="0"]
@@ -342,7 +347,7 @@ shape = SubResource("RectangleShape2D_pq5ym")
 
 [node name="ReturnToAmbushRightCutsceneTrigger3" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscene = ExtResource("23_uw3nw")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_uw3nw")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ReturnToAmbushRightCutsceneTrigger3" index="0"]
@@ -351,7 +356,7 @@ shape = SubResource("RectangleShape2D_5vud8")
 
 [node name="AfterAmbushCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("7_ggrbp")]
 position = Vector2(-330, -239)
-cutscene = ExtResource("24_jx57i")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("24_jx57i")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="AfterAmbushCutsceneTrigger" index="0"]

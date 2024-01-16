@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=28 format=3 uid="uid://1kie7pkiqtcx"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=30 format=3 uid="uid://1kie7pkiqtcx"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_100mj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_wd36c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://c66vj2jlj5s8j" path="res://gamedata/cutscenes/reused/player_facingLeft.tres" id="3_k711j"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="3_kfmox"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="8_y6h7m"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="9_k7nwe"]
 
 [sub_resource type="Resource" id="Resource_ufme0"]
 script = ExtResource("1_wd36c")
@@ -34,7 +35,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_osdbe"]
 script = ExtResource("3_h6now")
-value = Vector2(-898, 538)
+value = Vector2(-930, 538)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -63,8 +64,6 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubReso
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_ufme0"), SubResource("Resource_ccsh7"), ExtResource("2_r1eiw")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_pkwtl")])
-endTextBoxSpeaker = ""
-endTextBoxTexts = Array[String]([])
 endTextBoxPauses = false
 endHoldCamera = false
 endFade = 0
@@ -90,8 +89,6 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_4iel7"), SubResource("Resource_8cw6j"), ExtResource("3_kfmox")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([])
-endTextBoxSpeaker = ""
-endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -122,8 +119,6 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtReso
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_cvims"), SubResource("Resource_8loxg"), ExtResource("3_kfmox")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_j4tnp")])
-endTextBoxSpeaker = ""
-endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -135,16 +130,23 @@ actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_cw4gi"]
+script = ExtResource("9_k7nwe")
+value = true
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_b87eh"]
 script = ExtResource("2_l6aqg")
 frameLength = 1.0
-annotation = "Dr. Hudson stops talking and stands"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+annotation = "Dr. Hudson stops talking and stands facing left towards the cart"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_cw4gi")])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_i4ctb")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([])
-endTextBoxSpeaker = ""
-endTextBoxTexts = Array[String]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0

@@ -173,7 +173,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
 position = Vector2(-48, 0)
-cutscene = ExtResource("11_27a4a")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("11_27a4a")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="IntroCutsceneTrigger" index="0"]
@@ -182,7 +182,7 @@ shape = SubResource("RectangleShape2D_b1862")
 
 [node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
 position = Vector2(565, 7)
-cutscene = ExtResource("12_ci2fb")
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_ci2fb")])
 cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
@@ -195,6 +195,7 @@ spawnerData = SubResource("Resource_mb2oe")
 combatant = ExtResource("15_6dcag")
 staticEncounter = ExtResource("18_ld2et")
 storyRequirements = SubResource("Resource_noxp6")
+spawnWhenPlayerLocked = true
 spawnRange = 0.0
 enemyPatrolRange = 8.0
 tilemap = NodePath("../TileMap")
