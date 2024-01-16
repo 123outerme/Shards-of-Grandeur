@@ -28,6 +28,8 @@ func reset():
 	speedMultiplier = 1.0
 
 func stack(changes: StatChanges):
+	if changes == null:
+		return
 	physAttackMultiplier += changes.physAttackMultiplier - 1.0
 	magicAttackMultiplier += changes.magicAttackMultiplier - 1.0
 	affinityMultiplier += changes.affinityMultiplier - 1.0

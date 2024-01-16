@@ -123,6 +123,8 @@ func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool, move: 
 	else:
 		restore_previous_focus()
 
+
+
 func _on_minions_panel_stats_clicked(combatant: Combatant):
 	previousControl = minionsPanel.get_stats_button_for(combatant)
 	savedStats = stats

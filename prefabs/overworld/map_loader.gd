@@ -74,18 +74,17 @@ func load_map(mapName: String):
 	call_deferred("reparent_player")
 
 func get_map_entry_for_map_name(mapName: String) -> MapEntry:
-	if FileAccess.file_exists("res://gamedata/locations/" + mapName + ".tres"):
-		var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
-		if worldLocation != null:
-			var mapEntry: MapEntry = worldLocation.get_map_entry_for_location()
-			if mapEntry != null:
-				return mapEntry
-			else:
-				printerr('No map entry could be found')
+	if not ResourceLoader.exists("res://gamedata/locations/" + mapName + ".tres"):
+		printerr('This world location does not exist: ', mapName)
+	var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
+	if worldLocation != null:
+		var mapEntry: MapEntry = worldLocation.get_map_entry_for_location()
+		if mapEntry != null:
+			return mapEntry
 		else:
-			printerr('World location could not be found')
+			printerr('No map entry could be found for: ', mapName)
 	else:
-		printerr('This world location does not exist')
+		printerr('World location could not be found for: ', mapName)
 	return null
 
 func reparent_player():

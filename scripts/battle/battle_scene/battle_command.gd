@@ -294,10 +294,11 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '.'
-		if type == Type.MOVE and move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
-			resultsText += ' ' + user.disp_name() + ' boosts '
-			var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
-			resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
+		if type == Type.MOVE and move.statChanges != null:
+			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
+				resultsText += ' ' + user.disp_name() + ' boosts '
+				var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
+				resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)
 		if preventEscapingIdx < 0:

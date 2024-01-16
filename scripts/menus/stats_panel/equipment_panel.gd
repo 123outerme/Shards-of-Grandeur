@@ -65,3 +65,9 @@ func _on_armor_sprite_pressed():
 
 func _on_item_details_back_button_pressed():
 	statsPanel.backButton.disabled = false
+
+func _on_item_details_panel_back_pressed():
+	if itemDetailsPanel.item == armor:
+		armorSprite.grab_focus()
+	else:
+		weaponSprite.grab_focus()

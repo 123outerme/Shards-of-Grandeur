@@ -37,6 +37,8 @@ func load_combatant_node():
 		visible = false
 	else:
 		visible = true
+		if combatant.statChanges == null:
+			combatant.statChanges = StatChanges.new()
 		animatedSprite.sprite_frames = combatant.spriteFrames
 		if combatant.spriteFrames == null:
 			animatedSprite.sprite_frames = load("res://graphics/animations/a_player.tres") # TEMP prevent crashing

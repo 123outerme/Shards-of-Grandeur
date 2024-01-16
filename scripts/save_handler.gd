@@ -16,9 +16,8 @@ func _ready():
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if get_node_or_null("/root/MainMenu") == null:
-			if PlayerFinder.player != null and PlayerFinder.player.inCutscene:
-				return # just exit the game, don't save
-			save_data() # if not in the main menu, save the game!
+			if PlayerFinder.player == null or not PlayerFinder.player.inCutscene:
+				save_data() # if not in the main menu or in a cutscene, save the game!
 		get_tree().quit() # then quit
 
 func fetch_saved_scripts():
