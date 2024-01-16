@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://ce4g0qxc138r5"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=24 format=3 uid="uid://ce4g0qxc138r5"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_aoois"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_d00tx"]
@@ -22,6 +22,19 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([SubResource("Resource_1knuu")])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_vgn2d"]
+script = ExtResource("1_hvvit")
+frameLength = 0.1
+annotation = "Wait for the textbox to be cleared before fading out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
 endHoldCamera = false
 endFade = 0
@@ -174,7 +187,7 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_d00tx")
-cutsceneFrames = Array[ExtResource("1_hvvit")]([SubResource("Resource_cckdo"), SubResource("Resource_0u5ah"), SubResource("Resource_18ai2"), SubResource("Resource_tpigd"), SubResource("Resource_07ip4"), SubResource("Resource_ohtox"), SubResource("Resource_xo2je"), SubResource("Resource_mfdvy"), SubResource("Resource_c2ghu")])
+cutsceneFrames = Array[ExtResource("1_hvvit")]([SubResource("Resource_cckdo"), SubResource("Resource_vgn2d"), SubResource("Resource_0u5ah"), SubResource("Resource_18ai2"), SubResource("Resource_tpigd"), SubResource("Resource_07ip4"), SubResource("Resource_ohtox"), SubResource("Resource_xo2je"), SubResource("Resource_mfdvy"), SubResource("Resource_c2ghu")])
 saveName = "after_ambush"
 storyRequirements = SubResource("Resource_1ml4k")
 unlockCameraHoldAfter = true

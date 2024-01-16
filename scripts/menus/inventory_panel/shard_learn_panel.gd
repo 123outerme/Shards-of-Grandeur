@@ -11,6 +11,7 @@ var combatant: Combatant = null
 @onready var shardSprite: Sprite2D = get_node("Panel/ShardSpriteControl/ShardSprite")
 @onready var learnPanelTitle: RichTextLabel = get_node("Panel/LearnPanelTitle")
 @onready var movePoolPanel: MovePoolPanel = get_node("Panel/MovePoolPanel")
+@onready var moveDetailsPanel: MoveDetailsPanel = get_node("MoveDetailsPanel")
 @onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
@@ -46,3 +47,12 @@ func _on_move_pool_panel_learn_button_clicked(move: Move):
 	PlayerResources.playerInfo.stats.movepool.append(move)
 	visible = false
 	learned_move.emit(move)
+
+func _on_move_pool_panel_details_button_clicked(move):
+	moveDetailsPanel.move = move
+	moveDetailsPanel.load_move_details_panel()
+
+func _on_move_details_panel_back_pressed():
+	var focusGrabbed: bool = movePoolPanel.focus_move_details(moveDetailsPanel.move)
+	if not focusGrabbed:
+		backButton.grab_focus()

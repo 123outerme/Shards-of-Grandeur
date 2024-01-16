@@ -68,6 +68,16 @@ func get_move_list_item(move: Move) -> MoveListItemPanel:
 			return moveListItemPanel
 	return null
 
+func focus_move_details(move: Move) -> bool:
+	var focusGrabbed: bool = false
+	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
+		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
+		if moveListItemPanel.move == move:
+			moveListItemPanel.detailsButton.grab_focus()
+			focusGrabbed = true
+			break
+	return focusGrabbed
+
 func _on_details_button_clicked(move: Move):
 	details_button_clicked.emit(move)
 

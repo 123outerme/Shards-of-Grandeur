@@ -42,11 +42,18 @@ var flip_h: bool:
 	set(value):
 		_set_flip_h(value)
 
+var initialTalkAlertSprPos: Vector2 = Vector2()
+var initialTalkAreaPos: Vector2 = Vector2()
+var initialTalkAreaShapePos: Vector2 = Vector2()
+
 var player: PlayerController = null
 var npcsDir: String = "npcs/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	initialTalkAlertSprPos = talkAlertSprite.position
+	initialTalkAreaPos = talkArea.position
+	initialTalkAreaShapePos = talkAreaShape.position
 	data = NPCData.new()
 	data.position = position
 	data.inventory = inventory
@@ -83,7 +90,7 @@ func load_data(save_path):
 		if data.animSet != null:
 			npcSprite.set_sprite_frames(data.animSet)
 		position = data.position
-		flip_h = data.flipH
+		_set_flip_h(data.flipH)
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.previousDisableMove
@@ -107,10 +114,14 @@ func _set_invisible(value: bool):
 		collision_layer = 0b01
 
 func _set_flip_h(value: bool):
-	if npcSprite.flip_h != value:
-		talkAlertSprite.position.x *= -1.0
-		talkArea.position.x *= -1.0
-		talkAreaShape.position.x *= -1.0
+	if value != facesRight:
+		talkAlertSprite.position.x = initialTalkAlertSprPos.x
+		talkArea.position.x = initialTalkAreaPos.x
+		talkAreaShape.position.x = initialTalkAreaShapePos.x
+	else:
+		talkAlertSprite.position.x = -1.0 * initialTalkAlertSprPos.x
+		talkArea.position.x = -1.0 * initialTalkAreaPos.x
+		talkAreaShape.position.x = -1.0 * initialTalkAreaShapePos.x
 	npcSprite.flip_h = value
 
 func get_collision_size() -> Vector2:
