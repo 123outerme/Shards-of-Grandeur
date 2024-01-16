@@ -4,6 +4,13 @@ class_name QuestInventory
 @export var quests: Array[QuestTracker] = []
 @export var currentAct: int = 0
 
+var actNames: Array[String] = [
+	'Prologue', # act 0
+	'act1placeholder', # act 1
+	'act2placeholder', # act 2
+	'act3placeholder', # act 3
+	'act4placeholder', # act 4
+]
 var save_name: String = "quests.tres"
 
 func _init(i_quests: Array[QuestTracker] = [], i_act = 0):

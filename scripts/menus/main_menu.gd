@@ -4,6 +4,7 @@ var playerName: String = 'Player'
 
 @onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
+@onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
 
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
@@ -11,6 +12,8 @@ var playerName: String = 'Player'
 @onready var playerNamePanel: Panel = get_node("Panel/PlayerNamePanel")
 @onready var nameInput: LineEdit = get_node("Panel/PlayerNamePanel/NameInput")
 @onready var confirmButton: Button = get_node("Panel/PlayerNamePanel/HBoxContainer/ConfirmButton")
+
+@onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,10 +39,11 @@ func start_new_game():
 	SceneLoader.load_game()
 
 func _on_quit_button_pressed():
+	SettingsHandler.save_data()
 	get_tree().quit()
 
 func _on_settings_button_pressed():
-	pass # TODO create settings menu
+	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
 	SaveHandler.load_data()
@@ -74,3 +78,6 @@ func _on_confirm_button_pressed():
 func _on_cancel_button_pressed():
 	playerNamePanel.visible = false
 	set_initial_main_menu_focus()
+
+func _on_settings_menu_back_pressed():
+	settingsMenuButton.grab_focus()

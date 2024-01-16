@@ -13,6 +13,7 @@ var holdingCamera: bool = false
 var holdingCameraAt: Vector2
 var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
+var actChanged: bool = false
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
@@ -162,6 +163,9 @@ func advance_dialogue(canStart: bool = true):
 			if PlayerResources.playerInfo.staticEncounter != null:
 				SaveHandler.save_data()
 				SceneLoader.load_battle()
+			if actChanged:
+				pause_movement()
+				cam.play_new_act_animation(_new_act_callback)
 		else:
 			textBox.hide_textbox() # is this necessary??
 			set_talk_npc(null, true) # is this necessary??
@@ -416,3 +420,10 @@ func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
 		PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
 		PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
 		unpause_movement()
+
+func _on_quests_panel_node_act_changed():
+	actChanged = true
+
+func _new_act_callback():
+	actChanged = false
+	unpause_movement()

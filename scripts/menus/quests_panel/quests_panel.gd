@@ -4,6 +4,7 @@ class_name QuestsMenu
 signal back_pressed
 signal turn_in_step_to(saveName: String)
 signal level_up(newLevels: int)
+signal act_changed
 
 @export_category("Quests Panel - Filters")
 @export var selectedFilter: QuestTracker.Status = QuestTracker.Status.ALL
@@ -11,13 +12,7 @@ signal level_up(newLevels: int)
 @export var lockFilters: bool = false
 
 var rewardNewLvs: int = 0
-var actNames: Array[String] = [
-	'Prologue', # act 0
-	'act1placeholder', # act 1
-	'act2placeholder', # act 2
-	'act3placeholder', # act 3
-	'act4placeholder', # act 4
-]
+
 var lastFocused: Control = null
 var lastInteractedTracker: QuestTracker = null
 
@@ -136,7 +131,7 @@ func load_quests_panel(fromToggle: bool = false):
 	else:
 		questsTitle.text = '[center]Quests[/center]'
 			
-	actTitle.text = 'Act ' + String.num(PlayerResources.questInventory.currentAct) + ': ' + actNames[PlayerResources.questInventory.currentAct]
+	actTitle.text = 'Act ' + String.num(PlayerResources.questInventory.currentAct) + ': ' + PlayerResources.questInventory.actNames[PlayerResources.questInventory.currentAct]
 
 func update_filter_buttons():
 	inProgressButton.button_pressed = selectedFilter == QuestTracker.Status.IN_PROGRESS
@@ -158,7 +153,10 @@ func turn_in(questTracker: QuestTracker):
 	questRewardPanel.reward = questTracker.get_current_step().reward
 	questRewardPanel.load_quest_reward_panel()
 	backButton.disabled = true
+	var curAct: int = PlayerResources.questInventory.currentAct
 	rewardNewLvs = PlayerResources.questInventory.turn_in_cur_step(questTracker)
+	if curAct != PlayerResources.questInventory.currentAct:
+		act_changed.emit()
 	turn_in_step_to.emit(turnInTargetName)
 	load_quests_panel(true) # not from the toggle function, but will focus any other quests that can be turned in
 	

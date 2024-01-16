@@ -67,4 +67,3 @@ func _assign_two_layer_tiles(booleanVal: bool):
 			for tilePos in tilemap.get_used_cells_by_id(bottomTiles[idx].layer, bottomTiles[idx].atlasId, bottomTiles[idx].atlasPos, bottomTiles[idx].altTileId):
 				var topTilePos: Vector2i = Vector2i(tilePos.x + deltas[idx].x, tilePos.y + deltas[idx].y)
 				tilemap.set_cell(topTiles[idx].layer, topTilePos, topTiles[idx].atlasId, topTiles[idx].atlasPos, topTiles[idx].altTileId)
-		pass

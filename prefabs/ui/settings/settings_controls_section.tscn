@@ -1,0 +1,921 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd7nav8wrqxc1"]
+
+[ext_resource type="Script" path="res://scripts/menus/settings_menu/controls_section.gd" id="1_scvx6"]
+
+[node name="ControlsSection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scvx6")
+
+[node name="CaptureControl" type="Control" parent="."]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+all_tabs_in_front = true
+
+[node name="Keyboard" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="Control" parent="TabContainer/Keyboard"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="TabContainer/Keyboard/Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 44.0
+offset_bottom = 15.5
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../../UpKey/ChangeButton1")
+text = "Save"
+
+[node name="CancelButton" type="Button" parent="TabContainer/Keyboard/Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 54.0
+offset_top = -15.5
+offset_right = 114.0
+offset_bottom = 15.5
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../../UpKey/ChangeButton1")
+text = "Cancel"
+
+[node name="DefaultButton" type="Button" parent="TabContainer/Keyboard/Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 126.0
+offset_top = -15.5
+offset_right = 280.0
+offset_bottom = 15.5
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../../UpKey/ChangeButton1")
+text = "Clear & Set Default"
+
+[node name="Headers" type="Control" parent="TabContainer/Keyboard"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ActionHeader" type="RichTextLabel" parent="TabContainer/Keyboard/Headers"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.0
+offset_right = 211.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+text = "Action"
+fit_content = true
+
+[node name="PrimaryKeyHeader" type="RichTextLabel" parent="TabContainer/Keyboard/Headers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -18.0
+offset_right = 132.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+bbcode_enabled = true
+text = "Primary"
+fit_content = true
+
+[node name="SecondaryKeyHeader" type="RichTextLabel" parent="TabContainer/Keyboard/Headers"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -18.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+text = "Secondary"
+fit_content = true
+
+[node name="UpKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/UpKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Up key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/UpKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/UpKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../Buttons/SaveButton")
+toggle_mode = true
+text = "Change"
+metadata/action = "move_up"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/UpKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/UpKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../Buttons/SaveButton")
+toggle_mode = true
+text = "Change"
+metadata/action = "move_up"
+metadata/index = 2
+
+[node name="LeftKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/LeftKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Left key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/LeftKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/LeftKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_left"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/LeftKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/LeftKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_left"
+metadata/index = 2
+
+[node name="DownKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/DownKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Down key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/DownKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/DownKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_down"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/DownKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/DownKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_down"
+metadata/index = 2
+
+[node name="RightKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/RightKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Right key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/RightKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/RightKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_right"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/RightKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/RightKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "move_right"
+metadata/index = 2
+
+[node name="InteractKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/InteractKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Interact key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/InteractKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/InteractKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_interact"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/InteractKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/InteractKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_interact"
+metadata/index = 2
+
+[node name="DeclineKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/DeclineKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Decline key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/DeclineKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/DeclineKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_decline"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/DeclineKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/DeclineKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_decline"
+metadata/index = 2
+
+[node name="InventoryKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/InventoryKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Inventory key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/InventoryKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/InventoryKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_inventory"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/InventoryKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/InventoryKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_inventory"
+metadata/index = 2
+
+[node name="QuestsKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/QuestsKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Quests key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/QuestsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/QuestsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_quests"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/QuestsKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/QuestsKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_quests"
+metadata/index = 2
+
+[node name="StatsKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/StatsKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Stats key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/StatsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/StatsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_stats"
+metadata/index = 0
+
+[node name="Value2" type="RichTextLabel" parent="TabContainer/Keyboard/StatsKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -11.5
+offset_right = -73.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Up[/center]"
+fit_content = true
+
+[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/StatsKey"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -17.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_stats"
+metadata/index = 2
+
+[node name="Controller" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MoveControl" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+layout_mode = 2
+
+[connection signal="gui_input" from="CaptureControl" to="." method="_on_capture_control_gui_input"]
+[connection signal="pressed" from="TabContainer/Keyboard/Buttons/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="TabContainer/Keyboard/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="TabContainer/Keyboard/Buttons/DefaultButton" to="." method="_on_default_button_pressed"]

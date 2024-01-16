@@ -90,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CutscenePauseLabel" type="RichTextLabel" parent="Camera/Shade"]
+[node name="ShadeLabel" type="RichTextLabel" parent="Camera/Shade"]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 1
@@ -146,6 +146,7 @@ visible = false
 position = Vector2(-640, -480)
 
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
+[connection signal="act_changed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_act_changed"]
 [connection signal="back_pressed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_back_pressed"]
 [connection signal="level_up" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_level_up"]
 [connection signal="turn_in_step_to" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_turn_in_step_to"]

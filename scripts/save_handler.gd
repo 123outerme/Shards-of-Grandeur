@@ -18,6 +18,7 @@ func _notification(what):
 		if get_node_or_null("/root/MainMenu") == null:
 			if PlayerFinder.player == null or not PlayerFinder.player.inCutscene:
 				save_data() # if not in the main menu or in a cutscene, save the game!
+		SettingsHandler.save_data() # save settings
 		get_tree().quit() # then quit
 
 func fetch_saved_scripts():

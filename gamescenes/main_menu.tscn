@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=12 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="2_psfj7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="7_swlwd"]
 [ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://graphics/characters/player/player_walk.png" id="8_w3grk"]
 [ext_resource type="Texture2D" uid="uid://bamq0i0s6h4l5" path="res://graphics/ui/knight.png" id="9_iovbg"]
+[ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="10_650uu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
 atlas = ExtResource("8_w3grk")
@@ -224,6 +225,10 @@ text = "Confirm & Start!"
 layout_mode = 2
 text = "Cancel! Go Back."
 
+[node name="SettingsMenu" parent="." instance=ExtResource("10_650uu")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -234,3 +239,4 @@ text = "Cancel! Go Back."
 [connection signal="text_submitted" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="back_pressed" from="SettingsMenu" to="." method="_on_settings_menu_back_pressed"]
