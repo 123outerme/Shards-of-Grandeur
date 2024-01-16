@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=51 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -127,6 +127,9 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p63hv"]
 size = Vector2(20, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gynwq"]
+size = Vector2(20, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y18jc"]
 size = Vector2(20, 69)
@@ -400,6 +403,10 @@ shape = SubResource("RectangleShape2D_p63hv")
 position = Vector2(634, 3)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("28_5llnp")])
 cutscenePlayer = NodePath("../CutscenePlayer")
+
+[node name="CollisionShape2D" parent="BackToDrHCutsceneTrigger" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_gynwq")
 
 [node name="ReturnCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(606, -22)

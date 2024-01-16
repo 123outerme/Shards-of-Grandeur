@@ -51,6 +51,8 @@ var npcsDir: String = "npcs/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not visible:
+		invisible = not visible # set collision properly with visibility being loaded from scene tree
 	initialTalkAlertSprPos = talkAlertSprite.position
 	initialTalkAreaPos = talkArea.position
 	initialTalkAreaShapePos = talkAreaShape.position
