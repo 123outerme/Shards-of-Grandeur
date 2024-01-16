@@ -195,7 +195,20 @@ func update_combatant_focus_neighbors():
 		minionCombatant.set_focus_bottom_combatant_node_neighbor(playerCombatant)
 		playerCombatant.set_focus_top_combatant_node_neighbor(minionCombatant)
 		
-	
+func get_top_most_targetable_combatant_nodes() -> Array[CombatantNode]:
+	var nodes: Array[CombatantNode] = []
+	if minionCombatant.is_alive() and minionCombatant.selectCombatantBtn.visible:
+		nodes.append(minionCombatant)
+	else:
+		nodes.append(playerCombatant)
+		
+	if enemyCombatant2.is_alive() and enemyCombatant2.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant2)
+	elif enemyCombatant1.is_alive() and enemyCombatant1.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant1)
+	elif enemyCombatant3.is_alive() and enemyCombatant3.selectCombatantBtn.visible:
+		nodes.append(enemyCombatant3)
+	return nodes
 
 func get_bottom_most_targetable_combatant_nodes() -> Array[CombatantNode]:
 	var nodes: Array[CombatantNode] = []

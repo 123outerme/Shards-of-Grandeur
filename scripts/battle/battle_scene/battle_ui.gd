@@ -114,6 +114,7 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 				round_complete()
 				return
 		set_menu_state(newMenuState)
+		initial_focus()
 
 func start_pre_battle():
 	for combatantNode in battleController.get_all_combatant_nodes():
@@ -124,7 +125,7 @@ func start_pre_battle():
 			if combatantNode.combatant.stats.equippedArmor != null:
 				combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
 	set_menu_state(BattleState.Menu.PRE_BATTLE)
-	results.initial_focus()
+	initial_focus()
 
 func return_to_player_command():
 	commandingMinion = battleController.minionCombatant.is_alive() and not battleController.playerCombatant.is_alive()
@@ -235,5 +236,7 @@ func _on_inventory_panel_node_back_pressed():
 		allCommands.inventoryBtn.grab_focus()
 
 func _on_focus_changed(control: Control):
+	if control == battlePanels.flowOfBattle.fobButton:
+		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
 	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not fobFocusMode:
 		previousFocus = control

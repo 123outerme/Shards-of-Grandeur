@@ -53,6 +53,10 @@ func load_targets():
 	for node in nodes:
 		node.set_buttons_bottom_neighbor(backButton)
 		node.set_buttons_bottom_neighbor(confirmButton)
+		
+	nodes = battleUI.battleController.get_top_most_targetable_combatant_nodes()
+	for node in nodes:
+		node.set_buttons_top_neighbor(battleUI.battlePanels.flowOfBattle.fobButton)
 	
 	update_targets_listing()
 	update_confirm_btn()

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://b3dyhcxdm73ug"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_g1wtq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_gbyeu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_iqyb0"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_iorcf"]
+
+[sub_resource type="Resource" id="Resource_gffs4"]
+script = ExtResource("1_iqyb0")
+choiceBtn = "Nothing to worry about."
+repeatsItem = false
+buttonDims = Vector2(400, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_fjq6m"]
+script = ExtResource("1_gbyeu")
+lines = Array[String](["Dr. Hudson had a grave look on his face, and you're all beat up! What happened out there?!"])
+animation = "talk"
+choices = Array[ExtResource("1_iqyb0")]([SubResource("Resource_gffs4")])
+
+[sub_resource type="Resource" id="Resource_ofu4q"]
+script = ExtResource("2_iorcf")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["standstill_return_prologue"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_g1wtq")
+entryId = ""
+items = Array[ExtResource("1_gbyeu")]([SubResource("Resource_fjq6m")])
+storyRequirements = SubResource("Resource_ofu4q")
+closesDialogue = false

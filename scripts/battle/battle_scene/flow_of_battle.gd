@@ -4,6 +4,7 @@ class_name FlowOfBattle
 @export var battleController: BattleController
 
 var battleStatsPanelScene = preload("res://prefabs/battle/battle_stats_panel.tscn")
+var prevMenuControlFobBtnNeighbor: NodePath = ''
 
 @onready var fobButton: Button = get_node("ToggleFobButton")
 @onready var fobTabs: TabContainer = get_node("TabContainer")
@@ -19,6 +20,10 @@ func get_fob_button_enabled() -> bool:
 	return fobButton.disabled
 
 func _on_toggle_fob_button_toggled(button_pressed: bool):
+	if button_pressed:
+		prevMenuControlFobBtnNeighbor = fobButton.focus_neighbor_bottom
+		fobButton.focus_neighbor_bottom = ''
+	
 	fobTabs.visible = button_pressed
 	if button_pressed:
 		for node in battleController.combatantNodes:
@@ -32,3 +37,4 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
 		set_fob_button_enabled(false)
+		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor

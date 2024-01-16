@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bp2s1i6f6s6dw"]
+[gd_scene load_steps=15 format=3 uid="uid://bp2s1i6f6s6dw"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_tslnt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_bad68"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_r0a5c"]
 [ext_resource type="Resource" uid="uid://dk6ni0sxklyj5" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_1.tres" id="4_38wkq"]
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="5_e5gl0"]
+[ext_resource type="Resource" uid="uid://b3dyhcxdm73ug" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_2.tres" id="5_hlk4r"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_njaki"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="8_axpn3"]
 [ext_resource type="Resource" uid="uid://cxr66hncv2g4u" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_explain_prologue.tres" id="8_qm568"]
@@ -68,7 +69,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_38wkq")])
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_38wkq"), ExtResource("5_hlk4r")])
 
 [node name="NPCSprite" parent="TileMap/Innkeeper" index="0"]
 sprite_frames = ExtResource("5_e5gl0")
