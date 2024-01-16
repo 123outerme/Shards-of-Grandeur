@@ -36,6 +36,15 @@ func stack(changes: StatChanges):
 	resistanceMultiplier += changes.resistanceMultiplier - 1.0
 	speedMultiplier += changes.speedMultiplier - 1.0
 
+func undo_changes(changes: StatChanges):
+	if changes == null:
+		return
+	physAttackMultiplier -= changes.physAttackMultiplier - 1.0
+	magicAttackMultiplier -= changes.magicAttackMultiplier - 1.0
+	affinityMultiplier -= changes.affinityMultiplier - 1.0
+	resistanceMultiplier -= changes.resistanceMultiplier - 1.0
+	speedMultiplier -= changes.speedMultiplier - 1.0
+
 func apply(s: Stats) -> Stats:
 	var newStats = s.copy()
 	newStats.physAttack = roundi(newStats.physAttack * physAttackMultiplier)

@@ -44,7 +44,8 @@ func _on_back_button_pressed():
 	back_pressed.emit()
 
 func _on_move_pool_panel_learn_button_clicked(move: Move):
-	PlayerResources.playerInfo.stats.movepool.append(move)
+	PlayerResources.playerInfo.stats.add_move_to_pool(move)
+	
 	visible = false
 	learned_move.emit(move)
 

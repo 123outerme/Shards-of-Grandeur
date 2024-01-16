@@ -139,6 +139,16 @@ func level_up(newLvs: int):
 	speed += stat
 	statPts += pts
 
+func add_move_to_pool(move: Move):
+	movepool.append(move)
+	if len(moves) < 4:
+		moves.append(move)
+	else:
+		for i in range(4):
+			if moves[i] == null:
+				moves[i] = move
+				break
+
 func get_stat_for_dmg_category(category: Move.DmgCategory) -> int:
 	if category == Move.DmgCategory.PHYSICAL:
 		return physAttack

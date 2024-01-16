@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=6 format=3 uid="uid://bpgc37i10vly7"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=7 format=3 uid="uid://bpgc37i10vly7"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ds8ta"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_rslue"]
 [ext_resource type="Script" path="res://scripts/battle/stats.gd" id="3_6aala"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="3_nhtum"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast.tres" id="4_xlunf"]
 
 [sub_resource type="Resource" id="Resource_7v8dd"]
 script = ExtResource("3_6aala")
@@ -18,8 +19,8 @@ resistance = 1
 affinity = 1
 speed = 1
 statPts = 0
-moves = Array[Resource("res://scripts/battle/move.gd")]([ExtResource("3_nhtum")])
-movepool = Array[Object]([ExtResource("3_nhtum")])
+moves = Array[Resource("res://scripts/battle/move.gd")]([ExtResource("3_nhtum"), ExtResource("4_xlunf")])
+movepool = Array[Object]([ExtResource("3_nhtum"), ExtResource("4_xlunf")])
 
 [resource]
 script = ExtResource("1_ds8ta")

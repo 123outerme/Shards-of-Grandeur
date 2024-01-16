@@ -141,9 +141,14 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
 			appliedStatus = true
+		if move != null and \
+				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
+			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
 	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not appliedStatus):
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
-		user.statChanges.stack(move.statChanges)
+		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.target == Targets.ALL_ALLIES):
+			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
+			
 	if type == Type.USE_ITEM:
 		PlayerResources.inventory.trash_item(slot)
 		
@@ -157,9 +162,21 @@ func dmg_logistic(userLv: int, targetLv: int) -> float:
 	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
 	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
 
-func calculate_damage(user: Combatant, target: Combatant) -> int:
-	var userStats: Stats = user.statChanges.apply(user.stats)
-	var targetStats: Stats = target.statChanges.apply(target.stats)
+func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges: bool = false) -> int:
+	var userStatChanges = StatChanges.new()
+	userStatChanges.stack(user.statChanges) # copy stat changes
+	var targetStatChanges = StatChanges.new()
+	targetStatChanges.stack(target.statChanges)
+	
+	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
+		if is_command_enemy_targeting(move.targets) and move.power > 0 or !is_command_enemy_targeting(move.targets) and move.power < 0:
+			if move.targets != Targets.NON_SELF_ALLY: # if the user would be affected
+				userStatChanges.undo_changes(move.statChanges)
+			if move.targets == Targets.ALL_ALLIES or move.targets == Targets.NON_SELF_ALLY: # if the ally would be affected
+				targetStatChanges.undo_changes(move.statChanges)
+	
+	var userStats: Stats = userStatChanges.apply(user.stats)
+	var targetStats: Stats = targetStatChanges.apply(target.stats)
 	
 	if type == Type.MOVE:
 		var atkStat: float = userStats.physAttack # use physical for physical attacks
@@ -260,7 +277,7 @@ func get_command_results(user: Combatant) -> String:
 			if target == user:
 				targetName = 'self'
 			if not target.downed:
-				var damage: int = calculate_damage(user, target)
+				var damage: int = calculate_damage(user, target, true)
 				if damage != 0:
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
