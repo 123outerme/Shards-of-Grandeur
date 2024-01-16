@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=52 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://crqjbksl25fej" path="res://gamedata/dialogue/lance/lance_intro.tres" id="13_spupx"]
 [ext_resource type="Resource" uid="uid://e4m48vmk6ybn" path="res://gamedata/dialogue/lance/lance_1.tres" id="14_ltynh"]
 [ext_resource type="Resource" uid="uid://wjv7ut6a0hx1" path="res://gamedata/items/key_items/haybale.tres" id="14_rvd28"]
+[ext_resource type="Resource" uid="uid://dn2k5t18luj5d" path="res://gamedata/dialogue/lance/lance_after_apprenticeship.tres" id="15_jfo1y"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="15_obbqa"]
 [ext_resource type="Texture2D" uid="uid://e6b4xqqnncgm" path="res://graphics/items/haybale.png" id="16_07cud"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="17_xdako"]
@@ -279,7 +280,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh")])
+dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
 sprite_frames = ExtResource("12_uy85b")

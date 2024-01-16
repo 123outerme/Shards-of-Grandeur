@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dn2k5t18luj5d"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_m82ja"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_xs0v5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_nl27x"]
+
+[sub_resource type="Resource" id="Resource_5pp2l"]
+script = ExtResource("1_m82ja")
+lines = Array[String](["I've learned my lesson now, I'm going to keep grinding away at this sword edge until it's polished to perfection."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_mrfg7"]
+script = ExtResource("3_nl27x")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["Apprenticeship#Bearing Logs"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_xs0v5")
+entryId = ""
+items = Array[ExtResource("1_m82ja")]([SubResource("Resource_5pp2l")])
+storyRequirements = SubResource("Resource_mrfg7")
+closesDialogue = false
