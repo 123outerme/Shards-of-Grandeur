@@ -236,6 +236,8 @@ func end_battle():
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
 	if minionCombatant.combatant != null:
+		if not minionCombatant.combatant.downed and state.usedShard != null: # credit back used shard if the minion wasn't downed
+			PlayerResources.inventory.add_item(state.usedShard)
 		minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # reset to max HP for next time minion will be summoned
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
