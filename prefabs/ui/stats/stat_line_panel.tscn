@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl2b2giyrbc0i"]
+[gd_scene load_steps=9 format=3 uid="uid://cl2b2giyrbc0i"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stat_line_panel.gd" id="1_3asyh"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_o2kql"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="1_sfbvn"]
+[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="4_34jrd"]
 [ext_resource type="Theme" uid="uid://bi35gj3oigaai" path="res://themes/nested_ui/stat_line_panel_theme.tres" id="4_nb4ah"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="5_32krc"]
 
@@ -20,6 +21,22 @@ offset_bottom = 404.0
 theme = ExtResource("1_o2kql")
 theme_override_styles/panel = ExtResource("1_sfbvn")
 script = ExtResource("1_3asyh")
+
+[node name="StatPtsIndicator" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 38.0
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StatPtsIndicator"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("4_34jrd")
 
 [node name="StatsVBox" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 34)

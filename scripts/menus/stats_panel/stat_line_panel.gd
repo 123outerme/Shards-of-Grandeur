@@ -10,6 +10,8 @@ class_name StatLinePanel
 var statsCopy: Stats = null
 var modified: bool = false
 
+@onready var statPtsIndicator: Control = get_node('StatPtsIndicator')
+
 @onready var levelText: RichTextLabel = get_node("StatsVBox/LevelDisplay/Level")
 
 @onready var hpText: RichTextLabel = get_node("StatsVBox/HpDisplay/Hp")
@@ -66,7 +68,9 @@ func load_statline_panel(recopyStats: bool = false):
 	var hp: int = curHp
 	if curHp == -1:
 		hp = statsCopy.maxHp
-		
+	
+	statPtsIndicator.visible = not readOnly and stats.statPts > 0 and not battleStats
+	
 	statPtsDisplay.visible = not battleStats
 	
 	levelText.text = String.num(statsCopy.level)

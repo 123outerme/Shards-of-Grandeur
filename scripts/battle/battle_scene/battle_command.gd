@@ -146,7 +146,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
 	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not appliedStatus):
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
-		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.target == Targets.ALL_ALLIES):
+		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
 			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
 			
 	if type == Type.USE_ITEM:

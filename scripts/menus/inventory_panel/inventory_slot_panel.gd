@@ -64,11 +64,11 @@ func load_inventory_slot_panel():
 	unequipButton.visible = not isShopItem and isEquipped
 	unequipButton.disabled = inBattle
 	if unequipButton.visible:
-		var stats: Stats = PlayerResources.playerInfo.stats
+		var combatant: Combatant = PlayerResources.playerInfo.combatant
 		var minionName = PlayerResources.minions.which_minion_equipped(inventorySlot.item)
 		if minionName != '':
-			stats = PlayerResources.minions.get_minion(minionName).stats
-		equippedTo.text = '[right]Equipped to:\n' + stats.displayName + '[/right]'
+			combatant = PlayerResources.minions.get_minion(minionName)
+		equippedTo.text = '[right]Equipped to:\n' + combatant.nickname + '[/right]'
 	else:
 		equippedTo.text = ''
 	

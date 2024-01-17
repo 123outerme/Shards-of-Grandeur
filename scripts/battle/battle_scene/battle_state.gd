@@ -36,6 +36,7 @@ enum Menu {
 
 @export_category("BattleData - Rewards")
 @export var rewards: Array[Reward] = []
+@export var usedShard: Item = null
 
 var save_file: String = 'battle.tres'
 
@@ -52,6 +53,7 @@ func _init(
 	i_turnNumber = 1,
 	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
+	i_usedShard = null,
 ):
 	playerCombatant = i_playerCombatant
 	minionCombatant = i_minionCombatant
@@ -65,6 +67,7 @@ func _init(
 	turnNumber = i_turnNumber
 	turnList = i_turnList
 	rewards = i_rewards
+	usedShard = i_usedShard
 
 func load_data(save_path):
 	var data = null

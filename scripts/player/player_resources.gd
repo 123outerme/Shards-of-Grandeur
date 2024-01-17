@@ -99,5 +99,6 @@ func new_game(save_path):
 
 func name_player(save_path, characterName: String):
 	playerInfo.combatant.stats.displayName = characterName
+	playerInfo.combatant.nickname = characterName
 	playerInfo.stats.displayName = characterName
 	playerInfo.save_data(save_path, playerInfo)
