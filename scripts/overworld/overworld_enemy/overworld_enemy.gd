@@ -24,7 +24,8 @@ var waitUntilNavReady: bool = false
 func _ready():
 	combatant = enemyData.combatant
 	enemySprite.sprite_frames = combatant.spriteFrames
-	position = enemyData.position
+	position = get_point_around_home() # throw out position and load from random point near home
+	#position = enemyData.position
 	disableMovement = enemyData.disableMovement
 	navAgent.navigation_layers = combatant.navigationLayer
 	navAgent.radius = (max(combatant.maxSize.x, combatant.maxSize.y) / 2) - 1
@@ -66,12 +67,14 @@ func get_next_patrol_target():
 		disableMovement = true
 		return
 		
-	var angleRadians = randf_range(0, 2 * PI)
-	var radius: float = randf_range(0, patrolRange / 2.0) # range is diameter, so half that
-	var patrolPos: Vector2 = homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
+	navAgent.target_position = get_point_around_home()
+
+func get_point_around_home() -> Vector2:
 	# generate random point on unit circle and ensure it's exactly on the circle, multiplied by a random radius
 	# all for a random position inside a circle of size `patrolRange` centered around the home point
-	navAgent.target_position = patrolPos
+	var angleRadians = randf_range(0, 2 * PI)
+	var radius: float = randf_range(0, patrolRange / 2.0) # range is diameter, so half that
+	return homePoint + Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius
 
 func pause_movement():
 	disableMovement = true
@@ -101,10 +104,14 @@ func _on_nav_agent_target_reached():
 
 func _on_encounter_collider_area_entered(area):
 	if area.name == "PlayerEventCollider" and spawner != null:
-		PlayerResources.playerInfo.encounteredName = combatant.save_name()
-		PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
-		PlayerResources.playerInfo.staticEncounter = enemyData.staticEncounter
-		spawner.spawnerData.spawnedLastEncounter = true
-		encounteredPlayer = true
-		SaveHandler.save_data()
-		SceneLoader.load_battle()
+		if not PlayerFinder.player.inCutscene:
+			# start battle encounter
+			spawner.spawnerData.spawnedLastEncounter = true
+			PlayerResources.playerInfo.encounteredName = combatant.save_name()
+			PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
+			PlayerResources.playerInfo.staticEncounter = enemyData.staticEncounter
+			encounteredPlayer = true
+			SaveHandler.save_data()
+			SceneLoader.load_battle()
+		else:
+			queue_free() # despawn enemy if encountered during a cutscene

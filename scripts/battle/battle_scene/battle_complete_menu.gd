@@ -46,11 +46,11 @@ func _on_ok_button_pressed():
 		levels = PlayerResources.accept_rewards(rewards)
 	
 	if PlayerResources.playerInfo.combatant.currentHp <= 0:
-		if playerWins: # revive with 10% HP if you win
+		if playerWins or playerEscapes: # revive with 10% HP if you win or the minion escapes
 			PlayerResources.playerInfo.combatant.currentHp = roundi(0.1 * PlayerResources.playerInfo.combatant.stats.maxHp)
 		else: # otherwise revive with full
 			PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
-	PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes) # stay downed if you lost
+		PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes) # stay downed if you lost
 	if levels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

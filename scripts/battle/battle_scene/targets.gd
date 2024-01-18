@@ -39,12 +39,14 @@ func load_targets():
 		combatantNode.update_select_btn(false)
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
+	var focusedCombatant: CombatantNode = null
 	var setFocus: bool = false
 	for targetableCombatant in targetableCombatants:
 		targetableCombatant.update_select_btn(true, not singleSelect)
 		if not setFocus:
 			targetableCombatant.focus_select_btn()
-		setFocus = true
+			setFocus = true
+			focusedCombatant = targetableCombatant
 	
 	if not setFocus:
 		initial_focus()
@@ -58,7 +60,9 @@ func load_targets():
 	for node in nodes:
 		node.set_buttons_top_neighbor(battleUI.battlePanels.flowOfBattle.fobButton)
 	
-	update_targets_listing()
+	if focusedCombatant != null:
+		focusedCombatant.set_selected(true)
+	update_targets_listing(true, focusedCombatant)
 	update_confirm_btn()
 	
 func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):

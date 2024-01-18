@@ -13,11 +13,12 @@ var commandingMinion: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	escapeButton.disabled = PlayerResources.playerInfo.encounteredBoss
+	if PlayerResources.playerInfo.staticEncounter != null:
+		escapeButton.disabled = PlayerResources.playerInfo.staticEncounter.bossBattle
 	
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion
-	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.stats.displayName + '[/center]'
+	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.nickname + '[/center]'
 	movesBtn.grab_focus()
 
 func _on_moves_button_pressed():

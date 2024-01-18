@@ -34,14 +34,15 @@ func load_move_details_panel():
 	moveRole.text = '[right]' + Move.role_to_string(move.role) + '[/right]'
 	moveStatChanges.text = ''
 	
-	var multipliers: Array[StatMultiplierText] = []
 	if move.statChanges != null:
-		move.statChanges.get_multipliers_text()
+		var multipliers = move.statChanges.get_multipliers_text()
 		moveStatChanges.text = StatMultiplierText.multiplier_text_list_to_string(multipliers)
+	
 	if move.statusEffect != null:
 		moveStatusEffect.text = '[center]Applies ' + move.statusEffect.status_effect_to_string() + ' (' + String.num(move.statusChance * 100.0, 0) + '% Chance)[/center]'
 	else:
 		moveStatusEffect.text = ''
+	
 	moveDescription.text = move.description
 	backButton.grab_focus()
 	

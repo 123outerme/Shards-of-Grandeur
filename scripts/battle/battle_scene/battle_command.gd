@@ -133,10 +133,13 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	get_targets_from_combatant_nodes(combatantNodes)
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
-		
+	
+	var appliedDamage = false
 	var appliedStatus: bool = false
 	for idx in len(targets):
 		var damage = calculate_damage(user, targets[idx])
+		if damage != 0:
+			appliedDamage = true
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
@@ -144,13 +147,13 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if move != null and \
 				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
-	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not appliedStatus):
+	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and move.statusEffect != null and not appliedStatus):
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
 			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
 			
-	if type == Type.USE_ITEM:
-		PlayerResources.inventory.trash_item(slot)
+	if type == Type.USE_ITEM and appliedDamage: # item was used and healing was applied
+		PlayerResources.inventory.trash_item(slot) # trash the item
 		
 	return false
 
@@ -170,9 +173,9 @@ func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges:
 	
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		if is_command_enemy_targeting(move.targets) and move.power > 0 or !is_command_enemy_targeting(move.targets) and move.power < 0:
-			if move.targets != Targets.NON_SELF_ALLY: # if the user would be affected
+			if move.targets != Targets.NON_SELF_ALLY or ((move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES) and user == target): # if the user would be affected
 				userStatChanges.undo_changes(move.statChanges)
-			if move.targets == Targets.ALL_ALLIES or move.targets == Targets.NON_SELF_ALLY: # if the ally would be affected
+			if move.targets == Targets.ALL_ALLIES or move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY: # if the ally would be affected
 				targetStatChanges.undo_changes(move.statChanges)
 	
 	var userStats: Stats = userStatChanges.apply(user.stats)
@@ -195,8 +198,8 @@ func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges:
 			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		
 		return damage
-	if type == Type.USE_ITEM: 
-		if slot.item is Healing:
+	if type == Type.USE_ITEM and target.currentHp > 0: # if item and current target is still alive
+		if slot.item is Healing: # if healing
 			var healItem: Healing = slot.item as Healing
 			return -1 * healItem.healBy # static heal amount; not affected by affinity stat (negative to do healing and not damage)
 	
@@ -212,8 +215,12 @@ func calculate_escape_chance(user: Combatant, target: Combatant) -> float:
 		return false
 
 	# otherwise, exhaustion levels are equal -> check speed stats
-	var userStats = user.statChanges.apply(user.stats)
-	var targetStats = target.statChanges.apply(target.stats)
+	var userStatChanges = StatChanges.new()
+	userStatChanges.stack(user.statChanges) # copy stat changes
+	var targetStatChanges = StatChanges.new()
+	targetStatChanges.stack(target.statChanges)
+	var userStats = userStatChanges.apply(user.stats)
+	var targetStats = targetStatChanges.apply(target.stats)
 	# 90% flee base rate + 30% of (speed difference over speed totals)
 	# => 90% flee base rate that increases as player speed increases (~proportional to stat scaling)
 	# and decreases as target speed increases (~proportional to stat scaling
@@ -221,10 +228,13 @@ func calculate_escape_chance(user: Combatant, target: Combatant) -> float:
 
 func which_target_prevents_escape(user: Combatant) -> int:
 	var targetIdx = -1
+	var lowestEscapeChance: float = 100000
 	for idx in range(len(targets)):
 		# if the best random number generated for the targets fails the escape chance, that target is blocking escape
-		if randomNums.max() > calculate_escape_chance(user, targets[idx]):
-			targetIdx = idx
+		var chance = calculate_escape_chance(user, targets[idx])
+		if randomNums.max() > chance and (chance < lowestEscapeChance or targetIdx == -1):
+			lowestEscapeChance = chance
+			targetIdx = idx # this specific enemy is preventing escape
 	
 	return targetIdx
 
@@ -240,8 +250,12 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	if move.statusChance == 1:
 		return true
 	
-	var userStats = user.statChanges.apply(user.stats)
-	var targetStats = targets[targetIdx].statChanges.apply(targets[targetIdx].stats)
+	var userStatChanges = StatChanges.new()
+	userStatChanges.stack(user.statChanges) # copy stat changes
+	var targetStatChanges = StatChanges.new()
+	targetStatChanges.stack(targets[targetIdx].statChanges)
+	var userStats = userStatChanges.apply(user.stats)
+	var targetStats = targetStatChanges.apply(targets[targetIdx].stats)
 	return randomNums[targetIdx] <= move.statusChance + 0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity) 
 
 func get_command_results(user: Combatant) -> String:
@@ -297,6 +311,9 @@ func get_command_results(user: Combatant) -> String:
 						else:
 							resultsText += 'failing to afflict '
 						resultsText += move.statusEffect.status_effect_to_string() + ' on ' + targetName
+					if type == Type.USE_ITEM:
+						if slot.item.itemType == Item.Type.HEALING:
+							resultsText += targetName + ' by not enough to help'
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
 					resultsText += '... insult to injury on ' + targetName
@@ -314,6 +331,22 @@ func get_command_results(user: Combatant) -> String:
 		if type == Type.MOVE and move.statChanges != null:
 			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
 				resultsText += ' ' + user.disp_name() + ' boosts '
+				var displayTargetNames: bool = false
+				for target in targets:
+					if ((move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES) and user != target) or move.targets == Targets.NON_SELF_ALLY:
+						displayTargetNames = true
+						break
+				if displayTargetNames:
+					for i in range(len(targets)):
+						var name: String = targets[i].disp_name()
+						if targets[i] == user:
+							name = 'self'
+						resultsText += name
+						if len(targets) > 1 and i < len(targets) - 1:
+							resultsText += ', '
+							if i == len(targets) - 2:
+								resultsText += 'and '
+					resultsText += ' with '
 				var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
 				resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
 	if type == Type.ESCAPE:
