@@ -225,9 +225,10 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 			var curStep = questTracker.get_current_step()
 			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
 					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
-					and questTracker.get_prev_step().turnInName == saveName \
 					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
-				dialogueItems.append_array(curStep.inProgressDialogue)
+				if (questTracker.get_prev_step().turnInName != '' and questTracker.get_prev_step().turnInName == saveName) \
+						or (questTracker.get_prev_step().turnInName == '' and curStep.turnInName == saveName and saveName != ''):
+					dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
 			dialogueItems.append_array(s.turnInDialogue)
