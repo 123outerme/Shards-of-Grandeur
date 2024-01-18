@@ -68,7 +68,7 @@ func load_inventory_slot_panel():
 		var minionName = PlayerResources.minions.which_minion_equipped(inventorySlot.item)
 		if minionName != '':
 			combatant = PlayerResources.minions.get_minion(minionName)
-		equippedTo.text = '[right]Equipped to:\n' + combatant.nickname + '[/right]'
+		equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
 	else:
 		equippedTo.text = ''
 	

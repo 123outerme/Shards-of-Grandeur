@@ -18,7 +18,7 @@ func _ready():
 	
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion
-	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.nickname + '[/center]'
+	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'
 	movesBtn.grab_focus()
 
 func _on_moves_button_pressed():
