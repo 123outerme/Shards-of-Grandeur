@@ -6,9 +6,12 @@ class_name ControlsSection
 @onready var captureControl: Control = get_node('CaptureControl')
 @onready var saveButton: Button = get_node('TabContainer/Keyboard/Buttons/SaveButton')
 @onready var tabContainer: TabContainer = get_node('TabContainer')
+@onready var keyboardTab: VBoxContainer = get_node("TabContainer/Keyboard")
+@onready var controllerTab: VBoxContainer = get_node("TabContainer/Controller")
 @onready var primaryUpKeyBtn: Button = get_node('TabContainer/Keyboard/UpKey/ChangeButton1')
 
 var buttonToChange: Button = null
+var trapFocus: bool = false
 var changedInputsMap: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +21,11 @@ func _ready():
 	#keyboardTab.focus_neighbor_bottom = keyboardTab.get_path_to(primaryUpKeyBtn)
 	#var controllerTab: Control = tabContainer.get_tab_control(1)
 	#controllerTab.focus_neighbor_bottom = '' # TODO
+	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
+
+func _viewport_focus_changed(control: Control):
+	if trapFocus and control != captureControl:
+		captureControl.grab_focus()
 
 func toggle_section(enable: bool):
 	visible = enable
@@ -30,6 +38,9 @@ func toggle_section(enable: bool):
 			var changeButton2: Button = controlMap.get_node('ChangeButton2')
 			if not changeButton2.pressed.is_connected(_on_change_pressed.bind(changeButton2)):
 				changeButton2.pressed.connect(_on_change_pressed.bind(changeButton2))
+			var clearSecondaryButton: Button = controlMap.get_node('ClearSecondaryButton')
+			if not clearSecondaryButton.pressed.is_connected(_on_clear_secondary_pressed.bind(clearSecondaryButton)):
+				clearSecondaryButton.pressed.connect(_on_clear_secondary_pressed.bind(clearSecondaryButton))
 		build_map_value_strings()
 		
 func build_map_value_strings():
@@ -68,16 +79,23 @@ func _on_change_pressed(btn: Button):
 		for changeBtn in get_tree().get_nodes_in_group('ChangeButton'):
 			changeBtn.button_pressed = false
 			changeBtn.disabled = false
+	trapFocus = btn.button_pressed
 	if PlayerFinder.player != null:
 		PlayerFinder.player.pauseDisabled = btn.button_pressed
 
 func _on_capture_control_gui_input(event: InputEvent):
+	if keyboardTab.visible and not (event is InputEventKey) or \
+			controllerTab.visible and not (event is InputEventJoypadMotion or event is InputEventJoypadButton):
+		unlock_focus_trap()
+		return
+	
 	var actionToChange: String = buttonToChange.get_meta('action')
 	var actionEvents = InputMap.action_get_events(actionToChange)
 	var actionIndex: int = buttonToChange.get_meta('index')
 	for action in SettingsHandler.gameSettings.stored_actions:
 		for existingEvent in InputMap.action_get_events(action):
 			if event.is_match(existingEvent):
+				unlock_focus_trap()
 				return # don't let existing events overwrite
 	
 	var newEvents: Array[InputEvent] = actionEvents.duplicate()
@@ -86,11 +104,10 @@ func _on_capture_control_gui_input(event: InputEvent):
 	else:
 		newEvents.append(event)
 	InputMap.action_erase_events(actionToChange)
-	for i in range(len(actionEvents)):
+	for i in range(len(newEvents)):
 		InputMap.action_add_event(actionToChange, newEvents[i])
 		
-	if not actionToChange in changedInputsMap:
-		changedInputsMap[actionToChange] = newEvents.duplicate()
+	changedInputsMap[actionToChange] = newEvents.duplicate()
 	
 	# change UI navigation as well as player movement
 	if actionToChange.begins_with('move_'):
@@ -102,10 +119,9 @@ func _on_capture_control_gui_input(event: InputEvent):
 		else:
 			newUiEvents.append(event)
 		InputMap.action_erase_events(uiAction)
-		for i in range(len(actionEvents)):
+		for i in range(len(newUiEvents)):
 			InputMap.action_add_event(uiAction, newUiEvents[i])
-		if not uiAction in changedInputsMap:
-			changedInputsMap[uiAction] = newUiEvents.duplicate()
+		changedInputsMap[uiAction] = newUiEvents.duplicate()
 	
 	# change UI accept to use the same as game_interact
 	if actionToChange == 'game_interact':
@@ -117,11 +133,13 @@ func _on_capture_control_gui_input(event: InputEvent):
 			else:
 				newUiEvents.append(event)
 			InputMap.action_erase_events(uiAction)
-			for i in range(len(actionEvents)):
+			for i in range(len(newUiEvents)):
 				InputMap.action_add_event(uiAction, newUiEvents[i])
-			if not uiAction in changedInputsMap:
-				changedInputsMap[uiAction] = newUiEvents.duplicate()
-	
+			changedInputsMap[uiAction] = newUiEvents.duplicate()
+	unlock_focus_trap()
+
+func unlock_focus_trap():
+	trapFocus = false
 	for changeBtn in get_tree().get_nodes_in_group('ChangeButton'):
 		changeBtn.button_pressed = false
 		changeBtn.disabled = false
@@ -129,6 +147,48 @@ func _on_capture_control_gui_input(event: InputEvent):
 	buttonToChange.grab_focus()
 	captureControl.focus_mode = Control.FOCUS_NONE
 	captureControl.visible = false
+	build_map_value_strings()
+
+func _on_clear_secondary_pressed(btn: Button):
+	var action = btn.get_meta('action')
+	var index = 2
+	var actionEvents = InputMap.action_get_events(action)
+	var newEvents: Array[InputEvent] = []
+	for i in range(len(actionEvents)):
+		if i != index:
+			newEvents.append(actionEvents[i])
+	InputMap.action_erase_events(action)
+	for i in range(len(newEvents)):
+		InputMap.action_add_event(action, newEvents[i])
+	
+	changedInputsMap[action] = newEvents.duplicate()
+	
+	if action.begins_with('move_'):
+		var uiAction = 'ui_' + action.substr(5)
+		var uiActions = InputMap.action_get_events(uiAction)
+		var newUiEvents: Array[InputEvent] = []
+		for i in range(len(uiActions)):
+			if i != index:
+				newEvents.append(uiActions[i])
+		InputMap.action_erase_events(uiAction)
+		for i in range(len(newUiEvents)):
+			InputMap.action_add_event(uiAction, newUiEvents[i])
+		changedInputsMap[uiAction] = newUiEvents.duplicate()
+			
+	
+	# change UI accept to use the same as game_interact
+	if action == 'game_interact':
+		for uiAction in ['ui_accept', 'ui_select']:
+			var uiActions = InputMap.action_get_events(uiAction)
+			var newUiEvents: Array[InputEvent] = []
+			for i in range(len(uiActions)):
+				if i != index:
+					newEvents.append(uiActions[i])
+			InputMap.action_erase_events(uiAction)
+			for i in range(len(newUiEvents)):
+				InputMap.action_add_event(uiAction, newUiEvents[i])
+			changedInputsMap[uiAction] = newUiEvents.duplicate()
+			
 	build_map_value_strings()
 
 func reenable_pause():
