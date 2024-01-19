@@ -14,6 +14,7 @@ var holdingCameraAt: Vector2
 var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
 var actChanged: bool = false
+var pauseDisabled: bool = false
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
@@ -29,7 +30,7 @@ var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
 
 func _unhandled_input(event):
-	if event.is_action_pressed("game_pause"):
+	if not pauseDisabled and event.is_action_pressed("game_pause"):
 		if inCutscene:
 			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
 				cutscenePlayer.toggle_pause_cutscene()

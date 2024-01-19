@@ -56,16 +56,26 @@ func build_map_value_strings():
 
 func _on_change_pressed(btn: Button):
 	if btn.button_pressed:
+		for changeBtn in get_tree().get_nodes_in_group('ChangeButton'):
+			if changeBtn != btn:
+				changeBtn.button_pressed = true
+				changeBtn.disabled = true
 		buttonToChange = btn
 		captureControl.visible = true
 		captureControl.focus_mode = Control.FOCUS_ALL
 		captureControl.grab_focus()
+	else:
+		for changeBtn in get_tree().get_nodes_in_group('ChangeButton'):
+			changeBtn.button_pressed = false
+			changeBtn.disabled = false
+	if PlayerFinder.player != null:
+		PlayerFinder.player.pauseDisabled = btn.button_pressed
 
 func _on_capture_control_gui_input(event: InputEvent):
 	var actionToChange: String = buttonToChange.get_meta('action')
 	var actionEvents = InputMap.action_get_events(actionToChange)
 	var actionIndex: int = buttonToChange.get_meta('index')
-	for action in InputMap.get_actions():
+	for action in SettingsHandler.gameSettings.stored_actions:
 		for existingEvent in InputMap.action_get_events(action):
 			if event.is_match(existingEvent):
 				return # don't let existing events overwrite
@@ -111,12 +121,19 @@ func _on_capture_control_gui_input(event: InputEvent):
 				InputMap.action_add_event(uiAction, newUiEvents[i])
 			if not uiAction in changedInputsMap:
 				changedInputsMap[uiAction] = newUiEvents.duplicate()
-		
-	buttonToChange.button_pressed = false
+	
+	for changeBtn in get_tree().get_nodes_in_group('ChangeButton'):
+		changeBtn.button_pressed = false
+		changeBtn.disabled = false
+	call_deferred('reenable_pause')
 	buttonToChange.grab_focus()
 	captureControl.focus_mode = Control.FOCUS_NONE
 	captureControl.visible = false
 	build_map_value_strings()
+
+func reenable_pause():
+	if PlayerFinder.player != null:
+		PlayerFinder.player.pauseDisabled = false
 
 func _on_save_button_pressed():
 	SettingsHandler.gameSettings.save_controls_from_diffs(changedInputsMap)
