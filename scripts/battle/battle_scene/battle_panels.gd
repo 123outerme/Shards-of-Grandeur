@@ -9,7 +9,6 @@ class_name BattlePanels
 @onready var pauseMenu: PauseMenu = get_node("PauseMenu")
 @onready var flowOfBattle: FlowOfBattle = get_node("FlowOfBattle")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -28,10 +27,21 @@ func _unhandled_input(event):
 			else:
 				inventoryMenu.toggle()
 		questsMenu.visible = false
+		statsMenu.visible = false
 
 	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
 		questsMenu.toggle()
 		inventoryMenu.visible = false
+		statsMenu.visible = false
+		
+	if event.is_action_pressed("game_stats") and not pauseMenu.isPaused:
+		statsMenu.stats = battleUI.battleController.playerCombatant.combatant.stats
+		statsMenu.curHp = battleUI.battleController.playerCombatant.combatant.currentHp
+		statsMenu.readOnly = true
+		statsMenu.isPlayer = true
+		statsMenu.toggle()
+		inventoryMenu.visible = false
+		questsMenu.visible = false
 	
 	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible:
 		pauseMenu.toggle_pause()

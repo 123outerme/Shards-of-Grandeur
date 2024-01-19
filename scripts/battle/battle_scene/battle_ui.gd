@@ -227,7 +227,8 @@ func _on_stats_panel_node_back_pressed():
 	restore_focus()
 
 func _on_combatant_details_clicked(combatantNode: CombatantNode):
-	open_stats(combatantNode.combatant)
+	#open_stats(combatantNode.combatant) # disable for testing/designing
+	pass
 
 func _on_inventory_panel_node_back_pressed():
 	if menuState == BattleState.Menu.SUMMON:
@@ -235,8 +236,13 @@ func _on_inventory_panel_node_back_pressed():
 	if menuState == BattleState.Menu.ITEMS:
 		allCommands.inventoryBtn.grab_focus()
 
+func _on_quests_panel_node_back_pressed():
+	restore_focus()
+
 func _on_focus_changed(control: Control):
 	if control == battlePanels.flowOfBattle.fobButton:
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
 	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not fobFocusMode:
 		previousFocus = control
+
+

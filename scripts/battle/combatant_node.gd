@@ -27,10 +27,11 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var hpText: RichTextLabel
 
 var tmpAllCombatantNodes: Array[CombatantNode] = []
+var selectBtnNotSelectedSprite: Texture2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	selectBtnNotSelectedSprite = selectCombatantBtn.texture_normal
 
 func load_combatant_node():
 	if not is_alive():
@@ -72,6 +73,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.disabled = disable
 	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
+
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -121,6 +123,10 @@ func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	combatantNode.clickCombatantBtn.focus_neighbor_bottom = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
 
 func set_selected(selected: bool = true):
+	if selected and selectCombatantBtn.disabled:
+		selectCombatantBtn.texture_normal = selectCombatantBtn.texture_pressed
+	elif selectCombatantBtn.texture_normal == selectCombatantBtn.texture_pressed:
+		selectCombatantBtn.texture_normal = selectBtnNotSelectedSprite
 	selectCombatantBtn.button_pressed = selected
 	
 func is_selected() -> bool:

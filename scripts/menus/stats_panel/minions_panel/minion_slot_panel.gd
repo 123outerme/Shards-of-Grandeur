@@ -26,7 +26,6 @@ func load_minion_slot_panel():
 	minionSprite.play('walk')
 	minionName.text = combatant.disp_name()
 	statPtIndicator.visible = not readOnly and combatant.stats.statPts > 0
-	statsButton.disabled = readOnly
 
 func _on_stats_button_pressed():
 	stats_clicked.emit(combatant)

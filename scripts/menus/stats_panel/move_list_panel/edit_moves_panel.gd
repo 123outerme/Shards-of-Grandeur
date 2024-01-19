@@ -38,7 +38,12 @@ func initial_focus():
 func restore_focus():
 	if previousMovePoolMove == null:
 		if previousMoveListSlot == -1:
-			initial_focus()
+			if replaceMoveSourceSlot == -1:
+				initial_focus()
+			else:
+				var panel = moveListPanel.get_move_list_item(replaceMoveSourceSlot)
+				if panel != null:
+					panel.replaceButton.grab_focus()
 		else:
 			var panel = moveListPanel.get_move_list_item(previousMoveListSlot)
 			if panel != null:

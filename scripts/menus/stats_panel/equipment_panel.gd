@@ -50,7 +50,8 @@ func _on_weapon_sprite_pressed():
 		itemDetailsPanel.item = weapon
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
-		statsPanel.backButton.disabled = true
+		if statsPanel != null:
+			statsPanel.backButton.disabled = true
 	else:
 		attempt_equip_weapon.emit()
 
@@ -59,15 +60,15 @@ func _on_armor_sprite_pressed():
 		itemDetailsPanel.item = armor
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
-		statsPanel.backButton.disabled = true
+		if statsPanel != null:
+			statsPanel.backButton.disabled = true
 	else:
 		attempt_equip_armor.emit()
-
-func _on_item_details_back_button_pressed():
-	statsPanel.backButton.disabled = false
 
 func _on_item_details_panel_back_pressed():
 	if itemDetailsPanel.item == armor:
 		armorSprite.grab_focus()
 	else:
 		weaponSprite.grab_focus()
+	if statsPanel != null:
+		statsPanel.backButton.disabled = false

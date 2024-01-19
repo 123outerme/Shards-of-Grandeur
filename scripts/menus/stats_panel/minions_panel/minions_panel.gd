@@ -43,6 +43,7 @@ func load_minions_panel():
 			minionName.text += minion.stats.displayName
 		minionName.text += ':[/center]'
 		confirmName.disabled = true
+		editName.disabled = readOnly
 		cancelName.disabled = false
 	else:
 		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
@@ -84,6 +85,7 @@ func end_edit_name():
 	confirmName.disabled = true
 	cancelName.visible = false
 	editName.visible = true
+	nameInput.clear_button_enabled = false
 	nameInput.focus_mode = Control.FOCUS_NONE
 	editName.grab_focus()
 
@@ -93,5 +95,11 @@ func _on_edit_button_pressed():
 	confirmName.disabled = true
 	cancelName.visible = true
 	editName.visible = false
+	nameInput.clear_button_enabled = true
 	nameInput.focus_mode = Control.FOCUS_ALL
 	nameInput.grab_focus()
+
+func _on_name_input_focus_exited():
+	# if ui cancel (Escape) has been pressed to unfocus the input
+	if editingName:
+		_on_cancel_button_pressed()

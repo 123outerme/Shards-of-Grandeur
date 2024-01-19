@@ -33,8 +33,15 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 				instantiatedPanel.combatant = combatantNode.combatant
 				instantiatedPanel.battlePosition = combatantNode.battlePosition
 				fobTabs.call_deferred('add_child', instantiatedPanel)
+				call_deferred('_set_battle_stats_item_details_panel_pos', instantiatedPanel)
 	else:
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
 		set_fob_button_enabled(false)
 		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor
+
+func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
+	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -352)
+	# NOTE: these coordinates are magic numbers to make the item details panel centered.
+	# we can't center it in the Equipment Panel because that would affect the centering elsewhere
+	# needs to be called deferred so the equipment panel can be @onready 'd, same for the item details panel

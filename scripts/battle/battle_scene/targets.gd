@@ -40,16 +40,17 @@ func load_targets():
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
 	var focusedCombatant: CombatantNode = null
-	var setFocus: bool = false
 	for targetableCombatant in targetableCombatants:
 		targetableCombatant.update_select_btn(true, not singleSelect)
-		if not setFocus:
-			targetableCombatant.focus_select_btn()
-			setFocus = true
+		if focusedCombatant == null:
 			focusedCombatant = targetableCombatant
 	
-	if not setFocus:
-		initial_focus()
+	if focusedCombatant == null or len(targetableCombatants) == 0:
+		initial_focus() # nothing is focusable - means there are no targetable combatants 
+	elif len(targetableCombatants) == 1: # only one thing is focusable - screen is just for confirmation at this point
+		confirmButton.grab_focus()
+	else:
+		focusedCombatant.focus_select_btn() # focus the first combatant to be focusable
 	
 	var nodes: Array[CombatantNode] = battleUI.battleController.get_bottom_most_targetable_combatant_nodes()
 	for node in nodes:
