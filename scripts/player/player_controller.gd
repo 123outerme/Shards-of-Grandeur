@@ -15,6 +15,7 @@ var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
 var actChanged: bool = false
 var pauseDisabled: bool = false
+var cutscenePaused: bool = false
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
@@ -35,6 +36,7 @@ func _unhandled_input(event):
 			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
 				cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
+			cutscenePaused = not cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
 			if not pausePanel.isPaused and textBox.visible:
@@ -54,7 +56,7 @@ func _unhandled_input(event):
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
 			and (len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not makingChoice:
+			and not statsPanel.visible and not makingChoice and not cutscenePaused:
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact"))
 		else:

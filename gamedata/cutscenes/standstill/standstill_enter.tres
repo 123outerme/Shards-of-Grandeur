@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://drqc7ms1tgy62"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://drqc7ms1tgy62"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_udvm0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="4_13jd0"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_y1vms"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="7_h0jiw"]
 
 [sub_resource type="Resource" id="Resource_261h1"]
 script = ExtResource("1_ijdb7")
@@ -220,11 +221,20 @@ actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_g2blc"]
+script = ExtResource("7_h0jiw")
+value = true
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_gksqn"]
 script = ExtResource("1_sfute")
 frameLength = 0.1
-annotation = "Make Dr. Hudson and horse stand"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+annotation = "Make Dr. Hudson face Player and both him and horse stand"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_g2blc")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
