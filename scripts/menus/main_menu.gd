@@ -15,12 +15,15 @@ var playerName: String = 'Player'
 
 @onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
 
+@onready var versionLabel: RichTextLabel = get_node('VersionLabel')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	newGameConfirmPanel.visible = false
 	playerNamePanel.visible = false
 	resumeGameButton.visible = SaveHandler.save_file_exists()
 	set_initial_main_menu_focus()
+	versionLabel.text = ProjectSettings.get_setting('application/config/version', 'VERSION?')
 
 func set_initial_main_menu_focus():
 	if resumeGameButton.visible:
