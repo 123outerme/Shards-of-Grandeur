@@ -86,6 +86,24 @@ grow_vertical = 2
 focus_neighbor_left = NodePath(".")
 text = "Replace"
 
+[node name="ReorderButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -20.0
+offset_right = -100.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+text = "Reorder
+"
+
 [node name="SelectButton" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
@@ -139,6 +157,7 @@ text = "Cancel"
 
 [connection signal="pressed" from="DetailsButton" to="." method="_on_details_button_pressed"]
 [connection signal="pressed" from="ReplaceButton" to="." method="_on_replace_button_pressed"]
+[connection signal="pressed" from="ReorderButton" to="." method="_on_reorder_button_pressed"]
 [connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]
 [connection signal="pressed" from="LearnButton" to="." method="_on_learn_button_pressed"]
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

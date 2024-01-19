@@ -3,6 +3,7 @@ class_name MoveListItemPanel
 
 signal details_pressed(move: Move)
 signal replace_pressed(move: Move, slot: int)
+signal reorder_pressed(move: Move, slot: int)
 signal select_pressed(move: Move)
 signal learn_pressed(move: Move)
 signal cancel_pressed
@@ -10,6 +11,7 @@ signal cancel_pressed
 @export var move: Move = null
 @export var showDetailsButton: bool = true
 @export var editShowReplace: bool = false
+@export var editShowReorder: bool = false
 @export var movepoolSelect: bool = false
 @export var movepoolLearn: bool = false
 @export var movepoolCancel: bool = false
@@ -20,6 +22,7 @@ signal cancel_pressed
 @onready var roleText: RichTextLabel = get_node("CenterDetails/RoleText")
 @onready var damageType: RichTextLabel = get_node("CenterDetails/DamageType")
 @onready var detailsButton: Button = get_node("DetailsButton")
+@onready var reorderButton: Button = get_node("ReorderButton")
 @onready var replaceButton: Button = get_node("ReplaceButton")
 @onready var selectButton: Button = get_node("SelectButton")
 @onready var learnButton: Button = get_node("LearnButton")
@@ -42,6 +45,10 @@ func load_move_list_item_panel():
 		if replaceButton.visible:
 			detailsButton.focus_neighbor_left = detailsButton.get_path_to(replaceButton)
 		
+		reorderButton.visible = editShowReorder
+		if reorderButton.visible:
+			detailsButton.focus_neighbor_left = detailsButton.get_path_to(reorderButton)
+					
 		selectButton.visible = movepoolSelect
 		if selectButton.visible:
 			detailsButton.focus_neighbor_left = detailsButton.get_path_to(selectButton)
@@ -60,9 +67,18 @@ func load_move_list_item_panel():
 		damageType.text = ''
 		detailsButton.visible = false
 		replaceButton.visible = editShowReplace
+		reorderButton.visible = false
 		selectButton.visible = false
 		learnButton.visible = false
 		cancelButton.visible = false
+
+func clear_button_bottom_neighbors():
+	detailsButton.focus_neighbor_bottom = ''
+	replaceButton.focus_neighbor_bottom = ''
+	reorderButton.focus_neighbor_bottom = ''
+	selectButton.focus_neighbor_bottom = ''
+	learnButton.focus_neighbor_bottom = ''
+	cancelButton.focus_neighbor_bottom = ''
 
 func _on_details_button_pressed():
 	details_pressed.emit(move)
@@ -70,6 +86,9 @@ func _on_details_button_pressed():
 func _on_replace_button_pressed():
 	replace_pressed.emit(move, moveSlot)
 
+func _on_reorder_button_pressed():
+	reorder_pressed.emit(move, moveSlot)
+	
 func _on_select_button_pressed():
 	select_pressed.emit(move)
 

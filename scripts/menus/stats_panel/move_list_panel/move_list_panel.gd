@@ -4,6 +4,7 @@ class_name MoveListPanel
 signal edit_moves
 signal move_details_visiblity_changed(visible: bool, previousButton: Button)
 signal edit_moves_replace_clicked(move: Move, index: int)
+signal edit_moves_reorder_clicked(move: Move, index: int)
 
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
@@ -25,10 +26,12 @@ func load_move_list_panel():
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if i < len(moves):
 			itemPanel.move = moves[i]
-			lastMovePanel = itemPanel
+			if moves[i] != null:
+				lastMovePanel = itemPanel
 		else:
 			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()
+		itemPanel.clear_button_bottom_neighbors()
 	editMovesButton.visible = not readOnly
 	if not readOnly and lastMovePanel != null:
 		editMovesButton.focus_neighbor_top = editMovesButton.get_path_to(lastMovePanel.detailsButton)
@@ -55,6 +58,12 @@ func show_move_list_item_replace_btns(showing: bool = false):
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.editShowReplace = showing
+		itemPanel.load_move_list_item_panel()
+
+func show_move_list_item_reorder_btns(showing: bool = false):
+	for i in range(4):
+		var itemPanel: MoveListItemPanel = get_move_list_item(i)
+		itemPanel.editShowReorder = showing
 		itemPanel.load_move_list_item_panel()
 
 func get_move_list_item(index: int) -> MoveListItemPanel:
@@ -87,3 +96,6 @@ func _on_move_list_item_panel_replace_pressed(move, slot):
 			button = itemPanel.detailsButton
 	'''
 	edit_moves_replace_clicked.emit(move, slot)
+
+func _on_move_list_item_panel_reorder_pressed(move, slot):
+	edit_moves_reorder_clicked.emit(move, slot)
