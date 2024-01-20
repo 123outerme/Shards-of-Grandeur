@@ -15,21 +15,16 @@ func _ready():
 	pass # Replace with function body.
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.SUMMON):
+	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS):
 		if battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.ITEMS:
 			var newMenuState: BattleState.Menu = BattleState.Menu.ITEMS # if in all commands, go to items
 			if battleUI.menuState == BattleState.Menu.ITEMS:
 				newMenuState = BattleState.Menu.ALL_COMMANDS # if in items, go back to all commands
 				inventoryMenu.toggle() # and turn off the menu
 			battleUI.set_menu_state(newMenuState) # if all commands, menu will come up
-		elif battleUI.menuState == BattleState.Menu.SUMMON:
-			if not inventoryMenu.visible:
-				battleUI.open_inventory(true)
-			else:
-				inventoryMenu.toggle()
-		questsMenu.visible = false
-		statsMenu.visible = false
-		summonMinionPanel.visible = false
+			questsMenu.visible = false
+			statsMenu.visible = false
+			summonMinionPanel.visible = false
 
 	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
 		questsMenu.toggle()
