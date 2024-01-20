@@ -22,6 +22,7 @@ enum AiType {
 @export var statChanges: StatChanges = StatChanges.new()
 @export var statusEffect: StatusEffect = null
 @export var friendship: float = 0
+@export var maxFriendship: float = 30
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE

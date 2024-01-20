@@ -56,6 +56,13 @@ func level_up_minions(newLevel: int):
 							minion.stats.moves.insert(i, move)
 							break
 
+func add_friendship(minionName: String, wasDowned: bool):
+	if has_minion(minionName):
+		var minion = minionsDict[minionName] as Combatant
+		minion.friendship += 1
+		if not wasDowned:
+			minion.friendship += 1
+
 func which_minion_equipped(item: Item) -> String:
 	var saveName: String = ''
 	for minion in get_minion_list():

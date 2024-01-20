@@ -17,6 +17,7 @@ var editingName: bool = false
 @onready var editName: Button = get_node("MinionView/NameFormControls/EditButton")
 @onready var confirmName: Button = get_node("MinionView/NameFormControls/ConfirmButton")
 @onready var cancelName: Button = get_node("MinionView/NameFormControls/CancelButton")
+@onready var friendshipBar: ProgressBar = get_node("MinionView/FriendshipBar")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +46,8 @@ func load_minions_panel():
 		confirmName.disabled = true
 		editName.disabled = readOnly
 		cancelName.disabled = false
+		friendshipBar.max_value = minion.maxFriendship
+		friendshipBar.value = minion.friendship
 	else:
 		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 		for listed_minion in PlayerResources.minions.get_minion_list():
