@@ -538,7 +538,6 @@ offset_right = 40.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "OK"
 
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
@@ -639,3 +638,4 @@ battleUI = NodePath("../BattleCam")
 [connection signal="back_pressed" from="BattleCam/UIPanels/QuestsPanelNode" to="BattleCam" method="_on_quests_panel_node_back_pressed"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
+[connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]

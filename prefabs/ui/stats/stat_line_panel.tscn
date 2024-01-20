@@ -71,6 +71,7 @@ text = "Level:"
 fit_content = true
 
 [node name="Level" type="RichTextLabel" parent="StatsVBox/LevelDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -102,6 +103,7 @@ text = "HP:"
 fit_content = true
 
 [node name="Hp" type="RichTextLabel" parent="StatsVBox/HpDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -114,6 +116,34 @@ grow_vertical = 2
 text = "5,250 / 5,250"
 fit_content = true
 scroll_active = false
+
+[node name="Extras" type="Control" parent="StatsVBox/HpDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/HpDisplay/Extras"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -17.0
+offset_right = -4.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="ExpDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -133,6 +163,7 @@ text = "Exp:"
 fit_content = true
 
 [node name="Exp" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -164,6 +195,7 @@ text = "Physical Attack:"
 fit_content = true
 
 [node name="PhysAtk" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -184,7 +216,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -157.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
@@ -221,14 +253,33 @@ icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay/Extras"]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[right]+999%[/right]"
+fit_content = true
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay/Extras"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="MagicAtkDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -248,6 +299,7 @@ text = "Magic Attack:"
 fit_content = true
 
 [node name="MagicAtk" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -268,7 +320,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -157.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
@@ -307,14 +359,33 @@ icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay/Extras"]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[right]+999%[/right]"
+fit_content = true
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay/Extras"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="AffinityDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -334,6 +405,7 @@ text = "Affinity:"
 fit_content = true
 
 [node name="Affinity" type="RichTextLabel" parent="StatsVBox/AffinityDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -354,7 +426,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -157.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
@@ -393,14 +465,33 @@ icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/AffinityDisplay/Extras"]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[right]+999%[/right]"
+fit_content = true
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/AffinityDisplay/Extras"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="ResistanceDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -420,6 +511,7 @@ text = "Resistance:"
 fit_content = true
 
 [node name="Resistance" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -440,7 +532,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -157.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
@@ -479,6 +571,7 @@ icon = SubResource("AtlasTexture_e4yfk")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay/Extras"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -487,6 +580,21 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[right]+999%[/right]"
+fit_content = true
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay/Extras"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="SpeedDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -526,7 +634,7 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -82.0
+offset_left = -157.0
 offset_top = -21.0
 offset_bottom = 21.0
 grow_horizontal = 0
@@ -573,6 +681,20 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[right]+999%[/right]"
+fit_content = true
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/SpeedDisplay/Extras"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 71.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [node name="StatPtsDisplay" type="Control" parent="StatsVBox"]
 custom_minimum_size = Vector2(0, 34)
@@ -636,6 +758,20 @@ focus_neighbor_left = NodePath("../SaveChangesButton")
 focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
 theme = ExtResource("1_o2kql")
 text = "Cancel"
+
+[node name="LvUpIncrease" type="RichTextLabel" parent="StatsVBox/StatPtsDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 328.0
+offset_top = -17.0
+offset_right = 399.0
+offset_bottom = 17.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]+999[/right]"
+fit_content = true
 
 [connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton" to="." method="_on_physatk_inc_button_pressed"]
 [connection signal="pressed" from="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton" to="." method="_on_physatk_dec_button_pressed"]

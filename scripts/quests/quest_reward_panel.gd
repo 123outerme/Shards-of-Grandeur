@@ -16,7 +16,8 @@ func _ready():
 
 func load_quest_reward_panel():
 	rewardPanel.reward = reward
-	rewardPanel.load_reward_panel(itemDetailsPanel)
+	rewardPanel.load_reward_panel()
+	rewardPanel.show_item_details.connect(_on_show_item_details)
 	noRewardsLabel.visible = reward == null
 	visible = true
 	okButton.grab_focus()
@@ -24,3 +25,9 @@ func load_quest_reward_panel():
 func _on_ok_button_pressed():
 	visible = false
 	ok_pressed.emit()
+
+func _on_show_item_details(item):
+	itemDetailsPanel.item = item
+	itemDetailsPanel.count = 0
+	itemDetailsPanel.load_item_details()
+	itemDetailsPanel.visible = true

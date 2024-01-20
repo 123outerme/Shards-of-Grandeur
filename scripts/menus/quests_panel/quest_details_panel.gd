@@ -53,7 +53,8 @@ func load_quest_details():
 		stepTurnIn.visible = false
 		turnInLabel.visible = false
 	rewardPanel.reward = selectedStep.reward
-	rewardPanel.load_reward_panel(itemDetailsPanel)
+	rewardPanel.load_reward_panel()
+	rewardPanel.show_item_details.connect(_on_show_item_details)
 	
 	for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
 		panel.queue_free()
@@ -75,9 +76,11 @@ func hide_panel():
 func _on_back_button_pressed():
 	hide_panel()
 
-func _on_item_sprite_button_pressed():
-	itemDetailsPanel.visible = true
-	itemDetailsPanel.load_item_details()
-
 func _on_item_details_panel_back_pressed():
 	rewardPanel.itemSpriteBtn.grab_focus()
+
+func _on_show_item_details(item):
+	itemDetailsPanel.item = item
+	itemDetailsPanel.count = 0
+	itemDetailsPanel.load_item_details()
+	itemDetailsPanel.visible = true

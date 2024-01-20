@@ -8,6 +8,7 @@ signal back_pressed
 @export var stats: Stats = null
 @export var curHp: int = -1
 @export var levelUp: bool = false
+@export var newLvs: int = 0
 @export var readOnly: bool = false
 @export var isPlayer: bool = false
 
@@ -15,7 +16,6 @@ var isMinionStats: bool = false
 var minion: Combatant = null
 var savedStats: Stats = null
 var savedCurHp: int = -1
-var savedLvUp: bool = false
 var savedIsPlayer: bool = false
 var changingCombatant: bool = false
 
@@ -80,6 +80,8 @@ func load_stats_panel(fromToggle: bool = false):
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
+	statlinePanel.levelUp = levelUp
+	statlinePanel.newLvs = newLvs
 	statlinePanel.load_statline_panel(changingCombatant or fromToggle)
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool.pool
@@ -98,7 +100,6 @@ func restore_previous_stats_panel():
 	stats = savedStats
 	minion = null
 	curHp = savedCurHp
-	levelUp = savedLvUp
 	isPlayer = savedIsPlayer
 	isMinionStats = false
 	changingCombatant = true
@@ -127,13 +128,11 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 	previousControl = minionsPanel.get_stats_button_for(combatant)
 	savedStats = stats
 	savedCurHp = curHp
-	savedLvUp = levelUp
 	savedIsPlayer = isPlayer
 	if combatant != null and combatant.stats != null:
 		minion = combatant
 		stats = combatant.stats
 		curHp = -1
-		levelUp = false
 		isPlayer = false
 		isMinionStats = true
 		changingCombatant = true

@@ -214,6 +214,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.levelUp = levelUp
+	statsPanel.newLvs = battleComplete.gainedLevels
 	statsPanel.stats = combatant.stats
 	statsPanel.curHp = combatant.currentHp
 	statsPanel.readOnly = not levelUp
