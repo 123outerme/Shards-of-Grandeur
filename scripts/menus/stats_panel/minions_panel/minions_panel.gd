@@ -99,7 +99,7 @@ func _on_edit_button_pressed():
 	nameInput.focus_mode = Control.FOCUS_ALL
 	nameInput.grab_focus()
 
-func _on_name_input_focus_exited():
+func _on_name_input_gui_input(event):
 	# if ui cancel (Escape) has been pressed to unfocus the input
-	if editingName:
+	if event.is_action_pressed('ui_cancel') and editingName:
 		_on_cancel_button_pressed()
