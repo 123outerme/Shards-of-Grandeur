@@ -302,7 +302,9 @@ func get_command_results(user: Combatant) -> String:
 						if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING and (slot.item as Healing).statusStrengthHeal != StatusEffect.Potency.NONE:
 							var healItem: Healing = slot.item as Healing
 							resultsText += ' and cured ' + StatusEffect.potency_to_string(healItem.statusStrengthHeal) + ' status effects.'
-					if type == Type.MOVE and move.statusChance >= randomNums[i] and move.statusEffect != null:
+					if type == Type.MOVE and move.statusChance >= randomNums[i] and \
+							move.statusEffect != null and target.statusEffect != null and \
+							does_target_get_status(user, i)  and target.statusEffect.type == move.statusEffect.type:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
 					if type == Type.MOVE and move.statusEffect != null:

@@ -7,9 +7,11 @@ class_name SummonMinionListPanel
 
 @onready var minionSprite: AnimatedSprite2D = get_node('SpriteControl/MinionSprite')
 @onready var minionName: RichTextLabel = get_node('CenterMinionName/MinionName')
-@onready var shardDetails: Control = get_node('ShardDetails')
-@onready var shardCount: RichTextLabel = get_node('ShardDetails/ShardCount')
-@onready var shardSprite: Sprite2D = get_node('ShardDetails/ShardSpriteControl/ShardSprite')
+@onready var shardDetails: Control = get_node('SummonDetails/ShardDetails')
+@onready var shardCount: RichTextLabel = get_node('SummonDetails/ShardDetails/ShardCount')
+@onready var shardSprite: Sprite2D = get_node('SummonDetails/ShardDetails/ShardSpriteControl/ShardSprite')
+@onready var unlockedSpriteControl: Control = get_node('SummonDetails/UnlockedSpriteControl')
+@onready var unlockedSprite: AnimatedSprite2D = get_node('SummonDetails/UnlockedSpriteControl/UnlockedSprite')
 @onready var statsButton: Button = get_node('CenterButtons/HBoxContainer/StatsButton')
 @onready var summonButton: Button = get_node('CenterButtons/HBoxContainer/SummonButton')
 
@@ -20,7 +22,10 @@ func _ready():
 func load_summon_minion_list_panel():
 	if minion == null:
 		return
-		
+	
+	if minion.friendship >= minion.maxFriendship:
+		shardItemSlot = null # if there is an item slot, this will clear it
+	
 	minionSprite.sprite_frames = minion.spriteFrames
 	
 	if minion.maxSize.x <= 16 and minion.maxSize.y <= 16:
@@ -34,9 +39,12 @@ func load_summon_minion_list_panel():
 	minionName.text = minion.disp_name()
 	
 	shardDetails.visible = shardItemSlot != null
+	unlockedSpriteControl.visible = not shardDetails.visible
 	if shardDetails.visible:
 		shardCount.text = 'x' + String.num(shardItemSlot.count)
 		shardSprite.texture = shardItemSlot.item.itemSprite
+	else:
+		unlockedSprite.play('default')
 	
 func focus_summon_button():
 	summonButton.grab_focus()
