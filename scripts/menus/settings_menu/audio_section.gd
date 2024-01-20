@@ -5,5 +5,5 @@ class_name AudioSection
 func _ready():
 	pass # Replace with function body.
 
-func toggle_section(show: bool):
-	visible = show
+func toggle_section(showing: bool):
+	visible = showing

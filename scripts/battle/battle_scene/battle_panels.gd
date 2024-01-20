@@ -6,6 +6,7 @@ class_name BattlePanels
 @onready var inventoryMenu: InventoryMenu = get_node("InventoryPanelNode")
 @onready var questsMenu: QuestsMenu = get_node("QuestsPanelNode")
 @onready var statsMenu: StatsMenu = get_node("StatsPanelNode")
+@onready var summonMinionPanel: SummonMinionPanel = get_node("SummonMinionPanel")
 @onready var pauseMenu: PauseMenu = get_node("PauseMenu")
 @onready var flowOfBattle: FlowOfBattle = get_node("FlowOfBattle")
 
@@ -28,11 +29,13 @@ func _unhandled_input(event):
 				inventoryMenu.toggle()
 		questsMenu.visible = false
 		statsMenu.visible = false
+		summonMinionPanel.visible = false
 
 	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
 		questsMenu.toggle()
 		inventoryMenu.visible = false
 		statsMenu.visible = false
+		summonMinionPanel.visible = false
 		
 	if event.is_action_pressed("game_stats") and not pauseMenu.isPaused:
 		statsMenu.stats = battleUI.battleController.playerCombatant.combatant.stats
@@ -42,11 +45,12 @@ func _unhandled_input(event):
 		statsMenu.toggle()
 		inventoryMenu.visible = false
 		questsMenu.visible = false
+		summonMinionPanel.visible = false
 	
-	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible:
+	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible:
 		pauseMenu.toggle_pause()
 	
-	if event.is_action_pressed("game_decline") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not pauseMenu.visible:
+	if event.is_action_pressed("game_decline") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not pauseMenu.visible and not summonMinionPanel.visible:
 		battleUI.toggle_fob_focus_mode()
 
 func _on_pause_menu_resume_game():

@@ -87,6 +87,14 @@ func count_of(itemType: Item.Type) -> int:
 			count += 1
 	return count
 
+func get_shard_slot_for_minion(saveName: String) -> InventorySlot:
+	for slot in inventorySlots:
+		if slot.item is Shard:
+			var shard = slot.item as Shard
+			if shard.combatantSaveName == saveName:
+				return slot
+	return null
+
 func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
 	var previousCount: int = inventorySlot.count
 	if previousCount < 0: # if negative (infinite), don't bother

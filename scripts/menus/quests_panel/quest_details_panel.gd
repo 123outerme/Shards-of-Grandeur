@@ -71,6 +71,8 @@ func load_quest_details():
 func hide_panel():
 	itemDetailsPanel.visible = false
 	visible = false
+	if rewardPanel.show_item_details.is_connected(_on_show_item_details):
+		rewardPanel.show_item_details.disconnect(_on_show_item_details)
 	panel_hidden.emit()
 
 func _on_back_button_pressed():

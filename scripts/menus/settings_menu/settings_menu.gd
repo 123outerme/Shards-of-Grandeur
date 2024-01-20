@@ -14,8 +14,8 @@ signal back_pressed
 func _ready():
 	pass # Replace with function body.
 
-func toggle_settings_menu(show: bool):
-	visible = show
+func toggle_settings_menu(showing: bool):
+	visible = showing
 	if visible:
 		initial_focus()
 		controlsSection.toggle_section(true)

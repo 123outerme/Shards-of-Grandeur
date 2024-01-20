@@ -36,7 +36,7 @@ func _unhandled_input(event):
 			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
 				cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
-			cutscenePaused = not cutscenePaused
+			cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
 			if not pausePanel.isPaused and textBox.visible:

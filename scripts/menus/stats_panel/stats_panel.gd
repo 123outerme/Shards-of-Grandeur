@@ -46,6 +46,8 @@ func toggle():
 		moveListPanel.moveDetailsPanel.visible = false
 		editMovesPanel.hide_panel()
 		backButton.disabled = false
+		savedStats = null
+		minion = null
 		back_pressed.emit()
 
 func initial_focus():
@@ -111,7 +113,7 @@ func reset_panel_to_player():
 		restore_previous_stats_panel()
 
 func _on_back_button_pressed():
-	if not isMinionStats:
+	if not isMinionStats or savedStats == null:
 		toggle()
 	else:
 		restore_previous_stats_panel()

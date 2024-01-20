@@ -136,9 +136,9 @@ func load_into_battle():
 	
 	battleUI.set_menu_state(state.menu, false)
 	
-func summon_minion(shard: Shard):
+func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
-	minionCombatant.combatant = PlayerResources.minions.get_minion(shard.combatantSaveName)
+	minionCombatant.combatant = PlayerResources.minions.get_minion(minionName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.load_combatant_node()
 

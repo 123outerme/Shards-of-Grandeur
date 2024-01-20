@@ -7,6 +7,8 @@ class_name PlayerCamera
 @onready var shadeColor: ColorRect = get_node("Shade/ColorRect")
 @onready var shadeLabel: RichTextLabel = get_node("Shade/ShadeLabel")
 
+var cutscenePaused: bool = false
+
 var fadeInReady: bool = false
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
@@ -81,7 +83,8 @@ func connect_to_fade_in(callback: Callable):
 		registeredFadeInCallbacks.append(callback)
 
 func toggle_cutscene_paused_shade():
-	shade.visible = not shade.visible
+	cutscenePaused = not cutscenePaused
+	shade.visible = cutscenePaused
 	shadeLabel.text = '[center]Cutscene: Paused[/center]'
 	shadeLabel.visible = shade.visible
 	shadeLabel.modulate = Color(1, 1, 1, 1) # just in case fadein messed with it and didn't properly reset it

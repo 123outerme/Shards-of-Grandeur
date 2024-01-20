@@ -172,7 +172,8 @@ func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges:
 	targetStatChanges.stack(target.statChanges)
 	
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
-		if is_command_enemy_targeting(move.targets) and move.power > 0 or !is_command_enemy_targeting(move.targets) and move.power < 0:
+		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(move.targets)
+		if (isEnemyTargeting and move.power > 0) or !(isEnemyTargeting and move.power < 0):
 			if move.targets != Targets.NON_SELF_ALLY or ((move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES) and user == target): # if the user would be affected
 				userStatChanges.undo_changes(move.statChanges)
 			if move.targets == Targets.ALL_ALLIES or move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY: # if the ally would be affected
