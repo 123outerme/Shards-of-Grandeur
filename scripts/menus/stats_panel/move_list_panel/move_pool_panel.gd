@@ -55,7 +55,7 @@ func show_learn_buttons(showing: bool = true):
 	var hasFocused = false
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
 		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		moveListItemPanel.movepoolLearn = showing and not (moveListItemPanel.move in PlayerResources.playerInfo.stats.movepool)
+		moveListItemPanel.movepoolLearn = showing and not (moveListItemPanel.move in PlayerResources.playerInfo.combatant.stats.movepool.pool)
 		moveListItemPanel.load_move_list_item_panel()
 		if not hasFocused and moveListItemPanel.selectButton.visible:
 			moveListItemPanel.selectButton.grab_focus()

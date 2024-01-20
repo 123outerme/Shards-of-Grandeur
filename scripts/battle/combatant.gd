@@ -21,6 +21,7 @@ enum AiType {
 @export var currentHp: int = -1
 @export var statChanges: StatChanges = StatChanges.new()
 @export var statusEffect: StatusEffect = null
+@export var friendship: float = 0
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE
@@ -36,7 +37,7 @@ enum AiType {
 @export var downed: bool = false
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + ".tres").copy()
+	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
@@ -51,6 +52,7 @@ func _init(
 	i_maxSize = Vector2(16, 16),
 	i_facesRight = false,
 	i_navLayer = 1,
+	i_friendship = 0,
 	i_aiType = AiType.NONE,
 	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
@@ -73,6 +75,7 @@ func _init(
 	maxSize = i_maxSize
 	navigationLayer = i_navLayer
 	aiType = i_aiType
+	friendship = i_friendship
 	aiOverrideWeight = i_overrideWeight
 	equipmentTable = i_equipmentTable
 	teamTable = i_teamTable
@@ -116,7 +119,7 @@ func level_up_nonplayer(newLv: int):
 					stats.physAttack += 1
 				if randomCategory == Stats.Category.MAGIC_ATK:
 					stats.magicAttack += 1
-				if randomCategory == Stats.Category.RESISTANCE:
+				if randomCategory == Stats.Category.RESISTANCE or Stats.Category.HP: # HP shouldn't be picked, but in case, just increase resistance
 					stats.resistance += 1
 				if randomCategory == Stats.Category.AFFINITY:
 					stats.affinity += 1
@@ -129,7 +132,7 @@ func level_up_nonplayer(newLv: int):
 func assign_moves_nonplayer():
 	var nextMoveSlot: int = 0
 	stats.moves = []
-	for move: Move in stats.movepool:
+	for move: Move in stats.movepool.pool:
 		if move.requiredLv <= stats.level:
 			stats.moves.insert(nextMoveSlot, move)
 			nextMoveSlot = (nextMoveSlot + 1) % 4
@@ -158,6 +161,7 @@ func save_from_object(c: Combatant):
 	spriteFacesRight = c.spriteFacesRight
 	navigationLayer = c.navigationLayer
 	aiType = c.aiType
+	friendship = c.friendship
 	aiOverrideWeight = c.aiOverrideWeight
 	equipmentTable = c.equipmentTable.duplicate(false)
 	teamTable = c.teamTable.duplicate(false)

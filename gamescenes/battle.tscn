@@ -41,12 +41,14 @@ layer_2/tile_data = PackedInt32Array(-65529, 65537, 0, -262147, 131073, 0, -4587
 
 [node name="PlayerCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
-battlePosition = "You"
+leftSide = true
+battlePosition = "Self"
 metadata/_edit_lock_ = true
 
 [node name="MinionCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
-battlePosition = "Minion"
+leftSide = true
+battlePosition = "Ally"
 metadata/_edit_lock_ = true
 
 [node name="EnemyCombatant1" parent="TileMap" instance=ExtResource("2_fgh53")]
@@ -615,11 +617,6 @@ script = ExtResource("15_2cnm6")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
-[connection signal="details_clicked" from="TileMap/PlayerCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/MinionCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant1" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant2" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant3" to="BattleCam" method="_on_combatant_details_clicked"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/MovesButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_moves_button_pressed"]

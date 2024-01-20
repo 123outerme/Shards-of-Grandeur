@@ -82,7 +82,7 @@ func load_stats_panel(fromToggle: bool = false):
 	statlinePanel.readOnly = readOnly
 	statlinePanel.load_statline_panel(changingCombatant or fromToggle)
 	moveListPanel.moves = stats.moves
-	moveListPanel.movepool = stats.movepool
+	moveListPanel.movepool = stats.movepool.pool
 	moveListPanel.readOnly = readOnly
 	moveListPanel.load_move_list_panel()
 	equipmentPanel.weapon = stats.equippedWeapon
@@ -123,8 +123,6 @@ func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool, move: 
 	else:
 		restore_previous_focus()
 
-
-
 func _on_minions_panel_stats_clicked(combatant: Combatant):
 	previousControl = minionsPanel.get_stats_button_for(combatant)
 	savedStats = stats
@@ -145,7 +143,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 func _on_move_list_panel_edit_moves():
 	previousControl = moveListPanel.editMovesButton
 	editMovesPanel.moves = stats.moves
-	editMovesPanel.movepool = stats.movepool
+	editMovesPanel.movepool = stats.movepool.pool
 	editMovesPanel.level = stats.level
 	editMovesPanel.load_edit_moves_panel()
 	backButton.disabled = true

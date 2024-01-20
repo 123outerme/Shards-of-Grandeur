@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dw87ml8gkhk0w"]
+
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_003bm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_o131l"]
+[ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="2_27mxs"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_tn3mk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_m4dsy"]
+[ext_resource type="Resource" uid="uid://bgnu1kkxkiasp" path="res://gamedata/combatants/ambusher/ambusher_stat_growth.tres" id="4_erjgf"]
+[ext_resource type="Resource" uid="uid://panpyyisdl1r" path="res://gamedata/combatants/ambusher/ambusher_movepool.tres" id="5_67d1y"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="8_7rr0p"]
+
+[sub_resource type="Resource" id="Resource_hmla0"]
+script = ExtResource("1_003bm")
+experience = 40
+gold = 20
+
+[sub_resource type="Resource" id="Resource_mryb0"]
+script = ExtResource("2_tn3mk")
+reward = SubResource("Resource_hmla0")
+weight = 0.0
+
+[sub_resource type="Resource" id="Resource_o1bdm"]
+script = ExtResource("3_m4dsy")
+displayName = "Ambusher"
+saveName = "ambusher"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("4_erjgf")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("5_67d1y")
+
+[sub_resource type="Resource" id="Resource_mmtot"]
+script = ExtResource("8_7rr0p")
+string = "tree_bear"
+weight = 100.0
+
+[resource]
+script = ExtResource("1_o131l")
+spriteFrames = ExtResource("2_27mxs")
+maxSize = Vector2(16, 16)
+spriteFacesRight = true
+navigationLayer = 1
+nickname = "Ambusher"
+stats = SubResource("Resource_o1bdm")
+currentHp = -1
+friendship = 0.0
+aiType = 1
+aiOverrideWeight = 0.35
+equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+teamTable = Array[ExtResource("8_7rr0p")]([SubResource("Resource_mmtot")])
+dropTable = Array[ExtResource("2_tn3mk")]([SubResource("Resource_mryb0")])
+innateStatCategories = Array[int]([0, 2])
+downed = false

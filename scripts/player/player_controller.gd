@@ -43,7 +43,7 @@ func _unhandled_input(event):
 				textBox.refocus_choice(pickedChoice)
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
-		statsPanel.stats = PlayerResources.playerInfo.stats
+		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
 		if statsPanel.visible:
@@ -408,7 +408,7 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	if newLevels == 0:
 		return
 	statsPanel.levelUp = true
-	statsPanel.stats = PlayerResources.playerInfo.stats
+	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 	statsPanel.isPlayer = true
 	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused

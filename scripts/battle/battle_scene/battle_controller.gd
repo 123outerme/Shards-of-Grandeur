@@ -140,7 +140,6 @@ func summon_minion(shard: Shard):
 	state.usedShard = shard
 	minionCombatant.combatant = PlayerResources.minions.get_minion(shard.combatantSaveName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
-	#minionCombatant.combatant.level_up_nonplayer(playerCombatant.combatant.stats.level)
 	minionCombatant.load_combatant_node()
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:

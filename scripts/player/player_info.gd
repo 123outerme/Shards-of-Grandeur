@@ -14,9 +14,8 @@ class_name PlayerInfo
 @export var scene: String = "Overworld"
 
 @export_category("PlayerInfo: Stats")
-@export var stats: Stats = (load("res://gamedata/combatants/player.tres") as Combatant).stats.copy()
-@export var combatant: Combatant = (load("res://gamedata/combatants/player.tres") as Combatant).copy()
-@export var gold: int = 10
+@export var combatant: Combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy()
+@export var gold: int = 20
 
 @export_category("PlayerInfo: Battle")
 @export var inBattle: bool
@@ -46,9 +45,8 @@ func _init(
 	i_spriteFrames = null,
 	i_flipH = false,
 	i_scene = "Overworld",
-	i_stats = (load("res://gamedata/combatants/player.tres") as Combatant).stats.copy(),
-	i_combatant = (load("res://gamedata/combatants/player.tres") as Combatant).copy(),
-	i_gold = 10,
+	i_combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy(),
+	i_gold = 20,
 	i_inBattle = false,
 	i_exitingBattle = false,
 	i_encounteredName = "",
@@ -71,7 +69,6 @@ func _init(
 	spriteFrames = i_spriteFrames
 	flipH = i_flipH
 	scene = i_scene
-	stats = i_stats
 	combatant = i_combatant
 	gold = i_gold
 	inBattle = i_inBattle
