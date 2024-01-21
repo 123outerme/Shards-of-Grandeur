@@ -169,26 +169,25 @@ func _on_clear_secondary_pressed(btn: Button):
 		var newUiEvents: Array[InputEvent] = []
 		for i in range(len(uiActions)):
 			if i != index:
-				newEvents.append(uiActions[i])
+				newUiEvents.append(uiActions[i])
 		InputMap.action_erase_events(uiAction)
 		for i in range(len(newUiEvents)):
 			InputMap.action_add_event(uiAction, newUiEvents[i])
 		changedInputsMap[uiAction] = newUiEvents.duplicate()
 			
-	
-	# change UI accept to use the same as game_interact
+	# remove ui_accept and ui_select
 	if action == 'game_interact':
 		for uiAction in ['ui_accept', 'ui_select']:
 			var uiActions = InputMap.action_get_events(uiAction)
 			var newUiEvents: Array[InputEvent] = []
 			for i in range(len(uiActions)):
 				if i != index:
-					newEvents.append(uiActions[i])
+					newUiEvents.append(uiActions[i])
 			InputMap.action_erase_events(uiAction)
 			for i in range(len(newUiEvents)):
 				InputMap.action_add_event(uiAction, newUiEvents[i])
 			changedInputsMap[uiAction] = newUiEvents.duplicate()
-			
+	
 	build_map_value_strings()
 
 func reenable_pause():
