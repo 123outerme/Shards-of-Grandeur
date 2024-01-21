@@ -41,6 +41,7 @@ func new_game_name():
 	nameInput.grab_focus()
 
 func start_new_game():
+	SceneLoader.audioHandler.fade_out_music()
 	SaveHandler.new_game(playerName)
 	SceneLoader.load_game()
 
@@ -52,6 +53,7 @@ func _on_settings_button_pressed():
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
+	SceneLoader.audioHandler.fade_out_music()
 	SaveHandler.load_data()
 	SceneLoader.load_game()
 
