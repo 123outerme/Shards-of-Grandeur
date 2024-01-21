@@ -207,6 +207,7 @@ text = "Back"
 visible = false
 layout_mode = 1
 
+[connection signal="show_item_details" from="Panel/StepDetailPanel/RewardPanel" to="." method="_on_reward_panel_show_item_details"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_item_details_panel_back_pressed"]
 
