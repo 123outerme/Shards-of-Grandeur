@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://bp8ei02gccf15"]
+
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_fjgac"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_jx7af"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="3_5gyj4"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_qtjam"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="5_njn1e"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="6_clpnk"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_wdcby"]
+
+[sub_resource type="Resource" id="Resource_be8mk"]
+script = ExtResource("2_jx7af")
+speaker = "@"
+texts = Array[String](["I can't go back to Grandstone without the Shards."])
+
+[sub_resource type="Resource" id="Resource_xm6mf"]
+script = ExtResource("3_5gyj4")
+frameLength = 0.15
+annotation = "Player stops moving and announces required destination"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_fjgac")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_jx7af")]([SubResource("Resource_be8mk")])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_lf2st"]
+script = ExtResource("5_njn1e")
+value = Vector2(-482, 118)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_arcj5"]
+script = ExtResource("3_5gyj4")
+frameLength = 0.5
+annotation = "Player reverses course back to intended path"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_lf2st")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_qtjam")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_jx7af")]([])
+endTextBoxPauses = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_3ibkl"]
+script = ExtResource("3_5gyj4")
+frameLength = 0.1
+annotation = "Player stands and waits for textbox to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_fjgac")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_jx7af")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_1oark"]
+script = ExtResource("7_wdcby")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("6_clpnk")
+cutsceneFrames = Array[ExtResource("3_5gyj4")]([SubResource("Resource_xm6mf"), SubResource("Resource_arcj5"), SubResource("Resource_3ibkl")])
+saveName = "standstill_back_to_town"
+storyRequirements = SubResource("Resource_1oark")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
