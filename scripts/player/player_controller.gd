@@ -1,9 +1,11 @@
 extends CharacterBody2D
 class_name PlayerController
 
-const SPEED = 80
+const BASE_SPEED = 80
+const RUN_SPEED = 120
 @export var disableMovement: bool
 @export var facingLeft: bool = false
+var speed = BASE_SPEED
 var pickedUpItem: PickedUpItem = null
 var inCutscene: bool = false
 var cutsceneTexts: Array[CutsceneDialogue] = []
@@ -62,6 +64,13 @@ func _unhandled_input(event):
 		else:
 			textBox.show_text_instant()
 			
+	if event.is_action_pressed("game_decline") and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
+		speed = RUN_SPEED
+		sprite.speed_scale = 1.5
+	if event.is_action_released("game_decline") and speed != BASE_SPEED:
+		speed = BASE_SPEED
+		sprite.speed_scale = 1.0
+			
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
@@ -87,7 +96,7 @@ func _unhandled_input(event):
 		
 func _physics_process(_delta):
 	if not disableMovement:
-		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
+		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		if velocity.x < 0:
 			facingLeft = true
 		if velocity.x > 0:
@@ -99,7 +108,7 @@ func _physics_process(_delta):
 			play_animation('stand')
 		move_and_slide()
 	if inCutscene and false:
-		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * SPEED
+		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		cam.position += vel * _delta
 		
 func _process(_delta):

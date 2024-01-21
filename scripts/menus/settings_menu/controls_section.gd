@@ -1,10 +1,11 @@
 extends Control
 class_name ControlsSection
 
+@export var unsavedKeybindsSprite: Texture2D
 @export var sectionToggleButton: Button
 
 @onready var captureControl: Control = get_node('CaptureControl')
-@onready var saveButton: Button = get_node('TabContainer/Keyboard/Buttons/SaveButton')
+@onready var saveButton: Button = get_node('TabContainer/Keyboard/Buttons/HBoxContainer/SaveButton')
 @onready var tabContainer: TabContainer = get_node('TabContainer')
 @onready var keyboardTab: VBoxContainer = get_node("TabContainer/Keyboard")
 @onready var controllerTab: VBoxContainer = get_node("TabContainer/Controller")
@@ -44,6 +45,11 @@ func toggle_section(enable: bool):
 		build_map_value_strings()
 		
 func build_map_value_strings():
+	if len(changedInputsMap.values()) > 0:
+		saveButton.icon = unsavedKeybindsSprite
+	else:
+		saveButton.icon = null
+	
 	for controlMap in get_tree().get_nodes_in_group('KeyboardControlMap'):
 		var keyValue1: RichTextLabel = controlMap.get_node('Value1')
 		var changeButton1: Button = controlMap.get_node('ChangeButton1')
@@ -153,6 +159,9 @@ func _on_clear_secondary_pressed(btn: Button):
 	var action = btn.get_meta('action')
 	var index = 2
 	var actionEvents = InputMap.action_get_events(action)
+	if len(actionEvents) <= index:
+		return
+	
 	var newEvents: Array[InputEvent] = []
 	for i in range(len(actionEvents)):
 		if i != index:
@@ -197,6 +206,7 @@ func reenable_pause():
 func _on_save_button_pressed():
 	SettingsHandler.gameSettings.save_controls_from_diffs(changedInputsMap)
 	changedInputsMap = {}
+	build_map_value_strings()
 
 func _on_cancel_button_pressed():
 	changedInputsMap = {}
@@ -204,5 +214,5 @@ func _on_cancel_button_pressed():
 	build_map_value_strings()
 	
 func _on_default_button_pressed():
-	SettingsHandler.gameSettings.restore_default_controls()
+	changedInputsMap = SettingsHandler.gameSettings.get_default_controls()
 	build_map_value_strings()

@@ -36,6 +36,9 @@ func restore_default_controls():
 	inputMap = defaultInputMap.duplicate()
 	apply_from_stored_inputs()
 
+func get_default_controls() -> Dictionary:
+	return defaultInputMap
+
 func apply_from_stored_inputs():
 	for action in inputMap.keys(): # assign input map settings
 		InputMap.action_erase_events(action)

@@ -3,6 +3,7 @@ class_name MapLoader
 
 var mapInstance: Node = null
 var mapNavReady: bool = false
+var mapEntry: MapEntry = null
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
@@ -57,11 +58,12 @@ func load_map(mapName: String):
 		mapInstance.queue_free()
 	var mapScene = null
 	# if this act has a specific map for this act, load it
-	var mapEntry: MapEntry = get_map_entry_for_map_name(mapName)
-	if mapEntry != null:
-		if mapEntry.isRecoverLocation:
+	var newMapEntry = get_map_entry_for_map_name(mapName)
+	if newMapEntry != null:
+		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
-		mapScene = load(mapEntry.get_map_path())
+		mapScene = load(newMapEntry.get_map_path())
+		mapEntry = newMapEntry
 	if mapScene == null:
 		printerr('Map ', mapName, ' could not be found!')
 		get_tree().quit(1)
