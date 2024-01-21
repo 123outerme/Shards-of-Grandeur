@@ -2,7 +2,8 @@ extends Resource
 class_name GameSettings
 
 @export var inputMap: Dictionary = {}
-@export var volume: float = 0.5
+@export var musicVolume: float = 0.5
+@export var sfxVolume: float = 0.5
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -14,10 +15,12 @@ var stored_actions = [
 
 func _init(
 	i_inputMap: Dictionary = {},
-	i_volume = 0.5
+	i_musicVolume = 0.5,
+	i_sfxVolume = 0.5,
 ):
 	inputMap = i_inputMap.duplicate()
-	volume = i_volume
+	musicVolume = i_musicVolume
+	sfxVolume = i_sfxVolume
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
 	for action in InputMap.get_actions().filter(_filter_input_map):

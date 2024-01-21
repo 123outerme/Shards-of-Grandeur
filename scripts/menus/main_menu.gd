@@ -2,6 +2,8 @@ extends Control
 
 var playerName: String = 'Player'
 
+@export var mainMenuMusic: AudioStream
+
 @onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
 @onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
@@ -24,6 +26,7 @@ func _ready():
 	resumeGameButton.visible = SaveHandler.save_file_exists()
 	set_initial_main_menu_focus()
 	versionLabel.text = ProjectSettings.get_setting('application/config/version', 'VERSION?')
+	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
 
 func set_initial_main_menu_focus():
 	if resumeGameButton.visible:

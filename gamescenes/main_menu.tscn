@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=13 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="2_psfj7"]
+[ext_resource type="AudioStream" uid="uid://ct61qvva1c8y1" path="res://audio/music/gtl_main_theme.mp3" id="3_bygmc"]
 [ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://graphics/items/rusty_armor.png" id="3_yjhtk"]
 [ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://graphics/items/book.png" id="4_8hvhc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_a7rkf"]
@@ -25,6 +26,7 @@ grow_vertical = 2
 theme = ExtResource("1_gmnpf")
 theme_type_variation = &"Standard"
 script = ExtResource("2_psfj7")
+mainMenuMusic = ExtResource("3_bygmc")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmc2ox37dega8"]
+
+[ext_resource type="Script" path="res://scripts/audio/audio_handler.gd" id="1_mwumm"]
+[ext_resource type="AudioStream" uid="uid://ct61qvva1c8y1" path="res://audio/music/gtl_main_theme.mp3" id="2_nm6ff"]
+
+[node name="AudioHandler" type="Node"]
+script = ExtResource("1_mwumm")
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_nm6ff")
+bus = &"music"
+
+[node name="SfxStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
+
+[connection signal="finished" from="MusicStreamPlayer" to="." method="_on_music_stream_player_finished"]
+[connection signal="finished" from="SfxStreamPlayer" to="." method="_on_sfx_stream_player_finished"]

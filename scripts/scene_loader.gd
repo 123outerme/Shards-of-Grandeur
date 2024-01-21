@@ -3,6 +3,7 @@ extends Node
 var currentScene
 var unpauseExcludedMover: Node2D = null
 var mapLoader: MapLoader = null
+var audioHandler: AudioHandler = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,10 +23,10 @@ func load_overworld():
 	
 func load_main_menu():
 	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"))
-	
+
 func load_scene(scene):
 	var sceneInstance = scene.instantiate()
-	add_sibling.call_deferred(sceneInstance)
+	get_tree().root.call_deferred('add_child', sceneInstance)
 	if currentScene != null:
 		mapLoader = null
 		currentScene.queue_free()

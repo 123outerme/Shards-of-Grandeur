@@ -1,13 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmh0663np3wdv"]
+[gd_scene load_steps=3 format=3 uid="uid://cmh0663np3wdv"]
 
 [ext_resource type="Script" path="res://scripts/menus/settings_menu/audio_section.gd" id="1_bfq7l"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_iqh4c"]
 
 [node name="AudioSection" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_iqh4c")
 script = ExtResource("1_bfq7l")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = -80.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicVolumeControl" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 89.0
+grow_horizontal = 2
+
+[node name="MusicVolumeLabel" type="RichTextLabel" parent="Control/MusicVolumeControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Music Volume:[/center]
+[center]100%[/center]"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Control/MusicVolumeControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = 55.0
+offset_right = -3.0
+offset_bottom = 71.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[node name="SfxVolumeControl" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 104.0
+offset_bottom = 193.0
+grow_horizontal = 2
+
+[node name="SfxVolumeLabel" type="RichTextLabel" parent="Control/SfxVolumeControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]SFX Volume:[/center]
+[center]100%[/center]"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="Control/SfxVolumeControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = 55.0
+offset_right = -3.0
+offset_bottom = 71.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath(".")
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[connection signal="value_changed" from="Control/MusicVolumeControl/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Control/SfxVolumeControl/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]

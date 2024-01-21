@@ -18,7 +18,9 @@ func toggle_settings_menu(showing: bool):
 	visible = showing
 	if visible:
 		initial_focus()
-		controlsSection.toggle_section(true)
+		controlsButton.button_pressed = true
+		#controlsSection.toggle_section(true)
+		#audioSection.toggle_section(false)
 	else:
 		_on_back_button_pressed()
 
@@ -35,6 +37,8 @@ func _on_back_button_pressed():
 
 func _on_controls_button_toggled(toggled_on):
 	controlsSection.toggle_section(toggled_on)
+	audioSection.toggle_section(false)
 
 func _on_audio_button_toggled(toggled_on):
 	audioSection.toggle_section(toggled_on)
+	controlsSection.toggle_section(false)
