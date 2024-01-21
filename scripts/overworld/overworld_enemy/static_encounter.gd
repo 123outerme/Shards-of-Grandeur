@@ -33,7 +33,6 @@ func _init(
 	i_autoAllyMoves: Array[Move] = [],
 	i_specialBattleId = '',
 	i_bossBattle = false,
-	i_storyRequirements = null,
 	i_rewards: Array[Reward] = [],
 	i_useRewards = false,
 ):
@@ -51,5 +50,6 @@ func _init(
 	autoAllyMoves = i_autoAllyMoves
 	specialBattleId = i_specialBattleId
 	bossBattle = i_bossBattle
+	
 	rewards = i_rewards
 	useStaticRewards = i_useRewards

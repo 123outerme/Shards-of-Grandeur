@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=23 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
+[ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="20_gbnnj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql8sa"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -41,12 +42,14 @@ layer_2/tile_data = PackedInt32Array(-65529, 65537, 0, -262147, 131073, 0, -4587
 
 [node name="PlayerCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
+leftSide = true
 battlePosition = "You"
 metadata/_edit_lock_ = true
 
 [node name="MinionCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
-battlePosition = "Minion"
+leftSide = true
+battlePosition = "Ally"
 metadata/_edit_lock_ = true
 
 [node name="EnemyCombatant1" parent="TileMap" instance=ExtResource("2_fgh53")]
@@ -536,7 +539,6 @@ offset_right = 40.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "OK"
 
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
@@ -586,6 +588,13 @@ offset_bottom = 430.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SummonMinionPanel" parent="BattleCam/UIPanels" instance=ExtResource("20_gbnnj")]
+visible = false
+offset_left = -640.0
+offset_top = -480.0
+offset_right = 640.0
+offset_bottom = 480.0
+
 [node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
 visible = false
 position = Vector2(-640, -480)
@@ -598,6 +607,7 @@ position = Vector2(-640, -480)
 [node name="StatsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("17_tq7tc")]
 visible = false
 position = Vector2(-640, -480)
+readOnly = true
 
 [node name="PauseMenu" parent="BattleCam/UIPanels" instance=ExtResource("18_h5paw")]
 visible = false
@@ -615,11 +625,6 @@ script = ExtResource("15_2cnm6")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
-[connection signal="details_clicked" from="TileMap/PlayerCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/MinionCombatant" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant1" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant2" to="BattleCam" method="_on_combatant_details_clicked"]
-[connection signal="details_clicked" from="TileMap/EnemyCombatant3" to="BattleCam" method="_on_combatant_details_clicked"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/MovesButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_moves_button_pressed"]
@@ -637,8 +642,12 @@ battleUI = NodePath("../BattleCam")
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
+[connection signal="back_pressed" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_back_pressed"]
+[connection signal="minion_summoned" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_minion_summoned"]
+[connection signal="show_stats_for_minion" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_show_stats_for_minion"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_back_pressed"]
 [connection signal="item_used" from="BattleCam/UIPanels/InventoryPanelNode" to="BattleCam" method="_on_inventory_panel_node_item_used"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/QuestsPanelNode" to="BattleCam" method="_on_quests_panel_node_back_pressed"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
+[connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]

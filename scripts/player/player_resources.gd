@@ -18,17 +18,17 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 		if reward == null:
 			continue # skip this reward if it's null
 		playerInfo.gold += reward.gold
-		gainedLevels += playerInfo.stats.add_exp(reward.experience)
+		gainedLevels += playerInfo.combatant.stats.add_exp(reward.experience)
 		inventory.add_item(reward.item)
 	if gainedLevels > 0:
-		playerInfo.combatant.currentHp = playerInfo.stats.maxHp
-		minions.level_up_minions(playerInfo.stats.level) # level up all stored minions
-	playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats into combatant's copy
+		playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
+		minions.level_up_minions(playerInfo.combatant.stats.level) # level up all stored minions
+	playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats into combatant's copy
 	return gainedLevels
 
 func copy_combatant_to_info(combatant: Combatant):
 	playerInfo.combatant.save_from_object(combatant.copy())
-	playerInfo.stats.save_from_object(combatant.stats)
+	playerInfo.combatant.stats.save_from_object(combatant.stats)
 
 func get_cur_act_save_str() -> String:
 	return 'act' + String.num_int64(questInventory.currentAct)
@@ -44,9 +44,9 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
-		playerInfo.combatant.stats = playerInfo.stats.copy() # copy stats to Combatant obj
+		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		if playerInfo.combatant.currentHp == -1: # if -1, set to maxHp
-			playerInfo.combatant.currentHp = playerInfo.stats.maxHp
+			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 	player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
@@ -66,6 +66,7 @@ func load_data(save_path):
 	var newMinions = minions.load_data(save_path)
 	if newMinions != null:
 		minions = newMinions
+	minions.level_up_minions(playerInfo.combatant.stats.level)
 	loaded = true
 
 func save_data(save_path):
@@ -75,7 +76,7 @@ func save_data(save_path):
 			playerInfo.spriteFrames = player.sprite.sprite_frames
 			playerInfo.flipH = player.sprite.flip_h
 			playerInfo.pickedUpItem = player.pickedUpItem
-		playerInfo.combatant.stats = playerInfo.stats.copy()
+		playerInfo.combatant.stats = playerInfo.combatant.stats.copy()
 		if playerInfo.combatant.currentHp == -1:
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		playerInfo.save_data(save_path, playerInfo)
@@ -100,5 +101,5 @@ func new_game(save_path):
 func name_player(save_path, characterName: String):
 	playerInfo.combatant.stats.displayName = characterName
 	playerInfo.combatant.nickname = characterName
-	playerInfo.stats.displayName = characterName
+	playerInfo.combatant.stats.displayName = characterName
 	playerInfo.save_data(save_path, playerInfo)

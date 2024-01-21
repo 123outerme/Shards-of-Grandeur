@@ -1,6 +1,31 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dsowi08f2y6iv"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dsowi08f2y6iv"]
 
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="1_gpdvd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orcfx"]
+bg_color = Color(0.74902, 0.74902, 0.74902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.521569, 0.521569, 0.521569, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oad5w"]
+bg_color = Color(0.215686, 0.352941, 0.568627, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [resource]
 default_font_size = 18
@@ -10,5 +35,9 @@ LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
 LineEdit/constants/outline_size = 5
 Panel/styles/panel = ExtResource("1_gpdvd")
 PanelContainer/styles/panel = ExtResource("1_gpdvd")
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 5
+ProgressBar/styles/background = SubResource("StyleBoxFlat_orcfx")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_oad5w")
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 5

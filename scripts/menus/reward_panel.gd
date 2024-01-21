@@ -1,8 +1,9 @@
 extends Panel
 class_name RewardPanel
 
+signal show_item_details(item)
+
 @export var reward: Reward = null
-var itemDetailsPanel: ItemDetailsPanel = null
 
 @onready var expLabel: RichTextLabel = get_node("Exp")
 @onready var goldLabel: RichTextLabel = get_node("GoldGroup/Gold")
@@ -14,7 +15,7 @@ var itemDetailsPanel: ItemDetailsPanel = null
 func _ready():
 	pass # Replace with function body.
 
-func load_reward_panel(panel: ItemDetailsPanel):
+func load_reward_panel():
 	if reward != null:
 		visible = true
 		expLabel.text = '[center]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/center]'
@@ -25,7 +26,9 @@ func load_reward_panel(panel: ItemDetailsPanel):
 			itemName.text = reward.item.itemName
 		else:
 			itemGroup.visible = false
-		itemDetailsPanel = panel
-		itemDetailsPanel.item = reward.item
 	else:
 		visible = false
+
+
+func _on_item_sprite_button_pressed():
+	show_item_details.emit(reward.item)

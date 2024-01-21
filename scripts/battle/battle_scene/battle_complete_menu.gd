@@ -7,6 +7,9 @@ class_name BattleCompleteMenu
 var playerWins: bool = true
 var playerEscapes: bool = false
 var rewards: Array[Reward] = []
+var gainedLevels: int = 0
+
+var rewardPanel = preload("res://prefabs/ui/reward_panel.tscn")
 
 @onready var rewardsVBox: VBoxContainer = get_node("RewardsVBox")
 @onready var battleWinLabel: RichTextLabel = get_node("BattleWinLabel")
@@ -30,20 +33,19 @@ func load_battle_over_menu():
 		panel.queue_free() # destroy all previously loaded reward panels (if any)
 	
 	if playerWins:
-		var rewardPanel = load("res://prefabs/ui/reward_panel.tscn")
 		for reward in rewards:
 			var instantiatedPanel: RewardPanel = rewardPanel.instantiate()
 			instantiatedPanel.reward = reward
 			rewardsVBox.add_child(instantiatedPanel)
-			instantiatedPanel.load_reward_panel(itemDetailsPanel)
+			instantiatedPanel.load_reward_panel()
+			instantiatedPanel.show_item_details.connect(_on_item_details_clicked)
 	okBtn.grab_focus()
 
 func _on_ok_button_pressed():
 	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)
 	# copy player changes to PlayerResources
-	var levels: int = 0
 	if playerWins:
-		levels = PlayerResources.accept_rewards(rewards)
+		gainedLevels = PlayerResources.accept_rewards(rewards)
 	
 	if PlayerResources.playerInfo.combatant.currentHp <= 0:
 		if playerWins or playerEscapes: # revive with 10% HP if you win or the minion escapes
@@ -51,7 +53,16 @@ func _on_ok_button_pressed():
 		else: # otherwise revive with full
 			PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 		PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes) # stay downed if you lost
-	if levels > 0:
+	if gainedLevels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:
 		battleUI.end_battle()
+
+func _on_item_details_clicked(item):
+	itemDetailsPanel.item = item
+	itemDetailsPanel.count = 0
+	itemDetailsPanel.load_item_details()
+	itemDetailsPanel.visible = true
+	
+func _on_item_details_panel_back_pressed():
+	okBtn.grab_focus()

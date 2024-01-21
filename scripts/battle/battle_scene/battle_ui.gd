@@ -21,6 +21,7 @@ var fobFocusMode: bool = false
 @onready var battleComplete: BattleCompleteMenu = get_node("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
 
 @onready var battlePanels: BattlePanels = get_node("UIPanels")
+@onready var summonMinionPanel: SummonMinionPanel = get_node("UIPanels/SummonMinionPanel")
 @onready var inventoryPanel: InventoryMenu = get_node("UIPanels/InventoryPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UIPanels/StatsPanelNode")
 
@@ -176,6 +177,10 @@ func initial_focus():
 		battleComplete.okBtn.grab_focus()
 
 func restore_focus():
+	if summonMinionPanel.statsShowMinion != null:
+		summonMinionPanel.initial_focus()
+		return
+	
 	if previousFocus == null:
 		initial_focus()
 	else:
@@ -190,20 +195,23 @@ func toggle_fob_focus_mode():
 			restore_focus()
 
 func open_inventory(forSummon: bool):
-	inventoryPanel.summoning = forSummon
-	inventoryPanel.lockFilters = forSummon
-	if forSummon:
-		inventoryPanel.selectedFilter = Item.Type.SHARD
+	if not forSummon:
+		inventoryPanel.summoning = forSummon
+		inventoryPanel.lockFilters = forSummon
+		if forSummon:
+			inventoryPanel.selectedFilter = Item.Type.SHARD
+		else:
+			if commandingMinion and battleController.playerCombatant.is_alive():
+				inventoryPanel.slotQueuedForBattleUse = battleController.playerCombatant.combatant.command.slot
+		inventoryPanel.toggle()
 	else:
-		if commandingMinion and battleController.playerCombatant.is_alive():
-			inventoryPanel.slotQueuedForBattleUse = battleController.playerCombatant.combatant.command.slot
-	inventoryPanel.toggle()
+		summonMinionPanel.load_summon_minion_panel()
 
 func _on_inventory_panel_node_item_used(slot: InventorySlot):
 	if menuState == BattleState.Menu.SUMMON:
 		PlayerResources.inventory.trash_item(slot)
 		var shard = slot.item as Shard
-		battleController.summon_minion(shard)
+		battleController.summon_minion(shard.combatantSaveName, shard)
 		start_pre_battle()
 	if menuState == BattleState.Menu.ITEMS:
 		commandingCombatant.combatant.command = \
@@ -214,6 +222,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.levelUp = levelUp
+	statsPanel.newLvs = battleComplete.gainedLevels
 	statsPanel.stats = combatant.stats
 	statsPanel.curHp = combatant.currentHp
 	statsPanel.readOnly = not levelUp
@@ -230,6 +239,9 @@ func _on_combatant_details_clicked(combatantNode: CombatantNode):
 	#open_stats(combatantNode.combatant) # disable for testing/designing
 	pass
 
+func _on_summon_minion_panel_back_pressed():
+	summonMenu.initial_focus()
+
 func _on_inventory_panel_node_back_pressed():
 	if menuState == BattleState.Menu.SUMMON:
 		summonMenu.initial_focus()
@@ -242,7 +254,21 @@ func _on_quests_panel_node_back_pressed():
 func _on_focus_changed(control: Control):
 	if control == battlePanels.flowOfBattle.fobButton:
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
-	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not fobFocusMode:
+	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not battlePanels.summonMinionPanel.visible and not fobFocusMode:
 		previousFocus = control
 
+func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):
+	statsPanel.readOnly = true
+	statsPanel.isMinionStats = true
+	statsPanel.minion = minion
+	statsPanel.stats = minion.stats
+	statsPanel.savedStats = null
+	statsPanel.toggle()
 
+func _on_summon_minion_panel_minion_summoned(minion: Combatant, shardSlot: InventorySlot):
+	var shard = null
+	if shardSlot:
+		PlayerResources.inventory.trash_item(shardSlot)
+		shard = shardSlot.item as Shard
+	battleController.summon_minion(minion.save_name(), shard)
+	start_pre_battle()

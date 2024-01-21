@@ -6,7 +6,8 @@ enum Category {
 	MAGIC_ATK = 1,
 	RESISTANCE = 2,
 	AFFINITY = 3,
-	SPEED = 4
+	SPEED = 4,
+	HP = 5,
 }
 
 @export_category("Stats - Name")
@@ -23,6 +24,7 @@ enum Category {
 @export var affinity: int = 1
 @export var speed: int = 1
 @export var statPts: int = 0
+@export var statGrowth: StatGrowth = StatGrowth.new()
 
 @export_category("Stats - Equipment")
 @export var equippedWeapon: Weapon = null
@@ -30,7 +32,7 @@ enum Category {
 
 @export_category("Stats - Moves")
 @export var moves: Array[Move] = []
-@export var movepool: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move]
+@export var movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice.tres") as Move])
 
 func _init(
 	i_displayName = 'Entity',
@@ -44,10 +46,11 @@ func _init(
 	i_affinity = 1,
 	i_speed = 1,
 	i_statPts = 0,
+	i_statGrowth = StatGrowth.new(),
 	i_weapon = null,
 	i_armor = null,
 	i_moves: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move],
-	i_movepool: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move],
+	i_movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice.tres") as Move]),
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -60,59 +63,45 @@ func _init(
 	affinity = i_affinity
 	speed = i_speed
 	statPts = i_statPts
+	statGrowth = i_statGrowth
 	equippedWeapon = i_weapon
 	equippedArmor = i_armor
 	moves = i_moves
 	movepool = i_movepool
 
 static func calculate_base_stats(oldStats: Stats, newLv: int) -> Stats:
-	var stat = calculate_stat_category(newLv)
-	return Stats.new(
+	var baseStats = Stats.new(
 		oldStats.displayName,
 		oldStats.saveName,
 		newLv,
 		oldStats.experience,
-		calculate_max_hp(newLv),
-		stat,
-		stat,
-		stat,
-		stat,
-		stat,
+		oldStats.statGrowth.initialMaxHp,
+		1,
+		1,
+		1,
+		1,
+		1,
+		0,
+		oldStats.statGrowth.duplicate(false),
 		oldStats.equippedWeapon,
 		oldStats.equippedArmor,
 		oldStats.moves,
 		oldStats.movepool,
 	)
-
-static func calculate_max_hp(lv: int) -> int:
-	var hp = 50
-	for i in range(lv):
-		hp += hp_gain(i)
-	return hp
+	baseStats.level_up(newLv - 1)
+	return baseStats
 	
-static func calculate_stat_category(lv: int) -> int:
-	var stat = 1
-	for i in range(lv):
-		stat += stat_gain(i)
-	return stat
-
 static func calculate_floating_stat_pts(lv: int) -> int:
 	var pts = 0
 	for i in range(lv):
 		pts += floating_stat_pt_gain(i)
 	return pts
-
-static func hp_gain(lv: int) -> int:
-	return lv + 2
-	
-static func stat_gain(lv: int):
-	return round(0.1 * lv + 1)
-	
-static func get_required_exp(lv: int) -> int:
-	return round( 1.1*pow(lv - 1, 2) + 25*(lv - 1) + 100 )
 	
 static func floating_stat_pt_gain(lv: int) -> int:
 	return floor(0.1 * lv + 1)
+
+static func get_required_exp(lv: int) -> int:
+	return round( 1.1*pow(lv - 1, 2) + 25*(lv - 1) + 100 )
 
 func add_exp(addingExp: int) -> int:
 	var newLevel: int = level
@@ -125,22 +114,23 @@ func add_exp(addingExp: int) -> int:
 	return levelDiff # return the difference
 
 func level_up(newLvs: int):
-	var stat = 0
+	if newLvs <= 0:
+		return
+	
 	var pts = 0
 	for i in range(1, newLvs + 1):
 		level += 1 # add one level every loop iteration to add a total of `newLvs` levels
-		maxHp += Stats.hp_gain(level)
-		stat += Stats.stat_gain(level)
 		pts += Stats.floating_stat_pt_gain(level)
-	physAttack += stat
-	magicAttack += stat
-	resistance += stat
-	affinity += stat
-	speed += stat
+	maxHp = statGrowth.calculate_max_hp(level)
+	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK)
+	magicAttack = statGrowth.calculate_stat_category(level, Category.MAGIC_ATK)
+	affinity = statGrowth.calculate_stat_category(level, Category.AFFINITY)
+	resistance = statGrowth.calculate_stat_category(level, Category.RESISTANCE)
+	speed = statGrowth.calculate_stat_category(level, Category.SPEED)
 	statPts += pts
 
 func add_move_to_pool(move: Move):
-	movepool.append(move)
+	movepool.pool.append(move)
 	if len(moves) < 4:
 		moves.append(move)
 	else:
@@ -173,7 +163,8 @@ func save_from_object(s: Stats):
 	affinity = s.affinity
 	speed = s.speed
 	statPts = s.statPts
+	statGrowth = s.statGrowth
 	equippedWeapon = s.equippedWeapon
 	equippedArmor = s.equippedArmor
-	moves = s.moves
-	movepool = s.movepool
+	moves = s.moves.duplicate(false)
+	movepool = s.movepool.copy()

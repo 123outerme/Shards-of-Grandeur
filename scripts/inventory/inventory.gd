@@ -36,7 +36,7 @@ func add_shard_minion_entry(item: Item):
 	if isPlayerInventory and item.itemType == Item.Type.SHARD:
 		var shard: Shard = item as Shard
 		PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
-		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.stats.level) # if necessary, this will level up the new minion
+		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level) # if necessary, this will level up the new minion
 
 func use_item(item: Item, target: Combatant) -> bool:
 	var last: bool = false
@@ -49,7 +49,7 @@ func use_item(item: Item, target: Combatant) -> bool:
 func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats = null):
 	var item: Item = inventorySlot.item
 	if contextStats == null:
-		contextStats = PlayerResources.playerInfo.stats
+		contextStats = PlayerResources.playerInfo.combatant.stats
 	
 	var minionEquipped: String = PlayerResources.minions.which_minion_equipped(item)
 	if inventorySlot.item is Weapon:
@@ -69,9 +69,9 @@ func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats =
 
 func is_equipped(item: Item) -> bool:
 	if item is Weapon:
-		return PlayerResources.playerInfo.stats.equippedWeapon == item or PlayerResources.minions.which_minion_equipped(item) != ''
+		return PlayerResources.playerInfo.combatant.stats.equippedWeapon == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	if item is Armor:
-		return PlayerResources.playerInfo.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
+		return PlayerResources.playerInfo.combatant.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
 func is_slot_for_item_full(item: Item) -> bool:
@@ -86,6 +86,14 @@ func count_of(itemType: Item.Type) -> int:
 		if slot.item.itemType == itemType:
 			count += 1
 	return count
+
+func get_shard_slot_for_minion(saveName: String) -> InventorySlot:
+	for slot in inventorySlots:
+		if slot.item is Shard:
+			var shard = slot.item as Shard
+			if shard.combatantSaveName == saveName:
+				return slot
+	return null
 
 func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
 	var previousCount: int = inventorySlot.count

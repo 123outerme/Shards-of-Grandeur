@@ -8,6 +8,7 @@ signal back_pressed
 @export var stats: Stats = null
 @export var curHp: int = -1
 @export var levelUp: bool = false
+@export var newLvs: int = 0
 @export var readOnly: bool = false
 @export var isPlayer: bool = false
 
@@ -15,7 +16,6 @@ var isMinionStats: bool = false
 var minion: Combatant = null
 var savedStats: Stats = null
 var savedCurHp: int = -1
-var savedLvUp: bool = false
 var savedIsPlayer: bool = false
 var changingCombatant: bool = false
 
@@ -46,6 +46,8 @@ func toggle():
 		moveListPanel.moveDetailsPanel.visible = false
 		editMovesPanel.hide_panel()
 		backButton.disabled = false
+		savedStats = null
+		minion = null
 		back_pressed.emit()
 
 func initial_focus():
@@ -80,9 +82,11 @@ func load_stats_panel(fromToggle: bool = false):
 	statlinePanel.stats = stats
 	statlinePanel.curHp = curHp
 	statlinePanel.readOnly = readOnly
+	statlinePanel.levelUp = levelUp
+	statlinePanel.newLvs = newLvs
 	statlinePanel.load_statline_panel(changingCombatant or fromToggle)
 	moveListPanel.moves = stats.moves
-	moveListPanel.movepool = stats.movepool
+	moveListPanel.movepool = stats.movepool.pool
 	moveListPanel.readOnly = readOnly
 	moveListPanel.load_move_list_panel()
 	equipmentPanel.weapon = stats.equippedWeapon
@@ -98,7 +102,6 @@ func restore_previous_stats_panel():
 	stats = savedStats
 	minion = null
 	curHp = savedCurHp
-	levelUp = savedLvUp
 	isPlayer = savedIsPlayer
 	isMinionStats = false
 	changingCombatant = true
@@ -110,7 +113,7 @@ func reset_panel_to_player():
 		restore_previous_stats_panel()
 
 func _on_back_button_pressed():
-	if not isMinionStats:
+	if not isMinionStats or savedStats == null:
 		toggle()
 	else:
 		restore_previous_stats_panel()
@@ -123,19 +126,15 @@ func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool, move: 
 	else:
 		restore_previous_focus()
 
-
-
 func _on_minions_panel_stats_clicked(combatant: Combatant):
 	previousControl = minionsPanel.get_stats_button_for(combatant)
 	savedStats = stats
 	savedCurHp = curHp
-	savedLvUp = levelUp
 	savedIsPlayer = isPlayer
 	if combatant != null and combatant.stats != null:
 		minion = combatant
 		stats = combatant.stats
 		curHp = -1
-		levelUp = false
 		isPlayer = false
 		isMinionStats = true
 		changingCombatant = true
@@ -145,7 +144,7 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 func _on_move_list_panel_edit_moves():
 	previousControl = moveListPanel.editMovesButton
 	editMovesPanel.moves = stats.moves
-	editMovesPanel.movepool = stats.movepool
+	editMovesPanel.movepool = stats.movepool.pool
 	editMovesPanel.level = stats.level
 	editMovesPanel.load_edit_moves_panel()
 	backButton.disabled = true

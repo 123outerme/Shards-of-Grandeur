@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ngepj"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_q0ynk"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_wwg5g"]
-[ext_resource type="Script" path="res://scripts/battle/stats.gd" id="3_jpupe"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_jpupe"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_tcx1r"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="4_w518t"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="7_mwna2"]
@@ -72,6 +72,7 @@ navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_aus05")
 currentHp = -1
+friendship = 0.0
 aiType = 4
 aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])

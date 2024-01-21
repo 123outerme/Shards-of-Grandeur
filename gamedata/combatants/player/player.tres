@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=10 format=3 uid="uid://bcx60u36qshvn"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_t36dj"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_ik1bj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_8pi6r"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice.tres" id="3_ichbu"]
+[ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="4_5v7g1"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast.tres" id="4_aasog"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="5_huux8"]
+
+[sub_resource type="Resource" id="Resource_5jl4o"]
+script = ExtResource("5_huux8")
+pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("3_ichbu"), ExtResource("4_aasog")])
+
+[sub_resource type="Resource" id="Resource_x3k1c"]
+script = ExtResource("3_8pi6r")
+displayName = "Player"
+saveName = "player"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("4_5v7g1")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("3_ichbu"), ExtResource("4_aasog")])
+movepool = SubResource("Resource_5jl4o")
+
+[resource]
+script = ExtResource("1_t36dj")
+spriteFrames = ExtResource("2_ik1bj")
+maxSize = Vector2(16, 16)
+spriteFacesRight = true
+navigationLayer = 1
+nickname = ""
+stats = SubResource("Resource_x3k1c")
+currentHp = -1
+friendship = 0.0
+maxFriendship = 30.0
+aiType = 0
+aiOverrideWeight = 0.0
+equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
+dropTable = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+innateStatCategories = Array[int]([])
+downed = false
