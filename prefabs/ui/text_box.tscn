@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx00oa0dadpvj"]
+[gd_scene load_steps=10 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
+[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_bg1mx"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_qnltp"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_00gxq"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="4_5mpbg"]
@@ -12,6 +13,7 @@
 
 [node name="TextBoxRoot" type="Node2D" node_paths=PackedStringArray("buttonRow")]
 script = ExtResource("1_osatr")
+advanceDialogueSfx = ExtResource("2_bg1mx")
 buttonRow = NodePath("Panel/HBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]

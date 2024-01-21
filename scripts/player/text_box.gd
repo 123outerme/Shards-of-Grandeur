@@ -1,6 +1,8 @@
 extends Node2D
 class_name TextBox
 
+@export var textScrollSfx: AudioStream = null
+@export var advanceDialogueSfx: AudioStream = null
 @export var buttonRow: HBoxContainer
 
 var dialogueItem: DialogueItem = null
@@ -29,9 +31,11 @@ func _process(delta):
 		if TextBoxText.visible_characters < len(TextBoxText.text):
 			text_visible_chars_partial += chars_per_sec * delta
 			TextBoxText.visible_characters = min(round(text_visible_chars_partial), len(TextBoxText.text))
+			SceneLoader.audioHandler.play_sfx(textScrollSfx)
 		else:
 			add_choices()
 			ReadySprite.visible = true
+			SceneLoader.audioHandler.stop_sfx(textScrollSfx)
 
 func set_textbox_text(text: String, speaker: String):
 	advance_textbox(text)
@@ -51,6 +55,7 @@ func advance_textbox(text: String):
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
+	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
 	delete_choices()
 
 func is_textbox_complete() -> bool:
@@ -121,6 +126,7 @@ func hide_textbox():
 func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
+	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
 	add_choices()
 
 func _viewport_focus_changed(control):

@@ -3,6 +3,7 @@ extends Control
 var playerName: String = 'Player'
 
 @export var mainMenuMusic: AudioStream
+@export var crossFadeMusic: AudioStream
 
 @onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
@@ -53,7 +54,7 @@ func _on_settings_button_pressed():
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
-	SceneLoader.audioHandler.fade_out_music()
+	SceneLoader.audioHandler.cross_fade(crossFadeMusic, 2.5)
 	SaveHandler.load_data()
 	SceneLoader.load_game()
 

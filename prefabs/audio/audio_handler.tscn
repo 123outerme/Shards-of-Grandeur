@@ -6,12 +6,15 @@
 [node name="AudioHandler" type="Node"]
 script = ExtResource("1_mwumm")
 
-[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicStreamPlayer1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_nm6ff")
 bus = &"music"
+
+[node name="MusicStreamPlayer2" type="AudioStreamPlayer" parent="."]
 
 [node name="SfxStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"sfx"
 
-[connection signal="finished" from="MusicStreamPlayer" to="." method="_on_music_stream_player_finished"]
+[connection signal="finished" from="MusicStreamPlayer1" to="." method="_on_music_stream_player_1_finished"]
+[connection signal="finished" from="MusicStreamPlayer2" to="." method="_on_music_stream_player_2_finished"]
 [connection signal="finished" from="SfxStreamPlayer" to="." method="_on_sfx_stream_player_finished"]
