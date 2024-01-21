@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://chvnypy23ib4r"]
+[gd_scene load_steps=16 format=3 uid="uid://chvnypy23ib4r"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_8b8lx"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/summon_minion_list_panel.gd" id="1_igi3n"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="3_igvxn"]
 [ext_resource type="Texture2D" uid="uid://35ye7k3xtbym" path="res://graphics/items/rat_shard.png" id="5_b2wr6"]
 [ext_resource type="Texture2D" uid="uid://ctdllnet8oklb" path="res://graphics/ui/unlocked_shard_flicker.png" id="6_pprgt"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_yix20"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3j7uu"]
 atlas = ExtResource("6_pprgt")
@@ -210,12 +211,12 @@ layout_mode = 2
 theme = ExtResource("3_igvxn")
 alignment = 2
 
-[node name="StatsButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_yix20")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Stats"
 
-[node name="SummonButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="SummonButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_yix20")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Summon"

@@ -37,8 +37,12 @@ func _on_back_button_pressed():
 
 func _on_controls_button_toggled(toggled_on):
 	controlsSection.toggle_section(toggled_on)
-	audioSection.toggle_section(false)
+	if toggled_on:
+		audioSection.toggle_section(false)
+		audioButton.button_pressed = false
 
 func _on_audio_button_toggled(toggled_on):
 	audioSection.toggle_section(toggled_on)
-	controlsSection.toggle_section(false)
+	if toggled_on:
+		controlsSection.toggle_section(false)
+		controlsButton.button_pressed = false

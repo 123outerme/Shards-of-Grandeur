@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=11 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_vg3x4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://prefabs/ui/stats/equipment_panel.tscn" id="7_dsgm0"]
 [ext_resource type="PackedScene" uid="uid://dqtu7xjqahxq" path="res://prefabs/ui/stats/minions_panel.tscn" id="8_3o74c"]
 [ext_resource type="PackedScene" uid="uid://cm57i83oiea42" path="res://prefabs/ui/stats/edit_moves_panel.tscn" id="9_ue80h"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="10_sd4fn"]
 
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_gd13l")
@@ -123,7 +124,7 @@ offset_bottom = -76.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="BackButton" type="Button" parent="StatsPanel/Panel"]
+[node name="BackButton" parent="StatsPanel/Panel" instance=ExtResource("10_sd4fn")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

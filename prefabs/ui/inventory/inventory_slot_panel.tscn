@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://xascm0kyyw75"]
+[gd_scene load_steps=9 format=3 uid="uid://xascm0kyyw75"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_b0c2f"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_slot_panel.gd" id="2_6x7us"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_4ev4x"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="5_yl2n0"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="7_5a212"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_ygii6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8w3s"]
 atlas = ExtResource("3_1rgqi")
@@ -135,37 +136,37 @@ layout_mode = 2
 theme = ExtResource("7_5a212")
 alignment = 2
 
-[node name="UseButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="UseButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Use"
 
-[node name="EquipButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="EquipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Equip"
 
-[node name="UnequipButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="UnequipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 layout_mode = 2
 text = "Unequip"
 
-[node name="TrashButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="TrashButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Trash"
 
-[node name="BuyButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="BuyButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Buy"
 
-[node name="SellButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="SellButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Sell
 "
 
-[node name="DetailsButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="DetailsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Details"

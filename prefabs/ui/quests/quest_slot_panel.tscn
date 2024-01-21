@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djlw8n7ljagv2"]
+[gd_scene load_steps=10 format=3 uid="uid://c0pabkbh8cts7"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_o51tf"]
 [ext_resource type="Script" path="res://scripts/menus/quests_panel/quest_slot_panel.gd" id="2_6ihcm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cb2v3o0a0i0ws" path="res://graphics/ui/quest_pin_pinned.png" id="4_qbidu"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="5_dyn82"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="8_s26vb"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_ukgg4"]
 
 [node name="QuestSlotPanel" type="Panel" groups=["QuestSlotPanel"]]
 custom_minimum_size = Vector2(1120, 76)
@@ -105,17 +106,20 @@ position = Vector2(24, 25)
 scale = Vector2(3, 3)
 texture = ExtResource("8_s26vb")
 
-[node name="TurnInButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="TurnInButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("9_ukgg4")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../PinButton")
 text = "Turn In"
 
-[node name="DetailsButton" type="Button" parent="CenterButtons/HBoxContainer"]
+[node name="DetailsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("9_ukgg4")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath("../TurnInButton")
 text = "Details"
+
+[node name="SfxButton" parent="." instance=ExtResource("9_ukgg4")]
+layout_mode = 0
 
 [connection signal="toggled" from="PinButton" to="." method="_on_pin_button_toggled"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/TurnInButton" to="." method="_on_turn_in_button_pressed"]

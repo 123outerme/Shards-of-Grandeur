@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqtu7xjqahxq"]
+[gd_scene load_steps=5 format=3 uid="uid://dqtu7xjqahxq"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_tlgo2"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_1odjq"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/minions_panel/minions_panel.gd" id="3_e76mr"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_gjbxj"]
 
 [node name="MinionsPanel" type="Panel"]
-offset_right = 560.0
 offset_bottom = 355.0
 theme = ExtResource("1_tlgo2")
 theme_override_styles/panel = ExtResource("2_1odjq")
@@ -97,18 +97,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="EditButton" type="Button" parent="MinionView/NameFormControls"]
+[node name="EditButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Edit"
 
-[node name="ConfirmButton" type="Button" parent="MinionView/NameFormControls"]
+[node name="ConfirmButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
 visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Confirm"
 
-[node name="CancelButton" type="Button" parent="MinionView/NameFormControls"]
+[node name="CancelButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
 visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2

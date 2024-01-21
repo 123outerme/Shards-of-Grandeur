@@ -1,6 +1,8 @@
 extends Control
 class_name AudioSection
 
+@export var sfxIncreaseTestSound: AudioStream = null
+
 @onready var musicVolumeLabel: RichTextLabel = get_node('Control/MusicVolumeControl/MusicVolumeLabel')
 @onready var musicVolumeSlider: HSlider = get_node('Control/MusicVolumeControl/MusicVolumeSlider')
 @onready var sfxVolumeLabel: RichTextLabel = get_node('Control/SfxVolumeControl/SfxVolumeLabel')
@@ -32,3 +34,5 @@ func _on_sfx_volume_slider_value_changed(value):
 	SettingsHandler.gameSettings.sfxVolume = value
 	SceneLoader.audioHandler.load_audio_settings()
 	update_texts()
+	if sfxIncreaseTestSound != null:
+		SceneLoader.audioHandler.play_sfx(sfxIncreaseTestSound)

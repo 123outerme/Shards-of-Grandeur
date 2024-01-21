@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://chpi5qfgk1cqj"]
+
+[ext_resource type="Script" path="res://scripts/menus/sfx_button.gd" id="1_ljqd6"]
+[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_8dwoe"]
+
+[node name="SfxButton" type="Button"]
+script = ExtResource("1_ljqd6")
+sfx = ExtResource("2_8dwoe")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

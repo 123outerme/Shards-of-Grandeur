@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=24 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -7,13 +7,14 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_gcm1q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_ghrgg"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_oisw1"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/moves_menu.gd" id="9_fgnxg"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/targets.gd" id="9_qy758"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="10_4t0i5"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_panels.gd" id="10_7n25e"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_ui.gd" id="10_ier4v"]
-[ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://prefabs/ui/quests/quests_panel.tscn" id="11_05pqh"]
+[ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="11_05pqh"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="12_ip5fm"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
@@ -113,7 +114,7 @@ bbcode_enabled = true
 text = "[center]Would you like to summon a minion?[/center]"
 fit_content = true
 
-[node name="YesSummon" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+[node name="YesSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -130,7 +131,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Summon"
 
-[node name="NoSummon" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+[node name="NoSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -171,7 +172,7 @@ bbcode_enabled = true
 text = "[center]Command Player Name Here[/center]"
 fit_content = true
 
-[node name="MovesButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="MovesButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -188,7 +189,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Moves"
 
-[node name="InventoryButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -205,7 +206,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Inventory"
 
-[node name="GuardButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="GuardButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -221,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Guard"
 
-[node name="EscapeButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -237,7 +238,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Escape"
 
-[node name="BackToPlayerButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="BackToPlayerButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 7
@@ -260,7 +261,7 @@ layout_mode = 2
 script = ExtResource("9_fgnxg")
 battleUI = NodePath("../../../..")
 
-[node name="MoveButton1" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+[node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -277,7 +278,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "-----"
 
-[node name="MoveButton2" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+[node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -294,7 +295,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "-----"
 
-[node name="MoveButton3" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+[node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -310,7 +311,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "-----"
 
-[node name="MoveButton4" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+[node name="MoveButton4" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -326,7 +327,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "-----"
 
-[node name="BackButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves"]
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -390,7 +391,7 @@ bbcode_enabled = true
 text = "[center]Player Name, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
 fit_content = true
 
-[node name="ConfirmButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -406,7 +407,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Confirm"
 
-[node name="BackButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -435,7 +436,7 @@ anchor_bottom = 0.696
 offset_bottom = 0.095993
 text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. Every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
 
-[node name="OkButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 7
@@ -525,7 +526,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]You escaped successfully![/center]"
 
-[node name="OkButton" type="Button" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 30)
 layout_mode = 1
 anchors_preset = 7
@@ -560,7 +561,7 @@ theme = ExtResource("5_3llq4")
 script = ExtResource("14_wt520")
 battleController = NodePath("../../..")
 
-[node name="ToggleFobButton" type="Button" parent="BattleCam/UIPanels/FlowOfBattle"]
+[node name="ToggleFobButton" parent="BattleCam/UIPanels/FlowOfBattle" instance=ExtResource("8_oisw1")]
 layout_mode = 2
 anchor_left = 1.0
 anchor_right = 1.0

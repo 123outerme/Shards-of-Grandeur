@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl2b2giyrbc0i"]
+[gd_scene load_steps=10 format=3 uid="uid://cl2b2giyrbc0i"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stat_line_panel.gd" id="1_3asyh"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_o2kql"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="4_34jrd"]
 [ext_resource type="Theme" uid="uid://bi35gj3oigaai" path="res://themes/nested_ui/stat_line_panel_theme.tres" id="4_nb4ah"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="5_32krc"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_n7dxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qr2f1"]
 atlas = ExtResource("5_32krc")
@@ -236,7 +237,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
+[node name="IncreaseButton" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_right = NodePath("../DecreaseButton")
@@ -244,7 +245,7 @@ focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox"]
+[node name="DecreaseButton" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
@@ -340,7 +341,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
+[node name="IncreaseButton" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
@@ -349,7 +350,7 @@ focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox"]
+[node name="DecreaseButton" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
@@ -446,7 +447,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
+[node name="IncreaseButton" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
@@ -455,7 +456,7 @@ focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHB
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox"]
+[node name="DecreaseButton" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
@@ -552,7 +553,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
+[node name="IncreaseButton" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
@@ -561,7 +562,7 @@ focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/In
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox"]
+[node name="DecreaseButton" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
@@ -654,7 +655,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="IncreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
+[node name="IncreaseButton" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
@@ -663,7 +664,7 @@ focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/SaveCha
 icon = SubResource("AtlasTexture_qr2f1")
 expand_icon = true
 
-[node name="DecreaseButton" type="Button" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox"]
+[node name="DecreaseButton" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
@@ -742,7 +743,7 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="SaveChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+[node name="SaveChangesButton" parent="StatsVBox/StatPtsDisplay/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(68, 32)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
@@ -751,7 +752,7 @@ theme = ExtResource("1_o2kql")
 text = "Save"
 expand_icon = true
 
-[node name="CancelChangesButton" type="Button" parent="StatsVBox/StatPtsDisplay/ButtonsHBox"]
+[node name="CancelChangesButton" parent="StatsVBox/StatPtsDisplay/ButtonsHBox" instance=ExtResource("7_n7dxl")]
 custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../SaveChangesButton")

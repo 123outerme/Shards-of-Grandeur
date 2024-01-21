@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=13 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
 [ext_resource type="Script" path="res://scripts/player/player_camera.gd" id="3_r2wma"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_f4mx3"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_354d4"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="5_q82jg"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="6_gev0q"]
-[ext_resource type="PackedScene" uid="uid://qv1m7rspcxl3" path="res://prefabs/ui/quests/quests_panel.tscn" id="7_afh8o"]
+[ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="7_afh8o"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="8_cq6oo"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="9_n4log"]
 
@@ -127,11 +128,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="ResumeButton" type="Button" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons"]
+[node name="ResumeButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 layout_mode = 2
 text = "Resume"
 
-[node name="SkipButton" type="Button" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons"]
+[node name="SkipButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 layout_mode = 2
 text = "Skip Cutscene"
 

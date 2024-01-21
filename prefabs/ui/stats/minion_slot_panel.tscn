@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://84ixct37xa74"]
+[gd_scene load_steps=7 format=3 uid="uid://84ixct37xa74"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/minions_panel/minion_slot_panel.gd" id="1_mfddu"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_nhnmf"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="3_ahsj7"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_2cbfe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjlhe"]
 
@@ -62,7 +63,7 @@ position = Vector2(16, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ahsj7")
 
-[node name="StatsButton" type="Button" parent="."]
+[node name="StatsButton" parent="." instance=ExtResource("4_2cbfe")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

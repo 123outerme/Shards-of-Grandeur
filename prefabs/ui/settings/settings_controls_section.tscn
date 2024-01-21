@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd7nav8wrqxc1"]
+[gd_scene load_steps=5 format=3 uid="uid://cd7nav8wrqxc1"]
 
 [ext_resource type="Script" path="res://scripts/menus/settings_menu/controls_section.gd" id="1_scvx6"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="2_st8ug"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_w6cj5"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_bb6at"]
 
 [node name="ControlsSection" type="Control"]
 layout_mode = 3
@@ -52,17 +53,17 @@ offset_right = 290.0
 offset_bottom = 44.0
 theme_override_constants/separation = 12
 
-[node name="SaveButton" type="Button" parent="TabContainer/Keyboard/Buttons/HBoxContainer"]
+[node name="SaveButton" parent="TabContainer/Keyboard/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../../UpKey/ChangeButton1")
 text = "Save"
 
-[node name="CancelButton" type="Button" parent="TabContainer/Keyboard/Buttons/HBoxContainer"]
+[node name="CancelButton" parent="TabContainer/Keyboard/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../../UpKey/ChangeButton1")
 text = "Cancel"
 
-[node name="DefaultButton" type="Button" parent="TabContainer/Keyboard/Buttons/HBoxContainer"]
+[node name="DefaultButton" parent="TabContainer/Keyboard/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../../UpKey/ChangeButton1")
 text = "Clear & Set Default"
@@ -163,7 +164,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/UpKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/UpKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -199,7 +200,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/UpKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/UpKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -218,7 +219,7 @@ text = "Change"
 metadata/action = "move_up"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/UpKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/UpKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -266,7 +267,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/LeftKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/LeftKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -301,7 +302,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/LeftKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/LeftKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -319,7 +320,7 @@ text = "Change"
 metadata/action = "move_left"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/LeftKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/LeftKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -367,7 +368,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/DownKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/DownKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -402,7 +403,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/DownKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/DownKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -420,7 +421,7 @@ text = "Change"
 metadata/action = "move_down"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/DownKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/DownKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -468,7 +469,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/RightKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/RightKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -503,7 +504,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/RightKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/RightKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -521,7 +522,7 @@ text = "Change"
 metadata/action = "move_right"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/RightKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/RightKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -569,7 +570,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/InteractKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/InteractKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -604,7 +605,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/InteractKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/InteractKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -622,7 +623,7 @@ text = "Change"
 metadata/action = "game_interact"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/InteractKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/InteractKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -670,7 +671,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/DeclineKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/DeclineKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -705,7 +706,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/DeclineKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/DeclineKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -723,7 +724,7 @@ text = "Change"
 metadata/action = "game_decline"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/DeclineKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/DeclineKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -771,7 +772,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/InventoryKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/InventoryKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -806,7 +807,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/InventoryKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/InventoryKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -824,7 +825,7 @@ text = "Change"
 metadata/action = "game_inventory"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/InventoryKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/InventoryKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -872,7 +873,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/QuestsKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/QuestsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -907,7 +908,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/QuestsKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/QuestsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -925,7 +926,7 @@ text = "Change"
 metadata/action = "game_quests"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/QuestsKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/QuestsKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -973,7 +974,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/StatsKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/StatsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1008,7 +1009,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/StatsKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/StatsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1026,7 +1027,7 @@ text = "Change"
 metadata/action = "game_stats"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/StatsKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/StatsKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1074,7 +1075,7 @@ bbcode_enabled = true
 text = "[center]W[/center]"
 fit_content = true
 
-[node name="ChangeButton1" type="Button" parent="TabContainer/Keyboard/PauseKey" groups=["ChangeButton"]]
+[node name="ChangeButton1" parent="TabContainer/Keyboard/PauseKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1109,7 +1110,7 @@ bbcode_enabled = true
 text = "[center]Up[/center]"
 fit_content = true
 
-[node name="ChangeButton2" type="Button" parent="TabContainer/Keyboard/PauseKey" groups=["ChangeButton"]]
+[node name="ChangeButton2" parent="TabContainer/Keyboard/PauseKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1127,7 +1128,7 @@ text = "Change"
 metadata/action = "game_pause"
 metadata/index = 2
 
-[node name="ClearSecondaryButton" type="Button" parent="TabContainer/Keyboard/PauseKey"]
+[node name="ClearSecondaryButton" parent="TabContainer/Keyboard/PauseKey" instance=ExtResource("4_bb6at")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

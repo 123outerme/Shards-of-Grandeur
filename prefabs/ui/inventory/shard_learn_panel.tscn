@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmj1y0ptr5di5"]
+[gd_scene load_steps=9 format=3 uid="uid://dmj1y0ptr5di5"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7lyj1"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_learn_panel.gd" id="2_v8r8a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_uqnbk"]
 [ext_resource type="PackedScene" uid="uid://caulhsqfxcmcu" path="res://prefabs/ui/stats/move_pool_panel.tscn" id="5_nxxmf"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="6_atxhp"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_st60c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7xvj"]
 atlas = ExtResource("3_lhjo7")
@@ -69,7 +70,7 @@ offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" type="Button" parent="Panel"]
+[node name="BackButton" parent="Panel" instance=ExtResource("7_st60c")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

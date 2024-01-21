@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=11 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://graphics/items/book.png" id="6_ebqie"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="7_vgjg1"]
 [ext_resource type="Texture2D" uid="uid://68gav8dpyr0p" path="res://graphics/structures/house.png" id="8_apdct"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_clpva"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="9_y122n"]
 
 [node name="PauseMenu" type="Node2D"]
@@ -58,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="ResumeButton" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="ResumeButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 focus_neighbor_top = NodePath("../SaveQuitButton")
@@ -66,7 +67,7 @@ text = "Resume"
 icon = ExtResource("4_4mcnc")
 expand_icon = true
 
-[node name="MapButton" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="MapButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 disabled = true
@@ -74,7 +75,7 @@ text = "Map"
 icon = ExtResource("5_vfawn")
 expand_icon = true
 
-[node name="CodexButton" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="CodexButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 disabled = true
@@ -82,14 +83,14 @@ text = "Codex"
 icon = ExtResource("6_ebqie")
 expand_icon = true
 
-[node name="SettingsButton" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="SettingsButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 text = "Settings"
 icon = ExtResource("7_vgjg1")
 expand_icon = true
 
-[node name="SaveQuitButton" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="SaveQuitButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ResumeButton")

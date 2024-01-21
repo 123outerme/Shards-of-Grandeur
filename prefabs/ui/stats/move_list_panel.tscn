@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://di4m6wwpbc3pl"]
+[gd_scene load_steps=7 format=3 uid="uid://di4m6wwpbc3pl"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_luq84"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_m0c67"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_list_panel.gd" id="3_ejc2m"]
 [ext_resource type="PackedScene" uid="uid://634c2d1oqhb3" path="res://prefabs/ui/stats/move_list_item_panel.tscn" id="4_g83xo"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="5_jgexd"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_kx188"]
 
 [node name="MoveListPanel" type="Panel"]
 offset_right = 560.0
@@ -41,7 +42,7 @@ moveSlot = 2
 layout_mode = 2
 moveSlot = 3
 
-[node name="EditMovesButton" type="Button" parent="."]
+[node name="EditMovesButton" parent="." instance=ExtResource("6_kx188")]
 layout_mode = 2
 anchor_left = 0.5
 anchor_top = 1.0

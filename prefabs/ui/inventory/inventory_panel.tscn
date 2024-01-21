@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=10 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_ay1wk"]
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
 
 [node name="InventoryPanelNode" type="Node2D"]
 script = ExtResource("1_b8tdp")
@@ -87,7 +88,7 @@ grow_vertical = 2
 text = "456,789"
 fit_content = true
 
-[node name="ToggleShopInventoryButton" type="Button" parent="InventoryPanel/Panel"]
+[node name="ToggleShopInventoryButton" parent="InventoryPanel/Panel" instance=ExtResource("9_vr3fk")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -113,27 +114,27 @@ grow_horizontal = 2
 theme = ExtResource("5_msabb")
 alignment = 1
 
-[node name="HealingButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+[node name="HealingButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
 text = "Healing"
 
-[node name="ShardsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+[node name="ShardsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
 text = "Shards"
 
-[node name="WeaponsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+[node name="WeaponsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
 text = "Weapons"
 
-[node name="ArmorButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+[node name="ArmorButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
 text = "Armor"
 
-[node name="KeyItemsButton" type="Button" parent="InventoryPanel/Panel/HBoxContainer"]
+[node name="KeyItemsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
 text = "Key Items"
@@ -156,7 +157,7 @@ custom_minimum_size = Vector2(1120, 76)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BackButton" type="Button" parent="InventoryPanel/Panel"]
+[node name="BackButton" parent="InventoryPanel/Panel" instance=ExtResource("9_vr3fk")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

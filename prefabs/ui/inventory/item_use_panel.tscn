@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ie2m5n6k0qjg"]
+[gd_scene load_steps=7 format=3 uid="uid://ie2m5n6k0qjg"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_use_panel.gd" id="1_c7w7n"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_oq36k"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_d1bpa"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="3_wvv33"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_k8tae"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_la3b7"]
 atlas = ExtResource("3_wvv33")
@@ -69,7 +70,7 @@ theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
 text = "The item was used, and these were the effects. For example, using a Potion would heal the user by some amount of HP. Just making sure the user knows that this is the effect! Flavor might also be appropriate here, especially for things like using Key Items."
 
-[node name="OkButton" type="Button" parent="Panel"]
+[node name="OkButton" parent="Panel" instance=ExtResource("5_k8tae")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

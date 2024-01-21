@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://634c2d1oqhb3"]
+[gd_scene load_steps=5 format=3 uid="uid://634c2d1oqhb3"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7pta3"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_list_item_panel.gd" id="2_qpcow"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="3_ybytg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0w5j"]
 
@@ -53,7 +54,7 @@ bbcode_enabled = true
 text = "Physical"
 fit_content = true
 
-[node name="DetailsButton" type="Button" parent="."]
+[node name="DetailsButton" parent="." instance=ExtResource("3_ybytg")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -69,7 +70,7 @@ grow_vertical = 2
 focus_neighbor_right = NodePath(".")
 text = "Details"
 
-[node name="ReplaceButton" type="Button" parent="."]
+[node name="ReplaceButton" parent="." instance=ExtResource("3_ybytg")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 6
@@ -86,7 +87,7 @@ grow_vertical = 2
 focus_neighbor_left = NodePath(".")
 text = "Replace"
 
-[node name="ReorderButton" type="Button" parent="."]
+[node name="ReorderButton" parent="." instance=ExtResource("3_ybytg")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 6
@@ -104,7 +105,7 @@ focus_neighbor_left = NodePath(".")
 text = "Reorder
 "
 
-[node name="SelectButton" type="Button" parent="."]
+[node name="SelectButton" parent="." instance=ExtResource("3_ybytg")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 6
@@ -121,7 +122,7 @@ grow_vertical = 2
 focus_neighbor_left = NodePath(".")
 text = "Select"
 
-[node name="LearnButton" type="Button" parent="."]
+[node name="LearnButton" parent="." instance=ExtResource("3_ybytg")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 6
@@ -138,7 +139,7 @@ grow_vertical = 2
 focus_neighbor_left = NodePath(".")
 text = "Learn"
 
-[node name="CancelButton" type="Button" parent="."]
+[node name="CancelButton" parent="." instance=ExtResource("3_ybytg")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 6

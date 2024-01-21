@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfqwn58f1kvle"]
+[gd_scene load_steps=6 format=3 uid="uid://drk83hqtne0tp"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_g68vy"]
 [ext_resource type="Script" path="res://scripts/quests/quest_reward_panel.gd" id="2_2xvbt"]
 [ext_resource type="PackedScene" uid="uid://b11xiyik10j7i" path="res://prefabs/ui/reward_panel.tscn" id="2_bdbld"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_xp6ow"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_ug33o"]
 
 [node name="QuestRewardPanel" type="Control"]
 layout_mode = 3
@@ -62,7 +63,7 @@ bbcode_enabled = true
 text = "[center]No Rewards...[/center]"
 fit_content = true
 
-[node name="OkButton" type="Button" parent="Panel"]
+[node name="OkButton" parent="Panel" instance=ExtResource("5_ug33o")]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 7
