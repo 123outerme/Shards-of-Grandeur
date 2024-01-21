@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d23cu31e8s3s6"]
+[gd_scene load_steps=10 format=3 uid="uid://d23cu31e8s3s6"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_75e18"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_8n2sy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="5_llr4b"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_7fgnm"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="6_p8706"]
+[ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="8_e7n8f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrdm0"]
 atlas = ExtResource("5_llr4b")
@@ -39,7 +40,7 @@ offset_bottom = 26.0
 text = "Weapon:"
 fit_content = true
 
-[node name="WeaponSprite" type="TextureButton" parent="WeaponControl"]
+[node name="WeaponSprite" parent="WeaponControl" instance=ExtResource("8_e7n8f")]
 layout_mode = 1
 offset_top = 32.0
 offset_right = 32.0
@@ -87,7 +88,7 @@ offset_bottom = 26.0
 text = "Armor:"
 fit_content = true
 
-[node name="ArmorSprite" type="TextureButton" parent="ArmorControl"]
+[node name="ArmorSprite" parent="ArmorControl" instance=ExtResource("8_e7n8f")]
 layout_mode = 0
 offset_top = 32.0
 offset_right = 32.0

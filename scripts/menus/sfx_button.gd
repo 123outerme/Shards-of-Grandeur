@@ -1,4 +1,4 @@
-extends Button
+extends BaseButton
 class_name SFXButton
 
 @export var sfx: AudioStream = null

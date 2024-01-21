@@ -143,8 +143,6 @@ grow_horizontal = 1
 grow_vertical = 1
 itemDetailsPanel = NodePath("../QuestDetailsPanel/ItemDetailsPanel")
 
-[node name="SfxButton" parent="." instance=ExtResource("7_8xbdg")]
-
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/InProgressButton" to="." method="_on_in_progress_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/ReadyToTurnInButton" to="." method="_on_ready_to_turn_in_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/CompletedButton" to="." method="_on_completed_button_toggled"]
