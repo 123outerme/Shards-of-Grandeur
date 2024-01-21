@@ -1,6 +1,8 @@
 extends Node
 class_name CutscenePlayer
 
+signal cutscene_completed
+
 @export var cutscene: Cutscene = null
 @export var playing: bool = false
 @export var rootNode: Node = null
@@ -14,10 +16,11 @@ var isPaused: bool = false
 var isFadedOut: bool = false
 var isFadingIn: bool = false
 var completeAfterFadeIn: bool = false
+var skipCutsceneFrameIndex: int = -1
 
 func _process(delta):
-	if cutscene != null and playing and not isPaused:
-		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer)
+	if cutscene != null and playing and not isPaused and skipCutsceneFrameIndex == -1:
+		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer, lastFrame)
 		timer += delta
 		
 		if PlayerFinder.player.is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:
@@ -51,31 +54,36 @@ func _process(delta):
 		if frame == null: # end of cutscene
 			end_cutscene()
 			return
-		
+				
 		if lastFrame == frame:
 			return
 		
-		lastFrame = frame
-		tweens = []
-		for animSet in frame.actorAnimSets:
-			var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
-			if node != null and node.has_method('set_sprite_frames'):
-				node.call('set_sprite_frames', animSet.animationSet)
-		for animation in frame.actorAnims:
-			var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
-			if node != null and node.has_method('play_animation'):
-				node.call('play_animation', animation.animation)
-		for actorTween in frame.actorTweens:
-			if actorTween == null:
-				continue # skip null tweens
-			var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
-			if node == null:
-				continue # skip null actors
+		animate_next_frame(frame)
+		
+func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
+	lastFrame = frame
+	for animSet in frame.actorAnimSets:
+		var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
+		if node != null and node.has_method('set_sprite_frames'):
+			node.call('set_sprite_frames', animSet.animationSet)
+	for animation in frame.actorAnims:
+		var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
+		if node != null and node.has_method('play_animation'):
+			node.call('play_animation', animation.animation)
+	for actorTween in frame.actorTweens:
+		if actorTween == null:
+			continue # skip null tweens
+		var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
+		if node == null:
+			continue # skip null actors
+		if not skipping:
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
 			tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
 			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
 				node.call('face_horiz', actorTween.value.x - node.position.x)
 			tweens.append(tween)
+		else:
+			node[actorTween.propertyName] = actorTween.value
 
 func start_cutscene(newCutscene: Cutscene):
 	if playing or (newCutscene.storyRequirements != null and not newCutscene.storyRequirements.is_valid()):
@@ -85,6 +93,7 @@ func start_cutscene(newCutscene: Cutscene):
 		npc.talkAlertSprite.visible = false
 	cutscene = newCutscene
 	timer = 0
+	skipCutsceneFrameIndex = -1
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
 	cutscene.calc_total_time()
 	playing = true
@@ -112,9 +121,28 @@ func pause_cutscene():
 	isPaused = true
 
 func resume_cutscene():
-	for tween in tweens:
-		tween.play()
+	for tween: Tween in tweens:
+		if tween.is_valid():
+			tween.play()
 	isPaused = false
+
+func skip_cutscene():
+	if cutscene == null:
+		return
+	
+	isPaused = false
+	PlayerFinder.player.cam.fade_out(_fade_out_complete, 0.1)
+	# reset textbox
+	PlayerFinder.player.textBox.hide_textbox()
+	PlayerFinder.player.set_talk_npc(null, true)
+	PlayerFinder.player.cutsceneTextIndex = 0
+	PlayerFinder.player.cutsceneLineIndex = 0
+	PlayerFinder.player.cutsceneTexts = []
+	# reset textbox END
+	isFadedOut = true
+	isFadingIn = false
+	timer = cutscene.totalTime
+	skipCutsceneFrameIndex = cutscene.get_index_for_frame(lastFrame)
 
 func toggle_pause_cutscene():
 	isPaused = not isPaused
@@ -124,7 +152,7 @@ func toggle_pause_cutscene():
 		resume_cutscene()
 
 func end_cutscene(force: bool = false):
-	if cutscene == null:
+	if cutscene == null or completeAfterFadeIn:
 		return
 	deactivate_actors_after()
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
@@ -156,6 +184,7 @@ func complete_cutscene():
 		playingFromTrigger.cutscene_finished(cutscene)
 		playingFromTrigger = null
 	cutscene = null
+	cutscene_completed.emit()
 
 func deactivate_actors_after():
 	if cutscene == null:
@@ -173,9 +202,19 @@ func _fade_out_complete():
 	if completeAfterFadeIn and not isFadingIn:
 		isFadingIn = true
 		PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
+	if skipCutsceneFrameIndex != -1:
+		skip_cutscene_process()
 
 func _fade_in_complete():
 	isFadedOut = false
 	isFadingIn = false
 	if completeAfterFadeIn:
 		complete_cutscene()
+
+func skip_cutscene_process():
+	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):
+		var frame: CutsceneFrame = cutscene.cutsceneFrames[idx]
+		animate_next_frame(frame, true)
+		await get_tree().process_frame
+	end_cutscene()
+	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)

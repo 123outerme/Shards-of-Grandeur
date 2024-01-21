@@ -15,6 +15,7 @@ class_name EnemySpawner
 var overworldEnemyScene = preload("res://prefabs/entities/overworld_enemy.tscn")
 var enemiesDir: String = 'enemies/'
 
+@onready var spawnArea: Area2D = get_node('SpawnArea')
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
 
 func _ready():

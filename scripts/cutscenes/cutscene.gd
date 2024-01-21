@@ -27,13 +27,22 @@ func _init(
 	deactivateActorsAfter = i_deactivateActorsAfter
 	givesQuest = i_givesQuest
 
-func get_keyframe_at_time(time: float) -> CutsceneFrame:
+func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> CutsceneFrame:
 	var accumulator: float = 0
+	var foundPrevFrame: bool = false
 	for frame in cutsceneFrames:
-		if time >= accumulator and time < accumulator + frame.frameLength:
+		if (time >= accumulator and time < accumulator + frame.frameLength) or foundPrevFrame:
 			return frame
+		if prevFrame == frame:
+			foundPrevFrame = true
 		accumulator += frame.frameLength
 	return null
+
+func get_index_for_frame(frame: CutsceneFrame) -> int:
+	for idx in range(len(cutsceneFrames)):
+		if frame == cutsceneFrames[idx]:
+			return idx
+	return -1
 
 func calc_total_time():
 	for frame in cutsceneFrames:

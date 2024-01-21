@@ -7,6 +7,9 @@ class_name PlayerCamera
 @onready var shadeColor: ColorRect = get_node("Shade/ColorRect")
 @onready var shadeLabel: RichTextLabel = get_node("Shade/ShadeLabel")
 
+@onready var cutscenePauseButtons: VBoxContainer = get_node('Shade/ShadeLabel/CutscenePauseButtons')
+@onready var resumeButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/ResumeButton')
+
 var cutscenePaused: bool = false
 
 var fadeInReady: bool = false
@@ -32,6 +35,7 @@ func show_letterbox(showing: bool = true):
 
 func fade_out(callback: Callable, duration: float = 0.5):
 	shade.visible = true
+	cutscenePauseButtons.visible = false
 	if fadeInTween != null and fadeInTween.is_valid():
 		interruptTween = true
 		fadeInTween.kill()
@@ -84,11 +88,24 @@ func connect_to_fade_in(callback: Callable):
 
 func toggle_cutscene_paused_shade():
 	cutscenePaused = not cutscenePaused
-	shade.visible = cutscenePaused
+	cutscenePauseButtons.visible = cutscenePaused
 	shadeLabel.text = '[center]Cutscene: Paused[/center]'
-	shadeLabel.visible = shade.visible
-	shadeLabel.modulate = Color(1, 1, 1, 1) # just in case fadein messed with it and didn't properly reset it
-	shadeColor.modulate = Color(0, 0, 0, 0.7)
+	if fadeInTween != null and fadeInTween.is_valid():
+		if cutscenePaused:
+			fadeInTween.pause()
+			fadeInReady = false
+		else:
+			fadeInReady = true
+			shadeLabel.text = ''
+		shade.visible = true
+		shadeLabel.visible = true
+	else:
+		shade.visible = cutscenePaused
+		shadeLabel.visible = shade.visible
+	if cutscenePaused:
+		shadeLabel.modulate = Color(1, 1, 1, 1) # just in case fadein messed with it and didn't properly reset it
+		shadeColor.modulate = Color(0, 0, 0, 0.7)
+		resumeButton.grab_focus()
 
 func _fade_out_complete():
 	if not interruptTween:
@@ -113,3 +130,16 @@ func _new_act_fade_out(callback: Callable):
 	shadeLabel.visible = true
 	await get_tree().create_timer(2.5).timeout
 	fade_in(callback)
+
+func _on_resume_button_pressed():
+	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
+		cutscenePlayer.toggle_pause_cutscene()
+	toggle_cutscene_paused_shade()
+	player.cutscenePaused = cutscenePaused
+
+func _on_skip_button_pressed():
+	shadeLabel.visible = false
+	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
+		cutscenePlayer.skip_cutscene()
+	cutscenePaused = false
+	player.cutscenePaused = false

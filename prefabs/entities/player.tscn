@@ -92,6 +92,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="ShadeLabel" type="RichTextLabel" parent="Camera/Shade"]
 visible = false
+clip_contents = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -110,6 +111,29 @@ theme = ExtResource("4_f4mx3")
 bbcode_enabled = true
 text = "[center]Cutscene: Paused[/center]"
 fit_content = true
+
+[node name="CutscenePauseButtons" type="VBoxContainer" parent="Camera/Shade/ShadeLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = 32.0
+offset_right = 125.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="ResumeButton" type="Button" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons"]
+layout_mode = 2
+text = "Resume"
+
+[node name="SkipButton" type="Button" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons"]
+layout_mode = 2
+text = "Skip Cutscene"
 
 [node name="PlayerEventCollider" type="Area2D" parent="."]
 collision_layer = 2
@@ -145,6 +169,8 @@ isPlayer = true
 visible = false
 position = Vector2(-640, -480)
 
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
 [connection signal="act_changed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_act_changed"]
 [connection signal="back_pressed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_back_pressed"]

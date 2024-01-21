@@ -108,6 +108,14 @@ func refocus_choice(choice: DialogueChoice = null):
 
 func hide_textbox():
 	visible = false
+	dialogueItem = null
+	SpeakerText.text = ''
+	TextBoxText.text = ''
+	SpeakerText.visible_characters = 0
+	speaker_visible_chars_partial = 0
+	TextBoxText.visible_characters = 0
+	text_visible_chars_partial = 0
+	ReadySprite.visible = false
 	delete_choices()
 
 func show_text_instant():
