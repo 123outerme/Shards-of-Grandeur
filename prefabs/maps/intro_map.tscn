@@ -39,10 +39,10 @@ items = Array[ExtResource("7_4in6g")]([SubResource("Resource_cvvun")])
 closesDialogue = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
-size = Vector2(64, 32)
+size = Vector2(64, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jasx5"]
-size = Vector2(72, 40)
+size = Vector2(34, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1862"]
 size = Vector2(64, 64)
@@ -158,8 +158,12 @@ animation = &"stand"
 position = Vector2(28, -18)
 
 [node name="ColliderShape" parent="TileMap/HorseCart" index="1"]
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_erjr7")
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="TalkArea" parent="TileMap/HorseCart" index="3"]
+position = Vector2(18, 8)
 
 [node name="TalkAreaShape" parent="TileMap/HorseCart/TalkArea" index="0"]
 shape = SubResource("RectangleShape2D_jasx5")

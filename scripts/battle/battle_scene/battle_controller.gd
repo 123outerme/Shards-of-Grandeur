@@ -257,6 +257,7 @@ func end_battle():
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
+	PlayerResources.playerInfo.staticEncounter = null # clear static encounter so other things can't trigger it
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
 	shadeTween.finished.connect(_fade_out_finish)

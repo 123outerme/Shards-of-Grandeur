@@ -47,6 +47,9 @@ func load_data(save_path):
 	var newData = spawnerData.load_data(save_path + enemiesDir)
 	if newData != null:
 		spawnerData = newData
+		var importantFight: bool = false
+		if staticEncounter != null:
+			importantFight = staticEncounter.bossBattle or not staticEncounter.canEscape
 		if spawnerData.enemyData != null:
 			enemy = overworldEnemyScene.instantiate()
 			enemy.spawner = self
@@ -54,11 +57,12 @@ func load_data(save_path):
 			enemy.homePoint = position
 			enemy.patrolRange = enemyPatrolRange
 			tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
-		if spawnerData.disabled:
+		if spawnerData.disabled or importantFight:
 			spawnerData.disabled = false # re-enable if this is the second time it's loaded after causing an encounter
 		if spawnerData.spawnedLastEncounter:
 			spawnerData.spawnedLastEncounter = false
-			spawnerData.disabled = true # disable if it caused the last encounter
+			if not importantFight:
+				spawnerData.disabled = true # disable if it caused the last encounter
 	if storyRequirements != null and not storyRequirements.is_valid():
 		spawnerData.disabled = true
 
