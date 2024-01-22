@@ -111,7 +111,7 @@ func _on_encounter_collider_area_entered(area):
 			PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
 			PlayerResources.playerInfo.staticEncounter = enemyData.staticEncounter
 			encounteredPlayer = true
-			SaveHandler.save_data()
-			SceneLoader.load_battle()
+			PlayerFinder.player.start_battle()
+			SceneLoader.pause_autonomous_movers()
 		else:
 			queue_free() # despawn enemy if encountered during a cutscene

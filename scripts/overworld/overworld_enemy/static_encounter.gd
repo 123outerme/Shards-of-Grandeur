@@ -15,6 +15,7 @@ class_name StaticEncounter
 @export var autoAllyMoves: Array[Move] = []
 @export var specialBattleId: String = ''
 @export var bossBattle: bool = false
+@export var canEscape: bool = true
 @export var rewards: Array[Reward] = []
 @export var useStaticRewards: bool = false
 
@@ -33,6 +34,7 @@ func _init(
 	i_autoAllyMoves: Array[Move] = [],
 	i_specialBattleId = '',
 	i_bossBattle = false,
+	i_canEscape = true,
 	i_rewards: Array[Reward] = [],
 	i_useRewards = false,
 ):
@@ -50,6 +52,6 @@ func _init(
 	autoAllyMoves = i_autoAllyMoves
 	specialBattleId = i_specialBattleId
 	bossBattle = i_bossBattle
-	
+	canEscape = i_canEscape
 	rewards = i_rewards
 	useStaticRewards = i_useRewards

@@ -40,7 +40,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	load_map(newMapName)
 
 func load_recover_map():
-	var mapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)	
+	var mapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)
 	PlayerResources.playerInfo.combatant.downed = false
 	if mapEntry != null:
 		player.disableMovement = true
@@ -64,6 +64,7 @@ func load_map(mapName: String):
 			PlayerResources.playerInfo.recoverMap = mapName
 		mapScene = load(newMapEntry.get_map_path())
 		mapEntry = newMapEntry
+		SceneLoader.curMapEntry = mapEntry
 	if mapScene == null:
 		printerr('Map ', mapName, ' could not be found!')
 		get_tree().quit(1)
@@ -105,6 +106,8 @@ func _fade_out_complete():
 	pass
 
 func _fade_in_complete():
+	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
+		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
 	PlayerFinder.player.collider.set_deferred('disabled', false)
 	
 func _map_loaded():

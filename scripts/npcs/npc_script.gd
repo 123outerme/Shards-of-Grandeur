@@ -139,14 +139,14 @@ func _on_talk_area_area_entered(area):
 		reset_dialogue()
 		if len(data.dialogueItems) > 0 and not player.inCutscene:
 			talkAlertSprite.visible = true
+			pause_movement()
+			face_player()
 		data.dialogueLine = -1
 
 func _on_talk_area_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		player.set_talk_npc(self, true)
-		if len(data.dialogueItems) == 0: # if dialogue is over when the player leaves
-			data.previousDisableMove = false # ensure movement is unpaused no matter what
-			unpause_movement()
+		unpause_movement()
 		talkAlertSprite.visible = false
 
 func get_cur_dialogue_item():
@@ -273,7 +273,7 @@ func pause_movement():
 	NavAgent.disableMovement = true
 	
 func unpause_movement():
-	NavAgent.disableMovement = data.previousDisableMove # unpause if previously was unpaused
+	NavAgent.disableMovement = false
 
 func face_player():
 	if facesPlayer:

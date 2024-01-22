@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=4 format=3 uid="uid://chnetnwoisn8l"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://chnetnwoisn8l"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_3yhi3"]
 [ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_5hfrw"]
+[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_aanyb"]
 
 [sub_resource type="Resource" id="Resource_nlqk2"]
 script = ExtResource("1_3yhi3")
 path = "standstill/standstill_inn"
+overworldTheme = ExtResource("1_aanyb")
+battleMapName = "forest_battle_map"
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_5hfrw")

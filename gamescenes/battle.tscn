@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=23 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
-[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_qkdsy"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="5_3llq4"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_gcm1q"]
@@ -29,44 +28,36 @@ bg_color = Color(0, 0, 0, 0.686275)
 [node name="Battle" type="Node2D" groups=["Persist", "Scenes"]]
 script = ExtResource("1_b2bd7")
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("2_qkdsy")
-format = 2
-layer_0/name = "Background"
-layer_0/z_index = -20
-layer_0/tile_data = PackedInt32Array(262134, 196612, 0, 327670, 196612, 0, 393206, 196612, 0, 458742, 196612, 0, 393225, 196612, 0, 327689, 196612, 0, 262153, 196612, 0, 196617, 196612, 0, 196598, 196612, 0, 131062, 196612, 0, 65526, 196612, 0, -10, 196612, 0, -65546, 196612, 0, -131082, 196612, 0, -196618, 196612, 0, -262154, 196612, 0, -327690, 196612, 0, -393226, 196612, 0, -458762, 196612, 0, -458761, 196612, 0, -458760, 196612, 0, -458759, 196612, 0, -458758, 196612, 0, -458757, 196612, 0, -458756, 196612, 0, -458755, 196612, 0, -458754, 196612, 0, -458753, 196612, 0, -524288, 196612, 0, -524287, 196612, 0, -524286, 196612, 0, -524285, 196612, 0, -524284, 196612, 0, -524283, 196612, 0, -524282, 196612, 0, -524281, 196612, 0, -524280, 196612, 0, -524279, 196612, 0, -458743, 196612, 0, -393207, 196612, 0, -327671, 196612, 0, -262135, 196612, 0, -196599, 196612, 0, -131063, 196612, 0, -65527, 196612, 0, 9, 196612, 0, 65545, 196612, 0, 131081, 196612, 0, 196602, 131075, 2, 131066, 131075, 0, 65530, 131075, 2, -6, 196611, 1, -65542, 65539, 1, -131078, 65539, 1, -196614, 65539, 0, -262150, 0, 0, -327686, 0, 0, -393222, 0, 0, -393223, 0, 0, -393224, 0, 0, -393225, 0, 0, -327689, 0, 0, -262153, 0, 0, -196617, 0, 0, -131081, 0, 0, -65545, 0, 0, -9, 0, 0, 65527, 0, 0, 131063, 0, 0, 196599, 0, 0, 327671, 0, 0, 393207, 0, 0, 458743, 196612, 0, 458744, 196612, 0, 393208, 0, 0, 327672, 0, 0, 196600, 0, 0, 131064, 0, 0, 65528, 3, 2, -8, 3, 1, -65544, 3, 1, -131080, 3, 0, -196616, 0, 0, -262152, 0, 0, -327688, 0, 0, -327687, 0, 0, -262151, 0, 0, -196615, 3, 0, -131079, 262147, 2, -65543, 65539, 1, -7, 65539, 1, 65529, 65539, 2, 131065, 3, 0, 196601, 3, 2, 327673, 0, 0, 393209, 0, 0, 458745, 196612, 0, 458746, 196612, 0, 393210, 0, 0, 327674, 0, 0, 327675, 0, 0, 196603, 0, 0, 131067, 0, 0, 65531, 0, 0, -5, 131075, 2, -65541, 131075, 1, -131077, 131075, 1, -196613, 131075, 0, -262149, 0, 0, -327685, 0, 0, -393221, 0, 0, -393220, 0, 0, -327684, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 196604, 0, 0, 393212, 0, 0, 393211, 0, 0, 458747, 196612, 0, 458748, 196612, 0, 458749, 196612, 0, 393213, 0, 0, 262141, 0, 0, 196605, 0, 0, 131069, 0, 0, 65533, 0, 0, -3, 0, 0, -65539, 0, 0, -131075, 0, 0, -196611, 0, 0, -262147, 0, 0, -327683, 0, 0, -393219, 0, 0, -393218, 0, 0, -327682, 0, 0, -262146, 3, 0, -196610, 3, 1, -131074, 3, 1, -65538, 3, 2, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, 393214, 0, 0, 458750, 196612, 0, 458751, 196612, 0, 393215, 0, 0, 196607, 0, 0, 131071, 0, 0, 65535, 0, 0, -1, 0, 0, -65537, 65539, 2, -131073, 65539, 1, -196609, 65539, 1, -262145, 262147, 2, -327681, 3, 0, -393217, 0, 0, -458752, 0, 0, -393216, 65539, 0, -327680, 65539, 1, -262144, 65539, 1, -196608, 65539, 1, -131072, 65539, 2, -65536, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 196612, 0, 393217, 196612, 0, 327681, 0, 0, 262145, 0, 0, 131073, 0, 0, 65537, 0, 0, 1, 0, 0, -65535, 0, 0, -131071, 65539, 2, -196607, 65539, 1, -262143, 65539, 1, -327679, 65539, 1, -393215, 65539, 0, -458751, 0, 0, -458750, 0, 0, -393214, 131075, 0, -327678, 131075, 1, -262142, 131075, 1, -196606, 131075, 1, -131070, 131075, 2, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 262146, 0, 0, 327682, 0, 0, 393218, 196612, 0, 393219, 196612, 0, 327683, 0, 0, 262147, 0, 0, 131075, 0, 0, 65539, 0, 0, 3, 0, 0, -65533, 0, 0, -131069, 0, 0, -196605, 0, 0, -262141, 0, 0, -327677, 0, 0, -393213, 0, 0, -458749, 0, 0, -458748, 0, 0, -393212, 0, 0, -327676, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 196612, 0, 393221, 196612, 0, 327685, 0, 0, 262149, 0, 0, 131077, 0, 0, 65541, 0, 0, 5, 0, 0, -65531, 0, 0, -131067, 3, 2, -196603, 3, 1, -262139, 3, 1, -327675, 3, 0, -393211, 0, 0, -458747, 0, 0, -458746, 0, 0, -393210, 0, 0, -327674, 65539, 0, -262138, 65539, 1, -196602, 65539, 1, -131066, 65539, 2, -65530, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 196612, 0, 393223, 196612, 0, 327687, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, 65543, 0, 0, 7, 0, 0, -65529, 0, 0, -131065, 65539, 2, -196601, 65539, 1, -262137, 196611, 2, -327673, 131075, 0, -393209, 0, 0, -458745, 0, 0, -458744, 0, 0, -393208, 0, 0, -327672, 0, 0, -262136, 131075, 0, -196600, 131075, 1, -131064, 131075, 2, -65528, 0, 0, 8, 0, 0, 65544, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 196612, 0, 262135, 0, 0, 262136, 0, 0, 262137, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0)
-layer_1/name = "Middleground"
-layer_1/z_index = -10
-layer_1/tile_data = PackedInt32Array(-196616, 1, 1, -196611, 131073, 1, -393213, 131073, 1, 7, 65537, 1, -196604, 65537, 1, -65545, 65537, 1)
-layer_2/name = "Foreground"
-layer_2/tile_data = PackedInt32Array(-65529, 65537, 0, -262147, 131073, 0, -458749, 131073, 0, -262152, 1, 0, -131081, 65537, 0, -262140, 65537, 0)
+[node name="CombatantGroup" type="Node2D" parent="."]
 
-[node name="PlayerCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
+[node name="PlayerCombatant" parent="CombatantGroup" instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
 leftSide = true
 battlePosition = "You"
 metadata/_edit_lock_ = true
 
-[node name="MinionCombatant" parent="TileMap" instance=ExtResource("2_fgh53")]
+[node name="MinionCombatant" parent="CombatantGroup" instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
 leftSide = true
 battlePosition = "Ally"
 metadata/_edit_lock_ = true
 
-[node name="EnemyCombatant1" parent="TileMap" instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant1" parent="CombatantGroup" instance=ExtResource("2_fgh53")]
 position = Vector2(36, 12)
 battlePosition = "Center"
 metadata/_edit_lock_ = true
 
-[node name="EnemyCombatant2" parent="TileMap" instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant2" parent="CombatantGroup" instance=ExtResource("2_fgh53")]
 position = Vector2(52, -12)
 battlePosition = "Top"
 metadata/_edit_lock_ = true
 
-[node name="EnemyCombatant3" parent="TileMap" instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant3" parent="CombatantGroup" instance=ExtResource("2_fgh53")]
 position = Vector2(68, 36)
 battlePosition = "Bottom"
 metadata/_edit_lock_ = true
+
+[node name="TileMapParent" type="Node2D" parent="."]
 
 [node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
 offset = Vector2(0, -8)
@@ -625,6 +616,23 @@ offset_bottom = -480.0
 script = ExtResource("15_2cnm6")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
+
+[node name="Shade" type="ColorRect" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(320, 240)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -128.0
+offset_right = 160.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]

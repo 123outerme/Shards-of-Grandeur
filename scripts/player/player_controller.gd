@@ -19,6 +19,9 @@ var actChanged: bool = false
 var pauseDisabled: bool = false
 var cutscenePaused: bool = false
 
+@export var battleMusic: AudioStream = null
+@export var bossBattleMusic: AudioStream = null
+
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
@@ -158,7 +161,7 @@ func advance_dialogue(canStart: bool = true):
 		if dialogueText != null: # if there is NPC dialogue to display
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
-				SceneLoader.unpauseExcludedMover = talkNPC
+				#SceneLoader.unpauseExcludedMover = talkNPC
 				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
 				face_horiz(talkNPC.talkArea.global_position.x - global_position.x)
 				for npc in talkNPCcandidates:
@@ -173,8 +176,7 @@ func advance_dialogue(canStart: bool = true):
 				npc.talkAlertSprite.visible = true
 			talkNPC = null
 			if PlayerResources.playerInfo.staticEncounter != null:
-				SaveHandler.save_data()
-				SceneLoader.load_battle()
+				start_battle()
 			if actChanged:
 				pause_movement()
 				cam.play_new_act_animation(_new_act_callback)
@@ -344,6 +346,14 @@ func menu_closed():
 			and not textBox.visible and not pausePanel.visible:
 		SceneLoader.unpause_autonomous_movers()
 
+func start_battle():
+	SaveHandler.save_data()
+	cam.fade_out(_after_start_battle_fade_out)
+	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.bossBattle:
+		SceneLoader.audioHandler.play_music(bossBattleMusic)
+	else:
+		SceneLoader.audioHandler.play_music(battleMusic)
+
 func _on_shop_button_pressed():
 	#get_viewport().gui_release_focus()
 	inventoryPanel.inShop = true
@@ -439,3 +449,6 @@ func _on_quests_panel_node_act_changed():
 func _new_act_callback():
 	actChanged = false
 	unpause_movement()
+
+func _after_start_battle_fade_out():
+	SceneLoader.load_battle()

@@ -59,10 +59,10 @@ func set_sfx_volume(vol: float):
 		player.volume_db = vol_percent_to_db(vol)
 
 func vol_percent_to_db(percent: float) -> float: # percent as a float between 0 and 1
-	if percent < 0.06:
-		return -40 # less than 0.06% is below -40 db
+	if percent < 0.01:
+		return -70 # less than 1% is below -60 db
 	
-	# ~-40 db = 0% volume
+	# ~-70 db = 0% volume
 	# ~-10 db = 50%
 	# 0 db = 100% volume?
 	return 33.22 * log(percent) / log(10) ## 33.22 * log10(percent)
@@ -76,6 +76,9 @@ func get_cur_music_player() -> AudioStreamPlayer:
 	if musicPlayingOnStream2:
 		return musicStreamPlayer2
 	return musicStreamPlayer1
+
+func is_music_already_playing(stream: AudioStream):
+	return get_cur_music_player().stream == stream
 
 func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
 	if stream == null:
@@ -96,7 +99,7 @@ func stop_sfx(stream: AudioStream):
 			sfxStreamPlayers[idx].stop()
 			openSfxPlayers[idx] = true
 
-func cross_fade(newStream: AudioStream, sec: float):
+func cross_fade(newStream: AudioStream, sec: float = 2.5):
 	if newStream == null:
 		return
 	
@@ -120,7 +123,6 @@ func _cross_fade_finished():
 		musicStreamPlayer2.stop()
 	load_audio_settings()
 	
-
 func fade_to_new_music(stream: AudioStream, secFadeOut: float = 0.5, secFadeIn: float = 0.5):
 	fade_out_music(secFadeOut)
 	musicFadeTween.finished.disconnect(_fade_music_callback.bind(true)) # replace callback with new music callback

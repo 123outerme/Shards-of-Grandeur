@@ -6,26 +6,38 @@ class_name BattleController
 var battleLoaded: bool = false
 var battleEnded: bool = false
 
-@onready var tilemap: TileMap = get_node("TileMap")
+@onready var tilemapParent: Node2D = get_node('TileMapParent')
+var tilemap: TileMap = null
 
+@onready var combatantGroup: Node2D = get_node('CombatantGroup')
 @onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("CombatantNode")
-@onready var playerCombatant: CombatantNode = get_node("TileMap/PlayerCombatant")
-@onready var minionCombatant: CombatantNode = get_node("TileMap/MinionCombatant")
-@onready var enemyCombatant1: CombatantNode = get_node("TileMap/EnemyCombatant1")
-@onready var enemyCombatant2: CombatantNode = get_node("TileMap/EnemyCombatant2")
-@onready var enemyCombatant3: CombatantNode = get_node("TileMap/EnemyCombatant3")
+@onready var playerCombatant: CombatantNode = get_node("CombatantGroup/PlayerCombatant")
+@onready var minionCombatant: CombatantNode = get_node("CombatantGroup/MinionCombatant")
+@onready var enemyCombatant1: CombatantNode = get_node("CombatantGroup/EnemyCombatant1")
+@onready var enemyCombatant2: CombatantNode = get_node("CombatantGroup/EnemyCombatant2")
+@onready var enemyCombatant3: CombatantNode = get_node("CombatantGroup/EnemyCombatant3")
 
 @onready var battleUI: BattleUI = get_node("BattleCam")
 @onready var battlePanels: BattlePanels = get_node("BattleCam/UIPanels")
 @onready var turnExecutor: TurnExecutor = get_node("TurnExecutor")
+@onready var shade: ColorRect = get_node('Shade')
+
+var shadeTween: Tween = null
+
+var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battleLoaded = false
 	SaveHandler.load_data()
 	call_deferred('load_into_battle')
-
+	
 func load_into_battle():
+	var mapPath = SceneLoader.curMapEntry.get_battle_map_path()
+	var battleMap = load(mapPath)
+	tilemap = battleMap.instantiate()
+	tilemapParent.add_child(tilemap)
+	
 	var newBattle: bool = state.enemyCombatant1 == null
 	var hasStaticMinion: bool = false
 	if newBattle: # new battle
@@ -127,14 +139,17 @@ func load_into_battle():
 	
 	for node in combatantNodes:
 		node.load_combatant_node()
-		
+	
+	combatantGroup.reparent(tilemap)
 	update_combatant_focus_neighbors()
 	
 	if state.menu == BattleState.Menu.SUMMON and \
 			(PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 or hasStaticMinion):
 		state.menu = BattleState.Menu.PRE_BATTLE
 	
-	battleUI.set_menu_state(state.menu, false)
+	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 0), 0.5)
+	shadeTween.finished.connect(_fade_in_finish)
 	
 func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
@@ -242,6 +257,15 @@ func end_battle():
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
+	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
+	shadeTween.finished.connect(_fade_out_finish)
+
+func _fade_in_finish():
+	battleUI.set_menu_state(state.menu, false)
+
+func _fade_out_finish():
 	SaveHandler.save_data()
+	SceneLoader.audioHandler.fade_out_music()
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld()
