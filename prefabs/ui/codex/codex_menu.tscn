@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyippeuidy6q4"]
+[gd_scene load_steps=9 format=3 uid="uid://dyippeuidy6q4"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/codex_menu/codex_menu.gd" id="1_4kiky"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_jhen4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="3_xbgfw"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_4hakc"]
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="4_4yhog"]
+[ext_resource type="Resource" uid="uid://d1u5i7bipsn4t" path="res://gamedata/codex_entries/codex.tres" id="4_pcdn8"]
 [ext_resource type="PackedScene" uid="uid://17jyotb8a5fb" path="res://prefabs/ui/codex/codex_entry_panel.tscn" id="5_6oe10"]
 
 [node name="CodexMenu" type="Control"]
@@ -18,6 +19,7 @@ grow_vertical = 2
 theme = ExtResource("1_jhen4")
 script = ExtResource("1_4kiky")
 notSeenSprite = ExtResource("3_xbgfw")
+initialEntry = ExtResource("4_pcdn8")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

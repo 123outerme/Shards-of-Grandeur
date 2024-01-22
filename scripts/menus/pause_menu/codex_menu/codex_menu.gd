@@ -4,6 +4,7 @@ class_name CodexMenu
 signal back_pressed
 
 @export var notSeenSprite: Texture2D = null
+@export var initialEntry: CodexEntry = null
 
 @onready var entryTitle: RichTextLabel = get_node('Panel/EntryTitle')
 @onready var backButton: Button = get_node('Panel/ClipScrollContainerControl/ScrollContainer/VBoxContainer/BackButton')
@@ -12,7 +13,6 @@ signal back_pressed
 
 var selectedEntryStack: Array[CodexEntry] = []
 
-var codexEntriesDir: String = 'res://gamedata/codex_entries/'
 var buttonPrefab = preload('res://prefabs/ui/sfx_button.tscn')
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +21,9 @@ func _ready():
 
 func toggle_codex_menu(showing: bool):
 	if showing:
+		selectedEntryStack.append(initialEntry)
+		codexEntryPanel.codexEntry = initialEntry
+		codexEntryPanel.load_codex_entry_panel()
 		load_codex_menu()
 		visible = true
 	else:
@@ -33,20 +36,13 @@ func load_codex_menu():
 		button.queue_free()
 	
 	var lastEntry: CodexEntry = get_last_entry_with_children()
-	if lastEntry == null:
-		entryTitle.text = ''
-		var files = DirAccess.get_files_at(codexEntriesDir)
-		for filepath in files: # for all entry files inside the directory
-			var entry: CodexEntry = load(codexEntriesDir + filepath) as CodexEntry
-			if entry != null and (entry.storyRequirements == null or entry.storyRequirements.is_valid()):
-				instantiate_button_for_entry(entry)
-			else:
-				printerr('Codex entry at ', filepath, ' was not loaded!')
-	else:
+	if lastEntry != initialEntry:
 		entryTitle.text = '[center]' + lastEntry.title + '[/center]'
-		for entry in lastEntry.childrenEntries:
-			if entry.storyRequirements == null or entry.storyRequirements.is_valid():
-				instantiate_button_for_entry(entry)
+	else:
+		entryTitle.text = ''
+	for entry in lastEntry.childrenEntries:
+		if entry.storyRequirements == null or entry.storyRequirements.is_valid():
+			instantiate_button_for_entry(entry)
 	
 	var entryButtons: Array[Node] = vboxContainer.get_children()
 	var bottomEntryButton: Button = null
@@ -94,10 +90,12 @@ func _on_codex_button_pressed(entry: CodexEntry):
 	PlayerResources.playerInfo.set_codex_entry_seen(entry.id)
 
 func _on_back_button_pressed():
+	var entry: CodexEntry = null
 	if len(selectedEntryStack) > 0:
-		var entry = selectedEntryStack.pop_back()
-		load_codex_menu()
-		focus_button_for_entry(entry)
-	else:
+		entry = selectedEntryStack.pop_back()
+	if len(selectedEntryStack) == 0:
 		back_pressed.emit()
 		visible = false
+	else:
+		load_codex_menu()
+		focus_button_for_entry(entry)

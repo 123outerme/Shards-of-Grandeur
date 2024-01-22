@@ -9,9 +9,7 @@ class_name CodexEntryPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	entryTitle.text = '[center]Codex Entry[/center]'
-	entryDescription.text = ''
-	entryImage.texture = null
+	load_codex_entry_panel()
 
 func load_codex_entry_panel():
 	if codexEntry == null:
