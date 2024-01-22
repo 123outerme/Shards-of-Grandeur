@@ -18,10 +18,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var vel = Vector2(0, 0)
 	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and loops != 0:
 		var nextPos = get_next_path_position()
-		vel = nextPos - NPC.position
+		var vel = nextPos - NPC.position
 		if vel.length() > maxSpeed * delta:
 			vel = vel.normalized() * maxSpeed * delta
 		NPC.position += vel
@@ -29,11 +28,10 @@ func _process(delta):
 			NPC.npcSprite.flip_h = true
 		if vel.x > 0:
 			NPC.npcSprite.flip_h = false
-		
-	if vel.length() > 0:
-		NPC.npcSprite.play('walk')
-	else:
-		NPC.npcSprite.play('stand')
+		if vel.length() > 0:
+			NPC.npcSprite.play('walk')
+		else:
+			NPC.npcSprite.play('stand')
 
 func update_target_pos():
 	if disableMovement:

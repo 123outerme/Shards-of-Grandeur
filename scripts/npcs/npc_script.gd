@@ -272,6 +272,7 @@ func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry) -> bool:
 
 func pause_movement():
 	NavAgent.disableMovement = true
+	play_animation('stand')
 	
 func unpause_movement():
 	NavAgent.disableMovement = false

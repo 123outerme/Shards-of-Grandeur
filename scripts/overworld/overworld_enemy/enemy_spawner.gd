@@ -38,13 +38,9 @@ func _on_area_2d_area_entered(area):
 
 func save_data(save_path):
 	if spawnerData != null:
-		if enemy != null:
-			if enemy.encounteredPlayer:
-				delete_enemy()
-			else:
-				spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, staticEncounter)
-		else:
-			spawnerData.enemyData = null
+		spawnerData.enemyData = null
+		if enemy != null and not enemy.encounteredPlayer:
+			spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, staticEncounter)
 		spawnerData.save_data(save_path + enemiesDir, spawnerData)
 
 func load_data(save_path):

@@ -78,6 +78,7 @@ func get_point_around_home() -> Vector2:
 
 func pause_movement():
 	disableMovement = true
+	enemySprite.play('stand')
 
 func unpause_movement():
 	if patrolRange != 0:

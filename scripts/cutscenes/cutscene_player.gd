@@ -50,6 +50,7 @@ func _process(delta):
 			
 			if lastFrame.givesItem != null:
 				PlayerResources.inventory.add_item(lastFrame.givesItem)
+				PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -214,6 +215,9 @@ func skip_cutscene_process():
 	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):
 		var frame: CutsceneFrame = cutscene.cutsceneFrames[idx]
 		animate_next_frame(frame, true)
+		if frame.givesItem:
+			PlayerResources.inventory.add_item(frame.givesItem)
+			PlayerFinder.player.cam.show_alert('Got Item:\n' + frame.givesItem.itemName)
 		await get_tree().process_frame
 	end_cutscene()
 	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
