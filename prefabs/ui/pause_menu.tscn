@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=12 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://68gav8dpyr0p" path="res://graphics/structures/house.png" id="8_apdct"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_clpva"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="9_y122n"]
+[ext_resource type="PackedScene" uid="uid://dyippeuidy6q4" path="res://prefabs/ui/codex/codex_menu.tscn" id="10_2mtdm"]
 
 [node name="PauseMenu" type="Node2D"]
 script = ExtResource("2_mu5pd")
@@ -78,7 +79,6 @@ expand_icon = true
 [node name="CodexButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
-disabled = true
 text = "Codex"
 icon = ExtResource("6_ebqie")
 expand_icon = true
@@ -97,11 +97,17 @@ focus_neighbor_bottom = NodePath("../ResumeButton")
 text = "Save & Quit"
 icon = ExtResource("8_apdct")
 
+[node name="CodexMenu" parent="Control" instance=ExtResource("10_2mtdm")]
+visible = false
+layout_mode = 1
+
 [node name="SettingsMenu" parent="Control" instance=ExtResource("9_y122n")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Control/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]
+[connection signal="back_pressed" from="Control/CodexMenu" to="." method="_on_codex_menu_back_pressed"]
 [connection signal="back_pressed" from="Control/SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

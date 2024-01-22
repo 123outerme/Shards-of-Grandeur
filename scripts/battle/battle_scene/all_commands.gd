@@ -14,7 +14,7 @@ var commandingMinion: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if PlayerResources.playerInfo.staticEncounter != null:
-		escapeButton.disabled = PlayerResources.playerInfo.staticEncounter.canEscape
+		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
 	
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion

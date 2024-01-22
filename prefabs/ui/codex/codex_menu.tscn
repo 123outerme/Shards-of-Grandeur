@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyippeuidy6q4"]
+
+[ext_resource type="Script" path="res://scripts/menus/pause_menu/codex_menu/codex_menu.gd" id="1_4kiky"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_jhen4"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_nrfna"]
+[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="3_xbgfw"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_4hakc"]
+[ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="4_4yhog"]
+[ext_resource type="PackedScene" uid="uid://17jyotb8a5fb" path="res://prefabs/ui/codex/codex_entry_panel.tscn" id="5_6oe10"]
+
+[node name="CodexMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jhen4")
+script = ExtResource("1_4kiky")
+notSeenSprite = ExtResource("3_xbgfw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodexTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 12.0
+offset_right = 153.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme = ExtResource("3_nrfna")
+bbcode_enabled = true
+text = "[center]Codex[/center]"
+fit_content = true
+
+[node name="EntryTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -404.0
+offset_right = 416.0
+offset_bottom = -370.0
+grow_vertical = 2
+theme = ExtResource("4_4yhog")
+bbcode_enabled = true
+text = "[center]Codex Entry Title[/center]"
+fit_content = true
+
+[node name="ClipScrollContainerControl" type="Control" parent="Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = -346.0
+offset_right = 366.0
+offset_bottom = 448.0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/ClipScrollContainerControl"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -387.0
+offset_right = 140.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ClipScrollContainerControl/ScrollContainer"]
+custom_minimum_size = Vector2(280, 748)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" parent="Panel/ClipScrollContainerControl/ScrollContainer/VBoxContainer" instance=ExtResource("4_4hakc")]
+layout_mode = 2
+text = "Back"
+
+[node name="CodexEntryPanel" parent="Panel" instance=ExtResource("5_6oe10")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 398.0
+offset_top = 134.0
+offset_right = 1240.0
+offset_bottom = 928.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Panel/ClipScrollContainerControl/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

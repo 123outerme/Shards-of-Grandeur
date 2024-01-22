@@ -32,6 +32,7 @@ class_name PlayerInfo
 @export var pickedUpItem: PickedUpItem = null
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
+@export var codexEntriesSeen: Array[String] = []
 
 var save_file = "playerinfo.tres"
 
@@ -59,6 +60,7 @@ func _init(
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
+	i_codexEntriesSeen: Array[String] = []
 ):
 	map = i_map
 	inUnderworld = i_inUnderworld
@@ -83,6 +85,7 @@ func _init(
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
+	codexEntriesSeen = i_codexEntriesSeen
 
 func has_picked_up(uniqueId: String) -> bool:
 	return pickedUpItems.has(uniqueId)
@@ -113,6 +116,13 @@ func has_completed_special_battle(battleId: String) -> bool:
 func set_special_battle_completed(battleId: String):
 	if not has_completed_special_battle(battleId):
 		completedSpecialBattles.append(battleId)
+
+func has_seen_codex_entry(entryName: String) -> bool:
+	return entryName in codexEntriesSeen
+
+func set_codex_entry_seen(entryName: String):
+	if not has_seen_codex_entry(entryName):
+		codexEntriesSeen.append(entryName)
 
 func load_data(save_path):
 	var data = null
