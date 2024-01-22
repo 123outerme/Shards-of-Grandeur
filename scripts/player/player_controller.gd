@@ -302,6 +302,7 @@ func pick_up(groundItem: GroundItem):
 		groundItem.queue_free()
 		if PlayerResources.questInventory.can_start_quest(groundItem.startsQuest):
 			PlayerResources.questInventory.accept_quest(groundItem.startsQuest)
+			cam.show_alert('Started Quest:\n' + groundItem.startsQuest.questName)
 	
 	pickedUpItem.savedTextIdx = 0
 	play_animation('stand')

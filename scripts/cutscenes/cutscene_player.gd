@@ -158,6 +158,7 @@ func end_cutscene(force: bool = false):
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	if cutscene.givesQuest != null:
 		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
+		PlayerFinder.player.cam.show_alert('Started Quest:\n' + cutscene.givesQuest.questName)
 	if not isFadedOut:
 		complete_cutscene()
 	else:
@@ -169,8 +170,6 @@ func complete_cutscene():
 	SceneLoader.unpause_autonomous_movers()
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	PlayerFinder.player.show_all_talk_alert_sprites()
-	if cutscene.givesQuest != null:
-		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
 	if PlayerFinder.player.is_in_dialogue():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes

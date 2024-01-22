@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://pwwoqp8kbglb"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_kbg25"]
+[ext_resource type="Script" path="res://scripts/menus/alert_panel.gd" id="1_rhqrj"]
+[ext_resource type="StyleBox" uid="uid://dre51hlvdl5rw" path="res://themes/alert_panel.tres" id="2_t2res"]
+[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="4_j3i7d"]
+
+[node name="AlertPanel" type="Panel" groups=["AlertPanel"]]
+custom_minimum_size = Vector2(300, 100)
+theme = ExtResource("1_kbg25")
+theme_override_styles/panel = ExtResource("2_t2res")
+script = ExtResource("1_rhqrj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(284, 16)
+texture = ExtResource("4_j3i7d")
+
+[node name="MessageLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true

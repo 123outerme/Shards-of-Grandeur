@@ -197,6 +197,7 @@ func advance_dialogue() -> bool:
 				fetch_quest_dialogue_info()
 				for q in acceptableQuests:
 					PlayerResources.questInventory.accept_quest(q)
+					PlayerFinder.player.cam.show_alert('Started Quest:\n' + q.questName)
 				if not startingCutscene:
 					play_animation('stand')
 				data.dialogueIndex = 0

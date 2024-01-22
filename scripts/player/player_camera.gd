@@ -2,6 +2,7 @@ extends Camera2D
 class_name PlayerCamera
 
 @onready var player: PlayerController = get_node("..")
+@onready var alertControl: Control = get_node('AlertControl')
 @onready var letterbox: Control = get_node("Letterbox")
 @onready var shade: Control = get_node("Shade")
 @onready var shadeColor: ColorRect = get_node("Shade/ColorRect")
@@ -20,6 +21,8 @@ var interruptTween: bool = false
 var registeredFadeInCallbacks: Array[Callable] = []
 var registeredFadeOutCallbacks: Array[Callable] = []
 
+var alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if fadeInReady and fadeInTween != null:
@@ -28,6 +31,16 @@ func _process(_delta):
 
 func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
+
+func show_alert(message: String, lifetime: float = 2):
+	var panel: AlertPanel = alertPanelPrefab.instantiate()
+	panel.message = message
+	panel.lifetime = lifetime
+	alertControl.add_child(panel)
+
+func set_alert_panels_lifetime_pause(pause: bool):
+	for alertPanel: AlertPanel in get_tree().get_nodes_in_group('AlertPanel'):
+		alertPanel.pauseTimer = pause
 
 func show_letterbox(showing: bool = true):
 	letterbox.visible = showing
@@ -106,6 +119,7 @@ func toggle_cutscene_paused_shade():
 		shadeLabel.modulate = Color(1, 1, 1, 1) # just in case fadein messed with it and didn't properly reset it
 		shadeColor.modulate = Color(0, 0, 0, 0.7)
 		resumeButton.grab_focus()
+	set_alert_panels_lifetime_pause(cutscenePaused)
 
 func _fade_out_complete():
 	if not interruptTween:
@@ -136,10 +150,12 @@ func _on_resume_button_pressed():
 		cutscenePlayer.toggle_pause_cutscene()
 	toggle_cutscene_paused_shade()
 	player.cutscenePaused = cutscenePaused
+	set_alert_panels_lifetime_pause(cutscenePaused)
 
 func _on_skip_button_pressed():
 	shadeLabel.visible = false
-	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-		cutscenePlayer.skip_cutscene()
 	cutscenePaused = false
 	player.cutscenePaused = false
+	set_alert_panels_lifetime_pause(cutscenePaused)
+	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
+		cutscenePlayer.skip_cutscene()
