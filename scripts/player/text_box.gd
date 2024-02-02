@@ -48,7 +48,6 @@ func set_textbox_text(text: String, speaker: String):
 	if newSpeaker:
 		SpeakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
-	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	
 func advance_textbox(text: String):
@@ -56,7 +55,6 @@ func advance_textbox(text: String):
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
-	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	delete_choices()
 
@@ -129,6 +127,7 @@ func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
+	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
 	add_choices()
 
 func _viewport_focus_changed(control):
