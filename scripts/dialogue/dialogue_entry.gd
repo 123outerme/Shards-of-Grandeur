@@ -7,6 +7,7 @@ class_name DialogueEntry
 @export var startsQuest: Quest = null
 @export var startsCutscene: Cutscene = null
 @export var closesDialogue: bool = false
+@export var fullHealsPlayer: bool = false
 @export var startsStaticEncounter: StaticEncounter = null
 
 func _init(
@@ -15,6 +16,7 @@ func _init(
 	i_storyRequirements = null,
 	i_startsQuest = null,
 	i_closesDialogue = false,
+	i_fullHealsPlayer = false,
 	i_staticEncounter = null,
 ):
 	entryId = i_id
@@ -22,6 +24,7 @@ func _init(
 	storyRequirements = i_storyRequirements
 	startsQuest = i_startsQuest
 	closesDialogue = i_closesDialogue
+	fullHealsPlayer = i_fullHealsPlayer
 	startsStaticEncounter = i_staticEncounter
 
 func can_use_dialogue() -> bool:
