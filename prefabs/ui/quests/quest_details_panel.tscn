@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw6gj40op07vr"]
+[gd_scene load_steps=9 format=3 uid="uid://cw6gj40op07vr"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_60ioc"]
 [ext_resource type="Script" path="res://scripts/menus/quests_panel/quest_details_panel.gd" id="2_k8rm2"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_qo0lb"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="4_5vbr7"]
 [ext_resource type="PackedScene" uid="uid://b11xiyik10j7i" path="res://prefabs/ui/reward_panel.tscn" id="5_let4i"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="6_6nmhd"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_pbljs"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_7airq"]
 
@@ -168,7 +169,7 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,6 +182,8 @@ grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
+script = ExtResource("6_6nmhd")
+boxContainer = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
 custom_minimum_size = Vector2(900, 76)
@@ -208,6 +211,7 @@ visible = false
 layout_mode = 1
 
 [connection signal="show_item_details" from="Panel/StepDetailPanel/RewardPanel" to="." method="_on_reward_panel_show_item_details"]
+[connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_item_details_panel_back_pressed"]
 
