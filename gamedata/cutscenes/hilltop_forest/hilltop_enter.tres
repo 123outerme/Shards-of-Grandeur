@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=31 format=3 uid="uid://1kie7pkiqtcx"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://1kie7pkiqtcx"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_100mj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_wd36c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_h6now"]
 [ext_resource type="Resource" uid="uid://c66vj2jlj5s8j" path="res://gamedata/cutscenes/reused/player_facingLeft.tres" id="3_k711j"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="3_kfmox"]
+[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="5_3mnjg"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="8_y6h7m"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="9_k7nwe"]
 
@@ -55,6 +56,7 @@ transitionType = 0
 script = ExtResource("8_y6h7m")
 speaker = "Cart"
 texts = Array[String](["*Crunch!!*"])
+textboxSfx = ExtResource("5_3mnjg")
 
 [sub_resource type="Resource" id="Resource_wytgg"]
 script = ExtResource("2_l6aqg")
@@ -109,7 +111,7 @@ animation = "stand"
 [sub_resource type="Resource" id="Resource_j4tnp"]
 script = ExtResource("8_y6h7m")
 speaker = "Dr. Hudson"
-texts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime.", "When you defeat a creature in this area, it might drop a Shard. The General has granted you permission to use any spare Shards for your own purposes. You can summon a Minion with one, or use it outside of battle to learn a new combat skill from that Minion."])
+texts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime.", "When you defeat a creature in this area, it might drop a Shard. Remember, the General has granted you permission to use any spare Shards for your own purposes."])
 
 [sub_resource type="Resource" id="Resource_1bcav"]
 script = ExtResource("2_l6aqg")

@@ -200,6 +200,7 @@ func advance_dialogue(canStart: bool = true):
 					cam.show_letterbox(false) # disable letterbox
 			else: # otherwise show the new dialogue item
 				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
+				SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 		else: # if it's not done, advance the textbox
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex])
 
@@ -334,6 +335,7 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 		cutsceneTextIndex = len(cutsceneTexts) - 1
 		cutsceneLineIndex = 0
 		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
+		SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
 	inCutscene = false

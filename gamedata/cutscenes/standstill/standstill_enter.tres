@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://drqc7ms1tgy62"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://drqc7ms1tgy62"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
@@ -56,7 +56,7 @@ texts = Array[String](["It looks as if we're finally arriving at Standstill. Thi
 
 [sub_resource type="Resource" id="Resource_3qyhe"]
 script = ExtResource("1_sfute")
-frameLength = 0.01
+frameLength = 0.1
 annotation = "Dr. Hudson exposition about Standstill"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), ExtResource("2_udvm0")])
@@ -230,12 +230,30 @@ propertyName = "flip_h"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_6o1aj"]
+script = ExtResource("4_13jd0")
+speaker = "Dr. Hudson"
+texts = Array[String](["Let me know when you're ready to leave town and head to the cave entrance in Hilltop Forest."])
+
 [sub_resource type="Resource" id="Resource_gksqn"]
 script = ExtResource("1_sfute")
 frameLength = 0.1
-annotation = "Make Dr. Hudson face Player and both him and horse stand"
+annotation = "Make Dr. Hudson face Player and both him and horse stand. Dr. Hudson speaks"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_g2blc")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_13jd0")]([SubResource("Resource_6o1aj")])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_q7q8a"]
+script = ExtResource("1_sfute")
+frameLength = 0.1
+annotation = "Wait for text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_ijdb7")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = true
@@ -259,7 +277,7 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_l83ch")
-cutsceneFrames = Array[ExtResource("1_sfute")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_gksqn")])
+cutsceneFrames = Array[ExtResource("1_sfute")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_gksqn"), SubResource("Resource_q7q8a")])
 saveName = "standstill_enter"
 storyRequirements = SubResource("Resource_wvqjc")
 unlockCameraHoldAfter = true

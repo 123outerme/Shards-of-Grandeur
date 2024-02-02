@@ -1,14 +1,33 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b4d2wrrbaa21l"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b4d2wrrbaa21l"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_07ylg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_cxehe"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vgb1i"]
+[ext_resource type="Resource" uid="uid://uhrjiigdc4cp" path="res://gamedata/dialogue/dr_hudson/hilltop_forest/drh_hilltop_shards_help.tres" id="2_ea06c"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_f4djd"]
+
+[sub_resource type="Resource" id="Resource_y728j"]
+script = ExtResource("1_cxehe")
+choiceBtn = "OK."
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_6yei0"]
+script = ExtResource("1_cxehe")
+choiceBtn = "Shards?"
+leadsTo = ExtResource("2_ea06c")
+repeatsItem = false
+buttonDims = Vector2(180, 40)
+turnsInQuest = ""
+opensShop = false
 
 [sub_resource type="Resource" id="Resource_q8tcr"]
 script = ExtResource("1_vgb1i")
-lines = Array[String](["I'll stay here to free the cart. Don't worry about me, clear the path to the cave!", "The General has granted you permission to use up any Shards you loot from these creatures. I would suggest summoning Minions to help you in battle, or meditating on the Shard's power outside of combat to learn a move that creature knows."])
+lines = Array[String](["I'll stay here to free the cart. Don't worry about me, clear the path to the cave!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("1_cxehe")]([SubResource("Resource_y728j"), SubResource("Resource_6yei0")])
 
 [sub_resource type="Resource" id="Resource_suu2u"]
 script = ExtResource("2_f4djd")
@@ -30,3 +49,4 @@ entryId = ""
 items = Array[ExtResource("1_vgb1i")]([SubResource("Resource_q8tcr")])
 storyRequirements = SubResource("Resource_suu2u")
 closesDialogue = false
+fullHealsPlayer = false

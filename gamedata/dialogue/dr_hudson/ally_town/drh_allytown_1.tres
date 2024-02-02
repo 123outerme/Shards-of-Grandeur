@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bh7405n87iojt"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://bh7405n87iojt"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_42jfg"]
 [ext_resource type="Resource" uid="uid://c8h7anlgpk7t3" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_leave.tres" id="2_ilxw6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_kod0c"]
+[ext_resource type="Resource" uid="uid://cnt6vduu2m1lq" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_shards_help.tres" id="2_wpr5r"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4prmp"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_fd6dk"]
 
@@ -11,6 +12,15 @@ script = ExtResource("1_42jfg")
 choiceBtn = "Not Ready"
 repeatsItem = false
 buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_yivcw"]
+script = ExtResource("1_42jfg")
+choiceBtn = "Shards?"
+leadsTo = ExtResource("2_wpr5r")
+repeatsItem = false
+buttonDims = Vector2(180, 40)
 turnsInQuest = ""
 opensShop = false
 
@@ -27,7 +37,7 @@ opensShop = false
 script = ExtResource("2_kod0c")
 lines = Array[String](["The people of Standstill are very hospitable, so be sure to make the most of our stop here.", "Let me know when you are fully prepared, and we will depart for the Cave at once."])
 animation = "talk"
-choices = Array[ExtResource("1_42jfg")]([SubResource("Resource_qwuh8"), SubResource("Resource_3msle")])
+choices = Array[ExtResource("1_42jfg")]([SubResource("Resource_qwuh8"), SubResource("Resource_yivcw"), SubResource("Resource_3msle")])
 
 [sub_resource type="Resource" id="Resource_fr5s4"]
 script = ExtResource("5_fd6dk")
