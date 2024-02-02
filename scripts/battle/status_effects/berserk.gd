@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Berserk
 
-var percentDamageDict: Dictionary = {
+const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.05,
 	Potency.STRONG: 0.1,
@@ -21,7 +21,7 @@ func get_recoil_damage(combatant: Combatant) -> int:
 		for target in combatant.command.targets:
 			damage += combatant.command.calculate_damage(combatant, target)
 	
-	return roundi(damage * percentDamageDict[potency])
+	return roundi(damage * Berserk.PERCENT_DAMAGE_DICT[potency])
 
 func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:

@@ -38,6 +38,7 @@ enum ApplyTiming {
 @export var randomNums: Array[float] = []
 
 var targets: Array[Combatant] = []
+var interceptingTargets: Array[Combatant] = []
 
 static func targets_to_string(t: Targets) -> String:
 	match t:
@@ -137,13 +138,18 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	var appliedDamage = false
 	var appliedStatus: bool = false
 	var selfDmg: int = 0
-	for idx in len(targets):
+	for idx in range(len(targets)):
 		var damage = calculate_damage(user, targets[idx])
 		if damage != 0:
 			appliedDamage = true
-			if targets[idx].statusEffect.type == StatusEffect.Type.REFLECT:
+			if targets[idx].statusEffect != null and targets[idx].statusEffect.type == StatusEffect.Type.REFLECT:
 				var reflectStatus: Reflect = targets[idx].statusEffect as Reflect
 				selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
+			for interceptIdx in range(len(interceptingTargets)):
+				var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
+				var interceptDamage = damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
+				damage -= interceptDamage
+				interceptingTargets[interceptIdx].currentHp = max(interceptingTargets[interceptIdx] - interceptDamage, 0) # bound to be at least 0 and no more than max HP
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
@@ -294,6 +300,10 @@ func get_command_results(user: Combatant) -> String:
 	
 	# damage/healing/stat change effects
 	if type == Type.MOVE or type == Type.USE_ITEM:
+		var interceptingTargetDamages: Array[int] = []
+		for i in range(len(interceptingTargets)):
+			interceptingTargetDamages.append(0) # initialize intercepting target damage values
+		
 		for i in range(len(targets)):
 			var target = targets[i]
 			var targetName = target.disp_name()
@@ -301,6 +311,14 @@ func get_command_results(user: Combatant) -> String:
 				targetName = 'self'
 			if not target.downed:
 				var damage: int = calculate_damage(user, target, true)
+				if damage > 0:
+					for interceptIdx in range(len(interceptingTargets)):
+						if interceptingTargets[interceptIdx] == targets[i]:
+							continue # skip if the intercepting combatant is the target of the move
+						var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect
+						var interceptDamage = damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
+						damage -= interceptDamage
+						interceptingTargetDamages[interceptIdx] += interceptDamage
 				if damage != 0:
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
@@ -342,6 +360,9 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '.'
+		for interceptingIdx in range(len(interceptingTargets)):
+			if interceptingTargetDamages[interceptingIdx] > 0:
+				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(interceptingTargetDamages[interceptingIdx]) + ' damage!'
 		if selfDmg > 0:
 			resultsText += user.disp_name() + ' takes ' + String.num(selfDmg) + ' reflected damage.'
 		if type == Type.MOVE and move.statChanges != null:
@@ -378,5 +399,8 @@ func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
 	targets = []
 	for targetPos in targetPositions:
 		for combatantNode in combatantNodes:
-			if targetPos == combatantNode.battlePosition and combatantNode.combatant != null:
-				targets.append(combatantNode.combatant)
+			if combatantNode.combatant != null:
+				if targetPos == combatantNode.battlePosition:
+					targets.append(combatantNode.combatant)
+				if combatantNode.combatant.statusEffect != null and combatantNode.combatant.statusEffect.type == StatusEffect.Type.INTERCEPTION:
+					interceptingTargets.append(combatantNode.combatant)
