@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyippeuidy6q4"]
+[gd_scene load_steps=10 format=3 uid="uid://dyippeuidy6q4"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/codex_menu/codex_menu.gd" id="1_4kiky"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_jhen4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="4_4yhog"]
 [ext_resource type="Resource" uid="uid://d1u5i7bipsn4t" path="res://gamedata/codex_entries/codex.tres" id="4_pcdn8"]
 [ext_resource type="PackedScene" uid="uid://17jyotb8a5fb" path="res://prefabs/ui/codex/codex_entry_panel.tscn" id="5_6oe10"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="7_8wv70"]
 
 [node name="CodexMenu" type="Control"]
 layout_mode = 3
@@ -71,7 +72,7 @@ offset_right = 366.0
 offset_bottom = 448.0
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/ClipScrollContainerControl"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/ClipScrollContainerControl" node_paths=PackedStringArray("boxContainer")]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -86,6 +87,8 @@ offset_bottom = 387.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
+script = ExtResource("7_8wv70")
+boxContainer = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ClipScrollContainerControl/ScrollContainer"]
 custom_minimum_size = Vector2(280, 748)

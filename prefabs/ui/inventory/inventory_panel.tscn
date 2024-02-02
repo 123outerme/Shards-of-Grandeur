@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=11 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="4_7ietu"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="5_msabb"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_ay1wk"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="7_n4b6m"]
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
@@ -139,7 +140,7 @@ layout_mode = 2
 toggle_mode = true
 text = "Key Items"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/Panel" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,6 +152,8 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
+script = ExtResource("7_n4b6m")
+boxContainer = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/Panel/ScrollContainer"]
 custom_minimum_size = Vector2(1120, 76)
