@@ -101,8 +101,8 @@ func get_exhaustion_level() -> StatusEffect.Potency:
 		return StatusEffect.Potency.NONE # if no status or not exhaustion
 	return statusEffect.potency # return exhaustion potency
 	
-func get_manic_level() -> StatusEffect.Potency:
-	if statusEffect == null or statusEffect.type != StatusEffect.Type.MANIC:
+func get_mania_level() -> StatusEffect.Potency:
+	if statusEffect == null or statusEffect.type != StatusEffect.Type.MANIA:
 		return StatusEffect.Potency.NONE # if no status or not exhaustion
 	return statusEffect.potency # return manic potency
 

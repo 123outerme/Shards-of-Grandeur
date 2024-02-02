@@ -6,12 +6,12 @@ enum Type {
 	EXHAUSTION = 1, # move-last
 	BLEED = 2, # damage over time
 	BERSERK = 3, # take recoil damage after every damaging move - other names could be Reckless, Overextertion, etc.
-	WEAKNESS = 4, # reduces outgoing physical damage
-	NEGATED = 5, # reduces outgoing magic damage
-	JINXED = 6, # reduces outgoing affinity damage
-	MANIC = 7, # positive; move-first
+	WEAKNESS = 4, # reduces outgoing physical stat
+	CONFUSION = 5, # reduces outgoing magic stat
+	JINX = 6, # reduces outgoing affinity stat
+	MANIA = 7, # positive; move-first
 	REFLECT = 8, # TODO better name; causes recoil damage when hit with attack
-	INTERCEPTION = 9, # TODO better name; "attracts" a percentage of damage dealt to allies to self
+	INTERCEPTION = 9, # "attracts" a percentage of damage dealt to allies to self
 	# other ones could be positive effects?
 }
 
@@ -34,12 +34,12 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Berserk'
 		Type.WEAKNESS:
 			return 'Weakness'
-		Type.NEGATED:
-			return 'Negated'
-		Type.JINXED:
-			return 'Jinxed'
-		Type.MANIC:
-			return 'Manic'
+		Type.CONFUSION:
+			return 'Confusion'
+		Type.JINX:
+			return 'Jinx'
+		Type.MANIA:
+			return 'Mania'
 		Type.REFLECT:
 			return 'Reflect'
 		Type.INTERCEPTION:

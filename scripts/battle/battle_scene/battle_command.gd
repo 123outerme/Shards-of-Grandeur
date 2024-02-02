@@ -136,10 +136,14 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	
 	var appliedDamage = false
 	var appliedStatus: bool = false
+	var selfDmg: int = 0
 	for idx in len(targets):
 		var damage = calculate_damage(user, targets[idx])
 		if damage != 0:
 			appliedDamage = true
+			if targets[idx].statusEffect.type == StatusEffect.Type.REFLECT:
+				var reflectStatus: Reflect = targets[idx].statusEffect as Reflect
+				selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
@@ -154,6 +158,9 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 			
 	if type == Type.USE_ITEM and appliedDamage: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
+		
+	if selfDmg > 0:
+		user.currentHp = max(0, user.currentHp - selfDmg)
 		
 	return false
 
@@ -262,6 +269,7 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 func get_command_results(user: Combatant) -> String:
 	var resultsText: String = user.disp_name() + ' passed.'
 	var actionTargets: Targets = Targets.NONE
+	var selfDmg: int = 0
 	
 	if type == Type.MOVE:
 		actionTargets = move.targets
@@ -297,6 +305,9 @@ func get_command_results(user: Combatant) -> String:
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
 						resultsText += damageText + ' damage to ' + targetName
+						if target.statusEffect != null and target.statusEffect.type == StatusEffect.Type.REFLECT:
+							var reflectStatus: Reflect = target.statusEffect as Reflect
+							selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 						if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING and (slot.item as Healing).statusStrengthHeal != StatusEffect.Potency.NONE:
@@ -331,6 +342,8 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '.'
+		if selfDmg > 0:
+			resultsText += user.disp_name() + ' takes ' + String.num(selfDmg) + ' reflected damage.'
 		if type == Type.MOVE and move.statChanges != null:
 			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
 				resultsText += ' ' + user.disp_name() + ' boosts '

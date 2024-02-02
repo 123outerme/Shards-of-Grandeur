@@ -1,25 +1,25 @@
 extends StatusEffect
-class_name Jinxed
+class_name Confusion
 
 var statChangesDict: Dictionary = {
-	Potency.NONE: StatChanges.new(1, 1, 0.8, 1, 1),
-	Potency.WEAK: StatChanges.new(1, 1, 0.7, 1, 1),
-	Potency.STRONG: StatChanges.new(1, 1, 0.6, 1, 1),
-	Potency.OVERWHELMING: StatChanges.new(1, 1, 0.5, 1, 1),
+	Potency.NONE: StatChanges.new(1, 0.8, 1, 1, 1),
+	Potency.WEAK: StatChanges.new(1, 0.7, 1, 1, 1),
+	Potency.STRONG: StatChanges.new(1, 0.6, 1, 1, 1),
+	Potency.OVERWHELMING: StatChanges.new(1, 0.5, 1, 1, 1),
 }
 
 var reverseStatChangesDict: Dictionary = {
-	Potency.NONE: StatChanges.new(1, 1, 1.2, 1, 1),
-	Potency.WEAK: StatChanges.new(1, 1, 1.3, 1, 1),
-	Potency.STRONG: StatChanges.new(1, 1, 1.4, 1, 1),
-	Potency.OVERWHELMING: StatChanges.new(1, 1, 1.5, 1, 1),
+	Potency.NONE: StatChanges.new(1, 1.2, 1, 1, 1),
+	Potency.WEAK: StatChanges.new(1, 1.3, 1, 1, 1),
+	Potency.STRONG: StatChanges.new(1, 1.4, 1, 1, 1),
+	Potency.OVERWHELMING: StatChanges.new(1, 1.5, 1, 1, 1),
 }
 
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
 ):
-	super(Type.JINXED, i_potency, i_turnsLeft)
+	super(Type.CONFUSION, i_potency, i_turnsLeft)
 
 func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC:
@@ -32,7 +32,7 @@ func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTimi
 	return ''
 
 func copy() -> StatusEffect:
-	return Jinxed.new(
+	return Confusion.new(
 		potency,
 		turnsLeft
 	)

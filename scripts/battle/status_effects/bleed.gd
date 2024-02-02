@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Bleed
 
-var percentDamageDict: Dictionary = {
+const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.04,
 	Potency.STRONG: 0.07,
@@ -15,7 +15,7 @@ func _init(
 	super(Type.BLEED, i_potency, i_turnsLeft)
 
 func get_bleed_damage(combatant: Combatant) -> int:
-	return roundi(combatant.stats.maxHp * percentDamageDict[potency])
+	return roundi(combatant.stats.maxHp * Bleed.PERCENT_DAMAGE_DICT[potency])
 
 func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
