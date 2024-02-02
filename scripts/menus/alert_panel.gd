@@ -6,6 +6,7 @@ const TWEEN_OFFSCREEN_TIME = 1.25
 
 @export var message: String = ''
 @export var lifetime: float = 2
+@export var alertSfx: AudioStream = null
 
 var panelTween: Tween = null
 var pauseTimer: bool = false
@@ -20,6 +21,7 @@ func _ready():
 	messageLabel.text = '[center]' + message + '[/center]'
 	panelTween.tween_property(self, 'position', Vector2(0, 0), TWEEN_ONSCREEN_TIME)
 	panelTween.finished.connect(_show_finished)
+	SceneLoader.audioHandler.play_sfx(alertSfx)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
