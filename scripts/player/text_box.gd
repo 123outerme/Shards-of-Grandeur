@@ -59,7 +59,7 @@ func advance_textbox(text: String):
 	delete_choices()
 
 func is_textbox_complete() -> bool:
-	return TextBoxText.visible_ratio == 1.0 or len(TextBoxText.text) == 0
+	return ReadySprite.visible or (len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0)
 
 func add_choices():
 	if dialogueItem == null or PlayerFinder.player.makingChoice \

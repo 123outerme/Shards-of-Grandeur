@@ -58,12 +58,13 @@ func _unhandled_input(event):
 		if questsPanel.visible:
 			questsPanel.toggle()
 		
-	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline")) \
+	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline") \
+			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
 			and (len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice and not cutscenePaused:
 		if textBox.is_textbox_complete():
-			advance_dialogue(event.is_action_pressed("game_interact"))
+			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		else:
 			textBox.show_text_instant()
 			
