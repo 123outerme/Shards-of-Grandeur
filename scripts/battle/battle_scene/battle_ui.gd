@@ -166,7 +166,7 @@ func initial_focus():
 	if summonMenu.visible:
 		summonMenu.initial_focus()
 	if allCommands.visible:
-		allCommands.grab_focus()
+		allCommands.initial_focus()
 	if moves.visible:
 		moves.initial_focus()
 	if targets.visible:

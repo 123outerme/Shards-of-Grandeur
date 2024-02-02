@@ -12,8 +12,8 @@ class_name StatGrowth
 static func hp_gain(lv: int) -> int:
 	return lv + 2
 	
-static func stat_gain(lv: int):
-	return round(0.1 * lv + 1)
+static func stat_gain(lv: int) -> int:
+	return floori(0.1 * lv + 1)
 
 func _init(
 	i_hpGrowth = 1,

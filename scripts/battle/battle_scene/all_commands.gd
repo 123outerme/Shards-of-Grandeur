@@ -15,10 +15,13 @@ var commandingMinion: bool = false
 func _ready():
 	if PlayerResources.playerInfo.staticEncounter != null:
 		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
-	
+
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'
+	initial_focus()
+	
+func initial_focus():
 	movesBtn.grab_focus()
 
 func _on_moves_button_pressed():

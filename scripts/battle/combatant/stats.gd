@@ -122,11 +122,11 @@ func level_up(newLvs: int):
 		level += 1 # add one level every loop iteration to add a total of `newLvs` levels
 		pts += Stats.floating_stat_pt_gain(level)
 	maxHp = statGrowth.calculate_max_hp(level)
-	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK)
-	magicAttack = statGrowth.calculate_stat_category(level, Category.MAGIC_ATK)
-	affinity = statGrowth.calculate_stat_category(level, Category.AFFINITY)
-	resistance = statGrowth.calculate_stat_category(level, Category.RESISTANCE)
-	speed = statGrowth.calculate_stat_category(level, Category.SPEED)
+	physAttack += statGrowth.calculate_stat_category(level, Category.PHYS_ATK) - statGrowth.calculate_stat_category(level - newLvs, Category.PHYS_ATK)
+	magicAttack += statGrowth.calculate_stat_category(level, Category.MAGIC_ATK) -  statGrowth.calculate_stat_category(level - newLvs, Category.MAGIC_ATK)
+	affinity += statGrowth.calculate_stat_category(level, Category.AFFINITY) -  statGrowth.calculate_stat_category(level - newLvs, Category.AFFINITY)
+	resistance += statGrowth.calculate_stat_category(level, Category.RESISTANCE) -  statGrowth.calculate_stat_category(level - newLvs, Category.RESISTANCE)
+	speed += statGrowth.calculate_stat_category(level, Category.SPEED) -  statGrowth.calculate_stat_category(level - newLvs, Category.SPEED)
 	statPts += pts
 
 func add_move_to_pool(move: Move):
