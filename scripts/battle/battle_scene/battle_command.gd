@@ -146,10 +146,12 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				var reflectStatus: Reflect = targets[idx].statusEffect as Reflect
 				selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
 			for interceptIdx in range(len(interceptingTargets)):
+				if interceptingTargets[interceptIdx] == targets[idx]:
+					continue # skip intercepting if the target is the interceptor
 				var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
-				var interceptDamage = damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
+				var interceptDamage: int = roundi(damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency])
 				damage -= interceptDamage
-				interceptingTargets[interceptIdx].currentHp = max(interceptingTargets[interceptIdx] - interceptDamage, 0) # bound to be at least 0 and no more than max HP
+				interceptingTargets[interceptIdx].currentHp = max(interceptingTargets[interceptIdx].currentHp - interceptDamage, 0) # bound to be at least 0 and no more than max HP
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
@@ -316,7 +318,7 @@ func get_command_results(user: Combatant) -> String:
 						if interceptingTargets[interceptIdx] == targets[i]:
 							continue # skip if the intercepting combatant is the target of the move
 						var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect
-						var interceptDamage = damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
+						var interceptDamage: int = roundi(damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency])
 						damage -= interceptDamage
 						interceptingTargetDamages[interceptIdx] += interceptDamage
 				if damage != 0:
