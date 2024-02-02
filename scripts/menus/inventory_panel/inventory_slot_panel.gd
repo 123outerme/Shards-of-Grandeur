@@ -94,7 +94,6 @@ func _on_unequip_button_pressed():
 	inventoryMenu.unequip_pressed(inventorySlot) # rebuild the whole menu - item order may have changed
 	
 func _on_trash_button_pressed():
-	PlayerResources.inventory.trash_item(inventorySlot)
 	inventoryMenu.trash_pressed(inventorySlot) # rebuild the whole menu - item slot may be all gone
 
 func _on_buy_button_pressed():

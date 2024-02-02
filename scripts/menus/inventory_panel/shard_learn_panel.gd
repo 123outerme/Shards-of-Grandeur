@@ -35,17 +35,11 @@ func load_shard_learn_panel():
 	movePoolPanel.show_learn_buttons(true)
 	visible = true
 
-func credit_back_shard():
-	PlayerResources.inventory.add_item(shard as Item) # add the shard back to the inventory after using it up
-
 func _on_back_button_pressed():
 	visible = false
-	credit_back_shard()
 	back_pressed.emit()
 
 func _on_move_pool_panel_learn_button_clicked(move: Move):
-	PlayerResources.playerInfo.combatant.stats.add_move_to_pool(move)
-	
 	visible = false
 	learned_move.emit(move)
 

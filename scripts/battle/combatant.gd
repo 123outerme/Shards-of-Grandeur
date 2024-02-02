@@ -106,6 +106,11 @@ func get_manic_level() -> StatusEffect.Potency:
 		return StatusEffect.Potency.NONE # if no status or not exhaustion
 	return statusEffect.potency # return manic potency
 
+func would_item_have_effect(item: Item) -> bool:
+	if item.itemType == Item.Type.HEALING:
+		return currentHp < stats.maxHp
+	return true
+
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level
 	if lvDiff > 0:

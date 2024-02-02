@@ -34,12 +34,14 @@ var shopInventory: Inventory = null
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 @onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
+@onready var itemConfirmPanel: ItemConfirmPanel = get_node("ItemConfirmPanel")
 
 var currentInventory: Inventory = null
 var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
 
 var lastFocused: Control = null
 var lastSlotInteracted: InventorySlot = null
+var confirmingAction: String = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -225,8 +227,10 @@ func unequip_pressed(slot: InventorySlot):
 	
 func trash_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
-	load_inventory_panel()
-	restore_last_focus('trashButton')
+	itemConfirmPanel.title = 'Trash Item?'
+	itemConfirmPanel.description = 'Are you sure you want to trash 1x ' + slot.item.itemName + '?'
+	itemConfirmPanel.load_item_confirm_panel()
+	confirmingAction = 'trash'
 
 func view_item_details(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -315,10 +319,6 @@ func _on_key_items_button_toggled(button_pressed):
 
 func _on_item_used(slot: InventorySlot):
 	lastSlotInteracted = slot
-	if not inBattle: # if not in battle use it immediately
-		var last = PlayerResources.inventory.use_item(slot.item, PlayerResources.playerInfo.combatant)
-		if last:
-			lastSlotInteracted = null
 	if slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
 		itemUsePanel.item = slot.item
 		itemUsePanel.target = PlayerResources.playerInfo.combatant
@@ -329,6 +329,12 @@ func _on_item_used(slot: InventorySlot):
 		shardLearnPanel.shard = slot.item as Shard
 		shardLearnPanel.load_shard_learn_panel()
 		backButton.disabled = true
+	if PlayerResources.playerInfo.combatant.would_item_have_effect(slot.item) \
+			and slot.item.itemType != Item.Type.SHARD and not inBattle:
+		# if not in battle and it would have effect, use it immediately
+		var last = PlayerResources.inventory.use_item(slot.item, PlayerResources.playerInfo.combatant)
+		if last:
+			lastSlotInteracted = null
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
@@ -343,4 +349,30 @@ func _on_shard_learn_panel_back_pressed():
 func _on_shard_learn_panel_learned_move(move: Move):
 	itemUsePanel.target = PlayerResources.playerInfo.combatant
 	itemUsePanel.learnedMove = move
-	itemUsePanel.load_item_use_panel()
+	itemConfirmPanel.title = 'Learn ' + move.moveName + ' From ' + lastSlotInteracted.item.itemName + '?'
+	itemConfirmPanel.description = 'Learning this move will consume the shard. Learn ' + move.moveName + ' and consume the ' + lastSlotInteracted.item.itemName + '?'
+	itemConfirmPanel.load_item_confirm_panel()
+	confirmingAction = 'shardLearn'
+
+func _on_item_confirm_panel_confirm_option(yes: bool):
+	match confirmingAction:
+		'trash':
+			if yes:
+				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
+				if last:
+					lastSlotInteracted = null
+		'shardLearn':
+			if yes:
+				PlayerResources.playerInfo.combatant.stats.add_move_to_pool(itemUsePanel.learnedMove)
+				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
+				if last:
+					lastSlotInteracted = null
+				itemUsePanel.load_item_use_panel()
+	if yes:
+		load_inventory_panel()
+	match confirmingAction:
+		'trash':
+			restore_last_focus('trashButton')
+		'shardLearn':
+			if not yes: # if yes, the item use panel will capture focus and handle restoring it after
+				restore_last_focus('useButton')

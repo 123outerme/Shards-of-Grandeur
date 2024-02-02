@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=12 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
+[ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="11_c0y15"]
 
 [node name="InventoryPanelNode" type="Node2D"]
 script = ExtResource("1_b8tdp")
@@ -184,6 +185,13 @@ visible = false
 [node name="ShardLearnPanel" parent="." instance=ExtResource("8_suef4")]
 visible = false
 
+[node name="ItemConfirmPanel" parent="." instance=ExtResource("11_c0y15")]
+visible = false
+offset_left = 190.0
+offset_top = 280.0
+offset_right = 1090.0
+offset_bottom = 680.0
+
 [connection signal="item_used" from="." to="." method="_on_item_used"]
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
@@ -197,5 +205,6 @@ visible = false
 [connection signal="ok_pressed" from="ItemUsePanel" to="." method="_on_item_use_panel_ok_pressed"]
 [connection signal="back_pressed" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_back_pressed"]
 [connection signal="learned_move" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_learned_move"]
+[connection signal="confirm_option" from="ItemConfirmPanel" to="." method="_on_item_confirm_panel_confirm_option"]
 
 [editable path="ItemDetailsPanel"]
