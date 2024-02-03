@@ -70,8 +70,8 @@ func fade_in(callback: Callable, duration: float = 0.5):
 	shade.visible = true
 	if fadeInTween != null and fadeInTween.is_valid():
 		interruptTween = true
-		fadeInTween.finished.emit()
 		fadeInTween.kill()
+		fadeInTween.finished.emit()
 	if fadeOutTween != null and fadeOutTween.is_valid():
 		interruptTween = true
 		fadeOutTween.kill()

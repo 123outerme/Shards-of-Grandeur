@@ -172,7 +172,6 @@ func end_cutscene(force: bool = false):
 
 func complete_cutscene():
 	SceneLoader.unpause_autonomous_movers()
-	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore

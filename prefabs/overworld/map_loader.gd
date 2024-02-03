@@ -99,6 +99,7 @@ func reparent_player():
 	tilemap.add_child(player)
 	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
 	PlayerFinder.player = player
+	player.speed = player.BASE_SPEED # reset running
 
 func destroy_overworld_enemies():
 	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):
