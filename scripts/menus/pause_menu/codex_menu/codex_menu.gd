@@ -41,7 +41,7 @@ func load_codex_menu():
 	else:
 		entryTitle.text = ''
 	for entry in lastEntry.childrenEntries:
-		if entry.storyRequirements == null or entry.storyRequirements.is_valid():
+		if entry.is_valid():
 			instantiate_button_for_entry(entry)
 	
 	var entryButtons: Array[Node] = vboxContainer.get_children()

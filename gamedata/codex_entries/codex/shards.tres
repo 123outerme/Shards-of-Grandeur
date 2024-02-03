@@ -1,12 +1,42 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://be7pra5lg7w6"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=7 format=3 uid="uid://be7pra5lg7w6"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_6fnau"]
 [ext_resource type="Resource" uid="uid://cjbnwbfh7qdvr" path="res://gamedata/codex_entries/codex/shards/learn_move.tres" id="1_hh81s"]
 [ext_resource type="Resource" uid="uid://dw7y3b7yq8as7" path="res://gamedata/codex_entries/codex/shards/summon.tres" id="1_rmu1h"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_gqusw"]
+
+[sub_resource type="Resource" id="Resource_qkmr4"]
+script = ExtResource("4_gqusw")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["hilltop_enter"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_p8n4c"]
+script = ExtResource("4_gqusw")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["dr_hudson_standstill#shard_explain"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_6fnau")
 id = "shards"
 title = "Shards"
-description = "A Shard is a crystal infused with the life energy of a creature. This energy can be used for many different purposes."
+storyRequirements = Array[ExtResource("4_gqusw")]([SubResource("Resource_qkmr4"), SubResource("Resource_p8n4c")])
+description = "A Shard is a crystal infused with the life energy of a creature. This energy can be harnessed by magic and used for many different purposes."
 childrenEntries = Array[ExtResource("1_6fnau")]([ExtResource("1_hh81s"), ExtResource("1_rmu1h")])

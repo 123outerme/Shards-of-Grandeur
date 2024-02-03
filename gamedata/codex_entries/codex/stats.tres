@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=8 format=3 uid="uid://ty3ktuw7qn2p"]
+
+[ext_resource type="Resource" uid="uid://c32rgpn5eqc8s" path="res://gamedata/codex_entries/codex/stats/hp.tres" id="1_odk5j"]
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_tl33v"]
+[ext_resource type="Resource" uid="uid://fbcl3urc6ye3" path="res://gamedata/codex_entries/codex/stats/phys_atk.tres" id="2_ae7xy"]
+[ext_resource type="Resource" uid="uid://cvaq2anuelur6" path="res://gamedata/codex_entries/codex/stats/magic_atk.tres" id="3_ubc3t"]
+[ext_resource type="Resource" uid="uid://ccsn8shmglt6d" path="res://gamedata/codex_entries/codex/stats/affinity.tres" id="4_2migy"]
+[ext_resource type="Resource" uid="uid://2vtl21w0yyvp" path="res://gamedata/codex_entries/codex/stats/resistance.tres" id="5_u60e5"]
+[ext_resource type="Resource" uid="uid://bjnvkm00fdfy6" path="res://gamedata/codex_entries/codex/stats/speed.tres" id="6_6fedj"]
+
+[resource]
+script = ExtResource("1_tl33v")
+id = "stats"
+title = "Stats"
+storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+description = "Each combatant, including you and your minions, have a set of stats that determine your combat abilities. These are Max HP, Physical Attack, Magic Attack, Affinity, Resistance, and Speed. You can spend free Stat Points to increase your stats and your minions' stats."
+childrenEntries = Array[ExtResource("1_tl33v")]([ExtResource("1_odk5j"), ExtResource("2_ae7xy"), ExtResource("3_ubc3t"), ExtResource("4_2migy"), ExtResource("5_u60e5"), ExtResource("6_6fedj")])

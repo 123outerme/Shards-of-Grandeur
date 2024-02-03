@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://di6qlmd0s1nc8"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=8 format=3 uid="uid://di6qlmd0s1nc8"]
 
 [ext_resource type="Resource" uid="uid://bovb32h1mk3dq" path="res://gamedata/codex_entries/codex/battle/flow_of_battle.tres" id="1_1qgr3"]
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_lm8nv"]
+[ext_resource type="Resource" uid="uid://dwlyqg5na2fo4" path="res://gamedata/codex_entries/codex/battle/combatants.tres" id="1_xw31a"]
+[ext_resource type="Resource" uid="uid://50e68noxr08e" path="res://gamedata/codex_entries/codex/battle/status_effects.tres" id="2_8couy"]
+[ext_resource type="Resource" uid="uid://cpue6bw6gamsj" path="res://gamedata/codex_entries/codex/battle/minions.tres" id="2_yjbg7"]
+[ext_resource type="Resource" uid="uid://bqaxqd6mcpbtx" path="res://gamedata/codex_entries/codex/battle/stat_modifiers.tres" id="4_w356t"]
+[ext_resource type="Resource" uid="uid://bycjmn81y0wj5" path="res://gamedata/codex_entries/codex/battle/moves.tres" id="5_o0i2i"]
 
 [resource]
 script = ExtResource("1_lm8nv")
 id = "battle"
 title = "Battle"
+storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
 description = "Battles are turn-based contests in defeating the opposing enemy team. As long as at least one member is standing on each side of the battle, the battle continues!
-Each combatant in the battle can be afflicted with status effects, undergo stat changes, and take damage. If you can outspeed your opponents, you can escape to fight another day!"
-childrenEntries = Array[ExtResource("1_lm8nv")]([ExtResource("1_1qgr3")])
+Each combatant in the battle can be afflicted with status effects, affected by stat modifiers, heal, and take damage. If you can outspeed your opponents, you can escape to fight another day!"
+childrenEntries = Array[ExtResource("1_lm8nv")]([ExtResource("1_xw31a"), ExtResource("5_o0i2i"), ExtResource("1_1qgr3"), ExtResource("2_yjbg7"), ExtResource("2_8couy"), ExtResource("4_w356t")])

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://bjnvkm00fdfy6"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_d735y"]
+
+[resource]
+script = ExtResource("1_d735y")
+id = "speed"
+title = "Speed"
+storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+description = "Speed determines when a combatant gets to act in a turn. A combatant with a higher speed will always move before one with a lower speed, not including status effects. A combatant with a higher speed will also have a higher chance to prevent escape from the battle, and a combatant with a lower speed will find it more difficult to escape."
+childrenEntries = Array[ExtResource("1_d735y")]([])
