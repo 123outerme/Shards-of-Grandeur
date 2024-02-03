@@ -45,8 +45,8 @@ func load_recover_map():
 	player.disableMovement = true
 	player.get_collider().set_deferred('disabled', true)
 	if recoveryMapEntry != null:
-		player.position = mapEntry.recoverPosition
-		PlayerResources.playerInfo.position = mapEntry.recoverPosition
+		player.position = recoveryMapEntry.recoverPosition
+		PlayerResources.playerInfo.position = recoveryMapEntry.recoverPosition
 		load_map(PlayerResources.playerInfo.recoverMap)
 	else:
 		printerr('Error: Recovery map not found!!')

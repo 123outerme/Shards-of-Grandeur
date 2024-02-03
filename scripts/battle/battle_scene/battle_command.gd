@@ -138,6 +138,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	for i in range(len(targets)):
 		commandResult.damagesDealt.append(0)
 		commandResult.afflictedStatuses.append(false)
+		commandResult.wasBoosted.append(false)
 	for i in range(len(interceptingTargets)):
 		commandResult.damageOnInterceptingTargets.append(0)
 	
@@ -170,6 +171,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if move != null and \
 				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
+			commandResult.wasBoosted[idx] = true
 	if type == Type.MOVE and move != null and is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses:
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
@@ -364,7 +366,7 @@ func get_command_results(user: Combatant) -> String:
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
 		if type == Type.MOVE and move.statChanges != null:
-			if move.statChanges.has_stat_changes() and (is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses):
+			if move.statChanges.has_stat_changes() and not (not is_command_enemy_targeting(move.targets) and not (true in commandResult.afflictedStatuses) and move.statusEffect != null):
 				resultsText += ' ' + user.disp_name() + ' boosts '
 				var displayTargetNames: bool = false
 				for target in targets:
@@ -372,14 +374,15 @@ func get_command_results(user: Combatant) -> String:
 						displayTargetNames = true
 						break
 				if displayTargetNames:
-					for i in range(len(targets)):
-						var name: String = targets[i].disp_name()
-						if targets[i] == user:
+					var affectedTargets = get_multiplier_affected_targets()
+					for i in range(len(affectedTargets)):
+						var name: String = affectedTargets[i].disp_name()
+						if affectedTargets[i] == user:
 							name = 'self'
 						resultsText += name
-						if len(targets) > 1 and i < len(targets) - 1:
+						if len(affectedTargets) > 1 and i < len(affectedTargets) - 1:
 							resultsText += ', '
-							if i == len(targets) - 2:
+							if i == len(affectedTargets) - 2:
 								resultsText += 'and '
 					resultsText += ' with '
 				var multipliers: Array[StatMultiplierText] = move.statChanges.get_multipliers_text()
@@ -402,3 +405,26 @@ func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
 					targets.append(combatantNode.combatant)
 				if combatantNode.combatant.statusEffect != null and combatantNode.combatant.statusEffect.type == StatusEffect.Type.INTERCEPTION:
 					interceptingTargets.append(combatantNode.combatant)
+
+func get_multiplier_affected_targets() -> Array[Combatant]:
+	var affected: Array[Combatant] = []
+	for idx in range(len(targets)):
+		if commandResult.wasBoosted[idx]:
+			affected.append(targets[idx])
+	return affected
+
+func get_command_animation() -> String:
+	match type:
+		Type.MOVE:
+			match move.category:
+				Move.DmgCategory.PHYSICAL:
+					return 'attack_phys'
+				Move.DmgCategory.MAGIC:
+					return 'attack_magic'
+				Move.DmgCategory.AFFINITY:
+					return 'attack_affinity'
+		Type.USE_ITEM:
+			return 'talk'
+		Type.ESCAPE:
+			return 'walk'
+	return 'stand'

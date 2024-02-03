@@ -92,7 +92,7 @@ func update_turn_text() -> bool:
 	
 		for combatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
-				combatantNode.play_animation('attack')
+				combatantNode.play_animation(combatant.command.get_command_animation())
 		
 	battleUI.results.show_text(text)
 	return text != ''
