@@ -4,7 +4,7 @@ class_name ScrollBetterFollow
 @export var boxContainer: BoxContainer
 
 func _viewport_focus_changed(control):
-	print('fix focus')
+	#print('fix focus')
 	var controlPath: NodePath = get_path_to(control)
 	if controlPath.get_name(0) == boxContainer.name and follow_focus:
 		# if the control is in the path of the nested box container, fix the follow_focus scroll

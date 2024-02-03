@@ -3,7 +3,9 @@ class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
 @export var combatant: Combatant
-@export var combatantLevel: int = 1
+@export var combatantMinLevel: int = 1
+@export var combatantMaxLevel: int = 1
+@export var combatantLvToPlayerLvRatio: float = 1
 @export var staticEncounter: StaticEncounter = null
 @export var storyRequirements: StoryRequirements = null
 @export var spawnWhenPlayerLocked: bool = false
@@ -30,7 +32,12 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, combatantLevel, staticEncounter)
+		var level: int = min(combatantMaxLevel, \
+				max(combatantMinLevel, \
+				combatantMinLevel + floori((PlayerResources.playerInfo.combatant.stats.level - combatantMinLevel) * combatantLvToPlayerLvRatio))) 
+		# level = min + floor((playerlv - min) * ratio), bounded between min and max lv
+		
+		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, level, staticEncounter)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.

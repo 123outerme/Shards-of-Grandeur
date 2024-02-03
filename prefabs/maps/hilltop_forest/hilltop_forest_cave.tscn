@@ -261,6 +261,8 @@ visible = false
 position = Vector2(-659, 398)
 spawnerData = SubResource("Resource_0t6sl")
 combatant = ExtResource("4_d1muk")
+combatantMaxLevel = 2
+combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner/SpawnArea" index="0"]
@@ -281,6 +283,8 @@ shape = SubResource("RectangleShape2D_3ekqt")
 position = Vector2(-902, 202)
 spawnerData = SubResource("Resource_otb8j")
 combatant = ExtResource("4_utc70")
+combatantMaxLevel = 3
+combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner3/SpawnArea" index="0"]
@@ -291,6 +295,9 @@ shape = SubResource("RectangleShape2D_cga0g")
 position = Vector2(-701, -9)
 spawnerData = SubResource("Resource_srcdu")
 combatant = ExtResource("4_d1muk")
+combatantMinLevel = 2
+combatantMaxLevel = 3
+combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner4/SpawnArea" index="0"]

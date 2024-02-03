@@ -102,6 +102,8 @@ func start_cutscene(newCutscene: Cutscene):
 	PlayerFinder.player.cutsceneTextIndex = 0
 	PlayerFinder.player.cutsceneLineIndex = 0
 	PlayerFinder.player.cam.show_letterbox()
+	if PlayerFinder.player.pausePanel.isPaused:
+		PlayerFinder.player.pausePanel.toggle_pause() # unpause if somehow the game was paused when the cutscene started
 	SceneLoader.pause_autonomous_movers()
 	for actor in cutscene.activateActorsBefore:
 		var actorNode = rootNode.get_node_or_null(actor)

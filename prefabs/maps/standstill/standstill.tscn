@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=55 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -127,6 +127,9 @@ invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a5td"]
+size = Vector2(103, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p63hv"]
 size = Vector2(20, 98)
@@ -388,7 +391,8 @@ mapPos = Vector2(-968, 546)
 storyRequirements = SubResource("Resource_mke3f")
 
 [node name="WarpArea" parent="WarpCutsceneRightExit" index="0"]
-shape = SubResource("RectangleShape2D_fkf8o")
+position = Vector2(47.5, 0)
+shape = SubResource("RectangleShape2D_6a5td")
 
 [node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
 position = Vector2(-552, 116)

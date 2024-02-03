@@ -19,10 +19,10 @@ func get_recoil_damage(combatant: Combatant, allCombatants: Array[Combatant], at
 	# Assumption: targets are already fetched
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
 	for targetIdx in range(len(allCombatants[attackerIdx].command.targets)):
-		if combatant == allCombatants[attackerIdx].command.targets[targetIdx]:
+		if combatant == allCombatants[attackerIdx].command.targets[targetIdx] and allCombatants[attackerIdx].command.commandResult != null:
 			damage += allCombatants[attackerIdx].command.commandResult.damagesDealt[targetIdx]
 	for interceptIdx in range(len(allCombatants[attackerIdx].command.interceptingTargets)):
-		if combatant in allCombatants[attackerIdx].command.interceptingTargets:
+		if combatant in allCombatants[attackerIdx].command.interceptingTargets and allCombatants[attackerIdx].command.commandResult != null:
 			damage += allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]
 	
 	return roundi(damage * Reflect.PERCENT_DAMAGE_DICT[potency])
@@ -30,14 +30,14 @@ func get_recoil_damage(combatant: Combatant, allCombatants: Array[Combatant], at
 func find_attacker_idx(combatant: Combatant, allCombatants: Array[Combatant]) -> int:
 	for idx in range(len(allCombatants)):
 		# if this combatant is not the afflicted, and is using a command (has already been resolved)
-		if allCombatants[idx] != combatant and allCombatants[idx].command != null:
+		if allCombatants[idx] != combatant and not allCombatants[idx].downed and allCombatants[idx].command != null:
 			return idx
 	return -1
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
-		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 1) # recoil can never knock you out!
+		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 0) # recoil can never knock you out!
 	super.apply_status(combatant, allCombatants, timing)
 	
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:

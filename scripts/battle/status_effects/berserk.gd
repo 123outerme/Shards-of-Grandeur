@@ -17,7 +17,7 @@ func _init(
 func get_recoil_damage(combatant: Combatant) -> int:
 	var damage: int = 0
 	# Assumption: targets are already fetched
-	if combatant.command != null:
+	if combatant.command != null and combatant.command.commandResult != null:
 		# calculate total damage dealt from this command
 		for targetIdx in range(len(combatant.command.targets)):
 			damage += combatant.command.commandResult.damagesDealt[targetIdx]
@@ -28,7 +28,8 @@ func get_recoil_damage(combatant: Combatant) -> int:
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
-		combatant.currentHp = max(combatant.currentHp - get_recoil_damage(combatant), 1) # recoil can never knock you out!
+		if combatant.currentHp > 0:
+			combatant.currentHp = max(combatant.currentHp - get_recoil_damage(combatant), 1) # recoil can never knock you out!
 	super.apply_status(combatant, allCombatants, timing)
 
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
