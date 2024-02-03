@@ -132,6 +132,7 @@ func skip_cutscene():
 		return
 	
 	isPaused = false
+	PlayerFinder.player.pauseDisabled = true
 	PlayerFinder.player.cam.fade_out(_fade_out_complete, 0.1)
 	# reset textbox
 	PlayerFinder.player.textBox.hide_textbox()
@@ -210,6 +211,7 @@ func _fade_in_complete():
 	isFadingIn = false
 	if completeAfterFadeIn:
 		complete_cutscene()
+		PlayerFinder.player.pauseDisabled = false
 
 func skip_cutscene_process():
 	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):

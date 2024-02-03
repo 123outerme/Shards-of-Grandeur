@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://cpue6bw6gamsj"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://cpue6bw6gamsj"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_m4eiw"]
+[ext_resource type="Resource" uid="uid://un437v4yucll" path="res://gamedata/codex_entries/codex/battle/_story_requirements/shards_explain.tres" id="2_6gvhd"]
+[ext_resource type="Resource" uid="uid://dsiftdqxypirv" path="res://gamedata/codex_entries/codex/battle/_story_requirements/shards_hilltop.tres" id="3_kc86k"]
 
 [resource]
 script = ExtResource("1_m4eiw")
 id = "minions"
 title = "Minions"
+storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([ExtResource("2_6gvhd"), ExtResource("3_kc86k")])
 description = "Minions can be summoned by using a Shard in battle, to become an allied combatant, which you can fully command. As you continue to summon with the same Shard, your Attunement to that minion grows."
 childrenEntries = Array[ExtResource("1_m4eiw")]([])

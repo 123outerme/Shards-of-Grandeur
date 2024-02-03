@@ -62,12 +62,14 @@ func instantiate_button_for_entry(entry: CodexEntry):
 		return
 	var button: SFXButton = buttonPrefab.instantiate()
 	button.text = entry.title
-	button.pressed.connect(_on_codex_button_pressed.bind(entry))
+	button.pressed.connect(_on_codex_button_pressed.bind(entry, button))
 	button.add_to_group('CodexEntryButton')
-	if not PlayerResources.playerInfo.has_seen_codex_entry(entry.id):
+	var hasNotSeen = has_not_seen_indicator(entry)
+	if hasNotSeen:
 		button.icon = notSeenSprite
 		button.expand_icon = true
 	vboxContainer.add_child(button)
+	button.focus_neighbor_right = '.'
 
 func focus_button_for_entry(entry: CodexEntry):
 	for button in get_tree().get_nodes_in_group('CodexEntryButton'):
@@ -81,13 +83,25 @@ func get_last_entry_with_children() -> CodexEntry:
 			return selectedEntryStack[idx]
 	return null
 
-func _on_codex_button_pressed(entry: CodexEntry):
+func has_not_seen_indicator(entry: CodexEntry) -> bool:
+	if not PlayerResources.playerInfo.has_seen_codex_entry(entry.id):
+		return true
+	
+	for child in entry.childrenEntries:
+		if has_not_seen_indicator(child):
+			return true
+	
+	return false
+
+func _on_codex_button_pressed(entry: CodexEntry, button: Button):
 	codexEntryPanel.codexEntry = entry
 	codexEntryPanel.load_codex_entry_panel()
 	if len(entry.childrenEntries) > 0:
 		selectedEntryStack.append(entry)
 		load_codex_menu()
 	PlayerResources.playerInfo.set_codex_entry_seen(entry.id)
+	if not has_not_seen_indicator(entry):
+		button.icon = null
 
 func _on_back_button_pressed():
 	var entry: CodexEntry = null
