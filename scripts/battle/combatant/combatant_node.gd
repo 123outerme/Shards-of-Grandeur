@@ -203,8 +203,14 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> Move:
 		var moveChoices: Array[int] = []
 		for moveIdx in range(len(moveCandidates)):
 			var move: Move = moveCandidates[moveIdx]
-			if not BattleCommand.is_command_enemy_targeting(move.targets) and move.role == Move.Role.BUFF:
-				moveChoices.append(moveIdx)
+			for combatantNode in get_targetable_combatant_nodes(combatantNodes, move.targets):
+				if combatantNode.role == role and combatantNode.is_alive():
+					var allyHasStatus: bool = combatantNode.combatant.statusEffect != null
+					if not allyHasStatus and move.statusEffect != null and \
+							not BattleCommand.is_command_enemy_targeting(move.targets) and \
+							move.role == Move.Role.BUFF:
+						moveChoices.append(moveIdx)
+		
 		if len(moveChoices) > 0:
 			pickedMove = moveCandidates[moveChoices.pick_random()]
 			

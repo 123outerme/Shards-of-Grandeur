@@ -146,8 +146,7 @@ func _new_act_fade_out(callback: Callable):
 	fade_in(callback)
 
 func _on_resume_button_pressed():
-	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-		cutscenePlayer.toggle_pause_cutscene()
+	SceneLoader.cutscenePlayer.toggle_pause_cutscene()
 	toggle_cutscene_paused_shade()
 	player.cutscenePaused = cutscenePaused
 	set_alert_panels_lifetime_pause(cutscenePaused)
@@ -157,5 +156,4 @@ func _on_skip_button_pressed():
 	cutscenePaused = false
 	player.cutscenePaused = false
 	set_alert_panels_lifetime_pause(cutscenePaused)
-	for cutscenePlayer: CutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-		cutscenePlayer.skip_cutscene()
+	SceneLoader.cutscenePlayer.skip_cutscene()

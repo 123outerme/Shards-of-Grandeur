@@ -33,8 +33,8 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	player.position = newMapPos
 	player.set_talk_npc(null)
 	PlayerResources.playerInfo.map = newMapName
-	for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-		cutscenePlayer.end_cutscene(true)
+	SceneLoader.cutscenePlayer.isFadedOut = false
+	SceneLoader.cutscenePlayer.end_cutscene(true)
 	if player.holdingCamera:
 		player.snap_camera_back_to_player(0)
 	load_map(newMapName)
@@ -100,6 +100,7 @@ func reparent_player():
 	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
 	PlayerFinder.player = player
 	player.speed = player.BASE_SPEED # reset running
+	SceneLoader.cutscenePlayer.rootNode = tilemap.get_parent()
 
 func destroy_overworld_enemies():
 	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):

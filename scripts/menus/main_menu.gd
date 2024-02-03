@@ -88,3 +88,8 @@ func _on_cancel_button_pressed():
 
 func _on_settings_menu_back_pressed():
 	settingsMenuButton.grab_focus()
+
+func _on_name_input_gui_input(event):
+	# if ui cancel (Escape) has been pressed to unfocus the input
+	if event.is_action_pressed('ui_cancel'):
+		confirmButton.grab_focus()

@@ -251,6 +251,7 @@ fit_content = true
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="gui_input" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_changed" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="text_submitted" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

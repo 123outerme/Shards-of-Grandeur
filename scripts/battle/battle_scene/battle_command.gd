@@ -214,10 +214,11 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		
 		var atkExpression: float = atkStat + 5
 		var resExpression: float = targetStats.resistance + 5
-		var apparentLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
+		var apparentUserLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
 		# scaled so that increases early on don't jack up the ratio intensely
+		var apparentTargetLv = dmg_logistic(target.stats.level, user.stats.level)
 		
-		var damage: int = roundi( power * (apparentLv / 4.0) * (atkExpression / resExpression) )
+		var damage: int = roundi( power * ((apparentUserLv / apparentTargetLv) / 4.0) * (atkExpression / resExpression) )
 		if power > 0 and damage <= 0:
 			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		

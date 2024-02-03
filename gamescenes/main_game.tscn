@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://qw0fkgur50ad"]
+[gd_scene load_steps=4 format=3 uid="uid://qw0fkgur50ad"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_4ory4"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="1_vywri"]
+[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/cutscene_player.tscn" id="3_jv7l6"]
 
 [node name="MainGame" type="Node"]
 script = ExtResource("1_4ory4")
 
 [node name="AudioHandler" parent="." instance=ExtResource("1_vywri")]
+
+[node name="CutscenePlayer" parent="." instance=ExtResource("3_jv7l6")]

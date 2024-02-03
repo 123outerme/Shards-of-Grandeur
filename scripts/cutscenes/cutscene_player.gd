@@ -87,8 +87,12 @@ func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 			node.set(actorTween.propertyName, actorTween.value)
 
 func start_cutscene(newCutscene: Cutscene):
+	if completeAfterFadeIn and cutscene != null:
+		complete_cutscene()
 	if playing or (newCutscene.storyRequirements != null and not newCutscene.storyRequirements.is_valid()):
 		return
+	
+	lastFrame = null
 	SaveHandler.save_data()
 	for npc in get_tree().get_nodes_in_group("NPC"):
 		npc.talkAlertSprite.visible = false
@@ -171,6 +175,7 @@ func end_cutscene(force: bool = false):
 		completeAfterFadeIn = true
 
 func complete_cutscene():
+	lastFrame = null
 	SceneLoader.unpause_autonomous_movers()
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():
@@ -181,12 +186,17 @@ func complete_cutscene():
 	if cutscene.unlockCameraHoldAfter and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
+	completeAfterFadeIn = false
 	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)
 		playingFromTrigger = null
 	cutscene = null
 	cutscene_completed.emit()
+	for tween in tweens:
+		if tween != null and tween.is_valid():
+			tween.kill()
+	tweens = []
 
 func deactivate_actors_after():
 	if cutscene == null:

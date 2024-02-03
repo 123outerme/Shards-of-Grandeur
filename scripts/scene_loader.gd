@@ -4,6 +4,7 @@ var currentScene
 var unpauseExcludedMover: Node2D = null
 var mapLoader: MapLoader = null
 var audioHandler: AudioHandler = null
+var cutscenePlayer: CutscenePlayer = null
 var curMapEntry: MapEntry = null
 
 # Called when the node enters the scene tree for the first time.

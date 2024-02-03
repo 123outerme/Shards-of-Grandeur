@@ -14,7 +14,6 @@ class_name NPCScript
 @export_category("NPC Dialogue")
 @export var dialogueEntries: Array[DialogueEntry] = []
 @export var facesPlayer: bool = true
-@export var cutscenePlayer: CutscenePlayer
 
 @export_category("NPC Shop")
 @export var hasShop: bool = false
@@ -177,8 +176,8 @@ func advance_dialogue() -> bool:
 			if saveName != '' and data.dialogueItems[data.dialogueIndex].entryId != '':
 				PlayerResources.playerInfo.set_dialogue_seen(saveName, data.dialogueItems[data.dialogueIndex].entryId)
 			var startingCutscene: bool = false
-			if cutscenePlayer != null and data.dialogueItems[data.dialogueIndex].startsCutscene != null:
-				cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
+			if data.dialogueItems[data.dialogueIndex].startsCutscene != null:
+				SceneLoader.cutscenePlayer.start_cutscene(data.dialogueItems[data.dialogueIndex].startsCutscene)
 				startingCutscene = true
 			if data.dialogueItems[data.dialogueIndex].entryId != '':
 				# attempt to progress Talk quest(s) that require this NPC and dialogue item

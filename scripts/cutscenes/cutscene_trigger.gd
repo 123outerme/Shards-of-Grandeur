@@ -3,7 +3,6 @@ class_name CutsceneTrigger
 
 @export var cutscenes: Array[Cutscene] = []
 @export var disabled: bool = false
-@export var cutscenePlayer: CutscenePlayer = null
 
 func _ready():
 	if len(cutscenes) == 0:
@@ -21,10 +20,10 @@ func cutscene_finished(cutscene: Cutscene):
 	disabled = allInvalid
 
 func _on_area_entered(area):
-	if area.name == "PlayerEventCollider" and not disabled and not cutscenePlayer.playing:
+	if area.name == "PlayerEventCollider" and not disabled and not SceneLoader.cutscenePlayer.playing:
 		for cutscene in cutscenes:
 			if cutscene != null and \
 				(cutscene.storyRequirements == null or cutscene.storyRequirements.is_valid()):
-				cutscenePlayer.playingFromTrigger = self
-				cutscenePlayer.start_cutscene(cutscene)
+				SceneLoader.cutscenePlayer.playingFromTrigger = self
+				SceneLoader.cutscenePlayer.start_cutscene(cutscene)
 				break

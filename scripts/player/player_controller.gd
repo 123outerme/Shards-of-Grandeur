@@ -38,8 +38,7 @@ var talkNPCcandidates: Array[NPCScript] = []
 func _unhandled_input(event):
 	if not pauseDisabled and event.is_action_pressed("game_pause"):
 		if inCutscene:
-			for cutscenePlayer in get_tree().get_nodes_in_group('CutscenePlayer'):
-				cutscenePlayer.toggle_pause_cutscene()
+			SceneLoader.cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
 			cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
@@ -446,6 +445,7 @@ func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
 		PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
 		PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
 		unpause_movement()
+		SceneLoader.cutscenePlayer.complete_cutscene()
 
 func _on_quests_panel_node_act_changed():
 	actChanged = true

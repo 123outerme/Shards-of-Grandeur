@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=54 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -24,7 +24,6 @@
 [ext_resource type="Resource" uid="uid://df3cu03mvw4jw" path="res://gamedata/dialogue/spelunker/spelunker_ambushed.tres" id="20_ptwwx"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="21_24wd4"]
 [ext_resource type="Resource" uid="uid://cbhbyv3xl4q5t" path="res://gamedata/dialogue/spelunker/spelunker_leave_hilltop.tres" id="21_fh845"]
-[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/cutscene_player.tscn" id="21_mqg5j"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="21_prdt8"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="22_g7o8t"]
 [ext_resource type="Resource" uid="uid://drqc7ms1tgy62" path="res://gamedata/cutscenes/standstill/standstill_enter.tres" id="22_nx0ge"]
@@ -394,48 +393,40 @@ storyRequirements = SubResource("Resource_mke3f")
 position = Vector2(47.5, 0)
 shape = SubResource("RectangleShape2D_6a5td")
 
-[node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+[node name="IntroCutsceneTrigger" parent="." instance=ExtResource("21_24wd4")]
 position = Vector2(-552, 116)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("22_nx0ge")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
-[node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+[node name="ExitCutsceneTrigger" parent="." instance=ExtResource("21_24wd4")]
 position = Vector2(505, 1)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_pq6ae")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_p63hv")
 
-[node name="BackToTownCutscene" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+[node name="BackToTownCutscene" parent="." instance=ExtResource("21_24wd4")]
 position = Vector2(-520, 118)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("29_8rjn2")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="BackToTownCutscene" index="0"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_06fun")
 
-[node name="BackToDrHCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+[node name="BackToDrHCutsceneTrigger" parent="." instance=ExtResource("21_24wd4")]
 position = Vector2(634, 3)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("28_5llnp")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="BackToDrHCutsceneTrigger" index="0"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_gynwq")
 
-[node name="ReturnCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("21_24wd4")]
+[node name="ReturnCutsceneTrigger" parent="." instance=ExtResource("21_24wd4")]
 position = Vector2(606, -22)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("25_mm3hq")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ReturnCutsceneTrigger" index="0"]
 position = Vector2(0, 24.5)
 shape = SubResource("RectangleShape2D_y18jc")
-
-[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("21_mqg5j")]
-rootNode = NodePath("..")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=35 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -18,7 +18,6 @@
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="15_6dcag"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="15_xc56y"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="18_481j8"]
-[ext_resource type="PackedScene" uid="uid://chlspogptwc4e" path="res://prefabs/overworld/cutscene_player.tscn" id="18_dpgom"]
 [ext_resource type="Resource" uid="uid://co8xtwrinpjke" path="res://gamedata/static_encounters/intro_encounter.tres" id="18_ld2et"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
@@ -118,12 +117,11 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, -9, 65539, 65537, 196599, 65539, 65537, -65545, 65539, 65537, 65576, 65539, 65537, 40, 65539, 65537, -65496, 65539, 65537, -131032, 65539, 65537, 131112, 65539, 65537)
 
-[node name="DrHudson" parent="TileMap" node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_kq4m3")]
+[node name="DrHudson" parent="TileMap" instance=ExtResource("2_kq4m3")]
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
-cutscenePlayer = NodePath("../../CutscenePlayer")
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
 sprite_frames = ExtResource("6_ycoji")
@@ -176,19 +174,17 @@ visible = false
 [node name="MoveTriggerShape" parent="TileMap/HorseCart/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="IntroCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
+[node name="IntroCutsceneTrigger" parent="." instance=ExtResource("2_1jl0p")]
 position = Vector2(-48, 0)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("11_27a4a")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="IntroCutsceneTrigger" index="0"]
 position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_b1862")
 
-[node name="ExitCutsceneTrigger" parent="." node_paths=PackedStringArray("cutscenePlayer") instance=ExtResource("2_1jl0p")]
+[node name="ExitCutsceneTrigger" parent="." instance=ExtResource("2_1jl0p")]
 position = Vector2(565, 7)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_ci2fb")])
-cutscenePlayer = NodePath("../CutscenePlayer")
 
 [node name="CollisionShape2D" parent="ExitCutsceneTrigger" index="0"]
 position = Vector2(0, 1)
@@ -220,9 +216,6 @@ shape = SubResource("RectangleShape2D_2kurt")
 [node name="GroundItem" parent="." instance=ExtResource("15_xc56y")]
 position = Vector2(-24, 40)
 pickedUpItem = SubResource("Resource_ams7q")
-
-[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("18_dpgom")]
-rootNode = NodePath("..")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_6syn7")
