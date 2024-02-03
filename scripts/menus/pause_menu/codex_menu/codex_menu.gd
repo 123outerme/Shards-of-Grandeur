@@ -88,6 +88,8 @@ func has_not_seen_indicator(entry: CodexEntry) -> bool:
 		return true
 	
 	for child in entry.childrenEntries:
+		if not child.is_valid():
+			continue
 		if has_not_seen_indicator(child):
 			return true
 	
@@ -97,8 +99,14 @@ func _on_codex_button_pressed(entry: CodexEntry, button: Button):
 	codexEntryPanel.codexEntry = entry
 	codexEntryPanel.load_codex_entry_panel()
 	if len(entry.childrenEntries) > 0:
-		selectedEntryStack.append(entry)
-		load_codex_menu()
+		var hasValidChildren = false
+		for child in entry.childrenEntries:
+			if child.is_valid():
+				hasValidChildren = true
+				break
+		if hasValidChildren:
+			selectedEntryStack.append(entry)
+			load_codex_menu()
 	PlayerResources.playerInfo.set_codex_entry_seen(entry.id)
 	if not has_not_seen_indicator(entry):
 		button.icon = null
