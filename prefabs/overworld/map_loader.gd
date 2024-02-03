@@ -40,14 +40,17 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	load_map(newMapName)
 
 func load_recover_map():
-	var mapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)
+	var recoveryMapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)
 	PlayerResources.playerInfo.combatant.downed = false
-	if mapEntry != null:
-		player.disableMovement = true
-		player.get_collider().set_deferred('disabled', true)
+	player.disableMovement = true
+	player.get_collider().set_deferred('disabled', true)
+	if recoveryMapEntry != null:
 		player.position = mapEntry.recoverPosition
 		PlayerResources.playerInfo.position = mapEntry.recoverPosition
 		load_map(PlayerResources.playerInfo.recoverMap)
+	else:
+		printerr('Error: Recovery map not found!!')
+		load_map(PlayerResources.playerInfo.map)
 
 func load_map(mapName: String):
 	#destroy_overworld_enemies()
