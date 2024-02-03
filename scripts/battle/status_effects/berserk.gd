@@ -19,7 +19,7 @@ func get_recoil_damage(combatant: Combatant) -> int:
 	# Assumption: targets are already fetched
 	if combatant.command != null:
 		for target in combatant.command.targets:
-			damage += combatant.command.calculate_damage(combatant, target)
+			damage += combatant.command.calculate_damage(combatant, target, -1)
 	
 	return roundi(damage * Berserk.PERCENT_DAMAGE_DICT[potency])
 

@@ -77,8 +77,11 @@ func get_cur_music_player() -> AudioStreamPlayer:
 		return musicStreamPlayer2
 	return musicStreamPlayer1
 
+func get_cur_music() -> AudioStream:
+	return get_cur_music_player().stream
+
 func is_music_already_playing(stream: AudioStream):
-	return get_cur_music_player().stream == stream
+	return get_cur_music() == stream and get_cur_music_player().playing
 
 func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
 	if stream == null:

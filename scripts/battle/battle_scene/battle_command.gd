@@ -36,6 +36,7 @@ enum ApplyTiming {
 @export var slot: InventorySlot = null
 @export var targetPositions: Array[String] = []
 @export var randomNums: Array[float] = []
+@export var commandResult: CommandResult = null
 
 var targets: Array[Combatant] = []
 var interceptingTargets: Array[Combatant] = []
@@ -111,6 +112,7 @@ func _init(
 	i_slot = null,
 	i_targets: Array[String] = [],
 	i_randomNums: Array[float] = [],
+	i_commandResult: CommandResult = null
 ):
 	type = i_type
 	move = i_move
@@ -123,6 +125,7 @@ func _init(
 		for i in range(len(randomNums), len(targetPositions)):
 			randomNums.append(randomNums.back()) # append the last number to the end of the list of random nums
 	randomNums = i_randomNums
+	commandResult = i_commandResult
 	
 func set_targets(newTargets: Array[String]):
 	targetPositions = newTargets.duplicate(false)
@@ -131,44 +134,49 @@ func set_targets(newTargets: Array[String]):
 			randomNums.append(randf()) # generate random numbers now
 
 func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
+	commandResult = CommandResult.new()
+	for i in range(len(targets)):
+		commandResult.damagesDealt.append(0)
+		commandResult.afflictedStatuses.append(false)
+	for i in range(len(interceptingTargets)):
+		commandResult.damageOnInterceptingTargets.append(0)
+	
 	get_targets_from_combatant_nodes(combatantNodes)
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 	
-	var appliedDamage = false
-	var appliedStatus: bool = false
-	var selfDmg: int = 0
+	var appliedDamage: bool = false
 	for idx in range(len(targets)):
-		var damage = calculate_damage(user, targets[idx])
+		var finalPower = 0
+		if type == Type.MOVE:
+			finalPower = move.power
+			for interceptIdx in range(len(interceptingTargets)):
+				if interceptingTargets[interceptIdx] != targets[idx]:
+					var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
+					var interceptingPower: float = move.power * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
+					finalPower -= interceptingPower
+					var interceptedDmg = calculate_damage(user, interceptingTargets[interceptIdx], interceptingPower)
+					commandResult.damageOnInterceptingTargets[interceptIdx] += interceptedDmg
+					interceptingTargets[interceptIdx].currentHp = max(0, interceptingTargets[interceptIdx].currentHp - interceptedDmg)
+					
+		var damage = calculate_damage(user, targets[idx], finalPower)
+		commandResult.damagesDealt[idx] += damage
 		if damage != 0:
 			appliedDamage = true
-			if targets[idx].statusEffect != null and targets[idx].statusEffect.type == StatusEffect.Type.REFLECT:
-				var reflectStatus: Reflect = targets[idx].statusEffect as Reflect
-				selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
-			for interceptIdx in range(len(interceptingTargets)):
-				if interceptingTargets[interceptIdx] == targets[idx]:
-					continue # skip intercepting if the target is the interceptor
-				var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
-				var interceptDamage: int = roundi(damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency])
-				damage -= interceptDamage
-				interceptingTargets[interceptIdx].currentHp = max(interceptingTargets[interceptIdx].currentHp - interceptDamage, 0) # bound to be at least 0 and no more than max HP
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
-			appliedStatus = true
+			commandResult.afflictedStatuses[idx] = true
 		if move != null and \
 				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
-	if type == Type.MOVE and not (not BattleCommand.is_command_enemy_targeting(move.targets) and move.statusEffect != null and not appliedStatus):
+	if type == Type.MOVE and move != null and is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses:
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
 			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
 			
 	if type == Type.USE_ITEM and appliedDamage: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
-		
-	if selfDmg > 0:
-		user.currentHp = max(0, user.currentHp - selfDmg)
 		
 	return false
 
@@ -180,7 +188,7 @@ func dmg_logistic(userLv: int, targetLv: int) -> float:
 	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
 	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
 
-func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges: bool = false) -> int:
+func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMoveStatChanges: bool = false) -> int:
 	var userStatChanges = StatChanges.new()
 	userStatChanges.stack(user.statChanges) # copy stat changes
 	var targetStatChanges = StatChanges.new()
@@ -209,8 +217,8 @@ func calculate_damage(user: Combatant, target: Combatant, ignoreMoveStatChanges:
 		var apparentLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
 		# scaled so that increases early on don't jack up the ratio intensely
 		
-		var damage: int = roundi( move.power * (apparentLv / 4.0) * (atkExpression / resExpression) )
-		if move.power > 0 and damage <= 0:
+		var damage: int = roundi( power * (apparentLv / 4.0) * (atkExpression / resExpression) )
+		if power > 0 and damage <= 0:
 			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		
 		return damage
@@ -276,6 +284,9 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 
 func get_command_results(user: Combatant) -> String:
 	var resultsText: String = user.disp_name() + ' passed.'
+	if commandResult == null:
+		return resultsText
+	
 	var actionTargets: Targets = Targets.NONE
 	var selfDmg: int = 0
 	
@@ -312,35 +323,21 @@ func get_command_results(user: Combatant) -> String:
 			if target == user:
 				targetName = 'self'
 			if not target.downed:
-				var damage: int = calculate_damage(user, target, true)
-				if damage > 0:
-					for interceptIdx in range(len(interceptingTargets)):
-						if interceptingTargets[interceptIdx] == targets[i]:
-							continue # skip if the intercepting combatant is the target of the move
-						var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect
-						var interceptDamage: int = roundi(damage * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency])
-						damage -= interceptDamage
-						interceptingTargetDamages[interceptIdx] += interceptDamage
+				var damage: int = commandResult.damagesDealt[i]
 				if damage != 0:
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
 						resultsText += damageText + ' damage to ' + targetName
-						if target.statusEffect != null and target.statusEffect.type == StatusEffect.Type.REFLECT:
-							var reflectStatus: Reflect = target.statusEffect as Reflect
-							selfDmg = roundi(damage * Reflect.PERCENT_DAMAGE_DICT[reflectStatus.potency])
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 						if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING and (slot.item as Healing).statusStrengthHeal != StatusEffect.Potency.NONE:
 							var healItem: Healing = slot.item as Healing
 							resultsText += ' and cured ' + StatusEffect.potency_to_string(healItem.statusStrengthHeal) + ' status effects.'
-					if type == Type.MOVE and move.statusChance >= randomNums[i] and \
-							move.statusEffect != null and target.statusEffect != null and \
-							does_target_get_status(user, i)  and target.statusEffect.type == move.statusEffect.type:
+					if type == Type.MOVE and commandResult.afflictedStatuses[i]:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
 					if type == Type.MOVE and move.statusEffect != null:
-						if move.statusEffect != null and target.statusEffect != null and \
-								does_target_get_status(user, i) and target.statusEffect.type == move.statusEffect.type:
+						if commandResult.afflictedStatuses[i]:
 							resultsText += 'afflicting '
 						else:
 							resultsText += 'failing to afflict '
@@ -363,12 +360,10 @@ func get_command_results(user: Combatant) -> String:
 			else:
 				resultsText += '.'
 		for interceptingIdx in range(len(interceptingTargets)):
-			if interceptingTargetDamages[interceptingIdx] > 0:
-				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(interceptingTargetDamages[interceptingIdx]) + ' damage!'
-		if selfDmg > 0:
-			resultsText += user.disp_name() + ' takes ' + String.num(selfDmg) + ' reflected damage.'
+			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
+				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
 		if type == Type.MOVE and move.statChanges != null:
-			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and 'failing to afflict' in resultsText):
+			if move.statChanges.has_stat_changes() and (is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses):
 				resultsText += ' ' + user.disp_name() + ' boosts '
 				var displayTargetNames: bool = false
 				for target in targets:

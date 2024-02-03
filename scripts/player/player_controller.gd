@@ -353,10 +353,10 @@ func menu_closed():
 func start_battle():
 	SaveHandler.save_data()
 	cam.fade_out(_after_start_battle_fade_out)
+	var playingBattleMusic = battleMusic
 	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.bossBattle:
-		SceneLoader.audioHandler.play_music(bossBattleMusic)
-	else:
-		SceneLoader.audioHandler.play_music(battleMusic)
+		playingBattleMusic = bossBattleMusic
+	SceneLoader.audioHandler.play_music(playingBattleMusic)
 
 func _on_shop_button_pressed():
 	#get_viewport().gui_release_focus()

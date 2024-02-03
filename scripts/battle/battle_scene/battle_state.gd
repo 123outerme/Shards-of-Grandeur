@@ -29,6 +29,8 @@ enum Menu {
 @export var fobButtonEnabled: bool = true
 @export var calcdStateStrings: Array[String] = []
 @export var calcdStateIndex: int = 0
+@export var battleMapPath: String = ''
+@export var battleMusic: AudioStream = null
 
 @export_category("BattleData - Turns")
 @export var turnNumber: int = 1
@@ -50,6 +52,8 @@ func _init(
 	i_prevMenu = Menu.SUMMON,
 	i_cmdMinion = false,
 	i_fobBtnEnabled = true,
+	i_battleMapPath = '',
+	i_battleMusic = null,
 	i_turnNumber = 1,
 	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
@@ -64,6 +68,8 @@ func _init(
 	prevMenu = i_prevMenu
 	commandingMinion = i_cmdMinion
 	fobButtonEnabled = i_fobBtnEnabled
+	battleMapPath = i_battleMapPath
+	battleMusic = i_battleMusic
 	turnNumber = i_turnNumber
 	turnList = i_turnList
 	rewards = i_rewards

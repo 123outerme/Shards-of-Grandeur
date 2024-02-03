@@ -8,6 +8,7 @@ var battleEnded: bool = false
 
 @onready var tilemapParent: Node2D = get_node('TileMapParent')
 var tilemap: TileMap = null
+var battleMapPath: String = ''
 
 @onready var combatantGroup: Node2D = get_node('CombatantGroup')
 @onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("CombatantNode")
@@ -33,8 +34,9 @@ func _ready():
 	call_deferred('load_into_battle')
 	
 func load_into_battle():
-	var mapPath = SceneLoader.curMapEntry.get_battle_map_path()
-	var battleMap = load(mapPath)
+	if SceneLoader.curMapEntry != null:
+		battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
+	var battleMap = load(battleMapPath)
 	tilemap = battleMap.instantiate()
 	tilemapParent.add_child(tilemap)
 	
@@ -111,7 +113,7 @@ func load_into_battle():
 			else:
 				enemyCombatant3.combatant = null
 			#enemyCombatant3.leftSide = false # what was this doing????
-	else:
+	else: # loaded a battle already in progress
 		playerCombatant.combatant = state.playerCombatant
 		minionCombatant.combatant = state.minionCombatant
 		enemyCombatant1.combatant = state.enemyCombatant1
@@ -176,6 +178,8 @@ func save_data(save_path):
 		state.enemyCombatant3 = enemyCombatant3.combatant
 		state.commandingMinion = battleUI.commandingMinion
 		state.fobButtonEnabled = battlePanels.flowOfBattle.get_fob_button_enabled()
+		state.battleMapPath = battleMapPath
+		state.battleMusic = SceneLoader.audioHandler.get_cur_music()
 		state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
 		state.save_data(save_path, state)
 
@@ -183,10 +187,12 @@ func load_data(save_path):
 	var newState = state.load_data(save_path)
 	if newState != null:
 		state = newState
+		battleMapPath = state.battleMapPath
 		battlePanels.flowOfBattle.set_fob_button_enabled(state.fobButtonEnabled)
 		turnExecutor.turnQueue = TurnQueue.new(state.turnList, false)
 		if not battleLoaded:
 			battleLoaded = true
+			SceneLoader.audioHandler.play_music(state.battleMusic)
 
 func update_combatant_focus_neighbors():
 	if enemyCombatant3.is_alive():

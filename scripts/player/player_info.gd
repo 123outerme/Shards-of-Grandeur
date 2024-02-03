@@ -18,12 +18,8 @@ class_name PlayerInfo
 @export var gold: int = 20
 
 @export_category("PlayerInfo: Battle")
-@export var inBattle: bool
-@export var exitingBattle: bool
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
-@export var encounteredReward: Reward = null
-@export var encounteredBoss: bool = false
 @export var staticEncounter: StaticEncounter = null
 @export var completedSpecialBattles: Array[String] = []
 
@@ -48,12 +44,8 @@ func _init(
 	i_scene = "Overworld",
 	i_combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy(),
 	i_gold = 20,
-	i_inBattle = false,
-	i_exitingBattle = false,
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
-	i_encounteredReward = null,
-	i_encounteredBoss = false,
 	i_staticEncounter = null,
 	i_completedSpecialBattles: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
@@ -73,12 +65,8 @@ func _init(
 	scene = i_scene
 	combatant = i_combatant
 	gold = i_gold
-	inBattle = i_inBattle
-	exitingBattle = i_exitingBattle
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
-	encounteredReward = i_encounteredReward
-	encounteredBoss = i_encounteredBoss
 	staticEncounter = i_staticEncounter
 	completedSpecialBattles = i_completedSpecialBattles
 	pickedUpItems = i_pickedUpItems
