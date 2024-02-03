@@ -32,7 +32,7 @@ func get_minion(saveName: String) -> Combatant:
 func init_minion(saveName: String) -> Combatant:
 	var minion = Combatant.load_combatant_resource(saveName)
 	if minion != null:
-		minion.assign_moves_nonplayer()
+		level_up_minion(minion, PlayerResources.playerInfo.combatant.stats.level)
 		minionsDict[saveName] = minion
 		if not (minion.save_name() in minionList):
 			minionList.append(minion.save_name())
@@ -43,19 +43,17 @@ func get_minion_list() -> Array[Combatant]:
 	minions.append_array(minionsDict.values())
 	return minions
 
+func level_up_minion(minion: Combatant, newLevel: int):
+	var levelDiff: int = newLevel - minion.stats.level
+	if levelDiff > 0:
+		minion.stats.level_up(levelDiff)
+		minion.currentHp = minion.stats.maxHp
+		minion.assign_moves_nonplayer()
+
 func level_up_minions(newLevel: int):
 	for minion in get_minion_list():
-		var levelDiff: int = newLevel - minion.stats.level
-		if levelDiff > 0:
-			minion.stats.level_up(levelDiff)
-			minion.currentHp = minion.stats.maxHp
-			for i in range(4): # fill in any empty move slots if possible
-				if i >= len(minion.stats.moves) or minion.stats.moves[i] == null:
-					for move in minion.stats.movepool.pool:
-						if minion.stats.level >= move.requiredLv and not (move in minion.stats.moves):
-							minion.stats.moves.insert(i, move)
-							break
-
+		level_up_minion(minion, newLevel)
+		
 func add_friendship(minionName: String, wasDowned: bool):
 	if has_minion(minionName):
 		var minion = minionsDict[minionName] as Combatant

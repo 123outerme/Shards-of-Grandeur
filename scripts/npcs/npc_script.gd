@@ -237,7 +237,7 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
 			dialogueItems.append_array(s.turnInDialogue)
 	for dialogue in dialogueEntries:
-		if dialogue != null and dialogue.can_use_dialogue():
+		if dialogue != null and dialogue.can_use_dialogue() and not dialogue in dialogueItems:
 			dialogueItems.append(dialogue)
 	return dialogueItems
 

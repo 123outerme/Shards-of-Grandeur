@@ -21,14 +21,14 @@ func _init(
 ):
 	super(Type.WEAKNESS, i_potency, i_turnsLeft)
 
-func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
+func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC:
 		combatant.statChanges.stack(statChangesDict[potency])
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		combatant.statChanges.stack(reverseStatChangesDict[potency])
-	super.apply_status(combatant, timing)
+	super.apply_status(combatant, allCombatants, timing)
 	
-func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
+func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return ''
 
 func copy() -> StatusEffect:

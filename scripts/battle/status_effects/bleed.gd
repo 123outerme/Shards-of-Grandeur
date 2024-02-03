@@ -17,12 +17,12 @@ func _init(
 func get_bleed_damage(combatant: Combatant) -> int:
 	return roundi(combatant.stats.maxHp * Bleed.PERCENT_DAMAGE_DICT[potency])
 
-func apply_status(combatant: Combatant, timing: BattleCommand.ApplyTiming):
+func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
 		combatant.currentHp = max(combatant.currentHp - get_bleed_damage(combatant), 0)
-	super.apply_status(combatant, timing)
+	super.apply_status(combatant, allCombatants, timing)
 	
-func get_status_effect_str(combatant: Combatant, timing: BattleCommand.ApplyTiming) -> String:
+func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
 		return combatant.disp_name() + ' takes ' + str(get_bleed_damage(combatant)) + ' bleed damage from ' + status_effect_to_string() + '!'
 	return ''

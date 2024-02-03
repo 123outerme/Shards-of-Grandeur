@@ -44,4 +44,5 @@ func load_item_use_panel():
 
 func _on_ok_button_pressed():
 	ok_pressed.emit()
+	learnedMove = null
 	visible = false

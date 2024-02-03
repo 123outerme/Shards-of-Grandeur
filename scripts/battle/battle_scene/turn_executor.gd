@@ -11,6 +11,8 @@ enum TurnResult {
 @export var battleController: BattleController
 @export var battleUI: BattleUI
 
+var allCombatants: Array[Combatant] = []
+
 var turnQueue: TurnQueue = TurnQueue.new()
 var escaping: bool = false
 var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
@@ -20,13 +22,17 @@ func start_simulation():
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
+			allCombatants.append(combatantNode.combatant)
+	
+	for combatantNode in allCombatantNodes:
+		if combatantNode.is_alive():
 			if combatantNode.role == CombatantNode.Role.ENEMY:
 				combatantNode.get_command(allCombatantNodes)
 			combatants.append(combatantNode.combatant)
 			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			# apply before-round effects
 			if combatantNode.combatant.statusEffect != null:
-				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
+				combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.BEFORE_ROUND)
 			if combatantNode.combatant.stats.equippedWeapon != null:
 				combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
 			if combatantNode.combatant.stats.equippedArmor != null:
@@ -34,21 +40,24 @@ func start_simulation():
 	turnQueue = TurnQueue.new(combatants)
 
 func play_turn():
-	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
+	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
 	if combatant != null: # apply before-damage-calc status
-		combatant.command.get_targets_from_combatant_nodes(allCombatants) # make sure to get all commands before applying statuses
+		combatant.command.get_targets_from_combatant_nodes(allCombatantNodes) # make sure to get all commands before applying statuses
 		if combatant.statusEffect != null:
-			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
-		escaping = combatant.command.execute_command(combatant, allCombatants) # perform all necessary calculations
+			combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
+		escaping = combatant.command.execute_command(combatant, allCombatantNodes) # perform all necessary calculations
 		if combatant.statusEffect != null: # apply after-damage-calc status
-			combatant.statusEffect.apply_status(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+			combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+		for defender in combatant.command.targets:
+			if not defender == combatant and defender.statusEffect != null:
+				defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		update_turn_text()
 	else:
 		for combatantNode in battleController.get_all_combatant_nodes(): # apply after-round effects
 			if combatantNode.is_alive():
 				if combatantNode.combatant.statusEffect != null:
-					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
+					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_ROUND)
 				if combatantNode.combatant.stats.equippedWeapon != null:
 					combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
 				if combatantNode.combatant.stats.equippedArmor != null:
@@ -56,12 +65,12 @@ func play_turn():
 		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 	
 func update_turn_text() -> bool:
-	var allCombatants: Array[CombatantNode] = battleController.get_all_combatant_nodes()
+	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var text: String = ''
 	
 	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
 		if len(battleController.state.calcdStateStrings) == 0:
-			calculate_intermediate_state_strings(allCombatants)
+			calculate_intermediate_state_strings(allCombatantNodes)
 			if len(battleController.state.calcdStateStrings) == 0:
 				battleUI.advance_intermediate_state(result)
 				return false
@@ -73,12 +82,15 @@ func update_turn_text() -> bool:
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
 		if combatant != null:
-			combatant.command.get_targets_from_combatant_nodes(allCombatants)
+			combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			text = combatant.command.get_command_results(combatant)
 			if combatant.statusEffect != null:
-				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+			for defender in combatant.command.targets:
+				if not defender == combatant and defender.statusEffect != null:
+					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
-		for combatantNode in allCombatants:
+		for combatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
 				combatantNode.play_animation('attack')
 		
@@ -134,7 +146,7 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else BattleCommand.ApplyTiming.AFTER_ROUND
 				var statusEffectString: String = ''
 				if combatantNode.combatant.statusEffect != null:
-					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, timing)
+					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, allCombatants, timing)
 				
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''

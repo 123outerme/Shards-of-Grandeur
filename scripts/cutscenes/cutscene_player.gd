@@ -84,7 +84,7 @@ func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 				node.call('face_horiz', actorTween.value.x - node.position.x)
 			tweens.append(tween)
 		else:
-			node[actorTween.propertyName] = actorTween.value
+			node.set(actorTween.propertyName, actorTween.value)
 
 func start_cutscene(newCutscene: Cutscene):
 	if playing or (newCutscene.storyRequirements != null and not newCutscene.storyRequirements.is_valid()):
