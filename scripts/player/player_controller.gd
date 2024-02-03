@@ -413,6 +413,7 @@ func equip_to_combatant_helper(stats: Stats):
 
 func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
+	statsPanel.newLvs = 0
 	menu_closed()
 	if textBox.visible:
 		if pickedChoice != null and pickedChoice.turnsInQuest != '':
@@ -430,6 +431,7 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	if newLevels == 0:
 		return
 	statsPanel.levelUp = true
+	statsPanel.newLvs = newLevels
 	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 	statsPanel.isPlayer = true
