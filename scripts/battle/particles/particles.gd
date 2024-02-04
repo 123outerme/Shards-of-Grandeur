@@ -32,7 +32,7 @@ var startTime: float = 0
 var _makeParticles: bool = false
 
 func _init():
-	set_make_particles(true)
+	pass
 	
 func _process(delta):
 	if waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
