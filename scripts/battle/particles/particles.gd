@@ -32,18 +32,19 @@ var startTime: float = 0
 var _makeParticles: bool = false
 
 func _init():
-	pass
+	makeParticles = false
 	
 func _process(delta):
 	if waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
 		set_make_particles(false)
 
-func set_make_particles(show: bool = true):
+func set_make_particles(show: bool):
 	_makeParticles = show
 	for child in get_children():
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
-			particleSpawner.set_emitting(show)
+			if particleSpawner.emitting != show:
+				particleSpawner.emitting = show
 			particleSpawner.lifetime = lifetime
 	if show:
 		startTime = Time.get_unix_time_from_system()

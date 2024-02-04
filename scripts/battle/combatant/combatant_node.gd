@@ -65,6 +65,10 @@ func load_combatant_node():
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
 		frontParticleContainer.scale.x = 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
 		frontParticleContainer.scale.y = frontParticleContainer.scale.x
+		affinityParticles.set_make_particles(false)
+		magicParticles.set_make_particles(false)
+		hitParticles.set_make_particles(false)
+		physParticles.set_make_particles(false)
 
 func update_hp_tag():
 	if not is_alive():
