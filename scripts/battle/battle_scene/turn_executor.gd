@@ -102,7 +102,7 @@ func update_turn_text() -> bool:
 				userNode = combatantNode
 			
 		if userNode != null and combatant.command.commandResult != null:
-			var moveToPos = userNode.position
+			var moveToPos = userNode.global_position # fallback: self (no movement)
 			var multiIsAllies: bool = false
 			var multiIsEnemies: bool = false
 			for combatantNode in allCombatantNodes:
@@ -110,31 +110,42 @@ func update_turn_text() -> bool:
 					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode)
 					for preset in particlePresets:
 						combatantNode.play_particles(preset)
+				# if there's only one target:
 				if len(combatant.command.targets) == 1:
+					# if this combatant is the target:
 					if combatant.command.targets[0] == combatantNode.combatant:
+						# if the combatant is an ally:
 						if combatantNode.role == userNode.role:
-							moveToPos = combatantNode.onAssistMarker.global_position
+							if combatantNode.combatant == userNode.combatant:
+								moveToPos = userNode.global_position # self position
+							else:
+								moveToPos = combatantNode.onAssistMarker.global_position # ally assist position
 						else:
+							# the combatant is an enemy
 							moveToPos = combatantNode.onAttackMarker.global_position
 				else:
+					# if this combatant is an ally
 					if combatantNode.role == userNode.role:
 						multiIsAllies = true
 					else:
-						multiIsEnemies = true
+						multiIsEnemies = true # this combatant is an enemy
 			
+			# if targeting multiple:
 			if multiIsAllies or multiIsEnemies:
+				# if targeting both allies and enemies
 				if multiIsAllies and multiIsEnemies:
-					moveToPos = battleController.globalMarker.global_position
+					moveToPos = battleController.globalMarker.global_position # use global move pos
 				elif multiIsAllies:
-					moveToPos = userNode.allyTeamMarker.global_position
+					moveToPos = userNode.allyTeamMarker.global_position # use ally team pos
 				else:
-					moveToPos = userNode.enemyTeamMarker.global_position
+					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
 			if not ( \
 					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL) \
-					or combatant.command.type == BattleCommand.Type.ESCAPE):
-				battleUI.results.tween_started()
-				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished)
+					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
+				# if it's a non-physical move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
+				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
+				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished) # tween
 		
 	battleUI.results.show_text(text)
 	return text != ''
