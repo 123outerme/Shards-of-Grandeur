@@ -428,3 +428,47 @@ func get_command_animation() -> String:
 		Type.ESCAPE:
 			return 'walk'
 	return 'stand'
+
+func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> String:	
+	if commandResult == null:
+		return ''
+	if combatantNode.combatant == userNode.combatant:
+		# particles applied to the user
+		match type:
+			Type.MOVE:
+				match move.category:
+					Move.DmgCategory.PHYSICAL:
+						return ''
+					Move.DmgCategory.MAGIC:
+						return 'magic'
+					Move.DmgCategory.AFFINITY:
+						return 'affinity'
+			Type.USE_ITEM:
+				return '' # 
+			Type.ESCAPE:
+				return ''
+	elif combatantNode.combatant in targets or combatantNode.combatant in interceptingTargets:
+		# particles applied to the target(s)
+		match type:
+			Type.MOVE:
+				if combatantNode.role == userNode.role:
+					if move.power < 0:
+						return 'affinity'
+				else:
+					var takenDmg: bool = false
+					var idx = targets.find(combatantNode.combatant)
+					if idx >= 0 and commandResult.damagesDealt[idx] > 0:
+						takenDmg = true
+					var interceptIdx = interceptingTargets.find(combatantNode.combatant)
+					if interceptIdx >= 0 and commandResult.damageOnInterceptingTargets[interceptIdx] > 0:
+						takenDmg = true
+					if takenDmg:
+						if move.category == Move.DmgCategory.PHYSICAL:
+							return 'phys'
+						return 'hit'
+					return ''
+			Type.USE_ITEM:
+				return ''
+			Type.ESCAPE:
+				return ''
+	return ''

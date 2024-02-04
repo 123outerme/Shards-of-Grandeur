@@ -29,6 +29,13 @@ signal details_clicked(combatantNode: CombatantNode)
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var selectBtnNotSelectedSprite: Texture2D = null
 
+@onready var behindParticleContainer: Node2D = get_node('BehindParticleContainer')
+@onready var affinityParticles: Particles = get_node('BehindParticleContainer/AffinityParticles')
+@onready var magicParticles: Particles = get_node('BehindParticleContainer/MagicParticles')
+@onready var frontParticleContainer: Node2D = get_node('FrontParticleContainer')
+@onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticles')
+@onready var physParticles: Particles = get_node('FrontParticleContainer/PhysicalParticles')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selectBtnNotSelectedSprite = selectCombatantBtn.texture_normal
@@ -48,6 +55,13 @@ func load_combatant_node():
 		update_select_btn(false)
 		update_hp_tag()
 		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
+		# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
+		behindParticleContainer.scale.x = 1.5 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+		behindParticleContainer.scale.y = behindParticleContainer.scale.x
+		
+		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
+		frontParticleContainer.scale.x = 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+		frontParticleContainer.scale.y = frontParticleContainer.scale.x
 
 func update_hp_tag():
 	if not is_alive():
@@ -134,6 +148,18 @@ func is_selected() -> bool:
 
 func play_animation(animationName: String):
 	animatedSprite.play(animationName)
+
+func play_particles(particleType: String):
+	match particleType:
+		'affinity':
+			affinityParticles.set_make_particles(true)
+		'magic':
+			magicParticles.set_make_particles(true)
+		'phys':
+			physParticles.set_make_particles(true)
+			hitParticles.set_make_particles(true)
+		'hit':
+			hitParticles.set_make_particles(true)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:

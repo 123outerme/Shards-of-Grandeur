@@ -90,9 +90,16 @@ func update_turn_text() -> bool:
 				if not defender == combatant and defender.statusEffect != null:
 					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
+		var userNode: CombatantNode = null
 		for combatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
 				combatantNode.play_animation(combatant.command.get_command_animation())
+				userNode = combatantNode
+			
+		if userNode != null:
+			for combatantNode in allCombatantNodes:
+				if combatantNode.is_alive():
+					combatantNode.play_particles(combatant.command.get_particles(combatantNode, userNode))
 		
 	battleUI.results.show_text(text)
 	return text != ''
