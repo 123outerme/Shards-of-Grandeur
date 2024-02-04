@@ -23,8 +23,15 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var magicAtkSfx: AudioStream = null
 @export var affinitySfx: AudioStream = null
 
+@export_category("CombatantNode - Movement")
+@export var allyTeamMarker: Marker2D
+@export var enemyTeamMarker: Marker2D
+
+const ANIMATE_MOVE_SPEED = 60
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var selectBtnNotSelectedSprite: Texture2D = null
+var animateTween: Tween = null
+var returnToPos: Vector2 = Vector2()
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -38,10 +45,13 @@ var selectBtnNotSelectedSprite: Texture2D = null
 @onready var frontParticleContainer: Node2D = get_node('FrontParticleContainer')
 @onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticles')
 @onready var physParticles: Particles = get_node('FrontParticleContainer/PhysicalParticles')
+@onready var onAttackMarker: Marker2D = get_node('OnAttackPos')
+@onready var onAssistMarker: Marker2D = get_node('OnAssistPos')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selectBtnNotSelectedSprite = selectCombatantBtn.texture_normal
+	returnToPos = global_position
 
 func load_combatant_node():
 	if not is_alive():
@@ -69,7 +79,17 @@ func load_combatant_node():
 		magicParticles.set_make_particles(false)
 		hitParticles.set_make_particles(false)
 		physParticles.set_make_particles(false)
-
+		
+		if onAttackMarker.position.x < position.x:
+			onAttackMarker.position.x -= (combatant.maxSize.x - 16) / 2
+		elif onAttackMarker.position.x > position.x:
+			onAttackMarker.position.x += (combatant.maxSize.x - 16) / 2
+			
+		if onAssistMarker.position.y < position.y:
+			onAssistMarker.position.y -= (combatant.maxSize.y - 16) / 2
+		elif onAssistMarker.position.y > position.y:
+			onAssistMarker.position.y += (combatant.maxSize.y - 16) / 2
+			
 func update_hp_tag():
 	if not is_alive():
 		visible = false
@@ -94,7 +114,6 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.disabled = disable
 	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
-
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -156,20 +175,50 @@ func is_selected() -> bool:
 func play_animation(animationName: String):
 	animatedSprite.play(animationName)
 
-func play_particles(particleType: String):
-	match particleType:
+func tween_to(pos: Vector2, callback: Callable):
+	var finalPos = pos
+	if combatant.maxSize.x > 16:
+		if pos.x > global_position.x:
+			pos.x -= (combatant.maxSize.x - 16) / 2
+		else:
+			pos.x += (combatant.maxSize.x - 16) / 2
+	
+	if combatant.maxSize.y > 16:
+		if pos.y > global_position.y:
+			pos.y -= (combatant.maxSize.y - 16) / 2
+		else:
+			pos.y += (combatant.maxSize.y - 16) / 2
+	
+	if animateTween != null and animateTween.is_valid():
+		animateTween.kill()
+		global_position = returnToPos
+	animateTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	returnToPos = global_position
+	animateTween.tween_property(self, 'global_position', pos, pos.length() / ANIMATE_MOVE_SPEED)
+	animateTween.tween_property(self, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
+	animateTween.tween_property(self, 'global_position', returnToPos, pos.length() / ANIMATE_MOVE_SPEED)
+	animateTween.finished.connect(_on_animate_tween_finished)
+	animateTween.finished.connect(callback)
+
+func play_particles(preset: ParticlePreset):
+	if preset.count == 0:
+		return
+	
+	match preset.type:
 		'affinity':
+			affinityParticles.set_num_particles(preset.count)
 			affinityParticles.set_make_particles(true)
 			SceneLoader.audioHandler.play_sfx(affinitySfx)
 		'magic':
+			magicParticles.set_num_particles(preset.count)
 			magicParticles.set_make_particles(true)
 			SceneLoader.audioHandler.play_sfx(magicAtkSfx)
 		'phys':
+			physParticles.set_num_particles(preset.count)
 			physParticles.set_make_particles(true)
-			hitParticles.set_make_particles(true)
 			SceneLoader.audioHandler.play_sfx(physAtkSfx)
-			SceneLoader.audioHandler.play_sfx(hitSfx)
 		'hit':
+			hitParticles.set_num_particles(preset.count)
 			hitParticles.set_make_particles(true)
 			SceneLoader.audioHandler.play_sfx(hitSfx)
 
@@ -340,3 +389,6 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
+
+func _on_animate_tween_finished():
+	animateTween = null

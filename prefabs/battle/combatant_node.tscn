@@ -117,6 +117,12 @@ text = "5,250 / 5,250"
 fit_content = true
 scroll_active = false
 
+[node name="OnAttackPos" type="Marker2D" parent="."]
+gizmo_extents = 2.0
+
+[node name="OnAssistPos" type="Marker2D" parent="."]
+gizmo_extents = 2.0
+
 [connection signal="pressed" from="ClickCombatantBtn" to="." method="_on_click_combatant_btn_pressed"]
 [connection signal="toggled" from="SelectCombatantBtn" to="." method="_on_select_combatant_btn_toggled"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_finished"]

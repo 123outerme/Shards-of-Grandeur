@@ -81,12 +81,17 @@ func update_turn_text() -> bool:
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
+		var defenders: Array[Combatant] = []
 		if combatant != null:
 			combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			text = combatant.command.get_command_results(combatant)
+			defenders.append_array(combatant.command.targets)
+			for interceptor in combatant.command.interceptingTargets:
+				if not interceptor in defenders:
+					defenders.append(interceptor)
 			if combatant.statusEffect != null:
 				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
-			for defender in combatant.command.targets:
+			for defender in defenders:
 				if not defender == combatant and defender.statusEffect != null:
 					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
@@ -96,10 +101,40 @@ func update_turn_text() -> bool:
 				combatantNode.play_animation(combatant.command.get_command_animation())
 				userNode = combatantNode
 			
-		if userNode != null:
+		if userNode != null and combatant.command.commandResult != null:
+			var moveToPos = userNode.position
+			var multiIsAllies: bool = false
+			var multiIsEnemies: bool = false
 			for combatantNode in allCombatantNodes:
-				if combatantNode.is_alive():
-					combatantNode.play_particles(combatant.command.get_particles(combatantNode, userNode))
+				if combatantNode.is_alive() and combatantNode.combatant in defenders:
+					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode)
+					for preset in particlePresets:
+						combatantNode.play_particles(preset)
+				if len(combatant.command.targets) == 1:
+					if combatant.command.targets[0] == combatantNode.combatant:
+						if combatantNode.role == userNode.role:
+							moveToPos = combatantNode.onAssistMarker.global_position
+						else:
+							moveToPos = combatantNode.onAttackMarker.global_position
+				else:
+					if combatantNode.role == userNode.role:
+						multiIsAllies = true
+					else:
+						multiIsEnemies = true
+			
+			if multiIsAllies or multiIsEnemies:
+				if multiIsAllies and multiIsEnemies:
+					moveToPos = battleController.globalMarker.global_position
+				elif multiIsAllies:
+					moveToPos = userNode.allyTeamMarker.global_position
+				else:
+					moveToPos = userNode.enemyTeamMarker.global_position
+			
+			if not ( \
+					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL) \
+					or combatant.command.type == BattleCommand.Type.ESCAPE):
+				battleUI.results.tween_started()
+				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished)
 		
 	battleUI.results.show_text(text)
 	return text != ''

@@ -2,6 +2,7 @@ extends Node2D
 class_name BattleController
 
 @export var state: BattleState = BattleState.new()
+@export var globalMarker: Marker2D
 
 var battleLoaded: bool = false
 var battleEnded: bool = false

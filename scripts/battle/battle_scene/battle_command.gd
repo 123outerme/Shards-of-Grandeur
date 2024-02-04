@@ -429,46 +429,56 @@ func get_command_animation() -> String:
 			return 'walk'
 	return 'stand'
 
-func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> String:	
+func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Array[ParticlePreset]:
+	var presets: Array[ParticlePreset] = []
 	if commandResult == null:
-		return ''
+		return []
 	if combatantNode.combatant == userNode.combatant:
+		var preset: ParticlePreset = ParticlePreset.new()
+		presets.append(preset)
 		# particles applied to the user
 		match type:
 			Type.MOVE:
+				preset.count = 4
 				match move.category:
 					Move.DmgCategory.PHYSICAL:
-						return ''
+						preset.type = ''
 					Move.DmgCategory.MAGIC:
-						return 'magic'
+						preset.type = 'magic'
 					Move.DmgCategory.AFFINITY:
-						return 'affinity'
+						preset.type = 'affinity'
 			Type.USE_ITEM:
-				return '' # 
+				return []
 			Type.ESCAPE:
-				return ''
+				return []
+		return presets
 	elif combatantNode.combatant in targets or combatantNode.combatant in interceptingTargets:
+		var preset: ParticlePreset = ParticlePreset.new()
+		presets.append(preset)
 		# particles applied to the target(s)
 		match type:
 			Type.MOVE:
 				if combatantNode.role == userNode.role:
 					if move.power < 0:
-						return 'affinity'
+						preset.type = 'affinity'
+						preset.count = 4
 				else:
-					var takenDmg: bool = false
+					var dmgTaken: int = 0
 					var idx = targets.find(combatantNode.combatant)
 					if idx >= 0 and commandResult.damagesDealt[idx] > 0:
-						takenDmg = true
+						dmgTaken += commandResult.damagesDealt[idx]
 					var interceptIdx = interceptingTargets.find(combatantNode.combatant)
 					if interceptIdx >= 0 and commandResult.damageOnInterceptingTargets[interceptIdx] > 0:
-						takenDmg = true
-					if takenDmg:
+						dmgTaken += commandResult.damageOnInterceptingTargets[interceptIdx]
+					if dmgTaken > 0:
 						if move.category == Move.DmgCategory.PHYSICAL:
-							return 'phys'
-						return 'hit'
-					return ''
+							presets.append(ParticlePreset.new('phys', 4))
+						preset.type = 'hit'
+						# between 2 and 6 particles per emitter, based on the ratio of damage taken / max HP
+						preset.count = max(2, min(6, 6 * (dmgTaken / combatantNode.combatant.stats.maxHp)))
+				return presets
 			Type.USE_ITEM:
-				return ''
+				return []
 			Type.ESCAPE:
-				return ''
-	return ''
+				return []
+	return presets

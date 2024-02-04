@@ -4,6 +4,13 @@ class_name Particles
 
 @export var lifetime: float = 0.5
 
+@export var particles: int:
+	get:
+		return _particles
+	set(value):
+		set_num_particles(value)
+var _particles: int = 4
+
 @export var waves: float:
 	get:
 		return _waves
@@ -48,3 +55,11 @@ func set_make_particles(show: bool):
 			particleSpawner.lifetime = lifetime
 	if show:
 		startTime = Time.get_unix_time_from_system()
+
+func set_num_particles(value: int):
+	var children = get_children()
+	_particles = value
+	for child in children:
+		if child is GPUParticles2D:
+			var particleSpawner: GPUParticles2D = child as GPUParticles2D
+			particleSpawner.amount = _particles
