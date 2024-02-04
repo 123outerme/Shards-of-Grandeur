@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=14 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
+[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_f3xi8"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="2_uia2j"]
 [ext_resource type="Texture2D" uid="uid://u5ng7o44k1ln" path="res://graphics/ui/ui_target_selected.png" id="3_ng771"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
@@ -20,14 +21,12 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="CombatantNode" type="Node2D" node_paths=PackedStringArray("clickCombatantBtn", "selectCombatantBtn", "animatedSprite", "hpTag", "lvText", "hpText") groups=["CombatantNode"]]
+[node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
-clickCombatantBtn = NodePath("ClickCombatantBtn")
-selectCombatantBtn = NodePath("SelectCombatantBtn")
-animatedSprite = NodePath("AnimatedSprite")
-hpTag = NodePath("HPTag")
-lvText = NodePath("HPTag/LvText")
-hpText = NodePath("HPTag/LvText/HPText")
+hitSfx = ExtResource("2_f3xi8")
+physAtkSfx = ExtResource("2_f3xi8")
+magicAtkSfx = ExtResource("2_f3xi8")
+affinitySfx = ExtResource("2_f3xi8")
 
 [node name="ClickCombatantBtn" parent="." instance=ExtResource("6_k1o8q")]
 visible = false

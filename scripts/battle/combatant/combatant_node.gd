@@ -17,18 +17,21 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var spriteFacesRight: bool = false
 @export var battlePosition: String = ''
 
-@export_category("CombatantNode - Tree")
-@export var clickCombatantBtn: TextureButton
-@export var selectCombatantBtn: TextureButton
-#@export var sprite: Sprite2D
-@export var animatedSprite: AnimatedSprite2D
-@export var hpTag: Panel
-@export var lvText: RichTextLabel
-@export var hpText: RichTextLabel
+@export_category("CombatantNode - SFX")
+@export var hitSfx: AudioStream = null
+@export var physAtkSfx: AudioStream = null
+@export var magicAtkSfx: AudioStream = null
+@export var affinitySfx: AudioStream = null
 
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var selectBtnNotSelectedSprite: Texture2D = null
 
+@onready var hpTag: Panel = get_node('HPTag')
+@onready var lvText: RichTextLabel = get_node('HPTag/LvText')
+@onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
+@onready var animatedSprite: AnimatedSprite2D = get_node('AnimatedSprite')
+@onready var clickCombatantBtn: TextureButton = get_node('ClickCombatantBtn')
+@onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
 @onready var behindParticleContainer: Node2D = get_node('BehindParticleContainer')
 @onready var affinityParticles: Particles = get_node('BehindParticleContainer/AffinityParticles')
 @onready var magicParticles: Particles = get_node('BehindParticleContainer/MagicParticles')
@@ -153,13 +156,18 @@ func play_particles(particleType: String):
 	match particleType:
 		'affinity':
 			affinityParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(affinitySfx)
 		'magic':
 			magicParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(magicAtkSfx)
 		'phys':
 			physParticles.set_make_particles(true)
 			hitParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(physAtkSfx)
+			SceneLoader.audioHandler.play_sfx(hitSfx)
 		'hit':
 			hitParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(hitSfx)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
