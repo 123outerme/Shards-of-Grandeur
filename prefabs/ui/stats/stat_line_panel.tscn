@@ -1,20 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl2b2giyrbc0i"]
+[gd_scene load_steps=9 format=3 uid="uid://cl2b2giyrbc0i"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stat_line_panel.gd" id="1_3asyh"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_o2kql"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="1_sfbvn"]
-[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/main_quest_marker.png" id="4_34jrd"]
+[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="4_l303e"]
 [ext_resource type="Theme" uid="uid://bi35gj3oigaai" path="res://themes/nested_ui/stat_line_panel_theme.tres" id="4_nb4ah"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="5_32krc"]
+[ext_resource type="Texture2D" uid="uid://cxcejoenxaxa8" path="res://graphics/ui/increase_stat_arrow.png" id="7_lkssq"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_n7dxl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qr2f1"]
-atlas = ExtResource("5_32krc")
-region = Rect2(96, 40, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e4yfk"]
-atlas = ExtResource("5_32krc")
-region = Rect2(112, 48, 8, 8)
+[ext_resource type="Texture2D" uid="uid://cw75sn6wc2dpv" path="res://graphics/ui/decrease_stat_arrow.png" id="8_dwiiv"]
 
 [node name="StatLinePanel" type="Panel"]
 offset_right = 560.0
@@ -37,7 +30,7 @@ grow_horizontal = 0
 [node name="Sprite2D" type="Sprite2D" parent="StatPtsIndicator"]
 position = Vector2(16, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("4_34jrd")
+texture = ExtResource("4_l303e")
 
 [node name="StatsVBox" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 34)
@@ -242,7 +235,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_right = NodePath("../DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
-icon = SubResource("AtlasTexture_qr2f1")
+icon = ExtResource("7_lkssq")
 expand_icon = true
 
 [node name="DecreaseButton" parent="StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
@@ -250,7 +243,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_bottom = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
-icon = SubResource("AtlasTexture_e4yfk")
+icon = ExtResource("8_dwiiv")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/PhysAtkDisplay/Extras"]
@@ -347,7 +340,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
 focus_neighbor_right = NodePath("../DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
-icon = SubResource("AtlasTexture_qr2f1")
+icon = ExtResource("7_lkssq")
 expand_icon = true
 
 [node name="DecreaseButton" parent="StatsVBox/MagicAtkDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
@@ -356,7 +349,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_top = NodePath("../../../../PhysAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
-icon = SubResource("AtlasTexture_e4yfk")
+icon = ExtResource("8_dwiiv")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/MagicAtkDisplay/Extras"]
@@ -453,7 +446,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/IncreaseButton")
 focus_neighbor_right = NodePath("../DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
-icon = SubResource("AtlasTexture_qr2f1")
+icon = ExtResource("7_lkssq")
 expand_icon = true
 
 [node name="DecreaseButton" parent="StatsVBox/AffinityDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
@@ -462,7 +455,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_top = NodePath("../../../../MagicAtkDisplay/Extras/ButtonsHBox/DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
-icon = SubResource("AtlasTexture_e4yfk")
+icon = ExtResource("8_dwiiv")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/AffinityDisplay/Extras"]
@@ -559,7 +552,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/IncreaseButton")
 focus_neighbor_right = NodePath("../DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/IncreaseButton")
-icon = SubResource("AtlasTexture_qr2f1")
+icon = ExtResource("7_lkssq")
 expand_icon = true
 
 [node name="DecreaseButton" parent="StatsVBox/ResistanceDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
@@ -568,7 +561,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_top = NodePath("../../../../AffinityDisplay/Extras/ButtonsHBox/DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../SpeedDisplay/Extras/ButtonsHBox/DecreaseButton")
-icon = SubResource("AtlasTexture_e4yfk")
+icon = ExtResource("8_dwiiv")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/ResistanceDisplay/Extras"]
@@ -661,7 +654,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/IncreaseButton")
 focus_neighbor_right = NodePath("../DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/SaveChangesButton")
-icon = SubResource("AtlasTexture_qr2f1")
+icon = ExtResource("7_lkssq")
 expand_icon = true
 
 [node name="DecreaseButton" parent="StatsVBox/SpeedDisplay/Extras/ButtonsHBox" instance=ExtResource("7_n7dxl")]
@@ -670,7 +663,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../IncreaseButton")
 focus_neighbor_top = NodePath("../../../../ResistanceDisplay/Extras/ButtonsHBox/DecreaseButton")
 focus_neighbor_bottom = NodePath("../../../../StatPtsDisplay/ButtonsHBox/CancelChangesButton")
-icon = SubResource("AtlasTexture_e4yfk")
+icon = ExtResource("8_dwiiv")
 expand_icon = true
 
 [node name="StatModifier" type="RichTextLabel" parent="StatsVBox/SpeedDisplay/Extras"]
