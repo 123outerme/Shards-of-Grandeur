@@ -159,6 +159,8 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.combatant = PlayerResources.minions.get_minion(minionName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.load_combatant_node()
+	var preset: ParticlePreset = ParticlePreset.new('shard', 6)
+	minionCombatant.play_particles(preset)
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
 	var allCombatantNodes: Array[CombatantNode] = []

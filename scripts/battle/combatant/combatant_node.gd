@@ -22,6 +22,7 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var physAtkSfx: AudioStream = null
 @export var magicAtkSfx: AudioStream = null
 @export var affinitySfx: AudioStream = null
+@export var shardSfx: AudioStream = null
 
 @export_category("CombatantNode - Movement")
 @export var allyTeamMarker: Marker2D
@@ -45,6 +46,7 @@ var returnToPos: Vector2 = Vector2()
 @onready var frontParticleContainer: Node2D = get_node('FrontParticleContainer')
 @onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticles')
 @onready var physParticles: Particles = get_node('FrontParticleContainer/PhysicalParticles')
+@onready var shardParticles: Particles = get_node('FrontParticleContainer/ShardParticles')
 @onready var onAttackMarker: Marker2D = get_node('OnAttackPos')
 @onready var onAssistMarker: Marker2D = get_node('OnAssistPos')
 
@@ -79,12 +81,15 @@ func load_combatant_node():
 		magicParticles.set_make_particles(false)
 		hitParticles.set_make_particles(false)
 		physParticles.set_make_particles(false)
+		shardParticles.set_make_particles(false)
 		
+		# nudge the attack marker away from sprite by any amount over 16 wide
 		if onAttackMarker.position.x < position.x:
 			onAttackMarker.position.x -= (combatant.maxSize.x - 16) / 2
 		elif onAttackMarker.position.x > position.x:
 			onAttackMarker.position.x += (combatant.maxSize.x - 16) / 2
-			
+		
+		# nudge the assist marker away from sprite by any amount over 16 tall
 		if onAssistMarker.position.y < position.y:
 			onAssistMarker.position.y -= (combatant.maxSize.y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
@@ -194,8 +199,21 @@ func tween_to(pos: Vector2, callback: Callable):
 		global_position = returnToPos
 	animateTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	returnToPos = global_position
-	animateTween.tween_property(self, 'global_position', pos, pos.length() / ANIMATE_MOVE_SPEED)
+	var moveTime = pos.length() / ANIMATE_MOVE_SPEED
+	if animatedSprite.animation != 'stand':
+		# if there's an animation playing:
+		moveTime = 0
+		var fps = animatedSprite.sprite_frames.get_animation_speed(animatedSprite.animation)
+		for frameIdx in range(animatedSprite.sprite_frames.get_frame_count(animatedSprite.animation)):
+			# add (duration of frame / per-frame time) = amount of time to display this frame
+			moveTime += animatedSprite.sprite_frames.get_frame_duration(animatedSprite.animation, frameIdx) / fps
+		moveTime /= 2 # half the time so the destination is reached for the latter half of the animation
+		
+	# move to target position
+	animateTween.tween_property(self, 'global_position', pos, moveTime)
+	# wait
 	animateTween.tween_property(self, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
+	# and return at a constant rate
 	animateTween.tween_property(self, 'global_position', returnToPos, pos.length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_animate_tween_finished)
 	animateTween.finished.connect(callback)
@@ -221,6 +239,10 @@ func play_particles(preset: ParticlePreset):
 			hitParticles.set_num_particles(preset.count)
 			hitParticles.set_make_particles(true)
 			SceneLoader.audioHandler.play_sfx(hitSfx)
+		'shard':
+			shardParticles.set_num_particles(preset.count)
+			shardParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(shardSfx)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:

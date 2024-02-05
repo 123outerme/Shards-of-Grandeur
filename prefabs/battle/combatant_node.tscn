@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=15 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c882n422f7n0a" path="res://prefabs/battle/particles/hit_particles.tscn" id="7_n43el"]
 [ext_resource type="PackedScene" uid="uid://d0377ttxh0bfb" path="res://prefabs/battle/particles/magic_particles.tscn" id="8_et1gm"]
 [ext_resource type="PackedScene" uid="uid://b3ox3vfrgl5ke" path="res://prefabs/battle/particles/phys_particles.tscn" id="9_4g5wr"]
+[ext_resource type="PackedScene" uid="uid://wr7dluui5pkd" path="res://prefabs/battle/particles/shard_particles.tscn" id="11_aplfb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_klmqu"]
 
@@ -27,6 +28,7 @@ hitSfx = ExtResource("2_f3xi8")
 physAtkSfx = ExtResource("2_f3xi8")
 magicAtkSfx = ExtResource("2_f3xi8")
 affinitySfx = ExtResource("2_f3xi8")
+shardSfx = ExtResource("2_f3xi8")
 
 [node name="ClickCombatantBtn" parent="." instance=ExtResource("6_k1o8q")]
 visible = false
@@ -71,6 +73,9 @@ sprite_frames = SubResource("SpriteFrames_klmqu")
 scale = Vector2(1.5, 1.5)
 
 [node name="PhysicalParticles" parent="FrontParticleContainer" instance=ExtResource("9_4g5wr")]
+scale = Vector2(1.5, 1.5)
+
+[node name="ShardParticles" parent="FrontParticleContainer" instance=ExtResource("11_aplfb")]
 scale = Vector2(1.5, 1.5)
 
 [node name="HPTag" type="Panel" parent="."]
