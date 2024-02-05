@@ -106,29 +106,37 @@ func update_turn_text() -> bool:
 			var multiIsAllies: bool = false
 			var multiIsEnemies: bool = false
 			for combatantNode in allCombatantNodes:
-				if combatantNode.is_alive() and combatantNode.combatant in defenders:
+				if combatantNode.is_alive() and (combatantNode.combatant in defenders or combatantNode.combatant == userNode.combatant):
 					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode)
 					for preset in particlePresets:
 						combatantNode.play_particles(preset)
-				# if there's only one target:
-				if len(combatant.command.targets) == 1:
-					# if this combatant is the target:
-					if combatant.command.targets[0] == combatantNode.combatant:
-						# if the combatant is an ally:
-						if combatantNode.role == userNode.role:
-							if combatantNode.combatant == userNode.combatant:
-								moveToPos = userNode.global_position # self position
+					# if there's only one target:
+					if len(combatant.command.targets) == 1:
+						# if this combatant is the target:
+						if combatant.command.targets[0] == combatantNode.combatant:
+							# if the combatant is an ally:
+							if combatantNode.role == userNode.role:
+								if combatantNode.combatant == userNode.combatant:
+									moveToPos = userNode.global_position # self position
+								else:
+									moveToPos = combatantNode.onAssistMarker.global_position # ally assist position
 							else:
-								moveToPos = combatantNode.onAssistMarker.global_position # ally assist position
-						else:
-							# the combatant is an enemy
-							moveToPos = combatantNode.onAttackMarker.global_position
-				else:
-					# if this combatant is an ally
-					if combatantNode.role == userNode.role:
-						multiIsAllies = true
+								# the combatant is an enemy
+								moveToPos = combatantNode.onAttackMarker.global_position
 					else:
-						multiIsEnemies = true # this combatant is an enemy
+						# if this combatant is an ally
+						if combatantNode.role == userNode.role:
+							multiIsAllies = true
+						else:
+							multiIsEnemies = true # this combatant is an enemy
+			
+			# if it's a move, fix if a move is multi-targeting but there's only one combatant
+			if combatant.command.type == BattleCommand.Type.MOVE:
+				var targets = combatant.command.move.targets
+				if not multiIsAllies:
+					multiIsAllies = targets == BattleCommand.Targets.ALL_ALLIES or targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.ALL
+				if not multiIsEnemies:
+					multiIsEnemies = targets == BattleCommand.Targets.ALL_ENEMIES or targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.ALL
 			
 			# if targeting multiple:
 			if multiIsAllies or multiIsEnemies:
@@ -141,7 +149,7 @@ func update_turn_text() -> bool:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
 			if not ( \
-					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL) \
+					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL and combatant.command.move.power > 0) \
 					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
 				# if it's a non-physical move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
 				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
