@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=54 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_plac1"]
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://gamedata/dialogue/horsecart/horsecart_1.tres" id="4_c3eo2"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="4_d1muk"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_jaiux"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="4_utc70"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_x3xnl"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="5_masfe"]
@@ -26,12 +27,77 @@
 [ext_resource type="Resource" uid="uid://fvcov57k5drx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_close.tres" id="22_e0qmh"]
 [ext_resource type="Resource" uid="uid://clldvhp6vpt5f" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_far.tres" id="23_uw3nw"]
 [ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
+[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
+
+[sub_resource type="Resource" id="Resource_11v5t"]
+script = ExtResource("4_jaiux")
+saveName = "npc"
+position = Vector2(-1054, 538)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fij8e"]
 size = Vector2(64, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
+
+[sub_resource type="Resource" id="Resource_swud2"]
+script = ExtResource("4_jaiux")
+saveName = "npc"
+position = Vector2(-1006, 522)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_rklj2"]
+script = ExtResource("4_jaiux")
+saveName = "npc"
+position = Vector2(-383, -221)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_hdhid"]
+script = ExtResource("4_jaiux")
+saveName = "npc"
+position = Vector2(-300, -248)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="Resource" id="Resource_0t6sl"]
 script = ExtResource("4_x3xnl")
@@ -147,6 +213,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop"
 spriteSize = Vector2i(64, 32)
+data = SubResource("Resource_11v5t")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -182,6 +249,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
+data = SubResource("Resource_swud2")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -207,8 +275,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="Spelunker" parent="TileMap" instance=ExtResource("3_plac1")]
 visible = false
 position = Vector2(-383, -221)
+collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
+data = SubResource("Resource_rklj2")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -235,6 +305,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
+data = SubResource("Resource_hdhid")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier" index="0"]
@@ -344,11 +415,11 @@ cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource(
 position = Vector2(-13.5, 2.5)
 shape = SubResource("RectangleShape2D_pq5ym")
 
-[node name="ReturnToAmbushRightCutsceneTrigger3" parent="." instance=ExtResource("7_ggrbp")]
+[node name="ReturnToAmbushRightCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_uw3nw")])
 
-[node name="CollisionShape2D" parent="ReturnToAmbushRightCutsceneTrigger3" index="0"]
+[node name="CollisionShape2D" parent="ReturnToAmbushRightCutsceneTrigger" index="0"]
 position = Vector2(49, 2.5)
 shape = SubResource("RectangleShape2D_5vud8")
 
@@ -387,6 +458,9 @@ navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
 
+[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("28_7haeu")]
+rootNode = NodePath("..")
+
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/Spelunker"]
@@ -400,6 +474,6 @@ navigation_layers = 4
 [editable path="AmbushCutsceneTrigger"]
 [editable path="ReturnToAmbushLeftCutsceneTrigger"]
 [editable path="ReturnToAmbushCenterCutsceneTrigger"]
-[editable path="ReturnToAmbushRightCutsceneTrigger3"]
+[editable path="ReturnToAmbushRightCutsceneTrigger"]
 [editable path="AfterAmbushCutsceneTrigger"]
 [editable path="StandstillWarpZone"]

@@ -12,6 +12,8 @@ class_name CutsceneVisualizer
 			mockPlayer.global_position = triggerOrNPC.position
 		start_visualizing()
 
+var saveCutscene: Cutscene = null
+
 @onready var mockPlayer: Node = get_node('MockPlayer')
 
 func _init():
@@ -58,6 +60,7 @@ func handle_give_item():
 	pass
 
 func start_visualizing():
+	saveCutscene = cutscene
 	start_cutscene(cutscene.duplicate(true))
 
 func end_cutscene(force: bool = false):
@@ -75,6 +78,7 @@ func complete_cutscene():
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)
 		playingFromTrigger = null
+	cutscene = saveCutscene
 	cutscene_completed.emit()
 	for tween in tweens:
 		if tween != null and tween.is_valid():
