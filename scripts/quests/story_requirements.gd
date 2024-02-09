@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name StoryRequirements
 
@@ -44,6 +45,9 @@ func _init(
 	invalidAfterSpecialBattles = i_invalidBattles
 
 func is_valid() -> bool:
+	if Engine.is_editor_hint():
+		return true
+	
 	if PlayerResources.questInventory.currentAct < minAct or PlayerResources.questInventory.currentAct > maxAct:
 		return false
 		

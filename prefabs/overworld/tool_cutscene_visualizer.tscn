@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4bahmif0u56p"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/tool_cutscene_visualizer.gd" id="1_vxik6"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="2_edynv"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_0pscs"]
+
+[node name="ToolCutsceneVisualizer" type="Node"]
+script = ExtResource("1_vxik6")
+
+[node name="MockPlayer" parent="." instance=ExtResource("2_edynv")]
+
+[node name="NPCSprite" parent="MockPlayer" index="0"]
+sprite_frames = ExtResource("3_0pscs")
+animation = &"stand"
+
+[node name="TalkArea" parent="MockPlayer" index="3"]
+visible = false
+
+[node name="MoveTrigger" parent="MockPlayer" index="4"]
+visible = false
+
+[editable path="MockPlayer"]

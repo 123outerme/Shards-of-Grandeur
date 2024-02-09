@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name CutscenePlayer
 
@@ -23,34 +24,28 @@ func _process(delta):
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer, lastFrame)
 		timer += delta
 		
-		if PlayerFinder.player.is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:
+		if is_in_dialogue() and lastFrame != null and lastFrame.endTextBoxPauses:
 			if frame != lastFrame:
 				timer -= delta
 			return
 		
 		if lastFrame != null and frame != lastFrame:
-			if lastFrame.endHoldCamera and not PlayerFinder.player.holdingCamera:
-				PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
-			if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
-				PlayerFinder.player.snap_camera_back_to_player()
+			handle_hold_camera()
 			
 			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
 				for item in lastFrame.dialogues:
-					PlayerFinder.player.queue_cutscene_texts(item)
+					queue_text(item)
 				lastFrame.set_text_was_triggered()
 				
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
-				PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
-				isFadedOut = true
-				isFadingIn = false
+				handle_fade_out()
 			
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_IN:
-				PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+				handle_fade_in()
 			
 			if lastFrame.givesItem != null:
-				PlayerResources.inventory.add_item(lastFrame.givesItem)
-				PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
+				handle_give_item()
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -60,7 +55,31 @@ func _process(delta):
 			return
 		
 		animate_next_frame(frame)
-		
+
+func is_in_dialogue() -> bool:
+	return PlayerFinder.player.is_in_dialogue()
+
+func handle_hold_camera():
+	if lastFrame.endHoldCamera and not PlayerFinder.player.holdingCamera:
+		PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
+	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
+		PlayerFinder.player.snap_camera_back_to_player()
+
+func queue_text(item: CutsceneDialogue):
+	PlayerFinder.player.queue_cutscene_texts(item)
+
+func handle_fade_out():
+	PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+	isFadedOut = true
+	isFadingIn = false
+	
+func handle_fade_in():
+	PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+
+func handle_give_item():
+	PlayerResources.inventory.add_item(lastFrame.givesItem)
+	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
+
 func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 	lastFrame = frame
 	for animSet in frame.actorAnimSets:
@@ -87,30 +106,39 @@ func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 			node.set(actorTween.propertyName, actorTween.value)
 
 func start_cutscene(newCutscene: Cutscene):
-	if completeAfterFadeIn and cutscene != null:
-		complete_cutscene()
-	if playing or (newCutscene.storyRequirements != null and not newCutscene.storyRequirements.is_valid()):
+	if newCutscene == null:
 		return
 	
+	if completeAfterFadeIn and cutscene != null:
+		complete_cutscene()
+	if playing:
+		return
+		
+	if newCutscene.storyRequirements != null:
+		if not newCutscene.storyRequirements.is_valid():
+			return
+	
 	lastFrame = null
-	SaveHandler.save_data()
-	for npc in get_tree().get_nodes_in_group("NPC"):
-		npc.talkAlertSprite.visible = false
+	if not Engine.is_editor_hint():
+		SaveHandler.save_data()
+		for npc in get_tree().get_nodes_in_group("NPC"):
+			npc.talkAlertSprite.visible = false
 	cutscene = newCutscene
 	timer = 0
 	skipCutsceneFrameIndex = -1
 	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
 	cutscene.calc_total_time()
 	playing = true
-	PlayerFinder.player.cutsceneTexts = []
-	PlayerFinder.player.cutsceneTextIndex = 0
-	PlayerFinder.player.cutsceneLineIndex = 0
-	PlayerFinder.player.cam.show_letterbox()
-	if PlayerFinder.player.pausePanel.isPaused:
-		PlayerFinder.player.pausePanel.toggle_pause() # unpause if somehow the game was paused when the cutscene started
-	SceneLoader.pause_autonomous_movers()
+	if not Engine.is_editor_hint() and PlayerFinder.player != null:
+		PlayerFinder.player.cutsceneTexts = []
+		PlayerFinder.player.cutsceneTextIndex = 0
+		PlayerFinder.player.cutsceneLineIndex = 0
+		PlayerFinder.player.cam.show_letterbox()
+		if PlayerFinder.player.pausePanel.isPaused:
+			PlayerFinder.player.pausePanel.toggle_pause() # unpause if somehow the game was paused when the cutscene started
+		SceneLoader.pause_autonomous_movers()
 	for actor in cutscene.activateActorsBefore:
-		var actorNode = rootNode.get_node_or_null(actor)
+		var actorNode = fetch_actor_node(actor, false)
 		if actorNode != null:
 			actorNode.visible = true
 
@@ -203,7 +231,7 @@ func deactivate_actors_after():
 		return
 	
 	for actor in cutscene.deactivateActorsAfter:
-		var actorNode = rootNode.get_node_or_null(actor)
+		var actorNode = fetch_actor_node(actor, false)
 		if actorNode != null:
 			if 'invisible' in actorNode:
 				actorNode.invisible = true

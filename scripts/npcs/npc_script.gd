@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 class_name NPCScript
 
@@ -63,7 +64,8 @@ func _ready():
 		queue_free() # or alternatively set visible to false?
 
 func fetch_player():
-	player = PlayerFinder.player
+	if not Engine.is_editor_hint():
+		player = PlayerFinder.player
 
 func save_data(save_path):
 	if saveName == '':
