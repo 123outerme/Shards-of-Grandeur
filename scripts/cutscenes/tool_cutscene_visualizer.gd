@@ -4,6 +4,8 @@ class_name CutsceneVisualizer
 
 @export var triggerOrNPC: Node
 
+@export var useRealNpcs: bool = false
+
 @export var startVisualizing: bool:
 	get:
 		return false
@@ -29,13 +31,16 @@ func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
 	if isPlayer:
 		node = mockPlayer
 	elif rootNode != null:
-		var pathSegments = actorTreePath.split('/')
-		node = get_node_or_null(pathSegments[len(pathSegments) - 1])
-		if node == null:
-			var origNode = rootNode.get_node_or_null(actorTreePath)
-			if origNode != null:
-				node = origNode.duplicate(1 + 2 + 4) # no instancing
-				add_child(node)
+		if not useRealNpcs:
+			var pathSegments = actorTreePath.split('/')
+			node = get_node_or_null(pathSegments[len(pathSegments) - 1])
+			if node == null:
+				var origNode = rootNode.get_node_or_null(actorTreePath)
+				if origNode != null:
+					node = origNode.duplicate(1 + 2 + 4) # no instancing
+					add_child(node)
+		else:
+			node = super.fetch_actor_node(actorTreePath, isPlayer)
 	return node
 
 
@@ -84,6 +89,7 @@ func complete_cutscene():
 		if tween != null and tween.is_valid():
 			tween.kill()
 	tweens = []
-	for child in get_children():
-		if child != mockPlayer:
-			child.queue_free() # NOTE could be unsafe in editor
+	if not useRealNpcs:
+		for child in get_children():
+			if child != mockPlayer:
+				child.queue_free() # NOTE could be unsafe in editor
