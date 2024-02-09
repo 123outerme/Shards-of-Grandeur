@@ -1,6 +1,8 @@
 extends Node2D
 class_name BattleController
 
+signal combatant_finished_moving
+
 @export var state: BattleState = BattleState.new()
 @export var globalMarker: Marker2D
 

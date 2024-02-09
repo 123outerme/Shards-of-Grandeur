@@ -42,12 +42,13 @@ gizmo_extents = 5.0
 position = Vector2(9, 12)
 gizmo_extents = 5.0
 
-[node name="PlayerCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("2_fgh53")]
+[node name="PlayerCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
 leftSide = true
 battlePosition = "You"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
+battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/PlayerCombatant" index="6"]
@@ -56,12 +57,13 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="CombatantGroup/PlayerCombatant" index="7"]
 position = Vector2(-4, -16)
 
-[node name="MinionCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("2_fgh53")]
+[node name="MinionCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
 leftSide = true
 battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
+battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/MinionCombatant" index="6"]
@@ -70,11 +72,12 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="CombatantGroup/MinionCombatant" index="7"]
 position = Vector2(4, 16)
 
-[node name="EnemyCombatant1" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant1" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(36, 12)
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
+battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant1" index="6"]
@@ -83,11 +86,12 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant1" index="7"]
 position = Vector2(16, 0)
 
-[node name="EnemyCombatant2" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant2" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(52, -12)
 battlePosition = "Top"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
+battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant2" index="6"]
@@ -96,11 +100,12 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant2" index="7"]
 position = Vector2(0, 16)
 
-[node name="EnemyCombatant3" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("2_fgh53")]
+[node name="EnemyCombatant3" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(68, 36)
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
+battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant3" index="6"]

@@ -463,7 +463,7 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Arr
 						preset.type = 'affinity'
 						preset.count = 4
 				else:
-					var dmgTaken: int = 0
+					var dmgTaken: float = 0
 					var idx = targets.find(combatantNode.combatant)
 					if idx >= 0 and commandResult.damagesDealt[idx] > 0:
 						dmgTaken += commandResult.damagesDealt[idx]

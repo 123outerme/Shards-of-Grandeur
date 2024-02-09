@@ -27,12 +27,16 @@ signal details_clicked(combatantNode: CombatantNode)
 @export_category("CombatantNode - Movement")
 @export var allyTeamMarker: Marker2D
 @export var enemyTeamMarker: Marker2D
+@export var battleController: Node2D
+# NOTE: if this is of type BattleController, then the SFX Button scene breaks.... no joke. WHYYYYYYY??
 
 const ANIMATE_MOVE_SPEED = 60
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var selectBtnNotSelectedSprite: Texture2D = null
 var animateTween: Tween = null
 var returnToPos: Vector2 = Vector2()
+var playHitQueued: bool = false
+var playPhysQueued: bool = false
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -54,6 +58,8 @@ var returnToPos: Vector2 = Vector2()
 func _ready():
 	selectBtnNotSelectedSprite = selectCombatantBtn.texture_normal
 	returnToPos = global_position
+	if battleController != null:
+		battleController.combatant_finished_moving.connect(_combatant_finished_moving)
 
 func load_combatant_node():
 	if not is_alive():
@@ -211,6 +217,8 @@ func tween_to(pos: Vector2, callback: Callable):
 		
 	# move to target position
 	animateTween.tween_property(self, 'global_position', pos, moveTime)
+	# emit that the move was completed
+	animateTween.tween_callback(_on_animate_tween_target_move_finished)
 	# wait
 	animateTween.tween_property(self, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
@@ -233,12 +241,10 @@ func play_particles(preset: ParticlePreset):
 			SceneLoader.audioHandler.play_sfx(magicAtkSfx)
 		'phys':
 			physParticles.set_num_particles(preset.count)
-			physParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(physAtkSfx)
+			playPhysQueued = true
 		'hit':
 			hitParticles.set_num_particles(preset.count)
-			hitParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(hitSfx)
+			playHitQueued = true
 		'shard':
 			shardParticles.set_num_particles(preset.count)
 			shardParticles.set_make_particles(true)
@@ -411,6 +417,20 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
+
+func _on_animate_tween_target_move_finished():
+	if battleController != null:
+		battleController.combatant_finished_moving.emit()
+
+func _combatant_finished_moving():
+	if playHitQueued:
+		hitParticles.set_make_particles(true)
+		SceneLoader.audioHandler.play_sfx(hitSfx)
+	if playPhysQueued:
+		physParticles.set_make_particles(true)
+		SceneLoader.audioHandler.play_sfx(physAtkSfx)
+	playHitQueued = false
+	playPhysQueued = false
 
 func _on_animate_tween_finished():
 	animateTween = null
