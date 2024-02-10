@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="22_mlmt5"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 
-[sub_resource type="Resource" id="Resource_0bm10"]
+[sub_resource type="Resource" id="Resource_eti1w"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(1, 16)
@@ -43,9 +43,10 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_i766h"]
+[sub_resource type="Resource" id="Resource_30ys4"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
+animSet = ExtResource("9_jtu4n")
 position = Vector2(-98, 4)
 flipH = false
 visible = true
@@ -127,10 +128,10 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
-[sub_resource type="Resource" id="Resource_3cb4i"]
+[sub_resource type="Resource" id="Resource_ex2bq"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
-position = Vector2(1008, 8)
+position = Vector2(450, 0)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -171,7 +172,7 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_0bm10")
+data = SubResource("Resource_eti1w")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -197,7 +198,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_i766h")
+data = SubResource("Resource_30ys4")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -272,17 +273,18 @@ pickedUpItem = SubResource("Resource_ams7q")
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_6syn7")
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("22_mlmt5")]
+[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("22_mlmt5")]
 visible = false
+triggerOrNPC = NodePath("../IntroCutsceneTrigger")
+cutscene = ExtResource("11_27a4a")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(1008, 8)
-data = SubResource("Resource_3cb4i")
+position = Vector2(450, 0)
+data = SubResource("Resource_ex2bq")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-animation = &"walk"
-frame_progress = 0.251399
+frame_progress = 0.281959
 
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/HorseCart"]

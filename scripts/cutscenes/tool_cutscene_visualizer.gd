@@ -5,6 +5,7 @@ class_name CutsceneVisualizer
 @export var triggerOrNPC: Node
 
 @export var useRealNpcs: bool = false
+@export var resetRealNpcsAfterComplete: bool = true
 
 @export var startVisualizing: bool:
 	get:
@@ -17,6 +18,8 @@ class_name CutsceneVisualizer
 var saveCutscene: Cutscene = null
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
+
+var fetchedActors: Array[Node2D] = []
 
 @onready var mockPlayer: Node = get_node('MockPlayer')
 
@@ -43,6 +46,8 @@ func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
 					add_child(node)
 		else:
 			node = super.fetch_actor_node(actorTreePath, isPlayer)
+			if node != null and not (node in fetchedActors):
+				fetchedActors.append(node)
 	return node
 
 
@@ -72,6 +77,7 @@ func handle_give_item():
 func start_visualizing():
 	mockPlayer.mockShadeCenter.modulate.a = 0.0
 	saveCutscene = cutscene
+	fetchedActors = []
 	start_cutscene(cutscene.duplicate(true))
 
 func end_cutscene(force: bool = false):
@@ -99,6 +105,14 @@ func complete_cutscene():
 		for child in get_children():
 			if child != mockPlayer:
 				child.queue_free() # NOTE could be unsafe in editor
+	elif resetRealNpcsAfterComplete:
+		for actor in fetchedActors:
+			if actor is NPCScript:
+				actor.position = actor.data.position
+				actor.invisible = not actor.data.visible
+				actor.flip_h = actor.data.flipH
+				if actor.data.animSet:
+					actor.set_sprite_frames(actor.data.animSet)
 
 func _mock_fade_out_finished():
 	fadeOutTween = null
