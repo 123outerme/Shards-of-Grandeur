@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://rfvaf3u7qrsn"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_koyuo"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_qxk7o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_r7g25"]
+[ext_resource type="Resource" uid="uid://c65useug5ce04" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_trigger_goto_grandstone_cutscene.tres" id="2_ve5e5"]
+
+[sub_resource type="Resource" id="Resource_47172"]
+script = ExtResource("1_r7g25")
+choiceBtn = "Wait..."
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_s2dxt"]
+script = ExtResource("1_r7g25")
+choiceBtn = "Let's Go."
+leadsTo = ExtResource("2_ve5e5")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = "War is Declared#It's Gone?"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_ergge"]
+script = ExtResource("1_qxk7o")
+lines = Array[String](["I was afraid of that... Just when we've taken control of it and risked war, we've got to find it again.", "We should leave for Grandstone now. The General will want to hear about what's happened here."])
+animation = "talk"
+choices = Array[ExtResource("1_r7g25")]([SubResource("Resource_47172"), SubResource("Resource_s2dxt")])
+
+[resource]
+script = ExtResource("1_koyuo")
+entryId = ""
+items = Array[ExtResource("1_qxk7o")]([SubResource("Resource_ergge")])
+closesDialogue = false
+fullHealsPlayer = false

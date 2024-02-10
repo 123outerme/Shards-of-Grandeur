@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://bwnakoj6c7o46"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=16 format=3 uid="uid://bwnakoj6c7o46"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_3a14r"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_81t65"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_utjja"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_7v0xj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="3_2uk7u"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_qnme8"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_snpvx"]
 
 [sub_resource type="Resource" id="Resource_vfx8k"]
 script = ExtResource("3_2uk7u")
@@ -16,7 +18,7 @@ script = ExtResource("1_81t65")
 frameLength = 0.1
 annotation = "Player speaks to self"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_qnme8")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("3_2uk7u")]([SubResource("Resource_vfx8k")])
 endTextBoxPauses = true
@@ -42,7 +44,7 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubReso
 actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("3_2uk7u")]([])
-endTextBoxPauses = true
+endTextBoxPauses = false
 shakeCamForDuration = false
 endHoldCamera = false
 endFade = 0
@@ -53,7 +55,7 @@ script = ExtResource("1_81t65")
 frameLength = 0.5
 annotation = "Wait a beat in case player is mashing or already read the text box"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_snpvx")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("3_2uk7u")]([])
 endTextBoxPauses = true
@@ -76,7 +78,7 @@ script = ExtResource("1_81t65")
 frameLength = 1.0
 annotation = "Player walks back to start leaving the forest"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_uq67w")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_qnme8")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("3_2uk7u")]([])
 endTextBoxPauses = true

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://8ilocm42bf2h"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://8ilocm42bf2h"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_5q5ui"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_8im1w"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_anga4"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rvhmr"]
+[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="3_ka0yt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="3_p5bhj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_u72j8"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="5_7khme"]
@@ -30,7 +31,7 @@ endFadeLength = 0.0
 [sub_resource type="Resource" id="Resource_ffv85"]
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
-annotation = "The screen stops shaking and wait for the text box to close"
+annotation = "Wait for the text box to close"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("5_7khme")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
@@ -49,6 +50,7 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([null])
 actorAnims = Array[ExtResource("5_7khme")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
+playSfx = ExtResource("3_ka0yt")
 endTextBoxPauses = false
 shakeCamForDuration = true
 endHoldCamera = false
@@ -162,6 +164,15 @@ propertyName = "flip_h"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_vgcex"]
+script = ExtResource("3_p5bhj")
+value = false
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+propertyName = "flip_j"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_dhp7a"]
 script = ExtResource("1_anga4")
 speaker = "Dr. Hudson"
@@ -171,7 +182,7 @@ texts = Array[String](["Was that an earthquake? Quickly, @, check on the Radiant
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Dr. Hudson turns to the player and speaks"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_wst6a")])
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_wst6a"), SubResource("Resource_vgcex")])
 actorAnims = Array[ExtResource("5_7khme")]([SubResource("Resource_kaol4")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_anga4")]([SubResource("Resource_dhp7a")])

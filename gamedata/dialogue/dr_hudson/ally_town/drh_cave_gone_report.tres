@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bxkaxgf5v3g62"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_2vnkr"]
+[ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="2_dhkfo"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_kvnu8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_w8dn5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_om4xe"]
+
+[sub_resource type="Resource" id="Resource_j7x0q"]
+script = ExtResource("1_2vnkr")
+choiceBtn = "It's Gone!"
+leadsTo = ExtResource("2_dhkfo")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_vupoq"]
+script = ExtResource("3_kvnu8")
+lines = Array[String](["What did you find?"])
+animation = "talk"
+choices = Array[ExtResource("1_2vnkr")]([SubResource("Resource_j7x0q")])
+
+[sub_resource type="Resource" id="Resource_cpvqu"]
+script = ExtResource("5_om4xe")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["hilltop_cave_gone"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("4_w8dn5")
+entryId = "standstill_cave_report"
+items = Array[ExtResource("3_kvnu8")]([SubResource("Resource_vupoq")])
+storyRequirements = SubResource("Resource_cpvqu")
+closesDialogue = false
+fullHealsPlayer = false

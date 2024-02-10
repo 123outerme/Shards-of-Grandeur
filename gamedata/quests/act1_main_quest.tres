@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
+[ext_resource type="Resource" uid="uid://bxkaxgf5v3g62" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_report.tres" id="3_qpgt1"]
+[ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="4_0vfgl"]
 
 [sub_resource type="Resource" id="Resource_ce6e6"]
 script = ExtResource("2_8mv8e")
@@ -31,10 +33,24 @@ customStatusStr = "Head to the Cave!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_mrxk6"]
+script = ExtResource("2_8mv8e")
+name = "It's Gone?"
+description = "The Radiant Cave is just... gone! Report your findings to Dr. Hudson."
+type = 0
+count = 1
+objectiveName = "dr_hudson_standstill#standstill_cave_report"
+turnInName = "dr_hudson_standstill"
+displayObjName = "Dr. Hudson"
+displayTurnInName = "Dr. Hudson"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_0vfgl")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_qpgt1")])
+
 [sub_resource type="Resource" id="Resource_dbahe"]
 script = ExtResource("2_8mv8e")
 name = "To Grandstone!"
-description = "Return to Grandstone immediately. The General is going to want to hear about the Cave's disappearance and the Chain Legion ambusher."
+description = "Return to Grandstone immediately. The General is going to want to hear about the Cave moving and the Chain Legion ambusher."
 type = 0
 count = 1
 objectiveName = "the_general"
@@ -47,8 +63,8 @@ inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]
 
 [resource]
 script = ExtResource("1_jiru6")
-questName = "Act 1"
+questName = "War is Declared"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_dbahe")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe")])
 isMainQuest = true
 advanceActActerComplete = true

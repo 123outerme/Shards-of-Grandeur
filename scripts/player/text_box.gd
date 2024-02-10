@@ -70,10 +70,14 @@ func add_choices():
 		return
 	
 	delete_choices()
-	for idx in range(5):
-		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+	var buttonIdx: int = 0
+	for idx in range(len(dialogueItem.choices)):
+		if buttonIdx >= 5:
+			continue
 		
-		if idx < len(dialogueItem.choices) \
+		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(buttonIdx + 1))
+		
+		if dialogueItem.choices[idx].is_valid() \
 				and not (dialogueItem.choices[idx].leadsTo != null and not dialogueItem.choices[idx].leadsTo.can_use_dialogue()):
 			var choice = dialogueItem.choices[idx]
 			if choice.turnsInQuest != '':
@@ -85,7 +89,8 @@ func add_choices():
 						continue
 				else:
 					continue
-				
+			
+			buttonIdx += 1
 			button.text = TextUtils.substitute_playername(choice.choiceBtn)
 			button.custom_minimum_size = choice.buttonDims
 			button.visible = true
@@ -96,7 +101,7 @@ func add_choices():
 			if idx == 0:
 				refocus_choice(null) # focus the first button that is being shown
 		
-	PlayerFinder.player.makingChoice = len(dialogueItem.choices) > 0
+	PlayerFinder.player.makingChoice = buttonIdx > 0
 
 func delete_choices():
 	PlayerFinder.player.makingChoice = false
