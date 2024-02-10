@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://djbpfuyiraw0t"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=9 format=3 uid="uid://djbpfuyiraw0t"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_jq1j4"]
 [ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="1_muelj"]
@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_ohh8x"]
 script = ExtResource("1_p5mmd")
 minAct = 0
-maxAct = 1
+maxAct = 0
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -28,6 +28,29 @@ battleMapName = "forest_battle_map"
 isRecoverLocation = false
 recoverPosition = Vector2(0, 0)
 
+[sub_resource type="Resource" id="Resource_jyusa"]
+script = ExtResource("1_p5mmd")
+minAct = 1
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_gncno"]
+script = ExtResource("1_jq1j4")
+path = "hilltop_forest/hilltop_forest"
+requirements = SubResource("Resource_jyusa")
+overworldTheme = ExtResource("1_muelj")
+battleMapName = "forest_battle_map"
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
 [resource]
 script = ExtResource("1_p80g7")
-maps = Array[ExtResource("1_jq1j4")]([SubResource("Resource_31n7v")])
+maps = Array[ExtResource("1_jq1j4")]([SubResource("Resource_31n7v"), SubResource("Resource_gncno")])

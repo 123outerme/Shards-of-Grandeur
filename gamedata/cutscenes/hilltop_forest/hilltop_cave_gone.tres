@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://bwnakoj6c7o46"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_3a14r"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_81t65"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_utjja"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_7v0xj"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="3_2uk7u"]
+
+[sub_resource type="Resource" id="Resource_vfx8k"]
+script = ExtResource("3_2uk7u")
+speaker = "@"
+texts = Array[String](["The cave... it's gone!", "I'd better let Dr. Hudson know. We need to leave for Grandstone immediately."])
+
+[sub_resource type="Resource" id="Resource_admch"]
+script = ExtResource("1_81t65")
+frameLength = 0.1
+annotation = "Player speaks to self"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("3_2uk7u")]([SubResource("Resource_vfx8k")])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_18ivr"]
+script = ExtResource("1_utjja")
+value = Vector2(-400, -199)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ecrtm"]
+script = ExtResource("1_81t65")
+frameLength = 1.25
+annotation = "Player slowly walks towards where the cave was"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_18ivr")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("3_2uk7u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_0wulb"]
+script = ExtResource("1_81t65")
+frameLength = 0.5
+annotation = "Wait a beat in case player is mashing or already read the text box"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("3_2uk7u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_uq67w"]
+script = ExtResource("1_utjja")
+value = Vector2(-440, -140)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_y7cyt"]
+script = ExtResource("1_81t65")
+frameLength = 1.0
+annotation = "Player walks back to start leaving the forest"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_uq67w")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("3_2uk7u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_jr8x2"]
+script = ExtResource("2_7v0xj")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["hilltop_cave_gone"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_3a14r")
+cutsceneFrames = Array[ExtResource("1_81t65")]([SubResource("Resource_admch"), SubResource("Resource_ecrtm"), SubResource("Resource_0wulb"), SubResource("Resource_y7cyt")])
+saveName = "hilltop_cave_gone"
+storyRequirements = SubResource("Resource_jr8x2")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
