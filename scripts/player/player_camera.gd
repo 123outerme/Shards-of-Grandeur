@@ -1,6 +1,17 @@
 extends Camera2D
 class_name PlayerCamera
 
+const CAM_SHAKING_POSITIONS: Array[Vector2] = [
+	Vector2(0,0),
+	Vector2(0,2),
+	Vector2(0,4),
+	Vector2(0,2),
+	Vector2(0,0),
+	Vector2(0,-2),
+	Vector2(0,-4),
+	Vector2(0,-2),
+]
+
 @onready var player: PlayerController = get_node("..")
 @onready var alertControl: Control = get_node('AlertControl')
 @onready var letterbox: Control = get_node("Letterbox")
@@ -17,6 +28,8 @@ var fadeInReady: bool = false
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
 var interruptTween: bool = false
+var camShaking: bool = false
+var camShakingTime: float = 0
 
 var registeredFadeInCallbacks: Array[Callable] = []
 var registeredFadeOutCallbacks: Array[Callable] = []
@@ -24,10 +37,14 @@ var registeredFadeOutCallbacks: Array[Callable] = []
 var alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if fadeInReady and fadeInTween != null:
 		fadeInReady = false
 		fadeInTween.play()
+	if camShaking:
+		camShakingTime += delta
+		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
+		position = CAM_SHAKING_POSITIONS[camShakingIdx]
 
 func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
@@ -98,6 +115,14 @@ func connect_to_fade_in(callback: Callable):
 		fadeInTween.finished.connect(callback)
 	else:
 		registeredFadeInCallbacks.append(callback)
+
+func start_cam_shake():
+	camShaking = true
+	
+func stop_cam_shake():
+	camShaking = false
+	position = Vector2(0, 0)
+	camShakingTime = 0
 
 func toggle_cutscene_paused_shade():
 	cutscenePaused = not cutscenePaused

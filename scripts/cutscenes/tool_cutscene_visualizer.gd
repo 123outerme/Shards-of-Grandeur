@@ -54,8 +54,16 @@ func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
 func is_in_dialogue() -> bool:
 	return false
 
-func handle_hold_camera():
-	pass
+func handle_camera(frame: CutsceneFrame):
+	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
+		mockPlayer.stop_cam_shake()
+
+func handle_play_sfx(sfx: AudioStream):
+	if sfx != null:
+		print('Play SFX ' + sfx.resource_name)
+
+func handle_start_cam_shake():
+	mockPlayer.start_cam_shake()
 
 func queue_text(item: CutsceneDialogue):
 	print(item.speaker + ' will say: ')

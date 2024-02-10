@@ -30,7 +30,9 @@ func _process(delta):
 			return
 		
 		if lastFrame != null and frame != lastFrame:
-			handle_hold_camera()
+			handle_camera(frame)
+			if frame != null:
+				handle_play_sfx(frame.playSfx)
 			
 			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
@@ -59,11 +61,16 @@ func _process(delta):
 func is_in_dialogue() -> bool:
 	return PlayerFinder.player.is_in_dialogue()
 
-func handle_hold_camera():
+func handle_camera(frame: CutsceneFrame):
 	if lastFrame.endHoldCamera and not PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
 	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
 		PlayerFinder.player.snap_camera_back_to_player()
+	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
+		PlayerFinder.player.cam.stop_cam_shake()
+
+func handle_play_sfx(sfx: AudioStream):
+	SceneLoader.audioHandler.play_sfx(sfx)
 
 func queue_text(item: CutsceneDialogue):
 	PlayerFinder.player.queue_cutscene_texts(item)
@@ -82,6 +89,9 @@ func handle_give_item():
 
 func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 	lastFrame = frame
+	if frame.shakeCamForDuration:
+		handle_start_cam_shake()
+	
 	for animSet in frame.actorAnimSets:
 		var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
 		if node != null and node.has_method('set_sprite_frames'):
@@ -104,6 +114,9 @@ func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 			tweens.append(tween)
 		else:
 			node.set(actorTween.propertyName, actorTween.value)
+
+func handle_start_cam_shake():
+	PlayerFinder.player.cam.start_cam_shake()
 
 func start_cutscene(newCutscene: Cutscene):
 	if newCutscene == null:

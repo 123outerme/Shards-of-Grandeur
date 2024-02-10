@@ -39,7 +39,10 @@ func _process(delta):
 func set_textbox_text(text: String, speaker: String):
 	advance_textbox(text)
 	var newSpeaker: bool = false
-	if SpeakerText.text != TextUtils.substitute_playername(speaker) + ":":
+	if speaker == '':
+		newSpeaker = SpeakerText.text != ''
+		SpeakerText.text = ''
+	elif SpeakerText.text != TextUtils.substitute_playername(speaker) + ":":
 		SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
 		newSpeaker = true
 	delete_choices()
