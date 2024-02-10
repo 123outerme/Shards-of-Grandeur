@@ -175,6 +175,22 @@ grow_vertical = 2
 text = "Exp:"
 fit_content = true
 
+[node name="ExpProgressBar" type="TextureProgressBar" parent="StatsVBox/ExpDisplay"]
+offset_left = 239.0
+offset_top = -3.0
+offset_right = 474.0
+offset_bottom = 37.0
+max_value = 14171.0
+value = 14171.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("6_iyqnd")
+texture_progress = ExtResource("7_kfnmn")
+tint_progress = Color(0.286275, 0.717647, 1, 1)
+
 [node name="Exp" type="RichTextLabel" parent="StatsVBox/ExpDisplay"]
 clip_contents = false
 layout_mode = 1

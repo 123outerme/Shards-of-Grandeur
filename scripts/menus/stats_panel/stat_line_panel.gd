@@ -21,6 +21,7 @@ var modified: bool = false
 @onready var hpLvUp: RichTextLabel = get_node("StatsVBox/HpDisplay/Extras/LvUpIncrease")
 
 @onready var expText: RichTextLabel = get_node("StatsVBox/ExpDisplay/Exp")
+@onready var expProgressBar: TextureProgressBar = get_node('StatsVBox/ExpDisplay/ExpProgressBar')
 
 @onready var physAtkText: RichTextLabel = get_node("StatsVBox/PhysAtkDisplay/PhysAtk")
 @onready var physAtkBtns: HBoxContainer = get_node("StatsVBox/PhysAtkDisplay/Extras/ButtonsHBox")
@@ -85,11 +86,16 @@ func load_statline_panel(recopyStats: bool = false):
 	statPtsDisplay.visible = not battleStats
 	
 	levelText.text = String.num(statsCopy.level)
+	
 	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
 	hpProgressBar.max_value = statsCopy.maxHp
 	hpProgressBar.value = hp
 	hpProgressBar.tint_progress = Combatant.get_hp_bar_color(hp, statsCopy.maxHp)
+	
 	expText.text = TextUtils.num_to_comma_string(statsCopy.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(statsCopy.level))
+	expProgressBar.max_value = Stats.get_required_exp(statsCopy.level)
+	expProgressBar.value = statsCopy.experience
+	
 	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
 	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)
 	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)
