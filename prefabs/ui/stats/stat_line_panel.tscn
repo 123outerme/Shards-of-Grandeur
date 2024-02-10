@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl2b2giyrbc0i"]
+[gd_scene load_steps=11 format=3 uid="uid://cl2b2giyrbc0i"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stat_line_panel.gd" id="1_3asyh"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_o2kql"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="1_sfbvn"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="4_l303e"]
 [ext_resource type="Theme" uid="uid://bi35gj3oigaai" path="res://themes/nested_ui/stat_line_panel_theme.tres" id="4_nb4ah"]
+[ext_resource type="Texture2D" uid="uid://dory1vdxd41t" path="res://graphics/ui/health_bar_bg.png" id="6_iyqnd"]
+[ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="7_kfnmn"]
 [ext_resource type="Texture2D" uid="uid://cxcejoenxaxa8" path="res://graphics/ui/increase_stat_arrow.png" id="7_lkssq"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_n7dxl"]
 [ext_resource type="Texture2D" uid="uid://cw75sn6wc2dpv" path="res://graphics/ui/decrease_stat_arrow.png" id="8_dwiiv"]
@@ -95,6 +97,23 @@ offset_bottom = 13.0
 grow_vertical = 2
 text = "HP:"
 fit_content = true
+
+[node name="HpProgressBar" type="TextureProgressBar" parent="StatsVBox/HpDisplay"]
+layout_mode = 0
+offset_left = 239.0
+offset_top = -3.0
+offset_right = 395.0
+offset_bottom = 37.0
+max_value = 5250.0
+value = 5250.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("6_iyqnd")
+texture_progress = ExtResource("7_kfnmn")
+tint_progress = Color(0, 1, 0, 1)
 
 [node name="Hp" type="RichTextLabel" parent="StatsVBox/HpDisplay"]
 clip_contents = false

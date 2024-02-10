@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dri3rvriur56q"]
+[gd_scene load_steps=15 format=3 uid="uid://dri3rvriur56q"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajqdu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vrdj1"]
@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b6tn0dqx1xtbc" path="res://graphics/animations/a_alessia.tres" id="4_xtevu"]
 [ext_resource type="Resource" uid="uid://do80x2jnb0txk" path="res://gamedata/dialogue/alessia/alessia_1.tres" id="5_72q0a"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_fjsew"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="7_1u1ei"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="7_uoa8v"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nmnw1"]
 
@@ -20,6 +21,23 @@ count = 1
 script = ExtResource("7_uoa8v")
 inventorySlots = Array[ExtResource("6_fjsew")]([SubResource("Resource_sjovm")])
 isPlayerInventory = false
+
+[sub_resource type="Resource" id="Resource_ehwak"]
+script = ExtResource("7_1u1ei")
+saveName = "npc"
+position = Vector2(26, -76)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+inventory = SubResource("Resource_tnptw")
+hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_ajqdu")
@@ -48,6 +66,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(26, -76)
 displayName = "Alessia"
 saveName = "alessia_foundry"
+data = SubResource("Resource_ehwak")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_73wvo"), ExtResource("5_72q0a")])
 hasShop = true
 inventory = SubResource("Resource_tnptw")

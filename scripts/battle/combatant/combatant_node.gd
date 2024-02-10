@@ -34,6 +34,7 @@ const ANIMATE_MOVE_SPEED = 60
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var selectBtnNotSelectedSprite: Texture2D = null
 var animateTween: Tween = null
+var hpDrainTween: Tween = null
 var returnToPos: Vector2 = Vector2()
 var playHitQueued: bool = false
 var playPhysQueued: bool = false
@@ -41,6 +42,7 @@ var playPhysQueued: bool = false
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
+@onready var hpProgressBar: TextureProgressBar = get_node('HPTag/LvText/HPProgressBar')
 @onready var animatedSprite: AnimatedSprite2D = get_node('AnimatedSprite')
 @onready var clickCombatantBtn: TextureButton = get_node('ClickCombatantBtn')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
@@ -74,6 +76,9 @@ func load_combatant_node():
 		animatedSprite.play('stand')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_select_btn(false)
+		hpProgressBar.max_value = combatant.stats.maxHp
+		hpProgressBar.value = combatant.currentHp
+		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp)
 		update_hp_tag()
 		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
 		# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
@@ -111,6 +116,15 @@ func update_hp_tag():
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
 	hpText.size.x = len(hpText.text) * 13 - 10 # magic number
+	hpProgressBar.max_value = combatant.stats.maxHp
+	if hpProgressBar.value != combatant.currentHp:
+		if hpDrainTween != null and hpDrainTween.is_valid():
+			hpDrainTween.kill()
+		hpDrainTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+		hpDrainTween.parallel().tween_property(hpProgressBar, 'value', combatant.currentHp, 1)
+		hpDrainTween.parallel().tween_property(hpProgressBar, 'tint_progress', Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp), 1)
+		hpDrainTween.finished.connect(_on_hp_drain_tween_finished)
+	
 	hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
@@ -434,3 +448,6 @@ func _combatant_finished_moving():
 
 func _on_animate_tween_finished():
 	animateTween = null
+
+func _on_hp_drain_tween_finished():
+	hpDrainTween = null

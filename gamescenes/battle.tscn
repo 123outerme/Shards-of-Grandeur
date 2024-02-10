@@ -44,7 +44,10 @@ gizmo_extents = 5.0
 
 [node name="PlayerCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(-44, 28)
+initialCombatantLv = 1
+role = 0
 leftSide = true
+spriteFacesRight = false
 battlePosition = "You"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
@@ -59,7 +62,10 @@ position = Vector2(-4, -16)
 
 [node name="MinionCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(-60, -4)
+initialCombatantLv = 1
+role = 0
 leftSide = true
+spriteFacesRight = false
 battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
@@ -74,6 +80,10 @@ position = Vector2(4, 16)
 
 [node name="EnemyCombatant1" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(36, 12)
+initialCombatantLv = 1
+role = 0
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -88,6 +98,10 @@ position = Vector2(16, 0)
 
 [node name="EnemyCombatant2" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(52, -12)
+initialCombatantLv = 1
+role = 0
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Top"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -102,6 +116,10 @@ position = Vector2(0, 16)
 
 [node name="EnemyCombatant3" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
 position = Vector2(68, 36)
+initialCombatantLv = 1
+role = 0
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")

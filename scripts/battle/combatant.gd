@@ -9,6 +9,12 @@ enum AiType {
 	DEBUFFER = 4,
 }
 
+const HP_BAR_COLORS: Dictionary = {
+	'full': Color(0, 1, 0), #00ff00
+	'warn': Color(1, 0.71764707565308, 0), #ffb700
+	'low': Color(1, 0.3137255012989, 0) # ff5000
+}
+
 @export_category("Combatant - Sprite")
 @export var spriteFrames: SpriteFrames = null
 @export var maxSize: Vector2 = Vector2(16, 16)
@@ -42,6 +48,14 @@ static func load_combatant_resource(saveName: String) -> Combatant:
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	return combatant
+
+static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:
+	var hpRatio = curHp / maxHp
+	if hpRatio >= 0.65:
+		return HP_BAR_COLORS.full
+	if hpRatio >= 0.35:
+		return HP_BAR_COLORS.warn
+	return HP_BAR_COLORS.low
 
 func _init(
 	i_nickname = '',
