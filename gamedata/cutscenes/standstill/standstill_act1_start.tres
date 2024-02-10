@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://8ilocm42bf2h"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=28 format=3 uid="uid://8ilocm42bf2h"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_5q5ui"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_8im1w"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_anga4"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_dlan0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rvhmr"]
 [ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="3_ka0yt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="3_p5bhj"]
@@ -19,7 +20,7 @@ script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Show text box announcing that the ground will shake"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("5_7khme")]([])
+actorAnims = Array[ExtResource("5_7khme")]([ExtResource("1_dlan0")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_anga4")]([SubResource("Resource_8jq25")])
 endTextBoxPauses = true
@@ -169,7 +170,7 @@ script = ExtResource("3_p5bhj")
 value = false
 actorTreePath = "TileMap/Spelunker"
 isPlayer = false
-propertyName = "flip_j"
+propertyName = "flip_h"
 easeType = 2
 transitionType = 0
 

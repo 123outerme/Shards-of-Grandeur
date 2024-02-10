@@ -167,12 +167,15 @@ func pause_cutscene():
 	for tween in tweens:
 		tween.pause()
 	isPaused = true
+	PlayerFinder.player.cam.stop_cam_shake()
 
 func resume_cutscene():
 	for tween: Tween in tweens:
 		if tween.is_valid():
 			tween.play()
 	isPaused = false
+	if lastFrame.shakeCamForDuration:
+		PlayerFinder.player.cam.start_cam_shake()
 
 func skip_cutscene():
 	if cutscene == null:
@@ -180,6 +183,7 @@ func skip_cutscene():
 	
 	isPaused = false
 	PlayerFinder.player.pauseDisabled = true
+	PlayerFinder.player.cam.stop_cam_shake()
 	PlayerFinder.player.cam.fade_out(_fade_out_complete, 0.1)
 	# reset textbox
 	PlayerFinder.player.textBox.hide_textbox()
@@ -205,6 +209,7 @@ func end_cutscene(force: bool = false):
 		return
 	deactivate_actors_after()
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	PlayerFinder.player.cam.stop_cam_shake()
 	if cutscene.givesQuest != null:
 		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
 		PlayerFinder.player.cam.show_alert('Started Quest:\n' + cutscene.givesQuest.questName)
@@ -228,6 +233,7 @@ func complete_cutscene():
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
 	completeAfterFadeIn = false
+	PlayerFinder.player.cam.stop_cam_shake()
 	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)

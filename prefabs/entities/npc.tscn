@@ -1,8 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=10 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_script.gd" id="1_1dp2i"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="2_8xmgr"]
 [ext_resource type="Texture2D" uid="uid://ybgaeplkp4q0" path="res://graphics/ui/talk_indicator_standard.png" id="2_ejx50"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_movement.gd" id="2_fvlbl"]
+
+[sub_resource type="Resource" id="Resource_kmw7y"]
+script = ExtResource("2_8xmgr")
+saveName = "npc"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_518hb"]
 
@@ -19,6 +36,7 @@ size = Vector2(32, 32)
 z_index = -10
 motion_mode = 1
 script = ExtResource("1_1dp2i")
+data = SubResource("Resource_kmw7y")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_518hb")

@@ -37,6 +37,8 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	SceneLoader.cutscenePlayer.end_cutscene(true)
 	if player.holdingCamera:
 		player.snap_camera_back_to_player(0)
+	for spawner in get_tree().get_nodes_in_group('EnemySpawner'):
+		spawner.delete_enemy()
 	load_map(newMapName)
 
 func load_recover_map():

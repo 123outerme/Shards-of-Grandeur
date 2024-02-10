@@ -64,6 +64,7 @@ func show_letterbox(showing: bool = true):
 	player.inCutscene = showing
 
 func fade_out(callback: Callable, duration: float = 0.5):
+	set_alert_panels_lifetime_pause(true)
 	shade.visible = true
 	cutscenePauseButtons.visible = false
 	if fadeInTween != null and fadeInTween.is_valid():
@@ -160,6 +161,7 @@ func _fade_in_complete():
 	fadeInTween = null
 	shadeLabel.visible = false # hide label if it was already visible
 	shadeLabel.modulate.a = 1 # make it opaque again after hidden
+	set_alert_panels_lifetime_pause(false)
 
 func _new_act_fade_out(callback: Callable):
 	shadeLabel.text = '[center]Act ' + \

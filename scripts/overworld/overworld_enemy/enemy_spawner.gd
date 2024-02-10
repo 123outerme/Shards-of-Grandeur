@@ -74,7 +74,8 @@ func load_data(save_path):
 		spawnerData.disabled = true
 
 func delete_enemy():
-	enemy.queue_free()
+	if enemy != null:
+		enemy.queue_free()
 	enemy = null
 	spawnerData.enemyData = null
 
