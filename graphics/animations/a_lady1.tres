@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://b65nqsvqeoxfw"]
+
+[ext_resource type="Texture2D" uid="uid://caubisjur8nju" path="res://graphics/characters/lady1/npc_lady1_stand.png" id="1_nj2dt"]
+[ext_resource type="Texture2D" uid="uid://cfocbxxua6a2n" path="res://graphics/characters/lady1/npc_lady1_talk.png" id="2_q03y2"]
+[ext_resource type="Texture2D" uid="uid://cs8rsi58xvq10" path="res://graphics/characters/lady1/npc_lady1_walk.png" id="2_vbots"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfhay"]
+atlas = ExtResource("1_nj2dt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk56x"]
+atlas = ExtResource("2_q03y2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8332j"]
+atlas = ExtResource("2_q03y2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a82a"]
+atlas = ExtResource("2_vbots")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hylft"]
+atlas = ExtResource("2_vbots")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0wf5"]
+atlas = ExtResource("2_vbots")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ublkp"]
+atlas = ExtResource("2_vbots")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfhay")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk56x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8332j")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a82a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hylft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0wf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ublkp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

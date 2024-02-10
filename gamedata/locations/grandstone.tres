@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://b7kyhm5pby13t"]
+
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_ecwsy"]
+[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_o30w8"]
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_oivbh"]
+
+[sub_resource type="Resource" id="Resource_i32uj"]
+script = ExtResource("1_oivbh")
+path = "grandstone/grandstone.tres"
+overworldTheme = ExtResource("1_o30w8")
+battleMapName = "forest_battle_map"
+isRecoverLocation = true
+recoverPosition = Vector2(332, 64)
+
+[resource]
+script = ExtResource("1_ecwsy")
+maps = Array[ExtResource("1_oivbh")]([SubResource("Resource_i32uj")])
