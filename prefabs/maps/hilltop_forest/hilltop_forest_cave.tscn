@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=72 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -28,8 +28,14 @@
 [ext_resource type="Resource" uid="uid://clldvhp6vpt5f" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_far.tres" id="23_uw3nw"]
 [ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="30_o4752"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="31_u2nqu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="32_m6j6u"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="36_o4ap0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="41_deuo5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="42_m782s"]
 
-[sub_resource type="Resource" id="Resource_wf36w"]
+[sub_resource type="Resource" id="Resource_fcqwa"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1054, 538)
@@ -51,7 +57,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_uvlil"]
+[sub_resource type="Resource" id="Resource_nf1qg"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1006, 522)
@@ -67,7 +73,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_bk10h"]
+[sub_resource type="Resource" id="Resource_nf5g2"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-383, -221)
@@ -83,7 +89,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_h2y1h"]
+[sub_resource type="Resource" id="Resource_32vf3"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-300, -248)
@@ -185,7 +191,121 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_dray0"]
+[sub_resource type="Resource" id="Resource_nlgh4"]
+script = ExtResource("36_o4ap0")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_y6wtv"]
+script = ExtResource("36_o4ap0")
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_3fjuh"]
+script = ExtResource("32_m6j6u")
+speaker = "Dr. Hudson"
+texts = Array[String](["Let's get these Shards and the spelunkers out of here, that's our first priority. We can't protect this whole place by ourselves anymore."])
+
+[sub_resource type="Resource" id="Resource_ayaqq"]
+script = ExtResource("31_u2nqu")
+frameLength = 0.1
+annotation = "Dr. Hudson speaks"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("36_o4ap0")]([SubResource("Resource_nlgh4"), SubResource("Resource_y6wtv")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("32_m6j6u")]([SubResource("Resource_3fjuh")])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_5vwbe"]
+script = ExtResource("31_u2nqu")
+frameLength = 0.1
+annotation = "The screen starts to fade out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("36_o4ap0")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("32_m6j6u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+
+[sub_resource type="Resource" id="Resource_e34lg"]
+script = ExtResource("31_u2nqu")
+frameLength = 0.75
+annotation = "Wait for the screen to be faded out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("36_o4ap0")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("32_m6j6u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_hw1na"]
+script = ExtResource("30_o4752")
+value = Vector2(-984, 520)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_dxid1"]
+script = ExtResource("31_u2nqu")
+frameLength = 0.1
+annotation = "Teleport the player back to Standstill"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_hw1na")])
+actorAnims = Array[ExtResource("36_o4ap0")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("32_m6j6u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_wy764"]
+script = ExtResource("31_u2nqu")
+frameLength = 5.0
+annotation = "Wait for warp to load"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("36_o4ap0")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("32_m6j6u")]([])
+endTextBoxPauses = true
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_01m44"]
+script = ExtResource("42_m782s")
+minAct = 0
+maxAct = 0
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String](["hilltop_ambusher"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["exit_hilltop_after_ambush"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_d6co0"]
+script = ExtResource("41_deuo5")
+cutsceneFrames = Array[ExtResource("31_u2nqu")]([SubResource("Resource_ayaqq"), SubResource("Resource_5vwbe"), SubResource("Resource_e34lg"), SubResource("Resource_dxid1"), SubResource("Resource_wy764")])
+saveName = "exit_hilltop_after_ambush"
+storyRequirements = SubResource("Resource_01m44")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String](["TileMap/DrHudson", "TileMap/Spelunker", "TileMap/HorseCart"])
+
+[sub_resource type="Resource" id="Resource_c5yx4"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-360, -221)
@@ -229,7 +349,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_wf36w")
+data = SubResource("Resource_fcqwa")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -265,7 +385,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_uvlil")
+data = SubResource("Resource_nf1qg")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -294,7 +414,7 @@ position = Vector2(-383, -221)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
-data = SubResource("Resource_bk10h")
+data = SubResource("Resource_nf5g2")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -321,7 +441,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_h2y1h")
+data = SubResource("Resource_32vf3")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier" index="0"]
@@ -391,25 +511,25 @@ shape = SubResource("RectangleShape2D_5pj3e")
 
 [node name="EnterCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-968, 546)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("11_nhvoo")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("11_nhvoo")])
 
 [node name="GoToCaveCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-520, 16)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_eq4uj"), ExtResource("20_myx38")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("12_eq4uj"), ExtResource("20_myx38")])
 
 [node name="CollisionShape2D" parent="GoToCaveCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_y32ui")
 
 [node name="StopShortcutCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-248, -22)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("16_clwh3")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("16_clwh3")])
 
 [node name="CollisionShape2D" parent="StopShortcutCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_xofnv")
 
 [node name="AmbushCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-571, -97)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("16_s3h3f")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("16_s3h3f")])
 
 [node name="CollisionShape2D" parent="AmbushCutsceneTrigger" index="0"]
 position = Vector2(0, -2.5)
@@ -417,7 +537,7 @@ shape = SubResource("RectangleShape2D_tkx50")
 
 [node name="ReturnToAmbushLeftCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_uw3nw")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("23_uw3nw")])
 
 [node name="CollisionShape2D" parent="ReturnToAmbushLeftCutsceneTrigger" index="0"]
 position = Vector2(-85.5, 2.5)
@@ -425,7 +545,7 @@ shape = SubResource("RectangleShape2D_ct4s1")
 
 [node name="ReturnToAmbushCenterCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("22_e0qmh")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("22_e0qmh")])
 
 [node name="CollisionShape2D" parent="ReturnToAmbushCenterCutsceneTrigger" index="0"]
 position = Vector2(-13.5, 2.5)
@@ -433,7 +553,7 @@ shape = SubResource("RectangleShape2D_pq5ym")
 
 [node name="ReturnToAmbushRightCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-395, -166)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("23_uw3nw")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("23_uw3nw")])
 
 [node name="CollisionShape2D" parent="ReturnToAmbushRightCutsceneTrigger" index="0"]
 position = Vector2(49, 2.5)
@@ -441,7 +561,7 @@ shape = SubResource("RectangleShape2D_5vud8")
 
 [node name="AfterAmbushCutsceneTrigger" parent="." instance=ExtResource("7_ggrbp")]
 position = Vector2(-330, -239)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("24_jx57i")])
+cutscenes = Array[ExtResource("41_deuo5")]([ExtResource("24_jx57i")])
 
 [node name="CollisionShape2D" parent="AfterAmbushCutsceneTrigger" index="0"]
 position = Vector2(-1.5, -6)
@@ -474,15 +594,20 @@ navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("28_7haeu")]
+[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("28_7haeu")]
+visible = false
+triggerOrNPC = NodePath("../TileMap/Spelunker")
+cutscene = SubResource("Resource_d6co0")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(-360, -221)
-data = SubResource("Resource_dray0")
+position = Vector2(-984, 520)
+facingLeft = true
+data = SubResource("Resource_c5yx4")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.0892193
+frame_progress = 0.509832
+flip_h = true
 
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]

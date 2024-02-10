@@ -34,7 +34,7 @@
 [ext_resource type="Resource" uid="uid://bp8ei02gccf15" path="res://gamedata/cutscenes/standstill/standstill_back_to_town.tres" id="29_8rjn2"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="33_m70xi"]
 
-[sub_resource type="Resource" id="Resource_mb6ad"]
+[sub_resource type="Resource" id="Resource_xp30t"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-256, 80)
@@ -97,7 +97,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_jych8"]
+[sub_resource type="Resource" id="Resource_op67j"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-15, 128)
@@ -119,7 +119,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_ybf5s"]
+[sub_resource type="Resource" id="Resource_fijep"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-8, 88)
@@ -135,7 +135,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_7w1ma"]
+[sub_resource type="Resource" id="Resource_u8qfl"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(216, -160)
@@ -151,7 +151,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_7oswf"]
+[sub_resource type="Resource" id="Resource_hydek"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(778, 0)
@@ -271,7 +271,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-data = SubResource("Resource_mb6ad")
+data = SubResource("Resource_xp30t")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
@@ -307,7 +307,7 @@ position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_jych8")
+data = SubResource("Resource_op67j")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -343,7 +343,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-data = SubResource("Resource_ybf5s")
+data = SubResource("Resource_fijep")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -370,7 +370,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_7w1ma")
+data = SubResource("Resource_u8qfl")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
@@ -405,7 +405,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-data = SubResource("Resource_7oswf")
+data = SubResource("Resource_hydek")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("20_ptwwx"), ExtResource("21_fh845")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -529,6 +529,7 @@ navigation_polygon = SubResource("NavigationPolygon_cgvup")
 navigation_layers = 4
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("33_m70xi")]
+visible = false
 rootNode = NodePath("..")
 
 [editable path="TileMap/Signpost"]

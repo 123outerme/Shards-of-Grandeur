@@ -15,6 +15,8 @@ class_name CutsceneVisualizer
 		start_visualizing()
 
 var saveCutscene: Cutscene = null
+var fadeOutTween: Tween = null
+var fadeInTween: Tween = null
 
 @onready var mockPlayer: Node = get_node('MockPlayer')
 
@@ -56,15 +58,19 @@ func queue_text(item: CutsceneDialogue):
 		print(text)
 
 func handle_fade_out():
-	pass
+	fadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	fadeOutTween.tween_property(mockPlayer.mockShadeCenter, 'modulate:a', 1.0, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+	fadeOutTween.finished.connect(_mock_fade_out_finished)
 	
 func handle_fade_in():
-	pass
+	fadeInTween.tween_property(mockPlayer.mockShadeCenter, 'modulate:a', 0.0, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+	fadeInTween.finished.connect(_mock_fade_in_finished)
 
 func handle_give_item():
 	pass
 
 func start_visualizing():
+	mockPlayer.mockShadeCenter.modulate.a = 0.0
 	saveCutscene = cutscene
 	start_cutscene(cutscene.duplicate(true))
 
@@ -93,3 +99,9 @@ func complete_cutscene():
 		for child in get_children():
 			if child != mockPlayer:
 				child.queue_free() # NOTE could be unsafe in editor
+
+func _mock_fade_out_finished():
+	fadeOutTween = null
+	
+func _mock_fade_in_finished():
+	fadeInTween = null

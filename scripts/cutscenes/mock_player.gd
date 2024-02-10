@@ -12,3 +12,5 @@ class_name MockPlayer
 			sprite.flip_h = value
 
 @onready var sprite: AnimatedSprite2D = get_node('NPCSprite')
+@onready var mockShade: Panel = get_node('MockShade')
+@onready var mockShadeCenter: Panel = get_node('MockShade/MockShadeCenter')
