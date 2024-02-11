@@ -1,0 +1,137 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://ddl47k7hjo25b"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ayh2l"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_vreyj"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_td43s"]
+
+[sub_resource type="Resource" id="Resource_qpxsb"]
+script = ExtResource("1_ayh2l")
+frameLength = 0.1
+annotation = "Start fade out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+
+[sub_resource type="Resource" id="Resource_8pkka"]
+script = ExtResource("1_ayh2l")
+frameLength = 0.5
+annotation = "Wait for fade out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_mw21b"]
+script = ExtResource("2_td43s")
+value = Vector2(-322, 120)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_3f5w8"]
+script = ExtResource("2_td43s")
+value = Vector2(-278, 110)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vddsq"]
+script = ExtResource("2_td43s")
+value = Vector2(-250, 126)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_0rhac"]
+script = ExtResource("1_ayh2l")
+frameLength = 0.1
+annotation = "Move Player, horse cart, and Dr. Hudson to leave Standstill"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_mw21b"), SubResource("Resource_3f5w8"), SubResource("Resource_vddsq")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_14op4"]
+script = ExtResource("1_ayh2l")
+frameLength = 0.1
+annotation = "Hold camera and fade back up"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 2
+endFadeLength = 0.5
+
+[sub_resource type="Resource" id="Resource_pkyv0"]
+script = ExtResource("2_td43s")
+value = Vector2(-566, 120)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7ugly"]
+script = ExtResource("2_td43s")
+value = Vector2(-522, 110)
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_a0l73"]
+script = ExtResource("2_td43s")
+value = Vector2(-494, 126)
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_nlqfh"]
+script = ExtResource("1_ayh2l")
+frameLength = 3.5
+annotation = "Walk player, horse cart, Dr. Hudson to warp zone"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_pkyv0"), SubResource("Resource_7ugly"), SubResource("Resource_a0l73")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+
+[resource]
+script = ExtResource("1_vreyj")
+cutsceneFrames = Array[ExtResource("1_ayh2l")]([SubResource("Resource_qpxsb"), SubResource("Resource_8pkka"), SubResource("Resource_0rhac"), SubResource("Resource_14op4"), SubResource("Resource_nlqfh")])
+saveName = "standstill_to_grandstone"
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String](["TileMap/DrHudson", "TileMap/HorseCart"])

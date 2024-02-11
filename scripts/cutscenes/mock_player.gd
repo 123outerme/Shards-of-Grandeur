@@ -24,12 +24,16 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 
 var camShaking: bool = false
 var camShakingTime: float = 0
+var holdingCamera: bool = false
+var holdCameraPos: Vector2 = Vector2()
 
 @onready var sprite: AnimatedSprite2D = get_node('NPCSprite')
 @onready var mockShade: Panel = get_node('MockShade')
 @onready var mockShadeCenter: Panel = get_node('MockShade/MockShadeCenter')
 
 func _process(delta):
+	if holdingCamera:
+		mockShade.position = Vector2(-160, -120) + (holdCameraPos - position)
 	if camShaking:
 		camShakingTime += delta
 		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
@@ -42,3 +46,11 @@ func stop_cam_shake():
 	camShaking = false
 	mockShade.position = Vector2(-160, -120)
 	camShakingTime = 0
+
+func hold_camera_at(pos: Vector2):
+	holdCameraPos = pos
+	holdingCamera = true
+
+func snap_camera_back_to_player():
+	mockShade.position = Vector2(-160, -120)
+	holdingCamera = false

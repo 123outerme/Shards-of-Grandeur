@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=67 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -35,8 +35,9 @@
 [ext_resource type="Resource" uid="uid://bp8ei02gccf15" path="res://gamedata/cutscenes/standstill/standstill_back_to_town.tres" id="29_8rjn2"]
 [ext_resource type="Resource" uid="uid://8ilocm42bf2h" path="res://gamedata/cutscenes/standstill/standstill_act1_start.tres" id="33_gy0wf"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="33_m70xi"]
+[ext_resource type="Resource" uid="uid://ddl47k7hjo25b" path="res://gamedata/cutscenes/standstill/standstill_to_grandstone.tres" id="36_sds6n"]
 
-[sub_resource type="Resource" id="Resource_7lave"]
+[sub_resource type="Resource" id="Resource_op7rm"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-256, 80)
@@ -99,7 +100,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_wobsy"]
+[sub_resource type="Resource" id="Resource_8rtep"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-15, 128)
@@ -121,7 +122,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_kbf5w"]
+[sub_resource type="Resource" id="Resource_edkv3"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-8, 88)
@@ -137,7 +138,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_55a5u"]
+[sub_resource type="Resource" id="Resource_ackn0"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(216, -160)
@@ -153,7 +154,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_q3tpc"]
+[sub_resource type="Resource" id="Resource_7drrc"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(778, 0)
@@ -179,6 +180,23 @@ wasPickedUp = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc6hv"]
 size = Vector2(8, 1)
+
+[sub_resource type="Resource" id="Resource_vtt8a"]
+script = ExtResource("21_prdt8")
+minAct = 1
+maxAct = 5
+prereqQuests = Array[String](["War is Declared#It's Gone?"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yoil"]
+size = Vector2(8, 53)
 
 [sub_resource type="Resource" id="Resource_8lstl"]
 script = ExtResource("21_prdt8")
@@ -247,10 +265,10 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_rhar1"]
+[sub_resource type="Resource" id="Resource_pwiqn"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
-position = Vector2(-72, -103)
+position = Vector2(-566, 120)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -265,8 +283,8 @@ hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_5pw44")
-metadata/_edit_vertical_guides_ = [-72.0]
-metadata/_edit_horizontal_guides_ = [-103.0]
+metadata/_edit_vertical_guides_ = [-278.0, -566.0]
+metadata/_edit_horizontal_guides_ = [119.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -291,7 +309,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-data = SubResource("Resource_7lave")
+data = SubResource("Resource_op7rm")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
@@ -327,7 +345,7 @@ position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_wobsy")
+data = SubResource("Resource_8rtep")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -363,7 +381,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-data = SubResource("Resource_kbf5w")
+data = SubResource("Resource_edkv3")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg"), ExtResource("13_k8mkq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -390,7 +408,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_55a5u")
+data = SubResource("Resource_ackn0")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
@@ -425,7 +443,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-data = SubResource("Resource_q3tpc")
+data = SubResource("Resource_7drrc")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("20_ptwwx"), ExtResource("21_fh845")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -479,6 +497,16 @@ mapPos = Vector2(-8, 4)
 
 [node name="WarpArea" parent="WarpFoundry" index="0"]
 shape = SubResource("RectangleShape2D_kc6hv")
+
+[node name="WarpGrandstone" parent="." instance=ExtResource("17_xdako")]
+position = Vector2(-573, 122)
+mapName = "grandstone"
+mapPos = Vector2(590, 12)
+storyRequirements = SubResource("Resource_vtt8a")
+
+[node name="WarpArea" parent="WarpGrandstone" index="0"]
+position = Vector2(7, -0.5)
+shape = SubResource("RectangleShape2D_5yoil")
 
 [node name="WarpRightExit" parent="." instance=ExtResource("17_xdako")]
 position = Vector2(620, -8)
@@ -553,14 +581,21 @@ navigation_polygon = SubResource("NavigationPolygon_cgvup")
 navigation_layers = 4
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("33_m70xi")]
-visible = false
 triggerOrNPC = NodePath("../EarthShakeCutsceneTrigger")
-cutscene = ExtResource("33_gy0wf")
+cutscene = ExtResource("36_sds6n")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(-72, -103)
-data = SubResource("Resource_rhar1")
+position = Vector2(-566, 120)
+facingLeft = true
+data = SubResource("Resource_pwiqn")
+
+[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
+flip_h = true
+
+[node name="MockShade" parent="ToolCutsceneVisualizer/MockPlayer" index="5"]
+offset_left = 84.0
+offset_right = 1364.0
 
 [editable path="TileMap/Signpost"]
 [editable path="TileMap/HorseCart"]
@@ -571,6 +606,7 @@ data = SubResource("Resource_rhar1")
 [editable path="WarpGeneralStore"]
 [editable path="WarpInn"]
 [editable path="WarpFoundry"]
+[editable path="WarpGrandstone"]
 [editable path="WarpRightExit"]
 [editable path="WarpCutsceneRightExit"]
 [editable path="ExitCutsceneTrigger"]

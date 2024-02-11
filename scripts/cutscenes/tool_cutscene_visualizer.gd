@@ -55,6 +55,10 @@ func is_in_dialogue() -> bool:
 	return false
 
 func handle_camera(frame: CutsceneFrame):
+	if lastFrame.endHoldCamera and not mockPlayer.holdingCamera:
+		mockPlayer.hold_camera_at(mockPlayer.position)
+	if not lastFrame.endHoldCamera and mockPlayer.holdingCamera:
+		mockPlayer.snap_camera_back_to_player()
 	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
 		mockPlayer.stop_cam_shake()
 
@@ -76,11 +80,13 @@ func handle_fade_out():
 	fadeOutTween.finished.connect(_mock_fade_out_finished)
 	
 func handle_fade_in():
+	fadeInTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	fadeInTween.tween_property(mockPlayer.mockShadeCenter, 'modulate:a', 0.0, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 	fadeInTween.finished.connect(_mock_fade_in_finished)
 
 func handle_give_item():
-	pass
+	if lastFrame.givesItem != null:
+		print('Cutscene gives item ' + lastFrame.givesItem.itemName)
 
 func start_visualizing():
 	mockPlayer.mockShadeCenter.modulate.a = 0.0
