@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csr4scjhri6pk"]
+[gd_scene load_steps=15 format=3 uid="uid://csr4scjhri6pk"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_usu8h"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2fma6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="5_1p2sq"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_oo1ok"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="7_0rbj7"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="7_7lvme"]
 [ext_resource type="SpriteFrames" uid="uid://o2o4l8s3bgc5" path="res://graphics/animations/a_shopkeeper.tres" id="8_yiv63"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_jik55"]
 
@@ -19,6 +20,23 @@ count = -1
 script = ExtResource("7_0rbj7")
 inventorySlots = Array[ExtResource("6_oo1ok")]([SubResource("Resource_4gxqb")])
 isPlayerInventory = false
+
+[sub_resource type="Resource" id="Resource_55ace"]
+script = ExtResource("7_7lvme")
+saveName = "standstill_shopkeep"
+position = Vector2(-8, -85)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+inventory = SubResource("Resource_k2kr0")
+hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdbj2"]
 size = Vector2(24, 41)
@@ -50,6 +68,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-8, -85)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep"
+data = SubResource("Resource_55ace")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_2kxuu")])
 hasShop = true
 inventory = SubResource("Resource_k2kr0")
