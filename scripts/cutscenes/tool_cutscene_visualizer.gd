@@ -11,9 +11,33 @@ class_name CutsceneVisualizer
 	get:
 		return false
 	set(value):
+		if value and playing:
+			return
+		
 		if triggerOrNPC:
 			mockPlayer.global_position = triggerOrNPC.position
 		start_visualizing()
+
+@export var pauseVisualization: bool:
+	get:
+		return isPaused
+	set(value):
+		if playing:
+			return
+		
+		if value:
+			pause_cutscene()
+		else:
+			resume_cutscene()
+
+@export var stopVisualization: bool:
+	get:
+		return false
+	set(value):
+		if not playing:
+			return
+		end_cutscene(true)
+		isPaused = false
 
 var saveCutscene: Cutscene = null
 var fadeOutTween: Tween = null
@@ -93,6 +117,17 @@ func start_visualizing():
 	saveCutscene = cutscene
 	fetchedActors = []
 	start_cutscene(cutscene.duplicate(true))
+
+func pause_cutscene():
+	for tween in tweens:
+		tween.pause()
+	isPaused = true
+
+func resume_cutscene():
+	for tween: Tween in tweens:
+		if tween.is_valid():
+			tween.play()
+	isPaused = false
 
 func end_cutscene(force: bool = false):
 	if cutscene == null or completeAfterFadeIn:

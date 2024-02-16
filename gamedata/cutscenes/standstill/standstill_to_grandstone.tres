@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://ddl47k7hjo25b"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://ddl47k7hjo25b"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ayh2l"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_vreyj"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_4pb5t"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_td43s"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_dddxg"]
 
 [sub_resource type="Resource" id="Resource_qpxsb"]
 script = ExtResource("1_ayh2l")
 frameLength = 0.1
 annotation = "Start fade out"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("3_dddxg")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
 endTextBoxPauses = true
@@ -23,7 +25,7 @@ script = ExtResource("1_ayh2l")
 frameLength = 0.5
 annotation = "Wait for fade out"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("3_dddxg")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
 endTextBoxPauses = true
@@ -32,18 +34,45 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
+[sub_resource type="Resource" id="Resource_guxau"]
+script = ExtResource("3_dddxg")
+actorTreePath = "TileMap/DrHudson"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_binws"]
+script = ExtResource("3_dddxg")
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_6krym"]
+script = ExtResource("3_dddxg")
+actorTreePath = "TileMap/HorseCart"
+isPlayer = false
+animation = "walk"
+
 [sub_resource type="Resource" id="Resource_mw21b"]
 script = ExtResource("2_td43s")
-value = Vector2(-322, 120)
+value = Vector2(-290, 120)
 actorTreePath = ""
 isPlayer = true
 propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_d7mtd"]
+script = ExtResource("2_td43s")
+value = Vector2(-266, 120)
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_3f5w8"]
 script = ExtResource("2_td43s")
-value = Vector2(-278, 110)
+value = Vector2(-246, 110)
 actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 propertyName = "position"
@@ -52,7 +81,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_vddsq"]
 script = ExtResource("2_td43s")
-value = Vector2(-250, 126)
+value = Vector2(-218, 126)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -62,9 +91,9 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_0rhac"]
 script = ExtResource("1_ayh2l")
 frameLength = 0.1
-annotation = "Move Player, horse cart, and Dr. Hudson to leave Standstill"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_mw21b"), SubResource("Resource_3f5w8"), SubResource("Resource_vddsq")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+annotation = "Move Player, spelunker, horse cart, and Dr. Hudson to leave Standstill, start walking animations"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_mw21b"), SubResource("Resource_d7mtd"), SubResource("Resource_3f5w8"), SubResource("Resource_vddsq")])
+actorAnims = Array[ExtResource("3_dddxg")]([ExtResource("2_4pb5t"), SubResource("Resource_guxau"), SubResource("Resource_binws"), SubResource("Resource_6krym")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
 endTextBoxPauses = true
@@ -78,7 +107,7 @@ script = ExtResource("1_ayh2l")
 frameLength = 0.1
 annotation = "Hold camera and fade back up"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("3_dddxg")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
 endTextBoxPauses = true
@@ -92,6 +121,15 @@ script = ExtResource("2_td43s")
 value = Vector2(-566, 120)
 actorTreePath = ""
 isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_hax65"]
+script = ExtResource("2_td43s")
+value = Vector2(-542, 120)
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
 propertyName = "position"
 easeType = 2
 transitionType = 0
@@ -117,9 +155,9 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_nlqfh"]
 script = ExtResource("1_ayh2l")
 frameLength = 3.5
-annotation = "Walk player, horse cart, Dr. Hudson to warp zone"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_pkyv0"), SubResource("Resource_7ugly"), SubResource("Resource_a0l73")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+annotation = "Walk player, spelunker, horse cart, Dr. Hudson to warp zone"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_pkyv0"), SubResource("Resource_hax65"), SubResource("Resource_7ugly"), SubResource("Resource_a0l73")])
+actorAnims = Array[ExtResource("3_dddxg")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
 endTextBoxPauses = false
@@ -132,6 +170,6 @@ endFadeLength = 0.0
 script = ExtResource("1_vreyj")
 cutsceneFrames = Array[ExtResource("1_ayh2l")]([SubResource("Resource_qpxsb"), SubResource("Resource_8pkka"), SubResource("Resource_0rhac"), SubResource("Resource_14op4"), SubResource("Resource_nlqfh")])
 saveName = "standstill_to_grandstone"
-unlockCameraHoldAfter = true
+unlockCameraHoldAfter = false
 activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String](["TileMap/DrHudson", "TileMap/HorseCart"])
+deactivateActorsAfter = Array[String](["TileMap/DrHudson", "TileMap/HorseCart", "TileMap/Spelunker"])
