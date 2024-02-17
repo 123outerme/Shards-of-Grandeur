@@ -115,7 +115,7 @@ func update_hp_tag():
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
-	hpText.size.x = len(hpText.text) * 13 - 10 # magic number
+	#hpText.size.x = len(hpText.text) * 13 - 10 # magic number
 	hpProgressBar.max_value = combatant.stats.maxHp
 	if hpProgressBar.value != combatant.currentHp:
 		if hpDrainTween != null and hpDrainTween.is_valid():
@@ -125,7 +125,7 @@ func update_hp_tag():
 		hpDrainTween.parallel().tween_property(hpProgressBar, 'tint_progress', Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp), 1)
 		hpDrainTween.finished.connect(_on_hp_drain_tween_finished)
 	
-	hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
+	#hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
 	else:

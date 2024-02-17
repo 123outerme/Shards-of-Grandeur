@@ -5,12 +5,16 @@ signal attempt_equip_weapon_to(stats: Stats)
 signal attempt_equip_armor_to(stats: Stats)
 signal back_pressed
 
+@export_category("StatsPanel - Data")
 @export var stats: Stats = null
 @export var curHp: int = -1
 @export var levelUp: bool = false
 @export var newLvs: int = 0
 @export var readOnly: bool = false
 @export var isPlayer: bool = false
+
+@export_category("StatsPanel - Audio")
+@export var levelUpMusic: AudioStream = null
 
 var isMinionStats: bool = false
 var minion: Combatant = null
@@ -66,6 +70,10 @@ func restore_previous_focus():
 func load_stats_panel(fromToggle: bool = false):
 	if stats == null:
 		return
+		
+	if fromToggle and levelUp and \
+			not SceneLoader.audioHandler.is_music_already_playing(levelUpMusic):
+		SceneLoader.audioHandler.play_music(levelUpMusic)
 	
 	var dispName: String = stats.displayName
 	if minion != null:

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhtlgjfm14evh"]
 
 [ext_resource type="Script" path="res://scripts/menus/sfx_button.gd" id="1_jrjsb"]
-[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_imjs0"]
+[ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="2_mnyh5"]
 
 [node name="TextureSfxButton" type="TextureButton"]
 script = ExtResource("1_jrjsb")
-sfx = ExtResource("2_imjs0")
+sfx = ExtResource("2_mnyh5")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

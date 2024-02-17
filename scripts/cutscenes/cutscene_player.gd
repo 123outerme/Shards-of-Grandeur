@@ -11,7 +11,6 @@ signal cutscene_completed
 var playingFromTrigger: CutsceneTrigger = null
 var timer: float = 0
 var lastFrame: CutsceneFrame = null
-var nextKeyframeTime: float = 0
 var tweens: Array = []
 var isPaused: bool = false
 var isFadedOut: bool = false
@@ -139,7 +138,6 @@ func start_cutscene(newCutscene: Cutscene):
 	cutscene = newCutscene
 	timer = 0
 	skipCutsceneFrameIndex = -1
-	nextKeyframeTime = cutscene.cutsceneFrames[0].frameLength
 	cutscene.calc_total_time()
 	playing = true
 	if not Engine.is_editor_hint() and PlayerFinder.player != null:
@@ -234,6 +232,7 @@ func complete_cutscene():
 	playing = false
 	completeAfterFadeIn = false
 	PlayerFinder.player.cam.stop_cam_shake()
+	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)
@@ -244,6 +243,9 @@ func complete_cutscene():
 		if tween != null and tween.is_valid():
 			tween.kill()
 	tweens = []
+	timer = 0
+	isPaused = false
+	skipCutsceneFrameIndex = -1
 
 func deactivate_actors_after():
 	if cutscene == null:

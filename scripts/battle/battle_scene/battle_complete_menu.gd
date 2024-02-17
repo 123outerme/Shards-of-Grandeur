@@ -3,6 +3,9 @@ class_name BattleCompleteMenu
 
 @export var battleUI: BattleUI
 @export var itemDetailsPanel: ItemDetailsPanel
+@export var winMusic: AudioStream = null
+@export var loseMusic: AudioStream = null
+@export var escapeMusic: AudioStream = null
 
 var playerWins: bool = true
 var playerEscapes: bool = false
@@ -39,6 +42,12 @@ func load_battle_over_menu():
 			rewardsVBox.add_child(instantiatedPanel)
 			instantiatedPanel.load_reward_panel()
 			instantiatedPanel.show_item_details.connect(_on_item_details_clicked)
+		SceneLoader.audioHandler.play_music(winMusic)
+	elif playerEscapes:
+		SceneLoader.audioHandler.play_music(escapeMusic)
+	else:
+		SceneLoader.audioHandler.play_music(loseMusic)
+	
 	okBtn.grab_focus()
 
 func _on_ok_button_pressed():
