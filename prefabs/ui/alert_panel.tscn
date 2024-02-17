@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_kbg25"]
 [ext_resource type="Script" path="res://scripts/menus/alert_panel.gd" id="1_rhqrj"]
 [ext_resource type="StyleBox" uid="uid://dre51hlvdl5rw" path="res://themes/alert_panel.tres" id="2_t2res"]
-[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="4_pqnt5"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/heal.ogg" id="4_x5wwm"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="5_77uyv"]
 
 [node name="AlertPanel" type="Panel" groups=["AlertPanel"]]
@@ -11,7 +11,7 @@ custom_minimum_size = Vector2(300, 100)
 theme = ExtResource("1_kbg25")
 theme_override_styles/panel = ExtResource("2_t2res")
 script = ExtResource("1_rhqrj")
-alertSfx = ExtResource("4_pqnt5")
+alertSfx = ExtResource("4_x5wwm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(284, 16)
