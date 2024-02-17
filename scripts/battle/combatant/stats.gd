@@ -129,6 +129,21 @@ func level_up(newLvs: int):
 	speed += statGrowth.calculate_stat_category(level, Category.SPEED) -  statGrowth.calculate_stat_category(level - newLvs, Category.SPEED)
 	statPts += pts
 
+func is_item_equipped(item: Item):
+	return equippedWeapon == item or equippedArmor == item
+
+func equip_item(item: Item):
+	if item is Weapon:
+		equippedWeapon = item
+	elif item is Armor:
+		equippedArmor = item
+
+func unequip_item(item: Item):
+	if item == equippedWeapon:
+		equippedWeapon = null
+	elif item == equippedArmor:
+		equippedArmor = null
+
 func add_move_to_pool(move: Move):
 	movepool.pool.append(move)
 	if len(moves) < 4:

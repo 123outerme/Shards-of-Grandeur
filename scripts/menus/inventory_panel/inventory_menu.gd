@@ -2,6 +2,7 @@ extends Node2D
 class_name InventoryMenu
 
 signal item_used(slot: InventorySlot)
+signal open_stats(combatant: Combatant)
 signal back_pressed
 
 @export_category("InventoryPanel - Filters")
@@ -34,6 +35,7 @@ var shopInventory: Inventory = null
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 @onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
+@onready var equipPanel: EquipPanel = get_node("EquipPanel")
 @onready var itemConfirmPanel: ItemConfirmPanel = get_node("ItemConfirmPanel")
 
 var currentInventory: Inventory = null
@@ -42,6 +44,7 @@ var otherInventory: Inventory = null # player inventory if looking at NPC shop; 
 var lastFocused: Control = null
 var lastSlotInteracted: InventorySlot = null
 var confirmingAction: String = ''
+var viewingEquipStats: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -166,19 +169,18 @@ func load_inventory_panel():
 			instantiatedPanel.equipContextStats = equipContextStats
 			vboxViewport.add_child(instantiatedPanel)
 			if firstPanel:
-				healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(instantiatedPanel.detailsButton)
-				shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(instantiatedPanel.detailsButton)
-				weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(instantiatedPanel.detailsButton)
-				armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(instantiatedPanel.detailsButton)
-				keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(instantiatedPanel.detailsButton)
+				healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(instantiatedPanel.get_leftmost_button())
+				shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(instantiatedPanel.get_leftmost_button())
+				weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(instantiatedPanel.get_leftmost_button())
+				armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(instantiatedPanel.get_leftmost_button())
+				keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(instantiatedPanel.get_leftmost_button())
 				instantiatedPanel.detailsButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
 				instantiatedPanel.buyButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
 				instantiatedPanel.sellButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
 				instantiatedPanel.equipButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
-				instantiatedPanel.unequipButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
 				instantiatedPanel.trashButton.focus_neighbor_top = instantiatedPanel.detailsButton.get_path_to(keyItemFilterBtn)
 				firstPanel = false
-			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
+			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.get_leftmost_button()) # last panel keeps the focus neighbor of the back button
 			# unlock filter button for filter of item's type
 		if slot.item.itemType == Item.Type.HEALING:
 			healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING
@@ -215,10 +217,14 @@ func sell_item(slot: InventorySlot):
 	else:
 		restore_last_focus('sellButton')
 
-func equip_pressed(slot: InventorySlot):
+func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 	lastSlotInteracted = slot
-	load_inventory_panel()
-	restore_last_focus('unequipButton')
+	if alreadyEquipped:
+		load_inventory_panel()
+		restore_last_focus('equipButton')
+	else:
+		equipPanel.inventorySlot = slot
+		equipPanel.load_equip_panel()
 
 func unequip_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -370,9 +376,27 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 				itemUsePanel.load_item_use_panel()
 	if yes:
 		load_inventory_panel()
+	else:
+		backButton.disabled = false
 	match confirmingAction:
 		'trash':
 			restore_last_focus('trashButton')
 		'shardLearn':
 			if not yes: # if yes, the item use panel will capture focus and handle restoring it after
 				restore_last_focus('useButton')
+
+func _on_equip_panel_close_equip_panel(combatant: Combatant):
+	load_inventory_panel()
+	restore_last_focus('equipButton')
+	equipPanel.visible = false
+
+func _on_equip_panel_stats_button_pressed(combatant: Combatant):
+	open_stats.emit(combatant)
+	visible = false
+	viewingEquipStats = true
+
+func _on_stats_panel_node_back_pressed():
+	if viewingEquipStats:
+		visible = true
+		equipPanel.restore_focus(true)
+	viewingEquipStats = false

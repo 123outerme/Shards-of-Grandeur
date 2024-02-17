@@ -179,3 +179,15 @@ func _on_equipment_panel_attempt_equip_weapon():
 func _on_equipment_panel_attempt_equip_armor():
 	if not readOnly:
 		attempt_equip_armor_to.emit(stats)
+
+func _on_inventory_panel_node_open_stats(combatant: Combatant):
+	stats = combatant.stats
+	if combatant == PlayerResources.playerInfo.combatant:
+		isPlayer = true
+		isMinionStats = false
+	else:
+		isPlayer = false
+		isMinionStats = true
+		minion = combatant
+	curHp = combatant.currentHp
+	toggle()

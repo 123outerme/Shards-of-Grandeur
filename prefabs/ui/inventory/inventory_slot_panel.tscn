@@ -146,10 +146,6 @@ custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Equip"
 
-[node name="UnequipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
-layout_mode = 2
-text = "Unequip"
-
 [node name="TrashButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
@@ -173,7 +169,6 @@ text = "Details"
 
 [connection signal="pressed" from="CenterButtons/HBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/EquipButton" to="." method="_on_equip_button_pressed"]
-[connection signal="pressed" from="CenterButtons/HBoxContainer/UnequipButton" to="." method="_on_unequip_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/TrashButton" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]

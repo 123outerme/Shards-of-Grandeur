@@ -21,7 +21,6 @@ class_name InventorySlotPanel
 @onready var itemCost: RichTextLabel = get_node("CenterItemCost/ItemCost")
 @onready var useButton: Button = get_node("CenterButtons/HBoxContainer/UseButton")
 @onready var equipButton: Button = get_node("CenterButtons/HBoxContainer/EquipButton")
-@onready var unequipButton: Button = get_node("CenterButtons/HBoxContainer/UnequipButton")
 @onready var trashButton: Button = get_node("CenterButtons/HBoxContainer/TrashButton")
 @onready var buyButton: Button = get_node("CenterButtons/HBoxContainer/BuyButton")
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
@@ -58,19 +57,19 @@ func load_inventory_slot_panel():
 	var battleUseDisabled: bool = (inventorySlot.item.itemType == Item.Type.SHARD and not summoning) or displayCount <= 0
 	useButton.disabled = not inventorySlot.item.usable or (not inventorySlot.item.battleUsable and inBattle) or (battleUseDisabled and inBattle)
 	
-	equipButton.visible = not isShopItem and inventorySlot.item.equippable and not isEquipped
+	equipButton.visible = not isShopItem and inventorySlot.item.equippable
 	equipButton.disabled = inBattle
 	
-	unequipButton.visible = not isShopItem and isEquipped
-	unequipButton.disabled = inBattle
-	if unequipButton.visible:
-		var combatant: Combatant = PlayerResources.playerInfo.combatant
+	equippedTo.text = ''
+	if inventorySlot.item.equippable:
+		var combatant: Combatant = null
+		if PlayerResources.playerInfo.combatant.stats.is_item_equipped(inventorySlot.item):
+			combatant = PlayerResources.playerInfo.combatant
 		var minionName = PlayerResources.minions.which_minion_equipped(inventorySlot.item)
 		if minionName != '':
 			combatant = PlayerResources.minions.get_minion(minionName)
-		equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
-	else:
-		equippedTo.text = ''
+		if combatant != null:
+			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
 	
 	trashButton.visible = not isShopItem
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
@@ -80,19 +79,29 @@ func load_inventory_slot_panel():
 	
 	sellButton.visible = isShopItem and isPlayerItem
 	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
-	
+
+func get_leftmost_button() -> Button:
+	var buttonArr: Array[Button] = [
+		useButton,
+		equipButton,
+		trashButton,
+		buyButton,
+		sellButton,
+		detailsButton
+	]
+	for idx in range(len(buttonArr)):
+		if buttonArr[idx].visible:
+			return buttonArr[idx]
+	return null
+
 func _on_use_button_pressed():
 	inventoryMenu.item_used.emit(inventorySlot)
 
 func _on_equip_button_pressed():
-	PlayerResources.inventory.equip_item(inventorySlot, true, equipContextStats)
-	inventoryMenu.equip_pressed(inventorySlot) # rebuild the whole menu - another item may have been unequipped
+	if equipContextStats != null:
+		PlayerResources.inventory.equip_item(inventorySlot, true, equipContextStats)
+	inventoryMenu.equip_pressed(inventorySlot, equipContextStats != null) # rebuild the whole menu - another item may have been unequipped
 
-func _on_unequip_button_pressed():
-	PlayerResources.inventory.equip_item(inventorySlot, false, equipContextStats)
-	isEquipped = false
-	inventoryMenu.unequip_pressed(inventorySlot) # rebuild the whole menu - item order may have changed
-	
 func _on_trash_button_pressed():
 	inventoryMenu.trash_pressed(inventorySlot) # rebuild the whole menu - item slot may be all gone
 

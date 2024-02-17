@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://n55f6tk0t25u"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_33myd"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_panel.gd" id="1_d0fb1"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_f26fv"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_mg8vn"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_2r15b"]
+[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="6_i2qmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofoyx"]
+atlas = ExtResource("6_i2qmx")
+region = Rect2(96, 56, 8, 8)
+
+[node name="EquipPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d0fb1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1200.0
+offset_bottom = 880.0
+theme = ExtResource("1_33myd")
+
+[node name="EquipTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 24.0
+offset_right = 350.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme = ExtResource("2_f26fv")
+bbcode_enabled = true
+text = "[center]Equip - Item Name Goes Here[/center]"
+fit_content = true
+
+[node name="ItemSpriteControl" type="Control" parent="Panel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 105.0
+offset_top = 24.0
+offset_right = 169.0
+offset_bottom = 88.0
+
+[node name="ItemSprite" type="Sprite2D" parent="Panel/ItemSpriteControl"]
+position = Vector2(32, 32)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_ofoyx")
+
+[node name="ItemEffect" type="RichTextLabel" parent="Panel"]
+custom_minimum_size = Vector2(850, 90)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -425.0
+offset_top = 82.0
+offset_right = 425.0
+offset_bottom = 172.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 193.0
+offset_right = -80.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+script = ExtResource("3_mg8vn")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(940, 76)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" parent="Panel" instance=ExtResource("5_2r15b")]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -52.0
+offset_right = 25.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

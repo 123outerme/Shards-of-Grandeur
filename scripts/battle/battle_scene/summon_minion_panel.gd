@@ -23,7 +23,7 @@ func load_summon_minion_panel():
 	
 	for minion in PlayerResources.minions.get_minion_list():
 		var shardSlot: InventorySlot = PlayerResources.inventory.get_shard_slot_for_minion(minion.save_name())
-		if minion.friendship >= minion.maxFriendship or shardSlot != null:			
+		if minion.friendship >= minion.maxFriendship or shardSlot != null:
 			var panelInstance = summonMinionListPanel.instantiate()
 			panelInstance.minion = minion
 			panelInstance.shardItemSlot = shardSlot

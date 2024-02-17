@@ -196,6 +196,7 @@ position = Vector2(-640, -480)
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
+[connection signal="open_stats" from="UI/InventoryPanelNode" to="UI/StatsPanelNode" method="_on_inventory_panel_node_open_stats"]
 [connection signal="act_changed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_act_changed"]
 [connection signal="back_pressed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_back_pressed"]
 [connection signal="level_up" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_level_up"]
@@ -203,3 +204,4 @@ position = Vector2(-640, -480)
 [connection signal="attempt_equip_armor_to" from="UI/StatsPanelNode" to="." method="_on_stats_panel_node_attempt_equip_armor_to"]
 [connection signal="attempt_equip_weapon_to" from="UI/StatsPanelNode" to="." method="_on_stats_panel_node_attempt_equip_weapon_to"]
 [connection signal="back_pressed" from="UI/StatsPanelNode" to="." method="_on_stats_panel_node_back_pressed"]
+[connection signal="back_pressed" from="UI/StatsPanelNode" to="UI/InventoryPanelNode" method="_on_stats_panel_node_back_pressed"]

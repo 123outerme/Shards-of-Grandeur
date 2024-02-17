@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://durkokegvqco7"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_nlyrs"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_item_panel.gd" id="2_5q6bp"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_k65ns"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="4_dvjyt"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="5_8fr31"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_p4nse"]
+
+[node name="EquipCombatantPanel" type="Panel" groups=["EquipCombatantPanel"]]
+custom_minimum_size = Vector2(940, 152)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -340.0
+offset_bottom = -808.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nlyrs")
+script = ExtResource("2_5q6bp")
+
+[node name="SpriteControl" type="Control" parent="."]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="CombatantSprite" type="AnimatedSprite2D" parent="SpriteControl"]
+position = Vector2(48, 48)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_k65ns")
+animation = &"walk"
+
+[node name="CenterCombatantName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_right = 456.0
+grow_vertical = 2
+alignment = 1
+
+[node name="CombatantName" type="RichTextLabel" parent="CenterCombatantName"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("4_dvjyt")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+text = "Combatant Name Goes Here"
+fit_content = true
+
+[node name="CenterButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_right = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+layout_mode = 2
+theme = ExtResource("5_8fr31")
+alignment = 2
+
+[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Stats"
+
+[node name="UnequipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+custom_minimum_size = Vector2(85, 50)
+layout_mode = 2
+text = "Unequip"
+
+[node name="EquipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+custom_minimum_size = Vector2(85, 50)
+layout_mode = 2
+text = "Equip
+"
+
+[connection signal="pressed" from="CenterButtons/HBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/UnequipButton" to="." method="_on_unequip_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/EquipButton" to="." method="_on_equip_button_pressed"]

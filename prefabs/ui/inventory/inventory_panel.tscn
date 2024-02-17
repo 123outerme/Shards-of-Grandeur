@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=13 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
 [ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="11_c0y15"]
+[ext_resource type="PackedScene" uid="uid://n55f6tk0t25u" path="res://prefabs/ui/inventory/equip_panel.tscn" id="12_eeu1a"]
 
 [node name="InventoryPanelNode" type="Node2D"]
 script = ExtResource("1_b8tdp")
@@ -185,6 +186,9 @@ visible = false
 [node name="ShardLearnPanel" parent="." instance=ExtResource("8_suef4")]
 visible = false
 
+[node name="EquipPanel" parent="." instance=ExtResource("12_eeu1a")]
+visible = false
+
 [node name="ItemConfirmPanel" parent="." instance=ExtResource("11_c0y15")]
 visible = false
 offset_left = 190.0
@@ -205,6 +209,8 @@ offset_bottom = 680.0
 [connection signal="ok_pressed" from="ItemUsePanel" to="." method="_on_item_use_panel_ok_pressed"]
 [connection signal="back_pressed" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_back_pressed"]
 [connection signal="learned_move" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_learned_move"]
+[connection signal="close_equip_panel" from="EquipPanel" to="." method="_on_equip_panel_close_equip_panel"]
+[connection signal="stats_button_pressed" from="EquipPanel" to="." method="_on_equip_panel_stats_button_pressed"]
 [connection signal="confirm_option" from="ItemConfirmPanel" to="." method="_on_item_confirm_panel_confirm_option"]
 
 [editable path="ItemDetailsPanel"]

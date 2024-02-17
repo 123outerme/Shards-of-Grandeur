@@ -14,7 +14,11 @@ var lastSfxIdx: int = -1
 
 @onready var musicStreamPlayer1: AudioStreamPlayer = get_node('MusicStreamPlayer1')
 @onready var musicStreamPlayer2: AudioStreamPlayer = get_node('MusicStreamPlayer2')
-@onready var sfxStreamPlayers: Array[AudioStreamPlayer] = [get_node('SfxStreamPlayer1'), get_node('SfxStreamPlayer2')]
+@onready var sfxStreamPlayers: Array[AudioStreamPlayer] = [
+	get_node('SfxStreamPlayer1'),
+	get_node('SfxStreamPlayer2'),
+	get_node('SfxStreamPlayer3')
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
