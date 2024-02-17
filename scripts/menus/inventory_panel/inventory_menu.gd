@@ -388,7 +388,7 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 			if not yes: # if yes, the item use panel will capture focus and handle restoring it after
 				restore_last_focus('useButton')
 
-func _on_equip_panel_close_equip_panel(combatant: Combatant):
+func _on_equip_panel_close_equip_panel():
 	load_inventory_panel()
 	restore_last_focus('equipButton')
 	equipPanel.visible = false

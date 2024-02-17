@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://rfvaf3u7qrsn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://rfvaf3u7qrsn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_koyuo"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_qxk7o"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_r7g25"]
 [ext_resource type="Resource" uid="uid://c65useug5ce04" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_trigger_goto_grandstone_cutscene.tres" id="2_ve5e5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_s7xei"]
 
 [sub_resource type="Resource" id="Resource_47172"]
 script = ExtResource("1_r7g25")
@@ -13,20 +14,57 @@ buttonDims = Vector2(120, 40)
 turnsInQuest = ""
 opensShop = false
 
+[sub_resource type="Resource" id="Resource_bk0an"]
+script = ExtResource("3_s7xei")
+minAct = 5
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
 [sub_resource type="Resource" id="Resource_s2dxt"]
 script = ExtResource("1_r7g25")
 choiceBtn = "Let's Go."
+storyRequirements = SubResource("Resource_bk0an")
 leadsTo = ExtResource("2_ve5e5")
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = "War is Declared#It's Gone?"
 opensShop = false
 
+[sub_resource type="Resource" id="Resource_f3s76"]
+script = ExtResource("1_qxk7o")
+lines = Array[String](["This concludes the second Demo of Uvutu DX. Thank you for playing!"])
+animation = "talk"
+choices = Array[ExtResource("1_r7g25")]([])
+
+[sub_resource type="Resource" id="Resource_ouii1"]
+script = ExtResource("1_koyuo")
+entryId = ""
+items = Array[ExtResource("1_qxk7o")]([SubResource("Resource_f3s76")])
+closesDialogue = false
+fullHealsPlayer = false
+
+[sub_resource type="Resource" id="Resource_hyx34"]
+script = ExtResource("1_r7g25")
+choiceBtn = "Let's Go."
+leadsTo = SubResource("Resource_ouii1")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
 [sub_resource type="Resource" id="Resource_ergge"]
 script = ExtResource("1_qxk7o")
 lines = Array[String](["I was afraid of that... Just when we've taken control of it and risked war, we've got to find it again.", "We should leave for Grandstone now. The General will want to hear about what's happened here."])
 animation = "talk"
-choices = Array[ExtResource("1_r7g25")]([SubResource("Resource_47172"), SubResource("Resource_s2dxt")])
+choices = Array[ExtResource("1_r7g25")]([SubResource("Resource_47172"), SubResource("Resource_s2dxt"), SubResource("Resource_hyx34")])
 
 [resource]
 script = ExtResource("1_koyuo")

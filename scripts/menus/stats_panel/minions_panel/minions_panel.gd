@@ -7,6 +7,7 @@ signal stats_clicked(combatant: Combatant)
 @export var minion: Combatant = null
 
 var editingName: bool = false
+var firstMinionPanel: MinionSlotPanel = null
 
 @onready var playerView: Control = get_node("PlayerView")
 @onready var vboxContainer: VBoxContainer = get_node("PlayerView/ScrollContainer/VBoxContainer")
@@ -34,6 +35,7 @@ func load_minions_panel():
 		panel.queue_free()
 	
 	if minion != null:
+		firstMinionPanel = null
 		nameInput.placeholder_text = minion.stats.displayName
 		minionName.text = '[center]'
 		if minion.nickname != '':
@@ -52,6 +54,8 @@ func load_minions_panel():
 		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
+			if firstMinionPanel == null:
+				firstMinionPanel = instantiatedPanel
 			instantiatedPanel.readOnly = readOnly
 			instantiatedPanel.combatant = listed_minion
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
@@ -59,6 +63,14 @@ func load_minions_panel():
 	
 	minionView.visible = minion != null
 	playerView.visible = minion == null
+
+func connect_to_top_control(control: Control):
+	if minion == null:
+		firstMinionPanel.statsButton.focus_neighbor_top = firstMinionPanel.statsButton.get_path_to(control)
+		control.focus_neighbor_bottom = control.get_path_to(firstMinionPanel.statsButton)
+	else:
+		editName.focus_neighbor_top = editName.get_path_to(control)
+		control.focus_neighbor_bottom = control.get_path_to(editName)
 
 func get_stats_button_for(combatant: Combatant) -> Button:
 	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):

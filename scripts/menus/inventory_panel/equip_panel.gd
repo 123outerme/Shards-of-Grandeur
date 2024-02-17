@@ -2,7 +2,7 @@ extends Control
 class_name EquipPanel
 
 signal stats_button_pressed(combatant: Combatant)
-signal close_equip_panel(combatant: Combatant)
+signal close_equip_panel
 
 @export var inventorySlot: InventorySlot = null
 
@@ -68,7 +68,7 @@ func equip_pressed(combatant: Combatant):
 		minion.stats.unequip_item(inventorySlot.item)
 	
 	combatant.stats.equip_item(inventorySlot.item)
-	close_equip_panel.emit(combatant)
+	#close_equip_panel.emit()
 
 func unequip_pressed(combatant: Combatant):
 	combatant.stats.unequip_item(inventorySlot.item)
@@ -77,4 +77,4 @@ func unequip_pressed(combatant: Combatant):
 	call_deferred('restore_focus')
 
 func _on_back_button_pressed():
-	close_equip_panel.emit(null)
+	close_equip_panel.emit()

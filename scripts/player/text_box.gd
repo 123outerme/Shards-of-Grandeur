@@ -7,6 +7,8 @@ class_name TextBox
 
 var dialogueItem: DialogueItem = null
 var lastChoiceFocused: Button = null
+var choicesDialogueItemIdxs: Array[int] = []
+# the item at index `idx` will be the dialogueItem corresponding to the button
 
 var chars_per_sec: float = 40
 var text_visible_chars_partial: float = 0
@@ -89,6 +91,7 @@ func add_choices():
 						continue
 				else:
 					continue
+			choicesDialogueItemIdxs.append(idx)
 			
 			buttonIdx += 1
 			button.text = TextUtils.substitute_playername(choice.choiceBtn)
@@ -108,6 +111,7 @@ func delete_choices():
 	for idx in range(5):
 		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
 		button.visible = false
+	choicesDialogueItemIdxs = []
 
 func refocus_choice(choice: DialogueChoice = null):
 	if lastChoiceFocused:
@@ -146,5 +150,5 @@ func _viewport_focus_changed(control):
 	
 func _select_choice(idx: int):
 	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
-	PlayerFinder.player.select_choice(dialogueItem.choices[idx])
+	PlayerFinder.player.select_choice(dialogueItem.choices[choicesDialogueItemIdxs[idx]])
 	lastChoiceFocused = null

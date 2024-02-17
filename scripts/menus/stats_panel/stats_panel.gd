@@ -104,6 +104,7 @@ func load_stats_panel(fromToggle: bool = false):
 	minionsPanel.minion = minion
 	minionsPanel.readOnly = readOnly
 	minionsPanel.load_minions_panel()
+	minionsPanel.call_deferred('connect_to_top_control', backButton)
 	changingCombatant = false
 
 func restore_previous_stats_panel():
