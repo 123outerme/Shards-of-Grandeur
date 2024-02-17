@@ -25,7 +25,7 @@ func _ready():
 	playerNamePanel.visible = false
 	resumeGameButton.visible = SaveHandler.save_file_exists()
 	set_initial_main_menu_focus()
-	versionLabel.text = ProjectSettings.get_setting('application/config/version', 'VERSION?')
+	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
 
 func set_initial_main_menu_focus():
