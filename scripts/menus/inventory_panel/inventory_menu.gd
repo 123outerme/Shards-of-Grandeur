@@ -63,6 +63,8 @@ func toggle():
 		if shardLearnPanel.visible:
 			shardLearnPanel.credit_back_shard()
 		shardLearnPanel.visible = false
+		equipPanel.visible = false
+		itemConfirmPanel.visible = false
 		backButton.disabled = false
 		if equipContextStats != null:
 			lockFilters = false
@@ -225,6 +227,7 @@ func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 	else:
 		equipPanel.inventorySlot = slot
 		equipPanel.load_equip_panel()
+		backButton.disabled = true
 
 func unequip_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -389,6 +392,7 @@ func _on_equip_panel_close_equip_panel(combatant: Combatant):
 	load_inventory_panel()
 	restore_last_focus('equipButton')
 	equipPanel.visible = false
+	backButton.disabled = false
 
 func _on_equip_panel_stats_button_pressed(combatant: Combatant):
 	open_stats.emit(combatant)

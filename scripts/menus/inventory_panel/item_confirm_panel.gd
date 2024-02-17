@@ -24,7 +24,6 @@ func _on_yes_button_pressed():
 	confirm_option.emit(true)
 	visible = false
 
-
 func _on_no_button_pressed():
 	confirm_option.emit(false)
 	visible = false

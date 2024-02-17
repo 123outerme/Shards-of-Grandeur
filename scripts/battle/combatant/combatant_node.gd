@@ -217,7 +217,7 @@ func tween_to(pos: Vector2, callback: Callable):
 	if animateTween != null and animateTween.is_valid():
 		animateTween.kill()
 		global_position = returnToPos
-	animateTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	returnToPos = global_position
 	var moveTime = pos.length() / ANIMATE_MOVE_SPEED
 	if animatedSprite.animation != 'stand':
@@ -227,7 +227,7 @@ func tween_to(pos: Vector2, callback: Callable):
 		for frameIdx in range(animatedSprite.sprite_frames.get_frame_count(animatedSprite.animation)):
 			# add (duration of frame / per-frame time) = amount of time to display this frame
 			moveTime += animatedSprite.sprite_frames.get_frame_duration(animatedSprite.animation, frameIdx) / fps
-		moveTime /= 2 # half the time so the destination is reached for the latter half of the animation
+		moveTime *= 0.5 #0.667 # half the time so the destination is reached for the latter half of the animation
 		
 	# move to target position
 	animateTween.tween_property(self, 'global_position', pos, moveTime)
