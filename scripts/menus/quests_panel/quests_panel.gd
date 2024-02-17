@@ -112,7 +112,7 @@ func load_quests_panel(fromToggle: bool = false):
 				notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(instantiatedPanel.detailsButton)
 				failedButton.focus_neighbor_bottom = failedButton.get_path_to(instantiatedPanel.detailsButton)
 				firstPanel = false
-			if questTracker.get_current_step().turnInName == turnInTargetName and turnInTargetName != '' and fromToggle:
+			if turnInTargetName in questTracker.get_current_step().turnInNames and fromToggle:
 				instantiatedPanel.turnInButton.call_deferred('grab_focus')
 			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
 		if trackerStatus == QuestTracker.Status.IN_PROGRESS:

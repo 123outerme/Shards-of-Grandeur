@@ -130,13 +130,21 @@ func load_statline_panel(recopyStats: bool = false):
 		var newLvBase: Stats = Stats.new()
 		newLvBase.statGrowth = statsCopy.statGrowth
 		newLvBase.level_up(statsCopy.level - 1)
-		hpLvUp.text = '+' + String.num(newLvBase.maxHp - prevLvBase.maxHp)
-		physAtkLvUp.text = '+' + String.num(newLvBase.physAttack - prevLvBase.physAttack)
-		magicAtkLvUp.text = '+' + String.num(newLvBase.magicAttack - prevLvBase.magicAttack)
-		affinityLvUp.text = '+' + String.num(newLvBase.affinity - prevLvBase.affinity)
-		resistanceLvUp.text = '+' + String.num(newLvBase.resistance - prevLvBase.resistance)
-		speedLvUp.text = '+' + String.num(newLvBase.speed - prevLvBase.speed)
-		statPtsLvUp.text = '+' + String.num(newLvBase.statPts - prevLvBase.statPts)
+		hpLvUp.text = '[right]+' + String.num(newLvBase.maxHp - prevLvBase.maxHp) + '[/right]'
+		physAtkLvUp.text = '[right]+' + String.num(newLvBase.physAttack - prevLvBase.physAttack) + '[/right]'
+		magicAtkLvUp.text = '[right]+' + String.num(newLvBase.magicAttack - prevLvBase.magicAttack) + '[/right]'
+		affinityLvUp.text = '[right]+' + String.num(newLvBase.affinity - prevLvBase.affinity) + '[/right]'
+		resistanceLvUp.text = '[right]+' + String.num(newLvBase.resistance - prevLvBase.resistance) + '[/right]'
+		speedLvUp.text = '[right]+' + String.num(newLvBase.speed - prevLvBase.speed) + '[/right]'
+		statPtsLvUp.text = '[right]+' + String.num(newLvBase.statPts - prevLvBase.statPts) + '[/right]'
+	else:
+		hpLvUp.text = ''
+		physAtkLvUp.text = ''
+		magicAtkLvUp.text = ''
+		affinityLvUp.text = ''
+		resistanceLvUp.text = ''
+		speedLvUp.text = ''
+		speedLvUp.text = ''
 	
 	if battleStats:
 		physAtkModifier.text = statChanges.get_phys_atk_multiplier().print_multiplier(false)

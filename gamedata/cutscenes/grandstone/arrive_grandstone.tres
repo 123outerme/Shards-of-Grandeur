@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=37 format=3 uid="uid://qjr3xv1j4joj"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=39 format=3 uid="uid://qjr3xv1j4joj"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_b87y5"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_gaqvo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="4_22dg1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="5_hoy7r"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="6_rbc1h"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_v4s2u"]
 
 [sub_resource type="Resource" id="Resource_mvfnq"]
 script = ExtResource("1_lr7yh")
@@ -277,10 +278,25 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
+[sub_resource type="Resource" id="Resource_qto5c"]
+script = ExtResource("8_v4s2u")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["arrive_grandstone"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
 [resource]
 script = ExtResource("1_gaqvo")
 cutsceneFrames = Array[ExtResource("1_b87y5")]([SubResource("Resource_ykfxk"), SubResource("Resource_gcr5r"), SubResource("Resource_mhscr"), SubResource("Resource_ecg7w"), SubResource("Resource_k5vfx"), SubResource("Resource_07klr")])
 saveName = "arrive_grandstone"
+storyRequirements = SubResource("Resource_qto5c")
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String]([])

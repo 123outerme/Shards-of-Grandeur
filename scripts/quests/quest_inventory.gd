@@ -4,7 +4,7 @@ class_name QuestInventory
 @export var quests: Array[QuestTracker] = []
 @export var currentAct: int = 0
 
-var actNames: Array[String] = [
+const actNames: Array[String] = [
 	'Prologue', # act 0
 	'act1placeholder', # act 1
 	'act2placeholder', # act 2
@@ -134,6 +134,7 @@ func turn_in_cur_step(tracker: QuestTracker) -> int:
 	if allDone and tracker.quest.advanceActActerComplete:
 		currentAct += 1 # advance act after quest completion
 	
+	PlayerResources.story_requirements_updated.emit()
 	return newLvs
 
 func get_sorted_trackers() -> Array[QuestTracker]:

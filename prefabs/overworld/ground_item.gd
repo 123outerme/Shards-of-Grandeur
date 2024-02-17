@@ -8,14 +8,19 @@ class_name GroundItem
 
 @onready var sprite: Sprite2D = get_node('Sprite2D')
 
+var disabled = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if pickedUpItem == null or pickedUpItem.item == null:
 		printerr('GroundItem ERR: no item defined')
 		queue_free()
 		
-	if PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId) or (storyRequirements != null and not storyRequirements.is_valid()):
+	if PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId):
 		queue_free()
+		
+	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+	_story_reqs_updated()
 	
 	if disguiseSprite != null:
 		sprite.texture = disguiseSprite
@@ -23,5 +28,9 @@ func _ready():
 		sprite.texture = pickedUpItem.item.itemSprite
 
 func _on_area_entered(area):
-	if area.name == 'PlayerEventCollider' and not PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId):
+	if not disabled and area.name == 'PlayerEventCollider' and not PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId):
 		PlayerFinder.player.pick_up(self)
+
+func _story_reqs_updated():
+	disabled = storyRequirements != null and not storyRequirements.is_valid()
+	visible = not disabled

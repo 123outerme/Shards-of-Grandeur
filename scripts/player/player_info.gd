@@ -84,6 +84,7 @@ func has_seen_cutscene(saveName: String) -> bool:
 func set_cutscene_seen(saveName: String):
 	if not has_seen_cutscene(saveName):
 		cutscenesPlayed.append(saveName)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_seen_dialogue(npcSaveName: String, dialogueId: String) -> bool:
 	if dialoguesSeen.has(npcSaveName):
@@ -95,8 +96,10 @@ func set_dialogue_seen(npcSaveName: String, dialogueId: String):
 	if dialoguesSeen.has(npcSaveName):
 		if not (dialogueId in dialoguesSeen[npcSaveName]):
 			dialoguesSeen[npcSaveName].append(dialogueId)
+			PlayerResources.story_requirements_updated.emit()
 	else:
 		dialoguesSeen[npcSaveName] = [dialogueId]
+		PlayerResources.story_requirements_updated.emit()
 	
 func has_completed_special_battle(battleId: String) -> bool:
 	return battleId in completedSpecialBattles

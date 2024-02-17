@@ -30,7 +30,7 @@ func load_quest_slot_panel():
 	stepName.text = curStep.name
 	progress.text = questTracker.get_step_status_str(curStep)
 	mainQuestSprite.visible = questTracker.quest.isMainQuest
-	turnInButton.visible = curStep.turnInName == turnInName and questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP
+	turnInButton.visible = turnInName in curStep.turnInNames and questTracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP
 	if not turnInButton.visible:
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(pinButton)
 		pinButton.focus_neighbor_right = pinButton.get_path_to(detailsButton)

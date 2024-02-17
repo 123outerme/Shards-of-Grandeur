@@ -32,7 +32,7 @@ static func TypeToString(t: Type) -> String:
 @export var type: Type = Type.TALK
 @export var count: int = 1
 @export var objectiveName: String
-@export var turnInName: String
+@export var turnInNames: Array[String]
 @export var displayObjName: String
 @export var displayTurnInName: String
 @export var customStatusStr: String
@@ -47,7 +47,7 @@ func _init(
 	i_type = Type.TALK,
 	i_count = 1,
 	i_objectiveName = '',
-	i_turnInName = '',
+	i_turnInNames: Array[String] = [],
 	i_dispObjName = '',
 	i_dispTurnInName = '',
 	i_customStatus = '',
@@ -60,7 +60,7 @@ func _init(
 	type = i_type
 	count = i_count
 	objectiveName = i_objectiveName
-	turnInName = i_turnInName
+	turnInNames = i_turnInNames
 	displayObjName = i_dispObjName
 	displayTurnInName = i_dispTurnInName
 	customStatusStr = i_customStatus

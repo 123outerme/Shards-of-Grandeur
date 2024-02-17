@@ -231,8 +231,8 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
 					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
 					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
-				if (questTracker.get_prev_step().turnInName != '' and questTracker.get_prev_step().turnInName == saveName) \
-						or (questTracker.get_prev_step().turnInName == '' and curStep.turnInName == saveName and saveName != ''):
+				if saveName in questTracker.get_prev_step().turnInNames \
+						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
 					dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
@@ -253,7 +253,7 @@ func fetch_quest_dialogue_info():
 	for questTracker in PlayerResources.questInventory.quests:
 		var curStep: QuestStep = questTracker.get_current_step()
 		if questTracker.get_step_status(curStep) == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and curStep.turnInName == saveName and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
+				and saveName in curStep.turnInNames and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
 			turningInSteps.append(curStep)
 
 func update_dialogues_in_between():

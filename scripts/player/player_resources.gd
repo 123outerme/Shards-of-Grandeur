@@ -1,4 +1,5 @@
 extends Node
+signal story_requirements_updated
 
 @export var playerInfo: PlayerInfo = PlayerInfo.new()
 @export var inventory: Inventory = Inventory.new()

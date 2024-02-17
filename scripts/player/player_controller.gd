@@ -145,11 +145,13 @@ func advance_dialogue(canStart: bool = true):
 		if talkNPC == null:
 			var minDistance: float = -1.0
 			for npc in talkNPCcandidates:
-				if npc.position.distance_to(position) < minDistance or minDistance == -1.0:
+				npc.reset_dialogue()
+				if (npc.position.distance_to(position) < minDistance or minDistance == -1.0) and \
+						len(npc.data.dialogueItems) > 0 and npc.visible: # if the NPC has dialogue and is the closest visible NPC, speak to this one
 					minDistance = npc.position.distance_to(position)
 					talkNPC = npc
 		sprite.play('stand')
-		if not canStart and not disableMovement: # if we are pressing game_decline, do not start conversation!
+		if not canStart and not disableMovement or talkNPC == null: # if we are pressing game_decline, or there is no talk NPC, do not start conversation!
 			talkNPC = null
 			return
 		var hasDialogue: bool = talkNPC.advance_dialogue()
@@ -173,7 +175,8 @@ func advance_dialogue(canStart: bool = true):
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
 			for npc in talkNPCcandidates:
-				npc.talkAlertSprite.visible = true
+				if len(npc.data.dialogueItems) > 0:
+					npc.talkAlertSprite.visible = true
 			talkNPC = null
 			if PlayerResources.playerInfo.staticEncounter != null:
 				start_battle()
