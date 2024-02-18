@@ -22,7 +22,7 @@ class_name CutsceneVisualizer
 	get:
 		return isPaused
 	set(value):
-		if playing:
+		if not playing:
 			return
 		
 		if value:
@@ -150,6 +150,8 @@ func complete_cutscene():
 		if tween != null and tween.is_valid():
 			tween.kill()
 	tweens = []
+	timer = 0
+	isPaused = false
 	if not useRealNpcs:
 		for child in get_children():
 			if child != mockPlayer:

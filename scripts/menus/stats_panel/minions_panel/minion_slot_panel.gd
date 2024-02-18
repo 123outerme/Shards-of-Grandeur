@@ -2,9 +2,12 @@ extends Panel
 class_name MinionSlotPanel
 
 signal stats_clicked(combatant: Combatant)
+signal panel_ready
 
 @export var combatant: Combatant = null
 @export var readOnly: bool = false
+
+var readyCallback: Callable
 
 @onready var minionSprite: AnimatedSprite2D = get_node("SpriteControl/MinionSprite")
 @onready var minionName: RichTextLabel = get_node("MinionName")
@@ -26,6 +29,7 @@ func load_minion_slot_panel():
 	minionSprite.play('walk')
 	minionName.text = combatant.disp_name()
 	statPtIndicator.visible = not readOnly and combatant.stats.statPts > 0
+	panel_ready.emit()
 
 func _on_stats_button_pressed():
 	stats_clicked.emit(combatant)

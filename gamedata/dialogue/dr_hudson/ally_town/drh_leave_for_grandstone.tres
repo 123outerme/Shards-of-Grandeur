@@ -14,24 +14,9 @@ buttonDims = Vector2(120, 40)
 turnsInQuest = ""
 opensShop = false
 
-[sub_resource type="Resource" id="Resource_bk0an"]
-script = ExtResource("3_s7xei")
-minAct = 5
-maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-
 [sub_resource type="Resource" id="Resource_s2dxt"]
 script = ExtResource("1_r7g25")
 choiceBtn = "Let's Go."
-storyRequirements = SubResource("Resource_bk0an")
 leadsTo = ExtResource("2_ve5e5")
 repeatsItem = false
 buttonDims = Vector2(160, 40)
@@ -51,9 +36,24 @@ items = Array[ExtResource("1_qxk7o")]([SubResource("Resource_f3s76")])
 closesDialogue = false
 fullHealsPlayer = false
 
+[sub_resource type="Resource" id="Resource_88ybc"]
+script = ExtResource("3_s7xei")
+minAct = 5
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
 [sub_resource type="Resource" id="Resource_hyx34"]
 script = ExtResource("1_r7g25")
 choiceBtn = "Let's Go."
+storyRequirements = SubResource("Resource_88ybc")
 leadsTo = SubResource("Resource_ouii1")
 repeatsItem = false
 buttonDims = Vector2(160, 40)

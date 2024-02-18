@@ -69,6 +69,9 @@ func equip_pressed(combatant: Combatant):
 	
 	combatant.stats.equip_item(inventorySlot.item)
 	#close_equip_panel.emit()
+	lastCombatant = combatant
+	load_equip_panel(false)
+	call_deferred('restore_focus')
 
 func unequip_pressed(combatant: Combatant):
 	combatant.stats.unequip_item(inventorySlot.item)

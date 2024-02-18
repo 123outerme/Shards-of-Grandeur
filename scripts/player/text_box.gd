@@ -24,6 +24,9 @@ var speaker_visible_chars_partial: float = 0
 func _ready():
 	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 
+func _exit_tree():
+	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if SpeakerText.visible_characters < len(SpeakerText.text):
