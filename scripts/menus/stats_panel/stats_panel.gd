@@ -73,7 +73,7 @@ func load_stats_panel(fromToggle: bool = false):
 		
 	if fromToggle and levelUp and \
 			not SceneLoader.audioHandler.is_music_already_playing(levelUpMusic):
-		SceneLoader.audioHandler.play_music(levelUpMusic)
+		SceneLoader.audioHandler.play_music(levelUpMusic, -1)
 	
 	var dispName: String = stats.displayName
 	if minion != null:

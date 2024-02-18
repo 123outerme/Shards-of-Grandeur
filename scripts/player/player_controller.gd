@@ -358,7 +358,7 @@ func start_battle():
 	var playingBattleMusic = battleMusic
 	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.bossBattle:
 		playingBattleMusic = bossBattleMusic
-	SceneLoader.audioHandler.play_music(playingBattleMusic)
+	SceneLoader.audioHandler.play_music(playingBattleMusic, -1)
 
 func _on_shop_button_pressed():
 	#get_viewport().gui_release_focus()

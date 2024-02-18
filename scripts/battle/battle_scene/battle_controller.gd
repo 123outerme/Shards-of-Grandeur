@@ -208,7 +208,7 @@ func load_data(save_path):
 		turnExecutor.turnQueue = TurnQueue.new(state.turnList, false)
 		if not battleLoaded:
 			battleLoaded = true
-			SceneLoader.audioHandler.play_music(state.battleMusic)
+			SceneLoader.audioHandler.play_music(state.battleMusic, -1)
 
 func update_combatant_focus_neighbors():
 	if enemyCombatant3.is_alive():
