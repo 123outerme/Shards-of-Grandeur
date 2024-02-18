@@ -6,6 +6,8 @@ signal select_button_clicked(move: Move)
 signal learn_button_clicked(move: Move)
 signal cancel_button_clicked
 
+const moveListItemPanel = preload("res://prefabs/ui/stats/move_list_item_panel.tscn")
+
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
 @export var level: int = 1
@@ -24,7 +26,7 @@ func load_move_pool_panel():
 		panel.queue_free()
 	
 	firstMovePanel = null
-	var moveListItemPanel = preload("res://prefabs/ui/stats/move_list_item_panel.tscn")
+	
 	for move in movepool:
 		if move.requiredLv <= level and \
 				not (hideMovesInMoveList and (move in moves)):
