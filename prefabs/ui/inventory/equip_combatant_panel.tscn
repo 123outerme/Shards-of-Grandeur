@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://durkokegvqco7"]
+[gd_scene load_steps=8 format=3 uid="uid://durkokegvqco7"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_nlyrs"]
-[ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_item_panel.gd" id="2_5q6bp"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_combatant_panel.gd" id="2_wxlof"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_k65ns"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="4_dvjyt"]
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="5_8fr31"]
+[ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_lbk02"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_p4nse"]
 
 [node name="EquipCombatantPanel" type="Panel" groups=["EquipCombatantPanel"]]
@@ -17,7 +18,7 @@ offset_bottom = -808.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_nlyrs")
-script = ExtResource("2_5q6bp")
+script = ExtResource("2_wxlof")
 
 [node name="SpriteControl" type="Control" parent="."]
 custom_minimum_size = Vector2(96, 96)
@@ -57,13 +58,33 @@ theme_override_font_sizes/mono_font_size = 24
 text = "Combatant Name Goes Here"
 fit_content = true
 
+[node name="ItemSpriteControl" type="Control" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -32.0
+offset_right = -212.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ItemSprite" type="Sprite2D" parent="ItemSpriteControl"]
+position = Vector2(32, 32)
+scale = Vector2(4, 4)
+texture = ExtResource("5_lbk02")
+
 [node name="CenterButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -400.0
+offset_left = -304.0
 offset_right = -20.0
 grow_horizontal = 0
 grow_vertical = 2
