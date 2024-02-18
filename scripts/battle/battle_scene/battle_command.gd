@@ -172,7 +172,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
 			commandResult.wasBoosted[idx] = true
-	if type == Type.MOVE and move != null and is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses:
+	if type == Type.MOVE and move != null and BattleCommand.is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses:
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
 			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
@@ -366,7 +366,7 @@ func get_command_results(user: Combatant) -> String:
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
 		if type == Type.MOVE and move.statChanges != null:
-			if move.statChanges.has_stat_changes() and not (not is_command_enemy_targeting(move.targets) and not (true in commandResult.afflictedStatuses) and move.statusEffect != null):
+			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not (true in commandResult.afflictedStatuses) and move.statusEffect != null):
 				resultsText += ' ' + user.disp_name() + ' boosts '
 				var displayTargetNames: bool = false
 				for target in targets:

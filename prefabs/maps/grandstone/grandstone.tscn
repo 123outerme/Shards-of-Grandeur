@@ -18,7 +18,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="14_kssmi"]
 [ext_resource type="Resource" uid="uid://qjr3xv1j4joj" path="res://gamedata/cutscenes/grandstone/arrive_grandstone.tres" id="15_4cqu8"]
 
-[sub_resource type="Resource" id="Resource_c3xrh"]
+[sub_resource type="Resource" id="Resource_mydqg"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(0, 0)
@@ -34,7 +34,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_anqig"]
+[sub_resource type="Resource" id="Resource_10kcd"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(680, 1)
@@ -56,7 +56,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_0nd46"]
+[sub_resource type="Resource" id="Resource_r6420"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(634, 11)
@@ -72,7 +72,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_0f2c3"]
+[sub_resource type="Resource" id="Resource_wqxct"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(617, -9)
@@ -88,7 +88,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_4cqf7"]
+[sub_resource type="Resource" id="Resource_jv16h"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(47, 0)
@@ -134,10 +134,10 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_xarge"]
+[sub_resource type="Resource" id="Resource_f850v"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
-position = Vector2(206, -180)
+position = Vector2(407.123, 12)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -176,7 +176,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Lady1" parent="TileMap" instance=ExtResource("3_d2cxy")]
 displayName = "Lady"
 saveName = "lady1"
-data = SubResource("Resource_c3xrh")
+data = SubResource("Resource_mydqg")
 
 [node name="NPCSprite" parent="TileMap/Lady1" index="0"]
 sprite_frames = ExtResource("5_fmjsj")
@@ -202,7 +202,7 @@ position = Vector2(680, 1)
 displayName = "Horse"
 saveName = "horse_cart_grandstone"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_anqig")
+data = SubResource("Resource_10kcd")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_q1mh4")])
 facesPlayer = false
 
@@ -239,7 +239,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(634, 11)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_grandstone"
-data = SubResource("Resource_0nd46")
+data = SubResource("Resource_r6420")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_11n50"), ExtResource("9_mbda6"), ExtResource("10_wvl8w")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -268,7 +268,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(617, -9)
 displayName = "Spelunker"
 saveName = "spelunker_grandstone"
-data = SubResource("Resource_0f2c3")
+data = SubResource("Resource_wqxct")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("14_kssmi")
@@ -293,7 +293,7 @@ visible = false
 position = Vector2(47, 0)
 displayName = "Man"
 saveName = "man1"
-data = SubResource("Resource_4cqf7")
+data = SubResource("Resource_jv16h")
 
 [node name="NPCSprite" parent="TileMap/Man1" index="0"]
 sprite_frames = ExtResource("13_vrdqb")
@@ -343,12 +343,13 @@ cutscene = ExtResource("15_4cqu8")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(206, -180)
+position = Vector2(407.123, 12)
 facingLeft = true
-data = SubResource("Resource_xarge")
+data = SubResource("Resource_f850v")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.618933
+animation = &"walk"
+frame_progress = 0.536317
 flip_h = true
 
 [editable path="TileMap/Lady1"]

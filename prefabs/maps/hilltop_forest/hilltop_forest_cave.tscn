@@ -29,7 +29,7 @@
 [ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
 
-[sub_resource type="Resource" id="Resource_lblkf"]
+[sub_resource type="Resource" id="Resource_54qdm"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1054, 538)
@@ -51,7 +51,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_8fo3h"]
+[sub_resource type="Resource" id="Resource_cx23r"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1006, 522)
@@ -67,7 +67,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_poxp7"]
+[sub_resource type="Resource" id="Resource_s35o6"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-383, -221)
@@ -83,7 +83,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_c18lw"]
+[sub_resource type="Resource" id="Resource_4jyst"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-300, -248)
@@ -185,7 +185,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_03l50"]
+[sub_resource type="Resource" id="Resource_w783v"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-360, -221)
@@ -229,7 +229,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop_cave"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_lblkf")
+data = SubResource("Resource_54qdm")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -266,7 +266,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_8fo3h")
+data = SubResource("Resource_cx23r")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -296,7 +296,7 @@ position = Vector2(-383, -221)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
-data = SubResource("Resource_poxp7")
+data = SubResource("Resource_s35o6")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -321,7 +321,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_c18lw")
+data = SubResource("Resource_4jyst")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier" index="0"]
@@ -478,16 +478,15 @@ navigation_layers = 4
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("28_7haeu")]
 visible = false
 triggerOrNPC = NodePath("../AmbushCutsceneTrigger")
-useRealNpcs = true
 cutscene = ExtResource("16_s3h3f")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-360, -221)
-data = SubResource("Resource_03l50")
+data = SubResource("Resource_w783v")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.644771
+frame_progress = 0.324637
 
 [editable path="TileMap/HorseCart"]
 [editable path="TileMap/DrHudson"]

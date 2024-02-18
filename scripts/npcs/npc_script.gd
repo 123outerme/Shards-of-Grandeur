@@ -242,6 +242,15 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 			dialogueItems.append(dialogue)
 	return dialogueItems
 
+func is_dialogue_item_last() -> bool:
+	if len(data.dialogueItems) == 0:
+		return true
+	if data.dialogueIndex == len(data.dialogueItems) - 1 and \
+			data.dialogueItemIdx == len(data.dialogueItems[data.dialogueIndex].items) - 1 and \
+			data.dialogueLine == len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines) - 1:
+		return true
+	return false
+
 func fetch_quest_dialogue_info():
 	acceptableQuests = []
 	turningInSteps = []

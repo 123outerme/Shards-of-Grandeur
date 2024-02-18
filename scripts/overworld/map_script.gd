@@ -25,12 +25,12 @@ signal map_loaded
 	get:
 		return false
 	set(value):
-		_assign_two_layer_tiles(value)
+		_assign_two_layer_tiles()
 
 func _ready():
 	map_loaded.emit()
 
-func _assign_two_layer_tiles(booleanVal: bool):
+func _assign_two_layer_tiles():
 	if Engine.is_editor_hint():
 		print('Matched two-layer terrain tiles')
 		var bottomTiles: Array[TileDef] = [

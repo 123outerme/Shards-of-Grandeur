@@ -93,10 +93,12 @@ func handle_play_sfx(sfx: AudioStream):
 func handle_start_cam_shake():
 	mockPlayer.start_cam_shake()
 
-func queue_text(item: CutsceneDialogue):
+func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 	print(item.speaker + ' will say: ')
 	for text in item.texts:
 		print(text)
+	if frame.endTextBoxPauses:
+		call_deferred('pause_cutscene')
 
 func handle_fade_out():
 	fadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -129,7 +131,7 @@ func resume_cutscene():
 			tween.play()
 	isPaused = false
 
-func end_cutscene(force: bool = false):
+func end_cutscene(_force: bool = false):
 	if cutscene == null or completeAfterFadeIn:
 		return
 	if cutscene.givesQuest != null:

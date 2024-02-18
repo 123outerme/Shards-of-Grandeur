@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dx00oa0dadpvj"]
+[gd_scene load_steps=12 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
-[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_bg1mx"]
 [ext_resource type="AudioStream" uid="uid://dq880ihrwmr8h" path="res://audio/sfx/text_scrolling_mellow_low_note.wav" id="2_evowq"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_qnltp"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_00gxq"]
+[ext_resource type="AudioStream" uid="uid://chstsmx2ao336" path="res://audio/sfx/dialogueskip_wiggle_f.wav" id="3_rcur0"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="4_5mpbg"]
 [ext_resource type="Texture2D" uid="uid://cmmmjjhb77ud5" path="res://graphics/items/generic_sword.png" id="4_13uxh"]
 [ext_resource type="StyleBox" uid="uid://dq64op7nmd3n2" path="res://themes/text_box_panel.tres" id="4_p0x7t"]
+[ext_resource type="AudioStream" uid="uid://dq5lav6yqgxnl" path="res://audio/sfx/dialogueskip_wiggle_c.wav" id="5_4fxfv"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_yge7e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2p22"]
@@ -15,7 +16,7 @@
 [node name="TextBoxRoot" type="Node2D" node_paths=PackedStringArray("buttonRow")]
 script = ExtResource("1_osatr")
 textScrollSfx = ExtResource("2_evowq")
-advanceDialogueSfx = ExtResource("2_bg1mx")
+advanceDialogueSfx = Array[AudioStream]([ExtResource("5_4fxfv"), ExtResource("3_rcur0")])
 buttonRow = NodePath("Panel/HBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]

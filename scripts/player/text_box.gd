@@ -2,10 +2,11 @@ extends Node2D
 class_name TextBox
 
 @export var textScrollSfx: AudioStream = null
-@export var advanceDialogueSfx: AudioStream = null
+@export var advanceDialogueSfx: Array[AudioStream] = []
 @export var buttonRow: HBoxContainer
 
 var dialogueItem: DialogueItem = null
+var lastDialogueItem: bool = false
 var lastChoiceFocused: Button = null
 var choicesDialogueItemIdxs: Array[int] = []
 # the item at index `idx` will be the dialogueItem corresponding to the button
@@ -41,8 +42,8 @@ func _process(delta):
 			ReadySprite.visible = true
 			SceneLoader.audioHandler.stop_sfx(textScrollSfx)
 
-func set_textbox_text(text: String, speaker: String):
-	advance_textbox(text)
+func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
+	advance_textbox(text, lastItem)
 	var newSpeaker: bool = false
 	if speaker == '':
 		newSpeaker = SpeakerText.text != ''
@@ -53,17 +54,19 @@ func set_textbox_text(text: String, speaker: String):
 	delete_choices()
 	visible = true
 	ReadySprite.visible = false
+	lastDialogueItem = lastItem
 	if newSpeaker:
 		SpeakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	
-func advance_textbox(text: String):
+func advance_textbox(text: String, lastItem: bool = true):
 	TextBoxText.text = TextUtils.substitute_playername(text)
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
+	lastDialogueItem = lastItem
 	delete_choices()
 
 func is_textbox_complete() -> bool:
@@ -129,6 +132,7 @@ func refocus_choice(choice: DialogueChoice = null):
 func hide_textbox():
 	visible = false
 	dialogueItem = null
+	lastDialogueItem = false
 	SpeakerText.text = ''
 	TextBoxText.text = ''
 	SpeakerText.visible_characters = 0
@@ -142,7 +146,10 @@ func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
-	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx)
+	var advanceIdx = 0
+	if lastDialogueItem:
+		advanceIdx = 1
+	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx[advanceIdx])
 	add_choices()
 
 func _viewport_focus_changed(control):

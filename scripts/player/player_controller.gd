@@ -66,14 +66,7 @@ func _unhandled_input(event):
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		else:
 			textBox.show_text_instant()
-			
-	if event.is_action_pressed("game_decline") and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
-		speed = RUN_SPEED
-		sprite.speed_scale = 1.5
-	if event.is_action_released("game_decline") and speed != BASE_SPEED:
-		speed = BASE_SPEED
-		sprite.speed_scale = 1.0
-			
+	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
@@ -98,6 +91,13 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 		
 func _physics_process(_delta):
+	if Input.is_action_pressed("game_decline") and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
+		speed = RUN_SPEED
+		sprite.speed_scale = 1.5
+	elif speed != BASE_SPEED:
+		speed = BASE_SPEED
+		sprite.speed_scale = 1.0
+	
 	if not disableMovement:
 		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		if velocity.x < 0:
@@ -138,7 +138,7 @@ func repeat_dialogue_item():
 		return
 	talkNPC.repeat_dialogue_item()
 	var dialogueText = talkNPC.get_cur_dialogue_item()
-	textBox.advance_textbox(dialogueText)
+	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last())
 
 func advance_dialogue(canStart: bool = true):
 	if len(talkNPCcandidates) > 0 and not inCutscene: # if in NPC conversation
@@ -164,13 +164,13 @@ func advance_dialogue(canStart: bool = true):
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
 				#SceneLoader.unpauseExcludedMover = talkNPC
-				textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+				textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 				face_horiz(talkNPC.talkArea.global_position.x - global_position.x)
 				for npc in talkNPCcandidates:
 					if npc != talkNPC:
 						npc.talkAlertSprite.visible = false
 			else: # this is continuing the NPC dialogue
-				textBox.advance_textbox(dialogueText)
+				textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last())
 		elif not inCutscene: # this is the end of NPC dialogue and it didn't start a cutscene
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
@@ -202,10 +202,10 @@ func advance_dialogue(canStart: bool = true):
 					unpause_movement()
 					cam.show_letterbox(false) # disable letterbox
 			else: # otherwise show the new dialogue item
-				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
+				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 				SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 		else: # if it's not done, advance the textbox
-			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex])
+			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 
 func select_choice(choice: DialogueChoice):
 	if choice.opensShop:
@@ -220,14 +220,14 @@ func select_choice(choice: DialogueChoice):
 		makingChoice = false
 		talkNPC.repeat_dialogue_item()
 		var dialogueText = talkNPC.get_cur_dialogue_item()
-		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 		return
 		
 	if choice.leadsTo != null:
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
 		if reused:
 			var dialogueText = talkNPC.get_cur_dialogue_item()
-			textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+			textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 			return
 	
 	makingChoice = false
@@ -260,7 +260,7 @@ func restore_dialogue(npc: NPCScript):
 		talkNPC.talkAlertSprite.visible = true
 		SceneLoader.pause_autonomous_movers()
 		pause_movement()
-		textBox.set_textbox_text(dialogueText, talkNPC.displayName)
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 		textBox.show_text_instant()
 
 func show_all_talk_alert_sprites():
@@ -323,7 +323,7 @@ func put_pick_up_text():
 		if pickedUpItem.savedTextIdx >= len(pickedUpItem.pickUpTexts):
 			hasNextDialogue = false
 		else:
-			textBox.set_textbox_text(pickedUpItem.pickUpTexts[pickedUpItem.savedTextIdx], 'Picked Up ' + pickedUpItem.item.itemName)
+			textBox.set_textbox_text(pickedUpItem.pickUpTexts[pickedUpItem.savedTextIdx], 'Picked Up ' + pickedUpItem.item.itemName, pickedUpItem.savedTextIdx == len(pickedUpItem.pickUpTexts) - 1)
 	
 	if not hasNextDialogue:
 		textBox.hide_textbox()
@@ -337,7 +337,7 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 	if not textBox.visible:
 		cutsceneTextIndex = len(cutsceneTexts) - 1
 		cutsceneLineIndex = 0
-		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker)
+		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 		SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in

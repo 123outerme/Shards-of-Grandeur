@@ -36,7 +36,7 @@ func _process(delta):
 			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
 				for item in lastFrame.dialogues:
-					queue_text(item)
+					queue_text(item, frame)
 				lastFrame.set_text_was_triggered()
 				
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
@@ -71,7 +71,7 @@ func handle_camera(frame: CutsceneFrame):
 func handle_play_sfx(sfx: AudioStream):
 	SceneLoader.audioHandler.play_sfx(sfx)
 
-func queue_text(item: CutsceneDialogue):
+func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 	PlayerFinder.player.queue_cutscene_texts(item)
 
 func handle_fade_out():

@@ -45,37 +45,37 @@ func load_move_pool_panel():
 func show_select_buttons(showing: bool = true, exception: Move = null):
 	var hasFocused = false
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
-		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		moveListItemPanel.movepoolSelect = showing and exception != moveListItemPanel.move and not (moveListItemPanel.move in moves)
-		moveListItemPanel.movepoolCancel = exception == moveListItemPanel.move
-		moveListItemPanel.load_move_list_item_panel()
-		if not hasFocused and moveListItemPanel.selectButton.visible:
-			moveListItemPanel.selectButton.grab_focus()
+		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
+		movePanel.movepoolSelect = showing and exception != movePanel.move and not (movePanel.move in moves)
+		movePanel.movepoolCancel = exception == movePanel.move
+		movePanel.load_move_list_item_panel()
+		if not hasFocused and movePanel.selectButton.visible:
+			movePanel.selectButton.grab_focus()
 			hasFocused = true
 		
 func show_learn_buttons(showing: bool = true):
 	var hasFocused = false
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
-		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		moveListItemPanel.movepoolLearn = showing and not (moveListItemPanel.move in PlayerResources.playerInfo.combatant.stats.movepool.pool)
-		moveListItemPanel.load_move_list_item_panel()
-		if not hasFocused and moveListItemPanel.selectButton.visible:
-			moveListItemPanel.selectButton.grab_focus()
+		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
+		movePanel.movepoolLearn = showing and not (movePanel.move in PlayerResources.playerInfo.combatant.stats.movepool.pool)
+		movePanel.load_move_list_item_panel()
+		if not hasFocused and movePanel.selectButton.visible:
+			movePanel.selectButton.grab_focus()
 			hasFocused = true
 
 func get_move_list_item(move: Move) -> MoveListItemPanel:
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
-		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		if moveListItemPanel.move == move:
-			return moveListItemPanel
+		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
+		if movePanel.move == move:
+			return movePanel
 	return null
 
 func focus_move_details(move: Move) -> bool:
 	var focusGrabbed: bool = false
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
-		var moveListItemPanel: MoveListItemPanel = panel as MoveListItemPanel
-		if moveListItemPanel.move == move:
-			moveListItemPanel.detailsButton.grab_focus()
+		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
+		if movePanel.move == move:
+			movePanel.detailsButton.grab_focus()
 			focusGrabbed = true
 			break
 	return focusGrabbed
