@@ -2,12 +2,14 @@ extends Control
 class_name EquipPanel
 
 signal stats_button_pressed(combatant: Combatant)
+signal show_details_for_item(item: Item)
 signal close_equip_panel
 
 @export var inventorySlot: InventorySlot = null
 
 var lastCombatant: Combatant = null
 var playerPanel: EquipCombatantPanel = null
+var bottomCombatantPanel: EquipCombatantPanel = null
 
 var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/equip_combatant_panel.tscn')
 
@@ -15,6 +17,7 @@ var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/
 @onready var itemSprite: Sprite2D = get_node('Panel/ItemSpriteControl/ItemSprite')
 @onready var itemEffect: RichTextLabel = get_node('Panel/ItemEffect')
 @onready var vboxContainer: VBoxContainer = get_node('Panel/ScrollContainer/VBoxContainer')
+@onready var backButton: Button = get_node('Panel/BackButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +40,8 @@ func load_equip_panel(initial: bool = true):
 	vboxContainer.add_child(playerPanel)
 	if initial:
 		playerPanel.call_deferred('initial_focus')
+	bottomCombatantPanel = playerPanel
+	playerPanel.call_deferred('connect_to_equip_button', backButton, false)
 	
 	for minion in PlayerResources.minions.get_minion_list():
 		var panel: EquipCombatantPanel = equipCombatantPanelScene.instantiate()
@@ -44,15 +49,20 @@ func load_equip_panel(initial: bool = true):
 		panel.item = inventorySlot.item
 		panel.parentPanel = self
 		vboxContainer.add_child(panel)
+		bottomCombatantPanel = panel
+	
+	bottomCombatantPanel.call_deferred('connect_to_equip_button', backButton, true)
 
-func restore_focus(statsButton: bool = false):
+func restore_focus(button: String = ''):
 	if lastCombatant == null:
 		playerPanel.call_deferred('initial_focus')
 	else:
 		for panel: EquipCombatantPanel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
 			if panel.combatant == lastCombatant:
-				if statsButton:
+				if button == 'stats':
 					panel.call_deferred('focus_stats_button')
+				elif button == 'details':
+					panel.call_deferred('focus_details_button')
 				else:
 					panel.call_deferred('initial_focus')
 				break
@@ -78,6 +88,10 @@ func unequip_pressed(combatant: Combatant):
 	lastCombatant = combatant
 	load_equip_panel(false)
 	call_deferred('restore_focus')
+
+func show_item_details(combatant: Combatant, item: Item):
+	show_details_for_item.emit(item)
+	lastCombatant = combatant
 
 func _on_back_button_pressed():
 	close_equip_panel.emit()

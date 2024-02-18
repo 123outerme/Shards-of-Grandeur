@@ -45,6 +45,7 @@ var lastFocused: Control = null
 var lastSlotInteracted: InventorySlot = null
 var confirmingAction: String = ''
 var viewingEquipStats: bool = false
+var viewingEquipItemDetails: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,6 +71,8 @@ func toggle():
 			lockFilters = false
 			selectedFilter = Item.Type.ALL
 		equipContextStats = null
+		viewingEquipStats = false
+		viewingEquipItemDetails = false
 		backButton.disabled = false
 		back_pressed.emit()
 
@@ -284,7 +287,11 @@ func _on_back_button_pressed():
 	
 func _on_details_back_button_pressed():
 	backButton.disabled = false
-	restore_last_focus('detailsButton')
+	if viewingEquipItemDetails:
+		equipPanel.restore_focus('details')
+	else:
+		restore_last_focus('detailsButton')
+	viewingEquipItemDetails = false
 
 func _on_healing_button_toggled(button_pressed):
 	if lockFilters: # ignore toggle if filters are supposed to be locked
@@ -402,5 +409,12 @@ func _on_equip_panel_stats_button_pressed(combatant: Combatant):
 func _on_stats_panel_node_back_pressed():
 	if viewingEquipStats:
 		visible = true
-		equipPanel.restore_focus(true)
+		equipPanel.restore_focus('stats')
 	viewingEquipStats = false
+
+func _on_equip_panel_show_details_for_item(item: Item):
+	itemDetailsPanel.item = item
+	itemDetailsPanel.count = 0
+	itemDetailsPanel.load_item_details()
+	itemDetailsPanel.visible = true
+	viewingEquipItemDetails = true

@@ -177,6 +177,9 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="EquipPanel" parent="." instance=ExtResource("12_eeu1a")]
+visible = false
+
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("6_ay1wk")]
 visible = false
 
@@ -184,9 +187,6 @@ visible = false
 visible = false
 
 [node name="ShardLearnPanel" parent="." instance=ExtResource("8_suef4")]
-visible = false
-
-[node name="EquipPanel" parent="." instance=ExtResource("12_eeu1a")]
 visible = false
 
 [node name="ItemConfirmPanel" parent="." instance=ExtResource("11_c0y15")]
@@ -204,13 +204,14 @@ offset_bottom = 680.0
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ArmorButton" to="." method="_on_armor_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/KeyItemsButton" to="." method="_on_key_items_button_toggled"]
 [connection signal="pressed" from="InventoryPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="close_equip_panel" from="EquipPanel" to="." method="_on_equip_panel_close_equip_panel"]
+[connection signal="show_details_for_item" from="EquipPanel" to="." method="_on_equip_panel_show_details_for_item"]
+[connection signal="stats_button_pressed" from="EquipPanel" to="." method="_on_equip_panel_stats_button_pressed"]
 [connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_details_back_button_pressed"]
 [connection signal="pressed" from="ItemDetailsPanel/Panel/BackButton" to="." method="_on_details_back_button_pressed"]
 [connection signal="ok_pressed" from="ItemUsePanel" to="." method="_on_item_use_panel_ok_pressed"]
 [connection signal="back_pressed" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_back_pressed"]
 [connection signal="learned_move" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_learned_move"]
-[connection signal="close_equip_panel" from="EquipPanel" to="." method="_on_equip_panel_close_equip_panel"]
-[connection signal="stats_button_pressed" from="EquipPanel" to="." method="_on_equip_panel_stats_button_pressed"]
 [connection signal="confirm_option" from="ItemConfirmPanel" to="." method="_on_item_confirm_panel_confirm_option"]
 
 [editable path="ItemDetailsPanel"]
