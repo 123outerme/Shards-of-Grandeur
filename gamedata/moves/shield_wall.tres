@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Move" load_steps=6 format=3 uid="uid://bi44lny7wl8lx"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_lt6d3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_ueqmb"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/interception.gd" id="3_gwlgn"]
+
+[sub_resource type="Resource" id="Resource_2le4c"]
+script = ExtResource("2_ueqmb")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.5
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_6f5kc"]
+script = ExtResource("3_gwlgn")
+type = 9
+potency = 2
+turnsLeft = 4
+
+[resource]
+script = ExtResource("1_lt6d3")
+moveName = "Shield-Wall"
+requiredLv = 5
+role = 3
+power = 0
+category = 2
+targets = 1
+statChanges = SubResource("Resource_2le4c")
+statusEffect = SubResource("Resource_6f5kc")
+statusChance = 1.0
+description = "The user assumes a protective stance, boosting its defenses, and guards its allies fiercely."
+moveLearnedText = ""
