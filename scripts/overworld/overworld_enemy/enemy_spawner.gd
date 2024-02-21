@@ -32,10 +32,12 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
+		var lvDiffScaled: float = (PlayerResources.playerInfo.combatant.stats.level - combatantMinLevel) * combatantLvToPlayerLvRatio
+		lvDiffScaled = floori(lvDiffScaled + randf_range(0, 0.99))
+		# scaled level difference = floor( (playerlv - min) * ratio + X ), where X in [0, 1)
 		var level: int = min(combatantMaxLevel, \
-				max(combatantMinLevel, \
-				combatantMinLevel + floori((PlayerResources.playerInfo.combatant.stats.level - combatantMinLevel) * combatantLvToPlayerLvRatio))) 
-		# level = min + floor((playerlv - min) * ratio), bounded between min and max lv
+				max(combatantMinLevel, combatantMinLevel + lvDiffScaled))
+		# level = min + scaled lvdiff, bounded between min and max lv
 		
 		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, level, staticEncounter)
 		enemy.homePoint = position
