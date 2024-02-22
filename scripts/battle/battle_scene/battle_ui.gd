@@ -252,9 +252,11 @@ func _on_quests_panel_node_back_pressed():
 	restore_focus()
 
 func _on_focus_changed(control: Control):
-	if control == battlePanels.flowOfBattle.fobButton:
+	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton:
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
-	if not statsPanel.visible and not inventoryPanel.visible and not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and not battlePanels.summonMinionPanel.visible and not fobFocusMode:
+	if not statsPanel.visible and not inventoryPanel.visible and \
+		not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and \
+		not battlePanels.summonMinionPanel.visible and not fobFocusMode:
 		previousFocus = control
 
 func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):
