@@ -62,6 +62,7 @@ func _ready():
 	returnToPos = global_position
 	if battleController != null:
 		battleController.combatant_finished_moving.connect(_combatant_finished_moving)
+		battleController.combatant_finished_animating.connect(_combatant_finished_animating)
 
 func load_combatant_node():
 	if not is_alive():
@@ -431,20 +432,23 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
+	battleController.combatant_finished_animating.emit()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
 		battleController.combatant_finished_moving.emit()
 
 func _combatant_finished_moving():
-	if playHitQueued:
-		hitParticles.set_make_particles(true)
-		SceneLoader.audioHandler.play_sfx(hitSfx)
 	if playPhysQueued:
 		physParticles.set_make_particles(true)
 		SceneLoader.audioHandler.play_sfx(physAtkSfx)
-	playHitQueued = false
 	playPhysQueued = false
+
+func _combatant_finished_animating():
+	if playHitQueued:
+		hitParticles.set_make_particles(true)
+		SceneLoader.audioHandler.play_sfx(hitSfx)
+	playHitQueued = false
 
 func _on_animate_tween_finished():
 	animateTween = null

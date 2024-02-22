@@ -2,6 +2,7 @@ extends Node2D
 class_name BattleController
 
 signal combatant_finished_moving
+signal combatant_finished_animating
 
  # below this level, 2 enemies cannot spawn from a random battle
 const MIN_LV_TWO_ENEMIES = 4
