@@ -17,7 +17,7 @@ func _ready():
 		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
 
 func load_all_commands():
-	backToPlayerCmdBtn.visible = commandingMinion
+	backToPlayerCmdBtn.visible = commandingMinion and battleUI.battleController.playerCombatant.is_alive()
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'
 	initial_focus()
 	
