@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="Move" load_steps=4 format=3 uid="uid://dtco7uib2bx3l"]
+[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://dtco7uib2bx3l"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_eva6j"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="2_u5uq1"]
+[ext_resource type="Resource" uid="uid://b6hqqqnt30i4h" path="res://gamedata/moves/impale/anim_impale.tres" id="1_lpsn5"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_awkq1"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="3_qbh16"]
 
 [sub_resource type="Resource" id="Resource_fpap4"]
-script = ExtResource("2_u5uq1")
+script = ExtResource("3_qbh16")
 type = 2
 potency = 3
 turnsLeft = 4
 
 [resource]
-script = ExtResource("1_eva6j")
+script = ExtResource("2_awkq1")
 moveName = "Impale"
 requiredLv = 3
 role = 1
@@ -21,3 +22,4 @@ statusEffect = SubResource("Resource_fpap4")
 statusChance = 1.0
 description = "The user runs an opponent straight through with a long, sharp weapon. An artery is certain to be hit with this technique, causing quite the bad day for the recipient."
 moveLearnedText = "With the technique of Impale, any enemy you come across will need to fear constant Bleed damage. Their health will slowly drain, even when you aren't attacking them."
+moveAnimation = ExtResource("1_lpsn5")

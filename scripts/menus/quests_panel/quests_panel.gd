@@ -90,41 +90,44 @@ func load_quests_panel(fromToggle: bool = false):
 	failedButton.focus_neighbor_bottom = failedButton.get_path_to(backButton)
 	
 	backButton.focus_neighbor_top = backButton.get_path_to(notCompletedButton)
+	if fromToggle:
+		for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
+			panel.queue_free()
 	
-	for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
-		panel.queue_free()
-	
-	var firstPanel = true
-	var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
-	for questTracker in PlayerResources.questInventory.get_sorted_trackers():
-		var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
-		if selectedFilter == QuestTracker.Status.ALL or selectedFilter == trackerStatus \
-				or (selectedFilter == QuestTracker.Status.INCOMPLETE and trackerStatus != QuestTracker.Status.COMPLETED and trackerStatus != QuestTracker.Status.FAILED):
-			var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
-			instantiatedPanel.questTracker = questTracker
-			instantiatedPanel.turnInName = turnInTargetName
-			instantiatedPanel.questsMenu = self
-			vboxViewport.add_child(instantiatedPanel)
-			if firstPanel:
-				inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(instantiatedPanel.detailsButton)
-				readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(instantiatedPanel.detailsButton)
-				completedButton.focus_neighbor_bottom = completedButton.get_path_to(instantiatedPanel.detailsButton)
-				notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(instantiatedPanel.detailsButton)
-				failedButton.focus_neighbor_bottom = failedButton.get_path_to(instantiatedPanel.detailsButton)
-				firstPanel = false
-			if turnInTargetName in questTracker.get_current_step().turnInNames and fromToggle:
-				instantiatedPanel.turnInButton.call_deferred('grab_focus')
-			backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
-		if trackerStatus == QuestTracker.Status.IN_PROGRESS:
-			inProgressButton.disabled = lockFilters
-		if trackerStatus == QuestTracker.Status.READY_TO_TURN_IN_STEP:
-			readyToTurnInButton.disabled = lockFilters
-		if trackerStatus == QuestTracker.Status.COMPLETED:
-			completedButton.disabled = lockFilters
-		else: # if not completed
-			notCompletedButton.disabled = lockFilters
-		if trackerStatus == QuestTracker.Status.FAILED:
-			failedButton.disabled = lockFilters
+		var firstPanel = true
+		var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
+		for questTracker in PlayerResources.questInventory.get_sorted_trackers():
+			var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
+			if selectedFilter == QuestTracker.Status.ALL or selectedFilter == trackerStatus \
+					or (selectedFilter == QuestTracker.Status.INCOMPLETE and trackerStatus != QuestTracker.Status.COMPLETED and trackerStatus != QuestTracker.Status.FAILED):
+				var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
+				instantiatedPanel.questTracker = questTracker
+				instantiatedPanel.turnInName = turnInTargetName
+				instantiatedPanel.questsMenu = self
+				vboxViewport.add_child(instantiatedPanel)
+				if firstPanel:
+					inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(instantiatedPanel.detailsButton)
+					readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(instantiatedPanel.detailsButton)
+					completedButton.focus_neighbor_bottom = completedButton.get_path_to(instantiatedPanel.detailsButton)
+					notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(instantiatedPanel.detailsButton)
+					failedButton.focus_neighbor_bottom = failedButton.get_path_to(instantiatedPanel.detailsButton)
+					firstPanel = false
+				if turnInTargetName in questTracker.get_current_step().turnInNames and fromToggle:
+					instantiatedPanel.turnInButton.call_deferred('grab_focus')
+				backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
+			if trackerStatus == QuestTracker.Status.IN_PROGRESS:
+				inProgressButton.disabled = lockFilters
+			if trackerStatus == QuestTracker.Status.READY_TO_TURN_IN_STEP:
+				readyToTurnInButton.disabled = lockFilters
+			if trackerStatus == QuestTracker.Status.COMPLETED:
+				completedButton.disabled = lockFilters
+			else: # if not completed
+				notCompletedButton.disabled = lockFilters
+			if trackerStatus == QuestTracker.Status.FAILED:
+				failedButton.disabled = lockFilters
+	else:
+		for panel: QuestSlotPanel in get_tree().get_nodes_in_group("QuestSlotPanel"):
+			panel.load_quest_slot_panel()
 		
 	if turnInTargetName != '':
 		questsTitle.text = '[center]Turn In Quests[/center]'
@@ -165,7 +168,6 @@ func show_details(questTracker: QuestTracker):
 	backButton.disabled = true
 	questDetailsPanel.questTracker = questTracker
 	questDetailsPanel.visible = true
-	questDetailsPanel.selectedStep = null
 	questDetailsPanel.load_quest_details()
 
 func _on_in_progress_button_toggled(button_pressed):

@@ -32,7 +32,7 @@ enum Category {
 
 @export_category("Stats - Moves")
 @export var moves: Array[Move] = []
-@export var movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice.tres") as Move])
+@export var movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move])
 
 func _init(
 	i_displayName = 'Entity',
@@ -49,8 +49,8 @@ func _init(
 	i_statGrowth = StatGrowth.new(),
 	i_weapon = null,
 	i_armor = null,
-	i_moves: Array[Move] = [load("res://gamedata/moves/slice.tres") as Move],
-	i_movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice.tres") as Move]),
+	i_moves: Array[Move] = [load("res://gamedata/moves/slice/slice.tres") as Move],
+	i_movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move]),
 ):
 	displayName = i_displayName
 	saveName = i_saveName

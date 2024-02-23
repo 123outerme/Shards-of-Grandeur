@@ -27,6 +27,7 @@ enum Role {
 @export var statusChance: float = 0.0
 @export_multiline var description: String = ''
 @export_multiline var moveLearnedText: String = ''
+@export var moveAnimation: MoveAnimation = null
 
 static func dmg_category_to_string(c: DmgCategory) -> String:
 	match c:

@@ -26,32 +26,35 @@ func _ready():
 func load_equip_panel(initial: bool = true):
 	visible = true
 	
+	if initial:
+		for panel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
+			panel.combatant = null
+			panel.queue_free()
+		
+		playerPanel = equipCombatantPanelScene.instantiate()
+		playerPanel.combatant = PlayerResources.playerInfo.combatant
+		playerPanel.item = inventorySlot.item
+		playerPanel.parentPanel = self
+		vboxContainer.add_child(playerPanel)
+		playerPanel.call_deferred('initial_focus')
+		bottomCombatantPanel = playerPanel
+		playerPanel.call_deferred('connect_to_equip_button', backButton, false)
+	
+		for minion in PlayerResources.minions.get_minion_list():
+			var panel: EquipCombatantPanel = equipCombatantPanelScene.instantiate()
+			panel.combatant = minion
+			panel.item = inventorySlot.item
+			panel.parentPanel = self
+			vboxContainer.add_child(panel)
+			bottomCombatantPanel = panel
+		
+		bottomCombatantPanel.call_deferred('connect_to_equip_button', backButton, true)
+	else:
+		for panel: EquipCombatantPanel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
+			panel.load_equip_combatant_panel()
+	
 	equipTitle.text = '[center]Equip - ' + inventorySlot.item.itemName + '[/center]'
 	itemSprite.texture = inventorySlot.item.itemSprite
-	itemEffect.text = '[center]' + inventorySlot.item.get_effect_text() + '[/center]'
-	for panel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
-		panel.combatant = null
-		panel.queue_free()
-	
-	playerPanel = equipCombatantPanelScene.instantiate()
-	playerPanel.combatant = PlayerResources.playerInfo.combatant
-	playerPanel.item = inventorySlot.item
-	playerPanel.parentPanel = self
-	vboxContainer.add_child(playerPanel)
-	if initial:
-		playerPanel.call_deferred('initial_focus')
-	bottomCombatantPanel = playerPanel
-	playerPanel.call_deferred('connect_to_equip_button', backButton, false)
-	
-	for minion in PlayerResources.minions.get_minion_list():
-		var panel: EquipCombatantPanel = equipCombatantPanelScene.instantiate()
-		panel.combatant = minion
-		panel.item = inventorySlot.item
-		panel.parentPanel = self
-		vboxContainer.add_child(panel)
-		bottomCombatantPanel = panel
-	
-	bottomCombatantPanel.call_deferred('connect_to_equip_button', backButton, true)
 
 func restore_focus(button: String = ''):
 	if lastCombatant == null:

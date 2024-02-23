@@ -21,26 +21,32 @@ var firstMovePanel: MoveListItemPanel = null
 func _ready():
 	pass # Replace with function body.
 
-func load_move_pool_panel():
-	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
-		panel.queue_free()
+func load_move_pool_panel(rebuild: bool = true):
+	if rebuild:
+		for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
+			panel.queue_free()
 	
-	firstMovePanel = null
+		firstMovePanel = null
 	
-	for move in movepool:
-		if move.requiredLv <= level and \
-				not (hideMovesInMoveList and (move in moves)):
-			var instantiatedPanel: MoveListItemPanel = moveListItemPanel.instantiate()
-			instantiatedPanel.move = move
-			instantiatedPanel.details_pressed.connect(_on_details_button_clicked)
-			instantiatedPanel.select_pressed.connect(_on_select_button_clicked)
-			instantiatedPanel.learn_pressed.connect(_on_learn_button_clicked)
-			instantiatedPanel.cancel_pressed.connect(_on_cancel_button_clicked)
-			instantiatedPanel.add_to_group('MovePoolPanelMove')
-			vboxContainer.add_child(instantiatedPanel)
-			instantiatedPanel.call_deferred('load_move_list_item_panel')
-			if firstMovePanel == null:
-				firstMovePanel = instantiatedPanel
+		for move in movepool:
+			if move.requiredLv <= level and \
+					not (hideMovesInMoveList and (move in moves)):
+				var instantiatedPanel: MoveListItemPanel = moveListItemPanel.instantiate()
+				instantiatedPanel.move = move
+				instantiatedPanel.details_pressed.connect(_on_details_button_clicked)
+				instantiatedPanel.select_pressed.connect(_on_select_button_clicked)
+				instantiatedPanel.learn_pressed.connect(_on_learn_button_clicked)
+				instantiatedPanel.cancel_pressed.connect(_on_cancel_button_clicked)
+				instantiatedPanel.add_to_group('MovePoolPanelMove')
+				vboxContainer.add_child(instantiatedPanel)
+				instantiatedPanel.call_deferred('load_move_list_item_panel')
+				if firstMovePanel == null:
+					firstMovePanel = instantiatedPanel
+	else:
+		var panels: Array[MoveListItemPanel] = get_tree().get_nodes_in_group('MovePoolPanelMove') as Array[MoveListItemPanel]
+		for idx in range(len(panels)):
+			panels[idx].move = movepool[idx]
+			panels[idx].load_move_list_item_panel()
 
 func show_select_buttons(showing: bool = true, exception: Move = null):
 	var hasFocused = false

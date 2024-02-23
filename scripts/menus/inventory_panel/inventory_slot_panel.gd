@@ -43,7 +43,7 @@ func load_inventory_slot_panel():
 	if inventorySlot.count > 0:
 		itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
 		if inventorySlot.item.maxCount > 1:
-			itemCount.append_text(' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount))
+			itemCount.text += ' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount)
 	else:
 		itemCount.text = ''
 	
