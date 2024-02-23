@@ -2,11 +2,14 @@ extends Resource
 class_name MoveAnimation
 
 @export var combatantAnimation: String = ''
-@export var particlePreset: ParticlePreset = null
+@export var userParticlePreset: ParticlePreset = null
+@export var targetsParticlePreset: ParticlePreset = null
 
 func _init(
 	i_combatantAnimation = '',
-	i_particlePreset = null,
+	i_userParticles = null,
+	i_targetsParticles = null,
 ):
 	combatantAnimation = i_combatantAnimation
-	particlePreset = i_particlePreset
+	userParticlePreset = i_userParticles
+	targetsParticlePreset = i_targetsParticles

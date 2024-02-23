@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://2uiiepy32532"]
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://2uiiepy32532"]
 
 [ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity_1.png" id="1_6slb3"]
 [ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity_2.png" id="2_cgn83"]
@@ -6,13 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity_4.png" id="4_ypf2n"]
 [ext_resource type="Material" uid="uid://cmtfovwmira1g" path="res://graphics/particles/affinity_particle_process_mat.tres" id="5_884dd"]
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_ul27m"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/heal.ogg" id="7_weiah"]
 
 [resource]
 script = ExtResource("6_ul27m")
-type = ""
+emitter = "behind"
 count = 4
+inFrontOfCombatant = false
+lifetime = 0.5
+duration = 1.25
 processMaterial = ExtResource("5_884dd")
-particleTexture1 = ExtResource("1_6slb3")
-particleTexture2 = ExtResource("2_cgn83")
-particleTexture3 = ExtResource("3_b7i17")
-particleTexture4 = ExtResource("4_ypf2n")
+particleTextures = Array[Texture2D]([ExtResource("1_6slb3"), ExtResource("2_cgn83"), ExtResource("3_b7i17"), ExtResource("4_ypf2n")])
+sfx = ExtResource("7_weiah")

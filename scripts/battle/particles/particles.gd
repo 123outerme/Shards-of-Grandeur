@@ -2,6 +2,14 @@
 extends Node2D
 class_name Particles
 
+@export var preset: ParticlePreset:
+	get:
+		return _preset
+	set(value):
+		_preset = value
+		load_preset()
+var _preset: ParticlePreset = null
+
 @export var lifetime: float = 0.5
 
 @export var particles: int:
@@ -44,6 +52,21 @@ func _init():
 func _process(delta):
 	if waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
 		set_make_particles(false)
+
+func load_preset():
+	lifetime = preset.lifetime
+	set_num_particles(preset.count)
+	duration = preset.duration
+	var textureIdx: int = 0
+	for child in get_children():
+		if child is GPUParticles2D:
+			var particleSpawner: GPUParticles2D = child as GPUParticles2D
+			var particleTexture = null
+			if textureIdx < len(preset.particleTextures):
+				particleTexture = preset.particleTextures[textureIdx]
+			particleSpawner.texture = particleTexture
+			particleSpawner.process_material = preset.processMaterial
+			textureIdx += 1
 
 func set_make_particles(show: bool):
 	_makeParticles = show

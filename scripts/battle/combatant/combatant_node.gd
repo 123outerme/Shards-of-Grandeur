@@ -17,13 +17,6 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var spriteFacesRight: bool = false
 @export var battlePosition: String = ''
 
-@export_category("CombatantNode - SFX")
-@export var hitSfx: AudioStream = null
-@export var physAtkSfx: AudioStream = null
-@export var magicAtkSfx: AudioStream = null
-@export var affinitySfx: AudioStream = null
-@export var shardSfx: AudioStream = null
-
 @export_category("CombatantNode - Movement")
 @export var allyTeamMarker: Marker2D
 @export var enemyTeamMarker: Marker2D
@@ -36,8 +29,8 @@ var selectBtnNotSelectedSprite: Texture2D = null
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
 var returnToPos: Vector2 = Vector2()
-var playHitQueued: bool = false
-var playPhysQueued: bool = false
+var playHitQueued: ParticlePreset = null
+var playParticlesQueued: ParticlePreset = null
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -47,12 +40,11 @@ var playPhysQueued: bool = false
 @onready var clickCombatantBtn: TextureButton = get_node('ClickCombatantBtn')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
 @onready var behindParticleContainer: Node2D = get_node('BehindParticleContainer')
-@onready var affinityParticles: Particles = get_node('BehindParticleContainer/AffinityParticles')
-@onready var magicParticles: Particles = get_node('BehindParticleContainer/MagicParticles')
+@onready var behindParticles: Particles = get_node('BehindParticleContainer/BehindParticleEmitter')
 @onready var frontParticleContainer: Node2D = get_node('FrontParticleContainer')
-@onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticles')
-@onready var physParticles: Particles = get_node('FrontParticleContainer/PhysicalParticles')
-@onready var shardParticles: Particles = get_node('FrontParticleContainer/ShardParticles')
+@onready var frontParticles: Particles = get_node('FrontParticleContainer/FrontParticleEmitter')
+@onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticleEmitter')
+@onready var shardParticles: Particles = get_node('FrontParticleContainer/ShardParticleEmitter')
 @onready var onAttackMarker: Marker2D = get_node('OnAttackPos')
 @onready var onAssistMarker: Marker2D = get_node('OnAssistPos')
 
@@ -89,10 +81,9 @@ func load_combatant_node():
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
 		frontParticleContainer.scale.x = 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
 		frontParticleContainer.scale.y = frontParticleContainer.scale.x
-		affinityParticles.set_make_particles(false)
-		magicParticles.set_make_particles(false)
+		behindParticles.set_make_particles(false)
+		frontParticles.set_make_particles(false)
 		hitParticles.set_make_particles(false)
-		physParticles.set_make_particles(false)
 		shardParticles.set_make_particles(false)
 		
 		# nudge the attack marker away from sprite by any amount over 16 wide
@@ -241,29 +232,35 @@ func tween_to(pos: Vector2, callback: Callable):
 	animateTween.finished.connect(_on_animate_tween_finished)
 	animateTween.finished.connect(callback)
 
-func play_particles(preset: ParticlePreset):
-	if preset.count == 0:
+func play_particles(preset: ParticlePreset, delay: bool = false):
+	if preset == null or preset.count == 0:
 		return
-	
-	match preset.type:
-		'affinity':
-			affinityParticles.set_num_particles(preset.count)
-			affinityParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(affinitySfx)
-		'magic':
-			magicParticles.set_num_particles(preset.count)
-			magicParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(magicAtkSfx)
-		'phys':
-			physParticles.set_num_particles(preset.count)
-			playPhysQueued = true
+		
+	if preset.emitter == 'hit':
+		playHitQueued = preset
+		return
+		
+	if delay:
+		playParticlesQueued = preset
+	else:
+		make_particles_now(preset)
+
+func make_particles_now(preset: ParticlePreset):
+	print('"', preset.emitter, '"')
+	match preset.emitter:
+		'behind':
+			behindParticles.preset = preset
+			behindParticles.set_make_particles(true)
+		'front':
+			frontParticles.preset = preset
+			frontParticles.set_make_particles(true)
 		'hit':
-			hitParticles.set_num_particles(preset.count)
-			playHitQueued = true
+			hitParticles.preset = preset
+			hitParticles.set_make_particles(true)
 		'shard':
-			shardParticles.set_num_particles(preset.count)
+			shardParticles.preset = preset
 			shardParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(shardSfx)
+	SceneLoader.audioHandler.play_sfx(preset.sfx)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
@@ -439,16 +436,14 @@ func _on_animate_tween_target_move_finished():
 		battleController.combatant_finished_moving.emit()
 
 func _combatant_finished_moving():
-	if playPhysQueued:
-		physParticles.set_make_particles(true)
-		SceneLoader.audioHandler.play_sfx(physAtkSfx)
-	playPhysQueued = false
+	if playParticlesQueued != null:
+		make_particles_now(playParticlesQueued)
+	playParticlesQueued = null
 
 func _combatant_finished_animating():
-	if playHitQueued:
-		hitParticles.set_make_particles(true)
-		SceneLoader.audioHandler.play_sfx(hitSfx)
-	playHitQueued = false
+	if playHitQueued != null:
+		make_particles_now(playHitQueued)
+	playHitQueued = null
 
 func _on_animate_tween_finished():
 	animateTween = null

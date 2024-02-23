@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://co18yyej8h1gm"]
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://co18yyej8h1gm"]
 
 [ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys_1.png" id="1_8so8i"]
 [ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys_2.png" id="2_rja8v"]
@@ -6,13 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys_4.png" id="4_5ympb"]
 [ext_resource type="Material" uid="uid://dwmq4u4v6gdo" path="res://graphics/particles/phys_particle_process_mat.tres" id="5_shr3m"]
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_kvyx1"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/swing.ogg" id="7_uhd8w"]
 
 [resource]
 script = ExtResource("6_kvyx1")
-type = ""
+emitter = "front"
 count = 4
+inFrontOfCombatant = false
+lifetime = 0.5
+duration = 0.5
 processMaterial = ExtResource("5_shr3m")
-particleTexture1 = ExtResource("1_8so8i")
-particleTexture2 = ExtResource("2_rja8v")
-particleTexture3 = ExtResource("3_b7jse")
-particleTexture4 = ExtResource("4_5ympb")
+particleTextures = Array[Texture2D]([ExtResource("1_8so8i"), ExtResource("2_rja8v"), ExtResource("3_b7jse"), ExtResource("4_5ympb")])
+sfx = ExtResource("7_uhd8w")

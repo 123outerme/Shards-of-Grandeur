@@ -41,6 +41,8 @@ enum ApplyTiming {
 var targets: Array[Combatant] = []
 var interceptingTargets: Array[Combatant] = []
 
+static var hitParticles: ParticlePreset = preload("res://gamedata/moves/particles_hit.tres")
+
 static func targets_to_string(t: Targets) -> String:
 	match t:
 		Targets.NONE:
@@ -434,48 +436,32 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Arr
 	if commandResult == null:
 		return []
 	if combatantNode.combatant == userNode.combatant:
-		var preset: ParticlePreset = ParticlePreset.new()
-		presets.append(preset)
 		# particles applied to the user
 		match type:
 			Type.MOVE:
-				preset.count = 4
-				match move.category:
-					Move.DmgCategory.PHYSICAL:
-						preset.type = ''
-					Move.DmgCategory.MAGIC:
-						preset.type = 'magic'
-					Move.DmgCategory.AFFINITY:
-						preset.type = 'affinity'
+				presets.append(move.moveAnimation.userParticlePreset)
 			Type.USE_ITEM:
 				return []
 			Type.ESCAPE:
 				return []
 		return presets
 	elif combatantNode.combatant in targets or combatantNode.combatant in interceptingTargets:
-		var preset: ParticlePreset = ParticlePreset.new()
-		presets.append(preset)
 		# particles applied to the target(s)
 		match type:
 			Type.MOVE:
-				if combatantNode.role == userNode.role:
-					if move.power < 0:
-						preset.type = 'affinity'
-						preset.count = 4
-				else:
-					var dmgTaken: float = 0
-					var idx = targets.find(combatantNode.combatant)
-					if idx >= 0 and commandResult.damagesDealt[idx] > 0:
-						dmgTaken += commandResult.damagesDealt[idx]
-					var interceptIdx = interceptingTargets.find(combatantNode.combatant)
-					if interceptIdx >= 0 and commandResult.damageOnInterceptingTargets[interceptIdx] > 0:
-						dmgTaken += commandResult.damageOnInterceptingTargets[interceptIdx]
-					if dmgTaken > 0:
-						if move.category == Move.DmgCategory.PHYSICAL:
-							presets.append(ParticlePreset.new('phys', 4))
-						preset.type = 'hit'
-						# between 2 and 6 particles per emitter, based on the ratio of damage taken / max HP
-						preset.count = max(2, min(6, 6 * (dmgTaken / combatantNode.combatant.stats.maxHp)))
+				presets.append(move.moveAnimation.targetsParticlePreset)
+				var dmgTaken: float = 0
+				var idx = targets.find(combatantNode.combatant)
+				if idx >= 0 and commandResult.damagesDealt[idx] > 0:
+					dmgTaken += commandResult.damagesDealt[idx]
+				var interceptIdx = interceptingTargets.find(combatantNode.combatant)
+				if interceptIdx >= 0 and commandResult.damageOnInterceptingTargets[interceptIdx] > 0:
+					dmgTaken += commandResult.damageOnInterceptingTargets[interceptIdx]
+				if dmgTaken > 0:
+					var hitParticlesCopy = hitParticles.duplicate()
+					hitParticlesCopy.count = max(2, min(6, 6 * (dmgTaken / combatantNode.combatant.stats.maxHp)))
+					presets.append(hitParticlesCopy)
+				
 				return presets
 			Type.USE_ITEM:
 				return []

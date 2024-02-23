@@ -1,34 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=14 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
-[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="2_f3xi8"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="2_uia2j"]
-[ext_resource type="AudioStream" uid="uid://dv35gbcgkeg82" path="res://audio/sfx/playerHurt.ogg" id="2_ututy"]
-[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/swing.ogg" id="3_bw1jc"]
 [ext_resource type="Texture2D" uid="uid://u5ng7o44k1ln" path="res://graphics/ui/ui_target_selected.png" id="3_ng771"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
-[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/heal.ogg" id="5_kh3ib"]
-[ext_resource type="AudioStream" uid="uid://cofxdnt7itu0p" path="res://audio/sfx/coin.ogg" id="6_8ih5w"]
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="6_k1o8q"]
-[ext_resource type="PackedScene" uid="uid://b3xq77cm4h5gt" path="res://prefabs/battle/particles/affinity_particles.tscn" id="6_pg4bf"]
-[ext_resource type="PackedScene" uid="uid://c882n422f7n0a" path="res://prefabs/battle/particles/hit_particles.tscn" id="7_n43el"]
-[ext_resource type="PackedScene" uid="uid://d0377ttxh0bfb" path="res://prefabs/battle/particles/magic_particles.tscn" id="8_et1gm"]
-[ext_resource type="PackedScene" uid="uid://b3ox3vfrgl5ke" path="res://prefabs/battle/particles/phys_particles.tscn" id="9_4g5wr"]
-[ext_resource type="PackedScene" uid="uid://wr7dluui5pkd" path="res://prefabs/battle/particles/shard_particles.tscn" id="11_aplfb"]
+[ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
 [ext_resource type="Texture2D" uid="uid://dory1vdxd41t" path="res://graphics/ui/health_bar_bg.png" id="13_ff1jw"]
+[ext_resource type="Resource" uid="uid://c6c4ckakjjq0h" path="res://gamedata/moves/particles_hit.tres" id="14_nv53v"]
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
+[ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_klmqu"]
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
-hitSfx = ExtResource("2_ututy")
-physAtkSfx = ExtResource("3_bw1jc")
-magicAtkSfx = ExtResource("2_f3xi8")
-affinitySfx = ExtResource("5_kh3ib")
-shardSfx = ExtResource("6_8ih5w")
 
 [node name="ClickCombatantBtn" parent="." instance=ExtResource("6_k1o8q")]
 visible = false
@@ -60,23 +48,30 @@ stretch_mode = 5
 [node name="BehindParticleContainer" type="Node2D" parent="."]
 scale = Vector2(1.5, 1.5)
 
-[node name="AffinityParticles" parent="BehindParticleContainer" instance=ExtResource("6_pg4bf")]
-
-[node name="MagicParticles" parent="BehindParticleContainer" instance=ExtResource("8_et1gm")]
+[node name="BehindParticleEmitter" parent="BehindParticleContainer" instance=ExtResource("11_231h2")]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_klmqu")
 
 [node name="FrontParticleContainer" type="Node2D" parent="."]
 
-[node name="HitParticles" parent="FrontParticleContainer" instance=ExtResource("7_n43el")]
+[node name="FrontParticleEmitter" parent="FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
 
-[node name="PhysicalParticles" parent="FrontParticleContainer" instance=ExtResource("9_4g5wr")]
+[node name="HitParticleEmitter" parent="FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
+preset = ExtResource("14_nv53v")
+particles = 3
+waves = 1.0
+duration = 0.5
 
-[node name="ShardParticles" parent="FrontParticleContainer" instance=ExtResource("11_aplfb")]
+[node name="ShardParticleEmitter" parent="FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
+preset = ExtResource("15_gu381")
+lifetime = 0.75
+particles = 6
+waves = 0.9
+duration = 0.675
 
 [node name="HPTag" type="Panel" parent="."]
 custom_minimum_size = Vector2(63, 0)
