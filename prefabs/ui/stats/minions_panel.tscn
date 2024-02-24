@@ -69,6 +69,7 @@ text = "[center]Combatant Nick Here
 fit_content = true
 
 [node name="NameInput" type="LineEdit" parent="MinionView"]
+process_priority = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -85,6 +86,7 @@ focus_mode = 0
 text = "Combatant Nick Here"
 placeholder_text = "Combatant Name Here"
 max_length = 20
+context_menu_enabled = false
 caret_blink = true
 
 [node name="NameFormControls" type="HBoxContainer" parent="MinionView"]

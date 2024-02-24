@@ -15,6 +15,11 @@ var referringMenu: BattleState.Menu = BattleState.Menu.MOVES
 func _ready():
 	pass
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed.call_deferred()
+
 func initial_focus():
 	backButton.grab_focus()
 

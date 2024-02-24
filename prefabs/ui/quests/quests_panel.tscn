@@ -152,8 +152,5 @@ itemDetailsPanel = NodePath("../QuestDetailsPanel/ItemDetailsPanel")
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/NotCompletedButton" to="." method="_on_not_completed_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/FailedButton" to="." method="_on_failed_button_toggled"]
 [connection signal="pressed" from="QuestsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="QuestDetailsPanel/Panel/BackButton" to="." method="_on_quest_details_back_button_pressed"]
+[connection signal="panel_hidden" from="QuestDetailsPanel" to="." method="_on_quest_details_panel_panel_hidden"]
 [connection signal="ok_pressed" from="QuestRewardPanel" to="." method="_on_quest_reward_panel_ok_pressed"]
-
-[editable path="QuestDetailsPanel"]
-[editable path="QuestDetailsPanel/Panel/StepDetailPanel/RewardPanel"]

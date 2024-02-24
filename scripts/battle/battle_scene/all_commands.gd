@@ -16,6 +16,11 @@ func _ready():
 	if PlayerResources.playerInfo.staticEncounter != null:
 		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline') and backToPlayerCmdBtn.visible:
+		get_viewport().set_input_as_handled()
+		_on_back_to_player_button_pressed.call_deferred()
+
 func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion and battleUI.battleController.playerCombatant.is_alive()
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'

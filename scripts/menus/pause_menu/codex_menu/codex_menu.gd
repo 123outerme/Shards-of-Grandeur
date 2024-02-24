@@ -19,6 +19,11 @@ var buttonPrefab = preload('res://prefabs/ui/sfx_button.tscn')
 func _ready():
 	pass
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed()
+
 func toggle_codex_menu(showing: bool):
 	if showing:
 		selectedEntryStack.append(initialEntry)

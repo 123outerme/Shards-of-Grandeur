@@ -44,9 +44,6 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible:
 		pauseMenu.toggle_pause()
-	
-	if event.is_action_pressed("game_decline") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not pauseMenu.visible and not summonMinionPanel.visible:
-		battleUI.toggle_fob_focus_mode()
 
 func _on_pause_menu_resume_game():
 	battleUI.restore_focus()

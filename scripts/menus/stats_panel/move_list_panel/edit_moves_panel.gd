@@ -28,6 +28,12 @@ var replaceMoveSourceSlot: int = -1
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		hide_panel()
+		back_pressed.emit()
+
 func hide_panel():
 	visible = false
 	moveListPanel.moveDetailsPanel.visible = false

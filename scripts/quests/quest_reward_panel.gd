@@ -14,6 +14,11 @@ signal ok_pressed
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_ok_button_pressed()
+
 func load_quest_reward_panel():
 	rewardPanel.reward = reward
 	rewardPanel.load_reward_panel()

@@ -15,6 +15,11 @@ var statsShowMinion: Combatant = null
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed()
+
 func load_summon_minion_panel():
 	statsShowMinion = null
 	var focused: bool = false

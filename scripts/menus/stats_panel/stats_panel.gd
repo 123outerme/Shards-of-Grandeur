@@ -40,6 +40,11 @@ var previousMoveListSlot: int = -1
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		toggle()
+
 func toggle():
 	visible = not visible
 	if visible:
@@ -49,6 +54,7 @@ func toggle():
 		equipmentPanel.itemDetailsPanel.visible = false
 		moveListPanel.moveDetailsPanel.visible = false
 		editMovesPanel.hide_panel()
+		minionsPanel.end_edit_name()
 		backButton.disabled = false
 		savedStats = null
 		minion = null

@@ -19,6 +19,11 @@ signal back_pressed
 func _ready():
 	load_item_details()
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed()
+
 func load_item_details():
 	if item == null:
 		return

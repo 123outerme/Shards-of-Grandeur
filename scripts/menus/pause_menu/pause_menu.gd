@@ -15,6 +15,10 @@ signal resume_game
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		toggle_pause()
+
 func toggle_pause():
 	isPaused = not isPaused
 	if isPaused:

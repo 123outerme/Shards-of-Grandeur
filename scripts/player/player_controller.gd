@@ -36,15 +36,14 @@ var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
 
 func _unhandled_input(event):
-	if not pauseDisabled and event.is_action_pressed("game_pause"):
+	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
+			(cutscenePaused and event.is_action_pressed('game_decline')):
 		if inCutscene:
 			SceneLoader.cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
 			cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
-			if not pausePanel.isPaused and textBox.visible:
-				textBox.refocus_choice(pickedChoice)
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
@@ -461,3 +460,8 @@ func _new_act_callback():
 
 func _after_start_battle_fade_out():
 	SceneLoader.load_battle()
+
+
+func _on_pause_menu_resume_game():
+	if textBox.visible:
+		textBox.refocus_choice(pickedChoice)

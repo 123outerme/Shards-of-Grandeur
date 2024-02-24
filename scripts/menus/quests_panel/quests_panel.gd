@@ -32,13 +32,19 @@ var lastInteractedTracker: QuestTracker = null
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		toggle()
+
 func toggle():
 	visible = not visible
 	if visible:
 		load_quests_panel(true)
 		initial_focus()
 	else:
-		questDetailsPanel.hide_panel()
+		if questDetailsPanel.visible:
+			questDetailsPanel.hide_panel()
 		backButton.disabled = false
 		back_pressed.emit()
 
@@ -203,12 +209,12 @@ func _on_failed_button_toggled(button_pressed):
 func _on_back_button_pressed():
 	toggle()
 
-func _on_quest_details_back_button_pressed():
-	backButton.disabled = false
-	restore_previous_focus('detailsButton')
-
 func _on_quest_reward_panel_ok_pressed():
 	backButton.disabled = false
 	restore_previous_focus('detailsButton')
 	if rewardNewLvs > 0:
 		level_up.emit(rewardNewLvs)
+
+func _on_quest_details_panel_panel_hidden():
+	backButton.disabled = false
+	restore_previous_focus('detailsButton')

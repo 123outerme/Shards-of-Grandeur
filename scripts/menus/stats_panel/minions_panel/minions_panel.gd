@@ -30,8 +30,18 @@ func _exit_tree():
 	firstMinionPanel = null
 
 func _unhandled_input(event):
-	if event.is_action_pressed("game_pause") and nameInput.has_focus():
-		cancelName.grab_focus()
+	if event.is_action_pressed("game_decline") and nameInput.has_focus():
+		get_viewport().set_input_as_handled()
+		var focusCancel: bool = true
+		
+		# if Shift key is pressed:
+		# this is involved in text input without being a character that the LineEdit consumes, so we need to handle it here
+		if event is InputEventKey:
+			if event.keycode == KEY_SHIFT:
+				focusCancel = false
+			
+		if focusCancel:
+			cancelName.grab_focus()
 
 func load_minions_panel():
 	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):

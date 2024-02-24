@@ -30,6 +30,9 @@ func _viewport_focus_changed(control: Control):
 
 func toggle_section(enable: bool):
 	visible = enable
+	buttonToChange = null
+	trapFocus = false
+	changedInputsMap = {}
 	if enable:
 		for controlMap in get_tree().get_nodes_in_group('KeyboardControlMap'):
 			var changeButton1: Button = controlMap.get_node('ChangeButton1')
@@ -63,7 +66,7 @@ func build_map_value_strings():
 		var keyValue2: RichTextLabel = controlMap.get_node('Value2')
 		var changeButton2: Button = controlMap.get_node('ChangeButton2')
 		var actionIndex2: int = changeButton2.get_meta('index')
-		if actionIndex2 < len(actionEvents):
+		if actionIndex2 < len(actionEvents) and actionEvents[actionIndex2] is InputEventKey:
 			var keycode2 = actionEvents[actionIndex2].keycode
 			if keycode2 == 0:
 				keycode2 = actionEvents[actionIndex2].physical_keycode
@@ -92,7 +95,7 @@ func _on_change_pressed(btn: Button):
 func _on_capture_control_gui_input(event: InputEvent):
 	if keyboardTab.visible and not (event is InputEventKey) or \
 			controllerTab.visible and not (event is InputEventJoypadMotion or event is InputEventJoypadButton):
-		unlock_focus_trap()
+		call_deferred('unlock_focus_trap')
 		return
 	
 	var actionToChange: String = buttonToChange.get_meta('action')
@@ -101,7 +104,7 @@ func _on_capture_control_gui_input(event: InputEvent):
 	for action in SettingsHandler.gameSettings.stored_actions:
 		for existingEvent in InputMap.action_get_events(action):
 			if event.is_match(existingEvent):
-				unlock_focus_trap()
+				call_deferred('unlock_focus_trap')
 				return # don't let existing events overwrite
 	
 	var newEvents: Array[InputEvent] = actionEvents.duplicate()
@@ -142,7 +145,7 @@ func _on_capture_control_gui_input(event: InputEvent):
 			for i in range(len(newUiEvents)):
 				InputMap.action_add_event(uiAction, newUiEvents[i])
 			changedInputsMap[uiAction] = newUiEvents.duplicate()
-	unlock_focus_trap()
+	call_deferred('unlock_focus_trap')
 
 func unlock_focus_trap():
 	trapFocus = false

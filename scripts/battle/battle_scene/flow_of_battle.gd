@@ -13,11 +13,19 @@ var prevMenuControlFobBtnNeighbor: NodePath = ''
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if fobTabs.visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		hide_fob_tabs.call_deferred()
+
 func set_fob_button_enabled(enabled: bool = true):
 	fobButton.disabled = not enabled
 
 func get_fob_button_enabled() -> bool:
 	return fobButton.disabled
+
+func hide_fob_tabs():
+	fobButton.button_pressed = false
 
 func _on_toggle_fob_button_toggled(button_pressed: bool):
 	if button_pressed:

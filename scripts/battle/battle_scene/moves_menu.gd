@@ -9,6 +9,11 @@ class_name MovesMenu
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed.call_deferred()
+
 func initial_focus():
 	for i in range(4): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))

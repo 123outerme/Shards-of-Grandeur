@@ -177,7 +177,7 @@ func initial_focus():
 		battleComplete.okBtn.grab_focus()
 
 func restore_focus():
-	if summonMinionPanel.statsShowMinion != null:
+	if summonMinionPanel.visible and summonMinionPanel.statsShowMinion != null:
 		summonMinionPanel.initial_focus()
 		return
 	
@@ -185,14 +185,6 @@ func restore_focus():
 		initial_focus()
 	else:
 		previousFocus.grab_focus()
-
-func toggle_fob_focus_mode():
-	if not battlePanels.flowOfBattle.fobTabs.visible:
-		fobFocusMode = not fobFocusMode
-		if fobFocusMode:
-			battlePanels.flowOfBattle.fobButton.grab_focus()
-		else:
-			restore_focus()
 
 func open_inventory(forSummon: bool):
 	if not forSummon:

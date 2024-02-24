@@ -14,6 +14,11 @@ signal confirm_option(yes: bool)
 func _ready():
 	pass # Replace with function body.
 	
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_no_button_pressed()
+
 func load_item_confirm_panel():
 	titleLabel.text = '[center]' + title + '[/center]'
 	descriptionLabel.text = '[center]' + description + '[/center]'

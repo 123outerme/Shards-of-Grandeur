@@ -43,10 +43,11 @@ func load_move_pool_panel(rebuild: bool = true):
 				if firstMovePanel == null:
 					firstMovePanel = instantiatedPanel
 	else:
-		var panels: Array[MoveListItemPanel] = get_tree().get_nodes_in_group('MovePoolPanelMove') as Array[MoveListItemPanel]
+		var panels: Array[Node] = get_tree().get_nodes_in_group('MovePoolPanelMove')
 		for idx in range(len(panels)):
-			panels[idx].move = movepool[idx]
-			panels[idx].load_move_list_item_panel()
+			var panel: MoveListItemPanel = panels[idx] as MoveListItemPanel
+			panel.move = movepool[idx]
+			panel.load_move_list_item_panel()
 
 func show_select_buttons(showing: bool = true, exception: Move = null):
 	var hasFocused = false

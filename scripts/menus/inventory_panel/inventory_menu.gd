@@ -51,6 +51,11 @@ var viewingEquipItemDetails: bool = false
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
+		toggle()
+
 func toggle():
 	visible = not visible
 	if visible:

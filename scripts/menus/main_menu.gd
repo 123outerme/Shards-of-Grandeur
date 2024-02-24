@@ -28,6 +28,14 @@ func _ready():
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		if newGameConfirmPanel.visible:
+			_on_no_button_pressed.call_deferred()
+		elif playerNamePanel.visible:
+			_on_cancel_button_pressed.call_deferred()
+
 func set_initial_main_menu_focus():
 	if resumeGameButton.visible:
 		resumeGameButton.grab_focus()

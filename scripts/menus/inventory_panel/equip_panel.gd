@@ -23,6 +23,11 @@ var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		_on_back_button_pressed()
+
 func load_equip_panel(initial: bool = true):
 	visible = true
 	

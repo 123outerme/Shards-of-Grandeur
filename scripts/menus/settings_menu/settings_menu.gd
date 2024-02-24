@@ -14,6 +14,12 @@ signal back_pressed
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline"):
+		get_viewport().set_input_as_handled()
+		if not (controlsSection.visible and controlsSection.trapFocus):
+			_on_back_button_pressed()
+
 func toggle_settings_menu(showing: bool):
 	visible = showing
 	if visible:
@@ -33,6 +39,7 @@ func cancel_changes():
 
 func _on_back_button_pressed():
 	visible = false
+	controlsSection._on_cancel_button_pressed()
 	back_pressed.emit()
 
 func _on_controls_button_toggled(toggled_on):
