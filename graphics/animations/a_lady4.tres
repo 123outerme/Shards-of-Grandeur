@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://p6ibhgoibhir"]
+
+[ext_resource type="Texture2D" uid="uid://dtei3t2pai4ge" path="res://graphics/characters/lady4/lady4_stand.png" id="1_q2hxt"]
+[ext_resource type="Texture2D" uid="uid://c6lgtp711rlik" path="res://graphics/characters/lady4/lady4_talk.png" id="2_1uc8s"]
+[ext_resource type="Texture2D" uid="uid://ddqno20nr6rg5" path="res://graphics/characters/lady4/lady4_walk.png" id="3_egpqp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1il3h"]
+atlas = ExtResource("1_q2hxt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8c5n"]
+atlas = ExtResource("2_1uc8s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54bn7"]
+atlas = ExtResource("2_1uc8s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ypuv"]
+atlas = ExtResource("3_egpqp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u1ei"]
+atlas = ExtResource("3_egpqp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5ytv"]
+atlas = ExtResource("3_egpqp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf2np"]
+atlas = ExtResource("3_egpqp")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1il3h")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8c5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54bn7")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ypuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u1ei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5ytv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf2np")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
