@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=15 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="2_psfj7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://graphics/characters/player/player_walk.png" id="8_w3grk"]
 [ext_resource type="Texture2D" uid="uid://bamq0i0s6h4l5" path="res://graphics/ui/knight.png" id="9_iovbg"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="10_650uu"]
+[ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="12_h6rgv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
 atlas = ExtResource("8_w3grk")
@@ -159,7 +160,6 @@ layout_mode = 2
 text = "No, Never Mind..."
 
 [node name="PlayerNamePanel" type="Panel" parent="Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,11 +220,20 @@ alignment = 1
 
 [node name="ConfirmButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
+disabled = true
 text = "Confirm & Start!"
 
 [node name="CancelButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
 text = "Cancel! Go Back."
+
+[node name="VirtualKeyboard" parent="Panel/PlayerNamePanel" instance=ExtResource("12_h6rgv")]
+visible = false
+layout_mode = 1
+offset_left = 81.0
+offset_top = 519.0
+offset_right = -91.0
+offset_bottom = -24.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource("10_650uu")]
 visible = false
@@ -256,4 +265,8 @@ fit_content = true
 [connection signal="text_submitted" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="Panel/PlayerNamePanel/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="backspace_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_backspace_pressed"]
+[connection signal="enter_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
+[connection signal="key_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
+[connection signal="keyboard_hidden" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
 [connection signal="back_pressed" from="SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

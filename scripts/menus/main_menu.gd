@@ -14,6 +14,7 @@ var playerName: String = 'Player'
 @onready var playerNamePanel: Panel = get_node("Panel/PlayerNamePanel")
 @onready var nameInput: LineEdit = get_node("Panel/PlayerNamePanel/NameInput")
 @onready var confirmButton: Button = get_node("Panel/PlayerNamePanel/HBoxContainer/ConfirmButton")
+@onready var virtualKeyboard: VirtualKeyboard = get_node('Panel/PlayerNamePanel/VirtualKeyboard')
 
 @onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
 
@@ -27,6 +28,7 @@ func _ready():
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
+	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
@@ -101,3 +103,19 @@ func _on_name_input_gui_input(event):
 	# if ui cancel (Escape) has been pressed to unfocus the input
 	if event.is_action_pressed('ui_cancel'):
 		confirmButton.grab_focus()
+
+func _on_virtual_keyboard_key_pressed(character):
+	if playerNamePanel.visible:
+		nameInput.text += character
+		_on_name_input_text_changed(nameInput.text)
+
+func _on_virtual_keyboard_backspace_pressed():
+	if playerNamePanel.visible:
+		nameInput.text = nameInput.text.substr(0, len(nameInput.text) - 1)
+		_on_name_input_text_changed(nameInput.text)
+
+func _on_virtual_keyboard_keyboard_hidden():
+	confirmButton.grab_focus()
+
+func _on_virtual_keyboard_enter_pressed():
+	confirmButton.grab_focus()

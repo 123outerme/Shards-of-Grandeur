@@ -21,10 +21,11 @@ var firstMinionPanel: MinionSlotPanel = null
 @onready var confirmName: Button = get_node("MinionView/NameFormControls/ConfirmButton")
 @onready var cancelName: Button = get_node("MinionView/NameFormControls/CancelButton")
 @onready var friendshipBar: ProgressBar = get_node("MinionView/FriendshipBar")
+@onready var virtualKeyboard: VirtualKeyboard = get_node('MinionView/VirtualKeyboard')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
 
 func _exit_tree():
 	firstMinionPanel = null
@@ -140,3 +141,20 @@ func _on_name_input_gui_input(event):
 	# if ui cancel (Escape) has been pressed to unfocus the input
 	if event.is_action_pressed('ui_cancel') and editingName:
 		_on_cancel_button_pressed()
+
+func _on_virtual_keyboard_backspace_pressed():
+	if virtualKeyboard.visible:
+		nameInput.text = nameInput.text.substr(0, len(nameInput.text) - 1)
+		_on_name_input_text_changed(nameInput.text)
+
+func _on_virtual_keyboard_enter_pressed():
+	if virtualKeyboard.visible:
+		confirmName.grab_focus()
+
+func _on_virtual_keyboard_key_pressed(character):
+	if virtualKeyboard.visible:
+		nameInput.text += character
+		_on_name_input_text_changed(nameInput.text)
+
+func _on_virtual_keyboard_keyboard_hidden():
+	_on_cancel_button_pressed()

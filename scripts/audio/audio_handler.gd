@@ -1,6 +1,8 @@
 extends Node
 class_name AudioHandler
 
+const MUSIC_DB_HEAD_ROOM = 5
+
 var musicLoops: int = 0
 var sfxLoops: Array[int] = []
 var musicFadeTween: Tween = null
@@ -17,7 +19,9 @@ var lastSfxIdx: int = -1
 @onready var sfxStreamPlayers: Array[AudioStreamPlayer] = [
 	get_node('SfxStreamPlayer1'),
 	get_node('SfxStreamPlayer2'),
-	get_node('SfxStreamPlayer3')
+	get_node('SfxStreamPlayer3'),
+	get_node('SfxStreamPlayer4'),
+	get_node('SfxStreamPlayer5')
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -50,13 +54,13 @@ func load_audio_settings():
 	set_sfx_volume(SettingsHandler.gameSettings.sfxVolume)
 
 func set_cur_music_volume(vol: float):
-	get_cur_music_player().volume_db = vol_percent_to_db(vol) - 3
+	get_cur_music_player().volume_db = vol_percent_to_db(vol) - MUSIC_DB_HEAD_ROOM
 
 func set_music_1_volume(vol: float):
-	musicStreamPlayer1.volume_db = vol_percent_to_db(vol) - 3
+	musicStreamPlayer1.volume_db = vol_percent_to_db(vol) - MUSIC_DB_HEAD_ROOM
 
 func set_music_2_volume(vol: float):
-	musicStreamPlayer2.volume_db = vol_percent_to_db(vol) - 3
+	musicStreamPlayer2.volume_db = vol_percent_to_db(vol) - MUSIC_DB_HEAD_ROOM
 
 func set_sfx_volume(vol: float):
 	for player in sfxStreamPlayers:

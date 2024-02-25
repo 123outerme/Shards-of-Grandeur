@@ -4,6 +4,7 @@ class_name GameSettings
 @export var inputMap: Dictionary = {}
 @export var musicVolume: float = 0.5
 @export var sfxVolume: float = 0.5
+@export var useVirtualKeyboard: bool = true
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -17,10 +18,12 @@ func _init(
 	i_inputMap: Dictionary = {},
 	i_musicVolume = 0.5,
 	i_sfxVolume = 0.5,
+	i_virtualKeyboard = true,
 ):
 	inputMap = i_inputMap.duplicate()
 	musicVolume = i_musicVolume
 	sfxVolume = i_sfxVolume
+	useVirtualKeyboard = i_virtualKeyboard
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
 	for action in InputMap.get_actions().filter(_filter_input_map):

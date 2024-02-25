@@ -1,18 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmc2ox37dega8"]
+[gd_scene load_steps=2 format=3 uid="uid://dmc2ox37dega8"]
 
 [ext_resource type="Script" path="res://scripts/audio/audio_handler.gd" id="1_mwumm"]
-[ext_resource type="AudioStream" uid="uid://ct61qvva1c8y1" path="res://audio/music/gtl_main_theme.mp3" id="2_nm6ff"]
 
 [node name="AudioHandler" type="Node"]
 script = ExtResource("1_mwumm")
 
 [node name="MusicStreamPlayer1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_nm6ff")
-volume_db = -3.0
+volume_db = -5.0
 bus = &"music"
 
 [node name="MusicStreamPlayer2" type="AudioStreamPlayer" parent="."]
-volume_db = -3.0
+volume_db = -5.0
 
 [node name="SfxStreamPlayer1" type="AudioStreamPlayer" parent="."]
 bus = &"sfx"
@@ -23,8 +21,16 @@ bus = &"sfx"
 [node name="SfxStreamPlayer3" type="AudioStreamPlayer" parent="."]
 bus = &"sfx"
 
+[node name="SfxStreamPlayer4" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
+
+[node name="SfxStreamPlayer5" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
+
 [connection signal="finished" from="MusicStreamPlayer1" to="." method="_on_music_stream_player_1_finished"]
 [connection signal="finished" from="MusicStreamPlayer2" to="." method="_on_music_stream_player_2_finished"]
 [connection signal="finished" from="SfxStreamPlayer1" to="." method="_on_sfx_stream_player_finished" binds= [0]]
 [connection signal="finished" from="SfxStreamPlayer2" to="." method="_on_sfx_stream_player_finished" binds= [1]]
 [connection signal="finished" from="SfxStreamPlayer3" to="." method="_on_sfx_stream_player_finished" binds= [1]]
+[connection signal="finished" from="SfxStreamPlayer4" to="." method="_on_sfx_stream_player_finished" binds= [1]]
+[connection signal="finished" from="SfxStreamPlayer5" to="." method="_on_sfx_stream_player_finished" binds= [1]]

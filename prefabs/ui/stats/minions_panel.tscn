@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqtu7xjqahxq"]
+[gd_scene load_steps=7 format=3 uid="uid://dqtu7xjqahxq"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_tlgo2"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_1odjq"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/minions_panel/minions_panel.gd" id="3_e76mr"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="4_e8361"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_gjbxj"]
+[ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="6_trqd2"]
 
 [node name="MinionsPanel" type="Panel"]
 offset_bottom = 355.0
@@ -152,9 +153,17 @@ grow_vertical = 0
 value = 50.0
 rounded = true
 
+[node name="VirtualKeyboard" parent="MinionView" instance=ExtResource("6_trqd2")]
+visible = false
+layout_mode = 1
+
 [connection signal="gui_input" from="MinionView/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_changed" from="MinionView/NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="text_submitted" from="MinionView/NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="pressed" from="MinionView/NameFormControls/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="pressed" from="MinionView/NameFormControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="MinionView/NameFormControls/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="backspace_pressed" from="MinionView/VirtualKeyboard" to="." method="_on_virtual_keyboard_backspace_pressed"]
+[connection signal="enter_pressed" from="MinionView/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
+[connection signal="key_pressed" from="MinionView/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
+[connection signal="keyboard_hidden" from="MinionView/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
