@@ -98,7 +98,10 @@ func _physics_process(_delta):
 		sprite.speed_scale = 1.0
 	
 	if not disableMovement:
-		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
+		# omni-directional movement
+		#velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
+		# eight-directional movement (smart - snap to nearest 45 deg line)
+		velocity = eight_dir_movement(Input.get_vector("move_left", "move_right", "move_up", "move_down")) * speed
 		if velocity.x < 0:
 			facingLeft = true
 		if velocity.x > 0:
@@ -117,6 +120,25 @@ func _process(_delta):
 	if holdingCamera:
 		cam.position = holdingCameraAt - position
 		uiRoot.position = holdingCameraAt - position
+
+func eight_dir_movement(input: Vector2) -> Vector2:
+	var output: Vector2 = Vector2.ZERO
+	if input == output:
+		return output
+	
+	var dirNum = ceili((input.angle() - PI / 8) / (PI / 4))
+	# angle is [-180, -180] degrees
+	# x - 22.5 degrees / 45 degrees => [-4, 4]
+	if dirNum > -2 and dirNum < 2: # -1, 0, 1 => +x
+		output.x = 1
+	if abs(dirNum) == 3 or abs(dirNum) == 4 or dirNum == 3: # -3, -4, 4, 3 => -x
+		output.x = -1
+	if dirNum > 0 and dirNum < 4: # 1, 2, 3 => +y
+		output.y = 1
+	if dirNum < 0 and dirNum > -4: # -1, -2, -3 => -y
+		output.y = -1
+	
+	return output.normalized()
 
 func set_sprite_frames(spriteFrames: SpriteFrames):
 	sprite.sprite_frames = spriteFrames

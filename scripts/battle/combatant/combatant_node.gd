@@ -246,7 +246,6 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 		make_particles_now(preset)
 
 func make_particles_now(preset: ParticlePreset):
-	print('"', preset.emitter, '"')
 	match preset.emitter:
 		'behind':
 			behindParticles.preset = preset
