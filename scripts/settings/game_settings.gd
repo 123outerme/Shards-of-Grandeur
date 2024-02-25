@@ -7,7 +7,7 @@ class_name GameSettings
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
-var stored_actions = [
+static var STORED_ACTIONS = [
 	'move_up', 'move_down', 'move_left', 'move_right', 'game_interact',
 	'game_decline', 'game_quests', 'game_inventory', 'game_stats', 'game_pause',
 	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select'
@@ -45,6 +45,16 @@ func apply_from_stored_inputs():
 		for event in inputMap[action]:
 			InputMap.action_add_event(action, event)
 
+func apply_from_diffs(diffs: Dictionary):
+	var inputCopy: Dictionary = inputMap.duplicate()
+	for action in diffs.keys():
+		inputCopy[action] = diffs[action].duplicate()
+	
+	for action in inputCopy.keys(): # assign input map settings
+		InputMap.action_erase_events(action)
+		for event in inputCopy[action]:
+			InputMap.action_add_event(action, event)
+
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
@@ -59,4 +69,4 @@ func save_data(save_path, data):
 		printerr("GameSettings ResourceSaver error: ", err)
 
 func _filter_input_map(action):
-	return action in stored_actions
+	return action in GameSettings.STORED_ACTIONS

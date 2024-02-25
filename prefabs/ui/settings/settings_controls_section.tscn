@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd7nav8wrqxc1"]
+[gd_scene load_steps=8 format=3 uid="uid://cd7nav8wrqxc1"]
 
 [ext_resource type="Script" path="res://scripts/menus/settings_menu/controls_section.gd" id="1_scvx6"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="2_twvt2"]
-[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_w6cj5"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_bb6at"]
+[ext_resource type="ButtonGroup" uid="uid://dtlfh4hu7dvtw" path="res://prefabs/ui/settings/controller_movement_group_2.tres" id="5_bg836"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_htu7m"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_8bcag"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_gaylg"]
 
 [node name="ControlsSection" type="Control"]
 layout_mode = 3
@@ -1147,17 +1153,506 @@ metadata/action = "game_pause"
 visible = false
 layout_mode = 2
 
-[node name="MoveControl" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+[node name="Buttons" type="Control" parent="TabContainer/Controller"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controller/MoveControl"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controller/Buttons"]
 layout_mode = 0
-offset_right = 90.0
-offset_bottom = 78.0
-theme = ExtResource("2_w6cj5")
-text = "WIP!"
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 290.0
+offset_bottom = 44.0
+theme_override_constants/separation = 12
+
+[node name="SaveButton" parent="TabContainer/Controller/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../MovementAction/Change1Group/LeftStickButton")
+text = "Save"
+
+[node name="CancelButton" parent="TabContainer/Controller/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../MovementAction/Change1Group/LeftStickButton")
+text = "Cancel"
+
+[node name="DefaultButton" parent="TabContainer/Controller/Buttons/HBoxContainer" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../MovementAction/Change1Group/LeftStickButton")
+text = "Clear & Set Default"
+
+[node name="Headers" type="Control" parent="TabContainer/Controller"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ActionHeader" type="RichTextLabel" parent="TabContainer/Controller/Headers"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.0
+offset_right = 211.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+text = "Action"
+fit_content = true
+
+[node name="PrimaryKeyHeader" type="RichTextLabel" parent="TabContainer/Controller/Headers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -18.0
+offset_right = 132.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+bbcode_enabled = true
+text = "Primary"
+fit_content = true
+
+[node name="SecondaryKeyHeader" type="RichTextLabel" parent="TabContainer/Controller/Headers"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -18.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+text = "Secondary"
+fit_content = true
+
+[node name="MovementAction" type="Control" parent="TabContainer/Controller"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/MovementAction"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Movement:"
+fit_content = true
+
+[node name="Change1Group" type="HBoxContainer" parent="TabContainer/Controller/MovementAction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 30.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftStickButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_htu7m")
+text = "Left Stick"
+
+[node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8bcag")
+text = "Right Stick"
+
+[node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_gaylg")
+text = "D-Pad"
+
+[node name="Change2Group" type="HBoxContainer" parent="TabContainer/Controller/MovementAction"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -20.0
+offset_right = -18.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LeftStickButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("5_bg836")
+text = "Left Stick"
+
+[node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_group = ExtResource("5_bg836")
+text = "Right Stick"
+
+[node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
+focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
+toggle_mode = true
+button_group = ExtResource("5_bg836")
+text = "D-Pad"
+
+[node name="InteractKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/InteractKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Interact key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/InteractKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/InteractKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_interact"
+metadata/index = 1
+
+[node name="DeclineKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/DeclineKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Decline key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/DeclineKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/DeclineKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_decline"
+metadata/index = 1
+
+[node name="InventoryKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/InventoryKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Inventory key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/InventoryKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/InventoryKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_inventory"
+metadata/index = 1
+
+[node name="QuestsKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/QuestsKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Quests key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/QuestsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/QuestsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.5
+offset_right = 33.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_quests"
+metadata/index = 1
+
+[node name="StatsKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/StatsKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Stats key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/StatsKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/StatsKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_stats"
+metadata/index = 1
+
+[node name="PauseKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/PauseKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 148.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Pause key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/PauseKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/PauseKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_pause"
+metadata/index = 1
 
 [connection signal="gui_input" from="CaptureControl" to="." method="_on_capture_control_gui_input"]
 [connection signal="pressed" from="TabContainer/Keyboard/Buttons/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="TabContainer/Keyboard/Buttons/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="TabContainer/Keyboard/Buttons/HBoxContainer/DefaultButton" to="." method="_on_default_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/Buttons/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/Buttons/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/Buttons/HBoxContainer/DefaultButton" to="." method="_on_default_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/MovementAction/Change1Group/LeftStickButton" to="." method="_on_left_stick_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/MovementAction/Change1Group/RightStickButton" to="." method="_on_right_stick_button_pressed"]
+[connection signal="pressed" from="TabContainer/Controller/MovementAction/Change1Group/DPadButton" to="." method="_on_d_pad_button_pressed"]
+[connection signal="toggled" from="TabContainer/Controller/MovementAction/Change2Group/LeftStickButton" to="." method="_on_left_stick_2_button_toggled"]
+[connection signal="toggled" from="TabContainer/Controller/MovementAction/Change2Group/RightStickButton" to="." method="_on_right_stick_2_button_toggled"]
+[connection signal="toggled" from="TabContainer/Controller/MovementAction/Change2Group/DPadButton" to="." method="_on_d_pad_2_button_toggled"]

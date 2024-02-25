@@ -149,6 +149,7 @@ func advance_dialogue(canStart: bool = true):
 						len(npc.data.dialogueItems) > 0 and npc.visible: # if the NPC has dialogue and is the closest visible NPC, speak to this one
 					minDistance = npc.position.distance_to(position)
 					talkNPC = npc
+					PlayerResources.playerInfo.staticEncounter = null # reset static encounter in case game crash
 		sprite.play('stand')
 		if not canStart and not disableMovement or talkNPC == null: # if we are pressing game_decline, or there is no talk NPC, do not start conversation!
 			talkNPC = null
