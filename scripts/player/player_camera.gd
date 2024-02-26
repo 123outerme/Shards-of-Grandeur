@@ -41,7 +41,7 @@ func _process(delta):
 	if fadeInReady and fadeInTween != null:
 		fadeInReady = false
 		fadeInTween.play()
-	if camShaking:
+	if camShaking and SettingsHandler.gameSettings.screenShake:
 		camShakingTime += delta
 		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
 		position = CAM_SHAKING_POSITIONS[camShakingIdx]

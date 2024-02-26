@@ -34,6 +34,7 @@ var cutscenePaused: bool = false
 
 var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
+var running: bool = false
 
 func _unhandled_input(event):
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
@@ -65,6 +66,8 @@ func _unhandled_input(event):
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		else:
 			textBox.show_text_instant()
+	elif event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun:
+		running = not running
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
 		inventoryPanel.inShop = false
@@ -88,9 +91,9 @@ func _unhandled_input(event):
 			statsPanel.toggle()
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
-		
+	
 func _physics_process(_delta):
-	if Input.is_action_pressed("game_decline") and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
+	if (Input.is_action_pressed("game_decline") or running) and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
 		speed = RUN_SPEED
 		sprite.speed_scale = 1.5
 	elif speed != BASE_SPEED:

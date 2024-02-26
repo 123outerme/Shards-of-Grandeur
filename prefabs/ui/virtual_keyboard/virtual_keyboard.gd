@@ -32,6 +32,9 @@ signal enter_pressed
 var shift: bool = false
 var capsLock: bool = false
 
+# access to control that the user focused
+var editingControl: Control = null
+
 var buttonsArr: Array = []
 
 var focusButton: BaseButton = null
@@ -74,7 +77,8 @@ func _unhandled_input(event):
 			_press_caps_lock()
 
 func _show_on_edit(control: Control):
-	if enabled and (control is LineEdit or control is TextEdit):
+	if enabled and (control is LineEdit or control is TextEdit or control is SpinBox):
+		editingControl = control
 		show_keyboard()
 
 func show_keyboard():

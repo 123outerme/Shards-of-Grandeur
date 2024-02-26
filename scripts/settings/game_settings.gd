@@ -4,7 +4,11 @@ class_name GameSettings
 @export var inputMap: Dictionary = {}
 @export var musicVolume: float = 0.5
 @export var sfxVolume: float = 0.5
-@export var useVirtualKeyboard: bool = true
+@export var useVirtualKeyboard: bool = false
+@export var screenShake: bool = true
+@export var toggleRun: bool = false
+@export var vsync: bool = false
+@export var framerate: int = 60
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -18,12 +22,20 @@ func _init(
 	i_inputMap: Dictionary = {},
 	i_musicVolume = 0.5,
 	i_sfxVolume = 0.5,
-	i_virtualKeyboard = true,
+	i_virtualKeyboard = false,
+	i_screenShake = true,
+	i_toggleRun = false,
+	i_vsync = false,
+	i_framerate = 60,
 ):
 	inputMap = i_inputMap.duplicate()
 	musicVolume = i_musicVolume
 	sfxVolume = i_sfxVolume
 	useVirtualKeyboard = i_virtualKeyboard
+	screenShake = i_screenShake
+	toggleRun = i_toggleRun
+	vsync = i_vsync
+	framerate = i_framerate
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
 	for action in InputMap.get_actions().filter(_filter_input_map):
@@ -57,6 +69,15 @@ func apply_from_diffs(diffs: Dictionary):
 		InputMap.action_erase_events(action)
 		for event in inputCopy[action]:
 			InputMap.action_add_event(action, event)
+
+func apply_vsync():
+	var vsyncMode = DisplayServer.VSYNC_DISABLED
+	if vsync:
+		vsyncMode = DisplayServer.VSYNC_ENABLED
+	DisplayServer.window_set_vsync_mode(vsyncMode)
+	
+func apply_framerate():
+	Engine.max_fps = framerate
 
 func load_data(save_path):
 	var data = null
