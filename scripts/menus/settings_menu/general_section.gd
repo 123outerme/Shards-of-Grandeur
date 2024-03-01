@@ -14,6 +14,7 @@ var allFramerateTextSelected: bool = false
 @onready var screenShakeButton: CheckButton = get_node('Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
 @onready var vsyncButton: CheckButton = get_node('Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton')
+@onready var deadzoneSlider: HSlider = get_node('Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider')
 @onready var framerateLineEdit: LineEdit = get_node('Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit')
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +30,7 @@ func toggle_section(toggle: bool):
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
 		vsyncButton.button_pressed = SettingsHandler.gameSettings.vsync
+		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		framerateLineEdit.text = String.num(framerate) + ' FPS'
 		
 		onscreenKeyboardButton.focus_neighbor_left = onscreenKeyboardButton.get_path_to(sectionToggleButton)
@@ -103,5 +105,11 @@ func _on_framerate_line_edit_text_submitted(new_text):
 	SettingsHandler.gameSettings.framerate = framerate
 	SettingsHandler.gameSettings.apply_framerate()
 	framerateLineEdit.text = String.num(framerate) + ' FPS'
-	vsyncButton.grab_focus()
+	deadzoneSlider.grab_focus()
 	prevFramerate = framerate
+
+
+func _on_deadzone_slider_focus_exited():
+	SettingsHandler.gameSettings.deadzone = deadzoneSlider.value / 100.0
+	print(SettingsHandler.gameSettings.deadzone)
+	SettingsHandler.gameSettings.apply_deadzone()

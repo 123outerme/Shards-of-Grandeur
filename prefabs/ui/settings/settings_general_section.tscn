@@ -42,6 +42,7 @@ size_flags_horizontal = 0
 
 [node name="OnscreenKeyboardLabel" type="RichTextLabel" parent="Control/VBoxContainer/OnscreenKeyboardControl"]
 clip_contents = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -74,6 +75,7 @@ layout_mode = 2
 
 [node name="ScreenShakeLabel" type="RichTextLabel" parent="Control/VBoxContainer/ScreenShakeControl"]
 clip_contents = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -107,6 +109,7 @@ layout_mode = 2
 
 [node name="RunToggleLabel" type="RichTextLabel" parent="Control/VBoxContainer/RunToggleControl"]
 clip_contents = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -140,6 +143,7 @@ layout_mode = 2
 
 [node name="VsyncLabel" type="RichTextLabel" parent="Control/VBoxContainer/VSyncControl"]
 clip_contents = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -165,7 +169,61 @@ grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
 focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../DeadzoneControl/DeadzoneLabel/DeadzoneSlider")
+
+[node name="DeadzoneControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+
+[node name="DeadzoneLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+clip_contents = false
+custom_minimum_size = Vector2(500, 0.035)
+layout_mode = 1
+offset_right = 500.0
+offset_bottom = 26.0
+mouse_filter = 2
+text = "Movement Deadone"
+fit_content = true
+
+[node name="DeadzoneSlider" type="HSlider" parent="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../VSyncControl/VsyncLabel/VsyncButton")
+focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../FramerateControl/FramerateLabel/FramerateLineEdit")
+min_value = 20.0
+max_value = 80.0
+step = 5.0
+value = 50.0
+
+[node name="DeadzoneRangeLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+custom_minimum_size = Vector2(41, 26)
+layout_mode = 1
+offset_left = 257.0
+offset_top = 17.0
+offset_right = 298.0
+offset_bottom = 43.0
+text = "20%"
+fit_content = true
+
+[node name="DeadzoneRangeLabel2" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+custom_minimum_size = Vector2(39, 26)
+layout_mode = 1
+offset_left = 460.0
+offset_top = 17.0
+offset_right = 499.0
+offset_bottom = 43.0
+text = "80%"
+fit_content = true
 
 [node name="FramerateControl" type="Control" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 26)
@@ -173,6 +231,7 @@ layout_mode = 2
 
 [node name="FramerateLabel" type="RichTextLabel" parent="Control/VBoxContainer/FramerateControl"]
 clip_contents = false
+custom_minimum_size = Vector2(430, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -222,6 +281,7 @@ capsLockRow = -1
 [connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="." method="_on_run_toggle_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="." method="_on_vysnc_button_toggled"]
+[connection signal="focus_exited" from="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider" to="." method="_on_deadzone_slider_focus_exited"]
 [connection signal="focus_entered" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_entered"]
 [connection signal="focus_exited" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_exited"]
 [connection signal="text_changed" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_text_changed"]

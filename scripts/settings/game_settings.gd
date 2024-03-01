@@ -8,6 +8,7 @@ class_name GameSettings
 @export var screenShake: bool = true
 @export var toggleRun: bool = false
 @export var vsync: bool = false
+@export var deadzone: float = 0.5
 @export var framerate: int = 60
 
 var defaultInputMap: Dictionary = {}
@@ -26,6 +27,7 @@ func _init(
 	i_screenShake = true,
 	i_toggleRun = false,
 	i_vsync = false,
+	i_deadzone = 0.5,
 	i_framerate = 60,
 ):
 	inputMap = i_inputMap.duplicate()
@@ -35,6 +37,7 @@ func _init(
 	screenShake = i_screenShake
 	toggleRun = i_toggleRun
 	vsync = i_vsync
+	deadzone = i_deadzone
 	framerate = i_framerate
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
@@ -57,7 +60,7 @@ func get_default_controls() -> Dictionary:
 func apply_from_stored_inputs():
 	for action in inputMap.keys(): # assign input map settings
 		InputMap.action_erase_events(action)
-		for event in inputMap[action]:
+		for event: InputEvent in inputMap[action]:
 			InputMap.action_add_event(action, event)
 
 func apply_from_diffs(diffs: Dictionary):
@@ -75,7 +78,11 @@ func apply_vsync():
 	if vsync:
 		vsyncMode = DisplayServer.VSYNC_ENABLED
 	DisplayServer.window_set_vsync_mode(vsyncMode)
-	
+
+func apply_deadzone():
+	for action in ['move_up', 'move_down', 'move_left', 'move_right']:
+		InputMap.action_set_deadzone(action, deadzone)
+
 func apply_framerate():
 	Engine.max_fps = framerate
 
