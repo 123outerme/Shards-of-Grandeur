@@ -23,22 +23,36 @@ grow_vertical = 2
 
 [node name="MinionsTitle" type="RichTextLabel" parent="PlayerView"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 52.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 8.0
+offset_right = 50.0
+offset_bottom = 35.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]Minions:[/center]"
 fit_content = true
+
+[node name="ReorderButton" parent="PlayerView" instance=ExtResource("4_gjbxj")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 49.0
+offset_top = 4.0
+offset_right = 127.0
+offset_bottom = 38.0
+grow_horizontal = 2
+text = "Reorder"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerView" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 26.0
-offset_right = -2.0
+offset_top = 41.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -60,9 +74,12 @@ grow_vertical = 2
 
 [node name="MinionName" type="RichTextLabel" parent="MinionView"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 52.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_right = 117.0
+offset_bottom = 54.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]Combatant Nick Here
@@ -157,6 +174,7 @@ rounded = true
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="PlayerView/ReorderButton" to="." method="_on_reorder_button_pressed"]
 [connection signal="gui_input" from="MinionView/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_changed" from="MinionView/NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="text_submitted" from="MinionView/NameInput" to="." method="_on_name_input_text_submitted"]

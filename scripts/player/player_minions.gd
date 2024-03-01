@@ -40,7 +40,8 @@ func init_minion(saveName: String) -> Combatant:
 
 func get_minion_list() -> Array[Combatant]:
 	var minions: Array[Combatant] = []
-	minions.append_array(minionsDict.values())
+	for minion in minionList:
+		minions.append(minionsDict[minion])
 	return minions
 
 func level_up_minion(minion: Combatant, newLevel: int):
@@ -67,6 +68,15 @@ func which_minion_equipped(item: Item) -> String:
 		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or (minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName):
 			saveName = minion.save_name()
 	return saveName
+
+func reorder_minion(chosenMinion: Combatant, aboveMinion: Combatant) -> int:
+	var idx = minionList.find(aboveMinion.save_name())
+	if idx != -1:
+		minionList.erase(chosenMinion.save_name())
+		minionList.insert(idx, chosenMinion.save_name())
+	else:
+		printerr('Minion Reorder error: could not find target minion ' + aboveMinion.save_name())
+	return idx
 
 func load_data(save_path):
 	var data = null

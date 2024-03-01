@@ -93,7 +93,7 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 	
 func _physics_process(_delta):
-	if (Input.is_action_pressed("game_decline") or running) and SceneLoader.mapLoader.mapEntry.isRecoverLocation:
+	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
 		speed = RUN_SPEED
 		sprite.speed_scale = 1.5
 	elif speed != BASE_SPEED:

@@ -44,37 +44,40 @@ grow_vertical = 2
 text = "Minion Name Goes Here"
 fit_content = true
 
-[node name="StatPtIndicatorControl" type="Control" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -16.0
-offset_right = -52.0
-offset_bottom = 16.0
+offset_left = -138.0
+offset_top = -20.0
+offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+alignment = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="StatPtIndicatorControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StatPtIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer/StatPtIndicatorControl"]
 position = Vector2(16, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ahsj7")
 
-[node name="StatsButton" parent="." instance=ExtResource("4_2cbfe")]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="ReorderButton" parent="HBoxContainer" instance=ExtResource("4_2cbfe")]
+layout_mode = 2
+text = "Reorder"
+
+[node name="StatsButton" parent="HBoxContainer" instance=ExtResource("4_2cbfe")]
+layout_mode = 2
 text = "Stats"
 
-[connection signal="pressed" from="StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ReorderButton" to="." method="_on_reorder_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]

@@ -10,8 +10,11 @@ signal panel_loaded
 var loaded: bool = false
 var editingName: bool = false
 var firstMinionPanel: MinionSlotPanel = null
+var reordering: bool = false
+var reorderingMinion: Combatant = null
 
 @onready var playerView: Control = get_node("PlayerView")
+@onready var reorderButton: Button = get_node('PlayerView/ReorderButton')
 @onready var vboxContainer: VBoxContainer = get_node("PlayerView/ScrollContainer/VBoxContainer")
 
 @onready var minionView: Control = get_node("MinionView")
@@ -66,7 +69,13 @@ func load_minions_panel():
 		cancelName.disabled = false
 		friendshipBar.max_value = minion.maxFriendship
 		friendshipBar.value = minion.friendship
+		reordering = false
+		reorderingMinion = null
 	else:
+		if reordering:
+			reorderButton.text = 'Cancel'
+		else:
+			reorderButton.text = 'Reorder'
 		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
@@ -75,7 +84,11 @@ func load_minions_panel():
 				firstMinionPanel.panel_ready.connect(set_loaded)
 			instantiatedPanel.readOnly = readOnly
 			instantiatedPanel.combatant = listed_minion
+			instantiatedPanel.showReorderButton = reordering
+			instantiatedPanel.reorderButtonIsTarget = reorderingMinion != null and reorderingMinion != listed_minion
+			instantiatedPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == listed_minion
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
+			instantiatedPanel.reorder_clicked.connect(_on_reorder_clicked)
 			vboxContainer.add_child(instantiatedPanel)
 	
 	minionView.visible = minion != null
@@ -89,8 +102,8 @@ func connect_to_top_control(control: Control):
 	if not loaded:
 		await panel_loaded
 	if minion == null:
-		firstMinionPanel.statsButton.focus_neighbor_top = firstMinionPanel.statsButton.get_path_to(control)
-		control.focus_neighbor_bottom = control.get_path_to(firstMinionPanel.statsButton)
+		reorderButton.focus_neighbor_top = reorderButton.get_path_to(control)
+		control.focus_neighbor_bottom = control.get_path_to(reorderButton)
 	else:
 		editName.focus_neighbor_top = editName.get_path_to(control)
 		control.focus_neighbor_bottom = control.get_path_to(editName)
@@ -101,8 +114,41 @@ func get_stats_button_for(combatant: Combatant) -> Button:
 			return panel.statsButton
 	return null
 
+func get_panel_for(combatant: Combatant) -> MinionSlotPanel:
+	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):
+		if panel.combatant == combatant:
+			return panel
+	return null
+
+func update_panels_reorder_buttons():
+	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):
+		var minionSlotPanel: MinionSlotPanel = panel as MinionSlotPanel
+		minionSlotPanel.showReorderButton = reordering
+		minionSlotPanel.reorderButtonIsTarget = reorderingMinion != null and reorderingMinion != minionSlotPanel.combatant
+		minionSlotPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == minionSlotPanel.combatant
+		minionSlotPanel.load_minion_slot_panel()
+
+func reset_reorder_state():
+	if reordering:
+		reordering = false
+		reorderingMinion = null
+		load_minions_panel()
+
 func _on_stats_clicked(combatant: Combatant):
 	stats_clicked.emit(combatant)
+
+func _on_reorder_clicked(combatant: Combatant):
+	if reorderingMinion == null:
+		reorderingMinion = combatant
+	else:
+		if reorderingMinion != combatant:
+			var idx = PlayerResources.minions.reorder_minion(reorderingMinion, combatant)
+			if idx != -1:
+				var panel = get_panel_for(reorderingMinion)
+				vboxContainer.move_child(panel, idx)
+		reorderingMinion = null
+	update_panels_reorder_buttons()
+	
 
 func _on_name_input_text_changed(new_text: String):
 	confirmName.disabled = false
@@ -158,3 +204,8 @@ func _on_virtual_keyboard_key_pressed(character):
 
 func _on_virtual_keyboard_keyboard_hidden():
 	_on_cancel_button_pressed()
+
+func _on_reorder_button_pressed():
+	reordering = !reordering
+	reorderingMinion = null
+	load_minions_panel()
