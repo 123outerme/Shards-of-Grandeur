@@ -65,7 +65,6 @@ offset_top = -12.0
 offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_neighbor_top = NodePath("../../../FramerateControl/FramerateLabel/FramerateSpinBox")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton")
 
@@ -166,7 +165,7 @@ grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../FramerateControl/FramerateLabel/FramerateSpinBox")
+focus_neighbor_bottom = NodePath("../../../FramerateControl/FramerateLabel/FramerateLineEdit")
 
 [node name="FramerateControl" type="Control" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 26)
@@ -186,14 +185,14 @@ mouse_filter = 2
 text = "Frame Rate"
 fit_content = true
 
-[node name="FramerateSpinBox" type="SpinBox" parent="Control/VBoxContainer/FramerateControl/FramerateLabel"]
+[node name="FramerateLineEdit" type="LineEdit" parent="Control/VBoxContainer/FramerateControl/FramerateLabel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -116.0
+offset_left = -100.0
 offset_top = -17.0
 offset_bottom = 17.0
 grow_horizontal = 0
@@ -201,9 +200,9 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../VSyncControl/VsyncLabel/VsyncButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton")
-max_value = 999.0
-alignment = 2
-suffix = "FPS"
+placeholder_text = "60 FPS"
+virtual_keyboard_enabled = false
+select_all_on_focus = true
 
 [node name="VirtualKeyboard" parent="Control" instance=ExtResource("4_3ann2")]
 visible = false
@@ -223,8 +222,10 @@ capsLockRow = -1
 [connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="." method="_on_run_toggle_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="." method="_on_vysnc_button_toggled"]
-[connection signal="focus_entered" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateSpinBox" to="." method="_on_framerate_spin_box_focus_entered"]
-[connection signal="value_changed" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateSpinBox" to="." method="_on_framerate_spin_box_value_changed"]
+[connection signal="focus_entered" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_entered"]
+[connection signal="focus_exited" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_exited"]
+[connection signal="text_changed" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_text_changed"]
+[connection signal="text_submitted" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_text_submitted"]
 [connection signal="backspace_pressed" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_backspace_pressed"]
 [connection signal="enter_pressed" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
 [connection signal="key_pressed" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
