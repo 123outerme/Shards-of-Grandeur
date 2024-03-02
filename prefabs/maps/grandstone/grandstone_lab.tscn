@@ -1,8 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://cywhescpuu22q"]
+[gd_scene load_steps=14 format=3 uid="uid://cywhescpuu22q"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n60t2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_w4gfj"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_dngea"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_m078m"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_4vxso"]
+[ext_resource type="SpriteFrames" uid="uid://dc75vnwlrr6ws" path="res://graphics/animations/a_the_general.tres" id="5_03qik"]
+[ext_resource type="Resource" uid="uid://chkwf3r0gl5do" path="res://gamedata/dialogue/grandstone/the_general/the_general_1.tres" id="5_nq7cj"]
+[ext_resource type="Resource" uid="uid://bwull0p8tcq0s" path="res://gamedata/dialogue/grandstone/the_general/the_general_new_orders.tres" id="6_qapt3"]
+
+[sub_resource type="Resource" id="Resource_y80s8"]
+script = ExtResource("4_4vxso")
+saveName = "npc"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8pnf"]
+size = Vector2(24, 31)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -45,6 +69,31 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
+[node name="TheGeneral" parent="TileMap" instance=ExtResource("3_m078m")]
+position = Vector2(-52, -114)
+displayName = "The General"
+saveName = "the_general"
+data = SubResource("Resource_y80s8")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_nq7cj"), ExtResource("6_qapt3")])
+
+[node name="NPCSprite" parent="TileMap/TheGeneral" index="0"]
+sprite_frames = ExtResource("5_03qik")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/TheGeneral" index="1"]
+position = Vector2(0, 4.5)
+
+[node name="TalkArea" parent="TileMap/TheGeneral" index="3"]
+position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/TheGeneral/TalkArea" index="0"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_k8pnf")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/TheGeneral" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -60,3 +109,5 @@ navigation_layers = 4
 position = Vector2(-8, 18)
 mapName = "grandstone"
 mapPos = Vector2(167, -188)
+
+[editable path="TileMap/TheGeneral"]

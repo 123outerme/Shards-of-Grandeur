@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://chkwf3r0gl5do"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7xivm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hnnn5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_v0asj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_5xb1c"]
+[ext_resource type="Resource" uid="uid://budif6vx6oftr" path="res://gamedata/dialogue/grandstone/the_general/the_general_cave_gone.tres" id="3_dx5yr"]
+
+[sub_resource type="Resource" id="Resource_spjfx"]
+script = ExtResource("1_v0asj")
+choiceBtn = "Yes, But -"
+repeatsItem = false
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_hyn0o"]
+script = ExtResource("1_hnnn5")
+lines = Array[String](["Welcome back, @. Thank you for going to Standstill for me. Did you bring the Shards back?"])
+animation = "talk"
+choices = Array[ExtResource("1_v0asj")]([SubResource("Resource_spjfx")])
+
+[sub_resource type="Resource" id="Resource_uuw07"]
+script = ExtResource("1_v0asj")
+choiceBtn = "But -"
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_hwhnv"]
+script = ExtResource("1_hnnn5")
+lines = Array[String](["Excellent. Now that we have control of the Radiant Cavern we can begin our work at once. I will need you to stay here for a while and help me with my research."])
+animation = "talk"
+choices = Array[ExtResource("1_v0asj")]([SubResource("Resource_uuw07")])
+
+[sub_resource type="Resource" id="Resource_bmflf"]
+script = ExtResource("1_v0asj")
+choiceBtn = "The Cave is Gone!"
+leadsTo = ExtResource("3_dx5yr")
+repeatsItem = false
+buttonDims = Vector2(240, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_eoyrp"]
+script = ExtResource("1_hnnn5")
+lines = Array[String](["Brave @, I know you wish to go sightseeing, but we are on the cusp of a real breakthrough and I need someone to power the Mana Furnace while I focus the Shards' power!"])
+animation = "talk"
+choices = Array[ExtResource("1_v0asj")]([SubResource("Resource_bmflf")])
+
+[sub_resource type="Resource" id="Resource_ofou4"]
+script = ExtResource("2_5xb1c")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["arrive_grandstone"])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["War is Declared#To Grandstone!"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_7xivm")
+entryId = "the_general_1"
+items = Array[ExtResource("1_hnnn5")]([SubResource("Resource_hyn0o"), SubResource("Resource_hwhnv"), SubResource("Resource_eoyrp")])
+storyRequirements = SubResource("Resource_ofou4")
+closesDialogue = false
+fullHealsPlayer = false

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://budif6vx6oftr"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_0i07y"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_m31w1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_wpkrl"]
+[ext_resource type="Resource" uid="uid://bwull0p8tcq0s" path="res://gamedata/dialogue/grandstone/the_general/the_general_new_orders.tres" id="2_5u046"]
+
+[sub_resource type="Resource" id="Resource_rp4a8"]
+script = ExtResource("1_wpkrl")
+choiceBtn = "Hold On..."
+repeatsItem = false
+buttonDims = Vector2(180, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_jb03w"]
+script = ExtResource("1_wpkrl")
+choiceBtn = "Repeat That?"
+repeatsItem = true
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_2vbkv"]
+script = ExtResource("1_wpkrl")
+choiceBtn = "OK!"
+leadsTo = ExtResource("2_5u046")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "War is Declared#To Grandstone!"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_jthar"]
+script = ExtResource("1_m31w1")
+lines = Array[String](["Oh dear, that isn't quite good. Since you've only brought back a cart full of Shards, I can continue my research, but it'll take a little more than that to make any real progress.", "I haven't felt the ground shake here in Grandstone, so the Radiant Cave entrance must not be nearby. If you really want to get out there, you should search for the Cave east of Standstill, towards RIVER_CITY_NAME.", "Does that work for you, @?"])
+animation = "talk"
+choices = Array[ExtResource("1_wpkrl")]([SubResource("Resource_rp4a8"), SubResource("Resource_jb03w"), SubResource("Resource_2vbkv")])
+
+[resource]
+script = ExtResource("1_0i07y")
+entryId = ""
+items = Array[ExtResource("1_m31w1")]([SubResource("Resource_jthar")])
+closesDialogue = false
+fullHealsPlayer = false
