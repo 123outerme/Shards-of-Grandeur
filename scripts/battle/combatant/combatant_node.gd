@@ -193,7 +193,6 @@ func play_animation(animationName: String):
 	animatedSprite.play(animationName)
 
 func tween_to(pos: Vector2, callback: Callable):
-	var finalPos = pos
 	if combatant.maxSize.x > 16:
 		if pos.x > global_position.x:
 			pos.x -= (combatant.maxSize.x - 16) / 2

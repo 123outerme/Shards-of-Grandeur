@@ -31,6 +31,8 @@ func _unhandled_input(event):
 func load_equip_panel(initial: bool = true):
 	visible = true
 	
+	itemEffect.text = '[center]' + inventorySlot.item.get_effect_text() + '[/center]'
+	
 	if initial:
 		for panel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
 			panel.combatant = null

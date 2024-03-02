@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://bim8x8bo61eqq"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_yuuq7"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_nfgql"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qu4h5"]
+
+[sub_resource type="Resource" id="Resource_cat7t"]
+script = ExtResource("1_yuuq7")
+choiceBtn = "No Thanks!"
+repeatsItem = false
+buttonDims = Vector2(180, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_47g7b"]
+script = ExtResource("1_yuuq7")
+choiceBtn = "Shop"
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = true
+
+[sub_resource type="Resource" id="Resource_pbwlu"]
+script = ExtResource("2_nfgql")
+lines = Array[String](["Hello, @! Business is great as usual. Do you need anything?"])
+animation = "talk"
+choices = Array[ExtResource("1_yuuq7")]([SubResource("Resource_cat7t"), SubResource("Resource_47g7b")])
+
+[resource]
+script = ExtResource("3_qu4h5")
+entryId = ""
+items = Array[ExtResource("2_nfgql")]([SubResource("Resource_pbwlu")])
+closesDialogue = false
+fullHealsPlayer = false

@@ -128,11 +128,12 @@ func update_panels_reorder_buttons():
 		minionSlotPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == minionSlotPanel.combatant
 		minionSlotPanel.load_minion_slot_panel()
 
-func reset_reorder_state():
+func reset_reorder_state(reload: bool = false):
 	if reordering:
 		reordering = false
 		reorderingMinion = null
-		load_minions_panel()
+		if reload:
+			load_minions_panel()
 
 func _on_stats_clicked(combatant: Combatant):
 	stats_clicked.emit(combatant)
@@ -164,14 +165,15 @@ func _on_cancel_button_pressed():
 	nameInput.text = minion.nickname
 	end_edit_name()
 
-func end_edit_name():
+func end_edit_name(refocus: bool = true):
 	confirmName.visible = false
 	confirmName.disabled = true
 	cancelName.visible = false
 	editName.visible = true
 	nameInput.clear_button_enabled = false
 	nameInput.focus_mode = Control.FOCUS_NONE
-	editName.grab_focus()
+	if refocus:
+		editName.grab_focus()
 
 func _on_edit_button_pressed():
 	editingName = true

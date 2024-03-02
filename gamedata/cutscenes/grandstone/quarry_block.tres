@@ -1,0 +1,100 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://67f45roiioow"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_12ho4"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="1_cpis4"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_garfu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_lyp3r"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_dbq1k"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_vgnsd"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_c77v0"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="6_0ws0p"]
+[ext_resource type="Resource" uid="uid://k6f4y1hp2ekl" path="res://gamedata/cutscenes/reused/playersprite_right.tres" id="7_7qwp4"]
+[ext_resource type="Resource" uid="uid://dgkkrra8rcm82" path="res://gamedata/cutscenes/reused/player_facingRight.tres" id="8_yxprb"]
+
+[sub_resource type="Resource" id="Resource_bcq1u"]
+script = ExtResource("1_cpis4")
+value = true
+actorTreePath = "TileMap/Spelunker2"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_gk7i5"]
+script = ExtResource("1_12ho4")
+speaker = "Spelunker"
+texts = Array[String](["The road to the quarry is blocked up just up ahead. They're moving a big marble slab down the trail.", "I would wait until they get into the city first."])
+
+[sub_resource type="Resource" id="Resource_4ym6f"]
+script = ExtResource("1_garfu")
+frameLength = 0.1
+annotation = "Spelunker2 speaks and faces the player"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_bcq1u")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_12ho4")]([SubResource("Resource_gk7i5")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_2ey6i"]
+script = ExtResource("4_vgnsd")
+value = Vector2(-62, 248)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_uejhb"]
+script = ExtResource("1_garfu")
+frameLength = 1.0
+annotation = "Walk the player back from the path"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_2ey6i")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_dbq1k")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_12ho4")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_rdnw3"]
+script = ExtResource("1_garfu")
+frameLength = 0.1
+annotation = "Stop player walking and wait for them to read the text box"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("7_7qwp4"), ExtResource("8_yxprb")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("6_0ws0p")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_12ho4")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_s5in6"]
+script = ExtResource("5_c77v0")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_lyp3r")
+cutsceneFrames = Array[ExtResource("1_garfu")]([SubResource("Resource_4ym6f"), SubResource("Resource_uejhb"), SubResource("Resource_rdnw3")])
+saveName = "quarry_block"
+storyRequirements = SubResource("Resource_s5in6")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])

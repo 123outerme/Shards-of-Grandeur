@@ -54,7 +54,7 @@ func toggle():
 		equipmentPanel.itemDetailsPanel.visible = false
 		moveListPanel.moveDetailsPanel.visible = false
 		editMovesPanel.hide_panel()
-		minionsPanel.end_edit_name()
+		minionsPanel.end_edit_name(false)
 		minionsPanel.reset_reorder_state()
 		backButton.disabled = false
 		savedStats = null

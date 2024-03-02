@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cwo48fav5m6hs"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8d67r"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_mp83y"]
+
+[sub_resource type="Resource" id="Resource_ohygv"]
+script = ExtResource("1_8d67r")
+lines = Array[String](["Just north here is the Grandstone Theater, and this building right to the east is the restaurant."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_mp83y")
+entryId = ""
+items = Array[ExtResource("1_8d67r")]([SubResource("Resource_ohygv")])
+closesDialogue = false
+fullHealsPlayer = false

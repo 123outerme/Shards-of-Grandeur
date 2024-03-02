@@ -86,9 +86,9 @@ func get_map_entry_for_map_name(mapName: String) -> MapEntry:
 		printerr('This world location does not exist: ', mapName)
 	var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
 	if worldLocation != null:
-		var mapEntry: MapEntry = worldLocation.get_map_entry_for_location()
-		if mapEntry != null:
-			return mapEntry
+		var entry: MapEntry = worldLocation.get_map_entry_for_location()
+		if entry != null:
+			return entry
 		else:
 			printerr('No map entry could be found for: ', mapName)
 	else:
