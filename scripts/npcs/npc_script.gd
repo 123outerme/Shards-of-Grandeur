@@ -68,7 +68,7 @@ func fetch_player():
 		player = PlayerFinder.player
 
 func save_data(save_path):
-	if saveName == '':
+	if saveName == '' or Engine.is_editor_hint():
 		return
 	data.saveName = saveName
 	data.animSet = npcSprite.sprite_frames

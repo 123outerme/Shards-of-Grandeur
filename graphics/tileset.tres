@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=32 format=3 uid="uid://ccf5vxiigjqru"]
+[gd_resource type="TileSet" load_steps=34 format=3 uid="uid://ccf5vxiigjqru"]
 
 [ext_resource type="Texture2D" uid="uid://cw74wj0lme24k" path="res://graphics/terrain/grass.png" id="1_twi3w"]
 [ext_resource type="Texture2D" uid="uid://bbrbj4xgtnrrm" path="res://graphics/structures/trees.png" id="2_u6f08"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://7f0u6l18nxm3" path="res://graphics/terrain/grandstone_dirt_9.png" id="7_cktt3"]
 [ext_resource type="Texture2D" uid="uid://bpngpc2vha4ty" path="res://graphics/structures/well.png" id="7_s5cef"]
 [ext_resource type="Texture2D" uid="uid://dpnk48qm8yxu4" path="res://graphics/terrain/house_interior.png" id="8_muhg8"]
+[ext_resource type="Texture2D" uid="uid://earkr3crhtx6" path="res://graphics/furniture/market_stalls.png" id="8_y3gic"]
 [ext_resource type="Texture2D" uid="uid://bh4u8ojxhu2ca" path="res://graphics/terrain/stone_dirt_9.png" id="9_dnwey"]
 [ext_resource type="Texture2D" uid="uid://ccd5rwe06rllp" path="res://graphics/structures/horse_hitches.png" id="10_p6vw5"]
 [ext_resource type="Texture2D" uid="uid://cnah0gmxv0syc" path="res://graphics/furniture/anvil.png" id="11_rx32u"]
@@ -333,6 +334,13 @@ texture = ExtResource("7_cktt3")
 4:2/0/terrains_peering_bit/bottom_right_corner = 2
 4:2/0/terrains_peering_bit/bottom_left_corner = 2
 4:2/0/terrains_peering_bit/top_right_corner = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_igx1n"]
+texture = ExtResource("8_y3gic")
+0:0/size_in_atlas = Vector2i(3, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ulgi"]
 texture = ExtResource("4_oxo8n")
@@ -837,6 +845,9 @@ texture = ExtResource("8_muhg8")
 7:2/0 = 0
 7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:2/0/physics_layer_0/angular_velocity = 0.0
+8:2/0 = 0
+8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gxqv6"]
 texture = ExtResource("9_dnwey")
@@ -978,3 +989,4 @@ sources/11 = SubResource("TileSetAtlasSource_h34m0")
 sources/12 = SubResource("TileSetAtlasSource_wwtxo")
 sources/13 = SubResource("TileSetAtlasSource_mo72d")
 sources/14 = SubResource("TileSetAtlasSource_0mfx4")
+sources/15 = SubResource("TileSetAtlasSource_igx1n")
