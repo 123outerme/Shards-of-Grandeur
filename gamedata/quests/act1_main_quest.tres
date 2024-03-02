@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
@@ -61,10 +61,24 @@ customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_wntyx"]
+script = ExtResource("2_8mv8e")
+name = "On the Trail"
+description = "If the mouth of the Radiant Cave didn't appear closer to Grandstone, then it must be farther away. It's time to head towards RIVER_CITY_NAME!"
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String](["---"])
+displayObjName = "---"
+displayTurnInName = "---"
+customStatusStr = "???"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
 [resource]
 script = ExtResource("1_jiru6")
 questName = "War is Declared"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx")])
 isMainQuest = true
 advanceActActerComplete = true

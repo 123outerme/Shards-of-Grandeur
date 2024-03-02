@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://d2g45ij84jjnd"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_hbo6n"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_jnskp"]
+
+[sub_resource type="Resource" id="Resource_ixlad"]
+script = ExtResource("2_jnskp")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String](["War Is Declared#To Grandstone!"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_hbo6n")
+entryId = ""
+items = Array[Resource("res://scripts/dialogue/dialogue_item.gd")]([])
+storyRequirements = SubResource("Resource_ixlad")
+closesDialogue = false
+fullHealsPlayer = false
