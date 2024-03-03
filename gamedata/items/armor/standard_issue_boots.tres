@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://qtmhsh4dksho"]
+
+[ext_resource type="Texture2D" uid="uid://iwvop74yy3iv" path="res://graphics/items/rusty_boots.png" id="1_4dypt"]
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_hxlr1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_ic6oy"]
+
+[sub_resource type="Resource" id="Resource_bmyoi"]
+script = ExtResource("2_ic6oy")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.1
+
+[resource]
+script = ExtResource("1_hxlr1")
+statChanges = SubResource("Resource_bmyoi")
+timing = 0
+itemSprite = ExtResource("1_4dypt")
+itemName = "Standard Issue Boots"
+itemType = 3
+itemDescription = "These boots are a little too stiff to be comfortable, but they beat walking barefoot! You can tell by the condition they're in that they've had many owners, most of them unconcerned with caring for the boots' metal exterior."
+cost = 20
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

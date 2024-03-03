@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://bgwbbpulv7yov"]
+
+[ext_resource type="Texture2D" uid="uid://6rx0f8u5p6g" path="res://graphics/items/steak_dinner.png" id="1_tfuvc"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="2_fvxq2"]
+
+[resource]
+script = ExtResource("2_fvxq2")
+healBy = 80
+statusStrengthHeal = 1
+itemSprite = ExtResource("1_tfuvc")
+itemName = "Plate of Steak"
+itemType = 0
+itemDescription = "A staple of restaurants the world over. Everyone loves a good steak! Eat it to heal 80 HP and cure weak status effects."
+cost = 15
+maxCount = 10
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

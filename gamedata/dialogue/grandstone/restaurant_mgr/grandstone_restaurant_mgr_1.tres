@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dioyw5xcfyilb"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5rc2j"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_nk4mu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_qq4mj"]
+
+[sub_resource type="Resource" id="Resource_1bgg8"]
+script = ExtResource("1_qq4mj")
+choiceBtn = "No Thanks."
+repeatsItem = false
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_j6yu7"]
+script = ExtResource("1_qq4mj")
+choiceBtn = "I'll Have..."
+repeatsItem = false
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = true
+
+[sub_resource type="Resource" id="Resource_bowpb"]
+script = ExtResource("1_5rc2j")
+lines = Array[String](["Hello, and welcome to the Half Captain Restaurant! Can we get you something to eat today?"])
+animation = "talk"
+choices = Array[ExtResource("1_qq4mj")]([SubResource("Resource_1bgg8"), SubResource("Resource_j6yu7")])
+
+[resource]
+script = ExtResource("1_nk4mu")
+entryId = ""
+items = Array[ExtResource("1_5rc2j")]([SubResource("Resource_bowpb")])
+closesDialogue = false
+fullHealsPlayer = false
