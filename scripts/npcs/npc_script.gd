@@ -298,7 +298,8 @@ func set_sprite_frames(spriteFrames: SpriteFrames):
 	npcSprite.sprite_frames = spriteFrames
 
 func play_animation(animation: String):
-	npcSprite.play(animation)
+	if animation != '':
+		npcSprite.play(animation)
 
 func face_horiz(xDirection: float):
 	if xDirection < 0:

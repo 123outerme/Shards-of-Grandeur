@@ -3,6 +3,7 @@ class_name CutsceneTrigger
 
 @export var cutscenes: Array[Cutscene] = []
 @export var disabled: bool = false
+@export var tempDisableAfterFinish: bool = false
 
 func _ready():
 	if len(cutscenes) == 0:
@@ -17,7 +18,7 @@ func cutscene_finished(cutscene: Cutscene):
 	for scene in cutscenes:
 		if scene.storyRequirements != null and cutscene.storyRequirements.is_valid():
 			allInvalid = false
-	disabled = allInvalid
+	disabled = allInvalid or tempDisableAfterFinish
 
 func _on_area_entered(area):
 	if area.name == "PlayerEventCollider" and not disabled and not SceneLoader.cutscenePlayer.playing:

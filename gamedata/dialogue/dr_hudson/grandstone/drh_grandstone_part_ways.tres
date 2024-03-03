@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dkpu7gxsxa46y"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_m4m02"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_t5utl"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_xt7kc"]
+[ext_resource type="Resource" uid="uid://cdu4ndlvdfihu" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_grandstone_saved_q.tres" id="2_ec853"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_u3uc2"]
+
+[sub_resource type="Resource" id="Resource_4gt5s"]
+script = ExtResource("1_t5utl")
+choiceBtn = "Bye!"
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_ilxii"]
+script = ExtResource("1_t5utl")
+choiceBtn = "Saved?"
+leadsTo = ExtResource("2_ec853")
+repeatsItem = false
+buttonDims = Vector2(140, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_hl2h5"]
+script = ExtResource("1_m4m02")
+lines = Array[String](["You're off to RIVER_CITY_NAME next? Hopefully the mouth of the Radiant Cave is around there.", "Otherwise, we can pretty much guarantee Steelspire will be harvesting its Shards. I don't want to believe that's possible.", "In any case, this is where we will part ways for now. I have to stay here and help the General with his research.", "If we get this working, then Grandstone can be saved after all..."])
+animation = "talk"
+choices = Array[ExtResource("1_t5utl")]([SubResource("Resource_4gt5s"), SubResource("Resource_ilxii")])
+
+[sub_resource type="Resource" id="Resource_ich1s"]
+script = ExtResource("2_u3uc2")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["War is Declared#To Grandstone!"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_xt7kc")
+entryId = ""
+items = Array[ExtResource("1_m4m02")]([SubResource("Resource_hl2h5")])
+storyRequirements = SubResource("Resource_ich1s")
+closesDialogue = false
+fullHealsPlayer = false

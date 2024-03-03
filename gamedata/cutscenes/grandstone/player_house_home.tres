@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=8 format=3 uid="uid://xr0uecdpmu4w"]
+
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_5xf0u"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_weie0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_x4qsh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ytspw"]
+
+[sub_resource type="Resource" id="Resource_g6rb5"]
+script = ExtResource("1_x4qsh")
+speaker = "@"
+texts = Array[String](["Ah... home, sweet home."])
+
+[sub_resource type="Resource" id="Resource_35hm5"]
+script = ExtResource("1_ytspw")
+frameLength = 0.1
+annotation = "Say \"Home sweet home\""
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_5xf0u")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_x4qsh")]([SubResource("Resource_g6rb5")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_t60mn"]
+script = ExtResource("1_ytspw")
+frameLength = 0.1
+annotation = "Wait for text box to close"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_x4qsh")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[resource]
+script = ExtResource("1_weie0")
+cutsceneFrames = Array[ExtResource("1_ytspw")]([SubResource("Resource_35hm5"), SubResource("Resource_t60mn")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
