@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cyxtkc4m2lj2j"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cyxtkc4m2lj2j"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_bm04q"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_n23h4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_w7tu0"]
+[ext_resource type="Resource" uid="uid://c0o6185n60s13" path="res://gamedata/dialogue/lance/lance_apprentice_next_step.tres" id="2_gjvmb"]
 
 [sub_resource type="Resource" id="Resource_llsj0"]
 script = ExtResource("1_n23h4")
@@ -15,6 +16,7 @@ opensShop = false
 [sub_resource type="Resource" id="Resource_nb208"]
 script = ExtResource("1_n23h4")
 choiceBtn = "Here you go!"
+leadsTo = ExtResource("2_gjvmb")
 repeatsItem = false
 buttonDims = Vector2(260, 40)
 turnsInQuest = "Apprenticeship#Bearing Logs"

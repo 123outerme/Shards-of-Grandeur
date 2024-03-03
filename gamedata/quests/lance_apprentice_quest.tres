@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=11 format=3 uid="uid://2ycrrv0dbqxt"]
+[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://2ycrrv0dbqxt"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_nw4bk"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_brhbv"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mdmqf"]
 [ext_resource type="Resource" uid="uid://cn2h2aafogaos" path="res://gamedata/dialogue/lance/lance_apprentice_progress_1.tres" id="2_y8nwp"]
 [ext_resource type="Resource" uid="uid://cyxtkc4m2lj2j" path="res://gamedata/dialogue/lance/lance_apprentice_turnin_1.tres" id="4_josly"]
+[ext_resource type="Resource" uid="uid://dh755ctiol8rl" path="res://gamedata/dialogue/lance/lance_hammer_progress.tres" id="6_5swio"]
+[ext_resource type="Resource" uid="uid://dgbmha3sgul4u" path="res://gamedata/dialogue/lance/lance_hammer_turnin.tres" id="7_wxak4"]
 
 [sub_resource type="Resource" id="Resource_uqsk6"]
 script = ExtResource("2_brhbv")
@@ -27,19 +29,25 @@ customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_josly")])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_y8nwp")])
 
+[sub_resource type="Resource" id="Resource_ascq0"]
+script = ExtResource("2_brhbv")
+experience = 50
+gold = 0
+
 [sub_resource type="Resource" id="Resource_2k3ka"]
 script = ExtResource("2_kcg01")
-name = "Collect _!"
+name = "An Enchanted Hammer"
 description = "Lance still needs one more item for the sword he's smithing. Fetch it for him from the marketplace in Grandstone!"
+reward = SubResource("Resource_ascq0")
 type = 1
 count = 1
-objectiveName = "---"
-turnInNames = Array[String]([])
-displayObjName = "---"
-displayTurnInName = "---"
+objectiveName = "Enchanted Hammer"
+turnInNames = Array[String](["lance_standstill"])
+displayObjName = "Enchanted Hammer"
+displayTurnInName = "Lance"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_wxak4")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_5swio")])
 
 [sub_resource type="Resource" id="Resource_cajel"]
 script = ExtResource("2_mdmqf")

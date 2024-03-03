@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dgbmha3sgul4u"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_l2r55"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_rbc0r"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_w3scd"]
+
+[sub_resource type="Resource" id="Resource_c6wx8"]
+script = ExtResource("1_l2r55")
+choiceBtn = "Nope."
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_dju0c"]
+script = ExtResource("1_l2r55")
+choiceBtn = "Here!"
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = "Apprenticeship#An Enchanted Hammer"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_svjjr"]
+script = ExtResource("2_w3scd")
+lines = Array[String](["Hey @, did you bring me back that enchanted hammer?"])
+animation = "talk"
+choices = Array[ExtResource("1_l2r55")]([SubResource("Resource_c6wx8"), SubResource("Resource_dju0c")])
+
+[resource]
+script = ExtResource("1_rbc0r")
+entryId = ""
+items = Array[ExtResource("2_w3scd")]([SubResource("Resource_svjjr")])
+closesDialogue = false
+fullHealsPlayer = false
