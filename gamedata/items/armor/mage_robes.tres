@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://ue4yjsj74uc8"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_4qrss"]
+[ext_resource type="Texture2D" uid="uid://dn30uln1t6sve" path="res://graphics/items/armor/mage_robes.png" id="1_508e8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_sk666"]
+
+[sub_resource type="Resource" id="Resource_dfx8c"]
+script = ExtResource("2_sk666")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.1
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_4qrss")
+statChanges = SubResource("Resource_dfx8c")
+timing = 1
+itemSprite = ExtResource("1_508e8")
+itemName = "Mage Robes"
+itemType = 3
+itemDescription = "The standard attire of a mage is a long cloak, perfect for hiding all the reading material they bring to the battlefield."
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

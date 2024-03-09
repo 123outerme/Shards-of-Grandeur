@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://c5kv12qhdpe5p"]
+
+[ext_resource type="Texture2D" uid="uid://cj5vkro0uata8" path="res://graphics/items/armor/tunic.png" id="1_oblqe"]
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_ppae8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_y7vth"]
+
+[sub_resource type="Resource" id="Resource_g46sx"]
+script = ExtResource("2_y7vth")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_ppae8")
+statChanges = SubResource("Resource_g46sx")
+timing = 1
+itemSprite = ExtResource("1_oblqe")
+itemName = "Tunic"
+itemType = 3
+itemDescription = "A simple tunic that brings the wearer closer to the powers of Affinity."
+cost = 30
+maxCount = 1
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 1

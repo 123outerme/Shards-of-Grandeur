@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjyyxe0l2l5jd"]
+[gd_scene load_steps=22 format=3 uid="uid://cjyyxe0l2l5jd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ft524"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jkifd"]
@@ -9,12 +9,18 @@
 [ext_resource type="Resource" uid="uid://dewgn4e34f6ri" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_hello.tres" id="5_elhq5"]
 [ext_resource type="Resource" uid="uid://bx6u2bgxrbymu" path="res://gamedata/items/weapon/tome_vol_1.tres" id="6_125nq"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="7_gpgnt"]
+[ext_resource type="Resource" uid="uid://ue4yjsj74uc8" path="res://gamedata/items/armor/mage_robes.tres" id="7_pa671"]
 [ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="8_7freu"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="8_nq0df"]
 
 [sub_resource type="Resource" id="Resource_yljok"]
 script = ExtResource("7_gpgnt")
 item = ExtResource("6_125nq")
+count = 1
+
+[sub_resource type="Resource" id="Resource_kxnab"]
+script = ExtResource("7_gpgnt")
+item = ExtResource("7_pa671")
 count = 1
 
 [sub_resource type="Resource" id="Resource_8odg6"]
@@ -24,10 +30,10 @@ count = -1
 
 [sub_resource type="Resource" id="Resource_yxsnv"]
 script = ExtResource("8_nq0df")
-inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_yljok"), SubResource("Resource_8odg6")])
+inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_yljok"), SubResource("Resource_kxnab"), SubResource("Resource_8odg6")])
 isPlayerInventory = false
 
-[sub_resource type="Resource" id="Resource_8dgo7"]
+[sub_resource type="Resource" id="Resource_cl1ly"]
 script = ExtResource("4_st1ox")
 saveName = "npc"
 position = Vector2(-38, -101)
@@ -92,7 +98,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-38, -101)
 displayName = "Librarian"
 saveName = "grandstone_librarian"
-data = SubResource("Resource_8dgo7")
+data = SubResource("Resource_cl1ly")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_elhq5")])
 hasShop = true
 inventory = SubResource("Resource_yxsnv")

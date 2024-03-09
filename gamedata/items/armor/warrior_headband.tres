@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://gsk7qwlmuwdb"]
+
+[ext_resource type="Texture2D" uid="uid://choe88h1s6n3n" path="res://graphics/items/armor/warrior_headband.png" id="1_w0aay"]
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_w7dwn"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_4fghj"]
+
+[sub_resource type="Resource" id="Resource_hlxyn"]
+script = ExtResource("2_4fghj")
+physAttackMultiplier = 1.1
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_w7dwn")
+statChanges = SubResource("Resource_hlxyn")
+timing = 1
+itemSprite = ExtResource("1_w0aay")
+itemName = "Warrior Headband"
+itemType = 3
+itemDescription = "A true warrior wears no armor and trusts in their own might to see them through a fight."
+cost = 30
+maxCount = 1
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 1
