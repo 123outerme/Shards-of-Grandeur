@@ -19,22 +19,22 @@ const MAX_LV_THREE_ENEMIES = 20
 var battleLoaded: bool = false
 var battleEnded: bool = false
 
-@onready var tilemapParent: Node2D = get_node('TileMapParent')
+@onready var tilemapParent: Node2D = get_node_or_null('TileMapParent')
 var tilemap: TileMap = null
 var battleMapPath: String = ''
 
-@onready var combatantGroup: Node2D = get_node('CombatantGroup')
+@onready var combatantGroup: Node2D = get_node_or_null('CombatantGroup')
 @onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("CombatantNode")
-@onready var playerCombatant: CombatantNode = get_node("CombatantGroup/PlayerCombatant")
-@onready var minionCombatant: CombatantNode = get_node("CombatantGroup/MinionCombatant")
-@onready var enemyCombatant1: CombatantNode = get_node("CombatantGroup/EnemyCombatant1")
-@onready var enemyCombatant2: CombatantNode = get_node("CombatantGroup/EnemyCombatant2")
-@onready var enemyCombatant3: CombatantNode = get_node("CombatantGroup/EnemyCombatant3")
+@onready var playerCombatant: CombatantNode = get_node_or_null("CombatantGroup/PlayerCombatant")
+@onready var minionCombatant: CombatantNode = get_node_or_null("CombatantGroup/MinionCombatant")
+@onready var enemyCombatant1: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant1")
+@onready var enemyCombatant2: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant2")
+@onready var enemyCombatant3: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant3")
 
-@onready var battleUI: BattleUI = get_node("BattleCam")
-@onready var battlePanels: BattlePanels = get_node("BattleCam/UIPanels")
-@onready var turnExecutor: TurnExecutor = get_node("TurnExecutor")
-@onready var shade: ColorRect = get_node('Shade')
+@onready var battleUI: BattleUI = get_node_or_null("BattleCam")
+@onready var battlePanels: BattlePanels = get_node_or_null("BattleCam/UIPanels")
+@onready var turnExecutor: TurnExecutor = get_node_or_null("TurnExecutor")
+@onready var shade: ColorRect = get_node_or_null('Shade')
 
 var shadeTween: Tween = null
 

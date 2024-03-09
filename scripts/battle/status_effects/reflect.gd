@@ -14,7 +14,7 @@ func _init(
 ):
 	super(Type.REFLECT, i_potency, i_turnsLeft)
 
-func get_recoil_damage(combatant: Combatant, allCombatants: Array[Combatant], attackerIdx: int) -> int:
+func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int:
 	var damage: int = 0
 	# Assumption: targets are already fetched
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
@@ -27,24 +27,24 @@ func get_recoil_damage(combatant: Combatant, allCombatants: Array[Combatant], at
 	
 	return roundi(damage * Reflect.PERCENT_DAMAGE_DICT[potency])
 
-func find_attacker_idx(combatant: Combatant, allCombatants: Array[Combatant]) -> int:
+func find_attacker_idx(combatant, allCombatants: Array) -> int:
 	for idx in range(len(allCombatants)):
 		# if this combatant is not the afflicted, and is using a command (has already been resolved)
 		if allCombatants[idx] != combatant and not allCombatants[idx].downed and allCombatants[idx].command != null:
 			return idx
 	return -1
 
-func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
+func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming):
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
 		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 0) # recoil can never knock you out!
 	super.apply_status(combatant, allCombatants, timing)
 	
-func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
+func get_status_effect_str(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant, allCombatants, find_attacker_idx(combatant, allCombatants)) > 0:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
 		return combatant.disp_name() + "'s " + StatusEffect.potency_to_string(potency) \
-				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + String.num(get_recoil_damage(combatant, allCombatants, attackerIdx)) + ' damage to ' + allCombatants[attackerIdx].disp_name() + ' !'
+				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + String.num(get_recoil_damage(combatant, allCombatants, attackerIdx)) + ' damage back to ' + allCombatants[attackerIdx].disp_name() + '!'
 	return ''
 
 func copy() -> StatusEffect:

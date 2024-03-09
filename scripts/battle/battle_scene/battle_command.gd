@@ -366,7 +366,7 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += '.'
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
-				resultsText += interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
+				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
 		if type == Type.MOVE and move.statChanges != null:
 			if move.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(move.targets) and not (true in commandResult.afflictedStatuses) and move.statusEffect != null):
 				resultsText += ' ' + user.disp_name() + ' boosts '
@@ -400,13 +400,25 @@ func get_command_results(user: Combatant) -> String:
 
 func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
 	targets = []
+	var targetNodes: Array[CombatantNode] = []
 	for targetPos in targetPositions:
 		for combatantNode in combatantNodes:
 			if combatantNode.combatant != null:
 				if targetPos == combatantNode.battlePosition:
 					targets.append(combatantNode.combatant)
-				if combatantNode.combatant.statusEffect != null and combatantNode.combatant.statusEffect.type == StatusEffect.Type.INTERCEPTION:
-					interceptingTargets.append(combatantNode.combatant)
+					targetNodes.append(combatantNode)
+	interceptingTargets = []
+	for combatantNode in combatantNodes:
+		for targetNode in targetNodes:
+			# if the combatant is alive, has the same role as one of the target(s), is not the target, and has the Interception status
+			if combatantNode.combatant != null and \
+					combatantNode.is_alive() and \
+					combatantNode.role == targetNode.role and \
+					combatantNode != targetNode and\
+					combatantNode.combatant.statusEffect != null and \
+					combatantNode.combatant.statusEffect.type == StatusEffect.Type.INTERCEPTION:
+				interceptingTargets.append(combatantNode.combatant)
+				break
 
 func get_multiplier_affected_targets() -> Array[Combatant]:
 	var affected: Array[Combatant] = []
