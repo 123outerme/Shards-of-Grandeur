@@ -6,6 +6,7 @@ class_name DialogueEntry
 @export var storyRequirements: StoryRequirements = null
 @export var startsQuest: Quest = null
 @export var startsCutscene: Cutscene = null
+@export var givesItem: Item = null
 @export var closesDialogue: bool = false
 @export var fullHealsPlayer: bool = false
 @export var startsStaticEncounter: StaticEncounter = null
@@ -15,6 +16,7 @@ func _init(
 	i_items: Array[DialogueItem] = [],
 	i_storyRequirements = null,
 	i_startsQuest = null,
+	i_givesItem = null,
 	i_closesDialogue = false,
 	i_fullHealsPlayer = false,
 	i_staticEncounter = null,
@@ -23,6 +25,7 @@ func _init(
 	items = i_items
 	storyRequirements = i_storyRequirements
 	startsQuest = i_startsQuest
+	givesItem = i_givesItem
 	closesDialogue = i_closesDialogue
 	fullHealsPlayer = i_fullHealsPlayer
 	startsStaticEncounter = i_staticEncounter

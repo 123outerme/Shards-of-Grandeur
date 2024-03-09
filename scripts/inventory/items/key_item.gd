@@ -1,6 +1,12 @@
 extends Item
 class_name KeyItem
 
+enum KeyItemType {
+	STORY_ITEM = 0,
+	TELEPORT_STONE = 1
+}
+
+@export var keyItemType: KeyItemType = KeyItemType.STORY_ITEM
 @export_multiline var useMessage: String = ''
 @export_multiline var effectText: String = ''
 
@@ -16,10 +22,12 @@ func _init(
 	i_consumable = false,
 	i_equippable = false,
 	i_targets = BattleCommand.Targets.SELF,
+	i_keyItemType = KeyItemType.STORY_ITEM,
 	i_useMsg = '',
 	i_effectText = '',
 ):
 	super(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+	keyItemType = i_keyItemType
 	useMessage = i_useMsg
 	effectText = i_effectText
 
@@ -28,3 +36,8 @@ func get_use_message(_target: Combatant) -> String:
 
 func get_effect_text() -> String:
 	return effectText
+
+func get_as_key_item_type():
+	if keyItemType == KeyItemType.TELEPORT_STONE:
+		return self as TeleportStone
+	return self

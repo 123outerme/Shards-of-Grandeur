@@ -84,5 +84,5 @@ func get_as_subclass():
 	if itemType == Type.ARMOR:
 		return self as Armor
 	if itemType == Type.KEY_ITEM:
-		return self as KeyItem
+		return (self as KeyItem).get_as_key_item_type()
 	return self

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bgp8xg4solw5p"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ep0x"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ct52j"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_ka42w"]
+[ext_resource type="Resource" uid="uid://calgv8aphjhgo" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_magic.tres" id="2_d73qj"]
+
+[sub_resource type="Resource" id="Resource_81ojy"]
+script = ExtResource("1_ka42w")
+choiceBtn = "Nevermind."
+repeatsItem = false
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_u1qit"]
+script = ExtResource("1_ka42w")
+choiceBtn = "Magic?"
+leadsTo = ExtResource("2_d73qj")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_ay5om"]
+script = ExtResource("1_0ep0x")
+lines = Array[String](["Yes, what questions do you have for me?"])
+animation = "talk"
+choices = Array[ExtResource("1_ka42w")]([SubResource("Resource_81ojy"), SubResource("Resource_u1qit")])
+
+[resource]
+script = ExtResource("1_ct52j")
+entryId = ""
+items = Array[ExtResource("1_0ep0x")]([SubResource("Resource_ay5om")])
+closesDialogue = false
+fullHealsPlayer = false

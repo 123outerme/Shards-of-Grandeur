@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cf8rl6pihimbv"]
+
+[ext_resource type="Resource" uid="uid://bgwbbpulv7yov" path="res://gamedata/items/healing/steak.tres" id="1_2r8a4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7e8nv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_nqc0c"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_mpqqs"]
+
+[sub_resource type="Resource" id="Resource_5yu3n"]
+script = ExtResource("1_7e8nv")
+lines = Array[String](["I'm in a good mood. You should take this! It's a steak dinner I ordered at the Half Captain Restaurant."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_86oxh"]
+script = ExtResource("3_mpqqs")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["inn_spelunker#item"])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_nqc0c")
+entryId = "item"
+items = Array[ExtResource("1_7e8nv")]([SubResource("Resource_5yu3n")])
+storyRequirements = SubResource("Resource_86oxh")
+givesItem = ExtResource("1_2r8a4")
+closesDialogue = false
+fullHealsPlayer = false

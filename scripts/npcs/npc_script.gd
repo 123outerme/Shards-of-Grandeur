@@ -184,6 +184,9 @@ func advance_dialogue() -> bool:
 			if data.dialogueItems[data.dialogueIndex].entryId != '':
 				# attempt to progress Talk quest(s) that require this NPC and dialogue item
 				PlayerResources.questInventory.progress_quest(saveName + '#' + data.dialogueItems[data.dialogueIndex].entryId, QuestStep.Type.TALK)
+			if data.dialogueItems[data.dialogueIndex].givesItem:
+				PlayerResources.inventory.add_item(data.dialogueItems[data.dialogueIndex].givesItem)
+				PlayerFinder.player.cam.show_alert('Got Item:\n' + data.dialogueItems[data.dialogueIndex].givesItem.itemName)
 			if data.dialogueItems[data.dialogueIndex].fullHealsPlayer:
 				PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 				PlayerFinder.player.cam.show_alert('Fully Healed!')

@@ -1,8 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjyyxe0l2l5jd"]
+[gd_scene load_steps=20 format=3 uid="uid://cjyyxe0l2l5jd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ft524"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jkifd"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_64p4k"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_rwj07"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_st1ox"]
+[ext_resource type="SpriteFrames" uid="uid://1hdkx5x4cud5" path="res://graphics/animations/a_librarian.tres" id="5_4l0iu"]
+[ext_resource type="Resource" uid="uid://dewgn4e34f6ri" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_hello.tres" id="5_elhq5"]
+[ext_resource type="Resource" uid="uid://bx6u2bgxrbymu" path="res://gamedata/items/weapon/tome_vol_1.tres" id="6_125nq"]
+[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="7_gpgnt"]
+[ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="8_7freu"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="8_nq0df"]
+
+[sub_resource type="Resource" id="Resource_yljok"]
+script = ExtResource("7_gpgnt")
+item = ExtResource("6_125nq")
+count = 1
+
+[sub_resource type="Resource" id="Resource_8odg6"]
+script = ExtResource("7_gpgnt")
+item = ExtResource("8_7freu")
+count = -1
+
+[sub_resource type="Resource" id="Resource_yxsnv"]
+script = ExtResource("8_nq0df")
+inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_yljok"), SubResource("Resource_8odg6")])
+isPlayerInventory = false
+
+[sub_resource type="Resource" id="Resource_c0hkm"]
+script = ExtResource("4_st1ox")
+saveName = "npc"
+position = Vector2(-38, -101)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+inventory = SubResource("Resource_yxsnv")
+hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -48,6 +88,31 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
+[node name="Librarian" parent="TileMap" instance=ExtResource("3_64p4k")]
+position = Vector2(-38, -101)
+displayName = "Librarian"
+saveName = "grandstone_librarian"
+data = SubResource("Resource_c0hkm")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_elhq5")])
+hasShop = true
+inventory = SubResource("Resource_yxsnv")
+
+[node name="NPCSprite" parent="TileMap/Librarian" index="0"]
+sprite_frames = ExtResource("5_4l0iu")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/Librarian" index="1"]
+position = Vector2(0, 4.5)
+
+[node name="TalkArea" parent="TileMap/Librarian" index="3"]
+position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TileMap/Librarian/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/Librarian" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -68,4 +133,5 @@ mapPos = Vector2(57, -102)
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_so4nu")
 
+[editable path="TileMap/Librarian"]
 [editable path="WarpZone"]

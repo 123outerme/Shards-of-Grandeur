@@ -35,6 +35,7 @@ var cutscenePaused: bool = false
 var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
 var running: bool = false
+var useTeleportStone: TeleportStone = null
 
 func _unhandled_input(event):
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
@@ -376,6 +377,9 @@ func menu_closed():
 	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
 			and not textBox.visible and not pausePanel.visible:
 		SceneLoader.unpause_autonomous_movers()
+	if useTeleportStone != null:
+		SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+		useTeleportStone = null
 
 func start_battle():
 	SaveHandler.save_data()

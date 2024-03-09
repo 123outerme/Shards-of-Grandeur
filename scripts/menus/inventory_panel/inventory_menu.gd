@@ -166,7 +166,7 @@ func load_inventory_panel(rebuild: bool = true):
 		var firstPanel: bool = true
 		var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
 		for slot in currentInventory.get_sorted_slots():
-			if selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType:
+			if (selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType) and slot.is_valid():
 				var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 				instantiatedPanel.isShopItem = inShop
 				instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop

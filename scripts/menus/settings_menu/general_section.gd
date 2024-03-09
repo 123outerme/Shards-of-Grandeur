@@ -101,13 +101,12 @@ func _on_framerate_line_edit_text_submitted(new_text):
 	if new_text.is_valid_int():
 		framerate = min(144, max(30, new_text.to_int())) # bound between 144 and 30
 	else:
-		framerate = prevFramerate	
+		framerate = prevFramerate
 	SettingsHandler.gameSettings.framerate = framerate
 	SettingsHandler.gameSettings.apply_framerate()
 	framerateLineEdit.text = String.num(framerate) + ' FPS'
-	deadzoneSlider.grab_focus()
 	prevFramerate = framerate
-
+	deadzoneSlider.grab_focus()
 
 func _on_deadzone_slider_focus_exited():
 	SettingsHandler.gameSettings.deadzone = deadzoneSlider.value / 100.0
