@@ -13,17 +13,17 @@ var escapes: bool = false
 var previousFocus: Control = null
 var fobFocusMode: bool = false
 
-@onready var summonMenu: SummonMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Summon")
-@onready var allCommands: AllCommands = get_node("BattleTextBox/TextContainer/MarginContainer/AllCommands")
-@onready var moves: MovesMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Moves")
-@onready var targets: TargetsMenu = get_node("BattleTextBox/TextContainer/MarginContainer/Targets")
-@onready var results: Results = get_node("BattleTextBox/TextContainer/MarginContainer/Results")
-@onready var battleComplete: BattleCompleteMenu = get_node("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
+@onready var summonMenu: SummonMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Summon")
+@onready var allCommands: AllCommands = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/AllCommands")
+@onready var moves: MovesMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Moves")
+@onready var targets: TargetsMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Targets")
+@onready var results: Results = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Results")
+@onready var battleComplete: BattleCompleteMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
 
-@onready var battlePanels: BattlePanels = get_node("UIPanels")
-@onready var summonMinionPanel: SummonMinionPanel = get_node("UIPanels/SummonMinionPanel")
-@onready var inventoryPanel: InventoryMenu = get_node("UIPanels/InventoryPanelNode")
-@onready var statsPanel: StatsMenu = get_node("UIPanels/StatsPanelNode")
+@onready var battlePanels: BattlePanels = get_node_or_null("UIPanels")
+@onready var summonMinionPanel: SummonMinionPanel = get_node_or_null("UIPanels/SummonMinionPanel")
+@onready var inventoryPanel: InventoryMenu = get_node_or_null("UIPanels/InventoryPanelNode")
+@onready var statsPanel: StatsMenu = get_node_or_null("UIPanels/StatsPanelNode")
 
 func _ready():
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
