@@ -115,15 +115,19 @@ func trash_items_by_name(itemName: String, count: int = 1):
 func get_sorted_slots() -> Array[InventorySlot]:
 	var slots: Array[InventorySlot] = []
 	slots.append_array(inventorySlots)
-	slots.sort_custom(sort_by_equipped)
+	slots.sort_custom(sort_inventory)
 	return slots
 
-func sort_by_equipped(a: InventorySlot, b: InventorySlot) -> bool:
+func sort_inventory(a: InventorySlot, b: InventorySlot) -> bool:
 	var aEquipped: bool = is_equipped(a.item)
 	var bEquipped: bool = is_equipped(b.item)
 	if aEquipped and not bEquipped:
 		return true
 	if bEquipped and not aEquipped:
+		return false
+	if (a.item.usable or a.item.battleUsable or a.item.equippable) and not (b.item.usable or b.item.battleUsable or b.item.equippable):
+		return true
+	if not (a.item.usable or a.item.battleUsable or a.item.equippable) and (b.item.usable or b.item.battleUsable or b.item.equippable):
 		return false
 	return a.item.itemName.naturalnocasecmp_to(b.item.itemName) < 0 # compare names (including natural number comparisons)
 

@@ -133,22 +133,22 @@ func load_inventory_panel(rebuild: bool = true):
 	update_filter_buttons()
 	# lock all filters so that they can be unlocked as the inventory slots get created
 	# and set initial focus neighbors to back
-	healingFilterBtn.disabled = true
-	healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(backButton)
-	
-	shardFilterBtn.disabled = true
-	shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(backButton)
-	
-	weaponFilterBtn.disabled = true
-	weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(backButton)
-	
-	armorFilterBtn.disabled = true
-	armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(backButton)
-	
-	keyItemFilterBtn.disabled = true
-	keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(backButton)
-	
-	backButton.focus_neighbor_top = backButton.get_path_to(weaponFilterBtn)
+	if rebuild:
+		healingFilterBtn.disabled = true
+		healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(backButton)
+		
+		shardFilterBtn.disabled = true
+		shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(backButton)
+		
+		weaponFilterBtn.disabled = true
+		weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(backButton)
+		
+		armorFilterBtn.disabled = true
+		armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(backButton)
+		
+		keyItemFilterBtn.disabled = true
+		keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(backButton)
+		backButton.focus_neighbor_top = backButton.get_path_to(weaponFilterBtn)
 	
 	inventoryTitle.text = '[center]Inventory[/center]'
 	goldCount.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.gold)

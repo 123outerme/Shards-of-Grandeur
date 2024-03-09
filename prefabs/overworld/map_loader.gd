@@ -59,6 +59,7 @@ func load_map(mapName: String):
 	PlayerResources.playerInfo.map = mapName
 	mapNavReady = false
 	player.disableMovement = true
+	player.useTeleportStone = null
 	if mapInstance != null:
 		mapInstance.queue_free()
 	var mapScene = null
@@ -110,7 +111,7 @@ func destroy_overworld_enemies():
 			spawnerNode.delete_enemy()
 
 func _fade_out_complete():
-	pass
+	PlayerFinder.player.play_animation('stand')
 
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):

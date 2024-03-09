@@ -378,8 +378,10 @@ func menu_closed():
 			and not textBox.visible and not pausePanel.visible:
 		SceneLoader.unpause_autonomous_movers()
 	if useTeleportStone != null:
+		play_animation('teleport')
+		disableMovement = true
+		await get_tree().create_timer(0.5).timeout
 		SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
-		useTeleportStone = null
 
 func start_battle():
 	SaveHandler.save_data()
@@ -490,7 +492,6 @@ func _new_act_callback():
 
 func _after_start_battle_fade_out():
 	SceneLoader.load_battle()
-
 
 func _on_pause_menu_resume_game():
 	if textBox.visible:

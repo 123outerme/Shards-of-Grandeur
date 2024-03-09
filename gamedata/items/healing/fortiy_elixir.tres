@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=5 format=3 uid="uid://btnvcd1cxvrhb"]
+
+[ext_resource type="Texture2D" uid="uid://yqni8lvul00f" path="res://graphics/items/healing/fortify_elixir.png" id="1_jydks"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_pmcmt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_vxwjo"]
+
+[sub_resource type="Resource" id="Resource_moo4a"]
+script = ExtResource("3_vxwjo")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.25
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_pmcmt")
+healBy = 50
+statusStrengthHeal = 0
+statChanges = SubResource("Resource_moo4a")
+itemSprite = ExtResource("1_jydks")
+itemName = "Fortifying Elixir"
+itemType = 0
+itemDescription = "This special elixir fortifies the user's defenses by a noticeable amount, as well as providing healing. "
+cost = 25
+maxCount = 20
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

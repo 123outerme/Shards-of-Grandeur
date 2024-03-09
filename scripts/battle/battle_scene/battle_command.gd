@@ -148,7 +148,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 	
-	var appliedDamage: bool = false
+	var appliedEffect: bool = false
 	for idx in range(len(targets)):
 		var finalPower = 0
 		if type == Type.MOVE:
@@ -165,22 +165,35 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		var damage = calculate_damage(user, targets[idx], finalPower)
 		commandResult.damagesDealt[idx] += damage
 		if damage != 0:
-			appliedDamage = true
+			appliedEffect = true
 		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
+
 		if does_target_get_status(user, idx) and move.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = move.statusEffect.copy()
 			commandResult.afflictedStatuses[idx] = true
+		
+		if type == Type.USE_ITEM:
+			if slot.item is Healing:
+				if targets[idx].statusEffect != null and targets[idx].statusEffect.potency <= slot.item.statusStrengthHeal:
+					targets[idx].statusEffect = null
+					appliedEffect = true
+				if slot.item.statChanges != null:
+					targets[idx].statChanges.stack(slot.item.statChanges)
+					#print(slot.item.itemName, ' stacks stat changes on ', targets[idx].disp_name())
+
 		if move != null and \
 				(move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALL_ALLIES or move.targets == Targets.ALLY):
 			targets[idx].statChanges.stack(move.statChanges) # apply stat buffs
 			commandResult.wasBoosted[idx] = true
+	
 	if type == Type.MOVE and move != null and BattleCommand.is_command_enemy_targeting(move.targets) or true in commandResult.afflictedStatuses:
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if not (move.targets == Targets.NON_SELF_ALLY or move.targets == Targets.ALLY or move.targets == Targets.ALL_ALLIES):
 			user.statChanges.stack(move.statChanges) # if the target is an ally, the stat changes were already applied above if the user should have gotten them
-			
-	if type == Type.USE_ITEM and appliedDamage: # item was used and healing was applied
+
+	if type == Type.USE_ITEM and appliedEffect: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
+		#print('TEST - trashed item ', slot.item.itemName)
 		
 	return false
 
@@ -323,7 +336,7 @@ func get_command_results(user: Combatant) -> String:
 			interceptingTargetDamages.append(0) # initialize intercepting target damage values
 		
 		for i in range(len(targets)):
-			var target = targets[i]
+			var target: Combatant = targets[i]
 			var targetName = target.disp_name()
 			if target == user:
 				targetName = 'self'
@@ -335,9 +348,6 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
-						if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING and (slot.item as Healing).statusStrengthHeal != StatusEffect.Potency.NONE:
-							var healItem: Healing = slot.item as Healing
-							resultsText += ' and cured ' + StatusEffect.potency_to_string(healItem.statusStrengthHeal) + ' status effects.'
 					if type == Type.MOVE and commandResult.afflictedStatuses[i]:
 						resultsText += ' and afflicting ' + move.statusEffect.status_effect_to_string()
 				else:
@@ -349,7 +359,26 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += move.statusEffect.status_effect_to_string() + ' on ' + targetName
 					if type == Type.USE_ITEM:
 						if slot.item.itemType == Item.Type.HEALING:
-							resultsText += targetName + ' by not enough to help'
+							if slot.item.healBy != 0:
+								resultsText += targetName + ' by not enough to help'
+				if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING:
+					var effectMsgs: Array[String] = []
+					if slot.item.statusStrengthHeal != StatusEffect.Potency.NONE and target.statusEffect == null:
+						effectMsgs.append('cured ' + StatusEffect.potency_to_string(slot.item.statusStrengthHeal) + ' status effects')
+				
+					if slot.item.statChanges != null:
+						var multipliers: Array[StatMultiplierText] = slot.item.statChanges.get_multipliers_text()
+						effectMsgs.append('boosted ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
+					if len(effectMsgs) > 0:
+						resultsText += ', '
+						if len(effectMsgs) == 1:
+							resultsText += 'and '
+					for idx in range(len(effectMsgs)):
+						resultsText += effectMsgs[idx]
+						if idx < len(effectMsgs) - 2:
+							resultsText += ', '
+						if idx == len(effectMsgs) - 2:
+							resultsText += 'and '
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
 					resultsText += '... insult to injury on ' + targetName

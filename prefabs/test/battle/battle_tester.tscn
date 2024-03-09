@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=55 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="9_hllpc"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="10_sm21m"]
+[ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="10_son1n"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_h5ibj"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="11_pkngn"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="12_3kvf0"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="12_drrwx"]
@@ -21,7 +23,7 @@
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="15_ahtpg"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="15_qn3hw"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="16_1n64h"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="16_kmr5t"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/interception.gd" id="16_vemfl"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="17_hdtqw"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
@@ -68,6 +70,18 @@ dropTable = Array[ExtResource("12_drrwx")]([])
 innateStatCategories = Array[int]([])
 downed = false
 
+[sub_resource type="Resource" id="Resource_w6qyo"]
+script = ExtResource("11_h5ibj")
+item = ExtResource("10_son1n")
+count = 1
+
+[sub_resource type="Resource" id="Resource_8y3yp"]
+script = ExtResource("9_jd22b")
+type = 2
+slot = SubResource("Resource_w6qyo")
+targetPositions = Array[String](["Ally"])
+randomNums = Array[float]([0.5])
+
 [sub_resource type="Resource" id="Resource_j40ri"]
 script = ExtResource("11_pkngn")
 experience = 50
@@ -107,9 +121,9 @@ statGrowth = ExtResource("15_ahtpg")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("14_tebfq")
 
-[sub_resource type="Resource" id="Resource_hf2ce"]
-script = ExtResource("16_kmr5t")
-type = 8
+[sub_resource type="Resource" id="Resource_iv7wv"]
+script = ExtResource("16_vemfl")
+type = 9
 potency = 1
 turnsLeft = 3
 
@@ -137,7 +151,7 @@ navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_hj45a")
 currentHp = -1
-statusEffect = SubResource("Resource_hf2ce")
+statusEffect = SubResource("Resource_iv7wv")
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 4
@@ -146,6 +160,7 @@ equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_e
 teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_fjhrc"), SubResource("Resource_hw257"), SubResource("Resource_6u514")])
 dropTable = Array[ExtResource("12_drrwx")]([SubResource("Resource_7e1oi"), SubResource("Resource_btmi1")])
 innateStatCategories = Array[int]([1, 2])
+command = SubResource("Resource_8y3yp")
 downed = false
 
 [sub_resource type="Resource" id="Resource_h71dw"]
@@ -232,8 +247,11 @@ downed = false
 [node name="BattleTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_7scea")
 _playerCombatant = SubResource("Resource_ysrhl")
+playerLv = 2
 _minionCombatant = SubResource("Resource_e4fpc")
+minionLv = 2
 enemy1Combatant = SubResource("Resource_dvq57")
+enemy1Lv = 2
 globalMarker = NodePath("Marker2D")
 
 [node name="TurnExecutor" type="Node" parent="." node_paths=PackedStringArray("battleController", "battleUI")]
