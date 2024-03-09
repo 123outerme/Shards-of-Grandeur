@@ -4,19 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="2_twvt2"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_bb6at"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_wlpwx"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_05qlp"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_qx1gx"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_0ckox"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_trg3e"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_m55wy"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_f10qf"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_307ds"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_tkv7k"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_utxra"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_fuj4q"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_of34x"]
 allow_unpress = true
 
 [node name="ControlsSection" type="Control"]
@@ -1287,7 +1287,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_wlpwx")
+button_group = SubResource("ButtonGroup_05qlp")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1295,7 +1295,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_qx1gx")
+button_group = SubResource("ButtonGroup_0ckox")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1303,7 +1303,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_trg3e")
+button_group = SubResource("ButtonGroup_m55wy")
 text = "D-Pad"
 
 [node name="Change2Group" type="HBoxContainer" parent="TabContainer/Controller/MovementAction"]
@@ -1326,7 +1326,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_f10qf")
+button_group = SubResource("ButtonGroup_307ds")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1334,7 +1334,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_tkv7k")
+button_group = SubResource("ButtonGroup_utxra")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1342,7 +1342,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_fuj4q")
+button_group = SubResource("ButtonGroup_of34x")
 text = "D-Pad"
 
 [node name="InteractKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dv3hqx6w7swgi"]
+[gd_scene load_steps=20 format=3 uid="uid://dv3hqx6w7swgi"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_cpk56"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_igmcl"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="5_foeso"]
 [ext_resource type="Texture2D" uid="uid://doiqcamfkfg4w" path="res://graphics/ui/talk_indicator_think.png" id="5_rdebt"]
 
-[sub_resource type="Resource" id="Resource_rfmog"]
+[sub_resource type="Resource" id="Resource_rp1b8"]
 script = ExtResource("4_xksqv")
 saveName = "npc"
 position = Vector2(72, -103)
@@ -39,6 +39,14 @@ entryId = ""
 items = Array[ExtResource("5_foeso")]([SubResource("Resource_db5tm")])
 closesDialogue = false
 fullHealsPlayer = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmo4u"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fs7r"]
 size = Vector2(0, 0)
@@ -89,10 +97,11 @@ layer_4/tile_data = PackedInt32Array()
 [node name="InvisibleBed" parent="TileMap" instance=ExtResource("3_u6vbk")]
 position = Vector2(72, -103)
 displayName = "@"
-data = SubResource("Resource_rfmog")
+data = SubResource("Resource_rp1b8")
 dialogueEntries = Array[ExtResource("5_5eepf")]([SubResource("Resource_d5x3t")])
 
 [node name="NPCSprite" parent="TileMap/InvisibleBed" index="0"]
+sprite_frames = SubResource("SpriteFrames_tmo4u")
 animation = &"stand"
 
 [node name="TalkAlertSprite" parent="TileMap/InvisibleBed/NPCSprite" index="0"]
