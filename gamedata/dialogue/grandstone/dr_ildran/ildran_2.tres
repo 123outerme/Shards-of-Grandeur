@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://b5ixisya4ugcr"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_40mww"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_yyjg4"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_3csx0"]
-[ext_resource type="Resource" uid="uid://budif6vx6oftr" path="res://gamedata/dialogue/grandstone/the_general/the_general_cave_gone.tres" id="3_sgy1l"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_njfq6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_h2504"]
+[ext_resource type="Resource" uid="uid://budif6vx6oftr" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_cave_gone.tres" id="3_bk7p4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_ktsfs"]
 
 [sub_resource type="Resource" id="Resource_uuw07"]
-script = ExtResource("1_40mww")
+script = ExtResource("1_njfq6")
 choiceBtn = "But --"
 repeatsItem = false
 buttonDims = Vector2(120, 40)
@@ -14,29 +14,29 @@ turnsInQuest = ""
 opensShop = false
 
 [sub_resource type="Resource" id="Resource_ad8p3"]
-script = ExtResource("2_3csx0")
+script = ExtResource("2_h2504")
 lines = Array[String](["Excellent. Now that we have control of the Radiant Cavern we can begin our work at once. I will need you to stay here for a while and help me with my research."])
 animation = "talk"
-choices = Array[ExtResource("1_40mww")]([SubResource("Resource_uuw07")])
+choices = Array[ExtResource("1_njfq6")]([SubResource("Resource_uuw07")])
 
 [sub_resource type="Resource" id="Resource_bmflf"]
-script = ExtResource("1_40mww")
+script = ExtResource("1_njfq6")
 choiceBtn = "The Cave is Gone!"
-leadsTo = ExtResource("3_sgy1l")
+leadsTo = ExtResource("3_bk7p4")
 repeatsItem = false
 buttonDims = Vector2(320, 40)
 turnsInQuest = ""
 opensShop = false
 
 [sub_resource type="Resource" id="Resource_jgm22"]
-script = ExtResource("2_3csx0")
+script = ExtResource("2_h2504")
 lines = Array[String](["Brave @, I know you wish to go sightseeing, but we are on the cusp of a real breakthrough and I need someone to power the Mana Furnace while I focus the Shards' power!"])
 animation = "talk"
-choices = Array[ExtResource("1_40mww")]([SubResource("Resource_bmflf")])
+choices = Array[ExtResource("1_njfq6")]([SubResource("Resource_bmflf")])
 
 [resource]
-script = ExtResource("1_yyjg4")
+script = ExtResource("4_ktsfs")
 entryId = ""
-items = Array[ExtResource("2_3csx0")]([SubResource("Resource_ad8p3"), SubResource("Resource_jgm22")])
+items = Array[ExtResource("2_h2504")]([SubResource("Resource_ad8p3"), SubResource("Resource_jgm22")])
 closesDialogue = false
 fullHealsPlayer = false

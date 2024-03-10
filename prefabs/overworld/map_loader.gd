@@ -73,10 +73,13 @@ func load_map(mapName: String):
 	if newMapEntry != null:
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
+		''' #multithreaded map loading
 		ResourceLoader.load_threaded_request(newMapEntry.get_map_path())
 		while ResourceLoader.load_threaded_get_status(newMapEntry.get_map_path()) != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			pass
 		mapScene = ResourceLoader.load_threaded_get(newMapEntry.get_map_path())
+		#'''
+		mapScene = load(newMapEntry.get_map_path())
 		mapEntry = newMapEntry
 		SceneLoader.curMapEntry = mapEntry
 	if mapScene == null:

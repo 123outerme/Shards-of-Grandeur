@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://chkwf3r0gl5do"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7xivm"]
-[ext_resource type="Resource" uid="uid://b5ixisya4ugcr" path="res://gamedata/dialogue/grandstone/the_general/the_general_2.tres" id="1_g30j6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hnnn5"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_v0asj"]
+[ext_resource type="Resource" uid="uid://b5ixisya4ugcr" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_2.tres" id="1_vdf26"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_5xb1c"]
 
 [sub_resource type="Resource" id="Resource_spjfx"]
 script = ExtResource("1_v0asj")
 choiceBtn = "Yes, But --"
-leadsTo = ExtResource("1_g30j6")
+leadsTo = ExtResource("1_vdf26")
 repeatsItem = false
 buttonDims = Vector2(250, 40)
 turnsInQuest = ""
@@ -32,12 +32,12 @@ prereqSpecialBattles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String](["the_general#the_general_cave_gone"])
+invalidAfterDialogues = Array[String](["grandstone_dr_ildran#dr_ildran_cave_gone"])
 invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_7xivm")
-entryId = "the_general_1"
+entryId = "dr_ildran_1"
 items = Array[ExtResource("1_hnnn5")]([SubResource("Resource_hyn0o")])
 storyRequirements = SubResource("Resource_ofou4")
 closesDialogue = false
