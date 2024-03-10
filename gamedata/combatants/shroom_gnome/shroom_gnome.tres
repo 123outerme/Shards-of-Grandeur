@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=21 format=3 uid="uid://dlvou480hinjf"]
+
+[ext_resource type="Resource" uid="uid://qtmhsh4dksho" path="res://gamedata/items/armor/standard_issue_boots.tres" id="1_5xmby"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_64cgh"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_p11lm"]
+[ext_resource type="Resource" uid="uid://n530ub5mrrmq" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_movepool.tres" id="2_2qujl"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_7inqf"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_81ujt"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_tcsed"]
+[ext_resource type="Resource" uid="uid://bapoydifpmefj" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_growth.tres" id="3_pxbev"]
+[ext_resource type="SpriteFrames" uid="uid://c7jebk54e41b6" path="res://graphics/animations/a_shroom_gnome.tres" id="6_0woiy"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_03hw2"]
+
+[sub_resource type="Resource" id="Resource_c7vy0"]
+script = ExtResource("1_p11lm")
+experience = 55
+gold = 6
+
+[sub_resource type="Resource" id="Resource_waao5"]
+script = ExtResource("2_81ujt")
+reward = SubResource("Resource_c7vy0")
+weight = 0.8
+
+[sub_resource type="Resource" id="Resource_d2kk2"]
+script = ExtResource("1_p11lm")
+experience = 55
+gold = 6
+
+[sub_resource type="Resource" id="Resource_rr1ku"]
+script = ExtResource("2_81ujt")
+reward = SubResource("Resource_d2kk2")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_0ymsn"]
+script = ExtResource("2_tcsed")
+armor = ExtResource("1_5xmby")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_fpaon"]
+script = ExtResource("2_tcsed")
+weight = 0.7
+
+[sub_resource type="Resource" id="Resource_fc7ct"]
+script = ExtResource("2_7inqf")
+displayName = "Shroom Gnome"
+saveName = "shroom_gnome"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("3_pxbev")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("2_2qujl")
+
+[sub_resource type="Resource" id="Resource_r68dx"]
+script = ExtResource("9_03hw2")
+string = "shroom_gnome"
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_khe4d"]
+script = ExtResource("9_03hw2")
+string = "rat"
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_46wqe"]
+script = ExtResource("9_03hw2")
+string = ""
+weight = 0.2
+
+[resource]
+script = ExtResource("1_64cgh")
+spriteFrames = ExtResource("6_0woiy")
+maxSize = Vector2(16, 16)
+spriteFacesRight = false
+navigationLayer = 1
+nickname = ""
+stats = SubResource("Resource_fc7ct")
+currentHp = -1
+friendship = 0.0
+maxFriendship = 30.0
+aiType = 4
+aiOverrideWeight = 0.35
+equipmentTable = Array[ExtResource("2_tcsed")]([SubResource("Resource_0ymsn"), SubResource("Resource_fpaon")])
+teamTable = Array[ExtResource("9_03hw2")]([SubResource("Resource_r68dx"), SubResource("Resource_khe4d"), SubResource("Resource_46wqe")])
+dropTable = Array[ExtResource("2_81ujt")]([SubResource("Resource_waao5"), SubResource("Resource_rr1ku")])
+innateStatCategories = Array[int]([3, 4])
+downed = false

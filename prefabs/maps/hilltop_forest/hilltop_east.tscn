@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnvwcifufgons"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_1a6lo"]
+[ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_316ec"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
+parsed_collision_mask = 1
+source_geometry_mode = 1
+source_geometry_group_name = &"NavigationGroup"
+agent_radius = 7.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tohlk"]
+parsed_collision_mask = 1
+source_geometry_mode = 1
+source_geometry_group_name = &"NavigationGroup"
+agent_radius = 15.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8fg56"]
+parsed_collision_mask = 1
+source_geometry_mode = 1
+source_geometry_group_name = &"NavigationGroup"
+agent_radius = 23.0
+
+[node name="OverworldMap" type="Node2D"]
+script = ExtResource("1_1a6lo")
+
+[node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
+y_sort_enabled = true
+tile_set = ExtResource("2_316ec")
+format = 2
+layer_0/name = "Midground"
+layer_0/y_sort_enabled = true
+layer_0/z_index = -10
+layer_1/name = "Background"
+layer_1/z_index = -20
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Foreground"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Sky"
+layer_3/z_index = 1
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Invisible"
+layer_4/modulate = Color(1, 1, 1, 0)
+layer_4/tile_data = PackedInt32Array()
+
+[node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_hwgpv")
+
+[node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_tohlk")
+navigation_layers = 2
+
+[node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_8fg56")
+navigation_layers = 4

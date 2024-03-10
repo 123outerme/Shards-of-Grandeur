@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=19 format=3 uid="uid://bhg4i01ukcdvd"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=20 format=3 uid="uid://bhg4i01ukcdvd"]
 
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="1_85xui"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_eqry4"]
@@ -53,12 +53,17 @@ movepool = ExtResource("7_kucus")
 [sub_resource type="Resource" id="Resource_b3lik"]
 script = ExtResource("12_u5t4b")
 string = "rat"
-weight = 0.55
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_w71ux"]
+script = ExtResource("12_u5t4b")
+string = "shroom_gnome"
+weight = 0.2
 
 [sub_resource type="Resource" id="Resource_41kde"]
 script = ExtResource("12_u5t4b")
 string = "tree_bear"
-weight = 0.15
+weight = 0.05
 
 [sub_resource type="Resource" id="Resource_8n3fm"]
 script = ExtResource("12_u5t4b")
@@ -79,7 +84,7 @@ maxFriendship = 30.0
 aiType = 1
 aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
-teamTable = Array[ExtResource("12_u5t4b")]([SubResource("Resource_b3lik"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
+teamTable = Array[ExtResource("12_u5t4b")]([SubResource("Resource_b3lik"), SubResource("Resource_w71ux"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
 dropTable = Array[ExtResource("3_lcxqr")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
 innateStatCategories = Array[int]([0, 4])
 downed = false
