@@ -101,9 +101,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 80.0
+offset_left = 70.0
 offset_top = 128.0
-offset_right = -80.0
+offset_right = -70.0
 offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -151,6 +151,7 @@ itemDetailsPanel = NodePath("../QuestDetailsPanel/ItemDetailsPanel")
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/CompletedButton" to="." method="_on_completed_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/NotCompletedButton" to="." method="_on_not_completed_button_toggled"]
 [connection signal="toggled" from="QuestsPanel/Panel/HBoxContainer/FailedButton" to="." method="_on_failed_button_toggled"]
+[connection signal="visibility_changed" from="QuestsPanel/Panel/ScrollContainer" to="QuestsPanel/Panel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="QuestsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="panel_hidden" from="QuestDetailsPanel" to="." method="_on_quest_details_panel_panel_hidden"]
 [connection signal="ok_pressed" from="QuestRewardPanel" to="." method="_on_quest_reward_panel_ok_pressed"]

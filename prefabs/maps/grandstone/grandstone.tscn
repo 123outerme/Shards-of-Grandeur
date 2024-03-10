@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cuwljij08hy7b"]
+[gd_scene load_steps=64 format=3 uid="uid://cuwljij08hy7b"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s8jye"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_xe2ll"]
@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://1yyio0gg7npp" path="res://graphics/ui/talk_indicator_stone.png" id="24_qa2li"]
 [ext_resource type="Resource" uid="uid://67f45roiioow" path="res://gamedata/cutscenes/grandstone/quarry_block.tres" id="29_og3i4"]
 
-[sub_resource type="Resource" id="Resource_sw0x8"]
+[sub_resource type="Resource" id="Resource_b6fpt"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(8, 24)
@@ -50,7 +50,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_vn7w0"]
+[sub_resource type="Resource" id="Resource_mqj8q"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(680, 1)
@@ -72,7 +72,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_c0our"]
+[sub_resource type="Resource" id="Resource_wfj8k"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(634, 11)
@@ -88,7 +88,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ofuq3"]
+[sub_resource type="Resource" id="Resource_agyyr"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(617, -9)
@@ -124,7 +124,7 @@ script = ExtResource("15_kc31l")
 inventorySlots = Array[ExtResource("14_caoa7")]([SubResource("Resource_6y2xs"), SubResource("Resource_gcpvb"), SubResource("Resource_7w7is")])
 isPlayerInventory = false
 
-[sub_resource type="Resource" id="Resource_beqli"]
+[sub_resource type="Resource" id="Resource_u4eys"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(-40, -81)
@@ -141,10 +141,10 @@ dialogueLine = -1
 inventory = SubResource("Resource_0q1a1")
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ocv10"]
+[sub_resource type="Resource" id="Resource_867pr"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
-position = Vector2(-136, -215)
+position = Vector2(-194, -208)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -157,10 +157,10 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_hsyg4"]
+[sub_resource type="Resource" id="Resource_630oh"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
-position = Vector2(-116, -215)
+position = Vector2(-174, -208)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -173,7 +173,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_bset6"]
+[sub_resource type="Resource" id="Resource_a2m64"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(-23, 232)
@@ -189,7 +189,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_p5kpd"]
+[sub_resource type="Resource" id="Resource_8ocxe"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(192, -50)
@@ -250,6 +250,9 @@ size = Vector2(7, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cbsm"]
 size = Vector2(7, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa7cu"]
+size = Vector2(7, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8kk"]
 size = Vector2(118, 8)
 
@@ -280,7 +283,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_xrbtn"]
+[sub_resource type="Resource" id="Resource_k5j30"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 position = Vector2(-62, 248)
@@ -322,8 +325,8 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Lady1" parent="TileMap" instance=ExtResource("3_d2cxy")]
 position = Vector2(8, 24)
 displayName = "Lady"
-saveName = "lady1"
-data = SubResource("Resource_sw0x8")
+saveName = "grandstone_lady1"
+data = SubResource("Resource_b6fpt")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_flmpr")])
 
 [node name="NPCSprite" parent="TileMap/Lady1" index="0"]
@@ -352,7 +355,7 @@ position = Vector2(680, 1)
 displayName = "Horse"
 saveName = "horse_cart_grandstone"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_vn7w0")
+data = SubResource("Resource_mqj8q")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_q1mh4")])
 facesPlayer = false
 
@@ -389,7 +392,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(634, 11)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_grandstone"
-data = SubResource("Resource_c0our")
+data = SubResource("Resource_wfj8k")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_i7gb8"), ExtResource("10_rabli")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -418,7 +421,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(617, -9)
 displayName = "Spelunker"
 saveName = "spelunker_grandstone"
-data = SubResource("Resource_ofuq3")
+data = SubResource("Resource_agyyr")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("10_ndj5n")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -444,7 +447,7 @@ visible = false
 position = Vector2(-40, -81)
 displayName = "Man"
 saveName = "grandstone_market_man"
-data = SubResource("Resource_beqli")
+data = SubResource("Resource_u4eys")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("17_wrdj8")])
 hasShop = true
 inventory = SubResource("Resource_0q1a1")
@@ -469,8 +472,8 @@ visible = false
 [node name="Man2" parent="TileMap" instance=ExtResource("3_d2cxy")]
 position = Vector2(-194, -208)
 displayName = "Man"
-saveName = "man2"
-data = SubResource("Resource_ocv10")
+saveName = "grandstone_man2"
+data = SubResource("Resource_867pr")
 
 [node name="NPCSprite" parent="TileMap/Man2" index="0"]
 sprite_frames = ExtResource("14_tedfv")
@@ -489,8 +492,8 @@ visible = false
 [node name="Man3" parent="TileMap" instance=ExtResource("3_d2cxy")]
 position = Vector2(-174, -208)
 displayName = "Man"
-saveName = "man3"
-data = SubResource("Resource_hsyg4")
+saveName = "grandstone_man3"
+data = SubResource("Resource_630oh")
 
 [node name="NPCSprite" parent="TileMap/Man3" index="0"]
 sprite_frames = ExtResource("15_6gli8")
@@ -511,7 +514,7 @@ visible = false
 position = Vector2(-23, 232)
 displayName = "Spelunker"
 saveName = "grandstone_spelunker2"
-data = SubResource("Resource_bset6")
+data = SubResource("Resource_a2m64")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("22_00ip3")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker2" index="0"]
@@ -531,7 +534,7 @@ visible = false
 [node name="EtchingStone" parent="TileMap" instance=ExtResource("3_d2cxy")]
 position = Vector2(192, -50)
 displayName = "Etching Stone"
-data = SubResource("Resource_p5kpd")
+data = SubResource("Resource_8ocxe")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("22_b052n")])
 facesPlayer = false
 
@@ -622,7 +625,6 @@ shape = SubResource("RectangleShape2D_3cbsm")
 position = Vector2(-248.5, -62)
 mapName = "grandstone_bazaar"
 mapPos = Vector2(-8, -8)
-warpEnabled = false
 
 [node name="WarpArea" parent="WarpBazaar" index="0"]
 shape = SubResource("RectangleShape2D_3cbsm")
@@ -634,6 +636,14 @@ mapPos = Vector2(-8, -8)
 
 [node name="WarpArea" parent="WarpSpelunkerInn" index="0"]
 shape = SubResource("RectangleShape2D_3cbsm")
+
+[node name="WarpNpcHouse" parent="." instance=ExtResource("7_fj3tw")]
+position = Vector2(71.5, 162)
+mapName = "grandstone_house_1"
+mapPos = Vector2(-8, -8)
+
+[node name="WarpArea" parent="WarpNpcHouse" index="0"]
+shape = SubResource("RectangleShape2D_pa7cu")
 
 [node name="WarpQuarry" parent="." instance=ExtResource("7_fj3tw")]
 position = Vector2(-65, 322)
@@ -665,7 +675,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-62, 248)
-data = SubResource("Resource_xrbtn")
+data = SubResource("Resource_k5j30")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.158554
@@ -689,6 +699,7 @@ frame_progress = 0.158554
 [editable path="WarpArmory"]
 [editable path="WarpBazaar"]
 [editable path="WarpSpelunkerInn"]
+[editable path="WarpNpcHouse"]
 [editable path="WarpQuarry"]
 [editable path="ToolCutsceneVisualizer"]
 [editable path="ToolCutsceneVisualizer/MockPlayer"]

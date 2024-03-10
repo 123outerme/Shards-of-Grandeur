@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dm4mexw2r5a2q"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_h2ee2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_i2udm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jdnv0"]
+
+[sub_resource type="Resource" id="Resource_jbsxe"]
+script = ExtResource("1_i2udm")
+choiceBtn = "Nevermind."
+repeatsItem = false
+buttonDims = Vector2(180, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_imjyv"]
+script = ExtResource("1_i2udm")
+choiceBtn = "Shop"
+repeatsItem = false
+buttonDims = Vector2(100, 40)
+turnsInQuest = ""
+opensShop = true
+
+[sub_resource type="Resource" id="Resource_8fu4q"]
+script = ExtResource("1_h2ee2")
+lines = Array[String](["Welcome to the Grandstone Armory @! What can I get you?"])
+animation = "talk"
+choices = Array[ExtResource("1_i2udm")]([SubResource("Resource_jbsxe"), SubResource("Resource_imjyv")])
+
+[resource]
+script = ExtResource("1_jdnv0")
+entryId = ""
+items = Array[ExtResource("1_h2ee2")]([SubResource("Resource_8fu4q")])
+closesDialogue = false
+fullHealsPlayer = false

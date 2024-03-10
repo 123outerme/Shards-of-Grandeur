@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://dvbta58o6djv1"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_3rdlk"]
+[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_58tum"]
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_dvxbu"]
+
+[sub_resource type="Resource" id="Resource_huepx"]
+script = ExtResource("1_3rdlk")
+path = "grandstone/grandstone_house_1"
+overworldTheme = ExtResource("1_58tum")
+battleMapName = "forest_battle_map"
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("1_dvxbu")
+maps = Array[ExtResource("1_3rdlk")]([SubResource("Resource_huepx")])

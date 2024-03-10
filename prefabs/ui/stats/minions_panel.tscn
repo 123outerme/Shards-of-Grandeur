@@ -175,6 +175,7 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="PlayerView/ReorderButton" to="." method="_on_reorder_button_pressed"]
+[connection signal="visibility_changed" from="PlayerView/ScrollContainer" to="PlayerView/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="gui_input" from="MinionView/NameInput" to="." method="_on_name_input_gui_input"]
 [connection signal="text_changed" from="MinionView/NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="text_submitted" from="MinionView/NameInput" to="." method="_on_name_input_text_submitted"]

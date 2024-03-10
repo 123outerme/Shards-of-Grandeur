@@ -31,21 +31,21 @@ func initial_focus():
 	backButton.grab_focus()
 
 func restore_previous_focus():
-		for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
-			if panel == selectedPanel:
+	var focusRestored: bool = false
+	for panel in get_tree().get_nodes_in_group("QuestStepPanel"):
+		if (panel == selectedPanel and panel.size != Vector2(0, 0)) or \
+		(panel.step != null and panel.step == selectedPanel.step):
 				panel.viewButton.grab_focus()
+				focusRestored = true
+	if not focusRestored:
+		initial_focus()
 
 func load_quest_details(rebuild: bool = true):
 	if questTracker == null:
 		return
 	
 	if rebuild or not selectedPanel:
-		for panel: Control in get_tree().get_nodes_in_group("QuestStepPanel"):
-			# make old panels have 0 size for scroll container fix
-			panel.custom_minimum_size = Vector2(0, 0)
-			panel.size = Vector2(0, 0)
-			panel.visible = false
-			panel.queue_free()
+		destroy_panel_items()
 		
 		var questStepPanel = load("res://prefabs/ui/quests/quest_step_panel.tscn")
 		for step in questTracker.get_known_steps():
@@ -75,12 +75,21 @@ func load_quest_details(rebuild: bool = true):
 	rewardPanel.reward = selectedPanel.step.reward
 	rewardPanel.load_reward_panel()
 	
-	restore_previous_focus()
+	restore_previous_focus.call_deferred()
 
 func hide_panel():
 	itemDetailsPanel.visible = false
 	visible = false
 	panel_hidden.emit()
+	destroy_panel_items()
+
+func destroy_panel_items():
+	for panel: Control in get_tree().get_nodes_in_group("QuestStepPanel"):
+		# make old panels have 0 size for scroll container fix
+		panel.custom_minimum_size = Vector2(0, 0)
+		panel.size = Vector2(0, 0)
+		panel.visible = false
+		panel.queue_free()
 
 func _on_back_button_pressed():
 	hide_panel()
