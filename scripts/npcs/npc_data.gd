@@ -11,6 +11,7 @@ class_name NPCData
 @export var loops: int = 0
 @export var disableMovement: bool = false
 @export var previousDisableMove: bool = false
+@export var version: String = ''
 
 @export_category("NPCData - Dialogue")
 @export var dialogueItems: Array = []
@@ -32,6 +33,7 @@ func _init(
 	i_loops = 0,
 	i_disableMovement = false,
 	i_previousDisableMove = false,
+	i_version = '',
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
 	i_dialogueItemIdx = -1,
@@ -47,6 +49,10 @@ func _init(
 	selectedTarget = i_selectedTarget
 	loops = i_loops
 	disableMovement = i_disableMovement
+	if i_version != '' or version != '':
+		version = i_version
+	else:
+		version = ProjectSettings.get_setting('application/config/version', '')
 	previousDisableMove = i_previousDisableMove
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
@@ -64,6 +70,7 @@ func load_data(save_path):
 	return data
 
 func save_data(save_path, data):
+	version = ProjectSettings.get_setting('application/config/version', '')
 	var err = ResourceSaver.save(data, save_path + save_file())
 	if err != 0:
 		printerr("NPCData/" + saveName + " ResourceSaver error: " + String.num(err))

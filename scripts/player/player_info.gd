@@ -12,6 +12,7 @@ class_name PlayerInfo
 @export var underworldDepth: int
 @export var savedPosition: Vector2
 @export var scene: String = "Overworld"
+@export var version: String = ''
 
 @export_category("PlayerInfo: Stats")
 @export var combatant: Combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy()
@@ -42,6 +43,7 @@ func _init(
 	i_spriteFrames = null,
 	i_flipH = false,
 	i_scene = "Overworld",
+	i_version = '',
 	i_combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy(),
 	i_gold = 20,
 	i_encounteredName = "",
@@ -63,6 +65,10 @@ func _init(
 	spriteFrames = i_spriteFrames
 	flipH = i_flipH
 	scene = i_scene
+	if i_version != '' or version != '':
+		version = i_version
+	else:
+		version = ProjectSettings.get_setting('application/config/version', '')
 	combatant = i_combatant
 	gold = i_gold
 	encounteredName = i_encounteredName
@@ -124,6 +130,7 @@ func load_data(save_path):
 	return data
 
 func save_data(save_path, data):
+	version = ProjectSettings.get_setting('application/config/version', '')
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("PlayerInfo ResourceSaver error: ", err)

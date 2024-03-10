@@ -3,7 +3,7 @@ class_name GroundItem
 
 @export var pickedUpItem: PickedUpItem = null
 @export var disguiseSprite: Texture = null
-@export var storyRequirements: StoryRequirements = null
+@export var storyRequirements: Array[StoryRequirements] = []
 @export var startsQuest: Quest = null
 
 @onready var sprite: Sprite2D = get_node('Sprite2D')
@@ -32,5 +32,7 @@ func _on_area_entered(area):
 		PlayerFinder.player.pick_up(self)
 
 func _story_reqs_updated():
-	disabled = storyRequirements != null and not storyRequirements.is_valid()
-	visible = not disabled
+	visible = false
+	for requirement in storyRequirements:
+		visible = requirement.is_valid() or visible
+	disabled = not visible

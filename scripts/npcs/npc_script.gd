@@ -106,7 +106,10 @@ func load_data(save_path):
 			player.restore_dialogue(self)
 		else:
 			reset_dialogue()
-		inventory = data.inventory
+		if data.version == ProjectSettings.get_setting('application/config/version', ''):
+			inventory = data.inventory
+		else:
+			print('DEBUG: resetting NPC inventory for ', saveName)
 		invisible = not data.visible
 
 func _set_invisible(value: bool):
