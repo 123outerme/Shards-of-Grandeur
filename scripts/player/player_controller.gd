@@ -377,12 +377,12 @@ func menu_closed():
 	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
 			and not textBox.visible and not pausePanel.visible:
 		SceneLoader.unpause_autonomous_movers()
-	if useTeleportStone != null:
-		play_animation('teleport')
-		disableMovement = true
-		await get_tree().create_timer(0.5).timeout
-		if not SceneLoader.mapLoader.loading:
-			SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+		if useTeleportStone != null:
+			play_animation('teleport')
+			disableMovement = true
+			await get_tree().create_timer(0.5).timeout
+			if not SceneLoader.mapLoader.loading:
+				SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
 
 func start_battle():
 	SaveHandler.save_data()

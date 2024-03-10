@@ -1,23 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://ffos7xabqx5j"]
+[gd_scene load_steps=10 format=3 uid="uid://ffos7xabqx5j"]
 
 [ext_resource type="Script" path="res://scripts/battle/particles/particles.gd" id="1_y48xh"]
-[ext_resource type="Material" uid="uid://cmtfovwmira1g" path="res://graphics/particles/affinity_particle_process_mat.tres" id="2_aojpp"]
-[ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity_1.png" id="3_urmtw"]
-[ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity_2.png" id="4_mgrs2"]
-[ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity_3.png" id="5_rbuvo"]
-[ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity_4.png" id="6_0usnm"]
+[ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys_1.png" id="4_8mpht"]
+[ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys_2.png" id="5_adjye"]
+[ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys_3.png" id="6_es2o1"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_ndw2e"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/swing.ogg" id="7_e7lwy"]
+[ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys_4.png" id="7_osa0i"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nttpk"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(-0.906, -0.423, 0)
+spread = 180.0
+flatness = 0.95
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+damping_min = 6.0
+damping_max = 16.0
+attractor_interaction_enabled = false
+scale_min = 0.5
+
+[sub_resource type="Resource" id="Resource_u8qes"]
+script = ExtResource("6_ndw2e")
+emitter = "front"
+count = 4
+inFrontOfCombatant = true
+lifetime = 0.5
+duration = 0.5
+processMaterial = SubResource("ParticleProcessMaterial_nttpk")
+particleTextures = Array[Texture2D]([ExtResource("4_8mpht"), ExtResource("5_adjye"), ExtResource("6_es2o1"), ExtResource("7_osa0i")])
+sfx = ExtResource("7_e7lwy")
 
 [node name="ParticleEmitter" type="Node2D"]
 script = ExtResource("1_y48xh")
+preset = SubResource("Resource_u8qes")
 particles = 4
-waves = 2.5
-duration = 1.25
+waves = 1.0
+duration = 0.5
 
 [node name="GpuParticles1" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 4
-process_material = ExtResource("2_aojpp")
-texture = ExtResource("3_urmtw")
+process_material = SubResource("ParticleProcessMaterial_nttpk")
+texture = ExtResource("4_8mpht")
 lifetime = 0.5
 explosiveness = 0.5
 collision_base_size = 2.0
@@ -27,8 +57,8 @@ local_coords = true
 [node name="GpuParticles2" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 4
-process_material = ExtResource("2_aojpp")
-texture = ExtResource("4_mgrs2")
+process_material = SubResource("ParticleProcessMaterial_nttpk")
+texture = ExtResource("5_adjye")
 lifetime = 0.5
 explosiveness = 0.5
 collision_base_size = 2.0
@@ -38,8 +68,8 @@ local_coords = true
 [node name="GpuParticles3" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 4
-process_material = ExtResource("2_aojpp")
-texture = ExtResource("5_rbuvo")
+process_material = SubResource("ParticleProcessMaterial_nttpk")
+texture = ExtResource("6_es2o1")
 lifetime = 0.5
 explosiveness = 0.5
 collision_base_size = 2.0
@@ -49,8 +79,8 @@ local_coords = true
 [node name="GpuParticles4" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 4
-process_material = ExtResource("2_aojpp")
-texture = ExtResource("6_0usnm")
+process_material = SubResource("ParticleProcessMaterial_nttpk")
+texture = ExtResource("7_osa0i")
 lifetime = 0.5
 explosiveness = 0.5
 collision_base_size = 2.0

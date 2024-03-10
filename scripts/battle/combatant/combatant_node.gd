@@ -234,17 +234,22 @@ func tween_to(pos: Vector2, callback: Callable):
 func play_particles(preset: ParticlePreset, delay: bool = false):
 	if preset == null or preset.count == 0:
 		return
-		
-	if preset.emitter == 'hit':
-		playHitQueued = preset
+	
+	var presetCopy: ParticlePreset = preset.duplicate(true)
+	if leftSide: # particles are designed & saved as they would play on an enemy (right side)
+		presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
+	
+	if presetCopy.emitter == 'hit':
+		playHitQueued = presetCopy
 		return
 		
 	if delay:
-		playParticlesQueued = preset
+		playParticlesQueued = presetCopy
 	else:
-		make_particles_now(preset)
+		make_particles_now(presetCopy)
 
 func make_particles_now(preset: ParticlePreset):
+	
 	match preset.emitter:
 		'behind':
 			behindParticles.preset = preset
