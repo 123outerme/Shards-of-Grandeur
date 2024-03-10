@@ -30,6 +30,7 @@ class_name PlayerInfo
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
 @export var codexEntriesSeen: Array[String] = []
+@export var cutscenesTempDisabled: Array[String] = []
 
 var save_file = "playerinfo.tres"
 
@@ -54,7 +55,8 @@ func _init(
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
-	i_codexEntriesSeen: Array[String] = []
+	i_codexEntriesSeen: Array[String] = [],
+	i_cutscenesTempDisabled: Array[String] = [],
 ):
 	map = i_map
 	inUnderworld = i_inUnderworld
@@ -80,6 +82,7 @@ func _init(
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
 	codexEntriesSeen = i_codexEntriesSeen
+	cutscenesTempDisabled = i_cutscenesTempDisabled
 
 func has_picked_up(uniqueId: String) -> bool:
 	return pickedUpItems.has(uniqueId)
@@ -120,6 +123,16 @@ func has_seen_codex_entry(entryName: String) -> bool:
 func set_codex_entry_seen(entryName: String):
 	if not has_seen_codex_entry(entryName):
 		codexEntriesSeen.append(entryName)
+
+func is_cutscene_temp_disabled(saveName: String) -> bool:
+	return saveName in cutscenesTempDisabled
+
+func set_cutscene_temp_disabled(saveName: String):
+	if not is_cutscene_temp_disabled(saveName):
+		cutscenesTempDisabled.append(saveName)
+
+func clear_cutscenes_temp_disabled():
+	cutscenesTempDisabled = []
 
 func load_data(save_path):
 	var data = null

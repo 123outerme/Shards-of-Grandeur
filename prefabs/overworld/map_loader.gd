@@ -4,6 +4,7 @@ class_name MapLoader
 var mapInstance: Node = null
 var mapNavReady: bool = false
 var mapEntry: MapEntry = null
+var usedWarpZone: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
@@ -22,6 +23,7 @@ func _ready():
 		player = PlayerFinder.player
 
 func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUnderground: bool = false, useVOffset: bool = false, useHOffset: bool = false):
+	usedWarpZone = true
 	player.cam.fade_out(_fade_out_complete, 0.25)
 	player.disableMovement = true
 	player.collider.set_deferred('disabled', true)
@@ -42,6 +44,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	load_map(newMapName)
 
 func load_recover_map():
+	usedWarpZone = true # not technically a warp zone, but is a mid-game warp (not initial game load)
 	var recoveryMapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)
 	PlayerResources.playerInfo.combatant.downed = false
 	player.disableMovement = true
@@ -125,6 +128,9 @@ func _map_loaded():
 	SceneLoader.call_deferred('unpause_autonomous_movers')
 	player.collider.set_deferred('disabled', false)
 	PlayerFinder.player.set_deferred('disableMovement', player.inCutscene or player.textBox.visible)
+	if usedWarpZone:
+		PlayerResources.playerInfo.clear_cutscenes_temp_disabled()
+		usedWarpZone = false
 	
 func _nav_map_changed(_arg):
 	mapNavReady = true

@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://budif6vx6oftr" path="res://gamedata/dialogue/grandstone/the_general/the_general_cave_gone.tres" id="6_2pjm1"]
 [ext_resource type="Resource" uid="uid://d2g45ij84jjnd" path="res://gamedata/dialogue/grandstone/the_general/the_general_go_explore.tres" id="7_qreik"]
 
-[sub_resource type="Resource" id="Resource_bwvto"]
+[sub_resource type="Resource" id="Resource_fs8ch"]
 script = ExtResource("4_4vxso")
 saveName = "npc"
 position = Vector2(-52, -114)
@@ -20,7 +20,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
-version = null
+version = "0.0.4"
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
@@ -78,7 +78,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-52, -114)
 displayName = "The General"
 saveName = "grandstone_the_general"
-data = SubResource("Resource_bwvto")
+data = SubResource("Resource_fs8ch")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_nq7cj"), ExtResource("6_2pjm1"), ExtResource("7_qreik")])
 
 [node name="NPCSprite" parent="TileMap/TheGeneral" index="0"]
