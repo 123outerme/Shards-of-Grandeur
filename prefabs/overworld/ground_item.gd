@@ -32,7 +32,7 @@ func _on_area_entered(area):
 		PlayerFinder.player.pick_up(self)
 
 func _story_reqs_updated():
-	visible = false
+	visible = len(storyRequirements) == 0 # false if any requirements, otherwise true
 	for requirement in storyRequirements:
 		visible = requirement.is_valid() or visible
 	disabled = not visible

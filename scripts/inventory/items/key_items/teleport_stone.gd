@@ -42,3 +42,6 @@ func _init(
 
 func use(_target: Combatant):
 	PlayerFinder.player.useTeleportStone = self
+
+func can_be_used_now():
+	return PlayerResources.playerInfo.map != targetMap

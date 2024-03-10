@@ -5,6 +5,7 @@ var mapInstance: Node = null
 var mapNavReady: bool = false
 var mapEntry: MapEntry = null
 var usedWarpZone: bool = false
+var loading: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
@@ -58,6 +59,7 @@ func load_recover_map():
 		load_map(PlayerResources.playerInfo.map)
 
 func load_map(mapName: String):
+	loading = true
 	#destroy_overworld_enemies()
 	PlayerResources.playerInfo.map = mapName
 	mapNavReady = false
@@ -71,7 +73,10 @@ func load_map(mapName: String):
 	if newMapEntry != null:
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
-		mapScene = load(newMapEntry.get_map_path())
+		ResourceLoader.load_threaded_request(newMapEntry.get_map_path())
+		while ResourceLoader.load_threaded_get_status(newMapEntry.get_map_path()) != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			pass
+		mapScene = ResourceLoader.load_threaded_get(newMapEntry.get_map_path())
 		mapEntry = newMapEntry
 		SceneLoader.curMapEntry = mapEntry
 	if mapScene == null:
@@ -81,7 +86,11 @@ func load_map(mapName: String):
 	SaveHandler.save_data()
 	mapInstance = mapScene.instantiate()
 	mapInstance.map_loaded.connect(_map_loaded)
-	add_child.call_deferred(mapInstance)
+	call_deferred('set_map_to_scene')
+
+func set_map_to_scene():
+	if mapInstance.get_parent() == null:
+		add_child(mapInstance)
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
 
@@ -101,10 +110,15 @@ func get_map_entry_for_map_name(mapName: String) -> MapEntry:
 
 func reparent_player():
 	player.get_parent().remove_child(player)
-	var tilemap = get_node('/' + mapInstance.get_path().get_concatenated_names().c_escape() + '/TileMap')
-	tilemap.add_child(player)
-	player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
-	PlayerFinder.player = player
+	#await get_tree().process_frame
+	var tilemapPath: String = mapInstance.get_path().get_concatenated_names().c_escape()
+	var tilemap = get_node_or_null('/' + tilemapPath + '/TileMap')
+	if tilemap != null:
+		tilemap.add_child(player)
+		player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')
+		PlayerFinder.player = player
+	else:
+		printerr('TILEMAP NULL error')
 	player.speed = player.BASE_SPEED # reset running
 	SceneLoader.cutscenePlayer.rootNode = tilemap.get_parent()
 
@@ -114,16 +128,18 @@ func destroy_overworld_enemies():
 			spawnerNode.delete_enemy()
 
 func _fade_out_complete():
-	PlayerFinder.player.play_animation('stand')
+	pass
 
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
 		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
 	PlayerFinder.player.collider.set_deferred('disabled', false)
+	loading = false
 	
 func _map_loaded():
 	await get_tree().create_timer(0.15).timeout
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
+	PlayerFinder.player.play_animation('stand')
 	await get_tree().create_timer(0.15).timeout
 	SceneLoader.call_deferred('unpause_autonomous_movers')
 	player.collider.set_deferred('disabled', false)

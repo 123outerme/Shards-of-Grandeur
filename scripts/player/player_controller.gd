@@ -381,7 +381,8 @@ func menu_closed():
 		play_animation('teleport')
 		disableMovement = true
 		await get_tree().create_timer(0.5).timeout
-		SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+		if not SceneLoader.mapLoader.loading:
+			SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
 
 func start_battle():
 	SaveHandler.save_data()

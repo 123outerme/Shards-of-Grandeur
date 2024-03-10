@@ -54,7 +54,9 @@ func load_inventory_slot_panel():
 		centerItemCost.visible = false
 	
 	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
-	useButton.disabled = not inventorySlot.item.usable or ((not inventorySlot.item.battleUsable or displayCount <= 0) and inBattle)
+	useButton.disabled = not inventorySlot.item.usable or \
+			((not inventorySlot.item.battleUsable or displayCount <= 0) and inBattle) or \
+			not inventorySlot.item.can_be_used_now()
 	
 	equipButton.visible = not isShopItem and inventorySlot.item.equippable
 	equipButton.disabled = inBattle

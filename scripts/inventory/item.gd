@@ -74,6 +74,10 @@ func get_effect_text() -> String:
 	return "If you're seeing this, implement Item.get_effect_text() in item type " + Item.TypeToString(itemType) \
 			+ ", or you forgot to fill in the effect text!"
 
+# custom can be used logic
+func can_be_used_now() -> bool:
+	return true
+
 func get_as_subclass():
 	if itemType == Type.HEALING:
 		return self as Healing
