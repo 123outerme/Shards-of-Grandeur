@@ -21,6 +21,8 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 		playerInfo.gold += reward.gold
 		gainedLevels += playerInfo.combatant.stats.add_exp(reward.experience)
 		inventory.add_item(reward.item)
+		if reward.fullyAttuneCombatantSaveName != '':
+			minions.fully_attune(reward.fullyAttuneCombatantSaveName)
 	if gainedLevels > 0:
 		playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		minions.level_up_minions(playerInfo.combatant.stats.level) # level up all stored minions

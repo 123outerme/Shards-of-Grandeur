@@ -8,6 +8,7 @@ signal ok_pressed
 
 @onready var rewardPanel: RewardPanel = get_node("Panel/RewardPanel")
 @onready var noRewardsLabel: RichTextLabel = get_node("Panel/NoRewardsLabel")
+@onready var fullAttuneLabel: RichTextLabel = get_node("Panel/FullAttuneLabel")
 @onready var okButton: Button = get_node("Panel/OkButton")
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,12 @@ func load_quest_reward_panel():
 	rewardPanel.reward = reward
 	rewardPanel.load_reward_panel()
 	noRewardsLabel.visible = reward == null
+	
+	if reward.fullyAttuneCombatantSaveName != '':
+		var combatant = Combatant.load_combatant_resource(reward.fullyAttuneCombatantSaveName)
+		fullAttuneLabel.text = '[center]]You have become fully Attuned with ' + combatant.disp_name() + '![/center]'
+	fullAttuneLabel.visible = reward.fullyAttuneCombatantSaveName != ''
+	
 	visible = true
 	okButton.grab_focus()
 

@@ -78,6 +78,17 @@ func reorder_minion(chosenMinion: Combatant, aboveMinion: Combatant) -> int:
 		printerr('Minion Reorder error: could not find target minion ' + aboveMinion.save_name())
 	return idx
 
+func fully_attune(saveName: String):
+	var minion: Combatant = null
+	if not has_minion(saveName): # if minion is not in minions, add it
+		minion = init_minion(saveName)
+	else:
+		minion = get_minion(saveName)
+	if minion != null: # set max friendship on minion
+		minion.friendship = minion.maxFriendship
+	else:
+		printerr('Fully attune minion ', saveName, ' ERROR, null minion')
+
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
