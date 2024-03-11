@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Move" load_steps=3 format=3 uid="uid://cwbb2w28v3c5l"]
+
+[ext_resource type="Resource" uid="uid://75brhpgdgjcw" path="res://gamedata/moves/restore/anim_restore.tres" id="1_0rw0a"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_27eom"]
+
+[resource]
+script = ExtResource("1_27eom")
+moveName = "Restore"
+requiredLv = 7
+role = 5
+power = -40
+category = 2
+targets = 3
+statusChance = 0.0
+description = "Using natural energies, replenish an ally's HP, plain and simple. This is even a technique a combatant can use on themselves!"
+moveLearnedText = "Meditating on your internal flow of Affinity, you become aware of a soreness in your arm. Channeling more  Affinity energy to that location, you feel the soreness fade. With this technique, you now know how to Restore your ally's health on the battlefield!"
+moveAnimation = ExtResource("1_0rw0a")

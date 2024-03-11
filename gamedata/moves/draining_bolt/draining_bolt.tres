@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://bkye5pxmqsb6m"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_6hls1"]
+[ext_resource type="Resource" uid="uid://dqivdkiw73r16" path="res://gamedata/moves/draining_bolt/anim_draining_bolt.tres" id="1_c8itl"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/weakness.gd" id="2_5rand"]
+
+[sub_resource type="Resource" id="Resource_jnb80"]
+script = ExtResource("2_5rand")
+type = 4
+potency = 1
+turnsLeft = 4
+
+[resource]
+script = ExtResource("1_6hls1")
+moveName = "Draining Bolt"
+requiredLv = 4
+role = 1
+power = 60
+category = 1
+targets = 5
+statusEffect = SubResource("Resource_jnb80")
+statusChance = 0.9
+description = "The uesr conjures a strong bolt of draining magic. Upon the bolt striking the foe, they will usually experience Weakness and have a harder time dealing Physical damage."
+moveLearnedText = "You notice the power emanating from within the Shard, its energy almost stealing away your own. With the understanding of another application of the Shards, you can now summon Draining Bolts."
+moveAnimation = ExtResource("1_c8itl")

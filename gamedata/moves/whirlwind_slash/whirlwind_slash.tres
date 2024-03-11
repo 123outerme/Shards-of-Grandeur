@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://bxl2vxndu4e56"]
+
+[ext_resource type="Resource" uid="uid://dyi6ou8n3haov" path="res://gamedata/moves/whirlwind_slash/anim_whirlwind_slash.tres" id="1_iacqt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_o674l"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_ttn2b"]
+
+[sub_resource type="Resource" id="Resource_lk2wr"]
+script = ExtResource("3_ttn2b")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.9
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_o674l")
+moveName = "Whirlwind Slash"
+requiredLv = 6
+role = 2
+power = 45
+category = 0
+targets = 6
+statChanges = SubResource("Resource_lk2wr")
+statusChance = 0.0
+description = "Focusing on pure offense, the user completes a complex series of quick steps and attacks all foes on the battlefield."
+moveLearnedText = "The image of a shadow dancing around the battlefield, striking each foe, then resting plays over and over in your mind. As you grasp the footwork necessary to perform this move, you open your eyes."
+moveAnimation = ExtResource("1_iacqt")

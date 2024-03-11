@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://o8xo12ierb3f"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_h2yys"]
+[ext_resource type="Resource" uid="uid://bc36dwg8k6v3c" path="res://gamedata/moves/enrage/particles_enrage_target.tres" id="2_t3mxo"]
+[ext_resource type="Resource" uid="uid://dkhe773amj5ug" path="res://gamedata/moves/enrage/particles_enrage_user.tres" id="3_xvthm"]
+
+[resource]
+script = ExtResource("1_h2yys")
+combatantAnimation = "attack_affinity"
+userParticlePreset = ExtResource("3_xvthm")
+targetsParticlePreset = ExtResource("2_t3mxo")

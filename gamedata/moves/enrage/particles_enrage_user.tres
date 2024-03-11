@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://dkhe773amj5ug"]
+
+[ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity_1.png" id="1_0y514"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_dsrai"]
+[ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity_2.png" id="2_kufjl"]
+[ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity_3.png" id="3_5o1vl"]
+[ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity_4.png" id="4_6pdbk"]
+[ext_resource type="Material" uid="uid://cmtfovwmira1g" path="res://graphics/particles/affinity_particle_process_mat.tres" id="5_ls7k5"]
+
+[resource]
+script = ExtResource("1_dsrai")
+emitter = "behind"
+count = 4
+inFrontOfCombatant = false
+lifetime = 0.5
+duration = 1.25
+processMaterial = ExtResource("5_ls7k5")
+particleTextures = Array[Texture2D]([ExtResource("1_0y514"), ExtResource("2_kufjl"), ExtResource("3_5o1vl"), ExtResource("4_6pdbk")])

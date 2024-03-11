@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://bgjhcuwl5d2jj"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_8u1jy"]
+[ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity_1.png" id="1_vgxqb"]
+[ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity_2.png" id="2_tfgej"]
+[ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity_3.png" id="3_msqrv"]
+[ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity_4.png" id="4_ljhv4"]
+[ext_resource type="Material" uid="uid://dwmq4u4v6gdo" path="res://graphics/particles/phys_particle_process_mat.tres" id="5_hf3wf"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/heal.ogg" id="6_sup2f"]
+
+[resource]
+script = ExtResource("1_8u1jy")
+emitter = "front"
+count = 4
+inFrontOfCombatant = true
+lifetime = 0.5
+duration = 0.5
+processMaterial = ExtResource("5_hf3wf")
+particleTextures = Array[Texture2D]([ExtResource("1_vgxqb"), ExtResource("2_tfgej"), ExtResource("3_msqrv"), ExtResource("4_ljhv4")])
+sfx = ExtResource("6_sup2f")
