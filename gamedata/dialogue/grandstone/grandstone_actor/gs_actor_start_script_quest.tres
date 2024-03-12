@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dsm8qcyr0dxg8"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cxmpg"]
+[ext_resource type="Resource" uid="uid://72gmvkna34rg" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_no.tres" id="1_j4hh1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_oyhry"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ycqrj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_11g8g"]
+[ext_resource type="Resource" uid="uid://dx6o7007uuouv" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_yes.tres" id="3_t0svk"]
+
+[sub_resource type="Resource" id="Resource_rjfmh"]
+script = ExtResource("1_oyhry")
+choiceBtn = "No."
+leadsTo = ExtResource("1_j4hh1")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_qg7no"]
+script = ExtResource("1_oyhry")
+choiceBtn = "Sure!"
+leadsTo = ExtResource("3_t0svk")
+repeatsItem = false
+buttonDims = Vector2(140, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_nlfcp"]
+script = ExtResource("1_cxmpg")
+lines = Array[String](["Oh... shoot, what was I supposed to say after \"Either friend or foe can emerge from the shadows\"?", "Say, could you run to the Repository and see if they have a copy of \"My Father, The Insect\"? They have so many books there, they must have that classic!"])
+animation = "talk"
+choices = Array[ExtResource("1_oyhry")]([SubResource("Resource_rjfmh"), SubResource("Resource_qg7no")])
+
+[sub_resource type="Resource" id="Resource_pm3v8"]
+script = ExtResource("3_11g8g")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_ycqrj")
+entryId = ""
+items = Array[ExtResource("1_cxmpg")]([SubResource("Resource_nlfcp")])
+storyRequirements = SubResource("Resource_pm3v8")
+closesDialogue = false
+fullHealsPlayer = false

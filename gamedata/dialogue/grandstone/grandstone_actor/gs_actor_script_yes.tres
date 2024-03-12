@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dx6o7007uuouv"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5hntk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_hlswh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_msf1h"]
+[ext_resource type="Resource" uid="uid://dceket8ss1r7r" path="res://gamedata/quests/play_on_words.tres" id="3_rmd4w"]
+
+[sub_resource type="Resource" id="Resource_gunhf"]
+script = ExtResource("1_hlswh")
+choiceBtn = "O-okay..."
+repeatsItem = false
+buttonDims = Vector2(200, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_f6w3b"]
+script = ExtResource("1_5hntk")
+lines = Array[String](["Oh, why thank you @, this will leave me plenty of time to continue practicing my death in the final Act! Come right back here once you've found it!"])
+animation = "talk"
+choices = Array[ExtResource("1_hlswh")]([SubResource("Resource_gunhf")])
+
+[resource]
+script = ExtResource("1_msf1h")
+entryId = "play_script_quest_start"
+items = Array[ExtResource("1_5hntk")]([SubResource("Resource_f6w3b")])
+startsQuest = ExtResource("3_rmd4w")
+closesDialogue = false
+fullHealsPlayer = false

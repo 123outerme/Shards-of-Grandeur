@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://ckfyu02qpcubt"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_a6ajt"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_fs5fl"]
+
+[sub_resource type="Resource" id="Resource_ky3m0"]
+script = ExtResource("2_fs5fl")
+name = "Release the Rodents"
+description = "The King Rat is infuriated that so many have taken Rat Shards and pocketed them or forced his kind to do battle. He has asked that at least a few be returned to him."
+type = 1
+count = 3
+objectiveName = "rat_shard"
+turnInNames = Array[String](["grandstone_actor"])
+displayObjName = "Rat Shard"
+displayTurnInName = "Actor"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_2pxg1"]
+script = ExtResource("2_fs5fl")
+name = "???"
+description = "???"
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([""])
+displayObjName = "---"
+displayTurnInName = "---"
+customStatusStr = "???"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[resource]
+script = ExtResource("1_a6ajt")
+questName = "Voice of the Rats"
+description = "A rather strange character, this <NPC description> is. He claims he can speak to Giant Rats, and those that have been wandering into Grandstone have told him of a foreboding message they bring."
+steps = Array[ExtResource("2_fs5fl")]([SubResource("Resource_ky3m0"), SubResource("Resource_2pxg1")])
+isMainQuest = false
+advanceActActerComplete = false

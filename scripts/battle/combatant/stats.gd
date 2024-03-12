@@ -182,4 +182,4 @@ func save_from_object(s: Stats):
 	equippedWeapon = s.equippedWeapon
 	equippedArmor = s.equippedArmor
 	moves = s.moves.duplicate(false)
-	movepool = s.movepool.copy()
+	movepool = s.movepool

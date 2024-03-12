@@ -89,6 +89,20 @@ func fully_attune(saveName: String):
 	else:
 		printerr('Fully attune minion ', saveName, ' ERROR, null minion')
 
+func validate_minion_moves(minion: Combatant):
+	var invalidIdxs: Array[int] = []
+	for idx in range(len(minion.stats.moves)):
+		# if the move is not in the minion's movepool:
+		if not (minion.stats.moves[idx] in minion.stats.movepool.pool):
+			invalidIdxs.append(idx) # gather list of all invalid move indices
+			
+	for idx in invalidIdxs: # for each invalid move slot:
+		for move: Move in minion.stats.movepool.pool: # for each move in the pool
+			# if the minion can learn this move and has not already done so
+			if move.requiredLv <= minion.stats.level and move not in minion.stats.moves:
+				minion.stats.moves[idx] = move # set this move in the previously invalid move slot
+				break
+
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
@@ -103,6 +117,7 @@ func _load_data_each_minion(save_path):
 		var minion = null
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres'):
 			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
+			validate_minion_moves(minion)
 			set_minion(minion)
 		if minion == null:
 			init_minion(minionName)

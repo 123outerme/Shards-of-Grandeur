@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=13 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
 [ext_resource type="Resource" uid="uid://bxkaxgf5v3g62" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_report.tres" id="3_qpgt1"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="4_0vfgl"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_801qh"]
 
 [sub_resource type="Resource" id="Resource_ce6e6"]
 script = ExtResource("2_8mv8e")
@@ -33,10 +34,17 @@ customStatusStr = "Head to the Cave!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_e32iq"]
+script = ExtResource("4_801qh")
+experience = 40
+gold = 10
+fullyAttuneCombatantSaveName = ""
+
 [sub_resource type="Resource" id="Resource_mrxk6"]
 script = ExtResource("2_8mv8e")
 name = "It's Gone?"
 description = "The Radiant Cave is just... gone! Report your findings to Dr. Hudson."
+reward = SubResource("Resource_e32iq")
 type = 0
 count = 1
 objectiveName = "dr_hudson_standstill#standstill_cave_report"
@@ -47,10 +55,17 @@ customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_0vfgl")])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_qpgt1")])
 
+[sub_resource type="Resource" id="Resource_c0wbw"]
+script = ExtResource("4_801qh")
+experience = 30
+gold = 0
+fullyAttuneCombatantSaveName = ""
+
 [sub_resource type="Resource" id="Resource_dbahe"]
 script = ExtResource("2_8mv8e")
 name = "To Grandstone!"
 description = "Return to Grandstone immediately. Dr. Ildran is going to want to hear about the Cave moving and the Chain Legion ambusher."
+reward = SubResource("Resource_c0wbw")
 type = 0
 count = 1
 objectiveName = "grandstone_dr_ildran#dr_ildran_1"

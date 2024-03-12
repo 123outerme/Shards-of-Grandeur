@@ -1,8 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://csvd13dwvstvn"]
+[gd_scene load_steps=13 format=3 uid="uid://csvd13dwvstvn"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_kwclc"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_qkxx4"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_6q2ii"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_aew3w"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_q86qs"]
+[ext_resource type="Resource" uid="uid://c5umw0bd3dutl" path="res://gamedata/dialogue/grandstone/grandstone_actor/grandstone_actor_1.tres" id="5_plaxe"]
+[ext_resource type="SpriteFrames" uid="uid://ckcip1jhigfy0" path="res://graphics/animations/a_grandstone_actor.tres" id="5_tcx73"]
+[ext_resource type="Resource" uid="uid://dsm8qcyr0dxg8" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_start_script_quest.tres" id="6_3vq6q"]
+
+[sub_resource type="Resource" id="Resource_62wyx"]
+script = ExtResource("4_q86qs")
+saveName = "npc"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = "0.0.4"
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -45,6 +67,27 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
+[node name="GrandstoneActor" parent="TileMap" instance=ExtResource("3_aew3w")]
+position = Vector2(27, -104)
+displayName = "Actor"
+saveName = "grandstone_actor"
+data = SubResource("Resource_62wyx")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_plaxe"), ExtResource("6_3vq6q")])
+
+[node name="NPCSprite" parent="TileMap/GrandstoneActor" index="0"]
+sprite_frames = ExtResource("5_tcx73")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/GrandstoneActor" index="1"]
+position = Vector2(0, 4.5)
+
+[node name="TalkAreaShape" parent="TileMap/GrandstoneActor/TalkArea" index="0"]
+position = Vector2(0, 4)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/GrandstoneActor" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -60,3 +103,5 @@ navigation_layers = 4
 position = Vector2(-8, 18)
 mapName = "grandstone"
 mapPos = Vector2(71, -59)
+
+[editable path="TileMap/GrandstoneActor"]
