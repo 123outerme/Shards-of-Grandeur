@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://n4g1jdtyh5nq"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_et8kg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_n6lk5"]
+[ext_resource type="Resource" uid="uid://bhiyrnrh36me6" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_no_turnin_script.tres" id="1_yohnb"]
+[ext_resource type="Resource" uid="uid://bate627mrx1ir" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_after_script.tres" id="2_m4yb1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_oiedh"]
+
+[sub_resource type="Resource" id="Resource_b1yyy"]
+script = ExtResource("1_n6lk5")
+choiceBtn = "Keep Practicing."
+leadsTo = ExtResource("1_yohnb")
+repeatsItem = false
+buttonDims = Vector2(300, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_ltcuk"]
+script = ExtResource("1_n6lk5")
+choiceBtn = "Here You Are!"
+leadsTo = ExtResource("2_m4yb1")
+repeatsItem = false
+buttonDims = Vector2(300, 40)
+turnsInQuest = "A Play On Words#Play On"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_vauxg"]
+script = ExtResource("2_oiedh")
+lines = Array[String](["Well @, did you bring back \"My Father, The Insect\"? I can only practice my own death for so long here!"])
+animation = ""
+choices = Array[ExtResource("1_n6lk5")]([SubResource("Resource_b1yyy"), SubResource("Resource_ltcuk")])
+
+[resource]
+script = ExtResource("1_et8kg")
+entryId = ""
+items = Array[ExtResource("2_oiedh")]([SubResource("Resource_vauxg")])
+closesDialogue = false
+fullHealsPlayer = false

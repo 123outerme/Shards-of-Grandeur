@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjyyxe0l2l5jd"]
+[gd_scene load_steps=27 format=3 uid="uid://cjyyxe0l2l5jd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ft524"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jkifd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="8_nq0df"]
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="8_ty1dr"]
 [ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="9_vfsrb"]
+[ext_resource type="Resource" uid="uid://d1fpcigv6juic" path="res://gamedata/dialogue/grandstone/librarian/gs_librarian_get_script.tres" id="13_vmbtd"]
 
 [sub_resource type="Resource" id="Resource_yljok"]
 script = ExtResource("7_gpgnt")
@@ -45,7 +46,7 @@ script = ExtResource("8_nq0df")
 inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_yljok"), SubResource("Resource_kxnab"), SubResource("Resource_8odg6"), SubResource("Resource_6yyoa"), SubResource("Resource_tbg57")])
 isPlayerInventory = false
 
-[sub_resource type="Resource" id="Resource_lsltf"]
+[sub_resource type="Resource" id="Resource_a2r4c"]
 script = ExtResource("4_st1ox")
 saveName = "npc"
 position = Vector2(-38, -101)
@@ -111,8 +112,8 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-38, -101)
 displayName = "Librarian"
 saveName = "grandstone_librarian"
-data = SubResource("Resource_lsltf")
-dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_elhq5")])
+data = SubResource("Resource_a2r4c")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("13_vmbtd"), ExtResource("5_elhq5")])
 hasShop = true
 inventory = SubResource("Resource_yxsnv")
 

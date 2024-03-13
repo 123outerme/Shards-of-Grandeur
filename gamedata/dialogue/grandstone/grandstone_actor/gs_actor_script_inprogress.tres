@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://gbj5cdm688uh"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1mmch"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_eg2fr"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_272wg"]
+
+[sub_resource type="Resource" id="Resource_1f4ht"]
+script = ExtResource("1_1mmch")
+lines = Array[String](["\"Ack... my pride, and my body... both shattered... why did I not trust you, father...?\""])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_djnh2"]
+script = ExtResource("3_272wg")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["A Play On Words#Retrieve the Book"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_eg2fr")
+entryId = ""
+items = Array[ExtResource("1_1mmch")]([SubResource("Resource_1f4ht")])
+storyRequirements = SubResource("Resource_djnh2")
+closesDialogue = true
+fullHealsPlayer = false
