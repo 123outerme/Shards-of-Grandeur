@@ -407,14 +407,16 @@ func _on_turn_in_button_pressed():
 
 func _on_inventory_panel_node_back_pressed():
 	menu_closed()
-	if textBox.visible:
+	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
 		if pickedChoice != null and pickedChoice.opensShop:
 			pickedChoice = null
 
 func _on_quests_panel_node_back_pressed():
 	menu_closed()
-	if textBox.visible:
+	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
 		if pickedChoice != null and pickedChoice.turnsInQuest != '':
 			var questName = pickedChoice.turnsInQuest.split('#')[0]
@@ -450,7 +452,8 @@ func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
 	statsPanel.newLvs = 0
 	menu_closed()
-	if textBox.visible:
+	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not pausePanel.visible:
 		if pickedChoice != null and pickedChoice.turnsInQuest != '':
 			if pickedChoice.leadsTo != null:
 				talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
@@ -495,5 +498,6 @@ func _after_start_battle_fade_out():
 	SceneLoader.load_battle()
 
 func _on_pause_menu_resume_game():
-	if textBox.visible:
+	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
