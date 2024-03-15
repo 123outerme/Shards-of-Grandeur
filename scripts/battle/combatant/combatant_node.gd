@@ -376,16 +376,20 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 		var effectTypeChoices: Array[Move.MoveEffectType] = []
 		for moveIdx in range(len(moveCandidates)):
 			var move: Move = moveCandidates[moveIdx]
-			for combatantNode in get_targetable_combatant_nodes(combatantNodes, move.targets):
-				if combatantNode.role == role and combatantNode.is_alive():
-					var allyHasStatus: bool = combatantNode.combatant.statusEffect != null
-					var effectType: Move.MoveEffectType = move.effects_with_status()
-					if not allyHasStatus and effectType != Move.MoveEffectType.NONE and \
-							not BattleCommand.is_command_enemy_targeting(move.targets) and \
-							move.role == MoveEffect.Role.BUFF:
-						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
-							moveChoices.append(moveIdx)
-							effectTypeChoices.append(effectType)
+			var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
+			var moveEffectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
+			for moveEffIdx in range(len(moveEffects)):
+				var moveEffect: MoveEffect = moveEffects[moveEffIdx]
+				var effectType: Move.MoveEffectType = moveEffectTypes[moveEffIdx]
+				for combatantNode in get_targetable_combatant_nodes(combatantNodes, moveEffect.targets):
+					if combatantNode.role == role and combatantNode.is_alive():
+						var allyHasStatus: bool = combatantNode.combatant.statusEffect != null
+						if not allyHasStatus and effectType != Move.MoveEffectType.NONE and \
+								not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and \
+								move.role == MoveEffect.Role.BUFF:
+							if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(moveEffect):
+								moveChoices.append(moveIdx)
+								effectTypeChoices.append(effectType)
 		
 		if len(moveChoices) > 0:
 			var randIdx = randi_range(0, len(moveChoices) - 1)
@@ -422,7 +426,7 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 			pickedMove.move = moveCandidates[moveChoices[randIdx]]
 			pickedMove.effectType = effectTypeChoices[randIdx]
 	
-	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove == null: # pick the absolute strongest move
+	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove.move == null: # pick the absolute strongest move
 		if combatant.aiType == Combatant.AiType.DAMAGE and randomValue > combatant.aiOverrideWeight:
 			pickedMove.move = moveCandidates.pick_random() # if damage AI is overrided, just pick a random move
 			pickedMove.effectType = Move.MoveEffectType.BOTH
@@ -442,6 +446,9 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
 							pickedMove.move = move # pick it instead
 							pickedMove.effectType = Move.MoveEffectType.BOTH # TODO: don't just pick both and defer decision-making; plan ahead!
+	
+	if pickedMove.move == null or pickedMove.effectType == Move.MoveEffectType.NONE:
+		printerr('MAJOR ERROR: ai did not find a move to use ', combatant.save_name(), ': ', battlePosition)
 	
 	return pickedMove
 

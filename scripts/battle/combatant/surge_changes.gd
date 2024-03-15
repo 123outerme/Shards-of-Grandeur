@@ -71,16 +71,16 @@ func get_description() -> String:
 				+ '(' + String.num(roundi(statusBaseChance * 100)) + '% Chance)')
 		
 	if weakThresholdOrbs > 0 or strongThresholdOrbs > 0 or overwhelmingThresholdOrbs > 0:
-		var thresholdDescription = 'Status Potency:'
+		var thresholdDescription = 'Status Potency: '
 		var thresholds: Array[String] = []
 		if weakThresholdOrbs > 0:
 			thresholds.append('Weak at ' + String.num(weakThresholdOrbs) + ' Orbs')
 			
-		if weakThresholdOrbs > 0:
-			thresholds.append('Strong at ' + String.num(weakThresholdOrbs) + ' Orbs')
+		if strongThresholdOrbs > 0:
+			thresholds.append('Strong at ' + String.num(strongThresholdOrbs) + ' Orbs')
 			
-		if weakThresholdOrbs > 0:
-			thresholds.append('Overwhelming at ' + String.num(weakThresholdOrbs) + ' Orbs')
+		if overwhelmingThresholdOrbs > 0:
+			thresholds.append('Overwhelming at ' + String.num(overwhelmingThresholdOrbs) + ' Orbs')
 		
 		for idx in range(len(thresholds)):
 			thresholdDescription += thresholds[idx]

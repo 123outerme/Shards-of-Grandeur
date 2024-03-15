@@ -107,11 +107,11 @@ func update_confirm_btn():
 			confirmDisabled = false
 	confirmButton.disabled = confirmDisabled
 
-func reset_targets():
+func reset_targets(confirming: bool = false):
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if cNode.is_alive():
 			cNode.toggled.disconnect(_on_combatant_selected)
-			if not cNode.is_selected() or referringMenu == BattleState.Menu.CHARGE_MOVES:
+			if not confirming or not cNode.is_selected() or referringMenu == BattleState.Menu.CHARGE_MOVES:
 				# hide all select buttons after this if picking a charge move or if it wasn't selected
 				cNode.set_selected(false)
 				cNode.update_select_btn(false)
@@ -130,7 +130,7 @@ func _on_confirm_button_pressed():
 			targetPositions.append(combatantNode.battlePosition)
 	battleUI.commandingCombatant.combatant.command.set_targets(targetPositions)
 	
-	reset_targets()
+	reset_targets(true)
 	if battleUI.commandingCombatant.combatant.command.type != BattleCommand.Type.MOVE or \
 			battleUI.commandingCombatant.combatant.command.moveEffectType != Move.MoveEffectType.SURGE:
 		battleUI.commandingCombatant.combatant.command.orbChange = moveEffect.orbChange
@@ -141,5 +141,5 @@ func _on_confirm_button_pressed():
 	battleUI.battleController.update_combatant_focus_neighbors()
 
 func _on_back_button_pressed():
-	reset_targets()
+	reset_targets(false)
 	battleUI.set_menu_state(referringMenu)

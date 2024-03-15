@@ -21,7 +21,7 @@ func _init(i_name = '', i_multiplier = 1.0):
 
 func print_multiplier(useStatName: bool = true) -> String:
 	var multiplierDiff: float = (multiplier - 1.0) * 100.0
-	var diffSign: String = '+' if multiplierDiff >= 0 else '0'
+	var diffSign: String = '+' if multiplierDiff >= 0 else '' # minus sign is included in building str
 	var multiplierText: String = ''
 	if useStatName:
 		multiplierText += statName + ' '

@@ -26,7 +26,9 @@ func load_move_effect_details_panel():
 	detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
 	if moveEffect.orbChange > 0:
 		detailsTitleLabel.text += '+'
-	detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orbs'
+	detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orb'
+	if abs(moveEffect.orbChange) > 1 or moveEffect.orbChange == 0:
+		detailsTitleLabel.text += 's'
 	if moveEffect.orbChange < 0:
 		detailsTitleLabel.text += ' Min.'
 	detailsTitleLabel.text += ')[/center]'
@@ -53,7 +55,7 @@ func load_move_effect_details_panel():
 	if moveEffect.statusEffect != null:
 		moveStatusEffect.text = '[center]Applies ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
 				+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) \
-				+ '(' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
+				+ ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
 	else:
 		moveStatusEffect.visible = false
 	

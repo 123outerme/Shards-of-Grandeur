@@ -221,6 +221,9 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 	inventoryPanel.toggle()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
+	if levelUp:
+		update_hp_tags()
+	
 	statsPanel.levelUp = levelUp
 	statsPanel.newLvs = battleComplete.gainedLevels
 	statsPanel.stats = combatant.stats

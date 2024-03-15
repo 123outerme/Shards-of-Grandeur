@@ -142,10 +142,10 @@ func _fade_in_complete():
 		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
 	PlayerFinder.player.collider.set_deferred('disabled', false)
 	loading = false
-	print('fade in complete')
+	#print('fade in complete')
 	
 func _map_loaded():
-	print('map is loaded')
+	#print('map is loaded')
 	await get_tree().create_timer(0.15).timeout
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
 	if PlayerFinder.player.sprite.animation == 'teleport':
