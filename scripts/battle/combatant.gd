@@ -15,6 +15,8 @@ const HP_BAR_COLORS: Dictionary = {
 	'low': Color(1, 0.3137255012989, 0) # ff5000
 }
 
+static var MAX_ORBS = 10
+
 @export_category("Combatant - Sprite")
 @export var spriteFrames: SpriteFrames = null
 @export var maxSize: Vector2 = Vector2(16, 16)
@@ -25,6 +27,7 @@ const HP_BAR_COLORS: Dictionary = {
 @export var nickname: String = ''
 @export var stats: Stats = Stats.new()
 @export var currentHp: int = -1
+@export var orbs: int = 0
 @export var statChanges: StatChanges = StatChanges.new()
 @export var statusEffect: StatusEffect = null
 @export var friendship: float = 0
@@ -124,6 +127,12 @@ func would_item_have_effect(item: Item) -> bool:
 	if item.itemType == Item.Type.HEALING:
 		return currentHp < stats.maxHp
 	return true
+
+func add_orbs(num: int):
+	orbs = max(0, min(orbs + num, Combatant.MAX_ORBS)) # bounded [0,max]
+
+func get_starting_orbs() -> int:
+	return 0
 
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level

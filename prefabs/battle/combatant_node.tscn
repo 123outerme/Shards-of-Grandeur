@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=15 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="6_k1o8q"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
 [ext_resource type="Texture2D" uid="uid://dory1vdxd41t" path="res://graphics/ui/health_bar_bg.png" id="13_ff1jw"]
+[ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="13_ms1fr"]
 [ext_resource type="Resource" uid="uid://c6c4ckakjjq0h" path="res://gamedata/moves/particles_hit.tres" id="14_nv53v"]
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
 [ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
@@ -141,6 +142,17 @@ text = "5,250 / 5,250"
 fit_content = true
 scroll_active = false
 
+[node name="OrbDisplay" parent="HPTag" instance=ExtResource("13_ms1fr")]
+layout_mode = 1
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 24.0
+offset_bottom = 2.0
+grow_vertical = 1
+scale = Vector2(0.75, 0.75)
+
 [node name="OnAttackPos" type="Marker2D" parent="."]
 gizmo_extents = 2.0
 
@@ -150,3 +162,5 @@ gizmo_extents = 2.0
 [connection signal="pressed" from="ClickCombatantBtn" to="." method="_on_click_combatant_btn_pressed"]
 [connection signal="toggled" from="SelectCombatantBtn" to="." method="_on_select_combatant_btn_toggled"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_finished"]
+
+[editable path="HPTag/OrbDisplay"]

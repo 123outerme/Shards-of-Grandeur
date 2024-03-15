@@ -36,6 +36,7 @@ var playParticlesQueued: ParticlePreset = null
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
 @onready var hpProgressBar: TextureProgressBar = get_node('HPTag/LvText/HPProgressBar')
+@onready var orbDisplay: OrbDisplay = get_node('HPTag/OrbDisplay')
 @onready var animatedSprite: AnimatedSprite2D = get_node('AnimatedSprite')
 @onready var clickCombatantBtn: TextureButton = get_node('ClickCombatantBtn')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
@@ -55,6 +56,7 @@ func _ready():
 	if battleController != null:
 		battleController.combatant_finished_moving.connect(_combatant_finished_moving)
 		battleController.combatant_finished_animating.connect(_combatant_finished_animating)
+	orbDisplay.alignedLeft = not leftSide
 
 func load_combatant_node():
 	if not is_alive():
@@ -122,6 +124,8 @@ func update_hp_tag():
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
+	orbDisplay.currentOrbs = combatant.orbs
+	orbDisplay.update_orb_display()
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
