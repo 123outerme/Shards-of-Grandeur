@@ -36,6 +36,7 @@ func load_move_details_panel():
 	backButton.grab_focus()
 	
 	chargeEffectDetails.moveEffect = move.chargeEffect
+	chargeEffectDetails.load_move_effect_details_panel()
 	surgeEffectDetails.moveEffect = move.surgeEffect
 	surgeEffectDetails.load_move_effect_details_panel()
 	

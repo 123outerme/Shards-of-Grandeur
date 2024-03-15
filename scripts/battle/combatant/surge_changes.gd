@@ -53,7 +53,7 @@ func get_additional_status_chance(additionalSpent: int) -> float:
 func get_description() -> String:
 	var descriptionLines: Array[String] = []
 	if powerPerOrb > 0:
-		descriptionLines.append('Additional Power / Orb: ' + String.num(powerPerOrb))
+		descriptionLines.append('+' + String.num(powerPerOrb) + ' Additional Power / Orb')
 		
 	if selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()

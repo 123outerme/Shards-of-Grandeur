@@ -52,6 +52,8 @@ static var MAX_ORBS = 10
 @export var command: BattleCommand = null
 @export var downed: bool = false
 
+static var aiUseSurgeReqs: StoryRequirements = preload('res://gamedata/story_requirements/surge_move_reqs.tres')
+
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
@@ -138,10 +140,18 @@ func add_orbs(num: int):
 	orbs = max(0, min(orbs + num, Combatant.MAX_ORBS)) # bounded [0,max]
 
 func get_starting_orbs() -> int:
-	return 5
+	# TODO: calc starting orbs by equipment (and level?)
+	return 0
 
 func would_ai_spend_orbs(effect: MoveEffect) -> bool:
+	if effect.orbChange >= 0:
+		return true # no cost required to charge orbs
+	
+	if Combatant.aiUseSurgeReqs != null and not Combatant.aiUseSurgeReqs.is_valid():
+		return false # AI can't use surge moves yet
+	
 	var spendingOrbs: int = effect.orbChange * -1
+	
 	match strategy:
 		ResourceStrategy.GREEDY:
 			return orbs >= spendingOrbs # if we have the orbs, do it

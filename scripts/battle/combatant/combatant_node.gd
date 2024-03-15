@@ -24,6 +24,7 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var leftSide: bool = false
 @export var spriteFacesRight: bool = false
 @export var battlePosition: String = ''
+@export var unlockSurgeRequirements: StoryRequirements = null
 
 @export_category("CombatantNode - Movement")
 @export var allyTeamMarker: Marker2D
@@ -132,8 +133,13 @@ func update_hp_tag():
 		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
-	orbDisplay.currentOrbs = combatant.orbs
-	orbDisplay.update_orb_display()
+	
+	if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.aiUseSurgeReqs == null or Combatant.aiUseSurgeReqs.is_valid()) and not leftSide):
+		orbDisplay.visible = true
+		orbDisplay.currentOrbs = combatant.orbs
+		orbDisplay.update_orb_display()
+	else:
+		orbDisplay.visible = false
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
@@ -141,6 +147,12 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
+	if selectCombatantBtn.disabled:
+		if is_selected():
+			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_pressed
+		else:
+			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_normal
+	
 	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 

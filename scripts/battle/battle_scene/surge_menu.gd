@@ -29,9 +29,12 @@ func load_surge():
 func _on_confirm_button_pressed():
 	battleUI.commandingCombatant.combatant.command.orbChange = orbControl.currentOrbs * -1
 	battleUI.complete_command()
+	for cNode in battleUI.battleController.get_all_combatant_nodes():
+		if cNode.is_alive():
+			cNode.update_select_btn(false)
 	
 func _on_back_button_pressed():
-	battleUI.set_menu_state(BattleState.Menu.PICK_TARGETS)
+	battleUI.set_menu_state(BattleState.Menu.PICK_TARGETS, false)
 
 func _on_orb_display_orb_count_change(change: int):
 	var newCount = max(minOrbs, min(orbControl.currentOrbs + change, maxOrbs))

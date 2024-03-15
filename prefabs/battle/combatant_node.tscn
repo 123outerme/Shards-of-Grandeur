@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=16 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
+[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="2_a8f3n"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="2_uia2j"]
 [ext_resource type="Texture2D" uid="uid://u5ng7o44k1ln" path="res://graphics/ui/ui_target_selected.png" id="3_ng771"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
@@ -18,6 +19,7 @@
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
+unlockSurgeRequirements = ExtResource("2_a8f3n")
 
 [node name="ClickCombatantBtn" parent="." instance=ExtResource("6_k1o8q")]
 visible = false
@@ -78,7 +80,7 @@ duration = 0.675
 custom_minimum_size = Vector2(63, 0)
 offset_left = 6.0
 offset_top = -7.0
-offset_right = 69.0
+offset_right = 71.0
 offset_bottom = 7.0
 theme = ExtResource("3_o4uc1")
 theme_override_styles/panel = ExtResource("17_ath4t")
@@ -107,9 +109,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 7.0
+offset_left = 8.0
 offset_top = -20.0
-offset_right = 163.0
+offset_right = 172.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -131,10 +133,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -20.0
-offset_right = 160.0
-offset_bottom = 20.0
+offset_left = 17.0
+offset_top = -18.0
+offset_right = 165.0
+offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
@@ -143,6 +145,7 @@ fit_content = true
 scroll_active = false
 
 [node name="OrbDisplay" parent="HPTag" instance=ExtResource("13_ms1fr")]
+custom_minimum_size = Vector2(88, 8)
 layout_mode = 1
 anchors_preset = 10
 anchor_bottom = 0.0

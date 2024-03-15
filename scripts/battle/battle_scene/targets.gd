@@ -111,8 +111,13 @@ func reset_targets():
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if cNode.is_alive():
 			cNode.toggled.disconnect(_on_combatant_selected)
-			cNode.set_selected(false)
-			cNode.update_select_btn(false)
+			if not cNode.is_selected() or referringMenu == BattleState.Menu.CHARGE_MOVES:
+				# hide all select buttons after this if picking a charge move or if it wasn't selected
+				cNode.set_selected(false)
+				cNode.update_select_btn(false)
+			else:
+				cNode.update_select_btn(true, true) # if picking a surge move, disable select btn
+				# after submit in surge menu, that menu will update all buttons to be enabled but invisible
 
 func _on_combatant_selected(button_pressed: bool, combatantNode: CombatantNode):
 	update_targets_listing(button_pressed, combatantNode)
