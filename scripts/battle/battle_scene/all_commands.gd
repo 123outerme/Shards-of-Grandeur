@@ -32,7 +32,10 @@ func load_all_commands():
 	initial_focus()
 	
 func initial_focus():
-	chargeMovesBtn.grab_focus()
+	if battleUI.battleController.state.moveEffectType == Move.MoveEffectType.SURGE:
+		surgeMovesBtn.grab_focus()
+	else:
+		chargeMovesBtn.grab_focus()
 
 func _on_charge_moves_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.CHARGE_MOVES)

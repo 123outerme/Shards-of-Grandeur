@@ -64,7 +64,7 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	if surgeChanges == null:
 		return self
 	
-	var additionalOrbs: int = (orbChange * -1) - orbsSpent
+	var additionalOrbs: int = orbsSpent - (orbChange * -1)
 	var newEffect = copy()
 	
 	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs

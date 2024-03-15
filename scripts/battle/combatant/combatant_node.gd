@@ -351,6 +351,7 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 			if combatantNode.role != role and combatantNode.is_alive():
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
 				for move in moveCandidates:
+					var effectTpyes
 					var effectType: Move.MoveEffectType = move.effects_with_status()
 					if not opponentHasStatus and effectType != Move.MoveEffectType.NONE and BattleCommand.is_command_enemy_targeting(move.targets):
 						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
@@ -362,13 +363,20 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 		# if no statusing needs to be done, pick a random move that debuffs
 		if pickedMove.move == null:
 			var moveChoices: Array[int] = []
+			var effectTypeChoices: Array[Move.MoveEffectType] = []
 			for moveIdx in range(len(moveCandidates)):
 				var move: Move = moveCandidates[moveIdx]
-				if BattleCommand.is_command_enemy_targeting(move.targets) and move.role == MoveEffect.Role.DEBUFF:
-					moveChoices.append(moveIdx)
-			if len(moveChoices) > 0 and randomValue > combatant.aiOverrideWeight: # 65% of the time pick a debuff
-				pickedMove.move = moveCandidates[moveChoices.pick_random()]
-				pickedMove.effectType = Move.MoveEffectType.BOTH
+				var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
+				var moveEffectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
+				for moveEffIdx in range(len(moveEffects)):
+					var moveEffect: MoveEffect = moveEffects[moveEffIdx]
+					if BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.role == MoveEffect.Role.DEBUFF:
+						moveChoices.append(moveEffect)
+						effectTypeChoices.append(moveEffectTypes[moveEffIdx])
+			if len(moveChoices) > 0: # 65% of the time pick a debuff
+				var randIdx = randi_range(0, len(moveChoices) - 1)
+				pickedMove.move = moveCandidates[moveChoices[randIdx]]
+				pickedMove.effectType = effectTypeChoices[randIdx]
 	
 	if combatant.aiType == Combatant.AiType.BUFFER and randomValue > combatant.aiOverrideWeight:
 		# if random chance > override, pick a buff
@@ -386,7 +394,7 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 						var allyHasStatus: bool = combatantNode.combatant.statusEffect != null
 						if not allyHasStatus and effectType != Move.MoveEffectType.NONE and \
 								not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and \
-								move.role == MoveEffect.Role.BUFF:
+								moveEffect.role == MoveEffect.Role.BUFF:
 							if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(moveEffect):
 								moveChoices.append(moveIdx)
 								effectTypeChoices.append(effectType)
@@ -468,7 +476,7 @@ func ai_filter_move_candidates(a: Move) -> bool:
 		var statusCanLand: bool = false
 		for effect: MoveEffect in moveEffects:
 			var enemyTargeting: bool = BattleCommand.is_command_enemy_targeting(effect.targets)
-			if a.power == 0 or (a.power > 0 and not enemyTargeting) or (a.power < 0 and enemyTargeting): # if move is purely status or deals damage to an ally to apply status/heals an enemy to apply status:
+			if effect.power == 0 or (effect.power > 0 and not enemyTargeting) or (effect.power < 0 and enemyTargeting): # if move effect is purely status or deals damage to an ally to apply status/heals an enemy to apply status:
 				for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, effect.targets):
 					if combatantNode.combatant.statusEffect == null:
 						statusCanLand = true # if the combatant can be statused, it can be affected

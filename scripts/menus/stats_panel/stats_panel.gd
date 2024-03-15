@@ -131,6 +131,11 @@ func reset_panel_to_player():
 func _on_back_button_pressed():
 	if not isMinionStats or savedStats == null:
 		toggle()
+		if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic):
+			if SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
+				SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme)
+			else:
+				SceneLoader.audioHandler.cross_fade(null) # fade out the track
 	else:
 		restore_previous_stats_panel()
 

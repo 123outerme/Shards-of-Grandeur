@@ -111,9 +111,6 @@ func stop_sfx(stream: AudioStream):
 			openSfxPlayers[idx] = true
 
 func cross_fade(newStream: AudioStream, sec: float = 2.5):
-	if newStream == null:
-		return
-	
 	if musicPlayingOnStream2:
 		musicStreamPlayer1.stream = newStream
 		set_music_1_volume(0)

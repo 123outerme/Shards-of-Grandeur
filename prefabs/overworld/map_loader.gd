@@ -134,7 +134,7 @@ func destroy_overworld_enemies():
 			spawnerNode.delete_enemy()
 
 func _fade_out_complete():
-	print('fade out complete')
+	#print('fade out complete')
 	warp_fadeout_done.emit()
 
 func _fade_in_complete():

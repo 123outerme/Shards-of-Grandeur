@@ -107,6 +107,10 @@ offset_right = 40.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

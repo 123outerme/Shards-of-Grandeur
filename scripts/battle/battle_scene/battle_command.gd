@@ -108,6 +108,8 @@ static func command_escape(user: CombatantNode, allCombatants: Array[CombatantNo
 	return BattleCommand.new(
 		Type.ESCAPE,
 		null,
+		Move.MoveEffectType.NONE,
+		0,
 		null,
 		allPositions,
 	)
@@ -439,7 +441,7 @@ func get_command_results(user: Combatant) -> String:
 				for targetIdx in range(len(targets)):
 					var target = targets[targetIdx]
 					if target == user:
-						if moveEffect.selfStatChanges != null and moveEffect.selfStatChangesmoveEffect.selfStatChanges.has_stat_changes():
+						if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 							continue # we already printed the user's stat changes
 						resultsText += 'self'
 					else:

@@ -215,7 +215,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		start_pre_battle()
 	if menuState == BattleState.Menu.ITEMS:
 		commandingCombatant.combatant.command = \
-				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, slot, [])
+				BattleCommand.new(BattleCommand.Type.USE_ITEM, Move.MoveEffectType.NONE, 0, null, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
 		targets.initial_focus()
 	inventoryPanel.toggle()

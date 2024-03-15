@@ -37,11 +37,11 @@ func stack(changes: StatChanges):
 	speedMultiplier += changes.speedMultiplier - 1.0
 
 func times(x: float):
-	physAttackMultiplier = (physAttackMultiplier - 1) * x + 1
-	magicAttackMultiplier = (magicAttackMultiplier - 1) * x + 1
-	affinityMultiplier = (affinityMultiplier - 1) * x + 1
-	resistanceMultiplier = (resistanceMultiplier - 1) * x + 1
-	speedMultiplier = (speedMultiplier - 1) * x + 1
+	physAttackMultiplier = (physAttackMultiplier - 1.0) * x + 1
+	magicAttackMultiplier = (magicAttackMultiplier - 1.0) * x + 1
+	affinityMultiplier = (affinityMultiplier - 1.0) * x + 1
+	resistanceMultiplier = (resistanceMultiplier - 1.0) * x + 1
+	speedMultiplier = (speedMultiplier - 1.0) * x + 1
 
 func undo_changes(changes: StatChanges):
 	if changes == null:
