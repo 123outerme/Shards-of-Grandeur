@@ -26,6 +26,7 @@ func _ready():
 	pass # Replace with function body.
 
 func load_battle_over_menu():
+	battleUI.update_hp_tags()
 	rewardsVBox.visible = playerWins
 	battleWinLabel.visible = playerWins
 	battleRewardsLabel.visible = playerWins

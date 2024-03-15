@@ -28,7 +28,9 @@ func load_quest_reward_panel():
 	if reward != null and reward.fullyAttuneCombatantSaveName != '':
 		var combatant = Combatant.load_combatant_resource(reward.fullyAttuneCombatantSaveName)
 		fullAttuneLabel.text = '[center]You have become fully Attuned with ' + combatant.disp_name() + '![/center]'
-	fullAttuneLabel.visible = reward != null and reward.fullyAttuneCombatantSaveName != ''
+		fullAttuneLabel.visible = true
+	else:
+		fullAttuneLabel.visible = false
 	
 	visible = true
 	okButton.grab_focus()

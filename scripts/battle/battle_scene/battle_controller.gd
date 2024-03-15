@@ -57,11 +57,13 @@ func load_into_battle():
 	var hasStaticMinion: bool = false
 	if newBattle: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
+		playerCombatant.combatant.orbs = playerCombatant.combatant.get_starting_orbs()
 		minionCombatant.combatant = null
 		if PlayerResources.playerInfo.staticEncounter != null:
-			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())
+			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())			
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
+			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			if len(PlayerResources.playerInfo.staticEncounter.combatant1Moves) == 0:
 				enemyCombatant1.combatant.assign_moves_nonplayer()
 			else:
@@ -71,6 +73,7 @@ func load_into_battle():
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant2.save_name())
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
+				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				if len(PlayerResources.playerInfo.staticEncounter.combatant2Moves) == 0:
 					enemyCombatant2.combatant.assign_moves_nonplayer()
 				else:
@@ -80,6 +83,7 @@ func load_into_battle():
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
+				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				if len(PlayerResources.playerInfo.staticEncounter.combatant3Moves) == 0:
 					enemyCombatant3.combatant.assign_moves_nonplayer()
 				else:
@@ -90,6 +94,7 @@ func load_into_battle():
 				minionCombatant.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.autoAlly.save_name())
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 				minionCombatant.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.autoAllyLevel)
+				minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 				if len(PlayerResources.playerInfo.staticEncounter.autoAllyMoves) == 0:
 					minionCombatant.combatant.assign_moves_nonplayer()
 				else:
@@ -102,6 +107,7 @@ func load_into_battle():
 			var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
+			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
 			var rngBeginnerNoEnemy: float = randf() - 0.75 + \
@@ -112,6 +118,7 @@ func load_into_battle():
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				enemyCombatant2.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant2.combatant = null
@@ -124,6 +131,7 @@ func load_into_battle():
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant3.combatant = null
@@ -172,6 +180,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
 	minionCombatant.combatant = PlayerResources.minions.get_minion(minionName)
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
+	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 	minionCombatant.load_combatant_node()
 	var preset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")
 	minionCombatant.play_particles(preset)

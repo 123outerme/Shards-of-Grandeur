@@ -1,6 +1,8 @@
 extends Node
 class_name MapLoader
 
+signal warp_fadeout_done
+
 var mapInstance: Node = null
 var mapNavReady: bool = false
 var mapEntry: MapEntry = null
@@ -24,11 +26,12 @@ func _ready():
 		player = PlayerFinder.player
 
 func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUnderground: bool = false, useVOffset: bool = false, useHOffset: bool = false):
+	SceneLoader.cutscenePlayer.mark_cutscene_seen()
 	usedWarpZone = true
 	player.cam.fade_out(_fade_out_complete, 0.25)
 	player.disableMovement = true
 	player.collider.set_deferred('disabled', true)
-	await get_tree().create_timer(0.25).timeout
+	await warp_fadeout_done
 	if useVOffset:
 		newMapPos.y -= warpPos.y - player.position.y
 	if useHOffset:
@@ -131,18 +134,22 @@ func destroy_overworld_enemies():
 			spawnerNode.delete_enemy()
 
 func _fade_out_complete():
-	pass
+	#print('fade out complete')
+	warp_fadeout_done.emit()
 
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
 		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
 	PlayerFinder.player.collider.set_deferred('disabled', false)
 	loading = false
+	#print('fade in complete')
 	
 func _map_loaded():
+	#print('map is loaded')
 	await get_tree().create_timer(0.15).timeout
 	player.cam.call_deferred('fade_in', _fade_in_complete, 0.35)
-	PlayerFinder.player.play_animation('stand')
+	if PlayerFinder.player.sprite.animation == 'teleport':
+		PlayerFinder.player.play_animation('stand')
 	await get_tree().create_timer(0.15).timeout
 	SceneLoader.call_deferred('unpause_autonomous_movers')
 	player.collider.set_deferred('disabled', false)

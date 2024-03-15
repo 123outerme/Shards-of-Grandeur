@@ -1,25 +1,61 @@
-[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://ddvnewdtettic"]
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://ddvnewdtettic"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_548kd"]
 [ext_resource type="Resource" uid="uid://diqaulbjtvg5t" path="res://gamedata/moves/silent_strike/anim_silent_strike.tres" id="1_t1tgh"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_tuna8"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="2_8yy01"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_c58ab"]
 
-[sub_resource type="Resource" id="Resource_0jjf5"]
+[sub_resource type="Resource" id="Resource_uma5u"]
 script = ExtResource("2_8yy01")
 type = 2
 potency = 1
 turnsLeft = 6
 
+[sub_resource type="Resource" id="Resource_i260y"]
+script = ExtResource("1_548kd")
+role = 1
+orbChange = 1
+power = 35
+targets = 1
+statusEffect = SubResource("Resource_uma5u")
+selfGetsStatus = false
+statusChance = 0.95
+
+[sub_resource type="Resource" id="Resource_yi0ed"]
+script = ExtResource("2_8yy01")
+type = 2
+potency = 1
+turnsLeft = 6
+
+[sub_resource type="Resource" id="Resource_2dkyp"]
+script = ExtResource("5_c58ab")
+powerPerOrb = 2
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 7
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_dgbeh"]
+script = ExtResource("1_548kd")
+role = 1
+orbChange = -1
+power = 35
+targets = 5
+statusEffect = SubResource("Resource_yi0ed")
+selfGetsStatus = false
+statusChance = 1.0
+surgeChanges = SubResource("Resource_2dkyp")
+
 [resource]
 script = ExtResource("1_tuna8")
 moveName = "Silent Strike"
 requiredLv = 6
-role = 1
-power = 35
 category = 2
-targets = 5
-statusEffect = SubResource("Resource_0jjf5")
-statusChance = 1.0
+chargeEffect = SubResource("Resource_i260y")
+surgeEffect = SubResource("Resource_dgbeh")
 description = "Using attacks enhanced by Affinity, the user swiftly and precisely targets vital spots in the opponent. The hits do little damage, but their after-effects causes the opponent to start losing blood."
 moveLearnedText = "Embuing your fists with natural energy, you can strike at your opponent with precision. Wasting no movement, a jab at a weak point is all it takes for the opponent to start bleeding."
 moveAnimation = ExtResource("1_t1tgh")

@@ -5,14 +5,16 @@ enum Menu {
 	SUMMON = 0,
 	PRE_BATTLE = 1,
 	ALL_COMMANDS = 2,
-	MOVES = 3,
-	ITEMS = 4,
-	PICK_TARGETS = 5,
-	PRE_ROUND = 6,
-	RESULTS = 7,
-	POST_ROUND = 8,
-	BATTLE_COMPLETE = 9,
-	LEVEL_UP = 10
+	CHARGE_MOVES = 3,
+	SURGE_MOVES = 4,
+	ITEMS = 5,
+	PICK_TARGETS = 6,
+	SURGE_SPEND = 7,
+	PRE_ROUND = 8,
+	RESULTS = 9,
+	POST_ROUND = 10,
+	BATTLE_COMPLETE = 11,
+	LEVEL_UP = 12
 }
 
 @export_category("BattleData - Combatants")
@@ -26,6 +28,7 @@ enum Menu {
 @export var menu: Menu = Menu.SUMMON
 @export var prevMenu: Menu = Menu.SUMMON
 @export var commandingMinion: bool = false
+@export var moveEffectType: Move.MoveEffectType = Move.MoveEffectType.NONE
 @export var fobButtonEnabled: bool = true
 @export var calcdStateStrings: Array[String] = []
 @export var calcdStateIndex: int = 0
@@ -51,6 +54,7 @@ func _init(
 	i_menu = Menu.SUMMON,
 	i_prevMenu = Menu.SUMMON,
 	i_cmdMinion = false,
+	i_moveEffectType = Move.MoveEffectType.NONE,
 	i_fobBtnEnabled = true,
 	i_battleMapPath = '',
 	i_battleMusic = null,
@@ -67,6 +71,7 @@ func _init(
 	menu = i_menu
 	prevMenu = i_prevMenu
 	commandingMinion = i_cmdMinion
+	moveEffectType = i_moveEffectType
 	fobButtonEnabled = i_fobBtnEnabled
 	battleMapPath = i_battleMapPath
 	battleMusic = i_battleMusic

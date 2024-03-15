@@ -1,11 +1,38 @@
-[gd_resource type="Resource" script_class="Move" load_steps=7 format=3 uid="uid://poj2favclae8"]
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://poj2favclae8"]
 
 [ext_resource type="Resource" uid="uid://cets3714s2gwl" path="res://gamedata/moves/battle_trance/anim_battle_trance.tres" id="1_rea5x"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_w6ku0"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_cpjok"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_p2o87"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/berserk.gd" id="4_8f1no"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="6_dsg8u"]
 
-[sub_resource type="Resource" id="Resource_m5uq4"]
+[sub_resource type="Resource" id="Resource_cnukc"]
+script = ExtResource("3_p2o87")
+physAttackMultiplier = 1.3
+magicAttackMultiplier = 1.3
+affinityMultiplier = 1.3
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_uobye"]
+script = ExtResource("4_8f1no")
+type = 3
+potency = 2
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_gcpma"]
+script = ExtResource("1_w6ku0")
+role = 3
+power = 0
+orbChange = 0
+targets = 1
+selfStatChanges = SubResource("Resource_cnukc")
+statusEffect = SubResource("Resource_uobye")
+selfGetsStatus = true
+statusChance = 1.0
+
+[sub_resource type="Resource" id="Resource_x5gaf"]
 script = ExtResource("3_p2o87")
 physAttackMultiplier = 1.5
 magicAttackMultiplier = 1.5
@@ -13,23 +40,50 @@ affinityMultiplier = 1.5
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
 
-[sub_resource type="Resource" id="Resource_kvw7b"]
+[sub_resource type="Resource" id="Resource_igg6v"]
 script = ExtResource("4_8f1no")
 type = 3
 potency = 2
-turnsLeft = 3
+turnsLeft = 6
+
+[sub_resource type="Resource" id="Resource_ps3ue"]
+script = ExtResource("3_p2o87")
+physAttackMultiplier = 1.05
+magicAttackMultiplier = 1.05
+affinityMultiplier = 1.05
+resistanceMultiplier = 0.95
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_auhxs"]
+script = ExtResource("6_dsg8u")
+powerPerOrb = 0
+selfStatChangesPerOrb = SubResource("Resource_ps3ue")
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 5
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_g1rcc"]
+script = ExtResource("1_w6ku0")
+role = 3
+power = 0
+orbChange = -3
+targets = 1
+selfStatChanges = SubResource("Resource_x5gaf")
+statusEffect = SubResource("Resource_igg6v")
+selfGetsStatus = true
+statusChance = 1.0
+surgeChanges = SubResource("Resource_auhxs")
 
 [resource]
 script = ExtResource("2_cpjok")
 moveName = "Battle Trance"
 requiredLv = 2
-role = 3
-power = 0
 category = 2
-targets = 1
-statChanges = SubResource("Resource_m5uq4")
-statusEffect = SubResource("Resource_kvw7b")
-statusChance = 1.0
-description = "Entering a trance-like state, the user becomes blinded with rage. All attacking moves performed for 3 turns are dealt with a reckless amount of power behind them."
+chargeEffect = SubResource("Resource_gcpma")
+surgeEffect = SubResource("Resource_g1rcc")
+description = "Entering a trance-like state, the user becomes blinded with rage. All attacking moves performed for a while are dealt with a reckless amount of power behind them."
 moveLearnedText = "Learning how to contemplate the art of battle, you now can summon the rage of ten fighters in an instant, with all of the power behind it. However, this Battle Trance leaves you uncaring of taking any retaliatory damage."
 moveAnimation = ExtResource("1_rea5x")

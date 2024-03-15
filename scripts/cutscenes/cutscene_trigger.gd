@@ -20,11 +20,14 @@ func cutscene_finished(cutscene: Cutscene):
 	disabled = allInvalid
 
 func _on_area_entered(area):
-	if area.name == "PlayerEventCollider" and not disabled and not SceneLoader.cutscenePlayer.playing:
-		for cutscene in cutscenes:
-			if cutscene != null and \
-					(cutscene.storyRequirements == null or cutscene.storyRequirements.is_valid()) and \
-					not PlayerResources.playerInfo.is_cutscene_temp_disabled(cutscene.saveName):
-				SceneLoader.cutscenePlayer.playingFromTrigger = self
-				SceneLoader.cutscenePlayer.start_cutscene(cutscene)
-				break
+	if area.name == "PlayerEventCollider" and not disabled:
+		if not SceneLoader.cutscenePlayer.playing or SceneLoader.cutscenePlayer.completeAfterFadeIn:
+			if SceneLoader.cutscenePlayer.completeAfterFadeIn:
+				SceneLoader.cutscenePlayer.complete_cutscene()
+			for cutscene in cutscenes:
+				if cutscene != null and \
+						(cutscene.storyRequirements == null or cutscene.storyRequirements.is_valid()) and \
+						not PlayerResources.playerInfo.is_cutscene_temp_disabled(cutscene.saveName):
+					SceneLoader.cutscenePlayer.playingFromTrigger = self
+					SceneLoader.cutscenePlayer.start_cutscene(cutscene)
+					break

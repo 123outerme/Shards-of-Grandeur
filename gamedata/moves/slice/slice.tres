@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://crei2j1v6q4jn"]
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://crei2j1v6q4jn"]
 
 [ext_resource type="Resource" uid="uid://dtc401ibnt8la" path="res://gamedata/moves/slice/anim_slice.tres" id="1_258we"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_t2xw0"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_ri3pa"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_nibma"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_l4g5a"]
 
-[sub_resource type="Resource" id="Resource_d4h4h"]
+[sub_resource type="Resource" id="Resource_bwqgs"]
 script = ExtResource("3_nibma")
 physAttackMultiplier = 1.2
 magicAttackMultiplier = 1.0
@@ -12,16 +14,43 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.1
 
+[sub_resource type="Resource" id="Resource_dw8b6"]
+script = ExtResource("1_t2xw0")
+role = 1
+power = 50
+orbChange = 1
+targets = 5
+selfStatChanges = SubResource("Resource_bwqgs")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_pu7s5"]
+script = ExtResource("5_l4g5a")
+powerPerOrb = 5
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_kgdba"]
+script = ExtResource("1_t2xw0")
+role = 1
+power = 70
+orbChange = -3
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_pu7s5")
+
 [resource]
 script = ExtResource("2_ri3pa")
 moveName = "Slice"
 requiredLv = 1
-role = 1
-power = 50
 category = 0
-targets = 5
-statChanges = SubResource("Resource_d4h4h")
-statusChance = 0.0
+chargeEffect = SubResource("Resource_dw8b6")
+surgeEffect = SubResource("Resource_kgdba")
 description = "The user swings around a pointy object, be it a sharpened staff or a sword. Completing this attack makes the user feel stronger and faster, as all good stick-waving should."
 moveLearnedText = ""
 moveAnimation = ExtResource("1_258we")

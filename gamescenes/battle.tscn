@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=27 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -9,11 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_oisw1"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/moves_menu.gd" id="9_fgnxg"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/targets.gd" id="9_qy758"]
+[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="9_s8318"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="10_4t0i5"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_panels.gd" id="10_7n25e"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_ui.gd" id="10_ier4v"]
 [ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="11_05pqh"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/surge_menu.gd" id="11_scq4g"]
+[ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="12_flx7k"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="12_ip5fm"]
 [ext_resource type="AudioStream" uid="uid://cqhar0cxpsja0" path="res://audio/music/gateway_to_retry.mp3" id="13_kxh3p"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
@@ -202,6 +205,7 @@ visible = false
 layout_mode = 2
 script = ExtResource("6_60wgx")
 battleUI = NodePath("../../../..")
+unlockSurgeRequirements = ExtResource("9_s8318")
 
 [node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
 clip_contents = false
@@ -221,7 +225,7 @@ bbcode_enabled = true
 text = "[center]Command Player Name Here[/center]"
 fit_content = true
 
-[node name="MovesButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
+[node name="ChargeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -236,7 +240,7 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
-text = "Moves"
+text = "Charge Move"
 
 [node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
@@ -255,7 +259,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Inventory"
 
-[node name="GuardButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
+[node name="SurgeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -269,7 +273,7 @@ offset_right = -8.0
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Guard"
+text = "Surge Move"
 
 [node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
@@ -471,6 +475,72 @@ offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
+
+[node name="Surge" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("11_scq4g")
+battleUI = NodePath("../../../..")
+
+[node name="OrbDisplay" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("12_flx7k")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -52.0
+offset_right = -90.0
+offset_bottom = -44.0
+scale = Vector2(4, 4)
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_bottom = NodePath("../ConfirmButton")
+alignment = 1
+readOnly = false
+
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = 36.0
+offset_right = -6.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm"
+
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 82.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Spend Orbs For Surge:[/center]"
+fit_content = true
 
 [node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
@@ -695,9 +765,9 @@ color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
-[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/MovesButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_moves_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/ChargeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_charge_moves_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/InventoryButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/GuardButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_guard_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/SurgeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_surge_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/EscapeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_escape_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/BackToPlayerButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_back_to_player_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton1" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_1_pressed"]
@@ -707,6 +777,9 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
+[connection signal="orb_count_change" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/OrbDisplay" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_orb_display_orb_count_change"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
@@ -721,7 +794,12 @@ color = Color(0, 0, 0, 1)
 [connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]
 
 [editable path="CombatantGroup/PlayerCombatant"]
+[editable path="CombatantGroup/PlayerCombatant/HPTag/OrbDisplay"]
 [editable path="CombatantGroup/MinionCombatant"]
+[editable path="CombatantGroup/MinionCombatant/HPTag/OrbDisplay"]
 [editable path="CombatantGroup/EnemyCombatant1"]
+[editable path="CombatantGroup/EnemyCombatant1/HPTag/OrbDisplay"]
 [editable path="CombatantGroup/EnemyCombatant2"]
+[editable path="CombatantGroup/EnemyCombatant2/HPTag/OrbDisplay"]
 [editable path="CombatantGroup/EnemyCombatant3"]
+[editable path="CombatantGroup/EnemyCombatant3/HPTag/OrbDisplay"]

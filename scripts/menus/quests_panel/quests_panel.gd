@@ -79,24 +79,24 @@ func get_last_focused_panel():
 func load_quests_panel(fromToggle: bool = false):
 	PlayerResources.questInventory.auto_update_quests() # update collect quests
 	update_filter_buttons()
-	# lock all filter buttons to be unlocked when creating quest slot panels
-	inProgressButton.disabled = true
-	inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
-	
-	readyToTurnInButton.disabled = true
-	readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(backButton)
-	
-	completedButton.disabled = true
-	completedButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
-	
-	notCompletedButton.disabled = true
-	notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(backButton)
-	
-	failedButton.disabled = true
-	failedButton.focus_neighbor_bottom = failedButton.get_path_to(backButton)
-	
 	backButton.focus_neighbor_top = backButton.get_path_to(notCompletedButton)
 	if fromToggle:
+		# lock all filter buttons to be unlocked when creating quest slot panels
+		inProgressButton.disabled = true
+		inProgressButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
+		
+		readyToTurnInButton.disabled = true
+		readyToTurnInButton.focus_neighbor_bottom = readyToTurnInButton.get_path_to(backButton)
+		
+		completedButton.disabled = true
+		completedButton.focus_neighbor_bottom = inProgressButton.get_path_to(backButton)
+		
+		notCompletedButton.disabled = true
+		notCompletedButton.focus_neighbor_bottom = notCompletedButton.get_path_to(backButton)
+		
+		failedButton.disabled = true
+		failedButton.focus_neighbor_bottom = failedButton.get_path_to(backButton)
+		
 		for panel in get_tree().get_nodes_in_group("QuestSlotPanel"):
 			panel.queue_free()
 	
@@ -150,24 +150,24 @@ func update_filter_buttons():
 
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	selectedFilter = type
-	load_quests_panel()
+	load_quests_panel(true)
 
 func pin_button_pressed(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker
-	load_quests_panel()
+	load_quests_panel(true)
 	restore_previous_focus('pinButton')
 
 func turn_in(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker
 	questRewardPanel.reward = questTracker.get_current_step().reward
-	questRewardPanel.load_quest_reward_panel()
-	backButton.disabled = true
 	var curAct: int = PlayerResources.questInventory.currentAct
 	rewardNewLvs = PlayerResources.questInventory.turn_in_cur_step(questTracker)
 	if curAct != PlayerResources.questInventory.currentAct:
 		act_changed.emit()
 	turn_in_step_to.emit(turnInTargetName)
-	load_quests_panel(true) # not from the toggle function, but will focus any other quests that can be turned in
+	load_quests_panel() # not from the toggle function, but will focus any other quests that can be turned in
+	questRewardPanel.load_quest_reward_panel()
+	backButton.disabled = true
 	
 func show_details(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker

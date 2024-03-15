@@ -1,25 +1,61 @@
-[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://bkye5pxmqsb6m"]
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://bkye5pxmqsb6m"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_6hls1"]
 [ext_resource type="Resource" uid="uid://dqivdkiw73r16" path="res://gamedata/moves/draining_bolt/anim_draining_bolt.tres" id="1_c8itl"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_yxwtp"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/weakness.gd" id="2_5rand"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_dqxa7"]
 
-[sub_resource type="Resource" id="Resource_jnb80"]
+[sub_resource type="Resource" id="Resource_cjnxt"]
 script = ExtResource("2_5rand")
 type = 4
 potency = 1
-turnsLeft = 4
+turnsLeft = 5
+
+[sub_resource type="Resource" id="Resource_lgh2w"]
+script = ExtResource("1_yxwtp")
+role = 1
+orbChange = 1
+power = 45
+targets = 5
+statusEffect = SubResource("Resource_cjnxt")
+selfGetsStatus = false
+statusChance = 0.85
+
+[sub_resource type="Resource" id="Resource_uen0b"]
+script = ExtResource("2_5rand")
+type = 4
+potency = 1
+turnsLeft = 6
+
+[sub_resource type="Resource" id="Resource_08v3b"]
+script = ExtResource("5_dqxa7")
+powerPerOrb = 2
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 5
+overwhelmingThresholdOrbs = 7
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.02
+
+[sub_resource type="Resource" id="Resource_p76cm"]
+script = ExtResource("1_yxwtp")
+role = 1
+orbChange = -1
+power = 55
+targets = 5
+statusEffect = SubResource("Resource_uen0b")
+selfGetsStatus = false
+statusChance = 0.9
+surgeChanges = SubResource("Resource_08v3b")
 
 [resource]
 script = ExtResource("1_6hls1")
 moveName = "Draining Bolt"
 requiredLv = 4
-role = 1
-power = 60
 category = 1
-targets = 5
-statusEffect = SubResource("Resource_jnb80")
-statusChance = 0.9
+chargeEffect = SubResource("Resource_lgh2w")
+surgeEffect = SubResource("Resource_p76cm")
 description = "The uesr conjures a strong bolt of draining magic. Upon the bolt striking the foe, they will usually experience Weakness and have a harder time dealing Physical damage."
 moveLearnedText = "You notice the power emanating from within the Shard, its energy almost stealing away your own. With the understanding of another application of the Shards, you can now summon Draining Bolts."
 moveAnimation = ExtResource("1_c8itl")

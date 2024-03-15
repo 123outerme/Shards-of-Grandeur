@@ -2,6 +2,7 @@
 extends Node
 class_name CutscenePlayer
 
+signal cutscene_fadeout_done
 signal cutscene_completed
 
 @export var cutscene: Cutscene = null
@@ -17,6 +18,7 @@ var isFadedOut: bool = false
 var isFadingIn: bool = false
 var completeAfterFadeIn: bool = false
 var skipCutsceneFrameIndex: int = -1
+var skipping: bool = true
 
 func _process(delta):
 	if cutscene != null and playing and not isPaused and skipCutsceneFrameIndex == -1:
@@ -180,6 +182,7 @@ func skip_cutscene():
 		return
 	
 	isPaused = false
+	skipping = true
 	PlayerFinder.player.pauseDisabled = true
 	PlayerFinder.player.cam.stop_cam_shake()
 	PlayerFinder.player.cam.fade_out(_fade_out_complete, 0.1)
@@ -192,8 +195,11 @@ func skip_cutscene():
 	# reset textbox END
 	isFadedOut = true
 	isFadingIn = false
+	completeAfterFadeIn = false
+	await cutscene_fadeout_done
 	timer = cutscene.totalTime
 	skipCutsceneFrameIndex = cutscene.get_index_for_frame(lastFrame)
+	skip_cutscene_process()
 
 func toggle_pause_cutscene():
 	isPaused = not isPaused
@@ -219,7 +225,11 @@ func end_cutscene(force: bool = false):
 		completeAfterFadeIn = true
 
 func complete_cutscene():
+	if playing == false:
+		return
+	
 	lastFrame = null
+	skipping = false
 	SceneLoader.unpause_autonomous_movers()
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():
@@ -232,7 +242,7 @@ func complete_cutscene():
 	playing = false
 	completeAfterFadeIn = false
 	PlayerFinder.player.cam.stop_cam_shake()
-	PlayerResources.set_cutscene_seen(cutscene.saveName)
+	mark_cutscene_seen()
 	
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)
@@ -247,6 +257,10 @@ func complete_cutscene():
 	isPaused = false
 	skipCutsceneFrameIndex = -1
 
+func mark_cutscene_seen():
+	if cutscene != null:
+		PlayerResources.set_cutscene_seen(cutscene.saveName)
+
 func deactivate_actors_after():
 	if cutscene == null:
 		return
@@ -260,11 +274,10 @@ func deactivate_actors_after():
 				actorNode.visible = false
 
 func _fade_out_complete():
+	cutscene_fadeout_done.emit()
 	if completeAfterFadeIn and not isFadingIn:
 		isFadingIn = true
 		PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
-	if skipCutsceneFrameIndex != -1:
-		skip_cutscene_process()
 
 func _fade_in_complete():
 	isFadedOut = false
