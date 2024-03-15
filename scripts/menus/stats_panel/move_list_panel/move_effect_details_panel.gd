@@ -23,18 +23,28 @@ func load_move_effect_details_panel():
 		visible = false
 		return
 	
-	detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + '[/center]'
-	movePower.text = str(moveEffect.power) + ' Power'
+	detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
+	if moveEffect.orbChange > 0:
+		detailsTitleLabel.text += '+'
+	detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orbs'
+	if moveEffect.orbChange < 0:
+		detailsTitleLabel.text += ' Min.'
+	detailsTitleLabel.text += ')[/center]'
+	
+	if moveEffect.power >= 0:
+		movePower.text = str(moveEffect.power) + ' Power'
+	else:
+		movePower.text = str(moveEffect.power * -1) + ' Heal Power'
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
 
-	if moveEffect.selfStatChanges.has_stat_changes():
+	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		var multipliers = moveEffect.selfStatChanges.get_multipliers_text()
 		userStatChanges.text = '[center]User boosts self:\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
 	else:
 		userStatChanges.visible = false
 		
-	if moveEffect.targetStatChanges.has_stat_changes():
+	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 		var multipliers = moveEffect.targetStatChanges.get_multipliers_text()
 		targetStatChanges.text = '[center]User boosts target(s):\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
 	else:
@@ -48,6 +58,6 @@ func load_move_effect_details_panel():
 		moveStatusEffect.visible = false
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null and (surgeRequirements == null or surgeRequirements.is_valid()):
-		surgeChangesDescription.text = '[center]Surge Changes:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
+		surgeChangesDescription.text = '[center]Surge Changes | Per Extra Orb Spent:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
 	else:
 		surgeChangesDescription.visible = false

@@ -1,35 +1,61 @@
-[gd_resource type="Resource" script_class="Move" load_steps=7 format=3 uid="uid://dqrx2sqrlujkj"]
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://dqrx2sqrlujkj"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_d0qm6"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_jvcdk"]
 [ext_resource type="Resource" uid="uid://o8xo12ierb3f" path="res://gamedata/moves/enrage/anim_enrage.tres" id="1_oau4c"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/berserk.gd" id="2_4mb4e"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_fe0qe"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_rme74"]
 
-[sub_resource type="Resource" id="Resource_4t6xw"]
-script = ExtResource("2_fe0qe")
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.1
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-
-[sub_resource type="Resource" id="Resource_kcmod"]
+[sub_resource type="Resource" id="Resource_2tc3s"]
 script = ExtResource("2_4mb4e")
 type = 3
-potency = 3
+potency = 1
+turnsLeft = 7
+
+[sub_resource type="Resource" id="Resource_uga40"]
+script = ExtResource("1_d0qm6")
+role = 4
+power = 0
+orbChange = 2
+targets = 5
+statusEffect = SubResource("Resource_2tc3s")
+selfGetsStatus = false
+statusChance = 0.95
+
+[sub_resource type="Resource" id="Resource_yrret"]
+script = ExtResource("2_4mb4e")
+type = 3
+potency = 2
 turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_diw52"]
+script = ExtResource("5_rme74")
+powerPerOrb = 5
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.05
+
+[sub_resource type="Resource" id="Resource_8t8bc"]
+script = ExtResource("1_d0qm6")
+role = 4
+power = 0
+orbChange = -2
+targets = 6
+statusEffect = SubResource("Resource_yrret")
+selfGetsStatus = false
+statusChance = 0.95
+surgeChanges = SubResource("Resource_diw52")
 
 [resource]
 script = ExtResource("1_jvcdk")
 moveName = "Enrage"
 requiredLv = 5
-role = 4
-power = 0
 category = 2
-targets = 5
-statChanges = SubResource("Resource_4t6xw")
-statusEffect = SubResource("Resource_kcmod")
-statusChance = 0.95
+chargeEffect = SubResource("Resource_uga40")
+surgeEffect = SubResource("Resource_8t8bc")
 description = "The user turns the target's flow of energy into a chaotic tide, causing the target to become enraged and reckless. The user's manipulation amplifies their Affinity as well."
 moveLearnedText = "With the power of the Shard, you become more aware of the tie between mood and Affinity. With some practice, you are able to increase the flow and instill rage in your target. "
 moveAnimation = ExtResource("1_oau4c")

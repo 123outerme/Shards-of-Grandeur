@@ -54,12 +54,14 @@ func get_description() -> String:
 	var descriptionLines: Array[String] = []
 	if powerPerOrb > 0:
 		descriptionLines.append('+' + String.num(powerPerOrb) + ' Additional Power / Orb')
+	elif powerPerOrb < 0:
+		descriptionLines.append('+' + String.num(powerPerOrb * -1) + ' Additional Heal Power / Orb')
 		
-	if selfStatChangesPerOrb.has_stat_changes():
+	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()
 		descriptionLines.append('Self Boosts / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
 	
-	if targetStatChangesPerOrb.has_stat_changes():
+	if targetStatChangesPerOrb != null and targetStatChangesPerOrb.has_stat_changes():
 		var multipliers = targetStatChangesPerOrb.get_multipliers_text()
 		descriptionLines.append('Target(s) Boost / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
 	

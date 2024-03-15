@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://8hrdloy8r6ya"]
+[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://8hrdloy8r6ya"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_ew4ce"]
 [ext_resource type="Resource" uid="uid://c6crih1t1ldox" path="res://gamedata/moves/battle_chant/anim_battle_chant.tres" id="1_xokrs"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_jid33"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_g5hwt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_m3hqb"]
 
-[sub_resource type="Resource" id="Resource_5ajif"]
+[sub_resource type="Resource" id="Resource_135ds"]
 script = ExtResource("3_g5hwt")
 physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.0
@@ -12,16 +14,61 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.3
 speedMultiplier = 1.2
 
+[sub_resource type="Resource" id="Resource_niwc4"]
+script = ExtResource("1_ew4ce")
+role = 3
+power = 0
+orbChange = 1
+targets = 2
+targetStatChanges = SubResource("Resource_135ds")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_pjy3y"]
+script = ExtResource("3_g5hwt")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.05
+speedMultiplier = 1.05
+
+[sub_resource type="Resource" id="Resource_wdree"]
+script = ExtResource("5_m3hqb")
+powerPerOrb = 0
+targetStatChangesPerOrb = SubResource("Resource_pjy3y")
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_o3jcf"]
+script = ExtResource("3_g5hwt")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.5
+speedMultiplier = 1.25
+
+[sub_resource type="Resource" id="Resource_t6gsw"]
+script = ExtResource("1_ew4ce")
+role = 3
+power = 0
+orbChange = -2
+targets = 3
+targetStatChanges = SubResource("Resource_o3jcf")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_wdree")
+
 [resource]
 script = ExtResource("2_jid33")
 moveName = "Battle Chant"
 requiredLv = 3
-role = 3
-power = 0
 category = 2
-targets = 2
-statChanges = SubResource("Resource_5ajif")
-statusChance = 0.0
-description = "The users chants a battle cry, enhancing one of their ally's defense and speed."
+chargeEffect = SubResource("Resource_niwc4")
+surgeEffect = SubResource("Resource_t6gsw")
+description = "The users chants a battle cry, enhancing an ally's defenses and speed."
 moveLearnedText = "Hearing the Battle Chant, you understand how it is so effective at empowering allies. You cry out a Chant of your own, and hear your voice echo powerfully throughout the area."
 moveAnimation = ExtResource("1_xokrs")

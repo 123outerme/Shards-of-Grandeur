@@ -11,8 +11,8 @@ enum Role {
 }
 
 @export var role: Role = Role.OTHER
-@export_range(-100, 100) var power: int = 0 # negative power is healing, positive power is damage
 @export_range(-10, 10) var orbChange: int = 0 # negative is orb surge, positive is orb charge
+@export_range(-100, 100) var power: int = 0 # negative power is healing, positive power is damage
 @export var targets: BattleCommand.Targets = BattleCommand.Targets.SELF
 @export var selfStatChanges: StatChanges = StatChanges.new()
 @export var targetStatChanges: StatChanges = StatChanges.new()
@@ -69,12 +69,16 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	
 	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs
 	
-	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate()
+	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate() if surgeChanges.selfStatChangesPerOrb else null
 	finalSelfStatChanges.times(additionalOrbs)
+	if newEffect.selfStatChanges == null:
+		newEffect.selfStatChanges = StatChanges.new()
 	newEffect.selfStatChanges.stack(finalSelfStatChanges)
 	
-	var finalTargetStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate()
+	var finalTargetStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate() if surgeChanges.targetStatChangesPerOrb else null
 	finalTargetStatChanges.times(additionalOrbs)
+	if newEffect.targetStatChanges == null:
+		newEffect.targetStatChanges = StatChanges.new()
 	newEffect.targetStatChanges.stack(finalTargetStatChanges)
 	
 	# new status chance is the greater of the old status chance or the surge's status chance, + additional chance / orb, capped at 100%
@@ -93,8 +97,8 @@ func copy() -> MoveEffect:
 		power,
 		orbChange,
 		targets,
-		selfStatChanges.duplicate(),
-		targetStatChanges.duplicate(),
+		selfStatChanges.duplicate() if selfStatChanges != null else null,
+		targetStatChanges.duplicate() if targetStatChanges != null else null,
 		statusEffect,
 		selfGetsStatus,
 		statusChance,

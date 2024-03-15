@@ -198,12 +198,14 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 
 		if moveEffect != null and \
 				(moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY):
-			targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
-			commandResult.wasBoosted[idx] = true
+			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+				targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
+				commandResult.wasBoosted[idx] = true
 	
 	if type == Type.MOVE and moveEffect != null and BattleCommand.is_command_enemy_targeting(moveEffect.targets) or true in commandResult.afflictedStatuses:
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
-		user.statChanges.stack(moveEffect.selfStatChanges)
+		if moveEffect.selfStatChanges != null:
+			user.statChanges.stack(moveEffect.selfStatChanges)
 
 	if type == Type.USE_ITEM and appliedEffect: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
@@ -234,9 +236,10 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)
 		if (isEnemyTargeting and moveEffect.power > 0) or !(isEnemyTargeting and moveEffect.power < 0):
-			if user == target: # if the user would be affected
+			if user == target and moveEffect.selfStatChanges != null: # if the user would be affected
 				userStatChanges.undo_changes(moveEffect.selfStatChanges)
-			targetStatChanges.undo_changes(moveEffect.targetStatChanges)
+			if moveEffect.targetStatChanges != null:
+				targetStatChanges.undo_changes(moveEffect.targetStatChanges)
 	
 	var userStats: Stats = userStatChanges.apply(user.stats)
 	var targetStats: Stats = targetStatChanges.apply(target.stats)
@@ -338,10 +341,7 @@ func get_command_results(user: Combatant) -> String:
 	if type == Type.MOVE:
 		actionTargets = moveEffect.targets
 		resultsText = user.disp_name()
-		if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
-			resultsText += ' attacked with ' + move.moveName
-		else:
-			resultsText += ' used ' + move.moveName + ' (' + Move.move_effect_type_to_string(moveEffectType) + ')'
+		resultsText += ' ' + Move.move_effect_type_to_string(moveEffectType) + 'd with ' + move.moveName
 		if moveEffect.power > 0:
 			resultsText += ', dealing '
 		elif moveEffect.power < 0:
@@ -423,21 +423,23 @@ func get_command_results(user: Combatant) -> String:
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
-		if type == Type.MOVE and (moveEffect.selfStatChanges.has_stat_changes() or moveEffect.targetStatChanges.has_stat_changes()):
+		if type == Type.MOVE and \
+				((moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()) \
+				or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes())):
 			resultsText += ' ' + user.disp_name() + ' boosts '
-			if moveEffect.selfStatChanges.has_stat_changes():
+			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
-				if user in targets:
+				if user in targets and moveEffect.targetStatChanges != null:
 					selfStatChanges.stack(moveEffect.targetStatChanges)
 				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
 				resultsText += 'self ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
-			if moveEffect.targetStatChanges.has_stat_changes():
-				if moveEffect.selfStatChanges.has_stat_changes():
+			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+				if moveEffect.selfStatChanges.has_stat_changes() != null and moveEffect.selfStatChanges.has_stat_changes():
 					resultsText += ', and '
 				for targetIdx in range(len(targets)):
 					var target = targets[targetIdx]
 					if target == user:
-						if moveEffect.selfStatChanges.has_stat_changes():
+						if moveEffect.selfStatChanges != null and moveEffect.selfStatChangesmoveEffect.selfStatChanges.has_stat_changes():
 							continue # we already printed the user's stat changes
 						resultsText += 'self'
 					else:

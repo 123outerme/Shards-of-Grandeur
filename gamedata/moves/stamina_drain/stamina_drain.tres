@@ -1,25 +1,71 @@
-[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://d3yj2khqaukni"]
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://d3yj2khqaukni"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_f7jf4"]
 [ext_resource type="Resource" uid="uid://d3urfcu4env61" path="res://gamedata/moves/stamina_drain/anim_stamina_drain.tres" id="1_hl6lw"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_ebjw5"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/exhaustion.gd" id="3_wetfp"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_b53h7"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="6_82bdc"]
 
-[sub_resource type="Resource" id="Resource_qwwrx"]
+[sub_resource type="Resource" id="Resource_ea11q"]
 script = ExtResource("3_wetfp")
 type = 1
 potency = 1
 turnsLeft = 2
 
+[sub_resource type="Resource" id="Resource_pl5fx"]
+script = ExtResource("1_f7jf4")
+role = 4
+orbChange = 1
+power = 0
+targets = 5
+statusEffect = SubResource("Resource_ea11q")
+selfGetsStatus = false
+statusChance = 0.95
+
+[sub_resource type="Resource" id="Resource_jjwvm"]
+script = ExtResource("3_wetfp")
+type = 1
+potency = 1
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_fhayy"]
+script = ExtResource("6_82bdc")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.05
+
+[sub_resource type="Resource" id="Resource_onqfx"]
+script = ExtResource("5_b53h7")
+powerPerOrb = 0
+selfStatChangesPerOrb = SubResource("Resource_fhayy")
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 5
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_l4tnr"]
+script = ExtResource("1_f7jf4")
+role = 4
+orbChange = -2
+power = 0
+targets = 6
+statusEffect = SubResource("Resource_jjwvm")
+selfGetsStatus = false
+statusChance = 1.0
+surgeChanges = SubResource("Resource_onqfx")
+
 [resource]
 script = ExtResource("2_ebjw5")
 moveName = "Stamina Drain"
 requiredLv = 2
-role = 4
-power = 0
 category = 2
-targets = 6
-statusEffect = SubResource("Resource_qwwrx")
-statusChance = 0.8
+chargeEffect = SubResource("Resource_pl5fx")
+surgeEffect = SubResource("Resource_l4tnr")
 description = "The user saps natural energy from combatants, causing all enemies to suddenly become exhausted. This exhaustion wears off quickly, as the tradeoff, so be sure to hit hard and hit fast while it is in effect."
 moveLearnedText = "Learning how to channel natural energy from your surroundings, you apply this technique to sap the strength from your opponents. By suddenly losing energy, even the quickest of opponents will be slowed down to a crawl. Be sure to take advantage of this opportunity."
 moveAnimation = ExtResource("1_hl6lw")

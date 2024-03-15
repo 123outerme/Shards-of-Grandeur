@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Move" load_steps=7 format=3 uid="uid://bi44lny7wl8lx"]
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://bi44lny7wl8lx"]
 
 [ext_resource type="Resource" uid="uid://de82ci80bpa8p" path="res://gamedata/moves/shield_wall/anim_shield_wall.tres" id="1_4g8q1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_aqcby"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_lt6d3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_ueqmb"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/interception.gd" id="3_gwlgn"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="6_0r50q"]
 
-[sub_resource type="Resource" id="Resource_2le4c"]
+[sub_resource type="Resource" id="Resource_7yemm"]
 script = ExtResource("2_ueqmb")
 physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.0
@@ -13,23 +15,75 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.5
 speedMultiplier = 1.0
 
-[sub_resource type="Resource" id="Resource_6f5kc"]
+[sub_resource type="Resource" id="Resource_itlxf"]
 script = ExtResource("3_gwlgn")
 type = 9
-potency = 2
-turnsLeft = 4
+potency = 1
+turnsLeft = 0
+
+[sub_resource type="Resource" id="Resource_bjc3k"]
+script = ExtResource("1_aqcby")
+role = 3
+orbChange = 0
+power = 0
+targets = 1
+selfStatChanges = SubResource("Resource_7yemm")
+statusEffect = SubResource("Resource_itlxf")
+selfGetsStatus = true
+statusChance = 1.0
+
+[sub_resource type="Resource" id="Resource_0p1vm"]
+script = ExtResource("2_ueqmb")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.5
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_xl5db"]
+script = ExtResource("3_gwlgn")
+type = 9
+potency = 1
+turnsLeft = 0
+
+[sub_resource type="Resource" id="Resource_6m5ef"]
+script = ExtResource("2_ueqmb")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.05
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_riysu"]
+script = ExtResource("6_0r50q")
+powerPerOrb = 0
+selfStatChangesPerOrb = SubResource("Resource_6m5ef")
+statusBaseChance = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 3
+overwhelmingThresholdOrbs = 5
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_6hv27"]
+script = ExtResource("1_aqcby")
+role = 3
+orbChange = -2
+power = 0
+targets = 1
+selfStatChanges = SubResource("Resource_0p1vm")
+statusEffect = SubResource("Resource_xl5db")
+selfGetsStatus = true
+statusChance = 1.0
+surgeChanges = SubResource("Resource_riysu")
 
 [resource]
 script = ExtResource("1_lt6d3")
 moveName = "Shield-Wall"
 requiredLv = 5
-role = 3
-power = 0
 category = 2
-targets = 1
-statChanges = SubResource("Resource_2le4c")
-statusEffect = SubResource("Resource_6f5kc")
-statusChance = 1.0
+chargeEffect = SubResource("Resource_bjc3k")
+surgeEffect = SubResource("Resource_6hv27")
 description = "The user assumes a protective stance, boosting its defenses, and guards its allies fiercely. No attack gets by without the guardian's approval!"
 moveLearnedText = "Upon meditation, you feel a fierce desire to protect your allies in battle. They rely upon you for strategy, and you must not betray that trust. How better to show your fierce dedication, than to make your body their shield?"
 moveAnimation = ExtResource("1_4g8q1")
