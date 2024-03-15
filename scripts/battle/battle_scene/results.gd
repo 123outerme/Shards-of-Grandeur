@@ -40,7 +40,7 @@ func _on_ok_button_pressed():
 			if result != TurnExecutor.TurnResult.NOTHING:
 				battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
 				battleUI.escapes = result == TurnExecutor.TurnResult.ESCAPE
-				battleUI.set_menu_state(BattleState.Menu.POST_ROUND,)
+				battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 		battleUI.update_hp_tags()
 	else:
 		okPressed = true
