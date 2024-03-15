@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="22_mlmt5"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 
-[sub_resource type="Resource" id="Resource_cynek"]
+[sub_resource type="Resource" id="Resource_h71qn"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(1, 16)
@@ -44,7 +44,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_trvap"]
+[sub_resource type="Resource" id="Resource_ftcsi"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(-98, 4)
@@ -129,7 +129,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
-[sub_resource type="Resource" id="Resource_batgr"]
+[sub_resource type="Resource" id="Resource_lshla"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(450, 0)
@@ -174,7 +174,7 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_cynek")
+data = SubResource("Resource_h71qn")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -200,7 +200,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_trvap")
+data = SubResource("Resource_ftcsi")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -283,7 +283,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(450, 0)
-data = SubResource("Resource_batgr")
+data = SubResource("Resource_lshla")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.281959

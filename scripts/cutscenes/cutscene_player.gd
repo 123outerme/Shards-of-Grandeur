@@ -230,6 +230,7 @@ func complete_cutscene():
 	
 	lastFrame = null
 	skipping = false
+	PlayerFinder.player.pauseDisabled = false
 	SceneLoader.unpause_autonomous_movers()
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():

@@ -18,12 +18,16 @@ static func state_to_string(state: BattleState.Menu) -> String:
 			return 'Pre-Battle'
 		BattleState.Menu.ALL_COMMANDS:
 			return 'All Commands'
-		BattleState.Menu.MOVES:
-			return 'Select Move'
+		BattleState.Menu.CHARGE_MOVES:
+			return 'Select Charge Move'
+		BattleState.Menu.SURGE_MOVES:
+			return 'Select Surge Move'
 		BattleState.Menu.ITEMS:
 			return 'Select Item'
 		BattleState.Menu.PICK_TARGETS:
 			return 'Pick Targets'
+		BattleState.Menu.SURGE_SPEND:
+			return 'Spend Orbs'
 		BattleState.Menu.PRE_ROUND:
 			return 'Before Battle Round'
 		BattleState.Menu.RESULTS:
