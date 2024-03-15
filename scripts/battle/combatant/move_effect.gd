@@ -20,7 +20,6 @@ enum Role {
 @export var selfGetsStatus: bool = false # if false, target gets status. If true, give it self
 @export var statusChance: float = 0.0
 @export var surgeChanges: SurgeChanges = null
-@export_multiline var effectDescription: String = ''
 
 static func role_to_string(r: Role) -> String:
 	match r:
@@ -49,7 +48,6 @@ func _init(
 	i_selfGetsStatus = false,
 	i_statusChance = 0.0,
 	i_surgeChanges = null,
-	i_effectDesc = '',
 ):
 	role = i_role
 	power = i_power
@@ -61,7 +59,6 @@ func _init(
 	selfGetsStatus = i_selfGetsStatus
 	statusChance = i_statusChance
 	surgeChanges = i_surgeChanges
-	effectDescription = i_effectDesc
 
 func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	if surgeChanges == null:
@@ -80,7 +77,8 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	finalTargetStatChanges.times(additionalOrbs)
 	newEffect.targetStatChanges.stack(finalTargetStatChanges)
 	
-	newEffect.statusChance = min(1, newEffect.statusChance + surgeChanges.get_additional_status_chance(additionalOrbs))
+	# new status chance is the greater of the old status chance or the surge's status chance, + additional chance / orb, capped at 100%
+	newEffect.statusChance = min(1, max(newEffect.statusChance, surgeChanges.statusBaseChance) + surgeChanges.get_additional_status_chance(additionalOrbs))
 	
 	if surgeChanges.additionalStatusEffect != null:
 		newEffect.statusEffect = surgeChanges.additionalStatusEffect.copy()
@@ -100,7 +98,6 @@ func copy() -> MoveEffect:
 		statusEffect,
 		selfGetsStatus,
 		statusChance,
-		surgeChanges,
-		effectDescription
+		surgeChanges
 	)
 	return newEffect

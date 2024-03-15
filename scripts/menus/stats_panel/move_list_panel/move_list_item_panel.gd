@@ -19,7 +19,6 @@ signal cancel_pressed
 
 @onready var moveName: RichTextLabel = get_node("CenterMoveName/MoveName")
 @onready var moveLevel: RichTextLabel = get_node("CenterMoveName/MoveLevel")
-@onready var roleText: RichTextLabel = get_node("CenterDetails/RoleText")
 @onready var damageType: RichTextLabel = get_node("CenterDetails/DamageType")
 @onready var detailsButton: Button = get_node("DetailsButton")
 @onready var reorderButton: Button = get_node("ReorderButton")
@@ -36,7 +35,6 @@ func load_move_list_item_panel():
 	if move != null:
 		moveName.text = move.moveName
 		moveLevel.text = ' Lv ' + str(move.requiredLv)
-		#roleText.text = Move.role_to_string(move.role)
 		damageType.text = Move.dmg_category_to_string(move.category)
 		detailsButton.visible = showDetailsButton
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(detailsButton)
@@ -63,7 +61,6 @@ func load_move_list_item_panel():
 	else:
 		moveName.text = '-----'
 		moveLevel.text = ''
-		roleText.text = ''
 		damageType.text = ''
 		detailsButton.visible = false
 		replaceButton.visible = editShowReplace

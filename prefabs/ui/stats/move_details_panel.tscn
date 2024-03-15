@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0s2dmndrj7t7"]
+[gd_scene load_steps=7 format=3 uid="uid://b0s2dmndrj7t7"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_fmbi4"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_details_panel.gd" id="2_kuf31"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_bhs4n"]
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_yyfev"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_nhktq"]
+[ext_resource type="PackedScene" uid="uid://c6tae2tdspbmf" path="res://prefabs/ui/stats/move_effect_details_panel.tscn" id="6_1bvf3"]
 
 [node name="MoveDetailsPanel" type="Control"]
 z_index = 1
@@ -21,6 +22,21 @@ offset_right = 1200.0
 offset_bottom = 880.0
 theme = ExtResource("3_yyfev")
 
+[node name="ChargeEffectDetailsPanel" parent="Panel" instance=ExtResource("6_1bvf3")]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 167.0
+offset_right = -564.0
+offset_bottom = -63.0
+
+[node name="SurgeEffectDetailsPanel" parent="Panel" instance=ExtResource("6_1bvf3")]
+layout_mode = 1
+offset_left = 564.0
+offset_top = 167.0
+offset_right = -16.0
+offset_bottom = -63.0
+isSurgeEffect = true
+
 [node name="MoveName" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
@@ -33,40 +49,17 @@ bbcode_enabled = true
 text = "[center]Move Name Goes Here[/center]"
 fit_content = true
 
-[node name="MovePower" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 70.0
-offset_right = 150.0
-offset_bottom = 104.0
-text = "100 Power"
-fit_content = true
-
 [node name="DamageCategory" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -920.0
-offset_top = 70.0
-offset_right = -816.0
-offset_bottom = 71.0
+offset_left = -1096.0
+offset_top = 60.0
+offset_right = -992.0
+offset_bottom = 94.0
 grow_horizontal = 0
 text = "Physical"
-fit_content = true
-
-[node name="MoveTargets" type="RichTextLabel" parent="Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -220.0
-offset_top = 70.0
-offset_right = 220.0
-offset_bottom = 104.0
-grow_horizontal = 2
-bbcode_enabled = true
-text = "[center]Targets All Combatants (Except Self)[/center]"
 fit_content = true
 
 [node name="RequiredLv" type="RichTextLabel" parent="Panel"]
@@ -75,50 +68,13 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -252.0
-offset_top = 70.0
+offset_top = 60.0
 offset_right = -24.0
-offset_bottom = 104.0
+offset_bottom = 94.0
 grow_horizontal = 0
 bbcode_enabled = true
 text = "[right]Required Level: 100[/right]"
 fit_content = true
-
-[node name="MoveStatChanges" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 124.0
-offset_right = 865.0
-offset_bottom = 158.0
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-text = "+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed"
-fit_content = true
-
-[node name="MoveRole" type="RichTextLabel" parent="Panel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -182.0
-offset_top = 120.0
-offset_right = -24.0
-offset_bottom = 154.0
-grow_horizontal = 0
-bbcode_enabled = true
-text = "[right]Single Target[/right]"
-fit_content = true
-
-[node name="MoveStatusEffect" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 170.0
-offset_right = 1097.0
-offset_bottom = 210.0
-bbcode_enabled = true
-text = "[center]Applies Overwhelming Exhaustion (100% Chance)[/center]"
 
 [node name="MoveDescription" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -126,11 +82,17 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = 247.0
+offset_top = 94.0
 offset_right = -24.0
-offset_bottom = -75.0
+offset_bottom = -633.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+text = "This is the description for this move. It should be a short description, to get the general idea, but the effects will be described below."
 
 [node name="BackButton" parent="Panel" instance=ExtResource("5_nhktq")]
 layout_mode = 1
