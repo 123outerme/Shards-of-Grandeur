@@ -45,7 +45,7 @@ func get_effect_text() -> String:
 	
 	if healBy > 0:
 		effectMsgs.append('heal by ' + TextUtils.num_to_comma_string(healBy) + ' HP')
-		outsideOfBattleText = '\nUse outside of Battle to heal yourself ' + TextUtils.num_to_comma_string(healBy) + ' HP'
+		outsideOfBattleText = '\nUse outside of Battle to heal yourself ' + TextUtils.num_to_comma_string(healBy) + ' HP.'
 		
 	if statusStrengthHeal != StatusEffect.Potency.NONE:
 		effectMsgs.append('cure of all ' + StatusEffect.potency_to_string(statusStrengthHeal) + ' status effects')
@@ -64,4 +64,7 @@ func get_effect_text() -> String:
 		else:
 			effectText += '.'
 	
-	return effectText + outsideOfBattleText
+	if len(effectMsgs) > 1:
+		effectText += outsideOfBattleText # also show out-of-battle text (since only healing happens outside of battle)
+	
+	return effectText
