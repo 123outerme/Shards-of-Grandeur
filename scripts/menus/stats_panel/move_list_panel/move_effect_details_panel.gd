@@ -43,12 +43,14 @@ func load_move_effect_details_panel():
 	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		var multipliers = moveEffect.selfStatChanges.get_multipliers_text()
 		userStatChanges.text = '[center]User boosts self:\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
+		userStatChanges.visible = true
 	else:
 		userStatChanges.visible = false
 		
 	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 		var multipliers = moveEffect.targetStatChanges.get_multipliers_text()
 		targetStatChanges.text = '[center]User boosts target(s):\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
+		targetStatChanges.visible = true
 	else:
 		targetStatChanges.visible = false
 		
@@ -56,10 +58,12 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text = '[center]Applies ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
 				+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) \
 				+ ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
+		moveStatusEffect.visible = true
 	else:
 		moveStatusEffect.visible = false
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null and (surgeRequirements == null or surgeRequirements.is_valid()):
 		surgeChangesDescription.text = '[center]Surge Changes | Per Extra Orb Spent:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
+		surgeChangesDescription.visible = true
 	else:
 		surgeChangesDescription.visible = false

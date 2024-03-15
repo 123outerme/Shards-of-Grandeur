@@ -150,7 +150,7 @@ func update_filter_buttons():
 
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	selectedFilter = type
-	load_quests_panel()
+	load_quests_panel(true)
 
 func pin_button_pressed(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker
@@ -160,14 +160,14 @@ func pin_button_pressed(questTracker: QuestTracker):
 func turn_in(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker
 	questRewardPanel.reward = questTracker.get_current_step().reward
-	questRewardPanel.load_quest_reward_panel()
-	backButton.disabled = true
 	var curAct: int = PlayerResources.questInventory.currentAct
 	rewardNewLvs = PlayerResources.questInventory.turn_in_cur_step(questTracker)
 	if curAct != PlayerResources.questInventory.currentAct:
 		act_changed.emit()
 	turn_in_step_to.emit(turnInTargetName)
 	load_quests_panel() # not from the toggle function, but will focus any other quests that can be turned in
+	questRewardPanel.load_quest_reward_panel()
+	backButton.disabled = true
 	
 func show_details(questTracker: QuestTracker):
 	lastInteractedTracker = questTracker
