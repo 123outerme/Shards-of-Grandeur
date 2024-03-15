@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Move" load_steps=8 format=3 uid="uid://b7fwd75mauun"]
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://b7fwd75mauun"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_exwjn"]
 [ext_resource type="Resource" uid="uid://bbk1euvf6x6x1" path="res://gamedata/moves/mage_blast/anim_mage_blast.tres" id="1_jktvu"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_l6s6y"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_p7si0"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_o5lg5"]
 
 [sub_resource type="Resource" id="Resource_vp4y3"]
 script = ExtResource("2_p7si0")
@@ -24,6 +25,24 @@ selfGetsStatus = false
 statusChance = 0.0
 effectDescription = "The user becomes a little more attuned to the magic flowing around them, and empowers their armor slightly."
 
+[sub_resource type="Resource" id="Resource_282np"]
+script = ExtResource("2_p7si0")
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.05
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_brnn3"]
+script = ExtResource("5_o5lg5")
+powerPerOrb = 0
+selfStatChangesPerOrb = SubResource("Resource_282np")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
 [sub_resource type="Resource" id="Resource_0wnah"]
 script = ExtResource("1_exwjn")
 role = 1
@@ -32,6 +51,7 @@ orbChange = -3
 targets = 5
 selfGetsStatus = false
 statusChance = 0.0
+surgeChanges = SubResource("Resource_brnn3")
 effectDescription = ""
 
 [resource]

@@ -19,6 +19,7 @@ enum Role {
 @export var statusEffect: StatusEffect = null
 @export var selfGetsStatus: bool = false # if false, target gets status. If true, give it self
 @export var statusChance: float = 0.0
+@export var surgeChanges: SurgeChanges = null
 @export_multiline var effectDescription: String = ''
 
 static func role_to_string(r: Role) -> String:
@@ -47,6 +48,7 @@ func _init(
 	i_statusEffect = null,
 	i_selfGetsStatus = false,
 	i_statusChance = 0.0,
+	i_surgeChanges = null,
 	i_effectDesc = '',
 ):
 	role = i_role
@@ -58,4 +60,47 @@ func _init(
 	statusEffect = i_statusEffect
 	selfGetsStatus = i_selfGetsStatus
 	statusChance = i_statusChance
+	surgeChanges = i_surgeChanges
 	effectDescription = i_effectDesc
+
+func apply_surge_changes(orbsSpent: int) -> MoveEffect:
+	if surgeChanges == null:
+		return self
+	
+	var additionalOrbs: int = (orbChange * -1) - orbsSpent
+	var newEffect = copy()
+	
+	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs
+	
+	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate()
+	finalSelfStatChanges.times(additionalOrbs)
+	newEffect.selfStatChanges.stack(finalSelfStatChanges)
+	
+	var finalTargetStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate()
+	finalTargetStatChanges.times(additionalOrbs)
+	newEffect.targetStatChanges.stack(finalTargetStatChanges)
+	
+	newEffect.statusChance = min(1, newEffect.statusChance + surgeChanges.get_additional_status_chance(additionalOrbs))
+	
+	if surgeChanges.additionalStatusEffect != null:
+		newEffect.statusEffect = surgeChanges.additionalStatusEffect.copy()
+		newEffect.statusEffect.potency = surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs)
+		newEffect.statusEffect.turnsLeft += surgeChanges.get_additional_turns(additionalOrbs)
+	
+	return newEffect
+	
+func copy() -> MoveEffect:
+	var newEffect: MoveEffect = MoveEffect.new(
+		role,
+		power,
+		orbChange,
+		targets,
+		selfStatChanges.duplicate(),
+		targetStatChanges.duplicate(),
+		statusEffect,
+		selfGetsStatus,
+		statusChance,
+		surgeChanges,
+		effectDescription
+	)
+	return newEffect

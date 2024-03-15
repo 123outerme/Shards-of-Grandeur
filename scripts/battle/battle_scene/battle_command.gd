@@ -149,6 +149,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	var moveEffect: MoveEffect = null
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
+		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
+			moveEffect = moveEffect.apply_surge_changes(orbChange * -1)
 	
 	for i in range(len(targets)):
 		commandResult.damagesDealt.append(0)
@@ -330,6 +332,8 @@ func get_command_results(user: Combatant) -> String:
 	var moveEffect: MoveEffect = null
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
+		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
+			moveEffect = moveEffect.apply_surge_changes(orbChange * -1)
 	
 	if type == Type.MOVE:
 		actionTargets = moveEffect.targets
@@ -419,31 +423,32 @@ func get_command_results(user: Combatant) -> String:
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
-		'''
-		if type == Type.MOVE and moveEffect.statChanges != null:
-			if moveEffect.statChanges.has_stat_changes() and not (not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and not (true in commandResult.afflictedStatuses) and moveEffect.statusEffect != null):
-				resultsText += ' ' + user.disp_name() + ' boosts '
-				var displayTargetNames: bool = false
-				for target in targets:
-					if ((moveEffect.targets == Targets.ALLY or moveEffect.targets == Targets.ALL_ALLIES) and user != target) or moveEffect.targets == Targets.NON_SELF_ALLY:
-						displayTargetNames = true
-						break
-				if displayTargetNames:
-					var affectedTargets = get_multiplier_affected_targets()
-					for i in range(len(affectedTargets)):
-						var name: String = affectedTargets[i].disp_name()
-						if affectedTargets[i] == user:
-							name = 'self'
-						resultsText += name
-						if len(affectedTargets) > 1 and i < len(affectedTargets) - 1:
-							resultsText += ', '
-							if i == len(affectedTargets) - 2:
-								resultsText += 'and '
-					resultsText += ' with '
-				
-				var multipliers: Array[StatMultiplierText] = moveEffect.statChanges.get_multipliers_text()
-				resultsText += StatMultiplierText.multiplier_text_list_to_string(multipliers) + '.'
-		''' # TODO: fix stat changes to use self/target stat changes
+		if type == Type.MOVE and (moveEffect.selfStatChanges.has_stat_changes() or moveEffect.targetStatChanges.has_stat_changes()):
+			resultsText += ' ' + user.disp_name() + ' boosts '
+			if moveEffect.selfStatChanges.has_stat_changes():
+				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
+				if user in targets:
+					selfStatChanges.stack(moveEffect.targetStatChanges)
+				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
+				resultsText += 'self ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
+			if moveEffect.targetStatChanges.has_stat_changes():
+				if moveEffect.selfStatChanges.has_stat_changes():
+					resultsText += ', and '
+				for targetIdx in range(len(targets)):
+					var target = targets[targetIdx]
+					if target == user:
+						if moveEffect.selfStatChanges.has_stat_changes():
+							continue # we already printed the user's stat changes
+						resultsText += 'self'
+					else:
+						resultsText += target.disp_name()
+					if targetIdx < len(targets) - 1 and len(targets) > 2:
+						resultsText += ', '
+					if targetIdx == len(targets) - 2:
+						resultsText += ' and '
+				var multipliers: Array[StatMultiplierText] = moveEffect.targetStatChanges.get_multipliers_text()
+				resultsText += ' ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
+			resultsText += '.'
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)
 		if preventEscapingIdx < 0:
