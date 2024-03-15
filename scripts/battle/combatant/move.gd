@@ -7,24 +7,18 @@ enum DmgCategory {
 	AFFINITY = 2,
 }
 
-enum Role {
-	OTHER = 0,
-	SINGLE_TARGET_DAMAGE = 1,
-	AOE_DAMAGE = 2,
-	BUFF = 3,
-	DEBUFF = 4,
-	HEAL = 5
+enum MoveEffectType {
+	NONE = 0,
+	CHARGE = 1,
+	SURGE = 2,
+	BOTH = 3,
 }
 
 @export var moveName: String = ''
 @export var requiredLv: int = 1
-@export var role: Role = Role.OTHER
-@export_range(-100, 100) var power: int = 0 # negative power is healing, positive power is damage
 @export var category: DmgCategory = DmgCategory.PHYSICAL
-@export var targets: BattleCommand.Targets = BattleCommand.Targets.SELF
-@export var statChanges: StatChanges = StatChanges.new()
-@export var statusEffect: StatusEffect = null
-@export var statusChance: float = 0.0
+@export var chargeEffect: MoveEffect = null
+@export var surgeEffect: MoveEffect = null
 @export_multiline var description: String = ''
 @export_multiline var moveLearnedText: String = ''
 @export var moveAnimation: MoveAnimation = null
@@ -39,43 +33,71 @@ static func dmg_category_to_string(c: DmgCategory) -> String:
 			return 'Affinity'
 	return 'UNKNOWN'
 
-static func role_to_string(r: Role) -> String:
-	match r:
-		Role.OTHER:
-			return 'Other'
-		Role.SINGLE_TARGET_DAMAGE:
-			return 'Single Target'
-		Role.AOE_DAMAGE:
-			return 'AOE'
-		Role.BUFF:
-			return 'Buff'
-		Role.DEBUFF:
-			return 'Debuff'
-		Role.HEAL:
-			return 'Heal'
-	return 'UNKOWN'
+static func move_effect_type_to_string(t: MoveEffectType) -> String:
+	match t:
+		MoveEffectType.NONE:
+			return 'None'
+		MoveEffectType.CHARGE:
+			return 'Charge'
+		MoveEffectType.SURGE:
+			return 'Surge'
+		MoveEffectType.BOTH:
+			return 'Both'
+	return 'UNKNOWN'
 
 func _init(
 	i_moveName = '',
 	i_requiredLv = 1,
-	i_power = 0,
 	i_category = DmgCategory.PHYSICAL,
-	i_targets = BattleCommand.Targets.SELF,
-	i_statusEffect = null,
-	i_statusChance = 0.0,
-	i_statChanges = StatChanges.new(),
+	i_chargeEffect = null,
+	i_surgeEffect = null,
 	i_description = '',
 	i_moveLearnedText = '',
 	
 ):
 	moveName = i_moveName
 	requiredLv = i_requiredLv
-	power = i_power
 	category = i_category
-	targets = i_targets
-	statusEffect = i_statusEffect
-	statusChance = i_statusChance
-	statChanges = i_statChanges
+	chargeEffect = i_chargeEffect
+	surgeEffect = i_surgeEffect
 	description = i_description
 	moveLearnedText = i_moveLearnedText
+
+func get_effect_of_type(t: MoveEffectType) -> MoveEffect:
+	if t == MoveEffectType.CHARGE:
+		return chargeEffect
 	
+	if t == MoveEffectType.SURGE:
+		return surgeEffect
+	
+	return null
+
+func effects_with_status() -> MoveEffectType:
+	var chargeStatus: bool = chargeEffect.statusEffect != null
+	var surgeStatus: bool = surgeEffect.statusEffect != null
+	
+	if chargeStatus and surgeStatus:
+		return MoveEffectType.BOTH
+	
+	if chargeStatus:
+		return MoveEffectType.CHARGE
+	
+	if surgeStatus:
+		return MoveEffectType.SURGE
+	
+	return MoveEffectType.NONE
+
+func effects_with_role(role: MoveEffect.Role) -> MoveEffectType:
+	var chargeHeals: bool = chargeEffect.role == role
+	var surgeHeals: bool = surgeEffect.role == role
+	
+	if chargeHeals and surgeHeals:
+		return MoveEffectType.BOTH
+	
+	if chargeHeals:
+		return MoveEffectType.CHARGE
+	
+	if surgeHeals:
+		return MoveEffectType.SURGE
+	
+	return MoveEffectType.NONE

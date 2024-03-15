@@ -2,19 +2,24 @@ extends Control
 class_name AllCommands
 
 @export var battleUI: BattleUI
+@export var unlockSurgeRequirements: StoryRequirements = null
+
 var commandingCombatant: CombatantNode = null
 var commandingMinion: bool = false
 
 @onready var commandLabel: RichTextLabel = get_node("CommandLabel")
-@onready var movesBtn: Button = get_node("MovesButton")
+@onready var chargeMovesBtn: Button = get_node("ChargeButton")
 @onready var inventoryBtn: Button = get_node("InventoryButton")
-@onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
+@onready var surgeMovesBtn: Button = get_node('SurgeButton')
 @onready var escapeButton: Button = get_node("EscapeButton")
+@onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if PlayerResources.playerInfo.staticEncounter != null:
 		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
+	surgeMovesBtn.disabled = unlockSurgeRequirements != null and not unlockSurgeRequirements.is_valid()
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and backToPlayerCmdBtn.visible:
@@ -27,17 +32,16 @@ func load_all_commands():
 	initial_focus()
 	
 func initial_focus():
-	movesBtn.grab_focus()
+	chargeMovesBtn.grab_focus()
 
-func _on_moves_button_pressed():
-	battleUI.set_menu_state(BattleState.Menu.MOVES)
+func _on_charge_moves_button_pressed():
+	battleUI.set_menu_state(BattleState.Menu.CHARGE_MOVES)
 	
 func _on_inventory_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.ITEMS)
 	
-func _on_guard_button_pressed():
-	commandingCombatant.combatant.command = BattleCommand.command_guard(commandingCombatant)
-	battleUI.complete_command()
+func _on_surge_button_pressed():
+	battleUI.set_menu_state(BattleState.Menu.SURGE_MOVES)
 
 func _on_escape_button_pressed():
 	var allCombatants: Array[CombatantNode] = battleUI.battleController.get_all_combatant_nodes()
@@ -47,3 +51,4 @@ func _on_escape_button_pressed():
 
 func _on_back_to_player_button_pressed():
 	battleUI.return_to_player_command()
+

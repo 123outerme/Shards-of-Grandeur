@@ -9,6 +9,11 @@ enum AiType {
 	DEBUFFER = 4,
 }
 
+enum ResourceStrategy {
+	GREEDY = 0,
+	STINGY = 1,
+}
+
 const HP_BAR_COLORS: Dictionary = {
 	'full': Color(0, 1, 0), #00ff00
 	'warn': Color(1, 0.71764707565308, 0), #ffb700
@@ -35,6 +40,7 @@ static var MAX_ORBS = 10
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE
+@export var strategy: ResourceStrategy = ResourceStrategy.GREEDY
 @export var aiOverrideWeight: float = 0.35
 @export var equipmentTable: Array[WeightedEquipment] = []
 @export var teamTable: Array[WeightedString] = []
@@ -132,7 +138,28 @@ func add_orbs(num: int):
 	orbs = max(0, min(orbs + num, Combatant.MAX_ORBS)) # bounded [0,max]
 
 func get_starting_orbs() -> int:
-	return 0
+	return 5
+
+func would_ai_spend_orbs(effect: MoveEffect) -> bool:
+	var spendingOrbs: int = effect.orbChange * -1
+	match strategy:
+		ResourceStrategy.GREEDY:
+			return orbs >= spendingOrbs # if we have the orbs, do it
+		ResourceStrategy.STINGY:
+			return orbs >= spendingOrbs + 3 or orbs == 10 # if we have 3 more orbs than required, or we have 10 orbs, then do it
+	return false # default: never spend orbs
+
+func get_orbs_change_choice(moveEffect: MoveEffect) -> int:
+	if moveEffect.orbChange >= 0:
+		return moveEffect.orbChange # if we don't have the choice to spend, just return the number
+	else:
+		# spending orbs:
+		match strategy:
+			ResourceStrategy.GREEDY:
+				return orbs * -1 # always spend max
+			ResourceStrategy.STINGY:
+				return moveEffect.orbChange # always spend minimum
+		return moveEffect.orbChange # default: always spend minimum
 
 func level_up_nonplayer(newLv: int):
 	var lvDiff: int = newLv - stats.level

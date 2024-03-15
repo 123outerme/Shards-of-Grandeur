@@ -36,7 +36,7 @@ func load_move_list_item_panel():
 	if move != null:
 		moveName.text = move.moveName
 		moveLevel.text = ' Lv ' + str(move.requiredLv)
-		roleText.text = Move.role_to_string(move.role)
+		#roleText.text = Move.role_to_string(move.role)
 		damageType.text = Move.dmg_category_to_string(move.category)
 		detailsButton.visible = showDetailsButton
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(detailsButton)

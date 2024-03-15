@@ -102,6 +102,9 @@ func update_turn_text() -> bool:
 				userNode = combatantNode
 			
 		if userNode != null and combatant.command.commandResult != null:
+			var moveEffect: MoveEffect = null
+			if combatant.command.move != null:
+				moveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
 			var moveToPos = userNode.global_position # fallback: self (no movement)
 			var multiIsAllies: bool = false
 			var multiIsEnemies: bool = false
@@ -132,11 +135,10 @@ func update_turn_text() -> bool:
 			
 			# if it's a move, fix if a move is multi-targeting but there's only one combatant
 			if combatant.command.type == BattleCommand.Type.MOVE:
-				var targets = combatant.command.move.targets
 				if not multiIsAllies:
-					multiIsAllies = targets == BattleCommand.Targets.ALL_ALLIES or targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.ALL
+					multiIsAllies = moveEffect.targets == BattleCommand.Targets.ALL_ALLIES or moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or moveEffect.targets == BattleCommand.Targets.ALL
 				if not multiIsEnemies:
-					multiIsEnemies = targets == BattleCommand.Targets.ALL_ENEMIES or targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.ALL
+					multiIsEnemies = moveEffect.targets == BattleCommand.Targets.ALL_ENEMIES or moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or moveEffect.targets == BattleCommand.Targets.ALL
 			
 			# if targeting multiple:
 			if multiIsAllies or multiIsEnemies:
@@ -149,7 +151,7 @@ func update_turn_text() -> bool:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
 			if not ( \
-					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL and combatant.command.move.power > 0) \
+					(combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move.category != Move.DmgCategory.PHYSICAL and moveEffect.power > 0) \
 					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
 				# if it's a non-physical move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
 				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over

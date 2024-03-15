@@ -26,8 +26,10 @@ func load_moves():
 	for i in range(4): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
 		if i < len(battleUI.commandingCombatant.combatant.stats.moves) and battleUI.commandingCombatant.combatant.stats.moves[i] != null: # if this move slot exists
+			var moveEffect: MoveEffect = battleUI.commandingCombatant.combatant.stats.moves[i].\
+					get_effect_of_type(Move.MoveEffectType.CHARGE if battleUI.menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE)
 			moveBtn.text = battleUI.commandingCombatant.combatant.stats.moves[i].moveName
-			moveBtn.disabled = false
+			moveBtn.disabled = (moveEffect.orbChange * -1) > battleUI.commandingCombatant.combatant.orbs
 			if not setFocus:
 				moveBtn.grab_focus()
 				setFocus = true
@@ -42,6 +44,8 @@ func move_click(idx: int):
 	battleUI.commandingCombatant.combatant.command = BattleCommand.new(
 		BattleCommand.Type.MOVE,
 		battleUI.commandingCombatant.combatant.stats.moves[idx],
+		battleUI.battleController.state.moveEffectType,
+		0,
 		null,
 		[]
 	)

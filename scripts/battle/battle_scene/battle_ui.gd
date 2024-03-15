@@ -17,6 +17,7 @@ var fobFocusMode: bool = false
 @onready var allCommands: AllCommands = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/AllCommands")
 @onready var moves: MovesMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Moves")
 @onready var targets: TargetsMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Targets")
+@onready var surge: SurgeMenu = get_node_or_null('BattleTextBox/TextContainer/MarginContainer/Surge')
 @onready var results: Results = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Results")
 @onready var battleComplete: BattleCompleteMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
 
@@ -52,14 +53,19 @@ func apply_menu_state():
 	if menuState == BattleState.Menu.ITEMS:
 		open_inventory(false)
 	
-	moves.visible = menuState == BattleState.Menu.MOVES
+	moves.visible = menuState == BattleState.Menu.CHARGE_MOVES or menuState == BattleState.Menu.SURGE_MOVES
 	if moves.visible:
+		battleController.state.moveEffectType = Move.MoveEffectType.CHARGE if menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE
 		moves.load_moves()
 	
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
 		targets.referringMenu = prevMenu
 		targets.load_targets()
+
+	surge.visible = menuState == BattleState.Menu.SURGE_SPEND
+	if surge.visible:
+		surge.load_surge()
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
@@ -171,6 +177,8 @@ func initial_focus():
 		moves.initial_focus()
 	if targets.visible:
 		targets.initial_focus()
+	if surge.visible:
+		surge.initial_focus()
 	if results.visible:
 		results.initial_focus()
 	if battleComplete.visible:

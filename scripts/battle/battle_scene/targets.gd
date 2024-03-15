@@ -8,8 +8,9 @@ class_name TargetsMenu
 @onready var confirmButton: Button = get_node("ConfirmButton")
 @onready var backButton: Button = get_node("BackButton")
 
+var moveEffect: MoveEffect = null
 var singleSelect: bool = true
-var referringMenu: BattleState.Menu = BattleState.Menu.MOVES
+var referringMenu: BattleState.Menu = BattleState.Menu.CHARGE_MOVES # default does not matter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,8 +29,10 @@ func load_targets():
 	
 	var targets: BattleCommand.Targets = BattleCommand.Targets.NONE
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE:
-		commandText.text += battleUI.commandingCombatant.combatant.command.move.moveName
-		targets = battleUI.commandingCombatant.combatant.command.move.targets
+		var move: Move = battleUI.commandingCombatant.combatant.command.move
+		moveEffect = move.get_effect_of_type(battleUI.commandingCombatant.combatant.command.moveEffectType)
+		commandText.text += move.moveName
+		targets = moveEffect.targets
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
 		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
@@ -123,7 +126,13 @@ func _on_confirm_button_pressed():
 	battleUI.commandingCombatant.combatant.command.set_targets(targetPositions)
 	
 	reset_targets()
-	battleUI.complete_command()
+	if battleUI.commandingCombatant.combatant.command.type != BattleCommand.Type.MOVE or \
+			battleUI.commandingCombatant.combatant.command.moveEffectType != Move.MoveEffectType.SURGE:
+		battleUI.commandingCombatant.combatant.command.orbChange = moveEffect.orbChange
+		battleUI.complete_command()
+	else:
+		battleUI.set_menu_state(BattleState.Menu.SURGE_SPEND, false)
+	
 	battleUI.battleController.update_combatant_focus_neighbors()
 
 func _on_back_button_pressed():
