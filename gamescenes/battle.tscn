@@ -553,7 +553,15 @@ layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 0.696
 offset_bottom = 0.095993
-text = "This is the battle text box. It should hold a decent amount of information, that being text, controls/buttons/information, and assorted items. Every stage of the battle will have its own \"group\" that activates and replaces another to control battle flow. This time I will not be using one object/class to perform all necessary functions of the battle."
+focus_neighbor_left = NodePath("../OkButton")
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_right = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_bottom = NodePath("../OkButton")
+focus_mode = 2
+text = "Combatant Name Here Charged With Move Name Here, gaining 10 Orbs.
+Combatant Name Here dealt 10,000 damage to self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here, afflicting Overwhelming Interception on self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here! Combatant Name Here intercepted 10,000 damage! Combatant Name Here intercepted 10,000 damage! Combatant Name Here intercepted 10,000 damage! Combatant Name Here intercepted 10,000 damage! Combatant Name Here intercepted 10,000 damage!
+Combatant Name Here boosted self +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed, and Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed.
+"
 
 [node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
@@ -569,7 +577,10 @@ offset_right = 40.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_left = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_top = NodePath("../TextBoxText")
+focus_neighbor_right = NodePath("../TextBoxText")
+focus_neighbor_bottom = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "OK"
 
 [node name="BattleComplete" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI", "itemDetailsPanel")]

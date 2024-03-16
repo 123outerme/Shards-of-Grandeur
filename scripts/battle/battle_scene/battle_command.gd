@@ -342,14 +342,27 @@ func get_command_results(user: Combatant) -> String:
 	
 	if type == Type.MOVE:
 		actionTargets = moveEffect.targets
-		resultsText = user.disp_name()
-		resultsText += ' ' + Move.move_effect_type_to_string(moveEffectType) + 'd with ' + move.moveName
+		# "User Charged/Surged with Move"
+		resultsText = user.disp_name() + ' ' + Move.move_effect_type_to_string(moveEffectType) + 'd with ' + move.moveName
+		
+		if orbChange != 0:
+			# ", gaining/spending X Orb(s)"
+			if orbChange > 0:
+				resultsText += ', gaining '
+			else:
+				resultsText += ', spending '
+			resultsText += String.num(abs(orbChange)) + ' Orb'
+			if abs(orbChange) != 1:
+				resultsText += 's'
+		resultsText += '. ' + user.disp_name() + ' ' # ". User "
+		
+		# "dealt/healed/afflicted "
 		if moveEffect.power > 0:
-			resultsText += ', dealing '
+			resultsText += 'dealt '
 		elif moveEffect.power < 0:
-			resultsText += ', healing '
+			resultsText += 'healed '
 		elif moveEffect.statusEffect != null:
-			resultsText += ', '
+			resultsText += '' # If the damage was 0, we take care of the "afflicted" text below
 	
 	if type == Type.USE_ITEM:
 		actionTargets = slot.item.battleTargets
@@ -372,19 +385,21 @@ func get_command_results(user: Combatant) -> String:
 			if not target.downed:
 				var damage: int = commandResult.damagesDealt[i]
 				if damage != 0:
+					# if damage was dealt
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
 						resultsText += damageText + ' damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 					if type == Type.MOVE and commandResult.afflictedStatuses[i]:
-						resultsText += ' and afflicting ' + moveEffect.statusEffect.status_effect_to_string()
+						resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
 				else:
+					# if no damage was dealt
 					if type == Type.MOVE and moveEffect.statusEffect != null:
 						if commandResult.afflictedStatuses[i]:
-							resultsText += 'afflicting '
+							resultsText += 'afflicted '
 						else:
-							resultsText += 'failing to afflict '
+							resultsText += 'failed to afflict '
 						resultsText += moveEffect.statusEffect.status_effect_to_string() + ' on ' + targetName
 					if type == Type.USE_ITEM:
 						if slot.item.itemType == Item.Type.HEALING:
@@ -421,14 +436,14 @@ func get_command_results(user: Combatant) -> String:
 				if i == len(targets) - 2:
 					resultsText += 'and '
 			else:
-				resultsText += '.'
+				resultsText += '!'
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
-				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepts ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
+				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
 		if type == Type.MOVE and \
 				((moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()) \
 				or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes())):
-			resultsText += ' ' + user.disp_name() + ' boosts '
+			resultsText += ' ' + user.disp_name() + ' boosted '
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
 				if user in targets and moveEffect.targetStatChanges != null:
