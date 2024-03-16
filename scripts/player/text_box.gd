@@ -22,7 +22,7 @@ static var buttonScene: PackedScene = preload('res://prefabs/ui/sfx_button.tscn'
 @onready var TextBoxText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/TextBoxText")
 @onready var SpeakerText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerText")
 @onready var ReadySprite: Sprite2D = get_node("ReadySprite")
-@onready var buttonContainer: HBoxContainer = get_node('Panel/HBoxContainer')
+@onready var buttonContainer: HBoxContainer = get_node('Panel/ScrollBetterFollow/HBoxContainer')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
