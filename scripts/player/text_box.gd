@@ -17,9 +17,12 @@ var text_visible_chars_partial: float = 0
 var speaker_chars_per_sec: float = 40
 var speaker_visible_chars_partial: float = 0
 
+static var buttonScene: PackedScene = preload('res://prefabs/ui/sfx_button.tscn')
+
 @onready var TextBoxText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/TextBoxText")
 @onready var SpeakerText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerText")
 @onready var ReadySprite: Sprite2D = get_node("ReadySprite")
+@onready var buttonContainer: HBoxContainer = get_node('Panel/HBoxContainer')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -80,10 +83,12 @@ func add_choices():
 	delete_choices()
 	var buttonIdx: int = 0
 	for idx in range(len(dialogueItem.choices)):
-		if buttonIdx >= 5:
-			continue
+		#if buttonIdx >= 5:
+		#	continue
 		
-		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(buttonIdx + 1))
+		var button: Button = buttonScene.instantiate()
+		buttonContainer.add_child(button)
+		#get_node('Panel/HBoxContainer/Button' + String.num_int64(buttonIdx + 1))
 		
 		if dialogueItem.choices[idx].is_valid() \
 				and not (dialogueItem.choices[idx].leadsTo != null and not dialogueItem.choices[idx].leadsTo.can_use_dialogue()):
@@ -99,32 +104,36 @@ func add_choices():
 					continue
 			choicesDialogueItemIdxs.append(idx)
 			
-			buttonIdx += 1
 			button.text = TextUtils.substitute_playername(choice.choiceBtn)
 			button.custom_minimum_size = choice.buttonDims
 			button.visible = true
-			if idx == 0:
+			button.pressed.connect(_select_choice.bind(buttonIdx))
+			if buttonIdx == 0:
 				button.call_deferred('grab_focus')
+			buttonIdx += 1
 		else:
 			button.visible = false
-			if idx == 0:
+			if buttonIdx == 0:
 				refocus_choice(null) # focus the first button that is being shown
 		
 	PlayerFinder.player.makingChoice = buttonIdx > 0
 
 func delete_choices():
 	PlayerFinder.player.makingChoice = false
-	for idx in range(5):
-		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
-		button.visible = false
+	for node in buttonContainer.get_children():
+		node.queue_free()
+		#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+		#button.visible = false
 	choicesDialogueItemIdxs = []
 
 func refocus_choice(choice: DialogueChoice = null):
 	if lastChoiceFocused:
 		lastChoiceFocused.grab_focus()
 	else:
-		for idx in range(5):
-			var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+		var buttons: Array[Node] = buttonContainer.get_children()
+		for idx in range(len(buttons)):
+			#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+			var button: Button = buttons[idx]
 			if button != null and button.visible and (choice == null or TextUtils.substitute_playername(choice.choiceBtn) == button.text):
 				button.grab_focus()
 				return
@@ -153,8 +162,10 @@ func show_text_instant():
 	add_choices()
 
 func _viewport_focus_changed(control):
-	for idx in range(5):
-		var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
+	var buttons: Array[Node] = buttonContainer.get_children()
+	for idx in range(len(buttons)):
+		var button: Button = buttons[idx]
+		#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
 		if button == control:
 			lastChoiceFocused = button
 	

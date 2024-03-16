@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx00oa0dadpvj"]
+[gd_scene load_steps=11 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
 [ext_resource type="AudioStream" uid="uid://dq880ihrwmr8h" path="res://audio/sfx/text_scrolling_mellow_low_note.wav" id="2_evowq"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_qnltp"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_00gxq"]
 [ext_resource type="AudioStream" uid="uid://chstsmx2ao336" path="res://audio/sfx/dialogueskip_wiggle_f.wav" id="3_rcur0"]
-[ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="4_5mpbg"]
 [ext_resource type="Texture2D" uid="uid://cmmmjjhb77ud5" path="res://graphics/items/weapons/generic_sword.png" id="4_13uxh"]
 [ext_resource type="StyleBox" uid="uid://dq64op7nmd3n2" path="res://themes/text_box_panel.tres" id="4_p0x7t"]
 [ext_resource type="AudioStream" uid="uid://dq5lav6yqgxnl" path="res://audio/sfx/dialogueskip_wiggle_c.wav" id="5_4fxfv"]
-[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_yge7e"]
+[ext_resource type="Theme" uid="uid://dgitjg5ag10ai" path="res://themes/dialogue_text_box_button_hbox.tres" id="8_5rr3o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2p22"]
 
@@ -87,52 +86,11 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-theme = ExtResource("4_5mpbg")
+theme = ExtResource("8_5rr3o")
 theme_override_constants/separation = 12
 alignment = 1
-
-[node name="Button1" parent="Panel/HBoxContainer" instance=ExtResource("6_yge7e")]
-visible = false
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
-
-[node name="Button2" parent="Panel/HBoxContainer" instance=ExtResource("6_yge7e")]
-visible = false
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
-
-[node name="Button3" parent="Panel/HBoxContainer" instance=ExtResource("6_yge7e")]
-visible = false
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
-
-[node name="Button4" parent="Panel/HBoxContainer" instance=ExtResource("6_yge7e")]
-visible = false
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
-
-[node name="Button5" parent="Panel/HBoxContainer" instance=ExtResource("6_yge7e")]
-visible = false
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
 
 [node name="ReadySprite" type="Sprite2D" parent="."]
 position = Vector2(610, 110)
 scale = Vector2(2, 2)
 texture = ExtResource("4_13uxh")
-
-[connection signal="pressed" from="Panel/HBoxContainer/Button1" to="." method="_select_choice" binds= [0]]
-[connection signal="pressed" from="Panel/HBoxContainer/Button2" to="." method="_select_choice" binds= [1]]
-[connection signal="pressed" from="Panel/HBoxContainer/Button3" to="." method="_select_choice" binds= [2]]
-[connection signal="pressed" from="Panel/HBoxContainer/Button4" to="." method="_select_choice" binds= [3]]
-[connection signal="pressed" from="Panel/HBoxContainer/Button5" to="." method="_select_choice" binds= [4]]

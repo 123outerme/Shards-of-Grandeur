@@ -33,7 +33,7 @@ func start_simulation():
 			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			# apply before-round effects
 			if combatantNode.combatant.statusEffect != null:
-				battleController.state.statusEffDamagedCombatants.append(
+				battleController.state.statusEffDamagedCombatants.append_array(
 					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.BEFORE_ROUND)
 				)
 			if combatantNode.combatant.stats.equippedWeapon != null:
