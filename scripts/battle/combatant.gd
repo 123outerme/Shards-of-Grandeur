@@ -140,8 +140,13 @@ func add_orbs(num: int):
 	orbs = max(0, min(orbs + num, Combatant.MAX_ORBS)) # bounded [0,max]
 
 func get_starting_orbs() -> int:
-	# TODO: calc starting orbs by equipment (and level?)
-	return 0
+	var bonusOrbs: int = 0
+	if stats.equippedWeapon != null:
+		bonusOrbs += stats.equippedWeapon.bonusOrbs
+	if stats.equippedArmor != null:
+		bonusOrbs += stats.equippedArmor.bonusOrbs
+	
+	return bonusOrbs
 
 func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
