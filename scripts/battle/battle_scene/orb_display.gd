@@ -41,6 +41,12 @@ func load_orb_display():
 		var orbUnit: OrbUnitDisplay = orbUnitDisplayScene.instantiate()
 		hboxContainer.add_child(orbUnit)
 	'''
+	var orbUnits = hboxContainer.get_children()
+	for idx in range(len(orbUnits)):
+		var unit: OrbUnitDisplay = orbUnits[idx] as OrbUnitDisplay
+		unit.readOnly = readOnly
+		unit.index = idx + 1
+		unit.orb_clicked.connect(_orb_clicked)
 	update_orb_display()
 
 func update_orb_display():
@@ -48,6 +54,7 @@ func update_orb_display():
 	for idx in range(len(orbUnits)):
 		var unit: OrbUnitDisplay = orbUnits[idx] as OrbUnitDisplay
 		unit.filledOrb = idx < currentOrbs if alignment != BoxContainer.ALIGNMENT_END else Combatant.MAX_ORBS - idx <= currentOrbs
+		unit.readOnly = readOnly
 		unit.load_orb_unit_display()
 
 func update_orb_count(orbs: int, playSfx = false):
@@ -55,6 +62,17 @@ func update_orb_count(orbs: int, playSfx = false):
 	update_orb_display()
 	if playSfx:
 		SceneLoader.audioHandler.play_sfx(modifySfx)
+
+func _orb_clicked(index: int):
+	# index is [1,10]
+	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else 11 - index
+	orb_count_change.emit(orbCount - currentOrbs)
+	#print('clicked on ', orbCount, ' orbs')
+	if not selectedPanel.visible:
+		selectedPanel.visible = true
+		grab_focus()
+		if SceneLoader.audioHandler != null: # for testing in isolated scene
+			SceneLoader.audioHandler.play_sfx(modifySfx)
 
 func _on_focus_entered():
 	focused = true

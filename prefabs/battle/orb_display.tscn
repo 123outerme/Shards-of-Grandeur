@@ -15,6 +15,7 @@ offset_right = -1192.0
 offset_bottom = -952.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_jpk48")
 modifySfx = ExtResource("2_ux8cb")
 
@@ -30,10 +31,12 @@ offset_right = -3.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 1
 
 [node name="OrbUnitDisplay" parent="HBoxContainer" instance=ExtResource("3_w3h8w")]
 layout_mode = 2
+readOnly = false
 
 [node name="OrbUnitDisplay2" parent="HBoxContainer" instance=ExtResource("3_w3h8w")]
 layout_mode = 2
@@ -72,6 +75,7 @@ anchor_bottom = 1.0
 offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("3_7qgse")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
