@@ -11,7 +11,8 @@ enum AiType {
 
 enum ResourceStrategy {
 	GREEDY = 0,
-	STINGY = 1,
+	BIG_SPENDER = 1,
+	BIG_SAVER = 2,
 }
 
 const HP_BAR_COLORS: Dictionary = {
@@ -160,8 +161,10 @@ func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	match strategy:
 		ResourceStrategy.GREEDY:
 			return orbs >= spendingOrbs # if we have the orbs, do it
-		ResourceStrategy.STINGY:
-			return orbs >= spendingOrbs + 3 or orbs == 10 # if we have 3 more orbs than required, or we have 10 orbs, then do it
+		ResourceStrategy.BIG_SPENDER:
+			return orbs >= spendingOrbs + 2 or orbs == 10 # if we have 2 more orbs than required, or we have 10 orbs, then do it
+		ResourceStrategy.BIG_SAVER:
+			return orbs >= spendingOrbs + 2 or orbs == 10 # if we have 2 more orbs than required, or we have 10 orbs, then do it
 	return false # default: never spend orbs
 
 func get_orbs_change_choice(moveEffect: MoveEffect) -> int:
@@ -172,8 +175,22 @@ func get_orbs_change_choice(moveEffect: MoveEffect) -> int:
 		match strategy:
 			ResourceStrategy.GREEDY:
 				return orbs * -1 # always spend max
-			ResourceStrategy.STINGY:
-				return moveEffect.orbChange # always spend minimum
+			ResourceStrategy.BIG_SPENDER:
+				return orbs * -1 # always spend max
+			ResourceStrategy.BIG_SAVER:
+				if currentHp <= 0.25 * stats.maxHp:
+					return orbs * -1 # spend max if health is <= 25%; could be gone next turn!
+				var spending: int = moveEffect.orbChange # start with minimum
+				# if combatant can upgrade status to at least weak, do it
+				if moveEffect.surgeChanges.weakThresholdOrbs > abs(moveEffect.orbChange) and orbs > moveEffect.surgeChanges.weakThresholdOrbs:
+					spending = moveEffect.surgeChanges.weakThresholdOrbs * -1
+				# if combatant can upgrade status to at least strong, do it
+				if moveEffect.surgeChanges.strongThresholdOrbs > abs(moveEffect.orbChange) and orbs > moveEffect.surgeChanges.strongThresholdOrbs:
+					spending = moveEffect.surgeChanges.strongThresholdOrbs * -1
+				# if combatant can upgrade status to overwhelming, do it
+				if moveEffect.surgeChanges.overwhelmingThresholdOrbs > abs(moveEffect.orbChange) and orbs > moveEffect.surgeChanges.overwhelmingThresholdOrbs:
+					spending = moveEffect.surgeChanges.overwhelmingThresholdOrbs * -1
+				return spending
 		return moveEffect.orbChange # default: always spend minimum
 
 func level_up_nonplayer(newLv: int):
