@@ -6,7 +6,10 @@ signal orb_count_change(change: int)
 @export var alignment: BoxContainer.AlignmentMode = BoxContainer.ALIGNMENT_BEGIN
 @export var currentOrbs: int = 0
 @export var readOnly: bool = true
+@export_range(0,9) var minOrbs: int = 0
+@export_range(1,10) var maxOrbs: int = 10
 @export var modifySfx: AudioStream = null
+@export var atBoundSfx: AudioStream = null
 
 #const orbUnitDisplayScene: PackedScene = preload('res://prefabs/battle/orb_unit_display.tscn')
 const ORB_INTERACT_INTERVAL = 7
@@ -27,10 +30,10 @@ func _process(delta):
 		return
 	lastInputAccum = max(-1, lastInputAccum - delta)
 	if Input.is_action_pressed('ui_right') and lastInputAccum <= 0:
-		orb_count_change.emit(1)
+		update_orb_count(currentOrbs + 1)
 		lastInputAccum = ORB_INTERACT_INTERVAL
 	if Input.is_action_pressed('ui_left') and lastInputAccum <= 0:
-		orb_count_change.emit(-1)
+		update_orb_count(currentOrbs - 1)
 		lastInputAccum = ORB_INTERACT_INTERVAL
 
 func load_orb_display():
@@ -54,25 +57,31 @@ func update_orb_display():
 	for idx in range(len(orbUnits)):
 		var unit: OrbUnitDisplay = orbUnits[idx] as OrbUnitDisplay
 		unit.filledOrb = idx < currentOrbs if alignment != BoxContainer.ALIGNMENT_END else Combatant.MAX_ORBS - idx <= currentOrbs
-		unit.readOnly = readOnly
+		unit.readOnly = readOnly \
+				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) < minOrbs - 1 \
+				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) >= maxOrbs
 		unit.load_orb_unit_display()
 
-func update_orb_count(orbs: int, playSfx = false):
-	currentOrbs = orbs
+func update_orb_count(orbs: int):
+	var setOrbs = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
+	if setOrbs != currentOrbs:
+		orb_count_change.emit(setOrbs)
+		if SceneLoader.audioHandler != null:
+			SceneLoader.audioHandler.play_sfx(modifySfx)
+	elif SceneLoader.audioHandler != null:
+		SceneLoader.audioHandler.play_sfx(atBoundSfx)
+	currentOrbs = setOrbs
 	update_orb_display()
-	if playSfx:
-		SceneLoader.audioHandler.play_sfx(modifySfx)
+	
 
 func _orb_clicked(index: int):
 	# index is [1,10]
-	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else 11 - index
-	orb_count_change.emit(orbCount - currentOrbs)
+	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else hboxContainer.get_child_count() + 1 - index
+	update_orb_count(orbCount)
 	#print('clicked on ', orbCount, ' orbs')
 	if not selectedPanel.visible:
 		selectedPanel.visible = true
 		grab_focus()
-		if SceneLoader.audioHandler != null: # for testing in isolated scene
-			SceneLoader.audioHandler.play_sfx(modifySfx)
 
 func _on_focus_entered():
 	focused = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmbx4qteugtm0"]
+[gd_scene load_steps=6 format=3 uid="uid://bmbx4qteugtm0"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/orb_display.gd" id="1_jpk48"]
 [ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="2_ux8cb"]
+[ext_resource type="AudioStream" uid="uid://bj0i1vekyc0vn" path="res://audio/sfx/step1.ogg" id="3_4qshc"]
 [ext_resource type="Theme" uid="uid://cwqpqfli3ybvh" path="res://themes/custom_control_theme.tres" id="3_7qgse"]
 [ext_resource type="PackedScene" uid="uid://c6xiq4jwsbj6t" path="res://prefabs/battle/orb_unit_display.tscn" id="3_w3h8w"]
 
@@ -11,13 +12,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1192.0
-offset_bottom = -952.0
+offset_right = -1186.0
+offset_bottom = -948.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_jpk48")
 modifySfx = ExtResource("2_ux8cb")
+atBoundSfx = ExtResource("3_4qshc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(88, 8)
@@ -36,7 +38,6 @@ theme_override_constants/separation = 1
 
 [node name="OrbUnitDisplay" parent="HBoxContainer" instance=ExtResource("3_w3h8w")]
 layout_mode = 2
-readOnly = false
 
 [node name="OrbUnitDisplay2" parent="HBoxContainer" instance=ExtResource("3_w3h8w")]
 layout_mode = 2

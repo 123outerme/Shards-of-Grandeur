@@ -16,15 +16,15 @@ var index: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	load_orb_unit_display()
+
+func load_orb_unit_display():
 	if readOnly:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
 		focus_mode = Control.FOCUS_NONE
 	else:
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		#focus_mode = Control.FOCUS_CLICK
-	load_orb_unit_display()
-
-func load_orb_unit_display():
 	sprite.texture = filledOrbSprite if filledOrb else unfilledOrbSprite
 
 func _on_gui_input(event):
