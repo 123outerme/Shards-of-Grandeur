@@ -341,8 +341,13 @@ func get_command_results(user: Combatant) -> String:
 	
 	if type == Type.MOVE:
 		actionTargets = moveEffect.targets
-		# "User Charged/Surged with Move"
-		resultsText = user.disp_name() + ' ' + Move.move_effect_type_to_string(moveEffectType) + 'd with ' + move.moveName
+		# "User (Charged/Surged with)/(used) Move"
+		var moveEffTypeString: String = 'used ' # if surge hasn't been unlocked yet, just say used
+		if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+			# if surge HAS been unlocked, specify which
+			moveEffTypeString = Move.move_effect_type_to_string(moveEffectType) + 'd with '
+		
+		resultsText = user.disp_name() + ' ' + moveEffTypeString + move.moveName
 		
 		if orbChange != 0:
 			# ", gaining/spending X Orb(s)"

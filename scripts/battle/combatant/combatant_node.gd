@@ -134,7 +134,7 @@ func update_hp_tag():
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
 	
-	if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.aiUseSurgeReqs == null or Combatant.aiUseSurgeReqs.is_valid()) and not leftSide):
+	if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		orbDisplay.visible = true
 		orbDisplay.currentOrbs = combatant.orbs
 		orbDisplay.update_orb_display()

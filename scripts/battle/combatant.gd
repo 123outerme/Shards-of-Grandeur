@@ -21,7 +21,7 @@ const HP_BAR_COLORS: Dictionary = {
 	'low': Color(1, 0.3137255012989, 0) # ff5000
 }
 
-static var MAX_ORBS = 10
+const MAX_ORBS = 10
 
 @export_category("Combatant - Sprite")
 @export var spriteFrames: SpriteFrames = null
@@ -53,7 +53,7 @@ static var MAX_ORBS = 10
 @export var command: BattleCommand = null
 @export var downed: bool = false
 
-static var aiUseSurgeReqs: StoryRequirements = preload('res://gamedata/story_requirements/surge_move_reqs.tres')
+static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres')
 
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
@@ -138,7 +138,7 @@ func would_item_have_effect(item: Item) -> bool:
 	return true
 
 func add_orbs(num: int):
-	orbs = max(0, min(orbs + num, Combatant.MAX_ORBS)) # bounded [0,max]
+	orbs = max(0, min(Combatant.MAX_ORBS, orbs + num)) # bounded [0,max]
 
 func get_starting_orbs() -> int:
 	var bonusOrbs: int = 0
@@ -147,13 +147,13 @@ func get_starting_orbs() -> int:
 	if stats.equippedArmor != null:
 		bonusOrbs += stats.equippedArmor.bonusOrbs
 	
-	return bonusOrbs
+	return max(0, min(Combatant.MAX_ORBS, bonusOrbs)) # bounded [0, max]
 
 func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
 		return true # no cost required to charge orbs
 	
-	if Combatant.aiUseSurgeReqs != null and not Combatant.aiUseSurgeReqs.is_valid():
+	if Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid():
 		return false # AI can't use surge moves yet
 	
 	var spendingOrbs: int = effect.orbChange * -1

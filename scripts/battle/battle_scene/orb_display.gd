@@ -6,8 +6,8 @@ signal orb_count_change(change: int)
 @export var alignment: BoxContainer.AlignmentMode = BoxContainer.ALIGNMENT_BEGIN
 @export var currentOrbs: int = 0
 @export var readOnly: bool = true
-@export_range(0,9) var minOrbs: int = 0
-@export_range(1,10) var maxOrbs: int = 10
+@export_range(0, Combatant.MAX_ORBS - 1) var minOrbs: int = 0
+@export_range(1, Combatant.MAX_ORBS) var maxOrbs: int = Combatant.MAX_ORBS
 @export var modifySfx: AudioStream = null
 @export var atBoundSfx: AudioStream = null
 
@@ -56,7 +56,7 @@ func update_orb_display():
 	var orbUnits = hboxContainer.get_children()
 	for idx in range(len(orbUnits)):
 		var unit: OrbUnitDisplay = orbUnits[idx] as OrbUnitDisplay
-		unit.filledOrb = idx < currentOrbs if alignment != BoxContainer.ALIGNMENT_END else Combatant.MAX_ORBS - idx <= currentOrbs
+		unit.filledOrb = idx < currentOrbs if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx <= currentOrbs
 		unit.readOnly = readOnly \
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) < minOrbs - 1 \
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) >= maxOrbs
@@ -75,7 +75,7 @@ func update_orb_count(orbs: int):
 	
 
 func _orb_clicked(index: int):
-	# index is [1,10]
+	# index is [1, Combatant.MAX_ORBS]
 	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else hboxContainer.get_child_count() + 1 - index
 	update_orb_count(orbCount)
 	#print('clicked on ', orbCount, ' orbs')

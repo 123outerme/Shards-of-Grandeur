@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://bgp8xg4solw5p"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bgp8xg4solw5p"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ep0x"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ct52j"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_ka42w"]
 [ext_resource type="Resource" uid="uid://calgv8aphjhgo" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_magic.tres" id="2_d73qj"]
 [ext_resource type="Resource" uid="uid://epxva4agnpl6" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_sass.tres" id="2_ll1ga"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_fpulh"]
+[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="5_fvhal"]
+[ext_resource type="Resource" uid="uid://dxfxdy303wcan" path="res://gamedata/dialogue/grandstone/librarian/gs_librarian_surge.tres" id="5_ku511"]
 
 [sub_resource type="Resource" id="Resource_81ojy"]
 script = ExtResource("1_ka42w")
@@ -15,24 +16,9 @@ buttonDims = Vector2(200, 40)
 turnsInQuest = ""
 opensShop = false
 
-[sub_resource type="Resource" id="Resource_frmvl"]
-script = ExtResource("3_fpulh")
-minAct = 0
-maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
-prereqSpecialBattles = Array[String]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-
 [sub_resource type="Resource" id="Resource_rinon"]
 script = ExtResource("1_ka42w")
 choiceBtn = "A Play?"
-storyRequirements = SubResource("Resource_frmvl")
 leadsTo = ExtResource("2_ll1ga")
 repeatsItem = false
 buttonDims = Vector2(160, 40)
@@ -48,11 +34,21 @@ buttonDims = Vector2(160, 40)
 turnsInQuest = ""
 opensShop = false
 
+[sub_resource type="Resource" id="Resource_t850m"]
+script = ExtResource("1_ka42w")
+choiceBtn = "Surge?"
+storyRequirements = ExtResource("5_fvhal")
+leadsTo = ExtResource("5_ku511")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
 [sub_resource type="Resource" id="Resource_ay5om"]
 script = ExtResource("1_0ep0x")
 lines = Array[String](["Yes, what questions do you have for me?"])
 animation = "talk"
-choices = Array[ExtResource("1_ka42w")]([SubResource("Resource_81ojy"), SubResource("Resource_rinon"), SubResource("Resource_u1qit")])
+choices = Array[ExtResource("1_ka42w")]([SubResource("Resource_81ojy"), SubResource("Resource_rinon"), SubResource("Resource_u1qit"), SubResource("Resource_t850m")])
 
 [resource]
 script = ExtResource("1_ct52j")

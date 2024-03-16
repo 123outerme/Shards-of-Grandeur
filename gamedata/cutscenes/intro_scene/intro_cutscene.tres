@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://cy6c7301nx7fg"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=24 format=3 uid="uid://cy6c7301nx7fg"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ak7bs"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_hfgy4"]
@@ -113,6 +113,20 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 
+[sub_resource type="Resource" id="Resource_0aqkh"]
+script = ExtResource("2_jjxdk")
+frameLength = 0.1
+annotation = "Await textbox close before resuming Rat's movement"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_ak7bs")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_ndklv")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
 [sub_resource type="Resource" id="Resource_gxtk5"]
 script = ExtResource("7_osrnc")
 minAct = 0
@@ -129,7 +143,7 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_hfgy4")
-cutsceneFrames = Array[ExtResource("2_jjxdk")]([SubResource("Resource_rcqef"), SubResource("Resource_lmxde"), SubResource("Resource_y53a0")])
+cutsceneFrames = Array[ExtResource("2_jjxdk")]([SubResource("Resource_rcqef"), SubResource("Resource_lmxde"), SubResource("Resource_y53a0"), SubResource("Resource_0aqkh")])
 saveName = "game_intro_cutscene"
 storyRequirements = SubResource("Resource_gxtk5")
 unlockCameraHoldAfter = true

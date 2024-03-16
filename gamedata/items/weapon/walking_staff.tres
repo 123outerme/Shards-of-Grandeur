@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://cy1issl7bi7ba"]
+
+[ext_resource type="Texture2D" uid="uid://c15etp5x4mipj" path="res://graphics/items/weapons/staff.png" id="1_paxya"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_s62bw"]
+
+[resource]
+script = ExtResource("1_s62bw")
+timing = 1
+bonusOrbs = 1
+itemSprite = ExtResource("1_paxya")
+itemName = "Walking Staff"
+itemType = 2
+itemDescription = "A walking staff helps all adventurers to navigate the trails of the land and preserve their energy. Strong sticks like these also make passable blunt weapons in a pinch!"
+cost = 5
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

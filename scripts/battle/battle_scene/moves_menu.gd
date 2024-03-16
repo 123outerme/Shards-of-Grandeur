@@ -29,6 +29,9 @@ func load_moves():
 			var moveEffect: MoveEffect = battleUI.commandingCombatant.combatant.stats.moves[i].\
 					get_effect_of_type(Move.MoveEffectType.CHARGE if battleUI.menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE)
 			moveBtn.text = battleUI.commandingCombatant.combatant.stats.moves[i].moveName
+			if battleUI.battleController.state.moveEffectType == Move.MoveEffectType.SURGE:
+				moveBtn.text += ' (' + String.num(battleUI.commandingCombatant.combatant.stats.moves[i].surgeEffect.orbChange) + ' Orbs)'
+			
 			moveBtn.disabled = (moveEffect.orbChange * -1) > battleUI.commandingCombatant.combatant.orbs
 			if not setFocus:
 				moveBtn.grab_focus()

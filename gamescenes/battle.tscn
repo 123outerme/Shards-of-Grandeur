@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=26 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_oisw1"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/moves_menu.gd" id="9_fgnxg"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/targets.gd" id="9_qy758"]
-[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="9_s8318"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/results.gd" id="9_ul6ls"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="10_4t0i5"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_panels.gd" id="10_7n25e"]
@@ -205,7 +204,6 @@ visible = false
 layout_mode = 2
 script = ExtResource("6_60wgx")
 battleUI = NodePath("../../../..")
-unlockSurgeRequirements = ExtResource("9_s8318")
 
 [node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
 clip_contents = false
@@ -240,7 +238,7 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
-text = "Charge Move"
+text = "Charge Moves"
 
 [node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
@@ -273,7 +271,7 @@ offset_right = -8.0
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Surge Move"
+text = "Surge Moves"
 
 [node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(130, 51)
@@ -315,21 +313,21 @@ script = ExtResource("9_fgnxg")
 battleUI = NodePath("../../../..")
 
 [node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(302, 50)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
+offset_left = -312.0
 offset_top = -84.0
 offset_right = -10.0
 offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
-text = "-----"
+text = "Move Name Goes Here (-10 Orbs)"
 
 [node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(200, 50)
@@ -341,7 +339,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 6.0
 offset_top = -84.0
-offset_right = 206.0
+offset_right = 308.0
 offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -349,14 +347,14 @@ focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobBut
 text = "-----"
 
 [node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(302, 50)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
+offset_left = -312.0
 offset_top = -24.0
 offset_right = -10.0
 offset_bottom = 26.0
@@ -374,7 +372,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 6.0
 offset_top = -24.0
-offset_right = 206.0
+offset_right = 308.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2

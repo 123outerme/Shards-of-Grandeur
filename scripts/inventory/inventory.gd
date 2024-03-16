@@ -16,10 +16,11 @@ func add_item(item: Item) -> bool:
 	var found: bool = false
 	for slot in inventorySlots:
 		if slot.item == item:
-			found = true
+			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
+			# either way we aren't creating a new slot
 			if slot.count < slot.item.maxCount or slot.item.maxCount == 0:
 				if slot.count < 0:
-					return true # if negative (infinite), don't do anything
+					return true # if negative (infinite-size shop slot), don't do anything
 				slot.count += 1
 				add_shard_minion_entry(item)
 				PlayerResources.questInventory.auto_update_quests()

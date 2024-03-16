@@ -2,7 +2,6 @@ extends Control
 class_name AllCommands
 
 @export var battleUI: BattleUI
-@export var unlockSurgeRequirements: StoryRequirements = null
 
 var commandingCombatant: CombatantNode = null
 var commandingMinion: bool = false
@@ -14,12 +13,17 @@ var commandingMinion: bool = false
 @onready var escapeButton: Button = get_node("EscapeButton")
 @onready var backToPlayerCmdBtn: Button = get_node("BackToPlayerButton")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if PlayerResources.playerInfo.staticEncounter != null:
 		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
-	surgeMovesBtn.disabled = unlockSurgeRequirements != null and not unlockSurgeRequirements.is_valid()
+	surgeMovesBtn.disabled = Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid()
+	if surgeMovesBtn.disabled:
+		chargeMovesBtn.text = 'Moves'
+		surgeMovesBtn.text = '???'
+	else:
+		chargeMovesBtn.text = 'Charge Moves'
+		surgeMovesBtn.text = 'Surge Moves'
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and backToPlayerCmdBtn.visible:

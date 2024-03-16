@@ -19,6 +19,11 @@ func _unhandled_input(event):
 		hide_fob_tabs.call_deferred()
 
 func set_fob_button_enabled(enabled: bool = true):
+	if not enabled:
+		if battleController.battleUI.menuState == BattleState.Menu.BATTLE_COMPLETE or \
+				battleController.battleUI.menuState == BattleState.Menu.LEVEL_UP:
+			return # if after battle is over; don't worry about disabling the FoB button
+	
 	fobButton.disabled = not enabled
 
 func get_fob_button_enabled() -> bool:
