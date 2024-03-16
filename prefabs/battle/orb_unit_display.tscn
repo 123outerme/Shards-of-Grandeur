@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6xiq4jwsbj6t"]
+[gd_scene load_steps=6 format=3 uid="uid://c6xiq4jwsbj6t"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/orb_unit_display.gd" id="1_tdomy"]
 [ext_resource type="Texture2D" uid="uid://c68jy58mnua0l" path="res://graphics/ui/orb_empty.png" id="2_f6t5h"]
 [ext_resource type="Texture2D" uid="uid://bisg0dx0edbx3" path="res://graphics/ui/orb_filled.png" id="3_bas8j"]
+[ext_resource type="Texture2D" uid="uid://bxmbijt7hml8h" path="res://graphics/ui/orb_empty_hover.png" id="4_dboso"]
+[ext_resource type="Texture2D" uid="uid://dpkkjyxfcm75q" path="res://graphics/ui/orb_filled_hover.png" id="5_2taw1"]
 
 [node name="OrbUnitDisplay" type="Control" groups=["OrbUnit"]]
 custom_minimum_size = Vector2(8, 8)
@@ -17,9 +19,13 @@ grow_vertical = 2
 script = ExtResource("1_tdomy")
 unfilledOrbSprite = ExtResource("2_f6t5h")
 filledOrbSprite = ExtResource("3_bas8j")
+unfilledHoverOrbSprite = ExtResource("4_dboso")
+filledHoverOrbSprite = ExtResource("5_2taw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, 4)
 texture = ExtResource("2_f6t5h")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

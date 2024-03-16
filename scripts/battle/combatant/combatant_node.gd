@@ -453,7 +453,8 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 							(approxMaxDmg < approxDmg and BattleCommand.is_command_enemy_targeting(effect.targets)): # if this move is approx. stronger
 						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
 							pickedMove.move = move # pick it instead
-							pickedMove.effectType = Move.MoveEffectType.BOTH # TODO: don't just pick both and defer decision-making; plan ahead!
+							pickedMove.effectType = effectType
+							approxMaxDmg = approxDmg
 	
 	if pickedMove.move == null or pickedMove.effectType == Move.MoveEffectType.NONE:
 		printerr('MAJOR ERROR: ai did not find a move to use ', combatant.save_name(), ': ', battlePosition)

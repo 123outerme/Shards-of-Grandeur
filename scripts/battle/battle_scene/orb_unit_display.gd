@@ -5,6 +5,8 @@ signal orb_clicked(index: int)
 
 @export var unfilledOrbSprite: Texture2D = null
 @export var filledOrbSprite: Texture2D = null
+@export var unfilledHoverOrbSprite: Texture2D = null
+@export var filledHoverOrbSprite: Texture2D = null
 @export var filledOrb: bool = false
 @export var readOnly: bool = true
 
@@ -30,3 +32,10 @@ func _on_gui_input(event):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			orb_clicked.emit(index)
 			#print('orb clicked: ', index)
+
+func _on_mouse_entered():
+	if not readOnly:
+		sprite.texture = filledHoverOrbSprite if filledOrb else unfilledHoverOrbSprite
+
+func _on_mouse_exited():
+	load_orb_unit_display()

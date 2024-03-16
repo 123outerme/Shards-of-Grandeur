@@ -147,7 +147,6 @@ func set_targets(newTargets: Array[String]):
 
 func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
 	commandResult = CommandResult.new()
-	# TODO: rework stat boosts to use self/target stat changes
 	var moveEffect: MoveEffect = null
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
