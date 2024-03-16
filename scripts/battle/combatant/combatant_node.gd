@@ -263,7 +263,7 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 	if leftSide: # particles are designed & saved as they would play on an enemy (right side)
 		presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
 	
-	if presetCopy.emitter == 'hit':
+	if presetCopy.emitter == 'hit' and delay:
 		playHitQueued = presetCopy
 		return
 		
@@ -273,7 +273,7 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 		make_particles_now(presetCopy)
 
 func make_particles_now(preset: ParticlePreset):
-	
+	battleController.battleUI.update_hp_tags()
 	match preset.emitter:
 		'behind':
 			behindParticles.preset = preset

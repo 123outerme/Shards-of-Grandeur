@@ -31,6 +31,8 @@ enum Menu {
 @export var moveEffectType: Move.MoveEffectType = Move.MoveEffectType.NONE
 @export var fobButtonEnabled: bool = true
 @export var calcdStateStrings: Array[String] = []
+@export var calcdStateCombatants: Array[Combatant] = []
+@export var statusEffDamagedCombatants: Array[Combatant] = []
 @export var calcdStateIndex: int = 0
 @export var battleMapPath: String = ''
 @export var battleMusic: AudioStream = null

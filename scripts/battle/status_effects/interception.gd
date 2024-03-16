@@ -14,8 +14,8 @@ func _init(
 ):
 	super(Type.INTERCEPTION, i_potency, i_turnsLeft)
 
-func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming):
-	super.apply_status(combatant, allCombatants, timing)
+func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
+	return super.apply_status(combatant, allCombatants, timing)
 	
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return ''

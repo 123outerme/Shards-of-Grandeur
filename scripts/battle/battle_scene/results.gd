@@ -20,7 +20,7 @@ func initial_focus():
 func show_text(newText: String):
 	textBoxText.text = newText
 	# TODO: only update HP tags after move animation damage effect triggers for relevant parties, otherwise update at the end of the entire animation
-	battleUI.update_hp_tags()
+	#battleUI.update_hp_tags()
 
 func tween_started():
 	moveTweenStarted = true

@@ -548,7 +548,7 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Arr
 				if interceptIdx >= 0 and commandResult.damageOnInterceptingTargets[interceptIdx] > 0:
 					dmgTaken += commandResult.damageOnInterceptingTargets[interceptIdx]
 				if dmgTaken > 0:
-					var hitParticlesCopy = hitParticles.duplicate()
+					var hitParticlesCopy = BattleCommand.get_hit_particles()
 					hitParticlesCopy.count = max(2, min(6, 6 * (dmgTaken / combatantNode.combatant.stats.maxHp)))
 					presets.append(hitParticlesCopy)
 				
@@ -558,3 +558,6 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Arr
 			Type.ESCAPE:
 				return []
 	return presets
+
+static func get_hit_particles():
+	return hitParticles.duplicate()
