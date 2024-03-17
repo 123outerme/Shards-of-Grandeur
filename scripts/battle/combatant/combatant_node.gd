@@ -263,7 +263,6 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 		make_particles_now(presetCopy)
 
 func make_particles_now(preset: ParticlePreset):
-	battleController.battleUI.update_hp_tags()
 	match preset.emitter:
 		'behind':
 			behindParticles.preset = preset
@@ -559,7 +558,9 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
-	battleController.combatant_finished_animating.emit()
+	if battleController != null:
+		battleController.combatant_finished_animating.emit()
+	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
@@ -567,11 +568,14 @@ func _on_animate_tween_target_move_finished():
 
 func _combatant_finished_moving():
 	if playParticlesQueued != null:
+		if playHitQueued == null:
+			update_hp_tag()
 		make_particles_now(playParticlesQueued)
 	playParticlesQueued = null
 
 func _combatant_finished_animating():
 	if playHitQueued != null:
+		update_hp_tag()
 		make_particles_now(playHitQueued)
 	playHitQueued = null
 

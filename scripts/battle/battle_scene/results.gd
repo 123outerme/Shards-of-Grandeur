@@ -27,7 +27,7 @@ func _on_ok_button_pressed():
 	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
 		if battleUI.battleController.turnExecutor.advance_precalcd_text(): # if was final
 			battleUI.advance_intermediate_state(result)
-		battleUI.update_hp_tags() # TODO: I think this can be taken out
+		battleUI.update_hp_tags() # TODO: I think this can be taken out?
 		return # don't fall-through and potentially run the results code below
 	
 	if not moveTweenStarted or moveTweenFinished:

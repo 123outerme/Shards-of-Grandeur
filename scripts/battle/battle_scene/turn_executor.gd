@@ -183,7 +183,6 @@ func update_turn_text() -> bool:
 				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished) # tween
 			else:
 				battleController.combatant_finished_moving.emit() # no tween was started so finish instantly
-				battleUI.update_hp_tags()
 		
 	battleUI.results.show_text(text)
 	return text != ''
