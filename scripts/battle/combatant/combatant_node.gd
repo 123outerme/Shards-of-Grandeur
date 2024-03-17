@@ -345,9 +345,9 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 	var randomValue: float = randf()
 	tmpAllCombatantNodes = combatantNodes
 	var moveCandidates: Array[Move] = combatant.stats.moves.filter(ai_filter_move_candidates)
-	tmpAllCombatantNodes = []
 	if len(moveCandidates) == 0: # if no moves fit the stricter criteria
-		moveCandidates = combatant.stats.moves.filter(filter_out_null) # just don't use a null move
+		moveCandidates = combatant.stats.moves.filter(filter_out_unusable) # just don't use a strictly unusable move
+	tmpAllCombatantNodes = []
 	
 	if combatant.aiType == Combatant.AiType.DEBUFFER and randomValue > combatant.aiOverrideWeight:
 		# first, check if any opponent has no status and there's a move that can give status
@@ -355,7 +355,6 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 			if combatantNode.role != role and combatantNode.is_alive():
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
 				for move in moveCandidates:
-					var effectTpyes
 					var effectType: Move.MoveEffectType = move.effects_with_status()
 					if not opponentHasStatus and effectType != Move.MoveEffectType.NONE and BattleCommand.is_command_enemy_targeting(move.targets):
 						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
@@ -465,8 +464,22 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 	
 	return pickedMove
 
-func filter_out_null(a) -> bool:
-	return a != null
+func filter_out_unusable(a) -> bool:
+	if a == null:
+		return false
+	
+	var hasAllies: bool = false
+	for combatantNode in tmpAllCombatantNodes:
+		if combatantNode.role == role and combatantNode.is_alive() and combatantNode != self:
+			hasAllies = true
+			break
+	
+	var numCanUse: int = 2
+	for effect in [a.chargeEffect, a.surgeEffect]:
+		if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
+		effect.orbChange * -1 > combatant.orbs:
+			numCanUse -= 1 # move cannot be used by the game rules
+	return numCanUse > 0 # move could be used
 
 func ai_filter_move_candidates(a: Move) -> bool:
 	if a == null:
@@ -501,7 +514,12 @@ func ai_filter_move_candidates(a: Move) -> bool:
 				statusCanLand = true
 				break
 		return statusCanLand
-	return true
+	var numCanUse: int = 2
+	for effect in [a.chargeEffect, a.surgeEffect]:
+		if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
+		effect.orbChange * -1 > combatant.orbs:
+			numCanUse -= 1 # move cannot be used by the game rules
+	return numCanUse > 0 # move could be used
 
 func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''

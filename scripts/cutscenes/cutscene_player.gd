@@ -88,7 +88,7 @@ func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)
 	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
 
-func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
+func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 	lastFrame = frame
 	if frame.shakeCamForDuration:
 		handle_start_cam_shake()
@@ -107,7 +107,7 @@ func animate_next_frame(frame: CutsceneFrame, skipping: bool = false):
 		var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
 		if node == null:
 			continue # skip null actors
-		if not skipping:
+		if not isSkipping:
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
 			tween.tween_property(node, actorTween.propertyName, actorTween.value, frame.frameLength)
 			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):

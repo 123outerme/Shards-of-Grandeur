@@ -68,15 +68,15 @@ func load_preset():
 			particleSpawner.process_material = preset.processMaterial
 			textureIdx += 1
 
-func set_make_particles(show: bool):
-	_makeParticles = show
+func set_make_particles(showParticles: bool):
+	_makeParticles = showParticles
 	for child in get_children():
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
-			if particleSpawner.emitting != show:
-				particleSpawner.emitting = show
+			if particleSpawner.emitting != showParticles:
+				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
-	if show:
+	if showParticles:
 		startTime = Time.get_unix_time_from_system()
 
 func set_num_particles(value: int):
