@@ -6,6 +6,7 @@ enum Type {
 	COLLECT_ITEM = 1,
 	DEFEAT = 2,
 	CUTSCENE = 3,
+	STATIC_ENCOUNTER = 4,
 	ALL = -1,
 }
 
@@ -17,6 +18,8 @@ static func TypeToString(t: Type) -> String:
 			return 'Collect'
 		Type.DEFEAT:
 			return 'Defeat'
+		Type.STATIC_ENCOUNTER:
+			return 'Beat'
 		Type.CUTSCENE:
 			return ''
 		Type.ALL:

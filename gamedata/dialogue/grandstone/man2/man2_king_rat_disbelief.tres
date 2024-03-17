@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cnwb2atjfgs81"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ne7dk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_tme2o"]
+
+[sub_resource type="Resource" id="Resource_ger0s"]
+script = ExtResource("1_ne7dk")
+lines = Array[String](["Why does no one believe me...?"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_tme2o")
+entryId = ""
+items = Array[ExtResource("1_ne7dk")]([SubResource("Resource_ger0s")])
+closesDialogue = true
+fullHealsPlayer = false

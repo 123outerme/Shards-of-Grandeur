@@ -102,10 +102,12 @@ func auto_update_quests():
 				if slot.item.itemName == tracker.get_current_step().objectiveName:
 					count += slot.count
 			tracker.set_current_step_progress(count)
-		if step.type == QuestStep.Type.CUTSCENE:
-			for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
-				progress_quest(cutscene, step.type)
-				auto_turn_in_cutscene_steps(cutscene)
+	for specialBattle in PlayerResources.playerInfo.completedSpecialBattles:
+		if PlayerResources.playerInfo.has_completed_special_battle(specialBattle):
+			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
+	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
+		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
+		auto_turn_in_cutscene_steps(cutscene)
 
 func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
 	for tracker in get_cur_trackers_for_target(target):

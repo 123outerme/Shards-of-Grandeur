@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cfmdqhr1amwj7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_1ceo3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_baibc"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_m56jn"]
+
+[sub_resource type="Resource" id="Resource_tlbif"]
+script = ExtResource("1_baibc")
+lines = Array[String](["There really was a King Rat this whole time? And you defeated him in honorable combat?! Wow, I really missed out, I'm sorry I didn't believe it could be true!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_8msqw"]
+script = ExtResource("2_m56jn")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["Voice of the Rats"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_1ceo3")
+entryId = ""
+items = Array[ExtResource("1_baibc")]([SubResource("Resource_tlbif")])
+storyRequirements = SubResource("Resource_8msqw")
+closesDialogue = false
+fullHealsPlayer = false

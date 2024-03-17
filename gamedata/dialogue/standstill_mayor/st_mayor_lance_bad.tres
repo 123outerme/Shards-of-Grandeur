@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b2extw7573w3p"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_a7xw2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_0nddp"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_mkxuk"]
+
+[sub_resource type="Resource" id="Resource_xh1lo"]
+script = ExtResource("1_a7xw2")
+lines = Array[String](["She also is training an apprentice smith, Lance, however he has not been proving himself lately."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_g160x"]
+script = ExtResource("3_mkxuk")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["Apprenticeship"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_0nddp")
+entryId = ""
+items = Array[ExtResource("1_a7xw2")]([SubResource("Resource_xh1lo")])
+storyRequirements = SubResource("Resource_g160x")
+closesDialogue = false
+fullHealsPlayer = false

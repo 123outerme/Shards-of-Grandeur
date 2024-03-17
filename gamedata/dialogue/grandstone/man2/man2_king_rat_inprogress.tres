@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c4mssqwc5dpqc"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0gfg1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_2rh15"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_lx1bu"]
+
+[sub_resource type="Resource" id="Resource_kwp7n"]
+script = ExtResource("1_0gfg1")
+lines = Array[String](["I would go visit the King Rat, before he wages war against us! The Giant Rats say he lives deep within Hilltop Forest."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_0agwj"]
+script = ExtResource("2_lx1bu")
+minAct = 0
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["grandstone_man2#king_rat_start"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["Voice of the Rats"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_2rh15")
+entryId = ""
+items = Array[ExtResource("1_0gfg1")]([SubResource("Resource_kwp7n")])
+storyRequirements = SubResource("Resource_0agwj")
+closesDialogue = false
+fullHealsPlayer = false

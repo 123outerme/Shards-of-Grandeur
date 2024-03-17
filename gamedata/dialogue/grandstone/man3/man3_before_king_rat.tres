@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://daqlklvmvahla"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hhpcv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_7kog4"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_ccuog"]
+
+[sub_resource type="Resource" id="Resource_3m0lf"]
+script = ExtResource("1_hhpcv")
+lines = Array[String](["Hi @! I just don't get what he's saying... I don't think talking to Rats is even possible!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_j5p17"]
+script = ExtResource("3_ccuog")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["Voice of the Rats"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("2_7kog4")
+entryId = ""
+items = Array[ExtResource("1_hhpcv")]([SubResource("Resource_3m0lf")])
+storyRequirements = SubResource("Resource_j5p17")
+closesDialogue = false
+fullHealsPlayer = false

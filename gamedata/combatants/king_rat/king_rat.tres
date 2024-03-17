@@ -1,14 +1,13 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=17 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=16 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_f5n1o"]
+[ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_kfmy7"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="1_uihsc"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="2_4dg8r"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_are3w"]
-[ext_resource type="Resource" uid="uid://gsk7qwlmuwdb" path="res://gamedata/items/armor/warrior_headband.tres" id="3_d8om7"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_g7kp6"]
 [ext_resource type="Resource" uid="uid://do8nq1ve3c3nx" path="res://gamedata/combatants/king_rat/king_rat_movepool.tres" id="3_r1tc3"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="5_04x7w"]
 [ext_resource type="Resource" uid="uid://d0ba12f3r7gli" path="res://gamedata/combatants/king_rat/king_rat_stat_growth.tres" id="5_c85vg"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_luqkf"]
 
@@ -16,6 +15,7 @@
 script = ExtResource("1_f5n1o")
 experience = 100
 gold = 30
+item = ExtResource("1_kfmy7")
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_0kcmu"]
@@ -25,8 +25,6 @@ weight = 1.0
 
 [sub_resource type="Resource" id="Resource_0tx4e"]
 script = ExtResource("3_g7kp6")
-weapon = ExtResource("5_04x7w")
-armor = ExtResource("3_d8om7")
 weight = 1.0
 
 [sub_resource type="Resource" id="Resource_3uxb7"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://utdi2p8kxqyd"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_8d3t7"]
+[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_ximjb"]
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_yxacv"]
+
+[sub_resource type="Resource" id="Resource_mjovm"]
+script = ExtResource("1_8d3t7")
+path = "standstill/standstill_mayor_house"
+overworldTheme = ExtResource("1_ximjb")
+battleMapName = "forest_battle_map"
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("1_yxacv")
+maps = Array[ExtResource("1_8d3t7")]([SubResource("Resource_mjovm")])

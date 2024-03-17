@@ -112,7 +112,8 @@ func update_confirm_btn():
 func reset_targets(confirming: bool = false):
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if cNode.is_alive():
-			cNode.toggled.disconnect(_on_combatant_selected)
+			if cNode.toggled.is_connected(_on_combatant_selected):
+				cNode.toggled.disconnect(_on_combatant_selected)
 			if not confirming or not cNode.is_selected() or referringMenu == BattleState.Menu.CHARGE_MOVES:
 				# hide all select buttons after this if picking a charge move or if it wasn't selected
 				cNode.set_selected(false)

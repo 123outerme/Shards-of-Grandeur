@@ -1,40 +1,76 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://ckfyu02qpcubt"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://ckfyu02qpcubt"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_a6ajt"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_1hnlw"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_fs5fl"]
+
+[sub_resource type="Resource" id="Resource_t61dx"]
+script = ExtResource("2_1hnlw")
+experience = 50
+gold = 15
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_ky3m0"]
 script = ExtResource("2_fs5fl")
 name = "Release the Rodents"
-description = "The King Rat is infuriated that so many have taken Rat Shards and pocketed them or forced his kind to do battle. He has asked that at least a few be returned to him."
+description = "The King Rat is infuriated that so many have taken Rat Shards and pocketed them or forced his kind to do battle. He has asked that at least a few be returned to him as a peace offering before he attacks Grandstone. Collect these Rat Shards and seek him out."
+reward = SubResource("Resource_t61dx")
 type = 1
-count = 3
+count = 2
 objectiveName = "rat_shard"
-turnInNames = Array[String](["grandstone_actor"])
+turnInNames = Array[String](["king_rat"])
 displayObjName = "Rat Shard"
-displayTurnInName = "Actor"
+displayTurnInName = "King Rat"
 customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_t27f8"]
+script = ExtResource("2_1hnlw")
+experience = 20
+gold = 0
+fullyAttuneCombatantSaveName = ""
+
 [sub_resource type="Resource" id="Resource_2pxg1"]
 script = ExtResource("2_fs5fl")
-name = "???"
-description = "???"
+name = "The Negotiator"
+description = "The King Rat is ready to sit at the metaphorical negotiation table. Engage in diplomacy with him, and see if you cannot prevent his invasion of Grandstone."
+reward = SubResource("Resource_t27f8")
 type = 0
 count = 1
-objectiveName = "---"
-turnInNames = Array[String]([""])
-displayObjName = "---"
-displayTurnInName = "---"
-customStatusStr = "???"
+objectiveName = "king_rat#---"
+turnInNames = Array[String](["king_rat"])
+displayObjName = "King Rat"
+displayTurnInName = "King Rat"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_j6y48"]
+script = ExtResource("2_1hnlw")
+experience = 60
+gold = 10
+fullyAttuneCombatantSaveName = "king_rat"
+
+[sub_resource type="Resource" id="Resource_82egl"]
+script = ExtResource("2_fs5fl")
+name = "A Monster Duel"
+description = "The negotiations fell apart. Oh, well. There's always the law of the jungle! The King Rat has challenged you to a duel for the fate of Grandstone. Be sure not to lose."
+reward = SubResource("Resource_j6y48")
+type = 4
+count = 1
+objectiveName = "king_rat_encounter"
+turnInNames = Array[String](["king_rat"])
+displayObjName = "King Rat"
+displayTurnInName = "King Rat"
+customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
 [resource]
 script = ExtResource("1_a6ajt")
 questName = "Voice of the Rats"
-description = "A rather strange character, this <NPC description> is. He claims he can speak to Giant Rats, and those that have been wandering into Grandstone have told him of a foreboding message they bring."
-steps = Array[ExtResource("2_fs5fl")]([SubResource("Resource_ky3m0"), SubResource("Resource_2pxg1")])
+description = "A rather strange character, this gentleman is. He claims he can speak to Giant Rats, and the Rats that have been wandering around Grandstone have told him of a foreboding message they bring."
+steps = Array[ExtResource("2_fs5fl")]([SubResource("Resource_ky3m0"), SubResource("Resource_2pxg1"), SubResource("Resource_82egl")])
 isMainQuest = false
 advanceActActerComplete = false
