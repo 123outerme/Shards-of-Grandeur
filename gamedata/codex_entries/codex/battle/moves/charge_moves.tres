@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://s1xkk8mpk5i7"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_th8il"]
+[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="2_shhi0"]
+
+[resource]
+script = ExtResource("1_th8il")
+id = "charge_moves"
+title = "Charge Moves"
+storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([ExtResource("2_shhi0")])
+description = "Charge Moves are moves that have more basic effects. On use, they charge Orbs for the user and provide some relatively simple effects. There are no Orb requirements for Charge Moves, so they can be used at any time. You can find the Charge effect of a move listed in its Details.
+
+For example, a Charge Move might give the user 1 Orb and deal some damage."
+childrenEntries = Array[ExtResource("1_th8il")]([])

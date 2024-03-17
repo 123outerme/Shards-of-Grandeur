@@ -3,7 +3,6 @@ class_name MoveEffectDetailsPanel
 
 @export var moveEffect: MoveEffect = null
 @export var isSurgeEffect: bool = false
-@export var surgeRequirements: StoryRequirements = null
 
 @onready var detailsTitleLabel: RichTextLabel = get_node('DetailsTitle')
 @onready var moveTargets: RichTextLabel = get_node("MoveTargets")
@@ -22,16 +21,22 @@ func load_move_effect_details_panel():
 	if moveEffect == null:
 		visible = false
 		return
-	
-	detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
-	if moveEffect.orbChange > 0:
-		detailsTitleLabel.text += '+'
-	detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orb'
-	if abs(moveEffect.orbChange) > 1 or moveEffect.orbChange == 0:
-		detailsTitleLabel.text += 's'
-	if moveEffect.orbChange < 0:
-		detailsTitleLabel.text += ' Min.'
-	detailsTitleLabel.text += ')[/center]'
+	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+		detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
+		if moveEffect.orbChange > 0:
+			detailsTitleLabel.text += '+'
+		detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orb'
+		if abs(moveEffect.orbChange) > 1 or moveEffect.orbChange == 0:
+			detailsTitleLabel.text += 's'
+		if moveEffect.orbChange < 0:
+			detailsTitleLabel.text += ' Min.'
+		detailsTitleLabel.text += ')[/center]'
+	else:
+		if isSurgeEffect:
+			visible = false
+			return
+		else:
+			detailsTitleLabel.text = '[center]Move Effect[/center]'
 	
 	if moveEffect.power >= 0:
 		movePower.text = str(moveEffect.power) + ' Power'
@@ -62,7 +67,7 @@ func load_move_effect_details_panel():
 	else:
 		moveStatusEffect.visible = false
 	
-	if isSurgeEffect and moveEffect.surgeChanges != null and (surgeRequirements == null or surgeRequirements.is_valid()):
+	if isSurgeEffect and moveEffect.surgeChanges != null:
 		surgeChangesDescription.text = '[center]Surge Changes | Per Extra Orb Spent:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
 		surgeChangesDescription.visible = true
 	else:

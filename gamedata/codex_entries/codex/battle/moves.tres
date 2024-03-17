@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=6 format=3 uid="uid://bycjmn81y0wj5"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=8 format=3 uid="uid://bycjmn81y0wj5"]
 
+[ext_resource type="Resource" uid="uid://s1xkk8mpk5i7" path="res://gamedata/codex_entries/codex/battle/moves/charge_moves.tres" id="1_77rr0"]
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_o3vbo"]
 [ext_resource type="Resource" uid="uid://c4p741si30nmx" path="res://gamedata/codex_entries/codex/battle/moves/move_categories.tres" id="1_x7yyj"]
 [ext_resource type="Resource" uid="uid://csqfwg6jsud7t" path="res://gamedata/codex_entries/codex/battle/moves/move_roles.tres" id="2_ohbwx"]
+[ext_resource type="Resource" uid="uid://dsx3vp55km0b5" path="res://gamedata/codex_entries/codex/battle/moves/surge_moves.tres" id="2_tp0y4"]
 [ext_resource type="Resource" uid="uid://cj7oh2rsws3y7" path="res://gamedata/codex_entries/codex/battle/moves/move_status.tres" id="3_crbli"]
 [ext_resource type="Resource" uid="uid://dbchff861wrm5" path="res://gamedata/codex_entries/codex/battle/moves/move_target.tres" id="4_nqc82"]
 
@@ -12,4 +14,4 @@ id = "moves"
 title = "Moves"
 storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
 description = "Moves are the battle commands that combatants use to deal damage, heal HP, afflict status, and more. Combatants cannot learn moves until they reach the level required for that move. All combatants can equip a maximum of 4 moves at a time from their movepool to their moveset. In battle, each allied combatant can use the Guard move along with their registered moveset."
-childrenEntries = Array[ExtResource("1_o3vbo")]([ExtResource("1_x7yyj"), ExtResource("2_ohbwx"), ExtResource("4_nqc82"), ExtResource("3_crbli")])
+childrenEntries = Array[ExtResource("1_o3vbo")]([ExtResource("1_77rr0"), ExtResource("2_tp0y4"), ExtResource("1_x7yyj"), ExtResource("2_ohbwx"), ExtResource("4_nqc82"), ExtResource("3_crbli")])

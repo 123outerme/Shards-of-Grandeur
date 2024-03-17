@@ -11,8 +11,8 @@ signal back_pressed
 @onready var moveDescription: RichTextLabel = get_node("Panel/MoveDescription")
 @onready var backButton: Button = get_node("Panel/BackButton")
 
-@onready var chargeEffectDetails: MoveEffectDetailsPanel = get_node('Panel/ChargeEffectDetailsPanel')
-@onready var surgeEffectDetails: MoveEffectDetailsPanel = get_node('Panel/SurgeEffectDetailsPanel')
+@onready var chargeEffectDetails: MoveEffectDetailsPanel = get_node('Panel/HBoxContainer/ChargeEffectDetailsPanel')
+@onready var surgeEffectDetails: MoveEffectDetailsPanel = get_node('Panel/HBoxContainer/SurgeEffectDetailsPanel')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -22,19 +22,25 @@ offset_right = 1200.0
 offset_bottom = 880.0
 theme = ExtResource("3_yyfev")
 
-[node name="ChargeEffectDetailsPanel" parent="Panel" instance=ExtResource("6_1bvf3")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_left = 16.0
 offset_top = 167.0
-offset_right = -564.0
-offset_bottom = -63.0
-
-[node name="SurgeEffectDetailsPanel" parent="Panel" instance=ExtResource("6_1bvf3")]
-layout_mode = 1
-offset_left = 564.0
-offset_top = 167.0
 offset_right = -16.0
-offset_bottom = -63.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
+custom_minimum_size = Vector2(540, 570)
+layout_mode = 2
+
+[node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
+custom_minimum_size = Vector2(540, 570)
+layout_mode = 2
 isSurgeEffect = true
 
 [node name="MoveName" type="RichTextLabel" parent="Panel"]
