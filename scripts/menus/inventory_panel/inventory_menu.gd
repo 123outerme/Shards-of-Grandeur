@@ -245,7 +245,8 @@ func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 func trash_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
 	itemConfirmPanel.title = 'Trash Item?'
-	itemConfirmPanel.description = 'Are you sure you want to trash 1x ' + slot.item.itemName + '?'
+	itemConfirmPanel.description = 'Are you sure you want to trash 1x ' + slot.item.itemName \
+			+ '? You will get ' + String.num(roundi(slot.item.cost / 2.0)) + ' gold from trashing it.'
 	itemConfirmPanel.load_item_confirm_panel()
 	confirmingAction = 'trash'
 
@@ -380,6 +381,7 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 		'trash':
 			if yes:
 				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
+				PlayerResources.playerInfo.gold += roundi(lastSlotInteracted.item.cost / 2.0)
 				if last:
 					lastSlotInteracted = null
 		'shardLearn':
