@@ -254,6 +254,8 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		
 		var atkExpression: float = atkStat + 5
 		var resExpression: float = targetStats.resistance + 5
+		if power < 0:
+			resExpression = 6 # 1 resistance if this is a healing move
 		var apparentUserLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
 		# scaled so that increases early on don't jack up the ratio intensely
 		var apparentTargetLv = dmg_logistic(target.stats.level, user.stats.level)
@@ -363,7 +365,7 @@ func get_command_results(user: Combatant) -> String:
 		if moveEffect.power > 0:
 			resultsText += '.\n' + user.disp_name() + ' dealt '
 		elif moveEffect.power < 0:
-			resultsText += '.\n' + user.disp_name() + 'healed '
+			resultsText += '.\n' + user.disp_name() + ' healed '
 		elif moveEffect.statusEffect != null:
 			resultsText += '.\n' + user.disp_name() + ' '# If the damage was 0, we take care of the "afflicted" text below
 	
@@ -525,7 +527,7 @@ func get_command_animation() -> String:
 			return 'walk'
 	return 'stand'
 
-func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Array[ParticlePreset]:
+func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarget: bool = true) -> Array[ParticlePreset]:
 	var presets: Array[ParticlePreset] = []
 	if commandResult == null:
 		return []
@@ -534,6 +536,8 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode) -> Arr
 		match type:
 			Type.MOVE:
 				presets.append(move.moveAnimation.userParticlePreset)
+				if isTarget:
+					presets.append(move.moveAnimation.targetsParticlePreset)
 			Type.USE_ITEM:
 				return []
 			Type.ESCAPE:

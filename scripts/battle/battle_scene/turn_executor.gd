@@ -135,7 +135,7 @@ func update_turn_text() -> bool:
 			var multiIsEnemies: bool = false
 			for combatantNode in allCombatantNodes:
 				if combatantNode.is_alive() and (combatantNode.combatant in defenders or combatantNode.combatant == userNode.combatant):
-					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode)
+					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode, combatantNode.combatant in defenders)
 					for preset in particlePresets:
 						combatantNode.play_particles(preset, combatantNode != userNode)
 					# if there's only one target:

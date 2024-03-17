@@ -46,15 +46,15 @@ var playParticlesQueued: ParticlePreset = null
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
 @onready var hpProgressBar: TextureProgressBar = get_node('HPTag/LvText/HPProgressBar')
 @onready var orbDisplay: OrbDisplay = get_node('HPTag/OrbDisplay')
-@onready var animatedSprite: AnimatedSprite2D = get_node('AnimatedSprite')
-@onready var clickCombatantBtn: TextureButton = get_node('ClickCombatantBtn')
+@onready var spriteContainer: Node2D = get_node('SpriteContainer')
+@onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
-@onready var behindParticleContainer: Node2D = get_node('BehindParticleContainer')
-@onready var behindParticles: Particles = get_node('BehindParticleContainer/BehindParticleEmitter')
-@onready var frontParticleContainer: Node2D = get_node('FrontParticleContainer')
-@onready var frontParticles: Particles = get_node('FrontParticleContainer/FrontParticleEmitter')
-@onready var hitParticles: Particles = get_node('FrontParticleContainer/HitParticleEmitter')
-@onready var shardParticles: Particles = get_node('FrontParticleContainer/ShardParticleEmitter')
+@onready var behindParticleContainer: Node2D = get_node('SpriteContainer/BehindParticleContainer')
+@onready var behindParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/BehindParticleEmitter')
+@onready var frontParticleContainer: Node2D = get_node('SpriteContainer/FrontParticleContainer')
+@onready var frontParticles: Particles = get_node('SpriteContainer/FrontParticleContainer/FrontParticleEmitter')
+@onready var hitParticles: Particles = get_node('SpriteContainer/FrontParticleContainer/HitParticleEmitter')
+@onready var shardParticles: Particles = get_node('SpriteContainer/FrontParticleContainer/ShardParticleEmitter')
 @onready var onAttackMarker: Marker2D = get_node('OnAttackPos')
 @onready var onAssistMarker: Marker2D = get_node('OnAssistPos')
 
@@ -83,7 +83,6 @@ func load_combatant_node():
 		hpProgressBar.value = combatant.currentHp
 		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp)
 		update_hp_tag()
-		clickCombatantBtn.disabled = role == Role.ENEMY # don't let the player see the raw stats/moves of enemies
 		# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
 		behindParticleContainer.scale.x = 1.5 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
 		behindParticleContainer.scale.y = behindParticleContainer.scale.x
@@ -167,48 +166,36 @@ func focus_select_btn():
 
 func set_buttons_left_neighbor(control: Control):
 	selectCombatantBtn.focus_neighbor_left = selectCombatantBtn.get_path_to(control)
-	clickCombatantBtn.focus_neighbor_left = clickCombatantBtn.get_path_to(control)
 	control.focus_neighbor_right = control.get_path_to(selectCombatantBtn)
 	
 func set_buttons_right_neighbor(control: Control):
 	selectCombatantBtn.focus_neighbor_right = selectCombatantBtn.get_path_to(control)
-	clickCombatantBtn.focus_neighbor_right = clickCombatantBtn.get_path_to(control)
 	control.focus_neighbor_left = control.get_path_to(selectCombatantBtn)
 	
 func set_buttons_top_neighbor(control: Control):
 	selectCombatantBtn.focus_neighbor_top = selectCombatantBtn.get_path_to(control)
-	clickCombatantBtn.focus_neighbor_top = clickCombatantBtn.get_path_to(control)
 	control.focus_neighbor_bottom = control.get_path_to(selectCombatantBtn)
 	
 func set_buttons_bottom_neighbor(control: Control):
 	selectCombatantBtn.focus_neighbor_bottom = selectCombatantBtn.get_path_to(control)
-	clickCombatantBtn.focus_neighbor_bottom = clickCombatantBtn.get_path_to(control)
 	control.focus_neighbor_top = control.get_path_to(selectCombatantBtn)
 
 func set_focus_left_combatant_node_neighbor(combatantNode: CombatantNode):
 	selectCombatantBtn.focus_neighbor_left = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
-	clickCombatantBtn.focus_neighbor_left = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
 	combatantNode.selectCombatantBtn.focus_neighbor_right = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
-	combatantNode.clickCombatantBtn.focus_neighbor_right = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
 
 func set_focus_right_combatant_node_neighbor(combatantNode: CombatantNode):
 	selectCombatantBtn.focus_neighbor_right = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
-	clickCombatantBtn.focus_neighbor_right = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
 	combatantNode.selectCombatantBtn.focus_neighbor_left = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
-	combatantNode.clickCombatantBtn.focus_neighbor_left = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
-
+	
 func set_focus_bottom_combatant_node_neighbor(combatantNode: CombatantNode):
 	selectCombatantBtn.focus_neighbor_bottom = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
-	clickCombatantBtn.focus_neighbor_bottom = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
 	combatantNode.selectCombatantBtn.focus_neighbor_top = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
-	combatantNode.clickCombatantBtn.focus_neighbor_top = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
-
+	
 func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	selectCombatantBtn.focus_neighbor_top = selectCombatantBtn.get_path_to(combatantNode.selectCombatantBtn)
-	clickCombatantBtn.focus_neighbor_top = clickCombatantBtn.get_path_to(combatantNode.clickCombatantBtn)
 	combatantNode.selectCombatantBtn.focus_neighbor_bottom = combatantNode.selectCombatantBtn.get_path_to(selectCombatantBtn)
-	combatantNode.clickCombatantBtn.focus_neighbor_bottom = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
-
+	
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
 	update_select_btn_texture()
@@ -248,13 +235,13 @@ func tween_to(pos: Vector2, callback: Callable):
 		moveTime *= 0.5 #0.667 # half the time so the destination is reached for the latter half of the animation
 		
 	# move to target position
-	animateTween.tween_property(self, 'global_position', pos, moveTime)
+	animateTween.tween_property(spriteContainer, 'global_position', pos, moveTime)
 	# emit that the move was completed
 	animateTween.tween_callback(_on_animate_tween_target_move_finished)
 	# wait
-	animateTween.tween_property(self, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
+	animateTween.tween_property(spriteContainer, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
-	animateTween.tween_property(self, 'global_position', returnToPos, pos.length() / ANIMATE_MOVE_SPEED)
+	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, pos.length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_animate_tween_finished)
 	animateTween.finished.connect(callback)
 
