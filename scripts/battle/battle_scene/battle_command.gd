@@ -358,15 +358,14 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += String.num(abs(orbChange)) + ' Orb'
 			if abs(orbChange) != 1:
 				resultsText += 's'
-		resultsText += '. ' + user.disp_name() + ' ' # ". User "
 		
 		# "dealt/healed/afflicted "
 		if moveEffect.power > 0:
-			resultsText += 'dealt '
+			resultsText += '.\n' + user.disp_name() + ' dealt '
 		elif moveEffect.power < 0:
-			resultsText += 'healed '
+			resultsText += '.\n' + user.disp_name() + 'healed '
 		elif moveEffect.statusEffect != null:
-			resultsText += '' # If the damage was 0, we take care of the "afflicted" text below
+			resultsText += '.\n' + user.disp_name() # If the damage was 0, we take care of the "afflicted" text below
 	
 	if type == Type.USE_ITEM:
 		actionTargets = slot.item.battleTargets
@@ -447,7 +446,7 @@ func get_command_results(user: Combatant) -> String:
 		if type == Type.MOVE and \
 				((moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()) \
 				or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes())):
-			resultsText += ' ' + user.disp_name() + ' boosted '
+			resultsText += '\n' + user.disp_name() + ' boosted '
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
 				if user in targets and moveEffect.targetStatChanges != null:

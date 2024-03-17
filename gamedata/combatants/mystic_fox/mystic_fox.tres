@@ -1,9 +1,39 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=6 format=3 uid="uid://bwg8cky4fu6ri"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=18 format=3 uid="uid://bwg8cky4fu6ri"]
 
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_fiq87"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="1_pumtw"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_wrdnk"]
+[ext_resource type="Resource" uid="uid://cpksk45s0oxgy" path="res://gamedata/items/shard/mystic_fox_shard.tres" id="1_y3fsk"]
 [ext_resource type="Resource" uid="uid://di4hktyq0nima" path="res://gamedata/combatants/mystic_fox/mystic_fox_movepool.tres" id="2_g1m61"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_m3coq"]
+[ext_resource type="SpriteFrames" uid="uid://c8eqberu16r6u" path="res://graphics/animations/a_mystic_fox.tres" id="2_oclba"]
 [ext_resource type="Resource" uid="uid://datrt56lguyo0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_growth.tres" id="3_fq3j1"]
+[ext_resource type="Resource" uid="uid://cy1issl7bi7ba" path="res://gamedata/items/weapon/walking_staff.tres" id="3_ra2f2"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_le0ue"]
+
+[sub_resource type="Resource" id="Resource_1dj2f"]
+script = ExtResource("1_fiq87")
+experience = 46
+gold = 8
+item = ExtResource("1_y3fsk")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_wmu42"]
+script = ExtResource("1_pumtw")
+reward = SubResource("Resource_1dj2f")
+weight = 0.8
+
+[sub_resource type="Resource" id="Resource_owhcw"]
+script = ExtResource("1_fiq87")
+experience = 48
+gold = 8
+item = ExtResource("3_ra2f2")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_cs74w"]
+script = ExtResource("1_pumtw")
+reward = SubResource("Resource_owhcw")
+weight = 0.2
 
 [sub_resource type="Resource" id="Resource_5svlm"]
 script = ExtResource("2_m3coq")
@@ -22,20 +52,33 @@ statGrowth = ExtResource("3_fq3j1")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("2_g1m61")
 
+[sub_resource type="Resource" id="Resource_dsoqu"]
+script = ExtResource("6_le0ue")
+string = "mystic_fox"
+weight = 0.7
+
+[sub_resource type="Resource" id="Resource_opbyb"]
+script = ExtResource("6_le0ue")
+string = ""
+weight = 0.3
+
 [resource]
 script = ExtResource("1_wrdnk")
+spriteFrames = ExtResource("2_oclba")
 maxSize = Vector2(16, 16)
 spriteFacesRight = false
 navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_5svlm")
 currentHp = -1
+orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 1
+strategy = 0
 aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
-teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
-dropTable = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+teamTable = Array[ExtResource("6_le0ue")]([SubResource("Resource_dsoqu"), SubResource("Resource_opbyb")])
+dropTable = Array[ExtResource("1_pumtw")]([SubResource("Resource_wmu42"), SubResource("Resource_cs74w")])
 innateStatCategories = Array[int]([1, 4])
 downed = false

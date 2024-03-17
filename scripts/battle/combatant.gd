@@ -202,12 +202,12 @@ func level_up_nonplayer(newLv: int):
 		if len(innateStatCategories) > 0:
 			while stats.statPts > 0:
 				# randomly allocate stats to the innate stat categories
-				var randomCategory: Stats.Category = innateStatCategories[randi_range(0, len(innateStatCategories) - 1)]
+				var randomCategory: Stats.Category = innateStatCategories.pick_random()
 				if randomCategory == Stats.Category.PHYS_ATK:
 					stats.physAttack += 1
 				if randomCategory == Stats.Category.MAGIC_ATK:
 					stats.magicAttack += 1
-				if randomCategory == Stats.Category.RESISTANCE or Stats.Category.HP: # HP shouldn't be picked, but in case, just increase resistance
+				if randomCategory == Stats.Category.RESISTANCE or randomCategory == Stats.Category.HP: # HP shouldn't be picked, but in case, just increase resistance
 					stats.resistance += 1
 				if randomCategory == Stats.Category.AFFINITY:
 					stats.affinity += 1

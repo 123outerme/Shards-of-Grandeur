@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=21 format=3 uid="uid://dlvou480hinjf"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=23 format=3 uid="uid://dlvou480hinjf"]
 
+[ext_resource type="Resource" uid="uid://w5o71gikwlf0" path="res://gamedata/items/shard/shroom_gnome_shard.tres" id="1_3mhjx"]
 [ext_resource type="Resource" uid="uid://qtmhsh4dksho" path="res://gamedata/items/armor/standard_issue_boots.tres" id="1_5xmby"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_64cgh"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_p11lm"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_81ujt"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_tcsed"]
 [ext_resource type="Resource" uid="uid://bapoydifpmefj" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_growth.tres" id="3_pxbev"]
+[ext_resource type="Resource" uid="uid://cy1issl7bi7ba" path="res://gamedata/items/weapon/walking_staff.tres" id="4_kms4g"]
 [ext_resource type="SpriteFrames" uid="uid://c7jebk54e41b6" path="res://graphics/animations/a_shroom_gnome.tres" id="6_0woiy"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_03hw2"]
 
@@ -15,6 +17,8 @@
 script = ExtResource("1_p11lm")
 experience = 55
 gold = 6
+item = ExtResource("1_3mhjx")
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_waao5"]
 script = ExtResource("2_81ujt")
@@ -25,6 +29,8 @@ weight = 0.8
 script = ExtResource("1_p11lm")
 experience = 55
 gold = 6
+item = ExtResource("4_kms4g")
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_rr1ku"]
 script = ExtResource("2_81ujt")
@@ -81,9 +87,11 @@ navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_fc7ct")
 currentHp = -1
+orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 4
+strategy = 0
 aiOverrideWeight = 0.35
 equipmentTable = Array[ExtResource("2_tcsed")]([SubResource("Resource_0ymsn"), SubResource("Resource_fpaon")])
 teamTable = Array[ExtResource("9_03hw2")]([SubResource("Resource_r68dx"), SubResource("Resource_khe4d"), SubResource("Resource_46wqe")])

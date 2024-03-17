@@ -324,6 +324,10 @@ func get_command(combatantNodes: Array[CombatantNode]):
 		
 		var chosenEffect = chosenMove.move.get_effect_of_type(chosenMove.effectType)
 		var targetableCombatants: Array[CombatantNode] = get_targetable_combatant_nodes(combatantNodes, chosenEffect.targets)
+		if len(targetableCombatants) == 0:
+			printerr('BATTLE ERROR NO TARGETABLE COMBATANTS')
+			combatant.command = BattleCommand.new(BattleCommand.Type.NONE)
+			return
 		var targetPositions: Array[String] = []
 		if BattleCommand.is_command_multi_target(chosenEffect.targets):
 			for targetableCombatant in targetableCombatants:
@@ -468,6 +472,11 @@ func ai_filter_move_candidates(a: Move) -> bool:
 	if a == null:
 		return false
 	var moveEffectType: Move.MoveEffectType = a.effects_with_status()
+	var hasAllies: bool = false
+	for combatantNode in tmpAllCombatantNodes:
+		if combatantNode.role == role and combatantNode.is_alive() and combatantNode != self:
+			hasAllies = true
+			break
 	if moveEffectType != Move.MoveEffectType.NONE: # if move has a status
 		var moveEffects: Array[MoveEffect] = []
 		if moveEffectType == Move.MoveEffectType.BOTH:
@@ -477,11 +486,20 @@ func ai_filter_move_candidates(a: Move) -> bool:
 		var statusCanLand: bool = false
 		for effect: MoveEffect in moveEffects:
 			var enemyTargeting: bool = BattleCommand.is_command_enemy_targeting(effect.targets)
+			if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
+					effect.orbChange * -1 > combatant.orbs:
+				# if this move is other-ally only and we don't have a valid target: don't consider it
+				# or if the combatant can't pay for this version, don't consider it
+				continue 
 			if effect.power == 0 or (effect.power > 0 and not enemyTargeting) or (effect.power < 0 and enemyTargeting): # if move effect is purely status or deals damage to an ally to apply status/heals an enemy to apply status:
 				for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, effect.targets):
 					if combatantNode.combatant.statusEffect == null:
 						statusCanLand = true # if the combatant can be statused, it can be affected
 						break
+			else:
+				# if the move has a secondary status-effect but primarily does heal/damage, consider it regardless
+				statusCanLand = true
+				break
 		return statusCanLand
 	return true
 
