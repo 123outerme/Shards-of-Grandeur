@@ -46,6 +46,7 @@ func play_turn():
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
 	if combatant != null: # apply before-damage-calc status
+		battleController.state.statusEffDamagedCombatants = []
 		combatant.command.get_targets_from_combatant_nodes(allCombatantNodes) # make sure to get all commands before applying statuses
 		if combatant.statusEffect != null:
 			battleController.state.statusEffDamagedCombatants.append_array(

@@ -365,7 +365,7 @@ func get_command_results(user: Combatant) -> String:
 		elif moveEffect.power < 0:
 			resultsText += '.\n' + user.disp_name() + 'healed '
 		elif moveEffect.statusEffect != null:
-			resultsText += '.\n' + user.disp_name() # If the damage was 0, we take care of the "afflicted" text below
+			resultsText += '.\n' + user.disp_name() + ' '# If the damage was 0, we take care of the "afflicted" text below
 	
 	if type == Type.USE_ITEM:
 		actionTargets = slot.item.battleTargets

@@ -36,6 +36,7 @@ const ANIMATE_MOVE_SPEED = 60
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
+var fadeOutTween: Tween = null
 var returnToPos: Vector2 = Vector2()
 var playHitQueued: ParticlePreset = null
 var playParticlesQueued: ParticlePreset = null
@@ -109,7 +110,11 @@ func load_combatant_node():
 			
 func update_hp_tag():
 	if not is_alive():
-		visible = false
+		if visible:
+			fadeOutTween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+			fadeOutTween.tween_property(self, 'modulate', Color(0, 0, 0, 0), 0.75)
+			fadeOutTween.finished.connect(_fade_out_finished)
+			# TODO: play death sfx here...
 		return
 	
 	hpTag.visible = true
@@ -334,7 +339,7 @@ func get_command(combatantNodes: Array[CombatantNode]):
 			targetPositions = [ai_pick_single_target(chosenEffect, targetableCombatants)]
 		var orbChange: int = combatant.get_orbs_change_choice(chosenEffect)
 		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, chosenMove.move, chosenMove.effectType, orbChange, null, targetPositions)
-	else:
+	elif not is_alive():
 		combatant.command = null
 
 func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
@@ -552,6 +557,11 @@ func is_alive() -> bool:
 	if combatant == null:
 		return false
 	return not combatant.downed
+
+func _fade_out_finished():
+	fadeOutTween = null
+	visible = false
+	modulate = Color(1,1,1,1)
 
 func _on_select_combatant_btn_toggled(button_pressed):
 	toggled.emit(button_pressed, self)
