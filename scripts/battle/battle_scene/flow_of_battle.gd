@@ -33,9 +33,11 @@ func hide_fob_tabs():
 	fobButton.button_pressed = false
 
 func _on_toggle_fob_button_toggled(button_pressed: bool):
-	if button_pressed:
+	if button_pressed and fobButton.focus_neighbor_bottom.get_concatenated_names() != '':
 		prevMenuControlFobBtnNeighbor = fobButton.focus_neighbor_bottom
 		fobButton.focus_neighbor_bottom = ''
+		fobButton.focus_neighbor_left = ''
+		fobButton.focus_neighbor_right = ''
 	
 	fobTabs.visible = button_pressed
 	if button_pressed:
@@ -52,6 +54,12 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 			node.queue_free()
 		set_fob_button_enabled(false)
 		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor
+		if battleController.battleUI.results.visible:
+			fobButton.focus_neighbor_left = fobButton.get_path_to(battleController.battleUI.results.textBoxText)
+			fobButton.focus_neighbor_right = fobButton.get_path_to(battleController.battleUI.results.okBtn)
+		else:
+			fobButton.focus_neighbor_left = ''
+			fobButton.focus_neighbor_right = ''
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
 	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -352)

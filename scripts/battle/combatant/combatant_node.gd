@@ -34,7 +34,6 @@ signal details_clicked(combatantNode: CombatantNode)
 
 const ANIMATE_MOVE_SPEED = 60
 var tmpAllCombatantNodes: Array[CombatantNode] = []
-var selectBtnNotSelectedSprite: Texture2D = null
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
 var returnToPos: Vector2 = Vector2()
@@ -60,7 +59,6 @@ var playParticlesQueued: ParticlePreset = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	selectBtnNotSelectedSprite = selectCombatantBtn.texture_normal
 	returnToPos = global_position
 	if battleController != null:
 		battleController.combatant_finished_moving.connect(_combatant_finished_moving)
@@ -147,14 +145,17 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
+	update_select_btn_texture()
+	
+	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
+	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
+
+func update_select_btn_texture():
 	if selectCombatantBtn.disabled:
 		if is_selected():
 			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_pressed
 		else:
 			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_normal
-	
-	selectCombatantBtn.size = combatant.maxSize + Vector2(8, 8) # set size of selecting button to sprite size + 8px
-	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -204,11 +205,8 @@ func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	combatantNode.clickCombatantBtn.focus_neighbor_bottom = combatantNode.clickCombatantBtn.get_path_to(clickCombatantBtn)
 
 func set_selected(selected: bool = true):
-	if selected and selectCombatantBtn.disabled:
-		selectCombatantBtn.texture_normal = selectCombatantBtn.texture_pressed
-	elif selectCombatantBtn.texture_normal == selectCombatantBtn.texture_pressed:
-		selectCombatantBtn.texture_normal = selectBtnNotSelectedSprite
 	selectCombatantBtn.button_pressed = selected
+	update_select_btn_texture()
 	
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
@@ -355,12 +353,20 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 			if combatantNode.role != role and combatantNode.is_alive():
 				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
 				for move in moveCandidates:
-					var effectType: Move.MoveEffectType = move.effects_with_status()
-					if not opponentHasStatus and effectType != Move.MoveEffectType.NONE and BattleCommand.is_command_enemy_targeting(move.targets):
-						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
-							pickedMove.move = move
-							pickedMove.effectType = effectType
-							break
+					var effectTypeWithStatus: Move.MoveEffectType = move.effects_with_status()
+					var effectTypes: Array[Move.MoveEffectType] = [] 
+					if effectTypeWithStatus == Move.MoveEffectType.BOTH:
+						effectTypes.append(Move.MoveEffectType.CHARGE)
+						effectTypeWithStatus = Move.MoveEffectType.SURGE # append both
+					if effectTypeWithStatus != Move.MoveEffectType.NONE:
+						effectTypes.append(effectTypeWithStatus)
+					for effectType in effectTypes:
+						var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
+						if not opponentHasStatus and effectType != Move.MoveEffectType.NONE and BattleCommand.is_command_enemy_targeting(moveEffect.targets):
+							if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(moveEffect):
+								pickedMove.move = move
+								pickedMove.effectType = effectType
+								break
 			if pickedMove.move != null:
 				break
 		# if no statusing needs to be done, pick a random move that debuffs

@@ -60,6 +60,8 @@ func load_targets():
 	else:
 		focusedCombatant.focus_select_btn() # focus the first combatant to be focusable
 	
+	battleUI.battleController.update_combatant_focus_neighbors() # reset combatant neighbors then update them below
+	
 	var nodes: Array[CombatantNode] = battleUI.battleController.get_bottom_most_targetable_combatant_nodes()
 	for node in nodes:
 		node.set_buttons_bottom_neighbor(backButton)

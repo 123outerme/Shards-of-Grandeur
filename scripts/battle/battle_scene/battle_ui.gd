@@ -255,7 +255,7 @@ func _on_quests_panel_node_back_pressed():
 	restore_focus()
 
 func _on_focus_changed(control: Control):
-	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton:
+	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton and not battlePanels.flowOfBattle.fobButton.button_pressed:
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
 		if results.visible:
 			battlePanels.flowOfBattle.fobButton.focus_neighbor_left = battlePanels.flowOfBattle.fobButton.get_path_to(results.textBoxText)
