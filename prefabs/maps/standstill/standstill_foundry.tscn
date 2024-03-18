@@ -22,7 +22,7 @@ script = ExtResource("7_uoa8v")
 inventorySlots = Array[ExtResource("6_fjsew")]([SubResource("Resource_sjovm")])
 isPlayerInventory = false
 
-[sub_resource type="Resource" id="Resource_w36hx"]
+[sub_resource type="Resource" id="Resource_t67rv"]
 script = ExtResource("7_1u1ei")
 saveName = "npc"
 position = Vector2(26, -76)
@@ -67,7 +67,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(26, -76)
 displayName = "Alessia"
 saveName = "alessia_foundry"
-data = SubResource("Resource_w36hx")
+data = SubResource("Resource_t67rv")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_73wvo"), ExtResource("5_72q0a")])
 hasShop = true
 inventory = SubResource("Resource_tnptw")
@@ -85,6 +85,9 @@ position = Vector2(0, 4)
 
 [node name="TalkAreaShape" parent="TileMap/Alessia/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TileMap/Alessia" index="4"]
+visible = false
 
 [node name="MoveTriggerShape" parent="TileMap/Alessia/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)

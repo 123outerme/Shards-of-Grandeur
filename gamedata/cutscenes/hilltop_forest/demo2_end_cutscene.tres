@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=13 format=3 uid="uid://dn1pjo2jaorcu"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kacfe"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_odyby"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_poy12"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_qnht5"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_xhfc8"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_e43af"]
+
+[sub_resource type="Resource" id="Resource_frdts"]
+script = ExtResource("1_qnht5")
+speaker = "@"
+texts = Array[String](["It seems like the road up ahead isn't finished,"])
+
+[sub_resource type="Resource" id="Resource_8mc15"]
+script = ExtResource("1_qnht5")
+speaker = "Stephen"
+texts = Array[String](["Thank you for playing the second Uvutu DX Demo!"])
+
+[sub_resource type="Resource" id="Resource_1fb0m"]
+script = ExtResource("1_kacfe")
+frameLength = 0.1
+annotation = "Tell player demo is over"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_poy12")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_qnht5")]([SubResource("Resource_frdts"), SubResource("Resource_8mc15")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_7pp7v"]
+script = ExtResource("3_xhfc8")
+value = Vector2(1080, 1052)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_y63ge"]
+script = ExtResource("1_kacfe")
+frameLength = 1.0
+annotation = "Move player back"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_7pp7v")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_qnht5")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_py2lj"]
+script = ExtResource("1_kacfe")
+frameLength = 0.1
+annotation = "Stop player walking and hold text box until accepted"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_e43af")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_qnht5")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[resource]
+script = ExtResource("1_odyby")
+cutsceneFrames = Array[ExtResource("1_kacfe")]([SubResource("Resource_1fb0m"), SubResource("Resource_y63ge"), SubResource("Resource_py2lj")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
