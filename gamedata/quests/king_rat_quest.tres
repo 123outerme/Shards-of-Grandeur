@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://ckfyu02qpcubt"]
+[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://ckfyu02qpcubt"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_a6ajt"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_1hnlw"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_fs5fl"]
+[ext_resource type="Resource" uid="uid://c8tcdexcmue3k" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_shards_inprogress.tres" id="2_mpki7"]
+[ext_resource type="Resource" uid="uid://cish3x6medlvn" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_shards_turnin.tres" id="5_vx8jr"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_o1mpp"]
 
 [sub_resource type="Resource" id="Resource_t61dx"]
 script = ExtResource("2_1hnlw")
@@ -22,8 +25,8 @@ turnInNames = Array[String](["king_rat"])
 displayObjName = "Rat Shard"
 displayTurnInName = "King Rat"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_vx8jr")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_mpki7")])
 
 [sub_resource type="Resource" id="Resource_t27f8"]
 script = ExtResource("2_1hnlw")
@@ -67,10 +70,25 @@ customStatusStr = ""
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_py5ce"]
+script = ExtResource("6_o1mpp")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["king_rat_forest#shards_no"])
+invalidAfterSpecialBattles = Array[String]([])
+
 [resource]
 script = ExtResource("1_a6ajt")
 questName = "Voice of the Rats"
 description = "A rather strange character, this gentleman is. He claims he can speak to Giant Rats, and the Rats that have been wandering around Grandstone have told him of a foreboding message they bring."
 steps = Array[ExtResource("2_fs5fl")]([SubResource("Resource_ky3m0"), SubResource("Resource_2pxg1"), SubResource("Resource_82egl")])
+storyRequirements = SubResource("Resource_py5ce")
 isMainQuest = false
 advanceActActerComplete = false

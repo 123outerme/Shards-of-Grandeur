@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://d01uh7t7qa558"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jfce2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_o1v61"]
+[ext_resource type="Resource" uid="uid://dcbpdlrd4i5cj" path="res://gamedata/static_encounters/king_rat_encounter.tres" id="3_l1mrd"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_ismcx"]
+
+[sub_resource type="Resource" id="Resource_56fvy"]
+script = ExtResource("1_o1v61")
+lines = Array[String](["Once I am done crushing you, I'll flatten that repugnant gravel patch you call a city!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_4h1nn"]
+script = ExtResource("4_ismcx")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["king_rat_forest#shards_no"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_jfce2")
+entryId = ""
+items = Array[ExtResource("1_o1v61")]([SubResource("Resource_56fvy")])
+storyRequirements = SubResource("Resource_4h1nn")
+closesDialogue = false
+fullHealsPlayer = false
+startsStaticEncounter = ExtResource("3_l1mrd")

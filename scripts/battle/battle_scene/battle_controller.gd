@@ -110,9 +110,9 @@ func load_into_battle():
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
-			var rngBeginnerNoEnemy: float = randf() - 0.75 + \
-					(0.05 * (MIN_LV_TWO_ENEMIES - max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES))) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
-			# if level < max, give a 25% chance to have a second combatant + 5% per level up to 50%, before team table calc
+			var rngBeginnerNoEnemy: float = randf() - 0.5 + \
+					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
+			# if 4 < level < 8, give a 50% chance to have a second combatant + 10% per level up to 90% at lv 7, before team table calc
 			var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 			if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
@@ -123,9 +123,9 @@ func load_into_battle():
 			else:
 				enemyCombatant2.combatant = null
 			
-			rngBeginnerNoEnemy = randf() - 0.6 + \
-					(0.1 * (MIN_LV_THREE_ENEMIES - max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES))) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
-			# if level < 15, give a 0% chance to have a third combatant + 10% per level after 1 up to 50%, before team table calc
+			rngBeginnerNoEnemy = randf() - 0.5 + \
+					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES) - MIN_LV_THREE_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
+			# if level < 10, give a 0% chance to have a third combatant + 10% per level after 1 up to 100% at lv 20, before team table calc
 			var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
 			if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)

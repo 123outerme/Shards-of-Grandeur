@@ -1,13 +1,31 @@
-[gd_scene load_steps=14 format=3 uid="uid://746qgtr6tybv"]
+[gd_scene load_steps=19 format=3 uid="uid://746qgtr6tybv"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_x82e2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_gyw6c"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_8ya2r"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_ip1fh"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_dewor"]
+[ext_resource type="Resource" uid="uid://ds07os34cyne0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_1.tres" id="5_6u2mh"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="5_7is2y"]
+[ext_resource type="Resource" uid="uid://d01uh7t7qa558" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_fight.tres" id="7_pc4yy"]
+[ext_resource type="Resource" uid="uid://dyxrdxg3x0pd0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_defeated.tres" id="7_vq8kf"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_6226m"]
 
-[sub_resource type="Resource" id="Resource_qqty6"]
+[sub_resource type="Resource" id="Resource_pv6tb"]
+script = ExtResource("8_6226m")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["king_rat_forest#failed_defeated"])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_xmqum"]
 script = ExtResource("4_dewor")
 saveName = "npc"
 position = Vector2(-6, -148)
@@ -28,7 +46,7 @@ hasShop = false
 size = Vector2(29, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j2r4"]
-size = Vector2(37, 30)
+size = Vector2(21, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ct1r1"]
 size = Vector2(36, 8)
@@ -88,19 +106,26 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-6, -148)
 displayName = "King Rat"
 saveName = "king_rat_forest"
-data = SubResource("Resource_qqty6")
+facesRight = false
+spawnRequirements = SubResource("Resource_pv6tb")
+data = SubResource("Resource_xmqum")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_6u2mh"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf")])
+facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/KingRat" index="0"]
 sprite_frames = ExtResource("5_7is2y")
 animation = &"stand"
 autoplay = "stand"
 
+[node name="TalkAlertSprite" parent="TileMap/KingRat/NPCSprite" index="0"]
+position = Vector2(6, -9)
+
 [node name="ColliderShape" parent="TileMap/KingRat" index="1"]
 position = Vector2(0.5, 10.5)
 shape = SubResource("RectangleShape2D_u3ccg")
 
 [node name="TalkAreaShape" parent="TileMap/KingRat/TalkArea" index="0"]
-position = Vector2(0.5, 9)
+position = Vector2(-7.5, 9)
 shape = SubResource("RectangleShape2D_0j2r4")
 debug_color = Color(0, 0.6, 0.701961, 0)
 

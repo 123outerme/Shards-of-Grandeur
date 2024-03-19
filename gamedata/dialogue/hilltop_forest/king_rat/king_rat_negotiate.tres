@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cmsr2rf3xwfij"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cygrv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qd3u7"]
+
+[sub_resource type="Resource" id="Resource_so8ev"]
+script = ExtResource("1_cygrv")
+lines = Array[String](["Thank you. Now, let us commence. I will bring my grievances to the table.", "Simply, your Grandstone has been taking Shards from the surrounding area and experimenting on them. We wish to take back our brethren turned into Shards.", "What say you, Shard Thief? :TODO:"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_qd3u7")
+entryId = ""
+items = Array[ExtResource("1_cygrv")]([SubResource("Resource_so8ev")])
+closesDialogue = false
+fullHealsPlayer = false

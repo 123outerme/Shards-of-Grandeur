@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dyxrdxg3x0pd0"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_2t7ji"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5jir7"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_hga00"]
+
+[sub_resource type="Resource" id="Resource_yk80n"]
+script = ExtResource("1_5jir7")
+lines = Array[String](["If only you would have never come here... I would have ruined your terrible city.", "I will return. Count on it! One does not cross the King Rat and live long. Consider every Giant Rat you come across my personal emissary of pain!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_bgp7s"]
+script = ExtResource("2_hga00")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["king_rat_forest#shards_no"])
+prereqSpecialBattles = Array[String](["king_rat_encounter"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_2t7ji")
+entryId = "failed_defeated"
+items = Array[ExtResource("1_5jir7")]([SubResource("Resource_yk80n")])
+storyRequirements = SubResource("Resource_bgp7s")
+closesDialogue = false
+fullHealsPlayer = false
