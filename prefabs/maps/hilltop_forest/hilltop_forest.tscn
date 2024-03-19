@@ -129,7 +129,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_fh25i"]
+[sub_resource type="Resource" id="Resource_lrsm3"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 position = Vector2(-440, -140)
@@ -309,7 +309,6 @@ shape = SubResource("RectangleShape2D_filu0")
 position = Vector2(884, 120)
 mapName = "hilltop_east"
 mapPos = Vector2(20, 0)
-warpEnabled = false
 useVerticalOffset = true
 
 [node name="WarpArea" parent="HilltopForestEastWarpZone" index="0"]
@@ -342,7 +341,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_fh25i")
+data = SubResource("Resource_lrsm3")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

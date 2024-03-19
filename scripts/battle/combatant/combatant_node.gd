@@ -241,7 +241,7 @@ func tween_to(pos: Vector2, callback: Callable):
 	# wait
 	animateTween.tween_property(spriteContainer, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
-	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, pos.length() / ANIMATE_MOVE_SPEED)
+	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - pos).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_animate_tween_finished)
 	animateTween.finished.connect(callback)
 

@@ -151,7 +151,7 @@ func update_turn_text() -> bool:
 							else:
 								# the combatant is an enemy
 								moveToPos = combatantNode.onAttackMarker.global_position
-					else:
+					elif combatantNode.combatant in defenders:
 						# if this combatant is an ally
 						if combatantNode.role == userNode.role:
 							multiIsAllies = true

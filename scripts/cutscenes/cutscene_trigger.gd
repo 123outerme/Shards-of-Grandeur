@@ -15,7 +15,7 @@ func cutscene_finished(cutscene: Cutscene):
 	# re-check validity of all cutscenes
 	var allInvalid: bool = true
 	for scene in cutscenes:
-		if scene.storyRequirements != null and scene.storyRequirements.is_valid():
+		if scene.storyRequirements == null or scene.storyRequirements.is_valid():
 			allInvalid = false
 	disabled = allInvalid
 

@@ -114,7 +114,7 @@ func reset_targets(confirming: bool = false):
 		if cNode.is_alive():
 			if cNode.toggled.is_connected(_on_combatant_selected):
 				cNode.toggled.disconnect(_on_combatant_selected)
-			if not confirming or not cNode.is_selected() or referringMenu == BattleState.Menu.CHARGE_MOVES:
+			if not confirming or not cNode.is_selected() or referringMenu != BattleState.Menu.SURGE_MOVES:
 				# hide all select buttons after this if picking a charge move or if it wasn't selected
 				cNode.set_selected(false)
 				cNode.update_select_btn(false)
