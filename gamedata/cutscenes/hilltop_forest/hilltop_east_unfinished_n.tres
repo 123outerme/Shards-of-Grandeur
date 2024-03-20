@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://dpp2ku1ps3jkf"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_6pdkg"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_a0j2h"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_mnyvu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_d63uv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_k1k87"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="3_om56q"]
+
+[sub_resource type="Resource" id="Resource_ov6fi"]
+script = ExtResource("2_k1k87")
+speaker = "@"
+texts = Array[String](["It seems like the area beyond here isn't finished yet."])
+
+[sub_resource type="Resource" id="Resource_oewpq"]
+script = ExtResource("1_6pdkg")
+frameLength = 0.1
+annotation = "Show \"unfinished\" dialogue and start walking"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_a0j2h")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_k1k87")]([SubResource("Resource_ov6fi")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_id406"]
+script = ExtResource("2_d63uv")
+value = Vector2(1506, -152)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_q3ee0"]
+script = ExtResource("1_6pdkg")
+frameLength = 1.0
+annotation = "Walk player away from bridge"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_id406")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_k1k87")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[sub_resource type="Resource" id="Resource_1t2mm"]
+script = ExtResource("1_6pdkg")
+frameLength = 0.1
+annotation = "Pause until player reads text box"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_om56q")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("2_k1k87")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+
+[resource]
+script = ExtResource("1_mnyvu")
+cutsceneFrames = Array[ExtResource("1_6pdkg")]([SubResource("Resource_oewpq"), SubResource("Resource_q3ee0"), SubResource("Resource_1t2mm")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
