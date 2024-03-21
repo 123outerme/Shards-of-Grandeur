@@ -110,5 +110,5 @@ func _on_framerate_line_edit_text_submitted(new_text):
 
 func _on_deadzone_slider_focus_exited():
 	SettingsHandler.gameSettings.deadzone = deadzoneSlider.value / 100.0
-	print(SettingsHandler.gameSettings.deadzone)
+	#print(SettingsHandler.gameSettings.deadzone)
 	SettingsHandler.gameSettings.apply_deadzone()

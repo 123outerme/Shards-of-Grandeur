@@ -136,12 +136,12 @@ func update_hp_tag():
 	else:
 		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
 	
-	if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
-		orbDisplay.visible = true
-		orbDisplay.currentOrbs = combatant.orbs
-		orbDisplay.update_orb_display()
-	else:
-		orbDisplay.visible = false
+	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
+		#orbDisplay.visible = true
+	orbDisplay.currentOrbs = combatant.orbs
+	orbDisplay.update_orb_display()
+	#else:
+		#orbDisplay.visible = false
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
@@ -565,6 +565,7 @@ func _on_animated_sprite_animation_finished():
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
 		battleController.combatant_finished_moving.emit()
+	update_hp_tag()
 
 func _combatant_finished_moving():
 	if playParticlesQueued != null:
