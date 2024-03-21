@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1u1r7encrpgs"]
+
+[ext_resource type="Script" path="res://prefabs/overworld/camera_hold_zone.gd" id="1_5u007"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctaob"]
+
+[node name="CameraHoldZone" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_5u007")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ctaob")
+
+[node name="PlayerWarpCamPos" type="Marker2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

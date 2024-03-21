@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=42 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -23,8 +23,9 @@
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="22_mlmt5"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
+[ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="24_mgy6p"]
 
-[sub_resource type="Resource" id="Resource_tjg48"]
+[sub_resource type="Resource" id="Resource_f68pe"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(1, 16)
@@ -44,7 +45,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_d5qtp"]
+[sub_resource type="Resource" id="Resource_ws8s4"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(-98, 4)
@@ -129,7 +130,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
-[sub_resource type="Resource" id="Resource_8w3yy"]
+[sub_resource type="Resource" id="Resource_bfuot"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(450, 0)
@@ -145,6 +146,9 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
+size = Vector2(48, 59)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_s6d62")
@@ -167,14 +171,13 @@ layer_3/name = "Sky"
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Invisible"
-layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, -9, 65539, 65537, 196599, 65539, 65537, -65545, 65539, 65537, 65576, 65539, 65537, 40, 65539, 65537, -65496, 65539, 65537, -131032, 65539, 65537, 131112, 65539, 65537)
 
 [node name="DrHudson" parent="TileMap" instance=ExtResource("2_kq4m3")]
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_tjg48")
+data = SubResource("Resource_f68pe")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -200,7 +203,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_d5qtp")
+data = SubResource("Resource_ws8s4")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -283,10 +286,21 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(450, 0)
-data = SubResource("Resource_8w3yy")
+data = SubResource("Resource_bfuot")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.281959
+
+[node name="HoldCameraZone" parent="." instance=ExtResource("24_mgy6p")]
+position = Vector2(-127, 9)
+holdY = false
+
+[node name="CollisionShape2D" parent="HoldCameraZone" index="0"]
+position = Vector2(8, 0.5)
+shape = SubResource("RectangleShape2D_m5j4p")
+
+[node name="PlayerWarpCamPos" parent="HoldCameraZone" index="1"]
+visible = false
 
 [editable path="TileMap/DrHudson"]
 [editable path="TileMap/HorseCart"]
@@ -296,3 +310,4 @@ frame_progress = 0.281959
 [editable path="WarpZone"]
 [editable path="ToolCutsceneVisualizer"]
 [editable path="ToolCutsceneVisualizer/MockPlayer"]
+[editable path="HoldCameraZone"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bnvwcifufgons"]
+[gd_scene load_steps=45 format=3 uid="uid://bnvwcifufgons"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_1a6lo"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_316ec"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="6_v6gsi"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_l2pl1"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="8_lceu0"]
+[ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="10_7hqow"]
 [ext_resource type="Resource" uid="uid://dpp2ku1ps3jkf" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_unfinished_n.tres" id="11_teqmx"]
 [ext_resource type="Resource" uid="uid://b8sf1yyq7wog3" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_unfinished_s.tres" id="12_1so7l"]
 
@@ -103,6 +104,15 @@ size = Vector2(39, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_geesu"]
 size = Vector2(100, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnexy"]
+size = Vector2(132, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpj27"]
+size = Vector2(54, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp75v"]
+size = Vector2(114, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wq0ev"]
 size = Vector2(82, 63)
@@ -310,6 +320,66 @@ warpEnabled = false
 [node name="WarpArea" parent="MushroomGrottoWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_geesu")
 
+[node name="CameraHoldZone" parent="." instance=ExtResource("10_7hqow")]
+position = Vector2(616, 1128)
+holdX = false
+usePlayerWarpCamMarker = true
+
+[node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_qnexy")
+
+[node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
+position = Vector2(0, -22)
+
+[node name="CameraHoldZone3" parent="." instance=ExtResource("10_7hqow")]
+position = Vector2(1088, 1066)
+holdX = false
+usePlayerWarpCamMarker = true
+
+[node name="CollisionShape2D" parent="CameraHoldZone3" index="0"]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_qnexy")
+
+[node name="PlayerWarpCamPos" parent="CameraHoldZone3" index="1"]
+position = Vector2(-19, -22)
+
+[node name="CameraHoldZone2" parent="." instance=ExtResource("10_7hqow")]
+position = Vector2(976, -390)
+holdX = false
+usePlayerWarpCamMarker = true
+
+[node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_qnexy")
+
+[node name="PlayerWarpCamPos" parent="CameraHoldZone2" index="1"]
+position = Vector2(0, 67)
+
+[node name="CameraHoldZone4" parent="." instance=ExtResource("10_7hqow")]
+position = Vector2(5, 0)
+holdY = false
+usePlayerWarpCamMarker = true
+
+[node name="CollisionShape2D" parent="CameraHoldZone4" index="0"]
+position = Vector2(17, 8)
+shape = SubResource("RectangleShape2D_qpj27")
+
+[node name="PlayerWarpCamPos" parent="CameraHoldZone4" index="1"]
+position = Vector2(44, 8)
+
+[node name="CameraHoldZone5" parent="." instance=ExtResource("10_7hqow")]
+position = Vector2(1523, -164)
+holdY = false
+usePlayerWarpCamMarker = true
+
+[node name="CollisionShape2D" parent="CameraHoldZone5" index="0"]
+position = Vector2(30, -19.5)
+shape = SubResource("RectangleShape2D_sp75v")
+
+[node name="PlayerWarpCamPos" parent="CameraHoldZone5" index="1"]
+position = Vector2(-27, -9)
+
 [node name="RiverCityWarpZone" parent="." instance=ExtResource("3_xsjvu")]
 position = Vector2(1089, 1125)
 mapName = "river_city"
@@ -367,6 +437,11 @@ navigation_layers = 4
 [editable path="HilltopForestWestWarpZone"]
 [editable path="KingRatLairWarpZone"]
 [editable path="MushroomGrottoWarpZone"]
+[editable path="CameraHoldZone"]
+[editable path="CameraHoldZone3"]
+[editable path="CameraHoldZone2"]
+[editable path="CameraHoldZone4"]
+[editable path="CameraHoldZone5"]
 [editable path="RiverCityWarpZone"]
 [editable path="UnfinishedNCutsceneTrigger"]
 [editable path="UnfinishedSCutsceneTrigger"]

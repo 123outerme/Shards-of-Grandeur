@@ -63,9 +63,9 @@ func is_in_dialogue() -> bool:
 	return PlayerFinder.player.is_in_dialogue()
 
 func handle_camera(frame: CutsceneFrame):
-	if lastFrame.endHoldCamera and not PlayerFinder.player.holdingCamera:
+	if lastFrame.endHoldCamera and not (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
 		PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
-	if not lastFrame.endHoldCamera and PlayerFinder.player.holdingCamera:
+	if not lastFrame.endHoldCamera and (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
 		PlayerFinder.player.snap_camera_back_to_player()
 	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
 		PlayerFinder.player.cam.stop_cam_shake()
@@ -238,7 +238,7 @@ func complete_cutscene():
 		PlayerFinder.player.disableMovement = true # still disable movement until text box closes
 	else:
 		PlayerFinder.player.cam.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
-	if cutscene.unlockCameraHoldAfter and PlayerFinder.player.holdingCamera:
+	if cutscene.unlockCameraHoldAfter and (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
 		PlayerFinder.player.snap_camera_back_to_player()
 	playing = false
 	completeAfterFadeIn = false

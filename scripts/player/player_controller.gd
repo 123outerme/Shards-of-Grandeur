@@ -11,7 +11,8 @@ var inCutscene: bool = false
 var cutsceneTexts: Array[CutsceneDialogue] = []
 var cutsceneTextIndex: int = 0
 var cutsceneLineIndex: int = 0
-var holdingCamera: bool = false
+var holdCameraX: bool = false
+var holdCameraY: bool = false
 var holdingCameraAt: Vector2
 var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
@@ -121,9 +122,12 @@ func _physics_process(_delta):
 		cam.position += vel * _delta
 		
 func _process(_delta):
-	if holdingCamera:
-		cam.position = holdingCameraAt - position
-		uiRoot.position = holdingCameraAt - position
+	if holdCameraX:
+		cam.position.x = holdingCameraAt.x - position.x
+		uiRoot.position.x = holdingCameraAt.x - position.x
+	if holdCameraY:
+		cam.position.y = holdingCameraAt.y - position.y
+		uiRoot.position.y = holdingCameraAt.y - position.y
 
 func eight_dir_movement(input: Vector2) -> Vector2:
 	var output: Vector2 = Vector2.ZERO
@@ -306,14 +310,16 @@ func pause_movement():
 func unpause_movement():
 	disableMovement = textBox.visible
 	
-func hold_camera_at(pos: Vector2):
+func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
 	holdingCameraAt = pos
-	holdingCamera = true
+	holdCameraX = holdX
+	holdCameraY = holdY
 
 func snap_camera_back_to_player(duration: float = 0.5):
-	if not holdingCamera:
+	if not holdCameraX and not holdCameraY:
 		return # camera is already headed back to player
-	holdingCamera = false
+	holdCameraX = false
+	holdCameraY = false
 	if duration > 0:
 		create_tween().tween_property(cam, 'position', Vector2(0, 0), duration)
 		create_tween().tween_property(uiRoot, 'position', Vector2(0, 0), duration)

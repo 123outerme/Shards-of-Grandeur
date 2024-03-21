@@ -41,7 +41,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	PlayerResources.playerInfo.map = newMapName
 	SceneLoader.cutscenePlayer.isFadedOut = false
 	SceneLoader.cutscenePlayer.end_cutscene(true)
-	if player.holdingCamera:
+	if player.holdCameraX or player.holdCameraY:
 		player.snap_camera_back_to_player(0)
 	for spawner in get_tree().get_nodes_in_group('EnemySpawner'):
 		spawner.delete_enemy()

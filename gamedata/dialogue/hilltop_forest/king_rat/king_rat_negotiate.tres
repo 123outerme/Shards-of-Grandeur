@@ -1,17 +1,62 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cmsr2rf3xwfij"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cmsr2rf3xwfij"]
 
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_5c27u"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cygrv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qd3u7"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_mshgi"]
+
+[sub_resource type="Resource" id="Resource_q7xjj"]
+script = ExtResource("1_5c27u")
+choiceBtn = "What do you want them for?"
+repeatsItem = false
+buttonDims = Vector2(600, 40)
+turnsInQuest = ""
+opensShop = false
 
 [sub_resource type="Resource" id="Resource_so8ev"]
 script = ExtResource("1_cygrv")
-lines = Array[String](["Thank you. Now, let us commence. I will bring my grievances to the table.", "Simply, your Grandstone has been taking Shards from the surrounding area and experimenting on them. We wish to take back our brethren turned into Shards.", "What say you, Shard Thief? :TODO:"])
+lines = Array[String](["Thank you. Now, let us commence. I will bring my grievances to the table.", "Simply, your Grandstone has been taking Shards from the surrounding area and experimenting on them. We wish to take back our brethren turned into Shards.", "What say you, Shard Thief?"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("1_5c27u")]([SubResource("Resource_q7xjj")])
+
+[sub_resource type="Resource" id="Resource_xhw7s"]
+script = ExtResource("1_5c27u")
+choiceBtn = "But they are gone, let them help us."
+repeatsItem = false
+buttonDims = Vector2(500, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_fhsoh"]
+script = ExtResource("1_cygrv")
+lines = Array[String](["I want my brethren back. They are no longer truly alive, so your kind just uses them as magical fuel. They should be preserved in memoriam."])
+animation = "talk"
+choices = Array[ExtResource("1_5c27u")]([SubResource("Resource_xhw7s")])
+
+[sub_resource type="Resource" id="Resource_8pc0v"]
+script = ExtResource("1_cygrv")
+lines = Array[String](["You have no claim to my kind! You cannot make us help you. If your progress has made you strong, then show me."])
+animation = "talk"
+choices = Array[ExtResource("1_5c27u")]([])
+
+[sub_resource type="Resource" id="Resource_v65kc"]
+script = ExtResource("4_mshgi")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["king_rat_forest#negotiate"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_qd3u7")
-entryId = ""
-items = Array[ExtResource("1_cygrv")]([SubResource("Resource_so8ev")])
+entryId = "negotiate"
+items = Array[ExtResource("1_cygrv")]([SubResource("Resource_so8ev"), SubResource("Resource_fhsoh"), SubResource("Resource_8pc0v")])
+storyRequirements = SubResource("Resource_v65kc")
 closesDialogue = false
 fullHealsPlayer = false
