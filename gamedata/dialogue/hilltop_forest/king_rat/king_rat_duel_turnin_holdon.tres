@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://d4i1gxw8smm2q"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_fcxpu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vhp0k"]
+
+[sub_resource type="Resource" id="Resource_eeufp"]
+script = ExtResource("1_vhp0k")
+lines = Array[String](["I shall await your answer as long as you need."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_fcxpu")
+entryId = ""
+items = Array[ExtResource("1_vhp0k")]([SubResource("Resource_eeufp")])
+closesDialogue = true
+fullHealsPlayer = false

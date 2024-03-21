@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://746qgtr6tybv"]
+[gd_scene load_steps=25 format=3 uid="uid://746qgtr6tybv"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_x82e2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_gyw6c"]
@@ -7,11 +7,14 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_dewor"]
 [ext_resource type="Resource" uid="uid://ds07os34cyne0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_1.tres" id="5_6u2mh"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="5_7is2y"]
+[ext_resource type="Resource" uid="uid://b8psqp3qeax4h" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_negotiate_turnin.tres" id="7_82ca1"]
+[ext_resource type="Resource" uid="uid://cmsr2rf3xwfij" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_negotiate.tres" id="7_nd7ao"]
 [ext_resource type="Resource" uid="uid://d01uh7t7qa558" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_fight.tres" id="7_pc4yy"]
 [ext_resource type="Resource" uid="uid://dyxrdxg3x0pd0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_defeated.tres" id="7_vq8kf"]
 [ext_resource type="Resource" uid="uid://bsvhkjfmn08yy" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel.tres" id="7_x7oiq"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_6226m"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="12_2jrgp"]
+[ext_resource type="Resource" uid="uid://xfb2kvpv6si7" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_defeated.tres" id="12_r8bnr"]
 
 [sub_resource type="Resource" id="Resource_pv6tb"]
 script = ExtResource("8_6226m")
@@ -27,7 +30,7 @@ invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["king_rat_forest#failed_defeated"])
 invalidAfterSpecialBattles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_oo7l2"]
+[sub_resource type="Resource" id="Resource_7nl0g"]
 script = ExtResource("4_dewor")
 saveName = "npc"
 position = Vector2(-6, -148)
@@ -113,8 +116,8 @@ displayName = "King Rat"
 saveName = "king_rat_forest"
 facesRight = false
 spawnRequirements = SubResource("Resource_pv6tb")
-data = SubResource("Resource_oo7l2")
-dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_6u2mh"), ExtResource("7_x7oiq"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf")])
+data = SubResource("Resource_7nl0g")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_6u2mh"), ExtResource("7_nd7ao"), ExtResource("7_82ca1"), ExtResource("7_x7oiq"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf"), ExtResource("12_r8bnr")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TileMap/KingRat" index="0"]

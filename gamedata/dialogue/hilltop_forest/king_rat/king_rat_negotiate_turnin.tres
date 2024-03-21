@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b8psqp3qeax4h"]
+
+[ext_resource type="Resource" uid="uid://b4snf1svrigl5" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel_holdon.tres" id="1_e62aa"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_k7pge"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_npa3o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tk8ma"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_alpar"]
+
+[sub_resource type="Resource" id="Resource_g2835"]
+script = ExtResource("1_npa3o")
+choiceBtn = "Hold On..."
+leadsTo = ExtResource("1_e62aa")
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_we7qk"]
+script = ExtResource("1_npa3o")
+choiceBtn = "I Accept."
+repeatsItem = false
+buttonDims = Vector2(160, 40)
+turnsInQuest = "Voice of the Rats#The Negotiator"
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_y2og3"]
+script = ExtResource("1_tk8ma")
+lines = Array[String](["I challenge you to a duel, biped! If I win, I'll continue with my invasion as planned!"])
+animation = "talk"
+choices = Array[ExtResource("1_npa3o")]([SubResource("Resource_g2835"), SubResource("Resource_we7qk")])
+
+[sub_resource type="Resource" id="Resource_ydwu0"]
+script = ExtResource("4_alpar")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["king_rat_forest#negotiate"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_k7pge")
+entryId = ""
+items = Array[ExtResource("1_tk8ma")]([SubResource("Resource_y2og3")])
+storyRequirements = SubResource("Resource_ydwu0")
+closesDialogue = false
+fullHealsPlayer = false

@@ -77,7 +77,7 @@ func _unhandled_input(event):
 			_press_caps_lock()
 
 func _show_on_edit(control: Control):
-	if enabled and (control is LineEdit or control is TextEdit or control is SpinBox):
+	if enabled and (control is LineEdit or control is TextEdit or control is SpinBox) and get_parent().is_visible_in_tree():
 		editingControl = control
 		show_keyboard()
 

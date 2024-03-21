@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://xfb2kvpv6si7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_5mbqb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6j4b2"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_gy7pp"]
+
+[sub_resource type="Resource" id="Resource_6s4wi"]
+script = ExtResource("1_6j4b2")
+lines = Array[String](["I will be with you on your travels from now on. All you must do is Summon me, and I will fight beside you!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_ug4js"]
+script = ExtResource("3_gy7pp")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String](["Voice of the Rats"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_5mbqb")
+entryId = ""
+items = Array[ExtResource("1_6j4b2")]([SubResource("Resource_6s4wi")])
+storyRequirements = SubResource("Resource_ug4js")
+closesDialogue = false
+fullHealsPlayer = false
