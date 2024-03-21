@@ -6,6 +6,7 @@ class_name BattleStatsPanel
 
 @onready var combatantName: RichTextLabel = get_node("CombatantName")
 @onready var statusEffectText: RichTextLabel = get_node("StatusEffect")
+@onready var orbDisplay: OrbDisplay = get_node('OrbDisplay')
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
 @onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
 
@@ -21,6 +22,8 @@ func load_battle_stats_panel():
 	visible = true
 	name = combatant.disp_name() + ' (' + battlePosition + ')'
 	combatantName.text = '[center]' + combatant.disp_name() + '[/center]'
+	orbDisplay.currentOrbs = combatant.orbs
+	orbDisplay.update_orb_display()
 	statLinePanel.stats = combatant.stats
 	statLinePanel.readOnly = true
 	statLinePanel.battleStats = true

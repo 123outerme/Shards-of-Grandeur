@@ -39,7 +39,7 @@ func _on_resume_button_pressed():
 	if settingsMenu.visible:
 		settingsMenu.cancel_changes()
 	SceneLoader.unpause_autonomous_movers()
-	if PlayerFinder.player != null:
+	if PlayerFinder.player != null and PlayerFinder.player.textBox.visible:
 		PlayerFinder.player.textBox.refocus_choice(PlayerFinder.player.pickedChoice)
 	resume_game.emit()
 

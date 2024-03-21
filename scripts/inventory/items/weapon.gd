@@ -30,11 +30,11 @@ func get_use_message(_target: Combatant) -> String:
 	return ''
 
 func apply_effects(target: Combatant, applyTiming: BattleCommand.ApplyTiming):
-	if timing == applyTiming:
+	if timing == applyTiming and statChanges != null and statChanges.has_stat_changes():
 		target.statChanges.stack(statChanges)
 
 func get_apply_text(target: Combatant, applyTiming: BattleCommand.ApplyTiming) -> String:
-	if timing == applyTiming:
+	if timing == applyTiming and statChanges != null and statChanges.has_stat_changes():
 		var multipliers: Array[StatMultiplierText] = statChanges.get_multipliers_text()
 		return target.disp_name() + ' gains ' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + ' from wielding the ' + itemName + '.'
 	return ''
@@ -45,7 +45,7 @@ func get_effect_text() -> String:
 	var effectText: String = 'While Equipped, '
 	
 	if bonusOrbs > 0:
-		effectText += ' +' + String.num(bonusOrbs) + ' Orb'
+		effectText += '+' + String.num(bonusOrbs) + ' Orb'
 		if bonusOrbs > 1:
 			effectText += 's'
 		effectText += ' at the start of Battle'

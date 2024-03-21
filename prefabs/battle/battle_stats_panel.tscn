@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcegueepscj4j"]
+[gd_scene load_steps=8 format=3 uid="uid://bcegueepscj4j"]
 
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://themes/nested_ui/popup_ui.tres" id="1_vrx5q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_stats_panel.gd" id="2_n0f8k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="4_71obm"]
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://prefabs/ui/stats/stat_line_panel.tscn" id="5_qvaly"]
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://prefabs/ui/stats/equipment_panel.tscn" id="6_isj4x"]
+[ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="7_pcqma"]
 
 [node name="BattleStatsPanel" type="Panel" groups=["BattleStatsPanel"]]
 anchors_preset = 15
@@ -25,7 +26,7 @@ offset_bottom = 70.0
 grow_horizontal = 2
 theme = ExtResource("3_ypxek")
 bbcode_enabled = true
-text = "[center]Combatant Name Goes Here[/center]"
+text = "[center]Tree-Bear[/center]"
 fit_content = true
 
 [node name="StatusEffect" type="RichTextLabel" parent="."]
@@ -44,6 +45,19 @@ grow_vertical = 2
 theme = ExtResource("4_71obm")
 bbcode_enabled = true
 text = "[center]Experiencing Overwhelming Exhaustion[/center]"
+
+[node name="OrbDisplay" parent="." instance=ExtResource("7_pcqma")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -236.0
+offset_right = 0.0
+offset_bottom = -224.0
+scale = Vector2(2, 2)
 
 [node name="StatLinePanel" parent="." instance=ExtResource("5_qvaly")]
 layout_mode = 1

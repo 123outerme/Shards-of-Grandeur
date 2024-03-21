@@ -1,38 +1,54 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bsvhkjfmn08yy"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://bsvhkjfmn08yy"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ar7y3"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_dh4e3"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_iobh4"]
 [ext_resource type="Resource" uid="uid://b4snf1svrigl5" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel_holdon.tres" id="1_n407v"]
 [ext_resource type="Resource" uid="uid://cj2fo62xdb7e7" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel_accept.tres" id="2_405cb"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_5qkhh"]
 
 [sub_resource type="Resource" id="Resource_p3fkc"]
 script = ExtResource("1_iobh4")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("1_n407v")
 repeatsItem = false
-buttonDims = Vector2(80, 40)
+buttonDims = Vector2(160, 40)
 turnsInQuest = ""
 opensShop = false
 
 [sub_resource type="Resource" id="Resource_38qms"]
 script = ExtResource("1_iobh4")
-choiceBtn = "I Accept!"
+choiceBtn = "Have at thee!"
 leadsTo = ExtResource("2_405cb")
 repeatsItem = false
-buttonDims = Vector2(80, 40)
+buttonDims = Vector2(180, 40)
 turnsInQuest = ""
 opensShop = false
 
 [sub_resource type="Resource" id="Resource_d6qfb"]
 script = ExtResource("1_dh4e3")
-lines = Array[String](["I challenge you to a duel, biped! If I win, I'll continue with my invasion as planned!"])
+lines = Array[String](["Let our duel commence!"])
 animation = "talk"
 choices = Array[ExtResource("1_iobh4")]([SubResource("Resource_p3fkc"), SubResource("Resource_38qms")])
+
+[sub_resource type="Resource" id="Resource_7ydi5"]
+script = ExtResource("6_5qkhh")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["king_rat_forest#negotiate"])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["king_rat_encounter"])
 
 [resource]
 script = ExtResource("1_ar7y3")
 entryId = ""
 items = Array[ExtResource("1_dh4e3")]([SubResource("Resource_d6qfb")])
+storyRequirements = SubResource("Resource_7ydi5")
 closesDialogue = false
 fullHealsPlayer = false

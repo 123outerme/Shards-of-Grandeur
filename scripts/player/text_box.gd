@@ -86,8 +86,6 @@ func add_choices():
 		#if buttonIdx >= 5:
 		#	continue
 		
-		var button: Button = buttonScene.instantiate()
-		buttonContainer.add_child(button)
 		#get_node('Panel/HBoxContainer/Button' + String.num_int64(buttonIdx + 1))
 		
 		if dialogueItem.choices[idx].is_valid() \
@@ -103,7 +101,8 @@ func add_choices():
 				else:
 					continue
 			choicesDialogueItemIdxs.append(idx)
-			
+			var button: Button = buttonScene.instantiate()
+			buttonContainer.add_child(button)
 			button.text = TextUtils.substitute_playername(choice.choiceBtn)
 			button.custom_minimum_size = choice.buttonDims
 			button.visible = true
@@ -112,7 +111,6 @@ func add_choices():
 				button.call_deferred('grab_focus')
 			buttonIdx += 1
 		else:
-			button.visible = false
 			if buttonIdx == 0:
 				refocus_choice(null) # focus the first button that is being shown
 		
@@ -125,6 +123,7 @@ func delete_choices():
 		#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
 		#button.visible = false
 	choicesDialogueItemIdxs = []
+	lastChoiceFocused = null
 
 func refocus_choice(choice: DialogueChoice = null):
 	if lastChoiceFocused:
@@ -142,6 +141,7 @@ func hide_textbox():
 	visible = false
 	dialogueItem = null
 	lastDialogueItem = false
+	lastChoiceFocused = null
 	SpeakerText.text = ''
 	TextBoxText.text = ''
 	SpeakerText.visible_characters = 0

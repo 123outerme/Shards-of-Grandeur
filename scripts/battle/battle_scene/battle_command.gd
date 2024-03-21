@@ -336,6 +336,7 @@ func get_command_results(user: Combatant) -> String:
 	var actionTargets: Targets = Targets.NONE
 	var selfDmg: int = 0
 	var moveEffect: MoveEffect = null
+	var userIdx: int = targets.find(user)
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
 		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
@@ -449,29 +450,39 @@ func get_command_results(user: Combatant) -> String:
 				((moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()) \
 				or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes())):
 			resultsText += '\n' + user.disp_name() + ' boosted '
-			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and \
+				not ((moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY) and \
+				not commandResult.wasBoosted[userIdx]):
 				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
 				if user in targets and moveEffect.targetStatChanges != null:
 					selfStatChanges.stack(moveEffect.targetStatChanges)
 				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
 				resultsText += 'self ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
 			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
-				if moveEffect.selfStatChanges.has_stat_changes() != null and moveEffect.selfStatChanges.has_stat_changes():
-					resultsText += ', and '
+				var targetStatChangesText: String = ''
+				if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+					targetStatChangesText += ', and '
+				var hasOneTarget: bool = false
 				for targetIdx in range(len(targets)):
+					if (moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY) and \
+							not commandResult.wasBoosted[targetIdx]:
+						continue # combatant was not boosted
 					var target = targets[targetIdx]
 					if target == user:
 						if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 							continue # we already printed the user's stat changes
-						resultsText += 'self'
+						targetStatChangesText += 'self'
 					else:
-						resultsText += target.disp_name()
+						targetStatChangesText += target.disp_name()
+					hasOneTarget = true
 					if targetIdx < len(targets) - 1 and len(targets) > 2:
-						resultsText += ', '
+						targetStatChangesText += ', '
 					if targetIdx == len(targets) - 2:
-						resultsText += ' and '
+						targetStatChangesText += ' and '
 				var multipliers: Array[StatMultiplierText] = moveEffect.targetStatChanges.get_multipliers_text()
-				resultsText += ' ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
+				targetStatChangesText += ' ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
+				if hasOneTarget: # only show if one target was validly affected
+					resultsText += targetStatChangesText
 			resultsText += '.'
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)

@@ -99,7 +99,7 @@ func auto_update_quests():
 		if step.type == QuestStep.Type.COLLECT_ITEM:
 			var count: int = 0
 			for slot in PlayerResources.inventory.inventorySlots:
-				if slot.item.itemName == tracker.get_current_step().objectiveName:
+				if slot.item.itemName == step.objectiveName:
 					count += slot.count
 			tracker.set_current_step_progress(count)
 	for specialBattle in PlayerResources.playerInfo.completedSpecialBattles:

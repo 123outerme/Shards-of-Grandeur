@@ -211,6 +211,7 @@ func advance_dialogue() -> bool:
 				if not startingCutscene:
 					play_animation('stand')
 				data.dialogueIndex = 0
+				data.dialogueItemIdx = 0
 				data.dialogueLine = -1
 				data.dialogueItems = []
 		elif data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':

@@ -174,6 +174,8 @@ func advance_dialogue(canStart: bool = true):
 		if talkNPC == null:
 			var minDistance: float = -1.0
 			for npc in talkNPCcandidates:
+				if npc == null:
+					continue
 				npc.reset_dialogue()
 				if (npc.position.distance_to(position) < minDistance or minDistance == -1.0) and \
 						len(npc.data.dialogueItems) > 0 and npc.visible: # if the NPC has dialogue and is the closest visible NPC, speak to this one
@@ -255,6 +257,9 @@ func select_choice(choice: DialogueChoice):
 		
 	if choice.leadsTo != null:
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+		# skip any remaining dialogue we might have here
+		talkNPC.data.dialogueItemIdx = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items) - 1
+		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].lines) - 1
 		if reused:
 			var dialogueText = talkNPC.get_cur_dialogue_item()
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
@@ -268,12 +273,15 @@ func is_in_dialogue() -> bool:
 
 func set_talk_npc(npc: NPCScript, remove: bool = false):
 	if npc == null:
+		for candidate in talkNPCcandidates:
+			candidate.reset_dialogue()
 		talkNPCcandidates = []
 		talkNPC = null
 		return
 	
 	if npc in talkNPCcandidates and remove:
 			talkNPCcandidates.erase(npc)
+			npc.reset_dialogue()
 			if not inCutscene:
 				textBox.hide_textbox()
 				disableMovement = false
