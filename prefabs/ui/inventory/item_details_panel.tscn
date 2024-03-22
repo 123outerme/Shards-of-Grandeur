@@ -5,14 +5,11 @@
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_l40qn"]
 [ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="4_amtgr"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_5a3sp"]
+[ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="5_gg50a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dttqc"]
 atlas = ExtResource("4_amtgr")
 region = Rect2(96, 56, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eagk5"]
-atlas = ExtResource("4_amtgr")
-region = Rect2(96, 32, 8, 8)
 
 [node name="ItemDetailsPanel" type="Control"]
 layout_mode = 3
@@ -109,8 +106,8 @@ offset_bottom = 86.0
 
 [node name="GoldSprite" type="Sprite2D" parent="Panel/ItemCostGroup"]
 position = Vector2(16, 16)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_eagk5")
+scale = Vector2(2, 2)
+texture = ExtResource("5_gg50a")
 
 [node name="ItemCost" type="RichTextLabel" parent="Panel/ItemCostGroup"]
 clip_contents = false

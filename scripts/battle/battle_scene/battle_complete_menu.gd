@@ -57,8 +57,8 @@ func _on_ok_button_pressed():
 	if playerWins:
 		gainedLevels = PlayerResources.accept_rewards(rewards)
 	
-	if PlayerResources.playerInfo.combatant.currentHp <= 0:
-		if playerWins or playerEscapes: # revive with 10% HP if you win or the minion escapes
+	if PlayerResources.playerInfo.combatant.downed:
+		if (playerWins or playerEscapes) and gainedLevels == 0: # revive with 10% HP if you win or the minion escapes
 			PlayerResources.playerInfo.combatant.currentHp = roundi(0.1 * PlayerResources.playerInfo.combatant.stats.maxHp)
 		else: # otherwise revive with full
 			PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
