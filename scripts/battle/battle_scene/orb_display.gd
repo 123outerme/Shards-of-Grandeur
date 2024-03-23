@@ -62,7 +62,7 @@ func update_orb_display():
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) >= maxOrbs
 		unit.load_orb_unit_display()
 
-func update_orb_count(orbs: int):
+func update_orb_count(orbs: int, playSfx: bool = true):
 	var setOrbs = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
 	if setOrbs != currentOrbs:
 		orb_count_change.emit(setOrbs)
