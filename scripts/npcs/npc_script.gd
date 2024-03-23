@@ -285,24 +285,25 @@ func update_dialogues_in_between():
 						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
 					for dialogue in curStep.inProgressDialogue:
 						if dialogue.can_use_dialogue():
-							add_dialogue_entry_in_dialogue(dialogue)
+							add_dialogue_entry_in_dialogue(dialogue, false)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
 			for dialogue in s.turnInDialogue:
 				if dialogue.can_use_dialogue():
-					add_dialogue_entry_in_dialogue(dialogue)
+					add_dialogue_entry_in_dialogue(dialogue, false)
 	# TODO test end
 	for dialogue in dialogueEntries:
 		if not dialogue in data.dialogueItems and dialogue.can_use_dialogue():
-			add_dialogue_entry_in_dialogue(dialogue)
+			add_dialogue_entry_in_dialogue(dialogue, false)
 
-func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry) -> bool:
+func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool = true) -> bool:
 	if dialogueEntry.can_use_dialogue():
 		var index: int = data.dialogueItems.find(dialogueEntry, 0)
 		if index != -1: # reuse entry if it exists to support going back in the dialogue tree
-			data.dialogueIndex = index
-			data.dialogueItemIdx = 0
-			data.dialogueLine = 0
+			if repeat:
+				data.dialogueIndex = index
+				data.dialogueItemIdx = 0
+				data.dialogueLine = 0
 			return true
 		else:
 			index = mini(data.dialogueIndex + 1, len(data.dialogueItems))

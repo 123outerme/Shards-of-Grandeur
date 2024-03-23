@@ -109,12 +109,13 @@ func load_combatant_node():
 			
 func update_hp_tag():
 	if not is_alive():
-		if visible:
+		if visible and fadeOutTween == null:
 			fadeOutTween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			fadeOutTween.tween_property(self, 'modulate', Color(0, 0, 0, 0), 0.75)
 			fadeOutTween.finished.connect(_fade_out_finished)
 			# TODO: play death sfx here...
-		return
+		else:
+			return
 	
 	hpTag.visible = true
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
@@ -436,8 +437,15 @@ func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 	
 	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove.move == null: # pick the absolute strongest move
 		if combatant.aiType == Combatant.AiType.DAMAGE and randomValue > combatant.aiOverrideWeight:
-			pickedMove.move = moveCandidates.pick_random() # if damage AI is overrided, just pick a random move
-			pickedMove.effectType = Move.MoveEffectType.BOTH
+			var randomChoices: Array[ChosenMove] = []
+			for move in moveCandidates:
+				var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
+				var effectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
+				for effectIdx in range(len(moveEffects)):
+					var moveEffect: MoveEffect = moveEffects[effectIdx]
+					if combatant.could_combatant_surge(moveEffect) and len(get_targetable_combatant_nodes(combatantNodes, moveEffect.targets)) > 0:
+						randomChoices.append(ChosenMove.new(move, effectTypes[effectIdx]))
+			pickedMove = randomChoices.pick_random()
 		else:
 			var approxMaxDmg: float = 0
 			for move in moveCandidates: # for each move
@@ -474,19 +482,19 @@ func filter_out_unusable(a) -> bool:
 	var numCanUse: int = 2
 	for effect in [a.chargeEffect, a.surgeEffect]:
 		if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
-		effect.orbChange * -1 > combatant.orbs:
+				not combatant.could_combatant_surge(effect):
 			numCanUse -= 1 # move cannot be used by the game rules
 	return numCanUse > 0 # move could be used
 
 func ai_filter_move_candidates(a: Move) -> bool:
-	if a == null:
+	if not filter_out_unusable(a):
 		return false
-	var moveEffectType: Move.MoveEffectType = a.effects_with_status()
 	var hasAllies: bool = false
 	for combatantNode in tmpAllCombatantNodes:
 		if combatantNode.role == role and combatantNode.is_alive() and combatantNode != self:
 			hasAllies = true
 			break
+	var moveEffectType: Move.MoveEffectType = a.effects_with_status()
 	if moveEffectType != Move.MoveEffectType.NONE: # if move has a status
 		var moveEffects: Array[MoveEffect] = []
 		if moveEffectType == Move.MoveEffectType.BOTH:
@@ -497,7 +505,7 @@ func ai_filter_move_candidates(a: Move) -> bool:
 		for effect: MoveEffect in moveEffects:
 			var enemyTargeting: bool = BattleCommand.is_command_enemy_targeting(effect.targets)
 			if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
-					effect.orbChange * -1 > combatant.orbs:
+					not combatant.could_combatant_surge(effect):
 				# if this move is other-ally only and we don't have a valid target: don't consider it
 				# or if the combatant can't pay for this version, don't consider it
 				continue 
@@ -511,12 +519,7 @@ func ai_filter_move_candidates(a: Move) -> bool:
 				statusCanLand = true
 				break
 		return statusCanLand
-	var numCanUse: int = 2
-	for effect in [a.chargeEffect, a.surgeEffect]:
-		if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
-		effect.orbChange * -1 > combatant.orbs:
-			numCanUse -= 1 # move cannot be used by the game rules
-	return numCanUse > 0 # move could be used
+	return true
 
 func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''

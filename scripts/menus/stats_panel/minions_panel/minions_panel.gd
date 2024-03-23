@@ -28,6 +28,7 @@ var reorderingMinion: Combatant = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SettingsHandler.settings_changed.connect(_on_settings_changed)
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
 
 func _exit_tree():
@@ -211,3 +212,6 @@ func _on_reorder_button_pressed():
 	reordering = !reordering
 	reorderingMinion = null
 	load_minions_panel()
+
+func _on_settings_changed():
+	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard

@@ -254,9 +254,11 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 			atkStat = userStats.affinity # use affinity for affinity-based attacks
 		
 		var atkExpression: float = round(atkStat * 1.1) + 5
+		if power < 0:
+			atkExpression *= 2.5 # 2.5x heal multiplier
 		var resExpression: float = round(targetStats.resistance * 0.9) + 5
 		if power < 0:
-			resExpression = 6 # 1 resistance if this is a healing move
+			resExpression = 5 # no resistance
 		var apparentUserLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
 		# scaled so that increases early on don't jack up the ratio intensely
 		var apparentTargetLv = dmg_logistic(target.stats.level, user.stats.level)

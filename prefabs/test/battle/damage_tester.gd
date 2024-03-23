@@ -45,8 +45,9 @@ func run_damage_tests():
 		null,
 		['defender'],
 	)
-	
+	print('Defender HP before: ', defender.currentHp)
 	command.execute_command(attacker, [defenderNode])
 	print(command.get_command_results(attacker))
+	print('Defender HP after: ', defender.currentHp)
 	print('Attacker stats:\n', attacker.stats.print_stats())
 	print('Defender stats:\n', defender.stats.print_stats())

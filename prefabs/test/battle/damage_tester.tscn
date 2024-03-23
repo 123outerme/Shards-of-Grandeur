@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ne2wn43f300"]
+[gd_scene load_steps=14 format=3 uid="uid://ne2wn43f300"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/damage_tester.gd" id="1_e74u5"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_4dq0e"]
+[ext_resource type="Resource" uid="uid://cwbb2w28v3c5l" path="res://gamedata/moves/restore/restore.tres" id="2_g05g4"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="3_dno2x"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_ycsh6"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="4_qco8e"]
@@ -31,7 +32,7 @@ statGrowth = ExtResource("8_07fob")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("3_dno2x"), ExtResource("5_3eulm")])
 movepool = SubResource("Resource_5jl4o")
 
-[sub_resource type="Resource" id="Resource_3slit"]
+[sub_resource type="Resource" id="Resource_ycngf"]
 script = ExtResource("2_4dq0e")
 spriteFrames = ExtResource("3_ycsh6")
 maxSize = Vector2(16, 16)
@@ -49,7 +50,7 @@ aiOverrideWeight = 0.0
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
 dropTable = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
-innateStatCategories = Array[int]([1])
+innateStatCategories = Array[int]([])
 downed = false
 
 [node name="DamageTester" type="Control"]
@@ -60,9 +61,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e74u5")
-attacker = SubResource("Resource_3slit")
+attacker = ExtResource("4_qco8e")
 attackerLv = 8
-move = ExtResource("5_3eulm")
+move = ExtResource("2_g05g4")
 spendOrbs = 3
-defender = ExtResource("4_qco8e")
+defender = SubResource("Resource_ycngf")
 defenderLv = 8

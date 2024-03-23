@@ -1,4 +1,5 @@
 extends Node
+signal settings_changed
 
 @export var gameSettings: GameSettings = GameSettings.new()
 var save_path = 'user://'

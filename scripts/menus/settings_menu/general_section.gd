@@ -42,19 +42,23 @@ func toggle_section(toggle: bool):
 
 func _on_onscreen_keyboard_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.useVirtualKeyboard = toggled_on
+	SettingsHandler.settings_changed.emit()
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
 	if virtualKeyboard.visible and not virtualKeyboard.enabled:
 		virtualKeyboard.hide_keyboard()
 
 func _on_screen_shake_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.screenShake = toggled_on
+	SettingsHandler.settings_changed.emit()
 
 func _on_run_toggle_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.toggleRun = toggled_on
+	SettingsHandler.settings_changed.emit()
 
 func _on_vsync_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.vsync = toggled_on
 	SettingsHandler.gameSettings.apply_vsync()
+	SettingsHandler.settings_changed.emit()
 
 func _on_virtual_keyboard_backspace_pressed():
 	if allFramerateTextSelected:
@@ -94,6 +98,7 @@ func _on_framerate_line_edit_text_changed(new_text: String):
 	if new_text.is_valid_int():
 		framerate = min(144, max(30, new_text.to_int())) # bound between 144 and 30
 		SettingsHandler.gameSettings.framerate = framerate
+		SettingsHandler.settings_changed.emit()
 
 func _on_framerate_line_edit_text_submitted(new_text):
 	if new_text == '':
@@ -104,6 +109,7 @@ func _on_framerate_line_edit_text_submitted(new_text):
 		framerate = prevFramerate
 	SettingsHandler.gameSettings.framerate = framerate
 	SettingsHandler.gameSettings.apply_framerate()
+	SettingsHandler.settings_changed.emit()
 	framerateLineEdit.text = String.num(framerate) + ' FPS'
 	prevFramerate = framerate
 	deadzoneSlider.grab_focus()
@@ -112,3 +118,4 @@ func _on_deadzone_slider_focus_exited():
 	SettingsHandler.gameSettings.deadzone = deadzoneSlider.value / 100.0
 	#print(SettingsHandler.gameSettings.deadzone)
 	SettingsHandler.gameSettings.apply_deadzone()
+	SettingsHandler.settings_changed.emit()

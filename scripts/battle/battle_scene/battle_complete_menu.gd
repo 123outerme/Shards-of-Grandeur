@@ -43,11 +43,11 @@ func load_battle_over_menu():
 			rewardsVBox.add_child(instantiatedPanel)
 			instantiatedPanel.load_reward_panel()
 			instantiatedPanel.show_item_details.connect(_on_item_details_clicked)
-		SceneLoader.audioHandler.play_music(winMusic)
+		SceneLoader.audioHandler.play_music(winMusic, -1)
 	elif playerEscapes:
-		SceneLoader.audioHandler.play_music(escapeMusic)
+		SceneLoader.audioHandler.play_music(escapeMusic, -1)
 	else:
-		SceneLoader.audioHandler.play_music(loseMusic)
+		SceneLoader.audioHandler.play_music(loseMusic, -1)
 	
 	okBtn.grab_focus()
 

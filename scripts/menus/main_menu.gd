@@ -29,6 +29,7 @@ func _ready():
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	SettingsHandler.settings_changed.connect(_on_settings_changed)
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
@@ -119,3 +120,6 @@ func _on_virtual_keyboard_keyboard_hidden():
 
 func _on_virtual_keyboard_enter_pressed():
 	confirmButton.grab_focus()
+
+func _on_settings_changed():
+	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard

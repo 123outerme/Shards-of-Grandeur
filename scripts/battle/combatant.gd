@@ -149,12 +149,17 @@ func get_starting_orbs() -> int:
 	
 	return max(0, min(Combatant.MAX_ORBS, bonusOrbs)) # bounded [0, max]
 
-func would_ai_spend_orbs(effect: MoveEffect) -> bool:
+func could_combatant_surge(effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
 		return true # no cost required to charge orbs
 	
 	if Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid():
 		return false # AI can't use surge moves yet
+	return true
+
+func would_ai_spend_orbs(effect: MoveEffect) -> bool:
+	if not could_combatant_surge(effect):
+		return false
 	
 	var spendingOrbs: int = effect.orbChange * -1
 	
