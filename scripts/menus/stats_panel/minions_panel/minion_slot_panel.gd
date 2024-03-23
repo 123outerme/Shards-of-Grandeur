@@ -10,12 +10,14 @@ signal panel_ready
 @export var showReorderButton: bool = false
 @export var reorderButtonIsTarget: bool = false
 @export var reorderButtonIsCancel: bool = false
+@export var levelUp: bool = false
 
 var readyCallback: Callable
 
 @onready var minionSprite: AnimatedSprite2D = get_node("SpriteControl/MinionSprite")
 @onready var minionName: RichTextLabel = get_node("MinionName")
 @onready var statPtIndicator: Control = get_node("HBoxContainer/VBoxContainer/StatPtIndicatorControl")
+@onready var newMoveIndicator: Control = get_node("HBoxContainer/VBoxContainer2/MoveIndicatorControl")
 @onready var reorderButton: Button = get_node('HBoxContainer/ReorderButton')
 @onready var statsButton: Button = get_node("HBoxContainer/StatsButton")
 
@@ -41,6 +43,11 @@ func load_minion_slot_panel():
 		reorderButton.text = 'Cancel'
 	else:
 		reorderButton.text = 'Reorder'
+	if levelUp:
+		newMoveIndicator.visible = combatant.stats.movepool.has_moves_at_level(combatant.stats.level)
+	else:
+		newMoveIndicator.visible = false
+	
 	panel_ready.emit()
 
 func _on_stats_button_pressed():

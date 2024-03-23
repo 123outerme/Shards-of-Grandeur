@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://84ixct37xa74"]
+[gd_scene load_steps=8 format=3 uid="uid://84ixct37xa74"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/minions_panel/minion_slot_panel.gd" id="1_mfddu"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_nhnmf"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="3_ahsj7"]
+[ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="3_l5kqy"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_2cbfe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjlhe"]
@@ -57,6 +58,19 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MoveIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer2/MoveIndicatorControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("3_l5kqy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

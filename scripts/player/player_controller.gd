@@ -97,10 +97,8 @@ func _unhandled_input(event):
 func _physics_process(_delta):
 	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
 		speed = RUN_SPEED
-		sprite.speed_scale = 1.5
 	elif speed != BASE_SPEED:
 		speed = BASE_SPEED
-		sprite.speed_scale = 1.0
 	
 	if not disableMovement:
 		# omni-directional movement
@@ -113,7 +111,10 @@ func _physics_process(_delta):
 			facingLeft = false
 		sprite.flip_h = facingLeft
 		if velocity.length() > 0:
-			play_animation('walk')
+			if speed == RUN_SPEED:
+				play_animation('run')
+			else:
+				play_animation('walk')
 		else:
 			play_animation('stand')
 		move_and_slide()

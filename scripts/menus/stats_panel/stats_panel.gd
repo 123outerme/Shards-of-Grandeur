@@ -110,6 +110,7 @@ func load_stats_panel(fromToggle: bool = false):
 	equipmentPanel.load_equipment_panel()
 	minionsPanel.minion = minion
 	minionsPanel.readOnly = readOnly
+	minionsPanel.levelUp = levelUp
 	minionsPanel.load_minions_panel()
 	minionsPanel.call_deferred('connect_to_top_control', backButton)
 	changingCombatant = false

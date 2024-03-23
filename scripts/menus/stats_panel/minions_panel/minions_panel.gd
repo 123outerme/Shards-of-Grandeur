@@ -6,6 +6,7 @@ signal panel_loaded
 
 @export var readOnly: bool = false
 @export var minion: Combatant = null
+@export var levelUp: bool = false
 
 var loaded: bool = false
 var editingName: bool = false
@@ -85,6 +86,7 @@ func load_minions_panel():
 				firstMinionPanel.panel_ready.connect(set_loaded)
 			instantiatedPanel.readOnly = readOnly
 			instantiatedPanel.combatant = listed_minion
+			instantiatedPanel.levelUp = levelUp
 			instantiatedPanel.showReorderButton = reordering
 			instantiatedPanel.reorderButtonIsTarget = reorderingMinion != null and reorderingMinion != listed_minion
 			instantiatedPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == listed_minion
