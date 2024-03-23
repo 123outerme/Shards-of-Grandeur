@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://drk83hqtne0tp"]
+[gd_scene load_steps=7 format=3 uid="uid://drk83hqtne0tp"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_g68vy"]
 [ext_resource type="Script" path="res://scripts/quests/quest_reward_panel.gd" id="2_2xvbt"]
 [ext_resource type="PackedScene" uid="uid://b11xiyik10j7i" path="res://prefabs/ui/reward_panel.tscn" id="2_bdbld"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_xp6ow"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_ug33o"]
+[ext_resource type="SpriteFrames" uid="uid://q3c3wj0ys5i" path="res://graphics/animations/a_attuned_shard.tres" id="6_xbwy3"]
 
 [node name="QuestRewardPanel" type="Control"]
 layout_mode = 3
@@ -80,6 +81,7 @@ grow_vertical = 0
 text = "OK"
 
 [node name="FullAttuneLabel" type="RichTextLabel" parent="Panel"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -92,6 +94,27 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]You have become fully Attuned with Combatant Name Here![/center]"
 fit_content = true
+
+[node name="Control" type="Control" parent="Panel/FullAttuneLabel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 28.0
+offset_right = 32.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/FullAttuneLabel/Control"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("6_xbwy3")
+autoplay = "default"
 
 [connection signal="show_item_details" from="Panel/RewardPanel" to="." method="_on_show_item_details"]
 [connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]

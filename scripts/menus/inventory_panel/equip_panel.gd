@@ -16,6 +16,7 @@ var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/
 @onready var equipTitle: RichTextLabel = get_node('Panel/EquipTitle')
 @onready var itemSprite: Sprite2D = get_node('Panel/ItemSpriteControl/ItemSprite')
 @onready var itemEffect: RichTextLabel = get_node('Panel/ItemEffect')
+@onready var scrollContainer: ScrollBetterFollow = get_node('Panel/ScrollContainer')
 @onready var vboxContainer: VBoxContainer = get_node('Panel/ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('Panel/BackButton')
 
@@ -31,8 +32,6 @@ func _unhandled_input(event):
 func load_equip_panel(initial: bool = true):
 	visible = true
 	
-	itemEffect.text = '[center]' + inventorySlot.item.get_effect_text() + '[/center]'
-	
 	if initial:
 		for panel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
 			panel.combatant = null
@@ -45,7 +44,6 @@ func load_equip_panel(initial: bool = true):
 		vboxContainer.add_child(playerPanel)
 		playerPanel.call_deferred('initial_focus')
 		bottomCombatantPanel = playerPanel
-		playerPanel.call_deferred('connect_to_equip_button', backButton, false)
 	
 		for minion in PlayerResources.minions.get_minion_list():
 			var panel: EquipCombatantPanel = equipCombatantPanelScene.instantiate()
@@ -56,12 +54,15 @@ func load_equip_panel(initial: bool = true):
 			bottomCombatantPanel = panel
 		
 		bottomCombatantPanel.call_deferred('connect_to_equip_button', backButton, true)
+		scrollContainer.set_deferred('scroll_vertical', 0)
 	else:
 		for panel: EquipCombatantPanel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
 			panel.load_equip_combatant_panel()
 	
+	itemEffect.text = '[center]' + inventorySlot.item.get_effect_text() + '[/center]'
 	equipTitle.text = '[center]Equip - ' + inventorySlot.item.itemName + '[/center]'
 	itemSprite.texture = inventorySlot.item.itemSprite
+	playerPanel.call_deferred('connect_to_equip_button', backButton, false)
 
 func restore_focus(button: String = ''):
 	if lastCombatant == null:

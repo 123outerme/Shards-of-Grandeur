@@ -31,6 +31,7 @@ class_name PlayerInfo
 @export var dialoguesSeen: Dictionary = {}
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
+@export var running: bool = false
 
 var save_file = "playerinfo.tres"
 
@@ -57,6 +58,7 @@ func _init(
 	i_dialoguesSeen: Dictionary = {},
 	i_codexEntriesSeen: Array[String] = [],
 	i_cutscenesTempDisabled: Array[String] = [],
+	i_running = false,
 ):
 	map = i_map
 	inUnderworld = i_inUnderworld
@@ -83,6 +85,7 @@ func _init(
 	dialoguesSeen = i_dialoguesSeen
 	codexEntriesSeen = i_codexEntriesSeen
 	cutscenesTempDisabled = i_cutscenesTempDisabled
+	running = i_running
 
 func has_picked_up(uniqueId: String) -> bool:
 	return pickedUpItems.has(uniqueId)

@@ -319,6 +319,10 @@ func unpause_movement():
 	disableMovement = textBox.visible
 	
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
+	if holdCameraX or holdCameraY:
+		return
+	if cam.position != Vector2(0, 0):
+		return
 	holdingCameraAt = pos
 	holdCameraX = holdX
 	holdCameraY = holdY

@@ -42,7 +42,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	SceneLoader.cutscenePlayer.isFadedOut = false
 	SceneLoader.cutscenePlayer.end_cutscene(true)
 	if player.holdCameraX or player.holdCameraY:
-		player.snap_camera_back_to_player(0)
+		player.snap_camera_back_to_player(0.1)
 	for spawner in get_tree().get_nodes_in_group('EnemySpawner'):
 		spawner.delete_enemy()
 	load_map(newMapName)
@@ -140,7 +140,6 @@ func _fade_out_complete():
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
 		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
-	PlayerFinder.player.collider.set_deferred('disabled', false)
 	loading = false
 	#print('fade in complete')
 	

@@ -29,6 +29,7 @@ enum ApplyTiming {
 	DURING_DMG_CALC = 3,
 	AFTER_DMG_CALC = 4,
 	AFTER_ROUND = 5,
+	AFTER_RECIEVING_DMG = 6,
 }
 
 @export var type: Type = Type.NONE
@@ -198,7 +199,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					#print(slot.item.itemName, ' stacks stat changes on ', targets[idx].disp_name())
 
 		if moveEffect != null and moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
-			if not (not commandResult.afflictedStatuses[idx] and \
+			if not (moveEffect.statusEffect != null and not commandResult.afflictedStatuses[idx] and \
 					(moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY or moveEffect.targets == Targets.SELF)):
 				targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
 				commandResult.wasBoosted[idx] = true

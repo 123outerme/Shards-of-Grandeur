@@ -50,6 +50,7 @@ var playParticlesQueued: ParticlePreset = null
 @onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
 @onready var behindParticleContainer: Node2D = get_node('SpriteContainer/BehindParticleContainer')
+@onready var surgeParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/SurgeParticleEmitter')
 @onready var behindParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/BehindParticleEmitter')
 @onready var frontParticleContainer: Node2D = get_node('SpriteContainer/FrontParticleContainer')
 @onready var frontParticles: Particles = get_node('SpriteContainer/FrontParticleContainer/FrontParticleEmitter')
@@ -90,6 +91,7 @@ func load_combatant_node():
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
 		frontParticleContainer.scale.x = 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
 		frontParticleContainer.scale.y = frontParticleContainer.scale.x
+		surgeParticles.set_make_particles(false)
 		behindParticles.set_make_particles(false)
 		frontParticles.set_make_particles(false)
 		hitParticles.set_make_particles(false)
@@ -265,6 +267,9 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 
 func make_particles_now(preset: ParticlePreset):
 	match preset.emitter:
+		'surge':
+			surgeParticles.preset = preset
+			surgeParticles.set_make_particles(true)
 		'behind':
 			behindParticles.preset = preset
 			behindParticles.set_make_particles(true)

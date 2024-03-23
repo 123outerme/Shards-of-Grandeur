@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://q3c3wj0ys5i"]
+
+[ext_resource type="Texture2D" uid="uid://ctdllnet8oklb" path="res://graphics/ui/unlocked_shard_flicker.png" id="1_5werc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j7uu"]
+atlas = ExtResource("1_5werc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgkgc"]
+atlas = ExtResource("1_5werc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hie4"]
+atlas = ExtResource("1_5werc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx6qa"]
+atlas = ExtResource("1_5werc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6htul"]
+atlas = ExtResource("1_5werc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntiif"]
+atlas = ExtResource("1_5werc")
+region = Rect2(160, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j7uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgkgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hie4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx6qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6htul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntiif")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]

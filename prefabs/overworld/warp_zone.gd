@@ -12,5 +12,6 @@ extends Area2D
 
 func _on_area_entered(area):
 	if area.name == "PlayerEventCollider" and warpEnabled and (storyRequirements == null or storyRequirements.is_valid()):
+		PlayerFinder.player.play_animation('stand')
 		mapLoader.entered_warp(mapName, mapPos, position, isUnderground, useVerticalOffset, useHorizontalOffset)
 		warpEnabled = false

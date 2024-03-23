@@ -136,7 +136,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_jtpav"]
+[sub_resource type="Resource" id="Resource_45f5m"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 position = Vector2(-440, -140)
@@ -325,7 +325,6 @@ shape = SubResource("RectangleShape2D_7layj")
 [node name="CameraHoldZone" parent="." instance=ExtResource("16_durpe")]
 position = Vector2(880, 137)
 holdY = false
-usePlayerWarpCamMarker = true
 
 [node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
 position = Vector2(-12.5, 15)
@@ -337,7 +336,6 @@ position = Vector2(-35, -1)
 [node name="CameraHoldZone2" parent="." instance=ExtResource("16_durpe")]
 position = Vector2(-980, 535)
 holdY = false
-usePlayerWarpCamMarker = true
 
 [node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
 position = Vector2(12.5, 1.5)
@@ -372,7 +370,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_jtpav")
+data = SubResource("Resource_45f5m")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

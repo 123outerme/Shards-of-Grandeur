@@ -58,6 +58,7 @@ func load_data(save_path):
 			player.set_sprite_frames(playerInfo.spriteFrames)
 		player.facingLeft = playerInfo.flipH
 		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
+		player.running = playerInfo.running
 	inventory = Inventory.new(true)
 	var newInv = inventory.load_data(save_path)
 	if newInv != null:
@@ -80,6 +81,7 @@ func save_data(save_path):
 			playerInfo.spriteFrames = player.sprite.sprite_frames
 			playerInfo.flipH = player.sprite.flip_h
 			playerInfo.pickedUpItem = player.pickedUpItem
+			playerInfo.running = player.running
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy()
 		if playerInfo.combatant.currentHp == -1:
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp

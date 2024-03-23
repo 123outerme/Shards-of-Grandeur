@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=17 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://u5ng7o44k1ln" path="res://graphics/ui/ui_target_selected.png" id="3_ng771"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="6_k1o8q"]
+[ext_resource type="Resource" uid="uid://blj5s6jgtbvbk" path="res://gamedata/moves/particles_surge.tres" id="8_a3k0w"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
 [ext_resource type="Texture2D" uid="uid://dory1vdxd41t" path="res://graphics/ui/health_bar_bg.png" id="13_ff1jw"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="13_ms1fr"]
@@ -44,6 +45,13 @@ stretch_mode = 5
 
 [node name="BehindParticleContainer" type="Node2D" parent="SpriteContainer"]
 scale = Vector2(1.5, 1.5)
+
+[node name="SurgeParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
+preset = ExtResource("8_a3k0w")
+lifetime = 0.75
+particles = 5
+waves = 0.9
+duration = 0.675
 
 [node name="BehindParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
 

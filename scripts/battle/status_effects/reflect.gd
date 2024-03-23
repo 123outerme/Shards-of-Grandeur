@@ -36,7 +36,7 @@ func find_attacker_idx(combatant, allCombatants: Array) -> int:
 
 func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	var dealtDmgCombatants: Array[Combatant] = []
-	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
+	if timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
 		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 0) # recoil can never knock you out!
 		if get_recoil_damage(combatant, allCombatants, attackerIdx) > 0:

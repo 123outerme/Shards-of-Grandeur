@@ -1,7 +1,7 @@
 extends Resource
 class_name ParticlePreset
 
-@export_enum('behind', 'front', 'hit', 'shard') var emitter: String = 'behind'
+@export_enum('behind', 'front', 'hit', 'shard', 'surge') var emitter: String = 'behind'
 @export var count: int = 0
 @export var inFrontOfCombatant: bool = false
 @export var lifetime: float = 0.5

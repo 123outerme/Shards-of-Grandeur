@@ -148,8 +148,8 @@ func _on_move_list_panel_move_details_visiblity_changed(newVis: bool, move: Move
 		restore_focus()
 
 func _on_back_button_pressed():
-	back_pressed.emit()
 	state = MenuState.SELECTING_MOVEPOOL_MOVE
 	selectedMove = null
 	update_menu_state()
 	visible = false
+	back_pressed.emit()
