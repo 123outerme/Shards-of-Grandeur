@@ -18,10 +18,12 @@ extends BattleController
 	get_node('Enemy2CombatantNode'),
 	get_node('Enemy3CombatantNode')
 ]
+@onready var nextButton: Button = get_node('SfxButton')
 
 func _ready():
 	battleUI = get_node('MockBattleUI')
 	SceneLoader.audioHandler = get_node('AudioHandler')
+	nextButton.grab_focus()
 	var combatants: Array[Combatant] = [_playerCombatant, _minionCombatant, enemy1Combatant, enemy2Combatant, enemy3Combatant]
 	var combatantLvs: Array[int] = [playerLv, minionLv, enemy1Lv, enemy2Lv, enemy3Lv]
 	for idx in range(len(combatants)):
@@ -55,9 +57,12 @@ func _ready():
 	
 	if battleUI.menuState != BattleState.Menu.RESULTS:
 		battleUI.menuState = BattleState.Menu.RESULTS
+		await nextButton.pressed
 		turnExecutor.play_turn()
 	while turnExecutor.turnQueue.peek_next() != null:
+		await nextButton.pressed
 		turnExecutor.finish_turn()
+	nextButton.visible = false
 	
 	state.calcdStateIndex = 0
 	turnExecutor.update_turn_text()

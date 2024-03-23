@@ -58,7 +58,7 @@ func play_turn():
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 			)
 		for defender in combatant.command.targets:
-			if not defender == combatant and defender.statusEffect != null:
+			if defender.statusEffect != null:
 				battleController.state.statusEffDamagedCombatants.append_array(
 					defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 				)
@@ -81,6 +81,11 @@ func update_turn_text() -> bool:
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var text: String = ''
 	
+	#''' enabling ability to set breakpoint for debugging status dmg particles
+	if len(battleController.state.statusEffDamagedCombatants) > 0:
+		print('status dmgd combatants')
+	#'''
+	
 	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
 		if len(battleController.state.calcdStateStrings) == 0:
 			calculate_intermediate_state_strings(allCombatantNodes)
@@ -91,17 +96,13 @@ func update_turn_text() -> bool:
 				text = battleController.state.calcdStateStrings[0]
 		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
-	
-		''' enabling ability to set breakpoint for debugging status dmg particles
-		if len(battleController.state.statusEffDamagedCombatants) > 0:
-			print('status dmgd combatants')
-		#'''
+
 		if battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings) and \
 				battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex] in battleController.state.statusEffDamagedCombatants:
 			# only defer if in battle turn results
 			for cNode: CombatantNode in allCombatantNodes:
 				if cNode.combatant == battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex]:
-					cNode.play_particles(BattleCommand.get_hit_particles(), battleUI.menuState == BattleState.Menu.RESULTS)
+					cNode.play_particles(BattleCommand.get_hit_particles(), false)
 					break
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
@@ -119,7 +120,7 @@ func update_turn_text() -> bool:
 			for defender in defenders:
 				if not defender == combatant and defender.statusEffect != null:
 					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
-	
+
 		var userNode: CombatantNode = null
 		for combatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
@@ -141,6 +142,10 @@ func update_turn_text() -> bool:
 			for combatantNode in allCombatantNodes:
 				if combatantNode.is_alive() and (combatantNode.combatant in defenders or combatantNode.combatant == userNode.combatant):
 					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode, combatantNode.combatant in defenders)
+					
+					# play recoil dmg effect
+					if combatantNode.combatant in battleController.state.statusEffDamagedCombatants:
+						combatantNode.play_particles(BattleCommand.get_hit_particles(), true, 0.5)
 					for preset in particlePresets:
 						combatantNode.play_particles(preset, combatantNode != userNode)
 					# if there's only one target:
@@ -188,6 +193,7 @@ func update_turn_text() -> bool:
 				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished) # tween
 			else:
 				battleController.combatant_finished_moving.emit() # no tween was started so finish instantly
+			
 		
 	battleUI.results.show_text(text)
 	return text != ''

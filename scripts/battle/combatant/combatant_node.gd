@@ -39,7 +39,9 @@ var hpDrainTween: Tween = null
 var fadeOutTween: Tween = null
 var returnToPos: Vector2 = Vector2()
 var playHitQueued: ParticlePreset = null
+var playHitTimingDelay: float = 0
 var playParticlesQueued: ParticlePreset = null
+var playParticlesTimingDelay: float = 0
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -248,7 +250,7 @@ func tween_to(pos: Vector2, callback: Callable):
 	animateTween.finished.connect(_on_animate_tween_finished)
 	animateTween.finished.connect(callback)
 
-func play_particles(preset: ParticlePreset, delay: bool = false):
+func play_particles(preset: ParticlePreset, delay: bool = false, timingDelay: float = 0):
 	if preset == null or preset.count == 0:
 		return
 	
@@ -258,14 +260,19 @@ func play_particles(preset: ParticlePreset, delay: bool = false):
 	
 	if presetCopy.emitter == 'hit' and delay:
 		playHitQueued = presetCopy
+		playHitTimingDelay = timingDelay
 		return
 		
 	if delay:
 		playParticlesQueued = presetCopy
+		playParticlesTimingDelay = timingDelay
 	else:
-		make_particles_now(presetCopy)
+		make_particles_now(presetCopy, timingDelay)
 
-func make_particles_now(preset: ParticlePreset):
+func make_particles_now(preset: ParticlePreset, timingDelay: float = 0):
+	if timingDelay > 0:
+		await get_tree().create_timer(timingDelay).timeout
+	
 	match preset.emitter:
 		'surge':
 			surgeParticles.preset = preset
@@ -579,13 +586,13 @@ func _combatant_finished_moving():
 	if playParticlesQueued != null:
 		if playHitQueued == null:
 			update_hp_tag()
-		make_particles_now(playParticlesQueued)
+		make_particles_now(playParticlesQueued, playParticlesTimingDelay)
 	playParticlesQueued = null
 
 func _combatant_finished_animating():
 	if playHitQueued != null:
 		update_hp_tag()
-		make_particles_now(playHitQueued)
+		make_particles_now(playHitQueued, playHitTimingDelay)
 	playHitQueued = null
 
 func _on_animate_tween_finished():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=67 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
@@ -23,15 +23,14 @@
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="15_ahtpg"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="15_qn3hw"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="16_1n64h"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/interception.gd" id="16_vemfl"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="17_hdtqw"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="19_dhbsu"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="20_2oj5r"]
-[ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance/battle_trance.tres" id="21_0ynbu"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/weakness.gd" id="26_s0u33"]
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="28_3l5fj"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
 script = ExtResource("6_ohjbr")
@@ -130,10 +129,10 @@ statGrowth = ExtResource("15_ahtpg")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("14_tebfq")
 
-[sub_resource type="Resource" id="Resource_iv7wv"]
-script = ExtResource("16_vemfl")
-type = 9
-potency = 1
+[sub_resource type="Resource" id="Resource_2fot7"]
+script = ExtResource("19_dhbsu")
+type = 8
+potency = 2
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_fjhrc"]
@@ -161,7 +160,7 @@ nickname = ""
 stats = SubResource("Resource_hj45a")
 currentHp = -1
 orbs = 0
-statusEffect = SubResource("Resource_iv7wv")
+statusEffect = SubResource("Resource_2fot7")
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 4
@@ -177,10 +176,10 @@ downed = false
 [sub_resource type="Resource" id="Resource_h71dw"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("21_0ynbu")
+move = ExtResource("4_cmvjq")
 moveEffectType = 1
 orbChange = 0
-targetPositions = Array[String](["Center"])
+targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
 
 [sub_resource type="Resource" id="Resource_ahrn6"]
@@ -224,12 +223,6 @@ statGrowth = ExtResource("16_1n64h")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("15_qn3hw")
 
-[sub_resource type="Resource" id="Resource_dckgv"]
-script = ExtResource("26_s0u33")
-type = 4
-potency = 2
-turnsLeft = 3
-
 [sub_resource type="Resource" id="Resource_b3lik"]
 script = ExtResource("17_hdtqw")
 string = "rat"
@@ -255,7 +248,6 @@ nickname = ""
 stats = SubResource("Resource_hula1")
 currentHp = -1
 orbs = 0
-statusEffect = SubResource("Resource_dckgv")
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 1
@@ -408,3 +400,10 @@ battlePosition = "Bottom"
 battleController = NodePath("..")
 
 [node name="AudioHandler" parent="." instance=ExtResource("21_y6pws")]
+
+[node name="SfxButton" parent="." instance=ExtResource("33_snsqx")]
+offset_left = -25.0
+offset_top = 85.0
+offset_right = 20.0
+offset_bottom = 116.0
+text = "Next"
