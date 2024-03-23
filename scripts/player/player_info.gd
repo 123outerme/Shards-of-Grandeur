@@ -69,10 +69,10 @@ func _init(
 	spriteFrames = i_spriteFrames
 	flipH = i_flipH
 	scene = i_scene
-	if i_version != '' or version != '':
+	if i_version != '':
 		version = i_version
 	else:
-		version = ProjectSettings.get_setting('application/config/version', '')
+		version = GameSettings.get_game_version()
 	combatant = i_combatant
 	gold = i_gold
 	encounteredName = i_encounteredName
@@ -146,7 +146,7 @@ func load_data(save_path):
 	return data
 
 func save_data(save_path, data):
-	version = ProjectSettings.get_setting('application/config/version', '')
+	version = GameSettings.get_game_version()
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("PlayerInfo ResourceSaver error: ", err)

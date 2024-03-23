@@ -209,7 +209,6 @@ func load_inventory_panel(rebuild: bool = true):
 			firstPanel.sellButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 			firstPanel.equipButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 			firstPanel.trashButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-		initial_focus() # reset focus
 	else:
 		for panel: InventorySlotPanel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 			panel.load_inventory_slot_panel()

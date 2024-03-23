@@ -82,6 +82,8 @@ func save_data(save_path):
 	data.save_data(save_path + npcsDir, data)
 	
 func load_data(save_path):
+	if Engine.is_editor_hint():
+		return # don't do anything to the data if in engine
 	data = NPCData.new()
 	data.saveName = saveName
 	if saveName == '':
@@ -106,7 +108,7 @@ func load_data(save_path):
 			player.restore_dialogue(self)
 		else:
 			reset_dialogue()
-		if data.version == ProjectSettings.get_setting('application/config/version', ''):
+		if GameSettings.get_version_differences(data.version) < GameSettings.VersionDiffs.MINOR:
 			inventory = data.inventory
 		else:
 			print('DEBUG: resetting NPC inventory for ', saveName)

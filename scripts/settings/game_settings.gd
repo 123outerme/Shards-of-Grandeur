@@ -19,6 +19,43 @@ static var STORED_ACTIONS = [
 	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select'
 ]
 
+enum VersionDiffs {
+	NONE = 0,
+	PATCH = 1,
+	MINOR = 2,
+	MAJOR = 3
+}
+
+static func get_game_version() -> String:
+	return ProjectSettings.get_setting('application/config/version', '')
+
+static func get_game_major_version(version: String = '') -> int:
+	if version == '':
+		version = get_game_version()
+	return int(version.split('.')[0])
+
+static func get_game_minor_version(version: String = '') -> int:
+	if version == '':
+		version = get_game_version()
+	return int(version.split('.')[1])
+
+static func get_game_patch_version(version: String = '') -> int:
+	if version == '':
+		version = get_game_version()
+	return int(version.split('.')[2])
+
+static func get_version_differences(versionString: String) -> VersionDiffs:
+	if get_game_major_version() > get_game_major_version(versionString):
+		return VersionDiffs.MAJOR
+	
+	if get_game_minor_version() > get_game_minor_version(versionString):
+		return VersionDiffs.MINOR
+	
+	if get_game_patch_version() > get_game_patch_version(versionString):
+		return VersionDiffs.PATCH
+	
+	return VersionDiffs.NONE
+
 func _init(
 	i_inputMap: Dictionary = {},
 	i_musicVolume = 0.5,
