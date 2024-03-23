@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="35_uryo8"]
 [ext_resource type="Resource" uid="uid://ddl47k7hjo25b" path="res://gamedata/cutscenes/standstill/standstill_to_grandstone.tres" id="36_sds6n"]
 
-[sub_resource type="Resource" id="Resource_lqwhd"]
+[sub_resource type="Resource" id="Resource_ip8u0"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-256, 80)
@@ -100,7 +100,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_iw1ic"]
+[sub_resource type="Resource" id="Resource_elhud"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-15, 128)
@@ -123,7 +123,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_xuh0n"]
+[sub_resource type="Resource" id="Resource_xdmbf"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-8, 88)
@@ -140,7 +140,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_h3tk8"]
+[sub_resource type="Resource" id="Resource_36xcc"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(216, -160)
@@ -157,7 +157,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_yriq1"]
+[sub_resource type="Resource" id="Resource_jle50"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(778, 0)
@@ -291,10 +291,10 @@ size = Vector2(20, 82)
 size = Vector2(20, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awie1"]
-size = Vector2(48, 53)
+size = Vector2(68, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x6ra"]
-size = Vector2(48, 81)
+size = Vector2(56, 81)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ne1fr"]
 vertices = PackedVector2Array(-919, 172, -921, 172, -921, 167, -919, 167, -823, 172, -825, 172, -825, 167, -823, 167, -551, 172, -553, 172, -553, 167, -551, 167, -519, 172, -521, 172, -521, 167, -519, 167, -279, 172, -281, 172, -281, 167, -279, 167, -215, 172, -217, 172, -217, 167, -215, 167, -183, 172, -185, 172, -185, 167, -183, 167, 89, 172, 87, 172, 87, 167, 89, 167, 41, 135, 57, 135, 57, 140, 41, 140, 41, 156, 37, 156, 37, 119, 41, 119, 105, 140, 103, 140, 103, 135, 105, 135, -839, 76, -841, 76, -841, 71, -839, 71, -775, 76, -777, 76, -777, 71, -775, 71, -743, 76, -745, 76, -745, 71, -743, 71, -503, 76, -505, 76, -505, 71, -503, 71, -455, 76, -457, 76, -457, 71, -455, 71, -343, 76, -361, 76, -361, 71, -343, 71, -311, 76, -313, 76, -313, 71, -311, 71, 73, 76, 71, 76, 71, 71, 73, 71, 361, 60, 359, 60, 359, 55, 361, 55, 489, 60, 487, 60, 487, 55, 489, 55, -263, 44, -265, 44, -265, 39, -263, 39, 265, 28, 263, 28, 263, 23, 265, 23, -263, 12, -265, 12, -265, 7, -263, 7, 153, 12, 151, 12, 151, 7, 153, 7, 169, -4, 167, -4, 167, -9, 169, -9, -247, -52, -249, -52, -249, -57, -247, -57, 521, -68, 519, -68, 519, -73, 521, -73, 393, -100, 391, -100, 391, -105, 393, -105, 505, -100, 503, -100, 503, -105, 505, -105, -247, -116, -249, -116, -249, -137, -247, -137, 345, -116, 343, -116, 343, -121, 345, -121, -215, -132, -217, -132, -217, -153, -215, -153, 393, -132, 375, -132, 375, -137, 393, -137, 473, -132, 471, -132, 471, -137, 473, -137, -183, -148, -185, -148, -185, -153, -183, -153, -151, -180, -153, -180, -153, -185, -151, -185, -87, -180, -89, -180, -89, -185, -87, -185, 329, -180, 311, -180, 311, -185, 329, -185, 297, -196, 295, -196, 295, -201, 297, -201, 233, -212, 215, -212, 215, -217, 233, -217, 265, -212, 263, -212, 263, -217, 265, -217, -151, -324, -153, -324, -153, -329, -151, -329, 313, -132, 297, -132, 295, -137, 297, -137, 103, -10, 103, -39, 121, -20, 121, 12, 105, 12, -9, 70, -9, 41, 41, 28, 41, 87, 30, 89, 17, 89, -41, -106, 265, -137, 297, -89, 183, -36, 153, -36, 71, -138, 137, -138, 41, -138, -41, -135, 265, -164, 231, -138, 231, -156, 23, -185, 23, -201, 25, -201, 25, -185, 71, -185, 71, -201, 73, -201, 73, -185, 119, -185, 119, -201, 121, -201, 121, -185, 167, -185, 167, -201, 201, -201, 201, -185, 199, -167, 265, -185, 265, -169, 201, -156, 313, -137, 297, -169, 295, -164, 201, -138, 199, -138, 313, -89, 313, -73, 231, -20, 201, -20, 359, -73, 359, -89, 361, -89, 361, -73, 423, -73, 423, -89, 425, -89, 425, -73, 441, -73, 441, -57, 457, -57, 457, -41, 423, 28, 391, 12, 375, -4, 473, -41, 473, -25, 503, -25, 503, -41, 521, -41, 521, -25, 551, -25, 551, -41, 553, -41, 553, -25, 711, -25, 711, -41, 713, -41, 713, -9, 777, -9, 777, 28, 745, 28, 745, 44, 743, 44, 743, 28, 713, 28, 713, 44, 711, 44, 711, 28, 681, 28, 681, 44, 679, 44, 679, 28, 585, 28, 585, 44, 567, 44, 567, 28, 521, 28, 521, 44, 503, 44, 503, 28, 473, 28, 473, 44, 457, 44, 457, 60, 455, 60, 455, 44, 423, 44, 391, 28, 375, 12, 329, -4, 329, 12, 327, 12, 327, -4, 231, -4, 201, -4, 199, -4, 199, -20, 183, -20, 153, -20, 105, 28, 89, 28, 85, -10, 89, 44, 87, 44, 87, 28, 57, 87, 57, 92, 33, 92, 10, 166, 25, 166, 25, 172, -121, 172, 10, 96, -121, 156, -27, 70, -137, 156, -137, 140, -71, 70, -53, 70, -167, 140, -167, 156, -169, 156, -169, 140, -311, 140, -311, 156, -327, 156, -329, 140, -329, 103, -327, 103, -327, 172, -329, 172, -407, 140, -407, 156, -409, 156, -409, 140, -503, 140, -503, 156, -505, 156, -505, 140, -535, 140, -535, 156, -537, 156, -537, 140, -663, 140, -663, 156, -665, 156, -665, 140, -1017, 140, -1017, 124, -697, 103, -695, 103, -1029, 124, -1029, 103, -697, 87, -695, 87, -633, 103, -631, 103, -633, 87, -631, 87, -489, 103, -487, 103, -489, 87, -487, 87, -425, 103, -425, 87, -423, 87, -423, 103, -377, 103, -375, 103, -377, 87, -375, 87, -329, 87, -327, 87, -297, 103, -297, 87, -281, 87, -281, 71, -249, 71, -249, 55, -233, 55, -233, 7, -217, 7, -217, -105, -201, -105, -201, -121, -153, -121, -71, 41, -153, -137, -137, -137, -103, -106, -137, -153, -105, -153, -103, -135, -105, -169, -103, -169, -103, -153, -57, -153, -57, -185, -9, -185, 41, -158, -9, -201, -7, -201, -7, -185, 66, -12, 78, -12, 59, -10, 41, -10, -46, 68, -34, 68, 137, -167, 71, -158, 41, -39, -59, -106, -78, -108, -66, -108, -85, -106, 155, -138, 162, -140, 174, -140, 181, -138)
@@ -317,7 +317,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_25j12"]
+[sub_resource type="Resource" id="Resource_frcbq"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-566, 120)
@@ -362,7 +362,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-data = SubResource("Resource_lqwhd")
+data = SubResource("Resource_ip8u0")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
@@ -398,7 +398,7 @@ position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_iw1ic")
+data = SubResource("Resource_elhud")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -434,7 +434,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-data = SubResource("Resource_xuh0n")
+data = SubResource("Resource_xdmbf")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg"), ExtResource("13_k8mkq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -461,7 +461,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_h3tk8")
+data = SubResource("Resource_36xcc")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
@@ -496,7 +496,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-data = SubResource("Resource_yriq1")
+data = SubResource("Resource_jle50")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("22_g7o8t")
@@ -635,11 +635,11 @@ holdY = false
 usePlayerWarpCamMarker = true
 
 [node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
-position = Vector2(14, 0.5)
+position = Vector2(24, 0.5)
 shape = SubResource("RectangleShape2D_awie1")
 
 [node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
-position = Vector2(38, 0)
+position = Vector2(58, 0)
 
 [node name="CameraHoldZone2" parent="." instance=ExtResource("35_uryo8")]
 position = Vector2(614, 3)
@@ -647,11 +647,11 @@ holdY = false
 usePlayerWarpCamMarker = true
 
 [node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
-position = Vector2(-14, 4.5)
+position = Vector2(-18, 4.5)
 shape = SubResource("RectangleShape2D_7x6ra")
 
 [node name="PlayerWarpCamPos" parent="CameraHoldZone2" index="1"]
-position = Vector2(-38, 0)
+position = Vector2(-46, 0)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -674,7 +674,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_25j12")
+data = SubResource("Resource_frcbq")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

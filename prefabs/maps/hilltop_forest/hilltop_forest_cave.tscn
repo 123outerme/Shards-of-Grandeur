@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="29_jjvhg"]
 
-[sub_resource type="Resource" id="Resource_e1m66"]
+[sub_resource type="Resource" id="Resource_tl3o2"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1054, 538)
@@ -53,7 +53,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_tklkr"]
+[sub_resource type="Resource" id="Resource_70a4m"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1006, 522)
@@ -70,7 +70,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_qdjf5"]
+[sub_resource type="Resource" id="Resource_memg4"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-383, -221)
@@ -87,7 +87,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_iaqns"]
+[sub_resource type="Resource" id="Resource_csgnj"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-300, -248)
@@ -164,7 +164,7 @@ size = Vector2(59, 70)
 size = Vector2(11, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fajly"]
-size = Vector2(45, 49)
+size = Vector2(60, 49)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pfh5f"]
 vertices = PackedVector2Array(-551, 476, -553, 476, -553, 471, -551, 471, -583, 460, -585, 460, -585, 455, -583, 455, -599, 444, -601, 444, -601, 439, -599, 439, -567, 428, -569, 428, -569, 423, -567, 423, -583, 412, -585, 412, -585, 407, -583, 407, -567, 380, -569, 380, -569, 375, -567, 375, -519, -36, -521, -36, -521, -41, -519, -41, -471, -36, -473, -36, -473, -41, -471, -41, -455, -52, -457, -52, -457, -57, -455, -57, -423, -52, -425, -52, -425, -57, -423, -57, -423, 316, -425, 316, -425, 311, -423, 311, -759, 300, -761, 300, -761, 295, -759, 295, -471, 268, -473, 268, -473, 263, -471, 263, -791, 108, -809, 108, -809, 103, -791, 103, -727, 92, -729, 92, -729, 87, -727, 87, -1063, 60, -1065, 60, -1065, 55, -1063, 55, 105, 44, 103, 44, 103, 39, 105, 39, -727, -116, -729, -116, -729, -121, -727, -121, -695, -116, -697, -116, -697, -121, -695, -121, -663, -116, -665, -116, -665, -121, -663, -121, -311, -148, -313, -148, -313, -153, -311, -153, -519, -196, -521, -196, -521, -201, -519, -201, -279, -196, -281, -196, -281, -201, -279, -201, 377, -20, 361, -20, -249, -25, -247, -25, -407, 492, -407, 508, -423, 508, -521, 503, -521, 364, -295, -212, -327, -212, -361, -217, -311, -217, -697, 279, -519, 263, -503, 263, -503, 295, -569, 332, -599, 332, -519, 247, -697, 252, -567, 247, -832, 572, -833, 503, -807, 503, -807, 519, -775, 572, -775, 556, -761, 519, -745, 556, -361, -297, -361, -313, -359, -313, -359, -297, -343, -297, -343, -281, -361, -261, -383, -268, -327, -281, -327, -265, -311, -265, -311, -249, -295, -249, -295, -244, -311, -244, -295, -217, -327, -164, -343, -164, -423, -217, -343, -148, -359, -148, -457, -217, -359, -132, -375, -132, -473, -201, -73, -25, -73, -57, -55, -57, -55, -41, -25, -41, -25, -57, -7, -57, -7, -41, 39, -41, 39, -57, 89, -57, 89, -41, 119, -41, 119, -57, 169, -57, 169, -41, 231, -41, 231, -57, 295, -57, 361, -25, 295, -84, 279, -84, 279, -89, 295, -89, 361, -68, 295, -121, 311, -121, 377, -100, 377, -68, 311, -164, 295, -164, 295, -169, 327, -169, 409, -164, 393, -132, 327, -185, 343, -185, 409, -169, 343, -191, 409, -191, 425, -169, 425, -164, 409, -132, 393, -100, 377, -25, -423, -100, -423, -84, -503, -84, -649, -89, -503, -68, -535, -68, -535, -52, -551, -52, -551, -36, -553, -36, -553, -52, -583, -52, -583, -36, -615, -36, -615, -20, -647, -20, -681, -73, -681, -89, -471, 44, -585, 7, -585, -9, -457, -9, -409, 44, -279, 44, -457, -25, -233, 44, 361, -4, 345, -4, 345, 44, 281, 44, 279, 28, 281, 60, 279, 60, 249, 28, 249, 60, 247, 60, 247, 28, 217, 28, 217, 44, 215, 44, 215, 12, 185, 12, 185, 28, 183, 28, 183, 12, 121, 12, 121, 28, 119, 28, 119, 12, 57, 12, 57, 28, 55, 28, 55, 12, 25, 12, 25, 28, -7, 28, -7, 60, -9, 60, -9, 44, -71, 44, -71, 60, -87, 60, -169, 44, -87, 76, -169, 76, -199, 44, -199, 60, -233, 60, -279, 60, -281, 60, -281, 44, -327, 44, -327, 60, -329, 60, -329, 44, -359, 44, -359, 60, -377, 60, -377, 44, -407, 44, -407, 60, -409, 60, -471, 60, -489, 60, -489, 44, -535, 44, -535, 60, -537, 60, -537, 44, -631, 44, -631, 60, -633, 60, -633, 44, -809, 7, -679, 44, -679, 60, -791, 60, -825, 23, -825, 7, -791, 76, -823, 76, -823, 92, -841, 92, -841, 76, -969, 55, -921, 39, -871, 76, -871, 108, -903, 108, -1001, 71, -873, 151, -873, 135, -871, 135, -871, 151, -855, 151, -855, 167, -793, 167, -793, 151, -791, 151, -791, 167, -745, 167, -745, 151, -727, 151, -727, 183, -679, 183, -679, 199, -727, 252, -647, 199, -647, 215, -583, 215, -583, 231, -567, 231, -553, 348, -471, 295, -471, 311, -553, 364, -455, 311, -455, 327, -439, 327, -439, 343, -423, 343, -423, 375, -391, 375, -391, 380, -407, 380, -407, 423, -391, 423, -391, 492, -569, 348, -599, 359, -583, 359, -583, 364, -615, 364, -615, 412, -631, 412, -681, 332, -697, 284, -697, 439, -631, 476, -663, 476, -713, 455, -617, 503, -617, 487, -567, 487, -567, 503, -599, 540, -423, 524, -439, 524, -439, 540, -455, 540, -455, 556, -521, 556, -521, 540, -551, 540, -551, 556, -553, 556, -553, 540, -599, 556, -649, 556, -649, 540, -663, 503, -695, 540, -695, 556, -711, 556, -729, 487, -711, 572, -713, 572, -713, 556, -743, 556, -743, 572, -745, 572, -761, 503, -745, 503, -745, 487, -729, 455, -713, 439, -697, 423, -681, 423, -713, 332, -713, 327, -697, 327, -727, 284, -727, 300, -729, 300, -729, 252, -777, 252, -777, 236, -1049, 236, -1049, 204, -1065, 204, -1065, 183, -1049, 183, -1049, 140, -1065, 140, -1065, 135, -1049, 135, -1049, 71, -1033, 71, -1033, 55, -1031, 55, -1031, 71, -1001, 55, -969, 28, -985, 28, -985, 23, -967, 23, -967, 39, -921, 23, -857, 23, -857, 7, -855, 7, -855, 23, -809, -9, -793, -9, -793, -25, -761, -25, -761, -57, -729, -57, -729, -73, -713, -73, -713, -89, -711, -89, -711, -73, -649, -105, -633, -105, -633, -121, -617, -121, -375, -105, -617, -153, -599, -153, -599, -137, -569, -137, -569, -153, -537, -153, -537, -169, -505, -169, -505, -185, -489, -185, -489, -201, -473, -217, -457, -260, -473, -260, -473, -265, -457, -265, -423, -261, -457, -281, -441, -281, -441, -297, -425, -297, -425, -313, -423, -313, -423, -297, -401, -268, -903, 151, -727, 279, -647, 7, -345, -100, -343, -105, -343, -89, -345, -84, -313, -84, -311, -89, -311, -73, -313, -68, -281, -68, -279, -73, -279, -57, -281, -52, -249, -52, -247, -57)
@@ -193,7 +193,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_sdcdw"]
+[sub_resource type="Resource" id="Resource_vyimo"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-360, -221)
@@ -238,7 +238,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop_cave"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_e1m66")
+data = SubResource("Resource_tl3o2")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -275,7 +275,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_tklkr")
+data = SubResource("Resource_70a4m")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -305,7 +305,7 @@ position = Vector2(-383, -221)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
-data = SubResource("Resource_qdjf5")
+data = SubResource("Resource_memg4")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -330,7 +330,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_iaqns")
+data = SubResource("Resource_csgnj")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier" index="0"]
@@ -473,11 +473,11 @@ holdY = false
 usePlayerWarpCamMarker = true
 
 [node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
-position = Vector2(12.5, 1.5)
+position = Vector2(20, 1.5)
 shape = SubResource("RectangleShape2D_fajly")
 
 [node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
-position = Vector2(35, 0)
+position = Vector2(50, 0)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -504,7 +504,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-360, -221)
-data = SubResource("Resource_sdcdw")
+data = SubResource("Resource_vyimo")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.324637
