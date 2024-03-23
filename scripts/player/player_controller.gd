@@ -467,6 +467,8 @@ func equip_to_combatant_helper(stats: Stats):
 	inventoryPanel.toggle()
 
 func _on_stats_panel_node_back_pressed():
+	if statsPanel.levelUp and questsPanel.visible:
+		questsPanel.toggle()
 	statsPanel.levelUp = false
 	statsPanel.newLvs = 0
 	menu_closed()

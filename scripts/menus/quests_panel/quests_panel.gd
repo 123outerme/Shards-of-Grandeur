@@ -232,9 +232,10 @@ func _on_back_button_pressed():
 
 func _on_quest_reward_panel_ok_pressed():
 	backButton.disabled = false
-	restore_previous_focus('detailsButton')
 	if rewardNewLvs > 0:
 		level_up.emit(rewardNewLvs)
+	else:
+		_on_back_button_pressed()
 
 func _on_quest_details_panel_panel_hidden():
 	backButton.disabled = false
