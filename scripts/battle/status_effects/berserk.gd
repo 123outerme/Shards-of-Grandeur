@@ -3,9 +3,9 @@ class_name Berserk
 
 const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
-	Potency.WEAK: 0.1,
-	Potency.STRONG: 0.15,
-	Potency.OVERWHELMING: 0.2
+	Potency.WEAK: 0.25,
+	Potency.STRONG: 0.4,
+	Potency.OVERWHELMING: 0.55
 }
 
 func _init(
