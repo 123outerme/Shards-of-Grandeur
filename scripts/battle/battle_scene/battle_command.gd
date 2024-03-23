@@ -153,14 +153,14 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
 			moveEffect = moveEffect.apply_surge_changes(orbChange * -1)
 	
+	get_targets_from_combatant_nodes(combatantNodes)
+	
 	for i in range(len(targets)):
 		commandResult.damagesDealt.append(0)
 		commandResult.afflictedStatuses.append(false)
 		commandResult.wasBoosted.append(false)
 	for i in range(len(interceptingTargets)):
 		commandResult.damageOnInterceptingTargets.append(0)
-	
-	get_targets_from_combatant_nodes(combatantNodes)
 	if type == Type.ESCAPE:
 		return get_is_escaping(user)
 	
@@ -176,7 +176,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					finalPower -= interceptingPower
 					var interceptedDmg = calculate_damage(user, interceptingTargets[interceptIdx], interceptingPower)
 					commandResult.damageOnInterceptingTargets[interceptIdx] += interceptedDmg
-					interceptingTargets[interceptIdx].currentHp = max(0, interceptingTargets[interceptIdx].currentHp - interceptedDmg)
+					interceptingTargets[interceptIdx].currentHp = min(max(0, interceptingTargets[interceptIdx].currentHp - interceptedDmg), interceptingTargets[interceptIdx].stats.maxHp)
 					
 		var damage = calculate_damage(user, targets[idx], finalPower)
 		commandResult.damagesDealt[idx] += damage
@@ -197,16 +197,17 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					targets[idx].statChanges.stack(slot.item.statChanges)
 					#print(slot.item.itemName, ' stacks stat changes on ', targets[idx].disp_name())
 
-		if moveEffect != null and \
-				(moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY):
-			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+		if moveEffect != null and moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+			if not (not commandResult.afflictedStatuses[idx] and \
+					(moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY or moveEffect.targets == Targets.SELF)):
 				targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
 				commandResult.wasBoosted[idx] = true
 	
-	if type == Type.MOVE and moveEffect != null and BattleCommand.is_command_enemy_targeting(moveEffect.targets) or true in commandResult.afflictedStatuses:
+	if type == Type.MOVE and moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or true in commandResult.afflictedStatuses):
 		# if targets allies, fail to stack stats if status was not applied, otherwise stack
 		if moveEffect.selfStatChanges != null:
 			user.statChanges.stack(moveEffect.selfStatChanges)
+			commandResult.selfBoosted = true
 
 	if type == Type.USE_ITEM and appliedEffect: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
@@ -252,15 +253,19 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		if move.category == Move.DmgCategory.AFFINITY:
 			atkStat = userStats.affinity # use affinity for affinity-based attacks
 		
-		var atkExpression: float = atkStat + 5
-		var resExpression: float = targetStats.resistance + 5
+		var atkExpression: float = round(atkStat * 1.1) + 5
+		var resExpression: float = round(targetStats.resistance * 0.9) + 5
 		if power < 0:
 			resExpression = 6 # 1 resistance if this is a healing move
 		var apparentUserLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
 		# scaled so that increases early on don't jack up the ratio intensely
 		var apparentTargetLv = dmg_logistic(target.stats.level, user.stats.level)
+		var usrLvMultiplier: float = 1 + (0.05 * apparentUserLv)
+		var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
+		#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
+		#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
 		
-		var damage: int = roundi( power * ((apparentUserLv / apparentTargetLv) / 4.0) * (atkExpression / resExpression) )
+		var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier )
 		if power > 0 and damage <= 0:
 			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		
@@ -446,19 +451,19 @@ func get_command_results(user: Combatant) -> String:
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
-		if type == Type.MOVE and \
-				((moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()) \
-				or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes())):
+		if type == Type.MOVE and ( \
+					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
+					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \
+				) and (true in commandResult.wasBoosted or commandResult.selfBoosted):
 			resultsText += '\n' + user.disp_name() + ' boosted '
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and \
-				not ((moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY) and \
-				not commandResult.wasBoosted[userIdx]):
+					((userIdx > -1 and commandResult.wasBoosted[userIdx]) or commandResult.wasBoosted):
 				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
-				if user in targets and moveEffect.targetStatChanges != null:
+				if moveEffect.targetStatChanges != null and userIdx > -1 and commandResult.wasBoosted[userIdx]:
 					selfStatChanges.stack(moveEffect.targetStatChanges)
 				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
 				resultsText += 'self ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
-			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes() and true in commandResult.wasBoosted:
 				var targetStatChangesText: String = ''
 				if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 					targetStatChangesText += ', and '
@@ -469,7 +474,7 @@ func get_command_results(user: Combatant) -> String:
 						continue # combatant was not boosted
 					var target = targets[targetIdx]
 					if target == user:
-						if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+						if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and moveEffect.targetStatChanges != null and commandResult.selfBoosted:
 							continue # we already printed the user's stat changes
 						targetStatChangesText += 'self'
 					else:

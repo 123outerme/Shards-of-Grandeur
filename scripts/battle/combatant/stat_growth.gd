@@ -10,7 +10,7 @@ class_name StatGrowth
 @export var speedGrowth: float = 1
 
 static func hp_gain(lv: int) -> int:
-	return lv + 8
+	return lv + 4
 	
 static func stat_gain(lv: int) -> int:
 	return floori(0.1 * lv + 1)

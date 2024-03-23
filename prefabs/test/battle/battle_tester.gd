@@ -33,6 +33,9 @@ func _ready():
 				combatant.assign_moves_nonplayer()
 			if combatant.currentHp == -1:
 				combatant.currentHp = combatant.stats.maxHp
+			if combatant.statChanges == null:
+				combatant.statChanges = StatChanges.new()
+			combatant = combatant.copy()
 		allCombatantNodes[idx].combatant = combatant
 		allCombatantNodes[idx].load_combatant_node()
 	var battleState = BattleState.new()

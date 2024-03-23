@@ -183,3 +183,9 @@ func save_from_object(s: Stats):
 	equippedArmor = s.equippedArmor
 	moves = s.moves.duplicate(false)
 	movepool = s.movepool
+
+func print_stats() -> String:
+	return 'Lv: ' + String.num(level) + '\nHP: ' + String.num(maxHp) + '\nPhys: ' + \
+			String.num(physAttack) + '\nMagic: ' + String.num(magicAttack) + '\nAffinity: ' + \
+			String.num(affinity) + '\nResistance: ' + String.num(resistance) + \
+			'\nSpeed: ' + String.num(speed)

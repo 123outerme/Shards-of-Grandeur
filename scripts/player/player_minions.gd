@@ -49,7 +49,8 @@ func level_up_minion(minion: Combatant, newLevel: int):
 	if levelDiff > 0:
 		minion.stats.level_up(levelDiff)
 		minion.currentHp = minion.stats.maxHp
-		minion.assign_moves_nonplayer()
+		if len(minion.stats.moves) < 4:
+			minion.assign_moves_nonplayer()
 
 func level_up_minions(newLevel: int):
 	for minion in get_minion_list():

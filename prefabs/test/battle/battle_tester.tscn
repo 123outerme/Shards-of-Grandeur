@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=58 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="20_2oj5r"]
+[ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance/battle_trance.tres" id="21_0ynbu"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/weakness.gd" id="26_s0u33"]
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
 script = ExtResource("6_ohjbr")
@@ -174,10 +176,10 @@ downed = false
 [sub_resource type="Resource" id="Resource_h71dw"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("4_cmvjq")
-moveEffectType = 0
+move = ExtResource("21_0ynbu")
+moveEffectType = 1
 orbChange = 0
-targetPositions = Array[String](["Ally"])
+targetPositions = Array[String](["Center"])
 randomNums = Array[float]([0.5])
 
 [sub_resource type="Resource" id="Resource_ahrn6"]
@@ -221,6 +223,12 @@ statGrowth = ExtResource("16_1n64h")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("15_qn3hw")
 
+[sub_resource type="Resource" id="Resource_dckgv"]
+script = ExtResource("26_s0u33")
+type = 4
+potency = 2
+turnsLeft = 3
+
 [sub_resource type="Resource" id="Resource_b3lik"]
 script = ExtResource("17_hdtqw")
 string = "rat"
@@ -246,6 +254,7 @@ nickname = ""
 stats = SubResource("Resource_hula1")
 currentHp = -1
 orbs = 0
+statusEffect = SubResource("Resource_dckgv")
 friendship = 0.0
 maxFriendship = 30.0
 aiType = 1

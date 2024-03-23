@@ -273,6 +273,25 @@ func fetch_quest_dialogue_info():
 			turningInSteps.append(curStep)
 
 func update_dialogues_in_between():
+	fetch_quest_dialogue_info()
+	# TODO test
+	for questTracker in PlayerResources.questInventory.quests:
+		if questTracker != null:
+			var curStep = questTracker.get_current_step()
+			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
+					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
+					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
+				if saveName in questTracker.get_prev_step().turnInNames \
+						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
+					for dialogue in curStep.inProgressDialogue:
+						if dialogue.can_use_dialogue():
+							add_dialogue_entry_in_dialogue(dialogue)
+	for s in turningInSteps:
+		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
+			for dialogue in s.turnInDialogue:
+				if dialogue.can_use_dialogue():
+					add_dialogue_entry_in_dialogue(dialogue)
+	# TODO test end
 	for dialogue in dialogueEntries:
 		if not dialogue in data.dialogueItems and dialogue.can_use_dialogue():
 			add_dialogue_entry_in_dialogue(dialogue)

@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cmh0663np3wdv" path="res://prefabs/ui/settings/settings_audio_section.tscn" id="7_51o1i"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_ov783"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ns6hj"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_l3u7d"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_m4jmc"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_1hvy2"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_g56yk"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_q75ue"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -88,20 +88,20 @@ text = "Back"
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_ns6hj")
+button_group = SubResource("ButtonGroup_l3u7d")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_m4jmc")
+button_group = SubResource("ButtonGroup_1hvy2")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_g56yk")
+button_group = SubResource("ButtonGroup_q75ue")
 text = "Audio"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]
