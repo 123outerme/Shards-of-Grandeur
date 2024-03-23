@@ -62,13 +62,13 @@ func _ready():
 	while turnExecutor.turnQueue.peek_next() != null:
 		await nextButton.pressed
 		turnExecutor.finish_turn()
-	nextButton.visible = false
 	
-	state.calcdStateIndex = 0
+	reset_intermediate_state_strs()
 	turnExecutor.update_turn_text()
-	while state.calcdStateIndex < len(state.calcdStateStrings):
-		turnExecutor.update_turn_text()
-		state.calcdStateIndex += 1
+	await nextButton.pressed
+	while not turnExecutor.advance_precalcd_text():
+		await nextButton.pressed
+	nextButton.visible = false
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
 	return allCombatantNodes

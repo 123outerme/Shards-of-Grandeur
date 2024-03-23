@@ -96,13 +96,13 @@ func update_turn_text() -> bool:
 				text = battleController.state.calcdStateStrings[0]
 		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
-
+		
 		if battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings) and \
 				battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex] in battleController.state.statusEffDamagedCombatants:
-			# only defer if in battle turn results
 			for cNode: CombatantNode in allCombatantNodes:
 				if cNode.combatant == battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex]:
 					cNode.play_particles(BattleCommand.get_hit_particles(), false)
+					cNode.update_hp_tag()
 					break
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
