@@ -81,7 +81,7 @@ func update_turn_text() -> bool:
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var text: String = ''
 	
-	#''' enabling ability to set breakpoint for debugging status dmg particles
+	''' enabling ability to set breakpoint for debugging status dmg particles
 	if len(battleController.state.statusEffDamagedCombatants) > 0:
 		print('status dmgd combatants')
 	#'''
