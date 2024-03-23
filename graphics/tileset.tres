@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=36 format=3 uid="uid://ccf5vxiigjqru"]
+[gd_resource type="TileSet" load_steps=38 format=3 uid="uid://ccf5vxiigjqru"]
 
 [ext_resource type="Texture2D" uid="uid://cw74wj0lme24k" path="res://graphics/terrain/grass.png" id="1_twi3w"]
 [ext_resource type="Texture2D" uid="uid://bbrbj4xgtnrrm" path="res://graphics/structures/trees.png" id="2_u6f08"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://earkr3crhtx6" path="res://graphics/furniture/market_stalls.png" id="8_y3gic"]
 [ext_resource type="Texture2D" uid="uid://bh4u8ojxhu2ca" path="res://graphics/terrain/stone_dirt_9.png" id="9_dnwey"]
 [ext_resource type="Texture2D" uid="uid://dfndjkc8stlcb" path="res://graphics/terrain/river_dirt_9.png" id="9_j75jb"]
+[ext_resource type="Texture2D" uid="uid://qwfwgy8k4ugs" path="res://graphics/structures/rocks.png" id="10_0b54r"]
 [ext_resource type="Texture2D" uid="uid://ccd5rwe06rllp" path="res://graphics/structures/horse_hitches.png" id="10_p6vw5"]
 [ext_resource type="Texture2D" uid="uid://cnah0gmxv0syc" path="res://graphics/furniture/anvil.png" id="11_rx32u"]
 
@@ -499,6 +500,21 @@ texture = ExtResource("9_j75jb")
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2r61c"]
+texture = ExtResource("10_0b54r")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, 2, 8, 2, 8, 7, -7, 7)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, 1, 5, 1, 5, 4, -5, 4)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, 3, 2, 1, 6, 2, 6, 4, 3, 6, -7, 6)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ulgi"]
 texture = ExtResource("4_oxo8n")
@@ -1214,3 +1230,4 @@ sources/13 = SubResource("TileSetAtlasSource_mo72d")
 sources/14 = SubResource("TileSetAtlasSource_0mfx4")
 sources/15 = SubResource("TileSetAtlasSource_igx1n")
 sources/16 = SubResource("TileSetAtlasSource_khgnc")
+sources/17 = SubResource("TileSetAtlasSource_2r61c")
