@@ -7,6 +7,7 @@ var playerName: String = 'Player'
 @onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
 @onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
+@onready var creditsButton: Button = get_node('Panel/VBoxContainer/CreditsButton')
 
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
@@ -17,6 +18,9 @@ var playerName: String = 'Player'
 @onready var virtualKeyboard: VirtualKeyboard = get_node('Panel/PlayerNamePanel/VirtualKeyboard')
 
 @onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
+
+@onready var creditsPanel: Panel = get_node('Panel/CreditsPanel')
+@onready var creditsBack: Button = get_node('Panel/CreditsPanel/BackButton')
 
 @onready var versionLabel: RichTextLabel = get_node('VersionLabel')
 
@@ -123,3 +127,11 @@ func _on_virtual_keyboard_enter_pressed():
 
 func _on_settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+
+func _on_credits_button_pressed():
+	creditsPanel.visible = true
+	creditsBack.grab_focus()
+
+func _on_credits_back_button_pressed():
+	creditsPanel.visible = false
+	creditsButton.grab_focus()
