@@ -12,6 +12,7 @@ const moveListItemPanel = preload("res://prefabs/ui/stats/move_list_item_panel.t
 @export var movepool: Array[Move] = []
 @export var level: int = 1
 @export var hideMovesInMoveList: bool = false
+@export var levelUp: bool = false
 
 var firstMovePanel: MoveListItemPanel = null
 
@@ -27,12 +28,14 @@ func load_move_pool_panel(rebuild: bool = true):
 			panel.queue_free()
 	
 		firstMovePanel = null
-	
-		for move in movepool:
+		var sortedMovepool: Array[Move] = movepool.duplicate()
+		sortedMovepool.sort_custom(_sort_by_level_desc)
+		for move in sortedMovepool:
 			if move.requiredLv <= level and \
 					not (hideMovesInMoveList and (move in moves)):
 				var instantiatedPanel: MoveListItemPanel = moveListItemPanel.instantiate()
 				instantiatedPanel.move = move
+				instantiatedPanel.showNewMoveIndicator = levelUp and move.requiredLv == level
 				instantiatedPanel.details_pressed.connect(_on_details_button_clicked)
 				instantiatedPanel.select_pressed.connect(_on_select_button_clicked)
 				instantiatedPanel.learn_pressed.connect(_on_learn_button_clicked)
@@ -98,3 +101,8 @@ func _on_learn_button_clicked(move: Move):
 
 func _on_cancel_button_clicked():
 	cancel_button_clicked.emit()
+
+func _sort_by_level_desc(a: Move, b: Move) -> bool:
+	if a.requiredLv > b.requiredLv:
+		return true
+	return false

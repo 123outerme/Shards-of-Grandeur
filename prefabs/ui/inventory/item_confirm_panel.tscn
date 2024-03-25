@@ -1,16 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://b03wrcogq8csb"]
+[gd_scene load_steps=6 format=3 uid="uid://b03wrcogq8csb"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_xu2v7"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_confirm_panel.gd" id="2_trx2s"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_ib1cv"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_shx4p"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3dqb"]
+
 [node name="ItemConfirmPanel" type="Panel"]
-custom_minimum_size = Vector2(900, 400)
-theme = ExtResource("1_xu2v7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s3dqb")
 script = ExtResource("2_trx2s")
 
-[node name="TitleLabel" type="RichTextLabel" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(900, 400)
+layout_mode = 0
+offset_left = 190.0
+offset_top = 280.0
+offset_right = 1090.0
+offset_bottom = 680.0
+theme = ExtResource("1_xu2v7")
+
+[node name="TitleLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -22,7 +46,7 @@ bbcode_enabled = true
 text = "[center]Confirm Panel Title Goes Here[/center]"
 fit_content = true
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+[node name="DescriptionLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -38,28 +62,28 @@ bbcode_enabled = true
 text = "[center]Confirm panel description should go here. Not a ton of text, just enough to get the job done.[/center]"
 fit_content = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -52.0
+offset_top = -58.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="YesButton" parent="HBoxContainer" instance=ExtResource("4_shx4p")]
+[node name="YesButton" parent="Panel/HBoxContainer" instance=ExtResource("4_shx4p")]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "Yes"
 
-[node name="NoButton" parent="HBoxContainer" instance=ExtResource("4_shx4p")]
+[node name="NoButton" parent="Panel/HBoxContainer" instance=ExtResource("4_shx4p")]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "No"
 
-[connection signal="pressed" from="HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

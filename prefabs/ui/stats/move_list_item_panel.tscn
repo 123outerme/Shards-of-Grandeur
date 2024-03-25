@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://634c2d1oqhb3"]
+[gd_scene load_steps=6 format=3 uid="uid://634c2d1oqhb3"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7pta3"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_list_item_panel.gd" id="2_qpcow"]
+[ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="3_oykmk"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="3_ybytg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0w5j"]
@@ -48,6 +49,27 @@ layout_mode = 2
 bbcode_enabled = true
 text = "Physical"
 fit_content = true
+
+[node name="CenterNewMove" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_right = -194.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="MoveIndicatorControl" type="Control" parent="CenterNewMove"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterNewMove/MoveIndicatorControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("3_oykmk")
 
 [node name="DetailsButton" parent="." instance=ExtResource("3_ybytg")]
 layout_mode = 1

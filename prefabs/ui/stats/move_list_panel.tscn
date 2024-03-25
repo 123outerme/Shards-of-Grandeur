@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://di4m6wwpbc3pl"]
+[gd_scene load_steps=8 format=3 uid="uid://di4m6wwpbc3pl"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_luq84"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_m0c67"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_list_panel.gd" id="3_ejc2m"]
+[ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="4_5gpwg"]
 [ext_resource type="PackedScene" uid="uid://634c2d1oqhb3" path="res://prefabs/ui/stats/move_list_item_panel.tscn" id="4_g83xo"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="5_jgexd"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_kx188"]
@@ -13,6 +14,7 @@ offset_bottom = 404.0
 theme = ExtResource("1_luq84")
 theme_override_styles/panel = ExtResource("2_m0c67")
 script = ExtResource("3_ejc2m")
+newMoveIndicator = ExtResource("4_5gpwg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -53,6 +55,7 @@ offset_top = -49.0
 offset_right = 101.0
 offset_bottom = -10.0
 text = "Edit Moves"
+expand_icon = true
 
 [node name="MoveDetailsPanel" parent="." instance=ExtResource("5_jgexd")]
 visible = false

@@ -103,6 +103,8 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool.pool
 	moveListPanel.readOnly = readOnly
+	moveListPanel.showNewMoveIndicator = levelUp and minion.stats.movepool.has_moves_at_level(minion.stats.level) \
+			if minion != null else false
 	moveListPanel.load_move_list_panel()
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
@@ -168,6 +170,7 @@ func _on_move_list_panel_edit_moves():
 	editMovesPanel.moves = stats.moves
 	editMovesPanel.movepool = stats.movepool.pool
 	editMovesPanel.level = stats.level
+	editMovesPanel.levelUp = levelUp
 	editMovesPanel.load_edit_moves_panel()
 	backButton.disabled = true
 

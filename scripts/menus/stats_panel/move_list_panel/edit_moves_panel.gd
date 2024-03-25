@@ -12,6 +12,7 @@ enum MenuState {
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
 @export var level: int = 1
+@export var levelUp: bool = false
 
 var state: MenuState = MenuState.SELECTING_MOVEPOOL_MOVE
 var selectedMove: Move = null
@@ -66,11 +67,13 @@ func load_edit_moves_panel(rebuild: bool = true):
 	moveListPanel.moves = moves
 	moveListPanel.movepool = movepool
 	moveListPanel.readOnly = true
+	moveListPanel.level = level
+	moveListPanel.levelUp = levelUp
 	moveListPanel.load_move_list_panel()
-	
 	movePoolPanel.moves = moves
 	movePoolPanel.movepool = movepool
 	movePoolPanel.level = level
+	movePoolPanel.levelUp = levelUp
 	movePoolPanel.load_move_pool_panel(rebuild)
 	
 	update_menu_state()

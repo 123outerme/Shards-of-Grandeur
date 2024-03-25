@@ -40,6 +40,7 @@ func load_animation():
 	moveFrame = 0
 	if anim != null:
 		sprite_frames = anim.spriteFrames
+	flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():
 	if len(anim.frames) > 0:
@@ -76,6 +77,7 @@ func load_frame():
 		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
 			targetPos.y += round(0.5 * cNode.combatant.maxSize.y)
 			targetPos.y += round(0.5 * anim.maxSize.y)
+	targetPos += sprFrame.position
 
 func next_frame():
 	frame_complete.emit(moveFrame)

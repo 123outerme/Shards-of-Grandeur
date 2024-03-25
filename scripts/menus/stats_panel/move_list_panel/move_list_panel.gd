@@ -9,6 +9,10 @@ signal edit_moves_reorder_clicked(move: Move, index: int)
 @export var moves: Array[Move] = []
 @export var movepool: Array[Move] = []
 @export var readOnly: bool = false
+@export var levelUp: bool = false
+@export var level: int = 1
+@export var showNewMoveIndicator: bool = false
+@export var newMoveIndicator: Texture2D = null
 
 var previousControl: Control = null
 var lastMovePanel: MoveListItemPanel = null
@@ -26,6 +30,7 @@ func load_move_list_panel():
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if i < len(moves):
 			itemPanel.move = moves[i]
+			itemPanel.showNewMoveIndicator = levelUp and level == moves[i].requiredLv
 			if moves[i] != null:
 				lastMovePanel = itemPanel
 		else:
@@ -35,6 +40,7 @@ func load_move_list_panel():
 	editMovesButton.visible = not readOnly
 	if not readOnly and lastMovePanel != null:
 		editMovesButton.focus_neighbor_top = editMovesButton.get_path_to(lastMovePanel.detailsButton)
+	editMovesButton.icon = newMoveIndicator if showNewMoveIndicator else null
 
 func connect_details_pressed(function: Callable):
 	for i in range(4):

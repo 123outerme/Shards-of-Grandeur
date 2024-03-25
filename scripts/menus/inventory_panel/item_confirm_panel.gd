@@ -6,9 +6,9 @@ signal confirm_option(yes: bool)
 @export var title: String = ''
 @export var description: String = ''
 
-@onready var titleLabel: RichTextLabel = get_node('TitleLabel')
-@onready var descriptionLabel: RichTextLabel = get_node('DescriptionLabel')
-@onready var noButton: Button = get_node('HBoxContainer/NoButton')
+@onready var titleLabel: RichTextLabel = get_node('Panel/TitleLabel')
+@onready var descriptionLabel: RichTextLabel = get_node('Panel/DescriptionLabel')
+@onready var noButton: Button = get_node('Panel/HBoxContainer/NoButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -16,10 +16,12 @@ signal cancel_pressed
 @export var movepoolLearn: bool = false
 @export var movepoolCancel: bool = false
 @export var moveSlot: int = -1
+@export var showNewMoveIndicator: bool = false
 
 @onready var moveName: RichTextLabel = get_node("CenterMoveName/MoveName")
 @onready var moveLevel: RichTextLabel = get_node("CenterMoveName/MoveLevel")
 @onready var damageType: RichTextLabel = get_node("CenterDetails/DamageType")
+@onready var newMoveIndicator: Control = get_node('CenterNewMove/MoveIndicatorControl')
 @onready var detailsButton: Button = get_node("DetailsButton")
 @onready var reorderButton: Button = get_node("ReorderButton")
 @onready var replaceButton: Button = get_node("ReplaceButton")
@@ -36,6 +38,7 @@ func load_move_list_item_panel():
 		moveName.text = move.moveName
 		moveLevel.text = ' Lv ' + str(move.requiredLv)
 		damageType.text = Move.dmg_category_to_string(move.category)
+		newMoveIndicator.visible = showNewMoveIndicator
 		detailsButton.visible = showDetailsButton
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(detailsButton)
 		
@@ -68,6 +71,7 @@ func load_move_list_item_panel():
 		selectButton.visible = false
 		learnButton.visible = false
 		cancelButton.visible = false
+		newMoveIndicator.visible = false
 
 func clear_button_bottom_neighbors():
 	detailsButton.focus_neighbor_bottom = ''
