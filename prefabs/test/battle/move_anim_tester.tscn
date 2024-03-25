@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
+
+[ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
+[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
+[ext_resource type="Resource" uid="uid://cn6tuokm6l4pq" path="res://gamedata/moves/mage_blast/sprite_mage_blast.tres" id="4_d3pik"]
+[ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
+
+[node name="MoveAnimTester" type="Node2D"]
+script = ExtResource("1_ukfe0")
+anim = ExtResource("4_d3pik")
+
+[node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("3_veosa")]
+position = Vector2(-88, 0)
+combatant = ExtResource("6_px5i6")
+leftSide = true
+battlePosition = "Player"
+allyTeamMarker = NodePath("../UserTeamMarker")
+enemyTeamMarker = NodePath("../EnemyTeamMarker")
+
+[node name="OnAttackPos" parent="UserNode" index="3"]
+position = Vector2(8, 0)
+
+[node name="TargetNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("3_veosa")]
+position = Vector2(59, 22)
+combatant = ExtResource("7_5ibcc")
+role = 1
+battlePosition = "Center"
+allyTeamMarker = NodePath("../EnemyTeamMarker")
+enemyTeamMarker = NodePath("../UserTeamMarker")
+
+[node name="OnAttackPos" parent="TargetNode" index="3"]
+position = Vector2(-8, 0)
+
+[node name="GlobalMarker" type="Marker2D" parent="."]
+
+[node name="UserTeamMarker" type="Marker2D" parent="."]
+position = Vector2(-54, -18)
+
+[node name="EnemyTeamMarker" type="Marker2D" parent="."]
+position = Vector2(39, 6)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Button" type="Button" parent="."]
+offset_left = -20.0
+offset_top = 77.0
+offset_right = 21.0
+offset_bottom = 108.0
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+
+[editable path="UserNode"]
+[editable path="UserNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="UserNode/HPTag/OrbDisplay"]
+[editable path="TargetNode"]
+[editable path="TargetNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="TargetNode/HPTag/OrbDisplay"]

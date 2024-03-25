@@ -546,6 +546,11 @@ func get_command_animation() -> String:
 			return 'walk'
 	return 'stand'
 
+func get_command_sprites() -> Array[MoveAnimSprite]:
+	if type == Type.MOVE:
+		return move.moveAnimation.moveSprites
+	return []
+
 func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarget: bool = true) -> Array[ParticlePreset]:
 	var presets: Array[ParticlePreset] = []
 	if commandResult == null:

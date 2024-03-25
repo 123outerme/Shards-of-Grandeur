@@ -126,6 +126,7 @@ script = ExtResource("10_ier4v")
 battleController = NodePath("..")
 
 [node name="BattleTextBox" type="Node2D" parent="BattleCam"]
+z_index = 3
 
 [node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox"]
 offset_left = -160.0
@@ -672,7 +673,7 @@ grow_vertical = 0
 text = "OK"
 
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
-z_index = 1
+z_index = 4
 position = Vector2(0, -8)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("10_7n25e")

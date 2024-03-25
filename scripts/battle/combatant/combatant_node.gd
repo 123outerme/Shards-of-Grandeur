@@ -33,6 +33,7 @@ signal details_clicked(combatantNode: CombatantNode)
 # NOTE: if this is of type BattleController, then the SFX Button scene breaks.... no joke. WHYYYYYYY??
 
 const ANIMATE_MOVE_SPEED = 60
+const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
@@ -42,6 +43,9 @@ var playHitQueued: ParticlePreset = null
 var playHitTimingDelay: float = 0
 var playParticlesQueued: ParticlePreset = null
 var playParticlesTimingDelay: float = 0
+var playMoveSpritesQueued: Array[MoveAnimSprite] = []
+var playedMoveSprites: int = 0
+var moveSpriteTargets: Array[CombatantNode] = []
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -290,6 +294,31 @@ func make_particles_now(preset: ParticlePreset, timingDelay: float = 0):
 			shardParticles.preset = preset
 			shardParticles.set_make_particles(true)
 	SceneLoader.audioHandler.play_sfx(preset.sfx)
+
+func play_move_sprites(moveSprites: Array[MoveAnimSprite]):
+	for moveAnimSprite in moveSprites:
+		if moveAnimSprite.delayedUntilReposition:
+			playMoveSpritesQueued.append(moveAnimSprite)
+		else:
+			play_move_sprite(moveAnimSprite)
+
+func play_move_sprite(moveAnimSprite: MoveAnimSprite):
+	var nodes: Array[CombatantNode] = moveSpriteTargets
+	if not moveAnimSprite.onePerTarget and len(nodes) > 0:
+		nodes = [moveSpriteTargets[0]]
+	for node in nodes:
+		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
+		spriteNode.user = self
+		spriteNode.target = node
+		spriteNode.globalMarker = battleController.globalMarker
+		spriteNode.userTeam = allyTeamMarker
+		spriteNode.enemyTeam = enemyTeamMarker
+		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
+		spriteNode.anim = moveAnimSprite
+		spriteNode.load_animation()
+		spriteNode.play_sprite_animation()
+		add_child(spriteNode)
+		playedMoveSprites += 1
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
@@ -573,7 +602,8 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
-	if battleController != null:
+	# if all move sprites have finished
+	if battleController != null and playedMoveSprites == 0:
 		battleController.combatant_finished_animating.emit()
 	update_hp_tag()
 
@@ -588,15 +618,26 @@ func _combatant_finished_moving():
 			update_hp_tag()
 		make_particles_now(playParticlesQueued, playParticlesTimingDelay)
 	playParticlesQueued = null
+	if len(playMoveSpritesQueued) > 0:
+		for moveSprite in playMoveSpritesQueued:
+			play_move_sprite(moveSprite)
+	playMoveSpritesQueued = []
+	moveSpriteTargets = [] # no longer needed; all move sprites have been played!
 
 func _combatant_finished_animating():
 	if playHitQueued != null:
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
-	playHitQueued = null
+		playHitQueued = null
 
 func _on_animate_tween_finished():
 	animateTween = null
 
 func _on_hp_drain_tween_finished():
 	hpDrainTween = null
+
+func _move_sprite_complete():
+	playedMoveSprites -= 1
+	# if the combatant's sprite animation is done and all move sprites have finished
+	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'stand':
+		battleController.combatant_finished_animating.emit()

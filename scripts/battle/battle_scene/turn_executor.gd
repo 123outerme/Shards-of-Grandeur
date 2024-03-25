@@ -122,12 +122,17 @@ func update_turn_text() -> bool:
 					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 
 		var userNode: CombatantNode = null
-		for combatantNode in allCombatantNodes:
+		var defenderNodes: Array[CombatantNode] = []
+		for combatantNode: CombatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
 				combatantNode.play_animation(combatant.command.get_command_animation())
 				userNode = combatantNode
-			if combatantNode.combatant in defenders and combatant.command.type == BattleCommand.Type.USE_ITEM:
-				combatantNode.update_hp_tag()
+			if combatantNode.combatant in defenders:
+				defenderNodes.append(combatantNode)
+				if combatant.command.type == BattleCommand.Type.USE_ITEM:
+					combatantNode.update_hp_tag()
+		userNode.moveSpriteTargets = defenderNodes
+		userNode.play_move_sprites(combatant.command.get_command_sprites())
 			
 		if userNode != null and combatant.command.commandResult != null:
 			var moveEffect: MoveEffect = null
