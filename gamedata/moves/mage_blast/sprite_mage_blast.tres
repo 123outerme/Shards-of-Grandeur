@@ -24,12 +24,17 @@ position = Vector2(-6, 0)
 offset = 1
 xCurve = SubResource("Curve_dlhdp")
 yCurve = SubResource("Curve_a0ari")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 
-[sub_resource type="Curve" id="Curve_n11my"]
+[sub_resource type="Curve" id="Curve_e6rga"]
 _data = [Vector2(0, 0), 0.0, 0.135192, 0, 1, Vector2(0.507407, 0.0685976), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.89082, 0.0, 1, 0]
 point_count = 3
 
-[sub_resource type="Curve" id="Curve_ytovh"]
+[sub_resource type="Curve" id="Curve_up6cp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.496296, 0), 0.0, 0.0, 0, 0, Vector2(0.759259, 0.504573), 3.4779, 3.4779, 0, 0, Vector2(1, 1), 2.05793, 0.0, 1, 0]
 point_count = 4
 
@@ -42,8 +47,13 @@ speed = 100.0
 relativeTo = 1
 position = Vector2(0, 0)
 offset = 0
-xCurve = SubResource("Curve_n11my")
-yCurve = SubResource("Curve_ytovh")
+xCurve = SubResource("Curve_e6rga")
+yCurve = SubResource("Curve_up6cp")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 
 [sub_resource type="Resource" id="Resource_k3fio"]
 script = ExtResource("1_q427l")
@@ -54,11 +64,17 @@ speed = 0.0
 relativeTo = 0
 position = Vector2(-5, 0)
 offset = 0
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 particles = ExtResource("2_sumqu")
 
 [resource]
 script = ExtResource("1_y8ljm")
 spriteFrames = ExtResource("2_xf5fu")
+centerSprite = true
 maxSize = Vector2(5, 6)
 frames = Array[ExtResource("1_q427l")]([SubResource("Resource_7r6ra"), SubResource("Resource_fid4v"), SubResource("Resource_k3fio")])
 delayedUntilReposition = false

@@ -317,12 +317,12 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 	for node in nodes:
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
 		spriteNode.user = self
+		spriteNode.anim = moveAnimSprite
 		spriteNode.target = node
 		spriteNode.globalMarker = battleController.globalMarker
 		spriteNode.userTeam = allyTeamMarker
 		spriteNode.enemyTeam = enemyTeamMarker
 		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
-		spriteNode.anim = moveAnimSprite
 		#spriteNode.call_deferred('play_sprite_animation')
 		add_child(spriteNode)
 		playedMoveSprites += 1

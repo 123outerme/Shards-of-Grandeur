@@ -36,17 +36,23 @@ func _process(delta):
 	if playing:
 		visible = true
 		global_position = anim.frames[moveFrame].get_sprite_position(frameTimer, targetPos, startPos)
+		if anim.frames[moveFrame].trackRotationTarget:
+			calc_rotation(anim.frames[moveFrame])
 		frameTimer += delta
 		if frameTimer > anim.frames[moveFrame].get_real_duration(targetPos - startPos):
 			next_frame()
 
 func load_animation():
 	moveFrame = 0
+	centered = anim.centerSprite
 	if anim != null:
 		sprite_frames = anim.spriteFrames
 	flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():
+	if anim == null:
+		queue_free()
+		return
 	load_animation()
 	if len(anim.frames) > 0:
 		playing = true
@@ -57,39 +63,52 @@ func load_frame():
 	startPos = global_position
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	play(sprFrame.animation)
-	match sprFrame.relativeTo:
-		MoveAnimSpriteFrame.MoveSpriteTarget.GLOBAL:
-			targetPos = globalMarker.global_position
-		MoveAnimSpriteFrame.MoveSpriteTarget.USER_TEAM:
-			targetPos = userTeam.global_position
-		MoveAnimSpriteFrame.MoveSpriteTarget.TARGET_TEAM:
-			targetPos = enemyTeam.global_position
-		MoveAnimSpriteFrame.MoveSpriteTarget.TARGET:
-			targetPos = target.spriteContainer.global_position
-		MoveAnimSpriteFrame.MoveSpriteTarget.USER:
-			targetPos = user.spriteContainer.global_position
-	var cNode: CombatantNode = target if sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
-	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
-	particleEmitter.scale.y = particleEmitter.scale.x
-	if sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET or \
-			sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.USER:
-		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
-			targetPos.x += round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
-			targetPos.x += round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
-		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
-			targetPos.x -= round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
-			targetPos.x -= round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
-		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
-			targetPos.y -= round(0.5 * cNode.combatant.maxSize.y)
-			targetPos.y -= round(0.5 * anim.maxSize.y)
-		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
-			targetPos.y += round(0.5 * cNode.combatant.maxSize.y)
-			targetPos.y += round(0.5 * anim.maxSize.y)
-	targetPos += sprFrame.position
+	targetPos = get_sprite_target_position(sprFrame.relativeTo, sprFrame.offset) + sprFrame.position
+	calc_rotation(sprFrame)
+	
 	if sprFrame.particles != null:
 		particleEmitter.preset = sprFrame.particles
 		particleEmitter.set_make_particles(true)
 		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
+
+func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, offset: int) -> Vector2:
+	var pos = Vector2()
+	match spriteTarget:
+			MoveAnimSpriteFrame.MoveSpriteTarget.GLOBAL:
+				pos = globalMarker.global_position
+			MoveAnimSpriteFrame.MoveSpriteTarget.USER_TEAM:
+				pos = userTeam.global_position
+			MoveAnimSpriteFrame.MoveSpriteTarget.TARGET_TEAM:
+				pos = enemyTeam.global_position
+			MoveAnimSpriteFrame.MoveSpriteTarget.TARGET:
+				pos = target.spriteContainer.global_position
+			MoveAnimSpriteFrame.MoveSpriteTarget.USER:
+				pos = user.spriteContainer.global_position
+			MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
+				pos = startPos
+	var cNode: CombatantNode = target if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
+	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
+	particleEmitter.scale.y = particleEmitter.scale.x
+	if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET or \
+			spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.USER:
+		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
+			pos.x += round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
+			pos.x += round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
+		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
+			pos.x -= round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
+			pos.x -= round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
+		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
+			pos.y -= round(0.5 * cNode.combatant.maxSize.y)
+			pos.y -= round(0.5 * anim.maxSize.y)
+		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
+			pos.y += round(0.5 * cNode.combatant.maxSize.y)
+			pos.y += round(0.5 * anim.maxSize.y)
+	return pos
+
+func calc_rotation(sprFrame: MoveAnimSpriteFrame):
+	if sprFrame.rotate:
+		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + sprFrame.rotateToFacePosition
+		look_at(rotateTargetPos)
 
 func next_frame():
 	frame_complete.emit(moveFrame)

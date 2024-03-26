@@ -6,7 +6,8 @@ enum MoveSpriteTarget {
 	TARGET = 1,
 	USER = 2,
 	TARGET_TEAM = 3,
-	USER_TEAM = 4
+	USER_TEAM = 4,
+	CURRENT_POSITION = 5,
 }
 
 enum MoveSpriteOffset {
@@ -17,15 +18,27 @@ enum MoveSpriteOffset {
 	BELOW = 4
 }
 
+@export_group('')
 @export_multiline var annotation: String = ''
 @export var animation: String = ''
 @export var duration: float = 1
 @export var speed: float = 1
+
+@export_group('Position')
 @export var relativeTo: MoveSpriteTarget = MoveSpriteTarget.GLOBAL
 @export var position: Vector2
 @export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
 @export var xCurve: Curve = Curve.new()
 @export var yCurve: Curve = Curve.new()
+
+@export_group('Rotation')
+@export var rotate: bool = false
+@export var rotateToFace: MoveSpriteTarget = MoveSpriteTarget.GLOBAL
+@export var rotateToFacePosition: Vector2
+@export_flags('In Front', 'Behind', 'Above', 'Below') var rotateToFaceOffset: int = MoveSpriteOffset.NONE
+@export var trackRotationTarget: bool = false
+
+@export_group('')
 @export var particles: ParticlePreset = null
 
 func _init(
@@ -38,6 +51,11 @@ func _init(
 	i_offset = MoveSpriteOffset.NONE,
 	i_xCurve = Curve.new(),
 	i_yCurve = Curve.new(),
+	i_rotate = false,
+	i_rotateToFace = MoveSpriteTarget.GLOBAL,
+	i_rotateToFacePos = Vector2(),
+	i_rotateToFaceOffset = MoveSpriteOffset.NONE,
+	i_trackRotationTarget = false,
 	i_particles = null,
 ):
 	annotation = i_annotation
@@ -48,6 +66,11 @@ func _init(
 	offset = i_offset
 	xCurve = i_xCurve
 	yCurve = i_yCurve
+	rotate = i_rotate
+	rotateToFace = i_rotateToFace
+	rotateToFacePosition = i_rotateToFacePos
+	rotateToFaceOffset = i_rotateToFaceOffset
+	trackRotationTarget = i_trackRotationTarget
 	particles = i_particles
 
 func get_real_duration(diff: Vector2):

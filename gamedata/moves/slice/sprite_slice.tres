@@ -24,6 +24,11 @@ position = Vector2(0, 0)
 offset = 1
 xCurve = SubResource("Curve_in8f7")
 yCurve = SubResource("Curve_x4dxy")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 
 [sub_resource type="Curve" id="Curve_482c4"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -44,6 +49,11 @@ position = Vector2(0, 0)
 offset = 0
 xCurve = SubResource("Curve_482c4")
 yCurve = SubResource("Curve_ji881")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 particles = ExtResource("2_vu336")
 
 [sub_resource type="Curve" id="Curve_xeuw0"]
@@ -61,10 +71,16 @@ position = Vector2(0, 0)
 offset = 0
 xCurve = SubResource("Curve_xeuw0")
 yCurve = SubResource("Curve_we3mt")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 
 [resource]
 script = ExtResource("1_6e34h")
 spriteFrames = ExtResource("2_4tq3p")
+centerSprite = true
 maxSize = Vector2(13, 14)
 frames = Array[ExtResource("1_0qfx7")]([SubResource("Resource_3xysb"), SubResource("Resource_jexqs"), SubResource("Resource_u0mnm")])
 delayedUntilReposition = true
