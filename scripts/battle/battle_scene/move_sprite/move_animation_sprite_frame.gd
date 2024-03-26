@@ -26,6 +26,7 @@ enum MoveSpriteOffset {
 @export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
 @export var xCurve: Curve = Curve.new()
 @export var yCurve: Curve = Curve.new()
+@export var particles: ParticlePreset = null
 
 func _init(
 	i_annotation = '',
@@ -37,6 +38,7 @@ func _init(
 	i_offset = MoveSpriteOffset.NONE,
 	i_xCurve = Curve.new(),
 	i_yCurve = Curve.new(),
+	i_particles = null,
 ):
 	annotation = i_annotation
 	animation = i_animation
@@ -46,12 +48,13 @@ func _init(
 	offset = i_offset
 	xCurve = i_xCurve
 	yCurve = i_yCurve
+	particles = i_particles
 
 func get_real_duration(diff: Vector2):
 	if speed <= 0 or diff.length() == 0:
 		return duration
 	
-	return max(diff.length() / speed, duration)
+	return min(diff.length() / speed, duration)
 
 func get_percent_complete(time: float, diff: Vector2) -> float:
 	if duration <= 0:

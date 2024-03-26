@@ -1,19 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
+[ext_resource type="Resource" uid="uid://bbk1euvf6x6x1" path="res://gamedata/moves/mage_blast/anim_mage_blast.tres" id="2_7mrqt"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
-[ext_resource type="Resource" uid="uid://cn6tuokm6l4pq" path="res://gamedata/moves/mage_blast/sprite_mage_blast.tres" id="4_d3pik"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-anim = ExtResource("4_d3pik")
+moveAnimation = ExtResource("2_7mrqt")
 
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("3_veosa")]
 position = Vector2(-88, 0)
 combatant = ExtResource("6_px5i6")
 leftSide = true
+spriteFacesRight = true
 battlePosition = "Player"
 allyTeamMarker = NodePath("../UserTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
@@ -49,6 +51,8 @@ offset_top = 77.0
 offset_right = 21.0
 offset_bottom = 108.0
 text = "Play"
+
+[node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 

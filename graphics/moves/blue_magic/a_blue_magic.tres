@@ -3,6 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://cq8wymy5s6dra" path="res://graphics/moves/blue_magic/mage_blast.png" id="1_2hbho"]
 [ext_resource type="Texture2D" uid="uid://qjvhsph2mdh1" path="res://graphics/moves/blue_magic/mage_blast_explode.png" id="2_erx1e"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds3b5"]
+atlas = ExtResource("1_2hbho")
+region = Rect2(0, 0, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpimv"]
+atlas = ExtResource("1_2hbho")
+region = Rect2(5, 0, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11dri"]
+atlas = ExtResource("1_2hbho")
+region = Rect2(10, 0, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vl71"]
+atlas = ExtResource("1_2hbho")
+region = Rect2(15, 0, 5, 6)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdlr6"]
 atlas = ExtResource("2_erx1e")
 region = Rect2(0, 0, 5, 6)
@@ -27,24 +43,25 @@ region = Rect2(20, 0, 5, 6)
 atlas = ExtResource("2_erx1e")
 region = Rect2(25, 0, 5, 6)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ds3b5"]
-atlas = ExtResource("1_2hbho")
-region = Rect2(0, 0, 5, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qpimv"]
-atlas = ExtResource("1_2hbho")
-region = Rect2(5, 0, 5, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_11dri"]
-atlas = ExtResource("1_2hbho")
-region = Rect2(10, 0, 5, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vl71"]
-atlas = ExtResource("1_2hbho")
-region = Rect2(15, 0, 5, 6)
-
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds3b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpimv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11dri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vl71")
+}],
+"loop": true,
+"name": &"mage_blast",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fdlr6")
@@ -65,23 +82,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_uuwrn")
 }],
 "loop": false,
-"name": &"explode",
+"name": &"mage_blast_explode",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ds3b5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qpimv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_11dri")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5vl71")
-}],
-"loop": true,
-"name": &"mage_blast",
-"speed": 6.0
 }]

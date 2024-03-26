@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var anim: MoveAnimSprite = null
-
+@export var moveAnimation: MoveAnimation = null
 
 @onready var userNode: CombatantNode = get_node('UserNode')
 @onready var targetNode: CombatantNode = get_node('TargetNode')
@@ -14,20 +13,28 @@ extends Node2D
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 
 func _ready():
+	SceneLoader.audioHandler = get_node('AudioHandler')
 	userNode.load_combatant_node()
 	targetNode.load_combatant_node()
 
 func _on_button_pressed():
-	var moveSprite: MoveSprite = moveSpriteScene.instantiate()
-	moveSprite.user = userNode
-	moveSprite.target = targetNode
-	moveSprite.anim = anim
-	moveSprite.globalMarker = globalMarker
-	moveSprite.userTeam = userTeamMarker
-	moveSprite.enemyTeam = enemyTeamMarker
-	moveSprite.load_animation()
-	moveSprite.play_sprite_animation()
-	add_child(moveSprite)
-
-func _on_move_sprite_move_sprite_complete():
-	print('move sprite finished')
+	for spriteAnim in moveAnimation.moveSprites:
+		var moveSprite: MoveSprite = moveSpriteScene.instantiate()
+		moveSprite.user = userNode
+		moveSprite.target = targetNode
+		moveSprite.anim = spriteAnim
+		moveSprite.globalMarker = globalMarker
+		moveSprite.userTeam = userTeamMarker
+		moveSprite.enemyTeam = enemyTeamMarker
+		moveSprite.load_animation()
+		moveSprite.play_sprite_animation()
+		add_child(moveSprite)
+	
+	userNode.play_animation(moveAnimation.combatantAnimation)
+	userNode.play_particles(moveAnimation.userParticlePreset)
+	targetNode.play_particles(moveAnimation.targetsParticlePreset)
+	if moveAnimation.makesContact:
+		userNode.tween_to(targetNode.global_position, _move_tween_done)
+		
+func _move_tween_done():
+	pass

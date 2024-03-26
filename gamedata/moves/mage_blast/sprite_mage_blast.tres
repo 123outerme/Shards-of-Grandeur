@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://cn6tuokm6l4pq"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://cn6tuokm6l4pq"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_q427l"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_y8ljm"]
+[ext_resource type="Resource" uid="uid://bw41p7itrj4tm" path="res://gamedata/moves/mage_blast/particles_mage_blast_explosion.tres" id="2_sumqu"]
 [ext_resource type="SpriteFrames" uid="uid://bi6lsddroou2k" path="res://graphics/moves/blue_magic/a_blue_magic.tres" id="2_xf5fu"]
 
 [sub_resource type="Curve" id="Curve_dlhdp"]
@@ -19,25 +20,25 @@ animation = "mage_blast"
 duration = -1.0
 speed = 0.0
 relativeTo = 2
-position = Vector2(0, 0)
+position = Vector2(-6, 0)
 offset = 1
 xCurve = SubResource("Curve_dlhdp")
 yCurve = SubResource("Curve_a0ari")
 
 [sub_resource type="Curve" id="Curve_n11my"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.135192, 0, 1, Vector2(0.507407, 0.0685976), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.89082, 0.0, 1, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_ytovh"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.496296, 0), 0.0, 0.0, 0, 0, Vector2(0.759259, 0.504573), 3.4779, 3.4779, 0, 0, Vector2(1, 1), 2.05793, 0.0, 1, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_fid4v"]
 script = ExtResource("1_q427l")
 annotation = "shoot mage blast at target"
 animation = "mage_blast"
 duration = 1.0
-speed = 90.0
+speed = 100.0
 relativeTo = 1
 position = Vector2(0, 0)
 offset = 0
@@ -47,12 +48,13 @@ yCurve = SubResource("Curve_ytovh")
 [sub_resource type="Resource" id="Resource_k3fio"]
 script = ExtResource("1_q427l")
 annotation = "explodes"
-animation = "explode"
+animation = "mage_blast_explode"
 duration = 1.0
 speed = 0.0
 relativeTo = 0
-position = Vector2(0, 0)
+position = Vector2(-5, 0)
 offset = 0
+particles = ExtResource("2_sumqu")
 
 [resource]
 script = ExtResource("1_y8ljm")

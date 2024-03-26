@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmq50xun0no1m"]
+[gd_scene load_steps=3 format=3 uid="uid://bmq50xun0no1m"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_sprite.gd" id="1_hya4s"]
+[ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="2_suavx"]
 
 [node name="MoveSprite" type="AnimatedSprite2D"]
 z_index = 2
 script = ExtResource("1_hya4s")
+
+[node name="ParticleEmitter" parent="." instance=ExtResource("2_suavx")]

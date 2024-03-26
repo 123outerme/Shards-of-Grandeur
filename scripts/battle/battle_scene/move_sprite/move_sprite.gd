@@ -24,6 +24,8 @@ var frameTimer: float = 0
 var startPos: Vector2 = Vector2()
 var targetPos: Vector2 = Vector2()
 
+@onready var particleEmitter: Particles = get_node('ParticleEmitter')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	startPos = global_position
@@ -78,6 +80,10 @@ func load_frame():
 			targetPos.y += round(0.5 * cNode.combatant.maxSize.y)
 			targetPos.y += round(0.5 * anim.maxSize.y)
 	targetPos += sprFrame.position
+	if sprFrame.particles != null:
+		particleEmitter.preset = sprFrame.particles
+		particleEmitter.set_make_particles(true)
+		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
 
 func next_frame():
 	frame_complete.emit(moveFrame)
