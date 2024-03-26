@@ -47,6 +47,8 @@ func _on_ok_button_pressed():
 		okBtn.disabled = true
 
 func _move_tween_finished():
+	if not moveTweenStarted:
+		return
 	moveTweenFinished = true
 	if okPressed == true:
 		_on_ok_button_pressed()

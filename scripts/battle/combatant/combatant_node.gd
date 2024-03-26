@@ -46,6 +46,7 @@ var playParticlesTimingDelay: float = 0
 var playMoveSpritesQueued: Array[MoveAnimSprite] = []
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
+var moveSpritesCallback: Callable = Callable()
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -319,6 +320,9 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		spriteNode.play_sprite_animation()
 		add_child(spriteNode)
 		playedMoveSprites += 1
+
+func move_animation_callback(callback: Callable):
+	moveSpritesCallback = callback
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:
@@ -629,6 +633,9 @@ func _combatant_finished_animating():
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
+	if moveSpritesCallback != Callable():
+		moveSpritesCallback.call()
+		moveSpritesCallback = Callable()
 
 func _on_animate_tween_finished():
 	animateTween = null
