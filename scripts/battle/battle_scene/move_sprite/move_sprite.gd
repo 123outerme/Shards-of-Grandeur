@@ -29,10 +29,12 @@ var targetPos: Vector2 = Vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	startPos = global_position
+	play_sprite_animation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if playing:
+		visible = true
 		global_position = anim.frames[moveFrame].get_sprite_position(frameTimer, targetPos, startPos)
 		frameTimer += delta
 		if frameTimer > anim.frames[moveFrame].get_real_duration(targetPos - startPos):
@@ -45,8 +47,10 @@ func load_animation():
 	flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():
+	load_animation()
 	if len(anim.frames) > 0:
 		playing = true
+		visible = false
 		load_frame()
 
 func load_frame():
@@ -61,10 +65,12 @@ func load_frame():
 		MoveAnimSpriteFrame.MoveSpriteTarget.TARGET_TEAM:
 			targetPos = enemyTeam.global_position
 		MoveAnimSpriteFrame.MoveSpriteTarget.TARGET:
-			targetPos = target.global_position
+			targetPos = target.spriteContainer.global_position
 		MoveAnimSpriteFrame.MoveSpriteTarget.USER:
-			targetPos = user.global_position
-	var cNode: CombatantNode = user if sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.USER else target
+			targetPos = user.spriteContainer.global_position
+	var cNode: CombatantNode = target if sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
+	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
+	particleEmitter.scale.y = particleEmitter.scale.x
 	if sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET or \
 			sprFrame.relativeTo == MoveAnimSpriteFrame.MoveSpriteTarget.USER:
 		if (sprFrame.offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://bbk1euvf6x6x1" path="res://gamedata/moves/mage_blast/anim_mage_blast.tres" id="2_7mrqt"]
+[ext_resource type="Resource" uid="uid://dtc401ibnt8la" path="res://gamedata/moves/slice/anim_slice.tres" id="2_s8xco"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
@@ -9,9 +9,9 @@
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_7mrqt")
+moveAnimation = ExtResource("2_s8xco")
 
-[node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("3_veosa")]
+[node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-88, 0)
 combatant = ExtResource("6_px5i6")
 leftSide = true
@@ -19,20 +19,22 @@ spriteFacesRight = true
 battlePosition = "Player"
 allyTeamMarker = NodePath("../UserTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
+battleController = NodePath("..")
 
 [node name="OnAttackPos" parent="UserNode" index="3"]
-position = Vector2(8, 0)
+position = Vector2(16, 0)
 
-[node name="TargetNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") instance=ExtResource("3_veosa")]
+[node name="TargetNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(59, 22)
 combatant = ExtResource("7_5ibcc")
 role = 1
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../UserTeamMarker")
+battleController = NodePath("..")
 
 [node name="OnAttackPos" parent="TargetNode" index="3"]
-position = Vector2(-8, 0)
+position = Vector2(-16, 0)
 
 [node name="GlobalMarker" type="Marker2D" parent="."]
 

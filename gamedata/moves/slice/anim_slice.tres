@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://dtc401ibnt8la"]
 
-[ext_resource type="Resource" uid="uid://x1ej4nhttmdu" path="res://gamedata/moves/slice/particles_slice.tres" id="1_7bxon"]
+[ext_resource type="Resource" uid="uid://ullc8v1byudk" path="res://gamedata/moves/slice/sprite_slice.tres" id="1_um1b7"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_vt0gv"]
 
 [resource]
 script = ExtResource("1_vt0gv")
 combatantAnimation = "attack_phys"
 makesContact = true
-targetsParticlePreset = ExtResource("1_7bxon")
+moveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_um1b7")])

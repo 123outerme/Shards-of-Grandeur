@@ -32,7 +32,7 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var battleController: Node2D
 # NOTE: if this is of type BattleController, then the SFX Button scene breaks.... no joke. WHYYYYYYY??
 
-const ANIMATE_MOVE_SPEED = 60
+const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var animateTween: Tween = null
@@ -91,12 +91,11 @@ func load_combatant_node():
 		hpProgressBar.value = combatant.currentHp
 		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp)
 		update_hp_tag()
-		# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
-		behindParticleContainer.scale.x = 1.5 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+		
+		behindParticleContainer.scale.x = get_behind_particle_scale()
 		behindParticleContainer.scale.y = behindParticleContainer.scale.x
 		
-		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
-		frontParticleContainer.scale.x = 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+		frontParticleContainer.scale.x = get_in_front_particle_scale()
 		frontParticleContainer.scale.y = frontParticleContainer.scale.x
 		surgeParticles.set_make_particles(false)
 		behindParticles.set_make_particles(false)
@@ -115,7 +114,15 @@ func load_combatant_node():
 			onAssistMarker.position.y -= (combatant.maxSize.y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
 			onAssistMarker.position.y += (combatant.maxSize.y - 16) / 2
-			
+
+func get_in_front_particle_scale() -> float:
+		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
+	return 1 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+
+func get_behind_particle_scale() -> float:
+	# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
+	return 1.5 + round(max(0, max(combatant.maxSize.x, combatant.maxSize.y) - 16) / 16) / 4
+
 func update_hp_tag():
 	if not is_alive():
 		if visible and fadeOutTween == null:
@@ -253,7 +260,7 @@ func tween_to(pos: Vector2, callback: Callable):
 	# and return at a constant rate
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - pos).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_animate_tween_finished)
-	animateTween.finished.connect(callback)
+	#animateTween.finished.connect(callback)
 
 func play_particles(preset: ParticlePreset, delay: bool = false, timingDelay: float = 0):
 	if preset == null or preset.count == 0:
@@ -316,8 +323,7 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		spriteNode.enemyTeam = enemyTeamMarker
 		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
 		spriteNode.anim = moveAnimSprite
-		spriteNode.load_animation()
-		spriteNode.play_sprite_animation()
+		#spriteNode.call_deferred('play_sprite_animation')
 		add_child(spriteNode)
 		playedMoveSprites += 1
 
@@ -633,12 +639,15 @@ func _combatant_finished_animating():
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
-	if moveSpritesCallback != Callable():
+	if moveSpritesCallback != Callable() and animateTween == null:
 		moveSpritesCallback.call()
 		moveSpritesCallback = Callable()
 
 func _on_animate_tween_finished():
 	animateTween = null
+	if moveSpritesCallback != Callable() and playedMoveSprites == 0:
+		moveSpritesCallback.call()
+		moveSpritesCallback = Callable()
 
 func _on_hp_drain_tween_finished():
 	hpDrainTween = null

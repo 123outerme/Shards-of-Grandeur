@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://ullc8v1byudk"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0qfx7"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_6e34h"]
+[ext_resource type="SpriteFrames" uid="uid://bpv4uux5flax7" path="res://graphics/moves/slashes/a_slashes.tres" id="2_4tq3p"]
+[ext_resource type="Resource" uid="uid://x1ej4nhttmdu" path="res://gamedata/moves/slice/particles_slice.tres" id="2_vu336"]
+
+[sub_resource type="Curve" id="Curve_in8f7"]
+_data = [Vector2(0, 1), 0.0, -0.5, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_x4dxy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_3xysb"]
+script = ExtResource("1_0qfx7")
+annotation = "start slash already at target"
+animation = "slice"
+duration = -1.0
+speed = 0.0
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_in8f7")
+yCurve = SubResource("Curve_x4dxy")
+
+[sub_resource type="Curve" id="Curve_482c4"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ji881"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_jexqs"]
+script = ExtResource("1_0qfx7")
+annotation = "sweep forward towards target"
+animation = "slice"
+duration = 1.0
+speed = 120.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_482c4")
+yCurve = SubResource("Curve_ji881")
+particles = ExtResource("2_vu336")
+
+[sub_resource type="Curve" id="Curve_xeuw0"]
+
+[sub_resource type="Curve" id="Curve_we3mt"]
+
+[sub_resource type="Resource" id="Resource_u0mnm"]
+script = ExtResource("1_0qfx7")
+annotation = "keep the slice there"
+animation = "slice"
+duration = 0.6
+speed = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_xeuw0")
+yCurve = SubResource("Curve_we3mt")
+
+[resource]
+script = ExtResource("1_6e34h")
+spriteFrames = ExtResource("2_4tq3p")
+maxSize = Vector2(13, 14)
+frames = Array[ExtResource("1_0qfx7")]([SubResource("Resource_3xysb"), SubResource("Resource_jexqs"), SubResource("Resource_u0mnm")])
+delayedUntilReposition = true
+onePerTarget = true

@@ -73,13 +73,15 @@ func set_make_particles(showParticles: bool):
 	for child in get_children():
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
-			if particleSpawner.emitting != showParticles:
+			if particleSpawner.emitting != showParticles and not (not particleSpawner.emitting and preset.count < 1):
 				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
 	if showParticles:
 		startTime = Time.get_unix_time_from_system()
 
 func set_num_particles(value: int):
+	if value < 1:
+		return
 	var children = get_children()
 	_particles = value
 	for child in children:

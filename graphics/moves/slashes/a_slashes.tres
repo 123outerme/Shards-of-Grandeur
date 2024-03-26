@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bpv4uux5flax7"]
+
+[ext_resource type="Texture2D" uid="uid://b7hpbqqf071ol" path="res://graphics/moves/slashes/slice.png" id="1_bitxn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cai6s"]
+atlas = ExtResource("1_bitxn")
+region = Rect2(0, 0, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la2rj"]
+atlas = ExtResource("1_bitxn")
+region = Rect2(13, 0, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulw8c"]
+atlas = ExtResource("1_bitxn")
+region = Rect2(26, 0, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqqxd"]
+atlas = ExtResource("1_bitxn")
+region = Rect2(39, 0, 13, 14)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cai6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la2rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulw8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqqxd")
+}],
+"loop": false,
+"name": &"slice",
+"speed": 6.0
+}]
