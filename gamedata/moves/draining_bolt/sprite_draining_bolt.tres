@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://dqo6aqiut42x8"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_m115t"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_xxb7x"]
+[ext_resource type="Resource" uid="uid://cne1qejmi62f2" path="res://gamedata/moves/draining_bolt/particles_draining_bolt_explosion.tres" id="2_qjynh"]
+[ext_resource type="SpriteFrames" uid="uid://bi6lsddroou2k" path="res://graphics/moves/blue_magic/a_blue_magic.tres" id="2_wc8wo"]
+
+[sub_resource type="Curve" id="Curve_ve6bf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_ghdnm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_v00yf"]
+script = ExtResource("1_m115t")
+annotation = "Start projectile at player"
+animation = "draining_bolt"
+duration = -1.0
+speed = 0.0
+relativeTo = 2
+position = Vector2(-6, 0)
+offset = 1
+xCurve = SubResource("Curve_ve6bf")
+yCurve = SubResource("Curve_ghdnm")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_y8t16"]
+_data = [Vector2(0, 0), 0.0, 0.411799, 0, 1, Vector2(0.320225, 0.131868), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.27709, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_g7ub8"]
+_data = [Vector2(0, 0), 0.0, 0.411799, 0, 1, Vector2(0.320225, 0.131868), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.27709, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_fp6nl"]
+script = ExtResource("1_m115t")
+annotation = ""
+animation = "draining_bolt"
+duration = 1.5
+speed = 40.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_y8t16")
+yCurve = SubResource("Curve_g7ub8")
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = true
+
+[sub_resource type="Curve" id="Curve_2xqe8"]
+
+[sub_resource type="Curve" id="Curve_mc02v"]
+
+[sub_resource type="Resource" id="Resource_4p1yk"]
+script = ExtResource("1_m115t")
+annotation = "bolt explodes"
+animation = "draining_bolt_explode"
+duration = 0.5
+speed = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_2xqe8")
+yCurve = SubResource("Curve_mc02v")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_qjynh")
+
+[resource]
+script = ExtResource("1_xxb7x")
+spriteFrames = ExtResource("2_wc8wo")
+centerSprite = true
+maxSize = Vector2(8, 5)
+frames = Array[ExtResource("1_m115t")]([SubResource("Resource_v00yf"), SubResource("Resource_fp6nl"), SubResource("Resource_4p1yk")])
+delayedUntilReposition = false
+onePerTarget = true

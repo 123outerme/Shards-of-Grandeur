@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://djn2r7u7mpk40"]
 
+[ext_resource type="Resource" uid="uid://cv88vglmfdrw4" path="res://gamedata/moves/thunderstrike/sprite_thunderstrike.tres" id="1_kx6yd"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_nbwyb"]
-[ext_resource type="Resource" uid="uid://bhcv8bfpc7ox4" path="res://gamedata/moves/thunderstrike/particles_thunderstrike_target.tres" id="2_73mmo"]
 [ext_resource type="Resource" uid="uid://qbh1ihpc3syn" path="res://gamedata/moves/thunderstrike/particles_thunderstrike_user.tres" id="3_g82gh"]
 
 [resource]
 script = ExtResource("1_nbwyb")
 combatantAnimation = "attack_magic"
+makesContact = false
 userParticlePreset = ExtResource("3_g82gh")
-targetsParticlePreset = ExtResource("2_73mmo")
+chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_kx6yd")])
+surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_kx6yd")])

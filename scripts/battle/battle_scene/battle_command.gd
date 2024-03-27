@@ -548,7 +548,10 @@ func get_command_animation() -> String:
 
 func get_command_sprites() -> Array[MoveAnimSprite]:
 	if type == Type.MOVE:
-		return move.moveAnimation.moveSprites
+		if moveEffectType == Move.MoveEffectType.CHARGE:
+			return move.moveAnimation.chargeMoveSprites
+		if moveEffectType == Move.MoveEffectType.SURGE:
+			return move.moveAnimation.surgeMoveSprites
 	return []
 
 func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarget: bool = true) -> Array[ParticlePreset]:

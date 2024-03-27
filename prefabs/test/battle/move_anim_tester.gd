@@ -4,6 +4,7 @@ signal combatant_finished_moving
 signal combatant_finished_animating
 
 @export var moveAnimation: MoveAnimation = null
+@export var playSurge: bool = false
 
 @onready var userNode: CombatantNode = get_node('UserNode')
 @onready var targetNode: CombatantNode = get_node('TargetNode')
@@ -21,27 +22,15 @@ func _ready():
 	targetNode.load_combatant_node()
 
 func _on_button_pressed():
-	'''
-	for spriteAnim in moveAnimation.moveSprites:
-		var moveSprite: MoveSprite = moveSpriteScene.instantiate()
-		moveSprite.user = userNode
-		moveSprite.target = targetNode
-		moveSprite.anim = spriteAnim
-		moveSprite.globalMarker = globalMarker
-		moveSprite.userTeam = userTeamMarker
-		moveSprite.enemyTeam = enemyTeamMarker
-		moveSprite.load_animation()
-		moveSprite.play_sprite_animation()
-		add_child(moveSprite)
-	'''
-	
 	userNode.play_animation(moveAnimation.combatantAnimation)
 	userNode.play_particles(moveAnimation.userParticlePreset)
 	userNode.moveSpriteTargets = [targetNode]
-	userNode.play_move_sprites(moveAnimation.moveSprites)
+	userNode.play_move_sprites(moveAnimation.surgeMoveSprites if playSurge else moveAnimation.chargeMoveSprites)
 	targetNode.play_particles(moveAnimation.targetsParticlePreset)
 	if moveAnimation.makesContact:
 		userNode.tween_to(targetNode.onAttackMarker.global_position, _move_tween_done)
+	else:
+		combatant_finished_moving.emit()
 		
 func _move_tween_done():
 	pass

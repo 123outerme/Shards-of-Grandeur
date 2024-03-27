@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://bb8r110hk5qrt"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_nxv81"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_wj3cd"]
+[ext_resource type="SpriteFrames" uid="uid://bpv4uux5flax7" path="res://graphics/moves/slashes/a_slashes.tres" id="2_7int8"]
+[ext_resource type="Resource" uid="uid://cvvwd1t4k1uxx" path="res://gamedata/moves/impale/particles_impale_sprite.tres" id="2_eux4y"]
+
+[sub_resource type="Curve" id="Curve_k2t8s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_5osv8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_l7oqb"]
+script = ExtResource("1_wj3cd")
+annotation = "Spawn in front of user"
+animation = "impale"
+duration = -1.0
+speed = 0.0
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_k2t8s")
+yCurve = SubResource("Curve_5osv8")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_qsulx"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y1jto"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_vt5tr"]
+script = ExtResource("1_wj3cd")
+annotation = "move towards enemy"
+animation = "impale"
+duration = 1.0
+speed = 120.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_qsulx")
+yCurve = SubResource("Curve_y1jto")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_eux4y")
+
+[sub_resource type="Curve" id="Curve_pk78r"]
+
+[sub_resource type="Curve" id="Curve_taqnt"]
+
+[sub_resource type="Resource" id="Resource_v4wot"]
+script = ExtResource("1_wj3cd")
+annotation = "keep the impale there"
+animation = "impale"
+duration = 0.6
+speed = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_pk78r")
+yCurve = SubResource("Curve_taqnt")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("1_nxv81")
+spriteFrames = ExtResource("2_7int8")
+centerSprite = true
+maxSize = Vector2(16, 4)
+frames = Array[ExtResource("1_wj3cd")]([SubResource("Resource_l7oqb"), SubResource("Resource_vt5tr"), SubResource("Resource_v4wot")])
+delayedUntilReposition = true
+onePerTarget = true

@@ -62,13 +62,15 @@ func play_sprite_animation():
 func load_frame():
 	startPos = global_position
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
-	play(sprFrame.animation)
+	if sprFrame.animation != '':
+		play(sprFrame.animation)
 	targetPos = get_sprite_target_position(sprFrame.relativeTo, sprFrame.offset) + sprFrame.position
 	calc_rotation(sprFrame)
 	
 	if sprFrame.particles != null:
 		particleEmitter.preset = sprFrame.particles
 		particleEmitter.set_make_particles(true)
+		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1
 		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
 
 func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, offset: int) -> Vector2:
@@ -108,7 +110,10 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 	if sprFrame.rotate:
 		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + sprFrame.rotateToFacePosition
-		look_at(rotateTargetPos)
+		if (rotateTargetPos - global_position).length() >= 1:
+			look_at(rotateTargetPos)
+		else:
+			rotation = 0
 
 func next_frame():
 	frame_complete.emit(moveFrame)
