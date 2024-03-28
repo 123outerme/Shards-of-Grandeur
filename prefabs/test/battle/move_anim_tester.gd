@@ -34,3 +34,8 @@ func _on_button_pressed():
 		
 func _move_tween_done():
 	pass
+
+func _on_swap_button_pressed():
+	var temp = userNode
+	userNode = targetNode
+	targetNode = temp

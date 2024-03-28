@@ -221,6 +221,9 @@ func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
 
 func play_animation(animationName: String):
+	if animationName == '':
+		animatedSprite.stop()
+		return
 	animatedSprite.play(animationName)
 
 func tween_to(pos: Vector2, callback: Callable):

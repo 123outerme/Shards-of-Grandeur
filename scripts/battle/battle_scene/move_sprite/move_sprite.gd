@@ -64,7 +64,10 @@ func load_frame():
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	if sprFrame.animation != '':
 		play(sprFrame.animation)
-	targetPos = get_sprite_target_position(sprFrame.relativeTo, sprFrame.offset) + sprFrame.position
+	var offsetPos: Vector2 = sprFrame.position
+	if not user.leftSide:
+		offsetPos.x *= -1
+	targetPos = get_sprite_target_position(sprFrame.relativeTo, sprFrame.offset) + offsetPos
 	calc_rotation(sprFrame)
 	
 	if sprFrame.particles != null:
@@ -109,7 +112,10 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 
 func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 	if sprFrame.rotate:
-		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + sprFrame.rotateToFacePosition
+		var rotateOffsetPos: Vector2 = sprFrame.rotateToFacePosition
+		if not user.leftSide:
+			rotateOffsetPos.x *= -1
+		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + rotateOffsetPos
 		if (rotateTargetPos - global_position).length() >= 1:
 			look_at(rotateTargetPos)
 		else:
