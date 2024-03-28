@@ -71,6 +71,7 @@ func _ready():
 	returnToPos = global_position
 	if battleController != null:
 		battleController.combatant_finished_moving.connect(_combatant_finished_moving)
+		battleController.combatants_play_hit.connect(_combatants_play_hit)
 		battleController.combatant_finished_animating.connect(_combatant_finished_animating)
 	orbDisplay.alignment = BoxContainer.ALIGNMENT_END if leftSide else BoxContainer.ALIGNMENT_BEGIN
 
@@ -267,6 +268,9 @@ func tween_to(pos: Vector2, callback: Callable):
 func tween_back_to_return_pos():
 	if animateTween != null:
 		animateTween.kill()
+	if battleController != null:
+		# plays hit particles ONLY unless the combatant really is done
+		battleController.combatants_play_hit.emit()
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - spriteContainer.global_position).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)
@@ -313,6 +317,7 @@ func make_particles_now(preset: ParticlePreset, timingDelay: float = 0):
 	SceneLoader.audioHandler.play_sfx(preset.sfx)
 
 func play_move_sprites(moveSprites: Array[MoveAnimSprite]):
+	playMoveSpritesQueued = []
 	for moveAnimSprite in moveSprites:
 		if moveAnimSprite.delayedUntilReposition:
 			playMoveSpritesQueued.append(moveAnimSprite)
@@ -621,14 +626,14 @@ func _on_click_combatant_btn_pressed():
 
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
-	# if all move sprites have finished
+	# if all move sprites have finished and move tween has completely finished
 	if battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
 		battleController.combatant_finished_animating.emit()
 	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
-		battleController.combatant_finished_moving.emit() # TODO check if this is needed?
+		battleController.combatant_finished_moving.emit()
 	update_hp_tag()
 
 func _combatant_finished_moving():
@@ -643,19 +648,21 @@ func _combatant_finished_moving():
 	playMoveSpritesQueued = []
 	moveSpriteTargets = [] # no longer needed; all move sprites have been played!
 
-func _combatant_finished_animating():
+func _combatants_play_hit():
 	if playHitQueued != null:
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
-	if moveSpritesCallback != Callable() and animateTween == null:
+
+func _combatant_finished_animating():
+	_combatants_play_hit()
+	if moveSpritesCallback != Callable() and animateTween == null and playedMoveSprites == 0:
 		moveSpritesCallback.call()
 		moveSpritesCallback = Callable()
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if moveSpritesCallback == Callable() and playedMoveSprites == 0:
-		battleController.combatant_finished_moving.emit()
+	if playedMoveSprites == 0:
 		tween_back_to_return_pos()
 
 func _on_combatant_tween_returned():
@@ -675,7 +682,6 @@ func _move_sprite_complete():
 	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'stand':
 		if animateTween == null:
 			if spriteContainer.global_position != returnToPos:
-				battleController.combatant_finished_moving.emit()
 				tween_back_to_return_pos()
 			else:
 				battleController.combatant_finished_animating.emit()

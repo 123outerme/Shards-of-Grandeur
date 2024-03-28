@@ -1,6 +1,7 @@
 extends Node2D
 
 signal combatant_finished_moving
+signal combatants_play_hit
 signal combatant_finished_animating
 
 @export var moveAnimation: MoveAnimation = null

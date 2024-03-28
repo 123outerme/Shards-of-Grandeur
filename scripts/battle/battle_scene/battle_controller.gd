@@ -2,6 +2,7 @@ extends Node2D
 class_name BattleController
 
 signal combatant_finished_moving
+signal combatants_play_hit
 signal combatant_finished_animating
 
  # below this level, 2 enemies cannot spawn from a random battle
