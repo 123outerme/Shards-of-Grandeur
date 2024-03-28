@@ -1,0 +1,112 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=17 format=3 uid="uid://cirgqddowv0o7"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_23hpp"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_aaiit"]
+[ext_resource type="Resource" uid="uid://hlg0kfetwv17" path="res://gamedata/moves/whirlwind_slash/particles_whirlwind_slash.tres" id="2_5i3wn"]
+[ext_resource type="SpriteFrames" uid="uid://bpv4uux5flax7" path="res://graphics/moves/slashes/a_slashes.tres" id="2_rp4rx"]
+
+[sub_resource type="Curve" id="Curve_qovex"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_clvpv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_lenri"]
+script = ExtResource("1_23hpp")
+annotation = "position slice at enemy team"
+animation = ""
+duration = -1.0
+speed = 0.0
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_qovex")
+yCurve = SubResource("Curve_clvpv")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_b7jy6"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yyyar"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_2yvcu"]
+script = ExtResource("1_23hpp")
+annotation = "play 1 + 1/4 spins as slash inches closer"
+animation = "whirlwind_slash_spin"
+duration = 0.833
+speed = 0.0
+relativeTo = 2
+position = Vector2(4, 0)
+offset = 0
+xCurve = SubResource("Curve_b7jy6")
+yCurve = SubResource("Curve_yyyar")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_tc6i4"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vj2xc"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_p5f7t"]
+script = ExtResource("1_23hpp")
+annotation = "send air slices at target(s)"
+animation = "whirlwind_slash_air_slice"
+duration = 1.0
+speed = 100.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_tc6i4")
+yCurve = SubResource("Curve_vj2xc")
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_ky6ka"]
+
+[sub_resource type="Curve" id="Curve_db41i"]
+
+[sub_resource type="Resource" id="Resource_6g43n"]
+script = ExtResource("1_23hpp")
+annotation = "play particles at target"
+animation = "default"
+duration = 1.0
+speed = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_ky6ka")
+yCurve = SubResource("Curve_db41i")
+rotate = true
+rotateToFace = 5
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_5i3wn")
+
+[resource]
+script = ExtResource("1_aaiit")
+spriteFrames = ExtResource("2_rp4rx")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_23hpp")]([SubResource("Resource_lenri"), SubResource("Resource_2yvcu"), SubResource("Resource_p5f7t"), SubResource("Resource_6g43n")])
+delayedUntilReposition = true
+onePerTarget = true

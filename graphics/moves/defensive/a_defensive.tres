@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://gfxfafxd6bjj"]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://gfxfafxd6bjj"]
 
 [ext_resource type="Texture2D" uid="uid://biijvnotec8kb" path="res://graphics/moves/defensive/shield_wall.png" id="1_4a6lx"]
 
@@ -30,8 +30,17 @@ region = Rect2(80, 0, 16, 16)
 atlas = ExtResource("1_4a6lx")
 region = Rect2(96, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyfax"]
+atlas = ExtResource("1_4a6lx")
+region = Rect2(112, 0, 16, 16)
+
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_acuap")
@@ -53,6 +62,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ttas6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyfax")
 }],
 "loop": false,
 "name": &"shield_wall",

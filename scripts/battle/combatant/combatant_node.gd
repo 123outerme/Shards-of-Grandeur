@@ -261,9 +261,15 @@ func tween_to(pos: Vector2, callback: Callable):
 	# wait
 	animateTween.tween_property(spriteContainer, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
-	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - pos).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_animate_tween_finished)
 	#animateTween.finished.connect(callback)
+
+func tween_back_to_return_pos():
+	if animateTween != null:
+		animateTween.kill()
+	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - spriteContainer.global_position).length() / ANIMATE_MOVE_SPEED)
+	animateTween.finished.connect(_on_combatant_tween_returned)
 
 func play_particles(preset: ParticlePreset, delay: bool = false, timingDelay: float = 0):
 	if preset == null or preset.count == 0:
@@ -616,13 +622,13 @@ func _on_click_combatant_btn_pressed():
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
 	# if all move sprites have finished
-	if battleController != null and playedMoveSprites == 0:
+	if battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
 		battleController.combatant_finished_animating.emit()
 	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
-		battleController.combatant_finished_moving.emit()
+		battleController.combatant_finished_moving.emit() # TODO check if this is needed?
 	update_hp_tag()
 
 func _combatant_finished_moving():
@@ -648,9 +654,17 @@ func _combatant_finished_animating():
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if moveSpritesCallback != Callable() and playedMoveSprites == 0:
-		moveSpritesCallback.call()
-		moveSpritesCallback = Callable()
+	if moveSpritesCallback == Callable() and playedMoveSprites == 0:
+		battleController.combatant_finished_moving.emit()
+		tween_back_to_return_pos()
+
+func _on_combatant_tween_returned():
+	animateTween = null
+	if playedMoveSprites == 0:
+		battleController.combatant_finished_animating.emit()
+		if moveSpritesCallback != Callable():
+			moveSpritesCallback.call()
+			moveSpritesCallback = Callable()
 
 func _on_hp_drain_tween_finished():
 	hpDrainTween = null
@@ -659,4 +673,10 @@ func _move_sprite_complete():
 	playedMoveSprites -= 1
 	# if the combatant's sprite animation is done and all move sprites have finished
 	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'stand':
-		battleController.combatant_finished_animating.emit()
+		if animateTween == null:
+			if spriteContainer.global_position != returnToPos:
+				battleController.combatant_finished_moving.emit()
+				tween_back_to_return_pos()
+			else:
+				battleController.combatant_finished_animating.emit()
+		

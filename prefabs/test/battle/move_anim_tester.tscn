@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://de82ci80bpa8p" path="res://gamedata/moves/shield_wall/anim_shield_wall.tres" id="2_njyjk"]
+[ext_resource type="Resource" uid="uid://dyi6ou8n3haov" path="res://gamedata/moves/whirlwind_slash/anim_whirlwind_slash.tres" id="2_757bf"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
@@ -9,7 +9,7 @@
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_njyjk")
+moveAnimation = ExtResource("2_757bf")
 
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-72, 0)
@@ -42,7 +42,7 @@ position = Vector2(-16, 0)
 position = Vector2(-34, -13)
 
 [node name="EnemyTeamMarker" type="Marker2D" parent="."]
-position = Vector2(39, 6)
+position = Vector2(25, 6)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

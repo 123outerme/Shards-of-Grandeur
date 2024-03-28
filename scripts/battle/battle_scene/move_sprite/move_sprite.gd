@@ -62,7 +62,9 @@ func play_sprite_animation():
 func load_frame():
 	startPos = global_position
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
-	if sprFrame.animation != '':
+	if sprFrame.animation == '#stop':
+		stop()
+	elif sprFrame.animation != '':
 		play(sprFrame.animation)
 	var offsetPos: Vector2 = sprFrame.position
 	if not user.leftSide:
@@ -94,8 +96,7 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	var cNode: CombatantNode = target if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
 	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
 	particleEmitter.scale.y = particleEmitter.scale.x
-	if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET or \
-			spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.USER:
+	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
 			pos.x += round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
 			pos.x += round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
