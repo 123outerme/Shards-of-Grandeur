@@ -60,6 +60,7 @@ func _init(
 ):
 	annotation = i_annotation
 	animation = i_animation
+	duration = i_duration
 	speed = i_speed
 	relativeTo = i_relativeTo
 	position = i_pos

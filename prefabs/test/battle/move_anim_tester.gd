@@ -23,18 +23,20 @@ func _ready():
 	targetNode.load_combatant_node()
 
 func _on_button_pressed():
+	button.disabled = true
 	userNode.play_animation(moveAnimation.combatantAnimation)
 	userNode.play_particles(moveAnimation.userParticlePreset)
 	userNode.moveSpriteTargets = [targetNode]
 	userNode.play_move_sprites(moveAnimation.surgeMoveSprites if playSurge else moveAnimation.chargeMoveSprites)
 	targetNode.play_particles(moveAnimation.targetsParticlePreset)
 	if moveAnimation.makesContact:
-		userNode.tween_to(targetNode.onAttackMarker.global_position, _move_tween_done)
+		userNode.tween_to(targetNode.onAttackMarker.global_position)
+		userNode.move_animation_callback(_move_tween_done)
 	else:
 		combatant_finished_moving.emit()
 		
 func _move_tween_done():
-	pass
+	button.disabled = false
 
 func _on_swap_button_pressed():
 	var temp = userNode

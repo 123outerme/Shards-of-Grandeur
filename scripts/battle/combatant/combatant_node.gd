@@ -41,6 +41,7 @@ var fadeOutTween: Tween = null
 var returnToPos: Vector2 = Vector2()
 var playHitQueued: ParticlePreset = null
 var playHitTimingDelay: float = 0
+var playHitEnabled: bool = false
 var playParticlesQueued: ParticlePreset = null
 var playParticlesTimingDelay: float = 0
 var playMoveSpritesQueued: Array[MoveAnimSprite] = []
@@ -227,7 +228,7 @@ func play_animation(animationName: String):
 		return
 	animatedSprite.play(animationName)
 
-func tween_to(pos: Vector2, callback: Callable):
+func tween_to(pos: Vector2):
 	if combatant.maxSize.x > 16:
 		if pos.x > global_position.x:
 			pos.x -= (combatant.maxSize.x - 16) / 2
@@ -263,7 +264,6 @@ func tween_to(pos: Vector2, callback: Callable):
 	animateTween.tween_property(spriteContainer, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
 	animateTween.finished.connect(_on_animate_tween_finished)
-	#animateTween.finished.connect(callback)
 
 func tween_back_to_return_pos():
 	if animateTween != null:
@@ -647,12 +647,15 @@ func _combatant_finished_moving():
 			play_move_sprite(moveSprite)
 	playMoveSpritesQueued = []
 	moveSpriteTargets = [] # no longer needed; all move sprites have been played!
+	if playHitQueued != null:
+		playHitEnabled = true
 
 func _combatants_play_hit():
-	if playHitQueued != null:
+	if playHitQueued != null and playHitEnabled:
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
+		playHitEnabled = false
 
 func _combatant_finished_animating():
 	_combatants_play_hit()

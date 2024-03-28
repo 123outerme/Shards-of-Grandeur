@@ -199,7 +199,8 @@ func update_turn_text() -> bool:
 					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
 				# if it's a non-contact move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
 				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
-				userNode.tween_to(moveToPos, battleUI.results._move_tween_finished) # tween
+				userNode.tween_to(moveToPos) # tween
+				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			else:
 				battleController.combatant_finished_moving.emit() # no tween was started so finish instantly
 			

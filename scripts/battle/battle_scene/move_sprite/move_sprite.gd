@@ -78,7 +78,7 @@ func load_frame():
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1
 		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
 
-func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, offset: int) -> Vector2:
+func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, posOffset: int) -> Vector2:
 	var pos = Vector2()
 	match spriteTarget:
 			MoveAnimSpriteFrame.MoveSpriteTarget.GLOBAL:
@@ -97,16 +97,16 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
 	particleEmitter.scale.y = particleEmitter.scale.x
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
-		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
+		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
 			pos.x += round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
 			pos.x += round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
-		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
+		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
 			pos.x -= round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
 			pos.x -= round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
-		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
+		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
 			pos.y -= round(0.5 * cNode.combatant.maxSize.y)
 			pos.y -= round(0.5 * anim.maxSize.y)
-		if (offset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
+		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
 			pos.y += round(0.5 * cNode.combatant.maxSize.y)
 			pos.y += round(0.5 * anim.maxSize.y)
 	return pos
@@ -119,6 +119,8 @@ func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + rotateOffsetPos
 		if (rotateTargetPos - global_position).length() >= 1:
 			look_at(rotateTargetPos)
+			if not user.leftSide: # already "rotating" 180 degrees to satisfy sprite rotation, so rotate it back a little
+				rotation_degrees -= 180
 		else:
 			rotation = 0
 
