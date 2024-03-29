@@ -627,7 +627,9 @@ func _on_click_combatant_btn_pressed():
 func _on_animated_sprite_animation_finished():
 	animatedSprite.play('stand')
 	# if all move sprites have finished and move tween has completely finished
-	if battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
+	if playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position != returnToPos:
+		tween_back_to_return_pos()
+	elif battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
 		battleController.combatant_finished_animating.emit()
 	update_hp_tag()
 
@@ -665,7 +667,7 @@ func _combatant_finished_animating():
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if playedMoveSprites == 0:
+	if playedMoveSprites == 0 and animatedSprite.animation == 'stand':
 		tween_back_to_return_pos()
 
 func _on_combatant_tween_returned():

@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://xdaqflaw3oxs"]
+
+[ext_resource type="Texture2D" uid="uid://bnye7kej8qvo" path="res://graphics/moves/affinity_attacks/silent_strike.png" id="1_4724q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdhq2"]
+atlas = ExtResource("1_4724q")
+region = Rect2(52, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kh1p"]
+atlas = ExtResource("1_4724q")
+region = Rect2(65, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcygk"]
+atlas = ExtResource("1_4724q")
+region = Rect2(78, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcgcp"]
+atlas = ExtResource("1_4724q")
+region = Rect2(0, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjfvy"]
+atlas = ExtResource("1_4724q")
+region = Rect2(13, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1dk4"]
+atlas = ExtResource("1_4724q")
+region = Rect2(26, 0, 13, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrvq5"]
+atlas = ExtResource("1_4724q")
+region = Rect2(39, 0, 13, 5)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdhq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kh1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcygk")
+}],
+"loop": false,
+"name": &"silent_strike_back",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcgcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjfvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1dk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrvq5")
+}],
+"loop": false,
+"name": &"silent_strike_jab",
+"speed": 6.0
+}]

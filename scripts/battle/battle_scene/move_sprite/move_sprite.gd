@@ -39,11 +39,13 @@ func _process(delta):
 		if anim.frames[moveFrame].trackRotationTarget:
 			calc_rotation(anim.frames[moveFrame])
 		frameTimer += delta
-		if frameTimer > anim.frames[moveFrame].get_real_duration(targetPos - startPos):
+		var finishTime = anim.frames[moveFrame].get_real_duration(targetPos - startPos)
+		if frameTimer > finishTime:
 			next_frame()
 
 func load_animation():
 	moveFrame = 0
+	frameTimer = 0
 	centered = anim.centerSprite
 	if anim != null:
 		sprite_frames = anim.spriteFrames
@@ -73,7 +75,10 @@ func load_frame():
 	calc_rotation(sprFrame)
 	
 	if sprFrame.particles != null:
-		particleEmitter.preset = sprFrame.particles
+		var presetCopy: ParticlePreset = sprFrame.particles.duplicate(true)
+		if not user.leftSide: # particles are designed & saved as they would play on an enemy (right side)
+			presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
+		particleEmitter.preset = presetCopy
 		particleEmitter.set_make_particles(true)
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1
 		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
@@ -88,7 +93,7 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 			MoveAnimSpriteFrame.MoveSpriteTarget.TARGET_TEAM:
 				pos = enemyTeam.global_position
 			MoveAnimSpriteFrame.MoveSpriteTarget.TARGET:
-				pos = target.spriteContainer.global_position
+				pos = target.global_position
 			MoveAnimSpriteFrame.MoveSpriteTarget.USER:
 				pos = user.spriteContainer.global_position
 			MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
@@ -127,12 +132,12 @@ func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 func next_frame():
 	frame_complete.emit(moveFrame)
 	moveFrame += 1
-	frameTimer = 0
 	if moveFrame >= len(anim.frames):
 		playing = false
 		move_sprite_complete.emit()
 		queue_free()
 		return
+	frameTimer = 0
 	load_frame()
 
 func reset_animation():
