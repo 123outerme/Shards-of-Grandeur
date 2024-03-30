@@ -1,9 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=13 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
-[ext_resource type="AudioStream" uid="uid://bfvka6oey2pgx" path="res://audio/music/gtl_5.mp3" id="2_0i4v5"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
-[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_o633o"]
 [ext_resource type="Script" path="res://scripts/player/player_camera.gd" id="3_r2wma"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_f4mx3"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_354d4"]
@@ -23,8 +21,6 @@ size = Vector2(16, 16)
 z_index = -10
 motion_mode = 1
 script = ExtResource("1_nw80b")
-battleMusic = ExtResource("2_0i4v5")
-bossBattleMusic = ExtResource("2_o633o")
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

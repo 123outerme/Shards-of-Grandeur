@@ -18,6 +18,7 @@ class_name StaticEncounter
 @export var canEscape: bool = true
 @export var rewards: Array[Reward] = []
 @export var useStaticRewards: bool = false
+@export var battleMusic: AudioStream = null
 
 func _init(
 	i_combatant1 = null,
@@ -33,10 +34,10 @@ func _init(
 	i_autoAllyLv = 1,
 	i_autoAllyMoves: Array[Move] = [],
 	i_specialBattleId = '',
-	i_bossBattle = false,
 	i_canEscape = true,
 	i_rewards: Array[Reward] = [],
 	i_useRewards = false,
+	i_battleMusic = null,
 ):
 	combatant1 = i_combatant1
 	combatant1Level = i_combatant1Lv
@@ -51,7 +52,7 @@ func _init(
 	autoAllyLevel = i_autoAllyLv
 	autoAllyMoves = i_autoAllyMoves
 	specialBattleId = i_specialBattleId
-	bossBattle = i_bossBattle
 	canEscape = i_canEscape
 	rewards = i_rewards
 	useStaticRewards = i_useRewards
+	battleMusic = i_battleMusic

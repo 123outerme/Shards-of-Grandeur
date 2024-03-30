@@ -17,9 +17,9 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/surge_menu.gd" id="11_scq4g"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="12_flx7k"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="12_ip5fm"]
-[ext_resource type="AudioStream" uid="uid://cqhar0cxpsja0" path="res://audio/music/gateway_to_retry.mp3" id="13_kxh3p"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
+[ext_resource type="AudioStream" uid="uid://bhtn8h7o3snhq" path="res://audio/music/deathsound.wav" id="15_8ufyr"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
@@ -588,7 +588,7 @@ layout_mode = 2
 script = ExtResource("12_ip5fm")
 battleUI = NodePath("../../../..")
 itemDetailsPanel = NodePath("../../../../UIPanels/ItemDetailsPanel")
-loseMusic = ExtResource("13_kxh3p")
+loseMusic = ExtResource("15_8ufyr")
 
 [node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
 custom_minimum_size = Vector2(0, 210)

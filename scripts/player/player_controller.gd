@@ -20,9 +20,6 @@ var actChanged: bool = false
 var pauseDisabled: bool = false
 var cutscenePaused: bool = false
 
-@export var battleMusic: AudioStream = null
-@export var bossBattleMusic: AudioStream = null
-
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
 @onready var cam: PlayerCamera = get_node("Camera")
@@ -406,9 +403,9 @@ func menu_closed():
 func start_battle():
 	SaveHandler.save_data()
 	cam.fade_out(_after_start_battle_fade_out)
-	var playingBattleMusic = battleMusic
-	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.bossBattle:
-		playingBattleMusic = bossBattleMusic
+	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic
+	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.battleMusic != null:
+		playingBattleMusic = PlayerResources.playerInfo.staticEncounter.battleMusic
 	SceneLoader.audioHandler.play_music(playingBattleMusic, -1)
 
 func _on_shop_button_pressed():
