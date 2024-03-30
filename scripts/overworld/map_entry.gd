@@ -5,7 +5,7 @@ class_name MapEntry
 @export var requirements: StoryRequirements = null
 @export var overworldTheme: AudioStream = null
 @export var battleMapName: String = 'forest_battle_map'
-@export var battleMusic: AudioStream = null
+@export var battleMusic: Array[AudioStream] = []
 @export var isRecoverLocation: bool = false
 @export var recoverPosition: Vector2 = Vector2()
 
@@ -14,7 +14,7 @@ func _init(
 	i_requirements = null,
 	i_overworldTheme = null,
 	i_battleMapName = '',
-	i_battleMusic = null,
+	i_battleMusic: Array[AudioStream] = [],
 	i_isRecover = false,
 	i_recoverPos = Vector2(),
 ):

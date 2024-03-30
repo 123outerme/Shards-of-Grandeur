@@ -403,7 +403,7 @@ func menu_closed():
 func start_battle():
 	SaveHandler.save_data()
 	cam.fade_out(_after_start_battle_fade_out)
-	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic
+	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic.pick_random()
 	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.battleMusic != null:
 		playingBattleMusic = PlayerResources.playerInfo.staticEncounter.battleMusic
 	SceneLoader.audioHandler.play_music(playingBattleMusic, -1)
