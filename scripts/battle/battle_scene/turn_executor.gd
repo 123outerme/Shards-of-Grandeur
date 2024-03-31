@@ -202,6 +202,7 @@ func update_turn_text() -> bool:
 				userNode.tween_to(moveToPos) # tween
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			else:
+				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 				battleController.combatant_finished_moving.emit() # no tween was started so finish instantly
 			
 		

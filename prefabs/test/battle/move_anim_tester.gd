@@ -33,6 +33,7 @@ func _on_button_pressed():
 		userNode.tween_to(targetNode.onAttackMarker.global_position)
 		userNode.move_animation_callback(_move_tween_done)
 	else:
+		userNode.move_animation_callback(_move_tween_done)
 		combatant_finished_moving.emit()
 		
 func _move_tween_done():
