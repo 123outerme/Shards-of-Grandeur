@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_anga4"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_dlan0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rvhmr"]
-[ext_resource type="AudioStream" uid="uid://dcgl67760dt44" path="res://audio/sfx/mage_blast_8.wav" id="3_ka0yt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="3_p5bhj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_u72j8"]
+[ext_resource type="AudioStream" uid="uid://c3okt26v0e8er" path="res://audio/sfx/earthquake.mp3" id="4_xkybw"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="5_7khme"]
 
 [sub_resource type="Resource" id="Resource_8jq25"]
@@ -51,7 +51,7 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([null])
 actorAnims = Array[ExtResource("5_7khme")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
-playSfx = ExtResource("3_ka0yt")
+playSfx = ExtResource("4_xkybw")
 endTextBoxPauses = false
 shakeCamForDuration = true
 endHoldCamera = false
