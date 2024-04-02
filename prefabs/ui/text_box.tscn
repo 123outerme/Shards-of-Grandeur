@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
-[ext_resource type="AudioStream" uid="uid://dq880ihrwmr8h" path="res://audio/sfx/text_scrolling_mellow_low_note.wav" id="2_evowq"]
+[ext_resource type="AudioStream" uid="uid://djrhngjsps35t" path="res://audio/sfx/text_scrolling_mellow_low_note.mp3" id="2_oy0ha"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_qnltp"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_00gxq"]
-[ext_resource type="AudioStream" uid="uid://chstsmx2ao336" path="res://audio/sfx/dialogueskip_wiggle_f.wav" id="3_rcur0"]
+[ext_resource type="AudioStream" uid="uid://phmykumhmn1u" path="res://audio/sfx/dialogueskip_wiggle_c.mp3" id="3_b5q8y"]
 [ext_resource type="Texture2D" uid="uid://cmmmjjhb77ud5" path="res://graphics/items/weapons/generic_sword.png" id="4_13uxh"]
+[ext_resource type="AudioStream" uid="uid://c0iwfmkk4vr4b" path="res://audio/sfx/dialogueskip_wiggle_f.mp3" id="4_fyq5h"]
 [ext_resource type="StyleBox" uid="uid://dq64op7nmd3n2" path="res://themes/text_box_panel.tres" id="4_p0x7t"]
-[ext_resource type="AudioStream" uid="uid://dq5lav6yqgxnl" path="res://audio/sfx/dialogueskip_wiggle_c.wav" id="5_4fxfv"]
 [ext_resource type="Theme" uid="uid://dgitjg5ag10ai" path="res://themes/dialogue_text_box_button_hbox.tres" id="8_5rr3o"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="9_ck181"]
 
@@ -15,8 +15,8 @@
 
 [node name="TextBoxRoot" type="Node2D" node_paths=PackedStringArray("buttonRow")]
 script = ExtResource("1_osatr")
-textScrollSfx = ExtResource("2_evowq")
-advanceDialogueSfx = Array[AudioStream]([ExtResource("5_4fxfv"), ExtResource("3_rcur0")])
+textScrollSfx = ExtResource("2_oy0ha")
+advanceDialogueSfx = Array[AudioStream]([ExtResource("3_b5q8y"), ExtResource("4_fyq5h")])
 buttonRow = NodePath("Panel/ScrollBetterFollow/HBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]

@@ -55,7 +55,8 @@ func load_targets():
 	
 	if focusedCombatant == null or len(targetableCombatants) == 0:
 		initial_focus() # nothing is focusable - means there are no targetable combatants 
-	elif len(targetableCombatants) == 1: # only one thing is focusable - screen is just for confirmation at this point
+	elif len(targetableCombatants) == 1 or not singleSelect:
+		# only one option is available - screen is just for confirmation at this point
 		confirmButton.grab_focus()
 	else:
 		focusedCombatant.focus_select_btn() # focus the first combatant to be focusable
