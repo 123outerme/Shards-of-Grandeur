@@ -20,10 +20,10 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
 	for targetIdx in range(len(allCombatants[attackerIdx].command.targets)):
 		if combatant == allCombatants[attackerIdx].command.targets[targetIdx] and allCombatants[attackerIdx].command.commandResult != null:
-			damage += allCombatants[attackerIdx].command.commandResult.damagesDealt[targetIdx]
+			damage += max(0, allCombatants[attackerIdx].command.commandResult.damagesDealt[targetIdx]) # do not go negative
 	for interceptIdx in range(len(allCombatants[attackerIdx].command.interceptingTargets)):
 		if combatant in allCombatants[attackerIdx].command.interceptingTargets and allCombatants[attackerIdx].command.commandResult != null:
-			damage += allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]
+			damage += max(0, allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
 	
 	return roundi(damage * Reflect.PERCENT_DAMAGE_DICT[potency])
 

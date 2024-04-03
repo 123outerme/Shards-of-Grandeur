@@ -11,7 +11,6 @@ var playerWins: bool = true
 var escapes: bool = false
 
 var previousFocus: Control = null
-var fobFocusMode: bool = false
 
 @onready var summonMenu: SummonMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Summon")
 @onready var allCommands: AllCommands = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/AllCommands")
@@ -217,7 +216,6 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, Move.MoveEffectType.NONE, 0, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
-		targets.initial_focus()
 	inventoryPanel.toggle()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
@@ -255,7 +253,8 @@ func _on_quests_panel_node_back_pressed():
 	restore_focus()
 
 func _on_focus_changed(control: Control):
-	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton and not battlePanels.flowOfBattle.fobButton.button_pressed:
+	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton \
+			and not battlePanels.flowOfBattle.fobButton.button_pressed and not 'FlowOfBattle' in previousFocus.get_path().get_concatenated_names():
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
 		if results.visible:
 			battlePanels.flowOfBattle.fobButton.focus_neighbor_left = battlePanels.flowOfBattle.fobButton.get_path_to(results.textBoxText)
@@ -265,7 +264,7 @@ func _on_focus_changed(control: Control):
 			battlePanels.flowOfBattle.fobButton.focus_neighbor_right = ''
 	if not statsPanel.visible and not inventoryPanel.visible and \
 		not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and \
-		not battlePanels.summonMinionPanel.visible and not fobFocusMode:
+		not battlePanels.summonMinionPanel.visible:
 		previousFocus = control
 
 func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):

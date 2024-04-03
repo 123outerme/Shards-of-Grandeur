@@ -157,7 +157,6 @@ func load_inventory_panel(rebuild: bool = true):
 		keyItemFilterBtn.disabled = true
 		keyItemFilterBtn.focus_neighbor_top = keyItemFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
 		keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(backButton)
-		backButton.focus_neighbor_top = backButton.get_path_to(toggleShopButton if toggleShopButton.visible else get_centermost_filter())
 	
 	inventoryTitle.text = '[center]Inventory[/center]'
 	goldCount.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.gold)
@@ -214,6 +213,7 @@ func load_inventory_panel(rebuild: bool = true):
 			firstPanel.sellButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 			firstPanel.equipButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 			firstPanel.trashButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
+		backButton.focus_neighbor_top = backButton.get_path_to(toggleShopButton if toggleShopButton.visible else get_centermost_filter())
 	else:
 		for panel: InventorySlotPanel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 			panel.load_inventory_slot_panel()

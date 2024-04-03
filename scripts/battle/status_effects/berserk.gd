@@ -20,9 +20,9 @@ func get_recoil_damage(combatant: Combatant) -> int:
 	if combatant.command != null and combatant.command.commandResult != null:
 		# calculate total damage dealt from this command
 		for targetIdx in range(len(combatant.command.targets)):
-			damage += combatant.command.commandResult.damagesDealt[targetIdx]
+			damage += max(0, combatant.command.commandResult.damagesDealt[targetIdx]) # do not go negative
 		for interceptIdx in range(len(combatant.command.interceptingTargets)):
-			damage += combatant.command.commandResult.damageOnInterceptingTargets[interceptIdx]
+			damage += max(0, combatant.command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
 	
 	return roundi(damage * Berserk.PERCENT_DAMAGE_DICT[potency])
 

@@ -60,6 +60,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		else:
 			fobButton.focus_neighbor_left = ''
 			fobButton.focus_neighbor_right = ''
+		fobButton.grab_focus.call_deferred()
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
 	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -386)
