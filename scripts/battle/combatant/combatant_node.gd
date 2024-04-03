@@ -229,7 +229,8 @@ func play_animation(animationName: String):
 		return
 	animatedSprite.play(animationName)
 	if animationName == 'walk':
-		await get_tree().create_timer(1.0).timeout
+		await animatedSprite.animation_looped
+		await animatedSprite.animation_looped
 		animatedSprite.stop()
 
 func tween_to(pos: Vector2):
