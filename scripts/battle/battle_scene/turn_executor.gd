@@ -133,6 +133,8 @@ func update_turn_text() -> bool:
 					combatantNode.update_hp_tag()
 		userNode.moveSpriteTargets = defenderNodes
 		var commandMoveSprites: Array[MoveAnimSprite] = combatant.command.get_command_sprites()
+		if combatant.command.type == BattleCommand.Type.USE_ITEM:
+			userNode.useItemSprite = combatant.command.slot.item.itemSprite
 		userNode.play_move_sprites(commandMoveSprites)
 		if len(commandMoveSprites) > 0:
 			battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over

@@ -11,6 +11,7 @@ signal move_sprite_complete
 		_anim = a
 		load_animation()
 var _anim: MoveAnimSprite = null
+@export var staticSprite: Texture2D = null
 
 @export var globalMarker: Marker2D
 @export var userTeam: Marker2D
@@ -19,12 +20,14 @@ var _anim: MoveAnimSprite = null
 var user: CombatantNode
 var target: CombatantNode
 var playing: bool = false
+var startOpacity: float = 1
 var moveFrame: int = 0
 var frameTimer: float = 0
 var startPos: Vector2 = Vector2()
 var targetPos: Vector2 = Vector2()
 
 @onready var particleEmitter: Particles = get_node('ParticleEmitter')
+@onready var staticSpriteNode: Sprite2D = get_node('StaticSprite')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +39,7 @@ func _process(delta):
 	if playing:
 		visible = true
 		global_position = anim.frames[moveFrame].get_sprite_position(frameTimer, targetPos, startPos)
+		modulate.a = anim.frames[moveFrame].get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
 		if anim.frames[moveFrame].trackRotationTarget:
 			calc_rotation(anim.frames[moveFrame])
 		frameTimer += delta
@@ -46,6 +50,7 @@ func _process(delta):
 func load_animation():
 	moveFrame = 0
 	frameTimer = 0
+	startOpacity = modulate.a
 	centered = anim.centerSprite
 	if anim != null:
 		sprite_frames = anim.spriteFrames
@@ -56,6 +61,7 @@ func play_sprite_animation():
 		queue_free()
 		return
 	load_animation()
+	staticSpriteNode.texture = staticSprite
 	if len(anim.frames) > 0:
 		playing = true
 		visible = false
@@ -63,6 +69,7 @@ func play_sprite_animation():
 
 func load_frame():
 	startPos = global_position
+	startOpacity = modulate.a
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	if sprFrame.animation == '#stop':
 		stop()

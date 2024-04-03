@@ -48,6 +48,7 @@ var playMoveSpritesQueued: Array[MoveAnimSprite] = []
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
 var moveSpritesCallback: Callable = Callable()
+var useItemSprite: Texture2D = null
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -336,6 +337,7 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		spriteNode.globalMarker = battleController.globalMarker
 		spriteNode.userTeam = allyTeamMarker
 		spriteNode.enemyTeam = enemyTeamMarker
+		spriteNode.staticSprite = useItemSprite
 		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
 		#spriteNode.call_deferred('play_sprite_animation')
 		add_child(spriteNode)
@@ -649,6 +651,7 @@ func _combatant_finished_moving():
 			play_move_sprite(moveSprite)
 	playMoveSpritesQueued = []
 	moveSpriteTargets = [] # no longer needed; all move sprites have been played!
+	useItemSprite = null
 	if playHitQueued != null:
 		playHitEnabled = true
 

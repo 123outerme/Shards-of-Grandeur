@@ -23,6 +23,7 @@ enum MoveSpriteOffset {
 @export var animation: String = ''
 @export var duration: float = 1
 @export var speed: float = 1
+@export var opacity: float = 1
 
 @export_group('Position')
 @export var relativeTo: MoveSpriteTarget = MoveSpriteTarget.GLOBAL
@@ -100,3 +101,7 @@ func get_y_curve_pos(time: float, diff: Vector2) -> float:
 func get_sprite_position(time: float, targetPos: Vector2, startPos: Vector2) -> Vector2:
 	var diff = targetPos - startPos
 	return Vector2(startPos.x + (diff.x * get_x_curve_pos(time, diff)), startPos.y + (diff.y * get_y_curve_pos(time, diff)))
+
+func get_sprite_opacity(currentOpacity: float, time: float, targetPos: Vector2, startPos: Vector2) -> float:
+	var diff = targetPos - startPos
+	return (opacity - currentOpacity) * get_percent_complete(time, diff) + currentOpacity

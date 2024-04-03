@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://chpi5qfgk1cqj"]
 
 [ext_resource type="Script" path="res://scripts/menus/sfx_button.gd" id="1_ljqd6"]
-[ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="2_ej77f"]
+[ext_resource type="AudioStream" uid="uid://dg6b4d27ahmo1" path="res://audio/sfx/standard_button.mp3" id="2_18s15"]
 
 [node name="SfxButton" type="Button"]
 script = ExtResource("1_ljqd6")
-sfx = ExtResource("2_ej77f")
+sfx = ExtResource("2_18s15")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

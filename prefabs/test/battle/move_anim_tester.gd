@@ -6,6 +6,7 @@ signal combatant_finished_animating
 
 @export var moveAnimation: MoveAnimation = null
 @export var playSurge: bool = false
+@export var itemSprite: Texture2D = null
 
 @onready var userNode: CombatantNode = get_node('UserNode')
 @onready var targetNode: CombatantNode = get_node('TargetNode')
@@ -27,6 +28,7 @@ func _on_button_pressed():
 	userNode.play_animation(moveAnimation.combatantAnimation)
 	userNode.play_particles(moveAnimation.userParticlePreset)
 	userNode.moveSpriteTargets = [targetNode]
+	userNode.useItemSprite = itemSprite
 	userNode.play_move_sprites(moveAnimation.surgeMoveSprites if playSurge else moveAnimation.chargeMoveSprites)
 	targetNode.play_particles(moveAnimation.targetsParticlePreset)
 	if moveAnimation.makesContact:

@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://q0j8od6cewgd"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_nhjoe"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_oto68"]
+
+[sub_resource type="Resource" id="Resource_xpn8r"]
+script = ExtResource("1_oto68")
+annotation = "start invisible on top of user"
+animation = "default"
+duration = -1.0
+speed = 0.0
+opacity = 0.0
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_umgp1"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vcsbh"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_om3og"]
+script = ExtResource("1_oto68")
+annotation = "fade in and raise above user"
+animation = "default"
+duration = 1.25
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(0, -4)
+offset = 4
+xCurve = SubResource("Curve_umgp1")
+yCurve = SubResource("Curve_vcsbh")
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_nf7iv"]
+script = ExtResource("1_oto68")
+annotation = "wait for a beat"
+animation = ""
+duration = 0.25
+speed = 1.0
+opacity = 1.0
+relativeTo = 0
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_tf2a2"]
+script = ExtResource("1_oto68")
+annotation = "fade out"
+animation = ""
+duration = 0.25
+speed = 1.0
+opacity = 0.0
+relativeTo = 0
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 0
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_akuby"]
+
+[resource]
+script = ExtResource("1_nhjoe")
+spriteFrames = SubResource("SpriteFrames_akuby")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_oto68")]([SubResource("Resource_xpn8r"), SubResource("Resource_om3og"), SubResource("Resource_nf7iv"), SubResource("Resource_tf2a2")])
+delayedUntilReposition = true
+onePerTarget = false

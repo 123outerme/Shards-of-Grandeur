@@ -45,6 +45,7 @@ var targets: Array[Combatant] = []
 var interceptingTargets: Array[Combatant] = []
 
 static var hitParticles: ParticlePreset = preload("res://gamedata/moves/particles_hit.tres")
+static var useItemAnimation: MoveAnimation = preload('res://gamedata/items/use_item_animation.tres')
 
 static func targets_to_string(t: Targets) -> String:
 	match t:
@@ -552,6 +553,8 @@ func get_command_sprites() -> Array[MoveAnimSprite]:
 			return move.moveAnimation.chargeMoveSprites
 		if moveEffectType == Move.MoveEffectType.SURGE:
 			return move.moveAnimation.surgeMoveSprites
+	if type == Type.USE_ITEM:
+		return useItemAnimation.chargeMoveSprites
 	return []
 
 func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarget: bool = true) -> Array[ParticlePreset]:
