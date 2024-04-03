@@ -111,16 +111,12 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
 			pos.x += round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
-			pos.x += round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
 			pos.x -= round(0.5 * cNode.combatant.maxSize.x) if cNode.leftSide else round(-0.5 * cNode.combatant.maxSize.x)
-			pos.x -= round(0.5 * anim.maxSize.x) if cNode.leftSide else round(-0.5 * anim.maxSize.x)
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
 			pos.y -= round(0.5 * cNode.combatant.maxSize.y)
-			pos.y -= round(0.5 * anim.maxSize.y)
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
 			pos.y += round(0.5 * cNode.combatant.maxSize.y)
-			pos.y += round(0.5 * anim.maxSize.y)
 	return pos
 
 func calc_rotation(sprFrame: MoveAnimSpriteFrame):

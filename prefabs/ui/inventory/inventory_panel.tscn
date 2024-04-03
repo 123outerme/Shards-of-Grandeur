@@ -101,6 +101,7 @@ offset_top = 28.0
 offset_right = -29.0
 offset_bottom = 68.0
 grow_horizontal = 0
+focus_neighbor_top = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../HBoxContainer/KeyItemsButton")
 text = "Show Your Inventory"
 
@@ -119,31 +120,26 @@ alignment = 1
 
 [node name="HealingButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
 toggle_mode = true
 text = "Healing"
 
 [node name="ShardsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
 toggle_mode = true
 text = "Shards"
 
 [node name="WeaponsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
 toggle_mode = true
 text = "Weapons"
 
 [node name="ArmorButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
 toggle_mode = true
 text = "Armor"
 
 [node name="KeyItemsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
 toggle_mode = true
 text = "Key Items"
 

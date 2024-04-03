@@ -542,7 +542,7 @@ func get_command_animation() -> String:
 				Move.DmgCategory.AFFINITY:
 					return 'attack_affinity'
 		Type.USE_ITEM:
-			return 'talk'
+			return ''
 		Type.ESCAPE:
 			return 'walk'
 	return 'stand'
@@ -569,7 +569,7 @@ func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarg
 				if isTarget:
 					presets.append(move.moveAnimation.targetsParticlePreset)
 			Type.USE_ITEM:
-				return []
+				return [useItemAnimation.userParticlePreset]
 			Type.ESCAPE:
 				return []
 		return presets

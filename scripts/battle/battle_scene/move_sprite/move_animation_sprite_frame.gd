@@ -26,7 +26,7 @@ enum MoveSpriteOffset {
 @export var opacity: float = 1
 
 @export_group('Position')
-@export var relativeTo: MoveSpriteTarget = MoveSpriteTarget.GLOBAL
+@export var relativeTo: MoveSpriteTarget = MoveSpriteTarget.CURRENT_POSITION
 @export var position: Vector2
 @export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
 @export var xCurve: Curve = Curve.new()
@@ -34,7 +34,7 @@ enum MoveSpriteOffset {
 
 @export_group('Rotation')
 @export var rotate: bool = false
-@export var rotateToFace: MoveSpriteTarget = MoveSpriteTarget.GLOBAL
+@export var rotateToFace: MoveSpriteTarget = MoveSpriteTarget.TARGET
 @export var rotateToFacePosition: Vector2
 @export_flags('In Front', 'Behind', 'Above', 'Below') var rotateToFaceOffset: int = MoveSpriteOffset.NONE
 @export var trackRotationTarget: bool = false
@@ -47,13 +47,13 @@ func _init(
 	i_animation = '',
 	i_duration = 1,
 	i_speed = 1,
-	i_relativeTo = MoveSpriteTarget.GLOBAL,
+	i_relativeTo = MoveSpriteTarget.CURRENT_POSITION,
 	i_pos = Vector2(),
 	i_offset = MoveSpriteOffset.NONE,
 	i_xCurve = Curve.new(),
 	i_yCurve = Curve.new(),
 	i_rotate = false,
-	i_rotateToFace = MoveSpriteTarget.GLOBAL,
+	i_rotateToFace = MoveSpriteTarget.TARGET,
 	i_rotateToFacePos = Vector2(),
 	i_rotateToFaceOffset = MoveSpriteOffset.NONE,
 	i_trackRotationTarget = false,
@@ -88,14 +88,14 @@ func get_percent_complete(time: float, diff: Vector2) -> float:
 
 func get_x_curve_pos(time: float, diff: Vector2) -> float:
 	var percentComplete = get_percent_complete(time, diff)
-	if percentComplete == 1:
-		return 1
+	if xCurve == null or percentComplete == 1:
+		return percentComplete # default: linear, also bail out if already complete
 	return xCurve.sample_baked(get_percent_complete(time, diff))
 
 func get_y_curve_pos(time: float, diff: Vector2) -> float:
 	var percentComplete = get_percent_complete(time, diff)
-	if percentComplete == 1:
-		return 1
+	if yCurve == null or percentComplete == 1:
+		return percentComplete # default: linear, also bail out if already complete
 	return yCurve.sample_baked(get_percent_complete(time, diff))
 
 func get_sprite_position(time: float, targetPos: Vector2, startPos: Vector2) -> Vector2:

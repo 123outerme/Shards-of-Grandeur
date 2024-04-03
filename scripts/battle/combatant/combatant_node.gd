@@ -228,6 +228,9 @@ func play_animation(animationName: String):
 		animatedSprite.stop()
 		return
 	animatedSprite.play(animationName)
+	if animationName == 'walk':
+		await get_tree().create_timer(1.0).timeout
+		animatedSprite.stop()
 
 func tween_to(pos: Vector2):
 	if combatant.maxSize.x > 16:
