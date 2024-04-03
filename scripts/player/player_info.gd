@@ -17,6 +17,7 @@ class_name PlayerInfo
 @export_category("PlayerInfo: Stats")
 @export var combatant: Combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy()
 @export var gold: int = 20
+@export var playtimeSecs: float = 0
 
 @export_category("PlayerInfo: Battle")
 @export var encounteredName: String
@@ -48,6 +49,7 @@ func _init(
 	i_version = '',
 	i_combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy(),
 	i_gold = 20,
+	i_playtimeSecs = 0,
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
 	i_staticEncounter = null,
@@ -75,6 +77,7 @@ func _init(
 		version = GameSettings.get_game_version()
 	combatant = i_combatant
 	gold = i_gold
+	playtimeSecs = i_playtimeSecs
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
 	staticEncounter = i_staticEncounter
@@ -146,7 +149,7 @@ func load_data(save_path):
 	return data
 
 func save_data(save_path, data):
-	version = GameSettings.get_game_version()
+	data.version = GameSettings.get_game_version()
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("PlayerInfo ResourceSaver error: ", err)

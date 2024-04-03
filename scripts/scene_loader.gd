@@ -25,6 +25,7 @@ func load_overworld():
 	
 func load_main_menu():
 	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"))
+	PlayerResources.timeSinceLastLoad = -1
 
 func load_scene(scene):
 	var sceneInstance = scene.instantiate()

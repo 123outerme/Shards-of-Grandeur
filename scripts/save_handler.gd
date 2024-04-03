@@ -70,6 +70,13 @@ func new_game(characterName: String):
 func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
 
+func get_save_playtime() -> float:
+	var playerInfo: PlayerInfo = load(save_exists_file)
+	if playerInfo != null:
+		return playerInfo.playtimeSecs
+	else:
+		return 0
+
 func is_save_in_battle():
 	return FileAccess.file_exists(battle_file)
 

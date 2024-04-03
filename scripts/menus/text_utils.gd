@@ -10,3 +10,12 @@ static func num_to_comma_string(num: int) -> String:
 
 static func substitute_playername(text: String) -> String:
 	return text.replace('@', PlayerResources.playerInfo.combatant.stats.displayName)
+
+static func get_elapsed_time(secs: float) -> String:
+	var temp: float = secs
+	var mins: int = floori(temp / 60.0) % 60
+	temp /= 60.0
+	var hours: int = floori(temp / 60.0)
+	secs = floori(secs) % 60
+	
+	return String.num(hours) + 'h ' + String.num(mins) + 'm ' + String.num(secs) + 's'

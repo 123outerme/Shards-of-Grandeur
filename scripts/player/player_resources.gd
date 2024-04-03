@@ -8,6 +8,7 @@ signal story_requirements_updated
 @export var loaded: bool = false
 
 var player = null
+var timeSinceLastLoad: float = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -73,6 +74,8 @@ func load_data(save_path):
 		minions = newMinions
 	minions.level_up_minions(playerInfo.combatant.stats.level)
 	loaded = true
+	timeSinceLastLoad = Time.get_unix_time_from_system()
+	#print('loaded at ', timeSinceLastLoad)
 
 func save_data(save_path):
 	if playerInfo != null:
@@ -85,6 +88,11 @@ func save_data(save_path):
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy()
 		if playerInfo.combatant.currentHp == -1:
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
+		if timeSinceLastLoad > -1:
+			var curTime: float = Time.get_unix_time_from_system()
+			playerInfo.playtimeSecs += (curTime - timeSinceLastLoad)
+			#print('new playtime: ', playerInfo.playtimeSecs, ', + ', (Time.get_unix_time_from_system() - timeSinceLastLoad))
+			timeSinceLastLoad = curTime
 		playerInfo.save_data(save_path, playerInfo)
 	if inventory != null:
 		inventory.save_data(save_path, inventory)
@@ -103,6 +111,8 @@ func new_game(save_path):
 	minions = PlayerMinions.new()
 	minions.save_data(save_path, minions)
 	loaded = true
+	timeSinceLastLoad = Time.get_unix_time_from_system()
+	#print('loaded at ', timeSinceLastLoad)
 
 func name_player(save_path, characterName: String):
 	playerInfo.combatant.stats.displayName = characterName
