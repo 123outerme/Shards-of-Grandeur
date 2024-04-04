@@ -4,8 +4,8 @@ class_name Bleed
 const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.1,
-	Potency.STRONG: 0.15,
-	Potency.OVERWHELMING: 0.2
+	Potency.STRONG: 0.125,
+	Potency.OVERWHELMING: 0.15
 }
 
 func _init(

@@ -68,7 +68,7 @@ func load_move_effect_details_panel():
 		moveStatusEffect.visible = false
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null:
-		surgeChangesDescription.text = '[center]Surge Changes | Per Extra Orb Spent:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
+		surgeChangesDescription.text = '[center]Surge Changes:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
 		surgeChangesDescription.visible = true
 	else:
 		surgeChangesDescription.visible = false

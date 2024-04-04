@@ -2,6 +2,7 @@ extends Control
 class_name AllCommands
 
 @export var battleUI: BattleUI
+@export var surgeIcon: Texture2D = null
 
 var commandingCombatant: CombatantNode = null
 var commandingMinion: bool = false
@@ -24,6 +25,7 @@ func _ready():
 	else:
 		chargeMovesBtn.text = 'Charge Moves'
 		surgeMovesBtn.text = 'Surge Moves'
+	surgeMovesBtn.icon = null
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and backToPlayerCmdBtn.visible:
@@ -34,6 +36,14 @@ func load_all_commands():
 	backToPlayerCmdBtn.visible = commandingMinion and battleUI.battleController.playerCombatant.is_alive()
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'
 	initial_focus()
+	# if Surge moves have been unlocked, update whether the surge icon appears next to the button
+	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+		var canSurgeAMove: bool = false
+		for move: Move in commandingCombatant.combatant.stats.moves:
+			if commandingCombatant.combatant.orbs > (move.surgeEffect.orbChange * -1):
+				canSurgeAMove = true
+				break
+		surgeMovesBtn.icon = surgeIcon if canSurgeAMove else null
 	
 func initial_focus():
 	if battleUI.battleController.state.moveEffectType == Move.MoveEffectType.SURGE:

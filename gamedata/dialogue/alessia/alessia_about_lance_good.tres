@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://codhhy4vkequv"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jqrxp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_uf18i"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_wt23t"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_va4h4"]
+
+[sub_resource type="Resource" id="Resource_5khg2"]
+script = ExtResource("1_wt23t")
+choiceBtn = "Maybe..."
+repeatsItem = false
+buttonDims = Vector2(120, 40)
+turnsInQuest = ""
+opensShop = false
+
+[sub_resource type="Resource" id="Resource_gfsrp"]
+script = ExtResource("1_uf18i")
+lines = Array[String](["I've been very proud of Lance recently. He's really taken to the craft like a a fire to tinder. Were you the spark?"])
+animation = "talk"
+choices = Array[ExtResource("1_wt23t")]([SubResource("Resource_5khg2")])
+
+[sub_resource type="Resource" id="Resource_yf3q5"]
+script = ExtResource("2_va4h4")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String](["Apprenticeship"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_jqrxp")
+entryId = ""
+items = Array[ExtResource("1_uf18i")]([SubResource("Resource_gfsrp")])
+storyRequirements = SubResource("Resource_yf3q5")
+closesDialogue = false
+fullHealsPlayer = false

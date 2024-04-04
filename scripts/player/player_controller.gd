@@ -5,6 +5,8 @@ const BASE_SPEED = 80
 const RUN_SPEED = 120
 @export var disableMovement: bool
 @export var facingLeft: bool = false
+@export var teleportSfx: AudioStream = null
+
 var speed = BASE_SPEED
 var pickedUpItem: PickedUpItem = null
 var inCutscene: bool = false
@@ -36,6 +38,13 @@ var running: bool = false
 var useTeleportStone: TeleportStone = null
 
 func _unhandled_input(event):
+	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
+			and not ((len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0)) \
+			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
+			and not statsPanel.visible and not makingChoice and not cutscenePaused and not inCutscene \
+			and SceneLoader.curMapEntry.isRecoverLocation:
+		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
+	
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
 			(cutscenePaused and event.is_action_pressed('game_decline')):
 		if inCutscene:
@@ -65,8 +74,6 @@ func _unhandled_input(event):
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		else:
 			textBox.show_text_instant()
-	elif event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun:
-		running = not running
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
 		inventoryPanel.inShop = false
@@ -395,6 +402,7 @@ func menu_closed():
 		SceneLoader.unpause_autonomous_movers()
 		if useTeleportStone != null:
 			play_animation('teleport')
+			SceneLoader.audioHandler.play_sfx(teleportSfx)
 			disableMovement = true
 			await get_tree().create_timer(0.5).timeout
 			if not SceneLoader.mapLoader.loading:

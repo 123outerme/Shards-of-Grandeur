@@ -17,6 +17,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
+		get_viewport().set_input_as_handled()
 		toggle_pause()
 
 func toggle_pause():

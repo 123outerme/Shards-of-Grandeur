@@ -12,9 +12,10 @@ script = ExtResource("1_6mlj3")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("3_i2t6g")
 repeatsItem = false
-buttonDims = Vector2(80, 40)
+buttonDims = Vector2(180, 40)
 turnsInQuest = ""
 opensShop = false
+isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_8eogp"]
 script = ExtResource("1_6mlj3")
@@ -24,6 +25,7 @@ repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 opensShop = false
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_ebs4t"]
 script = ExtResource("1_6mlj3")
@@ -33,10 +35,11 @@ repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = "Voice of the Rats#Release the Rodents"
 opensShop = false
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_71f7e"]
 script = ExtResource("1_g7x5e")
-lines = Array[String](["I see you have brought me two Giant Rat Shards. Hand them over, and we may begin."])
+lines = Array[String](["I see you have brought me the five Giant Rat Shards. Hand them over, and we may begin."])
 animation = "talk"
 choices = Array[ExtResource("1_6mlj3")]([SubResource("Resource_1gl06"), SubResource("Resource_8eogp"), SubResource("Resource_ebs4t")])
 

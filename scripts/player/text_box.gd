@@ -28,6 +28,11 @@ static var buttonScene: PackedScene = preload('res://prefabs/ui/sfx_button.tscn'
 func _ready():
 	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 
+func _unhandled_input(event):
+	if visible and event.is_action_pressed("game_decline") and is_textbox_complete() and PlayerFinder.player.makingChoice:
+		get_viewport().set_input_as_handled()
+		select_decline_choice()
+
 func _exit_tree():
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
 
@@ -160,6 +165,16 @@ func show_text_instant():
 		advanceIdx = 1
 	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx[advanceIdx])
 	add_choices()
+
+func select_decline_choice():
+	if not PlayerFinder.player.makingChoice or dialogueItem == null:
+		return
+	var buttons: Array[Node] = buttonContainer.get_children()
+	for idx in range(len(buttons)):
+		var button: Button = buttons[idx]
+		if dialogueItem.choices[choicesDialogueItemIdxs[idx]].isDeclineChoice:
+			_select_choice(idx)
+			return
 
 func _viewport_focus_changed(control):
 	var buttons: Array[Node] = buttonContainer.get_children()

@@ -59,7 +59,7 @@ func get_description() -> String:
 		
 	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()
-		descriptionLines.append('Self Boosts / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
+		descriptionLines.append('Self Boost / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
 	
 	if targetStatChangesPerOrb != null and targetStatChangesPerOrb.has_stat_changes():
 		var multipliers = targetStatChangesPerOrb.get_multipliers_text()
@@ -69,31 +69,37 @@ func get_description() -> String:
 		descriptionLines.append('Applies ' + StatusEffect.potency_to_string(additionalStatusEffect.potency) \
 				+ ' ' + StatusEffect.status_type_to_string(additionalStatusEffect.type) \
 				+ '(' + String.num(roundi(statusBaseChance * 100)) + '% Chance)')
-		
+	
+	if additionalStatusTurnsPerOrb > 0:
+		descriptionLines.append('Additional Status Turns / Orb: +' + String.num(additionalStatusTurnsPerOrb))
+	
+	if additionalStatusChancePerOrb > 0:
+		descriptionLines.append('Additional Status Chance / Orb: +' + String.num(additionalStatusChancePerOrb * 100) + '%')
+	
 	if weakThresholdOrbs > 0 or strongThresholdOrbs > 0 or overwhelmingThresholdOrbs > 0:
-		var thresholdDescription = 'Status Potency: '
+		var thresholdDescription = ''
 		var thresholds: Array[String] = []
 		if weakThresholdOrbs > 0:
-			thresholds.append('Weak at ' + String.num(weakThresholdOrbs) + ' Orbs')
+			thresholds.append('Weak at -' + String.num(weakThresholdOrbs) + ' Orbs')
 			
 		if strongThresholdOrbs > 0:
-			thresholds.append('Strong at ' + String.num(strongThresholdOrbs) + ' Orbs')
+			thresholds.append('Strong at -' + String.num(strongThresholdOrbs) + ' Orbs')
 			
 		if overwhelmingThresholdOrbs > 0:
-			thresholds.append('Overwhelming at ' + String.num(overwhelmingThresholdOrbs) + ' Orbs')
+			thresholds.append('Overwhelming at -' + String.num(overwhelmingThresholdOrbs) + ' Orbs')
 		
 		for idx in range(len(thresholds)):
 			thresholdDescription += thresholds[idx]
 			if idx < len(thresholds) - 1:
 				thresholdDescription += ', '
 		
+		var header: String = 'Status Potency Threshold'
+		if len(thresholds) > 1:
+			header += 's'
+		header += ':'
+		
+		descriptionLines.append(header)
 		descriptionLines.append(thresholdDescription)
-	
-	if additionalStatusTurnsPerOrb > 0:
-		descriptionLines.append('Additional Status Turns / Orb: ' + String.num(additionalStatusTurnsPerOrb))
-	
-	if additionalStatusChancePerOrb > 0:
-		descriptionLines.append('Additional Status Chance / Orb: ' + String.num(additionalStatusChancePerOrb * 100) + '%')
 	
 	var description: String = ''
 	for lineIdx in range(len(descriptionLines)):
