@@ -45,7 +45,7 @@ func get_effect_text() -> String:
 	var effectText: String = 'While Equipped, '
 	
 	if bonusOrbs > 0:
-		effectText += ' +' + String.num(bonusOrbs) + ' Orb'
+		effectText += '+' + String.num(bonusOrbs) + ' Orb'
 		if bonusOrbs > 1:
 			effectText += 's'
 		effectText += ' at the start of Battle'

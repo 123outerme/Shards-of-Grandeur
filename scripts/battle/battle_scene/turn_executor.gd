@@ -123,6 +123,7 @@ func update_turn_text() -> bool:
 
 		var userNode: CombatantNode = null
 		var defenderNodes: Array[CombatantNode] = []
+		var targetNodes: Array[CombatantNode] = []
 		for combatantNode: CombatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
 				combatantNode.play_animation(combatant.command.get_command_animation())
@@ -131,7 +132,10 @@ func update_turn_text() -> bool:
 				defenderNodes.append(combatantNode)
 				if combatant.command.type == BattleCommand.Type.USE_ITEM:
 					combatantNode.update_hp_tag()
-		userNode.moveSpriteTargets = defenderNodes
+			if combatantNode.combatant in combatant.command.targets:
+				targetNodes.append(combatantNode)
+		
+		userNode.moveSpriteTargets = targetNodes
 		var commandMoveSprites: Array[MoveAnimSprite] = combatant.command.get_command_sprites()
 		if combatant.command.type == BattleCommand.Type.USE_ITEM:
 			userNode.useItemSprite = combatant.command.slot.item.itemSprite
