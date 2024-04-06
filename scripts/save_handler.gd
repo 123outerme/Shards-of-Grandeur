@@ -71,6 +71,9 @@ func save_file_exists():
 	return FileAccess.file_exists(save_exists_file)
 
 func get_save_playtime() -> float:
+	if not save_file_exists():
+		return 0
+	
 	var playerInfo: PlayerInfo = load(save_exists_file)
 	if playerInfo != null:
 		return playerInfo.playtimeSecs
