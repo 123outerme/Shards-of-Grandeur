@@ -5,13 +5,23 @@ class_name MoveEffectDetailsPanel
 @export var isSurgeEffect: bool = false
 
 @onready var detailsTitleLabel: RichTextLabel = get_node('DetailsTitle')
-@onready var moveTargets: RichTextLabel = get_node("MoveTargets")
-@onready var movePower: RichTextLabel = get_node("MovePower")
-@onready var moveRole: RichTextLabel = get_node("MoveRole")
-@onready var userStatChanges: RichTextLabel = get_node("VBoxContainer/UserStatChanges")
-@onready var targetStatChanges: RichTextLabel = get_node("VBoxContainer/TargetStatChanges")
-@onready var moveStatusEffect: RichTextLabel = get_node("VBoxContainer/MoveStatusEffect")
-@onready var surgeChangesDescription: RichTextLabel = get_node('VBoxContainer/SurgeChangesDescription')
+@onready var moveTargets: RichTextLabel = get_node("BaseEffectPanel/MoveTargets")
+@onready var movePower: RichTextLabel = get_node("BaseEffectPanel/MovePower")
+@onready var moveRole: RichTextLabel = get_node("BaseEffectPanel/MoveRole")
+
+@onready var userBoostsRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/UserBoostsRow')
+@onready var userStatChanges: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/UserBoostsRow/UserStatChanges")
+
+@onready var targetBoostsRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/TargetBoostsRow')
+@onready var targetStatChanges: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/TargetBoostsRow/TargetStatChanges")
+
+@onready var statusEffectRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow')
+@onready var moveStatusEffect: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/StatusEffectRow/MoveStatusEffect")
+
+@onready var surgePanel: Panel = get_node('SurgePanel')
+@onready var surgeVBox: VBoxContainer = get_node('SurgePanel/VBoxContainer')
+
+var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +31,10 @@ func load_move_effect_details_panel():
 	if moveEffect == null:
 		visible = false
 		return
+	
+	for node in get_tree().get_nodes_in_group('SurgeChangesRow'):
+		node.queue_free()
+	
 	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
 		detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
 		if moveEffect.orbChange > 0:
@@ -31,6 +45,7 @@ func load_move_effect_details_panel():
 		if moveEffect.orbChange < 0:
 			detailsTitleLabel.text += ' Min.'
 		detailsTitleLabel.text += ')[/center]'
+		visible = true
 	else:
 		if isSurgeEffect:
 			visible = false
@@ -47,28 +62,33 @@ func load_move_effect_details_panel():
 
 	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		var multipliers = moveEffect.selfStatChanges.get_multipliers_text()
-		userStatChanges.text = '[center]User boosts self:\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
-		userStatChanges.visible = true
+		userStatChanges.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
+		userBoostsRow.visible = true
 	else:
-		userStatChanges.visible = false
+		userBoostsRow.visible = false
 		
 	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 		var multipliers = moveEffect.targetStatChanges.get_multipliers_text()
-		targetStatChanges.text = '[center]User boosts target(s):\n' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
-		targetStatChanges.visible = true
+		targetStatChanges.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + '\n [/center]'
+		targetBoostsRow.visible = true
 	else:
-		targetStatChanges.visible = false
+		targetBoostsRow.visible = false
 		
 	if moveEffect.statusEffect != null:
-		moveStatusEffect.text = '[center]Applies ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
+		moveStatusEffect.text = '[center]' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
 				+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) \
 				+ ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
-		moveStatusEffect.visible = true
+		statusEffectRow.visible = true
 	else:
-		moveStatusEffect.visible = false
+		statusEffectRow.visible = false
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null:
-		surgeChangesDescription.text = '[center]Surge Changes:\n' + moveEffect.surgeChanges.get_description() + '[/center]'
-		surgeChangesDescription.visible = true
+		var changes: Array[SurgeChanges.SurgeChangeDescRow] = moveEffect.surgeChanges.get_description()
+		for change: SurgeChanges.SurgeChangeDescRow in changes:
+			var row: SurgeChangesRow = surgeChangesRowScene.instantiate()
+			row.changeHeader = change.title
+			row.changeDetails = change.description
+			surgeVBox.add_child(row)
+		surgePanel.visible = true
 	else:
-		surgeChangesDescription.visible = false
+		surgePanel.visible = false

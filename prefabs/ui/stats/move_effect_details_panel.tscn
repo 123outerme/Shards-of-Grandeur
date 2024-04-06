@@ -1,13 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6tae2tdspbmf"]
+[gd_scene load_steps=7 format=3 uid="uid://c6tae2tdspbmf"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_bw5gx"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_effect_details_panel.gd" id="2_dfdal"]
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_up556"]
+[ext_resource type="Theme" uid="uid://cjypv7oeiqc6u" path="res://themes/nested_ui/move_effect_base_details_panel.tres" id="4_r1gdv"]
+[ext_resource type="PackedScene" uid="uid://ggkc0ii1kpmh" path="res://prefabs/ui/stats/surge_changes_row.tscn" id="5_sdofm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fayj4"]
+bg_color = Color(0.145098, 0.231373, 0.368627, 1)
+border_width_top = 1
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [node name="MoveEffectDetailsPanel" type="Panel"]
+custom_minimum_size = Vector2(540, 570)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -740.0
+offset_bottom = -390.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -27,91 +38,154 @@ bbcode_enabled = true
 text = "[center]Charge Effect (-10 Orbs Min.)[/center]"
 fit_content = true
 
-[node name="MoveTargets" type="RichTextLabel" parent="."]
+[node name="BaseEffectPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 44.0
+offset_bottom = 307.0
+grow_horizontal = 2
+theme = ExtResource("4_r1gdv")
+
+[node name="MoveTargets" type="RichTextLabel" parent="BaseEffectPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -220.0
-offset_top = 44.0
-offset_right = 220.0
-offset_bottom = 78.0
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 26.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]Targets All Combatants (Except Self)[/center]"
 fit_content = true
 
-[node name="MovePower" type="RichTextLabel" parent="."]
+[node name="MovePower" type="RichTextLabel" parent="BaseEffectPanel"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 70.0
+offset_top = 23.0
 offset_right = 150.0
-offset_bottom = 96.0
+offset_bottom = 49.0
 text = "100 Power"
 fit_content = true
 
-[node name="MoveRole" type="RichTextLabel" parent="."]
+[node name="MoveRole" type="RichTextLabel" parent="BaseEffectPanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -182.0
-offset_top = 70.0
+offset_top = 23.0
 offset_right = -24.0
-offset_bottom = 96.0
+offset_bottom = 49.0
 grow_horizontal = 0
 bbcode_enabled = true
 text = "[right]Single Target[/right]"
 fit_content = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseEffectPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -216.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="UserBoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+alignment = 1
+
+[node name="UserBoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/UserBoostsRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Self Boosts:"
+
+[node name="UserStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/UserBoostsRow"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+bbcode_enabled = true
+text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
+
+[node name="TargetBoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+alignment = 1
+
+[node name="UserBoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Target Boosts:"
+
+[node name="TargetStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+bbcode_enabled = true
+text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
+
+[node name="StatusEffectRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+alignment = 1
+
+[node name="StatusLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Applies Status:"
+
+[node name="MoveStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+bbcode_enabled = true
+text = "[center]Applies Overwhelming Exhaustion (100% Chance)[/center]"
+
+[node name="SurgePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 109.0
-offset_bottom = 311.0
+offset_top = 306.0
+offset_bottom = 570.0
 grow_horizontal = 2
-theme_override_constants/separation = 16
+theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")
 
-[node name="UserStatChanges" type="RichTextLabel" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-bbcode_enabled = true
-text = "[center]User Boosts Self:
-+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
-fit_content = true
+[node name="VBoxContainer" type="VBoxContainer" parent="SurgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
 
-[node name="TargetStatChanges" type="RichTextLabel" parent="VBoxContainer"]
+[node name="SurgeChangesRow" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-bbcode_enabled = true
-text = "[center]User Boosts Target(s):
-+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
-fit_content = true
 
-[node name="MoveStatusEffect" type="RichTextLabel" parent="VBoxContainer"]
+[node name="SurgeChangesRow2" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-bbcode_enabled = true
-text = "[center]Applies Overwhelming Exhaustion (100% Chance)[/center]"
-fit_content = true
 
-[node name="SurgeChangesDescription" type="RichTextLabel" parent="VBoxContainer"]
+[node name="SurgeChangesRow3" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-bbcode_enabled = true
-text = "[center]Surge Changes:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
-Line 7[/center]"
-fit_content = true
+
+[node name="SurgeChangesRow4" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+layout_mode = 2
+
+[node name="SurgeChangesRow5" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+layout_mode = 2

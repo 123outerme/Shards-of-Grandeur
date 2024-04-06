@@ -60,6 +60,10 @@ func _init(
 	statusChance = i_statusChance
 	surgeChanges = i_surgeChanges
 
+func get_short_description() -> Array[String]:
+	
+	return []
+
 func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	if surgeChanges == null:
 		return self

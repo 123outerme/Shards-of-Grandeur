@@ -1,10 +1,17 @@
 extends Resource
 class_name SurgeChanges
 
+class SurgeChangeDescRow:
+	var title: String = ''
+	var description: String = ''
+	
+	func _init(i_title = '', i_desc = ''):
+		title = i_title
+		description = i_desc
+
 @export var powerPerOrb: int = 0
 @export var selfStatChangesPerOrb: StatChanges = StatChanges.new()
 @export var targetStatChangesPerOrb: StatChanges = StatChanges.new()
-@export var additionalStatusEffect: StatusEffect = null
 @export var statusBaseChance: float = 0
 @export var weakThresholdOrbs: int = 0
 @export var strongThresholdOrbs: int = 0
@@ -16,7 +23,6 @@ func _init(
 	i_powerPerOrb = 0,
 	i_selfStatChangesPerOrb = StatChanges.new(),
 	i_targetStatChangesPerOrb = StatChanges.new(),
-	i_additionalStatusEffect = null,
 	i_statusBaseChance = 0,
 	i_weakThresholdOrbs = 0,
 	i_strongThresholdOrbs = 0,
@@ -27,7 +33,6 @@ func _init(
 	powerPerOrb = i_powerPerOrb
 	selfStatChangesPerOrb = i_selfStatChangesPerOrb
 	targetStatChangesPerOrb = i_targetStatChangesPerOrb
-	additionalStatusEffect = i_additionalStatusEffect
 	statusBaseChance = i_statusBaseChance
 	weakThresholdOrbs = i_weakThresholdOrbs
 	strongThresholdOrbs = i_strongThresholdOrbs
@@ -50,31 +55,41 @@ func get_additional_status_turns(additionalSpent: int) -> int:
 func get_additional_status_chance(additionalSpent: int) -> float:
 	return roundi(additionalSpent * additionalStatusChancePerOrb)
 
-func get_description() -> String:
-	var descriptionLines: Array[String] = []
+func get_description() -> Array[SurgeChangeDescRow]:
+	var descriptionLines: Array[SurgeChangeDescRow] = []
 	if powerPerOrb > 0:
-		descriptionLines.append('+' + String.num(powerPerOrb) + ' Additional Power / Orb')
+		
+		descriptionLines.append(
+			SurgeChangeDescRow.new('+ Power Per Orb:', '+' + String.num(powerPerOrb))
+		)
 	elif powerPerOrb < 0:
-		descriptionLines.append('+' + String.num(powerPerOrb * -1) + ' Additional Heal Power / Orb')
+		descriptionLines.append(
+			SurgeChangeDescRow.new('+ Heal Power Per Orb:', '+' + String.num(powerPerOrb * -1))
+		)
 		
 	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()
-		descriptionLines.append('Self Boost / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
+		descriptionLines.append(
+			SurgeChangeDescRow.new('Self Boost Per Orb:', StatMultiplierText.multiplier_text_list_to_string(multipliers))
+		)
 	
 	if targetStatChangesPerOrb != null and targetStatChangesPerOrb.has_stat_changes():
 		var multipliers = targetStatChangesPerOrb.get_multipliers_text()
-		descriptionLines.append('Target(s) Boost / Orb: ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
+		descriptionLines.append(
+			SurgeChangeDescRow.new('Target(s) Boost Per Orb:', StatMultiplierText.multiplier_text_list_to_string(multipliers))
+		)
 	
-	if additionalStatusEffect != null:
-		descriptionLines.append('Applies ' + StatusEffect.potency_to_string(additionalStatusEffect.potency) \
-				+ ' ' + StatusEffect.status_type_to_string(additionalStatusEffect.type) \
-				+ '(' + String.num(roundi(statusBaseChance * 100)) + '% Chance)')
-	
+	'''
 	if additionalStatusTurnsPerOrb > 0:
-		descriptionLines.append('Additional Status Turns / Orb: +' + String.num(additionalStatusTurnsPerOrb))
+		descriptionLines.append(
+			SurgeChangeDescRow.new('+ Status Turns Per Orb:', String.num(additionalStatusTurnsPerOrb))
+		)
+	'''
 	
 	if additionalStatusChancePerOrb > 0:
-		descriptionLines.append('Additional Status Chance / Orb: +' + String.num(additionalStatusChancePerOrb * 100) + '%')
+		descriptionLines.append(
+			SurgeChangeDescRow.new('+ Status Chance Per Orb:', String.num(additionalStatusChancePerOrb * 100) + '%')
+		)
 	
 	if weakThresholdOrbs > 0 or strongThresholdOrbs > 0 or overwhelmingThresholdOrbs > 0:
 		var thresholdDescription = ''
@@ -91,19 +106,13 @@ func get_description() -> String:
 		for idx in range(len(thresholds)):
 			thresholdDescription += thresholds[idx]
 			if idx < len(thresholds) - 1:
-				thresholdDescription += ', '
+				thresholdDescription += '\n'
 		
 		var header: String = 'Status Potency Threshold'
 		if len(thresholds) > 1:
 			header += 's'
 		header += ':'
 		
-		descriptionLines.append(header)
-		descriptionLines.append(thresholdDescription)
+		descriptionLines.append(SurgeChangeDescRow.new(header, thresholdDescription))
 	
-	var description: String = ''
-	for lineIdx in range(len(descriptionLines)):
-		description += descriptionLines[lineIdx]
-		if lineIdx < len(descriptionLines) - 1:
-			description += '\n'
-	return description
+	return descriptionLines

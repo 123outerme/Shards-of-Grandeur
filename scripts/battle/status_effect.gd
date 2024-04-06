@@ -51,9 +51,9 @@ static func potency_to_string(p: Potency) -> String:
 		Potency.NONE:
 			return 'None'
 		Potency.WEAK:
-			return 'Weak'
+			return 'Slight'
 		Potency.STRONG:
-			return 'Strong'
+			return 'Potent'
 		Potency.OVERWHELMING:
 			return 'Overwhelming'
 	return 'UNKNOWN'
