@@ -47,7 +47,7 @@ func load_battle_over_menu():
 	elif playerEscapes:
 		SceneLoader.audioHandler.play_music(escapeMusic, -1)
 	else:
-		SceneLoader.audioHandler.play_music(loseMusic, -1)
+		SceneLoader.audioHandler.play_music(loseMusic, 0)
 	
 	okBtn.grab_focus()
 

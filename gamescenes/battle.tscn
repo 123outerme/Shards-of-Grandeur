@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=28 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
 [ext_resource type="AudioStream" uid="uid://bpvsiiko743cd" path="res://audio/music/deathsound.mp3" id="15_7udvk"]
+[ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="16_f0dtb"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
@@ -595,6 +596,7 @@ layout_mode = 2
 script = ExtResource("12_ip5fm")
 battleUI = NodePath("../../../..")
 itemDetailsPanel = NodePath("../../../../UIPanels/ItemDetailsPanel")
+winMusic = ExtResource("16_f0dtb")
 loseMusic = ExtResource("15_7udvk")
 
 [node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
