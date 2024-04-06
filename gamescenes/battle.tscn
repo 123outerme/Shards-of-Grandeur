@@ -413,11 +413,17 @@ battleUI = NodePath("../../../..")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 16.0
-offset_bottom = 55.0
+offset_left = 282.0
+offset_right = -282.0
+offset_bottom = 36.0
 grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
 bbcode_enabled = true
-text = "[center]Combatant Name Here will use Move or Item Name Here[/center]"
+text = "[center]Combatant Name Here will use Move or Item Name Goes Here.[/center]"
 fit_content = true
 
 [node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
@@ -427,10 +433,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -64.0
-offset_right = 90.0
-offset_bottom = -25.0
+offset_left = -397.0
+offset_top = -76.0
+offset_right = -217.0
+offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -439,17 +445,45 @@ fit_content = true
 
 [node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -19.5
-offset_bottom = 19.5
+offset_left = -604.0
+offset_top = -31.5
+offset_right = -10.0
+offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
 bbcode_enabled = true
-text = "[center]Player Name, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
+text = "[center]Player Name Here, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
 fit_content = true
+
+[node name="EffectDesc" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 28.0
+offset_right = 1248.0
+offset_bottom = 248.0
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+text = "[center]1
+2
+3
+4
+5
+6
+7[/center]"
 
 [node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(100, 50)
@@ -460,9 +494,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -106.0
-offset_top = 36.0
+offset_top = 68.0
 offset_right = -6.0
-offset_bottom = 86.0
+offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Confirm"
@@ -476,15 +510,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 2.0
-offset_top = 36.0
+offset_top = 68.0
 offset_right = 82.0
-offset_bottom = 86.0
+offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
 
 [node name="Surge" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
-visible = false
 layout_mode = 2
 script = ExtResource("11_scq4g")
 battleUI = NodePath("../../../..")
@@ -547,6 +580,34 @@ offset_bottom = 55.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]Spend Orbs For Surge:[/center]"
+fit_content = true
+
+[node name="SurgeChangesText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -99.0
+offset_bottom = 99.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[center]Surge Changes:
+1
+2
+3
+4
+5
+6
+7[/center]"
 fit_content = true
 
 [node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
@@ -766,6 +827,7 @@ battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
 [node name="Shade" type="ColorRect" parent="."]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(320, 240)
 anchors_preset = 8
@@ -796,6 +858,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
+[connection signal="orb_count_change" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/OrbDisplay" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_orb_display_orb_count_change"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]

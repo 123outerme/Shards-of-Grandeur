@@ -61,8 +61,62 @@ func _init(
 	surgeChanges = i_surgeChanges
 
 func get_short_description() -> Array[String]:
+	var effects: Array[String] = []
 	
-	return []
+	if orbChange > 0:
+		effects.append('+' + String.num(orbChange) + ' Orbs')
+	
+	if power > 0:
+		effects.append(String.num(power) + ' Power')
+	elif power < 0:
+		effects.append(String.num(power * -1) + ' Heal Power')
+	
+	if selfStatChanges.has_stat_changes():
+		var multiplierTexts: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
+		effects.append('Self: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+	
+	if targetStatChanges.has_stat_changes():
+		var multiplierTexts: Array[StatMultiplierText] = targetStatChanges.get_multipliers_text()
+		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+	
+	if statusEffect != null:
+		effects.append(
+			StatusEffect.potency_to_string(statusEffect.potency) \
+			+ ' ' + StatusEffect.status_type_to_string(statusEffect.type) \
+			+ ' (' + String.num(roundi(statusChance * 100)) + '%)'
+		)
+	
+	return effects
+
+func get_changes_description(spendingOrbs: int) -> Array[String]:
+	var changedSurgeEff: MoveEffect = apply_surge_changes(spendingOrbs)
+	var effects: Array[String] = []
+	
+	if abs(changedSurgeEff.power) > abs(power):
+		if changedSurgeEff.power > 0:
+			effects.append(String.num(changedSurgeEff.power) + ' Power')
+		else:
+			effects.append(String.num(changedSurgeEff.power * -1) + ' Heal Power')
+	
+	if not changedSurgeEff.selfStatChanges.equals(selfStatChanges):
+		var diffs: StatChanges = changedSurgeEff.selfStatChanges.subtract(selfStatChanges)
+		var multiplierTexts: Array[StatMultiplierText] = diffs.get_multipliers_text()
+		effects.append('Self: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+	
+	if not changedSurgeEff.targetStatChanges.equals(targetStatChanges):
+		var diffs: StatChanges = changedSurgeEff.targetStatChanges.subtract(targetStatChanges)
+		var multiplierTexts: Array[StatMultiplierText] = diffs.get_multipliers_text()
+		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+	
+	if changedSurgeEff.statusEffect != null and (changedSurgeEff.statusChance > statusChance or \
+			changedSurgeEff.statusEffect.potency != statusEffect.potency):
+		effects.append(
+			StatusEffect.potency_to_string(changedSurgeEff.statusEffect.potency) \
+			+ ' ' + StatusEffect.status_type_to_string(changedSurgeEff.statusEffect.type) \
+			+ ' (' + String.num(roundi(changedSurgeEff.statusChance * 100)) + '%)'
+		)
+	
+	return effects
 
 func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	if surgeChanges == null:
@@ -88,10 +142,10 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	# new status chance is the greater of the old status chance or the surge's status chance, + additional chance / orb, capped at 100%
 	newEffect.statusChance = min(1, max(newEffect.statusChance, surgeChanges.statusBaseChance) + surgeChanges.get_additional_status_chance(additionalOrbs))
 	
-	if surgeChanges.additionalStatusEffect != null:
-		newEffect.statusEffect = surgeChanges.additionalStatusEffect.copy()
-		newEffect.statusEffect.potency = surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs)
-		newEffect.statusEffect.turnsLeft += surgeChanges.get_additional_turns(additionalOrbs)
+	if newEffect.statusEffect != null:
+		if surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs) != StatusEffect.Potency.NONE:
+			newEffect.statusEffect.potency = surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs)
+		newEffect.statusEffect.turnsLeft += surgeChanges.get_additional_status_turns(additionalOrbs)
 	
 	return newEffect
 	

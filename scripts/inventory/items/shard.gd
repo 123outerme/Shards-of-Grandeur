@@ -29,5 +29,5 @@ func get_combatant() -> Combatant:
 func get_use_message(_target: Combatant) -> String:
 	return ''
 
-func get_effect_text() -> String:
+func get_effect_text(inBattle: bool = true) -> String:
 	return 'Use to Learn a Move ' + get_combatant().disp_name() + ' Knows!'

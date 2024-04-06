@@ -34,7 +34,7 @@ func _init(
 func get_use_message(_target: Combatant) -> String:
 	return useMessage
 
-func get_effect_text() -> String:
+func get_effect_text(inBattle: bool = true) -> String:
 	return effectText
 
 func get_as_key_item_type():

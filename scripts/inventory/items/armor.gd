@@ -39,7 +39,7 @@ func get_apply_text(target: Combatant, applyTiming: BattleCommand.ApplyTiming) -
 		return target.disp_name() + ' gains ' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + ' from wearing the ' + itemName + '.'
 	return ''
 
-func get_effect_text() -> String:
+func get_effect_text(inBattle: bool = true) -> String:
 	if (statChanges == null or not statChanges.has_stat_changes()) and bonusOrbs == 0:
 		return ''
 	var effectText: String = 'While Equipped, '

@@ -40,7 +40,7 @@ func load_all_commands():
 	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
 		var canSurgeAMove: bool = false
 		for move: Move in commandingCombatant.combatant.stats.moves:
-			if commandingCombatant.combatant.orbs > (move.surgeEffect.orbChange * -1):
+			if commandingCombatant.combatant.orbs >= (move.surgeEffect.orbChange * -1):
 				canSurgeAMove = true
 				break
 		surgeMovesBtn.icon = surgeIcon if canSurgeAMove else null

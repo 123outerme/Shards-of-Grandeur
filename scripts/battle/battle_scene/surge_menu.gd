@@ -4,6 +4,8 @@ class_name SurgeMenu
 @export var battleUI: BattleUI
 
 @onready var orbControl: OrbDisplay = get_node('OrbDisplay')
+@onready var surgeChangesText: RichTextLabel = get_node('SurgeChangesText')
+@onready var confirmButton: Button = get_node('ConfirmButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +21,8 @@ func initial_focus():
 
 func load_surge():
 	orbControl.minOrbs = max(0, battleUI.commandingCombatant.combatant.command.move.surgeEffect.orbChange * -1)
-	orbControl.maxOrbs = min(10, battleUI.commandingCombatant.combatant.orbs)
+	orbControl.maxOrbs = 10
+	#orbControl.maxOrbs = min(10, battleUI.commandingCombatant.combatant.orbs)
 	orbControl.update_orb_count(orbControl.minOrbs, false)
 	initial_focus()
 
@@ -32,3 +35,17 @@ func _on_confirm_button_pressed():
 	
 func _on_back_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.PICK_TARGETS, false)
+
+func _on_orb_display_orb_count_change(change: int):
+	if change > min(10, battleUI.commandingCombatant.combatant.orbs):
+		confirmButton.disabled = true
+	else:
+		confirmButton.disabled = false
+	var changesText: Array[String] = battleUI.commandingCombatant.combatant.command.move.surgeEffect.get_changes_description(change)
+	if len(changesText) > 0:
+		surgeChangesText.text = '[center]Surge Changes:\n'
+		for changeText in changesText:
+			surgeChangesText.text += changeText + '\n'
+		surgeChangesText.text += '[/center]'
+	else:
+		surgeChangesText.text = ''

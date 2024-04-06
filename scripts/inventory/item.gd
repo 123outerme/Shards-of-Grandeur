@@ -70,7 +70,7 @@ func use(_target: Combatant):
 func get_use_message(_target: Combatant) -> String:
 	return "If you're seeing this, implement Item.get_use_message() in item type " + Item.TypeToString(itemType)
 
-func get_effect_text() -> String:
+func get_effect_text(inBattle: bool = true) -> String:
 	return "If you're seeing this, implement Item.get_effect_text() in item type " + Item.TypeToString(itemType) \
 			+ ", or you forgot to fill in the effect text!"
 

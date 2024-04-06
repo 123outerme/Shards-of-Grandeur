@@ -5,6 +5,7 @@ class_name TargetsMenu
 
 @onready var commandText: RichTextLabel = get_node("CommandText")
 @onready var targetsListing: RichTextLabel = get_node("TargetsListing")
+@onready var effectDesc: RichTextLabel = get_node('EffectDesc')
 @onready var confirmButton: Button = get_node("ConfirmButton")
 @onready var backButton: Button = get_node("BackButton")
 
@@ -33,9 +34,15 @@ func load_targets():
 		moveEffect = move.get_effect_of_type(battleUI.commandingCombatant.combatant.command.moveEffectType)
 		commandText.text += move.moveName
 		targets = moveEffect.targets
+		var effectTexts: Array[String] = moveEffect.get_short_description()
+		effectDesc.text = '[center]'
+		for text in effectTexts:
+			effectDesc.text += text + '\n'
+		effectDesc.text += '[/center]'
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
 		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
+		effectDesc.text = '[center]' + battleUI.commandingCombatant.combatant.command.slot.item.get_effect_text(true) + '[/center]'
 	
 	singleSelect = not BattleCommand.is_command_multi_target(targets)
 	commandText.text += '.[/center]'

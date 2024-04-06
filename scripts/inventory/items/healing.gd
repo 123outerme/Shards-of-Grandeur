@@ -38,7 +38,7 @@ func use(target: Combatant):
 func get_use_message(target: Combatant) -> String:
 	return 'Using the ' + itemName + ', ' + target.disp_name() + ' recovers ' + TextUtils.num_to_comma_string(healBy) + ' HP!'
 
-func get_effect_text() -> String:
+func get_effect_text(inBattle: bool = true) -> String:
 	var effectTextPrefix: String = 'Use '
 	var effectText: String = ''
 	var outsideOfBattleText: String = ''
@@ -66,7 +66,8 @@ func get_effect_text() -> String:
 			effectText += '.'
 	
 	if len(effectMsgs) > 1:
-		effectText += outsideOfBattleText # also show out-of-battle text (since only healing happens outside of battle)
-		effectTextPrefix += 'on a combatant in Battle '
+		if not inBattle:
+			effectText += outsideOfBattleText # also show out-of-battle text (since only healing happens outside of battle)
+			effectTextPrefix += 'on a combatant in Battle '
 	effectTextPrefix += 'to '
 	return effectTextPrefix + effectText
