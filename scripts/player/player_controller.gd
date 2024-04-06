@@ -266,6 +266,7 @@ func select_choice(choice: DialogueChoice):
 		talkNPC.data.dialogueItemIdx = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items) - 1
 		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].lines) - 1
 		if reused:
+			talkNPC.data.dialogueLine = 0
 			var dialogueText = talkNPC.get_cur_dialogue_item()
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 			return
