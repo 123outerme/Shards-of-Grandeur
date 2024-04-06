@@ -95,7 +95,7 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 	if abs(changedSurgeEff.power) > abs(power):
 		if changedSurgeEff.power > 0:
 			effects.append(String.num(changedSurgeEff.power) + ' Power')
-		else:
+		elif changedSurgeEff.power < 0:
 			effects.append(String.num(changedSurgeEff.power * -1) + ' Heal Power')
 	
 	if not changedSurgeEff.selfStatChanges.equals(selfStatChanges):

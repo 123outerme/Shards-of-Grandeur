@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6tae2tdspbmf"]
+[gd_scene load_steps=9 format=3 uid="uid://c6tae2tdspbmf"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_bw5gx"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_effect_details_panel.gd" id="2_dfdal"]
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_up556"]
 [ext_resource type="Theme" uid="uid://cjypv7oeiqc6u" path="res://themes/nested_ui/move_effect_base_details_panel.tres" id="4_r1gdv"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_1e3o1"]
 [ext_resource type="PackedScene" uid="uid://ggkc0ii1kpmh" path="res://prefabs/ui/stats/surge_changes_row.tscn" id="5_sdofm"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="6_3l4s7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fayj4"]
 bg_color = Color(0.145098, 0.231373, 0.368627, 1)
@@ -147,7 +149,7 @@ layout_mode = 2
 text = "Applies Status:"
 
 [node name="MoveStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(328, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 theme_override_font_sizes/bold_font_size = 18
@@ -156,6 +158,27 @@ theme_override_font_sizes/bold_italics_font_size = 18
 theme_override_font_sizes/mono_font_size = 18
 bbcode_enabled = true
 text = "[center]Applies Overwhelming Exhaustion (100% Chance)[/center]"
+
+[node name="StatusHelpSection" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="StatusHelpButton" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection" instance=ExtResource("5_1e3o1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("6_3l4s7")
+expand_icon = true
 
 [node name="SurgePanel" type="Panel" parent="."]
 layout_mode = 1
@@ -189,3 +212,5 @@ layout_mode = 2
 
 [node name="SurgeChangesRow5" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
+
+[connection signal="pressed" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]

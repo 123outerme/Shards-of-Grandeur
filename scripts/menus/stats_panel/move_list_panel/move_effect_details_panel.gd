@@ -92,3 +92,6 @@ func load_move_effect_details_panel():
 		surgePanel.visible = true
 	else:
 		surgePanel.visible = false
+
+func _on_status_help_button_pressed():
+	pass # Replace with function body.
