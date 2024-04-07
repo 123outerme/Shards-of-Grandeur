@@ -12,6 +12,7 @@ enum Type {
 	MANIA = 7, # positive; move-first
 	REFLECT = 8, # TODO better name; causes recoil damage when hit with attack
 	INTERCEPTION = 9, # "attracts" a percentage of damage dealt to allies to self
+	GUARD_BREAK = 10,
 	# other ones could be positive effects?
 }
 
@@ -44,6 +45,8 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Reflect'
 		Type.INTERCEPTION:
 			return 'Interception'
+		Type.GUARD_BREAK:
+			return 'Guard Break'
 	return 'UNKNOWN'
 
 static func potency_to_string(p: Potency) -> String:
@@ -84,6 +87,9 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return '' # each status effect needs to implement this separately
+
+func get_status_effect_tooltip():
+	return '' # each status effect needs to implement separately
 
 func status_effect_to_string() -> String:
 	return StatusEffect.potency_to_string(potency) + ' ' + StatusEffect.status_type_to_string(type)

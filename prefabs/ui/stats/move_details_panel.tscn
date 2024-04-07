@@ -48,9 +48,21 @@ alignment = 1
 [node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
 layout_mode = 2
 
+[node name="TooltipPanel" parent="Panel/HBoxContainer/ChargeEffectDetailsPanel" index="3"]
+offset_left = -96.0
+offset_top = -247.0
+offset_right = 644.0
+offset_bottom = 143.0
+
 [node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
 layout_mode = 2
 isSurgeEffect = true
+
+[node name="TooltipPanel" parent="Panel/HBoxContainer/SurgeEffectDetailsPanel" index="3"]
+offset_left = -644.0
+offset_top = -247.0
+offset_right = 96.0
+offset_bottom = 143.0
 
 [node name="MoveName" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -129,3 +141,6 @@ focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Panel/HBoxContainer/ChargeEffectDetailsPanel"]
+[editable path="Panel/HBoxContainer/SurgeEffectDetailsPanel"]

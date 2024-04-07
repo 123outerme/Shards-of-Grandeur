@@ -17,6 +17,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 		return combatant.disp_name() + " can't keep up due to " + status_effect_to_string() + '!'
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Exhaustion moves at the end of the turn order, after all combatants without Exhaustion.'
+
 func copy() -> StatusEffect:
 	return Exhaustion.new(
 		potency,

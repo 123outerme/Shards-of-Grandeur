@@ -215,7 +215,12 @@ func load_inventory_panel(rebuild: bool = true):
 			firstPanel.trashButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 		else:
 			# no item panels exist
-			backButton.focus_neighbor_top = backButton.get_path_to(get_centermost_filter())
+			if toggleShopButton.visible:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(toggleShopButton)
+			elif get_centermost_filter() != null:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(get_centermost_filter())
+			else:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(weaponFilterBtn)
 	else:
 		for panel: InventorySlotPanel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 			panel.load_inventory_slot_panel()

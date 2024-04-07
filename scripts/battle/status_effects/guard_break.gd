@@ -1,25 +1,25 @@
 extends StatusEffect
-class_name Jinx
+class_name GuardBreak
 
 var statChangesDict: Dictionary = {
 	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
-	Potency.WEAK: StatChanges.new(1, 1, 0.7, 1, 1),
-	Potency.STRONG: StatChanges.new(1, 1, 0.6, 1, 1),
-	Potency.OVERWHELMING: StatChanges.new(1, 1, 0.5, 1, 1),
+	Potency.WEAK: StatChanges.new(1, 1, 1, 0.7, 1),
+	Potency.STRONG: StatChanges.new(0.6, 1, 1, 0.6, 1),
+	Potency.OVERWHELMING: StatChanges.new(1, 1, 1, 0.5, 1),
 }
 
 var reverseStatChangesDict: Dictionary = {
 	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
-	Potency.WEAK: StatChanges.new(1, 1, 1.3, 1, 1),
-	Potency.STRONG: StatChanges.new(1, 1, 1.4, 1, 1),
-	Potency.OVERWHELMING: StatChanges.new(1, 1, 1.5, 1, 1),
+	Potency.WEAK: StatChanges.new(1, 1, 1, 1.3, 1),
+	Potency.STRONG: StatChanges.new(1, 1, 1, 1.4, 1),
+	Potency.OVERWHELMING: StatChanges.new(1, 1, 1, 1.5, 1),
 }
 
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
 ):
-	super(Type.JINX, i_potency, i_turnsLeft)
+	super(Type.GUARD_BREAK, i_potency, i_turnsLeft)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	if timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC:
@@ -32,10 +32,10 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 	return ''
 
 func get_status_effect_tooltip():
-	return 'A combatant with Jinx suffers a temporary debuff to their Affinity stat.'
+	return 'A combatant with Guard Break suffers a temporary debuff to their Resistance stat.'
 
 func copy() -> StatusEffect:
-	return Jinx.new(
+	return GuardBreak.new(
 		potency,
 		turnsLeft
 	)

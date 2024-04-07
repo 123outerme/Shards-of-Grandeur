@@ -23,6 +23,9 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
 
+func initial_focus():
+	backButton.grab_focus()
+
 func load_move_details_panel():
 	if move == null:
 		visible = false
@@ -33,13 +36,37 @@ func load_move_details_panel():
 	damageCategory.text = Move.dmg_category_to_string(move.category)
 	requiredLv.text = '[right]Required Level: ' + str(move.requiredLv) + '[/right]'
 	moveDescription.text = move.description
-	backButton.grab_focus()
+	initial_focus()
 	
 	chargeEffectDetails.moveEffect = move.chargeEffect
 	chargeEffectDetails.load_move_effect_details_panel()
 	surgeEffectDetails.moveEffect = move.surgeEffect
 	surgeEffectDetails.load_move_effect_details_panel()
+	connect_help_buttons()
+
+func connect_help_buttons():
+	backButton.focus_neighbor_top = '.'
+	backButton.focus_neighbor_left = '.'
+	backButton.focus_neighbor_right = '.'
 	
+	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null:
+		backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
+		surgeEffectDetails.statusHelpButton.focus_neighbor_bottom = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
+		backButton.focus_neighbor_right = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
+		surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
+	
+	if move.chargeEffect.statusEffect != null:
+		backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.statusHelpButton)
+		chargeEffectDetails.statusHelpButton.focus_neighbor_bottom = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
+		if surgeEffectDetails.visible:
+			backButton.focus_neighbor_left = backButton.get_path_to(chargeEffectDetails.statusHelpButton)
+			if move.surgeEffect.statusEffect != null:
+				chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(surgeEffectDetails.statusHelpButton)
+				surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(chargeEffectDetails.statusHelpButton)
+			else:
+				chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
+			
+
 func _on_back_button_pressed():
 	visible = false
 	back_pressed.emit()

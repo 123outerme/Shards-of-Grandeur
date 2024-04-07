@@ -42,6 +42,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + String.num(get_recoil_damage(combatant)) + ' recoil damage!'
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Berserk takes recoil damage upon using a damaging move.'
+
 func copy() -> StatusEffect:
 	return Berserk.new(
 		potency,

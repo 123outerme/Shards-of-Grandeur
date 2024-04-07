@@ -17,6 +17,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 		return combatant.disp_name() + " is moving extremely quickly due to " + status_effect_to_string() + '!'
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Mania moves first in a turn, before all combatants without Mania.'
+
 func copy() -> StatusEffect:
 	return Mania.new(
 		potency,

@@ -2,14 +2,14 @@ extends StatusEffect
 class_name Confusion
 
 var statChangesDict: Dictionary = {
-	Potency.NONE: StatChanges.new(1, 0.8, 1, 1, 1),
+	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
 	Potency.WEAK: StatChanges.new(1, 0.7, 1, 1, 1),
 	Potency.STRONG: StatChanges.new(1, 0.6, 1, 1, 1),
 	Potency.OVERWHELMING: StatChanges.new(1, 0.5, 1, 1, 1),
 }
 
 var reverseStatChangesDict: Dictionary = {
-	Potency.NONE: StatChanges.new(1, 1.2, 1, 1, 1),
+	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
 	Potency.WEAK: StatChanges.new(1, 1.3, 1, 1, 1),
 	Potency.STRONG: StatChanges.new(1, 1.4, 1, 1, 1),
 	Potency.OVERWHELMING: StatChanges.new(1, 1.5, 1, 1, 1),
@@ -30,6 +30,9 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return ''
+
+func get_status_effect_tooltip():
+	return 'A combatant with Confusion suffers a temporary debuff to their Magic Attack stat.'
 
 func copy() -> StatusEffect:
 	return Confusion.new(

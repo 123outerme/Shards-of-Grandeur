@@ -20,6 +20,9 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Interception redirects some damage away from allies.'
+
 func copy() -> StatusEffect:
 	return Interception.new(
 		potency,

@@ -51,6 +51,9 @@ func get_status_effect_str(combatant, allCombatants: Array, timing: BattleComman
 				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + String.num(get_recoil_damage(combatant, allCombatants, attackerIdx)) + ' damage back to ' + allCombatants[attackerIdx].disp_name() + '!'
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Reflect deals recoil to any attackers, as a percentage of damage taken.'
+
 func copy() -> StatusEffect:
 	return Reflect.new(
 		potency,

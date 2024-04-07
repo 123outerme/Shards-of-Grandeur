@@ -30,6 +30,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 		return combatant.disp_name() + ' takes ' + str(get_bleed_damage(combatant)) + ' bleed damage from ' + status_effect_to_string() + '!'
 	return ''
 
+func get_status_effect_tooltip():
+	return 'A combatant with Bleed takes damage at the end of a battle round, equal to a percentage of the combatant\'s Max Health.' 
+
 func copy() -> StatusEffect:
 	return Bleed.new(
 		potency,

@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxs31up6d6dxj"]
+
+[ext_resource type="Script" path="res://scripts/menus/tooltip_panel.gd" id="1_snc0a"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_cawhl"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_xi7n6"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_sqsvv"]
+
+[node name="TooltipPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_snc0a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -70.0
+offset_right = -200.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cawhl")
+
+[node name="TooltipTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme = ExtResource("3_xi7n6")
+bbcode_enabled = true
+text = "[center]Tooltip Title Goes Here[/center]"
+fit_content = true
+
+[node name="TooltipDetails" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -135.0
+offset_right = -10.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "[center]Tooltip description text goes here. There should be plenty of space.However, there doesn't need to be too much describing happening here. Hopefully.[/center]"
+
+[node name="OkButton" parent="Panel" instance=ExtResource("4_sqsvv")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = 40.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "OK"
+
+[connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]
