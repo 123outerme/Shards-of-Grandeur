@@ -227,7 +227,10 @@ func assign_moves_nonplayer():
 	stats.moves = []
 	for move: Move in stats.movepool.pool:
 		if move.requiredLv <= stats.level:
-			stats.moves.insert(nextMoveSlot, move)
+			if len(stats.moves) < 4:
+				stats.moves.insert(nextMoveSlot, move)
+			else:
+				stats.moves[nextMoveSlot] = move
 			nextMoveSlot = (nextMoveSlot + 1) % 4
 
 func copy() -> Combatant:

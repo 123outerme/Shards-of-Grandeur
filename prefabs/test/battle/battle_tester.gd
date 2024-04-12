@@ -27,12 +27,14 @@ func _ready():
 	var combatants: Array[Combatant] = [_playerCombatant, _minionCombatant, enemy1Combatant, enemy2Combatant, enemy3Combatant]
 	var combatantLvs: Array[int] = [playerLv, minionLv, enemy1Lv, enemy2Lv, enemy3Lv]
 	for idx in range(len(combatants)):
-		var combatant = combatants[idx]
+		var combatant: Combatant = combatants[idx]
 		if combatant != null:
 			if combatantLvs[idx] > combatant.stats.level:
-				combatant.level_up_nonplayer(combatantLvs[idx] - combatant.stats.level)
+				combatant.level_up_nonplayer(combatantLvs[idx])
 			if len(combatant.stats.moves) == 0:
 				combatant.assign_moves_nonplayer()
+			for move: Move in combatant.stats.moves:
+				print(combatant.disp_name(), ': ', move.moveName)
 			if combatant.currentHp == -1:
 				combatant.currentHp = combatant.stats.maxHp
 			if combatant.statChanges == null:
