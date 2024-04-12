@@ -8,6 +8,15 @@ static func num_to_comma_string(num: int) -> String:
 		numStr = '-' + numStr # add a negative sign in front if it was negative
 	return numStr
 
+static func rich_text_substitute(text: String, iconSize: Vector2i) -> String:
+	var output = substitute_playername(text)
+	output = substitute_icons(text, iconSize)
+	return output
+
+static func substitute_icons(text: String, iconSize: Vector2i) -> String:
+	var output = text.replace('$orb', '[img=' + String.num(iconSize.x) + 'x' + String.num(iconSize.y) + ']res://graphics/ui/orb_filled.png[/img]')
+	return output
+
 static func substitute_playername(text: String) -> String:
 	return text.replace('@', PlayerResources.playerInfo.combatant.stats.displayName)
 

@@ -1,6 +1,7 @@
 class_name StatMultiplierText
 
 var statName: String
+var increase: int
 var multiplier: float
 
 static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplierText]) -> String:
@@ -15,16 +16,22 @@ static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplier
 			multipliersStr += ' '
 	return multipliersStr
 
-func _init(i_name = '', i_multiplier = 1.0):
+func _init(i_name = '', i_increase = 0, i_multiplier = 1.0):
 	statName = i_name
+	increase = i_increase
 	multiplier = i_multiplier
 
 func print_multiplier(useStatName: bool = true) -> String:
 	var multiplierDiff: float = (multiplier - 1.0) * 100.0
-	var diffSign: String = '+' if multiplierDiff >= 0 else '' # minus sign is included in building str
+	var multDiffSign: String = '+' if multiplierDiff >= 0 else '' # minus sign is included in building str
+	var increaseDiffSign: String = '+' if increase >= 0 else ''
 	var multiplierText: String = ''
 	if useStatName:
 		multiplierText += statName + ' '
+	if increase != 0:
+		multiplierText += increaseDiffSign + TextUtils.num_to_comma_string(increase) + ' pts'
 	if roundi(multiplierDiff) != 0:
-		multiplierText += diffSign + TextUtils.num_to_comma_string(roundi(multiplierDiff)) + '%'
+		if increase != 0:
+			multiplierText += ', '
+		multiplierText += multDiffSign + TextUtils.num_to_comma_string(roundi(multiplierDiff)) + '%'
 	return multiplierText

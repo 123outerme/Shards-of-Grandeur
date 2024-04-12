@@ -32,17 +32,19 @@ func load_targets():
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE:
 		var move: Move = battleUI.commandingCombatant.combatant.command.move
 		moveEffect = move.get_effect_of_type(battleUI.commandingCombatant.combatant.command.moveEffectType)
+		if moveEffect == null:
+			printerr('Cannot find move effect for ', battleUI.commandingCombatant.combatant.command.move.moveName)
 		commandText.text += move.moveName
 		targets = moveEffect.targets
 		var effectTexts: Array[String] = moveEffect.get_short_description()
 		effectDesc.text = '[center]'
 		for text in effectTexts:
-			effectDesc.text += text + '\n'
+			effectDesc.text += TextUtils.rich_text_substitute(text, Vector2i(32, 32)) + '\n'
 		effectDesc.text += '[/center]'
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
 		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
-		effectDesc.text = '[center]' + battleUI.commandingCombatant.combatant.command.slot.item.get_effect_text(true) + '[/center]'
+		effectDesc.text = '[center]' + TextUtils.rich_text_substitute(battleUI.commandingCombatant.combatant.command.slot.item.get_effect_text(true), Vector2i(32, 32)) + '[/center]'
 	
 	singleSelect = not BattleCommand.is_command_multi_target(targets)
 	commandText.text += '.[/center]'

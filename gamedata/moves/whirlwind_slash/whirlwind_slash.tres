@@ -6,21 +6,26 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_4raoj"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_y1222"]
 
-[sub_resource type="Resource" id="Resource_ar6kq"]
+[sub_resource type="Resource" id="Resource_4cliw"]
 script = ExtResource("2_4raoj")
-physAttackMultiplier = 0.9
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
-speedMultiplier = 1.0
+speedMultiplier = 1.2
 
 [sub_resource type="Resource" id="Resource_d0ele"]
 script = ExtResource("1_6go77")
-role = 2
+role = 1
 orbChange = 0
 power = 45
-targets = 6
-selfStatChanges = SubResource("Resource_ar6kq")
+targets = 5
+selfStatChanges = SubResource("Resource_4cliw")
 selfGetsStatus = false
 statusChance = 0.0
 

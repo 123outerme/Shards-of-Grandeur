@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=11 format=3 uid="uid://50e68noxr08e"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=12 format=3 uid="uid://50e68noxr08e"]
 
 [ext_resource type="Resource" uid="uid://dbiqx5vc0tdu0" path="res://gamedata/codex_entries/codex/battle/status_effects/exhaustion.tres" id="1_36lu0"]
 [ext_resource type="Resource" uid="uid://dretfmxy10vbx" path="res://gamedata/codex_entries/codex/battle/status_effects/bleed.tres" id="1_awmlo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://c3f80h15l2cc0" path="res://gamedata/codex_entries/codex/battle/status_effects/confusion.tres" id="5_bd3gs"]
 [ext_resource type="Resource" uid="uid://d13mmbh5jhsqt" path="res://gamedata/codex_entries/codex/battle/status_effects/jinx.tres" id="6_un27k"]
 [ext_resource type="Resource" uid="uid://cc3kfywhsmiwn" path="res://gamedata/codex_entries/codex/battle/status_effects/mania.tres" id="7_uwdbw"]
+[ext_resource type="Resource" uid="uid://eq6aorj0s46y" path="res://gamedata/codex_entries/codex/battle/status_effects/guard_break.tres" id="7_v1gnw"]
 [ext_resource type="Resource" uid="uid://doh67bor1q82k" path="res://gamedata/codex_entries/codex/battle/status_effects/reflect.tres" id="8_n5gqx"]
 [ext_resource type="Resource" uid="uid://c45ec52qbf6mg" path="res://gamedata/codex_entries/codex/battle/status_effects/interception.tres" id="9_rawlo"]
 
@@ -16,5 +17,5 @@ script = ExtResource("1_kxfcf")
 id = "status_effects"
 title = "Status Effects"
 storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
-description = "Status effects are battle conditions that temporarily apply to a combatant. A combatant can only be affected by one status effect at a time. A status effect has three levels of strength: Weak, Strong, and Overwhelming. Some status effects are positive, and some negative. After you leave battle, all status effects wear off."
-childrenEntries = Array[ExtResource("1_kxfcf")]([ExtResource("1_36lu0"), ExtResource("1_awmlo"), ExtResource("3_66awl"), ExtResource("4_v224x"), ExtResource("5_bd3gs"), ExtResource("6_un27k"), ExtResource("7_uwdbw"), ExtResource("8_n5gqx"), ExtResource("9_rawlo")])
+description = "Status effects are battle conditions that temporarily apply to a combatant. A combatant can only be affected by one status effect at a time. A status effect has three levels of potency: Slight, Potent, and Overwhelming. Some status effects are positive, and some negative. After you leave battle, all status effects wear off."
+childrenEntries = Array[ExtResource("1_kxfcf")]([ExtResource("1_36lu0"), ExtResource("1_awmlo"), ExtResource("3_66awl"), ExtResource("4_v224x"), ExtResource("5_bd3gs"), ExtResource("6_un27k"), ExtResource("7_v1gnw"), ExtResource("7_uwdbw"), ExtResource("8_n5gqx"), ExtResource("9_rawlo")])

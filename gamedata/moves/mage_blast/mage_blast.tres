@@ -6,26 +6,35 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_p7si0"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_o5lg5"]
 
-[sub_resource type="Resource" id="Resource_vp4y3"]
-script = ExtResource("2_p7si0")
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.2
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.1
-speedMultiplier = 1.0
-
 [sub_resource type="Resource" id="Resource_pdanh"]
 script = ExtResource("1_exwjn")
 role = 1
 orbChange = 1
 power = 50
 targets = 5
-selfStatChanges = SubResource("Resource_vp4y3")
 selfGetsStatus = false
 statusChance = 0.0
 
+[sub_resource type="Resource" id="Resource_efv06"]
+script = ExtResource("2_p7si0")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.2
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.1
+speedMultiplier = 1.0
+
 [sub_resource type="Resource" id="Resource_282np"]
 script = ExtResource("2_p7si0")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
 physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.05
 affinityMultiplier = 1.0
@@ -49,6 +58,7 @@ role = 1
 orbChange = -3
 power = 70
 targets = 5
+selfStatChanges = SubResource("Resource_efv06")
 selfGetsStatus = false
 statusChance = 0.0
 surgeChanges = SubResource("Resource_brnn3")
@@ -60,6 +70,6 @@ requiredLv = 1
 category = 1
 chargeEffect = SubResource("Resource_pdanh")
 surgeEffect = SubResource("Resource_0wnah")
-description = "The users conjures a single blast of magic power to hurl at an unsuspecting foe. This leaves the user a little more attuned to the magic flowing around them, and empowers their armor slightly."
+description = "The users conjures a single blast of magic power to hurl at an unsuspecting foe."
 moveLearnedText = "You meditate on the power of the Shard for a short moment, feeling the pulsing power emanating from within. Briefly, you see a vision of the entrance to the Cave. As you open your eyes, you hold out your hand and summon a Mage Blast."
 moveAnimation = ExtResource("1_jktvu")

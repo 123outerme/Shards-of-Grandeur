@@ -18,7 +18,7 @@ func initial_focus():
 	okBtn.grab_focus()
 
 func show_text(newText: String):
-	textBoxText.text = newText
+	textBoxText.text = TextUtils.rich_text_substitute(newText, Vector2i(32, 32))
 
 func tween_started():
 	moveTweenStarted = true

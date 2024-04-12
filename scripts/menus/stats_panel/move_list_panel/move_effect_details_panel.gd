@@ -45,15 +45,14 @@ func load_move_effect_details_panel():
 		node.queue_free()
 	
 	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
-		detailsTitleLabel.text = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
+		var titleText: String = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
 		if moveEffect.orbChange > 0:
-			detailsTitleLabel.text += '+'
-		detailsTitleLabel.text += String.num(moveEffect.orbChange) + ' Orb'
-		if abs(moveEffect.orbChange) > 1 or moveEffect.orbChange == 0:
-			detailsTitleLabel.text += 's'
+			titleText += '+'
+		titleText += String.num(moveEffect.orbChange) + ' $orb'
 		if moveEffect.orbChange < 0:
-			detailsTitleLabel.text += ' Min.'
-		detailsTitleLabel.text += ')[/center]'
+			titleText += ' Min.'
+		titleText += ')[/center]'
+		detailsTitleLabel.text = TextUtils.rich_text_substitute(titleText, Vector2i(32, 32))
 		visible = true
 	else:
 		if isSurgeEffect:

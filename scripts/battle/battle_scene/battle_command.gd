@@ -367,9 +367,7 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += ', gaining '
 			else:
 				resultsText += ', spending '
-			resultsText += String.num(abs(orbChange)) + ' Orb'
-			if abs(orbChange) != 1:
-				resultsText += 's'
+			resultsText += String.num(abs(orbChange)) + ' $orb'
 		
 		# "dealt/healed/afflicted "
 		if moveEffect.power > 0:

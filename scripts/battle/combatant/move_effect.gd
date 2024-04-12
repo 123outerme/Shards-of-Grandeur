@@ -64,18 +64,18 @@ func get_short_description() -> Array[String]:
 	var effects: Array[String] = []
 	
 	if orbChange > 0:
-		effects.append('+' + String.num(orbChange) + ' Orbs')
+		effects.append('+' + String.num(orbChange) + ' $orb')
 	
 	if power > 0:
 		effects.append(String.num(power) + ' Power')
 	elif power < 0:
 		effects.append(String.num(power * -1) + ' Heal Power')
 	
-	if selfStatChanges.has_stat_changes():
+	if selfStatChanges != null and selfStatChanges.has_stat_changes():
 		var multiplierTexts: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
 		effects.append('Self: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
-	if targetStatChanges.has_stat_changes():
+	if targetStatChanges != null and targetStatChanges.has_stat_changes():
 		var multiplierTexts: Array[StatMultiplierText] = targetStatChanges.get_multipliers_text()
 		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
