@@ -29,7 +29,9 @@ func print_multiplier(useStatName: bool = true) -> String:
 	if useStatName:
 		multiplierText += statName + ' '
 	if increase != 0:
-		multiplierText += increaseDiffSign + TextUtils.num_to_comma_string(increase) + ' pts'
+		multiplierText += increaseDiffSign + TextUtils.num_to_comma_string(increase) + ' pt'
+		if abs(increase) > 1:
+			multiplierText += 's'
 	if roundi(multiplierDiff) != 0:
 		if increase != 0:
 			multiplierText += ', '

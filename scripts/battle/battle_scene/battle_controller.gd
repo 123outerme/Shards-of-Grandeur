@@ -65,6 +65,7 @@ func load_into_battle():
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
+			enemyCombatant1.combatant.pick_equipment()
 			if len(PlayerResources.playerInfo.staticEncounter.combatant1Moves) == 0:
 				enemyCombatant1.combatant.assign_moves_nonplayer()
 			else:
@@ -75,6 +76,7 @@ func load_into_battle():
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
+				enemyCombatant2.combatant.pick_equipment()
 				if len(PlayerResources.playerInfo.staticEncounter.combatant2Moves) == 0:
 					enemyCombatant2.combatant.assign_moves_nonplayer()
 				else:
@@ -85,6 +87,7 @@ func load_into_battle():
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
+				enemyCombatant3.combatant.pick_equipment()
 				if len(PlayerResources.playerInfo.staticEncounter.combatant3Moves) == 0:
 					enemyCombatant3.combatant.assign_moves_nonplayer()
 				else:
@@ -110,6 +113,7 @@ func load_into_battle():
 			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
+			enemyCombatant1.combatant.pick_equipment()
 			
 			var rngBeginnerNoEnemy: float = randf() - 0.5 + \
 					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
@@ -121,6 +125,7 @@ func load_into_battle():
 				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				enemyCombatant2.combatant.assign_moves_nonplayer()
+				enemyCombatant2.combatant.pick_equipment()
 			else:
 				enemyCombatant2.combatant = null
 			
@@ -134,6 +139,7 @@ func load_into_battle():
 				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()
+				enemyCombatant3.combatant.pick_equipment()
 			else:
 				enemyCombatant3.combatant = null
 			#enemyCombatant3.leftSide = false # what was this doing????

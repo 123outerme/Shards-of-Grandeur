@@ -233,6 +233,16 @@ func assign_moves_nonplayer():
 				stats.moves[nextMoveSlot] = move
 			nextMoveSlot = (nextMoveSlot + 1) % 4
 
+func pick_equipment():
+	var choice: int = WeightedThing.pick_item(equipmentTable)
+	if choice >= 0 and choice < len(equipmentTable):
+		var weightedEquipment: WeightedEquipment = equipmentTable[choice]
+		stats.equippedWeapon = weightedEquipment.weapon
+		stats.equippedArmor = weightedEquipment.armor
+	else:
+		stats.equippedWeapon = null
+		stats.equippedArmor = null
+
 func copy() -> Combatant:
 	var newCombatant: Combatant = Combatant.new()
 	newCombatant.save_from_object(self)

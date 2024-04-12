@@ -3,7 +3,7 @@ class_name WeightedThing
 
 @export var weight: float = 0.0
 
-static func pick_item(weights: Array):
+static func pick_item(weights: Array) -> int:
 	if len(weights) == 0 or not (weights[0] is WeightedThing):
 		print("WeightedThing error: array is not properly formed")
 		return -1
