@@ -42,6 +42,11 @@ func load_move_details_panel():
 	chargeEffectDetails.load_move_effect_details_panel()
 	surgeEffectDetails.moveEffect = move.surgeEffect
 	surgeEffectDetails.load_move_effect_details_panel()
+	if not surgeEffectDetails.visible:
+		chargeEffectDetails.tooltipPanel.position = Vector2(-371, -247)
+	else:
+		chargeEffectDetails.tooltipPanel.position = Vector2(-96, -247)
+	
 	connect_help_buttons()
 
 func connect_help_buttons():
