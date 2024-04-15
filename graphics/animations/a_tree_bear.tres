@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=35 format=3 uid="uid://cg3nfu3ph42vi"]
+[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://cg3nfu3ph42vi"]
 
 [ext_resource type="Texture2D" uid="uid://bi21qy757r6uc" path="res://graphics/characters/tree_bear/tree_bear_attack_phys.png" id="1_0hn23"]
 [ext_resource type="Texture2D" uid="uid://cmqw1yl8orkh1" path="res://graphics/characters/tree_bear/tree_bear_stand.png" id="1_2mnee"]
@@ -102,9 +102,13 @@ region = Rect2(160, 0, 32, 16)
 atlas = ExtResource("1_0hn23")
 region = Rect2(192, 0, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8bgx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_klhvt"]
 atlas = ExtResource("1_2mnee")
 region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liejk"]
+atlas = ExtResource("1_2mnee")
+region = Rect2(96, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rny7w"]
 atlas = ExtResource("2_0b1c2")
@@ -212,12 +216,15 @@ animations = [{
 "speed": 7.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u8bgx")
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_klhvt")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_liejk")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,

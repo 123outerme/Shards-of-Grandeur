@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://bm53bw0yjgx4t"]
+[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://bm53bw0yjgx4t"]
 
 [ext_resource type="Texture2D" uid="uid://bro57arwro6a0" path="res://graphics/characters/king_rat/king_rat_stand.png" id="1_1iw2n"]
 [ext_resource type="Texture2D" uid="uid://dxlgqixoi1w5" path="res://graphics/characters/king_rat/king_rat_attack_affinity.png" id="1_1xcmn"]
@@ -87,9 +87,17 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("1_eiaic")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ro2w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtgw7"]
 atlas = ExtResource("1_1iw2n")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylb8v"]
+atlas = ExtResource("1_1iw2n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ys57"]
+atlas = ExtResource("1_1iw2n")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwqx2"]
 atlas = ExtResource("2_qod8d")
@@ -193,8 +201,14 @@ animations = [{
 "speed": 6.0
 }, {
 "frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_vtgw7")
+}, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5ro2w")
+"texture": SubResource("AtlasTexture_ylb8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ys57")
 }],
 "loop": true,
 "name": &"stand",

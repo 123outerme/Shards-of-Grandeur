@@ -5,8 +5,11 @@ class_name GroundItem
 @export var disguiseSprite: Texture = null
 @export var storyRequirements: Array[StoryRequirements] = []
 @export var startsQuest: Quest = null
+@export var invisible: bool = false
+@export var particleTextures: Array[Texture2D] = []
 
 @onready var sprite: Sprite2D = get_node('Sprite2D')
+@onready var particleEmitter: Particles = get_node('ParticleEmitter')
 
 var disabled = false
 
@@ -22,10 +25,18 @@ func _ready():
 	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 	_story_reqs_updated()
 	
-	if disguiseSprite != null:
+	if invisible:
+		sprite.texture = null
+	elif disguiseSprite != null:
 		sprite.texture = disguiseSprite
 	else:
 		sprite.texture = pickedUpItem.item.itemSprite
+	
+	if len(particleTextures) > 0:
+		var newPreset: ParticlePreset = particleEmitter.preset.duplicate(false)
+		newPreset.particleTextures = particleTextures
+		particleEmitter.preset = newPreset
+	particleEmitter.set_make_particles(true)
 
 func _on_area_entered(area):
 	if not disabled and area.name == 'PlayerEventCollider' and not PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId):

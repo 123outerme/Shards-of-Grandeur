@@ -159,6 +159,8 @@ func set_sprite_frames(spriteFrames: SpriteFrames):
 
 func play_animation(animation: String):
 	sprite.play(animation)
+	if animation == 'stand':
+		sprite.pause()
 
 func face_horiz(xDirection: float):
 	if xDirection > 0:
@@ -188,7 +190,7 @@ func advance_dialogue(canStart: bool = true):
 					minDistance = npc.position.distance_to(position)
 					talkNPC = npc
 					PlayerResources.playerInfo.staticEncounter = null # reset static encounter in case game crash
-		sprite.play('stand')
+		play_animation('stand')
 		if not canStart and not disableMovement or talkNPC == null: # if we are pressing game_decline, or there is no talk NPC, do not start conversation!
 			talkNPC = null
 			return

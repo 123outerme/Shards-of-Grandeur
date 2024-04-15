@@ -70,10 +70,15 @@ func load_preset():
 
 func set_make_particles(showParticles: bool):
 	_makeParticles = showParticles
-	for child in get_children():
+	var children = get_children()
+	for idx in range(len(children)):
+		var child = children[idx]
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
 			if particleSpawner.emitting != showParticles and not (not particleSpawner.emitting and preset.count < 1):
+				if preset.staggered and not idx == 0:
+					# stagger by delaying a portion of the particles' lifetime to start the next spawning process
+					await get_tree().create_timer(preset.lifetime / len(children)).timeout
 				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
 	if showParticles:

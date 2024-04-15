@@ -6,6 +6,7 @@ class_name ParticlePreset
 @export var inFrontOfCombatant: bool = false
 @export var lifetime: float = 0.5
 @export var duration: float = 1.25
+@export var staggered: bool = false
 @export var processMaterial: ParticleProcessMaterial = null
 @export var particleTextures: Array[Texture2D] = []
 @export var sfx: AudioStream = null
@@ -16,6 +17,7 @@ func _init(
 	i_inFront = false,
 	i_lifetime = 0.5,
 	i_duration = 1.25,
+	i_staggered = false,
 	i_processMaterial = null,
 	i_particles: Array[Texture2D] = [],
 	i_sfx = null,
@@ -25,6 +27,7 @@ func _init(
 	inFrontOfCombatant = i_inFront
 	lifetime = i_lifetime
 	duration = i_duration
+	staggered = i_staggered
 	processMaterial = i_processMaterial
 	particleTextures = i_particles
 	sfx = i_sfx
