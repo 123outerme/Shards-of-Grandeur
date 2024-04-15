@@ -58,6 +58,7 @@ var useItemSprite: Texture2D = null
 @onready var spriteContainer: Node2D = get_node('SpriteContainer')
 @onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
 @onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
+@onready var statusSprite: Sprite2D = get_node('HPTag/LvText/HPProgressBar/StatusSpriteControl/StatusSprite')
 @onready var behindParticleContainer: Node2D = get_node('SpriteContainer/BehindParticleContainer')
 @onready var surgeParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/SurgeParticleEmitter')
 @onready var behindParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/BehindParticleEmitter')
@@ -162,6 +163,10 @@ func update_hp_tag():
 	orbDisplay.update_orb_display()
 	#else:
 		#orbDisplay.visible = false
+	if combatant.statusEffect != null:
+		statusSprite.texture = combatant.statusEffect.get_icon()
+	else:
+		statusSprite.texture = null
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():

@@ -8,6 +8,8 @@ const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.OVERWHELMING: 0.5
 }
 
+const _icon: Texture2D = preload('res://graphics/ui/berserk.png')
+
 func _init(
 	i_potency: Potency = Potency.NONE,
 	i_turnsLeft = 0
@@ -44,6 +46,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with Berserk takes recoil damage upon using a damaging move.'
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Berserk.new(

@@ -32,7 +32,7 @@ func get_minion(saveName: String) -> Combatant:
 func init_minion(saveName: String) -> Combatant:
 	var minion = Combatant.load_combatant_resource(saveName)
 	if minion != null:
-		level_up_minion(minion, PlayerResources.playerInfo.combatant.stats.level)
+		level_up_minion(minion, PlayerResources.playerInfo.combatant.stats.level, true)
 		minionsDict[saveName] = minion
 		if not (minion.save_name() in minionList):
 			minionList.append(minion.save_name())
@@ -44,13 +44,14 @@ func get_minion_list() -> Array[Combatant]:
 		minions.append(minionsDict[minion])
 	return minions
 
-func level_up_minion(minion: Combatant, newLevel: int):
+func level_up_minion(minion: Combatant, newLevel: int, newMinion: bool = false):
 	var levelDiff: int = newLevel - minion.stats.level
 	if levelDiff > 0:
 		minion.stats.level_up(levelDiff)
 		minion.currentHp = minion.stats.maxHp
-		if len(minion.stats.moves) < 4:
-			minion.assign_moves_nonplayer()
+	
+	if (levelDiff > 0 or newMinion) and len(minion.stats.moves) < 4:
+		minion.assign_moves_nonplayer()
 
 func level_up_minions(newLevel: int):
 	for minion in get_minion_list():

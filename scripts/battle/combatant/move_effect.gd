@@ -101,12 +101,14 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 	if changedSurgeEff.selfStatChanges != null and not changedSurgeEff.selfStatChanges.equals(selfStatChanges):
 		var diffs: StatChanges = changedSurgeEff.selfStatChanges.subtract(selfStatChanges)
 		var multiplierTexts: Array[StatMultiplierText] = diffs.get_multipliers_text()
-		effects.append('Self: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+		if len(multiplierTexts) > 0:
+			effects.append('Self: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
 	if changedSurgeEff.targetStatChanges != null and not changedSurgeEff.targetStatChanges.equals(targetStatChanges):
 		var diffs: StatChanges = changedSurgeEff.targetStatChanges.subtract(targetStatChanges)
 		var multiplierTexts: Array[StatMultiplierText] = diffs.get_multipliers_text()
-		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
+		if len(multiplierTexts) > 0:
+			effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
 	if changedSurgeEff.statusEffect != null and (changedSurgeEff.statusChance > statusChance or \
 			changedSurgeEff.statusEffect.potency != statusEffect.potency):

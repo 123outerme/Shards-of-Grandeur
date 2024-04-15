@@ -168,6 +168,7 @@ func update_filter_buttons():
 	readyToTurnInButton.button_pressed = selectedFilter == QuestTracker.Status.READY_TO_TURN_IN_STEP
 	completedButton.button_pressed = selectedFilter == QuestTracker.Status.COMPLETED
 	notCompletedButton.button_pressed = selectedFilter == QuestTracker.Status.INCOMPLETE
+	failedButton.button_pressed = selectedFilter == QuestTracker.Status.FAILED
 
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
 	selectedFilter = type

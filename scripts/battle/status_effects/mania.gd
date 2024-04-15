@@ -3,6 +3,8 @@ class_name Mania
 
 # general idea: mania affects turn order positively, also maybe increases resistance?
 
+const _icon: Texture2D = preload('res://graphics/ui/mania.png')
+
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
@@ -19,6 +21,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with Mania moves first in a turn, before all combatants without Mania.'
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Mania.new(

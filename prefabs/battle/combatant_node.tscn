@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=23 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="2_7l61i"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
 [ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
+[ext_resource type="Texture2D" uid="uid://b25no5y38ry06" path="res://graphics/ui/berserk.png" id="20_es783"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_klmqu"]
 
@@ -105,7 +106,7 @@ duration = 0.675
 
 [node name="HPTag" type="Panel" parent="."]
 z_index = 1
-custom_minimum_size = Vector2(63, 0)
+custom_minimum_size = Vector2(75, 0)
 offset_left = 6.0
 offset_top = -7.0
 offset_right = 71.0
@@ -153,6 +154,25 @@ stretch_margin_bottom = 16
 texture_under = ExtResource("13_ff1jw")
 texture_progress = ExtResource("14_psvf6")
 
+[node name="StatusSpriteControl" type="Control" parent="HPTag/LvText/HPProgressBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StatusSprite" type="Sprite2D" parent="HPTag/LvText/HPProgressBar/StatusSpriteControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("20_es783")
+
 [node name="HPText" type="RichTextLabel" parent="HPTag/LvText"]
 clip_contents = false
 layout_mode = 1
@@ -177,9 +197,9 @@ custom_minimum_size = Vector2(88, 8)
 layout_mode = 1
 anchors_preset = 10
 anchor_bottom = 0.0
-offset_left = -1.0
+offset_left = 3.0
 offset_top = -6.0
-offset_right = 24.0
+offset_right = 19.0
 offset_bottom = 2.0
 grow_vertical = 1
 scale = Vector2(0.75, 0.75)

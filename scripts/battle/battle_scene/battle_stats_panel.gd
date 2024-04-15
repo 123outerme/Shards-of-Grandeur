@@ -5,6 +5,7 @@ class_name BattleStatsPanel
 @export var battlePosition: String = ''
 
 @onready var combatantName: RichTextLabel = get_node("CombatantName")
+@onready var statusSprite: Sprite2D = get_node('HBoxContainer/StatusIconControl/StatusSprite')
 @onready var statusEffectText: RichTextLabel = get_node("HBoxContainer/StatusEffect")
 @onready var statusHelpButton: Button = get_node('HBoxContainer/StatusHelpButton')
 @onready var orbDisplay: OrbDisplay = get_node('OrbDisplay')
@@ -33,9 +34,12 @@ func load_battle_stats_panel():
 	statLinePanel.statChanges = combatant.statChanges
 	statLinePanel.load_statline_panel()
 	if combatant.statusEffect != null:
+		statusSprite.texture = combatant.statusEffect.get_icon()
+		statusSprite.visible = false
 		statusEffectText.text = '[center]Experiencing ' + combatant.statusEffect.status_effect_to_string() + '[/center]'
 		statusHelpButton.visible = true
 	else:
+		statusSprite.visible = false
 		statusEffectText.text = ''
 		statusHelpButton.visible = false
 	

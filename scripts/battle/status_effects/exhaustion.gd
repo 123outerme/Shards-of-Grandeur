@@ -3,6 +3,8 @@ class_name Exhaustion
 
 # general idea: exhaustion affects turn order negatively, also maybe reduces resistance?
 
+const _icon: Texture2D = preload('res://graphics/ui/exhaustion.png')
+
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
@@ -19,6 +21,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with Exhaustion moves at the end of the turn order, after all combatants without Exhaustion.'
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Exhaustion.new(

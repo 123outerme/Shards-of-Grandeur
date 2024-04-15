@@ -15,6 +15,8 @@ var reverseStatChangesDict: Dictionary = {
 	Potency.OVERWHELMING: StatChanges.new(1.5, 1, 1, 1, 1),
 }
 
+const _icon: Texture2D = preload('res://graphics/ui/weakness.png')
+
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
@@ -33,6 +35,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with Weakness suffers a temporary debuff to their Physical Attack stat.'
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Weakness.new(

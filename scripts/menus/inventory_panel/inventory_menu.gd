@@ -228,9 +228,12 @@ func load_inventory_panel(rebuild: bool = true):
 func buy_item(slot: InventorySlot):
 	lastSlotInteracted = slot
 	PlayerResources.inventory.add_item(slot.item)
+	var full: bool = false
+	if PlayerResources.inventory.is_slot_for_item_full(slot.item):
+		full = true
 	PlayerResources.playerInfo.gold -= slot.item.cost
 	var last = shopInventory.trash_item(slot)
-	load_inventory_panel(last)
+	load_inventory_panel(last or full)
 	if last:
 		initial_focus()
 	else:
@@ -241,7 +244,10 @@ func sell_item(slot: InventorySlot):
 	var last = PlayerResources.inventory.trash_item(slot)
 	PlayerResources.playerInfo.gold += slot.item.cost
 	shopInventory.add_item(slot.item)
-	load_inventory_panel(last)
+	var full: bool = false
+	if shopInventory.is_slot_for_item_full(slot.item):
+		full = true
+	load_inventory_panel(last or full)
 	if last:
 		initial_focus()
 	else:

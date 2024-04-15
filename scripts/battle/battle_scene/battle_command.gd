@@ -168,6 +168,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	
 	var appliedEffect: bool = false
 	for idx in range(len(targets)):
+		if targets[idx].currentHp <= 0:
+			continue # skip already downed opponents
 		var finalPower = 0
 		if type == Type.MOVE:
 			finalPower = moveEffect.power
@@ -182,9 +184,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					
 		var damage = calculate_damage(user, targets[idx], finalPower)
 		commandResult.damagesDealt[idx] += damage
-		if damage != 0:
-			appliedEffect = true
-		targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
+		if targets[idx].currentHp > 0:
+			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 
 		if does_target_get_status(user, idx) and moveEffect.statusEffect != null and targets[idx].statusEffect == null:
 			targets[idx].statusEffect = moveEffect.statusEffect.copy()

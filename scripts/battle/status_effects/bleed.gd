@@ -8,6 +8,8 @@ const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.OVERWHELMING: 0.15
 }
 
+const _icon: Texture2D = preload('res://graphics/ui/bleed.png')
+
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0,
@@ -32,6 +34,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with Bleed takes damage at the end of a battle round, equal to a percentage of the combatant\'s Max Health.' 
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Bleed.new(

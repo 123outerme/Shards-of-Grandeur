@@ -91,6 +91,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 func get_status_effect_tooltip():
 	return '' # each status effect needs to implement separately
 
+func get_icon() -> Texture2D:
+	return null
+
 func status_effect_to_string() -> String:
 	return StatusEffect.potency_to_string(potency) + ' ' + StatusEffect.status_type_to_string(type)
 

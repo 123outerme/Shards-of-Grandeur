@@ -37,7 +37,7 @@ func _ready():
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed("game_decline"):
+	if visible and event.is_action_pressed("game_decline") and not virtualKeyboard.visible:
 		get_viewport().set_input_as_handled()
 		if newGameConfirmPanel.visible:
 			_on_no_button_pressed.call_deferred()

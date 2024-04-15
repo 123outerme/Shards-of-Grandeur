@@ -60,7 +60,12 @@ func _ready():
 
 func _unhandled_input(event):
 	if visible:
-		if event.is_action_pressed('game_decline'):
+		var declineIsShift: bool = false
+		for ev: InputEvent in InputMap.action_get_events('game_decline'):
+			if ev is InputEventKey:
+				if ev.keycode == KEY_SHIFT:
+					declineIsShift = true
+		if event.is_action_pressed('game_decline') and not declineIsShift:
 			get_viewport().set_input_as_handled()
 			hide_keyboard()
 		if event.is_action_pressed('game_pause'):

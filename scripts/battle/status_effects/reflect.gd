@@ -8,6 +8,8 @@ const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.OVERWHELMING: 0.35
 } # percentage of incoming damage reflected to attacker
 
+const _icon: Texture2D = preload('res://graphics/ui/reflect.png')
+
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
@@ -53,6 +55,9 @@ func get_status_effect_str(combatant, allCombatants: Array, timing: BattleComman
 
 func get_status_effect_tooltip():
 	return 'A combatant with Reflect deals recoil to any attackers, as a percentage of damage taken.'
+
+func get_icon() -> Texture2D:
+	return _icon
 
 func copy() -> StatusEffect:
 	return Reflect.new(
