@@ -35,7 +35,7 @@ func load_battle_stats_panel():
 	statLinePanel.load_statline_panel()
 	if combatant.statusEffect != null:
 		statusSprite.texture = combatant.statusEffect.get_icon()
-		statusSprite.visible = false
+		statusSprite.visible = true
 		statusEffectText.text = '[center]Experiencing ' + combatant.statusEffect.status_effect_to_string() + '[/center]'
 		statusHelpButton.visible = true
 	else:
