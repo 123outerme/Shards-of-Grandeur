@@ -161,6 +161,16 @@ func get_stat_for_dmg_category(category: Move.DmgCategory) -> int:
 		return magicAttack
 	return affinity
 
+func get_stat_total():
+	return physAttack + magicAttack + affinity + resistance + speed + statPts
+
+func reset_stat_points():
+	save_from_object(calculate_base_stats(self, level))
+
+func is_stat_total_valid() -> bool:
+	var newStats: Stats = calculate_base_stats(self, level)
+	return get_stat_total() == newStats.get_stat_total() and maxHp == newStats.maxHp
+
 func copy() -> Stats:
 	var newStats = Stats.new()
 	newStats.save_from_object(self)

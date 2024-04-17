@@ -48,6 +48,8 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
+		if not playerInfo.combatant.stats.is_stat_total_valid():
+			playerInfo.combatant.stats.reset_stat_points()
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		playerInfo.combatant.stats.movepool = playerInfo.combatant.stats.movepool.duplicate(false)
 		if playerInfo.combatant.currentHp == -1: # if -1, set to maxHp

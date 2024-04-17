@@ -105,6 +105,10 @@ func validate_minion_moves(minion: Combatant):
 				minion.stats.moves[idx] = move # set this move in the previously invalid move slot
 				break
 
+func validate_minion_stats(minion: Combatant):
+	if not minion.stats.is_stat_total_valid():
+		minion.stats.reset_stat_points()
+
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
@@ -120,6 +124,7 @@ func _load_data_each_minion(save_path):
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres'):
 			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
 			validate_minion_moves(minion)
+			validate_minion_stats(minion)
 			set_minion(minion)
 		if minion == null:
 			init_minion(minionName)
