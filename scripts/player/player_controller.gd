@@ -43,11 +43,12 @@ func _unhandled_input(event):
 			and not ((len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0)) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice and not cutscenePaused and not inCutscene \
-			and SceneLoader.curMapEntry.isRecoverLocation:
+			and SceneLoader.curMapEntry.isRecoverLocation and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
 	
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
-			(cutscenePaused and event.is_action_pressed('game_decline')):
+			(cutscenePaused and event.is_action_pressed('game_decline')) and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if inCutscene:
 			SceneLoader.cutscenePlayer.toggle_pause_cutscene()
 			cam.toggle_cutscene_paused_shade()
@@ -55,7 +56,8 @@ func _unhandled_input(event):
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
 	
-	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused:
+	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
@@ -70,13 +72,15 @@ func _unhandled_input(event):
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
 			and (len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not makingChoice and not cutscenePaused and not startingBattle:
+			and not statsPanel.visible and not makingChoice and not cutscenePaused and \
+			not startingBattle and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		else:
 			textBox.show_text_instant()
 	
-	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused:
+	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -88,7 +92,8 @@ func _unhandled_input(event):
 		if questsPanel.visible:
 			questsPanel.toggle()
 		
-	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused:
+	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()

@@ -49,6 +49,7 @@ func load_data(save_path):
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
 		if not playerInfo.combatant.stats.is_stat_total_valid():
+			printerr('Player stats were invalid! Resetting.')
 			playerInfo.combatant.stats.reset_stat_points()
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		playerInfo.combatant.stats.movepool = playerInfo.combatant.stats.movepool.duplicate(false)

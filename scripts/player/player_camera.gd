@@ -75,7 +75,7 @@ func fade_out(callback: Callable, duration: float = 0.5):
 		interruptTween = true
 		fadeOutTween.kill()
 		fadeOutTween.finished.emit()
-	fadeOutTween = get_tree().create_tween()
+	fadeOutTween = create_tween()
 	fadeOutTween.tween_property(shadeColor, 'modulate', Color(0, 0, 0, 1.0), duration)
 	fadeOutTween.finished.connect(callback)
 	fadeOutTween.finished.connect(_fade_out_complete)

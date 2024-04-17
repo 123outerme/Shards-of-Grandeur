@@ -135,6 +135,7 @@ func destroy_overworld_enemies():
 
 func _fade_out_complete():
 	#print('fade out complete')
+	await get_tree().process_frame # wait at least one frame so the fadeout is surely rendered
 	warp_fadeout_done.emit()
 
 func _fade_in_complete():

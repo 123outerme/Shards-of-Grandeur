@@ -73,7 +73,7 @@ static func calculate_base_stats(oldStats: Stats, newLv: int) -> Stats:
 	var baseStats = Stats.new(
 		oldStats.displayName,
 		oldStats.saveName,
-		newLv,
+		1,
 		oldStats.experience,
 		oldStats.statGrowth.initialMaxHp,
 		1,
@@ -165,11 +165,38 @@ func get_stat_total():
 	return physAttack + magicAttack + affinity + resistance + speed + statPts
 
 func reset_stat_points():
-	save_from_object(calculate_base_stats(self, level))
+	save_from_object(Stats.calculate_base_stats(self, level))
 
 func is_stat_total_valid() -> bool:
-	var newStats: Stats = calculate_base_stats(self, level)
-	return get_stat_total() == newStats.get_stat_total() and maxHp == newStats.maxHp
+	# if floating stat points are negative, this is cheated! (or bugged I guess)
+	if statPts < 0:
+		return false
+	
+	var newStats: Stats = Stats.calculate_base_stats(self, level)
+	
+	# if stat totals or max HP values don't match, not valid
+	if not (get_stat_total() == newStats.get_stat_total() and maxHp == newStats.maxHp):
+		return false
+	
+	# if a base stat is ABOVE the current stat, not valid
+	if newStats.physAttack > physAttack or newStats.magicAttack > magicAttack or \
+			newStats.affinity > affinity or newStats.resistance > resistance or \
+			newStats.speed > speed:
+		return false
+	
+	# from here: attempt to "allocate" stat points to match the current stats
+	# can't give floating stat point "credit" here, since none of the base stats are greater by this point
+	newStats.statPts -= physAttack - newStats.physAttack
+	newStats.statPts -= magicAttack - newStats.magicAttack
+	newStats.statPts -= affinity - newStats.affinity
+	newStats.statPts -= resistance - newStats.resistance
+	newStats.statPts -= speed - newStats.speed
+	
+	# If we don't have the same amount of floating stat points now, not valid
+	if newStats.statPts != statPts:
+		return false
+	
+	return true
 
 func copy() -> Stats:
 	var newStats = Stats.new()
