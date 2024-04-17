@@ -1,10 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://ckrlpy4ifbvap"]
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://ckrlpy4ifbvap"]
 
 [ext_resource type="Texture2D" uid="uid://bvrpuq5xpy0sg" path="res://graphics/characters/rat/rat_attack_magic.png" id="1_jaurj"]
 [ext_resource type="Texture2D" uid="uid://c352y4w8igv0t" path="res://graphics/characters/rat/rat_attack_affinity.png" id="1_njgbi"]
 [ext_resource type="Texture2D" uid="uid://b5whp5qhscpq4" path="res://graphics/characters/rat/rat_attack_phys.png" id="1_wvopk"]
 [ext_resource type="Texture2D" uid="uid://ra20hb867klu" path="res://graphics/characters/rat/rat_walk.png" id="2_dncdw"]
 [ext_resource type="Texture2D" uid="uid://ccd8ra8uhq0pi" path="res://graphics/characters/rat/rat_stand.png" id="4_nd4qu"]
+[ext_resource type="Texture2D" uid="uid://swehht4fqxkp" path="res://graphics/characters/rat/rat_battle_idle.png" id="4_tihaw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5doeg"]
 atlas = ExtResource("1_njgbi")
@@ -70,13 +71,17 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("1_wvopk")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25t13"]
-atlas = ExtResource("4_nd4qu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfs66"]
+atlas = ExtResource("4_tihaw")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ona1"]
-atlas = ExtResource("4_nd4qu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_erll4"]
+atlas = ExtResource("4_tihaw")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c31o"]
+atlas = ExtResource("4_nd4qu")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nw6e"]
 atlas = ExtResource("2_dncdw")
@@ -153,14 +158,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_25t13")
+"texture": SubResource("AtlasTexture_rfs66")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5ona1")
+"texture": SubResource("AtlasTexture_erll4")
+}],
+"loop": true,
+"name": &"battle_idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c31o")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

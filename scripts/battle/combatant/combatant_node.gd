@@ -88,7 +88,7 @@ func load_combatant_node():
 		animatedSprite.sprite_frames = combatant.spriteFrames
 		if combatant.spriteFrames == null:
 			animatedSprite.sprite_frames = load("res://graphics/animations/a_player.tres") # TEMP prevent crashing
-		animatedSprite.play('stand')
+		animatedSprite.play('battle_idle')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
 		update_select_btn(false)
 		hpProgressBar.max_value = combatant.stats.maxHp
@@ -257,7 +257,7 @@ func tween_to(pos: Vector2):
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	returnToPos = global_position
 	var moveTime = pos.length() / ANIMATE_MOVE_SPEED
-	if animatedSprite.animation != 'stand':
+	if animatedSprite.animation != 'battle_idle':
 		# if there's an animation playing:
 		moveTime = 0
 		var fps = animatedSprite.sprite_frames.get_animation_speed(animatedSprite.animation)
@@ -636,7 +636,7 @@ func _on_click_combatant_btn_pressed():
 	details_clicked.emit(self)
 
 func _on_animated_sprite_animation_finished():
-	animatedSprite.play('stand')
+	animatedSprite.play('battle_idle')
 	# if all move sprites have finished and move tween has completely finished
 	if playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position != returnToPos:
 		tween_back_to_return_pos()
@@ -679,7 +679,7 @@ func _combatant_finished_animating():
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if playedMoveSprites == 0 and animatedSprite.animation == 'stand':
+	if playedMoveSprites == 0 and animatedSprite.animation == 'battle_idle':
 		tween_back_to_return_pos()
 
 func _on_combatant_tween_returned():
@@ -696,7 +696,7 @@ func _on_hp_drain_tween_finished():
 func _move_sprite_complete():
 	playedMoveSprites -= 1
 	# if the combatant's sprite animation is done and all move sprites have finished
-	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'stand':
+	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'battle_idle':
 		if animateTween == null:
 			if spriteContainer.global_position != returnToPos:
 				tween_back_to_return_pos()

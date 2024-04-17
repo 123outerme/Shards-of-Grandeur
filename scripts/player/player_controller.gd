@@ -159,8 +159,6 @@ func set_sprite_frames(spriteFrames: SpriteFrames):
 
 func play_animation(animation: String):
 	sprite.play(animation)
-	if animation == 'stand':
-		sprite.pause()
 
 func face_horiz(xDirection: float):
 	if xDirection > 0:

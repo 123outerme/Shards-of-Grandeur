@@ -1,10 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=35 format=3 uid="uid://c8eqberu16r6u"]
+[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://c8eqberu16r6u"]
 
 [ext_resource type="Texture2D" uid="uid://dg1pthdecosa3" path="res://graphics/characters/mystic_fox/mystic_fox_stand.png" id="1_hubrb"]
 [ext_resource type="Texture2D" uid="uid://dxcrrpk8s5fhe" path="res://graphics/characters/mystic_fox/mystic_fox_attack_phys.png" id="1_iri55"]
 [ext_resource type="Texture2D" uid="uid://bewv3u3rtbl5k" path="res://graphics/characters/mystic_fox/mystic_fox_attack_magic.png" id="1_oel66"]
 [ext_resource type="Texture2D" uid="uid://0gbn6mf2cj8d" path="res://graphics/characters/mystic_fox/mystic_fox_attack_affinity.png" id="1_v860y"]
 [ext_resource type="Texture2D" uid="uid://betvvuxn07dti" path="res://graphics/characters/mystic_fox/mystic_fox_walk.png" id="2_qkh2b"]
+[ext_resource type="Texture2D" uid="uid://c2yxqiclyirxs" path="res://graphics/characters/mystic_fox/mystic_fox_battle_idle.png" id="4_lwjig"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07a2j"]
 atlas = ExtResource("1_v860y")
@@ -82,21 +83,25 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("1_iri55")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_05nv4"]
-atlas = ExtResource("1_hubrb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_301ba"]
+atlas = ExtResource("4_lwjig")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ny7bl"]
-atlas = ExtResource("1_hubrb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl8kb"]
+atlas = ExtResource("4_lwjig")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uj3ph"]
-atlas = ExtResource("1_hubrb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ovqp"]
+atlas = ExtResource("4_lwjig")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fg8u"]
-atlas = ExtResource("1_hubrb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfxvl"]
+atlas = ExtResource("4_lwjig")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rifgn"]
+atlas = ExtResource("1_hubrb")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kssj"]
 atlas = ExtResource("2_qkh2b")
@@ -198,20 +203,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_05nv4")
+"texture": SubResource("AtlasTexture_301ba")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ny7bl")
+"texture": SubResource("AtlasTexture_tl8kb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uj3ph")
+"texture": SubResource("AtlasTexture_6ovqp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0fg8u")
+"texture": SubResource("AtlasTexture_jfxvl")
+}],
+"loop": true,
+"name": &"battle_idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rifgn")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
