@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://chwjmt00er1wn"]
+
+[ext_resource type="Texture2D" uid="uid://qwfwgy8k4ugs" path="res://graphics/structures/rocks.png" id="1_q6uwo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3twm0"]
+atlas = ExtResource("1_q6uwo")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53886"]
+atlas = ExtResource("1_q6uwo")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu2ya"]
+atlas = ExtResource("1_q6uwo")
+region = Rect2(80, 0, 16, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3twm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53886")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53886")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

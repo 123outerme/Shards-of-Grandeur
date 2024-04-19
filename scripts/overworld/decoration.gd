@@ -1,6 +1,7 @@
-extends Sprite2D
+extends AnimatedSprite2D
 class_name Decoration
 
+@export var animName: String = 'default'
 @export var storyRequirements: StoryRequirements = null
 
 @onready var collision: Area2D = get_node('Collision')
@@ -19,6 +20,7 @@ func _story_reqs_updated():
 		visible = true
 		collision.collision_layer = collisionLayer
 		collision.collision_mask = collisionMask
+		play(animName)
 	else:
 		visible = false
 		collision.collision_layer = 0

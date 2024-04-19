@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmaqkuubonmf2"]
+[gd_scene load_steps=4 format=3 uid="uid://bmaqkuubonmf2"]
 
 [ext_resource type="Script" path="res://scripts/overworld/decoration.gd" id="1_7bbqm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxwqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdwsu"]
 size = Vector2(16, 16)
 
-[node name="Decoration" type="Sprite2D"]
+[node name="Decoration" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_jxwqu")
 script = ExtResource("1_7bbqm")
 
 [node name="Collision" type="Area2D" parent="."]
