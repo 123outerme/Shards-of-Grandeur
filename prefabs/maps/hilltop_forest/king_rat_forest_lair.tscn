@@ -27,7 +27,7 @@ invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["king_rat_forest#failed_defeated"])
 invalidAfterSpecialBattles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_ddepb"]
+[sub_resource type="Resource" id="Resource_7py6q"]
 script = ExtResource("4_dewor")
 saveName = "npc"
 position = Vector2(-6, -148)
@@ -113,7 +113,7 @@ displayName = "King Rat"
 saveName = "king_rat_forest"
 facesRight = false
 spawnRequirements = SubResource("Resource_pv6tb")
-data = SubResource("Resource_ddepb")
+data = SubResource("Resource_7py6q")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_6u2mh"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf"), ExtResource("12_r8bnr")])
 facesPlayer = false
 
@@ -147,7 +147,7 @@ shape = SubResource("RectangleShape2D_ct1r1")
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("12_2jrgp")]
 position = Vector2(0, 8)
-usePlayerWarpCamMarker = true
+holdX = false
 
 [node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
 position = Vector2(0, -12.5)

@@ -150,7 +150,7 @@ layout_mode = 2
 text = "Applies Status:"
 
 [node name="MoveStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(328, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 theme_override_font_sizes/bold_font_size = 18
@@ -159,6 +159,29 @@ theme_override_font_sizes/bold_italics_font_size = 18
 theme_override_font_sizes/mono_font_size = 18
 bbcode_enabled = true
 text = "[center]Applies Overwhelming Exhaustion (100% Chance)[/center]"
+
+[node name="StatusEffectIconGroup" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="StatusEffectIconControl" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusEffectIcon" type="Sprite2D" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
 
 [node name="StatusHelpSection" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(32, 32)

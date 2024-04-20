@@ -130,6 +130,7 @@ func get_behind_particle_scale() -> float:
 func update_hp_tag():
 	if not is_alive():
 		if visible and fadeOutTween == null:
+			animatedSprite.pause() # pause idle animation
 			fadeOutTween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			fadeOutTween.tween_property(self, 'modulate', Color(0, 0, 0, 0), 0.75)
 			fadeOutTween.finished.connect(_fade_out_finished)

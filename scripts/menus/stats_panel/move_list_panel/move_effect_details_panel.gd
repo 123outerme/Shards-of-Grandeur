@@ -20,6 +20,7 @@ signal tooltip_panel_ok_pressed
 @onready var statusEffectRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow')
 @onready var statusLabel: RichTextLabel = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusLabel')
 @onready var moveStatusEffect: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/StatusEffectRow/MoveStatusEffect")
+@onready var moveStatusIcon: Sprite2D = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl/StatusEffectIcon')
 @onready var statusHelpButton: Button = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton')
 # the statusHelpButton is fetched to to connect focus to the back button in the parent panel
 
@@ -90,6 +91,7 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text = '[center]' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
 				+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) \
 				+ ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
+		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
 		statusEffectRow.visible = true
 	else:
 		statusEffectRow.visible = false

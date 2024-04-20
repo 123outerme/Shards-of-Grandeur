@@ -27,7 +27,7 @@ func set_fob_button_enabled(enabled: bool = true):
 	fobButton.disabled = not enabled
 
 func get_fob_button_enabled() -> bool:
-	return fobButton.disabled
+	return not fobButton.disabled
 
 func hide_fob_tabs():
 	fobButton.button_pressed = false
