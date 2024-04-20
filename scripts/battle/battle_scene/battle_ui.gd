@@ -39,6 +39,7 @@ func apply_menu_state():
 	summonMenu.visible = menuState == BattleState.Menu.SUMMON
 	if summonMenu.visible:
 		summonMenu.initial_focus()
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(summonMenu.yesSummonBtn)
 	
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
@@ -48,6 +49,7 @@ func apply_menu_state():
 	if allCommands.visible:
 		allCommands.commandingMinion = commandingMinion
 		allCommands.commandingCombatant = commandingCombatant
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(allCommands.inventoryBtn)
 		allCommands.load_all_commands()
 	if menuState == BattleState.Menu.ITEMS:
 		open_inventory(false)
@@ -56,6 +58,7 @@ func apply_menu_state():
 	if moves.visible:
 		battleController.state.moveEffectType = Move.MoveEffectType.CHARGE if menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE
 		moves.load_moves()
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(moves.get_node('MoveButton2'))
 	
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
@@ -65,12 +68,14 @@ func apply_menu_state():
 	surge.visible = menuState == BattleState.Menu.SURGE_SPEND
 	if surge.visible:
 		surge.load_surge()
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(surge.orbControl)
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
 			or menuState == BattleState.Menu.POST_ROUND
 	if results.visible:
 		results.initial_focus()
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(results.textBoxText)
 		battleController.reset_intermediate_state_strs()
 		battleController.turnExecutor.update_turn_text()
 		return # returns specifically here because of skipping post-round text
@@ -80,6 +85,7 @@ func apply_menu_state():
 		battleComplete.playerWins = playerWins
 		battleComplete.playerEscapes = escapes
 		battleComplete.rewards = battleController.state.rewards
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(battleComplete.okBtn)
 		if playerWins and len(battleComplete.rewards) == 0:
 			if PlayerResources.playerInfo.staticEncounter != null && PlayerResources.playerInfo.staticEncounter.useStaticRewards:
 				for reward in PlayerResources.playerInfo.staticEncounter.rewards:
@@ -256,12 +262,8 @@ func _on_focus_changed(control: Control):
 	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton \
 			and not battlePanels.flowOfBattle.fobButton.button_pressed and not 'FlowOfBattle' in previousFocus.get_path().get_concatenated_names():
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
-		if results.visible:
-			battlePanels.flowOfBattle.fobButton.focus_neighbor_left = battlePanels.flowOfBattle.fobButton.get_path_to(results.textBoxText)
-			battlePanels.flowOfBattle.fobButton.focus_neighbor_right = battlePanels.flowOfBattle.fobButton.get_path_to(results.okBtn)
-		else:
-			battlePanels.flowOfBattle.fobButton.focus_neighbor_left = ''
-			battlePanels.flowOfBattle.fobButton.focus_neighbor_right = ''
+		battlePanels.flowOfBattle.fobButton.focus_neighbor_left = '.'
+		battlePanels.flowOfBattle.fobButton.focus_neighbor_right = '.'
 	if not statsPanel.visible and not inventoryPanel.visible and \
 		not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and \
 		not battlePanels.summonMinionPanel.visible:

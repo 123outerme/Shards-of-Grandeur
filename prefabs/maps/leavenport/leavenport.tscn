@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
-[ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/decoration.tscn" id="3_tnhbb"]
+[ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="3_tnhbb"]
 [ext_resource type="SpriteFrames" uid="uid://chwjmt00er1wn" path="res://graphics/structures/anim_floating_stone_column.tres" id="4_uq3gf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
@@ -48,67 +48,75 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="FloatingRockColumnDecoration" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(821, 787)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.60061
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration2" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(81, 101)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.644107
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration2" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration2" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration2" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration3" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(879, -35)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.670862
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration3" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration3" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration3" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration4" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(510, -155)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.172463
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration4" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration4" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration4" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration7" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(895, 372)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.147645
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration7" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration7" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration7" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration8" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(646, 185)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.189001
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration8" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration8" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration8" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration5" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(337, -284)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.123918
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration5" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration5" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration5" index="1"]
+position = Vector2(0, 14)
 
 [node name="FloatingRockColumnDecoration6" parent="TileMap" instance=ExtResource("3_tnhbb")]
 position = Vector2(1193, 279)
-sprite_frames = ExtResource("4_uq3gf")
-frame_progress = 0.867714
 
-[node name="Collision" parent="TileMap/FloatingRockColumnDecoration6" index="0"]
-position = Vector2(0, 12)
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration6" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration6" index="1"]
+position = Vector2(0, 14)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

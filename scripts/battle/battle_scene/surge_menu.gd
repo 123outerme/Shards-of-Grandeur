@@ -6,6 +6,7 @@ class_name SurgeMenu
 @onready var orbControl: OrbDisplay = get_node('OrbDisplay')
 @onready var surgeChangesText: RichTextLabel = get_node('SurgeChangesText')
 @onready var confirmButton: Button = get_node('ConfirmButton')
+@onready var backButton: Button = get_node('BackButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

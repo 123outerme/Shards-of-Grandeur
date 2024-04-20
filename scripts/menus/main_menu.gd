@@ -1,8 +1,9 @@
 extends Control
 
-var playerName: String = 'Player'
-
 @export var mainMenuMusic: AudioStream
+
+var playerName: String = 'Player'
+var nameInputFocused: bool = false
 
 @onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
@@ -37,7 +38,12 @@ func _ready():
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed("game_decline") and not virtualKeyboard.visible:
+	var declineIsShift: bool = false
+	for ev: InputEvent in InputMap.action_get_events('game_decline'):
+		if ev is InputEventKey:
+			if ev.keycode == KEY_SHIFT:
+				declineIsShift = true
+	if visible and event.is_action_pressed("game_decline") and not (virtualKeyboard.visible or (nameInputFocused and declineIsShift)):
 		get_viewport().set_input_as_handled()
 		if newGameConfirmPanel.visible:
 			_on_no_button_pressed.call_deferred()
@@ -136,3 +142,9 @@ func _on_credits_button_pressed():
 func _on_credits_back_button_pressed():
 	creditsPanel.visible = false
 	creditsButton.grab_focus()
+
+func _on_name_input_focus_entered():
+	nameInputFocused = true
+
+func _on_name_input_focus_exited():
+	nameInputFocused = false

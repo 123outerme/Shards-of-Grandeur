@@ -32,12 +32,7 @@ func _ready():
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
 		get_viewport().set_input_as_handled()
-		hide_panel()
-		back_pressed.emit()
-
-func hide_panel():
-	visible = false
-	moveListPanel.moveDetailsPanel.visible = false
+		backButton.button_pressed = true
 
 func initial_focus():
 	backButton.grab_focus()
@@ -86,14 +81,15 @@ func update_menu_state():
 	
 	if state == MenuState.SELECTING_NEW_SLOT:
 		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.get_move_list_item(3).replaceButton)
-	else:
+	elif moveListPanel.lastMovePanel != null:
 		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.reorderButton)
 	
-	moveListPanel.lastMovePanel.detailsButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton)
-	if state == MenuState.SELECTING_MOVEPOOL_MOVE:
-		moveListPanel.lastMovePanel.reorderButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.reorderButton.get_path_to(backButton)
-	else:
-		moveListPanel.get_move_list_item(3).focus_neighbor_bottom = moveListPanel.lastMovePanel.replaceButton.get_path_to(backButton)
+	if moveListPanel.lastMovePanel != null:
+		moveListPanel.lastMovePanel.detailsButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton)
+		if state == MenuState.SELECTING_MOVEPOOL_MOVE:
+			moveListPanel.lastMovePanel.reorderButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.reorderButton.get_path_to(backButton)
+		else:
+			moveListPanel.get_move_list_item(3).focus_neighbor_bottom = moveListPanel.lastMovePanel.replaceButton.get_path_to(backButton)
 	
 	if movePoolPanel.firstMovePanel != null:
 		backButton.focus_neighbor_bottom = backButton.get_path_to(movePoolPanel.firstMovePanel.detailsButton)
@@ -153,6 +149,10 @@ func _on_move_list_panel_move_details_visiblity_changed(newVis: bool, move: Move
 func _on_back_button_pressed():
 	state = MenuState.SELECTING_MOVEPOOL_MOVE
 	selectedMove = null
+	previousMoveListSlot = -1
+	previousMovePoolMove = null
+	replaceMoveSourceSlot = -1
 	update_menu_state()
 	visible = false
+	moveListPanel.moveDetailsPanel.visible = false
 	back_pressed.emit()

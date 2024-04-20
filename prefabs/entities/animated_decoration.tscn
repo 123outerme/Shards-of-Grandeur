@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmaqkuubonmf2"]
+
+[ext_resource type="Script" path="res://scripts/overworld/animated_decoration.gd" id="1_5rgda"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2ool"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdwsu"]
+size = Vector2(16, 16)
+
+[node name="AnimatedDecoration" type="Node2D"]
+z_index = -10
+y_sort_enabled = true
+script = ExtResource("1_5rgda")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n2ool")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("RectangleShape2D_qdwsu")

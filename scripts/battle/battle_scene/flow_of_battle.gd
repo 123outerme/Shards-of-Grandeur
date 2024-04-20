@@ -32,6 +32,10 @@ func get_fob_button_enabled() -> bool:
 func hide_fob_tabs():
 	fobButton.button_pressed = false
 
+func connect_fob_focus_button_to(bottomNeighbor: Control):
+	fobButton.focus_neighbor_bottom = fobButton.get_path_to(bottomNeighbor)
+	bottomNeighbor.focus_neighbor_top = bottomNeighbor.get_path_to(fobButton)
+	
 func _on_toggle_fob_button_toggled(button_pressed: bool):
 	if button_pressed and fobButton.focus_neighbor_bottom.get_concatenated_names() != '':
 		prevMenuControlFobBtnNeighbor = fobButton.focus_neighbor_bottom

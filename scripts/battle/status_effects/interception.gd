@@ -8,7 +8,7 @@ const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.OVERWHELMING: 0.65
 }
 
-const _icon: Texture2D = preload('res://graphics/ui/exhaustion.png')
+const _icon: Texture2D = preload('res://graphics/ui/interception.png')
 
 func _init(
 	i_potency = Potency.NONE,
