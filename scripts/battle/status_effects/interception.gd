@@ -3,9 +3,9 @@ class_name Interception
 
 const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
-	Potency.WEAK: 0.15,
-	Potency.STRONG: 0.25,
-	Potency.OVERWHELMING: 0.35
+	Potency.WEAK: 0.25,
+	Potency.STRONG: 0.45,
+	Potency.OVERWHELMING: 0.65
 }
 
 const _icon: Texture2D = preload('res://graphics/ui/exhaustion.png')

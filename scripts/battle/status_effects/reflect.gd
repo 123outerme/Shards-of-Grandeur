@@ -3,9 +3,9 @@ class_name Reflect
 
 const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.NONE: 0.0,
-	Potency.WEAK: 0.19,
-	Potency.STRONG: 0.25,
-	Potency.OVERWHELMING: 0.35
+	Potency.WEAK: 0.35,
+	Potency.STRONG: 0.55,
+	Potency.OVERWHELMING: 0.70
 } # percentage of incoming damage reflected to attacker
 
 const _icon: Texture2D = preload('res://graphics/ui/reflect.png')
