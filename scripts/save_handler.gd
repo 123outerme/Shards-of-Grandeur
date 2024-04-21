@@ -32,16 +32,20 @@ func fetch_saved_scripts():
 	for node in persist_nodes:
 		saved_scripts.append("/" + node.get_path().get_concatenated_names().c_escape())
 
-func save_data(saveFolder: String = 'save'):
+func save_data(saveFolder: String = 'save') -> bool:
 	var saveFileLocation: String = get_save_file_location(saveFolder)
 	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("save_data"):
-			scr.call("save_data", saveFileLocation)
+			var err = scr.call("save_data", saveFileLocation)
+			if err is int and err != 0:
+				printerr('SaveHandler save_data error on ', script_path, ': error ', err)
+				return false
 		else:
-			printerr('SAVE ERROR ON ', script_path)
+			printerr('WARNING: No save_data script for ', script_path)
+	return true
 
 func load_data(saveFolder: String = 'save'):
 	var saveFileLocation: String = get_save_file_location(saveFolder)

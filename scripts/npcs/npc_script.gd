@@ -67,9 +67,9 @@ func fetch_player():
 	if not Engine.is_editor_hint():
 		player = PlayerFinder.player
 
-func save_data(save_path):
+func save_data(save_path) -> int:
 	if saveName == '' or Engine.is_editor_hint():
-		return
+		return 0
 	data.saveName = saveName
 	data.animSet = npcSprite.sprite_frames
 	data.flipH = flip_h
@@ -79,7 +79,7 @@ func save_data(save_path):
 	data.disableMovement = NavAgent.disableMovement
 	data.inventory = inventory
 	data.visible = visible
-	data.save_data(save_path + npcsDir, data)
+	return data.save_data(save_path + npcsDir, data)
 	
 func load_data(save_path):
 	if Engine.is_editor_hint():

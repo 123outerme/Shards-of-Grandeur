@@ -131,10 +131,11 @@ func load_data(save_path):
 			return data
 	return data
 
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("GameSettings ResourceSaver error: ", err)
+	return err
 
 func _filter_input_map(action):
 	return action in GameSettings.STORED_ACTIONS

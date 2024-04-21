@@ -28,7 +28,7 @@ theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
-text = "Auto-Save"
+text = "Auto-Save (Loaded)"
 scroll_active = false
 
 [node name="PlayerSaveNameLabel" type="RichTextLabel" parent="." groups=["LoadSaveItemPanel"]]
@@ -73,6 +73,28 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
+
+[node name="SaveBtnControl" type="Control" parent="ButtonHBoxContainer"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+
+[node name="SaveButton" parent="ButtonHBoxContainer/SaveBtnControl" instance=ExtResource("2_mtma6")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../../CopyBtnControl/CopyButton")
+text = "Save"
 
 [node name="LoadBtnControl" type="Control" parent="ButtonHBoxContainer"]
 custom_minimum_size = Vector2(80, 40)
@@ -140,6 +162,7 @@ focus_neighbor_left = NodePath("../../CopyBtnControl/CopyButton")
 focus_neighbor_right = NodePath(".")
 text = "Delete"
 
+[connection signal="pressed" from="ButtonHBoxContainer/SaveBtnControl/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="ButtonHBoxContainer/LoadBtnControl/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="ButtonHBoxContainer/CopyBtnControl/CopyButton" to="." method="_on_copy_button_pressed"]
 [connection signal="pressed" from="ButtonHBoxContainer/DeleteBtnControl/DeleteButton" to="." method="_on_delete_button_pressed"]

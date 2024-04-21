@@ -81,7 +81,8 @@ func load_data(save_path):
 	timeSinceLastLoad = Time.get_unix_time_from_system()
 	#print('loaded at ', timeSinceLastLoad)
 
-func save_data(save_path):
+func save_data(save_path) -> int:
+	var err = 0
 	if playerInfo != null:
 		if player != null:
 			playerInfo.position = player.position
@@ -97,13 +98,22 @@ func save_data(save_path):
 			playerInfo.playtimeSecs += (curTime - timeSinceLastLoad)
 			#print('new playtime: ', playerInfo.playtimeSecs, ', + ', (Time.get_unix_time_from_system() - timeSinceLastLoad))
 			timeSinceLastLoad = curTime
-		playerInfo.save_data(save_path, playerInfo)
+		err = playerInfo.save_data(save_path, playerInfo)
+		if err != 0:
+			return err
 	if inventory != null:
-		inventory.save_data(save_path, inventory)
+		err = inventory.save_data(save_path, inventory)
+		if err != 0:
+			return err
 	if questInventory != null:
-		questInventory.save_data(save_path, questInventory)
+		err = questInventory.save_data(save_path, questInventory)
+		if err != 0:
+			return err
 	if minions != null:
-		minions.save_data(save_path, minions)
+		err = minions.save_data(save_path, minions)
+		if err != 0:
+			return err
+	return 0
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()

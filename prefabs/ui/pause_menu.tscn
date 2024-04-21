@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=16 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -8,9 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="7_vgjg1"]
 [ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://graphics/items/book.png" id="7_vpar7"]
 [ext_resource type="Texture2D" uid="uid://chumycjya5hmc" path="res://graphics/ui/house_icon.png" id="9_7rd4j"]
+[ext_resource type="Texture2D" uid="uid://doiqcamfkfg4w" path="res://graphics/ui/talk_indicator_think.png" id="9_8jyde"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_clpva"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="9_y122n"]
 [ext_resource type="PackedScene" uid="uid://dyippeuidy6q4" path="res://prefabs/ui/codex/codex_menu.tscn" id="10_10tem"]
+[ext_resource type="Script" path="res://scripts/menus/main_menu/saves_panel.gd" id="11_pia2x"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="12_dv8qs"]
+[ext_resource type="PackedScene" uid="uid://dshs45wq2wig1" path="res://prefabs/ui/main_menu/load_save_item_panel.tscn" id="13_c1egi"]
 
 [node name="PauseMenu" type="Node2D"]
 script = ExtResource("2_mu5pd")
@@ -61,15 +65,15 @@ grow_vertical = 2
 theme_override_constants/separation = 8
 
 [node name="ResumeButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
-focus_neighbor_top = NodePath("../SaveQuitButton")
+focus_neighbor_top = NodePath("../QuitButton")
 text = "Resume"
 icon = ExtResource("5_ujvjg")
 expand_icon = true
 
 [node name="MapButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 disabled = true
 text = "Map"
@@ -77,25 +81,122 @@ icon = ExtResource("5_vfawn")
 expand_icon = true
 
 [node name="CodexButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 text = "Codex"
 icon = ExtResource("7_vpar7")
 expand_icon = true
 
 [node name="SettingsButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 text = "Settings"
 icon = ExtResource("7_vgjg1")
 expand_icon = true
 
-[node name="SaveQuitButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
-custom_minimum_size = Vector2(120, 50)
+[node name="SaveButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+text = "Save"
+icon = ExtResource("9_8jyde")
+expand_icon = true
+
+[node name="QuitButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ResumeButton")
-text = "Save & Quit"
+text = "Quit"
 icon = ExtResource("9_7rd4j")
+
+[node name="SaveGamePanel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_pia2x")
+isLoading = false
+
+[node name="LoadGameLabel" type="RichTextLabel" parent="Control/SaveGamePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -236.5
+offset_top = 19.0
+offset_right = 236.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme = ExtResource("2_uieg0")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Save Game[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/SaveGamePanel" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -396.0
+offset_right = -70.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+script = ExtResource("12_dv8qs")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SaveGamePanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="LoadSaveItemPanel" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
+layout_mode = 2
+
+[node name="LoadSaveItemPanel2" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
+layout_mode = 2
+saveFolder = "save1"
+saveSlotName = "Save File 1"
+
+[node name="LoadSaveItemPanel3" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
+layout_mode = 2
+saveFolder = "save2"
+saveSlotName = "Save File 2"
+
+[node name="LoadSaveItemPanel4" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
+layout_mode = 2
+saveFolder = "save3"
+saveSlotName = "Save File 3"
+
+[node name="LoadSaveItemPanel5" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
+layout_mode = 2
+saveFolder = "save4"
+saveSlotName = "Save File 4"
+
+[node name="BackButton" parent="Control/SaveGamePanel" instance=ExtResource("9_clpva")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -62.0
+offset_right = 4.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
 
 [node name="CodexMenu" parent="Control" instance=ExtResource("10_10tem")]
 visible = false
@@ -105,9 +206,27 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="AlertControl" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 2
+
 [connection signal="pressed" from="Control/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/SaveQuitButton" to="." method="_on_save_quit_button_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="back_pressed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_back_pressed"]
+[connection signal="game_save_failed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_save_failed"]
+[connection signal="game_saved" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_saved"]
+[connection signal="visibility_changed" from="Control/SaveGamePanel/ScrollContainer" to="Control/SaveGamePanel/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="Control/SaveGamePanel/BackButton" to="Control/SaveGamePanel" method="_on_back_button_pressed"]
 [connection signal="back_pressed" from="Control/CodexMenu" to="." method="_on_codex_menu_back_pressed"]
 [connection signal="back_pressed" from="Control/SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

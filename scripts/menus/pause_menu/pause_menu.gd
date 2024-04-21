@@ -6,10 +6,16 @@ signal resume_game
 
 @onready var codexMenu: CodexMenu = get_node('Control/CodexMenu')
 @onready var settingsMenu: SettingsMenu = get_node('Control/SettingsMenu')
+@onready var saveGamePanel: SavesPanel = get_node('Control/SaveGamePanel')
 
 @onready var resumeButton: Button = get_node("Control/Panel/VBoxContainer/ResumeButton")
 @onready var codexButton: Button = get_node('Control/Panel/VBoxContainer/CodexButton')
 @onready var settingsButton: Button = get_node('Control/Panel/VBoxContainer/SettingsButton')
+@onready var saveButton: Button = get_node('Control/Panel/VBoxContainer/SaveButton')
+
+@onready var alertControl: Control = get_node('Control/AlertControl')
+
+const alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,7 +56,11 @@ func _on_codex_button_pressed():
 func _on_settings_button_pressed():
 	settingsMenu.toggle_settings_menu(true)
 
-func _on_save_quit_button_pressed():
+func _on_save_button_pressed():
+	saveGamePanel.load_saves_panel()
+	saveGamePanel.visible = true
+
+func _on_quit_button_pressed():
 	SaveHandler.save_data()
 	SceneLoader.load_main_menu()
 
@@ -59,3 +69,18 @@ func _on_settings_menu_back_pressed():
 
 func _on_codex_menu_back_pressed():
 	codexButton.grab_focus()
+
+func _on_save_game_panel_back_pressed():
+	saveButton.grab_focus()
+
+func show_alert(message: String, lifetime: float = 2):
+	var panel: AlertPanel = alertPanelPrefab.instantiate()
+	panel.message = message
+	panel.lifetime = lifetime
+	alertControl.add_child(panel)
+
+func _on_save_game_panel_game_save_failed():
+	show_alert('Warning: Save error occurred.')
+
+func _on_save_game_panel_game_saved():
+	show_alert('Save Successful!')

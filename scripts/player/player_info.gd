@@ -148,8 +148,9 @@ func load_data(save_path):
 			return data
 	return data
 
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	data.version = GameSettings.get_game_version()
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("PlayerInfo ResourceSaver error: ", err)
+	return err

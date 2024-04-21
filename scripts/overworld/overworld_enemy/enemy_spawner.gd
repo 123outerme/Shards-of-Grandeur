@@ -45,12 +45,14 @@ func _on_area_2d_area_entered(area):
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 		#print('spawned new enemy')
 
-func save_data(save_path):
+func save_data(save_path) -> int:
 	if spawnerData != null:
 		spawnerData.enemyData = null
 		if enemy != null and not enemy.encounteredPlayer:
 			spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, staticEncounter)
-		spawnerData.save_data(save_path + enemiesDir, spawnerData)
+		return spawnerData.save_data(save_path + enemiesDir, spawnerData)
+	else:
+		return 0
 
 func load_data(save_path):
 	var newData = spawnerData.load_data(save_path + enemiesDir)

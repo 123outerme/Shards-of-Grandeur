@@ -130,13 +130,14 @@ func _load_data_each_minion(save_path):
 		if minion == null:
 			init_minion(minionName)
 	
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:
 		printerr("PlayerMinions ResourceSaver error: ", err)
-		return
+		return err
 	for minion: Combatant in minionsDict.values():
 		err = ResourceSaver.save(minion, save_path + minions_dir + minion.save_name() + '.tres')
 		if err != 0:
 			printerr("PlayerMinions save minion ", minion.save_name(), " ResourceSaver error: ", err)
-			return
+			return err
+	return 0

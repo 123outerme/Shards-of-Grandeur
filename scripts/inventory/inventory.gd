@@ -140,7 +140,8 @@ func load_data(save_path):
 			return data #.duplicate(true)
 	return data
 
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_name)
 	if err != 0:
 		printerr("Inventory ResourceSaver error: ", err)
+	return err

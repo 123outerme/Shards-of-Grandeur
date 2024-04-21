@@ -69,11 +69,12 @@ func load_data(save_path):
 			return data
 	return data
 
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	version = GameSettings.get_game_version()
 	var err = ResourceSaver.save(data, save_path + save_file())
 	if err != 0:
 		printerr("NPCData/" + saveName + " ResourceSaver error: " + String.num(err))
-		
+	return err
+
 func save_file() -> String:
 	return "npc_" + saveName + ".tres"

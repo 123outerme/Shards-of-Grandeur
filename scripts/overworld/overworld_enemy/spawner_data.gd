@@ -25,10 +25,11 @@ func load_data(save_path):
 			return data #.duplicate(true)
 	return data
 
-func save_data(save_path, data):
+func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_file())
 	if err != 0:
 		printerr("SpawnerData " + save_path + save_file() + " ResourceSaver error: " + String.num(err))
+	return err
 
 # not sure if I still need the below
 '''

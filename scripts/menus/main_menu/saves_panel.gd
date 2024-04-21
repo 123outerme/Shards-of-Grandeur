@@ -1,7 +1,11 @@
 extends Panel
-class_name LoadGamePanel
+class_name SavesPanel
 
+signal game_saved
+signal game_save_failed
 signal back_pressed
+
+@export var isLoading: bool = true
 
 var fromSave: String = ''
 
@@ -14,13 +18,25 @@ func _ready():
 	pass
 
 func initial_focus():
-	var firstPanel: LoadSaveItemPanel = savePanelVbox.get_children()[0]
-	if firstPanel != null and firstPanel.playerInfo != null:
-		firstPanel.loadButton.grab_focus()
+	if isLoading:
+		var firstPanel: LoadSaveItemPanel = savePanelVbox.get_children()[0]
+		if firstPanel != null and firstPanel.playerInfo != null:
+			firstPanel.loadButton.grab_focus()
+		else:
+			backButton.grab_focus()
 	else:
-		backButton.grab_focus()
+		var children = savePanelVbox.get_children()
+		var setFocus: bool = false
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.saveFolder == PlayerResources.saveFolder:
+				panel.saveButton.grab_focus()
+				setFocus = true
+		if not setFocus:
+			var firstPermanentSavePanel: LoadSaveItemPanel = children[1]
+			firstPermanentSavePanel.saveButton.grab_focus()
 
-func load_load_game_panel():
+func load_saves_panel():
 	load_save_panels()
 	initial_focus()
 
@@ -48,6 +64,17 @@ func update_focus_neighbors():
 		if idx == len(panels) - 1:
 			panel.set_buttons_focus_neighbor_bottom(backButton)
 			backButton.focus_neighbor_top = backButton.get_path_to(panel.loadButton if panel.loadBtnControl.visible else panel.copyButton)
+
+func save_to(saveFolder: String):
+	if isLoading:
+		return
+	
+	var success = SaveHandler.save_data(saveFolder)
+	if success:
+		game_saved.emit()
+	else:
+		game_save_failed.emit()
+	load_save_panels()
 
 func load_save(saveFolder: String):
 	SaveHandler.load_data(saveFolder)

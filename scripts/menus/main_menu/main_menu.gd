@@ -10,7 +10,7 @@ var nameInputFocused: bool = false
 @onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
 @onready var creditsButton: Button = get_node('Panel/VBoxContainer/CreditsButton')
 
-@onready var loadGamePanel: LoadGamePanel = get_node('Panel/LoadGamePanel')
+@onready var loadGamePanel: SavesPanel = get_node('Panel/LoadGamePanel')
 
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
@@ -77,7 +77,7 @@ func _on_settings_button_pressed():
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
-	loadGamePanel.load_load_game_panel()
+	loadGamePanel.load_saves_panel()
 	loadGamePanel.visible = true
 
 func _on_new_game_button_pressed():
