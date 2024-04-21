@@ -10,6 +10,8 @@ var nameInputFocused: bool = false
 @onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
 @onready var creditsButton: Button = get_node('Panel/VBoxContainer/CreditsButton')
 
+@onready var loadGamePanel: LoadGamePanel = get_node('Panel/LoadGamePanel')
+
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
 
@@ -29,8 +31,8 @@ var nameInputFocused: bool = false
 func _ready():
 	newGameConfirmPanel.visible = false
 	playerNamePanel.visible = false
-	resumeGameButton.text = 'Resume Game\nPlaytime: ' + TextUtils.get_elapsed_time(SaveHandler.get_save_playtime())
-	resumeGameButton.visible = SaveHandler.save_file_exists()
+	#resumeGameButton.text = 'Resume Game\nPlaytime: ' + TextUtils.get_elapsed_time(SaveHandler.get_save_playtime())
+	#resumeGameButton.visible = SaveHandler.save_file_exists('save')
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
@@ -75,8 +77,8 @@ func _on_settings_button_pressed():
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
-	SaveHandler.load_data()
-	SceneLoader.load_game()
+	loadGamePanel.load_load_game_panel()
+	loadGamePanel.visible = true
 
 func _on_new_game_button_pressed():
 	if resumeGameButton.visible:
@@ -148,3 +150,6 @@ func _on_name_input_focus_entered():
 
 func _on_name_input_focus_exited():
 	nameInputFocused = false
+
+func _on_load_game_panel_back_pressed():
+	resumeGameButton.grab_focus()

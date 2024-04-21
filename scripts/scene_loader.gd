@@ -11,8 +11,9 @@ var curMapEntry: MapEntry = null
 func _ready():
 	currentScene = get_tree().get_first_node_in_group('Scenes')
 
-func load_game():
-	if SaveHandler.is_save_in_battle():
+func load_game(saveFolder: String = 'save'):
+	PlayerResources.saveFolder = saveFolder
+	if SaveHandler.is_save_in_battle(saveFolder):
 		load_battle()
 	else:
 		load_overworld()

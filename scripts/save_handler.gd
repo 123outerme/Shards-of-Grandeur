@@ -1,9 +1,8 @@
 extends Node
 
 var saved_scripts: Array
-var save_file_location: String = "user://save/"
-var save_exists_file: String = save_file_location + "playerinfo.tres" # this file should always exist if a save game exists
-var battle_file = save_file_location + "battle.tres" # this file should exist if the game was saved in battle
+var save_exists_file: String = "playerinfo.tres" # this file should always exist if a save game exists
+var battle_file = "battle.tres" # this file should exist if the game was saved in battle
 
 var subdirs: Array = ["npcs/", "enemies/", "minions/", ""] # last one is root save folder
 
@@ -21,6 +20,9 @@ func _notification(what):
 		SettingsHandler.save_data() # save settings
 		get_tree().quit() # then quit
 
+func get_save_file_location(saveFolder: String) -> String:
+	return 'user://' + saveFolder + '/'
+
 func fetch_saved_scripts():
 	saved_scripts = ["PlayerResources"] # singletons to be saved
 	for idx in range(len(saved_scripts)):
@@ -30,67 +32,152 @@ func fetch_saved_scripts():
 	for node in persist_nodes:
 		saved_scripts.append("/" + node.get_path().get_concatenated_names().c_escape())
 
-func save_data():
-	create_save_subdirs()
+func save_data(saveFolder: String = 'save'):
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("save_data"):
-			scr.call("save_data", save_file_location)
+			scr.call("save_data", saveFileLocation)
 		else:
-			print('SAVE ERROR ON ', script_path)
+			printerr('SAVE ERROR ON ', script_path)
 
-func load_data():
-	create_save_subdirs()
+func load_data(saveFolder: String = 'save'):
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("load_data"):
-			scr.call("load_data", save_file_location)
+			scr.call("load_data", saveFileLocation)
 			
-func new_game(characterName: String):
+func new_game(characterName: String, saveFolder: String = 'save'):
+	var saveFileLocation: String = get_save_file_location(saveFolder)
 	fetch_saved_scripts()
 	for subdir in subdirs: # for each save subdirectory
-		if DirAccess.dir_exists_absolute(save_file_location + subdir):
-			var files = DirAccess.get_files_at(save_file_location + subdir)
+		if DirAccess.dir_exists_absolute(saveFileLocation + subdir):
+			var files = DirAccess.get_files_at(saveFileLocation + subdir)
 			for filepath in files: # remove all files inside the subdir
-				DirAccess.remove_absolute(save_file_location + subdir + filepath)
-			var err = DirAccess.remove_absolute(save_file_location + subdir) # then remove the subdir itself
+				DirAccess.remove_absolute(saveFileLocation + subdir + filepath)
+			var err = DirAccess.remove_absolute(saveFileLocation + subdir) # then remove the subdir itself
 			if err > 0:
-				print("Remove save subdir ", subdir, " error ", err)
+				printerr("Remove save subdir ", subdir, " error ", err)
 	
-	create_save_subdirs()
+	create_save_subdirs(saveFileLocation)
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("new_game"):
-			scr.call("new_game", save_file_location)
+			scr.call("new_game", saveFileLocation)
 		if scr != null and scr.has_method("name_player"):
-			scr.call("name_player", save_file_location, characterName)
+			scr.call("name_player", saveFileLocation, characterName)
 	
-func save_file_exists():
-	return FileAccess.file_exists(save_exists_file)
+func save_file_exists(saveFolder: String = 'save'):
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	return FileAccess.file_exists(saveFileLocation + save_exists_file)
 
-func get_save_playtime() -> float:
-	if not save_file_exists():
+func get_save_playtime(saveFolder: String = 'save') -> float:
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	if not save_file_exists(saveFolder):
 		return 0
 	
-	var playerInfo: PlayerInfo = load(save_exists_file)
+	var playerInfo: PlayerInfo = load(saveFileLocation + save_exists_file)
 	if playerInfo != null:
 		return playerInfo.playtimeSecs
 	else:
 		return 0
 
-func is_save_in_battle():
-	return FileAccess.file_exists(battle_file)
+func get_save_player_info(saveFolder: String = 'save') -> PlayerInfo:
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	if not save_file_exists(saveFolder):
+		return null
+	
+	var playerInfo: PlayerInfo = load(saveFileLocation + save_exists_file)
+	return playerInfo
 
-func create_save_subdirs():
-	if not DirAccess.dir_exists_absolute(save_file_location):
-		var err = DirAccess.make_dir_absolute(save_file_location)
+func is_save_in_battle(saveFolder: String = 'save'):
+	var saveFileLocation: String = get_save_file_location(saveFolder)
+	return FileAccess.file_exists(saveFileLocation + battle_file)
+
+func create_save_subdirs(saveFileLocation: String):
+	if not DirAccess.dir_exists_absolute(saveFileLocation):
+		var err = DirAccess.make_dir_absolute(saveFileLocation)
 		if err > 0:
-			print("DirAccess create root save dir error ", err)
+			printerr("DirAccess create root save dir error ", err)
 	
 	for subdir in subdirs:
-		if not DirAccess.dir_exists_absolute(save_file_location + subdir):
-			var err = DirAccess.make_dir_absolute(save_file_location + subdir)
+		if not DirAccess.dir_exists_absolute(saveFileLocation + subdir):
+			var err = DirAccess.make_dir_absolute(saveFileLocation + subdir)
 			if err > 0:
-				print("DirAccess create dir ", subdir, " error ", err)
+				printerr("DirAccess create dir ", subdir, " error ", err)
+
+func copy_save(fromFolder: String, toFolder: String) -> bool:
+	if not save_file_exists(fromFolder):
+		printerr('Copy save file ', fromFolder, ' does not exist')
+		return false
+	
+	var fromSaveFileLocation: String = get_save_file_location(fromFolder).trim_suffix('/')
+	var toSaveFileLocation: String = get_save_file_location(toFolder).trim_suffix('/')
+	var err = copy_directory_recursive(fromSaveFileLocation, toSaveFileLocation)
+	if err != 0:
+		printerr('DirAccess copy dir ', fromFolder, ' to ', toFolder, ' error ', err)
+	return err == 0
+
+# Credit: https://www.reddit.com/r/godot/comments/qtre01/i_want_to_drop_a_folder_onto_godot_and_open_it_to/
+func copy_directory_recursive(p_from: String, p_to: String) -> int:
+	var directory = DirAccess.open(p_from)
+	if not DirAccess.dir_exists_absolute(p_to):
+		DirAccess.make_dir_recursive_absolute(p_to)
+	if directory != null:
+		directory.list_dir_begin()
+		var file_name = directory.get_next()
+		while file_name != '' and file_name != '.' and file_name != '..':
+			var err = 0
+			if directory.current_is_dir():
+				err = copy_directory_recursive(p_from + '/' + file_name, p_to + '/' + file_name)
+			else:
+				err = directory.copy(p_from + '/' + file_name, p_to + '/' + file_name)
+			if err != 0:
+				printerr('DirAccess error in copy_directory_recursive ', file_name, \
+						', from ', p_from, ' to ', p_to, ', error ', err)
+				return err
+			file_name = directory.get_next()
+		return 0
+	else:
+		printerr('Error copying ', p_from, ' to ', p_to)
+		return -1
+
+func delete_save(saveFolder: String) -> bool:
+	if not save_file_exists(saveFolder):
+		printerr('Delete save file ', saveFolder, ' does not exist')
+		return false
+	
+	var saveFileLocation: String = get_save_file_location(saveFolder).trim_suffix('/')
+	var err = delete_directory_recursive(saveFileLocation)
+	if err != 0:
+		printerr('DirAccess delete dir ', saveFileLocation, ' error ', err)
+	return err == 0
+
+func delete_directory_recursive(path: String) -> int:
+	var directory = DirAccess.open(path)
+	if directory != null:
+		directory.list_dir_begin()
+		var file_name = directory.get_next()
+		while file_name != '' and file_name != '.' and file_name != '..':
+			var err = 0
+			if directory.current_is_dir():
+				err = delete_directory_recursive(path + '/' + file_name)
+			else:
+				err = directory.remove(path + '/' + file_name)
+			if err != 0:
+				printerr('DirAccess error in delete_directory_recursive ', file_name, \
+						', at path ', path, ', error ', err)
+				return err
+			file_name = directory.get_next()
+		var err = directory.remove(path)
+		if err != 0:
+			printerr('DirAccess error in delete_directory_recursive at path ', path, ', error ', err)
+		return err
+	else:
+		printerr('Error deleting ', path)
+		return -1

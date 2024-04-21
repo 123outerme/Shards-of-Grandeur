@@ -15,7 +15,7 @@ var loading: bool = false
 func _ready():
 	NavigationServer2D.map_changed.connect(_nav_map_changed)
 	SceneLoader.mapLoader = self
-	SaveHandler.load_data()
+	SaveHandler.load_data(PlayerResources.saveFolder)
 	if PlayerResources.playerInfo.combatant.downed:
 		load_recover_map()
 	else:
@@ -97,7 +97,7 @@ func load_map(mapName: String):
 func set_map_to_scene():
 	if mapInstance.get_parent() == null:
 		add_child(mapInstance)
-	SaveHandler.call_deferred("load_data")
+	SaveHandler.call_deferred("load_data", PlayerResources.saveFolder)
 	call_deferred("reparent_player")
 
 func get_map_entry_for_map_name(mapName: String) -> MapEntry:

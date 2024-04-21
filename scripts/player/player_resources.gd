@@ -8,6 +8,7 @@ signal story_requirements_updated
 @export var loaded: bool = false
 
 var player = null
+var saveFolder: String = 'save'
 var timeSinceLastLoad: float = -1
 
 # Called when the node enters the scene tree for the first time.

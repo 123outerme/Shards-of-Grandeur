@@ -44,7 +44,7 @@ var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battleLoaded = false
-	SaveHandler.load_data()
+	SaveHandler.load_data(PlayerResources.saveFolder)
 	call_deferred('load_into_battle')
 	
 func load_into_battle():
