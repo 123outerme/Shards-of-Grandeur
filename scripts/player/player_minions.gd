@@ -113,7 +113,7 @@ func validate_minion_stats(minion: Combatant):
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
-		data = load(save_path + save_file) as PlayerMinions
+		data = ResourceLoader.load(save_path + save_file, '', ResourceLoader.CACHE_MODE_IGNORE) as PlayerMinions
 		if data == null:
 			return null
 		data._load_data_each_minion(save_path)

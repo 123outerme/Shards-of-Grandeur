@@ -7,30 +7,20 @@ class_name LoadSaveItemPanel
 var playerInfo: PlayerInfo = null
 var isInBattle: bool = false
 var parentPanel: SavesPanel = null
-var showCopyTo: bool:
-	get:
-		return _showCopyTo
-	set(val):
-		_showCopyTo = val
-		update_buttons_visibility()
-
-var _showCopyTo: bool = false
+var showCopyTo: bool = false
 var isCopyFrom: bool = false
 
 @onready var saveSlotLabel: RichTextLabel = get_node('SaveSlotLabel')
 @onready var playerSaveName: RichTextLabel = get_node('PlayerSaveNameLabel')
 @onready var saveTimeLabel: RichTextLabel = get_node('SaveTimeLabel')
 
-@onready var saveBtnControl: Control = get_node('ButtonHBoxContainer/SaveBtnControl')
 @onready var saveButton: Button = get_node('ButtonHBoxContainer/SaveBtnControl/SaveButton')
 
 @onready var loadBtnControl: Control = get_node('ButtonHBoxContainer/LoadBtnControl')
 @onready var loadButton: Button = get_node('ButtonHBoxContainer/LoadBtnControl/LoadButton')
 
-@onready var copyBtnControl: Control = get_node('ButtonHBoxContainer/CopyBtnControl')
 @onready var copyButton: Button = get_node('ButtonHBoxContainer/CopyBtnControl/CopyButton')
 
-@onready var deleteBtnControl: Control = get_node('ButtonHBoxContainer/DeleteBtnControl')
 @onready var deleteButton: Button = get_node('ButtonHBoxContainer/DeleteBtnControl/DeleteButton')
 
 # Called when the node enters the scene tree for the first time.
@@ -52,23 +42,18 @@ func load_save_item_panel():
 
 func update_buttons_visibility():
 	if parentPanel.isLoading:
-		saveBtnControl.visible = false
+		saveButton.visible = false
 		loadBtnControl.visible = playerInfo != null and not showCopyTo
-		copyBtnControl.visible = playerInfo != null or showCopyTo
-		if showCopyTo:
-			copyButton.text = 'Cancel' if isCopyFrom else 'Copy To'
-		else:
-			copyButton.text = 'Copy'
-		deleteBtnControl.visible = playerInfo != null and not showCopyTo
 	else:
-		saveBtnControl.visible = not showCopyTo and not (not parentPanel.isLoading and PlayerResources.saveFolder == 'save')
+		saveButton.visible = not showCopyTo and saveFolder != 'save'
 		loadBtnControl.visible = false
-		copyBtnControl.visible = playerInfo != null or (showCopyTo and not saveFolder == 'save')
-		if showCopyTo:
-			copyButton.text = 'Cancel' if isCopyFrom else 'Copy To'
-		else:
-			copyButton.text = 'Copy'
-		deleteBtnControl.visible = playerInfo != null and not showCopyTo and not (not parentPanel.isLoading and PlayerResources.saveFolder == saveFolder)
+	copyButton.visible = (playerInfo != null or showCopyTo) and not (showCopyTo and saveFolder == 'save' and not isCopyFrom)
+	if showCopyTo:
+		copyButton.text = 'Cancel' if isCopyFrom else 'Copy To'
+	else:
+		copyButton.text = 'Copy'
+	deleteButton.visible = playerInfo != null and not showCopyTo and not (not parentPanel.isLoading and PlayerResources.saveFolder == saveFolder)
+	
 	update_focus_neighbor_lr()
 
 func set_buttons_focus_neighbor_top(control: Control):
@@ -76,44 +61,84 @@ func set_buttons_focus_neighbor_top(control: Control):
 	var loadNeighbor: Control = control
 	var copyNeighbor: Control = control
 	var deleteNeighbor: Control = control
+	var changeSave: bool = true
+	var changeLoad: bool = true
+	var changeCopy: bool = true
+	var changeDelete: bool = true
 	if control is LoadSaveItemPanel:
 		var panel: LoadSaveItemPanel = control as LoadSaveItemPanel
-		saveNeighbor = panel.saveButton
-		loadNeighbor = panel.loadButton
-		copyNeighbor = panel.copyButton
-		deleteNeighbor = panel.deleteButton
+		if panel.saveButton.visible:
+			saveNeighbor = panel.saveButton
+		else:
+			changeSave = false
+		if panel.loadBtnControl.visible:
+			loadNeighbor = panel.loadButton
+		else:
+			changeLoad = false
+		if panel.copyButton.visible:
+			copyNeighbor = panel.copyButton
+		else:
+			changeCopy = false
+		if panel.deleteButton.visible:
+			deleteNeighbor = panel.deleteButton
+		else:
+			changeDelete = false
 	
-	saveButton.focus_neighbor_top = saveButton.get_path_to(saveNeighbor)
-	loadButton.focus_neighbor_top = loadButton.get_path_to(loadNeighbor)
-	copyButton.focus_neighbor_top = copyButton.get_path_to(copyNeighbor)
-	deleteButton.focus_neighbor_top = deleteButton.get_path_to(deleteNeighbor)
+	if changeSave:
+		saveButton.focus_neighbor_top = saveButton.get_path_to(saveNeighbor)
+	if changeLoad:
+		loadButton.focus_neighbor_top = loadButton.get_path_to(loadNeighbor)
+	if changeCopy:
+		copyButton.focus_neighbor_top = copyButton.get_path_to(copyNeighbor)
+	if changeDelete:
+		deleteButton.focus_neighbor_top = deleteButton.get_path_to(deleteNeighbor)
 
 func set_buttons_focus_neighbor_bottom(control: Control):
 	var saveNeighbor: Control = control
 	var loadNeighbor: Control = control
 	var copyNeighbor: Control = control
 	var deleteNeighbor: Control = control
+	var changeSave: bool = true
+	var changeLoad: bool = true
+	var changeCopy: bool = true
+	var changeDelete: bool = true
 	if control is LoadSaveItemPanel:
 		var panel: LoadSaveItemPanel = control as LoadSaveItemPanel
-		saveNeighbor = panel.saveButton
-		loadNeighbor = panel.loadButton
-		copyNeighbor = panel.copyButton
-		deleteNeighbor = panel.deleteButton
+		if panel.saveButton.visible:
+			saveNeighbor = panel.saveButton
+		else:
+			changeSave = false
+		if panel.loadBtnControl.visible:
+			loadNeighbor = panel.loadButton
+		else:
+			changeLoad = false
+		if panel.copyButton.visible:
+			copyNeighbor = panel.copyButton
+		else:
+			changeCopy = false
+		if panel.deleteButton.visible:
+			deleteNeighbor = panel.deleteButton
+		else:
+			changeDelete = false
 	
-	saveButton.focus_neighbor_top = saveButton.get_path_to(saveNeighbor)
-	loadButton.focus_neighbor_bottom = loadButton.get_path_to(loadNeighbor)
-	copyButton.focus_neighbor_bottom = copyButton.get_path_to(copyNeighbor)
-	deleteButton.focus_neighbor_bottom = deleteButton.get_path_to(deleteNeighbor)
+	if changeSave:
+		saveButton.focus_neighbor_bottom = saveButton.get_path_to(saveNeighbor)
+	if changeLoad:
+		loadButton.focus_neighbor_bottom = loadButton.get_path_to(loadNeighbor)
+	if changeCopy:
+		copyButton.focus_neighbor_bottom = copyButton.get_path_to(copyNeighbor)
+	if changeDelete:
+		deleteButton.focus_neighbor_bottom = deleteButton.get_path_to(deleteNeighbor)
 
 func update_focus_neighbor_lr():
-	saveButton.focus_neighbor_right = saveButton.get_path_to(copyButton) if copyBtnControl.visible else '.'
-	loadButton.focus_neighbor_right = loadButton.get_path_to(copyButton) if copyBtnControl.visible else '.'
+	saveButton.focus_neighbor_right = saveButton.get_path_to(copyButton) if copyButton.visible else NodePath('.')
+	loadButton.focus_neighbor_right = loadButton.get_path_to(copyButton) if copyButton.visible else NodePath('.')
 	if parentPanel.isLoading:
-		copyButton.focus_neighbor_left = copyButton.get_path_to(loadButton) if loadBtnControl.visible else '.'
+		copyButton.focus_neighbor_left = copyButton.get_path_to(loadButton) if loadBtnControl.visible else NodePath('.')
 	else:
-		copyButton.focus_neighbor_left = copyButton.get_path_to(saveButton) if saveBtnControl.visible else '.'
-	copyButton.focus_neighbor_right = copyButton.get_path_to(deleteButton) if deleteBtnControl.visible else '.'
-	deleteButton.focus_neighbor_left = deleteButton.get_path_to(copyButton) if copyBtnControl.visible else '.'
+		copyButton.focus_neighbor_left = copyButton.get_path_to(saveButton) if saveButton.visible else NodePath('.')
+	copyButton.focus_neighbor_right = copyButton.get_path_to(deleteButton) if deleteButton.visible else NodePath('.')
+	deleteButton.focus_neighbor_left = deleteButton.get_path_to(copyButton) if copyButton.visible else NodePath('.')
 
 func _on_save_button_pressed():
 	parentPanel.save_to(saveFolder)

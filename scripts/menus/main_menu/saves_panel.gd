@@ -19,17 +19,21 @@ func _ready():
 
 func initial_focus():
 	if isLoading:
-		var firstPanel: LoadSaveItemPanel = savePanelVbox.get_children()[0]
-		if firstPanel != null and firstPanel.playerInfo != null:
-			firstPanel.loadButton.grab_focus()
-		else:
+		var setFocus: bool = false
+		var children = savePanelVbox.get_children()
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.playerInfo != null:
+				panel.loadButton.grab_focus()
+				setFocus = true
+		if not setFocus:
 			backButton.grab_focus()
 	else:
 		var children = savePanelVbox.get_children()
 		var setFocus: bool = false
 		for node in children:
 			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
-			if panel.saveFolder == PlayerResources.saveFolder:
+			if panel.saveFolder == PlayerResources.saveFolder and not panel.saveFolder == 'save':
 				panel.saveButton.grab_focus()
 				setFocus = true
 		if not setFocus:
@@ -52,9 +56,13 @@ func update_focus_neighbors():
 	var panels = savePanelVbox.get_children().filter(_filter_out_no_button_panels)
 	for idx in range(len(panels)):
 		var panel: LoadSaveItemPanel = panels[idx] as LoadSaveItemPanel
+		panel.set_buttons_focus_neighbor_top(backButton)
+		panel.set_buttons_focus_neighbor_bottom(backButton)
 		if idx == 0:
-			panel.set_buttons_focus_neighbor_top(backButton)
-			backButton.focus_neighbor_bottom = backButton.get_path_to(panel.loadButton if panel.loadBtnControl.visible else panel.copyButton)
+			if isLoading:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(panel.loadButton if panel.loadBtnControl.visible else panel.copyButton)
+			else:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(panel.saveButton if panel.saveButton.visible else panel.copyButton)
 		else:
 			panel.set_buttons_focus_neighbor_top(panels[idx - 1])
 			panels[idx - 1].set_buttons_focus_neighbor_bottom(panel)
@@ -62,8 +70,10 @@ func update_focus_neighbors():
 			panel.set_buttons_focus_neighbor_bottom(panels[idx + 1])
 			panels[idx + 1].set_buttons_focus_neighbor_top(panel)
 		if idx == len(panels) - 1:
-			panel.set_buttons_focus_neighbor_bottom(backButton)
-			backButton.focus_neighbor_top = backButton.get_path_to(panel.loadButton if panel.loadBtnControl.visible else panel.copyButton)
+			if isLoading:
+				backButton.focus_neighbor_top = backButton.get_path_to(panel.loadButton if panel.loadBtnControl.visible else panel.copyButton)
+			else:
+				backButton.focus_neighbor_top = backButton.get_path_to(panel.saveButton if panel.saveButton.visible else panel.copyButton)
 
 func save_to(saveFolder: String):
 	if isLoading:
@@ -111,10 +121,13 @@ func delete_save_pressed(saveFolder: String):
 func delete_save(saveFolder):
 	SaveHandler.delete_save(saveFolder)
 	load_save_panels()
+	initial_focus()
 
 func _on_back_button_pressed():
 	visible = false
+	if fromSave != '':
+		copy_save_pressed(fromSave, true)
 	back_pressed.emit()
 
 func _filter_out_no_button_panels(panel: LoadSaveItemPanel) -> bool:
-	return panel.playerInfo != null or fromSave != ''
+	return (not isLoading and panel.saveFolder != 'save') or panel.playerInfo != null or fromSave != ''

@@ -146,6 +146,7 @@ func copy_directory_recursive(p_from: String, p_to: String) -> int:
 						', from ', p_from, ' to ', p_to, ', error ', err)
 				return err
 			file_name = directory.get_next()
+		directory.list_dir_end()
 		return 0
 	else:
 		printerr('Error copying ', p_from, ' to ', p_to)
@@ -178,10 +179,11 @@ func delete_directory_recursive(path: String) -> int:
 						', at path ', path, ', error ', err)
 				return err
 			file_name = directory.get_next()
-		var err = directory.remove(path)
-		if err != 0:
-			printerr('DirAccess error in delete_directory_recursive at path ', path, ', error ', err)
-		return err
+		var pathErr = directory.remove(path)
+		if pathErr != 0:
+			printerr('DirAccess error in delete_directory_recursive at path ', path, ', error ', pathErr)
+		directory.list_dir_end()
+		return pathErr
 	else:
 		printerr('Error deleting ', path)
 		return -1
