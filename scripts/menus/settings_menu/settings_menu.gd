@@ -22,7 +22,7 @@ func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
 		get_viewport().set_input_as_handled()
 		if not (controlsSection.visible and controlsSection.trapFocus):
-			_on_back_button_pressed()
+			backButton.button_pressed = true
 
 func toggle_settings_menu(showing: bool):
 	visible = showing
@@ -54,6 +54,7 @@ func set_button_right_neighbors(control: Control):
 func _on_back_button_pressed():
 	visible = false
 	controlsSection._on_cancel_button_pressed()
+	_on_general_button_toggled(true)
 	back_pressed.emit()
 
 func _on_general_button_toggled(toggled_on):

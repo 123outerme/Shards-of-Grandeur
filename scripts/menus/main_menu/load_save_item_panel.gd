@@ -31,9 +31,16 @@ func load_save_item_panel():
 	playerInfo = SaveHandler.get_save_player_info(saveFolder)
 	isInBattle = SaveHandler.is_save_in_battle(saveFolder)
 	saveSlotLabel.text = saveSlotName
+	if not parentPanel.isLoading and PlayerResources.saveFolder == saveFolder:
+		saveSlotLabel.text += ' (Loaded)'
+	
 	if playerInfo != null:
 		playerSaveName.text = playerInfo.combatant.disp_name()
-		saveTimeLabel.text = TextUtils.get_elapsed_time(playerInfo.playtimeSecs)
+		var location: String = '???'
+		var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(playerInfo.map)
+		if worldLocation != null:
+			location = worldLocation.locationName
+		saveTimeLabel.text = location + ' - ' + TextUtils.get_elapsed_time(playerInfo.playtimeSecs)
 		saveTimeLabel.visible = true
 	else:
 		playerSaveName.text = '[i]Empty[/i]'
@@ -43,16 +50,18 @@ func load_save_item_panel():
 func update_buttons_visibility():
 	if parentPanel.isLoading:
 		saveButton.visible = false
-		loadBtnControl.visible = playerInfo != null and not showCopyTo
+		loadBtnControl.visible = true
+		loadButton.disabled = not (playerInfo != null and not showCopyTo)
 	else:
-		saveButton.visible = not showCopyTo and saveFolder != 'save'
+		saveButton.visible = true
+		saveButton.disabled = not (not showCopyTo and saveFolder != 'save')
 		loadBtnControl.visible = false
-	copyButton.visible = (playerInfo != null or showCopyTo) and not (showCopyTo and saveFolder == 'save' and not isCopyFrom)
+	copyButton.disabled = not ((playerInfo != null or showCopyTo) and not (showCopyTo and saveFolder == 'save' and not isCopyFrom))
 	if showCopyTo:
 		copyButton.text = 'Cancel' if isCopyFrom else 'Copy To'
 	else:
 		copyButton.text = 'Copy'
-	deleteButton.visible = playerInfo != null and not showCopyTo and not (not parentPanel.isLoading and PlayerResources.saveFolder == saveFolder)
+	deleteButton.disabled = not (playerInfo != null and not showCopyTo and not (not parentPanel.isLoading and PlayerResources.saveFolder == saveFolder))
 	
 	update_focus_neighbor_lr()
 

@@ -11,6 +11,12 @@ var loading: bool = false
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
+static func get_world_location_for_name(mapName: String) -> WorldLocation:
+	if not ResourceLoader.exists("res://gamedata/locations/" + mapName + ".tres"):
+		printerr('This world location does not exist: ', mapName)
+		return null
+	return load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NavigationServer2D.map_changed.connect(_nav_map_changed)
@@ -101,9 +107,7 @@ func set_map_to_scene():
 	call_deferred("reparent_player")
 
 func get_map_entry_for_map_name(mapName: String) -> MapEntry:
-	if not ResourceLoader.exists("res://gamedata/locations/" + mapName + ".tres"):
-		printerr('This world location does not exist: ', mapName)
-	var worldLocation = load("res://gamedata/locations/" + mapName + ".tres") as WorldLocation
+	var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(mapName)
 	if worldLocation != null:
 		var entry: MapEntry = worldLocation.get_map_entry_for_location()
 		if entry != null:

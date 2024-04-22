@@ -1,15 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bw758t8yxr7j1"]
+[gd_scene load_steps=7 format=3 uid="uid://bw758t8yxr7j1"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_2fy1t"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_details_panel.gd" id="2_8fu0e"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_l40qn"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="4_amtgr"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="4_o3847"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_5a3sp"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="5_gg50a"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dttqc"]
-atlas = ExtResource("4_amtgr")
-region = Rect2(96, 56, 8, 8)
 
 [node name="ItemDetailsPanel" type="Control"]
 layout_mode = 3
@@ -55,7 +51,7 @@ fit_content = true
 [node name="ItemSprite" type="Sprite2D" parent="Panel"]
 position = Vector2(182, 80)
 scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_dttqc")
+texture = ExtResource("4_o3847")
 
 [node name="ItemType" type="RichTextLabel" parent="Panel"]
 layout_mode = 1

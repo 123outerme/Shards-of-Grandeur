@@ -13,6 +13,7 @@ var nameInputFocused: bool = false
 @onready var loadGamePanel: SavesPanel = get_node('Panel/LoadGamePanel')
 
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
+@onready var overwriteWarningLabel: RichTextLabel = get_node('Panel/NewGameConfirmPanel/OverwriteWarningLabel')
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
 
 @onready var playerNamePanel: Panel = get_node("Panel/PlayerNamePanel")
@@ -31,6 +32,8 @@ var nameInputFocused: bool = false
 func _ready():
 	newGameConfirmPanel.visible = false
 	playerNamePanel.visible = false
+	loadGamePanel.load_saves_panel()
+	resumeGameButton.visible = loadGamePanel.get_num_saves() != 0
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
@@ -81,6 +84,7 @@ func _on_resume_game_button_pressed():
 func _on_new_game_button_pressed():
 	if resumeGameButton.visible:
 		newGameConfirmPanel.visible = true
+		overwriteWarningLabel.visible = loadGamePanel.has_quick_save()
 		noNewButton.grab_focus()
 	else:
 		new_game_name()

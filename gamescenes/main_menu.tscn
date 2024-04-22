@@ -214,6 +214,10 @@ text = "Back"
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 title = "Delete Save?"
 description = "Are you sure you want to delete this save?"
 
@@ -242,6 +246,19 @@ theme_override_constants/outline_size = 8
 bbcode_enabled = true
 text = "[center]Create A New Game?[/center]"
 fit_content = true
+
+[node name="OverwriteWarningLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.5
+offset_top = 191.0
+offset_right = 228.5
+offset_bottom = 218.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Starting a new game will overwrite your Auto-Save.[/center]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/NewGameConfirmPanel"]
 layout_mode = 1
@@ -379,7 +396,7 @@ anchor_bottom = 0.5
 offset_left = 8.0
 offset_top = -240.0
 offset_right = -8.0
-offset_bottom = 212.0
+offset_bottom = 301.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
@@ -399,6 +416,9 @@ Henry Guckes
 
 Temporary Demo Audio:
 Public Domain authors, iPhoenix, Ian Groat
+
+Bug Testing, Feedback:
+Everyone who played a Demo build!
 [/center]"
 
 [node name="BackButton" parent="Panel/CreditsPanel" instance=ExtResource("4_rb8pb")]

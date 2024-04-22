@@ -83,6 +83,21 @@ func update_focus_neighbors():
 			else:
 				backButton.focus_neighbor_top = backButton.get_path_to(panel.saveButton if panel.saveButton.visible else panel.copyButton)
 
+func get_num_saves() -> int:
+	var count = 0
+	var children = savePanelVbox.get_children()
+	for node in children:
+		var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+		if panel != null and panel.playerInfo != null:
+			count += 1
+	return count
+
+func has_quick_save() -> bool:
+	var panel: LoadSaveItemPanel = savePanelVbox.get_children()[0] as LoadSaveItemPanel
+	if panel != null:
+		return panel.playerInfo != null
+	return false
+
 func save_to(saveFolder: String):
 	if isLoading:
 		return

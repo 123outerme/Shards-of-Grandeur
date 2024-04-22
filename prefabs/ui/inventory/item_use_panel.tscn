@@ -1,14 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ie2m5n6k0qjg"]
+[gd_scene load_steps=6 format=3 uid="uid://ie2m5n6k0qjg"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_use_panel.gd" id="1_c7w7n"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_oq36k"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_d1bpa"]
-[ext_resource type="Texture2D" uid="uid://p871kcr0eyx6" path="res://graphics/SOUVUTU0.png" id="3_wvv33"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="3_r6lkq"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_k8tae"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_la3b7"]
-atlas = ExtResource("3_wvv33")
-region = Rect2(96, 56, 8, 8)
 
 [node name="ItemUsePanel" type="Control"]
 layout_mode = 3
@@ -46,7 +42,7 @@ offset_bottom = 88.0
 [node name="ItemSprite" type="Sprite2D" parent="Panel/ItemSpriteControl"]
 position = Vector2(32, 32)
 scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_la3b7")
+texture = ExtResource("3_r6lkq")
 
 [node name="ItemUsedTitle" type="RichTextLabel" parent="Panel"]
 layout_mode = 1

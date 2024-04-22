@@ -158,6 +158,8 @@ layout_mode = 2
 
 [node name="LoadSaveItemPanel" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
 layout_mode = 2
+saveFolder = "save"
+saveSlotName = "Auto-Save"
 
 [node name="LoadSaveItemPanel2" parent="Control/SaveGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("13_c1egi")]
 layout_mode = 2
@@ -203,6 +205,10 @@ text = "Back"
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="CodexMenu" parent="Control" instance=ExtResource("10_10tem")]
 visible = false
