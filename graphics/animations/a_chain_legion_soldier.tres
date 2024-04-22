@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://b10ap61ndn3h4"]
+[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://b10ap61ndn3h4"]
 
 [ext_resource type="Texture2D" uid="uid://dtmys0sanate3" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_stand.png" id="1_4jhna"]
 [ext_resource type="Texture2D" uid="uid://dmpspi8kghj1t" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_attack_affinity.png" id="1_c4ra1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6t44hf3xjlpu" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_attack_phys.png" id="2_fo7ih"]
 [ext_resource type="Texture2D" uid="uid://cd6dh6b3j60b0" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_talk.png" id="2_ih8cd"]
 [ext_resource type="Texture2D" uid="uid://cwl7lu1poh1mr" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_walk.png" id="3_xvbaj"]
+[ext_resource type="Texture2D" uid="uid://cxg2raeo82jle" path="res://graphics/characters/chain_legion_soldier/chain_legion_soldier_battle_idle.png" id="4_ivsjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojqt3"]
 atlas = ExtResource("1_c4ra1")
@@ -86,6 +87,14 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdg4l"]
 atlas = ExtResource("2_fo7ih")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyrc6"]
+atlas = ExtResource("4_ivsjg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r08il"]
+atlas = ExtResource("4_ivsjg")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5pis"]
 atlas = ExtResource("1_4jhna")
@@ -209,12 +218,15 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r5pis")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_iyrc6")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_r08il")
 }],
 "loop": true,
 "name": &"battle_idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
