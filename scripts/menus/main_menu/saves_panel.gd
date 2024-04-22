@@ -8,14 +8,22 @@ signal back_pressed
 @export var isLoading: bool = true
 
 var fromSave: String = ''
+var deleteSaveFolder: String = ''
 
 @onready var savePanelVbox: VBoxContainer = get_node('ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('BackButton')
+@onready var confirmPanel: ItemConfirmPanel = get_node('ItemConfirmPanel')
 
 const loadSaveItemPanelScene = preload('res://prefabs/ui/main_menu/load_save_item_panel.tscn')
 
 func _ready():
 	pass
+
+func _unhandled_input(event):
+	if visible:
+		if event.is_action_pressed('game_decline'):
+			backButton.button_pressed = true
+			get_viewport().set_input_as_handled()
 
 func initial_focus():
 	if isLoading:
@@ -23,7 +31,7 @@ func initial_focus():
 		var children = savePanelVbox.get_children()
 		for node in children:
 			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
-			if panel.playerInfo != null:
+			if panel.playerInfo != null and not setFocus:
 				panel.loadButton.grab_focus()
 				setFocus = true
 		if not setFocus:
@@ -33,7 +41,7 @@ func initial_focus():
 		var setFocus: bool = false
 		for node in children:
 			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
-			if panel.saveFolder == PlayerResources.saveFolder and not panel.saveFolder == 'save':
+			if panel.saveFolder == PlayerResources.saveFolder and not panel.saveFolder == 'save' and not setFocus:
 				panel.saveButton.grab_focus()
 				setFocus = true
 		if not setFocus:
@@ -41,10 +49,10 @@ func initial_focus():
 			firstPermanentSavePanel.saveButton.grab_focus()
 
 func load_saves_panel():
-	load_save_panels()
+	load_save_item_panels()
 	initial_focus()
 
-func load_save_panels():
+func load_save_item_panels():
 	var panels = savePanelVbox.get_children()
 	for idx in range(len(panels)):
 		var panel: LoadSaveItemPanel = panels[idx] as LoadSaveItemPanel
@@ -84,7 +92,7 @@ func save_to(saveFolder: String):
 		game_saved.emit()
 	else:
 		game_save_failed.emit()
-	load_save_panels()
+	load_save_item_panels()
 
 func load_save(saveFolder: String):
 	SaveHandler.load_data(saveFolder)
@@ -115,12 +123,25 @@ func copy_save_pressed(saveFolder: String, isCopyTo: bool):
 	update_focus_neighbors()
 
 func delete_save_pressed(saveFolder: String):
-	# TODO: get confirmation first
-	delete_save(saveFolder)
+	var savePanel: LoadSaveItemPanel = null
+	var children = savePanelVbox.get_children()
+	for node in children:
+		var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+		if panel.saveFolder == saveFolder:
+			savePanel = panel
+			break
+	if savePanel == null:
+		printerr('delete_save_pressed() error: Could not find save file for ', saveFolder)
+		return
+	
+	deleteSaveFolder = saveFolder
+	confirmPanel.title = 'Delete ' + savePanel.saveSlotName + '?'
+	confirmPanel.description = 'Are you sure you want to erase the story of ' + savePanel.playerInfo.combatant.disp_name() + '?'
+	confirmPanel.load_item_confirm_panel()
 
-func delete_save(saveFolder):
+func delete_save(saveFolder: String):
 	SaveHandler.delete_save(saveFolder)
-	load_save_panels()
+	load_save_item_panels()
 	initial_focus()
 
 func _on_back_button_pressed():
@@ -128,6 +149,18 @@ func _on_back_button_pressed():
 	if fromSave != '':
 		copy_save_pressed(fromSave, true)
 	back_pressed.emit()
+
+func _on_item_confirm_panel_confirm_option(yes: bool):
+	if yes:
+		delete_save(deleteSaveFolder)
+	else:
+		var children = savePanelVbox.get_children()
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.saveFolder == deleteSaveFolder:
+				panel.deleteButton.grab_focus()
+				break
+	deleteSaveFolder = ''
 
 func _filter_out_no_button_panels(panel: LoadSaveItemPanel) -> bool:
 	return (not isLoading and panel.saveFolder != 'save') or panel.playerInfo != null or fromSave != ''

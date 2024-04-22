@@ -97,7 +97,7 @@ func load_map(mapName: String):
 func set_map_to_scene():
 	if mapInstance.get_parent() == null:
 		add_child(mapInstance)
-	SaveHandler.call_deferred("load_data", PlayerResources.saveFolder)
+	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
 
 func get_map_entry_for_map_name(mapName: String) -> MapEntry:

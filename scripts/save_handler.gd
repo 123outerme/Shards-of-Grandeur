@@ -80,23 +80,12 @@ func save_file_exists(saveFolder: String = 'save'):
 	var saveFileLocation: String = get_save_file_location(saveFolder)
 	return FileAccess.file_exists(saveFileLocation + save_exists_file)
 
-func get_save_playtime(saveFolder: String = 'save') -> float:
-	var saveFileLocation: String = get_save_file_location(saveFolder)
-	if not save_file_exists(saveFolder):
-		return 0
-	
-	var playerInfo: PlayerInfo = load(saveFileLocation + save_exists_file)
-	if playerInfo != null:
-		return playerInfo.playtimeSecs
-	else:
-		return 0
-
 func get_save_player_info(saveFolder: String = 'save') -> PlayerInfo:
 	var saveFileLocation: String = get_save_file_location(saveFolder)
 	if not save_file_exists(saveFolder):
 		return null
 	
-	var playerInfo: PlayerInfo = load(saveFileLocation + save_exists_file)
+	var playerInfo: PlayerInfo = ResourceLoader.load(saveFileLocation + save_exists_file, '', ResourceLoader.CACHE_MODE_IGNORE)
 	return playerInfo
 
 func is_save_in_battle(saveFolder: String = 'save'):

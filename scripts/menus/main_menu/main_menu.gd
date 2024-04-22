@@ -31,8 +31,6 @@ var nameInputFocused: bool = false
 func _ready():
 	newGameConfirmPanel.visible = false
 	playerNamePanel.visible = false
-	#resumeGameButton.text = 'Resume Game\nPlaytime: ' + TextUtils.get_elapsed_time(SaveHandler.get_save_playtime())
-	#resumeGameButton.visible = SaveHandler.save_file_exists('save')
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)

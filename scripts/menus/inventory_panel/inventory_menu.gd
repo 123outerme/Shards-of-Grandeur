@@ -408,6 +408,9 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 		'shardLearn':
 			if yes:
 				PlayerResources.playerInfo.combatant.stats.add_move_to_pool(itemUsePanel.learnedMove)
+				var shard: Shard = lastSlotInteracted.item as Shard
+				# add Attunement for minion whose shard you used
+				PlayerResources.minions.add_friendship(shard.combatantSaveName, true)
 				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
 				if last:
 					lastSlotInteracted = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=17 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/menus/main_menu/saves_panel.gd" id="11_pia2x"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="12_dv8qs"]
 [ext_resource type="PackedScene" uid="uid://dshs45wq2wig1" path="res://prefabs/ui/main_menu/load_save_item_panel.tscn" id="13_c1egi"]
+[ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="14_h8rx7"]
 
 [node name="PauseMenu" type="Node2D"]
 script = ExtResource("2_mu5pd")
@@ -198,6 +199,11 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
+[node name="ItemConfirmPanel" parent="Control/SaveGamePanel" instance=ExtResource("14_h8rx7")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+
 [node name="CodexMenu" parent="Control" instance=ExtResource("10_10tem")]
 visible = false
 layout_mode = 1
@@ -228,5 +234,6 @@ mouse_filter = 2
 [connection signal="game_saved" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_saved"]
 [connection signal="visibility_changed" from="Control/SaveGamePanel/ScrollContainer" to="Control/SaveGamePanel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/SaveGamePanel/BackButton" to="Control/SaveGamePanel" method="_on_back_button_pressed"]
+[connection signal="confirm_option" from="Control/SaveGamePanel/ItemConfirmPanel" to="Control/SaveGamePanel" method="_on_item_confirm_panel_confirm_option"]
 [connection signal="back_pressed" from="Control/CodexMenu" to="." method="_on_codex_menu_back_pressed"]
 [connection signal="back_pressed" from="Control/SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

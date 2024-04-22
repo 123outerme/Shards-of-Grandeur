@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=20 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="13_8d41q"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/saves_panel.gd" id="13_wt3eg"]
 [ext_resource type="PackedScene" uid="uid://dshs45wq2wig1" path="res://prefabs/ui/main_menu/load_save_item_panel.tscn" id="15_oupkp"]
+[ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="16_y0cf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
 atlas = ExtResource("8_w3grk")
@@ -208,6 +209,13 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
+
+[node name="ItemConfirmPanel" parent="Panel/LoadGamePanel" instance=ExtResource("16_y0cf3")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+title = "Delete Save?"
+description = "Are you sure you want to delete this save?"
 
 [node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
 visible = false
@@ -436,6 +444,7 @@ fit_content = true
 [connection signal="back_pressed" from="Panel/LoadGamePanel" to="." method="_on_load_game_panel_back_pressed"]
 [connection signal="visibility_changed" from="Panel/LoadGamePanel/ScrollContainer" to="Panel/LoadGamePanel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/LoadGamePanel/BackButton" to="Panel/LoadGamePanel" method="_on_back_button_pressed"]
+[connection signal="confirm_option" from="Panel/LoadGamePanel/ItemConfirmPanel" to="Panel/LoadGamePanel" method="_on_item_confirm_panel_confirm_option"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="focus_entered" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_focus_entered"]

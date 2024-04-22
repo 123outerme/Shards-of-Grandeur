@@ -60,9 +60,11 @@ func level_up_minions(newLevel: int):
 func add_friendship(minionName: String, wasDowned: bool):
 	if has_minion(minionName):
 		var minion = minionsDict[minionName] as Combatant
-		minion.friendship += 1
+		var friendship: int = 1
 		if not wasDowned:
-			minion.friendship += 1
+			friendship = 2
+		# cap friendship at maximum
+		minion.friendship = min(minion.friendship + friendship, minion.maxFriendship)
 
 func which_minion_equipped(item: Item) -> String:
 	var saveName: String = ''
