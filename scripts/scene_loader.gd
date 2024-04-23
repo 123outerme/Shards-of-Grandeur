@@ -14,14 +14,19 @@ func _ready():
 func load_game(saveFolder: String = 'save'):
 	PlayerResources.saveFolder = saveFolder
 	if SaveHandler.is_save_in_battle(saveFolder):
-		load_battle()
+		PlayerResources.battleSaveFolder = saveFolder
+		load_battle(saveFolder)
 	else:
-		load_overworld()
+		load_overworld(saveFolder)
 
-func load_battle():
+func load_battle(saveFolder: String = ''):
+	if saveFolder != '':
+		SaveHandler.load_data(saveFolder)
 	call_deferred('load_scene', preload("res://gamescenes/battle.tscn"))
 
-func load_overworld():
+func load_overworld(saveFolder: String = ''):
+	if saveFolder != '':
+		SaveHandler.load_data(saveFolder)
 	call_deferred('load_scene', preload("res://gamescenes/overworld.tscn"))
 	
 func load_main_menu():

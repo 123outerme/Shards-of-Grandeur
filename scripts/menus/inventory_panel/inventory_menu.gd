@@ -4,6 +4,7 @@ class_name InventoryMenu
 signal item_used(slot: InventorySlot)
 signal open_stats(combatant: Combatant)
 signal back_pressed
+signal learn_shard_tutorial_finished
 
 @export_category("InventoryPanel - Filters")
 @export var selectedFilter: Item.Type = Item.Type.ALL
@@ -32,6 +33,11 @@ var shopInventory: Inventory = null
 @onready var armorFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ArmorButton")
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
+
+@onready var learnShardTutorialShade: ColorRect = get_node('InventoryPanel/Panel/LearnShardTutorialShade')
+@onready var tutorialArrowControl: Control = get_node('InventoryPanel/Panel/LearnShardTutorialShade/TutorialArrowControl')
+@onready var tutorialArrow: AnimatedSprite2D = get_node('InventoryPanel/Panel/LearnShardTutorialShade/TutorialArrowControl/TutorialArrowSprite')
+
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 @onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
@@ -46,13 +52,15 @@ var lastSlotInteracted: InventorySlot = null
 var confirmingAction: String = ''
 var viewingEquipStats: bool = false
 var viewingEquipItemDetails: bool = false
+var inShardLearnTutorial: bool = false
+var shardTutorialSlotPanel: InventorySlotPanel = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed('game_decline'):
+	if visible and event.is_action_pressed('game_decline') and not inShardLearnTutorial:
 		get_viewport().set_input_as_handled()
 		toggle()
 
@@ -370,6 +378,11 @@ func _on_item_used(slot: InventorySlot):
 	elif slot.item.itemType == Item.Type.SHARD and not inBattle:
 		itemUsePanel.item = slot.item
 		shardLearnPanel.shard = slot.item as Shard
+		shardLearnPanel.inTutorial = inShardLearnTutorial
+		if inShardLearnTutorial:
+			shardTutorialSlotPanel.z_index = 0
+			learnShardTutorialShade.visible = false
+			tutorialArrow.stop()
 		shardLearnPanel.load_shard_learn_panel()
 		backButton.disabled = true
 	if PlayerResources.playerInfo.combatant.would_item_have_effect(slot.item) \
@@ -381,6 +394,12 @@ func _on_item_used(slot: InventorySlot):
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
+	if inShardLearnTutorial:
+		inShardLearnTutorial = false
+		shardTutorialSlotPanel = null
+		learn_shard_tutorial_finished.emit()
+		toggle() # hide the panel
+		return
 	load_inventory_panel(lastSlotInteracted == null)
 	restore_last_focus('useButton')
 
@@ -394,6 +413,7 @@ func _on_shard_learn_panel_learned_move(move: Move):
 	itemUsePanel.learnedMove = move
 	itemConfirmPanel.title = 'Learn ' + move.moveName + ' From ' + lastSlotInteracted.item.itemName + '?'
 	itemConfirmPanel.description = 'Learning this move will consume the shard. Learn ' + move.moveName + ' and consume the ' + lastSlotInteracted.item.itemName + '?'
+	itemConfirmPanel.forceConfirm = inShardLearnTutorial
 	itemConfirmPanel.load_item_confirm_panel()
 	confirmingAction = 'shardLearn'
 
@@ -449,3 +469,34 @@ func _on_equip_panel_show_details_for_item(item: Item):
 	itemDetailsPanel.load_item_details()
 	itemDetailsPanel.visible = true
 	viewingEquipItemDetails = true
+
+func start_learn_shard_tutorial():
+	var treeBearShard: Shard = load('res://gamedata/items/shard/tree_bear_shard.tres')
+	# ensure the player has a Tree Bear Shard to use - give it for free!
+	PlayerResources.inventory.add_item(treeBearShard)
+	inShardLearnTutorial = true
+	# reload the inventory (in case we added a new shard)
+	if not visible:
+		toggle()
+	else:
+		load_inventory_panel(true)
+	await get_tree().process_frame
+	shardTutorialSlotPanel = null
+	# find the panel for the Tree Bear Shard
+	for panel in get_tree().get_nodes_in_group('InventorySlotPanel'):
+		var slotPanel: InventorySlotPanel = panel as InventorySlotPanel
+		if slotPanel.inventorySlot.item == treeBearShard:
+			shardTutorialSlotPanel = panel
+	# enable "tutorial mode" visuals - shade, tutorial pointing arrow, locked into pressing Use
+	backButton.disabled = true
+	learnShardTutorialShade.visible = true
+	shardTutorialSlotPanel.z_index = 1
+	shardTutorialSlotPanel.detailsButton.disabled = true
+	shardTutorialSlotPanel.trashButton.disabled = true
+	shardTutorialSlotPanel.useButton.grab_focus()
+	shardTutorialSlotPanel.useButton.focus_neighbor_bottom = NodePath('.')
+	shardTutorialSlotPanel.useButton.focus_neighbor_top = NodePath('.')
+	shardTutorialSlotPanel.useButton.focus_neighbor_left = NodePath('.')
+	shardTutorialSlotPanel.useButton.focus_neighbor_right = NodePath('.')
+	tutorialArrowControl.global_position = shardTutorialSlotPanel.tutorialArrowTargetControl.global_position
+	tutorialArrow.play()

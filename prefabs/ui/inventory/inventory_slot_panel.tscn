@@ -143,6 +143,19 @@ custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Use"
 
+[node name="TutorialArrowTargetControl" type="Control" parent="CenterButtons/HBoxContainer/UseButton"]
+visible = false
+custom_minimum_size = Vector2(64, 96)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -96.0
+offset_right = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+
 [node name="EquipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2

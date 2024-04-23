@@ -7,6 +7,7 @@ signal back_pressed
 @export var shard: Shard = null
 
 var combatant: Combatant = null
+var inTutorial: bool = false
 
 @onready var shardSprite: Sprite2D = get_node("Panel/ShardSpriteControl/ShardSprite")
 @onready var learnPanelTitle: RichTextLabel = get_node("Panel/LearnPanelTitle")
@@ -19,9 +20,9 @@ func _ready():
 	pass
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed("game_decline"):
+	if visible and event.is_action_pressed("game_decline") and not inTutorial:
 		get_viewport().set_input_as_handled()
-		_on_back_button_pressed()
+		backButton.button_pressed = true
 
 func load_shard_learn_panel():
 	if shard == null:
@@ -38,7 +39,13 @@ func load_shard_learn_panel():
 	movePoolPanel.level = PlayerResources.playerInfo.combatant.stats.level
 	movePoolPanel.load_move_pool_panel()
 	movePoolPanel.show_learn_buttons(true)
+	backButton.disabled = inTutorial
+	if inTutorial:
+		load_tutorial()
 	visible = true
+
+func load_tutorial():
+	pass
 
 func _on_back_button_pressed():
 	visible = false

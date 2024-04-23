@@ -9,6 +9,7 @@ signal back_pressed
 
 var fromSave: String = ''
 var deleteSaveFolder: String = ''
+var savingFolder: String = ''
 
 @onready var savePanelVbox: VBoxContainer = get_node('ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('BackButton')
@@ -102,8 +103,29 @@ func save_to(saveFolder: String):
 	if isLoading:
 		return
 	
+	if saveFolder != PlayerResources.saveFolder:
+		savingFolder = saveFolder
+		var savePanel: LoadSaveItemPanel = null
+		var children = savePanelVbox.get_children()
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.saveFolder == saveFolder:
+				savePanel = panel
+				break
+		if savePanel == null:
+			printerr('delete_save_pressed() error: Could not find save file for ', saveFolder)
+			return
+		if savePanel.playerInfo != null:
+			confirmPanel.title = 'Save Over ' + savePanel.saveSlotName + '?'
+			confirmPanel.description = 'Are you sure you want to overwrite the story of ' + savePanel.playerInfo.combatant.disp_name() + '?'
+			confirmPanel.load_item_confirm_panel()
+			return
+	save_game(saveFolder)
+
+func save_game(saveFolder: String):
 	var success = SaveHandler.save_data(saveFolder)
 	if success:
+		PlayerResources.saveFolder = saveFolder
 		game_saved.emit()
 	else:
 		game_save_failed.emit()
@@ -166,16 +188,22 @@ func _on_back_button_pressed():
 	back_pressed.emit()
 
 func _on_item_confirm_panel_confirm_option(yes: bool):
-	if yes:
-		delete_save(deleteSaveFolder)
-	else:
-		var children = savePanelVbox.get_children()
-		for node in children:
-			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
-			if panel.saveFolder == deleteSaveFolder:
-				panel.deleteButton.grab_focus()
-				break
-	deleteSaveFolder = ''
+	match isLoading:
+		true:
+			if yes:
+				delete_save(deleteSaveFolder)
+			else:
+				var children = savePanelVbox.get_children()
+				for node in children:
+					var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+					if panel.saveFolder == deleteSaveFolder:
+						panel.deleteButton.grab_focus()
+						break
+			deleteSaveFolder = ''
+		false:
+			if yes:
+				save_game(savingFolder)
+			savingFolder = ''
 
 func _filter_out_no_button_panels(panel: LoadSaveItemPanel) -> bool:
 	return (not isLoading and panel.saveFolder != 'save') or panel.playerInfo != null or fromSave != ''

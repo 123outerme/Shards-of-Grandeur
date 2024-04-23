@@ -37,6 +37,7 @@ func save_data(saveFolder: String = 'save') -> bool:
 	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
+		#print(script_path)
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("save_data"):
 			var err = scr.call("save_data", saveFileLocation)
@@ -45,6 +46,8 @@ func save_data(saveFolder: String = 'save') -> bool:
 				return false
 		else:
 			printerr('WARNING: No save_data script for ', script_path)
+	if not '/root/Battle' in saved_scripts and FileAccess.file_exists(saveFileLocation + battle_file):
+		DirAccess.remove_absolute(saveFileLocation + battle_file)
 	return true
 
 func load_data(saveFolder: String = 'save'):

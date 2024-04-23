@@ -33,6 +33,12 @@ func add_item(item: Item) -> bool:
 		return true
 	return false
 
+func has_item(item: Item) -> bool:
+	for slot in inventorySlots:
+		if slot.item == item:
+			return true
+	return false
+
 func add_shard_minion_entry(item: Item):
 	if isPlayerInventory and item.itemType == Item.Type.SHARD:
 		var shard: Shard = item as Shard

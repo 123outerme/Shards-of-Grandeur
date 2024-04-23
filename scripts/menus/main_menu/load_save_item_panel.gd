@@ -40,6 +40,8 @@ func load_save_item_panel():
 		var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(playerInfo.map)
 		if worldLocation != null:
 			location = worldLocation.locationName
+		if SaveHandler.is_save_in_battle(saveFolder):
+			location += ' (in Battle)'
 		saveTimeLabel.text = location + ' - ' + TextUtils.get_elapsed_time(playerInfo.playtimeSecs)
 		saveTimeLabel.visible = true
 	else:

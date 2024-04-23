@@ -21,7 +21,6 @@ static func get_world_location_for_name(mapName: String) -> WorldLocation:
 func _ready():
 	NavigationServer2D.map_changed.connect(_nav_map_changed)
 	SceneLoader.mapLoader = self
-	SaveHandler.load_data(PlayerResources.saveFolder)
 	if PlayerResources.playerInfo.combatant.downed:
 		load_recover_map()
 	else:

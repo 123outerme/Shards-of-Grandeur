@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=14 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="7_n4b6m"]
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
+[ext_resource type="SpriteFrames" uid="uid://mihrqii33xe7" path="res://graphics/ui/a_tutorial_arrow.tres" id="9_p30lc"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
 [ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="11_c0y15"]
 [ext_resource type="PackedScene" uid="uid://n55f6tk0t25u" path="res://prefabs/ui/inventory/equip_panel.tscn" id="12_eeu1a"]
@@ -178,6 +179,31 @@ grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_bottom = NodePath("../HBoxContainer/WeaponsButton")
 text = "Back"
+
+[node name="LearnShardTutorialShade" type="ColorRect" parent="InventoryPanel/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="TutorialArrowControl" type="Control" parent="InventoryPanel/Panel/LearnShardTutorialShade"]
+custom_minimum_size = Vector2(64, 96)
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 96.0
+mouse_filter = 2
+
+[node name="TutorialArrowSprite" type="AnimatedSprite2D" parent="InventoryPanel/Panel/LearnShardTutorialShade/TutorialArrowControl"]
+z_index = 1
+position = Vector2(32, 48)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("9_p30lc")
+frame_progress = 0.105732
 
 [node name="EquipPanel" parent="." instance=ExtResource("12_eeu1a")]
 visible = false

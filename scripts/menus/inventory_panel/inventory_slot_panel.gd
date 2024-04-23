@@ -26,6 +26,10 @@ class_name InventorySlotPanel
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
 @onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
 
+# shows the Inventory panel where the tutorial arrow should go
+# (but not nested in here, so it isn't clipped by the scroll container)
+@onready var tutorialArrowTargetControl: Control = get_node('CenterButtons/HBoxContainer/UseButton/TutorialArrowTargetControl')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_inventory_slot_panel()

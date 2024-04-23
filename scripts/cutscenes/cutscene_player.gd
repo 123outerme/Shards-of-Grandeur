@@ -19,9 +19,10 @@ var isFadingIn: bool = false
 var completeAfterFadeIn: bool = false
 var skipCutsceneFrameIndex: int = -1
 var skipping: bool = true
+var awaitingPlayer: bool = false
 
 func _process(delta):
-	if cutscene != null and playing and not isPaused and skipCutsceneFrameIndex == -1:
+	if cutscene != null and playing and not isPaused and not awaitingPlayer and skipCutsceneFrameIndex == -1:
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer, lastFrame)
 		timer += delta
 		
@@ -49,6 +50,9 @@ func _process(delta):
 			
 			if lastFrame.givesItem != null:
 				handle_give_item()
+				
+			if lastFrame.endStartsShardLearnTutorial:
+				handle_start_shard_learn_tutorial()
 		
 		if frame == null: # end of cutscene
 			end_cutscene()
@@ -87,6 +91,11 @@ func handle_fade_in():
 func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)
 	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
+
+func handle_start_shard_learn_tutorial():
+	awaitingPlayer = true
+	PlayerFinder.player.inventoryPanel.start_learn_shard_tutorial()
+	PlayerFinder.player.inventoryPanel.learn_shard_tutorial_finished.connect(_learn_shard_tutorial_finished)
 
 func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 	lastFrame = frame
@@ -298,3 +307,6 @@ func skip_cutscene_process():
 		await get_tree().process_frame
 	end_cutscene()
 	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
+
+func _learn_shard_tutorial_finished():
+	awaitingPlayer = false

@@ -50,14 +50,17 @@ func _unhandled_input(event):
 			(cutscenePaused and event.is_action_pressed('game_decline')) and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if inCutscene:
-			SceneLoader.cutscenePlayer.toggle_pause_cutscene()
-			cam.toggle_cutscene_paused_shade()
-			cutscenePaused = cam.cutscenePaused
+			# if awaiting player, don't even check if the pause panel can be opened, just stop here
+			if not SceneLoader.cutscenePlayer.awaitingPlayer:
+				SceneLoader.cutscenePlayer.toggle_pause_cutscene()
+				cam.toggle_cutscene_paused_shade()
+				cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
-			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			not inventoryPanel.inShardLearnTutorial:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
@@ -80,7 +83,8 @@ func _unhandled_input(event):
 			textBox.show_text_instant()
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
-			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			not inventoryPanel.inShardLearnTutorial:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -93,7 +97,8 @@ func _unhandled_input(event):
 			questsPanel.toggle()
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
-			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			not inventoryPanel.inShardLearnTutorial:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
@@ -419,8 +424,9 @@ func start_battle():
 	if startingBattle:
 		return
 	startingBattle = true
-	SaveHandler.save_data()
+	# save to auto-save
 	cam.fade_out(_after_start_battle_fade_out)
+	PlayerResources.battleSaveFolder = ''
 	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic.pick_random()
 	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.battleMusic != null:
 		playingBattleMusic = PlayerResources.playerInfo.staticEncounter.battleMusic

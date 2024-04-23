@@ -44,12 +44,19 @@ var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battleLoaded = false
-	SaveHandler.load_data(PlayerResources.saveFolder)
+	if PlayerResources.battleSaveFolder != '':
+		SaveHandler.load_data(PlayerResources.battleSaveFolder)
 	call_deferred('load_into_battle')
 	
 func load_into_battle():
-	if SceneLoader.curMapEntry != null:
-		battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
+	if SceneLoader.curMapEntry == null:
+		var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(PlayerResources.playerInfo.map)
+		SceneLoader.curMapEntry = worldLocation.maps[len(worldLocation.maps) - 1]
+		for mapEntry: MapEntry in worldLocation.maps:
+			if mapEntry.requirements == null or mapEntry.requirements.is_valid():
+				SceneLoader.curMapEntry = mapEntry
+				break
+	battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
 	var battleMap = load(battleMapPath)
 	tilemap = battleMap.instantiate()
 	tilemapParent.add_child(tilemap)
@@ -182,6 +189,8 @@ func load_into_battle():
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 0), 0.5)
 	shadeTween.finished.connect(_fade_in_finish)
+	battleUI.set_menu_state(state.menu, false)
+	SaveHandler.save_data()
 	
 func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
@@ -200,7 +209,7 @@ func get_all_combatant_nodes() -> Array[CombatantNode]:
 
 func save_data(save_path):
 	if battleEnded:
-		state.delete_data(SaveHandler.save_file_location) # same as save_path in save/load data functions
+		state.delete_data(SaveHandler.get_save_file_location('save')) # same as save_path in save/load data functions
 	else:
 		state.menu = battleUI.menuState
 		state.prevMenu = battleUI.prevMenu
@@ -212,7 +221,8 @@ func save_data(save_path):
 		state.commandingMinion = battleUI.commandingMinion
 		state.fobButtonEnabled = battlePanels.flowOfBattle.get_fob_button_enabled()
 		state.battleMapPath = battleMapPath
-		state.battleMusic = SceneLoader.audioHandler.get_cur_music()
+		if state.battleMusic == null:
+			state.battleMusic = SceneLoader.audioHandler.get_cur_music()
 		state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
 		state.save_data(save_path, state)
 
@@ -302,10 +312,10 @@ func end_battle():
 	shadeTween.finished.connect(_fade_out_finish)
 
 func _fade_in_finish():
-	battleUI.set_menu_state(state.menu, false)
+	pass
 
 func _fade_out_finish():
-	SaveHandler.save_data()
+	SaveHandler.save_data('save')
 	SceneLoader.audioHandler.fade_out_music()
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
-	SceneLoader.load_overworld()
+	SceneLoader.load_overworld('save')

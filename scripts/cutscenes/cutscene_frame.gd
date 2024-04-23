@@ -21,6 +21,7 @@ enum CameraFade {
 @export var endFade: CameraFade = CameraFade.NONE
 @export var endFadeLength: float = 0
 @export var givesItem: Item = null
+@export var endStartsShardLearnTutorial: bool = false
 var endTextTriggered: bool = false
 
 func _init(
@@ -36,6 +37,7 @@ func _init(
 	i_endHoldCam = false,
 	i_endFade = CameraFade.NONE,
 	i_givesItem = null,
+	i_endStartsShardLearnTutorial = false,
 ):
 	frameLength = i_frameLength
 	annotation = i_annotation
@@ -49,6 +51,7 @@ func _init(
 	endHoldCamera = i_endHoldCam
 	endFade = i_endFade
 	givesItem = i_givesItem
+	endStartsShardLearnTutorial = i_endStartsShardLearnTutorial
 	endTextTriggered = false
 	
 func get_text_was_triggered() -> bool:

@@ -8,7 +8,11 @@ signal story_requirements_updated
 @export var loaded: bool = false
 
 var player = null
+# the save folder this game came from
 var saveFolder: String = 'save'
+# the save folder we are loading battle from
+# 'save' if starting a battle while the game is already loaded, a "permanent" save folder if loading from main menu
+var battleSaveFolder: String = 'save'
 var timeSinceLastLoad: float = -1
 
 # Called when the node enters the scene tree for the first time.
