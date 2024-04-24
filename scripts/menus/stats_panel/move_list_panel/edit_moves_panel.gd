@@ -30,9 +30,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed('game_decline'):
+	if visible and event.is_action_pressed('game_decline') and not backButton.disabled:
 		get_viewport().set_input_as_handled()
-		backButton.button_pressed = true
+		_on_back_button_pressed()
 
 func initial_focus():
 	backButton.grab_focus()

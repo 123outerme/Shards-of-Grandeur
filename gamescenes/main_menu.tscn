@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=17 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
@@ -14,10 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://chumycjya5hmc" path="res://graphics/ui/house_icon.png" id="9_jdjmu"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="10_650uu"]
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="12_h6rgv"]
-[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="13_8d41q"]
-[ext_resource type="Script" path="res://scripts/menus/main_menu/saves_panel.gd" id="13_wt3eg"]
-[ext_resource type="PackedScene" uid="uid://dshs45wq2wig1" path="res://prefabs/ui/main_menu/load_save_item_panel.tscn" id="15_oupkp"]
-[ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="16_y0cf3"]
+[ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="17_qsm70"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
 atlas = ExtResource("8_w3grk")
@@ -121,105 +118,9 @@ position = Vector2(802, 245)
 scale = Vector2(4, 4)
 texture = ExtResource("9_iovbg")
 
-[node name="LoadGamePanel" type="Panel" parent="Panel"]
+[node name="LoadGamePanel" parent="Panel" instance=ExtResource("17_qsm70")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("13_wt3eg")
-
-[node name="LoadGameLabel" type="RichTextLabel" parent="Panel/LoadGamePanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -236.5
-offset_top = 19.0
-offset_right = 236.5
-offset_bottom = 69.0
-grow_horizontal = 2
-theme = ExtResource("7_swlwd")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-bbcode_enabled = true
-text = "[center]Load Save[/center]"
-fit_content = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/LoadGamePanel" node_paths=PackedStringArray("boxContainer")]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 70.0
-offset_top = -396.0
-offset_right = -70.0
-offset_bottom = 387.0
-grow_horizontal = 2
-grow_vertical = 2
-follow_focus = true
-script = ExtResource("13_8d41q")
-boxContainer = NodePath("VBoxContainer")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/LoadGamePanel/ScrollContainer"]
-layout_mode = 2
-
-[node name="LoadSaveItemPanel" parent="Panel/LoadGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("15_oupkp")]
-layout_mode = 2
-
-[node name="LoadSaveItemPanel2" parent="Panel/LoadGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("15_oupkp")]
-layout_mode = 2
-saveFolder = "save1"
-saveSlotName = "Save File 1"
-
-[node name="LoadSaveItemPanel3" parent="Panel/LoadGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("15_oupkp")]
-layout_mode = 2
-saveFolder = "save2"
-saveSlotName = "Save File 2"
-
-[node name="LoadSaveItemPanel4" parent="Panel/LoadGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("15_oupkp")]
-layout_mode = 2
-saveFolder = "save3"
-saveSlotName = "Save File 3"
-
-[node name="LoadSaveItemPanel5" parent="Panel/LoadGamePanel/ScrollContainer/VBoxContainer" instance=ExtResource("15_oupkp")]
-layout_mode = 2
-saveFolder = "save4"
-saveSlotName = "Save File 4"
-
-[node name="BackButton" parent="Panel/LoadGamePanel" instance=ExtResource("4_rb8pb")]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -62.0
-offset_right = 4.0
-offset_bottom = -54.0
-grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-text = "Back"
-
-[node name="ItemConfirmPanel" parent="Panel/LoadGamePanel" instance=ExtResource("16_y0cf3")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-title = "Delete Save?"
-description = "Are you sure you want to delete this save?"
 
 [node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
 visible = false
@@ -462,9 +363,6 @@ fit_content = true
 [connection signal="pressed" from="Panel/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="Panel/LoadGamePanel" to="." method="_on_load_game_panel_back_pressed"]
-[connection signal="visibility_changed" from="Panel/LoadGamePanel/ScrollContainer" to="Panel/LoadGamePanel/ScrollContainer" method="_on_visibility_changed"]
-[connection signal="pressed" from="Panel/LoadGamePanel/BackButton" to="Panel/LoadGamePanel" method="_on_back_button_pressed"]
-[connection signal="confirm_option" from="Panel/LoadGamePanel/ItemConfirmPanel" to="Panel/LoadGamePanel" method="_on_item_confirm_panel_confirm_option"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="focus_entered" from="Panel/PlayerNamePanel/NameInput" to="." method="_on_name_input_focus_entered"]

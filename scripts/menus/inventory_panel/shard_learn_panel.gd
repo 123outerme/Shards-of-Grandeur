@@ -20,9 +20,9 @@ func _ready():
 	pass
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed("game_decline") and not inTutorial:
+	if visible and event.is_action_pressed("game_decline") and not backButton.disabled:
 		get_viewport().set_input_as_handled()
-		backButton.button_pressed = true
+		_on_back_button_pressed()
 
 func load_shard_learn_panel():
 	if shard == null:
@@ -39,7 +39,7 @@ func load_shard_learn_panel():
 	movePoolPanel.level = PlayerResources.playerInfo.combatant.stats.level
 	movePoolPanel.load_move_pool_panel()
 	movePoolPanel.show_learn_buttons(true)
-	backButton.disabled = inTutorial
+	backButton.disabled = inTutorial and movePoolPanel.get_learnable_move_count() > 0
 	if inTutorial:
 		load_tutorial()
 	visible = true

@@ -90,6 +90,14 @@ func focus_move_details(move: Move) -> bool:
 			break
 	return focusGrabbed
 
+func get_learnable_move_count() -> int:
+	var count: int = 0
+	for move in movepool:
+		if not (move in PlayerResources.playerInfo.combatant.stats.movepool.pool) and \
+				move.requiredLv <= PlayerResources.playerInfo.combatant.stats.level:
+			count += 1
+	return count
+
 func _on_details_button_clicked(move: Move):
 	details_button_clicked.emit(move)
 

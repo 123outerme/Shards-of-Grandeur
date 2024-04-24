@@ -143,7 +143,7 @@ func start_cutscene(newCutscene: Cutscene):
 	
 	lastFrame = null
 	if not Engine.is_editor_hint():
-		SaveHandler.save_data()
+		#SaveHandler.save_data()
 		for npc in get_tree().get_nodes_in_group("NPC"):
 			npc.talkAlertSprite.visible = false
 	cutscene = newCutscene
@@ -241,7 +241,6 @@ func complete_cutscene():
 	lastFrame = null
 	skipping = false
 	PlayerFinder.player.pauseDisabled = false
-	SceneLoader.unpause_autonomous_movers()
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():
 		PlayerFinder.player.inCutscene = false # be considered not in a cutscene anymore
@@ -250,6 +249,7 @@ func complete_cutscene():
 		PlayerFinder.player.cam.show_letterbox(false) # otherwise hide the letterboxes and be not in cutscene
 	if cutscene.unlockCameraHoldAfter and (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
 		PlayerFinder.player.snap_camera_back_to_player()
+	SceneLoader.unpause_autonomous_movers()
 	playing = false
 	completeAfterFadeIn = false
 	PlayerFinder.player.cam.stop_cam_shake()

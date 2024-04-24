@@ -22,7 +22,7 @@ func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
 		get_viewport().set_input_as_handled()
 		if not (controlsSection.visible and controlsSection.trapFocus):
-			backButton.button_pressed = true
+			_on_back_button_pressed()
 
 func toggle_settings_menu(showing: bool):
 	visible = showing

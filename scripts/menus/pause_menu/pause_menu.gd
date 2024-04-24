@@ -62,6 +62,8 @@ func _on_save_button_pressed():
 
 func _on_quit_button_pressed():
 	SaveHandler.save_data()
+	PlayerResources.saveFolder = ''
+	PlayerResources.battleSaveFolder = ''
 	SceneLoader.load_main_menu()
 
 func _on_settings_menu_back_pressed():

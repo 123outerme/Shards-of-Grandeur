@@ -333,7 +333,7 @@ func pause_movement():
 	disableMovement = true
 
 func unpause_movement():
-	disableMovement = textBox.visible
+	disableMovement = textBox.visible or inCutscene
 	
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
 	if holdCameraX or holdCameraY:

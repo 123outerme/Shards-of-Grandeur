@@ -3,6 +3,7 @@ extends Node
 var saved_scripts: Array
 var save_exists_file: String = "playerinfo.tres" # this file should always exist if a save game exists
 var battle_file = "battle.tres" # this file should exist if the game was saved in battle
+var battle_node_path = '/root/Battle' # this node should exist in the saved scripts if the Battle scene is loaded
 
 var subdirs: Array = ["npcs/", "enemies/", "minions/", ""] # last one is root save folder
 
@@ -34,7 +35,13 @@ func fetch_saved_scripts():
 
 func save_data(saveFolder: String = 'save') -> bool:
 	var saveFileLocation: String = get_save_file_location(saveFolder)
-	create_save_subdirs(saveFileLocation)
+	if saveFolder != 'save':
+		var success = copy_save('save', saveFolder)
+		if not success:
+			printerr('SaveHandler save_data error on copying auto-save to ', saveFolder)
+			return false
+	else:
+		create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		#print(script_path)
@@ -46,19 +53,26 @@ func save_data(saveFolder: String = 'save') -> bool:
 				return false
 		else:
 			printerr('WARNING: No save_data script for ', script_path)
-	if not '/root/Battle' in saved_scripts and FileAccess.file_exists(saveFileLocation + battle_file):
-		DirAccess.remove_absolute(saveFileLocation + battle_file)
+	if not (battle_node_path in saved_scripts) and FileAccess.file_exists(saveFileLocation + battle_file):
+		var err = DirAccess.remove_absolute(saveFileLocation + battle_file)
+		if err != 0:
+			printerr('SaveHandler save_data error on removing Battle file after no longer needed: error' , err)
 	return true
 
 func load_data(saveFolder: String = 'save'):
-	var saveFileLocation: String = get_save_file_location(saveFolder)
-	create_save_subdirs(saveFileLocation)
+	if saveFolder != 'save':
+		var success: bool = copy_save(saveFolder, 'save')
+		if not success:
+			printerr('Error clearing out auto-save to load ', saveFolder)
+			#return
+	var saveFileLocation: String = get_save_file_location('save')
+	create_save_subdirs('save')
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
 		if scr != null and scr.has_method("load_data"):
 			scr.call("load_data", saveFileLocation)
-			
+
 func new_game(characterName: String, saveFolder: String = 'save'):
 	var saveFileLocation: String = get_save_file_location(saveFolder)
 	fetch_saved_scripts()
@@ -114,7 +128,12 @@ func copy_save(fromFolder: String, toFolder: String) -> bool:
 	
 	var fromSaveFileLocation: String = get_save_file_location(fromFolder).trim_suffix('/')
 	var toSaveFileLocation: String = get_save_file_location(toFolder).trim_suffix('/')
-	var err = copy_directory_recursive(fromSaveFileLocation, toSaveFileLocation)
+	# clear out save file destination first
+	var err = delete_directory_recursive(toSaveFileLocation)
+	if err != 0:
+		printerr('DirAccess delete dir for copy ', toFolder, ' error ', err)
+		return false
+	err = copy_directory_recursive(fromSaveFileLocation, toSaveFileLocation)
 	if err != 0:
 		printerr('DirAccess copy dir ', fromFolder, ' to ', toFolder, ' error ', err)
 	return err == 0

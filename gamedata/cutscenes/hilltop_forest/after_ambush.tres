@@ -1,13 +1,20 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=24 format=3 uid="uid://ce4g0qxc138r5"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://ce4g0qxc138r5"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_aoois"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_d00tx"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_hvvit"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_qipqy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_rnr4i"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_djo6s"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="2_ugjbm"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_hdoow"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_6ghks"]
+
+[sub_resource type="Resource" id="Resource_w6ahn"]
+script = ExtResource("1_rnr4i")
+actorTreePath = "TileMap/ChainLegionSoldier"
+isPlayer = false
+animation = "talk"
 
 [sub_resource type="Resource" id="Resource_1knuu"]
 script = ExtResource("1_aoois")
@@ -19,7 +26,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The ambusher speaks"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([SubResource("Resource_w6ahn")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([SubResource("Resource_1knuu")])
 endTextBoxPauses = true
@@ -34,7 +41,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "Wait for the textbox to be cleared before fading out"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -44,12 +51,18 @@ endFade = 0
 endFadeLength = 0.0
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_4ymml"]
+script = ExtResource("1_rnr4i")
+actorTreePath = "TileMap/ChainLegionSoldier"
+isPlayer = false
+animation = "stand"
+
 [sub_resource type="Resource" id="Resource_0u5ah"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The screen fades out"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([SubResource("Resource_4ymml")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -64,7 +77,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "Delay while the screen is fading out (since the fade-out happens after the frame ends, we need to wait)"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = false
@@ -88,7 +101,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The ambusher is made invisible"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_xjit7")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -103,7 +116,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The scene fades back in"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -118,7 +131,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "Wait for the screen to fade back in after the previous frame ends"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -142,7 +155,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "The player walks towards the spelunker (matching the target Y position)"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_7ewx0")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_hdoow")])
+actorAnims = Array[ExtResource("1_rnr4i")]([ExtResource("3_hdoow")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -166,7 +179,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "The player walks right in front of the spelunker"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_l0kiu")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnims = Array[ExtResource("1_rnr4i")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true
@@ -181,7 +194,7 @@ script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "Make the player stand before resuming play"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_6ghks")])
+actorAnims = Array[ExtResource("1_rnr4i")]([ExtResource("5_6ghks")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = true

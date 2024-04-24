@@ -19,7 +19,7 @@ func _ready():
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
 		get_viewport().set_input_as_handled()
-		okButton.button_pressed = true
+		_on_ok_button_pressed()
 
 func load_item_use_panel():
 	var itemUseText: String = ''
