@@ -10,6 +10,7 @@ class_name GameSettings
 @export var vsync: bool = false
 @export var deadzone: float = 0.5
 @export var framerate: int = 60
+@export var windowSize: Vector2i = Vector2i(1080, 720)
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -66,6 +67,7 @@ func _init(
 	i_vsync = false,
 	i_deadzone = 0.5,
 	i_framerate = 60,
+	i_windowSize = Vector2i(1080, 720)
 ):
 	inputMap = i_inputMap.duplicate()
 	musicVolume = i_musicVolume
@@ -76,6 +78,7 @@ func _init(
 	vsync = i_vsync
 	deadzone = i_deadzone
 	framerate = i_framerate
+	windowSize = i_windowSize
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
 	for action in InputMap.get_actions().filter(_filter_input_map):
@@ -122,6 +125,9 @@ func apply_deadzone():
 
 func apply_framerate():
 	Engine.max_fps = framerate
+
+func apply_window_size(viewport: Viewport):
+	viewport.get_window().size = windowSize
 
 func load_data(save_path):
 	var data = null

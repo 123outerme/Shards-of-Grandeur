@@ -3,6 +3,13 @@ class_name GeneralSection
 
 @export var sectionToggleButton: Button
 
+var optionsMenu: PopupMenu = null
+
+var windowSizeOptions: Dictionary = {
+	0: Vector2i(1280, 720),
+	1: Vector2i(1920, 1080)
+}
+
 var framerate: int = 60
 var prevFramerate: int = 60
 var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -13,6 +20,7 @@ var allFramerateTextSelected: bool = false
 @onready var onscreenKeyboardButton: CheckButton = get_node('Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton')
 @onready var screenShakeButton: CheckButton = get_node('Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
+@onready var windowOptionsButton: MenuButton = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton')
 @onready var vsyncButton: CheckButton = get_node('Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton')
 @onready var deadzoneSlider: HSlider = get_node('Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider')
 @onready var framerateLineEdit: LineEdit = get_node('Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit')
@@ -29,6 +37,8 @@ func toggle_section(toggle: bool):
 		onscreenKeyboardButton.button_pressed = SettingsHandler.gameSettings.useVirtualKeyboard
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
+		
+		windowOptionsButton.text = String.num(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num(SettingsHandler.gameSettings.windowSize.y)
 		vsyncButton.button_pressed = SettingsHandler.gameSettings.vsync
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		framerateLineEdit.text = String.num(framerate) + ' FPS'
@@ -119,3 +129,19 @@ func _on_deadzone_slider_focus_exited():
 	#print(SettingsHandler.gameSettings.deadzone)
 	SettingsHandler.gameSettings.apply_deadzone()
 	SettingsHandler.settings_changed.emit()
+
+func _on_window_options_button_about_to_popup():
+	optionsMenu = windowOptionsButton.get_popup()
+	if not optionsMenu.id_pressed.is_connected(_on_window_option_chosen):
+		optionsMenu.id_pressed.connect(_on_window_option_chosen)
+
+func _on_window_option_chosen(id):
+	var previousSize: Vector2i = SettingsHandler.gameSettings.windowSize
+	if windowSizeOptions[id] == previousSize:
+		return
+	SettingsHandler.gameSettings.windowSize = windowSizeOptions[id]
+	SettingsHandler.gameSettings.apply_window_size(get_viewport())
+	# TODO revert if not OK after a 5-10 second countdown
+	windowOptionsButton.text = String.num(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num(SettingsHandler.gameSettings.windowSize.y)
+	SettingsHandler.settings_changed.emit()
+	optionsMenu.id_pressed.disconnect(_on_window_option_chosen)

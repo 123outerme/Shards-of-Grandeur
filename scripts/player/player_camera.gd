@@ -36,6 +36,13 @@ var registeredFadeOutCallbacks: Array[Callable] = []
 
 var alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
+func _ready():
+	#set_custom_viewport(SceneLoader.subViewport)
+	#SettingsHandler.settings_changed.connect(_settings_changed)
+	# initialize zoom
+	#_settings_changed()
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if fadeInReady and fadeInTween != null:
@@ -184,3 +191,6 @@ func _on_skip_button_pressed():
 	player.cutscenePaused = false
 	set_alert_panels_lifetime_pause(cutscenePaused)
 	SceneLoader.cutscenePlayer.skip_cutscene()
+
+func _settings_changed():
+	zoom = Vector2(SettingsHandler.gameSettings.playerCamZoom, SettingsHandler.gameSettings.playerCamZoom)

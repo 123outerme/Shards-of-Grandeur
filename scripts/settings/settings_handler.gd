@@ -15,3 +15,4 @@ func load_data():
 	if newGameSettings != null:
 		gameSettings = newGameSettings
 	gameSettings.apply_from_stored_inputs()
+	#gameSettings.apply_window_size(get_viewport())
