@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_mtma6"]
 
 [node name="LoadSaveItemPanel" type="Panel"]
-custom_minimum_size = Vector2(1120, 152)
+custom_minimum_size = Vector2(1120, 88)
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = -160.0
+offset_bottom = 88.0
 grow_horizontal = 2
 theme = ExtResource("1_vbmf1")
 script = ExtResource("2_daeut")
@@ -15,50 +17,46 @@ script = ExtResource("2_daeut")
 [node name="SaveSlotLabel" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -66.0
-offset_right = 456.0
-offset_bottom = -21.0
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/bold_italics_font_size = 32
-theme_override_font_sizes/mono_font_size = 32
+offset_right = 309.0
+offset_bottom = 37.0
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
 text = "Auto-Save (Loaded)"
 scroll_active = false
 
 [node name="PlayerSaveNameLabel" type="RichTextLabel" parent="." groups=["LoadSaveItemPanel"]]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -20.0
-offset_right = 342.0
+offset_top = -11.0
+offset_right = 346.0
 offset_bottom = 20.0
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
 bbcode_enabled = true
 text = "Player Save Name Goes Here"
 
 [node name="SaveTimeLabel" type="RichTextLabel" parent="."]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 21.0
+offset_top = -26.0
 offset_right = 545.0
-offset_bottom = 47.0
-grow_vertical = 2
+grow_vertical = 0
 text = "Your House in Grandstone (in Battle) - 9999h 59m 59s"
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="."]

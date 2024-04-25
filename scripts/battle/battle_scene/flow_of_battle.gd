@@ -67,7 +67,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		fobButton.grab_focus.call_deferred()
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
-	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -386)
+	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -320)
 	# NOTE: these coordinates are magic numbers to make the item details panel centered.
 	# we can't center it in the Equipment Panel because that would affect the centering elsewhere
 	# needs to be called deferred so the equipment panel can be @onready 'd, same for the item details panel

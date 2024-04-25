@@ -20,7 +20,7 @@ levelUpMusic = ExtResource("2_qydtc")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 theme = ExtResource("2_vg3x4")
 
 [node name="Panel" type="Panel" parent="StatsPanel"]
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel"]
-position = Vector2(64, 52)
+position = Vector2(64, 44)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_usdlr")
 animation = &"walk"
@@ -43,9 +43,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -350.0
-offset_top = 12.0
+offset_top = 9.0
 offset_right = 350.0
-offset_bottom = 62.0
+offset_bottom = 59.0
 grow_horizontal = 2
 theme = ExtResource("4_77yq4")
 bbcode_enabled = true
@@ -58,9 +58,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -75.0
-offset_top = 54.0
+offset_top = 47.0
 offset_right = 75.0
-offset_bottom = 94.0
+offset_bottom = 81.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
@@ -73,9 +73,9 @@ text = "[center]Level Up![/center]"
 [node name="StatLinePanel" parent="StatsPanel/Panel" instance=ExtResource("5_lltfh")]
 layout_mode = 1
 offset_left = 40.0
-offset_top = 98.0
+offset_top = 78.0
 offset_right = 600.0
-offset_bottom = 502.0
+offset_bottom = 458.0
 
 [node name="MoveListPanel" parent="StatsPanel/Panel" instance=ExtResource("6_w55pq")]
 layout_mode = 1
@@ -83,9 +83,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -600.0
-offset_top = 98.0
+offset_top = 78.0
 offset_right = -40.0
-offset_bottom = 502.0
+offset_bottom = 419.0
 grow_horizontal = 0
 
 [node name="MoveDetailsPanel" parent="StatsPanel/Panel/MoveListPanel" index="2"]
@@ -105,17 +105,45 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -431.0
+offset_top = -264.0
 offset_right = 600.0
-offset_bottom = -76.0
+offset_bottom = -6.0
 grow_vertical = 0
+
+[node name="WeaponControl" parent="StatsPanel/Panel/EquipmentPanel" index="0"]
+offset_bottom = -131.0
+
+[node name="WeaponEffects" parent="StatsPanel/Panel/EquipmentPanel/WeaponControl" index="3"]
+offset_bottom = 124.0
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed
+Third Line[/center]"
+
+[node name="ArmorControl" parent="StatsPanel/Panel/EquipmentPanel" index="1"]
+offset_top = 128.0
+
+[node name="ArmorEffects" parent="StatsPanel/Panel/EquipmentPanel/ArmorControl" index="3"]
+offset_bottom = 124.0
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "[center]While Equipped, Before The User's Turn Starts:
++100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed
+Third Line[/center]"
 
 [node name="ItemDetailsPanel" parent="StatsPanel/Panel/EquipmentPanel" index="2"]
 z_index = 1
 offset_left = -40.0
-offset_top = -529.0
+offset_top = -479.0
 offset_right = 680.0
-offset_bottom = 76.0
+offset_bottom = 6.0
 
 [node name="MinionsPanel" parent="StatsPanel/Panel" instance=ExtResource("8_3o74c")]
 layout_mode = 1
@@ -125,9 +153,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -600.0
-offset_top = -431.0
+offset_top = -304.0
 offset_right = -40.0
-offset_bottom = -76.0
+offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
 
