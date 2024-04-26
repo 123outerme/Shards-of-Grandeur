@@ -78,11 +78,19 @@ alignment = 1
 [node name="YesButton" parent="Panel/HBoxContainer" instance=ExtResource("4_shx4p")]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../NoButton")
+focus_neighbor_bottom = NodePath(".")
 text = "Yes"
 
 [node name="NoButton" parent="Panel/HBoxContainer" instance=ExtResource("4_shx4p")]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath("../YesButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "No"
 
 [connection signal="pressed" from="Panel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
