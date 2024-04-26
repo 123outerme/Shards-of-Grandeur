@@ -67,7 +67,7 @@ func load_data(saveFolder: String = 'save'):
 			printerr('Error clearing out auto-save to load ', saveFolder)
 			#return
 	var saveFileLocation: String = get_save_file_location('save')
-	create_save_subdirs('save')
+	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))
@@ -130,7 +130,9 @@ func copy_save(fromFolder: String, toFolder: String) -> bool:
 	var fromSaveFileLocation: String = get_save_file_location(fromFolder).trim_suffix('/')
 	var toSaveFileLocation: String = get_save_file_location(toFolder).trim_suffix('/')
 	# clear out save file destination first
-	var err = delete_directory_recursive(toSaveFileLocation)
+	var err = 0
+	if save_file_exists(toFolder):
+		err = delete_directory_recursive(toSaveFileLocation)
 	if err != 0:
 		printerr('DirAccess delete dir for copy ', toFolder, ' error ', err)
 		return false
