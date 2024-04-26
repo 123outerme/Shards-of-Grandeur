@@ -8,4 +8,5 @@ func _ready():
 	SceneLoader.audioHandler = audioHandler
 	SceneLoader.cutscenePlayer = cutscenePlayer
 	SettingsHandler.gameSettings.apply_window_size(get_viewport())
+	SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	SceneLoader.load_main_menu()

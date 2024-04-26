@@ -34,14 +34,9 @@ func fetch_saved_scripts():
 		saved_scripts.append("/" + node.get_path().get_concatenated_names().c_escape())
 
 func save_data(saveFolder: String = 'save') -> bool:
-	var saveFileLocation: String = get_save_file_location(saveFolder)
-	if saveFolder != 'save':
-		var success = copy_save('save', saveFolder)
-		if not success:
-			printerr('SaveHandler save_data error on copying auto-save to ', saveFolder)
-			return false
-	else:
-		create_save_subdirs(saveFileLocation)
+	# first save to the auto-save file
+	var saveFileLocation: String = get_save_file_location('save')
+	create_save_subdirs(saveFileLocation)
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		#print(script_path)
@@ -57,6 +52,12 @@ func save_data(saveFolder: String = 'save') -> bool:
 		var err = DirAccess.remove_absolute(saveFileLocation + battle_file)
 		if err != 0:
 			printerr('SaveHandler save_data error on removing Battle file after no longer needed: error' , err)
+	# then if not only saving to the auto-save file, copy over the auto-save to the destination
+	if saveFolder != 'save':
+		var success = copy_save('save', saveFolder)
+		if not success:
+			printerr('SaveHandler save_data error on copying auto-save to ', saveFolder)
+			return false
 	return true
 
 func load_data(saveFolder: String = 'save'):
