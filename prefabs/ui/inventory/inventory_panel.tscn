@@ -21,13 +21,16 @@ script = ExtResource("1_b8tdp")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 theme = ExtResource("2_n8oq0")
 
 [node name="Panel" type="Panel" parent="InventoryPanel"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 960.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="InventoryTitle" type="RichTextLabel" parent="InventoryPanel/Panel"]
 layout_mode = 1
@@ -211,29 +214,29 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("6_ay1wk")]
 visible = false
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 
 [node name="ItemUsePanel" parent="." instance=ExtResource("7_t7wq8")]
 visible = false
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 
 [node name="ShardLearnPanel" parent="." instance=ExtResource("8_suef4")]
 visible = false
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 
 [node name="ItemConfirmPanel" parent="." instance=ExtResource("11_c0y15")]
 visible = false
 offset_right = 1280.0
-offset_bottom = 960.0
+offset_bottom = 720.0
 
 [connection signal="item_used" from="." to="." method="_on_item_used"]
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]

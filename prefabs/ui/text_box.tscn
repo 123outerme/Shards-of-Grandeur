@@ -21,9 +21,9 @@ buttonRow = NodePath("Panel/ScrollBetterFollow/HBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -650.0
-offset_top = 80.0
+offset_top = 48.0
 offset_right = 650.0
-offset_bottom = 480.0
+offset_bottom = 360.0
 mouse_filter = 2
 theme = ExtResource("2_qnltp")
 theme_override_styles/panel = ExtResource("4_p0x7t")
@@ -31,7 +31,7 @@ theme_override_styles/panel = ExtResource("4_p0x7t")
 [node name="TextContainer" type="PanelContainer" parent="Panel"]
 layout_mode = 0
 offset_right = 1300.0
-offset_bottom = 400.0
+offset_bottom = 314.0
 mouse_filter = 1
 theme = ExtResource("2_qnltp")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_s2p22")
@@ -60,7 +60,7 @@ text = "Speaker:"
 fit_content = true
 
 [node name="TextBoxText" type="RichTextLabel" parent="Panel/TextContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 270)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_00gxq")
@@ -70,7 +70,11 @@ theme_override_font_sizes/italics_font_size = 28
 theme_override_font_sizes/bold_italics_font_size = 28
 theme_override_font_sizes/mono_font_size = 28
 bbcode_enabled = true
-text = "Some line of dialogue..."
+text = "Some line of dialogue...
+Line two
+Line three
+Line four
+Line five"
 fit_content = true
 
 [node name="ScrollBetterFollow" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
@@ -99,8 +103,8 @@ theme = ExtResource("8_5rr3o")
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ReadySprite" type="Sprite2D" parent="."]
-position = Vector2(610, 110)
+[node name="ReadySprite" type="Sprite2D" parent="Panel"]
+position = Vector2(1260, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("4_13uxh")
 

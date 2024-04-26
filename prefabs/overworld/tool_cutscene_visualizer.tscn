@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/mock_player.gd" id="3_dsl0g"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_jf0m3"]
 
-[sub_resource type="Resource" id="Resource_wiixt"]
+[sub_resource type="Resource" id="Resource_rbofi"]
 script = ExtResource("4_jf0m3")
 saveName = "npc"
 position = Vector2(0, 0)
@@ -16,14 +16,14 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
-version = "0.0.4"
+version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ppir"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvq5a"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 8
 border_width_top = 8
@@ -31,7 +31,7 @@ border_width_right = 8
 border_width_bottom = 8
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4lld"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grlfa"]
 bg_color = Color(0, 0, 0, 0.65098)
 
 [node name="ToolCutsceneVisualizer" type="Node2D"]
@@ -40,7 +40,7 @@ script = ExtResource("1_vxik6")
 [node name="MockPlayer" parent="." instance=ExtResource("2_edynv")]
 script = ExtResource("3_dsl0g")
 facingLeft = false
-data = SubResource("Resource_wiixt")
+data = SubResource("Resource_rbofi")
 
 [node name="NPCSprite" parent="MockPlayer" index="0"]
 sprite_frames = ExtResource("3_0pscs")
@@ -55,12 +55,19 @@ visible = false
 [node name="MockShade" type="Panel" parent="MockPlayer"]
 z_index = 100
 z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -120.0
+offset_top = -90.0
 offset_right = 1120.0
-offset_bottom = 840.0
+offset_bottom = 630.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.25, 0.25)
-theme_override_styles/panel = SubResource("StyleBoxFlat_2ppir")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvq5a")
 
 [node name="MockShadeCenter" type="Panel" parent="MockPlayer/MockShade"]
 modulate = Color(1, 1, 1, 0)
@@ -70,7 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r4lld")
+theme_override_styles/panel = SubResource("StyleBoxFlat_grlfa")
 
 [node name="Letterbox" type="Control" parent="MockPlayer/MockShade"]
 z_index = 2
@@ -84,7 +91,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="MockPlayer/MockShade/Letterbox"]
-custom_minimum_size = Vector2(0, 146)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -92,7 +99,7 @@ grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="MockPlayer/MockShade/Letterbox"]
-custom_minimum_size = Vector2(0, 146)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

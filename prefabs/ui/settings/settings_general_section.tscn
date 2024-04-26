@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://blu80jv4lucvh"]
+[gd_scene load_steps=8 format=3 uid="uid://blu80jv4lucvh"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7a6vn"]
 [ext_resource type="Script" path="res://scripts/menus/settings_menu/general_section.gd" id="1_xnaea"]
 [ext_resource type="PackedScene" uid="uid://djat5vf5bcbma" path="res://prefabs/ui/sfx_check_button.tscn" id="3_rg6wg"]
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="4_3ann2"]
+[ext_resource type="PackedScene" uid="uid://dwftmwokiom5o" path="res://prefabs/ui/menu_sfx_button.tscn" id="4_11hh8"]
+[ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="6_523qk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2e67l"]
+bg_color = Color(0, 0, 0, 0.4)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="GeneralSection" type="Control"]
 layout_mode = 3
@@ -135,6 +144,153 @@ grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton")
 focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../DeadzoneControl/DeadzoneLabel/DeadzoneSlider")
+
+[node name="DeadzoneControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+
+[node name="DeadzoneLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+clip_contents = false
+custom_minimum_size = Vector2(500, 0.035)
+layout_mode = 1
+offset_right = 500.0
+offset_bottom = 26.0
+mouse_filter = 2
+text = "Movement Deadzone"
+fit_content = true
+
+[node name="DeadzoneSlider" type="HSlider" parent="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../WindowControl/WindowLabel/WindowOptionsButton")
+min_value = 20.0
+max_value = 80.0
+step = 5.0
+value = 50.0
+
+[node name="DeadzoneRangeLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+custom_minimum_size = Vector2(41, 26)
+layout_mode = 1
+offset_left = 257.0
+offset_top = 17.0
+offset_right = 298.0
+offset_bottom = 43.0
+text = "20%"
+fit_content = true
+
+[node name="DeadzoneRangeLabel2" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
+custom_minimum_size = Vector2(39, 26)
+layout_mode = 1
+offset_left = 460.0
+offset_top = 17.0
+offset_right = 499.0
+offset_bottom = 43.0
+text = "80%"
+fit_content = true
+
+[node name="WindowControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="WindowLabel" type="RichTextLabel" parent="Control/VBoxContainer/WindowControl"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 434.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Window Size"
+fit_content = true
+
+[node name="WindowOptionsButton" parent="Control/VBoxContainer/WindowControl/WindowLabel" instance=ExtResource("4_11hh8")]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -17.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../DeadzoneControl/DeadzoneLabel/DeadzoneSlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../FullscreenControl/FullscreenLabel/FullscreenButton")
+focus_mode = 2
+
+[node name="WindowMenuBtnPanel" type="Panel" parent="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2e67l")
+
+[node name="WindowMenuBtnLabel" type="RichTextLabel" parent="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]1080 x 720[/center]"
+
+[node name="FullscreenControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="FullscreenLabel" type="RichTextLabel" parent="Control/VBoxContainer/FullscreenControl"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 285.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Fullscreen"
+fit_content = true
+
+[node name="FullscreenButton" parent="Control/VBoxContainer/FullscreenControl/FullscreenLabel" instance=ExtResource("3_rg6wg")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../WindowControl/WindowLabel/WindowOptionsButton")
+focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../VSyncControl/VsyncLabel/VsyncButton")
 
 [node name="VSyncControl" type="Control" parent="Control/VBoxContainer"]
@@ -167,63 +323,9 @@ offset_top = -12.0
 offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../DeadzoneControl/DeadzoneLabel/DeadzoneSlider")
-
-[node name="DeadzoneControl" type="Control" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-
-[node name="DeadzoneLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
-clip_contents = false
-custom_minimum_size = Vector2(500, 0.035)
-layout_mode = 1
-offset_right = 500.0
-offset_bottom = 26.0
-mouse_filter = 2
-text = "Movement Deadzone"
-fit_content = true
-
-[node name="DeadzoneSlider" type="HSlider" parent="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
-grow_vertical = 2
-focus_neighbor_top = NodePath("../../../VSyncControl/VsyncLabel/VsyncButton")
+focus_neighbor_top = NodePath("../../../FullscreenControl/FullscreenLabel/FullscreenButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../FramerateControl/FramerateLabel/FramerateLineEdit")
-min_value = 20.0
-max_value = 80.0
-step = 5.0
-value = 50.0
-
-[node name="DeadzoneRangeLabel" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
-custom_minimum_size = Vector2(41, 26)
-layout_mode = 1
-offset_left = 257.0
-offset_top = 17.0
-offset_right = 298.0
-offset_bottom = 43.0
-text = "20%"
-fit_content = true
-
-[node name="DeadzoneRangeLabel2" type="RichTextLabel" parent="Control/VBoxContainer/DeadzoneControl"]
-custom_minimum_size = Vector2(39, 26)
-layout_mode = 1
-offset_left = 460.0
-offset_top = 17.0
-offset_right = 499.0
-offset_bottom = 43.0
-text = "80%"
-fit_content = true
 
 [node name="FramerateControl" type="Control" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 26)
@@ -264,10 +366,16 @@ virtual_keyboard_enabled = false
 select_all_on_focus = true
 
 [node name="VirtualKeyboard" parent="Control" instance=ExtResource("4_3ann2")]
-visible = false
 layout_mode = 1
-offset_top = 221.0
-offset_bottom = -180.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 446.0
+offset_top = 138.0
+offset_right = 744.0
+offset_bottom = 322.0
+grow_horizontal = 1
+grow_vertical = 1
 enabled = false
 rows = Array[String](["123", "456", "789", "0"])
 customShiftRows = Array[String]([])
@@ -277,14 +385,26 @@ enterRow = 3
 shiftRow = -1
 capsLockRow = -1
 
+[node name="ItemConfirmPanel" parent="." instance=ExtResource("6_523qk")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [connection signal="toggled" from="Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton" to="." method="_on_onscreen_keyboard_button_toggled"]
 [connection signal="pressed" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
 [connection signal="pressed" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="." method="_on_run_toggle_button_toggled"]
+[connection signal="focus_exited" from="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider" to="." method="_on_deadzone_slider_focus_exited"]
+[connection signal="pressed" from="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton" to="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" to="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" method="_on_pressed"]
+[connection signal="toggled" from="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="pressed" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="." method="_on_vysnc_button_toggled"]
-[connection signal="focus_exited" from="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider" to="." method="_on_deadzone_slider_focus_exited"]
 [connection signal="focus_entered" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_entered"]
 [connection signal="focus_exited" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_exited"]
 [connection signal="text_changed" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_text_changed"]
@@ -293,3 +413,4 @@ capsLockRow = -1
 [connection signal="enter_pressed" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
 [connection signal="key_pressed" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
 [connection signal="keyboard_hidden" from="Control/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
+[connection signal="confirm_option" from="ItemConfirmPanel" to="." method="_on_item_confirm_panel_confirm_option"]

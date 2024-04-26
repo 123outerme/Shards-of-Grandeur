@@ -188,6 +188,8 @@ func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 				stats.moves.append(null)
 	else:
 		stats.moves[slot] = newMove
+	editMovesPanel.movePoolPanel.moves = stats.moves
+	editMovesPanel.load_edit_moves_panel(true)
 	load_stats_panel()
 
 func _on_equipment_panel_attempt_equip_weapon():

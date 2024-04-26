@@ -28,6 +28,7 @@ func load_move_pool_panel(rebuild: bool = true):
 			panel.queue_free()
 	
 		firstMovePanel = null
+		var lastMovePanel: MoveListItemPanel = null
 		var sortedMovepool: Array[Move] = movepool.duplicate()
 		sortedMovepool.sort_custom(_sort_by_level_desc)
 		for move in sortedMovepool:
@@ -45,6 +46,12 @@ func load_move_pool_panel(rebuild: bool = true):
 				instantiatedPanel.call_deferred('load_move_list_item_panel')
 				if firstMovePanel == null:
 					firstMovePanel = instantiatedPanel
+				lastMovePanel = instantiatedPanel
+		lastMovePanel.detailsButton.focus_neighbor_bottom = NodePath('.')
+		lastMovePanel.cancelButton.focus_neighbor_bottom = NodePath('.')
+		lastMovePanel.reorderButton.focus_neighbor_bottom = NodePath('.')
+		lastMovePanel.replaceButton.focus_neighbor_bottom = NodePath('.')
+		lastMovePanel.selectButton.focus_neighbor_bottom = NodePath('.')
 	else:
 		var panels: Array[Node] = get_tree().get_nodes_in_group('MovePoolPanelMove')
 		for idx in range(len(panels)):

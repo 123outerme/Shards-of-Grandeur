@@ -79,9 +79,9 @@ func is_in_dialogue() -> bool:
 	return false
 
 func handle_camera(frame: CutsceneFrame):
-	if lastFrame.endHoldCamera and not mockPlayer.holdingCamera:
+	if lastFrame.endHoldCamera and not (mockPlayer.holdCameraX or mockPlayer.holdCameraY):
 		mockPlayer.hold_camera_at(mockPlayer.position)
-	if not lastFrame.endHoldCamera and mockPlayer.holdingCamera:
+	if not lastFrame.endHoldCamera and (mockPlayer.holdCameraX or mockPlayer.holdCameraY):
 		mockPlayer.snap_camera_back_to_player()
 	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
 		mockPlayer.stop_cam_shake()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=62 format=3 uid="uid://c8g3p1lo0jdr3"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=63 format=3 uid="uid://c8g3p1lo0jdr3"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_2trho"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_t8muq"]
@@ -39,6 +39,30 @@ endFade = 0
 endFadeLength = 0.0
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_c8rmc"]
+script = ExtResource("1_2trho")
+value = Vector2(-394, -180)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_lqe1l"]
+script = ExtResource("2_pkwfi")
+frameLength = 1.5
+annotation = "Player moves a little closer to front of cave"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_c8rmc")])
+actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+endStartsShardLearnTutorial = false
+
 [sub_resource type="Resource" id="Resource_npex1"]
 script = ExtResource("4_0n8c1")
 speaker = "Dr. Hudson"
@@ -61,7 +85,7 @@ endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_y6fu1"]
 script = ExtResource("1_2trho")
-value = Vector2(-570, -108)
+value = Vector2(-560, -138)
 actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 propertyName = "position"
@@ -70,7 +94,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_txtpi"]
 script = ExtResource("1_2trho")
-value = Vector2(-609, -108)
+value = Vector2(-599, -122)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -106,7 +130,7 @@ animation = "walk"
 
 [sub_resource type="Resource" id="Resource_5duol"]
 script = ExtResource("1_2trho")
-value = Vector2(-418, -150)
+value = Vector2(-418, -176)
 actorTreePath = "TileMap/DrHudson"
 isPlayer = false
 propertyName = "position"
@@ -115,7 +139,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_6l3ku"]
 script = ExtResource("1_2trho")
-value = Vector2(-457, -150)
+value = Vector2(-457, -162)
 actorTreePath = "TileMap/HorseCart"
 isPlayer = false
 propertyName = "position"
@@ -199,21 +223,12 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
-[sub_resource type="Resource" id="Resource_837yk"]
-script = ExtResource("1_2trho")
-value = Vector2(-394, -184)
-actorTreePath = ""
-isPlayer = true
-propertyName = "position"
-easeType = 2
-transitionType = 0
-
 [sub_resource type="Resource" id="Resource_et4yl"]
 script = ExtResource("2_pkwfi")
 frameLength = 1.5
-annotation = "Dr. Hudson and the player walk towards the cave entrance together, player slightly behind"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_b70xs"), SubResource("Resource_837yk")])
-actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_qyrmv"), ExtResource("1_t8muq")])
+annotation = "Dr. Hudson walks towards the cave entrance"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_b70xs")])
+actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_qyrmv")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxPauses = true
@@ -497,7 +512,7 @@ invalidAfterSpecialBattles = Array[String]([])
 
 [resource]
 script = ExtResource("1_wyxwv")
-cutsceneFrames = Array[ExtResource("2_pkwfi")]([SubResource("Resource_1dvtu"), SubResource("Resource_yevn4"), SubResource("Resource_yxnuj"), SubResource("Resource_lyap2"), SubResource("Resource_yfrg5"), SubResource("Resource_7wbb6"), SubResource("Resource_et4yl"), SubResource("Resource_wvafv"), SubResource("Resource_ujrc5"), SubResource("Resource_h4327"), SubResource("Resource_u0q4i"), SubResource("Resource_fxtrd"), SubResource("Resource_30vif"), SubResource("Resource_kft17"), SubResource("Resource_jak4u"), SubResource("Resource_5edrb"), SubResource("Resource_wamxs"), SubResource("Resource_6duyd")])
+cutsceneFrames = Array[ExtResource("2_pkwfi")]([SubResource("Resource_1dvtu"), SubResource("Resource_lqe1l"), SubResource("Resource_yevn4"), SubResource("Resource_yxnuj"), SubResource("Resource_lyap2"), SubResource("Resource_yfrg5"), SubResource("Resource_7wbb6"), SubResource("Resource_et4yl"), SubResource("Resource_wvafv"), SubResource("Resource_ujrc5"), SubResource("Resource_h4327"), SubResource("Resource_u0q4i"), SubResource("Resource_fxtrd"), SubResource("Resource_30vif"), SubResource("Resource_kft17"), SubResource("Resource_jak4u"), SubResource("Resource_5edrb"), SubResource("Resource_wamxs"), SubResource("Resource_6duyd")])
 saveName = "hilltop_ambush"
 storyRequirements = SubResource("Resource_162n4")
 unlockCameraHoldAfter = true
