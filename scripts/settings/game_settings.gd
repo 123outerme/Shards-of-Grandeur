@@ -10,7 +10,7 @@ class_name GameSettings
 @export var vsync: bool = false
 @export var deadzone: float = 0.5
 @export var framerate: int = 60
-@export var windowSize: Vector2i = Vector2i(1080, 720)
+@export var windowSize: Vector2i = Vector2i(1280, 720)
 @export var fullscreen: bool = false
 
 var defaultInputMap: Dictionary = {}
@@ -68,7 +68,7 @@ func _init(
 	i_vsync = false,
 	i_deadzone = 0.5,
 	i_framerate = 60,
-	i_windowSize = Vector2i(1080, 720),
+	i_windowSize = Vector2i(1280, 720),
 	i_fullscreen = false,
 ):
 	inputMap = i_inputMap.duplicate()
