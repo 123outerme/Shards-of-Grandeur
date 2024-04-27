@@ -71,8 +71,8 @@ func load_into_battle():
 			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())
 			enemyCombatant1.combatant.pick_equipment()
 			# stats start out in base form, this will evolve the combatant
-			if enemyCombatant1.get_evolution() != null:
-				enemyCombatant1.switch_evolution(enemyCombatant1.get_evolution(), null)
+			if enemyCombatant1.combatant.get_evolution() != null:
+				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
@@ -85,8 +85,8 @@ func load_into_battle():
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant2.save_name())
 				enemyCombatant2.combatant.pick_equipment()
 				# stats start out in base form, this will evolve the combatant
-				if enemyCombatant2.get_evolution() != null:
-					enemyCombatant2.switch_evolution(enemyCombatant2.get_evolution(), null)
+				if enemyCombatant2.combatant.get_evolution() != null:
+					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
@@ -98,8 +98,8 @@ func load_into_battle():
 			if PlayerResources.playerInfo.staticEncounter.combatant3 != null:
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
 				enemyCombatant3.combatant.pick_equipment()
-				if enemyCombatant3.get_evolution() != null:
-					enemyCombatant3.switch_evolution(enemyCombatant3.get_evolution(), null)
+				if enemyCombatant3.combatant.get_evolution() != null:
+					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
@@ -112,8 +112,8 @@ func load_into_battle():
 				hasStaticMinion = true
 				minionCombatant.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.autoAlly.save_name())
 				# TODO: give auto ally some static equipment?
-				if minionCombatant.get_evolution() != null:
-					minionCombatant.switch_evolution(minionCombatant.get_evolution(), null)
+				if minionCombatant.combatant.get_evolution() != null:
+					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 				minionCombatant.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.autoAllyLevel)
 				minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
@@ -128,8 +128,8 @@ func load_into_battle():
 			
 			var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
 			enemyCombatant1.combatant.pick_equipment()
-			if enemyCombatant1.get_evolution() != null:
-				enemyCombatant1.switch_evolution(enemyCombatant1.get_evolution(), null)
+			if enemyCombatant1.combatant.get_evolution() != null:
+				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
@@ -142,8 +142,8 @@ func load_into_battle():
 			if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
 				enemyCombatant2.combatant.pick_equipment()
-				if enemyCombatant2.get_evolution() != null:
-					enemyCombatant2.switch_evolution(enemyCombatant2.get_evolution(), null)
+				if enemyCombatant2.combatant.get_evolution() != null:
+					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
@@ -158,8 +158,8 @@ func load_into_battle():
 			if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
 				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
 				enemyCombatant3.combatant.pick_equipment()
-				if enemyCombatant3.get_evolution() != null:
-					enemyCombatant3.switch_evolution(enemyCombatant3.get_evolution(), null)
+				if enemyCombatant3.combatant.get_evolution() != null:
+					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
