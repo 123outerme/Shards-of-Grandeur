@@ -215,6 +215,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 	minionCombatant.load_combatant_node()
+	#minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # just in case
 	var preset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")
 	minionCombatant.play_particles(preset)
 

@@ -60,24 +60,23 @@ func _ready():
 
 func _unhandled_input(event):
 	if visible:
-		var declineIsShift: bool = false
-		for ev: InputEvent in InputMap.action_get_events('game_decline'):
-			if ev is InputEventKey:
-				if ev.keycode == KEY_SHIFT:
-					declineIsShift = true
-		if event.is_action_pressed('game_decline') and not declineIsShift:
-			get_viewport().set_input_as_handled()
-			hide_keyboard()
-		if event.is_action_pressed('game_pause'):
-			get_viewport().set_input_as_handled()
-			_press_enter()
-		if event.is_action_pressed('game_quests'):
+		# TODO maybe there can be better logic for handling whether or not a key should be consumed for text input?
+		var textInput: bool = false
+		if event is InputEventKey:
+			textInput = true
+		if event.is_action_pressed('game_decline') and not textInput:
 			get_viewport().set_input_as_handled()
 			_press_backspace()
-		if event.is_action_pressed('game_inventory'):
+		if event.is_action_pressed('game_pause') and not textInput:
+			get_viewport().set_input_as_handled()
+			_press_enter()
+		if event.is_action_pressed('game_stats') and not textInput:
+			get_viewport().set_input_as_handled()
+			hide_keyboard()
+		if event.is_action_pressed('game_inventory') and not textInput:
 			get_viewport().set_input_as_handled()
 			_press_key(spaceButton)
-		if event.is_action_pressed('game_stats'):
+		if event.is_action_pressed('game_quests') and not textInput:
 			get_viewport().set_input_as_handled()
 			_press_caps_lock()
 
@@ -91,9 +90,10 @@ func show_keyboard():
 	focusButton.grab_focus()
 
 func hide_keyboard():
+	if visible:
+		keyboard_hidden.emit()
 	visible = false
 	reset_keyboard_state()
-	keyboard_hidden.emit()
 
 func build_keyboard():
 	var firstButton: BaseButton = null

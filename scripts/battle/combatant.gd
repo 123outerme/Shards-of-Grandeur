@@ -184,6 +184,10 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	var prevIdx: String = get_evolution_stats_idx(prevEvolution)
 	evolutionStats[prevIdx] = stats
 	stats = get_evolution_stats(evolution)
+	# if this stats set is underlevelled, level it up now
+	if stats.level < evolutionStats[prevIdx].level:
+		stats.level_up(evolutionStats[prevIdx].level - stats.level)
+		returnCode += 0b0001
 	# change the current HP by keeping the same HP ratio
 	var hpRatio: float = (currentHp as float) / evolutionStats[prevIdx].maxHp
 	# don't gain any HP by switching forms
@@ -192,15 +196,14 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	stats.moves = evolutionStats[prevIdx].moves
 	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
 	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
-	# if this stats set is underlevelled, level it up now
-	if stats.level < evolutionStats[prevIdx].level:
-		stats.level_up(evolutionStats[prevIdx].level - stats.level)
-		returnCode += 0b0001
+	# if the movepool changed: alert the player
 	if stats.movepool != evolutionStats[prevIdx].movepool:
 		returnCode += 0b0010
 	var nullMoves: int = validate_moves()
+	# if any moves were invalidated, alert the user
 	if prevNullMoves != nullMoves:
 		returnCode += 0b0100
+	# if all set moves were invalidated alert the user
 	if nullMoves == 4:
 		returnCode += 0b1000
 	return returnCode

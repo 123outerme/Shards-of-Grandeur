@@ -146,7 +146,9 @@ func _physics_process(_delta):
 		else:
 			play_animation('stand')
 		move_and_slide()
-	if inCutscene and false:
+	else:
+		velocity = Vector2.ZERO
+	if inCutscene and false: # debug mode move camera in cutscene
 		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		cam.position += vel * _delta
 		

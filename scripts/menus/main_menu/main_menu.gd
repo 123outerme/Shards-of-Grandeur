@@ -138,6 +138,8 @@ func _on_virtual_keyboard_enter_pressed():
 
 func _on_settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	if not virtualKeyboard.enabled:
+		virtualKeyboard.hide_keyboard()
 
 func _on_credits_button_pressed():
 	creditsPanel.visible = true

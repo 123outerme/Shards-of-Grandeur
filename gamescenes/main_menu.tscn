@@ -179,10 +179,18 @@ alignment = 1
 
 [node name="YesButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../NoButton")
+focus_neighbor_bottom = NodePath(".")
 text = "Yes, New Game!"
 
 [node name="NoButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../YesButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "No, Never Mind..."
 
 [node name="PlayerNamePanel" type="Panel" parent="Panel"]
@@ -224,6 +232,7 @@ offset_right = 146.5
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../HBoxContainer/ConfirmButton")
 text = "Combatant Name Here"
 placeholder_text = "Enter Your Name!"
 max_length = 20
@@ -247,11 +256,19 @@ alignment = 1
 
 [node name="ConfirmButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../NameInput")
+focus_neighbor_right = NodePath("../CancelButton")
+focus_neighbor_bottom = NodePath(".")
 disabled = true
 text = "Confirm & Start!"
 
 [node name="CancelButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../NameInput")
+focus_neighbor_right = NodePath("../ConfirmButton")
+focus_neighbor_bottom = NodePath(".")
 text = "Cancel! Go Back."
 
 [node name="VirtualKeyboard" parent="Panel/PlayerNamePanel" instance=ExtResource("12_h6rgv")]

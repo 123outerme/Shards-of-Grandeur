@@ -104,6 +104,8 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.moves = stats.moves
 	moveListPanel.movepool = stats.movepool.pool
 	moveListPanel.readOnly = readOnly
+	moveListPanel.level = stats.level
+	moveListPanel.levelUp = levelUp
 	moveListPanel.showNewMoveIndicator = levelUp and minion.stats.movepool.has_moves_at_level(minion.stats.level) \
 			if minion != null else false
 	moveListPanel.load_move_list_panel()
