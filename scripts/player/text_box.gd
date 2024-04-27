@@ -171,7 +171,6 @@ func select_decline_choice():
 		return
 	var buttons: Array[Node] = buttonContainer.get_children()
 	for idx in range(len(buttons)):
-		var button: Button = buttons[idx]
 		if dialogueItem.choices[choicesDialogueItemIdxs[idx]].isDeclineChoice:
 			_select_choice(idx)
 			return

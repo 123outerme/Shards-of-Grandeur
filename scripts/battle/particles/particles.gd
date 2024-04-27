@@ -49,7 +49,7 @@ var _makeParticles: bool = false
 func _init():
 	makeParticles = false
 	
-func _process(delta):
+func _process(_delta):
 	if waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
 		set_make_particles(false)
 

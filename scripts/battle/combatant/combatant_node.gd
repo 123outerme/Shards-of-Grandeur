@@ -505,10 +505,10 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		weight *= damageStat / maxDamageStat
 	if moveEffect.statusEffect != null and numCanStatus > 0:
 		# 50% of the time, Damage AIs don't care about doing status as much
-		var dmgAiWeight: float = 0.5 if combatant.aiType == Combatant.AiType.DAMAGE and randf() > 0.5 else 1
-		var multiStatusWeight: float = 1.25 if BattleCommand.is_command_multi_target(moveEffect.targets) and numCanStatus > 1 else 1
+		var dmgAiWeight: float = 0.5 if combatant.aiType == Combatant.AiType.DAMAGE and randf() > 0.5 else 1.0
+		var multiStatusWeight: float = 1.25 if BattleCommand.is_command_multi_target(moveEffect.targets) and numCanStatus > 1 else 1.0
 		var statusTurnsWeight: float = max(1, 1 + 0.05 * (moveEffect.statusEffect.turnsLeft - 1))
-		weight += statusWeights[moveEffect.statusEffect.potency] * moveEffect.statusChance * statusTurnsWeight * weightModifier * dmgAiWeight
+		weight += statusWeights[moveEffect.statusEffect.potency] * moveEffect.statusChance * statusTurnsWeight * multiStatusWeight * weightModifier * dmgAiWeight
 	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		if not (moveEffect.statusEffect != null and moveEffect.selfGetsStatus and numCanStatus <= 0):
 			var boostedStatsTotal: float = boostedStats.get_stat_total()
@@ -594,20 +594,19 @@ func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[Comba
 	if effect.role == MoveEffect.Role.BUFF and randValue > combatant.aiOverrideWeight:
 		# pick highest base stat changes in buffing categories if friendly targeting, pick lowest if enemy targeting
 		# and modify by percentage of HP remaining relative to the highest HP of targets
-		var maxHealth: int = 0
+		var maxHealth: float = 0
 		for combatantNode in targetableCombatants:
 			if maxHealth < combatantNode.combatant.currentHp:
 				maxHealth = combatantNode.combatant.currentHp
 		# NOTE what to do with All targeting? Will there be such a move?
-		var multiplier: float = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
-		var maxBaseStatTotalChange: int = -INF * multiplier
+		var multiplier: float = -1.0 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1.0
+		var maxBaseStatTotalChange: float = -INF * multiplier
 		var statChanges: StatChanges = StatChanges.new()
 		if effect.targetStatChanges != null:
 			statChanges.stack(effect.targetStatChanges)
 		for combatantNode in targetableCombatants:
 			multiplier = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
 			# having higher HP makes a buff more worthwhile
-			var maxHp: float = combatantNode.combatant.stats.maxHp
 			multiplier *= (combatantNode.combatant.currentHp / maxHealth)
 			var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
 			var appliedStats: Stats = statChanges.apply(stats)
@@ -618,12 +617,12 @@ func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[Comba
 
 	if effect.role == MoveEffect.Role.DEBUFF and randValue > combatant.aiOverrideWeight:
 		# pick highest base stat changes in debuffing categories if friendly targeting, pick lowest if enemy targeting
-		var multiplier: float = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
+		var multiplier: float = -1.0 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1.0
 		# what to do with All targeting? Will there be such a move?
 		var statChanges: StatChanges = StatChanges.new()
 		if effect.targetStatChanges != null:
 			statChanges.stack(effect.targetStatChanges)
-		var maxBaseStatTotalChange: int = -INF * multiplier
+		var maxBaseStatTotalChange: float = -INF * multiplier
 		for combatantNode in targetableCombatants:
 			var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
 			var appliedStats: Stats = statChanges.apply(stats)
