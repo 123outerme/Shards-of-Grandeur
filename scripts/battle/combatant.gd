@@ -9,6 +9,13 @@ enum AiType {
 	DEBUFFER = 4,
 }
 
+enum AggroType {
+	LOWEST_HP = 0,
+	HIGHEST_HP = 1,
+	MOST_ORBS = 2,
+	HIGHEST_STATS = 3,
+}
+
 enum ResourceStrategy {
 	GREEDY = 0,
 	BIG_SPENDER = 1,
@@ -41,6 +48,7 @@ const MAX_ORBS = 10
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE
+@export var damageAggroType: AggroType = AggroType.LOWEST_HP
 @export var strategy: ResourceStrategy = ResourceStrategy.GREEDY
 @export var aiOverrideWeight: float = 0.35
 @export var equipmentTable: Array[WeightedEquipment] = []
@@ -81,6 +89,7 @@ func _init(
 	i_navLayer = 1,
 	i_friendship = 0,
 	i_aiType = AiType.NONE,
+	i_damageAggroType = AggroType.LOWEST_HP,
 	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
 	i_teamTable: Array[WeightedString] = [],
@@ -102,6 +111,7 @@ func _init(
 	maxSize = i_maxSize
 	navigationLayer = i_navLayer
 	aiType = i_aiType
+	damageAggroType = i_damageAggroType
 	friendship = i_friendship
 	aiOverrideWeight = i_overrideWeight
 	equipmentTable = i_equipmentTable
@@ -155,7 +165,8 @@ func could_combatant_surge(effect: MoveEffect) -> bool:
 	
 	if Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid():
 		return false # AI can't use surge moves yet
-	return true
+	
+	return effect.orbChange * -1 <= orbs
 
 func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	if not could_combatant_surge(effect):

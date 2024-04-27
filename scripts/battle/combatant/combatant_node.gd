@@ -9,10 +9,12 @@ enum Role {
 class ChosenMove:
 	var move: Move = null
 	var effectType: Move.MoveEffectType = Move.MoveEffectType.NONE
+	var weight: float = 0
 	
-	func _init(i_move = null, i_effectType = Move.MoveEffectType.NONE):
+	func _init(i_move = null, i_effectType = Move.MoveEffectType.NONE, i_weight = 0.0):
 		move = i_move
 		effectType = i_effectType
+		weight = i_weight
 
 signal toggled(button_pressed: bool, combatantNode: CombatantNode)
 signal details_clicked(combatantNode: CombatantNode)
@@ -32,6 +34,14 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var battleController: Node2D
 # NOTE: if this is of type BattleController, then the SFX Button scene breaks.... no joke. WHYYYYYYY??
 
+const WEAK_STATUS_WEIGHT = 40
+const STRONG_STATUS_WEIGHT = 60
+const OVERWHELMING_STATUS_WEIGHT = 80
+const statusWeights: Dictionary = {
+	StatusEffect.Potency.WEAK: WEAK_STATUS_WEIGHT,
+	StatusEffect.Potency.STRONG: STRONG_STATUS_WEIGHT,
+	StatusEffect.Potency.OVERWHELMING: OVERWHELMING_STATUS_WEIGHT
+}
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 var tmpAllCombatantNodes: Array[CombatantNode] = []
@@ -362,7 +372,7 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 	
 	var targetableList: Array[CombatantNode] = []
 	for combatantNode in allCombatantNodes:
-		if not combatantNode.is_alive():
+		if combatantNode == null or not combatantNode.is_alive():
 			continue # skip this combatant if not alive
 		if self == combatantNode and (targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.NON_SELF_ALLY):
 			continue # skip user if user is not targetable
@@ -372,7 +382,7 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 		else:
 			var targetRole: CombatantNode.Role = combatantNode.role
 			if ((targets == BattleCommand.Targets.ALL_ALLIES or targets == BattleCommand.Targets.ALLY or targets == BattleCommand.Targets.NON_SELF_ALLY) and targetRole == role) or \
-					((targets == BattleCommand.Targets.ALL_ENEMIES or targets == BattleCommand.Targets.ENEMY) and targetRole != role):
+				((targets == BattleCommand.Targets.ALL_ENEMIES or targets == BattleCommand.Targets.ENEMY) and targetRole != role):
 				targetableList.append(combatantNode)
 	return targetableList
 
@@ -407,141 +417,12 @@ func get_command(combatantNodes: Array[CombatantNode]):
 		combatant.command = null
 
 func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
-	var pickedMove: ChosenMove = ChosenMove.new()
-	var currentStats: Stats = combatant.statChanges.apply(combatant.stats)
-	var randomValue: float = randf()
-	tmpAllCombatantNodes = combatantNodes
-	var moveCandidates: Array[Move] = combatant.stats.moves.filter(ai_filter_move_candidates)
-	if len(moveCandidates) == 0: # if no moves fit the stricter criteria
-		moveCandidates = combatant.stats.moves.filter(filter_out_unusable) # just don't use a strictly unusable move
-	tmpAllCombatantNodes = []
+	var candidateMoves = ai_get_move_effect_weights(combatantNodes)
+	var pickedMove = null
+	if len(candidateMoves) > 0:
+		pickedMove = candidateMoves[0]
 	
-	if combatant.aiType == Combatant.AiType.DEBUFFER and randomValue > combatant.aiOverrideWeight:
-		# first, check if any opponent has no status and there's a move that can give status
-		for combatantNode in combatantNodes:
-			if combatantNode.role != role and combatantNode.is_alive():
-				var opponentHasStatus: bool = combatantNode.combatant.statusEffect != null
-				for move in moveCandidates:
-					var effectTypeWithStatus: Move.MoveEffectType = move.effects_with_status()
-					var effectTypes: Array[Move.MoveEffectType] = [] 
-					if effectTypeWithStatus == Move.MoveEffectType.BOTH:
-						effectTypes.append(Move.MoveEffectType.CHARGE)
-						effectTypeWithStatus = Move.MoveEffectType.SURGE # append both
-					if effectTypeWithStatus != Move.MoveEffectType.NONE:
-						effectTypes.append(effectTypeWithStatus)
-					for effectType in effectTypes:
-						var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
-						if not opponentHasStatus and effectType != Move.MoveEffectType.NONE and BattleCommand.is_command_enemy_targeting(moveEffect.targets):
-							if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(moveEffect):
-								pickedMove.move = move
-								pickedMove.effectType = effectType
-								break
-			if pickedMove.move != null:
-				break
-		# if no statusing needs to be done, pick a random move that debuffs
-		if pickedMove.move == null:
-			var moveChoices: Array[int] = []
-			var effectTypeChoices: Array[Move.MoveEffectType] = []
-			for moveIdx in range(len(moveCandidates)):
-				var move: Move = moveCandidates[moveIdx]
-				var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
-				var moveEffectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
-				for moveEffIdx in range(len(moveEffects)):
-					var moveEffect: MoveEffect = moveEffects[moveEffIdx]
-					if BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.role == MoveEffect.Role.DEBUFF:
-						moveChoices.append(moveEffect)
-						effectTypeChoices.append(moveEffectTypes[moveEffIdx])
-			if len(moveChoices) > 0: # 65% of the time pick a debuff
-				var randIdx = randi_range(0, len(moveChoices) - 1)
-				pickedMove.move = moveCandidates[moveChoices[randIdx]]
-				pickedMove.effectType = effectTypeChoices[randIdx]
-	
-	if combatant.aiType == Combatant.AiType.BUFFER and randomValue > combatant.aiOverrideWeight:
-		# if random chance > override, pick a buff
-		var moveChoices: Array[int] = []
-		var effectTypeChoices: Array[Move.MoveEffectType] = []
-		for moveIdx in range(len(moveCandidates)):
-			var move: Move = moveCandidates[moveIdx]
-			var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
-			var moveEffectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
-			for moveEffIdx in range(len(moveEffects)):
-				var moveEffect: MoveEffect = moveEffects[moveEffIdx]
-				var effectType: Move.MoveEffectType = moveEffectTypes[moveEffIdx]
-				for combatantNode in get_targetable_combatant_nodes(combatantNodes, moveEffect.targets):
-					if combatantNode.role == role and combatantNode.is_alive():
-						var allyHasStatus: bool = combatantNode.combatant.statusEffect != null
-						if not allyHasStatus and effectType != Move.MoveEffectType.NONE and \
-								not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and \
-								moveEffect.role == MoveEffect.Role.BUFF:
-							if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(moveEffect):
-								moveChoices.append(moveIdx)
-								effectTypeChoices.append(effectType)
-		
-		if len(moveChoices) > 0:
-			var randIdx = randi_range(0, len(moveChoices) - 1)
-			pickedMove.move = moveCandidates[moveChoices[randIdx]]
-			pickedMove.effectType = effectTypeChoices[randIdx]
-			
-	if combatant.aiType == Combatant.AiType.SUPPORT and randomValue > combatant.aiOverrideWeight:
-		# if random chance > override, pick a support/heal move
-		# first, check if any allies need healing
-		for combatantNode in combatantNodes:
-			if combatantNode.role == role and combatantNode.is_alive():
-				var needsHealing: bool = combatantNode.combatant.currentHp < roundi(combatantNode.combatant.stats.maxHp / 2.0)
-				for move in moveCandidates:
-					var effectType: Move.MoveEffectType = move.effects_with_role(MoveEffect.Role.HEAL)
-					if needsHealing and effectType != Move.MoveEffectType.NONE:
-						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
-							pickedMove.move = move
-							pickedMove.effectType = effectType
-							break
-			if pickedMove.move != null:
-				break
-		# otherwise, pick a random support (role == Other) move
-		var moveChoices: Array[int] = []
-		var effectTypeChoices: Array[Move.MoveEffectType] = []
-		for moveIdx in range(len(moveCandidates)):
-			var move: Move = moveCandidates[moveIdx]
-			var effectType: Move.MoveEffectType = move.effects_with_role(MoveEffect.Role.OTHER)
-			if effectType != Move.MoveEffectType.NONE:
-				if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
-					moveChoices.append(moveIdx)
-					moveChoices.append(effectType)
-		if len(moveChoices) > 0:
-			var randIdx = randi_range(0, len(moveChoices) - 1)
-			pickedMove.move = moveCandidates[moveChoices[randIdx]]
-			pickedMove.effectType = effectTypeChoices[randIdx]
-	
-	if combatant.aiType == Combatant.AiType.DAMAGE or pickedMove.move == null: # pick the absolute strongest move
-		if combatant.aiType == Combatant.AiType.DAMAGE and randomValue > combatant.aiOverrideWeight:
-			var randomChoices: Array[ChosenMove] = []
-			for move in moveCandidates:
-				var moveEffects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
-				var effectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
-				for effectIdx in range(len(moveEffects)):
-					var moveEffect: MoveEffect = moveEffects[effectIdx]
-					if combatant.could_combatant_surge(moveEffect) and len(get_targetable_combatant_nodes(combatantNodes, moveEffect.targets)) > 0:
-						randomChoices.append(ChosenMove.new(move, effectTypes[effectIdx]))
-			pickedMove = randomChoices.pick_random()
-		else:
-			var approxMaxDmg: float = 0
-			for move in moveCandidates: # for each move
-				var effectTypes: Array[Move.MoveEffectType] = [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]
-				var effects: Array[MoveEffect] = [move.chargeEffect, move.surgeEffect]
-				for effectIdx in range(len(effects)):
-					var effect = effects[effectIdx]
-					var effectType = effectTypes[effectIdx]
-					var approxDmg: float = currentStats.get_stat_for_dmg_category(move.category) * effect.power
-					if BattleCommand.is_command_multi_target(effect.targets): # if multi-targeting
-						approxDmg *= len(get_targetable_combatant_nodes(combatantNodes, effect.targets)) # take into account the amount of targetable combatants
-					if pickedMove.move == null or \
-							(approxMaxDmg < approxDmg and BattleCommand.is_command_enemy_targeting(effect.targets)): # if this move is approx. stronger
-						if effectType != Move.MoveEffectType.SURGE or combatant.would_ai_spend_orbs(move.get_effect_of_type(effectType)):
-							pickedMove.move = move # pick it instead
-							pickedMove.effectType = effectType
-							approxMaxDmg = approxDmg
-	
-	if pickedMove.move == null or pickedMove.effectType == Move.MoveEffectType.NONE:
+	if pickedMove == null or pickedMove.move == null or pickedMove.effectType == Move.MoveEffectType.NONE:
 		printerr('MAJOR ERROR: ai did not find a move to use ', combatant.save_name(), ': ', battlePosition)
 	
 	return pickedMove
@@ -552,69 +433,203 @@ func filter_out_unusable(a) -> bool:
 	
 	var hasAllies: bool = false
 	for combatantNode in tmpAllCombatantNodes:
-		if combatantNode.role == role and combatantNode.is_alive() and combatantNode != self:
+		if combatantNode != null and combatantNode.role == role and combatantNode.is_alive() and combatantNode.battlePosition != battlePosition:
 			hasAllies = true
 			break
 	
 	var numCanUse: int = 2
 	for effect in [a.chargeEffect, a.surgeEffect]:
 		if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
-				not combatant.could_combatant_surge(effect):
+			not combatant.could_combatant_surge(effect):
 			numCanUse -= 1 # move cannot be used by the game rules
 	return numCanUse > 0 # move could be used
 
-func ai_filter_move_candidates(a: Move) -> bool:
-	if not filter_out_unusable(a):
-		return false
+func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: float) -> float:
+	if moveEffect == null:
+		return 0
+	if not combatant.could_combatant_surge(moveEffect):
+		return 0
 	var hasAllies: bool = false
+	var numCanStatus: int = 0
 	for combatantNode in tmpAllCombatantNodes:
-		if combatantNode.role == role and combatantNode.is_alive() and combatantNode != self:
+		if combatantNode != null and combatantNode.role == role and combatantNode.is_alive() and combatantNode.battlePosition != battlePosition:
 			hasAllies = true
 			break
-	var moveEffectType: Move.MoveEffectType = a.effects_with_status()
-	if moveEffectType != Move.MoveEffectType.NONE: # if move has a status
-		var moveEffects: Array[MoveEffect] = []
-		if moveEffectType == Move.MoveEffectType.BOTH:
-			moveEffectType = Move.MoveEffectType.SURGE
-			moveEffects.append(a.get_effect_of_type(Move.MoveEffectType.CHARGE))
-		moveEffects.append(a.get_effect_of_type(moveEffectType))
-		var statusCanLand: bool = false
-		for effect: MoveEffect in moveEffects:
-			var enemyTargeting: bool = BattleCommand.is_command_enemy_targeting(effect.targets)
-			if (not hasAllies and effect.targets == BattleCommand.Targets.NON_SELF_ALLY) or \
-					not combatant.could_combatant_surge(effect):
-				# if this move is other-ally only and we don't have a valid target: don't consider it
-				# or if the combatant can't pay for this version, don't consider it
-				continue 
-			if effect.power == 0 or (effect.power > 0 and not enemyTargeting) or (effect.power < 0 and enemyTargeting): # if move effect is purely status or deals damage to an ally to apply status/heals an enemy to apply status:
-				for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, effect.targets):
-					if combatantNode.combatant.statusEffect == null:
-						statusCanLand = true # if the combatant can be statused, it can be affected
-						break
-			else:
-				# if the move has a secondary status-effect but primarily does heal/damage, consider it regardless
-				statusCanLand = true
-				break
-		return statusCanLand
-	return true
+	
+	for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, moveEffect.targets):
+		if combatantNode.combatant.statusEffect == null:
+			numCanStatus += 1
+	
+	if not hasAllies and moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY:
+		return 0
+	
+	var weightModifier: float = 1
+	if not combatant.would_ai_spend_orbs(moveEffect):
+		weightModifier = 0.5
+	elif moveEffect.orbChange >= 0:
+		# modifier is [0.8, 1.8 based on the amount of orbs that can be gained by using the move
+		weightModifier *= max(0.8, 1 - ((moveEffect.orbChange - 1) / 10.0))
+	if randValue > combatant.aiOverrideWeight and \
+			(combatant.aiType == Combatant.AiType.DAMAGE and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \
+			(combatant.aiType == Combatant.AiType.BUFFER and moveEffect.role == MoveEffect.Role.BUFF) or \
+			(combatant.aiType == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
+			(combatant.aiType == Combatant.AiType.SUPPORT and (moveEffect.role == MoveEffect.Role.HEAL or moveEffect.role == MoveEffect.Role.OTHER)): 
+		weightModifier *= 1.5 # prioritize moves aligning with AI type
+	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
+	var damageStat: int = boostedStats.physAttack
+	if move.category == Move.DmgCategory.MAGIC:
+		damageStat = boostedStats.magicAttack
+	elif move.category == Move.DmgCategory.AFFINITY:
+		damageStat = boostedStats.affinity
+	var maxDamageStat: float = boostedStats.physAttack
+	if boostedStats.magicAttack > maxDamageStat:
+		maxDamageStat = boostedStats.magicAttack
+	if boostedStats.affinity > maxDamageStat:
+		maxDamageStat = boostedStats.affinity
+	var weight: float = 1
+	if (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE) and \
+			combatant.aiType == Combatant.AiType.DAMAGE and randValue < combatant.aiOverrideWeight:
+		weight = randf() * moveEffect.power * weightModifier + 1
+	else:
+		if BattleCommand.is_command_multi_target(moveEffect.targets):
+			var numEnemies: int = 0
+			for combatantNode: CombatantNode in tmpAllCombatantNodes:
+				if combatantNode.role != role and combatantNode.is_alive():
+					numEnemies += 1
+			weight = moveEffect.power * numEnemies * weightModifier + 1
+		else:
+			weight = moveEffect.power * weightModifier + 1
+	if moveEffect.power != 0:
+		weight *= damageStat / maxDamageStat
+	if moveEffect.statusEffect != null and numCanStatus > 0:
+		# 50% of the time, Damage AIs don't care about doing status as much
+		var dmgAiWeight: float = 0.5 if combatant.aiType == Combatant.AiType.DAMAGE and randf() > 0.5 else 1
+		var multiStatusWeight: float = 1.25 if BattleCommand.is_command_multi_target(moveEffect.targets) and numCanStatus > 1 else 1
+		var statusTurnsWeight: float = max(1, 1 + 0.05 * (moveEffect.statusEffect.turnsLeft - 1))
+		weight += statusWeights[moveEffect.statusEffect.potency] * moveEffect.statusChance * statusTurnsWeight * weightModifier * dmgAiWeight
+	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+		if not (moveEffect.statusEffect != null and moveEffect.selfGetsStatus and numCanStatus <= 0):
+			var boostedStatsTotal: float = boostedStats.get_stat_total()
+			var newBoostedStats: Stats = moveEffect.selfStatChanges.apply(boostedStats)
+			weight *= newBoostedStats.get_stat_total() / boostedStatsTotal
+	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+		# make dummy stats to easily detect percentage of stats that will be changed
+		var newStats: Stats = Stats.new('Dummy', 'dummy_stats', 1, 0, 50, 100, 100, 100, 100, 100)
+		var newStatsTotal: float = newStats.get_stat_total()
+		var newBoostedStats: Stats = moveEffect.targetStatChanges.apply(newStats)
+		if BattleCommand.is_command_enemy_targeting(moveEffect.targets):
+			weight *= newStatsTotal / newBoostedStats.get_stat_total()
+		else:
+			weight *= newBoostedStats.get_stat_total() / newStatsTotal
+	return weight
+
+func ai_get_move_effect_weights(combatantNodes: Array[CombatantNode]) -> Array[ChosenMove]:
+	var moveEffects: Array[ChosenMove] = []
+	var randValue: float = randf()
+	if randValue >= combatant.aiOverrideWeight:
+		print(battlePosition, ': move choice override triggered')
+	tmpAllCombatantNodes = combatantNodes
+	for move: Move in combatant.stats.moves:
+		if not filter_out_unusable(move):
+			continue
+		for effectType: Move.MoveEffectType in [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]:
+			var effect: MoveEffect = move.get_effect_of_type(effectType)
+			if effect == null:
+				continue
+			var weight = ai_get_move_effect_weight(move, effect, randValue)
+			print(battlePosition, ': move ', move.moveName, ' effect ', effectType, ' weight ', weight)
+			if weight != 0:
+				moveEffects.append(ChosenMove.new(move, effectType, weight))
+	moveEffects.sort_custom(_sort_chosen_moves_by_weight)
+	for choiceIdx in range(len(moveEffects)):
+		var choice: ChosenMove = moveEffects[choiceIdx]
+		print(battlePosition, ' Choice ', choiceIdx + 1, ': ', choice.move.moveName, ' type ', choice.effectType, ', weight ', choice.weight)
+	tmpAllCombatantNodes = []
+	return moveEffects
 
 func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''
 	var randValue: float = randf()
+	if randValue >= combatant.aiOverrideWeight:
+		print(battlePosition, ': target override triggered')
 	if (effect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE or effect.role == MoveEffect.Role.HEAL) and randValue > combatant.aiOverrideWeight:
-		var minHealth: int = -1
-		for combatantNode in targetableCombatants:
-			if minHealth == -1 or minHealth > combatantNode.combatant.currentHp:
-				minHealth = combatantNode.combatant.currentHp
-				pickedTarget = combatantNode.battlePosition
-	
-	if effect.role == MoveEffect.Role.BUFF or effect.role == MoveEffect.Role.DEBUFF:
+		var timesOverrided: int = 0
+		if combatant.damageAggroType == Combatant.AggroType.LOWEST_HP:
+			# pick lowest health
+			var minHealth: int = -1
+			for combatantNode in targetableCombatants:
+				if minHealth == -1 or minHealth > combatantNode.combatant.currentHp:
+					minHealth = combatantNode.combatant.currentHp
+					pickedTarget = combatantNode.battlePosition
+					timesOverrided += 1
+		if combatant.damageAggroType == Combatant.AggroType.MOST_ORBS:
+			# pick most orbs
+			var maxOrbs: int = 0
+			for combatantNode in targetableCombatants:
+				if maxOrbs < combatantNode.combatant.orbs:
+					maxOrbs = combatantNode.combatant.orbs
+					pickedTarget = combatantNode.battlePosition
+					timesOverrided += 1
+		if combatant.damageAggroType == Combatant.AggroType.HIGHEST_STATS:
+			# pick highest (current) stats
+			var maxStatTotal: int = 0
+			for combatantNode in targetableCombatants:
+				var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
+				var statTotal: int = stats.get_stat_total()
+				if maxStatTotal < statTotal:
+					maxStatTotal = statTotal
+					pickedTarget = combatantNode.battlePosition
+					timesOverrided += 1
+		if combatant.damageAggroType == Combatant.AggroType.HIGHEST_HP or timesOverrided == len(targetableCombatants):
+			# if all are equal from a previous comparison, or the aggro type is highest HP:
+			# pick highest health
+			var maxHealth: int = 0
+			for combatantNode in targetableCombatants:
+				if maxHealth < combatantNode.combatant.currentHp:
+					maxHealth = combatantNode.combatant.currentHp
+					pickedTarget = combatantNode.battlePosition
+
+	if effect.role == MoveEffect.Role.BUFF and randValue > combatant.aiOverrideWeight:
+		# pick highest base stat changes in buffing categories if friendly targeting, pick lowest if enemy targeting
+		# and modify by percentage of HP remaining relative to the highest HP of targets
 		var maxHealth: int = 0
 		for combatantNode in targetableCombatants:
 			if maxHealth < combatantNode.combatant.currentHp:
 				maxHealth = combatantNode.combatant.currentHp
+		# NOTE what to do with All targeting? Will there be such a move?
+		var multiplier: float = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
+		var maxBaseStatTotalChange: int = -INF * multiplier
+		var statChanges: StatChanges = StatChanges.new()
+		if effect.targetStatChanges != null:
+			statChanges.stack(effect.targetStatChanges)
+		for combatantNode in targetableCombatants:
+			multiplier = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
+			# having higher HP makes a buff more worthwhile
+			var maxHp: float = combatantNode.combatant.stats.maxHp
+			multiplier *= (combatantNode.combatant.currentHp / maxHealth)
+			var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
+			var appliedStats: Stats = statChanges.apply(stats)
+			var baseStatTotalChange: int = appliedStats.get_stat_total() - stats.get_stat_total()
+			if maxBaseStatTotalChange < baseStatTotalChange * multiplier:
+				maxBaseStatTotalChange = baseStatTotalChange * multiplier
 				pickedTarget = combatantNode.battlePosition
-	
+
+	if effect.role == MoveEffect.Role.DEBUFF and randValue > combatant.aiOverrideWeight:
+		# pick highest base stat changes in debuffing categories if friendly targeting, pick lowest if enemy targeting
+		var multiplier: float = -1 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1
+		# what to do with All targeting? Will there be such a move?
+		var statChanges: StatChanges = StatChanges.new()
+		if effect.targetStatChanges != null:
+			statChanges.stack(effect.targetStatChanges)
+		var maxBaseStatTotalChange: int = -INF * multiplier
+		for combatantNode in targetableCombatants:
+			var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
+			var appliedStats: Stats = statChanges.apply(stats)
+			var baseStatTotalChange: int = appliedStats.get_stat_total() - stats.get_stat_total()
+			if maxBaseStatTotalChange < baseStatTotalChange * multiplier:
+				maxBaseStatTotalChange = baseStatTotalChange * multiplier
+				pickedTarget = combatantNode.battlePosition
+
 	if pickedTarget == '':
 		pickedTarget = targetableCombatants.pick_random().battlePosition
 	return pickedTarget
@@ -703,4 +718,8 @@ func _move_sprite_complete():
 				tween_back_to_return_pos()
 			else:
 				battleController.combatant_finished_animating.emit()
-		
+
+func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
+	if a.weight > b.weight:
+		return true
+	return false

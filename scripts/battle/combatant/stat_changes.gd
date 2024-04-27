@@ -149,7 +149,7 @@ func apply(s: Stats) -> Stats:
 	newStats.magicAttack = roundi(newStats.magicAttack * magicAttackMultiplier)
 	newStats.affinity = roundi(newStats.affinity * affinityMultiplier)
 	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)
-	newStats.speed *= roundi(newStats.speed * speedMultiplier)
+	newStats.speed = roundi(newStats.speed * speedMultiplier)
 	return newStats
 
 func has_stat_changes() -> bool:
