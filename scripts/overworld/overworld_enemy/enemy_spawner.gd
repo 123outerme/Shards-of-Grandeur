@@ -14,7 +14,7 @@ class_name EnemySpawner
 @export var tilemap: TileMap
 @export var enemy: OverworldEnemy = null
 
-var overworldEnemyScene = preload("res://prefabs/entities/overworld_enemy.tscn")
+var overworldEnemyScene = load("res://prefabs/entities/overworld_enemy.tscn")
 var enemiesDir: String = 'enemies/'
 
 @onready var spawnArea: Area2D = get_node('SpawnArea')

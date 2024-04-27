@@ -1,39 +1,13 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=20 format=3 uid="uid://bhg4i01ukcdvd"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bhg4i01ukcdvd"]
 
-[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="1_85xui"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_eqry4"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="3_lcxqr"]
-[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_4ta0g"]
+[ext_resource type="Resource" uid="uid://cfbfojr1nlivh" path="res://gamedata/combatants/rat/rat_rewards.tres" id="1_yjqb3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="5_rcq3f"]
+[ext_resource type="Resource" uid="uid://70qiovvsvg0s" path="res://gamedata/combatants/rat/rat_evolutions.tres" id="5_yr2v5"]
 [ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="6_mcj1u"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="7_kucus"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="10_5lfyv"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="11_7j6ev"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="12_u5t4b"]
-
-[sub_resource type="Resource" id="Resource_ahrn6"]
-script = ExtResource("2_eqry4")
-experience = 40
-gold = 8
-item = ExtResource("1_85xui")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_tgrxo"]
-script = ExtResource("3_lcxqr")
-reward = SubResource("Resource_ahrn6")
-weight = 0.85
-
-[sub_resource type="Resource" id="Resource_7n7yi"]
-script = ExtResource("2_eqry4")
-experience = 40
-gold = 8
-item = ExtResource("4_4ta0g")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_1iew8"]
-script = ExtResource("3_lcxqr")
-reward = SubResource("Resource_7n7yi")
-weight = 0.15
 
 [sub_resource type="Resource" id="Resource_hula1"]
 script = ExtResource("10_5lfyv")
@@ -80,16 +54,19 @@ spriteFacesRight = false
 navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_hula1")
+evolutions = ExtResource("5_yr2v5")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 1
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("12_u5t4b")]([SubResource("Resource_b3lik"), SubResource("Resource_w71ux"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
-dropTable = Array[ExtResource("3_lcxqr")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
+dropTable = ExtResource("1_yjqb3")
 innateStatCategories = Array[int]([0, 4])
 downed = false

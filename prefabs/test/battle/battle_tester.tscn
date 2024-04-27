@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=51 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
@@ -8,15 +8,9 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_ohjbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_ouq35"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="8_thl3q"]
-[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="9_hllpc"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
-[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="10_sm21m"]
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="10_son1n"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_h5ibj"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="11_pkngn"]
-[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="12_3kvf0"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="12_drrwx"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="13_qeftr"]
 [ext_resource type="SpriteFrames" uid="uid://cg3nfu3ph42vi" path="res://graphics/animations/a_tree_bear.tres" id="13_yvhrx"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="14_tebfq"]
 [ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="14_ytmj7"]
@@ -62,17 +56,18 @@ spriteFacesRight = true
 navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_vwmsm")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 0
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.0
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("17_hdtqw")]([])
-dropTable = Array[ExtResource("12_drrwx")]([])
 innateStatCategories = Array[int]([])
 downed = false
 
@@ -89,30 +84,6 @@ orbChange = 0
 slot = SubResource("Resource_w6qyo")
 targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
-
-[sub_resource type="Resource" id="Resource_j40ri"]
-script = ExtResource("11_pkngn")
-experience = 50
-gold = 10
-item = ExtResource("9_hllpc")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_7e1oi"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_j40ri")
-weight = 0.8
-
-[sub_resource type="Resource" id="Resource_gx5i7"]
-script = ExtResource("11_pkngn")
-experience = 50
-gold = 10
-item = ExtResource("12_3kvf0")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_btmi1"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_gx5i7")
-weight = 0.2
 
 [sub_resource type="Resource" id="Resource_hj45a"]
 script = ExtResource("7_ouq35")
@@ -160,18 +131,19 @@ spriteFacesRight = false
 navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_hj45a")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 statusEffect = SubResource("Resource_2fot7")
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 4
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.4
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_fjhrc"), SubResource("Resource_hw257"), SubResource("Resource_6u514")])
-dropTable = Array[ExtResource("12_drrwx")]([SubResource("Resource_7e1oi"), SubResource("Resource_btmi1")])
 innateStatCategories = Array[int]([1, 2])
 command = SubResource("Resource_8y3yp")
 downed = false
@@ -184,30 +156,6 @@ moveEffectType = 1
 orbChange = 0
 targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
-
-[sub_resource type="Resource" id="Resource_ahrn6"]
-script = ExtResource("11_pkngn")
-experience = 40
-gold = 8
-item = ExtResource("10_sm21m")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_tgrxo"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_ahrn6")
-weight = 0.8
-
-[sub_resource type="Resource" id="Resource_7n7yi"]
-script = ExtResource("11_pkngn")
-experience = 40
-gold = 8
-item = ExtResource("13_qeftr")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_1iew8"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_7n7yi")
-weight = 0.2
 
 [sub_resource type="Resource" id="Resource_hula1"]
 script = ExtResource("7_ouq35")
@@ -249,17 +197,18 @@ spriteFacesRight = false
 navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_hula1")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 1
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_b3lik"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
-dropTable = Array[ExtResource("12_drrwx")]([SubResource("Resource_tgrxo"), SubResource("Resource_1iew8")])
 innateStatCategories = Array[int]([0, 4])
 command = SubResource("Resource_h71dw")
 downed = false
@@ -272,30 +221,6 @@ moveEffectType = 2
 orbChange = -2
 targetPositions = Array[String](["Top"])
 randomNums = Array[float]([0.5])
-
-[sub_resource type="Resource" id="Resource_y0jxu"]
-script = ExtResource("11_pkngn")
-experience = 50
-gold = 10
-item = ExtResource("9_hllpc")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_mnexl"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_y0jxu")
-weight = 0.8
-
-[sub_resource type="Resource" id="Resource_boupi"]
-script = ExtResource("11_pkngn")
-experience = 50
-gold = 10
-item = ExtResource("12_3kvf0")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_n35wo"]
-script = ExtResource("12_drrwx")
-reward = SubResource("Resource_boupi")
-weight = 0.2
 
 [sub_resource type="Resource" id="Resource_8heid"]
 script = ExtResource("7_ouq35")
@@ -343,18 +268,19 @@ spriteFacesRight = false
 navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_8heid")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 statusEffect = SubResource("Resource_g23lp")
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 3
 damageAggroType = 0
 strategy = 2
 aiOverrideWeight = 0.4
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_rdypo"), SubResource("Resource_baii4"), SubResource("Resource_ex7rj")])
-dropTable = Array[ExtResource("12_drrwx")]([SubResource("Resource_mnexl"), SubResource("Resource_n35wo")])
 innateStatCategories = Array[int]([3, 1, 2])
 command = SubResource("Resource_lly4o")
 downed = false

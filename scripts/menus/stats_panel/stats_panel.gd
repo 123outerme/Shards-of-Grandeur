@@ -87,9 +87,9 @@ func load_stats_panel(fromToggle: bool = false):
 	if minion != null:
 		dispName = minion.disp_name()
 	
-	var spriteFrames: SpriteFrames = PlayerResources.playerInfo.combatant.spriteFrames
+	var spriteFrames: SpriteFrames = PlayerResources.playerInfo.combatant.get_sprite_frames()
 	if minion != null:
-		spriteFrames = minion.spriteFrames
+		spriteFrames = minion.get_sprite_frames()
 	animatedCombatantSprite.sprite_frames = spriteFrames
 	animatedCombatantSprite.play('walk')
 	

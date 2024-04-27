@@ -1,27 +1,14 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=16 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_f5n1o"]
 [ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_kfmy7"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="1_uihsc"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="2_4dg8r"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_are3w"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_g7kp6"]
 [ext_resource type="Resource" uid="uid://do8nq1ve3c3nx" path="res://gamedata/combatants/king_rat/king_rat_movepool.tres" id="3_r1tc3"]
+[ext_resource type="Resource" uid="uid://cvqm8lj7pel6s" path="res://gamedata/combatants/king_rat/king_rat_evolutions.tres" id="3_u6som"]
 [ext_resource type="Resource" uid="uid://d0ba12f3r7gli" path="res://gamedata/combatants/king_rat/king_rat_stat_growth.tres" id="5_c85vg"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_luqkf"]
-
-[sub_resource type="Resource" id="Resource_51dfd"]
-script = ExtResource("1_f5n1o")
-experience = 100
-gold = 30
-item = ExtResource("1_kfmy7")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_0kcmu"]
-script = ExtResource("1_uihsc")
-reward = SubResource("Resource_51dfd")
-weight = 1.0
 
 [sub_resource type="Resource" id="Resource_0tx4e"]
 script = ExtResource("3_g7kp6")
@@ -58,16 +45,18 @@ spriteFacesRight = false
 navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_3uxb7")
+evolutions = ExtResource("3_u6som")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 1
 damageAggroType = 0
 strategy = 1
 aiOverrideWeight = 0.15
 equipmentTable = Array[ExtResource("3_g7kp6")]([SubResource("Resource_0tx4e")])
 teamTable = Array[ExtResource("6_luqkf")]([SubResource("Resource_gwbxw")])
-dropTable = Array[ExtResource("1_uihsc")]([SubResource("Resource_0kcmu")])
 innateStatCategories = Array[int]([0, 2])
 downed = false

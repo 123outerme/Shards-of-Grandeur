@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=7 format=3 uid="uid://6oywd1qvwyby"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_0crah"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_0qn66"]
+[ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="2_cui72"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="3_jygga"]
+
+[sub_resource type="Resource" id="Resource_nahvd"]
+script = ExtResource("2_0qn66")
+experience = 100
+gold = 30
+item = ExtResource("2_cui72")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_wt65b"]
+script = ExtResource("3_jygga")
+reward = SubResource("Resource_nahvd")
+weight = 1.0
+
+[resource]
+script = ExtResource("1_0crah")
+weightedRewards = Array[ExtResource("3_jygga")]([SubResource("Resource_wt65b")])

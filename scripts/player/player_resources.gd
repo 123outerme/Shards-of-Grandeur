@@ -11,8 +11,8 @@ var player = null
 # the save folder this game came from
 var saveFolder: String = 'save'
 # the save folder we are loading battle from
-# 'save' if starting a battle while the game is already loaded, a "permanent" save folder if loading from main menu
-var battleSaveFolder: String = 'save'
+# '' if starting a battle while the game is already loaded, a save folder if loading from main menu
+var battleSaveFolder: String = ''
 var timeSinceLastLoad: float = -1
 
 # Called when the node enters the scene tree for the first time.
@@ -56,15 +56,20 @@ func load_data(save_path):
 		if not playerInfo.combatant.stats.is_stat_total_valid():
 			printerr('Player stats were invalid! Resetting.')
 			playerInfo.combatant.stats.reset_stat_points()
+			
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
+		playerInfo.combatant.validate_evolution_stats() # validate evolution stats data structure
 		playerInfo.combatant.stats.movepool = playerInfo.combatant.stats.movepool.duplicate(false)
 		if playerInfo.combatant.currentHp == -1: # if -1, set to maxHp
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
+		if playerInfo.combatant.evolutions == null:
+			# compatibility fix: load player evolutions if not present
+			playerInfo.combatant.evolutions = load('res://gamedata/combatants/player/player_evolutions.tres') as Evolutions
 	player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
-		if playerInfo.spriteFrames != null:
-			player.set_sprite_frames(playerInfo.spriteFrames)
+		if playerInfo.combatant.get_sprite_frames() != null:
+			player.set_sprite_frames(playerInfo.combatant.get_sprite_frames())
 		player.facingLeft = playerInfo.flipH
 		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
 		player.running = playerInfo.running
@@ -90,7 +95,6 @@ func save_data(save_path) -> int:
 	if playerInfo != null:
 		if player != null:
 			playerInfo.position = player.position
-			playerInfo.spriteFrames = player.sprite.sprite_frames
 			playerInfo.flipH = player.sprite.flip_h
 			playerInfo.pickedUpItem = player.pickedUpItem
 			playerInfo.running = player.running

@@ -93,10 +93,10 @@ func apply_menu_state():
 			else:
 				for combatantNode in battleController.get_all_combatant_nodes():
 					if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
-						var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable)
+						var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable.weightedRewards)
 						if dropIdx > -1:
 							battleComplete.rewards.append( \
-									combatantNode.combatant.dropTable[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+									combatantNode.combatant.dropTable.weightedRewards[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
 							)
 			for combatantNode in battleController.get_all_combatant_nodes():
 				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:

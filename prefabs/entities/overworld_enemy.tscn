@@ -1,38 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://21vjctkuupm5"]
+[gd_scene load_steps=6 format=3 uid="uid://cqvhw1vxc0cw"]
 
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/overworld_enemy.gd" id="1_nglhk"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/overworld_enemy.gd" id="1_cm533"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsq3l"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqv78"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n35g2"]
+radius = 56.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6i6r2"]
 size = Vector2(17, 17)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxhi7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv2xr"]
 size = Vector2(16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u3rev"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4gt5o"]
-radius = 56.0
 
 [node name="OverworldEnemy" type="CharacterBody2D" groups=["AutonomousMove"]]
 z_index = -10
 y_sort_enabled = true
 motion_mode = 1
-script = ExtResource("1_nglhk")
-
-[node name="EncounterCollider" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-input_pickable = false
-monitorable = false
-
-[node name="EncounterColliderShape" type="CollisionShape2D" parent="EncounterCollider"]
-shape = SubResource("RectangleShape2D_xsq3l")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oxhi7")
+script = ExtResource("1_cm533")
 
 [node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_u3rev")
+sprite_frames = SubResource("SpriteFrames_oqv78")
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 0.75
@@ -48,10 +36,22 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="ChaseRangeShape" type="CollisionShape2D" parent="ChaseRange"]
-shape = SubResource("CircleShape2D_4gt5o")
+shape = SubResource("CircleShape2D_n35g2")
 
-[connection signal="area_entered" from="EncounterCollider" to="." method="_on_encounter_collider_area_entered"]
+[node name="EncounterCollider" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+monitorable = false
+
+[node name="EncounterColliderShape" type="CollisionShape2D" parent="EncounterCollider"]
+shape = SubResource("RectangleShape2D_6i6r2")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tv2xr")
+
 [connection signal="navigation_finished" from="NavAgent" to="." method="_on_nav_agent_navigation_finished"]
 [connection signal="target_reached" from="NavAgent" to="." method="_on_nav_agent_target_reached"]
 [connection signal="area_entered" from="ChaseRange" to="." method="_on_chase_range_area_entered"]
 [connection signal="area_exited" from="ChaseRange" to="." method="_on_chase_range_area_exited"]
+[connection signal="area_entered" from="EncounterCollider" to="." method="_on_encounter_collider_area_entered"]

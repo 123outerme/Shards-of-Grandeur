@@ -92,8 +92,8 @@ func load_combatant_node():
 		visible = true
 		if combatant.statChanges == null:
 			combatant.statChanges = StatChanges.new()
-		animatedSprite.sprite_frames = combatant.spriteFrames
-		if combatant.spriteFrames == null:
+		animatedSprite.sprite_frames = combatant.get_sprite_frames()
+		if combatant.get_sprite_frames() == null:
 			animatedSprite.sprite_frames = load("res://graphics/animations/a_player.tres") # TEMP prevent crashing
 		animatedSprite.play('battle_idle')
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)

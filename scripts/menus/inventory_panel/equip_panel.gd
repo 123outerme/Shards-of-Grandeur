@@ -19,6 +19,7 @@ var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/
 @onready var scrollContainer: ScrollBetterFollow = get_node('Panel/ScrollContainer')
 @onready var vboxContainer: VBoxContainer = get_node('Panel/ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('Panel/BackButton')
+@onready var evolveResultsPanel: EvolveResultsPanel = get_node('EvolveResultsPanel')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,22 +84,60 @@ func stats_pressed(combatant: Combatant):
 	lastCombatant = combatant
 	
 func equip_pressed(combatant: Combatant):
-	PlayerResources.playerInfo.combatant.stats.unequip_item(inventorySlot.item)
-		
-	for minion in PlayerResources.minions.get_minion_list():
-		minion.stats.unequip_item(inventorySlot.item)
+	var prevEvolution: Evolution = combatant.get_evolution()
+	# assumption: only one combatant will lose its evolution at a time if equipping this item
+	var combatantLosingPrevEvolution: Evolution = null
+	var combatantLosingEvolving: Combatant = null
+	var combatantLosingFlags: int = 0
+	var combatantList: Array[Combatant] = [PlayerResources.playerInfo.combatant]
+	combatantList.append_array(PlayerResources.minions.get_minion_list())
+	for unequippingCombatant: Combatant in combatantList:
+		var prevLosingEvolution: Evolution = unequippingCombatant.get_evolution()
+		unequippingCombatant.stats.unequip_item(inventorySlot.item)
+		var newLosingEvolution: Evolution = unequippingCombatant.get_evolution()
+		if prevLosingEvolution != newLosingEvolution:
+			combatantLosingPrevEvolution = prevLosingEvolution
+			combatantLosingEvolving = unequippingCombatant
+			combatantLosingFlags = combatantLosingEvolving.switch_evolution(newLosingEvolution, prevLosingEvolution)
 	
 	combatant.stats.equip_item(inventorySlot.item)
 	#close_equip_panel.emit()
 	lastCombatant = combatant
 	load_equip_panel(false)
-	call_deferred('restore_focus')
+	var newEvolution: Evolution = combatant.get_evolution()
+	if newEvolution != prevEvolution:
+		evolveResultsPanel.combatant = combatant
+		evolveResultsPanel.newEvolution = newEvolution
+		evolveResultsPanel.prevEvolution = prevEvolution
+		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
+		evolveResultsPanel.switchEvolutionFlags = flags
+		evolveResultsPanel.combatantLosingEvolving = combatantLosingEvolving
+		evolveResultsPanel.load_evolve_results_panel()
+	elif combatantLosingEvolving != null:
+		evolveResultsPanel.combatant = combatantLosingEvolving
+		evolveResultsPanel.newEvolution = combatantLosingEvolving.get_evolution()
+		evolveResultsPanel.prevEvolution = combatantLosingPrevEvolution
+		evolveResultsPanel.switchEvolutionFlags = combatantLosingFlags
+		evolveResultsPanel.combatantLosingEvolving = null
+		evolveResultsPanel.load_evolve_results_panel()
+	else:
+		call_deferred('restore_focus')
 
 func unequip_pressed(combatant: Combatant):
+	var prevEvolution: Evolution = combatant.get_evolution()
 	combatant.stats.unequip_item(inventorySlot.item)
 	lastCombatant = combatant
 	load_equip_panel(false)
-	call_deferred('restore_focus')
+	var newEvolution: Evolution = combatant.get_evolution()
+	if newEvolution != prevEvolution:
+		evolveResultsPanel.combatant = combatant
+		evolveResultsPanel.newEvolution = newEvolution
+		evolveResultsPanel.prevEvolution = prevEvolution
+		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
+		evolveResultsPanel.switchEvolutionFlags = flags
+		evolveResultsPanel.load_evolve_results_panel()
+	else:
+		call_deferred('restore_focus')
 
 func show_item_details(combatant: Combatant, item: Item):
 	show_details_for_item.emit(item)
@@ -106,3 +145,6 @@ func show_item_details(combatant: Combatant, item: Item):
 
 func _on_back_button_pressed():
 	close_equip_panel.emit()
+
+func _on_tooltip_panel_ok_pressed():
+	call_deferred('restore_focus')

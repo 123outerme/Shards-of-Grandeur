@@ -1,39 +1,13 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=19 format=3 uid="uid://ta4xvquq2dev"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://ta4xvquq2dev"]
 
+[ext_resource type="Resource" uid="uid://bfdxdq68lovd" path="res://gamedata/combatants/tree_bear/tree_bear_rewards.tres" id="1_14jae"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_c0qja"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_po4bk"]
-[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="1_undki"]
+[ext_resource type="Resource" uid="uid://cgr5vbkjlpdt4" path="res://gamedata/combatants/tree_bear/tree_bear_evolutions.tres" id="2_g710c"]
 [ext_resource type="SpriteFrames" uid="uid://cg3nfu3ph42vi" path="res://graphics/animations/a_tree_bear.tres" id="2_hg2tw"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_romeo"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_p3p6n"]
-[ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="4_1u4uo"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="4_iv7qh"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="7_47w4f"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_tn1jl"]
-
-[sub_resource type="Resource" id="Resource_j40ri"]
-script = ExtResource("1_po4bk")
-experience = 50
-gold = 10
-item = ExtResource("1_undki")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_7e1oi"]
-script = ExtResource("2_romeo")
-reward = SubResource("Resource_j40ri")
-weight = 0.85
-
-[sub_resource type="Resource" id="Resource_gx5i7"]
-script = ExtResource("1_po4bk")
-experience = 50
-gold = 10
-item = ExtResource("4_1u4uo")
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_btmi1"]
-script = ExtResource("2_romeo")
-reward = SubResource("Resource_gx5i7")
-weight = 0.15
 
 [sub_resource type="Resource" id="Resource_hj45a"]
 script = ExtResource("3_p3p6n")
@@ -75,16 +49,19 @@ spriteFacesRight = false
 navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_hj45a")
+evolutions = ExtResource("2_g710c")
+evolutionStats = {}
 currentHp = -1
 orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
+version = ""
 aiType = 3
 damageAggroType = 2
 strategy = 2
 aiOverrideWeight = 0.4
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("9_tn1jl")]([SubResource("Resource_fjhrc"), SubResource("Resource_hw257"), SubResource("Resource_6u514")])
-dropTable = Array[ExtResource("2_romeo")]([SubResource("Resource_7e1oi"), SubResource("Resource_btmi1")])
+dropTable = ExtResource("1_14jae")
 innateStatCategories = Array[int]([3, 1, 2])
 downed = false

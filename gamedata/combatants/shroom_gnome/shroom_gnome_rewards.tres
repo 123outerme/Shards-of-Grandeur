@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://bot66oub5eciv"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_kt3x3"]
+[ext_resource type="Resource" uid="uid://w5o71gikwlf0" path="res://gamedata/items/shard/shroom_gnome_shard.tres" id="2_oa0e8"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_cus6y"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="4_uhvpw"]
+[ext_resource type="Resource" uid="uid://bgwbbpulv7yov" path="res://gamedata/items/healing/steak.tres" id="5_hfk52"]
+
+[sub_resource type="Resource" id="Resource_jl2ne"]
+script = ExtResource("3_cus6y")
+experience = 55
+gold = 6
+item = ExtResource("2_oa0e8")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_7tr45"]
+script = ExtResource("4_uhvpw")
+reward = SubResource("Resource_jl2ne")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_a8dw4"]
+script = ExtResource("3_cus6y")
+experience = 55
+gold = 6
+item = ExtResource("5_hfk52")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_3k87e"]
+script = ExtResource("4_uhvpw")
+reward = SubResource("Resource_a8dw4")
+weight = 0.15
+
+[resource]
+script = ExtResource("1_kt3x3")
+weightedRewards = Array[ExtResource("4_uhvpw")]([SubResource("Resource_7tr45"), SubResource("Resource_3k87e")])

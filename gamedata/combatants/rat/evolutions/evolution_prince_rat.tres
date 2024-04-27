@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Evolution" load_steps=8 format=3 uid="uid://c2y3l5soc6iwg"]
+
+[ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_7nryn"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="2_ih3uk"]
+[ext_resource type="SpriteFrames" uid="uid://1h8ufe1xrbcg" path="res://graphics/animations/a_prince_rat.tres" id="3_30lga"]
+[ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="4_axfg2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_4e0am"]
+[ext_resource type="Resource" uid="uid://dnm5tc6eargc0" path="res://gamedata/combatants/rat/evolutions/prince_rat_stat_growth.tres" id="6_7l88k"]
+
+[sub_resource type="Resource" id="Resource_ufyx1"]
+script = ExtResource("5_4e0am")
+displayName = "Prince Rat"
+saveName = "rat"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("6_7l88k")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("4_axfg2")
+
+[resource]
+script = ExtResource("2_ih3uk")
+evolutionSaveName = "prince_rat"
+spriteFrames = ExtResource("3_30lga")
+maxSize = Vector2(16, 16)
+facesRight = false
+requiredEquipment = ExtResource("1_7nryn")
+stats = SubResource("Resource_ufyx1")

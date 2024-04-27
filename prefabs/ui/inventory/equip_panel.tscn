@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://n55f6tk0t25u"]
+[gd_scene load_steps=8 format=3 uid="uid://n55f6tk0t25u"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_33myd"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_panel.gd" id="1_d0fb1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_mg8vn"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="4_v4nb2"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_2r15b"]
+[ext_resource type="PackedScene" uid="uid://cksd5oyh48til" path="res://prefabs/ui/inventory/evolve_results_panel.tscn" id="7_x3ke2"]
 
 [node name="EquipPanel" type="Control"]
 layout_mode = 3
@@ -113,5 +114,10 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="EvolveResultsPanel" parent="." instance=ExtResource("7_x3ke2")]
+visible = false
+layout_mode = 1
+
 [connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="ok_pressed" from="EvolveResultsPanel" to="." method="_on_tooltip_panel_ok_pressed"]

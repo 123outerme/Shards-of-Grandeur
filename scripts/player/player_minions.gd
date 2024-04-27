@@ -33,6 +33,8 @@ func init_minion(saveName: String) -> Combatant:
 	var minion = Combatant.load_combatant_resource(saveName)
 	if minion != null:
 		level_up_minion(minion, PlayerResources.playerInfo.combatant.stats.level, true)
+		# remove the drop table because it's unneeded now
+		minion.dropTable = null
 		minionsDict[saveName] = minion
 		if not (minion.save_name() in minionList):
 			minionList.append(minion.save_name())
@@ -126,12 +128,15 @@ func _load_data_each_minion(save_path):
 		var minion = null
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres'):
 			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
+			if minion == null or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR:
+				print('minion ', minionName, ' failed load validation')
+				minion = init_minion(minionName)
+			minion.version = GameSettings.get_game_version()
 			validate_minion_moves(minion)
 			validate_minion_stats(minion)
+			minion.validate_evolution_stats()  # validate evolution stats data structure
 			set_minion(minion)
-		if minion == null:
-			init_minion(minionName)
-	
+
 func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_file)
 	if err != 0:

@@ -49,14 +49,14 @@ func load_equip_combatant_panel():
 	
 	combatantName.text = combatant.disp_name()
 	
-	animatedCombatantSprite.sprite_frames = combatant.spriteFrames
+	animatedCombatantSprite.sprite_frames = combatant.get_sprite_frames()
 	if combatant.maxSize.x <= 16 and combatant.maxSize.y <= 16:
 		animatedCombatantSprite.scale = Vector2(3, 3)
 	elif combatant.maxSize.x < 48 and combatant.maxSize.y < 48:
-		animatedCombatantSprite.scale = Vector2(2.5, 2.5)
+		animatedCombatantSprite.scale = Vector2(2, 2)
 	else:
 		animatedCombatantSprite.scale = Vector2(2, 2)
-	animatedCombatantSprite.play('walk')
+	animatedCombatantSprite.play('battle_idle')
 	
 	equipSpriteButton.texture_normal = item.itemSprite
 	equipSpriteButton.visible = unequipButton.visible

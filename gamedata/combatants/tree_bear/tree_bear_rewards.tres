@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://bfdxdq68lovd"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_353w4"]
+[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="2_5fato"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_bg854"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_btogo"]
+[ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="5_u2a8q"]
+
+[sub_resource type="Resource" id="Resource_v5c6u"]
+script = ExtResource("2_btogo")
+experience = 50
+gold = 10
+item = ExtResource("2_5fato")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_hmsg2"]
+script = ExtResource("2_bg854")
+reward = SubResource("Resource_v5c6u")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_uc8uh"]
+script = ExtResource("2_btogo")
+experience = 50
+gold = 10
+item = ExtResource("5_u2a8q")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_vj2br"]
+script = ExtResource("2_bg854")
+reward = SubResource("Resource_uc8uh")
+weight = 0.15
+
+[resource]
+script = ExtResource("1_353w4")
+weightedRewards = Array[ExtResource("2_bg854")]([SubResource("Resource_hmsg2"), SubResource("Resource_vj2br")])

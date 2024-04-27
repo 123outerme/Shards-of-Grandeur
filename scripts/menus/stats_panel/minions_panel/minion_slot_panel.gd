@@ -30,10 +30,10 @@ func load_minion_slot_panel():
 		visible = false
 		return
 	
-	minionSprite.sprite_frames = combatant.spriteFrames
-	if combatant.spriteFrames == null:
+	minionSprite.sprite_frames = combatant.get_sprite_frames()
+	if combatant.get_sprite_frames() == null:
 		minionSprite.sprite_frames = load('res://graphics/animations/a_player.tres') # TEMP
-	minionSprite.play('walk')
+	minionSprite.play('battle_idle')
 	minionName.text = combatant.disp_name()
 	statPtIndicator.visible = not readOnly and combatant.stats.statPts > 0
 	reorderButton.visible = showReorderButton

@@ -23,7 +23,7 @@ var waitUntilNavReady: bool = false
 
 func _ready():
 	combatant = enemyData.combatant
-	enemySprite.sprite_frames = combatant.spriteFrames
+	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	position = get_point_around_home() # throw out position and load from random point near home
 	#position = enemyData.position
 	disableMovement = enemyData.disableMovement
@@ -39,7 +39,7 @@ func _process(delta):
 	if waitUntilNavReady:
 		get_next_patrol_target()
 	
-	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady:
+	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and not PlayerFinder.player.disableMovement:
 		if not patrolling:
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()

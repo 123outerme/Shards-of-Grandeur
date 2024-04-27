@@ -39,12 +39,15 @@ const MAX_ORBS = 10
 @export_category("Combatant - Stats")
 @export var nickname: String = ''
 @export var stats: Stats = Stats.new()
+@export var evolutions: Evolutions = null
+@export var evolutionStats: Dictionary = {}
 @export var currentHp: int = -1
 @export var orbs: int = 0
 @export var statChanges: StatChanges = StatChanges.new()
 @export var statusEffect: StatusEffect = null
 @export var friendship: float = 0
 @export var maxFriendship: float = 30
+@export var version: String = ''
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE
@@ -54,7 +57,7 @@ const MAX_ORBS = 10
 @export var equipmentTable: Array[WeightedEquipment] = []
 @export var teamTable: Array[WeightedString] = []
 # NOTE: having a weighted combatant caused recursion errors, so this is the workaround
-@export var dropTable: Array[WeightedReward] = []
+@export var dropTable: CombatantRewards = null
 @export var innateStatCategories: Array[Stats.Category] = []
 
 @export_category("Combatant - In Battle")
@@ -80,6 +83,8 @@ static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:
 func _init(
 	i_nickname = '',
 	i_stats = Stats.new(),
+	i_evolutions = null,
+	i_evolutionStats = {},
 	i_curHp = -1,
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
@@ -93,7 +98,7 @@ func _init(
 	i_overrideWeight = 0.35,
 	i_equipmentTable: Array[WeightedEquipment] = [],
 	i_teamTable: Array[WeightedString] = [],
-	i_dropTable: Array[WeightedReward] = [],
+	i_dropTable: CombatantRewards = null,
 	i_innateStats: Array[Stats.Category] = [],
 	i_command = null,
 	i_downed = false,
@@ -104,6 +109,10 @@ func _init(
 		currentHp = i_curHp
 	else:
 		currentHp = stats.maxHp
+	evolutions = i_evolutions
+	
+	evolutionStats = i_evolutionStats
+	
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	spriteFrames = i_sprite
@@ -128,6 +137,79 @@ func disp_name() -> String:
 
 func save_name() -> String:
 	return stats.saveName
+
+func validate_evolution_stats():
+	if evolutions != null: 
+		if evolutionStats.is_empty():
+			# first index is base form stats
+			print('creating evolution stats obj for ', stats.displayName)
+			evolutionStats['_base'] = stats
+		for evolution: Evolution in evolutions.evolutionList:
+			if not evolutionStats.has(evolution.evolutionSaveName):
+				evolutionStats[evolution.evolutionSaveName] = evolution.stats.copy()
+
+func get_evolution_stats_idx(evolution: Evolution) -> String:
+	validate_evolution_stats()
+	if evolutions == null or evolution == null:
+		return '_base'
+	return evolution.evolutionSaveName
+
+func get_evolution_stats(evolution: Evolution) -> Stats:
+	validate_evolution_stats()
+	if evolutions == null or evolution == null or not evolutionStats.has(evolution.evolutionSaveName):
+		return evolutionStats['_base']
+	
+	return evolutionStats[evolution.evolutionSaveName] as Stats
+
+func get_evolution() -> Evolution:
+	if evolutions != null:
+		for evolution in evolutions.evolutionList:
+			if evolution.combatant_can_evolve(self):
+				return evolution
+	return null
+
+# null for base form, otherwise an Evolution
+# returns 0 if no lv/move changes were made
+# adds 0b01 if lv changed
+# adds 0b10 if movepool changed
+# adds 0b100 if assigned moves changed
+# adds 0b1000 if ALL moves were found invalid
+func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
+	validate_evolution_stats()
+	if evolutions == null:
+		return 0
+	# save the pre-switch stats back to the stats dict
+	var returnCode: int = 0
+	var prevNullMoves: int = validate_moves()
+	var prevIdx: String = get_evolution_stats_idx(prevEvolution)
+	evolutionStats[prevIdx] = stats
+	stats = get_evolution_stats(evolution)
+	# change the current HP by keeping the same HP ratio
+	var hpRatio: float = (currentHp as float) / evolutionStats[prevIdx].maxHp
+	# don't gain any HP by switching forms
+	currentHp = floori(hpRatio * stats.maxHp)
+	# copy over moves, equipment
+	stats.moves = evolutionStats[prevIdx].moves
+	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
+	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
+	# if this stats set is underlevelled, level it up now
+	if stats.level < evolutionStats[prevIdx].level:
+		stats.level_up(evolutionStats[prevIdx].level - stats.level)
+		returnCode += 0b0001
+	if stats.movepool != evolutionStats[prevIdx].movepool:
+		returnCode += 0b0010
+	var nullMoves: int = validate_moves()
+	if prevNullMoves != nullMoves:
+		returnCode += 0b0100
+	if nullMoves == 4:
+		returnCode += 0b1000
+	return returnCode
+
+func get_sprite_frames() -> SpriteFrames:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.spriteFrames
+	return spriteFrames
 
 func update_downed():
 	downed = currentHp <= 0
@@ -244,6 +326,18 @@ func assign_moves_nonplayer():
 				stats.moves[nextMoveSlot] = move
 			nextMoveSlot = (nextMoveSlot + 1) % 4
 
+# returns the number of null moves after validation but before any re-assignment
+func validate_moves() -> int:
+	var emptySlots: int = 0
+	for move: Move in stats.moves:
+		if move != null and not move in stats.movepool.pool:
+			move = null
+		if move == null:
+			emptySlots += 1
+	if emptySlots == 4:
+		assign_moves_nonplayer()
+	return emptySlots
+
 func pick_equipment():
 	var choice: int = WeightedThing.pick_item(equipmentTable)
 	if choice >= 0 and choice < len(equipmentTable):
@@ -261,6 +355,11 @@ func copy() -> Combatant:
 
 func save_from_object(c: Combatant):
 	stats = c.stats.copy()
+	evolutions = c.evolutions
+	evolutionStats = {}
+	for evolutionName in c.evolutionStats:
+		evolutionStats[evolutionName] = c.evolutionStats[evolutionName].copy()
+	
 	nickname = c.nickname
 	currentHp = c.currentHp
 	
@@ -282,7 +381,7 @@ func save_from_object(c: Combatant):
 	aiOverrideWeight = c.aiOverrideWeight
 	equipmentTable = c.equipmentTable.duplicate(false)
 	teamTable = c.teamTable.duplicate(false)
-	dropTable = c.dropTable.duplicate(false)
+	dropTable = c.dropTable
 	innateStatCategories = c.innateStatCategories.duplicate(false)
 	
 	if c.command != null:
