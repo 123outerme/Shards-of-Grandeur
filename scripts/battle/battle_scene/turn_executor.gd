@@ -234,7 +234,6 @@ func check_battle_end_conditions() -> TurnResult:
 				alliesDown += 1 # ally down
 			else:
 				enemiesDown += 1 # enemy down
-	battleUI.update_downed()
 	if alliesDown == 2: # all allies are down:
 		return TurnResult.ENEMY_WIN
 	if enemiesDown == 3: # all enemies are down:

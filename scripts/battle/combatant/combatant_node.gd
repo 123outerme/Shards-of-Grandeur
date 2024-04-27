@@ -34,13 +34,10 @@ signal details_clicked(combatantNode: CombatantNode)
 @export var battleController: Node2D
 # NOTE: if this is of type BattleController, then the SFX Button scene breaks.... no joke. WHYYYYYYY??
 
-const WEAK_STATUS_WEIGHT = 40
-const STRONG_STATUS_WEIGHT = 60
-const OVERWHELMING_STATUS_WEIGHT = 80
 const statusWeights: Dictionary = {
-	StatusEffect.Potency.WEAK: WEAK_STATUS_WEIGHT,
-	StatusEffect.Potency.STRONG: STRONG_STATUS_WEIGHT,
-	StatusEffect.Potency.OVERWHELMING: OVERWHELMING_STATUS_WEIGHT
+	StatusEffect.Potency.WEAK: 30,
+	StatusEffect.Potency.STRONG: 45,
+	StatusEffect.Potency.OVERWHELMING: 60
 }
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
@@ -451,6 +448,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		return 0
 	var hasAllies: bool = false
 	var numCanStatus: int = 0
+	var combatantCouldUseHealing: bool = false
 	for combatantNode in tmpAllCombatantNodes:
 		if combatantNode != null and combatantNode.role == role and combatantNode.is_alive() and combatantNode.battlePosition != battlePosition:
 			hasAllies = true
@@ -459,6 +457,10 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, moveEffect.targets):
 		if combatantNode.combatant.statusEffect == null:
 			numCanStatus += 1
+		var maxHp: float = combatantNode.combatant.stats.maxHp
+		# if 60% or less health, could use healing
+		if combatantNode.combatant.currentHp / maxHp < 0.6:
+			combatantCouldUseHealing = true
 	
 	if not hasAllies and moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY:
 		return 0
@@ -473,7 +475,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			(combatant.aiType == Combatant.AiType.DAMAGE and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \
 			(combatant.aiType == Combatant.AiType.BUFFER and moveEffect.role == MoveEffect.Role.BUFF) or \
 			(combatant.aiType == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
-			(combatant.aiType == Combatant.AiType.SUPPORT and (moveEffect.role == MoveEffect.Role.HEAL or moveEffect.role == MoveEffect.Role.OTHER)): 
+			(combatant.aiType == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
 		weightModifier *= 1.5 # prioritize moves aligning with AI type
 	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
 	var damageStat: int = boostedStats.physAttack
@@ -658,15 +660,18 @@ func _on_animated_sprite_animation_finished():
 		tween_back_to_return_pos()
 	elif battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
 		battleController.combatant_finished_animating.emit()
+	# in case the combatant (currently using a move) is finished with the move animation and there wasn't any movement, update HP tag
 	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
 		battleController.combatant_finished_moving.emit()
+	# when the combatant reaches the target on a "contact" movement, update HP tag
 	update_hp_tag()
 
 func _combatant_finished_moving():
 	if playParticlesQueued != null:
+		# if the turn combatant (who's currently using a move) doesn't need this combatant to play hit particles, this is when the tag updates
 		if playHitQueued == null:
 			update_hp_tag()
 		make_particles_now(playParticlesQueued, playParticlesTimingDelay)
