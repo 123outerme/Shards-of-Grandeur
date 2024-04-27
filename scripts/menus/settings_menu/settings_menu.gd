@@ -16,7 +16,7 @@ signal back_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
@@ -28,10 +28,12 @@ func toggle_settings_menu(showing: bool):
 	visible = showing
 	if visible:
 		initial_focus()
+		generalButton.button_pressed = true
 		generalSection.toggle_section(true)
 		set_button_right_neighbors(generalSection.onscreenKeyboardButton)
 		controlsSection.toggle_section(false)
 		audioSection.toggle_section(false)
+		audioSection.connect_top_setting_to(audioButton)
 	else:
 		_on_back_button_pressed()
 

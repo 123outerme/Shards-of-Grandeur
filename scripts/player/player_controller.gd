@@ -3,9 +3,14 @@ class_name PlayerController
 
 const BASE_SPEED = 80
 const RUN_SPEED = 120
+# cooldowns calculated from animation framerate and "step" frame timings
+const BASE_STEP_SFX_COOLDOWN: float = 0.5714
+const RUN_STEP_SFX_COOLDOWN: float = 0.3636
+
 @export var disableMovement: bool
 @export var facingLeft: bool = false
 @export var teleportSfx: AudioStream = null
+@export var stepSfx: Array[AudioStream] = []
 
 var speed = BASE_SPEED
 var pickedUpItem: PickedUpItem = null
@@ -37,6 +42,9 @@ var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
 var running: bool = false
 var useTeleportStone: TeleportStone = null
+# play a step immediately when moving the next time
+var stepSfxTimer: float = BASE_STEP_SFX_COOLDOWN
+var lastStepIdx: int = -1
 
 func _unhandled_input(event):
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
@@ -111,9 +119,14 @@ func _unhandled_input(event):
 	
 func _physics_process(_delta):
 	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
+		if speed != RUN_SPEED:
+			# play a step sound the next frame (for animation change when moving and switching run status)
+			stepSfxTimer = RUN_STEP_SFX_COOLDOWN
 		speed = RUN_SPEED
 	elif speed != BASE_SPEED:
 		speed = BASE_SPEED
+		# play a step sound the next frame (for animation change when moving and switching run status) 
+		stepSfxTimer = BASE_STEP_SFX_COOLDOWN
 	
 	if not disableMovement:
 		# omni-directional movement
@@ -137,13 +150,31 @@ func _physics_process(_delta):
 		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		cam.position += vel * _delta
 		
-func _process(_delta):
+func _process(delta):
 	if holdCameraX:
 		cam.position.x = holdingCameraAt.x - position.x
 		uiRoot.position.x = holdingCameraAt.x - position.x
 	if holdCameraY:
 		cam.position.y = holdingCameraAt.y - position.y
 		uiRoot.position.y = holdingCameraAt.y - position.y
+	
+	# placed here instead of _physics_process because graphics are updated in sync with _process
+	if velocity.length_squared() > 0:
+		stepSfxTimer += delta
+		if stepSfxTimer > (RUN_STEP_SFX_COOLDOWN if speed == RUN_SPEED else BASE_STEP_SFX_COOLDOWN):
+			# don't choose the SFX we last picked
+			var stepChoiceIdxs: Array = range(len(stepSfx))
+			if lastStepIdx != -1:
+				stepChoiceIdxs.remove_at(lastStepIdx)
+			if len(stepChoiceIdxs) > 0:
+				lastStepIdx = stepChoiceIdxs.pick_random() as int
+			else:
+				lastStepIdx = 0
+			SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx])
+			stepSfxTimer = 0
+	else:
+		# play a step sound the next time the player moves
+		stepSfxTimer = BASE_STEP_SFX_COOLDOWN
 
 func eight_dir_movement(input: Vector2) -> Vector2:
 	var output: Vector2 = Vector2.ZERO
