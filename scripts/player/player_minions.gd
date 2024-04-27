@@ -42,8 +42,11 @@ func init_minion(saveName: String) -> Combatant:
 
 func get_minion_list() -> Array[Combatant]:
 	var minions: Array[Combatant] = []
-	for minion in minionList:
-		minions.append(minionsDict[minion])
+	for minion: String in minionList:
+		if minionsDict.has(minion):
+			minions.append(minionsDict[minion])
+		else:
+			minions.append(init_minion(minion))
 	return minions
 
 func level_up_minion(minion: Combatant, newLevel: int, newMinion: bool = false):
