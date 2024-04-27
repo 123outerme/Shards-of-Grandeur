@@ -103,12 +103,12 @@ func equip_pressed(combatant: Combatant):
 	combatant.stats.equip_item(inventorySlot.item)
 	#close_equip_panel.emit()
 	lastCombatant = combatant
-	load_equip_panel(false)
 	var newEvolution: Evolution = combatant.get_evolution()
 	if newEvolution != prevEvolution:
 		evolveResultsPanel.combatant = combatant
 		evolveResultsPanel.newEvolution = newEvolution
 		evolveResultsPanel.prevEvolution = prevEvolution
+		evolveResultsPanel.equipment = inventorySlot.item
 		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
 		evolveResultsPanel.switchEvolutionFlags = flags
 		evolveResultsPanel.combatantLosingEvolving = combatantLosingEvolving
@@ -117,27 +117,31 @@ func equip_pressed(combatant: Combatant):
 		evolveResultsPanel.combatant = combatantLosingEvolving
 		evolveResultsPanel.newEvolution = combatantLosingEvolving.get_evolution()
 		evolveResultsPanel.prevEvolution = combatantLosingPrevEvolution
+		evolveResultsPanel.equipment = inventorySlot.item
 		evolveResultsPanel.switchEvolutionFlags = combatantLosingFlags
 		evolveResultsPanel.combatantLosingEvolving = null
 		evolveResultsPanel.load_evolve_results_panel()
 	else:
 		call_deferred('restore_focus')
+	load_equip_panel(false)
 
 func unequip_pressed(combatant: Combatant):
 	var prevEvolution: Evolution = combatant.get_evolution()
 	combatant.stats.unequip_item(inventorySlot.item)
 	lastCombatant = combatant
-	load_equip_panel(false)
 	var newEvolution: Evolution = combatant.get_evolution()
 	if newEvolution != prevEvolution:
 		evolveResultsPanel.combatant = combatant
 		evolveResultsPanel.newEvolution = newEvolution
 		evolveResultsPanel.prevEvolution = prevEvolution
+		evolveResultsPanel.equipment = inventorySlot.item
 		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
 		evolveResultsPanel.switchEvolutionFlags = flags
+		evolveResultsPanel.combatantLosingEvolving = null
 		evolveResultsPanel.load_evolve_results_panel()
 	else:
 		call_deferred('restore_focus')
+	load_equip_panel(false)
 
 func show_item_details(combatant: Combatant, item: Item):
 	show_details_for_item.emit(item)
