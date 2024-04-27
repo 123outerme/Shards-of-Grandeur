@@ -11,14 +11,17 @@ class_name EvolveResultsPanel
 @onready var combatantSprite: AnimatedSprite2D = get_node('Panel/CombatantSpriteControl/CombatantSprite')
 
 func load_evolve_results_panel():
+	var prevEvolutionStats: Stats = combatant.get_evolution_stats(prevEvolution)
+	var nickNameOrPrevDispName: String = combatant.nickname if combatant.nickname != '' else prevEvolutionStats.displayName
+	
 	if newEvolution != null:
-		title = combatant.disp_name() + ' Evolved Into ' + newEvolution.stats.displayName + '!'
+		title = nickNameOrPrevDispName + ' Evolved Into ' + newEvolution.stats.displayName + '!'
 		details = 'By equipping the ' + equipment.itemName \
-				+ ', ' + combatant.disp_name() + ' has become a ' + newEvolution.stats.displayName + '!'
+				+ ', ' + nickNameOrPrevDispName + ' has become ' + newEvolution.stats.displayName + '!'
 	else:
 		title = combatant.disp_name() + ' Reverted to Base'
 		details = 'By unequipping the ' + equipment.itemName \
-				+ ', ' + combatant.disp_name() + ' has reverted back to base form.'
+				+ ', ' + nickNameOrPrevDispName + ' has reverted back to base form.'
 	
 	if combatantLosingEvolving != null:
 		details += '\n' + combatantLosingEvolving.disp_name() + ' unequipped the ' + equipment.itemName + ' and reverted back to base form.'
