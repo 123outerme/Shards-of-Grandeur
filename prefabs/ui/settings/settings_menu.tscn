@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cmh0663np3wdv" path="res://prefabs/ui/settings/settings_audio_section.tscn" id="7_51o1i"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_ov783"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_wkkrp"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_7bohw"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_3bwby"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_2kkuc"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_sepou"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_pn5iw"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -88,20 +88,20 @@ text = "Back"
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_wkkrp")
+button_group = SubResource("ButtonGroup_7bohw")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3bwby")
+button_group = SubResource("ButtonGroup_2kkuc")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_sepou")
+button_group = SubResource("ButtonGroup_pn5iw")
 text = "Audio"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]
@@ -121,8 +121,23 @@ theme = ExtResource("4_20kul")
 layout_mode = 1
 sectionToggleButton = NodePath("../../VBoxContainer/GeneralButton")
 
-[node name="VirtualKeyboard" parent="Panel/SubsectionPanel/GeneralSection/Control" index="1"]
-visible = false
+[node name="DeadzoneRangeLabel" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/DeadzoneControl" index="1"]
+offset_right = 308.0
+
+[node name="DeadzoneRangeLabel2" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/DeadzoneControl" index="2"]
+offset_right = 505.0
+
+[node name="WindowLabel" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/WindowControl" index="0"]
+offset_right = 463.0
+
+[node name="WindowOptionsButton" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/WindowControl/WindowLabel" index="1"]
+offset_left = -163.0
+
+[node name="FramerateLabel" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/FramerateControl" index="0"]
+offset_right = 434.0
+
+[node name="FramerateLineEdit" parent="Panel/SubsectionPanel/GeneralSection/Control/VBoxContainer/FramerateControl/FramerateLabel" index="1"]
+offset_left = -110.0
 
 [node name="ItemConfirmPanel" parent="Panel/SubsectionPanel/GeneralSection" index="1"]
 layout_mode = 1
