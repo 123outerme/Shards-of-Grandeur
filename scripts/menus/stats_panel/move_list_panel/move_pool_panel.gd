@@ -47,11 +47,12 @@ func load_move_pool_panel(rebuild: bool = true):
 				if firstMovePanel == null:
 					firstMovePanel = instantiatedPanel
 				lastMovePanel = instantiatedPanel
-		lastMovePanel.detailsButton.focus_neighbor_bottom = NodePath('.')
-		lastMovePanel.cancelButton.focus_neighbor_bottom = NodePath('.')
-		lastMovePanel.reorderButton.focus_neighbor_bottom = NodePath('.')
-		lastMovePanel.replaceButton.focus_neighbor_bottom = NodePath('.')
-		lastMovePanel.selectButton.focus_neighbor_bottom = NodePath('.')
+		if lastMovePanel != null:
+			lastMovePanel.detailsButton.focus_neighbor_bottom = NodePath('.')
+			lastMovePanel.cancelButton.focus_neighbor_bottom = NodePath('.')
+			lastMovePanel.reorderButton.focus_neighbor_bottom = NodePath('.')
+			lastMovePanel.replaceButton.focus_neighbor_bottom = NodePath('.')
+			lastMovePanel.selectButton.focus_neighbor_bottom = NodePath('.')
 	else:
 		var panels: Array[Node] = get_tree().get_nodes_in_group('MovePoolPanelMove')
 		for idx in range(len(panels)):

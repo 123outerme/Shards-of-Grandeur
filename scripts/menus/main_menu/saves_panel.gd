@@ -52,6 +52,8 @@ func initial_focus():
 			firstPermanentSavePanel.saveButton.grab_focus()
 
 func load_saves_panel():
+	fromSave = ''
+	toSave = ''
 	load_save_item_panels()
 	initial_focus()
 
@@ -59,6 +61,8 @@ func load_save_item_panels():
 	var panels = savePanelVbox.get_children()
 	for idx in range(len(panels)):
 		var panel: LoadSaveItemPanel = panels[idx] as LoadSaveItemPanel
+		panel.isCopyFrom = false
+		panel.showCopyTo = false
 		panel.parentPanel = self
 		panel.load_save_item_panel()
 	update_focus_neighbors()
@@ -174,10 +178,17 @@ func copy_save_pressed(saveFolder: String, isCopyTo: bool):
 		else:
 			fromSave = ''
 			toSave = ''
+			for idx in range(len(panels)):
+				var panel: LoadSaveItemPanel = panels[idx] as LoadSaveItemPanel
+				panel.isCopyFrom = false
+				panel.showCopyTo = false
+				panel.update_buttons_visibility()
 	update_focus_neighbors()
 
 func copy_save(yes: bool = true):
 	if fromSave == '' or toSave == '':
+		fromSave = ''
+		toSave = ''
 		return
 	
 	if yes:

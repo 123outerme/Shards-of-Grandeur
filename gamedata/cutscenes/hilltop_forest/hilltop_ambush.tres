@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=63 format=3 uid="uid://c8g3p1lo0jdr3"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=65 format=3 uid="uid://c8g3p1lo0jdr3"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_2trho"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_t8muq"]
@@ -445,6 +445,12 @@ endFade = 0
 endFadeLength = 0.0
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_qn3rr"]
+script = ExtResource("7_wau4e")
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+animation = "talk"
+
 [sub_resource type="Resource" id="Resource_up24p"]
 script = ExtResource("4_0n8c1")
 speaker = "Spelunker"
@@ -455,7 +461,7 @@ script = ExtResource("2_pkwfi")
 frameLength = 0.5
 annotation = "The player stops and pauses, then the spelunker speaks, offering a Shard"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("4_vqc0e")])
+actorAnims = Array[ExtResource("7_wau4e")]([ExtResource("4_vqc0e"), SubResource("Resource_qn3rr")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_up24p")])
 endTextBoxPauses = false
@@ -481,12 +487,18 @@ endFadeLength = 0.0
 givesItem = ExtResource("11_m7w8s")
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_71ll1"]
+script = ExtResource("7_wau4e")
+actorTreePath = "TileMap/Spelunker"
+isPlayer = false
+animation = "stand"
+
 [sub_resource type="Resource" id="Resource_6duyd"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.5
 annotation = "The player turns again to face the ambusher"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("9_ai8ig"), ExtResource("10_ru0f4")])
-actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_71ll1")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 dialogues = Array[ExtResource("4_0n8c1")]([])
 endTextBoxPauses = true

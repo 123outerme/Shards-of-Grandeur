@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
 [ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_kfmy7"]
+[ext_resource type="Resource" uid="uid://6oywd1qvwyby" path="res://gamedata/combatants/king_rat/king_rat_rewards.tres" id="1_rqv3k"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="2_4dg8r"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_are3w"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_g7kp6"]
@@ -58,5 +59,6 @@ strategy = 1
 aiOverrideWeight = 0.15
 equipmentTable = Array[ExtResource("3_g7kp6")]([SubResource("Resource_0tx4e")])
 teamTable = Array[ExtResource("6_luqkf")]([SubResource("Resource_gwbxw")])
+dropTable = ExtResource("1_rqv3k")
 innateStatCategories = Array[int]([0, 2])
 downed = false

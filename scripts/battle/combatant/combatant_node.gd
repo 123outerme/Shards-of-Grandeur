@@ -56,6 +56,7 @@ var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
 var moveSpritesCallback: Callable = Callable()
 var useItemSprite: Texture2D = null
+var isBeingStatusAfflicted: bool = false
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -469,10 +470,14 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	if not combatant.would_ai_spend_orbs(moveEffect):
 		weightModifier = 0.5
 	elif moveEffect.orbChange >= 0:
-		# modifier is [0.8, 1.8 based on the amount of orbs that can be gained by using the move
-		weightModifier *= max(0.8, 1 - ((moveEffect.orbChange - 1) / 10.0))
+		# modifier is [0.8, 3] based on the amount of orbs that can be gained by using the move
+		var gainableOrbs: int = max(Combatant.MAX_ORBS, moveEffect.orbChange + combatant.orbs) - combatant.orbs
+		weightModifier *= max(0.8, 1 - ((gainableOrbs - 1) * 0.2))
+	# at 40% health or less, non-SUPPORT AIs should prioritize attacking more
+	var isLowHealth: bool = (combatant.currentHp / (combatant.stats.maxHp as float)) <= 0.4
 	if randValue > combatant.aiOverrideWeight and \
-			(combatant.aiType == Combatant.AiType.DAMAGE and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \
+			((combatant.aiType == Combatant.AiType.DAMAGE or (combatant.aiType != Combatant.AiType.SUPPORT and isLowHealth)) \
+			and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \
 			(combatant.aiType == Combatant.AiType.BUFFER and moveEffect.role == MoveEffect.Role.BUFF) or \
 			(combatant.aiType == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
 			(combatant.aiType == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
@@ -674,7 +679,12 @@ func _combatant_finished_moving():
 		if playHitQueued == null:
 			update_hp_tag()
 		make_particles_now(playParticlesQueued, playParticlesTimingDelay)
+	else:
+		# otherwise if no particles are going to play on this combatant but it is getting status'd, update the HP tag
+		if playHitQueued == null and isBeingStatusAfflicted:
+			update_hp_tag()
 	playParticlesQueued = null
+	isBeingStatusAfflicted = false
 	if len(playMoveSpritesQueued) > 0:
 		for moveSprite in playMoveSpritesQueued:
 			play_move_sprite(moveSprite)

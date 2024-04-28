@@ -31,6 +31,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="BackButton" parent="StatsPanel/Panel" instance=ExtResource("10_sd4fn")]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 16.0
+offset_right = 30.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
 [node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel"]
 position = Vector2(64, 44)
 scale = Vector2(2, 2)
@@ -95,9 +111,9 @@ anchor_top = -0.243
 anchor_right = 1.066
 anchor_bottom = 2.118
 offset_left = -0.159912
-offset_top = 0.172005
+offset_top = 4.863
 offset_right = 3.03992
-offset_bottom = 6.328
+offset_bottom = 11.019
 
 [node name="EquipmentPanel" parent="StatsPanel/Panel" instance=ExtResource("7_dsgm0")]
 layout_mode = 1
@@ -165,32 +181,16 @@ offset_top = -336.0
 offset_right = -1.0
 offset_bottom = -332.0
 
-[node name="BackButton" parent="StatsPanel/Panel" instance=ExtResource("10_sd4fn")]
-custom_minimum_size = Vector2(60, 40)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = 19.0
-offset_right = 25.0
-offset_bottom = 53.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Back"
-
 [node name="EditMovesPanel" parent="StatsPanel/Panel" instance=ExtResource("9_ue80h")]
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="edit_moves" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
 [connection signal="attempt_equip_armor" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
 [connection signal="attempt_equip_weapon" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
-[connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]
 [connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]
 

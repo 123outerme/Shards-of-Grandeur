@@ -92,7 +92,7 @@ func apply_menu_state():
 					battleComplete.rewards.append(reward)
 			else:
 				for combatantNode in battleController.get_all_combatant_nodes():
-					if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
+					if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null and combatantNode.combatant.dropTable != null:
 						var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable.weightedRewards)
 						if dropIdx > -1:
 							battleComplete.rewards.append( \

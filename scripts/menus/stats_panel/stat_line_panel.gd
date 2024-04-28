@@ -92,9 +92,10 @@ func load_statline_panel(recopyStats: bool = false):
 	hpProgressBar.value = hp
 	hpProgressBar.tint_progress = Combatant.get_hp_bar_color(hp, statsCopy.maxHp)
 	
-	expText.text = TextUtils.num_to_comma_string(statsCopy.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(statsCopy.level))
-	expProgressBar.max_value = Stats.get_required_exp(statsCopy.level)
-	expProgressBar.value = statsCopy.experience
+	# since player and minions share level, show player exp progress to level up, always
+	expText.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.combatant.stats.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level))
+	expProgressBar.max_value = Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level)
+	expProgressBar.value = PlayerResources.playerInfo.combatant.stats.experience
 	
 	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
 	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)
@@ -124,12 +125,8 @@ func load_statline_panel(recopyStats: bool = false):
 	speedLvUp.visible = levelUp
 	statPtsLvUp.visible = levelUp
 	if levelUp:
-		var prevLvBase: Stats = Stats.new()
-		prevLvBase.statGrowth = statsCopy.statGrowth
-		prevLvBase.level_up(statsCopy.level - newLvs - 1)
-		var newLvBase: Stats = Stats.new()
-		newLvBase.statGrowth = statsCopy.statGrowth
-		newLvBase.level_up(statsCopy.level - 1)
+		var prevLvBase: Stats = Stats.calculate_base_stats(statsCopy, statsCopy.level - newLvs)
+		var newLvBase: Stats = Stats.calculate_base_stats(statsCopy, statsCopy.level)
 		hpLvUp.text = '[right]+' + String.num(newLvBase.maxHp - prevLvBase.maxHp) + '[/right]'
 		physAtkLvUp.text = '[right]+' + String.num(newLvBase.physAttack - prevLvBase.physAttack) + '[/right]'
 		magicAtkLvUp.text = '[right]+' + String.num(newLvBase.magicAttack - prevLvBase.magicAttack) + '[/right]'

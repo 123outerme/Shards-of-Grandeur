@@ -133,8 +133,23 @@ func _load_data_each_minion(save_path):
 			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
 			if minion == null or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR:
 				print('minion ', minionName, ' failed load validation')
+				var savedFriendship: int = 0
+				var savedMaxFriendship: int = 0
+				var savedNickname: String = ''
+				if minion != null:
+					savedFriendship = minion.friendship
+					savedMaxFriendship = minion.maxFriendship
+					savedNickname = minion.nickname
 				minion = init_minion(minionName)
-			minion.version = GameSettings.get_game_version()
+				if savedMaxFriendship != 0:
+					# if we saved the friendship of the minion:
+					if savedMaxFriendship != minion.maxFriendship:
+						# if the minion's max friendship was saved: keep the friendship ratio
+						minion.friendship = roundi((savedFriendship / (savedMaxFriendship as float)) * minion.maxFriendship)
+					else:
+						# if the max friendship didn't change, no need to recalculate with the friendship ratio
+						minion.friendship = savedFriendship
+				minion.nickname = savedNickname
 			validate_minion_moves(minion)
 			validate_minion_stats(minion)
 			minion.validate_evolution_stats()  # validate evolution stats data structure

@@ -70,6 +70,7 @@ static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
+	combatant.version = GameSettings.get_game_version()
 	return combatant
 
 static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:

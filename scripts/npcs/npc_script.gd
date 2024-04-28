@@ -56,6 +56,7 @@ func _ready():
 	initialTalkAlertSprPos = talkAlertSprite.position
 	initialTalkAreaPos = talkArea.position
 	initialTalkAreaShapePos = talkAreaShape.position
+	
 	data = NPCData.new()
 	data.position = position
 	data.inventory = inventory
@@ -122,14 +123,15 @@ func _set_invisible(value: bool):
 		collision_layer = 0b01
 
 func _set_flip_h(value: bool):
-	if value != facesRight:
-		talkAlertSprite.position.x = initialTalkAlertSprPos.x
-		talkArea.position.x = initialTalkAreaPos.x
-		talkAreaShape.position.x = initialTalkAreaShapePos.x
-	else:
+	if value:
 		talkAlertSprite.position.x = -1.0 * initialTalkAlertSprPos.x
 		talkArea.position.x = -1.0 * initialTalkAreaPos.x
 		talkAreaShape.position.x = -1.0 * initialTalkAreaShapePos.x
+	else:
+		talkAlertSprite.position.x = initialTalkAlertSprPos.x
+		talkArea.position.x = initialTalkAreaPos.x
+		talkAreaShape.position.x = initialTalkAreaShapePos.x
+		
 	npcSprite.flip_h = value
 
 func get_collision_size() -> Vector2:
@@ -314,7 +316,8 @@ func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool =
 
 func pause_movement():
 	NavAgent.disableMovement = true
-	play_animation('stand')
+	if self != PlayerFinder.player.talkNPC:
+		play_animation('stand')
 	
 func unpause_movement():
 	NavAgent.disableMovement = false

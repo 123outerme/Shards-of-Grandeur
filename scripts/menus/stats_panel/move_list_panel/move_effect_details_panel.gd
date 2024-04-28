@@ -114,7 +114,9 @@ func _on_status_help_button_pressed():
 	tooltipPanel.title = StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
+	tooltipPanel.z_index = 1
 
 func _on_tooltip_panel_ok_pressed():
 	helpButtonPressed.grab_focus()
 	tooltip_panel_ok_pressed.emit()
+	tooltipPanel.z_index = -1

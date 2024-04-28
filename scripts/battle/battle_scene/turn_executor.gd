@@ -134,6 +134,9 @@ func update_turn_text() -> bool:
 					combatantNode.update_hp_tag()
 			if combatantNode.combatant in combatant.command.targets:
 				targetNodes.append(combatantNode)
+				var resultIdx: int = combatant.command.targets.find(combatantNode.combatant)
+				if combatant.command.commandResult != null and resultIdx > -1 and resultIdx < len(combatant.command.commandResult.afflictedStatuses):
+					combatantNode.isBeingStatusAfflicted = true
 		
 		userNode.moveSpriteTargets = targetNodes
 		var commandMoveSprites: Array[MoveAnimSprite] = combatant.command.get_command_sprites()
@@ -230,6 +233,7 @@ func check_battle_end_conditions() -> TurnResult:
 		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		if not combatantNode.is_alive(): # if combatant is not alive (after being updated)
+			combatantNode.update_hp_tag() # then the combatant should be shown as defeated
 			if combatantNode.role == CombatantNode.Role.ALLY:
 				alliesDown += 1 # ally down
 			else:
