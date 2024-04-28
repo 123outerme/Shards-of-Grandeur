@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://crei2j1v6q4jn"]
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://crei2j1v6q4jn"]
 
 [ext_resource type="Resource" uid="uid://dtc401ibnt8la" path="res://gamedata/moves/slice/anim_slice.tres" id="1_258we"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_t2xw0"]
@@ -28,9 +28,23 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.1
 
+[sub_resource type="Resource" id="Resource_bmod2"]
+script = ExtResource("3_nibma")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.05
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
 [sub_resource type="Resource" id="Resource_pu7s5"]
 script = ExtResource("5_l4g5a")
 powerPerOrb = 5
+selfStatChangesPerOrb = SubResource("Resource_bmod2")
 statusBaseChance = 0.0
 weakThresholdOrbs = 0
 strongThresholdOrbs = 0
@@ -56,6 +70,6 @@ requiredLv = 1
 category = 0
 chargeEffect = SubResource("Resource_dw8b6")
 surgeEffect = SubResource("Resource_kgdba")
-description = "The user swings around a pointy object, be it a sharpened staff or a sword."
+description = "The user swings around a pointy object, be it a sharpened branch or a sword."
 moveLearnedText = ""
 moveAnimation = ExtResource("1_258we")

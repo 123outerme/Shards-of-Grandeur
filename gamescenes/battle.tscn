@@ -472,11 +472,17 @@ text = "[center]Player Name Here, Minion Name Here, Enemy 1 Name, Enemy 2 Name, 
 fit_content = true
 
 [node name="EffectDesc" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
-layout_mode = 0
-offset_left = 724.0
-offset_top = 28.0
-offset_right = 1248.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -98.0
+offset_bottom = 98.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -597,8 +603,8 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -416.0
-offset_top = -99.0
-offset_bottom = 99.0
+offset_top = -98.0
+offset_bottom = 98.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 20
@@ -607,15 +613,13 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 bbcode_enabled = true
-text = "[center]Surge Changes:
-1
+text = "[center]1
 2
 3
 4
 5
 6
 7[/center]"
-fit_content = true
 
 [node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
