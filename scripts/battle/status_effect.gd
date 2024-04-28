@@ -77,7 +77,7 @@ func _init(
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	# each status effect needs to implement this then call super's version
 	# returning the combatants dealt damage to as a result of the status
-	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
+	if timing == BattleCommand.ApplyTiming.AFTER_POST_ROUND:
 		turnsLeft -= 1
 		if turnsLeft == 0:
 			type = Type.NONE

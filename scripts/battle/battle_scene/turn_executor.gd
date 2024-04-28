@@ -251,7 +251,8 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 	battleController.state.calcdStateStrings = []
 	battleController.state.calcdStateCombatants = []
 	for combatantNode in allCombatantNodes:
-		if combatantNode.is_alive():
+		# instead of combatantNode.is_alive(), check if visible and combatant is not null
+		if combatantNode.combatant != null and combatantNode.visible:
 			if battleUI.menuState == BattleState.Menu.PRE_BATTLE:
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''

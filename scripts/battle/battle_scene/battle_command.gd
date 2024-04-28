@@ -30,6 +30,7 @@ enum ApplyTiming {
 	AFTER_DMG_CALC = 4,
 	AFTER_ROUND = 5,
 	AFTER_RECIEVING_DMG = 6,
+	AFTER_POST_ROUND = 7, # only used for updating status effect turns
 }
 
 @export var type: Type = Type.NONE
