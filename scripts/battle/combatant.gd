@@ -24,8 +24,8 @@ enum ResourceStrategy {
 
 const HP_BAR_COLORS: Dictionary = {
 	'full': Color(0, 0.870588, 0), #00de00
-	'warn': Color(1, 0.71764707565308, 0), #ffb700
-	'low': Color(1, 0.3137255012989, 0) # ff5000
+	'warn': Color(1, 0.717647, 0), #ffb700
+	'low': Color(0.937255, 0, 0) #ef0000
 }
 
 const MAX_ORBS = 10
