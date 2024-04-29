@@ -23,7 +23,7 @@ enum ResourceStrategy {
 }
 
 const HP_BAR_COLORS: Dictionary = {
-	'full': Color(0, 1, 0), #00ff00
+	'full': Color(0, 0.870588, 0), #00de00
 	'warn': Color(1, 0.71764707565308, 0), #ffb700
 	'low': Color(1, 0.3137255012989, 0) # ff5000
 }
