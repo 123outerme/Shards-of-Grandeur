@@ -503,9 +503,9 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			for combatantNode: CombatantNode in tmpAllCombatantNodes:
 				if combatantNode.role != role and combatantNode.is_alive():
 					numEnemies += 1
-			weight = moveEffect.power * numEnemies * weightModifier + 1
+			weight = abs(moveEffect.power) * numEnemies * weightModifier + 1
 		else:
-			weight = moveEffect.power * weightModifier + 1
+			weight = abs(moveEffect.power) * weightModifier + 1
 	if moveEffect.power != 0:
 		weight *= damageStat / maxDamageStat
 	if moveEffect.statusEffect != null and numCanStatus > 0:

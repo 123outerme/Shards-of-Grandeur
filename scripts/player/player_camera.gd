@@ -48,6 +48,9 @@ func _process(delta):
 	if fadeInReady and fadeInTween != null:
 		fadeInReady = false
 		fadeInTween.play()
+
+# camera movement is jittery in _process, so move in _physics_process
+func _physics_process(delta):
 	if camShaking and SettingsHandler.gameSettings.screenShake:
 		camShakingTime += delta
 		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)

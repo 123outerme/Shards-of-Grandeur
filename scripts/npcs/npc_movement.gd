@@ -16,8 +16,7 @@ func _ready():
 	if not waitsForMoveTrigger:
 		start_movement()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and loops != 0:
 		var nextPos = get_next_path_position()
 		var vel = nextPos - NPC.position
