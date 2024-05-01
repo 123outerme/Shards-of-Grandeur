@@ -34,18 +34,19 @@ func _assign_two_layer_tiles():
 	if Engine.is_editor_hint():
 		print('Matched two-layer terrain tiles')
 		var bottomTiles: Array[TileDef] = [
-			TileDef.new(1, 1, Vector2i(0,1)),
-			TileDef.new(1, 1, Vector2i(1,1)),
-			TileDef.new(1, 1, Vector2i(2,1)),
-			TileDef.new(1, 1, Vector2i(4,1)),
-			TileDef.new(1, 1, Vector2i(5,1)),
-			TileDef.new(1, 2, Vector2i(0,1)),
-			TileDef.new(1, 2, Vector2i(1,1)),
-			TileDef.new(1, 2, Vector2i(2,1)),
-			TileDef.new(1, 2, Vector2i(3,1)),
-			TileDef.new(1, 2, Vector2i(4,1)),
-			TileDef.new(1, 2, Vector2i(5,1)),
-			TileDef.new(1, 5, Vector2i(0,1)),
+			TileDef.new(1, 1, Vector2i(0,1)), # trees.png, 1st tree base
+			TileDef.new(1, 1, Vector2i(1,1)), # trees.png, 2nd tree base
+			TileDef.new(1, 1, Vector2i(2,1)), # trees.png, 3rd tree base
+			TileDef.new(1, 1, Vector2i(4,1)), # trees.png, 5th tree base
+			TileDef.new(1, 1, Vector2i(5,1)), # trees.png, 6th tree base
+			TileDef.new(1, 1, Vector2i(6,1)), # trees.png, 7th tree base
+			TileDef.new(1, 2, Vector2i(0,1)), # house.png, 1st left house
+			TileDef.new(1, 2, Vector2i(1,1)), # house.png, 1st middle house
+			TileDef.new(1, 2, Vector2i(2,1)), # house.png, 1st right house
+			TileDef.new(1, 2, Vector2i(3,1)), # house.png, 2nd left house
+			TileDef.new(1, 2, Vector2i(4,1)), # house.png, 2nd middle house
+			TileDef.new(1, 2, Vector2i(5,1)), # house.png, 2nd right house
+			TileDef.new(1, 5, Vector2i(0,1)), # well.png, well base
 		]
 		var topTiles: Array[TileDef] = [
 			TileDef.new(2, 1, Vector2i(0,0)),
@@ -53,6 +54,7 @@ func _assign_two_layer_tiles():
 			TileDef.new(2, 1, Vector2i(2,0)),
 			TileDef.new(2, 1, Vector2i(4,0)),
 			TileDef.new(2, 1, Vector2i(5,0)),
+			TileDef.new(2, 1, Vector2i(6,0)),
 			TileDef.new(2, 2, Vector2i(0,0)),
 			TileDef.new(2, 2, Vector2i(1,0)),
 			TileDef.new(2, 2, Vector2i(2,0)),
