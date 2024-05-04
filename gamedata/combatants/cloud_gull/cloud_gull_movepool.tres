@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://bmsshj6dewl55"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="1_72ri4"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="1_flywg"]
+[ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="2_wm8io"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_ymwhg"]
+[ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="4_ms73y"]
+
+[resource]
+script = ExtResource("1_72ri4")
+pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_flywg"), ExtResource("2_ymwhg"), ExtResource("2_wm8io"), ExtResource("4_ms73y")])

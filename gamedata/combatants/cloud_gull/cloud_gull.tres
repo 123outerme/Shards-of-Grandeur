@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=9 format=3 uid="uid://w2rvne4y0561"]
+
+[ext_resource type="Resource" uid="uid://cnmexck5i2y38" path="res://gamedata/combatants/cloud_gull/cloud_gull_evolutions.tres" id="1_4uvl6"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_qhwt3"]
+[ext_resource type="Resource" uid="uid://dsi3u88tbgf0n" path="res://gamedata/combatants/cloud_gull/cloud_gull_rewards.tres" id="1_rhiq6"]
+[ext_resource type="SpriteFrames" uid="uid://g2a5lofal7lw" path="res://graphics/animations/a_cloud_gull.tres" id="2_61j0h"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_4oyfm"]
+[ext_resource type="Resource" uid="uid://bmsshj6dewl55" path="res://gamedata/combatants/cloud_gull/cloud_gull_movepool.tres" id="5_og8at"]
+[ext_resource type="Resource" uid="uid://c2wkek4sqrucc" path="res://gamedata/combatants/cloud_gull/cloud_gull_stat_growth.tres" id="6_bbvlh"]
+
+[sub_resource type="Resource" id="Resource_oyibh"]
+script = ExtResource("5_4oyfm")
+displayName = "Cloud Gull"
+saveName = "cloud_gull"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("6_bbvlh")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("5_og8at")
+
+[resource]
+script = ExtResource("1_qhwt3")
+spriteFrames = ExtResource("2_61j0h")
+maxSize = Vector2(16, 16)
+spriteFacesRight = false
+navigationLayer = 1
+nickname = ""
+stats = SubResource("Resource_oyibh")
+evolutions = ExtResource("1_4uvl6")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
+dropTable = ExtResource("1_rhiq6")
+innateStatCategories = Array[int]([])
+downed = false
