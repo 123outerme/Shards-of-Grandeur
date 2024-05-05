@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://cbqoygqr0xhla"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_2bnk4"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_73m8w"]
+[ext_resource type="SpriteFrames" uid="uid://c6x5r2t3a4xyu" path="res://graphics/moves/water/a_water.tres" id="2_nl62p"]
+[ext_resource type="Resource" uid="uid://dds5ssct8cuq3" path="res://gamedata/moves/marlin_spike/particles_marlin_spike.tres" id="2_t5tkk"]
+
+[sub_resource type="Curve" id="Curve_537d0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_obxj2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ue1iv"]
+script = ExtResource("1_73m8w")
+annotation = "prepare sprite to play in front of target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(-4, 0)
+offset = 1
+xCurve = SubResource("Curve_537d0")
+yCurve = SubResource("Curve_obxj2")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_mi42c"]
+_data = [Vector2(0, 0), 0.0, 1.71429, 0, 1, Vector2(0.583333, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_co87g"]
+_data = [Vector2(0, 0), 0.0, 1.83871, 0, 1, Vector2(0.54386, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_o4b7y"]
+script = ExtResource("1_73m8w")
+annotation = "move sprite towards target"
+animation = "marlin_spike"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(-6, 0)
+offset = 1
+xCurve = SubResource("Curve_mi42c")
+yCurve = SubResource("Curve_co87g")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_idx1g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.0833333, 0), 0.0, 0.0, 0, 0, Vector2(0.245614, 0.791209), 0.0, 0.0, 0, 0, Vector2(0.517544, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_m1t7x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.0657895, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 0.813187), 0.0, 0.0, 0, 0, Vector2(0.508772, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_a0fd5"]
+script = ExtResource("1_73m8w")
+annotation = "Accelerate attack towards center of target"
+animation = "marlin_spike"
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_idx1g")
+yCurve = SubResource("Curve_m1t7x")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_t5tkk")
+
+[resource]
+script = ExtResource("1_2bnk4")
+spriteFrames = ExtResource("2_nl62p")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_73m8w")]([SubResource("Resource_ue1iv"), SubResource("Resource_o4b7y"), SubResource("Resource_a0fd5")])
+delayedUntilReposition = true
+onePerTarget = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://dyi6ou8n3haov" path="res://gamedata/moves/whirlwind_slash/anim_whirlwind_slash.tres" id="2_6t6vi"]
+[ext_resource type="Resource" uid="uid://dyndcsofhgcr6" path="res://gamedata/moves/marlin_spike/anim_marlin_spike.tres" id="2_n764r"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
@@ -9,8 +9,7 @@
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_6t6vi")
-playSurge = true
+moveAnimation = ExtResource("2_n764r")
 
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-72, 0)
@@ -49,17 +48,17 @@ position = Vector2(25, 6)
 zoom = Vector2(4, 4)
 
 [node name="Button" type="Button" parent="."]
-offset_left = -20.0
-offset_top = 77.0
-offset_right = 21.0
-offset_bottom = 108.0
+offset_left = -94.0
+offset_top = 48.0
+offset_right = -42.0
+offset_bottom = 79.0
 text = "Play"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 77.0
-offset_right = 114.0
-offset_bottom = 108.0
+offset_left = 46.0
+offset_top = 46.0
+offset_right = 104.0
+offset_bottom = 77.0
 text = "Swap"
 
 [node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]

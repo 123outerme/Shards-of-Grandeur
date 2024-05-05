@@ -238,9 +238,11 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 	var targetStatChanges = StatChanges.new()
 	targetStatChanges.stack(target.statChanges)
 	var moveEffect: MoveEffect = null
+	var elEffectivenessMultiplier: float = 1
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
-	
+		elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move)
+		
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)
 		if (isEnemyTargeting and moveEffect.power > 0) or !(isEnemyTargeting and moveEffect.power < 0):
@@ -273,7 +275,7 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
 		#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
 		
-		var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier )
+		var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier * elEffectivenessMultiplier )
 		if power > 0 and damage <= 0:
 			damage = 1 # if move IS a damaging move, make it do at least 1 damage
 		
@@ -339,7 +341,12 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	targetStatChanges.stack(targets[targetIdx].statChanges)
 	var userStats = userStatChanges.apply(user.stats)
 	var targetStats = targetStatChanges.apply(targets[targetIdx].stats)
-	return randomNums[targetIdx] <= moveEffect.statusChance + 0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity) 
+	var statusEffectivenessMultiplier: float = 1
+	if user != targets[targetIdx]:
+		statusEffectivenessMultiplier = targets[targetIdx].get_status_effectiveness_multiplier(moveEffect.statusEffect.type)
+	
+	return randomNums[targetIdx] <= (moveEffect.statusChance * statusEffectivenessMultiplier) + \
+			0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity)
 
 func get_command_results(user: Combatant) -> String:
 	var resultsText: String = user.disp_name() + ' passed.'
@@ -403,9 +410,21 @@ func get_command_results(user: Combatant) -> String:
 				var damage: int = commandResult.damagesDealt[i]
 				if damage != 0:
 					# if damage was dealt
+					var elEffectivenessMultiplier: float = 1
+					var moveElString: String = ' '
+					if type == Type.MOVE:
+						elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move) 
+						if move.element != Move.Element.NONE:
+							# add a space here so below we don't need to check whether this is empty
+							moveElString += Move.element_to_string(move.element) + ' '
+					if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+						moveElString += 'super-effective '
+					elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
+						moveElString += 'resisted '
+
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
-						resultsText += damageText + ' damage to ' + targetName
+						resultsText += damageText + moveElString + 'damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 					if type == Type.MOVE and commandResult.afflictedStatuses[i]:

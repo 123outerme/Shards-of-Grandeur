@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://dds5ssct8cuq3"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_snm47"]
+[ext_resource type="Texture2D" uid="uid://pp4qswe5n5fq" path="res://graphics/particles/water_1.png" id="1_xkchd"]
+[ext_resource type="Texture2D" uid="uid://dtkurnmu2kas6" path="res://graphics/particles/water_2.png" id="2_52fux"]
+[ext_resource type="Texture2D" uid="uid://f104xofpxnut" path="res://graphics/particles/water_3.png" id="3_qfv04"]
+[ext_resource type="Texture2D" uid="uid://can3odjx8d6px" path="res://graphics/particles/water_4.png" id="4_1or0f"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="6_3gvpq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ccrr8"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+spread = 40.0
+flatness = 0.2
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 6.0
+damping_max = 16.0
+attractor_interaction_enabled = false
+scale_min = 0.5
+
+[resource]
+script = ExtResource("1_snm47")
+emitter = "behind"
+count = 4
+inFrontOfCombatant = false
+lifetime = 0.5
+duration = 0.5
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_ccrr8")
+particleTextures = Array[Texture2D]([ExtResource("1_xkchd"), ExtResource("2_52fux"), ExtResource("3_qfv04"), ExtResource("4_1or0f")])
+sfx = ExtResource("6_3gvpq")

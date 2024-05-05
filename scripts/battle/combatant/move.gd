@@ -12,11 +12,10 @@ enum Element {
 	WATER = 1,
 	FIRE = 2,
 	LIGHTNING = 3,
-	ICE = 4,
-	EARTH = 5,
-	WIND = 6,
-	NATURE = 7,
-	DARK = 8,
+	WIND = 4,
+	NATURE = 5,
+	DARK = 6,
+	ASTRAL = 7
 }
 
 enum MoveEffectType {
@@ -29,6 +28,7 @@ enum MoveEffectType {
 @export var moveName: String = ''
 @export var requiredLv: int = 1
 @export var category: DmgCategory = DmgCategory.PHYSICAL
+@export var element: Element = Element.NONE
 @export var chargeEffect: MoveEffect = null
 @export var surgeEffect: MoveEffect = null
 @export_multiline var description: String = ''
@@ -43,6 +43,26 @@ static func dmg_category_to_string(c: DmgCategory) -> String:
 			return 'Magic'
 		DmgCategory.AFFINITY:
 			return 'Affinity'
+	return 'UNKNOWN'
+
+static func element_to_string(e: Element) -> String:
+	match e:
+		Element.NONE:
+			return 'None'
+		Element.WATER:
+			return 'Water'
+		Element.FIRE:
+			return 'Fire'
+		Element.LIGHTNING:
+			return 'Lightning'
+		Element.WIND:
+			return 'Wind'
+		Element.NATURE:
+			return 'Nature'
+		Element.DARK:
+			return 'Dark'
+		Element.ASTRAL:
+			return 'Astral'
 	return 'UNKNOWN'
 
 static func move_effect_type_to_string(t: MoveEffectType) -> String:
@@ -61,6 +81,7 @@ func _init(
 	i_moveName = '',
 	i_requiredLv = 1,
 	i_category = DmgCategory.PHYSICAL,
+	i_element = Element.NONE,
 	i_chargeEffect = null,
 	i_surgeEffect = null,
 	i_description = '',
@@ -70,6 +91,7 @@ func _init(
 	moveName = i_moveName
 	requiredLv = i_requiredLv
 	category = i_category
+	element = i_element
 	chargeEffect = i_chargeEffect
 	surgeEffect = i_surgeEffect
 	description = i_description

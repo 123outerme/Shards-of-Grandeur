@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=9 format=3 uid="uid://w2rvne4y0561"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=10 format=3 uid="uid://w2rvne4y0561"]
 
 [ext_resource type="Resource" uid="uid://cnmexck5i2y38" path="res://gamedata/combatants/cloud_gull/cloud_gull_evolutions.tres" id="1_4uvl6"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_qhwt3"]
 [ext_resource type="Resource" uid="uid://dsi3u88tbgf0n" path="res://gamedata/combatants/cloud_gull/cloud_gull_rewards.tres" id="1_rhiq6"]
 [ext_resource type="SpriteFrames" uid="uid://g2a5lofal7lw" path="res://graphics/animations/a_cloud_gull.tres" id="2_61j0h"]
+[ext_resource type="Resource" uid="uid://c6q3qr32go02t" path="res://gamedata/combatants/cloud_gull/cloud_gull_effectiveness.tres" id="3_yssea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_4oyfm"]
 [ext_resource type="Resource" uid="uid://bmsshj6dewl55" path="res://gamedata/combatants/cloud_gull/cloud_gull_movepool.tres" id="5_og8at"]
 [ext_resource type="Resource" uid="uid://c2wkek4sqrucc" path="res://gamedata/combatants/cloud_gull/cloud_gull_stat_growth.tres" id="6_bbvlh"]
@@ -44,6 +45,7 @@ aiType = 0
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("3_yssea")
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
 dropTable = ExtResource("1_rhiq6")

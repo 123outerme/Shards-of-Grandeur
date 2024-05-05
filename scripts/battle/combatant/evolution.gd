@@ -8,6 +8,7 @@ class_name Evolution
 @export var requiredArmor: Armor = null
 @export var requiredWeapon: Weapon = null
 @export var stats: Stats = Stats.new()
+@export var moveEffectiveness: MoveEffectiveness = null
 
 func _init(
 	i_evoSaveName = '',
@@ -17,6 +18,7 @@ func _init(
 	i_requiredArmor = null,
 	i_requiredWeapon = null,
 	i_stats = Stats.new(),
+	i_moveEffectiveness = null,
 ):
 	evolutionSaveName = i_evoSaveName
 	spriteFrames = i_spriteFrames
@@ -25,6 +27,7 @@ func _init(
 	requiredArmor = i_requiredArmor
 	requiredWeapon = i_requiredWeapon
 	stats = i_stats
+	moveEffectiveness = i_moveEffectiveness
 
 func combatant_can_evolve(combatant: Combatant) -> bool:
 	if requiredArmor == null and requiredWeapon == null:

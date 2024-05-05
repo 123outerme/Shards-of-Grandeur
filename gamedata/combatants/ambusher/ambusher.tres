@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://dw87ml8gkhk0w"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://dw87ml8gkhk0w"]
 
 [ext_resource type="Resource" uid="uid://kwqkkku3d25w" path="res://gamedata/combatants/ambusher/ambusher_rewards.tres" id="1_4hjx2"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_o131l"]
 [ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="2_27mxs"]
 [ext_resource type="Resource" uid="uid://2ykkt6krhubr" path="res://gamedata/combatants/ambusher/ambusher_evolutions.tres" id="2_a6iv3"]
+[ext_resource type="Resource" uid="uid://c8oolxx54vca4" path="res://gamedata/combatants/ambusher/ambusher_effectiveness.tres" id="3_dn7da"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_m4dsy"]
 [ext_resource type="Resource" uid="uid://bgnu1kkxkiasp" path="res://gamedata/combatants/ambusher/ambusher_stat_growth.tres" id="4_erjgf"]
 [ext_resource type="Resource" uid="uid://panpyyisdl1r" path="res://gamedata/combatants/ambusher/ambusher_movepool.tres" id="5_67d1y"]
@@ -50,6 +51,7 @@ aiType = 3
 damageAggroType = 3
 strategy = 0
 aiOverrideWeight = 0.25
+moveEffectiveness = ExtResource("3_dn7da")
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("8_7rr0p")]([SubResource("Resource_mmtot")])
 dropTable = ExtResource("1_4hjx2")

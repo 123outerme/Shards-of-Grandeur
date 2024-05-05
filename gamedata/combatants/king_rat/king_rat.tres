@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
 [ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_kfmy7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_g7kp6"]
 [ext_resource type="Resource" uid="uid://do8nq1ve3c3nx" path="res://gamedata/combatants/king_rat/king_rat_movepool.tres" id="3_r1tc3"]
 [ext_resource type="Resource" uid="uid://cvqm8lj7pel6s" path="res://gamedata/combatants/king_rat/king_rat_evolutions.tres" id="3_u6som"]
+[ext_resource type="Resource" uid="uid://dhueb42q6bhpr" path="res://gamedata/combatants/king_rat/king_rat_effectiveness.tres" id="5_0tjmh"]
 [ext_resource type="Resource" uid="uid://d0ba12f3r7gli" path="res://gamedata/combatants/king_rat/king_rat_stat_growth.tres" id="5_c85vg"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_luqkf"]
 
@@ -57,6 +58,7 @@ aiType = 1
 damageAggroType = 0
 strategy = 1
 aiOverrideWeight = 0.15
+moveEffectiveness = ExtResource("5_0tjmh")
 equipmentTable = Array[ExtResource("3_g7kp6")]([SubResource("Resource_0tx4e")])
 teamTable = Array[ExtResource("6_luqkf")]([SubResource("Resource_gwbxw")])
 dropTable = ExtResource("1_rqv3k")

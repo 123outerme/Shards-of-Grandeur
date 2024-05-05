@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bhg4i01ukcdvd"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bhg4i01ukcdvd"]
 
 [ext_resource type="Resource" uid="uid://cfbfojr1nlivh" path="res://gamedata/combatants/rat/rat_rewards.tres" id="1_yjqb3"]
+[ext_resource type="Resource" uid="uid://n2ifthv07pc1" path="res://gamedata/combatants/rat/rat_effectiveness.tres" id="3_wwk58"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="5_rcq3f"]
 [ext_resource type="Resource" uid="uid://70qiovvsvg0s" path="res://gamedata/combatants/rat/rat_evolutions.tres" id="5_yr2v5"]
 [ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="6_mcj1u"]
@@ -65,6 +66,7 @@ aiType = 1
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("3_wwk58")
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
 teamTable = Array[ExtResource("12_u5t4b")]([SubResource("Resource_b3lik"), SubResource("Resource_w71ux"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
 dropTable = ExtResource("1_yjqb3")

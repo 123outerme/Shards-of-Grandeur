@@ -28,6 +28,18 @@ const HP_BAR_COLORS: Dictionary = {
 	'low': Color(0.937255, 0, 0) #ef0000
 }
 
+const ELEMENT_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
+	'superEffective': 1.5,
+	'effective': 1,
+	'resisted': 0.65
+}
+
+const STATUS_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
+	'effective': 1,
+	'resisted': 0.5,
+	'immune': 0
+}
+
 const MAX_ORBS = 10
 
 @export_category("Combatant - Sprite")
@@ -54,6 +66,7 @@ const MAX_ORBS = 10
 @export var damageAggroType: AggroType = AggroType.LOWEST_HP
 @export var strategy: ResourceStrategy = ResourceStrategy.GREEDY
 @export var aiOverrideWeight: float = 0.35
+@export var moveEffectiveness: MoveEffectiveness = null
 @export var equipmentTable: Array[WeightedEquipment] = []
 @export var teamTable: Array[WeightedString] = []
 # NOTE: having a weighted combatant caused recursion errors, so this is the workaround
@@ -97,6 +110,7 @@ func _init(
 	i_aiType = AiType.NONE,
 	i_damageAggroType = AggroType.LOWEST_HP,
 	i_overrideWeight = 0.35,
+	i_moveEffectiveness = null,
 	i_equipmentTable: Array[WeightedEquipment] = [],
 	i_teamTable: Array[WeightedString] = [],
 	i_dropTable: CombatantRewards = null,
@@ -124,6 +138,7 @@ func _init(
 	damageAggroType = i_damageAggroType
 	friendship = i_friendship
 	aiOverrideWeight = i_overrideWeight
+	moveEffectiveness = i_moveEffectiveness
 	equipmentTable = i_equipmentTable
 	teamTable = i_teamTable
 	dropTable = i_dropTable
@@ -253,6 +268,41 @@ func could_combatant_surge(effect: MoveEffect) -> bool:
 		return false # AI can't use surge moves yet
 	
 	return effect.orbChange * -1 <= orbs
+
+func get_move_effectiveness() -> MoveEffectiveness:
+	var evolution: Evolution = get_evolution()
+	if evolution == null:
+		return moveEffectiveness
+	else:
+		return evolution.moveEffectiveness
+
+func get_element_effectiveness_multiplier(move: Move) -> float:
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness == null:
+		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
+	
+	if effectiveness.is_weak_to_element(move.element):
+		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+	
+	if effectiveness.is_resistant_to_element(move.element):
+		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
+	
+	return ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
+
+func get_status_effectiveness_multiplier(type: StatusEffect.Type) -> float:
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness == null:
+		return STATUS_EFFECTIVENESS_MULTIPLIERS.effective
+	
+	if effectiveness.is_resistant_to_status(type):
+		return STATUS_EFFECTIVENESS_MULTIPLIERS.resisted
+	
+	if effectiveness.is_immune_to_status(type):
+		return STATUS_EFFECTIVENESS_MULTIPLIERS.immune
+	
+	return STATUS_EFFECTIVENESS_MULTIPLIERS.effective
 
 func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	if not could_combatant_surge(effect):
