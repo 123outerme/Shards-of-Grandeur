@@ -37,25 +37,27 @@ globalMarker = NodePath("CombatantGroup/GlobalMarker")
 [node name="CombatantGroup" type="Node2D" parent="."]
 
 [node name="GlobalMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(0, -29)
+position = Vector2(-5, -27)
 gizmo_extents = 5.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerTeamMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(-22, -19)
+position = Vector2(-19, -26)
 gizmo_extents = 5.0
+metadata/_edit_lock_ = true
 
 [node name="EnemyTeamMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(9, -17)
+position = Vector2(9, -28)
 gizmo_extents = 5.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
-position = Vector2(-44, -1)
+position = Vector2(-44, -5)
 leftSide = true
 battlePosition = "You"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("../..")
-metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/PlayerCombatant" index="3"]
 position = Vector2(16, 0)
@@ -64,13 +66,12 @@ position = Vector2(16, 0)
 position = Vector2(-4, -16)
 
 [node name="MinionCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
-position = Vector2(-60, -33)
+position = Vector2(-60, -41)
 leftSide = true
 battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("../..")
-metadata/_edit_lock_ = true
 
 [node name="OnAttackPos" parent="CombatantGroup/MinionCombatant" index="3"]
 position = Vector2(16, 0)
@@ -79,7 +80,7 @@ position = Vector2(16, 0)
 position = Vector2(4, 16)
 
 [node name="EnemyCombatant1" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
-position = Vector2(36, -17)
+position = Vector2(36, -28)
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -93,7 +94,7 @@ position = Vector2(-16, 0)
 position = Vector2(16, 0)
 
 [node name="EnemyCombatant2" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
-position = Vector2(52, -41)
+position = Vector2(52, -59)
 battlePosition = "Top"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -107,7 +108,7 @@ position = Vector2(-16, 0)
 position = Vector2(0, 16)
 
 [node name="EnemyCombatant3" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("2_fgh53")]
-position = Vector2(68, 7)
+position = Vector2(68, 1)
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -777,10 +778,10 @@ battleController = NodePath("../../..")
 layout_mode = 2
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 412.0
+offset_left = 352.0
 offset_top = -344.0
 offset_right = 620.0
-offset_bottom = -244.0
+offset_bottom = -260.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 28
 toggle_mode = true
