@@ -316,6 +316,10 @@ func end_battle():
 	battleEnded = true
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
+	for combatantNode: CombatantNode in combatantNodes:
+		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
+			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
+	
 	if minionCombatant.combatant != null:
 		#if not minionCombatant.combatant.downed and state.usedShard != null: # credit back used shard if the minion wasn't downed
 			#PlayerResources.inventory.add_item(state.usedShard)

@@ -23,6 +23,7 @@ class_name PlayerInfo
 @export var encounteredLevel: int = 1
 @export var staticEncounter: StaticEncounter = null
 @export var completedSpecialBattles: Array[String] = []
+@export var enemiesDefeated: Array[String] = []
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
@@ -52,6 +53,7 @@ func _init(
 	i_encounteredLevel = 1,
 	i_staticEncounter = null,
 	i_completedSpecialBattles: Array[String] = [],
+	i_enemiesDefeated: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
 	i_pickedUpItem = null,
 	i_cutscenesPlayed: Array[String] = [],
@@ -79,6 +81,7 @@ func _init(
 	encounteredLevel = i_encounteredLevel
 	staticEncounter = i_staticEncounter
 	completedSpecialBattles = i_completedSpecialBattles
+	enemiesDefeated = i_enemiesDefeated
 	pickedUpItems = i_pickedUpItems
 	pickedUpItem = i_pickedUpItem
 	cutscenesPlayed = i_cutscenesPlayed
@@ -112,7 +115,14 @@ func set_dialogue_seen(npcSaveName: String, dialogueId: String):
 	else:
 		dialoguesSeen[npcSaveName] = [dialogueId]
 		PlayerResources.story_requirements_updated.emit()
-	
+
+func has_defeated_enemy(saveName: String) -> bool:
+	return saveName in enemiesDefeated
+
+func set_enemy_defeated(saveName: String):
+	if not has_defeated_enemy(saveName):
+		enemiesDefeated.append(saveName)
+
 func has_completed_special_battle(battleId: String) -> bool:
 	return battleId in completedSpecialBattles
 

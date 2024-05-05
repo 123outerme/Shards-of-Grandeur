@@ -410,17 +410,16 @@ func get_command_results(user: Combatant) -> String:
 				var damage: int = commandResult.damagesDealt[i]
 				if damage != 0:
 					# if damage was dealt
-					var elEffectivenessMultiplier: float = 1
 					var moveElString: String = ' '
 					if type == Type.MOVE:
-						elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move) 
+						var elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move) 
+						if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+							moveElString += 'super-effective '
+						elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
+							moveElString += 'resisted '
 						if move.element != Move.Element.NONE:
 							# add a space here so below we don't need to check whether this is empty
 							moveElString += Move.element_to_string(move.element) + ' '
-					if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
-						moveElString += 'super-effective '
-					elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
-						moveElString += 'resisted '
 
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
@@ -475,7 +474,18 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += '!'
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
-				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + ' damage!'
+				var moveElString: String = ' '
+				if type == Type.MOVE:
+					var elEffectivenessMultiplier = interceptingTargets[interceptingIdx].get_element_effectiveness_multiplier(move) 
+					if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+						moveElString += 'super-effective '
+					elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
+						moveElString += 'resisted '
+					if move.element != Move.Element.NONE:
+						# add a space here so below we don't need to check whether this is empty
+						moveElString += Move.element_to_string(move.element) + ' '
+				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + \
+						String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + moveElString + 'damage!'
 		if type == Type.MOVE and ( \
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
 					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \

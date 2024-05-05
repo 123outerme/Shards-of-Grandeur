@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://dja73seu7xq6f"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_jb5pv"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_23sfs"]
+
+[sub_resource type="Resource" id="Resource_6k6bp"]
+script = ExtResource("2_23sfs")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String](["cloud_gull"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_jb5pv")
+id = "cloud_gull"
+title = "Cloud Gull"
+storyRequirements = Array[ExtResource("2_23sfs")]([SubResource("Resource_6k6bp")])
+description = "A Cloud Gull is a seafaring bird that is proficient in both physical and magical attacks. It cannot be Exhausted easily, but is weak to Lightning."
+childrenEntries = Array[ExtResource("1_jb5pv")]([])

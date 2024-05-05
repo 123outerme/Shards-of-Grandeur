@@ -11,6 +11,7 @@ class_name StoryRequirements
 @export var prereqCutscenes: Array[String] = []
 @export var prereqDialogues: Array[String] = []
 @export var prereqSpecialBattles: Array[String] = []
+@export var prereqDefeatedEnemies: Array[String] = []
 
 @export_category("Invalidations")
 @export var invalidAfterCompletingQuests: Array[String] = []
@@ -26,6 +27,7 @@ func _init(
 	i_prereqCutscenes: Array[String] = [],
 	i_prereqDialogues: Array[String] = [],
 	i_prereqBattles: Array[String] = [],
+	i_prereqDefeatedEnemies: Array[String] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
@@ -37,7 +39,8 @@ func _init(
 	prereqQuests = i_prereqQuests
 	prereqCutscenes = i_prereqCutscenes
 	prereqDialogues = i_prereqDialogues
-	i_prereqBattles = i_prereqBattles
+	prereqSpecialBattles = i_prereqBattles
+	prereqDefeatedEnemies = i_prereqDefeatedEnemies
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
@@ -66,6 +69,10 @@ func is_valid() -> bool:
 			
 	for battle in prereqSpecialBattles:
 		if not PlayerResources.playerInfo.has_completed_special_battle(battle):
+			return false
+			
+	for enemy in prereqDefeatedEnemies:
+		if not PlayerResources.playerInfo.has_defeated_enemy(enemy):
 			return false
 	
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):
