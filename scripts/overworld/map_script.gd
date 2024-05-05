@@ -40,6 +40,9 @@ func _assign_two_layer_tiles():
 			TileDef.new(1, 1, Vector2i(4,1)), # trees.png, 5th tree base
 			TileDef.new(1, 1, Vector2i(5,1)), # trees.png, 6th tree base
 			TileDef.new(1, 1, Vector2i(6,1)), # trees.png, 7th tree base
+			TileDef.new(1, 1, Vector2i(0,3)), # trees.png, 1st snowy tree base
+			TileDef.new(1, 1, Vector2i(1,3)), # trees.png, 2nd snowy tree base
+			TileDef.new(1, 1, Vector2i(2,3)), # trees.png, 3rd snowy tree base
 			TileDef.new(1, 2, Vector2i(0,1)), # house.png, 1st left house
 			TileDef.new(1, 2, Vector2i(1,1)), # house.png, 1st middle house
 			TileDef.new(1, 2, Vector2i(2,1)), # house.png, 1st right house
@@ -55,6 +58,9 @@ func _assign_two_layer_tiles():
 			TileDef.new(2, 1, Vector2i(4,0)),
 			TileDef.new(2, 1, Vector2i(5,0)),
 			TileDef.new(2, 1, Vector2i(6,0)),
+			TileDef.new(2, 1, Vector2i(0,2)), # trees.png, 1st snowy tree top
+			TileDef.new(2, 1, Vector2i(1,2)), # trees.png, 2nd snowy tree top
+			TileDef.new(2, 1, Vector2i(2,2)), # trees.png, 3rd snowy tree top
 			TileDef.new(2, 2, Vector2i(0,0)),
 			TileDef.new(2, 2, Vector2i(1,0)),
 			TileDef.new(2, 2, Vector2i(2,0)),

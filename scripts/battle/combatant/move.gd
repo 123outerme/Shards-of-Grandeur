@@ -7,6 +7,18 @@ enum DmgCategory {
 	AFFINITY = 2,
 }
 
+enum Element {
+	NONE = 0,
+	WATER = 1,
+	FIRE = 2,
+	LIGHTNING = 3,
+	ICE = 4,
+	EARTH = 5,
+	WIND = 6,
+	NATURE = 7,
+	DARK = 8,
+}
+
 enum MoveEffectType {
 	NONE = 0,
 	CHARGE = 1,
