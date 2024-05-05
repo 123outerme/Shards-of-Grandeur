@@ -433,6 +433,7 @@ func save_from_object(c: Combatant):
 	aiType = c.aiType
 	friendship = c.friendship
 	aiOverrideWeight = c.aiOverrideWeight
+	moveEffectiveness = c.moveEffectiveness
 	equipmentTable = c.equipmentTable.duplicate(false)
 	teamTable = c.teamTable.duplicate(false)
 	dropTable = c.dropTable

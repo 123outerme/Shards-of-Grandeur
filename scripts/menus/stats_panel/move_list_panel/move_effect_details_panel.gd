@@ -95,7 +95,7 @@ func load_move_effect_details_panel():
 		else:
 			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
 		moveStatusEffect.text += ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance'
-		if moveEffect.statusEffect.overridesOtherStatuses:
+		if moveEffect.statusEffect.overwritesOtherStatuses:
 			moveStatusEffect.text += ', Overrides'
 		moveStatusEffect.text += ')[/center]'
 		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
