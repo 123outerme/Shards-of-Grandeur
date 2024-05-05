@@ -63,15 +63,18 @@ static func potency_to_string(p: Potency) -> String:
 
 @export var type: Type = Type.NONE
 @export var potency: Potency = Potency.NONE
+@export var overwritesOtherStatuses: bool = false
 @export var turnsLeft: int = 0
 
 func _init(
 	i_type: Type = Type.NONE,
 	i_potency: Potency = Potency.NONE,
+	i_overwrites: bool = false,
 	i_turnsLeft = 0,
 ):
 	type = i_type
 	potency = i_potency
+	overwritesOtherStatuses = i_overwrites
 	turnsLeft = i_turnsLeft
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:

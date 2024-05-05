@@ -33,7 +33,13 @@ func load_move_details_panel():
 
 	visible = true
 	moveName.text = '[center]' + move.moveName + '[/center]'
-	damageCategory.text = Move.dmg_category_to_string(move.category)
+	if move.element == Move.Element.NONE:
+		damageCategory.text = ''
+	else:
+		damageCategory.text = Move.element_to_string(move.element) + '/'
+	
+	damageCategory.text += Move.dmg_category_to_string(move.category)
+
 	requiredLv.text = '[right]Required Level: ' + str(move.requiredLv) + '[/right]'
 	moveDescription.text = move.description
 	initial_focus()

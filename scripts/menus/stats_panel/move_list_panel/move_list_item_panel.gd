@@ -37,7 +37,13 @@ func load_move_list_item_panel():
 	if move != null:
 		moveName.text = move.moveName
 		moveLevel.text = ' Lv ' + str(move.requiredLv)
-		damageType.text = Move.dmg_category_to_string(move.category)
+		
+		if move.element == Move.Element.NONE:
+			damageType.text = ''
+		else:
+			damageType.text = Move.element_to_string(move.element) + '\n'
+		
+		damageType.text += Move.dmg_category_to_string(move.category)
 		newMoveIndicator.visible = showNewMoveIndicator
 		detailsButton.visible = showDetailsButton
 		detailsButton.focus_neighbor_left = detailsButton.get_path_to(detailsButton)

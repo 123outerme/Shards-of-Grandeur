@@ -88,9 +88,16 @@ func load_move_effect_details_panel():
 			statusLabel.text = 'Status (Self):'
 		else:
 			statusLabel.text = 'Status (Target):'
-		moveStatusEffect.text = '[center]' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
-				+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) \
-				+ ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance)[/center]'
+		moveStatusEffect.text = '[center]'
+		if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
+			moveStatusEffect.text += StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
+					+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+		else:
+			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
+		moveStatusEffect.text += ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance'
+		if moveEffect.statusEffect.overridesOtherStatuses:
+			moveStatusEffect.text += ', Overrides'
+		moveStatusEffect.text += ')[/center]'
 		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
 		statusEffectRow.visible = true
 	else:

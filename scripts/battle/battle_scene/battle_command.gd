@@ -188,8 +188,11 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if targets[idx].currentHp > 0:
 			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 
-		if does_target_get_status(user, idx) and moveEffect.statusEffect != null and targets[idx].statusEffect == null:
-			targets[idx].statusEffect = moveEffect.statusEffect.copy()
+		if does_target_get_status(user, idx) and moveEffect.statusEffect != null:
+			if moveEffect.statusEffect.type == StatusEffect.Type.NONE:
+				targets[idx].statusEffect = null
+			else:
+				targets[idx].statusEffect = moveEffect.statusEffect.copy()
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:
@@ -331,6 +334,10 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	if moveEffect == null or moveEffect.statusEffect == null or moveEffect.statusChance == 0:
 		return false
 	
+	if targets[targetIdx].statusEffect != null:
+		if not moveEffect.statusEffect.overwritesOtherStatuses or targets[targetIdx].statusEffect.potency > moveEffect.statusEffect.potency:
+			return false
+	
 	# status chance = 100%: auto-pass
 	if moveEffect.statusChance == 1:
 		return true
@@ -427,7 +434,10 @@ func get_command_results(user: Combatant) -> String:
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
 					if type == Type.MOVE and commandResult.afflictedStatuses[i]:
-						resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
+						if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
+							resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
+						else:
+							resultsText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
 				else:
 					# if no damage was dealt
 					if type == Type.MOVE and moveEffect.statusEffect != null:
