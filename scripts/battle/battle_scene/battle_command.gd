@@ -433,11 +433,19 @@ func get_command_results(user: Combatant) -> String:
 						resultsText += damageText + moveElString + 'damage to ' + targetName
 					else:
 						resultsText += targetName + ' by ' + damageText + ' HP'
-					if type == Type.MOVE and commandResult.afflictedStatuses[i]:
-						if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
-							resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
+					if type == Type.MOVE and moveEffect.statusEffect != null:
+						if commandResult.afflictedStatuses[i]:
+							if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
+								resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
+							else:
+								resultsText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
 						else:
-							resultsText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
+							if target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
+								resultsText += ', but is immune to ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+							elif target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
+								resultsText += ', but resisted ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+							else:
+								resultsText += ', but avoided ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
 				else:
 					# if no damage was dealt
 					if type == Type.MOVE and moveEffect.statusEffect != null:
@@ -445,7 +453,12 @@ func get_command_results(user: Combatant) -> String:
 							resultsText += 'afflicted '
 						else:
 							resultsText += 'failed to afflict '
-						resultsText += moveEffect.statusEffect.status_effect_to_string() + ' on ' + targetName
+						resultsText += moveEffect.statusEffect.status_effect_to_string() + ' on '
+						if target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
+							resultsText += 'the immune '
+						elif target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
+							resultsText += 'the resisting '
+						resultsText += targetName
 					if type == Type.USE_ITEM:
 						if slot.item.itemType == Item.Type.HEALING:
 							if slot.item.healBy != 0:

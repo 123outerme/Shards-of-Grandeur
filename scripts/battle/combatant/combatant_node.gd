@@ -408,7 +408,7 @@ func get_command(combatantNodes: Array[CombatantNode]):
 			for targetableCombatant in targetableCombatants:
 				targetPositions.append(targetableCombatant.battlePosition)
 		else:
-			targetPositions = [ai_pick_single_target(chosenEffect, targetableCombatants)]
+			targetPositions = [ai_pick_single_target(chosenMove.move, chosenEffect, targetableCombatants)]
 		var orbChange: int = combatant.get_orbs_change_choice(chosenEffect)
 		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, chosenMove.move, chosenMove.effectType, orbChange, null, targetPositions)
 	elif not is_alive():
@@ -455,13 +455,27 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			hasAllies = true
 			break
 	
+	var enemyIsWeakToElement: bool = false
+	var allEnemiesResistElement: bool = true
+	var allEnemiesResistStatus: bool = moveEffect.statusEffect != null
+	var allEnemiesImmuneToStatus: bool = moveEffect.statusEffect != null
 	for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, moveEffect.targets):
-		if combatantNode.combatant.statusEffect == null:
+		if combatantNode.combatant.statusEffect == null or \
+				(moveEffect.statusEffect != null and moveEffect.statusEffect.overwritesOtherStatuses):
 			numCanStatus += 1
 		var maxHp: float = combatantNode.combatant.stats.maxHp
 		# if 60% or less health, could use healing
 		if combatantNode.combatant.currentHp / maxHp < 0.6:
 			combatantCouldUseHealing = true
+		if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+			enemyIsWeakToElement = true
+			allEnemiesResistElement = false
+		if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective:
+			allEnemiesResistElement = false
+		if moveEffect.statusEffect != null and combatantNode.combatant.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) != Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
+			allEnemiesResistStatus = false
+		if moveEffect.statusEffect != null and combatantNode.combatant.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) != Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
+			allEnemiesImmuneToStatus = false
 	
 	if not hasAllies and moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY:
 		return 0
@@ -508,6 +522,10 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			weight = abs(moveEffect.power) * weightModifier + 1
 	if moveEffect.power != 0:
 		weight *= damageStat / maxDamageStat
+		if enemyIsWeakToElement:
+			weight *= Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+		elif allEnemiesResistElement:
+			weight *= Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
 	if moveEffect.statusEffect != null and numCanStatus > 0:
 		# 50% of the time, Damage AIs don't care about doing status as much
 		var dmgAiWeight: float = 0.5 if combatant.aiType == Combatant.AiType.DAMAGE and randf() > 0.5 else 1.0
@@ -554,11 +572,25 @@ func ai_get_move_effect_weights(combatantNodes: Array[CombatantNode]) -> Array[C
 	tmpAllCombatantNodes = []
 	return moveEffects
 
-func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[CombatantNode]) -> String:
+func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants: Array[CombatantNode]) -> String:
 	var pickedTarget: String = ''
 	var randValue: float = randf()
 	if randValue >= combatant.aiOverrideWeight:
 		print(battlePosition, ': target override triggered')
+	else:
+		var superEffectiveElementTargets: Array[CombatantNode] = []
+		for combatantNode: CombatantNode in targetableCombatants:
+			if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective and effect.power > 0:
+				# if this move will deal super-effective damage, consider it for bypassing the normal targeting AI
+				superEffectiveElementTargets.append(combatantNode)
+		# if not all targets would take super-effective damage:
+		if len(superEffectiveElementTargets) != len(targetableCombatants):
+			for combatantNode: CombatantNode in superEffectiveElementTargets:
+				# on a 50% chance, just pick the super-effective enemy as the target
+				var randValueToChoose: float = randf()
+				if randValueToChoose > 0.5:
+					return combatantNode.battlePosition
+	
 	if (effect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE or effect.role == MoveEffect.Role.HEAL) and randValue > combatant.aiOverrideWeight:
 		var timesOverrided: int = 0
 		if combatant.damageAggroType == Combatant.AggroType.LOWEST_HP:
@@ -623,12 +655,17 @@ func ai_pick_single_target(effect: MoveEffect, targetableCombatants: Array[Comba
 	if effect.role == MoveEffect.Role.DEBUFF and randValue > combatant.aiOverrideWeight:
 		# pick highest base stat changes in debuffing categories if friendly targeting, pick lowest if enemy targeting
 		var multiplier: float = -1.0 if BattleCommand.is_command_enemy_targeting(effect.targets) and not (effect.targets == BattleCommand.Targets.ALL) else 1.0
-		# what to do with All targeting? Will there be such a move?
+		# NOTE: what to do with All targeting? Will there be such a move?
 		var statChanges: StatChanges = StatChanges.new()
-		if effect.targetStatChanges != null:
+		if effect.targetStatChanges != null and effect.targetStatChanges.has_stat_changes():
 			statChanges.stack(effect.targetStatChanges)
 		var maxBaseStatTotalChange: float = -INF * multiplier
 		for combatantNode in targetableCombatants:
+			if effect.statusEffect != null and effect.power == 0:
+				if combatantNode.combatant.get_status_effectiveness_multiplier(effect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune \
+						and (effect.targetStatChanges == null or not effect.targetStatChanges.has_stat_changes()):
+					continue # skip this combatant if immune to the status and there are no stat changes or damage involved
+			
 			var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
 			var appliedStats: Stats = statChanges.apply(stats)
 			var baseStatTotalChange: int = appliedStats.get_stat_total() - stats.get_stat_total()
