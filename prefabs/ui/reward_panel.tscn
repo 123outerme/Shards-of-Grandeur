@@ -115,4 +115,16 @@ text = "Item Name Goes Here"
 fit_content = true
 scroll_active = false
 
+[node name="NoRewardsLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]No Rewards...[/center]"
+fit_content = true
+
 [connection signal="pressed" from="ItemGroup/ItemSpriteButton" to="." method="_on_item_sprite_button_pressed"]

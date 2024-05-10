@@ -16,8 +16,9 @@ var commandingMinion: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if PlayerResources.playerInfo.staticEncounter != null:
-		escapeButton.disabled = not PlayerResources.playerInfo.staticEncounter.canEscape
+	if PlayerResources.playerInfo.encounter is StaticEncounter:
+		var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
+		escapeButton.disabled = staticEncounter.canEscape
 	surgeMovesBtn.disabled = Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid()
 	if surgeMovesBtn.disabled:
 		chargeMovesBtn.text = 'Moves'

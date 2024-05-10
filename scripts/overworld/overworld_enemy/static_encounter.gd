@@ -1,7 +1,6 @@
-extends Resource
+extends EnemyEncounter
 class_name StaticEncounter
 
-@export var combatant1: Combatant = null
 @export var combatant1Level: int = 1
 @export var combatant1Moves: Array[Move] = []
 @export var combatant2: Combatant = null
@@ -39,7 +38,7 @@ func _init(
 	i_useRewards = false,
 	i_battleMusic = null,
 ):
-	combatant1 = i_combatant1
+	super(i_combatant1)
 	combatant1Level = i_combatant1Lv
 	combatant1Moves = i_combatant1Moves
 	combatant2 = i_combatant2

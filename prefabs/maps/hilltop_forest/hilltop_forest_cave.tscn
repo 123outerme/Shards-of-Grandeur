@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=62 format=3 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://da65t70i2k816" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_shortcut.tres" id="16_clwh3"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="16_e37k4"]
 [ext_resource type="Resource" uid="uid://c8g3p1lo0jdr3" path="res://gamedata/cutscenes/hilltop_forest/hilltop_ambush.tres" id="16_s3h3f"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="17_a0epf"]
 [ext_resource type="Resource" uid="uid://bllektny1dlcx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_stop_right_exit.tres" id="20_myx38"]
 [ext_resource type="Resource" uid="uid://fvcov57k5drx" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_close.tres" id="22_e0qmh"]
 [ext_resource type="Resource" uid="uid://clldvhp6vpt5f" path="res://gamedata/cutscenes/hilltop_forest/hilltop_return_to_ambush_far.tres" id="23_uw3nw"]
@@ -30,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="29_jjvhg"]
 
-[sub_resource type="Resource" id="Resource_ecd5o"]
+[sub_resource type="Resource" id="Resource_k06oj"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1054, 538)
@@ -53,7 +54,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_0uwh1"]
+[sub_resource type="Resource" id="Resource_gubjs"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-1006, 522)
@@ -70,7 +71,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_nfjx0"]
+[sub_resource type="Resource" id="Resource_k0eib"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-383, -221)
@@ -87,7 +88,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_yt040"]
+[sub_resource type="Resource" id="Resource_ue2sx"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-300, -248)
@@ -110,6 +111,18 @@ spawnerId = "hilltop_forest_1"
 disabled = false
 spawnedLastEncounter = false
 
+[sub_resource type="Resource" id="Resource_ii441"]
+script = ExtResource("17_a0epf")
+combatantsMinLevel = 1
+combatantsMaxLevel = 2
+combatantsLvToPlayerLvRatio = 0.8
+combatant1Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant2Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant2Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant3Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant3Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant1 = ExtResource("4_d1muk")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15iao"]
 size = Vector2(145, 197)
 
@@ -118,6 +131,18 @@ script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_2"
 disabled = false
 spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_w7ypf"]
+script = ExtResource("17_a0epf")
+combatantsMinLevel = 1
+combatantsMaxLevel = 1
+combatantsLvToPlayerLvRatio = 1.0
+combatant1Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant2Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant2Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant3Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant3Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant1 = ExtResource("4_utc70")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ekqt"]
 size = Vector2(157, 185)
@@ -128,6 +153,18 @@ spawnerId = "hilltop_forest_3"
 disabled = false
 spawnedLastEncounter = false
 
+[sub_resource type="Resource" id="Resource_sg12l"]
+script = ExtResource("17_a0epf")
+combatantsMinLevel = 1
+combatantsMaxLevel = 3
+combatantsLvToPlayerLvRatio = 0.8
+combatant1Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant2Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant2Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant3Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant3Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant1 = ExtResource("4_utc70")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cga0g"]
 size = Vector2(299, 129)
 
@@ -136,6 +173,18 @@ script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_4"
 disabled = false
 spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_4g0ru"]
+script = ExtResource("17_a0epf")
+combatantsMinLevel = 2
+combatantsMaxLevel = 3
+combatantsLvToPlayerLvRatio = 0.8
+combatant1Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant2Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant2Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant3Options = Array[Resource("res://scripts/battle/weighted_things/weighted_combatants.gd")]([])
+combatant3Rewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+combatant1 = ExtResource("4_d1muk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pj3e"]
 size = Vector2(171, 191)
@@ -193,7 +242,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_flqbv"]
+[sub_resource type="Resource" id="Resource_vhh2f"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 position = Vector2(-360, -221)
@@ -238,7 +287,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop_cave"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_ecd5o")
+data = SubResource("Resource_k06oj")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -276,7 +325,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_0uwh1")
+data = SubResource("Resource_gubjs")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -307,7 +356,7 @@ position = Vector2(-383, -221)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
-data = SubResource("Resource_nfjx0")
+data = SubResource("Resource_k0eib")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -333,7 +382,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_yt040")
+data = SubResource("Resource_ue2sx")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier" index="0"]
@@ -359,6 +408,7 @@ visible = false
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_k5uew")]
 position = Vector2(-659, 398)
 spawnerData = SubResource("Resource_0t6sl")
+enemyEncounter = SubResource("Resource_ii441")
 combatant = ExtResource("4_d1muk")
 combatantMaxLevel = 2
 combatantLvToPlayerLvRatio = 0.8
@@ -371,6 +421,7 @@ shape = SubResource("RectangleShape2D_15iao")
 [node name="EnemySpawner2" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_k5uew")]
 position = Vector2(-457, 450)
 spawnerData = SubResource("Resource_w2gg0")
+enemyEncounter = SubResource("Resource_w7ypf")
 combatant = ExtResource("4_utc70")
 tilemap = NodePath("../TileMap")
 
@@ -381,6 +432,7 @@ shape = SubResource("RectangleShape2D_3ekqt")
 [node name="EnemySpawner3" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_k5uew")]
 position = Vector2(-902, 202)
 spawnerData = SubResource("Resource_otb8j")
+enemyEncounter = SubResource("Resource_sg12l")
 combatant = ExtResource("4_utc70")
 combatantMaxLevel = 3
 combatantLvToPlayerLvRatio = 0.8
@@ -393,6 +445,7 @@ shape = SubResource("RectangleShape2D_cga0g")
 [node name="EnemySpawner4" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_k5uew")]
 position = Vector2(-701, -9)
 spawnerData = SubResource("Resource_srcdu")
+enemyEncounter = SubResource("Resource_4g0ru")
 combatant = ExtResource("4_d1muk")
 combatantMinLevel = 2
 combatantMaxLevel = 3
@@ -507,7 +560,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-360, -221)
-data = SubResource("Resource_flqbv")
+data = SubResource("Resource_vhh2f")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.66253

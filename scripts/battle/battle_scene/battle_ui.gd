@@ -87,24 +87,68 @@ func apply_menu_state():
 		battleComplete.rewards = battleController.state.rewards
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(battleComplete.okBtn)
 		if playerWins and len(battleComplete.rewards) == 0:
-			if PlayerResources.playerInfo.staticEncounter != null && PlayerResources.playerInfo.staticEncounter.useStaticRewards:
-				for reward in PlayerResources.playerInfo.staticEncounter.rewards:
+			if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:
+				for reward in (PlayerResources.playerInfo.encounter as StaticEncounter).rewards:
 					battleComplete.rewards.append(reward)
 			else:
-				for combatantNode in battleController.get_all_combatant_nodes():
-					if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null and combatantNode.combatant.dropTable != null:
-						var dropIdx: int = WeightedThing.pick_item(combatantNode.combatant.dropTable.weightedRewards)
+				var randomEncounter: RandomEncounter = null
+				if PlayerResources.playerInfo.encounter is RandomEncounter:
+					randomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter 
+				# get enemy 1's rewards
+				var reward: Reward = null
+				if randomEncounter != null and len(randomEncounter.combatant1Rewards) > 0:
+					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards)
+					if dropIdx > -1:
+						reward = randomEncounter.combatant1Rewards[dropIdx].reward
+				elif battleController.enemyCombatant1.combatant.dropTable != null:
+					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.dropTable.weightedRewards)
+					if dropIdx > -1:
+						reward = battleController.enemyCombatant1.combatant.dropTable.weightedRewards[dropIdx].reward
+				if reward != null:
+					battleComplete.rewards.append( \
+							reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level) \
+						)
+				else:
+					battleComplete.rewards.append(null)
+				# if enemy 2 was present and defeated, get rewards
+				if battleController.enemyCombatant2.combatant != null:
+					reward = null
+					if randomEncounter != null and len(randomEncounter.combatant2Rewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards)
 						if dropIdx > -1:
-							battleComplete.rewards.append( \
-									combatantNode.combatant.dropTable.weightedRewards[dropIdx].reward.scale_reward_by_level(combatantNode.initialCombatantLv, combatantNode.combatant.stats.level) \
+							reward = randomEncounter.combatant2Rewards[dropIdx].reward
+					elif battleController.enemyCombatant2.combatant.dropTable != null:
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.dropTable.weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant2.combatant.dropTable.weightedRewards[dropIdx].reward
+					if reward != null:
+						battleComplete.rewards.append( \
+								reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level) \
 							)
+				# if enemy 3 was present and defeated, get rewards
+				if battleController.enemyCombatant3.combatant != null:
+					reward = null
+					if randomEncounter != null and len(randomEncounter.combatant3Rewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards)
+						if dropIdx > -1:
+							reward = randomEncounter.combatant3Rewards[dropIdx].reward
+					elif battleController.enemyCombatant3.combatant.dropTable != null:
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.dropTable.weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant3.combatant.dropTable.weightedRewards[dropIdx].reward
+					if reward != null:
+						battleComplete.rewards.append( \
+								reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level) \
+							)
+				# all rewards now obtained
 			for combatantNode in battleController.get_all_combatant_nodes():
 				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
 			battleController.state.rewards = battleComplete.rewards
-			if PlayerResources.playerInfo.staticEncounter != null:
-				PlayerResources.playerInfo.set_special_battle_completed(PlayerResources.playerInfo.staticEncounter.specialBattleId)
-				PlayerResources.playerInfo.staticEncounter = null
+			if PlayerResources.playerInfo.encounter is StaticEncounter:
+				var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
+				PlayerResources.playerInfo.set_special_battle_completed(staticEncounter.specialBattleId)
+			PlayerResources.playerInfo.encounter = null
 		battleComplete.load_battle_over_menu()
 	
 	if menuState == BattleState.Menu.LEVEL_UP:

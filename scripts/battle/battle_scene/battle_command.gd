@@ -441,11 +441,11 @@ func get_command_results(user: Combatant) -> String:
 								resultsText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
 						else:
 							if target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
-								resultsText += ', but is immune to ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+								resultsText += ', but the ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) + ' was nullified'
 							elif target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
-								resultsText += ', but resisted ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+								resultsText += ', but the ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type) + ' was resisted'
 							else:
-								resultsText += ', but avoided ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+								resultsText += ', but failed to afflict ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
 				else:
 					# if no damage was dealt
 					if type == Type.MOVE and moveEffect.statusEffect != null:

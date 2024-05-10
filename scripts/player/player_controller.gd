@@ -230,7 +230,7 @@ func advance_dialogue(canStart: bool = true):
 						len(npc.data.dialogueItems) > 0 and npc.visible: # if the NPC has dialogue and is the closest visible NPC, speak to this one
 					minDistance = npc.position.distance_to(position)
 					talkNPC = npc
-					PlayerResources.playerInfo.staticEncounter = null # reset static encounter in case game crash
+					PlayerResources.playerInfo.encounter = null # reset static encounter in case game crash
 		play_animation('stand')
 		if not canStart and not disableMovement or talkNPC == null: # if we are pressing game_decline, or there is no talk NPC, do not start conversation!
 			talkNPC = null
@@ -259,7 +259,7 @@ func advance_dialogue(canStart: bool = true):
 				if len(npc.data.dialogueItems) > 0:
 					npc.talkAlertSprite.visible = true
 			talkNPC = null
-			if PlayerResources.playerInfo.staticEncounter != null:
+			if PlayerResources.playerInfo.encounter != null:
 				start_battle()
 			if actChanged:
 				pause_movement()
@@ -461,8 +461,8 @@ func start_battle():
 	cam.fade_out(_after_start_battle_fade_out)
 	PlayerResources.battleSaveFolder = ''
 	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic.pick_random()
-	if PlayerResources.playerInfo.staticEncounter != null and PlayerResources.playerInfo.staticEncounter.battleMusic != null:
-		playingBattleMusic = PlayerResources.playerInfo.staticEncounter.battleMusic
+	if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).battleMusic != null:
+		playingBattleMusic = (PlayerResources.playerInfo.encounter as StaticEncounter).battleMusic
 	SceneLoader.audioHandler.play_music(playingBattleMusic, -1)
 
 func _on_shop_button_pressed():

@@ -198,7 +198,7 @@ func advance_dialogue() -> bool:
 				PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 				PlayerFinder.player.cam.show_alert('Fully Healed!')
 			if data.dialogueItems[data.dialogueIndex].startsStaticEncounter != null: # if it starts a static encounter (auto-closes dialogue)
-				PlayerResources.playerInfo.staticEncounter = data.dialogueItems[data.dialogueIndex].startsStaticEncounter
+				PlayerResources.playerInfo.encounter = data.dialogueItems[data.dialogueIndex].startsStaticEncounter
 				data.dialogueIndex = len(data.dialogueItems) # set to the last entry
 			elif data.dialogueItems[data.dialogueIndex].closesDialogue: # if no static encounter, if it still closes dialogue
 				data.dialogueIndex = len(data.dialogueItems) # set to the last entry

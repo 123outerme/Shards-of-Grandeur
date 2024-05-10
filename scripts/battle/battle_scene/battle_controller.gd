@@ -67,85 +67,85 @@ func load_into_battle():
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 		playerCombatant.combatant.orbs = playerCombatant.combatant.get_starting_orbs()
 		minionCombatant.combatant = null
-		if PlayerResources.playerInfo.staticEncounter != null:
-			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant1.save_name())
+		if PlayerResources.playerInfo.encounter is StaticEncounter:
+			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
+			enemyCombatant1.combatant = Combatant.load_combatant_resource(staticEncounter.combatant1.save_name())
 			enemyCombatant1.combatant.pick_equipment()
 			# stats start out in base form, this will evolve the combatant
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
-			enemyCombatant1.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant1Level)
+			enemyCombatant1.combatant.level_up_nonplayer(staticEncounter.combatant1Level)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
-			if len(PlayerResources.playerInfo.staticEncounter.combatant1Moves) == 0:
+			if len(staticEncounter.combatant1Moves) == 0:
 				enemyCombatant1.combatant.assign_moves_nonplayer()
 			else:
-				enemyCombatant1.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant1Moves.duplicate()
+				enemyCombatant1.combatant.stats.moves = staticEncounter.combatant1Moves.duplicate()
 		
-			if PlayerResources.playerInfo.staticEncounter.combatant2 != null:
-				enemyCombatant2.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant2.save_name())
+			if staticEncounter.combatant2 != null:
+				enemyCombatant2.combatant = Combatant.load_combatant_resource(staticEncounter.combatant2.save_name())
 				enemyCombatant2.combatant.pick_equipment()
 				# stats start out in base form, this will evolve the combatant
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant2Level)
+				enemyCombatant2.combatant.level_up_nonplayer(staticEncounter.combatant2Level)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
-				if len(PlayerResources.playerInfo.staticEncounter.combatant2Moves) == 0:
+				if len(staticEncounter.combatant2Moves) == 0:
 					enemyCombatant2.combatant.assign_moves_nonplayer()
 				else:
-					enemyCombatant2.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant2Moves.duplicate()
+					enemyCombatant2.combatant.stats.moves = staticEncounter.combatant2Moves.duplicate()
 			
-			if PlayerResources.playerInfo.staticEncounter.combatant3 != null:
-				enemyCombatant3.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.combatant3.save_name())
+			if staticEncounter.combatant3 != null:
+				enemyCombatant3.combatant = Combatant.load_combatant_resource(staticEncounter.combatant3.save_name())
 				enemyCombatant3.combatant.pick_equipment()
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
-				enemyCombatant3.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.combatant3Level)
+				enemyCombatant3.combatant.level_up_nonplayer(staticEncounter.combatant3Level)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
-				if len(PlayerResources.playerInfo.staticEncounter.combatant3Moves) == 0:
+				if len(staticEncounter.combatant3Moves) == 0:
 					enemyCombatant3.combatant.assign_moves_nonplayer()
 				else:
-					enemyCombatant3.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.combatant3Moves.duplicate()
+					enemyCombatant3.combatant.stats.moves = staticEncounter.combatant3Moves.duplicate()
 			
-			if PlayerResources.playerInfo.staticEncounter.autoAlly != null:
+			if staticEncounter.autoAlly != null:
 				hasStaticMinion = true
-				minionCombatant.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.staticEncounter.autoAlly.save_name())
+				minionCombatant.combatant = Combatant.load_combatant_resource(staticEncounter.autoAlly.save_name())
 				# TODO: give auto ally some static equipment?
 				if minionCombatant.combatant.get_evolution() != null:
 					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
-				minionCombatant.combatant.level_up_nonplayer(PlayerResources.playerInfo.staticEncounter.autoAllyLevel)
+				minionCombatant.combatant.level_up_nonplayer(staticEncounter.autoAllyLevel)
 				minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
-				if len(PlayerResources.playerInfo.staticEncounter.autoAllyMoves) == 0:
+				if len(staticEncounter.autoAllyMoves) == 0:
 					minionCombatant.combatant.assign_moves_nonplayer()
 				else:
-					minionCombatant.combatant.stats.moves = PlayerResources.playerInfo.staticEncounter.autoAllyMoves.duplicate() 
+					minionCombatant.combatant.stats.moves = staticEncounter.autoAllyMoves.duplicate() 
 		else:
-			if PlayerResources.playerInfo.encounteredName == null or PlayerResources.playerInfo.encounteredName == '':
-				PlayerResources.playerInfo.encounteredName = 'rat' # TEMP failsafe - could be improved?
-			enemyCombatant1.combatant = Combatant.load_combatant_resource(PlayerResources.playerInfo.encounteredName)
-			
-			var encounteredLv: int = PlayerResources.playerInfo.encounteredLevel
+			var randomEncounter: RandomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter
+			# load enemy 1
+			enemyCombatant1.combatant = Combatant.load_combatant_resource(randomEncounter.combatant1.save_name())
 			enemyCombatant1.combatant.pick_equipment()
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
-			enemyCombatant1.combatant.level_up_nonplayer(encounteredLv)
+			enemyCombatant1.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
 			var rngBeginnerNoEnemy: float = randf() - 0.5 + \
 					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
 			# if 4 < level < 8, give a 50% chance to have a second combatant + 10% per level up to 90% at lv 7, before team table calc
-			var eCombatant2Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
-			if enemyCombatant1.combatant.teamTable[eCombatant2Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-				enemyCombatant2.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant2Idx].string)
+			var eCombatant2Idx: int = WeightedThing.pick_item(randomEncounter.combatant2Options)
+			if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
+				# load enemy 2
+				enemyCombatant2.combatant = Combatant.load_combatant_resource(randomEncounter.combatant2Options[eCombatant2Idx].combatant.save_name())
 				enemyCombatant2.combatant.pick_equipment()
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				enemyCombatant2.combatant.assign_moves_nonplayer()
 			else:
@@ -154,13 +154,14 @@ func load_into_battle():
 			rngBeginnerNoEnemy = randf() - 0.5 + \
 					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES) - MIN_LV_THREE_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
 			# if level < 10, give a 0% chance to have a third combatant + 10% per level after 1 up to 100% at lv 20, before team table calc
-			var eCombatant3Idx: int = WeightedThing.pick_item(enemyCombatant1.combatant.teamTable)
-			if enemyCombatant1.combatant.teamTable[eCombatant3Idx].string != '' and rngBeginnerNoEnemy > 0.5:
-				enemyCombatant3.combatant = Combatant.load_combatant_resource(enemyCombatant1.combatant.teamTable[eCombatant3Idx].string)
+			var eCombatant3Idx: int = WeightedThing.pick_item(randomEncounter.combatant3Options)
+			if eCombatant3Idx > -1 and randomEncounter.combatant3Options[eCombatant3Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
+				# load enemy 3
+				enemyCombatant3.combatant = Combatant.load_combatant_resource(randomEncounter.combatant3Options[eCombatant3Idx].combatant.save_name())
 				enemyCombatant3.combatant.pick_equipment()
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
-				enemyCombatant3.combatant.level_up_nonplayer(encounteredLv)
+				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()
@@ -328,7 +329,7 @@ func end_battle():
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
-	PlayerResources.playerInfo.staticEncounter = null # clear static encounter so other things can't trigger it
+	PlayerResources.playerInfo.encounter = null # clear encounter so other things can't trigger it
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
 	shadeTween.finished.connect(_fade_out_finish)

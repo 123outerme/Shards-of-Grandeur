@@ -108,9 +108,7 @@ func _on_encounter_collider_area_entered(area):
 		if not PlayerFinder.player.inCutscene:
 			# start battle encounter
 			spawner.spawnerData.spawnedLastEncounter = true
-			PlayerResources.playerInfo.encounteredName = combatant.save_name()
-			PlayerResources.playerInfo.encounteredLevel = enemyData.combatantLevel
-			PlayerResources.playerInfo.staticEncounter = enemyData.staticEncounter
+			PlayerResources.playerInfo.encounter = enemyData.encounter
 			encounteredPlayer = true
 			PlayerFinder.player.start_battle()
 			SceneLoader.pause_autonomous_movers()

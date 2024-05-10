@@ -2,6 +2,7 @@ extends Node2D
 class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
+@export var enemyEncounter: EnemyEncounter = null
 @export var combatant: Combatant
 @export var combatantMinLevel: int = 1
 @export var combatantMaxLevel: int = 1
@@ -32,14 +33,7 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
-		var lvDiffScaled: float = (PlayerResources.playerInfo.combatant.stats.level - combatantMinLevel) * combatantLvToPlayerLvRatio
-		lvDiffScaled = floori(lvDiffScaled + randf_range(0, 0.99))
-		# scaled level difference = floor( (playerlv - min) * ratio + X ), where X in [0, 1)
-		var level: int = min(combatantMaxLevel, \
-				max(combatantMinLevel, combatantMinLevel + lvDiffScaled))
-		# level = min + scaled lvdiff, bounded between min and max lv
-		
-		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, level, staticEncounter)
+		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, enemyEncounter)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
@@ -49,7 +43,7 @@ func save_data(save_path) -> int:
 	if spawnerData != null:
 		spawnerData.enemyData = null
 		if enemy != null and not enemy.encounteredPlayer:
-			spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemy.enemyData.combatantLevel, staticEncounter)
+			spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemyEncounter)
 		return spawnerData.save_data(save_path + enemiesDir, spawnerData)
 	else:
 		return 0

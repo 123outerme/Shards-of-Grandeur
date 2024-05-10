@@ -21,7 +21,7 @@ class_name PlayerInfo
 @export_category("PlayerInfo: Battle")
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
-@export var staticEncounter: StaticEncounter = null
+@export var encounter: EnemyEncounter = null
 @export var completedSpecialBattles: Array[String] = []
 @export var enemiesDefeated: Array[String] = []
 
@@ -51,7 +51,7 @@ func _init(
 	i_playtimeSecs = 0,
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
-	i_staticEncounter = null,
+	i_encounter = null,
 	i_completedSpecialBattles: Array[String] = [],
 	i_enemiesDefeated: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
@@ -79,7 +79,7 @@ func _init(
 	playtimeSecs = i_playtimeSecs
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
-	staticEncounter = i_staticEncounter
+	encounter = i_encounter
 	completedSpecialBattles = i_completedSpecialBattles
 	enemiesDefeated = i_enemiesDefeated
 	pickedUpItems = i_pickedUpItems
