@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csr4scjhri6pk"]
+[gd_scene load_steps=16 format=3 uid="uid://csr4scjhri6pk"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_usu8h"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2fma6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="7_0rbj7"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="7_7lvme"]
 [ext_resource type="SpriteFrames" uid="uid://o2o4l8s3bgc5" path="res://graphics/animations/a_lady2.tres" id="8_yiv63"]
+[ext_resource type="Resource" uid="uid://dr1nw8qnrwgvn" path="res://gamedata/shops/standstill/standstill_general_store.tres" id="9_bk43y"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_jik55"]
 
 [sub_resource type="Resource" id="Resource_4gxqb"]
@@ -21,7 +22,7 @@ script = ExtResource("7_0rbj7")
 inventorySlots = Array[ExtResource("6_oo1ok")]([SubResource("Resource_4gxqb")])
 isPlayerInventory = false
 
-[sub_resource type="Resource" id="Resource_c0wp3"]
+[sub_resource type="Resource" id="Resource_7h7jc"]
 script = ExtResource("7_7lvme")
 saveName = "npc"
 position = Vector2(-8, -85)
@@ -69,10 +70,10 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-8, -85)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep"
-data = SubResource("Resource_c0wp3")
+data = SubResource("Resource_7h7jc")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_2kxuu")])
 hasShop = true
-inventory = SubResource("Resource_k2kr0")
+npcShop = ExtResource("9_bk43y")
 
 [node name="NPCSprite" parent="TileMap/Shopkeep" index="0"]
 sprite_frames = ExtResource("8_yiv63")

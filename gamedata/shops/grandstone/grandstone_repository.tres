@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=13 format=3 uid="uid://cl155fhxtnnv3"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_i3wyr"]
+[ext_resource type="Resource" uid="uid://bx6u2bgxrbymu" path="res://gamedata/items/weapon/tome_vol_1.tres" id="2_1j8gs"]
+[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_cb1xu"]
+[ext_resource type="Resource" uid="uid://ue4yjsj74uc8" path="res://gamedata/items/armor/mage_robes.tres" id="4_tt5kk"]
+[ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="5_onffk"]
+[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="6_81xta"]
+[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="7_r4jnm"]
+
+[sub_resource type="Resource" id="Resource_yljok"]
+script = ExtResource("3_cb1xu")
+sinceVersion = ""
+item = ExtResource("2_1j8gs")
+count = 1
+
+[sub_resource type="Resource" id="Resource_kxnab"]
+script = ExtResource("3_cb1xu")
+sinceVersion = ""
+item = ExtResource("4_tt5kk")
+count = 1
+
+[sub_resource type="Resource" id="Resource_8odg6"]
+script = ExtResource("3_cb1xu")
+sinceVersion = ""
+item = ExtResource("5_onffk")
+count = -1
+
+[sub_resource type="Resource" id="Resource_6yyoa"]
+script = ExtResource("3_cb1xu")
+sinceVersion = ""
+item = ExtResource("6_81xta")
+count = 3
+
+[sub_resource type="Resource" id="Resource_tbg57"]
+script = ExtResource("3_cb1xu")
+sinceVersion = ""
+item = ExtResource("7_r4jnm")
+count = 3
+
+[resource]
+script = ExtResource("1_i3wyr")
+shopItemSlots = Array[ExtResource("3_cb1xu")]([SubResource("Resource_yljok"), SubResource("Resource_kxnab"), SubResource("Resource_8odg6"), SubResource("Resource_6yyoa"), SubResource("Resource_tbg57")])

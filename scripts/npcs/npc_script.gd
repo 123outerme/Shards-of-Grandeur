@@ -19,6 +19,7 @@ class_name NPCScript
 @export_category("NPC Shop")
 @export var hasShop: bool = false
 @export var inventory: Inventory
+@export var npcShop: NpcShop = null
 
 var acceptableQuests: Array[Quest] = []
 var turningInSteps: Array[QuestStep] = []
@@ -109,11 +110,24 @@ func load_data(save_path):
 			player.restore_dialogue(self)
 		else:
 			reset_dialogue()
-		if GameSettings.get_version_differences(data.version) < GameSettings.VersionDiffs.MINOR:
-			inventory = data.inventory
-		else:
-			print('DEBUG: resetting NPC inventory for ', saveName)
+		inventory = data.inventory
+		if npcShop != null and GameSettings.get_version_differences(data.version) != GameSettings.VersionDiffs.NONE:
+			add_shop_items_to_inventory()
 		invisible = not data.visible
+	else:
+		if hasShop and inventory == null:
+			inventory = Inventory.new()
+		add_shop_items_to_inventory()
+
+func add_shop_items_to_inventory():
+	if not hasShop or inventory == null:
+		return
+	
+	for shopItemSlot: ShopInventorySlot in npcShop.shopItemSlots:
+		var existingSlot: InventorySlot = inventory.get_slot_for_item(shopItemSlot.item)
+		# if there is no slot for this: add it to the inventory
+		if existingSlot == null and shopItemSlot.should_add(data.version):
+			inventory.add_slot(shopItemSlot)
 
 func _set_invisible(value: bool):
 	visible = not value

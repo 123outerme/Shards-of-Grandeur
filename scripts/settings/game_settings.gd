@@ -47,13 +47,19 @@ static func get_game_patch_version(version: String = '') -> int:
 	return int(version.split('.')[2])
 
 static func get_version_differences(versionString: String) -> VersionDiffs:
-	if versionString == '' or versionString == null or get_game_major_version() > get_game_major_version(versionString):
+	return get_version_differences_between('', versionString)
+
+static func get_version_differences_between(version1: String, version2: String) -> VersionDiffs:
+	if version1 == '':
+		version1 = get_game_version()
+	
+	if version2 == '' or get_game_major_version(version1) > get_game_major_version(version2):
 		return VersionDiffs.MAJOR
 	
-	if get_game_minor_version() > get_game_minor_version(versionString):
+	if get_game_minor_version(version1) > get_game_minor_version(version2):
 		return VersionDiffs.MINOR
 	
-	if get_game_patch_version() > get_game_patch_version(versionString):
+	if get_game_patch_version(version1) > get_game_patch_version(version2):
 		return VersionDiffs.PATCH
 	
 	return VersionDiffs.NONE

@@ -9,7 +9,31 @@ var save_name: String = "inventory.tres"
 func _init(i_playerInv = false, i_slots: Array[InventorySlot] = []):
 	inventorySlots = i_slots
 	isPlayerInventory = i_playerInv
-	
+
+func add_slot(slot: InventorySlot) -> bool:
+	if slot == null:
+		return false
+	var found: bool = false
+	for existingSlot in inventorySlots:
+		if existingSlot.item == slot.item:
+			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
+			# either way we aren't creating a new slot
+			if existingSlot.count < slot.item.maxCount or slot.item.maxCount == 0:
+				if slot.count < 0:
+					return true # if negative (infinite-size shop slot), don't do anything
+				# combine stacks of this item, capping at max count for this item
+				existingSlot.count = min(existingSlot.item.maxCount, existingSlot.count + slot.count)
+				add_shard_minion_entry(existingSlot.item)
+				PlayerResources.questInventory.auto_update_quests()
+				return true
+	# if not found, add the slot as a new one
+	if not found:
+		inventorySlots.append(slot)
+		add_shard_minion_entry(slot.item)
+		PlayerResources.questInventory.auto_update_quests()
+		return true
+	return false
+
 func add_item(item: Item) -> bool:
 	if item == null:
 		return false
@@ -38,6 +62,12 @@ func has_item(item: Item) -> bool:
 		if slot.item == item:
 			return true
 	return false
+
+func get_slot_for_item(item: Item) -> InventorySlot:
+	for slot in inventorySlots:
+		if slot.item == item:
+			return slot
+	return null
 
 func add_shard_minion_entry(item: Item):
 	if isPlayerInventory and item.itemType == Item.Type.SHARD:
@@ -102,13 +132,13 @@ func get_shard_slot_for_minion(saveName: String) -> InventorySlot:
 	return null
 
 func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
-	var previousCount: int = inventorySlot.count
-	if previousCount < 0: # if negative (infinite), don't bother
+	if inventorySlot.count < 0: # if negative (infinite), don't bother
 		return false
 	var lastInSlot: bool = false
-	inventorySlot.count -= count
+	inventorySlot.count = max(0, inventorySlot.count - count)
 	if inventorySlot.count <= 0:
-		inventorySlots.erase(inventorySlot)
+		if isPlayerInventory:
+			inventorySlots.erase(inventorySlot)
 		lastInSlot = true
 	PlayerResources.questInventory.auto_update_quests()
 	return lastInSlot

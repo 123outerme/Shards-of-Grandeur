@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=41 format=3 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="11_rcdfa"]
 [ext_resource type="Resource" uid="uid://kh7eona0y4n7" path="res://gamedata/cutscenes/intro_scene/intro_exit_cutscene.tres" id="12_ci2fb"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="14_6nead"]
-[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="15_6dcag"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="15_xc56y"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="18_481j8"]
 [ext_resource type="Resource" uid="uid://co8xtwrinpjke" path="res://gamedata/static_encounters/intro_encounter.tres" id="18_ld2et"]
@@ -25,7 +24,7 @@
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="24_mgy6p"]
 
-[sub_resource type="Resource" id="Resource_habko"]
+[sub_resource type="Resource" id="Resource_rpwpr"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(1, 16)
@@ -45,7 +44,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_kar5k"]
+[sub_resource type="Resource" id="Resource_3prgk"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(-98, 4)
@@ -131,7 +130,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
-[sub_resource type="Resource" id="Resource_2t0n1"]
+[sub_resource type="Resource" id="Resource_yoauv"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(450, 0)
@@ -179,7 +178,7 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_habko")
+data = SubResource("Resource_rpwpr")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -205,7 +204,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_kar5k")
+data = SubResource("Resource_3prgk")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -254,7 +253,6 @@ shape = SubResource("RectangleShape2D_dqdkq")
 position = Vector2(534, 7)
 spawnerData = SubResource("Resource_mb2oe")
 enemyEncounter = ExtResource("18_ld2et")
-combatant = ExtResource("15_6dcag")
 storyRequirements = SubResource("Resource_noxp6")
 spawnWhenPlayerLocked = true
 spawnRange = 0.0
@@ -288,7 +286,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(450, 0)
-data = SubResource("Resource_2t0n1")
+data = SubResource("Resource_yoauv")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.281959

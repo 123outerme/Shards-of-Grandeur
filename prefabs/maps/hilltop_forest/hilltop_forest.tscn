@@ -322,7 +322,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_h77iw"]
+[sub_resource type="Resource" id="Resource_jyxr5"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 position = Vector2(-440, -140)
@@ -368,10 +368,6 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-659, 398)
 spawnerData = SubResource("Resource_0t6sl")
 enemyEncounter = SubResource("Resource_orq0a")
-combatant = ExtResource("16_8f7wp")
-combatantMinLevel = 3
-combatantMaxLevel = 5
-combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner/SpawnArea" index="0"]
@@ -382,9 +378,6 @@ shape = SubResource("RectangleShape2D_15iao")
 position = Vector2(-457, 450)
 spawnerData = SubResource("Resource_w2gg0")
 enemyEncounter = SubResource("Resource_1go41")
-combatant = ExtResource("17_6exim")
-combatantMinLevel = 3
-combatantMaxLevel = 4
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner2/SpawnArea" index="0"]
@@ -395,10 +388,6 @@ shape = SubResource("RectangleShape2D_3ekqt")
 position = Vector2(-902, 202)
 spawnerData = SubResource("Resource_otb8j")
 enemyEncounter = SubResource("Resource_63sl8")
-combatant = ExtResource("17_6exim")
-combatantMinLevel = 3
-combatantMaxLevel = 5
-combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner3/SpawnArea" index="0"]
@@ -409,10 +398,6 @@ shape = SubResource("RectangleShape2D_cga0g")
 position = Vector2(-701, -9)
 spawnerData = SubResource("Resource_srcdu")
 enemyEncounter = SubResource("Resource_q606b")
-combatant = ExtResource("16_8f7wp")
-combatantMinLevel = 4
-combatantMaxLevel = 6
-combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner4/SpawnArea" index="0"]
@@ -423,10 +408,6 @@ shape = SubResource("RectangleShape2D_5pj3e")
 position = Vector2(-394, -281)
 spawnerData = SubResource("Resource_x0xbl")
 enemyEncounter = SubResource("Resource_nlobb")
-combatant = ExtResource("7_etfvm")
-combatantMinLevel = 5
-combatantMaxLevel = 7
-combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner5/SpawnArea" index="0"]
@@ -437,10 +418,6 @@ shape = SubResource("RectangleShape2D_sg6m8")
 position = Vector2(-16, -11)
 spawnerData = SubResource("Resource_6lngp")
 enemyEncounter = SubResource("Resource_2lrkg")
-combatant = ExtResource("8_lsbd3")
-combatantMinLevel = 4
-combatantMaxLevel = 7
-combatantLvToPlayerLvRatio = 0.85
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner6/SpawnArea" index="0"]
@@ -451,10 +428,6 @@ shape = SubResource("RectangleShape2D_fq3wx")
 position = Vector2(395, 49)
 spawnerData = SubResource("Resource_kgkyv")
 enemyEncounter = SubResource("Resource_22qm5")
-combatant = ExtResource("7_etfvm")
-combatantMinLevel = 4
-combatantMaxLevel = 7
-combatantLvToPlayerLvRatio = 0.8
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner7/SpawnArea" index="0"]
@@ -465,10 +438,6 @@ shape = SubResource("RectangleShape2D_utinw")
 position = Vector2(643, 198)
 spawnerData = SubResource("Resource_kxgap")
 enemyEncounter = SubResource("Resource_tpoiq")
-combatant = ExtResource("16_8f7wp")
-combatantMinLevel = 4
-combatantMaxLevel = 7
-combatantLvToPlayerLvRatio = 0.9
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner8/SpawnArea" index="0"]
@@ -564,7 +533,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_h77iw")
+data = SubResource("Resource_jyxr5")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

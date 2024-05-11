@@ -1,26 +1,15 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=19 format=3 uid="uid://dlvou480hinjf"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://dlvou480hinjf"]
 
 [ext_resource type="Resource" uid="uid://bot66oub5eciv" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_rewards.tres" id="1_0y103"]
-[ext_resource type="Resource" uid="uid://qtmhsh4dksho" path="res://gamedata/items/armor/standard_issue_boots.tres" id="1_5xmby"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_64cgh"]
 [ext_resource type="Resource" uid="uid://n530ub5mrrmq" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_movepool.tres" id="2_2qujl"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_7inqf"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_tcsed"]
 [ext_resource type="Resource" uid="uid://bapoydifpmefj" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_growth.tres" id="3_pxbev"]
 [ext_resource type="Resource" uid="uid://1v0bjo7wtbgq" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_evolutions.tres" id="4_rf5ax"]
 [ext_resource type="Resource" uid="uid://cplxv255kicip" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_effectiveness.tres" id="5_bmxru"]
 [ext_resource type="SpriteFrames" uid="uid://c7jebk54e41b6" path="res://graphics/animations/a_shroom_gnome.tres" id="6_0woiy"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_03hw2"]
 [ext_resource type="Resource" uid="uid://bedv0uc7cmbto" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_equipment.tres" id="12_q5a5h"]
-
-[sub_resource type="Resource" id="Resource_0ymsn"]
-script = ExtResource("2_tcsed")
-armor = ExtResource("1_5xmby")
-weight = 0.3
-
-[sub_resource type="Resource" id="Resource_fpaon"]
-script = ExtResource("2_tcsed")
-weight = 0.7
 
 [sub_resource type="Resource" id="Resource_fc7ct"]
 script = ExtResource("2_7inqf")
@@ -74,7 +63,6 @@ damageAggroType = 1
 strategy = 0
 aiOverrideWeight = 0.35
 moveEffectiveness = ExtResource("5_bmxru")
-equipmentTable = Array[ExtResource("2_tcsed")]([SubResource("Resource_0ymsn"), SubResource("Resource_fpaon")])
 weightedEquipment = ExtResource("12_q5a5h")
 teamTable = Array[ExtResource("9_03hw2")]([SubResource("Resource_r68dx"), SubResource("Resource_khe4d"), SubResource("Resource_46wqe")])
 dropTable = ExtResource("1_0y103")
