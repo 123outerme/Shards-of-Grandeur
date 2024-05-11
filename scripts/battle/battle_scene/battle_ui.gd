@@ -96,10 +96,10 @@ func apply_menu_state():
 					randomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter 
 				# get enemy 1's rewards
 				var reward: Reward = null
-				if randomEncounter != null and len(randomEncounter.combatant1Rewards) > 0:
-					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards)
+				if randomEncounter != null and randomEncounter.combatant1Rewards != null and len(randomEncounter.combatant1Rewards.weightedRewards) > 0:
+					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
 					if dropIdx > -1:
-						reward = randomEncounter.combatant1Rewards[dropIdx].reward
+						reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
 				elif battleController.enemyCombatant1.combatant.dropTable != null:
 					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.dropTable.weightedRewards)
 					if dropIdx > -1:
@@ -113,10 +113,10 @@ func apply_menu_state():
 				# if enemy 2 was present and defeated, get rewards
 				if battleController.enemyCombatant2.combatant != null:
 					reward = null
-					if randomEncounter != null and len(randomEncounter.combatant2Rewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards)
+					if randomEncounter != null and randomEncounter.combatant2Rewards != null and len(randomEncounter.combatant2Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards.weightedRewards)
 						if dropIdx > -1:
-							reward = randomEncounter.combatant2Rewards[dropIdx].reward
+							reward = randomEncounter.combatant2Rewards.weightedRewards[dropIdx].reward
 					elif battleController.enemyCombatant2.combatant.dropTable != null:
 						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.dropTable.weightedRewards)
 						if dropIdx > -1:
@@ -128,10 +128,10 @@ func apply_menu_state():
 				# if enemy 3 was present and defeated, get rewards
 				if battleController.enemyCombatant3.combatant != null:
 					reward = null
-					if randomEncounter != null and len(randomEncounter.combatant3Rewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards)
+					if randomEncounter != null and randomEncounter.combatant3Rewards != null and len(randomEncounter.combatant3Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards.weightedRewards)
 						if dropIdx > -1:
-							reward = randomEncounter.combatant3Rewards[dropIdx].reward
+							reward = randomEncounter.combatant3Rewards.weightedRewards[dropIdx].reward
 					elif battleController.enemyCombatant3.combatant.dropTable != null:
 						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.dropTable.weightedRewards)
 						if dropIdx > -1:

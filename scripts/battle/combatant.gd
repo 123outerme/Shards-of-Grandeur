@@ -67,7 +67,7 @@ const MAX_ORBS = 10
 @export var strategy: ResourceStrategy = ResourceStrategy.GREEDY
 @export var aiOverrideWeight: float = 0.35
 @export var moveEffectiveness: MoveEffectiveness = null
-@export var equipmentTable: Array[WeightedEquipment] = []
+@export var weightedEquipment: CombatantEquipment = null
 @export var teamTable: Array[WeightedString] = []
 # NOTE: having a weighted combatant caused recursion errors, so this is the workaround
 @export var dropTable: CombatantRewards = null
@@ -111,7 +111,7 @@ func _init(
 	i_damageAggroType = AggroType.LOWEST_HP,
 	i_overrideWeight = 0.35,
 	i_moveEffectiveness = null,
-	i_equipmentTable: Array[WeightedEquipment] = [],
+	i_weightedEquipment = null,
 	i_teamTable: Array[WeightedString] = [],
 	i_dropTable: CombatantRewards = null,
 	i_innateStats: Array[Stats.Category] = [],
@@ -139,7 +139,7 @@ func _init(
 	friendship = i_friendship
 	aiOverrideWeight = i_overrideWeight
 	moveEffectiveness = i_moveEffectiveness
-	equipmentTable = i_equipmentTable
+	weightedEquipment = i_weightedEquipment
 	teamTable = i_teamTable
 	dropTable = i_dropTable
 	innateStatCategories = i_innateStats
@@ -230,6 +230,30 @@ func get_sprite_frames() -> SpriteFrames:
 		return evolution.spriteFrames
 	return spriteFrames
 
+func get_ai_type() -> AiType:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.aiType
+	return aiType
+
+func get_aggro_type() -> AggroType:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.aggroType
+	return damageAggroType
+
+func get_resource_strategy() -> ResourceStrategy:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.strategy
+	return strategy
+
+func get_innate_stat_categories() -> Array[Stats.Category]:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.innateStatCategories
+	return innateStatCategories
+
 func update_downed():
 	downed = currentHp <= 0
 
@@ -310,7 +334,7 @@ func would_ai_spend_orbs(effect: MoveEffect) -> bool:
 	
 	var spendingOrbs: int = effect.orbChange * -1
 	
-	match strategy:
+	match get_resource_strategy():
 		ResourceStrategy.GREEDY:
 			return orbs >= spendingOrbs # if we have the orbs, do it
 		ResourceStrategy.BIG_SPENDER:
@@ -324,7 +348,7 @@ func get_orbs_change_choice(moveEffect: MoveEffect) -> int:
 		return moveEffect.orbChange # if we don't have the choice to spend, just return the number
 	else:
 		# spending orbs:
-		match strategy:
+		match get_resource_strategy():
 			ResourceStrategy.GREEDY:
 				return orbs * -1 # always spend max
 			ResourceStrategy.BIG_SPENDER:
@@ -351,10 +375,10 @@ func level_up_nonplayer(newLv: int):
 		stats.level_up(lvDiff)
 		currentHp = stats.maxHp
 		# if there are innate stat categories to allocate to
-		if len(innateStatCategories) > 0:
+		if len(get_innate_stat_categories()) > 0:
 			while stats.statPts > 0:
 				# randomly allocate stats to the innate stat categories
-				var randomCategory: Stats.Category = innateStatCategories.pick_random()
+				var randomCategory: Stats.Category = get_innate_stat_categories().pick_random()
 				if randomCategory == Stats.Category.PHYS_ATK:
 					stats.physAttack += 1
 				if randomCategory == Stats.Category.MAGIC_ATK:
@@ -393,9 +417,14 @@ func validate_moves() -> int:
 	return emptySlots
 
 func pick_equipment():
-	var choice: int = WeightedThing.pick_item(equipmentTable)
-	if choice >= 0 and choice < len(equipmentTable):
-		var weightedEquipment: WeightedEquipment = equipmentTable[choice]
+	if weightedEquipment == null:
+		stats.equippedWeapon = null
+		stats.equippedArmor = null
+		return
+	
+	var choice: int = WeightedThing.pick_item(weightedEquipment.weightedEquipment)
+	if choice >= 0 and choice < len(weightedEquipment.weightedEquipment):
+		var weightedEquipment: WeightedEquipment = weightedEquipment.weightedEquipment[choice]
 		stats.equippedWeapon = weightedEquipment.weapon
 		stats.equippedArmor = weightedEquipment.armor
 	else:
@@ -431,10 +460,12 @@ func save_from_object(c: Combatant):
 	spriteFacesRight = c.spriteFacesRight
 	navigationLayer = c.navigationLayer
 	aiType = c.aiType
+	damageAggroType = c.damageAggroType
+	strategy = c.strategy
 	friendship = c.friendship
 	aiOverrideWeight = c.aiOverrideWeight
 	moveEffectiveness = c.moveEffectiveness
-	equipmentTable = c.equipmentTable.duplicate(false)
+	weightedEquipment = c.weightedEquipment
 	teamTable = c.teamTable.duplicate(false)
 	dropTable = c.dropTable
 	innateStatCategories = c.innateStatCategories.duplicate(false)

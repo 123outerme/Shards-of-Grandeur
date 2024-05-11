@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://dw87ml8gkhk0w"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dw87ml8gkhk0w"]
 
 [ext_resource type="Resource" uid="uid://kwqkkku3d25w" path="res://gamedata/combatants/ambusher/ambusher_rewards.tres" id="1_4hjx2"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_o131l"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bgnu1kkxkiasp" path="res://gamedata/combatants/ambusher/ambusher_stat_growth.tres" id="4_erjgf"]
 [ext_resource type="Resource" uid="uid://panpyyisdl1r" path="res://gamedata/combatants/ambusher/ambusher_movepool.tres" id="5_67d1y"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="8_7rr0p"]
+[ext_resource type="Resource" uid="uid://c0o7tukxpfdk8" path="res://gamedata/combatants/ambusher/ambusher_equipment.tres" id="10_yfspe"]
 
 [sub_resource type="Resource" id="Resource_o1bdm"]
 script = ExtResource("3_m4dsy")
@@ -53,6 +54,7 @@ strategy = 0
 aiOverrideWeight = 0.25
 moveEffectiveness = ExtResource("3_dn7da")
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+weightedEquipment = ExtResource("10_yfspe")
 teamTable = Array[ExtResource("8_7rr0p")]([SubResource("Resource_mmtot")])
 dropTable = ExtResource("1_4hjx2")
 innateStatCategories = Array[int]([0, 2])

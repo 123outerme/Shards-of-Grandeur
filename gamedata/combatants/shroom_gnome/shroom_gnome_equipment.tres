@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://bedv0uc7cmbto"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_sc3y1"]
+[ext_resource type="Resource" uid="uid://qtmhsh4dksho" path="res://gamedata/items/armor/standard_issue_boots.tres" id="2_kij0f"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_7rmjo"]
+
+[sub_resource type="Resource" id="Resource_0ymsn"]
+script = ExtResource("3_7rmjo")
+armor = ExtResource("2_kij0f")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_fpaon"]
+script = ExtResource("3_7rmjo")
+weight = 0.7
+
+[resource]
+script = ExtResource("1_sc3y1")
+weightedEquipment = Array[ExtResource("3_7rmjo")]([SubResource("Resource_0ymsn"), SubResource("Resource_fpaon")])

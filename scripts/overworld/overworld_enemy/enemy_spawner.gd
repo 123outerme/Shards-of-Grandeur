@@ -3,11 +3,6 @@ class_name EnemySpawner
 
 @export var spawnerData: SpawnerData = SpawnerData.new()
 @export var enemyEncounter: EnemyEncounter = null
-@export var combatant: Combatant
-@export var combatantMinLevel: int = 1
-@export var combatantMaxLevel: int = 1
-@export var combatantLvToPlayerLvRatio: float = 1
-@export var staticEncounter: StaticEncounter = null
 @export var storyRequirements: StoryRequirements = null
 @export var spawnWhenPlayerLocked: bool = false
 @export var spawnRange: float = 48.0
@@ -33,7 +28,7 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(combatant, enemyPos, false, enemyEncounter)
+		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemyPos, false, enemyEncounter)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
@@ -43,7 +38,7 @@ func save_data(save_path) -> int:
 	if spawnerData != null:
 		spawnerData.enemyData = null
 		if enemy != null and not enemy.encounteredPlayer:
-			spawnerData.enemyData = OverworldEnemyData.new(combatant, enemy.position, enemy.disableMovement, enemyEncounter)
+			spawnerData.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemy.position, enemy.disableMovement, enemyEncounter)
 		return spawnerData.save_data(save_path + enemiesDir, spawnerData)
 	else:
 		return 0
@@ -53,7 +48,8 @@ func load_data(save_path):
 	if newData != null:
 		spawnerData = newData
 		var importantFight: bool = false
-		if staticEncounter != null:
+		if enemyEncounter is StaticEncounter:
+			var staticEncounter: StaticEncounter = enemyEncounter as StaticEncounter
 			importantFight = staticEncounter.bossBattle or not staticEncounter.canEscape
 		if spawnerData.enemyData != null:
 			enemy = overworldEnemyScene.instantiate()

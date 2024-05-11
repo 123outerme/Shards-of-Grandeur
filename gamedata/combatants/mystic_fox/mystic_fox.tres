@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bwg8cky4fu6ri"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bwg8cky4fu6ri"]
 
 [ext_resource type="Resource" uid="uid://dh6e75rip05dq" path="res://gamedata/combatants/mystic_fox/mystic_fox_rewards.tres" id="1_vcg6j"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_wrdnk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://ulvg6wh7jn7" path="res://gamedata/combatants/mystic_fox/mystic_fox_effectiveness.tres" id="3_6ykc4"]
 [ext_resource type="Resource" uid="uid://datrt56lguyo0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_growth.tres" id="3_fq3j1"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_le0ue"]
+[ext_resource type="Resource" uid="uid://dqfilgeyd3ody" path="res://gamedata/combatants/mystic_fox/mystic_fox_equipment.tres" id="10_1pflv"]
 
 [sub_resource type="Resource" id="Resource_5svlm"]
 script = ExtResource("2_m3coq")
@@ -58,6 +59,7 @@ strategy = 0
 aiOverrideWeight = 0.35
 moveEffectiveness = ExtResource("3_6ykc4")
 equipmentTable = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+weightedEquipment = ExtResource("10_1pflv")
 teamTable = Array[ExtResource("6_le0ue")]([SubResource("Resource_dsoqu"), SubResource("Resource_opbyb")])
 dropTable = ExtResource("1_vcg6j")
 innateStatCategories = Array[int]([1, 4])

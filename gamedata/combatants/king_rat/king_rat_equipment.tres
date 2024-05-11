@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=5 format=3 uid="uid://b723l70u677bb"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_1c06p"]
+[ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="2_cv7up"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="3_ju5dg"]
+
+[sub_resource type="Resource" id="Resource_0tx4e"]
+script = ExtResource("3_ju5dg")
+armor = ExtResource("2_cv7up")
+weight = 1.0
+
+[resource]
+script = ExtResource("1_1c06p")
+weightedEquipment = Array[ExtResource("3_ju5dg")]([SubResource("Resource_0tx4e")])

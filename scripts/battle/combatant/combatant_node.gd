@@ -490,11 +490,11 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	# at 40% health or less, non-SUPPORT AIs should prioritize attacking more
 	var isLowHealth: bool = (combatant.currentHp / (combatant.stats.maxHp as float)) <= 0.4
 	if randValue > combatant.aiOverrideWeight and \
-			((combatant.aiType == Combatant.AiType.DAMAGE or (combatant.aiType != Combatant.AiType.SUPPORT and isLowHealth)) \
+			((combatant.get_ai_type() == Combatant.AiType.DAMAGE or (combatant.get_ai_type() != Combatant.AiType.SUPPORT and isLowHealth)) \
 			and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \
-			(combatant.aiType == Combatant.AiType.BUFFER and moveEffect.role == MoveEffect.Role.BUFF) or \
-			(combatant.aiType == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
-			(combatant.aiType == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
+			(combatant.get_ai_type() == Combatant.AiType.BUFFER and moveEffect.role == MoveEffect.Role.BUFF) or \
+			(combatant.get_ai_type() == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
+			(combatant.get_ai_type() == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
 		weightModifier *= 1.5 # prioritize moves aligning with AI type
 	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
 	var damageStat: int = boostedStats.physAttack
@@ -509,7 +509,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		maxDamageStat = boostedStats.affinity
 	var weight: float = 1
 	if (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE) and \
-			combatant.aiType == Combatant.AiType.DAMAGE and randValue < combatant.aiOverrideWeight:
+			combatant.get_ai_type() == Combatant.AiType.DAMAGE and randValue < combatant.aiOverrideWeight:
 		weight = randf() * moveEffect.power * weightModifier + 1
 	else:
 		if BattleCommand.is_command_multi_target(moveEffect.targets):
@@ -528,7 +528,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			weight *= Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
 	if moveEffect.statusEffect != null and numCanStatus > 0:
 		# 50% of the time, Damage AIs don't care about doing status as much
-		var dmgAiWeight: float = 0.5 if combatant.aiType == Combatant.AiType.DAMAGE and randf() > 0.5 else 1.0
+		var dmgAiWeight: float = 0.5 if combatant.get_ai_type() == Combatant.AiType.DAMAGE and randf() > 0.5 else 1.0
 		var multiStatusWeight: float = 1.25 if BattleCommand.is_command_multi_target(moveEffect.targets) and numCanStatus > 1 else 1.0
 		var statusTurnsWeight: float = max(1, 1 + 0.05 * (moveEffect.statusEffect.turnsLeft - 1))
 		weight += statusWeights[moveEffect.statusEffect.potency] * moveEffect.statusChance * statusTurnsWeight * multiStatusWeight * weightModifier * dmgAiWeight
@@ -593,7 +593,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 	
 	if (effect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE or effect.role == MoveEffect.Role.HEAL) and randValue > combatant.aiOverrideWeight:
 		var timesOverrided: int = 0
-		if combatant.damageAggroType == Combatant.AggroType.LOWEST_HP:
+		if combatant.get_aggro_type() == Combatant.AggroType.LOWEST_HP:
 			# pick lowest health
 			var minHealth: int = -1
 			for combatantNode in targetableCombatants:
@@ -601,7 +601,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 					minHealth = combatantNode.combatant.currentHp
 					pickedTarget = combatantNode.battlePosition
 					timesOverrided += 1
-		if combatant.damageAggroType == Combatant.AggroType.MOST_ORBS:
+		if combatant.get_aggro_type() == Combatant.AggroType.MOST_ORBS:
 			# pick most orbs
 			var maxOrbs: int = 0
 			for combatantNode in targetableCombatants:
@@ -609,7 +609,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 					maxOrbs = combatantNode.combatant.orbs
 					pickedTarget = combatantNode.battlePosition
 					timesOverrided += 1
-		if combatant.damageAggroType == Combatant.AggroType.HIGHEST_STATS:
+		if combatant.get_aggro_type() == Combatant.AggroType.HIGHEST_STATS:
 			# pick highest (current) stats
 			var maxStatTotal: int = 0
 			for combatantNode in targetableCombatants:
@@ -619,7 +619,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 					maxStatTotal = statTotal
 					pickedTarget = combatantNode.battlePosition
 					timesOverrided += 1
-		if combatant.damageAggroType == Combatant.AggroType.HIGHEST_HP or timesOverrided == len(targetableCombatants):
+		if combatant.get_aggro_type() == Combatant.AggroType.HIGHEST_HP or timesOverrided == len(targetableCombatants):
 			# if all are equal from a previous comparison, or the aggro type is highest HP:
 			# pick highest health
 			var maxHealth: int = 0
