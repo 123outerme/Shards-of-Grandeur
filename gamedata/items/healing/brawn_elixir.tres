@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=5 format=3 uid="uid://bhnwqrl4m4c7p"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_7pvtx"]
+[ext_resource type="Texture2D" uid="uid://dooh1reeks26r" path="res://graphics/items/healing/brawn_elixir.png" id="1_r8iwq"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_w4qcs"]
+
+[sub_resource type="Resource" id="Resource_vexrg"]
+script = ExtResource("3_w4qcs")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.2
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_7pvtx")
+healBy = 50
+statusStrengthHeal = 0
+statChanges = SubResource("Resource_vexrg")
+itemSprite = ExtResource("1_r8iwq")
+itemName = "Brawn Elixir"
+itemType = 0
+itemDescription = "This special elixir amps muscular strength by a noticeable amount, as well as providing some amount of healing. "
+cost = 15
+maxCount = 20
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

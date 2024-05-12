@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bsx15gtbnpwml"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ip5u1"]
+[ext_resource type="Resource" uid="uid://d0uia2okt4moc" path="res://gamedata/combatants/blob/blob_rewards.tres" id="1_l26v3"]
+[ext_resource type="Resource" uid="uid://20xg0ht0s1ey" path="res://gamedata/combatants/blob/blob_evolutions.tres" id="1_uktx4"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_8718d"]
+[ext_resource type="Resource" uid="uid://w84krclejqg" path="res://gamedata/combatants/blob/blob_effectiveness.tres" id="2_kfjnm"]
+[ext_resource type="SpriteFrames" uid="uid://dk3tso6o32g0d" path="res://graphics/animations/a_blob.tres" id="2_okyro"]
+[ext_resource type="Resource" uid="uid://di8ocnjfrgra7" path="res://gamedata/combatants/blob/blob_equipment.tres" id="6_cushu"]
+[ext_resource type="Resource" uid="uid://dq2jf25b6suci" path="res://gamedata/combatants/blob/blob_movepool.tres" id="6_dk1gx"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="7_ykau4"]
+[ext_resource type="Resource" uid="uid://ws05wh4xvnis" path="res://gamedata/combatants/blob/blob_stat_growth.tres" id="8_88ku6"]
+
+[sub_resource type="Resource" id="Resource_aybo8"]
+script = ExtResource("2_8718d")
+displayName = "Blob"
+saveName = "blob"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("8_88ku6")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("6_dk1gx")
+
+[sub_resource type="Resource" id="Resource_go75j"]
+script = ExtResource("7_ykau4")
+string = "blob"
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_le05c"]
+script = ExtResource("7_ykau4")
+string = "cloud_gull"
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_vw8se"]
+script = ExtResource("7_ykau4")
+string = ""
+weight = 0.2
+
+[resource]
+script = ExtResource("1_ip5u1")
+spriteFrames = ExtResource("2_okyro")
+maxSize = Vector2(32, 16)
+spriteFacesRight = false
+navigationLayer = 1
+nickname = ""
+stats = SubResource("Resource_aybo8")
+evolutions = ExtResource("1_uktx4")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 3
+damageAggroType = 1
+strategy = 1
+aiOverrideWeight = 0.25
+moveEffectiveness = ExtResource("2_kfjnm")
+weightedEquipment = ExtResource("6_cushu")
+teamTable = Array[ExtResource("7_ykau4")]([SubResource("Resource_go75j"), SubResource("Resource_le05c"), SubResource("Resource_vw8se")])
+dropTable = ExtResource("1_l26v3")
+innateStatCategories = Array[int]([1, 2])
+downed = false

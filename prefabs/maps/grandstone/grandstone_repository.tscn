@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjyyxe0l2l5jd"]
+[gd_scene load_steps=15 format=3 uid="uid://cjyyxe0l2l5jd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ft524"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jkifd"]
@@ -7,52 +7,10 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_st1ox"]
 [ext_resource type="SpriteFrames" uid="uid://1hdkx5x4cud5" path="res://graphics/animations/a_librarian.tres" id="5_4l0iu"]
 [ext_resource type="Resource" uid="uid://dewgn4e34f6ri" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_hello.tres" id="5_elhq5"]
-[ext_resource type="Resource" uid="uid://bx6u2bgxrbymu" path="res://gamedata/items/weapon/tome_vol_1.tres" id="6_125nq"]
-[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="7_gpgnt"]
-[ext_resource type="Resource" uid="uid://ue4yjsj74uc8" path="res://gamedata/items/armor/mage_robes.tres" id="7_pa671"]
-[ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="8_7freu"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="8_nq0df"]
-[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="8_ty1dr"]
-[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="9_vfsrb"]
 [ext_resource type="Resource" uid="uid://d1fpcigv6juic" path="res://gamedata/dialogue/grandstone/librarian/gs_librarian_get_script.tres" id="13_vmbtd"]
 [ext_resource type="Resource" uid="uid://cl155fhxtnnv3" path="res://gamedata/shops/grandstone/grandstone_repository.tres" id="14_i6suk"]
 
-[sub_resource type="Resource" id="Resource_yljok"]
-script = ExtResource("7_gpgnt")
-sinceVersion = "0.0.5"
-item = ExtResource("6_125nq")
-count = 1
-
-[sub_resource type="Resource" id="Resource_kxnab"]
-script = ExtResource("7_gpgnt")
-sinceVersion = "0.0.5"
-item = ExtResource("7_pa671")
-count = 1
-
-[sub_resource type="Resource" id="Resource_8odg6"]
-script = ExtResource("7_gpgnt")
-sinceVersion = "0.0.5"
-item = ExtResource("8_7freu")
-count = -1
-
-[sub_resource type="Resource" id="Resource_6yyoa"]
-script = ExtResource("7_gpgnt")
-sinceVersion = "0.0.5"
-item = ExtResource("8_ty1dr")
-count = 3
-
-[sub_resource type="Resource" id="Resource_tbg57"]
-script = ExtResource("7_gpgnt")
-sinceVersion = "0.0.5"
-item = ExtResource("9_vfsrb")
-count = 3
-
-[sub_resource type="Resource" id="Resource_yxsnv"]
-script = ExtResource("8_nq0df")
-inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_yljok"), SubResource("Resource_kxnab"), SubResource("Resource_8odg6"), SubResource("Resource_6yyoa"), SubResource("Resource_tbg57")])
-isPlayerInventory = false
-
-[sub_resource type="Resource" id="Resource_rl5o8"]
+[sub_resource type="Resource" id="Resource_dmjbc"]
 script = ExtResource("4_st1ox")
 saveName = "npc"
 position = Vector2(-38, -101)
@@ -67,7 +25,6 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-inventory = SubResource("Resource_yxsnv")
 hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
@@ -118,7 +75,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-38, -101)
 displayName = "Librarian"
 saveName = "grandstone_librarian"
-data = SubResource("Resource_rl5o8")
+data = SubResource("Resource_dmjbc")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("13_vmbtd"), ExtResource("5_elhq5")])
 hasShop = true
 npcShop = ExtResource("14_i6suk")

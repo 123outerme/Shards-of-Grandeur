@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=5 format=3 uid="uid://b2rih6hsrjtun"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_1r83c"]
+[ext_resource type="Texture2D" uid="uid://jl8abbtb40e3" path="res://graphics/items/healing/natural_remedy.png" id="1_47oii"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_ehfe2"]
+
+[sub_resource type="Resource" id="Resource_5bina"]
+script = ExtResource("3_ehfe2")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.3
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+
+[resource]
+script = ExtResource("1_1r83c")
+healBy = 50
+statusStrengthHeal = 0
+statChanges = SubResource("Resource_5bina")
+itemSprite = ExtResource("1_47oii")
+itemName = "Natural Remedy"
+itemType = 0
+itemDescription = "This blend of ground plants, herbs, and spices tastes bitter and earthy, but it definitely beats dying. The natural ingredients boost the drinker's Affinity energy and provides a little healing."
+cost = 15
+maxCount = 20
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

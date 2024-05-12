@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cmaa4dgplctxu"]
+[gd_scene load_steps=14 format=3 uid="uid://cmaa4dgplctxu"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_h1j7m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_1qivg"]
@@ -6,23 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_t1u03"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_fh8xe"]
 [ext_resource type="SpriteFrames" uid="uid://djsgf3u63gtlw" path="res://graphics/animations/a_lady3.tres" id="5_3eup8"]
-[ext_resource type="Resource" uid="uid://bgwbbpulv7yov" path="res://gamedata/items/healing/steak.tres" id="5_aw5cv"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="5_qprgn"]
 [ext_resource type="Resource" uid="uid://dioyw5xcfyilb" path="res://gamedata/dialogue/grandstone/restaurant_mgr/grandstone_restaurant_mgr_1.tres" id="5_ungnv"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_5jxb5"]
 [ext_resource type="Resource" uid="uid://bfhqa3cyyddnk" path="res://gamedata/shops/grandstone/half_captain_restaurant.tres" id="9_v4dj0"]
 
-[sub_resource type="Resource" id="Resource_trbfq"]
-script = ExtResource("6_5jxb5")
-item = ExtResource("5_aw5cv")
-count = -1
-
-[sub_resource type="Resource" id="Resource_vmwa8"]
-script = ExtResource("5_qprgn")
-inventorySlots = Array[ExtResource("6_5jxb5")]([SubResource("Resource_trbfq")])
-isPlayerInventory = false
-
-[sub_resource type="Resource" id="Resource_cj1yw"]
+[sub_resource type="Resource" id="Resource_86fuh"]
 script = ExtResource("4_fh8xe")
 saveName = "npc"
 position = Vector2(-45, -30)
@@ -37,7 +24,6 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-inventory = SubResource("Resource_vmwa8")
 hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfcbm"]
@@ -88,7 +74,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-45, -30)
 displayName = "Manager"
 saveName = "grandstone_restaurant_mgr"
-data = SubResource("Resource_cj1yw")
+data = SubResource("Resource_86fuh")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_ungnv")])
 hasShop = true
 npcShop = ExtResource("9_v4dj0")

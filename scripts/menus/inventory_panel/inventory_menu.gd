@@ -184,6 +184,10 @@ func load_inventory_panel(rebuild: bool = true):
 		for slot in currentInventory.get_sorted_slots():
 			if slot.count == 0:
 				continue
+			if slot is ShopInventorySlot:
+				var shopSlot: ShopInventorySlot = slot as ShopInventorySlot
+				if not shopSlot.is_valid():
+					continue
 			if (selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType) and slot.is_valid():
 				var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 				instantiatedPanel.isShopItem = inShop

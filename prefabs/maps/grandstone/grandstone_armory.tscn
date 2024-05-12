@@ -1,43 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://dxcdk0rep6yeu"]
+[gd_scene load_steps=14 format=3 uid="uid://dxcdk0rep6yeu"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_emgxq"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_83ho8"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_j6pjv"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_k3oju"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_f1xph"]
-[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="5_5g1f4"]
 [ext_resource type="SpriteFrames" uid="uid://dtm1i3574km33" path="res://graphics/animations/a_armorer.tres" id="5_jon1c"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="5_msr75"]
-[ext_resource type="Resource" uid="uid://qtmhsh4dksho" path="res://gamedata/items/armor/standard_issue_boots.tres" id="5_nue8b"]
-[ext_resource type="Resource" uid="uid://cu6kr4tuw3ckm" path="res://gamedata/items/weapon/standard_issue_shield.tres" id="7_t1u2m"]
-[ext_resource type="Resource" uid="uid://c72tko64133pk" path="res://gamedata/items/key_items/enchanted_hammer.tres" id="8_wlxeo"]
 [ext_resource type="Resource" uid="uid://dm4mexw2r5a2q" path="res://gamedata/dialogue/grandstone/armorer/grandstone_armorer_1.tres" id="10_a8oyd"]
 [ext_resource type="Resource" uid="uid://dxr66di7tu2en" path="res://gamedata/shops/grandstone/grandstone_armory.tres" id="11_x0hue"]
 
-[sub_resource type="Resource" id="Resource_hires"]
-script = ExtResource("5_5g1f4")
-sinceVersion = "0.0.5"
-item = ExtResource("5_nue8b")
-count = 1
-
-[sub_resource type="Resource" id="Resource_weh4a"]
-script = ExtResource("5_5g1f4")
-sinceVersion = "0.0.5"
-item = ExtResource("7_t1u2m")
-count = 1
-
-[sub_resource type="Resource" id="Resource_3vj3u"]
-script = ExtResource("5_5g1f4")
-sinceVersion = "0.0.5"
-item = ExtResource("8_wlxeo")
-count = 1
-
-[sub_resource type="Resource" id="Resource_irfh1"]
-script = ExtResource("5_msr75")
-inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_hires"), SubResource("Resource_weh4a"), SubResource("Resource_3vj3u")])
-isPlayerInventory = false
-
-[sub_resource type="Resource" id="Resource_ib32k"]
+[sub_resource type="Resource" id="Resource_8aimn"]
 script = ExtResource("4_f1xph")
 saveName = "npc"
 position = Vector2(-31, -80)
@@ -52,7 +24,6 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-inventory = SubResource("Resource_irfh1")
 hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvi7b"]
@@ -103,7 +74,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-31, -80)
 displayName = "Armorer"
 saveName = "grandstone_armorer"
-data = SubResource("Resource_ib32k")
+data = SubResource("Resource_8aimn")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("10_a8oyd")])
 hasShop = true
 npcShop = ExtResource("11_x0hue")

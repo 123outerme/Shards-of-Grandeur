@@ -1,36 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://jyq676egjiqn"]
+[gd_scene load_steps=14 format=3 uid="uid://jyq676egjiqn"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_hyydm"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vns4o"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_lhbll"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_s7rw2"]
 [ext_resource type="SpriteFrames" uid="uid://p6ibhgoibhir" path="res://graphics/animations/a_lady4.tres" id="5_c3gyh"]
-[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="5_sapif"]
-[ext_resource type="Resource" uid="uid://gsk7qwlmuwdb" path="res://gamedata/items/armor/warrior_headband.tres" id="5_utruv"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="6_veg06"]
-[ext_resource type="Resource" uid="uid://c5kv12qhdpe5p" path="res://gamedata/items/armor/tunic.tres" id="7_8an28"]
 [ext_resource type="Resource" uid="uid://cwk6y6pl2efgo" path="res://gamedata/dialogue/grandstone/bazaar_shopowner/bazaar_shopowner_1.tres" id="9_7g1et"]
 [ext_resource type="Resource" uid="uid://b1uhrk4i22r08" path="res://gamedata/shops/grandstone/grandstone_bazaar.tres" id="10_g2801"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="11_nh5hm"]
 
-[sub_resource type="Resource" id="Resource_6on5u"]
-script = ExtResource("5_sapif")
-sinceVersion = "0.0.5"
-item = ExtResource("5_utruv")
-count = 1
-
-[sub_resource type="Resource" id="Resource_kl41s"]
-script = ExtResource("5_sapif")
-sinceVersion = "0.0.5"
-item = ExtResource("7_8an28")
-count = 1
-
-[sub_resource type="Resource" id="Resource_snfwn"]
-script = ExtResource("6_veg06")
-inventorySlots = Array[Resource("res://scripts/inventory/inventory_slot.gd")]([SubResource("Resource_6on5u"), SubResource("Resource_kl41s")])
-isPlayerInventory = false
-
-[sub_resource type="Resource" id="Resource_wn24h"]
+[sub_resource type="Resource" id="Resource_2resc"]
 script = ExtResource("4_s7rw2")
 saveName = "npc"
 position = Vector2(-64, -111)
@@ -45,7 +24,6 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-inventory = SubResource("Resource_snfwn")
 hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpnel"]
@@ -96,7 +74,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-64, -111)
 displayName = "Bazaar Shop Owner"
 saveName = "grandstone_bazaar_shopowner"
-data = SubResource("Resource_wn24h")
+data = SubResource("Resource_2resc")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_7g1et")])
 hasShop = true
 npcShop = ExtResource("10_g2801")

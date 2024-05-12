@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://d0uia2okt4moc"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_xtbmv"]
+[ext_resource type="Resource" uid="uid://rat15prg84gk" path="res://gamedata/items/shard/blob_shard.tres" id="2_hhkd5"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_nt1ak"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="4_y17p7"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="5_ufxqo"]
+
+[sub_resource type="Resource" id="Resource_5uqmd"]
+script = ExtResource("3_nt1ak")
+experience = 54
+gold = 9
+item = ExtResource("2_hhkd5")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_t3a5i"]
+script = ExtResource("4_y17p7")
+reward = SubResource("Resource_5uqmd")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_4b2u7"]
+script = ExtResource("3_nt1ak")
+experience = 54
+gold = 9
+item = ExtResource("5_ufxqo")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_isrcq"]
+script = ExtResource("4_y17p7")
+reward = SubResource("Resource_4b2u7")
+weight = 0.15
+
+[resource]
+script = ExtResource("1_xtbmv")
+weightedRewards = Array[ExtResource("4_y17p7")]([SubResource("Resource_t3a5i"), SubResource("Resource_isrcq")])
