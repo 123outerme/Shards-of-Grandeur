@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://balkepjfxop04"]
+
+[ext_resource type="Resource" uid="uid://crggjhnennle8" path="res://gamedata/moves/torch/sprite_torch.tres" id="1_3c4u7"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_03r24"]
+
+[resource]
+script = ExtResource("2_03r24")
+combatantAnimation = "attack_magic"
+makesContact = false
+chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_3c4u7")])
+surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_3c4u7")])

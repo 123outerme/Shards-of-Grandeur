@@ -1,6 +1,39 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://c6x5r2t3a4xyu"]
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://c6x5r2t3a4xyu"]
 
 [ext_resource type="Texture2D" uid="uid://brd0klq0ei3sj" path="res://graphics/moves/water/marlin_spike.png" id="1_oh7x0"]
+[ext_resource type="Texture2D" uid="uid://c53t7plbex805" path="res://graphics/moves/water/hydro_barrier.png" id="2_h38tq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vqj3"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(0, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx7hv"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(11, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw761"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(22, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aam7q"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(33, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqt43"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(44, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4d8n"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(55, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc1x3"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(66, 0, 11, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsygo"]
+atlas = ExtResource("2_h38tq")
+region = Rect2(77, 0, 11, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2a686"]
 atlas = ExtResource("1_oh7x0")
@@ -40,6 +73,40 @@ region = Rect2(128, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vqj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx7hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw761")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aam7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqt43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4d8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc1x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsygo")
+}],
+"loop": false,
+"name": &"hydro_barrier",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2a686")

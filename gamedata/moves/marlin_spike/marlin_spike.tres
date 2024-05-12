@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://djpdjv3jnd7ud"]
+[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://djpdjv3jnd7ud"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_0bm73"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_eburj"]
@@ -6,18 +6,46 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="3_4ln0u"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_t3qwy"]
 
+[sub_resource type="Resource" id="Resource_rjda7"]
+script = ExtResource("4_t3qwy")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.9
+
 [sub_resource type="Resource" id="Resource_of0l8"]
 script = ExtResource("1_eburj")
 role = 1
 orbChange = 1
 power = 55
 targets = 5
+targetStatChanges = SubResource("Resource_rjda7")
 selfGetsStatus = false
 statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_725nj"]
+script = ExtResource("4_t3qwy")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.95
 
 [sub_resource type="Resource" id="Resource_e0sta"]
 script = ExtResource("3_4ln0u")
 powerPerOrb = 5
+targetStatChangesPerOrb = SubResource("Resource_725nj")
 statusBaseChance = 0.0
 weakThresholdOrbs = 0
 strongThresholdOrbs = 0
@@ -57,6 +85,6 @@ category = 0
 element = 1
 chargeEffect = SubResource("Resource_of0l8")
 surgeEffect = SubResource("Resource_ds7ro")
-description = "Strike with the force of a raging current."
+description = "Strike with the force of a raging current. The deluge of water slows down the recipient of this attack."
 moveLearnedText = "The sound of crashing waves can be faintly heard in the distance as you meditate on the Shard. With your mind fully at peace, you effortlessly lift your arm and strike at the air with the power of flowing water."
 moveAnimation = ExtResource("2_mhbpx")

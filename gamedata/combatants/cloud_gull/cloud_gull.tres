@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://w2rvne4y0561"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://w2rvne4y0561"]
 
 [ext_resource type="Resource" uid="uid://cnmexck5i2y38" path="res://gamedata/combatants/cloud_gull/cloud_gull_evolutions.tres" id="1_4uvl6"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_qhwt3"]
 [ext_resource type="Resource" uid="uid://dsi3u88tbgf0n" path="res://gamedata/combatants/cloud_gull/cloud_gull_rewards.tres" id="1_rhiq6"]
-[ext_resource type="SpriteFrames" uid="uid://g2a5lofal7lw" path="res://graphics/animations/a_cloud_gull.tres" id="2_61j0h"]
 [ext_resource type="Resource" uid="uid://c6q3qr32go02t" path="res://gamedata/combatants/cloud_gull/cloud_gull_effectiveness.tres" id="3_yssea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_4oyfm"]
 [ext_resource type="Resource" uid="uid://bmsshj6dewl55" path="res://gamedata/combatants/cloud_gull/cloud_gull_movepool.tres" id="5_og8at"]
@@ -31,12 +30,6 @@ movepool = ExtResource("5_og8at")
 [resource]
 script = ExtResource("1_qhwt3")
 sprite = ExtResource("5_pr2y4")
-spriteFrames = ExtResource("2_61j0h")
-maxSize = Vector2(16, 16)
-centerPosition = Vector2(8, 6)
-feetPosition = Vector2(8, 16)
-spriteFacesRight = false
-navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_oyibh")
 evolutions = ExtResource("1_4uvl6")

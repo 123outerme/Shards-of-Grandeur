@@ -12,7 +12,6 @@ class SurgeChangeDescRow:
 @export var powerPerOrb: int = 0
 @export var selfStatChangesPerOrb: StatChanges = StatChanges.new()
 @export var targetStatChangesPerOrb: StatChanges = StatChanges.new()
-@export var statusBaseChance: float = 0
 @export var weakThresholdOrbs: int = 0
 @export var strongThresholdOrbs: int = 0
 @export var overwhelmingThresholdOrbs: int = 0
@@ -23,7 +22,6 @@ func _init(
 	i_powerPerOrb = 0,
 	i_selfStatChangesPerOrb = StatChanges.new(),
 	i_targetStatChangesPerOrb = StatChanges.new(),
-	i_statusBaseChance = 0,
 	i_weakThresholdOrbs = 0,
 	i_strongThresholdOrbs = 0,
 	i_overwhelmingThresholdOrbs = 0,
@@ -33,7 +31,6 @@ func _init(
 	powerPerOrb = i_powerPerOrb
 	selfStatChangesPerOrb = i_selfStatChangesPerOrb
 	targetStatChangesPerOrb = i_targetStatChangesPerOrb
-	statusBaseChance = i_statusBaseChance
 	weakThresholdOrbs = i_weakThresholdOrbs
 	strongThresholdOrbs = i_strongThresholdOrbs
 	overwhelmingThresholdOrbs = i_overwhelmingThresholdOrbs

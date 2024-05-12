@@ -7,7 +7,8 @@ class_name Particles
 		return _preset
 	set(value):
 		_preset = value
-		load_preset()
+		if value != null:
+			load_preset()
 var _preset: ParticlePreset = null
 
 @export var lifetime: float = 0.5

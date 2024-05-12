@@ -142,7 +142,7 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	newEffect.targetStatChanges.stack(finalTargetStatChanges)
 	
 	# new status chance is the greater of the old status chance or the surge's status chance, + additional chance / orb, capped at 100%
-	newEffect.statusChance = min(1, max(newEffect.statusChance, surgeChanges.statusBaseChance) + surgeChanges.get_additional_status_chance(additionalOrbs))
+	newEffect.statusChance = min(1, newEffect.statusChance + surgeChanges.get_additional_status_chance(additionalOrbs))
 	
 	if newEffect.statusEffect != null:
 		if surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs) != StatusEffect.Potency.NONE:

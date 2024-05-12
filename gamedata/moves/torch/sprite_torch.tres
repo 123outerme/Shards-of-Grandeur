@@ -1,0 +1,132 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=18 format=3 uid="uid://crggjhnennle8"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ud31t"]
+[ext_resource type="Resource" uid="uid://b1831q6qhyetg" path="res://gamedata/moves/torch/particles_torch.tres" id="2_uh61c"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_yxmkl"]
+[ext_resource type="SpriteFrames" uid="uid://cy1ihxquyxqfv" path="res://graphics/moves/fire/a_fire.tres" id="3_lbdvb"]
+
+[sub_resource type="Curve" id="Curve_q2esu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_r5t6f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_313o7"]
+script = ExtResource("1_ud31t")
+annotation = "initialize position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 4
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_q2esu")
+yCurve = SubResource("Curve_r5t6f")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_x7h3x"]
+_data = [Vector2(0, 0), 0.0, 1.22911, 0, 1, Vector2(0.697368, 0.857143), 0.578191, 0.578191, 0, 0, Vector2(1, 1), 0.47205, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_1xbjv"]
+_data = [Vector2(0, 0), 0.0, 1.43933, 0, 1, Vector2(0.618421, 0.89011), 0.589528, 0.589528, 0, 0, Vector2(0.846491, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_3f6fl"]
+script = ExtResource("1_ud31t")
+annotation = "Let the fireball drift towards the opponent"
+animation = "torch"
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(-2, 0)
+offset = 1
+xCurve = SubResource("Curve_x7h3x")
+yCurve = SubResource("Curve_1xbjv")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_sq0em"]
+
+[sub_resource type="Curve" id="Curve_mqeva"]
+
+[sub_resource type="Resource" id="Resource_6ns1y"]
+script = ExtResource("1_ud31t")
+annotation = "blast the opponent"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_sq0em")
+yCurve = SubResource("Curve_mqeva")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_uh61c")
+
+[sub_resource type="Curve" id="Curve_hkje7"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_cdn28"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_sajhg"]
+script = ExtResource("1_ud31t")
+annotation = "let the fireball evaporate and drift straight backwards"
+animation = ""
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(-4, 0)
+offset = 0
+xCurve = SubResource("Curve_hkje7")
+yCurve = SubResource("Curve_cdn28")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_de2ru"]
+script = ExtResource("1_ud31t")
+annotation = "wait for particles to disappear"
+animation = "default"
+duration = 0.2
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("2_yxmkl")
+spriteFrames = ExtResource("3_lbdvb")
+centerSprite = true
+maxSize = Vector2(34, 13)
+frames = Array[ExtResource("1_ud31t")]([SubResource("Resource_313o7"), SubResource("Resource_3f6fl"), SubResource("Resource_6ns1y"), SubResource("Resource_sajhg"), SubResource("Resource_de2ru")])
+delayedUntilReposition = true
+onePerTarget = true
