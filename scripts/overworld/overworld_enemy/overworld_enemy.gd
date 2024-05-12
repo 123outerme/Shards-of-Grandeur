@@ -28,10 +28,10 @@ func _ready():
 	#position = enemyData.position
 	disableMovement = enemyData.disableMovement
 	navAgent.navigation_layers = combatant.navigationLayer
-	navAgent.radius = (max(combatant.maxSize.x, combatant.maxSize.y) / 2) - 1
+	navAgent.radius = (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2) - 1
 	navAgent.max_speed = maxSpeed
 	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
-	rangeCircle.radius = 48 + (max(combatant.maxSize.x, combatant.maxSize.y) / 2)
+	rangeCircle.radius = 48 + (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
 	if patrolling:
 		get_next_patrol_target()
 

@@ -1,20 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://84ixct37xa74"]
+[gd_scene load_steps=9 format=3 uid="uid://84ixct37xa74"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/minions_panel/minion_slot_panel.gd" id="1_mfddu"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_nhnmf"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="3_ahsj7"]
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="3_l5kqy"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_w1luw"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_2cbfe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjlhe"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_k3y6f"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtxvu"]
 
 [node name="MinionSlotPanel" type="Panel" groups=["MinionSlotPanel"]]
-custom_minimum_size = Vector2(548, 69)
+custom_minimum_size = Vector2(548, 70)
 theme = ExtResource("1_nhnmf")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sjlhe")
 script = ExtResource("1_mfddu")
+combatant = ExtResource("3_w1luw")
 
 [node name="SpriteControl" type="Control" parent="."]
 layout_mode = 1
@@ -22,24 +24,24 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -22.5
-offset_right = 52.0
-offset_bottom = 25.5
+offset_top = -31.0
+offset_right = 68.0
+offset_bottom = 33.0
 grow_vertical = 2
 
 [node name="MinionSprite" type="AnimatedSprite2D" parent="SpriteControl"]
-position = Vector2(24, 24)
+position = Vector2(32, 32)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_k3y6f")
+sprite_frames = SubResource("SpriteFrames_xtxvu")
 
 [node name="MinionName" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 55.0
+offset_left = 72.0
 offset_top = -12.5
-offset_right = 313.0
+offset_right = 330.0
 offset_bottom = 13.5
 grow_vertical = 2
 text = "Minion Name Goes Here"
@@ -64,11 +66,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="MoveIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(16, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer2/MoveIndicatorControl"]
-position = Vector2(16, 16)
+position = Vector2(8, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_l5kqy")
 
@@ -77,11 +79,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="StatPtIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(16, 32)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer/StatPtIndicatorControl"]
-position = Vector2(16, 16)
+position = Vector2(8, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ahsj7")
 

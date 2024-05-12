@@ -254,6 +254,12 @@ func get_innate_stat_categories() -> Array[Stats.Category]:
 		return evolution.innateStatCategories
 	return innateStatCategories
 
+func get_max_size() -> Vector2:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.maxSize
+	return maxSize
+
 func update_downed():
 	downed = currentHp <= 0
 

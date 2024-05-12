@@ -31,8 +31,10 @@ func load_minion_slot_panel():
 		return
 	
 	minionSprite.sprite_frames = combatant.get_sprite_frames()
-	if combatant.get_sprite_frames() == null:
+	if minionSprite.sprite_frames == null:
 		minionSprite.sprite_frames = load('res://graphics/animations/a_player.tres') # TEMP
+	if combatant.get_max_size().x > 32 and combatant.get_max_size().y > 32:
+		minionSprite.scale = Vector2.ONE
 	minionSprite.play('battle_idle')
 	minionName.text = combatant.disp_name()
 	statPtIndicator.visible = not readOnly and combatant.stats.statPts > 0
