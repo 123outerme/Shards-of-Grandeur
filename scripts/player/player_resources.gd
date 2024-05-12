@@ -64,8 +64,14 @@ func load_data(save_path):
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		if playerInfo.combatant.evolutions == null:
 			# compatibility fix: load player evolutions if not present
-			playerInfo.combatant.evolutions = load('res://gamedata/combatants/player/player_evolutions.tres') as Evolutions
-	player = PlayerFinder.player
+			playerInfo.combatant.evolutions = load('res://gamedata/combatants/player/player_evolutions.tres') as Evolutions	
+		if playerInfo.combatant.sprite == null:
+			# combatibility fix: load player sprite if not present
+			playerInfo.combatant.sprite = load('res://gamedata/combatants/player/player_sprite.tres') as CombatantSprite
+		if playerInfo.combatant.moveEffectiveness == null:
+			# combatibility fix: load player effectiveness if not present
+			playerInfo.combatant.moveEffectiveness = load('res://gamedata/combatants/player/player_effectiveness.tres')
+		player = PlayerFinder.player
 	if player != null:
 		player.position = playerInfo.position
 		if playerInfo.combatant.get_sprite_frames() != null:

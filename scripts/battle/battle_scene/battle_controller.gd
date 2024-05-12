@@ -199,20 +199,22 @@ func load_into_battle():
 		enemyCombatant3.combatant = state.enemyCombatant3
 		
 	playerCombatant.leftSide = true
-	playerCombatant.spriteFacesRight = true
+	playerCombatant.spriteFacesRight = playerCombatant.combatant.get_faces_right()
 	playerCombatant.role = CombatantNode.Role.ALLY
 	
 	minionCombatant.leftSide = true
+	if minionCombatant.combatant != null:
+		minionCombatant.spriteFacesRight = minionCombatant.combatant.get_faces_right()
 	minionCombatant.role = CombatantNode.Role.ALLY
 	
 	enemyCombatant1.role = CombatantNode.Role.ENEMY
-	enemyCombatant1.spriteFacesRight = enemyCombatant1.combatant.spriteFacesRight
+	enemyCombatant1.spriteFacesRight = enemyCombatant1.combatant.get_faces_right()
 	enemyCombatant2.role = CombatantNode.Role.ENEMY
 	if enemyCombatant2.combatant != null:
-		enemyCombatant2.spriteFacesRight = enemyCombatant2.combatant.spriteFacesRight
+		enemyCombatant2.spriteFacesRight = enemyCombatant2.combatant.get_faces_right()
 	enemyCombatant3.role = CombatantNode.Role.ENEMY
 	if enemyCombatant3.combatant != null:
-		enemyCombatant3.spriteFacesRight = enemyCombatant3.combatant.spriteFacesRight
+		enemyCombatant3.spriteFacesRight = enemyCombatant3.combatant.get_faces_right()
 	
 	battleUI.commandingMinion = state.commandingMinion
 	battleUI.prevMenu = state.prevMenu
@@ -236,6 +238,7 @@ func load_into_battle():
 func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
 	minionCombatant.combatant = PlayerResources.minions.get_minion(minionName)
+	minionCombatant.spriteFacesRight = minionCombatant.combatant.get_faces_right()
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 	minionCombatant.load_combatant_node()

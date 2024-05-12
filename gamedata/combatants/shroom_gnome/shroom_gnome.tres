@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://bapoydifpmefj" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_growth.tres" id="3_pxbev"]
 [ext_resource type="Resource" uid="uid://1v0bjo7wtbgq" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_evolutions.tres" id="4_rf5ax"]
 [ext_resource type="Resource" uid="uid://cplxv255kicip" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_effectiveness.tres" id="5_bmxru"]
-[ext_resource type="SpriteFrames" uid="uid://c7jebk54e41b6" path="res://graphics/animations/a_shroom_gnome.tres" id="6_0woiy"]
+[ext_resource type="Resource" uid="uid://choamg7fqp3xo" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_sprite.tres" id="5_msbff"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_03hw2"]
 [ext_resource type="Resource" uid="uid://bedv0uc7cmbto" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_equipment.tres" id="12_q5a5h"]
 
@@ -45,10 +45,7 @@ weight = 0.2
 
 [resource]
 script = ExtResource("1_64cgh")
-spriteFrames = ExtResource("6_0woiy")
-maxSize = Vector2(16, 16)
-spriteFacesRight = false
-navigationLayer = 1
+sprite = ExtResource("5_msbff")
 nickname = ""
 stats = SubResource("Resource_fc7ct")
 evolutions = ExtResource("4_rf5ax")

@@ -42,11 +42,7 @@ const STATUS_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
 
 const MAX_ORBS = 10
 
-@export_category("Combatant - Sprite")
-@export var spriteFrames: SpriteFrames = null
-@export var maxSize: Vector2 = Vector2(16, 16)
-@export var spriteFacesRight: bool = false
-@export_flags_2d_navigation var navigationLayer: int = 1
+@export var sprite: CombatantSprite = null
 
 @export_category("Combatant - Stats")
 @export var nickname: String = ''
@@ -103,9 +99,6 @@ func _init(
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
 	i_sprite = null,
-	i_maxSize = Vector2(16, 16),
-	i_facesRight = false,
-	i_navLayer = 1,
 	i_friendship = 0,
 	i_aiType = AiType.NONE,
 	i_damageAggroType = AggroType.LOWEST_HP,
@@ -130,10 +123,7 @@ func _init(
 	
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
-	spriteFrames = i_sprite
-	spriteFacesRight = i_facesRight
-	maxSize = i_maxSize
-	navigationLayer = i_navLayer
+	sprite = i_sprite
 	aiType = i_aiType
 	damageAggroType = i_damageAggroType
 	friendship = i_friendship
@@ -227,8 +217,8 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 func get_sprite_frames() -> SpriteFrames:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:
-		return evolution.spriteFrames
-	return spriteFrames
+		return evolution.combatantSprite.spriteFrames
+	return sprite.spriteFrames
 
 func get_ai_type() -> AiType:
 	var evolution: Evolution = get_evolution()
@@ -257,8 +247,32 @@ func get_innate_stat_categories() -> Array[Stats.Category]:
 func get_max_size() -> Vector2:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:
-		return evolution.maxSize
-	return maxSize
+		return evolution.combatantSprite.maxSize
+	return sprite.maxSize
+
+func get_center_pos() -> Vector2:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.centerPosition
+	return sprite.centerPosition
+
+func get_feet_pos() -> Vector2:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.feetPosition
+	return sprite.feetPosition
+
+func get_faces_right() -> bool:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.spriteFacesRight
+	return sprite.spriteFacesRight
+
+func get_nav_layer() -> int:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.navigationLayer
+	return sprite.navigationLayer
 
 func update_downed():
 	downed = currentHp <= 0
@@ -461,10 +475,7 @@ func save_from_object(c: Combatant):
 		statusEffect = c.statusEffect.duplicate(true)
 	else:
 		statusEffect = null
-	maxSize = c.maxSize
-	spriteFrames = c.spriteFrames
-	spriteFacesRight = c.spriteFacesRight
-	navigationLayer = c.navigationLayer
+	sprite = c.sprite
 	aiType = c.aiType
 	damageAggroType = c.damageAggroType
 	strategy = c.strategy

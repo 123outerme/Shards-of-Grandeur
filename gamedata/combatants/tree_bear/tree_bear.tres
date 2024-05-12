@@ -3,10 +3,10 @@
 [ext_resource type="Resource" uid="uid://bfdxdq68lovd" path="res://gamedata/combatants/tree_bear/tree_bear_rewards.tres" id="1_14jae"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_c0qja"]
 [ext_resource type="Resource" uid="uid://cgr5vbkjlpdt4" path="res://gamedata/combatants/tree_bear/tree_bear_evolutions.tres" id="2_g710c"]
-[ext_resource type="SpriteFrames" uid="uid://cg3nfu3ph42vi" path="res://graphics/animations/a_tree_bear.tres" id="2_hg2tw"]
 [ext_resource type="Resource" uid="uid://dalfhmjo4252j" path="res://gamedata/combatants/tree_bear/tree_bear_effectiveness.tres" id="3_omc8n"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_p3p6n"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="4_iv7qh"]
+[ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="5_itqsk"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="7_47w4f"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="9_tn1jl"]
 [ext_resource type="Resource" uid="uid://6r4vglpm6u13" path="res://gamedata/combatants/tree_bear/tree_bear_equipment.tres" id="10_tefol"]
@@ -45,10 +45,7 @@ weight = 0.3
 
 [resource]
 script = ExtResource("1_c0qja")
-spriteFrames = ExtResource("2_hg2tw")
-maxSize = Vector2(32, 16)
-spriteFacesRight = false
-navigationLayer = 2
+sprite = ExtResource("5_itqsk")
 nickname = ""
 stats = SubResource("Resource_hj45a")
 evolutions = ExtResource("2_g710c")

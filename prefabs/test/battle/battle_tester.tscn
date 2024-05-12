@@ -1,9 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=57 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
-[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_70sfu"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="4_cmvjq"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_ohjbr"]
@@ -12,9 +11,7 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="10_son1n"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_h5ibj"]
-[ext_resource type="SpriteFrames" uid="uid://cg3nfu3ph42vi" path="res://graphics/animations/a_tree_bear.tres" id="13_yvhrx"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="14_tebfq"]
-[ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="14_ytmj7"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="15_ahtpg"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="15_qn3hw"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="16_1n64h"]
@@ -27,7 +24,6 @@
 [ext_resource type="Resource" uid="uid://dsi3u88tbgf0n" path="res://gamedata/combatants/cloud_gull/cloud_gull_rewards.tres" id="22_xbjvk"]
 [ext_resource type="Resource" uid="uid://cnmexck5i2y38" path="res://gamedata/combatants/cloud_gull/cloud_gull_evolutions.tres" id="23_djiok"]
 [ext_resource type="Resource" uid="uid://c6q3qr32go02t" path="res://gamedata/combatants/cloud_gull/cloud_gull_effectiveness.tres" id="24_tv3k6"]
-[ext_resource type="SpriteFrames" uid="uid://g2a5lofal7lw" path="res://graphics/animations/a_cloud_gull.tres" id="25_5iy7u"]
 [ext_resource type="Resource" uid="uid://bmsshj6dewl55" path="res://gamedata/combatants/cloud_gull/cloud_gull_movepool.tres" id="26_nv623"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="27_6lffl"]
 [ext_resource type="Resource" uid="uid://c2wkek4sqrucc" path="res://gamedata/combatants/cloud_gull/cloud_gull_stat_growth.tres" id="27_lam2n"]
@@ -66,10 +62,6 @@ movepool = SubResource("Resource_5jl4o")
 
 [sub_resource type="Resource" id="Resource_ysrhl"]
 script = ExtResource("2_12odb")
-spriteFrames = ExtResource("3_70sfu")
-maxSize = Vector2(16, 16)
-spriteFacesRight = true
-navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_vwmsm")
 evolutionStats = {}
@@ -142,10 +134,6 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_e4fpc"]
 script = ExtResource("2_12odb")
-spriteFrames = ExtResource("13_yvhrx")
-maxSize = Vector2(32, 16)
-spriteFacesRight = false
-navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_hj45a")
 evolutionStats = {}
@@ -207,10 +195,6 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_dvq57"]
 script = ExtResource("2_12odb")
-spriteFrames = ExtResource("14_ytmj7")
-maxSize = Vector2(16, 16)
-spriteFacesRight = false
-navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_hula1")
 evolutionStats = {}
@@ -278,10 +262,6 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_r1f0o"]
 script = ExtResource("2_12odb")
-spriteFrames = ExtResource("13_yvhrx")
-maxSize = Vector2(32, 16)
-spriteFacesRight = false
-navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_8heid")
 evolutionStats = {}
@@ -319,10 +299,6 @@ movepool = ExtResource("26_nv623")
 
 [sub_resource type="Resource" id="Resource_eeq5k"]
 script = ExtResource("2_12odb")
-spriteFrames = ExtResource("25_5iy7u")
-maxSize = Vector2(16, 16)
-spriteFacesRight = false
-navigationLayer = 1
 nickname = ""
 stats = SubResource("Resource_oyibh")
 evolutions = ExtResource("23_djiok")

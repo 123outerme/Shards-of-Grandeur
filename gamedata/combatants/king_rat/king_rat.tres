@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
 [ext_resource type="Resource" uid="uid://6oywd1qvwyby" path="res://gamedata/combatants/king_rat/king_rat_rewards.tres" id="1_rqv3k"]
-[ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="2_4dg8r"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_are3w"]
 [ext_resource type="Resource" uid="uid://do8nq1ve3c3nx" path="res://gamedata/combatants/king_rat/king_rat_movepool.tres" id="3_r1tc3"]
 [ext_resource type="Resource" uid="uid://cvqm8lj7pel6s" path="res://gamedata/combatants/king_rat/king_rat_evolutions.tres" id="3_u6som"]
 [ext_resource type="Resource" uid="uid://dhueb42q6bhpr" path="res://gamedata/combatants/king_rat/king_rat_effectiveness.tres" id="5_0tjmh"]
+[ext_resource type="Resource" uid="uid://da16cxtiets3n" path="res://gamedata/combatants/king_rat/king_rat_sprite.tres" id="5_bh7jy"]
 [ext_resource type="Resource" uid="uid://d0ba12f3r7gli" path="res://gamedata/combatants/king_rat/king_rat_stat_growth.tres" id="5_c85vg"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_luqkf"]
 [ext_resource type="Resource" uid="uid://b723l70u677bb" path="res://gamedata/combatants/king_rat/king_rat_equipment.tres" id="12_tfavx"]
@@ -35,10 +35,7 @@ weight = 1.0
 
 [resource]
 script = ExtResource("1_6ltrj")
-spriteFrames = ExtResource("2_4dg8r")
-maxSize = Vector2(32, 32)
-spriteFacesRight = false
-navigationLayer = 2
+sprite = ExtResource("5_bh7jy")
 nickname = ""
 stats = SubResource("Resource_3uxb7")
 evolutions = ExtResource("3_u6som")

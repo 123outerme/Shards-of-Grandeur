@@ -22,7 +22,7 @@
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
 [ext_resource type="Texture2D" uid="uid://b25no5y38ry06" path="res://graphics/ui/berserk.png" id="20_es783"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_klmqu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nsy4x"]
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
@@ -35,10 +35,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -6.0
-offset_right = 6.0
-offset_bottom = 6.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
@@ -62,7 +62,9 @@ duration = 0.675
 [node name="BehindParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="SpriteContainer"]
-sprite_frames = SubResource("SpriteFrames_klmqu")
+sprite_frames = SubResource("SpriteFrames_nsy4x")
+centered = false
+offset = Vector2(-8, -8)
 
 [node name="FrontParticleContainer" type="Node2D" parent="SpriteContainer"]
 

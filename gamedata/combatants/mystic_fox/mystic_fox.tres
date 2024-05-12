@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_wrdnk"]
 [ext_resource type="Resource" uid="uid://di4hktyq0nima" path="res://gamedata/combatants/mystic_fox/mystic_fox_movepool.tres" id="2_g1m61"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_m3coq"]
-[ext_resource type="SpriteFrames" uid="uid://c8eqberu16r6u" path="res://graphics/animations/a_mystic_fox.tres" id="2_oclba"]
 [ext_resource type="Resource" uid="uid://c7xjxc7f7lj86" path="res://gamedata/combatants/mystic_fox/mystic_fox_evolutions.tres" id="2_rdbar"]
 [ext_resource type="Resource" uid="uid://ulvg6wh7jn7" path="res://gamedata/combatants/mystic_fox/mystic_fox_effectiveness.tres" id="3_6ykc4"]
 [ext_resource type="Resource" uid="uid://datrt56lguyo0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_growth.tres" id="3_fq3j1"]
+[ext_resource type="Resource" uid="uid://4nsqpm33jl17" path="res://gamedata/combatants/mystic_fox/mystic_fox_sprite.tres" id="5_5co32"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="6_le0ue"]
 [ext_resource type="Resource" uid="uid://dqfilgeyd3ody" path="res://gamedata/combatants/mystic_fox/mystic_fox_equipment.tres" id="10_1pflv"]
 
@@ -40,10 +40,7 @@ weight = 0.3
 
 [resource]
 script = ExtResource("1_wrdnk")
-spriteFrames = ExtResource("2_oclba")
-maxSize = Vector2(16, 16)
-spriteFacesRight = false
-navigationLayer = 1
+sprite = ExtResource("5_5co32")
 nickname = ""
 stats = SubResource("Resource_5svlm")
 evolutions = ExtResource("2_rdbar")

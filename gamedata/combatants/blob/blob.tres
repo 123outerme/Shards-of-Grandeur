@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bsx15gtbnpwml"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=16 format=3 uid="uid://bsx15gtbnpwml"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ip5u1"]
 [ext_resource type="Resource" uid="uid://d0uia2okt4moc" path="res://gamedata/combatants/blob/blob_rewards.tres" id="1_l26v3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_8718d"]
 [ext_resource type="Resource" uid="uid://w84krclejqg" path="res://gamedata/combatants/blob/blob_effectiveness.tres" id="2_kfjnm"]
 [ext_resource type="SpriteFrames" uid="uid://dk3tso6o32g0d" path="res://graphics/animations/a_blob.tres" id="2_okyro"]
+[ext_resource type="Resource" uid="uid://cjvy7bpksrpdn" path="res://gamedata/combatants/blob/blob_sprite.tres" id="5_s7s05"]
 [ext_resource type="Resource" uid="uid://di8ocnjfrgra7" path="res://gamedata/combatants/blob/blob_equipment.tres" id="6_cushu"]
 [ext_resource type="Resource" uid="uid://dq2jf25b6suci" path="res://gamedata/combatants/blob/blob_movepool.tres" id="6_dk1gx"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="7_ykau4"]
@@ -45,10 +46,13 @@ weight = 0.2
 
 [resource]
 script = ExtResource("1_ip5u1")
+sprite = ExtResource("5_s7s05")
 spriteFrames = ExtResource("2_okyro")
 maxSize = Vector2(32, 16)
+centerPosition = Vector2(13, 9)
+feetPosition = Vector2(16, 15)
 spriteFacesRight = false
-navigationLayer = 1
+navigationLayer = 2
 nickname = ""
 stats = SubResource("Resource_aybo8")
 evolutions = ExtResource("1_uktx4")

@@ -27,7 +27,7 @@ func _ready():
 	position = get_point_around_home() # throw out position and load from random point near home
 	#position = enemyData.position
 	disableMovement = enemyData.disableMovement
-	navAgent.navigation_layers = combatant.navigationLayer
+	navAgent.navigation_layers = combatant.get_nav_layer()
 	navAgent.radius = (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2) - 1
 	navAgent.max_speed = maxSpeed
 	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D

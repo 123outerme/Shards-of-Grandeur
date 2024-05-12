@@ -96,8 +96,14 @@ func load_combatant_node():
 		animatedSprite.sprite_frames = combatant.get_sprite_frames()
 		if combatant.get_sprite_frames() == null:
 			animatedSprite.sprite_frames = load("res://graphics/animations/a_player.tres") # TEMP prevent crashing
-		animatedSprite.play('battle_idle')
+		var feetOffset: Vector2 = -1 * combatant.get_feet_pos()
 		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
+		if animatedSprite.flip_h:
+			# mirror x position if sprite is flipped
+			feetOffset.x = (combatant.get_max_size().x + feetOffset.x) * -1
+		feetOffset.y += 8
+		animatedSprite.offset = feetOffset
+		animatedSprite.play('battle_idle')
 		update_select_btn(false)
 		hpProgressBar.max_value = combatant.stats.maxHp
 		hpProgressBar.value = combatant.currentHp
@@ -187,6 +193,8 @@ func update_select_btn(showing: bool, disable: bool = false):
 	
 	selectCombatantBtn.size = combatant.get_max_size() + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
+	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
+	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
 
 func update_select_btn_texture():
 	if selectCombatantBtn.disabled:

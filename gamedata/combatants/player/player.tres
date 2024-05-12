@@ -2,12 +2,12 @@
 
 [ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="1_8y7ho"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_t36dj"]
-[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_ik1bj"]
 [ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="2_sgssq"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_8pi6r"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="3_ichbu"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="4_5v7g1"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="4_aasog"]
+[ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="4_dhlcn"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="5_huux8"]
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
@@ -33,10 +33,7 @@ movepool = SubResource("Resource_5jl4o")
 
 [resource]
 script = ExtResource("1_t36dj")
-spriteFrames = ExtResource("2_ik1bj")
-maxSize = Vector2(16, 16)
-spriteFacesRight = true
-navigationLayer = 1
+sprite = ExtResource("4_dhlcn")
 nickname = ""
 stats = SubResource("Resource_x3k1c")
 evolutions = ExtResource("1_8y7ho")
