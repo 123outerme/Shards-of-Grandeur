@@ -3,6 +3,7 @@ extends Node
 func _ready():
 	#for_all_combatants(print_combatant_weaknesses)
 	for_all_combatants(print_combatant_movepool_size)
+	for_all_combatants(print_combatant_highest_lv_move)
 	#for_all_moves(print_move_element)
 
 func for_all_combatants(query: Callable):
@@ -51,6 +52,20 @@ func print_combatant_movepool_size(combatant: Combatant):
 	if combatant.evolutions != null:
 			for evolution: Evolution in combatant.evolutions.evolutionList:
 				print(evolution.evolutionSaveName, ' has ', len(evolution.stats.movepool.pool), ' moves')
+
+func print_combatant_highest_lv_move(combatant: Combatant):
+	var highestLvMove: Move = null
+	for move: Move in combatant.stats.movepool.pool:
+		if highestLvMove == null or move.requiredLv > highestLvMove.requiredLv:
+			highestLvMove = move
+	print(combatant.save_name(), '\'s highest lv move is ', highestLvMove.moveName, ' @ lv ', highestLvMove.requiredLv)
+	if combatant.evolutions != null:
+			for evolution: Evolution in combatant.evolutions.evolutionList:
+				highestLvMove = null
+				for move: Move in evolution.stats.movepool.pool:
+					if highestLvMove == null or move.requiredLv > highestLvMove.requiredLv:
+						highestLvMove = move
+				print(evolution.evolutionSaveName, '\'s highest lv move is ', highestLvMove.moveName, ' @ lv ', highestLvMove.requiredLv)
 
 func print_move_element(move: Move):
 	print(move.moveName, ' element: ', Move.element_to_string(move.element))
