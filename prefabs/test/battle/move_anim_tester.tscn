@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://bpd15ski3ftn" path="res://gamedata/moves/hydro_barrier/anim_hydro_barrier.tres" id="2_k1p4y"]
+[ext_resource type="Resource" uid="uid://byxs5ycdqbfxw" path="res://gamedata/moves/consuming_roots/anim_consuming_roots.tres" id="2_5diwq"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
@@ -9,7 +9,7 @@
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_k1p4y")
+moveAnimation = ExtResource("2_5diwq")
 
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-72, 0)
@@ -21,8 +21,10 @@ allyTeamMarker = NodePath("../UserTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("..")
 
-[node name="ShardParticleEmitter" parent="UserNode/SpriteContainer/FrontParticleContainer" index="2"]
-particles = 6
+[node name="HitParticleEmitter" parent="UserNode/SpriteContainer/FrontParticleContainer" index="1"]
+lifetime = 0.5
+waves = 1.0
+duration = 0.5
 
 [node name="OnAttackPos" parent="UserNode" index="3"]
 position = Vector2(16, 0)
@@ -36,8 +38,10 @@ allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../UserTeamMarker")
 battleController = NodePath("..")
 
-[node name="ShardParticleEmitter" parent="TargetNode/SpriteContainer/FrontParticleContainer" index="2"]
-particles = 6
+[node name="HitParticleEmitter" parent="TargetNode/SpriteContainer/FrontParticleContainer" index="1"]
+lifetime = 0.5
+waves = 1.0
+duration = 0.5
 
 [node name="OnAttackPos" parent="TargetNode" index="3"]
 position = Vector2(-16, 0)

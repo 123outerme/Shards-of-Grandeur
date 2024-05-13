@@ -72,6 +72,8 @@ func load_preset():
 func set_make_particles(showParticles: bool):
 	_makeParticles = showParticles
 	var children = get_children()
+	if showParticles:
+		startTime = Time.get_unix_time_from_system()
 	for idx in range(len(children)):
 		var child = children[idx]
 		if child is GPUParticles2D:
@@ -82,8 +84,6 @@ func set_make_particles(showParticles: bool):
 					await get_tree().create_timer(preset.lifetime / len(children)).timeout
 				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
-	if showParticles:
-		startTime = Time.get_unix_time_from_system()
 
 func set_num_particles(value: int):
 	if value < 1:

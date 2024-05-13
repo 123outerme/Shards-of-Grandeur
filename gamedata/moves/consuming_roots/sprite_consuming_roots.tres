@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://c1fceo0t8c8r3"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ik5qq"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_sxg1x"]
+[ext_resource type="SpriteFrames" uid="uid://cpa43w68ats30" path="res://graphics/moves/nature/a_nature.tres" id="2_7ysho"]
+[ext_resource type="Resource" uid="uid://b4ipdyyox7iyl" path="res://gamedata/moves/consuming_roots/particles_consuming_roots.tres" id="2_jxqph"]
+
+[sub_resource type="Curve" id="Curve_aghtp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_cxw1x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ggyak"]
+script = ExtResource("1_ik5qq")
+annotation = "position into place"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(-6, 0)
+offset = 1
+xCurve = SubResource("Curve_aghtp")
+yCurve = SubResource("Curve_cxw1x")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_y62ns"]
+script = ExtResource("1_ik5qq")
+annotation = "start the roots"
+animation = "consuming_roots"
+duration = 0.75
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_3hb0m"]
+script = ExtResource("1_ik5qq")
+annotation = "play draining particle fx"
+animation = ""
+duration = 1.25
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_jxqph")
+
+[sub_resource type="Resource" id="Resource_2flan"]
+script = ExtResource("1_ik5qq")
+annotation = "wait for roots to disintegrate"
+animation = ""
+duration = 0.75
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("1_sxg1x")
+spriteFrames = ExtResource("2_7ysho")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_ik5qq")]([SubResource("Resource_ggyak"), SubResource("Resource_y62ns"), SubResource("Resource_3hb0m"), SubResource("Resource_2flan")])
+delayedUntilReposition = true
+onePerTarget = true
