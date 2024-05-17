@@ -320,16 +320,16 @@ func get_move_effectiveness() -> MoveEffectiveness:
 	else:
 		return evolution.moveEffectiveness
 
-func get_element_effectiveness_multiplier(move: Move) -> float:
+func get_element_effectiveness_multiplier(element: Move.Element) -> float:
 	var effectiveness: MoveEffectiveness = get_move_effectiveness()
 	
 	if effectiveness == null:
 		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
 	
-	if effectiveness.is_weak_to_element(move.element):
+	if effectiveness.is_weak_to_element(element):
 		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
 	
-	if effectiveness.is_resistant_to_element(move.element):
+	if effectiveness.is_resistant_to_element(element):
 		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
 	
 	return ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective

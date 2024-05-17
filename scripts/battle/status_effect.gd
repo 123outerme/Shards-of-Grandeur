@@ -13,6 +13,7 @@ enum Type {
 	REFLECT = 8, # TODO better name; causes recoil damage when hit with attack
 	INTERCEPTION = 9, # "attracts" a percentage of damage dealt to allies to self
 	GUARD_BREAK = 10,
+	ELEMENT_BURN = 11,
 	# other ones could be positive effects?
 }
 

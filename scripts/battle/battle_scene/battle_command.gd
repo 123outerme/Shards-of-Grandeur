@@ -117,6 +117,33 @@ static func command_escape(user: CombatantNode, allCombatants: Array[CombatantNo
 		allPositions,
 	)
 
+# logistic curve designed to dampen early-level ratio differences (ie lv 1 to lv 2 is a 2x increase, lv 10 to lv 11 is a 1.1x)
+static func dmg_logistic(userLv: int, targetLv: int) -> float:
+	const lowBound: int = 1 # level-scaling "appears" to be Lv 1 at minimum
+	var highBound: float = userLv # level-scaling approaches the actual user's level at maximum
+	const e: float = 2.7182818 # approx.
+	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
+	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
+
+static func damage_formula(power: float, atkStat: float, resistanceStat: float, userLv: int, targetLv: int, elEffectivenessMultiplier: float) -> int:
+	var atkExpression: float = round(atkStat * 1.1) + 5
+	if power < 0:
+		atkExpression *= 2.5 # 2.5x heal multiplier
+	var resExpression: float = round(resistanceStat * 0.9) + 5
+	if power < 0:
+		resExpression = 5 # no resistance
+	var apparentUserLv = BattleCommand.dmg_logistic(userLv, targetLv) # "apparent" user levels:
+	# scaled so that increases early on don't jack up the ratio intensely
+	var apparentTargetLv = BattleCommand.dmg_logistic(targetLv, userLv)
+	var usrLvMultiplier: float = 1 + (0.05 * apparentUserLv)
+	var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
+	#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
+	#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
+	var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier * elEffectivenessMultiplier )
+	if power > 0 and damage <= 0:
+		damage = 1 # if move IS a damaging move, make it do at least 1 damage
+	return damage
+
 func _init(
 	i_type = Type.NONE,
 	i_move = null,
@@ -193,6 +220,18 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				targets[idx].statusEffect = null
 			else:
 				targets[idx].statusEffect = moveEffect.statusEffect.copy()
+				if moveEffect.statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
+					var elementBurn: ElementBurn = targets[idx].statusEffect as ElementBurn
+					var userStatChanges = StatChanges.new()
+					userStatChanges.stack(user.statChanges) # copy stat changes
+					var userStats: Stats = userStatChanges.apply(user.stats)
+					var atkStat: float = userStats.physAttack # use physical for physical attacks
+					if move.category == Move.DmgCategory.MAGIC:
+						atkStat = userStats.magicAttack # use magic for magic attacks
+					if move.category == Move.DmgCategory.AFFINITY:
+						atkStat = userStats.affinity # use affinity for affinity-based attacks
+					# An ally w/ Intercept should NOT reduce the power of the burn
+					elementBurn.set_burn_damage_parameters(moveEffect.power, atkStat, user.stats.level)
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:
@@ -227,14 +266,6 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	
 	return false
 
-# logistic curve designed to dampen early-level ratio differences (ie lv 1 to lv 2 is a 2x increase, lv 10 to lv 11 is a 1.1x)
-func dmg_logistic(userLv: int, targetLv: int) -> float:
-	const lowBound: int = 1 # level-scaling "appears" to be Lv 1 at minimum
-	var highBound: float = userLv # level-scaling approaches the actual user's level at maximum
-	const e: float = 2.7182818 # approx.
-	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
-	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
-
 func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMoveStatChanges: bool = false) -> int:
 	var userStatChanges = StatChanges.new()
 	userStatChanges.stack(user.statChanges) # copy stat changes
@@ -244,7 +275,7 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 	var elEffectivenessMultiplier: float = 1
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
-		elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move)
+		elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
 		
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)
@@ -264,25 +295,7 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		if move.category == Move.DmgCategory.AFFINITY:
 			atkStat = userStats.affinity # use affinity for affinity-based attacks
 		
-		var atkExpression: float = round(atkStat * 1.1) + 5
-		if power < 0:
-			atkExpression *= 2.5 # 2.5x heal multiplier
-		var resExpression: float = round(targetStats.resistance * 0.9) + 5
-		if power < 0:
-			resExpression = 5 # no resistance
-		var apparentUserLv = dmg_logistic(user.stats.level, target.stats.level) # "apparent" user levels:
-		# scaled so that increases early on don't jack up the ratio intensely
-		var apparentTargetLv = dmg_logistic(target.stats.level, user.stats.level)
-		var usrLvMultiplier: float = 1 + (0.05 * apparentUserLv)
-		var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
-		#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
-		#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
-		
-		var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier * elEffectivenessMultiplier )
-		if power > 0 and damage <= 0:
-			damage = 1 # if move IS a damaging move, make it do at least 1 damage
-		
-		return damage
+		return BattleCommand.damage_formula(power, atkStat, targetStats.resistance, user.stats.level, target.stats.level, elEffectivenessMultiplier)
 	if type == Type.USE_ITEM and target.currentHp > 0: # if item and current target is still alive
 		if slot.item is Healing: # if healing
 			var healItem: Healing = slot.item as Healing
@@ -419,7 +432,7 @@ func get_command_results(user: Combatant) -> String:
 					# if damage was dealt
 					var moveElString: String = ' '
 					if type == Type.MOVE:
-						var elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move) 
+						var elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
 						if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
 							moveElString += 'super-effective '
 						elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
@@ -499,7 +512,7 @@ func get_command_results(user: Combatant) -> String:
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				var moveElString: String = ' '
 				if type == Type.MOVE:
-					var elEffectivenessMultiplier = interceptingTargets[interceptingIdx].get_element_effectiveness_multiplier(move) 
+					var elEffectivenessMultiplier = interceptingTargets[interceptingIdx].get_element_effectiveness_multiplier(move.element)
 					if elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
 						moveElString += 'super-effective '
 					elif elEffectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:

@@ -475,10 +475,10 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		# if 60% or less health, could use healing
 		if combatantNode.combatant.currentHp / maxHp < 0.6:
 			combatantCouldUseHealing = true
-		if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+		if combatantNode.combatant.get_element_effectiveness_multiplier(move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
 			enemyIsWeakToElement = true
 			allEnemiesResistElement = false
-		if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective:
+		if combatantNode.combatant.get_element_effectiveness_multiplier(move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective:
 			allEnemiesResistElement = false
 		if moveEffect.statusEffect != null and combatantNode.combatant.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) != Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
 			allEnemiesResistStatus = false
@@ -588,7 +588,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 	else:
 		var superEffectiveElementTargets: Array[CombatantNode] = []
 		for combatantNode: CombatantNode in targetableCombatants:
-			if combatantNode.combatant.get_element_effectiveness_multiplier(move) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective and effect.power > 0:
+			if combatantNode.combatant.get_element_effectiveness_multiplier(move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective and effect.power > 0:
 				# if this move will deal super-effective damage, consider it for bypassing the normal targeting AI
 				superEffectiveElementTargets.append(combatantNode)
 		# if not all targets would take super-effective damage:
