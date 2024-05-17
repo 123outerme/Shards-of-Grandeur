@@ -1,10 +1,11 @@
 extends Node
 
 func _ready():
-	#for_all_combatants(print_combatant_weaknesses)
-	for_all_combatants(print_combatant_movepool_size)
-	for_all_combatants(print_combatant_highest_lv_move)
-	#for_all_moves(print_move_element)
+	for_all_combatants(print_combatant_weaknesses)
+	#for_all_combatants(print_combatant_movepool_size)
+	#for_all_combatants(print_combatant_highest_lv_move)
+	print('\n---\n')
+	for_all_moves(print_move_element)
 
 func for_all_combatants(query: Callable):
 	var combatantsPath = 'res://gamedata/combatants/'

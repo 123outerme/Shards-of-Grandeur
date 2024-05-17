@@ -55,7 +55,6 @@ scale = Vector2(1.5, 1.5)
 [node name="SurgeParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
 preset = ExtResource("8_a3k0w")
 lifetime = 0.75
-particles = 5
 waves = 0.9
 duration = 0.675
 
@@ -74,7 +73,10 @@ scale = Vector2(1.5, 1.5)
 [node name="HitParticleEmitter" parent="SpriteContainer/FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
 preset = ExtResource("14_nv53v")
+lifetime = 0.5
 particles = 3
+waves = 1.0
+duration = 0.5
 
 [node name="GpuParticles1" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="0"]
 amount = 3

@@ -21,11 +21,6 @@ allyTeamMarker = NodePath("../UserTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("..")
 
-[node name="HitParticleEmitter" parent="UserNode/SpriteContainer/FrontParticleContainer" index="1"]
-lifetime = 0.5
-waves = 1.0
-duration = 0.5
-
 [node name="OnAttackPos" parent="UserNode" index="3"]
 position = Vector2(16, 0)
 
@@ -37,11 +32,6 @@ battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../UserTeamMarker")
 battleController = NodePath("..")
-
-[node name="HitParticleEmitter" parent="TargetNode/SpriteContainer/FrontParticleContainer" index="1"]
-lifetime = 0.5
-waves = 1.0
-duration = 0.5
 
 [node name="OnAttackPos" parent="TargetNode" index="3"]
 position = Vector2(-16, 0)

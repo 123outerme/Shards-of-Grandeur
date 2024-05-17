@@ -13,9 +13,10 @@ enum Element {
 	FIRE = 2,
 	LIGHTNING = 3,
 	WIND = 4,
-	NATURE = 5,
-	DARK = 6,
-	ASTRAL = 7
+	EARTH = 5,
+	NATURE = 6,
+	DARK = 7,
+	ASTRAL = 8
 }
 
 enum MoveEffectType {
@@ -57,6 +58,8 @@ static func element_to_string(e: Element) -> String:
 			return 'Lightning'
 		Element.WIND:
 			return 'Wind'
+		Element.EARTH:
+			return 'Earth'
 		Element.NATURE:
 			return 'Nature'
 		Element.DARK:

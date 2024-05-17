@@ -64,6 +64,8 @@ func get_burn_type() -> String:
 			return 'Jolt'
 		Move.Element.WIND:
 			return 'Gust'
+		Move.Element.EARTH:
+			return 'Crush'
 		Move.Element.NATURE:
 			return 'Poison'
 		Move.Element.DARK:
@@ -97,6 +99,8 @@ func get_icon() -> Texture2D:
 			return _jolt_icon
 		Move.Element.WIND:
 			return _gust_icon
+		Move.Element.EARTH:
+			return _crush_icon
 		Move.Element.NATURE:
 			return _poison_icon
 		Move.Element.DARK:
