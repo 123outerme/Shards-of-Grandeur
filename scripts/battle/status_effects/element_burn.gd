@@ -8,15 +8,15 @@ const PERCENT_DAMAGE_DICT: Dictionary = {
 	Potency.OVERWHELMING: 1.1
 }
 
-const _element_burn_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _burn_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _soaking_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _jolt_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _gust_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _crush_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _poison_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _frighten_icon: Texture2D = preload('res://graphics/ui/bleed.png')
-const _nova_icon: Texture2D = preload('res://graphics/ui/bleed.png')
+const _element_burn_icon: Texture2D = preload('res://graphics/ui/element_burn.png')
+const _burn_icon: Texture2D = preload('res://graphics/ui/burn.png')
+const _soak_icon: Texture2D = preload('res://graphics/ui/soak.png')
+const _jolt_icon: Texture2D = preload('res://graphics/ui/jolt.png')
+const _gust_icon: Texture2D = preload('res://graphics/ui/gust.png')
+const _crush_icon: Texture2D = preload('res://graphics/ui/crush.png')
+const _poison_icon: Texture2D = preload('res://graphics/ui/poison.png')
+const _fear_icon: Texture2D = preload('res://graphics/ui/fear.png')
+const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 
 @export var element: Move.Element = Move.Element.NONE
 @export var power: float = 0
@@ -97,7 +97,7 @@ func get_icon() -> Texture2D:
 		Move.Element.FIRE:
 			return _burn_icon
 		Move.Element.WATER:
-			return _soaking_icon
+			return _soak_icon
 		Move.Element.LIGHTNING:
 			return _jolt_icon
 		Move.Element.WIND:
@@ -107,7 +107,7 @@ func get_icon() -> Texture2D:
 		Move.Element.NATURE:
 			return _poison_icon
 		Move.Element.DARK:
-			return _frighten_icon
+			return _fear_icon
 		Move.Element.ASTRAL:
 			return _nova_icon
 	return null
