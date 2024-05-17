@@ -59,7 +59,7 @@ func get_burn_type() -> String:
 		Move.Element.FIRE:
 			return 'Burn'
 		Move.Element.WATER:
-			return 'Soaking'
+			return 'Soak'
 		Move.Element.LIGHTNING:
 			return 'Jolt'
 		Move.Element.WIND:
@@ -69,7 +69,7 @@ func get_burn_type() -> String:
 		Move.Element.NATURE:
 			return 'Poison'
 		Move.Element.DARK:
-			return 'Frighten'
+			return 'Fear'
 		Move.Element.ASTRAL:
 			return 'Nova'
 	return 'UNKNOWN'
@@ -86,6 +86,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 
 func get_status_effect_tooltip():
 	return 'A combatant with ' + get_burn_type() + ' takes damage at the end of a battle round, relative to the Power of the move used to inflict it.' 
+
+func status_effect_to_string() -> String:
+	return StatusEffect.potency_to_string(potency) + ' ' + get_burn_type()
 
 func get_icon() -> Texture2D:
 	match element:
