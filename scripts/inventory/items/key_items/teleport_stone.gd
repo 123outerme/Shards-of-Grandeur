@@ -1,6 +1,8 @@
 extends KeyItem
 class_name TeleportStone
 
+const DISABLE_IF_VALID_REQUIREMENTS: Array[StoryRequirements] = []
+
 @export var targetMap: String = ''
 @export var targetPos: Vector2 = Vector2()
 
@@ -43,5 +45,9 @@ func _init(
 func use(_target: Combatant):
 	PlayerFinder.player.useTeleportStone = self
 
-func can_be_used_now():
+func can_be_used_now() -> bool:
+	for requirement: StoryRequirements in DISABLE_IF_VALID_REQUIREMENTS:
+		if requirement.is_valid():
+			return false
+	
 	return PlayerResources.playerInfo.map != targetMap

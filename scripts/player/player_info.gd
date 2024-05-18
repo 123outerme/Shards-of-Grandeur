@@ -57,6 +57,7 @@ func _init(
 	i_enemiesDefeated: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
 	i_pickedUpItem = null,
+	i_placesVisited: Array[String] = [],
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
 	i_codexEntriesSeen: Array[String] = [],
@@ -85,6 +86,7 @@ func _init(
 	enemiesDefeated = i_enemiesDefeated
 	pickedUpItems = i_pickedUpItems
 	pickedUpItem = i_pickedUpItem
+	placesVisited = i_placesVisited
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
 	codexEntriesSeen = i_codexEntriesSeen
