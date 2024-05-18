@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Shard" load_steps=3 format=3 uid="uid://u5pvjpq8ieq1"]
+
+[ext_resource type="Texture2D" uid="uid://dnshlcpkrenqo" path="res://graphics/items/shards/storm_swarm_shard.png" id="1_gq7be"]
+[ext_resource type="Script" path="res://scripts/inventory/items/shard.gd" id="1_sldfs"]
+
+[resource]
+script = ExtResource("1_sldfs")
+combatantSaveName = "storm_swarm"
+itemSprite = ExtResource("1_gq7be")
+itemName = "Storm Swarm Shard"
+itemType = 1
+itemDescription = "This is the magical essence of a Storm Swarm stored within a crystal. Storm Swarms are a group of electrically-charged insects that buzz around tirelessly."
+cost = 20
+maxCount = 25
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 0
