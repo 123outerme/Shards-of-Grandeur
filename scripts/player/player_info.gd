@@ -28,6 +28,7 @@ class_name PlayerInfo
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
 @export var pickedUpItem: PickedUpItem = null
+@export var placesVisited: Array[String] = []
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
 @export var codexEntriesSeen: Array[String] = []
@@ -115,6 +116,13 @@ func set_dialogue_seen(npcSaveName: String, dialogueId: String):
 	else:
 		dialoguesSeen[npcSaveName] = [dialogueId]
 		PlayerResources.story_requirements_updated.emit()
+
+func has_visited_place(placeName: String) -> bool:
+	return placeName in placesVisited
+
+func set_place_visited(placeName: String):
+	if not has_visited_place(placeName):
+		placesVisited.append(placeName)
 
 func has_defeated_enemy(saveName: String) -> bool:
 	return saveName in enemiesDefeated

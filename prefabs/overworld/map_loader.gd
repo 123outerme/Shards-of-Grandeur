@@ -70,6 +70,7 @@ func load_map(mapName: String):
 	loading = true
 	#destroy_overworld_enemies()
 	PlayerResources.playerInfo.map = mapName
+	PlayerResources.playerInfo.set_place_visited(mapName)
 	mapNavReady = false
 	player.disableMovement = true
 	player.useTeleportStone = null

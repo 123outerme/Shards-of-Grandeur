@@ -10,6 +10,7 @@ class_name StoryRequirements
 @export var prereqQuests: Array[String] = []
 @export var prereqCutscenes: Array[String] = []
 @export var prereqDialogues: Array[String] = []
+@export var prereqPlacesVisited: Array[String] = []
 @export var prereqSpecialBattles: Array[String] = []
 @export var prereqDefeatedEnemies: Array[String] = []
 
@@ -18,6 +19,7 @@ class_name StoryRequirements
 @export var invalidAfterFailingQuests: Array[String] = []
 @export var invalidAfterCutscenes: Array[String] = []
 @export var invalidAfterDialogues: Array[String] = []
+@export var invalidAfterVistingPlaces: Array[String] = []
 @export var invalidAfterSpecialBattles: Array[String] = []
 
 func _init(
@@ -26,12 +28,14 @@ func _init(
 	i_prereqQuests: Array[String] = [],
 	i_prereqCutscenes: Array[String] = [],
 	i_prereqDialogues: Array[String] = [],
+	i_prereqPlaces: Array[String] = [],
 	i_prereqBattles: Array[String] = [],
 	i_prereqDefeatedEnemies: Array[String] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
 	i_invalidDialogues: Array[String] = [],
+	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
 ):
 	minAct = i_minAct
@@ -39,12 +43,14 @@ func _init(
 	prereqQuests = i_prereqQuests
 	prereqCutscenes = i_prereqCutscenes
 	prereqDialogues = i_prereqDialogues
+	prereqPlacesVisited = i_prereqPlaces
 	prereqSpecialBattles = i_prereqBattles
 	prereqDefeatedEnemies = i_prereqDefeatedEnemies
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
 	invalidAfterDialogues = i_invalidDialogues
+	invalidAfterVistingPlaces = i_invalidPlacesVisited
 	invalidAfterSpecialBattles = i_invalidBattles
 
 func is_valid() -> bool:
@@ -66,7 +72,11 @@ func is_valid() -> bool:
 		var dialogueId = dialogue.split('#')[1]
 		if not PlayerResources.playerInfo.has_seen_dialogue(npcSaveName, dialogueId):
 			return false
-			
+	
+	for place in prereqPlacesVisited:
+		if not PlayerResources.playerInfo.has_visited_place(place):
+			return false
+	
 	for battle in prereqSpecialBattles:
 		if not PlayerResources.playerInfo.has_completed_special_battle(battle):
 			return false
@@ -89,6 +99,10 @@ func is_valid() -> bool:
 		var npcSaveName = dialogue.split('#')[0]
 		var dialogueId = dialogue.split('#')[1]
 		if PlayerResources.playerInfo.has_seen_dialogue(npcSaveName, dialogueId):
+			return false
+	
+	for place in invalidAfterVistingPlaces:
+		if PlayerResources.playerInfo.has_visited_place(place):
 			return false
 	
 	for battle in invalidAfterSpecialBattles:
