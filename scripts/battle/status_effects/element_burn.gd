@@ -27,9 +27,9 @@ func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0,
 	i_element = Move.Element.NONE,
-	i_power = 0,
-	i_attackerStat = 0,
-	i_attackerLv = 1,
+	i_power: float = 0,
+	i_attackerStat: float = 0,
+	i_attackerLv: int = 1,
 ):
 	super(Type.ELEMENT_BURN, i_potency, i_turnsLeft)
 	element = i_element
@@ -52,7 +52,7 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
 	
-func get_burn_type() -> String:
+func get_status_type_string() -> String:
 	match element:
 		Move.Element.NONE:
 			return 'Element Burn'
@@ -85,10 +85,7 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 	return ''
 
 func get_status_effect_tooltip():
-	return 'A combatant with ' + get_burn_type() + ' takes damage at the end of a battle round, relative to the Power of the move used to inflict it.' 
-
-func status_effect_to_string() -> String:
-	return StatusEffect.potency_to_string(potency) + ' ' + get_burn_type()
+	return 'A combatant with ' + get_status_type_string() + ' takes ' + Move.element_to_string(element) + ' damage at the end of a battle round, relative to the Power of the move used to inflict it.' 
 
 func get_icon() -> Texture2D:
 	match element:

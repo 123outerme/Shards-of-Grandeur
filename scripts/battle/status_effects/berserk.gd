@@ -41,7 +41,7 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant) > 0:
 		return combatant.disp_name() + "'s " + StatusEffect.potency_to_string(potency) \
-				+ ' ' + StatusEffect.status_type_to_string(type) + ' deals ' + TextUtils.num_to_comma_string(get_recoil_damage(combatant)) + ' recoil damage!'
+				+ ' ' + get_status_type_string() + ' deals ' + TextUtils.num_to_comma_string(get_recoil_damage(combatant)) + ' recoil damage!'
 	return ''
 
 func get_status_effect_tooltip():

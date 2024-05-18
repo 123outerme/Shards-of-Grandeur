@@ -48,6 +48,8 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Interception'
 		Type.GUARD_BREAK:
 			return 'Guard Break'
+		Type.ELEMENT_BURN:
+			return 'Element Burn'
 	return 'UNKNOWN'
 
 static func potency_to_string(p: Potency) -> String:
@@ -99,7 +101,10 @@ func get_icon() -> Texture2D:
 	return null
 
 func status_effect_to_string() -> String:
-	return StatusEffect.potency_to_string(potency) + ' ' + StatusEffect.status_type_to_string(type)
+	return StatusEffect.potency_to_string(potency) + ' ' + get_status_type_string()
+
+func get_status_type_string() -> String:
+	return StatusEffect.status_type_to_string(type)
 
 func copy() -> StatusEffect:
 	return StatusEffect.new(

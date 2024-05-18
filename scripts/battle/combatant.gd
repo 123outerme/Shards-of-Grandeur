@@ -78,6 +78,7 @@ static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirem
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
 	if combatant.currentHp == -1:
+		combatant.stats.maxHp = combatant.stats.statGrowth.initialMaxHp
 		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
 	combatant.version = GameSettings.get_game_version()
 	return combatant
@@ -444,9 +445,9 @@ func pick_equipment():
 	
 	var choice: int = WeightedThing.pick_item(weightedEquipment.weightedEquipment)
 	if choice >= 0 and choice < len(weightedEquipment.weightedEquipment):
-		var weightedEquipment: WeightedEquipment = weightedEquipment.weightedEquipment[choice]
-		stats.equippedWeapon = weightedEquipment.weapon
-		stats.equippedArmor = weightedEquipment.armor
+		var equipmentChoice: WeightedEquipment = weightedEquipment.weightedEquipment[choice]
+		stats.equippedWeapon = equipmentChoice.weapon
+		stats.equippedArmor = equipmentChoice.armor
 	else:
 		stats.equippedWeapon = null
 		stats.equippedArmor = null

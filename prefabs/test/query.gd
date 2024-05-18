@@ -1,11 +1,11 @@
 extends Node
 
 func _ready():
-	for_all_combatants_series([print_combatant_weaknesses, print_combatant_status_resistances])
-	#for_all_combatants(print_combatant_movepool_size)
-	#for_all_combatants(print_combatant_highest_lv_move)
+	#for_all_combatants_series([print_combatant_weaknesses, print_combatant_status_resistances])
+	for_all_combatants_series([print_combatant_movepool_size, print_combatant_highest_lv_move])
 	print('\n---\n')
-	for_all_moves(print_move_element)
+	#for_all_moves(print_move_element)
+	for_all_moves_series([print_move_effects_overview, print_move_role])
 
 func for_all_combatants(query: Callable):
 	var combatantsPath = 'res://gamedata/combatants/'
@@ -150,3 +150,56 @@ func print_combatant_highest_lv_move(combatant: Combatant):
 
 func print_move_element(move: Move):
 	print(move.moveName, ' element: ', Move.element_to_string(move.element))
+
+func print_move_role(move: Move):
+	print(move.moveName, ' Charge role: ', MoveEffect.role_to_string(move.chargeEffect.role))
+	print(move.moveName, ' Surge role: ', MoveEffect.role_to_string(move.surgeEffect.role))
+
+func print_move_effects_overview(move: Move):
+	# charge effect
+	var printStr: String = move.moveName + ' Charge: ' + String.num(move.chargeEffect.power) \
+			+ ' ' + Move.element_to_string(move.element) + ' Power, +' \
+			+ String.num(move.chargeEffect.orbChange) + ' Orbs, ' + BattleCommand.targets_to_string(move.chargeEffect.targets)
+	
+	if move.chargeEffect.selfStatChanges != null and move.chargeEffect.selfStatChanges.has_stat_changes():
+		printStr += ', Self StatCh: '
+		var statChangesText: Array[StatMultiplierText] = move.chargeEffect.selfStatChanges.get_multipliers_text()
+		printStr += StatMultiplierText.multiplier_text_list_to_string(statChangesText)
+	
+	if move.chargeEffect.targetStatChanges != null and move.chargeEffect.targetStatChanges.has_stat_changes():
+		printStr += ', Target StatCh: '
+		var statChangesText: Array[StatMultiplierText] = move.chargeEffect.targetStatChanges.get_multipliers_text()
+		printStr += StatMultiplierText.multiplier_text_list_to_string(statChangesText)
+	
+	if move.chargeEffect.statusEffect != null:
+		printStr += ', ' + StatusEffect.potency_to_string(move.chargeEffect.statusEffect.potency) + ' ' \
+				+ move.chargeEffect.statusEffect.get_status_type_string() + ' (' \
+				+ String.num(move.chargeEffect.statusChance * 100) + '%)'
+		if move.chargeEffect.selfGetsStatus:
+			printStr += ' on self'
+
+	print(printStr)
+	
+	# surge effect
+	printStr = move.moveName + ' Surge: ' + String.num(move.surgeEffect.power) \
+			+ ' ' + Move.element_to_string(move.element) + ' Power, ' \
+			+ String.num(move.surgeEffect.orbChange) + ' Orbs, ' + BattleCommand.targets_to_string(move.surgeEffect.targets)
+	
+	if move.surgeEffect.selfStatChanges != null and move.surgeEffect.selfStatChanges.has_stat_changes():
+		printStr += ', Self StatCh: '
+		var statChangesText: Array[StatMultiplierText] = move.surgeEffect.selfStatChanges.get_multipliers_text()
+		printStr += StatMultiplierText.multiplier_text_list_to_string(statChangesText)
+	
+	if move.surgeEffect.targetStatChanges != null and move.surgeEffect.targetStatChanges.has_stat_changes():
+		printStr += ', Target StatCh: '
+		var statChangesText: Array[StatMultiplierText] = move.surgeEffect.targetStatChanges.get_multipliers_text()
+		printStr += StatMultiplierText.multiplier_text_list_to_string(statChangesText)
+	
+	if move.surgeEffect.statusEffect != null:
+		printStr += ', ' + StatusEffect.potency_to_string(move.surgeEffect.statusEffect.potency) + ' ' \
+				+ move.surgeEffect.statusEffect.get_status_type_string() + ' (' \
+				+ String.num(move.surgeEffect.statusChance * 100) + '%)'
+		if move.surgeEffect.selfGetsStatus:
+			printStr += ' on self'
+
+	print(printStr)

@@ -91,7 +91,7 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text = '[center]'
 		if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
 			moveStatusEffect.text += StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
-					+ ' ' + StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+					+ ' ' + moveEffect.statusEffect.get_status_type_string()
 		else:
 			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
 		moveStatusEffect.text += ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance'
@@ -118,7 +118,7 @@ func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:
 		return
 	helpButtonPressed = statusHelpButton
-	tooltipPanel.title = StatusEffect.status_type_to_string(moveEffect.statusEffect.type)
+	tooltipPanel.title = moveEffect.statusEffect.moveEffect.statusEffect.get_status_type_string()
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
 	tooltipPanel.z_index = 1

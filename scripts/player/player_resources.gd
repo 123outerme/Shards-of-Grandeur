@@ -132,8 +132,6 @@ func save_data(save_path) -> int:
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
-	# TODO: is re-loading the animations necessary here?
-	playerInfo.combatant.spriteFrames = load('res://graphics/animations/a_player.tres')
 	inventory = Inventory.new(true)
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()

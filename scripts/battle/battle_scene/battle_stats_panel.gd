@@ -49,7 +49,7 @@ func load_battle_stats_panel():
 
 func _on_status_help_button_pressed():
 	if combatant.statusEffect != null:
-		tooltipPanel.title = StatusEffect.status_type_to_string(combatant.statusEffect.type)
+		tooltipPanel.title = combatant.statusEffect.get_status_type_string()
 		tooltipPanel.details = combatant.statusEffect.get_status_effect_tooltip()
 		tooltipPanel.load_tooltip_panel()
 

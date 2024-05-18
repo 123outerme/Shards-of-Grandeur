@@ -82,7 +82,7 @@ func get_short_description() -> Array[String]:
 	if statusEffect != null:
 		effects.append(
 			StatusEffect.potency_to_string(statusEffect.potency) \
-			+ ' ' + StatusEffect.status_type_to_string(statusEffect.type) \
+			+ ' ' + statusEffect.get_status_type_string() \
 			+ ' (' + String.num(roundi(statusChance * 100)) + '%)'
 		)
 	
@@ -114,7 +114,7 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 			changedSurgeEff.statusEffect.potency != statusEffect.potency):
 		effects.append(
 			StatusEffect.potency_to_string(changedSurgeEff.statusEffect.potency) \
-			+ ' ' + StatusEffect.status_type_to_string(changedSurgeEff.statusEffect.type) \
+			+ ' ' + changedSurgeEff.statusEffect.get_status_type_string() \
 			+ ' (' + String.num(roundi(changedSurgeEff.statusChance * 100)) + '%)'
 		)
 	

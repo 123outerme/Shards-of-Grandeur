@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/mock_player.gd" id="3_dsl0g"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_jf0m3"]
 
-[sub_resource type="Resource" id="Resource_3mhtk"]
+[sub_resource type="Resource" id="Resource_5frgx"]
 script = ExtResource("4_jf0m3")
 saveName = "npc"
 position = Vector2(0, 0)
@@ -40,7 +40,7 @@ script = ExtResource("1_vxik6")
 [node name="MockPlayer" parent="." instance=ExtResource("2_edynv")]
 script = ExtResource("3_dsl0g")
 facingLeft = false
-data = SubResource("Resource_3mhtk")
+data = SubResource("Resource_5frgx")
 
 [node name="NPCSprite" parent="MockPlayer" index="0"]
 sprite_frames = ExtResource("3_0pscs")
