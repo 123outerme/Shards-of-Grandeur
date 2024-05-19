@@ -14,6 +14,7 @@ enum Type {
 	INTERCEPTION = 9, # "attracts" a percentage of damage dealt to allies to self
 	GUARD_BREAK = 10,
 	ELEMENT_BURN = 11,
+	ENDURE = 12,
 	# other ones could be positive effects?
 }
 
@@ -50,6 +51,8 @@ static func status_type_to_string(t: Type) -> String:
 			return 'Guard Break'
 		Type.ELEMENT_BURN:
 			return 'Element Burn'
+		Type.ENDURE:
+			return 'Endure'
 	return 'UNKNOWN'
 
 static func potency_to_string(p: Potency) -> String:
