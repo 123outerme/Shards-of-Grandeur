@@ -1,22 +1,27 @@
-[gd_scene load_steps=57 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=65 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="4_cmvjq"]
+[ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="5_0er0p"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_ohjbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_ouq35"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="8_thl3q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortiy_elixir.tres" id="10_son1n"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/endure.gd" id="10_tg47m"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_h5ibj"]
+[ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="14_8tdek"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="14_tebfq"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="15_ahtpg"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="15_qn3hw"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="16_1n64h"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="17_hdtqw"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
+[ext_resource type="Resource" uid="uid://b6gpqdsyrjms1" path="res://gamedata/combatants/rat/rat_sprite.tres" id="19_8nfrw"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="19_a5sey"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="19_dhbsu"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="20_2oj5r"]
@@ -28,6 +33,7 @@
 [ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="27_6lffl"]
 [ext_resource type="Resource" uid="uid://c2wkek4sqrucc" path="res://gamedata/combatants/cloud_gull/cloud_gull_stat_growth.tres" id="27_lam2n"]
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="28_3l5fj"]
+[ext_resource type="Resource" uid="uid://c8if1u55s37vs" path="res://gamedata/combatants/cloud_gull/cloud_gull_sprite.tres" id="28_huiyb"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 
 [sub_resource type="Resource" id="Resource_hvfly"]
@@ -60,13 +66,23 @@ statGrowth = ExtResource("8_thl3q")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
 movepool = SubResource("Resource_5jl4o")
 
+[sub_resource type="Resource" id="Resource_rjdbl"]
+script = ExtResource("10_tg47m")
+lowestHp = 1
+type = 12
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 1
+
 [sub_resource type="Resource" id="Resource_ysrhl"]
 script = ExtResource("2_12odb")
+sprite = ExtResource("5_0er0p")
 nickname = ""
 stats = SubResource("Resource_vwmsm")
 evolutionStats = {}
-currentHp = -1
+currentHp = 1
 orbs = 0
+statusEffect = SubResource("Resource_rjdbl")
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -134,6 +150,7 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_e4fpc"]
 script = ExtResource("2_12odb")
+sprite = ExtResource("14_8tdek")
 nickname = ""
 stats = SubResource("Resource_hj45a")
 evolutionStats = {}
@@ -158,7 +175,7 @@ type = 1
 move = ExtResource("4_cmvjq")
 moveEffectType = 1
 orbChange = 0
-targetPositions = Array[String](["Ally"])
+targetPositions = Array[String](["You"])
 randomNums = Array[float]([0.5])
 
 [sub_resource type="Resource" id="Resource_hula1"]
@@ -178,6 +195,17 @@ statGrowth = ExtResource("16_1n64h")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("15_qn3hw")
 
+[sub_resource type="Resource" id="Resource_g8u4s"]
+script = ExtResource("19_a5sey")
+element = 2
+power = 45.0
+attackerStat = 15.0
+attackerLv = 10
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
+
 [sub_resource type="Resource" id="Resource_b3lik"]
 script = ExtResource("17_hdtqw")
 string = "rat"
@@ -195,11 +223,13 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_dvq57"]
 script = ExtResource("2_12odb")
+sprite = ExtResource("19_8nfrw")
 nickname = ""
 stats = SubResource("Resource_hula1")
 evolutionStats = {}
 currentHp = -1
 orbs = 0
+statusEffect = SubResource("Resource_g8u4s")
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -262,6 +292,7 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_r1f0o"]
 script = ExtResource("2_12odb")
+sprite = ExtResource("14_8tdek")
 nickname = ""
 stats = SubResource("Resource_8heid")
 evolutionStats = {}
@@ -299,6 +330,7 @@ movepool = ExtResource("26_nv623")
 
 [sub_resource type="Resource" id="Resource_eeq5k"]
 script = ExtResource("2_12odb")
+sprite = ExtResource("28_huiyb")
 nickname = ""
 stats = SubResource("Resource_oyibh")
 evolutions = ExtResource("23_djiok")

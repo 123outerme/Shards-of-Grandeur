@@ -29,14 +29,18 @@ func _ready():
 	for idx in range(len(combatants)):
 		var combatant: Combatant = combatants[idx]
 		if combatant != null:
+			# keep track of current HP since we will do level ups immediately here
+			var currentCombatantHp: int = combatant.currentHp
 			if combatantLvs[idx] > combatant.stats.level:
 				combatant.level_up_nonplayer(combatantLvs[idx])
 			if len(combatant.stats.moves) == 0:
 				combatant.assign_moves_nonplayer()
 			for move: Move in combatant.stats.moves:
 				print(combatant.disp_name(), ': ', move.moveName)
-			if combatant.currentHp == -1:
+			if currentCombatantHp == -1:
 				combatant.currentHp = combatant.stats.maxHp
+			else:
+				combatant.currentHp = currentCombatantHp
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
 			combatant = combatant.copy()
