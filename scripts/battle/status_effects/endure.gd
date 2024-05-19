@@ -11,20 +11,31 @@ const MIN_PERCENT_HP_DICT: Dictionary = {
 const _icon: Texture2D = preload('res://graphics/ui/endure.png')
 
 var endured: bool = false
+var lowestHp: int = -1
 
 func _init(
 	i_potency = Potency.NONE,
 	i_turnsLeft = 0
 ):
 	super(Type.ENDURE, i_potency, i_turnsLeft)
+	endured = false
+	lowestHp = -1
 
 func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
-	endured = false
+	if timing != BattleCommand.ApplyTiming.AFTER_DMG_CALC:
+		endured = false
 	var dealtDmgCombatants: Array[Combatant] = []
 	if timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
 		if combatant.currentHp < roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency]):
 			endured = true
-		combatant.currentHp = max(combatant.currentHp, roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency]))
+		# if lowest HP has not been set or has been healed greater than the Endure minimum: set it
+		if lowestHp == -1 or combatant.currentHp > roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency]):
+			lowestHp = roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency])
+		# keep the combatant's HP no lower than its lowest allowed HP
+		# this will be either a certain percentage of its max HP, or
+		# the lowest HP it has been at (i.e. if it gets the status while its HP is lower than this percentage)
+		# the `lowestHp` value gets set to the current HP of the combatant when the combatant gets afflicted with the status, not including current damage calc (if taking dmg)
+		combatant.currentHp = max(combatant.currentHp, min(lowestHp, roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency])))
 		
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants

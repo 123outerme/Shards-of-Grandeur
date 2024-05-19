@@ -222,6 +222,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				targets[idx].statusEffect = moveEffect.statusEffect.copy()
 				if moveEffect.statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
 					var elementBurn: ElementBurn = targets[idx].statusEffect as ElementBurn
+					# save the attacker's current stats to the element burn
 					var userStatChanges = StatChanges.new()
 					userStatChanges.stack(user.statChanges) # copy stat changes
 					var userStats: Stats = userStatChanges.apply(user.stats)
@@ -232,6 +233,13 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 						atkStat = userStats.affinity # use affinity for affinity-based attacks
 					# An ally w/ Intercept should NOT reduce the power of the burn
 					elementBurn.set_burn_damage_parameters(moveEffect.power, atkStat, user.stats.level)
+				elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
+					var endure: Endure = targets[idx].statusEffect as Endure
+					# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
+					endure.lowestHp = targets[idx].currentHp
+					# if a move was damaging, don't consider the currently taken damage for the lowestHp
+					if damage > 0:
+						endure.lowestHp += damage
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:

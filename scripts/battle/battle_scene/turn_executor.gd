@@ -58,7 +58,7 @@ func play_turn():
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 			)
 		for defender in combatant.command.targets:
-			if defender.statusEffect != null:
+			if defender.statusEffect != null: # apply "specifically afer taking damage" statuses
 				battleController.state.statusEffDamagedCombatants.append_array(
 					defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 				)
