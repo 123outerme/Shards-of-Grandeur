@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcegueepscj4j"]
+[gd_scene load_steps=13 format=3 uid="uid://bcegueepscj4j"]
 
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://themes/nested_ui/popup_ui.tres" id="1_vrx5q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_stats_panel.gd" id="2_n0f8k"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="6_kiy60"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="7_pcqma"]
 [ext_resource type="PackedScene" uid="uid://cxs31up6d6dxj" path="res://prefabs/ui/tooltip_panel.tscn" id="8_ipv3d"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="12_nophx"]
 
 [node name="BattleStatsPanel" type="Panel" groups=["BattleStatsPanel"]]
 offset_right = 1180.0
@@ -22,8 +23,8 @@ script = ExtResource("2_n0f8k")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 20.0
-offset_bottom = 70.0
+offset_top = 3.0
+offset_bottom = 53.0
 grow_horizontal = 2
 theme = ExtResource("3_ypxek")
 bbcode_enabled = true
@@ -38,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -280.0
-offset_top = -200.0
+offset_top = -229.0
 offset_right = 280.0
-offset_bottom = -168.0
+offset_bottom = -197.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -78,9 +79,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -94.0
-offset_top = -168.0
+offset_top = -201.0
 offset_right = 0.0
-offset_bottom = -156.0
+offset_bottom = -189.0
 scale = Vector2(2, 2)
 
 [node name="StatLinePanel" parent="." instance=ExtResource("5_qvaly")]
@@ -89,9 +90,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -140.0
+offset_top = -178.0
 offset_right = 570.0
-offset_bottom = 264.0
+offset_bottom = 226.0
 grow_vertical = 2
 readOnly = true
 
@@ -103,9 +104,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -570.0
-offset_top = -115.5
+offset_top = -84.0
 offset_right = -10.0
-offset_bottom = 239.5
+offset_bottom = 271.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -119,6 +120,34 @@ offset_left = 0.0800171
 offset_top = 0.105011
 offset_right = -0.0800171
 offset_bottom = -0.105042
+
+[node name="ElementDmgMultPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -178.0
+offset_right = -10.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("12_nophx")
+
+[node name="ElementDmgMultText" type="RichTextLabel" parent="ElementDmgMultPanel"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Element Damage Boosts:
+Fire Dmg +999%, Water Dmg +999%, Lightning Dmg +999%, Wind Dmg +999%, Earth Dmg +999%, Nature Dmg +999%, Dark Dmg +999%, Astral Dmg +999%[/center]"
+fit_content = true
 
 [node name="TooltipPanel" parent="." instance=ExtResource("8_ipv3d")]
 visible = false

@@ -15,6 +15,8 @@ class_name StatChanges
 @export var resistanceMultiplier: float = 1.0
 @export var speedMultiplier: float = 1.0
 
+@export var elementMultipliers: Array[ElementMultiplier] = []
+
 func _init(
 	i_physM = 1.0,
 	i_magicM = 1.0,
@@ -26,6 +28,7 @@ func _init(
 	i_affinityN = 0,
 	i_resistanceN = 0,
 	i_speedN = 0,
+	i_elementMults: Array[ElementMultiplier] = [],
 ):
 	physAttackIncrease = i_physN
 	magicAttackIncrease = i_magicN
@@ -37,6 +40,7 @@ func _init(
 	affinityMultiplier = i_affinityM
 	resistanceMultiplier = i_resistanceM
 	speedMultiplier = i_speedM
+	elementMultipliers = i_elementMults
 
 func reset():
 	physAttackIncrease = 0
@@ -49,6 +53,7 @@ func reset():
 	affinityMultiplier = 1.0
 	resistanceMultiplier = 1.0
 	speedMultiplier = 1.0
+	elementMultipliers = []
 
 func stack(changes: StatChanges):
 	if changes == null:
@@ -64,9 +69,25 @@ func stack(changes: StatChanges):
 	affinityMultiplier += changes.affinityMultiplier - 1.0
 	resistanceMultiplier += changes.resistanceMultiplier - 1.0
 	speedMultiplier += changes.speedMultiplier - 1.0
+	
+	for changesMult: ElementMultiplier in changes.elementMultipliers:
+		var found: bool = false
+		for mult: ElementMultiplier in elementMultipliers:
+			if mult.element == changesMult.element:
+				mult.multiplier += changesMult.multiplier - 1.0
+				if mult.multiplier == 1.0:
+					# remove the 1x multiplier
+					var idx: int = elementMultipliers.find(mult)
+					if idx != -1:
+						elementMultipliers.remove_at(idx)
+				found = true
+		if not found:
+			var newMult: ElementMultiplier = changesMult.duplicate()
+			if newMult.multiplier != 1.0:
+				elementMultipliers.append(newMult)
 
 func subtract(changes: StatChanges) -> StatChanges:
-	var newChanges = self.duplicate()
+	var newChanges = self.duplicate(true)
 	if changes != null:
 		newChanges.physAttackIncrease -= changes.physAttackIncrease
 		newChanges.magicAttackIncrease -= changes.magicAttackIncrease
@@ -79,6 +100,24 @@ func subtract(changes: StatChanges) -> StatChanges:
 		newChanges.affinityMultiplier -= changes.affinityMultiplier - 1.0
 		newChanges.resistanceMultiplier -= changes.resistanceMultiplier - 1.0
 		newChanges.speedMultiplier -= changes.speedMultiplier - 1.0
+		
+		for changesMult: ElementMultiplier in changes.elementMultipliers:
+			var found: bool = false
+			for mult: ElementMultiplier in newChanges.elementMultipliers:
+				if mult.element == changesMult.element:
+					mult.multiplier -= changesMult.multiplier - 1.0
+					if mult.multiplier == 1.0:
+						# remove the 1x multiplier
+						var idx: int = newChanges.elementMultipliers.find(mult)
+						if idx != -1:
+							newChanges.elementMultipliers.remove_at(idx)
+					found = true
+			if not found:
+				var newMult: ElementMultiplier = changesMult.duplicate()
+				newMult.multiplier -= newMult.multiplier - 1.0
+				# only add the multiplier if it's not 1x
+				if newMult.multiplier != 1.0:
+					newChanges.elementMultipliers.append(newMult)
 	
 	return newChanges
 
@@ -94,6 +133,9 @@ func times(x: float):
 	affinityMultiplier = (affinityMultiplier - 1.0) * x + 1
 	resistanceMultiplier = (resistanceMultiplier - 1.0) * x + 1
 	speedMultiplier = (speedMultiplier - 1.0) * x + 1
+	
+	for mult: ElementMultiplier in elementMultipliers:
+		mult.multiplier = (mult.multiplier - 1.0) * x + 1
 
 func equals(changes: StatChanges) -> bool:
 	if changes == null:
@@ -120,6 +162,20 @@ func equals(changes: StatChanges) -> bool:
 		return false
 	if speedMultiplier != changes.speedMultiplier:
 		return false
+	
+	if len(elementMultipliers) != len(changes.elementMultipliers):
+		return false
+	
+	for changesMult: ElementMultiplier in changes.elementMultipliers:
+		var found = false
+		for mult: ElementMultiplier in elementMultipliers:
+			if mult.element == changesMult.element:
+				found = true
+				if mult.multiplier != mult.multiplier:
+					return false
+		if not found and changesMult.multiplier != 1.0:
+			return false
+	
 	return true
 
 func undo_changes(changes: StatChanges):
@@ -136,6 +192,23 @@ func undo_changes(changes: StatChanges):
 	affinityMultiplier -= changes.affinityMultiplier - 1.0
 	resistanceMultiplier -= changes.resistanceMultiplier - 1.0
 	speedMultiplier -= changes.speedMultiplier - 1.0
+	
+	for changesMult: ElementMultiplier in changes.elementMultipliers:
+		var found: bool = false
+		for mult: ElementMultiplier in elementMultipliers:
+			if mult.element == changesMult.element:
+				mult.multiplier -= changesMult.multiplier - 1.0
+				if mult.multiplier == 1.0:
+					# remove the 1x multiplier
+					var idx: int = elementMultipliers.find(mult)
+					if idx != -1:
+						elementMultipliers.remove_at(idx)
+				found = true
+		if not found:
+			var newMult: ElementMultiplier = changesMult.duplicate()
+			newMult.multiplier -= newMult.multiplier - 1.0
+			if newMult.multiplier != 1.0:
+				elementMultipliers.append(newMult)
 
 func apply(s: Stats) -> Stats:
 	var newStats = s.copy()
@@ -145,14 +218,29 @@ func apply(s: Stats) -> Stats:
 	newStats.resistance += resistanceIncrease
 	newStats.speed += speedIncrease
 	
-	newStats.physAttack = roundi(newStats.physAttack * physAttackMultiplier)
-	newStats.magicAttack = roundi(newStats.magicAttack * magicAttackMultiplier)
-	newStats.affinity = roundi(newStats.affinity * affinityMultiplier)
-	newStats.resistance = roundi(newStats.resistance * resistanceMultiplier)
-	newStats.speed = roundi(newStats.speed * speedMultiplier)
+	# factor in multipliers, don't let any stat go below 1 stat point
+	newStats.physAttack = max(1, roundi(newStats.physAttack * physAttackMultiplier))
+	newStats.magicAttack = max(1, roundi(newStats.magicAttack * magicAttackMultiplier))
+	newStats.affinity = max(1, roundi(newStats.affinity * affinityMultiplier))
+	newStats.resistance = max(1, roundi(newStats.resistance * resistanceMultiplier))
+	newStats.speed = max(roundi(newStats.speed * speedMultiplier))
+	
+	# element multipliers are not stored in the stats object, so ignore those
 	return newStats
 
+func get_element_multiplier(e: Move.Element) -> float:
+	for mult: ElementMultiplier in elementMultipliers:
+		if mult.element == e:
+			return mult.multiplier
+	
+	return 1.0
+
 func has_stat_changes() -> bool:
+	# check if any element multipliers exist that aren't 1x. If there is at least one, this obj has stat changes
+	for mult: ElementMultiplier in elementMultipliers:
+		if mult.multiplier != 1.0:
+			return true
+	
 	return physAttackIncrease != 0 \
 			or magicAttackIncrease != 0 \
 			or affinityIncrease != 0 \
@@ -179,6 +267,15 @@ func get_resistance_multiplier() -> StatMultiplierText:
 func get_speed_multiplier() -> StatMultiplierText:
 	return StatMultiplierText.new('Speed', speedIncrease, speedMultiplier)
 
+func get_element_multiplier_texts() -> Array[StatMultiplierText]:
+	var texts: Array[StatMultiplierText] = []
+	for mult: ElementMultiplier in elementMultipliers:
+		if mult.multiplier != 1.0:
+			texts.append( \
+				StatMultiplierText.new(Move.element_to_string(mult.element) + ' Dmg', 0, mult.multiplier) \
+			)
+	return texts
+
 func get_multipliers_text() -> Array[StatMultiplierText]:
 	var texts: Array[StatMultiplierText] = []
 	
@@ -196,5 +293,7 @@ func get_multipliers_text() -> Array[StatMultiplierText]:
 	
 	if speedIncrease != 0 or speedMultiplier != 1.0:
 		texts.append(get_speed_multiplier())
-	
+
+	texts.append_array(get_element_multiplier_texts())
+
 	return texts

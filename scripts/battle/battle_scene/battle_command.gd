@@ -232,7 +232,10 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					if move.category == Move.DmgCategory.AFFINITY:
 						atkStat = userStats.affinity # use affinity for affinity-based attacks
 					# An ally w/ Intercept should NOT reduce the power of the burn
-					elementBurn.set_burn_damage_parameters(moveEffect.power, atkStat, user.stats.level)
+					var elMultiplier: float = 1.0
+					if user.statChanges != null:
+						elMultiplier = user.statChanges.get_element_multiplier(move.element)
+					elementBurn.set_burn_damage_parameters(moveEffect.power * elMultiplier, atkStat, user.stats.level)
 				elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
 					var endure: Endure = targets[idx].statusEffect as Endure
 					# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
@@ -280,11 +283,15 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 	var targetStatChanges = StatChanges.new()
 	targetStatChanges.stack(target.statChanges)
 	var moveEffect: MoveEffect = null
-	var elEffectivenessMultiplier: float = 1
+	var elEffectivenessMultiplier: float = 1.0
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
-		elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
-		
+		# don't consider element effectiveness matchup with healing moves
+		if power > 0:
+			elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
+		# but do consider the elemental multiplier
+		elEffectivenessMultiplier *= user.get_element_multiplier(move.element)
+
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)
 		if (isEnemyTargeting and moveEffect.power > 0) or !(isEnemyTargeting and moveEffect.power < 0):
@@ -536,7 +543,7 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += '\n' + user.disp_name() + ' boosted '
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and \
 					((userIdx > -1 and commandResult.wasBoosted[userIdx]) or commandResult.wasBoosted):
-				var selfStatChanges = moveEffect.selfStatChanges.duplicate()
+				var selfStatChanges = moveEffect.selfStatChanges.duplicate(true)
 				if moveEffect.targetStatChanges != null and userIdx > -1 and commandResult.wasBoosted[userIdx]:
 					selfStatChanges.stack(moveEffect.targetStatChanges)
 				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()

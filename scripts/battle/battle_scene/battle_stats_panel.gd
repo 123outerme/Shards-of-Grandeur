@@ -12,6 +12,7 @@ class_name BattleStatsPanel
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
 @onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
 @onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
+@onready var elementDmgMultText: RichTextLabel = get_node('ElementDmgMultPanel/ElementDmgMultText')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +46,13 @@ func load_battle_stats_panel():
 	
 	equipmentPanel.weapon = combatant.stats.equippedWeapon
 	equipmentPanel.armor = combatant.stats.equippedArmor
+	
+	var elMultTexts: Array[StatMultiplierText] = []
+	if combatant.statChanges != null:
+		elMultTexts = combatant.statChanges.get_element_multiplier_texts()
+	elementDmgMultText.text = '[center]Element Damage Boosts:\n' \
+			+ StatMultiplierText.multiplier_text_list_to_string(elMultTexts) + '[/center]'
+	
 	equipmentPanel.load_equipment_panel()
 
 func _on_status_help_button_pressed():

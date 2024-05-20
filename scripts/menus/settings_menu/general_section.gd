@@ -9,7 +9,7 @@ const windowSizeOptions: Dictionary = {
 	0: Vector2i(1280, 720),
 	1: Vector2i(1920, 1080)
 }
-const resizeWaitTime: float = 5
+const resizeWaitTime: float = 15
 
 var windowSizeOptionsMenu: PopupMenu = null
 var waitingForResizeConfirm: bool = false

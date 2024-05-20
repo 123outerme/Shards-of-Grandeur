@@ -129,13 +129,13 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	
 	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs
 	
-	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate() if surgeChanges.selfStatChangesPerOrb else StatChanges.new()
+	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate(true) if surgeChanges.selfStatChangesPerOrb else StatChanges.new()
 	finalSelfStatChanges.times(additionalOrbs)
 	if newEffect.selfStatChanges == null:
 		newEffect.selfStatChanges = StatChanges.new()
 	newEffect.selfStatChanges.stack(finalSelfStatChanges)
 	
-	var finalTargetStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate() if surgeChanges.targetStatChangesPerOrb else StatChanges.new()
+	var finalTargetStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate(true) if surgeChanges.targetStatChangesPerOrb else StatChanges.new()
 	finalTargetStatChanges.times(additionalOrbs)
 	if newEffect.targetStatChanges == null:
 		newEffect.targetStatChanges = StatChanges.new()
@@ -157,8 +157,8 @@ func copy() -> MoveEffect:
 		power,
 		orbChange,
 		targets,
-		selfStatChanges.duplicate() if selfStatChanges != null else null,
-		targetStatChanges.duplicate() if targetStatChanges != null else null,
+		selfStatChanges.duplicate(true) if selfStatChanges != null else null,
+		targetStatChanges.duplicate(true) if targetStatChanges != null else null,
 		statusEffect,
 		selfGetsStatus,
 		statusChance,
