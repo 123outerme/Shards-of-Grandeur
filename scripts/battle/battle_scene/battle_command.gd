@@ -235,7 +235,10 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					var elMultiplier: float = 1.0
 					if user.statChanges != null:
 						elMultiplier = user.statChanges.get_element_multiplier(move.element)
-					elementBurn.set_burn_damage_parameters(moveEffect.power * elMultiplier, atkStat, user.stats.level)
+					var burnPower: float = moveEffect.power
+					if elementBurn.power != -1:
+						burnPower = elementBurn.power
+					elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
 				elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
 					var endure: Endure = targets[idx].statusEffect as Endure
 					# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
