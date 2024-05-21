@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=65 format=3 uid="uid://duqplppdxtk4y"]
+[gd_resource type="SpriteFrames" load_steps=67 format=3 uid="uid://duqplppdxtk4y"]
 
 [ext_resource type="Texture2D" uid="uid://dr7u8syuxmuqb" path="res://graphics/characters/solius/solius_stand.png" id="1_0fve1"]
 [ext_resource type="Texture2D" uid="uid://0e77fsd2nfqt" path="res://graphics/characters/solius/solius_attack_magic.png" id="1_1qm7k"]
@@ -111,6 +111,14 @@ region = Rect2(384, 0, 32, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xmu0"]
 atlas = ExtResource("1_1qm7k")
 region = Rect2(416, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkw2a"]
+atlas = ExtResource("1_1qm7k")
+region = Rect2(448, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3die"]
+atlas = ExtResource("1_1qm7k")
+region = Rect2(480, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpwd3"]
 atlas = ExtResource("1_48efj")
@@ -321,6 +329,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3xmu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkw2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3die")
 }],
 "loop": false,
 "name": &"attack_magic",
