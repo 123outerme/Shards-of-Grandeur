@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://g2a5lofal7lw"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://g2a5lofal7lw"]
 
 [ext_resource type="Texture2D" uid="uid://bsalwesrc7y3p" path="res://graphics/characters/cloud_gull/cloud_gull_attack_affinity.png" id="1_4lor7"]
 [ext_resource type="Texture2D" uid="uid://b2ba7cnv2p2xn" path="res://graphics/characters/cloud_gull/cloud_gull_attack_magic.png" id="1_4njnv"]
@@ -84,6 +84,10 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nv0x"]
 atlas = ExtResource("1_4njnv")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2orr"]
+atlas = ExtResource("1_4njnv")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw41q"]
 atlas = ExtResource("1_rvgvc")
@@ -208,6 +212,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2nv0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2orr")
 }],
 "loop": false,
 "name": &"attack_magic",

@@ -223,7 +223,7 @@ func apply(s: Stats) -> Stats:
 	newStats.magicAttack = max(1, roundi(newStats.magicAttack * magicAttackMultiplier))
 	newStats.affinity = max(1, roundi(newStats.affinity * affinityMultiplier))
 	newStats.resistance = max(1, roundi(newStats.resistance * resistanceMultiplier))
-	newStats.speed = max(roundi(newStats.speed * speedMultiplier))
+	newStats.speed = max(1, roundi(newStats.speed * speedMultiplier))
 	
 	# element multipliers are not stored in the stats object, so ignore those
 	return newStats

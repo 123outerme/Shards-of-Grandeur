@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=54 format=3 uid="uid://gcii401b383q"]
+[gd_resource type="SpriteFrames" load_steps=57 format=3 uid="uid://gcii401b383q"]
 
 [ext_resource type="Texture2D" uid="uid://dbw0m73kfxlq3" path="res://graphics/characters/player/player_attack_affinity.png" id="1_b8evi"]
 [ext_resource type="Texture2D" uid="uid://btv7dhs2knaeq" path="res://graphics/characters/player/player_attack_phys.png" id="2_g660h"]
@@ -68,6 +68,18 @@ region = Rect2(80, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_su00b"]
 atlas = ExtResource("2_mvpyy")
 region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikts8"]
+atlas = ExtResource("2_mvpyy")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6p13"]
+atlas = ExtResource("2_mvpyy")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qb4t"]
+atlas = ExtResource("2_mvpyy")
+region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1ca2"]
 atlas = ExtResource("2_g660h")
@@ -241,6 +253,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_su00b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikts8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6p13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qb4t")
 }],
 "loop": false,
 "name": &"attack_magic",

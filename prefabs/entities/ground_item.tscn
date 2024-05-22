@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdnsjlf3gwbkf"]
+[gd_scene load_steps=7 format=3 uid="uid://cdnsjlf3gwbkf"]
 
 [ext_resource type="Script" path="res://prefabs/overworld/ground_item.gd" id="1_st01v"]
 [ext_resource type="Texture2D" uid="uid://r1lpcu518qt8" path="res://graphics/furniture/chest.png" id="2_68o7i"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="3_7ropx"]
 [ext_resource type="Resource" uid="uid://c0h5clacsbune" path="res://gamedata/items/ground_item_sparkle_particles.tres" id="4_bskfn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48bjw"]
+size = Vector2(16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvu1"]
-size = Vector2(1, 1)
+size = Vector2(17, 17)
 
 [node name="GroundItem" type="Area2D"]
 z_index = -12
@@ -15,6 +18,11 @@ collision_mask = 2
 input_pickable = false
 monitorable = false
 script = ExtResource("1_st01v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_48bjw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fhvu1")
@@ -31,3 +39,4 @@ waves = -1.0
 duration = -1.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -40,6 +40,7 @@ var startingBattle: bool = false
 
 var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
+var groundItems: Array[GroundItem] = []
 var running: bool = false
 var useTeleportStone: TeleportStone = null
 # play a step immediately when moving the next time
@@ -81,13 +82,23 @@ func _unhandled_input(event):
 		
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline") \
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
-			and (len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
+			and (len(talkNPCcandidates) > 0 or len(groundItems) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice and not cutscenePaused and \
 			not startingBattle and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
-		if textBox.is_textbox_complete():
+		if len(groundItems) > 0 and event.is_action_pressed("game_interact"):
+			var closestGroundItem: GroundItem = null
+			# find the closest ground item (using squared distance bc faster; the distance only matters relative to other ground items)
+			groundItems = groundItems.filter(_filter_out_null)
+			for groundItem: GroundItem in groundItems:
+				if (closestGroundItem == null or \
+						(groundItem.global_position - global_position).length_squared() < (closestGroundItem.global_position - global_position).length_squared()):
+					closestGroundItem = groundItem
+			if closestGroundItem != null:
+				pick_up(closestGroundItem)
+		elif textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
-		else:
+		elif textBox.visible:
 			textBox.show_text_instant()
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
@@ -390,6 +401,10 @@ func snap_camera_back_to_player(duration: float = 0.5):
 		uiRoot.position = Vector2(0, 0)
 
 func pick_up(groundItem: GroundItem):
+	var idx: int = groundItems.find(groundItem)
+	if idx != -1:
+		groundItems.remove_at(idx)
+	
 	if PlayerResources.playerInfo.has_picked_up(groundItem.pickedUpItem.uniqueId):
 		return
 	
@@ -576,3 +591,6 @@ func _on_pause_menu_resume_game():
 	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
+
+func _filter_out_null(value):
+	return value != null

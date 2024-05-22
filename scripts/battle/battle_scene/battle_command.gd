@@ -293,7 +293,7 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		if power > 0:
 			elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
 		# but do consider the elemental multiplier
-		elEffectivenessMultiplier *= user.get_element_multiplier(move.element)
+		elEffectivenessMultiplier *= user.statChanges.get_element_multiplier(move.element)
 
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)

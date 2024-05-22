@@ -40,7 +40,15 @@ func _ready():
 
 func _on_area_entered(area):
 	if not disabled and area.name == 'PlayerEventCollider' and not PlayerResources.playerInfo.has_picked_up(pickedUpItem.uniqueId):
-		PlayerFinder.player.pick_up(self)
+		# add this ground item to the list of ground items the player can pick up
+		PlayerFinder.player.groundItems.append(self)
+
+func _on_area_exited(area):
+	if area.name == 'PlayerEventCollider' and self in PlayerFinder.player.groundItems:
+		# remove item from the running to be picked up
+		var idx: int = PlayerFinder.player.groundItems.find(self)
+		if idx != -1:
+			PlayerFinder.player.groundItems.remove_at(idx)
 
 func _story_reqs_updated():
 	visible = len(storyRequirements) == 0 # false if any requirements, otherwise true
