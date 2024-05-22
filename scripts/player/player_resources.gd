@@ -53,9 +53,7 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
-		if not playerInfo.combatant.stats.is_stat_total_valid():
-			printerr('Player stats were invalid! Resetting.')
-			playerInfo.combatant.stats.reset_stat_points()
+		playerInfo.combatant.validate_all_evolutions_stat_totals()
 			
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		playerInfo.combatant.validate_evolution_stats() # validate evolution stats data structure

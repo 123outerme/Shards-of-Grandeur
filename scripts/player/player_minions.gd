@@ -112,11 +112,6 @@ func validate_minion_moves(minion: Combatant):
 				minion.stats.moves[idx] = move # set this move in the previously invalid move slot
 				break
 
-func validate_minion_stats(minion: Combatant):
-	if not minion.stats.is_stat_total_valid():
-		printerr('Minion ' + minion.disp_name() + ' had invalid stats! Resetting.')
-		minion.stats.reset_stat_points()
-
 func load_data(save_path):
 	var data = null
 	if ResourceLoader.exists(save_path + save_file):
@@ -151,8 +146,9 @@ func _load_data_each_minion(save_path):
 						minion.friendship = savedFriendship
 				minion.nickname = savedNickname
 			validate_minion_moves(minion)
-			validate_minion_stats(minion)
-			minion.validate_evolution_stats()  # validate evolution stats data structure
+			# validate evolution stats data structure, and validate all stat totals (resetting if invalid)
+			minion.validate_all_evolutions_stat_totals()
+			# now, the minion is valid and can be added to the list
 			set_minion(minion)
 
 func save_data(save_path, data) -> int:

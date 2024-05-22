@@ -183,6 +183,7 @@ func get_evolution() -> Evolution:
 # adds 0b1000 if ALL moves were found invalid
 func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	validate_evolution_stats()
+	validate_all_evolutions_stat_totals()
 	if evolutions == null:
 		return 0
 	# save the pre-switch stats back to the stats dict
@@ -224,6 +225,14 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	if nullMoves == 4:
 		returnCode += 0b1000
 	return returnCode
+
+func validate_all_evolutions_stat_totals():
+	validate_evolution_stats()
+	for index in evolutionStats:
+		var stats: Stats = evolutionStats[index]
+		if not stats.is_stat_total_valid():
+			print('WARN: ', save_name(), ' evolution ', index, "'s stat total was invalid. Resetting.")
+			stats.reset_stat_points()
 
 func get_sprite_frames() -> SpriteFrames:
 	var evolution: Evolution = get_evolution()
