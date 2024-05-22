@@ -191,6 +191,16 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	var prevIdx: String = get_evolution_stats_idx(prevEvolution)
 	evolutionStats[prevIdx] = stats
 	stats = get_evolution_stats(evolution)
+	# if this is a player evolution, keep learned moves and add moves granted by new evolution
+	if save_name() == 'player':
+		# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution
+		var movepool: MovePool = get_evolution_stats(null).stats.movepool.copy()
+		# for each move granted by this evolution, if not in the movepool, add it
+		for move: Move in evolution.stats.movepool.pool:
+			if not (move in movepool.pool):
+				movepool.pool.append(move)
+		stats.movepool = movepool
+	
 	# if this stats set is underlevelled, level it up now
 	if stats.level < evolutionStats[prevIdx].level:
 		stats.level_up(evolutionStats[prevIdx].level - stats.level)
@@ -428,10 +438,11 @@ func assign_moves_nonplayer():
 # returns the number of null moves after validation but before any re-assignment
 func validate_moves() -> int:
 	var emptySlots: int = 0
-	for move: Move in stats.moves:
+	for moveIdx in range(len(stats.moves)):
+		var move: Move = stats.moves[moveIdx]
 		if move != null and not move in stats.movepool.pool:
-			move = null
-		if move == null:
+			stats.moves[moveIdx] = null
+		if stats.moves[moveIdx] == null:
 			emptySlots += 1
 	if emptySlots == 4:
 		assign_moves_nonplayer()
@@ -494,3 +505,6 @@ func save_from_object(c: Combatant):
 		command = null
 	
 	downed = c.downed
+
+func _desc_order(a, b):
+	return a > b

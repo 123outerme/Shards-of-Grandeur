@@ -433,7 +433,12 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 					lastSlotInteracted = null
 		'shardLearn':
 			if yes:
-				PlayerResources.playerInfo.combatant.stats.add_move_to_pool(itemUsePanel.learnedMove)
+				var playerCombatant: Combatant = PlayerResources.playerInfo.combatant
+				playerCombatant.stats.add_move_to_pool(itemUsePanel.learnedMove)
+				# if the player is in an evolution right now, also add this move to the base form stats for keeping track of learned moves
+				if playerCombatant.get_evolution() != null:
+					playerCombatant.get_evolution_stats(null).stats.add_move_to_pool(itemUsePanel.learnedMove)
+				
 				var shard: Shard = lastSlotInteracted.item as Shard
 				# add Attunement for minion whose shard you used
 				PlayerResources.minions.add_friendship(shard.combatantSaveName, true)
