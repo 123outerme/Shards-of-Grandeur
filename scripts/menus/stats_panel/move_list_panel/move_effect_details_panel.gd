@@ -118,7 +118,7 @@ func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:
 		return
 	helpButtonPressed = statusHelpButton
-	tooltipPanel.title = moveEffect.statusEffect.moveEffect.statusEffect.get_status_type_string()
+	tooltipPanel.title = moveEffect.statusEffect.get_status_type_string()
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
 	tooltipPanel.z_index = 1
