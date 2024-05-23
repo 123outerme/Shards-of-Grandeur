@@ -1,7 +1,48 @@
-[gd_resource type="Resource" script_class="CombatantRewards" load_steps=2 format=3 uid="uid://drxnx7tqq2gv6"]
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=13 format=3 uid="uid://drxnx7tqq2gv6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_3tkj4"]
+[ext_resource type="Resource" uid="uid://rat15prg84gk" path="res://gamedata/items/shard/blob_shard.tres" id="2_clv1q"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_ijlgj"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="4_n63c1"]
+[ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="5_ra1np"]
+[ext_resource type="Resource" uid="uid://bhnwqrl4m4c7p" path="res://gamedata/items/healing/brawn_elixir.tres" id="6_vmtm7"]
+
+[sub_resource type="Resource" id="Resource_jl1hs"]
+script = ExtResource("3_ijlgj")
+experience = 60
+gold = 10
+item = ExtResource("2_clv1q")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_3p4d7"]
+script = ExtResource("4_n63c1")
+reward = SubResource("Resource_jl1hs")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_1a66q"]
+script = ExtResource("3_ijlgj")
+experience = 60
+gold = 10
+item = ExtResource("5_ra1np")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_jnqvd"]
+script = ExtResource("4_n63c1")
+reward = SubResource("Resource_1a66q")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_uven3"]
+script = ExtResource("3_ijlgj")
+experience = 60
+gold = 10
+item = ExtResource("6_vmtm7")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_uavpj"]
+script = ExtResource("4_n63c1")
+reward = SubResource("Resource_uven3")
+weight = 0.25
 
 [resource]
 script = ExtResource("1_3tkj4")
-weightedRewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+weightedRewards = Array[ExtResource("4_n63c1")]([SubResource("Resource_3p4d7"), SubResource("Resource_jnqvd"), SubResource("Resource_uavpj")])

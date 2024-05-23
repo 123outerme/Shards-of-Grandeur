@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=6 format=3 uid="uid://c426oq6hx1sbl"]
+
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_4adol"]
+[ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_cv7bt"]
+[ext_resource type="Resource" uid="uid://dbn5mhjawwmv0" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier.tres" id="1_ipikf"]
+[ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="3_yr0mc"]
+[ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="4_qa4i0"]
+
+[resource]
+script = ExtResource("1_4adol")
+combatant1Level = 13
+combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2 = ExtResource("3_yr0mc")
+combatant2Level = 13
+combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3 = ExtResource("4_qa4i0")
+combatant3Level = 12
+combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAlly = ExtResource("1_cv7bt")
+autoAllyLevel = 12
+autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+specialBattleId = "sea_leg_soldier_4"
+bossBattle = false
+canEscape = false
+rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
+useStaticRewards = false
+combatant1 = ExtResource("1_ipikf")
