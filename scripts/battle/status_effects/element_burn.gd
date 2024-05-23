@@ -81,7 +81,7 @@ func set_burn_damage_parameters(pPower: float, pAttackerStat: float, pAttackerLv
 
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
-		return combatant.disp_name() + ' takes ' + str(get_burn_damage(combatant)) + ' damage from ' + status_effect_to_string() + '!'
+		return combatant.disp_name() + ' takes ' + str(get_burn_damage(combatant)) + ' ' + Move.element_to_string(element) + ' damage from ' + status_effect_to_string() + '!'
 	return ''
 
 func get_status_effect_tooltip():
