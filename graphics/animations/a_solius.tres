@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=67 format=3 uid="uid://duqplppdxtk4y"]
+[gd_resource type="SpriteFrames" load_steps=68 format=3 uid="uid://duqplppdxtk4y"]
 
 [ext_resource type="Texture2D" uid="uid://dr7u8syuxmuqb" path="res://graphics/characters/solius/solius_stand.png" id="1_0fve1"]
 [ext_resource type="Texture2D" uid="uid://0e77fsd2nfqt" path="res://graphics/characters/solius/solius_attack_magic.png" id="1_1qm7k"]
@@ -55,6 +55,10 @@ region = Rect2(320, 0, 32, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkeg8"]
 atlas = ExtResource("1_kpyt6")
 region = Rect2(352, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ihje"]
+atlas = ExtResource("1_kpyt6")
+region = Rect2(384, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awqxh"]
 atlas = ExtResource("1_1qm7k")
@@ -282,6 +286,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xkeg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ihje")
 }],
 "loop": false,
 "name": &"attack_affinity",
