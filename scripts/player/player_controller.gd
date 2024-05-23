@@ -405,6 +405,8 @@ func pick_up(groundItem: GroundItem):
 	if idx != -1:
 		groundItems.remove_at(idx)
 	
+	groundItem.show_pick_up_sprite(false)
+	
 	if PlayerResources.playerInfo.has_picked_up(groundItem.pickedUpItem.uniqueId):
 		return
 	

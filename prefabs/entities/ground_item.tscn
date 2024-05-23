@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdnsjlf3gwbkf"]
+[gd_scene load_steps=8 format=3 uid="uid://cdnsjlf3gwbkf"]
 
 [ext_resource type="Script" path="res://prefabs/overworld/ground_item.gd" id="1_st01v"]
 [ext_resource type="Texture2D" uid="uid://r1lpcu518qt8" path="res://graphics/furniture/chest.png" id="2_68o7i"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="3_7ropx"]
 [ext_resource type="Resource" uid="uid://c0h5clacsbune" path="res://gamedata/items/ground_item_sparkle_particles.tres" id="4_bskfn"]
+[ext_resource type="SpriteFrames" uid="uid://blj38hlj4j8ik" path="res://graphics/ui/a_pick_up_arrow.tres" id="5_ndstt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48bjw"]
 size = Vector2(16, 16)
@@ -31,12 +32,20 @@ shape = SubResource("RectangleShape2D_fhvu1")
 texture = ExtResource("2_68o7i")
 
 [node name="ParticleEmitter" parent="." instance=ExtResource("3_7ropx")]
+z_index = 10
 scale = Vector2(0.85, 0.85)
 preset = ExtResource("4_bskfn")
 lifetime = 1.5
 particles = 1
 waves = -1.0
 duration = -1.0
+
+[node name="PickUpSprite" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -11)
+sprite_frames = ExtResource("5_ndstt")
+autoplay = "default"
+frame_progress = 0.23361
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
