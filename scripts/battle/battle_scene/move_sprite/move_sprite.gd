@@ -85,6 +85,7 @@ func load_frame():
 		var presetCopy: ParticlePreset = sprFrame.particles.duplicate(true)
 		if not user.leftSide: # particles are designed & saved as they would play on an enemy (right side)
 			presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
+			presetCopy.processMaterial.emission_shape_offset.x *= -1 # invert emission shape X offset direction
 		particleEmitter.preset = presetCopy
 		particleEmitter.set_make_particles(true)
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1

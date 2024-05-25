@@ -45,6 +45,7 @@ func create_reports():
 		else:
 			if FileAccess.get_open_error() != OK:
 				printerr('FileAccess error opening file ', TEST_DIR + filename, ' (error ', FileAccess.get_open_error(), ')')
+	print('All CSV reports have been saved.')
 
 func print_report():
 	#for_all_combatants_series([print_combatant_weaknesses, print_combatant_status_resistances])

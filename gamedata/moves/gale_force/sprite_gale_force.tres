@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://bf4w7s7rycqkg"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_jtj4q"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_pq3mo"]
+[ext_resource type="Resource" uid="uid://mgv7fdwxvs7f" path="res://gamedata/moves/gale_force/particles_gale_force.tres" id="2_6n341"]
+[ext_resource type="SpriteFrames" uid="uid://dbt2d8ghpnf3" path="res://graphics/moves/wind/a_wind.tres" id="2_51eh7"]
+
+[sub_resource type="Curve" id="Curve_wj8y3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_ypax3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_y5pf5"]
+script = ExtResource("1_pq3mo")
+annotation = "set up attack position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(4, 0)
+offset = 1
+xCurve = SubResource("Curve_wj8y3")
+yCurve = SubResource("Curve_ypax3")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_margy"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_a168r"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_82iyh"]
+script = ExtResource("1_pq3mo")
+annotation = "play Gale Force animation"
+animation = "gale_force"
+duration = 0.125
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_margy")
+yCurve = SubResource("Curve_a168r")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_6n341")
+
+[sub_resource type="Curve" id="Curve_1brs4"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_mggv4"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_3qf1q"]
+script = ExtResource("1_pq3mo")
+annotation = "Play wind particles on impact"
+animation = "gale_force"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_1brs4")
+yCurve = SubResource("Curve_mggv4")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("1_jtj4q")
+spriteFrames = ExtResource("2_51eh7")
+centerSprite = true
+maxSize = Vector2(14, 12)
+frames = Array[ExtResource("1_pq3mo")]([SubResource("Resource_y5pf5"), SubResource("Resource_82iyh"), SubResource("Resource_3qf1q")])
+delayedUntilReposition = true
+onePerTarget = true

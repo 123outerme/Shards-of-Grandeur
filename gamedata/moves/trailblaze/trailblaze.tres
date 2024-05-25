@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://bnrtajyq7xgiy"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_cyu5v"]
+[ext_resource type="Resource" uid="uid://gbxudcev1jic" path="res://gamedata/moves/trailblaze/anim_trailblaze.tres" id="1_me1a3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_n7b8c"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="4_4vbse"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_v0gqq"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_4dbkl"]
+
+[sub_resource type="Resource" id="Resource_6jobn"]
+script = ExtResource("1_n7b8c")
+role = 1
+orbChange = 2
+power = 35
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_amddl"]
+script = ExtResource("4_4vbse")
+element = 2
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_bqaiy"]
+script = ExtResource("4_v0gqq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.1
+elementMultipliers = Array[ExtResource("4_4vbse")]([SubResource("Resource_amddl")])
+
+[sub_resource type="Resource" id="Resource_mjjhp"]
+script = ExtResource("4_v0gqq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.05
+elementMultipliers = Array[ExtResource("4_4vbse")]([])
+
+[sub_resource type="Resource" id="Resource_0ejj1"]
+script = ExtResource("5_4dbkl")
+powerPerOrb = 5
+selfStatChangesPerOrb = SubResource("Resource_mjjhp")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_dfiex"]
+script = ExtResource("1_n7b8c")
+role = 1
+orbChange = -4
+power = 50
+targets = 5
+selfStatChanges = SubResource("Resource_bqaiy")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_0ejj1")
+
+[resource]
+script = ExtResource("1_cyu5v")
+moveName = "Trailblaze"
+requiredLv = 13
+category = 0
+element = 2
+chargeEffect = SubResource("Resource_6jobn")
+surgeEffect = SubResource("Resource_dfiex")
+description = "Forge a path to victory in the heat of battle."
+moveLearnedText = ""
+moveAnimation = ExtResource("1_me1a3")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://mgv7fdwxvs7f"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_e7ii2"]
+[ext_resource type="Texture2D" uid="uid://cepjbsf6jpl6d" path="res://graphics/particles/wind_1.png" id="1_gfh82"]
+[ext_resource type="Material" uid="uid://cse8w7ngtfdbw" path="res://gamedata/moves/gale_force/gale_force_particle_process_mat.tres" id="1_yevto"]
+[ext_resource type="Texture2D" uid="uid://dgwsdmeiqrv1q" path="res://graphics/particles/wind_2.png" id="2_6ia5g"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="3_nkws7"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind_3.png" id="3_p0ps8"]
+[ext_resource type="Texture2D" uid="uid://cwi43lo4vqxog" path="res://graphics/particles/wind_4.png" id="4_rgw2k"]
+
+[resource]
+script = ExtResource("1_e7ii2")
+emitter = "behind"
+count = 8
+inFrontOfCombatant = true
+lifetime = 0.5
+duration = 0.5
+staggered = true
+processMaterial = ExtResource("1_yevto")
+particleTextures = Array[Texture2D]([ExtResource("1_gfh82"), ExtResource("2_6ia5g"), ExtResource("3_p0ps8"), ExtResource("4_rgw2k")])
+sfx = ExtResource("3_nkws7")
