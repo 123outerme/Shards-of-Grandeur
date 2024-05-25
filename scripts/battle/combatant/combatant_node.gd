@@ -103,7 +103,7 @@ func load_combatant_node():
 			feetOffset.x = (combatant.get_max_size().x + feetOffset.x) * -1
 		feetOffset.y += 8
 		animatedSprite.offset = feetOffset
-		animatedSprite.play('battle_idle')
+		play_animation('battle_idle')
 		update_select_btn(false)
 		hpProgressBar.max_value = combatant.stats.maxHp
 		hpProgressBar.value = combatant.currentHp
@@ -703,7 +703,7 @@ func _on_click_combatant_btn_pressed():
 	details_clicked.emit(self)
 
 func _on_animated_sprite_animation_finished():
-	animatedSprite.play('battle_idle')
+	play_animation('battle_idle')
 	# if all move sprites have finished and move tween has completely finished
 	if playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position != returnToPos:
 		tween_back_to_return_pos()
@@ -754,7 +754,9 @@ func _combatant_finished_animating():
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if playedMoveSprites == 0 and animatedSprite.animation == 'battle_idle':
+	if playedMoveSprites == 0 and (animatedSprite.animation == 'battle_idle' or animatedSprite.animation == 'hide'):
+		if animatedSprite.animation == 'hide':
+			_on_animated_sprite_animation_finished()
 		tween_back_to_return_pos()
 
 func _on_combatant_tween_returned():
@@ -771,7 +773,9 @@ func _on_hp_drain_tween_finished():
 func _move_sprite_complete():
 	playedMoveSprites -= 1
 	# if the combatant's sprite animation is done and all move sprites have finished
-	if battleController != null and playedMoveSprites == 0 and animatedSprite.animation == 'battle_idle':
+	if battleController != null and playedMoveSprites == 0 and (animatedSprite.animation == 'battle_idle' or animatedSprite.animation == 'hide'):
+		if animatedSprite.animation == 'hide':
+			_on_animated_sprite_animation_finished()
 		if animateTween == null:
 			if spriteContainer.global_position != returnToPos:
 				tween_back_to_return_pos()
