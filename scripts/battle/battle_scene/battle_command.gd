@@ -236,7 +236,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					if user.statChanges != null:
 						elMultiplier = user.statChanges.get_element_multiplier(move.element)
 					var burnPower: float = moveEffect.power
-					if elementBurn.power != -1:
+					# if the status has preset power, use that instead: 
+					if elementBurn.power > 0:
 						burnPower = elementBurn.power
 					elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
 				elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:

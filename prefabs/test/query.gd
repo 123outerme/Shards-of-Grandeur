@@ -14,8 +14,8 @@ func create_reports():
 		[csv_combatant_movepool_size, csv_combatant_highest_move_lv, csv_combatant_highest_lv_move, csv_combatant_element_weaknesses, csv_combatant_element_resistances, csv_combatant_status_resistances, csv_combatant_status_immunities]
 	)
 	reports['moves/move_report.csv'] = create_report_for_all_moves_series(
-		['Power', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Chance'],
-		[csv_move_power, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_chance]
+		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance'],
+		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance]
 	)
 	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
@@ -176,12 +176,23 @@ func create_report_for_all_moves_series(columns: Array[String], queries: Array[C
 			reportContents += '\n'
 	return reportContents
 
+func csv_move_dmg_category(move: Move, _isSurge: bool) -> String:
+	return Move.dmg_category_to_string(move.category)
+
 func csv_move_element(move: Move, _isSurge: bool) -> String:
 	return Move.element_to_string(move.element)
+
+func csv_move_role(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	return MoveEffect.role_to_string(moveEffect.role)
 
 func csv_move_power(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	return String.num(moveEffect.power)
+
+func csv_move_orbs(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	return String.num(moveEffect.orbChange)
 
 func csv_move_self_stat_changes(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
@@ -200,13 +211,19 @@ func csv_move_target_stat_changes(move: Move, isSurge: bool) -> String:
 func csv_move_status(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	if moveEffect.statusEffect != null:
-		var statusDesc: String = StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' ' \
-				+ moveEffect.statusEffect.get_status_type_string()
+		var statusDesc: String = moveEffect.statusEffect.get_status_type_string()
 		if moveEffect.statusEffect.overwritesOtherStatuses:
 			statusDesc += ' | Replaces'
 		if moveEffect.selfGetsStatus:
 			statusDesc += ' (On Self)'
 		return statusDesc
+	else:
+		return ''
+
+func csv_move_status_potency(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	if moveEffect.statusEffect != null:
+		return StatusEffect.potency_to_string(moveEffect.statusEffect.potency)
 	else:
 		return ''
 
