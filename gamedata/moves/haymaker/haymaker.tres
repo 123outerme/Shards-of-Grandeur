@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://bq2xpx64wah04"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_5lf5w"]
+[ext_resource type="Resource" uid="uid://drmmi6te22urf" path="res://gamedata/moves/haymaker/anim_haymaker.tres" id="1_6g6ug"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_a3hii"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_ehx7g"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_ou1yv"]
+
+[sub_resource type="Resource" id="Resource_5fbii"]
+script = ExtResource("2_ehx7g")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.05
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.9
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_om766"]
+script = ExtResource("1_5lf5w")
+role = 1
+orbChange = 0
+power = 60
+targets = 5
+selfStatChanges = SubResource("Resource_5fbii")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_bb7ec"]
+script = ExtResource("2_ehx7g")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.1
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.85
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_ikvgf"]
+script = ExtResource("2_ehx7g")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.98
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_tqwf3"]
+script = ExtResource("5_ou1yv")
+powerPerOrb = 5
+selfStatChangesPerOrb = SubResource("Resource_ikvgf")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_837x4"]
+script = ExtResource("1_5lf5w")
+role = 1
+orbChange = -3
+power = 70
+targets = 5
+selfStatChanges = SubResource("Resource_bb7ec")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_tqwf3")
+
+[resource]
+script = ExtResource("1_a3hii")
+moveName = "Haymaker"
+requiredLv = 9
+category = 0
+element = 0
+chargeEffect = SubResource("Resource_om766")
+surgeEffect = SubResource("Resource_837x4")
+description = "A strike performed from a purely aggressive stance, aiming for the knockout."
+moveLearnedText = ""
+moveAnimation = ExtResource("1_6g6ug")

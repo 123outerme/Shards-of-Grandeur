@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="Move" load_steps=17 format=3 uid="uid://brdwnj3qs20tx"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_04xk1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_qh1d8"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/mania.gd" id="2_vyirh"]
+[ext_resource type="Resource" uid="uid://ca45d78gxcp31" path="res://gamedata/moves/amp_reflexes/anim_amp_reflexes.tres" id="3_600du"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_suape"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_cbknf"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="6_bdild"]
+
+[sub_resource type="Resource" id="Resource_6t6vs"]
+script = ExtResource("2_vyirh")
+type = 7
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_cskvo"]
+script = ExtResource("1_qh1d8")
+role = 3
+orbChange = 1
+power = 0
+targets = 2
+statusEffect = SubResource("Resource_6t6vs")
+selfGetsStatus = false
+statusChance = 1.0
+
+[sub_resource type="Resource" id="Resource_o1xf3"]
+script = ExtResource("4_suape")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.05
+elementMultipliers = Array[ExtResource("6_bdild")]([])
+
+[sub_resource type="Resource" id="Resource_be33p"]
+script = ExtResource("2_vyirh")
+type = 7
+potency = 2
+overwritesOtherStatuses = false
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_njdvs"]
+script = ExtResource("4_suape")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.05
+elementMultipliers = Array[ExtResource("6_bdild")]([])
+
+[sub_resource type="Resource" id="Resource_6ilot"]
+script = ExtResource("6_bdild")
+element = 3
+multiplier = 1.05
+
+[sub_resource type="Resource" id="Resource_ios1g"]
+script = ExtResource("4_suape")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("6_bdild")]([SubResource("Resource_6ilot")])
+
+[sub_resource type="Resource" id="Resource_63gk8"]
+script = ExtResource("5_cbknf")
+powerPerOrb = 0
+selfStatChangesPerOrb = SubResource("Resource_njdvs")
+targetStatChangesPerOrb = SubResource("Resource_ios1g")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 5
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_351ro"]
+script = ExtResource("1_qh1d8")
+role = 3
+orbChange = -2
+power = 0
+targets = 2
+selfStatChanges = SubResource("Resource_o1xf3")
+statusEffect = SubResource("Resource_be33p")
+selfGetsStatus = false
+statusChance = 1.0
+surgeChanges = SubResource("Resource_63gk8")
+
+[resource]
+script = ExtResource("1_04xk1")
+moveName = "Amp Reflexes"
+requiredLv = 10
+category = 2
+element = 3
+chargeEffect = SubResource("Resource_cskvo")
+surgeEffect = SubResource("Resource_351ro")
+description = "The static in the air is channeled around an ally to sharpen their reflexes."
+moveLearnedText = ""
+moveAnimation = ExtResource("3_600du")

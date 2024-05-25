@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://bnlxt86bvm38f"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_p8plv"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_srgh5"]
+[ext_resource type="Resource" uid="uid://ci7s8no77vut3" path="res://gamedata/moves/tidal_wave/anim_tidal_wave.tres" id="2_jes7f"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_2rncp"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_l5d2c"]
+
+[sub_resource type="Resource" id="Resource_kqmld"]
+script = ExtResource("1_p8plv")
+role = 1
+orbChange = 1
+power = 45
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_v7bnd"]
+script = ExtResource("4_l5d2c")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.95
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_ridcq"]
+script = ExtResource("4_2rncp")
+powerPerOrb = 2
+targetStatChangesPerOrb = SubResource("Resource_v7bnd")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_dkj6s"]
+script = ExtResource("4_l5d2c")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.95
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_ps5jb"]
+script = ExtResource("1_p8plv")
+role = 2
+orbChange = -4
+power = 55
+targets = 6
+targetStatChanges = SubResource("Resource_dkj6s")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_ridcq")
+
+[resource]
+script = ExtResource("1_srgh5")
+moveName = "Tidal Wave"
+requiredLv = 11
+category = 1
+element = 1
+chargeEffect = SubResource("Resource_kqmld")
+surgeEffect = SubResource("Resource_ps5jb")
+description = "Summon the force of crashing waves and overwhelm your opponents."
+moveLearnedText = ""
+moveAnimation = ExtResource("2_jes7f")
