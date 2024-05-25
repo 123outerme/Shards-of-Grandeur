@@ -1,6 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dvl1uba3nteei"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://dvl1uba3nteei"]
 
+[ext_resource type="Texture2D" uid="uid://bp1pswov6o1bb" path="res://graphics/moves/lightning/amp_reflexes.png" id="1_2uwj0"]
 [ext_resource type="Texture2D" uid="uid://dpfxc8ax4f4d5" path="res://graphics/moves/lightning/thunderstrike.png" id="1_rx8w1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3hds"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puscq"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx054"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2y02"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_legn6"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ly6"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jbbg"]
+atlas = ExtResource("1_2uwj0")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tlgw"]
 atlas = ExtResource("1_rx8w1")
@@ -28,7 +57,36 @@ region = Rect2(80, 0, 16, 32)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3hds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puscq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx054")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2y02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_legn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ly6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jbbg")
+}],
+"loop": false,
+"name": &"amp_reflexes",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
