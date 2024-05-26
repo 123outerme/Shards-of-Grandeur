@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=16 format=3 uid="uid://bcqg57g65qquo"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=20 format=3 uid="uid://bcqg57g65qquo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_mp1yh"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_s22q3"]
+[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_4b65o"]
 [ext_resource type="SpriteFrames" uid="uid://c6x5r2t3a4xyu" path="res://graphics/moves/water/a_water.tres" id="2_b2c5w"]
+[ext_resource type="Resource" uid="uid://b3f8w6kc5hnth" path="res://gamedata/moves/tidal_wave/particles_tidal_wave.tres" id="3_5mc1a"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="3_me3it"]
 
 [sub_resource type="Curve" id="Curve_8ap4i"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -55,6 +58,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("3_me3it")
 
 [sub_resource type="Curve" id="Curve_m4pmf"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -81,6 +85,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_4b65o")
 
 [sub_resource type="Curve" id="Curve_kt704"]
 _data = [Vector2(0, 0), 0.0, 7.6, 0, 1, Vector2(0.131579, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
@@ -94,7 +99,7 @@ point_count = 3
 script = ExtResource("1_s22q3")
 annotation = "crash wave on target"
 animation = "tidal_wave_crash"
-duration = 1.5
+duration = 0.5
 speed = 0.0
 opacity = 1.0
 relativeTo = 1
@@ -108,11 +113,28 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 
+[sub_resource type="Resource" id="Resource_x2t1h"]
+script = ExtResource("1_s22q3")
+annotation = "play crash particles"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_5mc1a")
+
 [resource]
 script = ExtResource("1_mp1yh")
 spriteFrames = ExtResource("2_b2c5w")
 centerSprite = true
 maxSize = Vector2(20, 16)
-frames = Array[ExtResource("1_s22q3")]([SubResource("Resource_ikj87"), SubResource("Resource_o8t5j"), SubResource("Resource_3osgb"), SubResource("Resource_j1jqf")])
+frames = Array[ExtResource("1_s22q3")]([SubResource("Resource_ikj87"), SubResource("Resource_o8t5j"), SubResource("Resource_3osgb"), SubResource("Resource_j1jqf"), SubResource("Resource_x2t1h")])
 delayedUntilReposition = false
 onePerTarget = true
