@@ -3,7 +3,6 @@ class_name ParticlePreset
 
 @export_enum('behind', 'front', 'hit', 'shard', 'surge') var emitter: String = 'behind'
 @export var count: int = 0
-@export var inFrontOfCombatant: bool = false
 @export var lifetime: float = 0.5
 @export var duration: float = 1.25
 @export var staggered: bool = false
@@ -24,7 +23,6 @@ func _init(
 ):
 	emitter = i_emitter
 	count = i_count
-	inFrontOfCombatant = i_inFront
 	lifetime = i_lifetime
 	duration = i_duration
 	staggered = i_staggered
