@@ -1,7 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://c6x5r2t3a4xyu"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://c6x5r2t3a4xyu"]
 
 [ext_resource type="Texture2D" uid="uid://brd0klq0ei3sj" path="res://graphics/moves/water/marlin_spike.png" id="1_oh7x0"]
 [ext_resource type="Texture2D" uid="uid://c53t7plbex805" path="res://graphics/moves/water/hydro_barrier.png" id="2_h38tq"]
+[ext_resource type="Texture2D" uid="uid://c48sxfadwc606" path="res://graphics/moves/water/tidal_wave_crash.png" id="3_njxpl"]
+[ext_resource type="Texture2D" uid="uid://etw6ou5sqkve" path="res://graphics/moves/water/tidal_wave_orb.png" id="3_u8qp3"]
+[ext_resource type="Texture2D" uid="uid://vpxgbqyeg31u" path="res://graphics/moves/water/tidal_wave_wave.png" id="4_hcsmc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vqj3"]
 atlas = ExtResource("2_h38tq")
@@ -70,6 +73,74 @@ region = Rect2(112, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3tpt"]
 atlas = ExtResource("1_oh7x0")
 region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmf6n"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6asa"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvyfg"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftyqm"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_102ky"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(80, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86xtd"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(100, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e51g"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(120, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5eh1"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(140, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_204gs"]
+atlas = ExtResource("3_njxpl")
+region = Rect2(160, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc1x5"]
+atlas = ExtResource("3_u8qp3")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0avt"]
+atlas = ExtResource("3_u8qp3")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxblh"]
+atlas = ExtResource("3_u8qp3")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip3m3"]
+atlas = ExtResource("3_u8qp3")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm7ys"]
+atlas = ExtResource("4_hcsmc")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lp0e"]
+atlas = ExtResource("4_hcsmc")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcujh"]
+atlas = ExtResource("4_hcsmc")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq34p"]
+atlas = ExtResource("4_hcsmc")
+region = Rect2(60, 0, 20, 16)
 
 [resource]
 animations = [{
@@ -140,5 +211,71 @@ animations = [{
 }],
 "loop": false,
 "name": &"marlin_spike",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmf6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6asa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvyfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_102ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86xtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e51g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5eh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_204gs")
+}],
+"loop": false,
+"name": &"tidal_wave_crash",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc1x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0avt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxblh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip3m3")
+}],
+"loop": true,
+"name": &"tidal_wave_orb",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm7ys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lp0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcujh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq34p")
+}],
+"loop": true,
+"name": &"tidal_wave_wave",
 "speed": 6.0
 }]

@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=2 format=3 uid="uid://ci7s8no77vut3"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://ci7s8no77vut3"]
 
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_w1j2m"]
+[ext_resource type="Resource" uid="uid://suxwilhynixr" path="res://gamedata/moves/tidal_wave/sprite_tidal_wave_charge.tres" id="1_xga4q"]
+[ext_resource type="Resource" uid="uid://bcqg57g65qquo" path="res://gamedata/moves/tidal_wave/sprite_tidal_wave_surge.tres" id="3_wwgtw"]
 
 [resource]
 script = ExtResource("1_w1j2m")
 combatantAnimation = "attack_magic"
 makesContact = false
-chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([])
-surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([])
+chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_xga4q")])
+surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("3_wwgtw")])

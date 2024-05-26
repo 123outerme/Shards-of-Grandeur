@@ -41,6 +41,7 @@ enum MoveSpriteOffset {
 
 @export_group('')
 @export var particles: ParticlePreset = null
+@export var sfx: AudioStream = null
 
 func _init(
 	i_annotation = '',
@@ -58,6 +59,7 @@ func _init(
 	i_rotateToFaceOffset = MoveSpriteOffset.NONE,
 	i_trackRotationTarget = false,
 	i_particles = null,
+	i_sfx = null,
 ):
 	annotation = i_annotation
 	animation = i_animation
@@ -74,6 +76,7 @@ func _init(
 	rotateToFaceOffset = i_rotateToFaceOffset
 	trackRotationTarget = i_trackRotationTarget
 	particles = i_particles
+	sfx = i_sfx
 
 func get_real_duration(diff: Vector2):
 	if speed <= 0 or diff.length() == 0:

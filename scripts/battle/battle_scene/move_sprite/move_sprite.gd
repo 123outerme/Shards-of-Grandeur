@@ -90,6 +90,9 @@ func load_frame():
 		particleEmitter.set_make_particles(true)
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1
 		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
+	
+	if sprFrame.sfx != null:
+		SceneLoader.audioHandler.play_sfx(sprFrame.sfx)
 
 func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, posOffset: int) -> Vector2:
 	var pos = Vector2()
