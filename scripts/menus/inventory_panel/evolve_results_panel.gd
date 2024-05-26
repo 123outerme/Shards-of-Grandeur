@@ -45,9 +45,9 @@ func load_evolve_results_panel():
 			details += '\n' + change
 	
 	combatantSprite.sprite_frames = combatant.get_sprite_frames()
-	if combatant.get_max_size().x <= 16 and combatant.get_max_size().y <= 16:
+	if combatant.get_idle_size().x <= 16 and combatant.get_idle_size().y <= 16:
 		combatantSprite.scale = Vector2(3, 3)
-	elif combatant.get_max_size().x < 48 and combatant.get_max_size().y < 48:
+	elif combatant.get_idle_size().x < 48 and combatant.get_idle_size().y < 48:
 		combatantSprite.scale = Vector2(2, 2)
 	else:
 		combatantSprite.scale = Vector2(2, 2)

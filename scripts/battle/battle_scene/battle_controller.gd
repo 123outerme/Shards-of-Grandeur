@@ -115,7 +115,8 @@ func load_into_battle():
 			if staticEncounter.autoAlly != null:
 				hasStaticMinion = true
 				minionCombatant.combatant = Combatant.load_combatant_resource(staticEncounter.autoAlly.save_name())
-				# TODO: give auto ally some static equipment?
+				minionCombatant.combatant.stats.equippedArmor = staticEncounter.autoAllyArmor
+				minionCombatant.combatant.stats.equippedWeapon = staticEncounter.autoAllyWeapon
 				if minionCombatant.combatant.get_evolution() != null:
 					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
@@ -226,7 +227,9 @@ func load_into_battle():
 	update_combatant_focus_neighbors()
 	
 	if state.menu == BattleState.Menu.SUMMON and \
-			(PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 or hasStaticMinion):
+			(PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 or hasStaticMinion \
+				or PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.NO_SUMMONS) \
+			):
 		state.menu = BattleState.Menu.PRE_BATTLE
 	
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)

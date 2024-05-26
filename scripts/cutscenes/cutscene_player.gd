@@ -131,6 +131,26 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 			tweens.append(tween)
 		else:
 			node.set(actorTween.propertyName, actorTween.value)
+	for actorFaceTarget: ActorFaceTarget in frame.actorFaceTargets:
+		#print(actorFaceTarget.actorTreePath, ' faces ', actorFaceTarget.targetTreePath)
+		if actorFaceTarget == null:
+			continue
+		var actorNode = fetch_actor_node(actorFaceTarget.actorTreePath, actorFaceTarget.isPlayer)
+		if actorNode == null or not actorNode.has_method('face_horiz'):
+			printerr('actor node ', actorFaceTarget.actorTreePath, 'was null')
+			continue
+		var targetPos: Vector2 = Vector2.ZERO
+		if actorFaceTarget.targetTreePath != '' or actorFaceTarget.targetIsPlayer:
+			var targetNode = fetch_actor_node(actorFaceTarget.targetTreePath, actorFaceTarget.targetIsPlayer)
+			if targetNode != null:
+				targetPos = targetNode.global_position
+			else:
+				printerr('face target node ', actorFaceTarget.targetTreePath, 'was null')
+				continue
+		else:
+			targetPos = actorFaceTarget.targetPosition
+		#print(targetPos.x - actorNode.global_position.x)
+		actorNode.face_horiz(targetPos.x - actorNode.global_position.x)
 
 func handle_start_cam_shake():
 	PlayerFinder.player.cam.start_cam_shake()

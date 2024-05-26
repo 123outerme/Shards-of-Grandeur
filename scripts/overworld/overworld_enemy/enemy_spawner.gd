@@ -17,7 +17,9 @@ var enemiesDir: String = 'enemies/'
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
 
 func _ready():
-	pass
+	if enemyEncounter.combatant1 == null:
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: no combatant1 provided')
+		queue_free()
 
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and spawnWhenPlayerLocked == PlayerFinder.player.disableMovement:

@@ -240,8 +240,10 @@ func _on_back_button_pressed():
 
 func _on_item_confirm_panel_confirm_option(yes: bool):
 	if fromSave != '' and toSave != '':
+		# copy save confirm
 		copy_save(yes)
-	elif isLoading:
+	elif deleteSaveFolder != '':
+		# delete save confirm
 		if yes:
 			delete_save(deleteSaveFolder)
 		else:
@@ -252,9 +254,17 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 					panel.deleteButton.grab_focus()
 					break
 		deleteSaveFolder = ''
-	else:
+	elif not isLoading:
+		# save game confirm
 		if yes:
 			save_game(savingFolder)
+		else:
+			var children = savePanelVbox.get_children()
+			for node in children:
+				var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+				if panel.saveFolder == savingFolder:
+					panel.saveButton.grab_focus()
+					break
 		savingFolder = ''
 
 func _filter_out_no_button_panels(panel: LoadSaveItemPanel) -> bool:

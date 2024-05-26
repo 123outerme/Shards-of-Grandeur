@@ -123,23 +123,23 @@ func load_combatant_node():
 		
 		# nudge the attack marker away from sprite by any amount over 16 wide
 		if onAttackMarker.position.x < position.x:
-			onAttackMarker.position.x -= (combatant.get_max_size().x - 16) / 2
+			onAttackMarker.position.x -= (combatant.get_idle_size().x - 16) / 2
 		elif onAttackMarker.position.x > position.x:
-			onAttackMarker.position.x += (combatant.get_max_size().x - 16) / 2
+			onAttackMarker.position.x += (combatant.get_idle_size().x - 16) / 2
 		
 		# nudge the assist marker away from sprite by any amount over 16 tall
 		if onAssistMarker.position.y < position.y:
-			onAssistMarker.position.y -= (combatant.get_max_size().y - 16) / 2
+			onAssistMarker.position.y -= (combatant.get_idle_size().y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
-			onAssistMarker.position.y += (combatant.get_max_size().y - 16) / 2
+			onAssistMarker.position.y += (combatant.get_idle_size().y - 16) / 2
 
 func get_in_front_particle_scale() -> float:
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
-	return 1 + round(max(0, max(combatant.get_max_size().x, combatant.get_max_size().y) - 16) / 16) / 4
+	return 1 + round(max(0, max(combatant.get_idle_size().x, combatant.get_idle_size().y) - 16) / 16) / 4
 
 func get_behind_particle_scale() -> float:
 	# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
-	return 1.5 + round(max(0, max(combatant.get_max_size().x, combatant.get_max_size().y) - 16) / 16) / 4
+	return 1.5 + round(max(0, max(combatant.get_idle_size().x, combatant.get_idle_size().y) - 16) / 16) / 4
 
 func update_hp_tag():
 	if not is_alive():
@@ -191,7 +191,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.disabled = disable
 	update_select_btn_texture()
 	
-	selectCombatantBtn.size = combatant.get_max_size() + Vector2(8, 8) # set size of selecting button to sprite size + 8px
+	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(8, 8) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
@@ -256,17 +256,17 @@ func play_animation(animationName: String):
 		animatedSprite.stop()
 
 func tween_to(pos: Vector2):
-	if combatant.get_max_size().x > 16:
+	if combatant.get_idle_size().x > 16:
 		if pos.x > global_position.x:
-			pos.x -= (combatant.get_max_size().x - 16) / 2
+			pos.x -= (combatant.get_idle_size().x - 16) / 2
 		else:
-			pos.x += (combatant.get_max_size().x - 16) / 2
+			pos.x += (combatant.get_idle_size().x - 16) / 2
 	
-	if combatant.get_max_size().y > 16:
+	if combatant.get_idle_size().y > 16:
 		if pos.y > global_position.y:
-			pos.y -= (combatant.get_max_size().y - 16) / 2
+			pos.y -= (combatant.get_idle_size().y - 16) / 2
 		else:
-			pos.y += (combatant.get_max_size().y - 16) / 2
+			pos.y += (combatant.get_idle_size().y - 16) / 2
 	
 	if animateTween != null and animateTween.is_valid():
 		animateTween.kill()

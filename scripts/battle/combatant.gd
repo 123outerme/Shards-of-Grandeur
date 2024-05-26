@@ -270,6 +270,12 @@ func get_max_size() -> Vector2:
 		return evolution.combatantSprite.maxSize
 	return sprite.maxSize
 
+func get_idle_size() -> Vector2:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.idleSize
+	return sprite.idleSize
+
 func get_center_pos() -> Vector2:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:

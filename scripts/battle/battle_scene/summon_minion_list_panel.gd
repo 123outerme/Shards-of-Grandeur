@@ -28,9 +28,9 @@ func load_summon_minion_list_panel():
 	
 	minionSprite.sprite_frames = minion.get_sprite_frames()
 	
-	if minion.get_max_size().x <= 16 and minion.get_max_size().y <= 16:
+	if minion.get_idle_size().x <= 16 and minion.get_idle_size().y <= 16:
 		minionSprite.scale = Vector2(3, 3)
-	elif minion.get_max_size().x < 48 and minion.get_max_size().y < 48:
+	elif minion.get_idle_size().x < 48 and minion.get_idle_size().y < 48:
 		minionSprite.scale = Vector2(2, 2)
 	else:
 		minionSprite.scale = Vector2(2, 2)

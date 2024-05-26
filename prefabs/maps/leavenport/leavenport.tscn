@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=22 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -12,9 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
 [ext_resource type="Resource" uid="uid://c3gj8c3m11yyt" path="res://gamedata/cutscenes/leavenport/meet_solius.tres" id="9_8qf0q"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
-[ext_resource type="Resource" uid="uid://0mdoxu22shce" path="res://gamedata/cutscenes/leavenport/solius_to_cave_path.tres" id="13_e7srn"]
 
-[sub_resource type="Resource" id="Resource_0v617"]
+[sub_resource type="Resource" id="Resource_ten0c"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 position = Vector2(98, 202)
@@ -66,7 +65,7 @@ size = Vector2(112, 56)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
-metadata/_edit_vertical_guides_ = [1655.0, 98.0, -80.0]
+metadata/_edit_vertical_guides_ = [1655.0, 98.0, -88.0]
 metadata/_edit_horizontal_guides_ = [560.0, 190.0, 480.0, -176.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
@@ -165,7 +164,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_0v617")
+data = SubResource("Resource_ten0c")
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
 sprite_frames = ExtResource("7_x5og7")
@@ -185,22 +184,21 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TileMap/Solius" index="4"]
 visible = false
 
-[node name="CutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
+[node name="MeetSoliusCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
 position = Vector2(6, 153)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("9_8qf0q")])
 
-[node name="CollisionShape2D" parent="CutsceneTrigger" index="0"]
+[node name="CollisionShape2D" parent="MeetSoliusCutsceneTrigger" index="0"]
 position = Vector2(34.5, 0)
 shape = SubResource("RectangleShape2D_a3b4y")
 
 [node name="HilltopForestEastWarpZone" parent="." instance=ExtResource("5_2lmvq")]
-position = Vector2(-80, -192)
-mapName = "hilltop_forest_east"
+position = Vector2(-88, -192)
+mapName = "hilltop_east"
 mapPos = Vector2(1080, 1110)
 useHorizontalOffset = true
 
 [node name="WarpArea" parent="HilltopForestEastWarpZone" index="0"]
-position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_yhppi")
 
 [node name="SeaLegSwampWarpZone" parent="." instance=ExtResource("5_2lmvq")]
@@ -246,8 +244,8 @@ position = Vector2(0, 46)
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("12_8fbvy")]
 visible = false
-triggerOrNPC = NodePath("../TileMap/Solius")
-cutscene = ExtResource("13_e7srn")
+triggerOrNPC = NodePath("../MeetSoliusCutsceneTrigger")
+cutscene = ExtResource("9_8qf0q")
 rootNode = NodePath("..")
 
 [editable path="TileMap/FloatingRockColumnDecoration"]
@@ -259,7 +257,7 @@ rootNode = NodePath("..")
 [editable path="TileMap/FloatingRockColumnDecoration5"]
 [editable path="TileMap/FloatingRockColumnDecoration6"]
 [editable path="TileMap/Solius"]
-[editable path="CutsceneTrigger"]
+[editable path="MeetSoliusCutsceneTrigger"]
 [editable path="HilltopForestEastWarpZone"]
 [editable path="SeaLegSwampWarpZone"]
 [editable path="CameraHoldZone"]

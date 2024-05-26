@@ -13,6 +13,7 @@ enum CameraFade {
 @export var actorTweens: Array[ActorTween] = []
 @export var actorAnims: Array[ActorSpriteAnim] = []
 @export var actorAnimSets: Array[ActorAnimSet] = []
+@export var actorFaceTargets: Array[ActorFaceTarget] = []
 @export var dialogues: Array[CutsceneDialogue] = []
 @export var playSfx: AudioStream = null
 @export var endTextBoxPauses: bool = true
@@ -31,6 +32,7 @@ func _init(
 	i_actorTweens: Array[ActorTween] = [],
 	i_actorAnims: Array[ActorSpriteAnim] = [],
 	i_actorAnimSets: Array[ActorAnimSet] = [],
+	i_actorFaceTargets: Array[ActorFaceTarget] = [],
 	i_dialogues: Array[CutsceneDialogue] = [],
 	i_playSfx = null,
 	i_endTextPauses = true,
@@ -46,6 +48,7 @@ func _init(
 	actorTweens = i_actorTweens
 	actorAnims = i_actorAnims
 	actorAnimSets = i_actorAnimSets
+	actorFaceTargets = i_actorFaceTargets
 	dialogues = i_dialogues
 	playSfx = i_playSfx
 	endTextBoxPauses = i_endTextPauses

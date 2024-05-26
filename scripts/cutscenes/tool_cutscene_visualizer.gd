@@ -104,7 +104,7 @@ func handle_fade_out():
 	fadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	fadeOutTween.tween_property(mockPlayer.mockShadeCenter, 'modulate:a', 1.0, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 	fadeOutTween.finished.connect(_mock_fade_out_finished)
-	
+
 func handle_fade_in():
 	fadeInTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	fadeInTween.tween_property(mockPlayer.mockShadeCenter, 'modulate:a', 0.0, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)

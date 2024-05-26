@@ -50,9 +50,9 @@ func load_equip_combatant_panel():
 	combatantName.text = combatant.disp_name()
 	
 	animatedCombatantSprite.sprite_frames = combatant.get_sprite_frames()
-	if combatant.get_max_size().x <= 16 and combatant.get_max_size().y <= 16:
+	if combatant.get_idle_size().x <= 16 and combatant.get_idle_size().y <= 16:
 		animatedCombatantSprite.scale = Vector2(3, 3)
-	elif combatant.get_max_size().x < 48 and combatant.get_max_size().y < 48:
+	elif combatant.get_idle_size().x < 48 and combatant.get_idle_size().y < 48:
 		animatedCombatantSprite.scale = Vector2(2, 2)
 	else:
 		animatedCombatantSprite.scale = Vector2(2, 2)
