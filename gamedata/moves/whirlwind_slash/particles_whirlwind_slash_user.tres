@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://8f57kqglswvi"]
 
-[ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys_1.png" id="1_s5j7i"]
-[ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys_2.png" id="2_pebxh"]
-[ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys_3.png" id="3_xcpm7"]
-[ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys_4.png" id="4_0dwln"]
+[ext_resource type="Texture2D" uid="uid://cepjbsf6jpl6d" path="res://graphics/particles/wind_1.png" id="1_tc23f"]
+[ext_resource type="Texture2D" uid="uid://dgwsdmeiqrv1q" path="res://graphics/particles/wind_2.png" id="2_n13us"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind_3.png" id="3_dukty"]
+[ext_resource type="Texture2D" uid="uid://cwi43lo4vqxog" path="res://graphics/particles/wind_4.png" id="4_50fpd"]
 [ext_resource type="Material" uid="uid://bbv4xdbtixlsw" path="res://graphics/particles/magic_particle_process_mat.tres" id="5_7pysi"]
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_sknse"]
 [ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="7_ablv0"]
@@ -12,9 +12,9 @@
 script = ExtResource("6_sknse")
 emitter = "behind"
 count = 4
-inFrontOfCombatant = false
 lifetime = 0.5
 duration = 0.5
+staggered = false
 processMaterial = ExtResource("5_7pysi")
-particleTextures = Array[Texture2D]([ExtResource("1_s5j7i"), ExtResource("2_pebxh"), ExtResource("3_xcpm7"), ExtResource("4_0dwln")])
+particleTextures = Array[Texture2D]([ExtResource("1_tc23f"), ExtResource("2_n13us"), ExtResource("3_dukty"), ExtResource("4_50fpd")])
 sfx = ExtResource("7_ablv0")

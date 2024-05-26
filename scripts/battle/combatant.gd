@@ -456,7 +456,7 @@ func assign_moves_nonplayer():
 			stats.moves[idx] = highestLvMoveInRole
 	
 	# for the move slots we couldn't find preferred matches for, put anything in there
-	for idx in range(len(stats.preferredMoves)):
+	for idx in range(len(preferredMoves)):
 		if stats.moves[idx] == null:
 			var highestLvMove: Move = null
 			for move: Move in stats.movepool.pool:
