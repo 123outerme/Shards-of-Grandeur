@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="24_mgy6p"]
 
-[sub_resource type="Resource" id="Resource_heoyk"]
+[sub_resource type="Resource" id="Resource_jxtrr"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(1, 16)
@@ -44,7 +44,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_gtaei"]
+[sub_resource type="Resource" id="Resource_um4gp"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(-98, 4)
@@ -132,7 +132,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
-[sub_resource type="Resource" id="Resource_5feku"]
+[sub_resource type="Resource" id="Resource_mk7ne"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 position = Vector2(450, 0)
@@ -180,7 +180,7 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_heoyk")
+data = SubResource("Resource_jxtrr")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -206,7 +206,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_gtaei")
+data = SubResource("Resource_um4gp")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -288,7 +288,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(450, 0)
-data = SubResource("Resource_5feku")
+data = SubResource("Resource_mk7ne")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.281959

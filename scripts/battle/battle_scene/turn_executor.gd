@@ -1,13 +1,6 @@
 extends Node
 class_name TurnExecutor
 
-enum TurnResult {
-	NOTHING = 0,
-	PLAYER_WIN = 1,
-	ENEMY_WIN = 2,
-	ESCAPE = 3,
-}
-
 @export var battleController: BattleController
 @export var battleUI: BattleUI
 
@@ -15,7 +8,7 @@ var allCombatants: Array[Combatant] = []
 
 var turnQueue: TurnQueue = TurnQueue.new()
 var escaping: bool = false
-var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
+var result: WinCon.TurnResult = WinCon.TurnResult.NOTHING
 
 func start_simulation():
 	battleController.state.statusEffDamagedCombatants = []
@@ -218,34 +211,28 @@ func update_turn_text() -> bool:
 	battleUI.results.show_text(text)
 	return text != ''
 
-func finish_turn() -> TurnResult:
+func finish_turn() -> WinCon.TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
 	lastCombatant.command = null # remove the command from the previous turn's combatant
 	result = check_battle_end_conditions()
-	if result == TurnResult.NOTHING:
+	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
 	return result
 
-func check_battle_end_conditions() -> TurnResult:
-	var alliesDown: int = 0
-	var enemiesDown: int = 0
+func check_battle_end_conditions() -> WinCon.TurnResult:
 	for combatantNode in battleController.get_all_combatant_nodes():
 		if combatantNode.combatant != null:
 			combatantNode.combatant.update_downed()
 		if not combatantNode.is_alive(): # if combatant is not alive (after being updated)
 			combatantNode.update_hp_tag() # then the combatant should be shown as defeated
-			if combatantNode.role == CombatantNode.Role.ALLY:
-				alliesDown += 1 # ally down
-			else:
-				enemiesDown += 1 # enemy down
-	if alliesDown == 2: # all allies are down:
-		return TurnResult.ENEMY_WIN
-	if enemiesDown == 3: # all enemies are down:
-		return TurnResult.PLAYER_WIN
+	# TODO: put the WinCon checking here, if result != NONE then return it, otherwise continue onward
+	var turnResult: WinCon.TurnResult = PlayerResources.playerInfo.encounter.get_win_con_result(battleController.get_all_combatant_nodes(), battleController.state)
+	if turnResult != WinCon.TurnResult.NOTHING:
+		return turnResult
 	if escaping: # if escaping
 		turnQueue.empty() # end the round immediately
-		return TurnResult.ESCAPE
-	return TurnResult.NOTHING
+		return WinCon.TurnResult.ESCAPE
+	return WinCon.TurnResult.NOTHING
 
 func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode]):
 	battleController.state.calcdStateStrings = []

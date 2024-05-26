@@ -47,7 +47,7 @@ func set_menu_state(state: BattleState.Menu, _savPrevState = false):
 	menuState = state
 	print('set menu state: ', state_to_string(state))
 
-func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING):
+func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NOTHING):
 	if menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND or menuState == BattleState.Menu.POST_ROUND:
 		var newMenuState: BattleState.Menu = BattleState.Menu.ALL_COMMANDS # default: advance from PRE_BATTLE to ALL_COMMANDS
 		if menuState == BattleState.Menu.PRE_ROUND:
@@ -55,9 +55,9 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 			battleController.turnExecutor.play_turn() # start the first turn
 			return
 		if menuState == BattleState.Menu.POST_ROUND:
-			if result == TurnExecutor.TurnResult.NOTHING: # check again before completing round
+			if result == WinCon.TurnResult.NOTHING: # check again before completing round
 				result = battleController.turnExecutor.check_battle_end_conditions()
-			if result != TurnExecutor.TurnResult.NOTHING:
+			if result != WinCon.TurnResult.NOTHING:
 				newMenuState = BattleState.Menu.BATTLE_COMPLETE
 			else:
 				round_complete()

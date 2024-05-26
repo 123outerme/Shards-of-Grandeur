@@ -2,7 +2,7 @@ extends Control
 class_name Results
 
 @export var battleUI: BattleUI
-var result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING
+var result: WinCon.TurnResult = WinCon.TurnResult.NOTHING
 var okPressed: bool = false
 var moveTweenFinished: bool = false
 var moveTweenStarted: bool = false
@@ -39,9 +39,9 @@ func _on_ok_button_pressed():
 			# update HP tags just to be safe, in case we missed any updates
 			battleUI.update_hp_tags() # TODO: I think this can be taken out?
 			result = battleUI.battleController.turnExecutor.finish_turn()
-			if result != TurnExecutor.TurnResult.NOTHING:
-				battleUI.playerWins = result == TurnExecutor.TurnResult.PLAYER_WIN
-				battleUI.escapes = result == TurnExecutor.TurnResult.ESCAPE
+			if result != WinCon.TurnResult.NOTHING:
+				battleUI.playerWins = result == WinCon.TurnResult.PLAYER_WIN
+				battleUI.escapes = result == WinCon.TurnResult.ESCAPE
 				battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 	else:
 		okPressed = true

@@ -154,7 +154,7 @@ func apply_menu_state():
 	if menuState == BattleState.Menu.LEVEL_UP:
 		open_stats(PlayerResources.playerInfo.combatant, true)
 
-func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.TurnResult.NOTHING):
+func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NOTHING):
 	if menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND or menuState == BattleState.Menu.POST_ROUND:
 		var newMenuState: BattleState.Menu = BattleState.Menu.ALL_COMMANDS # default: advance from PRE_BATTLE to ALL_COMMANDS
 		if menuState == BattleState.Menu.PRE_ROUND:
@@ -171,9 +171,9 @@ func advance_intermediate_state(result: TurnExecutor.TurnResult = TurnExecutor.T
 					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_POST_ROUND)
 					if combatantNode.combatant.statusEffect == null:
 						combatantNode.update_hp_tag() # status effect just got cleared, update HP tag
-			if result == TurnExecutor.TurnResult.NOTHING: # check again before completing round
+			if result == WinCon.TurnResult.NOTHING: # check again before completing round
 				result = battleController.turnExecutor.check_battle_end_conditions()
-			if result != TurnExecutor.TurnResult.NOTHING:
+			if result != WinCon.TurnResult.NOTHING:
 				newMenuState = BattleState.Menu.BATTLE_COMPLETE
 			else:
 				round_complete()
