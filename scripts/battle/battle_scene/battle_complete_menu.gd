@@ -59,10 +59,18 @@ func _on_ok_button_pressed():
 	
 	if PlayerResources.playerInfo.combatant.downed:
 		if (playerWins or playerEscapes) and gainedLevels == 0: # revive with 10% HP if you win or the minion escapes
-			PlayerResources.playerInfo.combatant.currentHp = roundi(0.1 * PlayerResources.playerInfo.combatant.stats.maxHp)
+			# if the "Restand on Defeat" special rule is not enabled, revive with 10% HP
+			if not PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.RESTAND_ON_DEFEAT):
+				PlayerResources.playerInfo.combatant.currentHp = roundi(0.1 * PlayerResources.playerInfo.combatant.stats.maxHp)
+			else:
+				# if "Restand on Defeat" is enabled, restand with full HP
+				PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 		else: # otherwise revive with full
 			PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
-		PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes) # stay downed if you lost
+		# disable downed flag if you win, escape, or (lose but "Restand on Defeat" is enabled)
+		PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes or \
+				PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.RESTAND_ON_DEFEAT) \
+		)
 	if gainedLevels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://d37h8d1mf18js"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_3at4t"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_5iq37"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7dxr2"]
+[ext_resource type="Resource" uid="uid://c0d35rbjmaqit" path="res://gamedata/dialogue/solius/leavenport/spar_turnin_holdon.tres" id="1_uqoth"]
+[ext_resource type="Resource" uid="uid://d0kf7biblnn8h" path="res://gamedata/dialogue/solius/leavenport/see_cave_path.tres" id="3_6rm1m"]
+
+[sub_resource type="Resource" id="Resource_q0k0t"]
+script = ExtResource("1_3at4t")
+choiceBtn = "Hold On..."
+leadsTo = ExtResource("1_uqoth")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_48b1m"]
+script = ExtResource("1_3at4t")
+choiceBtn = "Let's Go!"
+leadsTo = ExtResource("3_6rm1m")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "War is Declared#Sparring Partner"
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_wm1au"]
+script = ExtResource("1_7dxr2")
+lines = Array[String](["Whoo... huh... you're not too bad, @. I don't recall you being this strong before! I think we'll make it to the Cave from here.", "Are you ready to see the way to the Cave?"])
+animation = "talk"
+choices = Array[ExtResource("1_3at4t")]([SubResource("Resource_q0k0t"), SubResource("Resource_48b1m")])
+
+[resource]
+script = ExtResource("1_5iq37")
+entryId = ""
+items = Array[ExtResource("1_7dxr2")]([SubResource("Resource_wm1au")])
+closesDialogue = false
+fullHealsPlayer = false

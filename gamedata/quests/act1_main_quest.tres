@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=13 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=19 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
 [ext_resource type="Resource" uid="uid://bxkaxgf5v3g62" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_report.tres" id="3_qpgt1"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="4_0vfgl"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_801qh"]
+[ext_resource type="Resource" uid="uid://birvqvo77y5ec" path="res://gamedata/dialogue/solius/leavenport/spar_inprogress.tres" id="6_c8xco"]
+[ext_resource type="Resource" uid="uid://d37h8d1mf18js" path="res://gamedata/dialogue/solius/leavenport/spar_turnin.tres" id="7_cbync"]
+[ext_resource type="Resource" uid="uid://bhnwqrl4m4c7p" path="res://gamedata/items/healing/brawn_elixir.tres" id="7_redr7"]
 
 [sub_resource type="Resource" id="Resource_ce6e6"]
 script = ExtResource("2_8mv8e")
@@ -80,13 +83,49 @@ inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]
 script = ExtResource("2_8mv8e")
 name = "On the Trail"
 description = "If the mouth of the Radiant Cave didn't appear closer to Grandstone, then it must be farther away. It's time to look east towards Leavenport!"
-type = 0
+type = 3
 count = 1
-objectiveName = "---"
-turnInNames = Array[String](["---"])
-displayObjName = "---"
-displayTurnInName = "---"
-customStatusStr = "???"
+objectiveName = "meet_solius"
+turnInNames = Array[String]([])
+displayObjName = "Leavenport"
+displayTurnInName = ""
+customStatusStr = "Reach Leavenport!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_t68es"]
+script = ExtResource("4_801qh")
+experience = 80
+gold = 10
+item = ExtResource("7_redr7")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_efjqq"]
+script = ExtResource("2_8mv8e")
+name = "Sparring Partner"
+description = "Solius wants to test you on your combat prowess. Both of you have agreed to not use items."
+reward = SubResource("Resource_t68es")
+type = 4
+count = 1
+objectiveName = "solius_spar"
+turnInNames = Array[String](["solius_leavenport"])
+displayObjName = "Solius"
+displayTurnInName = "Solius"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_cbync")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_c8xco")])
+
+[sub_resource type="Resource" id="Resource_a8qhh"]
+script = ExtResource("2_8mv8e")
+name = "Wild Cave Chase"
+description = "The Cave is in the swamps near Leavenport. We'd better secure it this time, for good!"
+type = 3
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = "Radiant Cave"
+displayTurnInName = ""
+customStatusStr = "Reach the Radiant Cave!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
@@ -94,6 +133,6 @@ inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]
 script = ExtResource("1_jiru6")
 questName = "War is Declared"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh")])
 isMainQuest = true
 advanceActActerComplete = true

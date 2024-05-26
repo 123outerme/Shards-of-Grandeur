@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b1bkqjv81rd8d"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_34do8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mcvmd"]
+[ext_resource type="Resource" uid="uid://dqy41ewbyu3fe" path="res://gamedata/static_encounters/solius_spar.tres" id="2_emjhs"]
+
+[sub_resource type="Resource" id="Resource_2gqid"]
+script = ExtResource("1_mcvmd")
+lines = Array[String](["Great, let's fight! First one to fold is the loser!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_34do8")
+entryId = ""
+items = Array[ExtResource("1_mcvmd")]([SubResource("Resource_2gqid")])
+closesDialogue = false
+fullHealsPlayer = false
+startsStaticEncounter = ExtResource("2_emjhs")

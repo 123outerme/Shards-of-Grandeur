@@ -3,11 +3,12 @@ class_name EnemyEncounter
 
 enum SpecialRules {
 	NONE = 0b0000,
-	NO_ITEMS = 0b0001 # inventory use is disabled
+	NO_ITEMS = 0b0001, # inventory use is disabled
+	RESTAND_ON_DEFEAT = 0b0010, # revive with full HP right where you were defeated
 }
 
 @export var combatant1: Combatant = null
-@export_flags('No Items:1') var specialRules: int = SpecialRules.NONE
+@export_flags('No Items:1', 'Restand On Defeat:2') var specialRules: int = SpecialRules.NONE
 @export var winCon: WinCon = null
 
 func _init(
@@ -27,4 +28,3 @@ func get_win_con_result(combatants: Array[CombatantNode], battleState: BattleSta
 	if winCon == null:
 		winCon = TotalDefeatWinCon.new()
 	return winCon.get_result(combatants, battleState)
-	

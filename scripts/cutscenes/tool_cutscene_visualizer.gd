@@ -114,6 +114,9 @@ func handle_give_item():
 	if lastFrame.givesItem != null:
 		print('Cutscene gives item ' + lastFrame.givesItem.itemName)
 
+func handle_heal_player():
+	print('Player gets fully healed.')
+
 func handle_start_shard_learn_tutorial():
 	print('Start Shard Learn Tutorial Here')
 

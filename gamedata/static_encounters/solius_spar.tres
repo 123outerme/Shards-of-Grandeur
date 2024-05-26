@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=8 format=3 uid="uid://dqy41ewbyu3fe"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://dqy41ewbyu3fe"]
 
 [ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_do7y8"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_f2qy1"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="1_y7spk"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_o2y8n"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_cuav0"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/weaken_enemy_win_con.gd" id="3_fs6nd"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="4_4q7k2"]
 
 [sub_resource type="Resource" id="Resource_yihxc"]
 script = ExtResource("2_o2y8n")
@@ -15,11 +17,13 @@ fullyAttuneCombatantSaveName = ""
 [sub_resource type="Resource" id="Resource_4qwca"]
 script = ExtResource("3_fs6nd")
 enemyPosition = "Center"
-targetPercentHp = 0.5
+targetPercentHp = 0.25
 
 [resource]
 script = ExtResource("1_f2qy1")
 combatant1Level = 9
+combatant1Armor = ExtResource("3_cuav0")
+combatant1Weapon = ExtResource("4_4q7k2")
 combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 combatant2Level = 1
 combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
@@ -34,5 +38,5 @@ rewards = Array[ExtResource("2_o2y8n")]([SubResource("Resource_yihxc")])
 useStaticRewards = true
 battleMusic = ExtResource("1_y7spk")
 combatant1 = ExtResource("1_do7y8")
-specialRules = 1
+specialRules = 3
 winCon = SubResource("Resource_4qwca")

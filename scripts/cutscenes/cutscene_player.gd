@@ -50,6 +50,9 @@ func _process(delta):
 			
 			if lastFrame.givesItem != null:
 				handle_give_item()
+			
+			if lastFrame.healsPlayer:
+				handle_heal_player()
 				
 			if lastFrame.endStartsShardLearnTutorial:
 				handle_start_shard_learn_tutorial()
@@ -91,6 +94,10 @@ func handle_fade_in():
 func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)
 	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
+
+func handle_heal_player():
+	PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
+	PlayerFinder.player.cam.show_alert('Fully Healed!')
 
 func handle_start_shard_learn_tutorial():
 	awaitingPlayer = true

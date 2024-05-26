@@ -1,0 +1,368 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=41 format=3 uid="uid://0mdoxu22shce"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_ajfha"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_pwp1j"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_tkbr3"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_wlnje"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_xhf60"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_clrg5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_q0jc8"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_fh2wv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="7_bgy7d"]
+
+[sub_resource type="Resource" id="Resource_cvtd3"]
+script = ExtResource("1_xhf60")
+speaker = "Solius"
+texts = Array[String](["Like I mentioned, the good news is, I found the Cave entrance. It wasn't hard.", "The bad news is, the Chain Legion found the Radiant Cave too. And they have a little welcoming party for us Grandstone adventurers.", "There'll be plenty of battles to fight, so I'll help you take on the Chain Legion guys. Don't worry about using up any Shards.", "If we strike hard, then we can definitely take control of the Cave."])
+
+[sub_resource type="Resource" id="Resource_ok017"]
+script = ExtResource("1_wlnje")
+frameLength = 0.1
+annotation = "Start Solius talking"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([SubResource("Resource_cvtd3")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_cjnmq"]
+script = ExtResource("1_pwp1j")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_hxh74"]
+script = ExtResource("1_tkbr3")
+value = Vector2(116, 204)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_oyeaj"]
+script = ExtResource("1_tkbr3")
+value = Vector2(106, 194)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_8w7hg"]
+script = ExtResource("1_wlnje")
+frameLength = 0.25
+annotation = "move Solius to be diagonal from the player"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_hxh74"), SubResource("Resource_oyeaj")])
+actorAnims = Array[ExtResource("1_pwp1j")]([SubResource("Resource_cjnmq"), ExtResource("2_clrg5")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1mhr2"]
+script = ExtResource("1_tkbr3")
+value = Vector2(400, 416)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_j3fwd"]
+script = ExtResource("1_tkbr3")
+value = Vector2(390, 406)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vvnmx"]
+script = ExtResource("1_wlnje")
+frameLength = 5.5
+annotation = "start moving Solius and the player through Leavenport"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_1mhr2"), SubResource("Resource_j3fwd")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_svjvy"]
+script = ExtResource("1_tkbr3")
+value = Vector2(414, 416)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_fbpas"]
+script = ExtResource("1_tkbr3")
+value = Vector2(400, 416)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_1rsxf"]
+script = ExtResource("1_wlnje")
+frameLength = 0.25
+annotation = "move Solius forward, player diagonal-right"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_svjvy"), SubResource("Resource_fbpas")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_nsxym"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 416)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_3ki37"]
+script = ExtResource("1_tkbr3")
+value = Vector2(722, 416)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7ykqw"]
+script = ExtResource("1_wlnje")
+frameLength = 5.5
+annotation = "move player and Solius to the right across the first piece of boardwalk"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_nsxym"), SubResource("Resource_3ki37")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_0gs4l"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 430)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_wbuyf"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 416)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_uik6s"]
+script = ExtResource("1_wlnje")
+frameLength = 0.25
+annotation = "turn Solius down, walk the player to the right"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_0gs4l"), SubResource("Resource_wbuyf")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_epipy"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 480)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_du1ap"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 466)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_3laut"]
+script = ExtResource("1_wlnje")
+frameLength = 1.5
+annotation = "Walk Solius and the player down"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_epipy"), SubResource("Resource_du1ap")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_7mo4p"]
+script = ExtResource("1_tkbr3")
+value = Vector2(750, 480)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_pgjwu"]
+script = ExtResource("1_tkbr3")
+value = Vector2(736, 480)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_neftb"]
+script = ExtResource("1_wlnje")
+frameLength = 0.25
+annotation = "Walk Solius to the right, walk the player down"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_7mo4p"), SubResource("Resource_pgjwu")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_oqyye"]
+script = ExtResource("1_tkbr3")
+value = Vector2(1106, 480)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_inehg"]
+script = ExtResource("1_tkbr3")
+value = Vector2(1086, 480)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_s5nj7"]
+script = ExtResource("1_wlnje")
+frameLength = 5.5
+annotation = "walk Solius and the player off the Boardwalk"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_oqyye"), SubResource("Resource_inehg")])
+actorAnims = Array[ExtResource("1_pwp1j")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_go6kw"]
+script = ExtResource("1_pwp1j")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_fhwta"]
+script = ExtResource("7_bgy7d")
+value = true
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_xv7qh"]
+script = ExtResource("1_wlnje")
+frameLength = 0.1
+annotation = "Make both stand, Solius faces player, pause until text boxes are all read"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_fhwta")])
+actorAnims = Array[ExtResource("1_pwp1j")]([ExtResource("5_fh2wv"), SubResource("Resource_go6kw")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+dialogues = Array[ExtResource("1_xhf60")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_8jx76"]
+script = ExtResource("2_q0jc8")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["solius_to_cave_path"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_ajfha")
+cutsceneFrames = Array[ExtResource("1_wlnje")]([SubResource("Resource_ok017"), SubResource("Resource_8w7hg"), SubResource("Resource_vvnmx"), SubResource("Resource_1rsxf"), SubResource("Resource_7ykqw"), SubResource("Resource_uik6s"), SubResource("Resource_3laut"), SubResource("Resource_neftb"), SubResource("Resource_s5nj7"), SubResource("Resource_xv7qh")])
+saveName = "solius_to_cave_path"
+storyRequirements = SubResource("Resource_8jx76")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
