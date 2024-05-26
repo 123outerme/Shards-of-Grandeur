@@ -124,6 +124,9 @@ func effects_with_status() -> MoveEffectType:
 	
 	return MoveEffectType.NONE
 
+func has_effect_with_role(role: MoveEffect.Role) -> bool:
+	return chargeEffect.role == role or surgeEffect.role == role
+
 func effects_with_role(role: MoveEffect.Role) -> MoveEffectType:
 	var chargeHeals: bool = chargeEffect.role == role
 	var surgeHeals: bool = surgeEffect.role == role

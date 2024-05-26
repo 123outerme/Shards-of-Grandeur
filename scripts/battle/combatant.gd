@@ -434,15 +434,63 @@ func level_up_nonplayer(newLv: int):
 		printerr("level up nonplayer err: level diff is negative")
 
 func assign_moves_nonplayer():
+	stats.moves = [null, null, null, null]
+	var preferredMoves: Array[MoveEffect.Role] = [
+		stats.movepool.preferredMove1Role,
+		stats.movepool.preferredMove2Role,
+		stats.movepool.preferredMove3Role,
+		stats.movepool.preferredMove4Role
+	]
+	
+	# for each move slot, use the preferred role to find the highest lv move that includes that role
+	# MoveEffect.Role.OTHER means no preference, so a slot with that preference skips this phase and goes onto the next
+	for idx in range(len(preferredMoves)):
+		var highestLvMoveInRole: Move = null
+		for move: Move in stats.movepool.pool:
+			if move.requiredLv <= stats.level \
+					and (move.has_effect_with_role(preferredMoves[idx]) and preferredMoves[idx] != MoveEffect.Role.OTHER ) \
+					and (highestLvMoveInRole == null or highestLvMoveInRole.requiredLv < move.requiredLv) \
+					and not move in stats.moves:
+				highestLvMoveInRole = move
+		if highestLvMoveInRole != null:
+			stats.moves[idx] = highestLvMoveInRole
+	
+	# for the move slots we couldn't find preferred matches for, put anything in there
+	for idx in range(len(stats.preferredMoves)):
+		if stats.moves[idx] == null:
+			var highestLvMove: Move = null
+			for move: Move in stats.movepool.pool:
+				if move.requiredLv <= stats.level \
+						and not move in stats.moves \
+						and (highestLvMove == null or highestLvMove.requiredLv < move.requiredLv):
+					highestLvMove = move
+			if highestLvMove != null:
+				stats.moves[idx] = highestLvMove
+		
+	stats.moves = stats.moves.filter(_filter_null) # remove null entries because they aren't needed
+	# NOTE: check if having null entries breaks anything (specifically move picking) or not
+	''' initial attempt, going by move in movepool and not by slot
 	var nextMoveSlot: int = 0
-	stats.moves = []
 	for move: Move in stats.movepool.pool:
 		if move.requiredLv <= stats.level:
 			if len(stats.moves) < 4:
 				stats.moves.insert(nextMoveSlot, move)
+				nextMoveSlot = len(stats.moves)
 			else:
-				stats.moves[nextMoveSlot] = move
-			nextMoveSlot = (nextMoveSlot + 1) % 4
+				var replaceIdx: int = -1
+				for idx in range(len(stats.moves)):
+					# first consider the move at `nextMoveSlot`
+					var moveIdx = (nextMoveSlot + idx) % 4
+					if move.has_effect_with_role(preferredMoves[moveIdx]) or preferredMoves[moveIdx] == MoveEffect.Role.OTHER:
+						# if found, break so this is the one we definitely change
+						replaceIdx = moveIdx
+						break
+				if replaceIdx != -1:
+					# if we found a candidate slot this should go into, replace the move and update `nextMoveSlot`
+					stats.moves[replaceIdx] = move
+					nextMoveSlot = (nextMoveSlot + 1) % 4
+				#stats.moves[nextMoveSlot] = move
+	#'''
 
 # returns the number of null moves after validation but before any re-assignment
 func validate_moves() -> int:
@@ -515,5 +563,8 @@ func save_from_object(c: Combatant):
 	
 	downed = c.downed
 
-func _desc_order(a, b):
+func _desc_order(a, b) -> bool:
 	return a > b
+
+func _filter_null(a) -> bool:
+	return a != null

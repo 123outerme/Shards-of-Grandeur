@@ -497,6 +497,9 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		weightModifier *= max(0.8, 1 - ((gainableOrbs - 1) * 0.2))
 	# at 40% health or less, non-SUPPORT AIs should prioritize attacking more
 	var isLowHealth: bool = (combatant.currentHp / (combatant.stats.maxHp as float)) <= 0.4
+	if combatant.get_ai_type() != Combatant.AiType.SUPPORT and (moveEffect.role == MoveEffect.Role.HEAL or moveEffect.role == MoveEffect.Role.OTHER):
+		weightModifier *= 0.75 # de-prioritize support moves if the combatant is not an explicit Support AI
+
 	if randValue > combatant.aiOverrideWeight and \
 			((combatant.get_ai_type() == Combatant.AiType.DAMAGE or (combatant.get_ai_type() != Combatant.AiType.SUPPORT and isLowHealth)) \
 			and (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE)) or \

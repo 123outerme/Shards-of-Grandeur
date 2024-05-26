@@ -12,7 +12,6 @@ func _init():
 	pass
 
 func get_result(combatants: Array[CombatantNode], _battleState: BattleState) -> TurnResult:
-	print('WinCondition warning: WinCondition should be treated as an abstract class. Did you forget to instantiate a subclass of WinCondition?')
 	var alliesDown: int = 0
 	var enemiesDown: int = 0
 	for combatantNode in combatants:

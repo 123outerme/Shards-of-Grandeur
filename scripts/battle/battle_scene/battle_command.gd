@@ -202,7 +202,8 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		if type == Type.MOVE:
 			finalPower = moveEffect.power
 			for interceptIdx in range(len(interceptingTargets)):
-				if interceptingTargets[interceptIdx] != targets[idx]:
+				# if the interceptor is not the target, and this move is not healing:
+				if interceptingTargets[interceptIdx] != targets[idx] and finalPower > 0:
 					var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
 					var interceptingPower: float = moveEffect.power * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
 					finalPower -= interceptingPower
