@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://mydpfwse4hue"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0ukwr"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_13pvw"]
+[ext_resource type="SpriteFrames" uid="uid://lbak2io1bmot" path="res://graphics/moves/blunt/a_blunt.tres" id="2_c35jn"]
+[ext_resource type="Resource" uid="uid://clfjr1w70wxv8" path="res://gamedata/moves/haymaker/particles_haymaker.tres" id="2_ivcef"]
+
+[sub_resource type="Curve" id="Curve_sfxyi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_v33ga"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_cvggm"]
+script = ExtResource("1_0ukwr")
+annotation = "Position attack before target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_sfxyi")
+yCurve = SubResource("Curve_v33ga")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_382cc"]
+script = ExtResource("1_0ukwr")
+annotation = "Play the first part of the swing"
+animation = "haymaker"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_8fesv"]
+script = ExtResource("1_0ukwr")
+annotation = "Play the hitstop part with particles"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_ivcef")
+
+[sub_resource type="Resource" id="Resource_xnq77"]
+script = ExtResource("1_0ukwr")
+annotation = "Continue with the followthrough"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("1_13pvw")
+spriteFrames = ExtResource("2_c35jn")
+centerSprite = true
+maxSize = Vector2(18, 16)
+frames = Array[ExtResource("1_0ukwr")]([SubResource("Resource_cvggm"), SubResource("Resource_382cc"), SubResource("Resource_8fesv"), SubResource("Resource_xnq77")])
+delayedUntilReposition = true
+onePerTarget = true

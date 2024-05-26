@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://bgjhcuwl5d2jj"]
 
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_8u1jy"]
-[ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity_1.png" id="1_vgxqb"]
-[ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity_2.png" id="2_tfgej"]
-[ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity_3.png" id="3_msqrv"]
-[ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity_4.png" id="4_ljhv4"]
+[ext_resource type="Texture2D" uid="uid://c6lmnvtltbxli" path="res://graphics/particles/hit_1.png" id="1_l3vtn"]
+[ext_resource type="Texture2D" uid="uid://c5oh44v7tr2hl" path="res://graphics/particles/hit_2.png" id="2_3vooi"]
+[ext_resource type="Texture2D" uid="uid://c83is0pmramuv" path="res://graphics/particles/hit_3.png" id="3_8xgja"]
+[ext_resource type="Texture2D" uid="uid://dx3kan4gi1h8v" path="res://graphics/particles/hit_4.png" id="4_mo8r8"]
 [ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="6_sup2f"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ttih6"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pmxbd"]
 lifetime_randomness = 0.25
 particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 4.0
+emission_shape = 3
+emission_box_extents = Vector3(1, 4, 0)
 spread = 40.0
 flatness = 0.2
 initial_velocity_min = 40.0
@@ -29,6 +29,6 @@ count = 4
 lifetime = 0.5
 duration = 0.5
 staggered = false
-processMaterial = SubResource("ParticleProcessMaterial_ttih6")
-particleTextures = Array[Texture2D]([ExtResource("1_vgxqb"), ExtResource("2_tfgej"), ExtResource("3_msqrv"), ExtResource("4_ljhv4")])
+processMaterial = SubResource("ParticleProcessMaterial_pmxbd")
+particleTextures = Array[Texture2D]([ExtResource("1_l3vtn"), ExtResource("2_3vooi"), ExtResource("3_8xgja"), ExtResource("4_mo8r8")])
 sfx = ExtResource("6_sup2f")
