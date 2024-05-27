@@ -8,14 +8,14 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="6_k1o8q"]
 [ext_resource type="Resource" uid="uid://blj5s6jgtbvbk" path="res://gamedata/moves/particles_surge.tres" id="8_a3k0w"]
-[ext_resource type="Material" uid="uid://bcqvkeuoqt43w" path="res://graphics/particles/hit_particle_process_mat.tres" id="10_nbsj4"]
+[ext_resource type="Material" uid="uid://bcqvkeuoqt43w" path="res://graphics/particles/hit/hit_particle_process_mat.tres" id="10_nbsj4"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
-[ext_resource type="Texture2D" uid="uid://c6lmnvtltbxli" path="res://graphics/particles/hit_1.png" id="11_qoss1"]
-[ext_resource type="Texture2D" uid="uid://c5oh44v7tr2hl" path="res://graphics/particles/hit_2.png" id="12_hcduv"]
-[ext_resource type="Texture2D" uid="uid://c83is0pmramuv" path="res://graphics/particles/hit_3.png" id="13_ensq7"]
+[ext_resource type="Texture2D" uid="uid://c6lmnvtltbxli" path="res://graphics/particles/hit/hit_1.png" id="11_aeihw"]
+[ext_resource type="Texture2D" uid="uid://c5oh44v7tr2hl" path="res://graphics/particles/hit/hit_2.png" id="12_dl663"]
 [ext_resource type="Texture2D" uid="uid://dory1vdxd41t" path="res://graphics/ui/health_bar_bg.png" id="13_ff1jw"]
+[ext_resource type="Texture2D" uid="uid://c83is0pmramuv" path="res://graphics/particles/hit/hit_3.png" id="13_jraon"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="13_ms1fr"]
-[ext_resource type="Texture2D" uid="uid://dx3kan4gi1h8v" path="res://graphics/particles/hit_4.png" id="14_hewrj"]
+[ext_resource type="Texture2D" uid="uid://dx3kan4gi1h8v" path="res://graphics/particles/hit/hit_4.png" id="14_hulh4"]
 [ext_resource type="Resource" uid="uid://c6c4ckakjjq0h" path="res://gamedata/moves/particles_hit.tres" id="14_nv53v"]
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
 [ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
@@ -81,22 +81,22 @@ duration = 0.5
 [node name="GpuParticles1" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="0"]
 amount = 3
 process_material = ExtResource("10_nbsj4")
-texture = ExtResource("11_qoss1")
+texture = ExtResource("11_aeihw")
 
 [node name="GpuParticles2" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="1"]
 amount = 3
 process_material = ExtResource("10_nbsj4")
-texture = ExtResource("12_hcduv")
+texture = ExtResource("12_dl663")
 
 [node name="GpuParticles3" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="2"]
 amount = 3
 process_material = ExtResource("10_nbsj4")
-texture = ExtResource("13_ensq7")
+texture = ExtResource("13_jraon")
 
 [node name="GpuParticles4" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="3"]
 amount = 3
 process_material = ExtResource("10_nbsj4")
-texture = ExtResource("14_hewrj")
+texture = ExtResource("14_hulh4")
 
 [node name="ShardParticleEmitter" parent="SpriteContainer/FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)

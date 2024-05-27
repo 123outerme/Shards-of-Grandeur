@@ -28,19 +28,19 @@
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="22_g7o8t"]
 [ext_resource type="Resource" uid="uid://drqc7ms1tgy62" path="res://gamedata/cutscenes/standstill/standstill_enter.tres" id="22_nx0ge"]
 [ext_resource type="Resource" uid="uid://c131ky3wsh8qx" path="res://gamedata/cutscenes/standstill/standstill_leave.tres" id="23_pq6ae"]
-[ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys_1.png" id="25_dhpow"]
+[ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys/phys_1.png" id="25_dhpow"]
 [ext_resource type="Resource" uid="uid://cblip8at1gm6p" path="res://gamedata/cutscenes/standstill/standstill_return_prologue.tres" id="25_mm3hq"]
-[ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys_2.png" id="26_q8o5m"]
-[ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys_3.png" id="27_l1rmm"]
+[ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys/phys_2.png" id="26_q8o5m"]
+[ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys/phys_3.png" id="27_l1rmm"]
 [ext_resource type="Resource" uid="uid://d1qhj1lkn2cj3" path="res://gamedata/cutscenes/standstill/standstill_back_to_drh.tres" id="28_5llnp"]
-[ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys_4.png" id="28_hkmkd"]
+[ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys/phys_4.png" id="28_hkmkd"]
 [ext_resource type="Resource" uid="uid://bp8ei02gccf15" path="res://gamedata/cutscenes/standstill/standstill_back_to_town.tres" id="29_8rjn2"]
 [ext_resource type="Resource" uid="uid://8ilocm42bf2h" path="res://gamedata/cutscenes/standstill/standstill_act1_start.tres" id="33_gy0wf"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="33_m70xi"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="35_uryo8"]
 [ext_resource type="Resource" uid="uid://ddl47k7hjo25b" path="res://gamedata/cutscenes/standstill/standstill_to_grandstone.tres" id="36_sds6n"]
 
-[sub_resource type="Resource" id="Resource_tkguy"]
+[sub_resource type="Resource" id="Resource_gmy5m"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-256, 80)
@@ -104,7 +104,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_8xfse"]
+[sub_resource type="Resource" id="Resource_yxjpq"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-15, 128)
@@ -127,7 +127,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_diei0"]
+[sub_resource type="Resource" id="Resource_2ntp2"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-8, 88)
@@ -144,7 +144,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ly5dn"]
+[sub_resource type="Resource" id="Resource_f2r5o"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(216, -160)
@@ -161,7 +161,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_xgauj"]
+[sub_resource type="Resource" id="Resource_84a7r"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(778, 0)
@@ -339,7 +339,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_5i4yh"]
+[sub_resource type="Resource" id="Resource_msdmk"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 position = Vector2(-566, 120)
@@ -384,7 +384,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-data = SubResource("Resource_tkguy")
+data = SubResource("Resource_gmy5m")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
@@ -420,7 +420,7 @@ position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_8xfse")
+data = SubResource("Resource_yxjpq")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -456,7 +456,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-data = SubResource("Resource_diei0")
+data = SubResource("Resource_2ntp2")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg"), ExtResource("13_k8mkq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -483,7 +483,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_ly5dn")
+data = SubResource("Resource_f2r5o")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
@@ -518,7 +518,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-data = SubResource("Resource_xgauj")
+data = SubResource("Resource_84a7r")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("22_g7o8t")
@@ -695,7 +695,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_5i4yh")
+data = SubResource("Resource_msdmk")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
