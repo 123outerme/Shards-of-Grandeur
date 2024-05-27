@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://c7btvreu865wk"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_brsp6"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_qupaf"]
+[ext_resource type="SpriteFrames" uid="uid://cy1ihxquyxqfv" path="res://graphics/moves/fire/a_fire.tres" id="2_0cgoh"]
+
+[sub_resource type="Curve" id="Curve_sqfok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_04r0k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_set4u"]
+script = ExtResource("1_brsp6")
+annotation = "setup attack position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(10, 0)
+offset = 1
+xCurve = SubResource("Curve_sqfok")
+yCurve = SubResource("Curve_04r0k")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_lc8yb"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5gn2c"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_swt7i"]
+script = ExtResource("1_brsp6")
+annotation = "Shoot the firebird at the target"
+animation = "trailblaze"
+duration = 1.0
+speed = 80.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_lc8yb")
+yCurve = SubResource("Curve_5gn2c")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_scvk5"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_03wcw"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_d6hoa"]
+script = ExtResource("1_brsp6")
+annotation = "with consistent speed, move the firebird offscreen and fade out"
+animation = ""
+duration = 1.0
+speed = 80.0
+opacity = 0.0
+relativeTo = 1
+position = Vector2(48, 0)
+offset = 2
+xCurve = SubResource("Curve_scvk5")
+yCurve = SubResource("Curve_03wcw")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_beemc"]
+script = ExtResource("1_brsp6")
+annotation = "stop the animation (firebird loops)"
+animation = "#stop"
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("1_qupaf")
+spriteFrames = ExtResource("2_0cgoh")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_brsp6")]([SubResource("Resource_set4u"), SubResource("Resource_swt7i"), SubResource("Resource_d6hoa"), SubResource("Resource_beemc")])
+delayedUntilReposition = false
+onePerTarget = true

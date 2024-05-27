@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://cy1ihxquyxqfv"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://cy1ihxquyxqfv"]
 
 [ext_resource type="Texture2D" uid="uid://dojs4wivftlb8" path="res://graphics/moves/fire/torch.png" id="1_eag2f"]
+[ext_resource type="Texture2D" uid="uid://dsc07deancjak" path="res://graphics/moves/fire/trailblaze.png" id="2_gwwb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yg6tg"]
 atlas = ExtResource("1_eag2f")
@@ -49,6 +50,22 @@ region = Rect2(340, 0, 34, 13)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ra6i"]
 atlas = ExtResource("1_eag2f")
 region = Rect2(374, 0, 34, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrpvx"]
+atlas = ExtResource("2_gwwb4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veiwy"]
+atlas = ExtResource("2_gwwb4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4mx6"]
+atlas = ExtResource("2_gwwb4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faveq"]
+atlas = ExtResource("2_gwwb4")
+region = Rect2(48, 0, 16, 16)
 
 [resource]
 animations = [{
@@ -99,5 +116,22 @@ animations = [{
 }],
 "loop": false,
 "name": &"torch",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrpvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veiwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4mx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faveq")
+}],
+"loop": true,
+"name": &"trailblaze",
 "speed": 6.0
 }]
