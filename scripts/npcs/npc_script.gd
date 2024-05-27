@@ -65,9 +65,10 @@ func _ready():
 	call_deferred("fetch_player")
 	if spawnRequirements != null and not spawnRequirements.is_valid():
 		queue_free() # or alternatively set visible to false?
-		
-	if loadFlipH:
-		flip_h = not flip_h
+	
+	if not Engine.is_editor_hint():
+		if loadFlipH:
+			flip_h = not flip_h
 
 func fetch_player():
 	if not Engine.is_editor_hint():
