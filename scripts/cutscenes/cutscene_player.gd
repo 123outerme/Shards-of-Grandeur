@@ -285,6 +285,9 @@ func complete_cutscene():
 	if playingFromTrigger != null:
 		playingFromTrigger.cutscene_finished(cutscene)
 		playingFromTrigger = null
+	if cutscene.staticEncounter != null:
+		PlayerResources.playerInfo.encounter = cutscene.staticEncounter
+		PlayerFinder.player.start_battle()
 	cutscene = null
 	cutscene_completed.emit()
 	for tween in tweens:

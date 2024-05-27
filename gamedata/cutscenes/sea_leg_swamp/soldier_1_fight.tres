@@ -1,0 +1,142 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://d4ah4sgtij8n0"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_fds5a"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_he3jy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_ms037"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_rodvq"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_p2r75"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_fhxoc"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_gpmwf"]
+[ext_resource type="Resource" uid="uid://fifaiulwi3wl" path="res://gamedata/static_encounters/sea_leg_soldier_1.tres" id="6_pdtym"]
+
+[sub_resource type="Resource" id="Resource_3gbwi"]
+script = ExtResource("2_p2r75")
+speaker = "Soldier"
+texts = Array[String](["Hey, you! Stop!"])
+
+[sub_resource type="Resource" id="Resource_ww2im"]
+script = ExtResource("1_fds5a")
+frameLength = 0.1
+annotation = "soldier stops the player"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_fhxoc")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_p2r75")]([SubResource("Resource_3gbwi")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_3fo3l"]
+script = ExtResource("1_fds5a")
+frameLength = 0.1
+annotation = "Wait for the textbox to disappear"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_p2r75")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_cbhiq"]
+script = ExtResource("1_he3jy")
+value = Vector2(-124, 63)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_52npt"]
+script = ExtResource("1_fds5a")
+frameLength = 1.0
+annotation = "walk the player to the soldier"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_cbhiq")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_rodvq")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_p2r75")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5nhen"]
+script = ExtResource("2_p2r75")
+speaker = "Soldier"
+texts = Array[String](["I think you're a little far from Grandstone, adventurer. We're taking control of the Cave!"])
+
+[sub_resource type="Resource" id="Resource_to8k8"]
+script = ExtResource("1_fds5a")
+frameLength = 0.1
+annotation = "Stop walking and have the soldier talk"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_fhxoc")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_p2r75")]([SubResource("Resource_5nhen")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qlrvs"]
+script = ExtResource("1_fds5a")
+frameLength = 0.1
+annotation = "Wait for the text box to disappear again"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_p2r75")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_l4f0j"]
+script = ExtResource("6_gpmwf")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["soldier_1_fight"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_ms037")
+cutsceneFrames = Array[ExtResource("1_fds5a")]([SubResource("Resource_ww2im"), SubResource("Resource_3fo3l"), SubResource("Resource_52npt"), SubResource("Resource_to8k8"), SubResource("Resource_qlrvs")])
+saveName = "soldier_1_fight"
+storyRequirements = SubResource("Resource_l4f0j")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+staticEncounter = ExtResource("6_pdtym")
+tempDisabledAfter = false

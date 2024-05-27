@@ -1,21 +1,43 @@
-[gd_scene load_steps=57 format=3 uid="uid://83b1hyn2uhjy"]
+[gd_scene load_steps=61 format=3 uid="uid://83b1hyn2uhjy"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_u0d82"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_hag51"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_ufdam"]
+[ext_resource type="Resource" uid="uid://bwdu3jbnjw1dl" path="res://gamedata/story_requirements/swamp_soldier_1_fight.tres" id="4_2uwfd"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_b2n1i"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_klaa4"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_y2wfg"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="5_j35yv"]
+[ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="5_n1yd4"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="5_w1qbi"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="5_wer5f"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_xxk5u"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="7_04afm"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="7_t3dm5"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="10_uo7fm"]
-[ext_resource type="Resource" uid="uid://fifaiulwi3wl" path="res://gamedata/static_encounters/sea_leg_soldier_1.tres" id="11_0y4j3"]
 [ext_resource type="Resource" uid="uid://d2jjcpbdlqb6n" path="res://gamedata/static_encounters/sea_leg_soldier_2.tres" id="12_2dwvd"]
 [ext_resource type="Resource" uid="uid://jf8rgyteryhw" path="res://gamedata/static_encounters/sea_leg_soldier_3.tres" id="13_eah6d"]
+[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="14_7fjos"]
 [ext_resource type="Resource" uid="uid://c426oq6hx1sbl" path="res://gamedata/static_encounters/sea_leg_soldier_4.tres" id="14_16p8w"]
+[ext_resource type="Resource" uid="uid://d4ah4sgtij8n0" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_1_fight.tres" id="16_fek66"]
+
+[sub_resource type="Resource" id="Resource_4dhay"]
+script = ExtResource("4_klaa4")
+saveName = "npc"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -80,7 +102,7 @@ combatant1 = ExtResource("5_w1qbi")
 specialRules = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l34fo"]
-size = Vector2(116, 48)
+size = Vector2(116, 103)
 
 [sub_resource type="Resource" id="Resource_eyv2o"]
 script = ExtResource("4_y2wfg")
@@ -176,15 +198,6 @@ specialRules = 0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2amf"]
 size = Vector2(96, 92)
 
-[sub_resource type="Resource" id="Resource_0goeq"]
-script = ExtResource("4_y2wfg")
-spawnerId = "sea_leg_soldier_1"
-disabled = false
-spawnedLastEncounter = false
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0urn"]
-size = Vector2(116, 94)
-
 [sub_resource type="Resource" id="Resource_1vosd"]
 script = ExtResource("4_y2wfg")
 spawnerId = "sea_leg_soldier_2"
@@ -220,8 +233,8 @@ size = Vector2(56, 96)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_u0d82")
-metadata/_edit_horizontal_guides_ = [-21.0]
-metadata/_edit_vertical_guides_ = [-374.0]
+metadata/_edit_horizontal_guides_ = [-21.0, 63.0]
+metadata/_edit_vertical_guides_ = [-374.0, -124.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -243,6 +256,27 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
+[node name="Soldier1" parent="TileMap" instance=ExtResource("3_hag51")]
+position = Vector2(-105, 59)
+displayName = "Chain Legion Soldier"
+saveName = "swamp_soldier_1"
+loadFlipH = true
+spawnRequirements = ExtResource("4_2uwfd")
+data = SubResource("Resource_4dhay")
+
+[node name="NPCSprite" parent="TileMap/Soldier1" index="0"]
+sprite_frames = ExtResource("5_n1yd4")
+animation = &"attack_affinity"
+
+[node name="ColliderShape" parent="TileMap/Soldier1" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkAreaShape" parent="TileMap/Soldier1/TalkArea" index="0"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/Soldier1" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -261,10 +295,11 @@ enemyEncounter = SubResource("Resource_vjvy8")
 tilemap = NodePath("../TileMap")
 
 [node name="SpawnShape" parent="EnemySpawner/SpawnArea" index="0"]
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_l34fo")
 
 [node name="EnemySpawner2" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_wer5f")]
-position = Vector2(178, 593)
+position = Vector2(170, 576)
 spawnerData = SubResource("Resource_eyv2o")
 enemyEncounter = SubResource("Resource_n2iia")
 tilemap = NodePath("../TileMap")
@@ -283,15 +318,12 @@ tilemap = NodePath("../TileMap")
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_m2amf")
 
-[node name="EnemySpawner4" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_wer5f")]
-position = Vector2(-106, 59)
-spawnerData = SubResource("Resource_0goeq")
-enemyEncounter = ExtResource("11_0y4j3")
-tilemap = NodePath("../TileMap")
+[node name="Soldier1FightCutsceneTrigger" parent="." instance=ExtResource("14_7fjos")]
+position = Vector2(-131, 60)
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("16_fek66")])
 
-[node name="SpawnShape" parent="EnemySpawner4/SpawnArea" index="0"]
-position = Vector2(1, -1)
-shape = SubResource("RectangleShape2D_v0urn")
+[node name="CollisionShape2D" parent="Soldier1FightCutsceneTrigger" index="0"]
+position = Vector2(4.25, -8.25)
 
 [node name="EnemySpawner5" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_wer5f")]
 position = Vector2(122, 113)
@@ -343,10 +375,11 @@ shape = SubResource("RectangleShape2D_yutwr")
 [node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
 position = Vector2(10, 0)
 
+[editable path="TileMap/Soldier1"]
 [editable path="EnemySpawner"]
 [editable path="EnemySpawner2"]
 [editable path="EnemySpawner3"]
-[editable path="EnemySpawner4"]
+[editable path="Soldier1FightCutsceneTrigger"]
 [editable path="EnemySpawner5"]
 [editable path="EnemySpawner6"]
 [editable path="EnemySpawner7"]

@@ -6,6 +6,7 @@ class_name NPCScript
 @export var displayName: String
 @export var saveName: String
 @export var facesRight: bool = true
+@export var loadFlipH: bool = false
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 @export var spawnRequirements: StoryRequirements = null
 
@@ -64,6 +65,9 @@ func _ready():
 	call_deferred("fetch_player")
 	if spawnRequirements != null and not spawnRequirements.is_valid():
 		queue_free() # or alternatively set visible to false?
+		
+	if loadFlipH:
+		flip_h = not flip_h
 
 func fetch_player():
 	if not Engine.is_editor_hint():

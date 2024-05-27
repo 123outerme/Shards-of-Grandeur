@@ -60,14 +60,18 @@ func _init(
 	statusChance = i_statusChance
 	surgeChanges = i_surgeChanges
 
-func get_short_description() -> Array[String]:
+func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Array[String]:
 	var effects: Array[String] = []
 	
 	if orbChange > 0:
 		effects.append('+' + String.num(orbChange) + ' $orb')
 	
 	if power > 0:
-		effects.append(String.num(power) + ' Power')
+		var powerString: String = String.num(power)
+		if moveElement != Move.Element.NONE:
+			powerString += ' ' + Move.element_to_string(moveElement)
+		powerString += ' Power'
+		effects.append(powerString)
 	elif power < 0:
 		effects.append(String.num(power * -1) + ' Heal Power')
 	

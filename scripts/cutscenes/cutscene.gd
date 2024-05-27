@@ -9,6 +9,7 @@ class_name Cutscene
 @export var activateActorsBefore: Array[String] = []
 @export var deactivateActorsAfter: Array[String] = []
 @export var givesQuest: Quest = null
+@export var staticEncounter: StaticEncounter = null
 @export var tempDisabledAfter: bool = false
 var totalTime: float = 0
 
@@ -20,6 +21,7 @@ func _init(
 	i_activateActorsBefore: Array[String] = [],
 	i_deactivateActorsAfter: Array[String] = [],
 	i_givesQuest = null,
+	i_staticEncounter = null,
 	i_tempDisabledAfter = false,
 ):
 	cutsceneFrames = i_frames
@@ -29,6 +31,7 @@ func _init(
 	activateActorsBefore = i_activateActorsBefore
 	deactivateActorsAfter = i_deactivateActorsAfter
 	givesQuest = i_givesQuest
+	staticEncounter = i_staticEncounter
 	tempDisabledAfter = i_tempDisabledAfter
 
 func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> CutsceneFrame:
