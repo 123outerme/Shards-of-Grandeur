@@ -41,20 +41,45 @@ func play_turn():
 	if combatant != null: # apply before-damage-calc status
 		battleController.state.statusEffDamagedCombatants = []
 		combatant.command.get_targets_from_combatant_nodes(allCombatantNodes) # make sure to get all commands before applying statuses
+		# apply status effect effects Before Dmg Calc
 		if combatant.statusEffect != null:
 			battleController.state.statusEffDamagedCombatants.append_array(
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 			)
+		# apply equipment boosts Before Dmg Calc
+		#if combatant.stats.equippedArmor != null:
+		#	combatant.stats.equippedArmor.apply_effects(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
+		#if combatant.stats.equippedWeapon != null:
+		#	combatant.stats.equippedWeapon.apply_effects(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
+		# Execute the command: attack, use item, attempt to flee, etc.
 		escaping = combatant.command.execute_command(combatant, allCombatantNodes) # perform all necessary calculations
-		if combatant.statusEffect != null: # apply after-damage-calc status
+		# apply after-damage-calc status
+		if combatant.statusEffect != null:
 			battleController.state.statusEffDamagedCombatants.append_array(
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 			)
+		# apply equipment boosts After Dmg Calc
+		#if combatant.stats.equippedArmor != null:
+		#	combatant.stats.equippedArmor.apply_effects(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+		#if combatant.stats.equippedWeapon != null:
+		#	combatant.stats.equippedWeapon.apply_effects(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		for defender in combatant.command.targets:
 			if defender.statusEffect != null: # apply "specifically afer taking damage" statuses
 				battleController.state.statusEffDamagedCombatants.append_array(
 					defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 				)
+			# if a move was used: get the move effect
+			if combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move != null:
+				var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
+				if combatant.command.moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
+					moveEffect = moveEffect.apply_surge_changes(combatant.command.orbChange * -1)
+				# if the move dealt direct (non-redirected) damage to the defender, then apply After Recieving Damage timing equipment effects
+				if moveEffect.power > 0:
+					if defender.stats.equippedArmor != null:
+						defender.stats.equippedArmor.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+					if defender.stats.equippedWeapon != null:
+						defender.stats.equippedWeapon.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+				
 		update_turn_text()
 	else:
 		battleController.state.statusEffDamagedCombatants = []
@@ -113,6 +138,23 @@ func update_turn_text() -> bool:
 			for defender in defenders:
 				if not defender == combatant and defender.statusEffect != null:
 					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+				# if the defender did not intercept the attack (was directed at this defender):
+				if defender in combatant.command.targets:
+					# if a move was used: get the move effect
+					if combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move != null:
+						var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
+						if combatant.command.moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
+							moveEffect = moveEffect.apply_surge_changes(combatant.command.orbChange * -1)
+						# if the move dealt damage to the defender, then show the After Recieving Dmg equipment effects
+						if moveEffect.power > 0:
+							if defender.stats.equippedWeapon != null:
+								var afterDmgText: String = defender.stats.equippedWeapon.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+								if afterDmgText != '':
+									text += ' ' + afterDmgText
+							if defender.stats.equippedArmor != null:
+								var afterDmgText: String = defender.stats.equippedArmor.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+								if afterDmgText != '':
+									text += ' ' + afterDmgText
 
 		var userNode: CombatantNode = null
 		var defenderNodes: Array[CombatantNode] = []

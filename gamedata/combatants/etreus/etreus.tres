@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://46enf3g55g1q"]
+
+[ext_resource type="Resource" uid="uid://v2ahalvrgass" path="res://gamedata/combatants/etreus/etreus_rewards.tres" id="1_471x8"]
+[ext_resource type="Resource" uid="uid://d4ap1s0yi5hye" path="res://gamedata/combatants/etreus/etreus_effectiveness.tres" id="1_vbrok"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_vowjm"]
+[ext_resource type="Resource" uid="uid://x2adlcr2vo3t" path="res://gamedata/combatants/etreus/etreus_movepool.tres" id="2_0tfui"]
+[ext_resource type="Resource" uid="uid://b5tv37o5olpwk" path="res://gamedata/combatants/etreus/etreus_evolutions.tres" id="2_23h2t"]
+[ext_resource type="Resource" uid="uid://bht2dey5uaip7" path="res://gamedata/combatants/etreus/etreus_sprite.tres" id="2_jubff"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_mexbd"]
+[ext_resource type="Resource" uid="uid://oth4vp1x7roh" path="res://gamedata/combatants/etreus/etreus_stat_growth.tres" id="3_1rgm2"]
+[ext_resource type="Resource" uid="uid://bo3ot8xbews4i" path="res://gamedata/combatants/etreus/etreus_equipment.tres" id="7_2oqi4"]
+
+[sub_resource type="Resource" id="Resource_4n4qd"]
+script = ExtResource("2_mexbd")
+displayName = "Etreus"
+saveName = "etreus"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("3_1rgm2")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("2_0tfui")
+
+[resource]
+script = ExtResource("1_vowjm")
+sprite = ExtResource("2_jubff")
+nickname = ""
+stats = SubResource("Resource_4n4qd")
+evolutions = ExtResource("2_23h2t")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 1
+damageAggroType = 0
+strategy = 1
+aiOverrideWeight = 0.15
+moveEffectiveness = ExtResource("1_vbrok")
+weightedEquipment = ExtResource("7_2oqi4")
+teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
+dropTable = ExtResource("1_471x8")
+innateStatCategories = Array[int]([0])
+downed = false

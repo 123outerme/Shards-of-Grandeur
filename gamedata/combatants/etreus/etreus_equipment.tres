@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=5 format=3 uid="uid://bo3ot8xbews4i"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_kdph3"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_7g4bv"]
+[ext_resource type="Resource" uid="uid://upr13krvy0ej" path="res://gamedata/items/weapon/etreus_polearm.tres" id="3_hteyc"]
+
+[sub_resource type="Resource" id="Resource_whv53"]
+script = ExtResource("2_7g4bv")
+weapon = ExtResource("3_hteyc")
+weight = 1.0
+
+[resource]
+script = ExtResource("1_kdph3")
+weightedEquipment = Array[ExtResource("2_7g4bv")]([SubResource("Resource_whv53")])

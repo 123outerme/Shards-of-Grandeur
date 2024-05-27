@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://upr13krvy0ej"]
+
+[ext_resource type="Texture2D" uid="uid://hd6cor5poy5j" path="res://graphics/items/weapons/etreus_polearm.png" id="1_2ymn7"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_cxeqk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_q7vqc"]
+
+[sub_resource type="Resource" id="Resource_sj22t"]
+script = ExtResource("3_q7vqc")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.04
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[resource]
+script = ExtResource("1_cxeqk")
+statChanges = SubResource("Resource_sj22t")
+timing = 6
+bonusOrbs = 1
+itemSprite = ExtResource("1_2ymn7")
+itemName = "Etreus' Polearm"
+itemType = 2
+itemDescription = "This is the Polearm of the Chain Legion commander Etreus. A gilded weapon of excellent quality, suitable both for defending and attacking."
+cost = -1
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

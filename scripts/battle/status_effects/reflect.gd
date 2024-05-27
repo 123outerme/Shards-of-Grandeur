@@ -41,6 +41,9 @@ func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTi
 	if timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
 		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 0) # recoil can never knock you out!
+		# if the combatant damage is reflected to is Enduring, apply the status again to ensure the Endure is applied appropriately
+		if allCombatants[attackerIdx].statusEffect != null and allCombatants[attackerIdx].statusEffect.type == Type.ENDURE:
+			allCombatants[attackerIdx].statusEffect.apply_status(combatant, allCombatants, timing)
 		if get_recoil_damage(combatant, allCombatants, attackerIdx) > 0:
 			dealtDmgCombatants = [allCombatants[attackerIdx]]
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
