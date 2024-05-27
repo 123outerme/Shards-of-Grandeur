@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=23 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="5_q2te8"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="6_aasvf"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="6_jui48"]
+[ext_resource type="Resource" uid="uid://dsvutcget2q5u" path="res://gamedata/dialogue/solius/leavenport/find_cave.tres" id="7_2c63l"]
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="7_x5og7"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
 [ext_resource type="Resource" uid="uid://c3gj8c3m11yyt" path="res://gamedata/cutscenes/leavenport/meet_solius.tres" id="9_8qf0q"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
 
-[sub_resource type="Resource" id="Resource_rwsc4"]
+[sub_resource type="Resource" id="Resource_6e25h"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 position = Vector2(98, 202)
@@ -65,8 +66,8 @@ size = Vector2(112, 56)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
-metadata/_edit_vertical_guides_ = [1655.0, 98.0, -88.0]
-metadata/_edit_horizontal_guides_ = [560.0, 190.0, 480.0, -176.0]
+metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0]
+metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -164,7 +165,8 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_rwsc4")
+data = SubResource("Resource_6e25h")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
 sprite_frames = ExtResource("7_x5og7")
