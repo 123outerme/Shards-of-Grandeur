@@ -508,6 +508,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			(combatant.get_ai_type() == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
 		weightModifier *= 1.5 # prioritize moves aligning with AI type
 	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
+	var elementMultiplier = combatant.statChanges.get_element_multiplier(moveEffect.element)
 	var damageStat: int = boostedStats.physAttack
 	if move.category == Move.DmgCategory.MAGIC:
 		damageStat = boostedStats.magicAttack
@@ -521,16 +522,16 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	var weight: float = 1
 	if (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE) and \
 			combatant.get_ai_type() == Combatant.AiType.DAMAGE and randValue < combatant.aiOverrideWeight:
-		weight = randf() * moveEffect.power * weightModifier + 1
+		weight = randf() * (moveEffect.power + 1) * elementMultiplier * weightModifier + 1
 	else:
 		if BattleCommand.is_command_multi_target(moveEffect.targets):
 			var numEnemies: int = 0
 			for combatantNode: CombatantNode in tmpAllCombatantNodes:
 				if combatantNode.role != role and combatantNode.is_alive():
 					numEnemies += 1
-			weight = abs(moveEffect.power) * numEnemies * weightModifier + 1
+			weight = abs(moveEffect.power + 1) * elementMultiplier * numEnemies * weightModifier + 1
 		else:
-			weight = abs(moveEffect.power) * weightModifier + 1
+			weight = abs(moveEffect.power + 1) * elementMultiplier * weightModifier + 1
 	if moveEffect.power != 0:
 		weight *= damageStat / maxDamageStat
 		if enemyIsWeakToElement:
@@ -547,12 +548,16 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		if not (moveEffect.statusEffect != null and moveEffect.selfGetsStatus and numCanStatus <= 0):
 			var boostedStatsTotal: float = boostedStats.get_stat_total()
 			var newBoostedStats: Stats = moveEffect.selfStatChanges.apply(boostedStats)
+			# TODO: take into account gained elemental multipliers? How do we do that?
+			# simple answer, make gains weigh twice as much as losses
 			weight *= newBoostedStats.get_stat_total() / boostedStatsTotal
 	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 		# make dummy stats to easily detect percentage of stats that will be changed
 		var newStats: Stats = Stats.new('Dummy', 'dummy_stats', 1, 0, 50, 100, 100, 100, 100, 100)
 		var newStatsTotal: float = newStats.get_stat_total()
 		var newBoostedStats: Stats = moveEffect.targetStatChanges.apply(newStats)
+		# TODO: take into account affected elemental multipliers? How do we do that?
+		# simple answer, make losses weigh twice as much as gains
 		if BattleCommand.is_command_enemy_targeting(moveEffect.targets):
 			weight *= newStatsTotal / newBoostedStats.get_stat_total()
 		else:
