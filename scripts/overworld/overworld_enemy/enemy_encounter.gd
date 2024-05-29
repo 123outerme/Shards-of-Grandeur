@@ -11,16 +11,18 @@ enum SpecialRules {
 @export var combatant1: Combatant = null
 @export_flags('No Items:1', 'No Summons:2', 'Restand On Defeat:4') var specialRules: int = SpecialRules.NONE
 @export var winCon: WinCon = null
+@export_multiline var customWinText: String = ''
 
 func _init(
 	i_combatant1 = null,
 	i_specialRules = SpecialRules.NONE,
 	i_winCon = null,
+	i_customWinText = '',
 ):
 	combatant1 = i_combatant1
 	specialRules = i_specialRules
 	winCon = i_winCon
-	winCon = TotalDefeatWinCon.new()
+	customWinText = i_customWinText
 
 func has_special_rule(rule: SpecialRules) -> bool:
 	return (specialRules & rule) != 0
