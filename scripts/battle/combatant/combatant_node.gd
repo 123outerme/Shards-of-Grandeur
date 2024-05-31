@@ -508,7 +508,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			(combatant.get_ai_type() == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
 		weightModifier *= 1.5 # prioritize moves aligning with AI type
 	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
-	var elementMultiplier = combatant.statChanges.get_element_multiplier(moveEffect.element)
+	var elementMultiplier = combatant.statChanges.get_element_multiplier(move.element)
 	var damageStat: int = boostedStats.physAttack
 	if move.category == Move.DmgCategory.MAGIC:
 		damageStat = boostedStats.magicAttack

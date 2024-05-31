@@ -48,6 +48,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_yhbaw")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15iao"]
 size = Vector2(145, 197)
@@ -81,6 +82,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_hxcp5")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("17_6exim")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ekqt"]
 size = Vector2(157, 185)
@@ -114,6 +116,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_82cqg")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("17_6exim")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cga0g"]
 size = Vector2(299, 129)
@@ -147,6 +150,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_ck257")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pj3e"]
 size = Vector2(171, 191)
@@ -175,6 +179,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_voecf")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("7_etfvm")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg6m8"]
 size = Vector2(83, 100)
@@ -208,6 +213,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_2ywwn")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("8_lsbd3")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq3wx"]
 size = Vector2(156, 139)
@@ -241,6 +247,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_mpnil")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("7_etfvm")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utinw"]
 size = Vector2(158.5, 205)
@@ -279,6 +286,7 @@ combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_jf5dt")
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uegk0"]
 size = Vector2(136, 166)
@@ -330,7 +338,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_mttvq"]
+[sub_resource type="Resource" id="Resource_rat2e"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 position = Vector2(-440, -140)
@@ -541,7 +549,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_mttvq")
+data = SubResource("Resource_rat2e")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

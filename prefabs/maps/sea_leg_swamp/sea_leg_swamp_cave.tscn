@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://boesh5625cx8x" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_3_fight.tres" id="21_ebfyj"]
 [ext_resource type="Resource" uid="uid://ctdtex5qa4alr" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_4_fight.tres" id="21_tkhkt"]
 
-[sub_resource type="Resource" id="Resource_ltvgc"]
+[sub_resource type="Resource" id="Resource_d4i71"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(-105, 59)
@@ -42,7 +42,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_kmv2d"]
+[sub_resource type="Resource" id="Resource_kmth4"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(122, 110)
@@ -59,7 +59,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_jt75d"]
+[sub_resource type="Resource" id="Resource_rx6bk"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(277, -58)
@@ -76,7 +76,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_doftf"]
+[sub_resource type="Resource" id="Resource_uq1vk"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(511, -148)
@@ -93,7 +93,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ldodu"]
+[sub_resource type="Resource" id="Resource_m3htj"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(792, -216)
@@ -153,6 +153,7 @@ combatant2Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_2nlmf")
 combatant3Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_i8hh6"), SubResource("Resource_vgi85"), SubResource("Resource_wjkqv")])
 combatant1 = ExtResource("5_w1qbi")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l34fo"]
 size = Vector2(116, 103)
@@ -200,6 +201,7 @@ combatant2Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_kow1x")
 combatant3Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_ai316"), SubResource("Resource_xpnxg"), SubResource("Resource_hs4kt")])
 combatant1 = ExtResource("7_04afm")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1clug"]
 size = Vector2(151, 112)
@@ -247,6 +249,7 @@ combatant2Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_27kak")
 combatant3Options = Array[ExtResource("6_xxk5u")]([SubResource("Resource_1lu6k"), SubResource("Resource_lixy8"), SubResource("Resource_mdx1v")])
 combatant1 = ExtResource("7_t3dm5")
 specialRules = 0
+customWinText = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2amf"]
 size = Vector2(96, 92)
@@ -330,7 +333,7 @@ displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_1"
 loadFlipH = true
 spawnRequirements = ExtResource("4_2uwfd")
-data = SubResource("Resource_ltvgc")
+data = SubResource("Resource_d4i71")
 
 [node name="NPCSprite" parent="TileMap/Soldier1" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -351,7 +354,7 @@ displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_2"
 loadFlipH = true
 spawnRequirements = ExtResource("7_iuaha")
-data = SubResource("Resource_kmv2d")
+data = SubResource("Resource_kmth4")
 
 [node name="NPCSprite" parent="TileMap/Soldier2" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -372,7 +375,7 @@ displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_3"
 loadFlipH = true
 spawnRequirements = ExtResource("8_d47ja")
-data = SubResource("Resource_jt75d")
+data = SubResource("Resource_rx6bk")
 
 [node name="NPCSprite" parent="TileMap/Soldier3" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -393,7 +396,7 @@ displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_4"
 loadFlipH = true
 spawnRequirements = ExtResource("8_1asic")
-data = SubResource("Resource_doftf")
+data = SubResource("Resource_uq1vk")
 
 [node name="NPCSprite" parent="TileMap/Soldier4" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -413,7 +416,7 @@ position = Vector2(792, -216)
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_5"
 loadFlipH = true
-data = SubResource("Resource_ldodu")
+data = SubResource("Resource_m3htj")
 
 [node name="NPCSprite" parent="TileMap/Soldier5" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
