@@ -1,10 +1,12 @@
-[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://ytkab3km2sof"]
+[gd_resource type="SpriteFrames" load_steps=43 format=3 uid="uid://ytkab3km2sof"]
 
 [ext_resource type="Texture2D" uid="uid://jq4cm48dyj04" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_attack_phys.png" id="1_jn38b"]
 [ext_resource type="Texture2D" uid="uid://dh1lb0uivepfo" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_attack_magic.png" id="1_nmiar"]
 [ext_resource type="Texture2D" uid="uid://b5rha700atq47" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_attack_affinity.png" id="1_pdrqe"]
 [ext_resource type="Texture2D" uid="uid://br0ys6vawwkkg" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_stand.png" id="1_snekw"]
 [ext_resource type="Texture2D" uid="uid://ddg5u06cmxag7" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_battle_idle.png" id="1_t4gvj"]
+[ext_resource type="Texture2D" uid="uid://c7ciurd03kfb3" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_talk.png" id="6_eyyxm"]
+[ext_resource type="Texture2D" uid="uid://ckioh6jbhvu3t" path="res://graphics/characters/chain_legion_soldier_2/chain_legion_soldier_2_walk.png" id="7_hwhqx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxuyw"]
 atlas = ExtResource("1_pdrqe")
@@ -105,6 +107,46 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4q30"]
 atlas = ExtResource("1_snekw")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro8dq"]
+atlas = ExtResource("6_eyyxm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mocso"]
+atlas = ExtResource("6_eyyxm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rux8q"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4jxa"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbroj"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edw4e"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_331ju"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5bop"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w86x2"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoi5j"]
+atlas = ExtResource("7_hwhqx")
+region = Rect2(112, 0, 16, 16)
 
 [resource]
 animations = [{
@@ -215,4 +257,44 @@ animations = [{
 "loop": true,
 "name": &"stand",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro8dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mocso")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rux8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4jxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbroj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edw4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_331ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5bop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w86x2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoi5j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
 }]
