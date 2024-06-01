@@ -7,6 +7,7 @@ class_name NPCScript
 @export var saveName: String
 @export var facesRight: bool = true
 @export var loadFlipH: bool = false
+@export var walkBackwards: bool = false
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 @export var spawnRequirements: StoryRequirements = null
 

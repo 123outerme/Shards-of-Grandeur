@@ -24,11 +24,20 @@ func _physics_process(delta):
 			vel = vel.normalized() * maxSpeed * delta
 		NPC.position += vel
 		if vel.x < 0:
-			NPC.npcSprite.flip_h = true
+			var flip = NPC.facesRight # if right-facing, flip when moving left
+			if NPC.walkBackwards:
+				flip = not flip # if walking backwards and would flip, don't
+			NPC.npcSprite.flip_h = flip
 		if vel.x > 0:
-			NPC.npcSprite.flip_h = false
+			var flip = not NPC.facesRight # if right-facing, don't flip when moving right
+			if NPC.walkBackwards:
+				flip = not flip # if walking backwards and would flip, don't
+			NPC.npcSprite.flip_h = flip
 		if vel.length() > 0:
-			NPC.npcSprite.play('walk')
+			if NPC.walkBackwards:
+				NPC.npcSprite.play_backwards('walk')
+			else:
+				NPC.npcSprite.play('walk')
 		else:
 			NPC.npcSprite.play('stand')
 

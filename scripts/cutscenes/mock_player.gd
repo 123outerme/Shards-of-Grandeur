@@ -36,18 +36,18 @@ func _process(delta):
 	if holdCameraX:
 		mockShade.position.x = -160 + holdCameraPos.x - position.x
 	if holdCameraY:
-		mockShade.position.y = -120 + holdCameraPos.y - position.y
+		mockShade.position.y = -90 + holdCameraPos.y - position.y
 	if camShaking:
 		camShakingTime += delta
 		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
-		mockShade.position = Vector2(-160, -120) + CAM_SHAKING_POSITIONS[camShakingIdx]
+		mockShade.position = Vector2(-160, -90) + CAM_SHAKING_POSITIONS[camShakingIdx]
 
 func start_cam_shake():
 	camShaking = true
 	
 func stop_cam_shake():
 	camShaking = false
-	mockShade.position = Vector2(-160, -120)
+	mockShade.position = Vector2(-160, -190)
 	camShakingTime = 0
 
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
@@ -56,6 +56,6 @@ func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
 	holdCameraY = holdY
 
 func snap_camera_back_to_player():
-	mockShade.position = Vector2(-160, -120)
+	mockShade.position = Vector2(-160, -90)
 	holdCameraX = false
 	holdCameraY = false

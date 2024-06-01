@@ -122,6 +122,7 @@ func handle_start_shard_learn_tutorial():
 
 func start_visualizing():
 	mockPlayer.mockShadeCenter.modulate.a = 0.0
+	cutscene.reset_internals()
 	saveCutscene = cutscene
 	fetchedActors = []
 	start_cutscene(cutscene.duplicate(true))
