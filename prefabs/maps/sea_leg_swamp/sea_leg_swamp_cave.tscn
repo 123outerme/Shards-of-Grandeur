@@ -573,6 +573,7 @@ position = Vector2(0, 4)
 visible = false
 
 [node name="Etreus" parent="TileMap" instance=ExtResource("3_hag51")]
+visible = false
 position = Vector2(780, -219)
 collision_layer = 0
 displayName = "Etreus"
@@ -598,6 +599,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 visible = false
 
 [node name="Solius" parent="TileMap" instance=ExtResource("3_hag51")]
+visible = false
 position = Vector2(736, -210)
 collision_layer = 0
 displayName = "Etreus"
@@ -818,6 +820,7 @@ navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("28_iedog")]
+visible = false
 triggerOrNPC = NodePath("../EtreusWinCutsceneTrigger")
 cutscene = ExtResource("27_uu5eo")
 rootNode = NodePath("..")
@@ -828,7 +831,7 @@ facingLeft = true
 data = SubResource("Resource_w7swl")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.84783
+frame_progress = 0.285754
 flip_h = true
 
 [node name="MockShade" parent="ToolCutsceneVisualizer/MockPlayer" index="5"]

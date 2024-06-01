@@ -1,7 +1,9 @@
 extends KeyItem
 class_name TeleportStone
 
-const DISABLE_IF_VALID_REQUIREMENTS: Array[StoryRequirements] = []
+const DISABLE_IF_VALID_REQUIREMENTS: Array[StoryRequirements] = [
+	preload('res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres')
+]
 
 @export var targetMap: String = ''
 @export var targetPos: Vector2 = Vector2()
