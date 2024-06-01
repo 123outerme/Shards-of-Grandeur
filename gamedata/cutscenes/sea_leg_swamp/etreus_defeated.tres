@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=5 format=3 uid="uid://bd6gwmbcvsaby"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_pqjp1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_wjwbw"]
+[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="2_bvk24"]
+
+[sub_resource type="Resource" id="Resource_238n4"]
+script = ExtResource("1_wjwbw")
+frameLength = 1.0
+annotation = ""
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[Resource("res://scripts/cutscenes/cutscene_dialogue.gd")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("1_pqjp1")
+cutsceneFrames = Array[ExtResource("1_wjwbw")]([SubResource("Resource_238n4")])
+saveName = ""
+storyRequirements = ExtResource("2_bvk24")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

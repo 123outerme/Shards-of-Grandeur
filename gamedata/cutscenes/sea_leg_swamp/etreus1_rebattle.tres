@@ -1,0 +1,131 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://bupndod38b11l"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_ekdxh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_f0ln1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_f8oo5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_x2epl"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="3_rxqf0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="4_i0ge6"]
+[ext_resource type="Resource" uid="uid://b7kpq2t2u4lhc" path="res://gamedata/static_encounters/etreus_fight1.tres" id="6_i4bem"]
+
+[sub_resource type="Resource" id="Resource_h0ugr"]
+script = ExtResource("1_ekdxh")
+value = Vector2(754, -215)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_0d4ji"]
+script = ExtResource("1_f8oo5")
+frameLength = 1.0
+annotation = "Move the player right next to Etreus"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_h0ugr")])
+actorAnims = Array[ExtResource("4_i0ge6")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("3_rxqf0")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vmdkt"]
+script = ExtResource("4_i0ge6")
+actorTreePath = "TileMap/Etreus"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_yh78m"]
+script = ExtResource("3_rxqf0")
+speaker = "Etreus"
+texts = Array[String](["Try all you like, @. Fate has already determined that the Cave belongs to Steelspire!"])
+
+[sub_resource type="Resource" id="Resource_30y1o"]
+script = ExtResource("1_f8oo5")
+frameLength = 0.1
+annotation = "Have Etreus taunt the player on rebattle"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_vmdkt")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("3_rxqf0")]([SubResource("Resource_yh78m")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pyhcd"]
+script = ExtResource("1_f8oo5")
+frameLength = 0.1
+annotation = "Wait for the player to close the text box"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("4_i0ge6")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("3_rxqf0")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_7x8na"]
+script = ExtResource("4_i0ge6")
+actorTreePath = "TileMap/Etreus"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_i5tv4"]
+script = ExtResource("1_f8oo5")
+frameLength = 0.1
+annotation = "Make etreus stand before rebattle starts"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_7x8na")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("3_rxqf0")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vqygd"]
+script = ExtResource("2_x2epl")
+minAct = 0
+maxAct = 5
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["etreus_fight1"])
+
+[resource]
+script = ExtResource("1_f0ln1")
+cutsceneFrames = Array[ExtResource("1_f8oo5")]([SubResource("Resource_0d4ji"), SubResource("Resource_30y1o"), SubResource("Resource_pyhcd"), SubResource("Resource_i5tv4")])
+saveName = ""
+storyRequirements = SubResource("Resource_vqygd")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+staticEncounter = ExtResource("6_i4bem")
+tempDisabledAfter = false
