@@ -149,7 +149,6 @@ func apply_menu_state():
 				var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
 				PlayerResources.playerInfo.set_special_battle_completed(staticEncounter.specialBattleId)
 		battleComplete.load_battle_over_menu()
-		PlayerResources.playerInfo.encounter = null
 	
 	if menuState == BattleState.Menu.LEVEL_UP:
 		open_stats(PlayerResources.playerInfo.combatant, true)

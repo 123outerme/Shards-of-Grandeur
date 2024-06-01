@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://dq2jf25b6suci"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=7 format=3 uid="uid://dq2jf25b6suci"]
 
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="1_7or7a"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="1_je06x"]
 [ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="2_cwtwf"]
 [ext_resource type="Resource" uid="uid://c3gi5b7ajoi3t" path="res://gamedata/moves/hydro_barrier/hydro_barrier.tres" id="3_xfdok"]
 [ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="4_vvs1j"]
+[ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="5_c0w2o"]
 
 [resource]
 script = ExtResource("1_je06x")
-pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_7or7a"), ExtResource("2_cwtwf"), ExtResource("3_xfdok"), ExtResource("4_vvs1j")])
+pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_7or7a"), ExtResource("5_c0w2o"), ExtResource("2_cwtwf"), ExtResource("3_xfdok"), ExtResource("4_vvs1j")])
 preferredMove1Role = 3
 preferredMove2Role = 1
 preferredMove3Role = 0

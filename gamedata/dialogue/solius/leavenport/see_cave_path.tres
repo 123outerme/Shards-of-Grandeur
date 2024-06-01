@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_quuki"]
 script = ExtResource("1_2yccg")
-lines = Array[String](["Great, let's go. Follow me to the start of the path!"])
+lines = Array[String](["Great, follow me to the start of the path! I'll heal you right up again."])
 animation = "talk"
 choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
 
@@ -16,4 +16,4 @@ entryId = ""
 items = Array[ExtResource("1_2yccg")]([SubResource("Resource_quuki")])
 startsCutscene = ExtResource("2_3kapu")
 closesDialogue = false
-fullHealsPlayer = false
+fullHealsPlayer = true
