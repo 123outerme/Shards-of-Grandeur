@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://cvjfaxi8fvxu3"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_i6s6x"]
+[ext_resource type="Resource" uid="uid://drxnx7tqq2gv6" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_rewards.tres" id="1_tq445"]
+[ext_resource type="Resource" uid="uid://biterlld0ykxp" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/2/chain_legion_soldier_3_evolutions.tres" id="2_5o1pe"]
+[ext_resource type="Resource" uid="uid://cqyalxxp2huxe" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_move_effectiveness.tres" id="3_1jxav"]
+[ext_resource type="Resource" uid="uid://dkkji03qnavh" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_equipment.tres" id="3_pgela"]
+[ext_resource type="Resource" uid="uid://t7jd6u4atq3h" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/2/chain_legion_soldier_3_sprite.tres" id="5_gia1u"]
+[ext_resource type="Resource" uid="uid://dq1r1nlas024y" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_movepool.tres" id="6_w2j4m"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_q817t"]
+[ext_resource type="Resource" uid="uid://d15ic1np56op5" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_growth.tres" id="8_8ry61"]
+
+[sub_resource type="Resource" id="Resource_245lm"]
+script = ExtResource("7_q817t")
+displayName = "Legion Soldier"
+saveName = "chain_legion_soldier_2"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("8_8ry61")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("6_w2j4m")
+
+[resource]
+script = ExtResource("1_i6s6x")
+sprite = ExtResource("5_gia1u")
+nickname = ""
+stats = SubResource("Resource_245lm")
+evolutions = ExtResource("2_5o1pe")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 1
+damageAggroType = 1
+strategy = 0
+aiOverrideWeight = 0.3
+moveEffectiveness = ExtResource("3_1jxav")
+weightedEquipment = ExtResource("3_pgela")
+teamTable = Array[Resource("res://scripts/battle/weighted_things/weighted_string.gd")]([])
+dropTable = ExtResource("1_tq445")
+innateStatCategories = Array[int]([0, 2])
+downed = false

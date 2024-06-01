@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://83b1hyn2uhjy"]
+[gd_scene load_steps=79 format=3 uid="uid://83b1hyn2uhjy"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_u0d82"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
@@ -12,12 +12,14 @@
 [ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="5_n1yd4"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="5_w1qbi"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="5_wer5f"]
+[ext_resource type="SpriteFrames" uid="uid://ytkab3km2sof" path="res://graphics/animations/a_chain_legion_soldier_2.tres" id="6_jv8ig"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_xxk5u"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="7_04afm"]
 [ext_resource type="Resource" uid="uid://d3ojcpprcwhyu" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_2_fight.tres" id="7_iuaha"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="7_t3dm5"]
 [ext_resource type="Resource" uid="uid://drs37o6nygkto" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_4_fight.tres" id="8_1asic"]
 [ext_resource type="Resource" uid="uid://ce2fpw311ccos" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_3_fight.tres" id="8_d47ja"]
+[ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="10_b5rpe"]
 [ext_resource type="SpriteFrames" uid="uid://cwj3n3dd1qq14" path="res://graphics/animations/a_etreus.tres" id="10_n6x4g"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="10_uo7fm"]
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="11_mucgv"]
@@ -418,7 +420,7 @@ spawnRequirements = ExtResource("4_2uwfd")
 data = SubResource("Resource_3wfhb")
 
 [node name="NPCSprite" parent="TileMap/Soldier1" index="0"]
-sprite_frames = ExtResource("5_n1yd4")
+sprite_frames = ExtResource("6_jv8ig")
 animation = &"stand"
 autoplay = "stand"
 
@@ -460,7 +462,7 @@ spawnRequirements = ExtResource("8_d47ja")
 data = SubResource("Resource_xgwa8")
 
 [node name="NPCSprite" parent="TileMap/Soldier3" index="0"]
-sprite_frames = ExtResource("5_n1yd4")
+sprite_frames = ExtResource("10_b5rpe")
 animation = &"stand"
 autoplay = "stand"
 
@@ -590,7 +592,7 @@ saveName = "swamp_soldier_7"
 data = SubResource("Resource_1ec2o")
 
 [node name="NPCSprite" parent="TileMap/Soldier7" index="0"]
-sprite_frames = ExtResource("5_n1yd4")
+sprite_frames = ExtResource("10_b5rpe")
 animation = &"stand"
 autoplay = "stand"
 

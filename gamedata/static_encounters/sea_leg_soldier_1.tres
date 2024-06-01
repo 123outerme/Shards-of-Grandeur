@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=6 format=3 uid="uid://fifaiulwi3wl"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=7 format=3 uid="uid://fifaiulwi3wl"]
 
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_2vx15"]
 [ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_gxs0g"]
 [ext_resource type="Resource" uid="uid://dbn5mhjawwmv0" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier.tres" id="1_j1iym"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="1_yrngq"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="2_au02a"]
+[ext_resource type="Resource" uid="uid://cvjfaxi8fvxu3" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/1/chain_legion_soldier_2.tres" id="4_0xd3a"]
 
 [resource]
 script = ExtResource("1_2vx15")
@@ -25,5 +26,6 @@ bossBattle = false
 canEscape = false
 rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
 useStaticRewards = false
-combatant1 = ExtResource("1_j1iym")
+combatant1 = ExtResource("4_0xd3a")
 specialRules = 0
+customWinText = ""
