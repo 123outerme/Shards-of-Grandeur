@@ -168,7 +168,7 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_78clq")
 actorTreePath = "TileMap/DrHudson"
 isPlayer = false
-animation = "stand"
+animation = "talk"
 
 [sub_resource type="Resource" id="Resource_u1q54"]
 script = ExtResource("1_78clq")
@@ -179,8 +179,8 @@ animation = "stand"
 [sub_resource type="Resource" id="Resource_sfo5g"]
 script = ExtResource("1_fdvmy")
 frameLength = 0.1
-annotation = "All actors stand while waiting for textbox"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+annotation = "Dr. Hudson talks, other actors stand. Player faces left. Wait for textbox to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([ExtResource("4_n3u00"), ExtResource("5_8mk3x")])
 actorAnims = Array[ExtResource("1_78clq")]([SubResource("Resource_b0d1q"), SubResource("Resource_u1q54"), ExtResource("1_qbpcq")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])

@@ -267,6 +267,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
+walkBackwards = null
 data = SubResource("Resource_yx58a")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
@@ -291,6 +292,7 @@ visible = false
 [node name="ChainLegionSoldier1" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(-28, 101)
 loadFlipH = true
+walkBackwards = null
 spawnRequirements = ExtResource("9_djdq1")
 data = SubResource("Resource_whc5i")
 
@@ -309,6 +311,7 @@ visible = false
 
 [node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(25, 105)
+walkBackwards = null
 spawnRequirements = ExtResource("9_djdq1")
 data = SubResource("Resource_5ow17")
 
@@ -327,6 +330,7 @@ visible = false
 
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
+walkBackwards = null
 spawnRequirements = ExtResource("9_djdq1")
 data = SubResource("Resource_wjeeq")
 
@@ -345,6 +349,7 @@ visible = false
 
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
+walkBackwards = null
 spawnRequirements = ExtResource("9_djdq1")
 data = SubResource("Resource_w75og")
 
@@ -441,10 +446,11 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
+walkBackwards = null
 data = SubResource("Resource_k76co")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.821456
+frame_progress = 0.46489
 flip_h = true
 
 [editable path="TileMap/FloatingRockColumnDecoration"]

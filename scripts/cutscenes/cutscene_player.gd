@@ -90,6 +90,8 @@ func handle_fade_out():
 	
 func handle_fade_in():
 	PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+	isFadedOut = false
+	isFadingIn = true
 
 func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)

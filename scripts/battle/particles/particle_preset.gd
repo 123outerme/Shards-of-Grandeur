@@ -13,7 +13,6 @@ class_name ParticlePreset
 func _init(
 	i_emitter = 'behind',
 	i_count = 0,
-	i_inFront = false,
 	i_lifetime = 0.5,
 	i_duration = 1.25,
 	i_staggered = false,

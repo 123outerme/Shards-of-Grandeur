@@ -77,10 +77,7 @@ static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirem
 
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
-	if combatant.currentHp == -1:
-		combatant.stats.maxHp = combatant.stats.statGrowth.initialMaxHp
-		combatant.currentHp = combatant.stats.maxHp # load max HP if combatant was loaded from resource
-	combatant.version = GameSettings.get_game_version()
+	combatant.initialize()
 	return combatant
 
 static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:
@@ -136,6 +133,13 @@ func _init(
 	innateStatCategories = i_innateStats
 	command = i_command
 	downed = i_downed
+
+func initialize() -> Combatant:
+	if currentHp == -1:
+		stats.maxHp = stats.statGrowth.initialMaxHp
+		currentHp = stats.maxHp # load max HP if combatant was loaded from resource
+	version = GameSettings.get_game_version()
+	return self
 
 func disp_name() -> String:
 	if nickname != '':
@@ -229,10 +233,10 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 func validate_all_evolutions_stat_totals():
 	validate_evolution_stats()
 	for index in evolutionStats:
-		var stats: Stats = evolutionStats[index]
-		if not stats.is_stat_total_valid():
+		var eStats: Stats = evolutionStats[index]
+		if not eStats.is_stat_total_valid():
 			print('WARN: ', save_name(), ' evolution ', index, "'s stat total was invalid. Resetting.")
-			stats.reset_stat_points()
+			eStats.reset_stat_points()
 
 func get_sprite_frames() -> SpriteFrames:
 	var evolution: Evolution = get_evolution()

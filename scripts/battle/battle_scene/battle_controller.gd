@@ -69,7 +69,7 @@ func load_into_battle():
 		minionCombatant.combatant = null
 		if PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
-			enemyCombatant1.combatant = Combatant.load_combatant_resource(staticEncounter.combatant1.save_name())
+			enemyCombatant1.combatant = staticEncounter.combatant1.copy().initialize()
 			enemyCombatant1.combatant.stats.equippedArmor = staticEncounter.combatant1Armor
 			enemyCombatant1.combatant.stats.equippedWeapon = staticEncounter.combatant1Weapon
 			# stats start out in base form, this will evolve the combatant
@@ -84,7 +84,7 @@ func load_into_battle():
 				enemyCombatant1.combatant.stats.moves = staticEncounter.combatant1Moves.duplicate()
 		
 			if staticEncounter.combatant2 != null:
-				enemyCombatant2.combatant = Combatant.load_combatant_resource(staticEncounter.combatant2.save_name())
+				enemyCombatant2.combatant = staticEncounter.combatant2.copy().initialize()
 				enemyCombatant2.combatant.stats.equippedArmor = staticEncounter.combatant2Armor
 				enemyCombatant2.combatant.stats.equippedWeapon = staticEncounter.combatant2Weapon
 				# stats start out in base form, this will evolve the combatant
@@ -99,7 +99,7 @@ func load_into_battle():
 					enemyCombatant2.combatant.stats.moves = staticEncounter.combatant2Moves.duplicate()
 			
 			if staticEncounter.combatant3 != null:
-				enemyCombatant3.combatant = Combatant.load_combatant_resource(staticEncounter.combatant3.save_name())
+				enemyCombatant3.combatant = staticEncounter.combatant3.copy().initialize()
 				enemyCombatant3.combatant.stats.equippedArmor = staticEncounter.combatant3Armor
 				enemyCombatant3.combatant.stats.equippedWeapon = staticEncounter.combatant3Weapon
 				if enemyCombatant3.combatant.get_evolution() != null:
@@ -114,7 +114,7 @@ func load_into_battle():
 			
 			if staticEncounter.autoAlly != null:
 				hasStaticMinion = true
-				minionCombatant.combatant = Combatant.load_combatant_resource(staticEncounter.autoAlly.save_name())
+				minionCombatant.combatant = staticEncounter.autoAlly.copy().initialize()
 				minionCombatant.combatant.stats.equippedArmor = staticEncounter.autoAllyArmor
 				minionCombatant.combatant.stats.equippedWeapon = staticEncounter.autoAllyWeapon
 				if minionCombatant.combatant.get_evolution() != null:
@@ -129,7 +129,7 @@ func load_into_battle():
 		else:
 			var randomEncounter: RandomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter
 			# load enemy 1
-			enemyCombatant1.combatant = Combatant.load_combatant_resource(randomEncounter.combatant1.save_name())
+			enemyCombatant1.combatant = randomEncounter.combatant1.copy().initialize()
 			if randomEncounter.combatant1Equipment != null:
 				var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 				if equipmentIdx > -1:
@@ -151,7 +151,7 @@ func load_into_battle():
 			if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
 				# load enemy 2
 				var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
-				enemyCombatant2.combatant = Combatant.load_combatant_resource(combatantOption.combatant.save_name())
+				enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
 				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
 					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEqiupment)
 					if equipmentIdx > -1:
@@ -175,7 +175,7 @@ func load_into_battle():
 			if eCombatant3Idx > -1 and randomEncounter.combatant3Options[eCombatant3Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
 				# load enemy 3
 				var combatantOption: WeightedCombatant = randomEncounter.combatant3Options[eCombatant3Idx]
-				enemyCombatant3.combatant = Combatant.load_combatant_resource(combatantOption.combatant.save_name())
+				enemyCombatant3.combatant = combatantOption.combatant.copy().initialize()
 				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
 					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEqiupment)
 					if equipmentIdx > -1:

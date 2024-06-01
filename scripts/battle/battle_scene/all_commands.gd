@@ -18,7 +18,7 @@ var commandingMinion: bool = false
 func _ready():
 	if PlayerResources.playerInfo.encounter is StaticEncounter:
 		var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
-		escapeButton.disabled = staticEncounter.canEscape
+		escapeButton.disabled = not staticEncounter.canEscape
 	inventoryBtn.disabled = PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.NO_ITEMS)
 	surgeMovesBtn.disabled = Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid()
 	if surgeMovesBtn.disabled:

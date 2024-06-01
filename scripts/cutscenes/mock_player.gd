@@ -32,7 +32,7 @@ var holdCameraPos: Vector2 = Vector2()
 @onready var mockShade: Panel = get_node('MockShade')
 @onready var mockShadeCenter: Panel = get_node('MockShade/MockShadeCenter')
 
-func _process(delta):
+func _physics_process(delta):
 	if holdCameraX:
 		mockShade.position.x = -160 + holdCameraPos.x - position.x
 	if holdCameraY:

@@ -168,9 +168,8 @@ func _process(delta):
 		cam.position.x = holdingCameraAt.x - position.x
 		uiRoot.position.x = holdingCameraAt.x - position.x
 	if holdCameraY:
-		cam.position.y = holdingCameraAt.y - position.y
+		cam.position.x = holdingCameraAt.x - position.x
 		uiRoot.position.y = holdingCameraAt.y - position.y
-	
 	# placed here instead of _physics_process because graphics are updated in sync with _process
 	if velocity.length_squared() > 0:
 		stepSfxTimer += delta

@@ -42,6 +42,7 @@ class_name CutsceneVisualizer
 var saveCutscene: Cutscene = null
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
+var shownTextNotPaused: bool = false
 
 var fetchedActors: Array[Node2D] = []
 
@@ -85,6 +86,11 @@ func handle_camera(frame: CutsceneFrame):
 		mockPlayer.snap_camera_back_to_player()
 	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
 		mockPlayer.stop_cam_shake()
+	
+	# not camera related but run every new CutsceneFrame: if we have shown text but not paused the cutscene for it yet:
+	if shownTextNotPaused and lastFrame.endTextBoxPauses:
+		shownTextNotPaused = false
+		call_deferred('pause_cutscene') # do so
 
 func handle_play_sfx(sfx: AudioStream):
 	if sfx != null:
@@ -99,6 +105,9 @@ func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 		print(text)
 	if frame.endTextBoxPauses:
 		call_deferred('pause_cutscene')
+		shownTextNotPaused = false
+	else:
+		shownTextNotPaused = true
 
 func handle_fade_out():
 	fadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -122,6 +131,7 @@ func handle_start_shard_learn_tutorial():
 
 func start_visualizing():
 	mockPlayer.mockShadeCenter.modulate.a = 0.0
+	mockPlayer.snap_camera_back_to_player()
 	cutscene.reset_internals()
 	saveCutscene = cutscene
 	fetchedActors = []

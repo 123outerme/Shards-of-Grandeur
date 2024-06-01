@@ -4,19 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="2_twvt2"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_bb6at"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_t0oa3"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_dymbc"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_41fc2"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_48pyg"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_87kd2"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_2pmuv"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_v5k4c"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_b1ur8"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_6x2h5"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_5ahre"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_shdjs"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_p1vrl"]
 allow_unpress = true
 
 [node name="ControlsSection" type="Control"]
@@ -1276,9 +1276,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -273.0
 offset_top = -20.0
-offset_right = 30.0
+offset_right = 24.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1289,7 +1289,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_t0oa3")
+button_group = SubResource("ButtonGroup_dymbc")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1297,7 +1297,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_41fc2")
+button_group = SubResource("ButtonGroup_48pyg")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1305,7 +1305,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_87kd2")
+button_group = SubResource("ButtonGroup_2pmuv")
 text = "D-Pad"
 
 [node name="Change2Group" type="HBoxContainer" parent="TabContainer/Controller/MovementAction"]
@@ -1328,7 +1328,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_v5k4c")
+button_group = SubResource("ButtonGroup_b1ur8")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1336,7 +1336,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_6x2h5")
+button_group = SubResource("ButtonGroup_5ahre")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1344,7 +1344,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_shdjs")
+button_group = SubResource("ButtonGroup_p1vrl")
 text = "D-Pad"
 
 [node name="InteractKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
@@ -1357,7 +1357,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 210.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Interact button:"
@@ -1370,10 +1370,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
-offset_top = -11.5
-offset_right = -37.0
-offset_bottom = 11.5
+offset_left = -152.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -1387,9 +1387,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -15.5
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1408,7 +1408,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 213.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Decline button:"
@@ -1421,9 +1421,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
+offset_left = -152.0
 offset_top = -11.5
-offset_right = -37.0
+offset_right = 24.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1438,9 +1438,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -15.5
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1460,7 +1460,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 180.0
+offset_right = 278.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Inventory button:"
@@ -1473,9 +1473,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
+offset_left = -152.0
 offset_top = -11.5
-offset_right = -37.0
+offset_right = 24.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1490,9 +1490,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -15.5
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1511,7 +1511,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 254.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Quests button:"
@@ -1524,9 +1524,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
+offset_left = -152.0
 offset_top = -11.5
-offset_right = -37.0
+offset_right = 24.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1541,9 +1541,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -15.5
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1563,7 +1563,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 277.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Stats button:"
@@ -1576,9 +1576,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
+offset_left = -152.0
 offset_top = -11.5
-offset_right = -37.0
+offset_right = 24.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1593,9 +1593,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -17.0
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1615,7 +1615,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 272.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Pause button:"
@@ -1628,9 +1628,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.0
+offset_left = -152.0
 offset_top = -11.5
-offset_right = -37.0
+offset_right = 24.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1645,9 +1645,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.0
+offset_left = 19.5
 offset_top = -17.0
-offset_right = 33.0
+offset_right = 102.5
 offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
