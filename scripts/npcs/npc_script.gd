@@ -79,6 +79,7 @@ func save_data(save_path) -> int:
 		return 0
 	data.saveName = saveName
 	data.animSet = npcSprite.sprite_frames
+	data.animation = npcSprite.animation
 	data.flipH = flip_h
 	data.position = position
 	data.selectedTarget = NavAgent.selectedTarget
@@ -101,6 +102,7 @@ func load_data(save_path):
 		# only load the new NPC data if it exists
 		if data.animSet != null:
 			npcSprite.set_sprite_frames(data.animSet)
+			npcSprite.play(data.animation)
 		position = data.position
 		_set_flip_h(data.flipH)
 		NavAgent.selectedTarget = data.selectedTarget

@@ -3,6 +3,7 @@ class_name NPCData
 
 @export var saveName: String = "NPC"
 @export var animSet: SpriteFrames = null
+@export var animation: String = 'stand'
 @export_category("NPCData - Position")
 @export var position: Vector2
 @export var flipH: bool = false
@@ -26,6 +27,7 @@ class_name NPCData
 func _init(
 	i_saveName = "npc",
 	i_animSet = null,
+	i_animation = 'stand',
 	i_position = Vector2(),
 	i_flipH = false,
 	i_visible = true,
@@ -43,6 +45,7 @@ func _init(
 ):
 	saveName = i_saveName
 	animSet = i_animSet
+	animation = i_animation
 	position = i_position
 	flipH = i_flipH
 	visible = i_visible

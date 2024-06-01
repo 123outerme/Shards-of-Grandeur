@@ -1,0 +1,123 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=16 format=3 uid="uid://d1303grvlgie"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_fvoc3"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_i0rmj"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_r6atd"]
+[ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="2_4qdpd"]
+[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="2_e3gfy"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="2_t2emd"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_v6af7"]
+
+[sub_resource type="Resource" id="Resource_2svxx"]
+script = ExtResource("1_i0rmj")
+speaker = "Solius"
+texts = Array[String](["@!! Get out of here!"])
+
+[sub_resource type="Resource" id="Resource_qf84f"]
+script = ExtResource("1_fvoc3")
+frameLength = 0.1
+annotation = "Have Solius call out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_i0rmj")]([SubResource("Resource_2svxx")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_b08mq"]
+script = ExtResource("1_fvoc3")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_i0rmj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_kn75f"]
+script = ExtResource("3_v6af7")
+value = Vector2(1238, 540)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_svnn4"]
+script = ExtResource("1_fvoc3")
+frameLength = 1.25
+annotation = "Move the player away from the east exit"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_kn75f")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("2_4qdpd")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_i0rmj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_41kc0"]
+script = ExtResource("1_i0rmj")
+speaker = "@"
+texts = Array[String](["Solius is buying me time, I have to get back to Grandstone!"])
+
+[sub_resource type="Resource" id="Resource_iibfr"]
+script = ExtResource("1_fvoc3")
+frameLength = 0.1
+annotation = "Have the player talk again"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("2_t2emd")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_i0rmj")]([SubResource("Resource_41kc0")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_3lww1"]
+script = ExtResource("1_fvoc3")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_i0rmj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("1_r6atd")
+cutsceneFrames = Array[ExtResource("1_fvoc3")]([SubResource("Resource_qf84f"), SubResource("Resource_b08mq"), SubResource("Resource_svnn4"), SubResource("Resource_iibfr"), SubResource("Resource_3lww1")])
+saveName = ""
+storyRequirements = ExtResource("2_e3gfy")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

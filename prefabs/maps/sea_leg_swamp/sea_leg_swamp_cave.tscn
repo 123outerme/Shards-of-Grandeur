@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_hag51"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_ufdam"]
-[ext_resource type="Resource" uid="uid://bwdu3jbnjw1dl" path="res://gamedata/story_requirements/swamp_soldier_1_fight.tres" id="4_2uwfd"]
+[ext_resource type="Resource" uid="uid://bwdu3jbnjw1dl" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_1_fight.tres" id="4_2uwfd"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_b2n1i"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_klaa4"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_y2wfg"]
@@ -14,10 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="5_wer5f"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_xxk5u"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="7_04afm"]
-[ext_resource type="Resource" uid="uid://d3ojcpprcwhyu" path="res://gamedata/story_requirements/swamp_soldier_2_fight.tres" id="7_iuaha"]
+[ext_resource type="Resource" uid="uid://d3ojcpprcwhyu" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_2_fight.tres" id="7_iuaha"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="7_t3dm5"]
-[ext_resource type="Resource" uid="uid://drs37o6nygkto" path="res://gamedata/story_requirements/swamp_soldier_4_fight.tres" id="8_1asic"]
-[ext_resource type="Resource" uid="uid://ce2fpw311ccos" path="res://gamedata/story_requirements/swamp_soldier_3_fight.tres" id="8_d47ja"]
+[ext_resource type="Resource" uid="uid://drs37o6nygkto" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_4_fight.tres" id="8_1asic"]
+[ext_resource type="Resource" uid="uid://ce2fpw311ccos" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_3_fight.tres" id="8_d47ja"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="10_uo7fm"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="14_7fjos"]
 [ext_resource type="Resource" uid="uid://d4ah4sgtij8n0" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_1_fight.tres" id="16_fek66"]
@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://boesh5625cx8x" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_3_fight.tres" id="21_ebfyj"]
 [ext_resource type="Resource" uid="uid://ctdtex5qa4alr" path="res://gamedata/cutscenes/sea_leg_swamp/soldier_4_fight.tres" id="21_tkhkt"]
 
-[sub_resource type="Resource" id="Resource_d4i71"]
+[sub_resource type="Resource" id="Resource_8txi8"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(-105, 59)
@@ -42,7 +42,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_kmth4"]
+[sub_resource type="Resource" id="Resource_aet7g"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(122, 110)
@@ -59,7 +59,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_rx6bk"]
+[sub_resource type="Resource" id="Resource_xkemr"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(277, -58)
@@ -76,7 +76,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_uq1vk"]
+[sub_resource type="Resource" id="Resource_4ir0l"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(511, -148)
@@ -93,7 +93,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_m3htj"]
+[sub_resource type="Resource" id="Resource_gqvhc"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 position = Vector2(792, -216)
@@ -330,10 +330,9 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Soldier1" parent="TileMap" instance=ExtResource("3_hag51")]
 position = Vector2(-105, 59)
 displayName = "Chain Legion Soldier"
-saveName = "swamp_soldier_1"
 loadFlipH = true
 spawnRequirements = ExtResource("4_2uwfd")
-data = SubResource("Resource_d4i71")
+data = SubResource("Resource_8txi8")
 
 [node name="NPCSprite" parent="TileMap/Soldier1" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -351,10 +350,9 @@ visible = false
 [node name="Soldier2" parent="TileMap" instance=ExtResource("3_hag51")]
 position = Vector2(122, 110)
 displayName = "Chain Legion Soldier"
-saveName = "swamp_soldier_2"
 loadFlipH = true
 spawnRequirements = ExtResource("7_iuaha")
-data = SubResource("Resource_kmth4")
+data = SubResource("Resource_aet7g")
 
 [node name="NPCSprite" parent="TileMap/Soldier2" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -372,10 +370,9 @@ visible = false
 [node name="Soldier3" parent="TileMap" instance=ExtResource("3_hag51")]
 position = Vector2(277, -58)
 displayName = "Chain Legion Soldier"
-saveName = "swamp_soldier_3"
 loadFlipH = true
 spawnRequirements = ExtResource("8_d47ja")
-data = SubResource("Resource_rx6bk")
+data = SubResource("Resource_xkemr")
 
 [node name="NPCSprite" parent="TileMap/Soldier3" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -393,10 +390,9 @@ visible = false
 [node name="Soldier4" parent="TileMap" instance=ExtResource("3_hag51")]
 position = Vector2(511, -148)
 displayName = "Chain Legion Soldier"
-saveName = "swamp_soldier_4"
 loadFlipH = true
 spawnRequirements = ExtResource("8_1asic")
-data = SubResource("Resource_uq1vk")
+data = SubResource("Resource_4ir0l")
 
 [node name="NPCSprite" parent="TileMap/Soldier4" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -416,7 +412,7 @@ position = Vector2(792, -216)
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_5"
 loadFlipH = true
-data = SubResource("Resource_m3htj")
+data = SubResource("Resource_gqvhc")
 
 [node name="NPCSprite" parent="TileMap/Soldier5" index="0"]
 sprite_frames = ExtResource("5_n1yd4")

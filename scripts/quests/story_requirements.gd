@@ -4,7 +4,7 @@ class_name StoryRequirements
 
 @export_category("Acts")
 @export var minAct: int = 0
-@export var maxAct: int = 5
+@export var maxAct: int = -1
 
 @export_category("Prerequisites")
 @export var prereqQuests: Array[String] = []
@@ -57,7 +57,7 @@ func is_valid() -> bool:
 	if Engine.is_editor_hint():
 		return true
 	
-	if PlayerResources.questInventory.currentAct < minAct or PlayerResources.questInventory.currentAct > maxAct:
+	if PlayerResources.questInventory.currentAct < minAct or (maxAct >= 0 and PlayerResources.questInventory.currentAct > maxAct):
 		return false
 		
 	if not PlayerResources.questInventory.has_completed_prereqs(prereqQuests):

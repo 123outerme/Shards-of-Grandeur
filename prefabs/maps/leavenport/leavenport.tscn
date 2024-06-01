@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=35 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -12,12 +12,90 @@
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="7_x5og7"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
 [ext_resource type="Resource" uid="uid://c3gj8c3m11yyt" path="res://gamedata/cutscenes/leavenport/meet_solius.tres" id="9_8qf0q"]
+[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="9_djdq1"]
+[ext_resource type="SpriteFrames" uid="uid://ytkab3km2sof" path="res://graphics/animations/a_chain_legion_soldier_2.tres" id="10_7cmn1"]
+[ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="11_jmbbv"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
+[ext_resource type="Resource" uid="uid://l6qd745efbcx" path="res://gamedata/cutscenes/leavenport/north_soldiers_turn_around.tres" id="14_iarnq"]
+[ext_resource type="Resource" uid="uid://d1303grvlgie" path="res://gamedata/cutscenes/leavenport/east_soldiers_turn_around.tres" id="15_dsi35"]
 
-[sub_resource type="Resource" id="Resource_k0xwp"]
+[sub_resource type="Resource" id="Resource_yx58a"]
 script = ExtResource("6_jui48")
 saveName = "npc"
+animation = null
 position = Vector2(98, 202)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_whc5i"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = null
+position = Vector2(-28, 101)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_5ow17"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = null
+position = Vector2(25, 105)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_wjeeq"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = null
+position = Vector2(1388, 522)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_w75og"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = null
+position = Vector2(1416, 573)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -33,6 +111,12 @@ hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3b4y"]
 size = Vector2(213, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y22lk"]
+size = Vector2(97, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgbgr"]
+size = Vector2(20, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhppi"]
 size = Vector2(112, 8)
@@ -64,10 +148,28 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
+[sub_resource type="Resource" id="Resource_k76co"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = null
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
-metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0]
-metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0]
+metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0, 98.0, 192.0, 1238.0, 1712.0, 1444.0, 1464.0, 1408.0, 1424.0, 1270.0, 1316.0]
+metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0, 606.0, 540.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -165,7 +267,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_k0xwp")
+data = SubResource("Resource_yx58a")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -174,11 +276,11 @@ animation = &"stand"
 autoplay = "stand"
 
 [node name="ColliderShape" parent="TileMap/Solius" index="1"]
-position = Vector2(0, 4)
+position = Vector2(0, 3.5)
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TalkArea" parent="TileMap/Solius" index="3"]
-position = Vector2(0, 3.5)
+position = Vector2(0, 4)
 
 [node name="TalkAreaShape" parent="TileMap/Solius/TalkArea" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
@@ -186,13 +288,100 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TileMap/Solius" index="4"]
 visible = false
 
-[node name="MeetSoliusCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
-position = Vector2(6, 153)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("9_8qf0q")])
+[node name="ChainLegionSoldier1" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(-28, 101)
+loadFlipH = true
+spawnRequirements = ExtResource("9_djdq1")
+data = SubResource("Resource_whc5i")
 
-[node name="CollisionShape2D" parent="MeetSoliusCutsceneTrigger" index="0"]
+[node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
+sprite_frames = ExtResource("10_7cmn1")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/ChainLegionSoldier1" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/ChainLegionSoldier1" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier1" index="4"]
+visible = false
+
+[node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(25, 105)
+spawnRequirements = ExtResource("9_djdq1")
+data = SubResource("Resource_5ow17")
+
+[node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
+sprite_frames = ExtResource("11_jmbbv")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/ChainLegionSoldier2" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/ChainLegionSoldier2" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier2" index="4"]
+visible = false
+
+[node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(1405, 522)
+spawnRequirements = ExtResource("9_djdq1")
+data = SubResource("Resource_wjeeq")
+
+[node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
+sprite_frames = ExtResource("11_jmbbv")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/ChainLegionSoldier3" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/ChainLegionSoldier3" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier3" index="4"]
+visible = false
+
+[node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(1386, 573)
+spawnRequirements = ExtResource("9_djdq1")
+data = SubResource("Resource_w75og")
+
+[node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
+sprite_frames = ExtResource("11_jmbbv")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/ChainLegionSoldier4" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/ChainLegionSoldier4" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier4" index="4"]
+visible = false
+
+[node name="NorthWarpCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
+position = Vector2(6, 153)
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("9_8qf0q"), ExtResource("14_iarnq")])
+
+[node name="CollisionShape2D" parent="NorthWarpCutsceneTrigger" index="0"]
 position = Vector2(34.5, 0)
 shape = SubResource("RectangleShape2D_a3b4y")
+
+[node name="EastWarpCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
+position = Vector2(1312, 561)
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("15_dsi35")])
+
+[node name="CollisionShape2D" parent="EastWarpCutsceneTrigger" index="0"]
+position = Vector2(48, 0)
+shape = SubResource("RectangleShape2D_y22lk")
+
+[node name="TakeoverCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
+position = Vector2(1525, 560)
+
+[node name="CollisionShape2D" parent="TakeoverCutsceneTrigger" index="0"]
+shape = SubResource("RectangleShape2D_wgbgr")
 
 [node name="HilltopForestEastWarpZone" parent="." instance=ExtResource("5_2lmvq")]
 position = Vector2(-88, -192)
@@ -204,7 +393,7 @@ useHorizontalOffset = true
 shape = SubResource("RectangleShape2D_yhppi")
 
 [node name="SeaLegSwampWarpZone" parent="." instance=ExtResource("5_2lmvq")]
-position = Vector2(1671, 560)
+position = Vector2(1539, 560)
 mapName = "sea_leg_swamp"
 mapPos = Vector2(-374, -21)
 useVerticalOffset = true
@@ -224,7 +413,7 @@ navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("6_aasvf")]
-position = Vector2(1665, 560)
+position = Vector2(1533, 560)
 holdY = false
 
 [node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
@@ -245,10 +434,18 @@ shape = SubResource("RectangleShape2D_6e1cw")
 position = Vector2(0, 46)
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("12_8fbvy")]
-visible = false
-triggerOrNPC = NodePath("../MeetSoliusCutsceneTrigger")
-cutscene = ExtResource("9_8qf0q")
+triggerOrNPC = NodePath("../EastWarpCutsceneTrigger")
+cutscene = ExtResource("15_dsi35")
 rootNode = NodePath("..")
+
+[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
+position = Vector2(1238, 540)
+facingLeft = true
+data = SubResource("Resource_k76co")
+
+[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
+frame_progress = 0.821456
+flip_h = true
 
 [editable path="TileMap/FloatingRockColumnDecoration"]
 [editable path="TileMap/FloatingRockColumnDecoration2"]
@@ -259,8 +456,16 @@ rootNode = NodePath("..")
 [editable path="TileMap/FloatingRockColumnDecoration5"]
 [editable path="TileMap/FloatingRockColumnDecoration6"]
 [editable path="TileMap/Solius"]
-[editable path="MeetSoliusCutsceneTrigger"]
+[editable path="TileMap/ChainLegionSoldier1"]
+[editable path="TileMap/ChainLegionSoldier2"]
+[editable path="TileMap/ChainLegionSoldier3"]
+[editable path="TileMap/ChainLegionSoldier4"]
+[editable path="NorthWarpCutsceneTrigger"]
+[editable path="EastWarpCutsceneTrigger"]
+[editable path="TakeoverCutsceneTrigger"]
 [editable path="HilltopForestEastWarpZone"]
 [editable path="SeaLegSwampWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
+[editable path="ToolCutsceneVisualizer"]
+[editable path="ToolCutsceneVisualizer/MockPlayer"]

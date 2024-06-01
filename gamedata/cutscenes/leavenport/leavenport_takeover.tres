@@ -1,0 +1,357 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=41 format=3 uid="uid://dcgrjbl2yg0yl"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_3lfdx"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_agf5v"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_aheqb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_y6xge"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_vgqe3"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_pjuhd"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="5_1gkpm"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="6_om2ry"]
+[ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="7_8q43n"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="7_mxawy"]
+
+[sub_resource type="Resource" id="Resource_5ov5a"]
+script = ExtResource("1_agf5v")
+value = Vector2(1712, 538)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_om01c"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Set up actors"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_5ov5a")])
+actorAnims = Array[ExtResource("6_om2ry")]([ExtResource("1_aheqb")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_bue5g"]
+script = ExtResource("1_agf5v")
+value = Vector2(1444, 560)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7i1ud"]
+script = ExtResource("1_agf5v")
+value = Vector2(1616, 538)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_2ya57"]
+script = ExtResource("1_3lfdx")
+frameLength = 1.0
+annotation = "Walk the player a little forwards"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_bue5g"), SubResource("Resource_7i1ud")])
+actorAnims = Array[ExtResource("6_om2ry")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xgkl8"]
+script = ExtResource("5_1gkpm")
+speaker = "Chain Legion Soldier"
+texts = Array[String](["Halt, enemy! You're not going to retreat on our watch!"])
+
+[sub_resource type="Resource" id="Resource_wb8vi"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Stop the player and have the soldiers call out"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([ExtResource("4_pjuhd")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([SubResource("Resource_xgkl8")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_o2670"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_ulbp4"]
+script = ExtResource("1_agf5v")
+value = Vector2(1464, 538)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7i6r7"]
+script = ExtResource("1_3lfdx")
+frameLength = 2.0
+annotation = "Solius catches up while the textbox is active"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ulbp4")])
+actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_o2670")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_q5hen"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_k8ll1"]
+script = ExtResource("7_mxawy")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TileMap/Solius"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_j42cy"]
+script = ExtResource("5_1gkpm")
+speaker = "Solius"
+texts = Array[String](["Go, @! I can distract them. You must make it to Grandstone! Tell Dr. Ildran where the Cave is, and bring back reinforcements!"])
+
+[sub_resource type="Resource" id="Resource_6gc20"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Solius offers to distract them, player faces Solius"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_q5hen")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([SubResource("Resource_k8ll1")])
+dialogues = Array[ExtResource("5_1gkpm")]([SubResource("Resource_j42cy")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pckcd"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Wait for the textbox to close"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qd3aw"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_8m27j"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/ChainLegionSoldier3"
+isPlayer = false
+animation = "battle_idle"
+
+[sub_resource type="Resource" id="Resource_macge"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/ChainLegionSoldier4"
+isPlayer = false
+animation = "battle_idle"
+
+[sub_resource type="Resource" id="Resource_5wofj"]
+script = ExtResource("1_agf5v")
+value = Vector2(1424, 560)
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7wrgq"]
+script = ExtResource("1_agf5v")
+value = Vector2(1408, 606)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_8e1fo"]
+script = ExtResource("1_3lfdx")
+frameLength = 1.0
+annotation = "Have Solius step forward and the player step away from the fight. Start soldiers battle idle animation"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_5wofj"), SubResource("Resource_7wrgq")])
+actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_qd3aw"), ExtResource("7_8q43n"), SubResource("Resource_8m27j"), SubResource("Resource_macge")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_y6ogp"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TileMap/Solius"
+isPlayer = false
+animation = "battle_idle"
+
+[sub_resource type="Resource" id="Resource_ayrv7"]
+script = ExtResource("1_agf5v")
+value = Vector2(1316, 606)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_d7a6q"]
+script = ExtResource("1_3lfdx")
+frameLength = 1.5
+annotation = "Stop Solius walking, keep the player running from the fight"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ayrv7")])
+actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_y6ogp")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ihgnw"]
+script = ExtResource("1_agf5v")
+value = Vector2(1270, 540)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_wmx0r"]
+script = ExtResource("1_3lfdx")
+frameLength = 1.0
+annotation = "Put the player back on the path"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ihgnw")])
+actorAnims = Array[ExtResource("6_om2ry")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_imv1o"]
+script = ExtResource("5_1gkpm")
+speaker = "@"
+texts = Array[String](["Can't use any Teleport Stones anymore, so I'll have to make it back the old fashioned way!"])
+
+[sub_resource type="Resource" id="Resource_1boua"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Have the player stop, think to self"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([ExtResource("4_pjuhd")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([SubResource("Resource_imv1o")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_t3cew"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Wait for text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5ml3h"]
+script = ExtResource("2_vgqe3")
+minAct = 1
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["etreus_fight1"])
+prereqDefeatedEnemies = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["leavenport_takeover"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[resource]
+script = ExtResource("1_y6xge")
+cutsceneFrames = Array[ExtResource("1_3lfdx")]([SubResource("Resource_om01c"), SubResource("Resource_2ya57"), SubResource("Resource_wb8vi"), SubResource("Resource_7i6r7"), SubResource("Resource_6gc20"), SubResource("Resource_pckcd"), SubResource("Resource_8e1fo"), SubResource("Resource_d7a6q"), SubResource("Resource_wmx0r"), SubResource("Resource_1boua"), SubResource("Resource_t3cew")])
+saveName = "leavenport_takeover"
+storyRequirements = SubResource("Resource_5ml3h")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
