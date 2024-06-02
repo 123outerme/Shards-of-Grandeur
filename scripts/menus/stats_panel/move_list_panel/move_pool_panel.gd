@@ -60,8 +60,8 @@ func load_move_pool_panel(rebuild: bool = true):
 			panel.move = movepool[idx]
 			panel.load_move_list_item_panel()
 
-func show_select_buttons(showing: bool = true, exception: Move = null):
-	var hasFocused = false
+func show_select_buttons(showing: bool = true, exception: Move = null, grabFocus = true):
+	var hasFocused = not grabFocus # take focus if grabFocus is true, otherwise pretend like it's already been taken
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
 		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
 		movePanel.movepoolSelect = showing and exception != movePanel.move and not (movePanel.move in moves)

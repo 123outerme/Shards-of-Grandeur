@@ -13,8 +13,9 @@ func _ready():
 			popupMenu.id_pressed.connect(_popup_menu_item_picked)
 
 func _exit_tree():
-	if popupMenu != null and popupMenu.id_pressed.is_connected(_popup_menu_item_picked):
-		popupMenu.id_pressed.disconnect(_popup_menu_item_picked)
+	#if popupMenu != null and popupMenu.id_pressed.is_connected(_popup_menu_item_picked):
+	#	popupMenu.id_pressed.disconnect(_popup_menu_item_picked)
+	pass
 
 func _on_pressed():
 	SceneLoader.audioHandler.play_sfx(sfx)

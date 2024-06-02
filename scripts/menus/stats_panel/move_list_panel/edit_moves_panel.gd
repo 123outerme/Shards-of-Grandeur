@@ -20,6 +20,7 @@ var previousControl: Control = null
 var previousMoveListSlot: int = -1
 var previousMovePoolMove: Move = null
 var replaceMoveSourceSlot: int = -1
+var refocusReorderButton: bool = false
 
 @onready var moveListPanel: MoveListPanel = get_node("Panel/MoveListPanel")
 @onready var movePoolPanel: MovePoolPanel = get_node("Panel/MovePoolPanel")
@@ -47,9 +48,19 @@ func restore_focus():
 				if panel != null:
 					panel.replaceButton.grab_focus()
 		else:
-			var panel = moveListPanel.get_move_list_item(previousMoveListSlot)
-			if panel != null:
-				panel.detailsButton.grab_focus()
+			if replaceMoveSourceSlot == -1:
+				var panel = moveListPanel.get_move_list_item(previousMoveListSlot)
+				if panel != null:
+					if refocusReorderButton:
+						refocusReorderButton = false
+						panel.reorderButton.grab_focus()
+					else:
+						panel.detailsButton.grab_focus()
+			else:
+				var panel = moveListPanel.get_move_list_item(replaceMoveSourceSlot)
+				replaceMoveSourceSlot = -1
+				if panel != null:
+					panel.replaceButton.grab_focus()
 			previousMoveListSlot = -1
 	else:
 		var panel = movePoolPanel.get_move_list_item(previousMovePoolMove)
@@ -57,7 +68,7 @@ func restore_focus():
 			panel.detailsButton.grab_focus()
 		previousMovePoolMove = null
 
-func load_edit_moves_panel(rebuild: bool = true):
+func load_edit_moves_panel(rebuild: bool = true, changeFocus: bool = true):
 	visible = true
 	moveListPanel.moves = moves
 	moveListPanel.movepool = movepool
@@ -71,13 +82,14 @@ func load_edit_moves_panel(rebuild: bool = true):
 	movePoolPanel.levelUp = levelUp
 	movePoolPanel.load_move_pool_panel(rebuild)
 	
-	update_menu_state()
-	restore_focus()
+	update_menu_state(changeFocus)
+	if changeFocus:
+		restore_focus()
 	
-func update_menu_state():
+func update_menu_state(grabFocus: bool = true):
 	moveListPanel.show_move_list_item_reorder_btns(state == MenuState.SELECTING_MOVEPOOL_MOVE)
 	moveListPanel.show_move_list_item_replace_btns(state == MenuState.SELECTING_NEW_SLOT)
-	movePoolPanel.show_select_buttons(state == MenuState.SELECTING_MOVEPOOL_MOVE, selectedMove)
+	movePoolPanel.show_select_buttons(state == MenuState.SELECTING_MOVEPOOL_MOVE, selectedMove, grabFocus)
 	
 	if state == MenuState.SELECTING_NEW_SLOT:
 		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.get_move_list_item(3).replaceButton)
@@ -129,7 +141,8 @@ func _on_move_list_panel_edit_moves_replace_clicked(move, index):
 	state = MenuState.SELECTING_MOVEPOOL_MOVE
 	selectedMove = null
 	replaceMoveSourceSlot = -1
-	load_edit_moves_panel()
+	refocusReorderButton = true
+	load_edit_moves_panel(true, false)
 	restore_focus()
 
 func _on_move_pool_panel_select_button_clicked(move: Move):
@@ -149,7 +162,7 @@ func _on_move_pool_panel_cancel_button_clicked():
 
 func _on_move_list_panel_move_details_visiblity_changed(newVis: bool, move: Move):
 	backButton.disabled = newVis
-	update_menu_state()
+	update_menu_state(false)
 	if newVis and previousMovePoolMove == null:
 		previousMoveListSlot = moveListPanel.get_index_of_move(move)
 	elif not newVis:

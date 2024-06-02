@@ -49,8 +49,9 @@ func _ready():
 		windowSizeOptionsMenu.id_pressed.connect(_on_window_option_chosen)
 
 func _exit_tree():
-	if windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
-		windowSizeOptionsMenu.id_pressed.disconnect(_on_window_option_chosen)
+	#if windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
+	#	windowSizeOptionsMenu.id_pressed.disconnect(_on_window_option_chosen)
+	pass
 
 func _process(delta):
 	if waitingForResizeConfirm:
