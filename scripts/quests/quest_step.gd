@@ -10,7 +10,7 @@ enum Type {
 	ALL = -1,
 }
 
-static func TypeToString(t: Type) -> String:
+static func type_to_string(t: Type) -> String:
 	match t:
 		Type.TALK:
 			return 'Talk'

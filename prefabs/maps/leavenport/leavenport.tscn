@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://l6qd745efbcx" path="res://gamedata/cutscenes/leavenport/north_soldiers_turn_around.tres" id="14_iarnq"]
 [ext_resource type="Resource" uid="uid://d1303grvlgie" path="res://gamedata/cutscenes/leavenport/east_soldiers_turn_around.tres" id="15_dsi35"]
 
-[sub_resource type="Resource" id="Resource_5u474"]
+[sub_resource type="Resource" id="Resource_dglp0"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -37,7 +37,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ynemh"]
+[sub_resource type="Resource" id="Resource_xjtto"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -55,7 +55,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_od1sv"]
+[sub_resource type="Resource" id="Resource_qlgfk"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -73,7 +73,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_t27c6"]
+[sub_resource type="Resource" id="Resource_ass74"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -91,7 +91,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_paqh7"]
+[sub_resource type="Resource" id="Resource_km6w3"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -148,7 +148,7 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
-[sub_resource type="Resource" id="Resource_71amw"]
+[sub_resource type="Resource" id="Resource_5hxaa"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -267,8 +267,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-walkBackwards = false
-data = SubResource("Resource_5u474")
+data = SubResource("Resource_dglp0")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -292,9 +291,8 @@ visible = false
 [node name="ChainLegionSoldier1" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(-28, 101)
 loadFlipH = true
-walkBackwards = false
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_ynemh")
+data = SubResource("Resource_xjtto")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("10_7cmn1")
@@ -311,9 +309,8 @@ visible = false
 
 [node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(25, 105)
-walkBackwards = false
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_od1sv")
+data = SubResource("Resource_qlgfk")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -330,9 +327,8 @@ visible = false
 
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
-walkBackwards = false
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_t27c6")
+data = SubResource("Resource_ass74")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -349,9 +345,8 @@ visible = false
 
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
-walkBackwards = false
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_paqh7")
+data = SubResource("Resource_km6w3")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -446,8 +441,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
-walkBackwards = false
-data = SubResource("Resource_71amw")
+data = SubResource("Resource_5hxaa")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.46489

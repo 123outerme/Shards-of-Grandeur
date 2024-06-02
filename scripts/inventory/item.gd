@@ -10,7 +10,7 @@ enum Type {
 	ALL = -1,
 }
 
-static func TypeToString(t: Type) -> String:
+static func type_to_string(t: Type) -> String:
 	match t:
 		Type.HEALING:
 			return "Healing"
@@ -64,14 +64,14 @@ func _init(
 	battleTargets = i_targets
 
 func use(_target: Combatant):
-	print("If you're seeing this, implement Item.use() in item type:", Item.TypeToString(itemType))
+	print("If you're seeing this, implement Item.use() in item type:", Item.type_to_string(itemType))
 	pass # "virtual" function - does nothing. Override in inherting classes!
 
 func get_use_message(_target: Combatant) -> String:
-	return "If you're seeing this, implement Item.get_use_message() in item type " + Item.TypeToString(itemType)
+	return "If you're seeing this, implement Item.get_use_message() in item type " + Item.type_to_string(itemType)
 
 func get_effect_text(inBattle: bool = true) -> String:
-	return "If you're seeing this, implement Item.get_effect_text() in item type " + Item.TypeToString(itemType) \
+	return "If you're seeing this, implement Item.get_effect_text() in item type " + Item.type_to_string(itemType) \
 			+ ", or you forgot to fill in the effect text!"
 
 # custom can be used logic

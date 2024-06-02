@@ -43,7 +43,7 @@ func load_inventory_slot_panel():
 		displayCount -= 1
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
-	itemType.text = Item.TypeToString(inventorySlot.item.itemType)
+	itemType.text = Item.type_to_string(inventorySlot.item.itemType)
 	if inventorySlot.count > 0:
 		itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
 		if inventorySlot.item.maxCount > 1:

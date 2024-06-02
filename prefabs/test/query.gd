@@ -17,6 +17,14 @@ func create_reports():
 		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance'],
 		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance]
 	)
+	reports['items/equipment_report.csv'] = create_report_for_all_equipment_series(
+		['Stat Changes', 'Timing', 'Bonus Orbs', 'Cost'],
+		[csv_equipment_stat_boosts, csv_equipment_timing, csv_equipment_orbs, csv_item_cost]
+	)
+	reports['items/item_report.csv'] = create_report_for_all_items_series(
+		['Cost', 'Max Count'],
+		[csv_item_cost, csv_item_max_count]
+	)
 	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR)
@@ -234,6 +242,111 @@ func csv_move_status_chance(move: Move, isSurge: bool) -> String:
 		return String.num(moveEffect.statusChance * 100) + '%'
 	else:
 		return ''
+
+# CSV equipment queries
+func create_report_for_all_equipment_series(columns: Array[String], queries: Array[Callable]) -> String:
+	if len(columns) != len(queries):
+		printerr('Equipment CSV report error: mismatched column and query lengths')
+		return ''
+	
+	var armorPath = 'res://gamedata/items/armor/'
+	var weaponPath = 'res://gamedata/items/weapon/'
+	var armors: PackedStringArray = DirAccess.get_files_at(armorPath)
+	var weapons: PackedStringArray = DirAccess.get_files_at(weaponPath)
+	
+	var reportContents = 'Name,Type,'
+	for column in columns:
+		reportContents += column + ','
+	reportContents += '\n'
+	for armorFile: String in armors:
+		var armor: Armor = load(armorPath + armorFile) as Armor
+		if armor != null:
+			reportContents += armor.itemName.replace(',', ' | ') + ',Armor,'
+			for query in queries:
+				var val: String = query.call(armor)
+				reportContents += val + ','
+			reportContents += '\n'
+	for weaponFile: String in weapons:
+		var weapon: Weapon = load(weaponPath + weaponFile) as Weapon
+		if weapon != null:
+			reportContents += weapon.itemName.replace(',', ' | ') + ',Weapon,'
+			for query in queries:
+				var val: String = query.call(weapon)
+				reportContents += val + ','
+			reportContents += '\n'
+	
+	return reportContents
+
+func csv_equipment_stat_boosts(equipment: Item) -> String:
+	var multipliersText: Array[StatMultiplierText] = []
+	if equipment.itemType == Item.Type.ARMOR:
+		var armor: Armor = equipment as Armor
+		if armor != null and armor.statChanges != null and armor.statChanges.has_stat_changes():
+			multipliersText = armor.statChanges.get_multipliers_text()
+	elif equipment.itemType == Item.Type.WEAPON:
+		var weapon: Weapon = equipment as Weapon
+		if weapon != null and weapon.statChanges != null and weapon.statChanges.has_stat_changes():
+			multipliersText = weapon.statChanges.get_multipliers_text()
+	return StatMultiplierText.multiplier_text_list_to_string(multipliersText).replace(',', ' | ')
+
+func csv_equipment_timing(equipment: Item) -> String:
+	var text: String = ''
+	if equipment.itemType == Item.Type.ARMOR:
+		var armor: Armor = equipment as Armor
+		if armor != null:
+			text = BattleCommand.apply_timing_to_string(armor.timing)
+	elif equipment.itemType == Item.Type.WEAPON:
+		var weapon: Weapon = equipment as Weapon
+		if weapon != null:
+			text = BattleCommand.apply_timing_to_string(weapon.timing)
+	return text
+
+func csv_equipment_orbs(equipment: Item) -> String:
+	var text: String = ''
+	if equipment.itemType == Item.Type.ARMOR:
+		var armor: Armor = equipment as Armor
+		if armor != null:
+			text = String.num(armor.bonusOrbs)
+	elif equipment.itemType == Item.Type.WEAPON:
+		var weapon: Weapon = equipment as Weapon
+		if weapon != null:
+			text = String.num(weapon.bonusOrbs)
+	return text
+
+# CSV item queries
+func create_report_for_all_items_series(columns: Array[String], queries: Array[Callable]) -> String:
+	if len(columns) != len(queries):
+		printerr('Items CSV report error: mismatched column and query lengths')
+		return ''
+	
+	var itemsDir: String = 'res://gamedata/items/'
+	var itemTypeDirs: PackedStringArray = DirAccess.get_directories_at(itemsDir)
+	
+	var reportContents = 'Name,Type,'
+	for column in columns:
+		reportContents += column + ','
+	reportContents += '\n'
+	
+	for itemTypeDir: String in itemTypeDirs:
+		var items: PackedStringArray = DirAccess.get_files_at(itemsDir + itemTypeDir)
+		for itemFile: String in items:
+			var item: Item = load(itemsDir + itemTypeDir + '/' + itemFile) as Item
+			if item != null:
+				reportContents += item.itemName.replace(',', ' | ') + ',' + Item.type_to_string(item.itemType) + ','
+				for query in queries:
+					var val: String = query.call(item)
+					reportContents += val + ','
+				reportContents += '\n'
+			
+	return reportContents
+
+func csv_item_cost(item: Item) -> String:
+	if item.cost < 0:
+		return 'N/A'
+	return String.num(item.cost)
+
+func csv_item_max_count(item: Item) -> String:
+	return String.num(item.maxCount)
 
 # Print combatant queries
 func for_all_combatants(query: Callable):

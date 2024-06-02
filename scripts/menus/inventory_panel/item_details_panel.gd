@@ -30,7 +30,7 @@ func load_item_details():
 	
 	itemName.text = '[center]' + item.itemName + '[/center]'
 	itemSprite.texture = item.itemSprite
-	itemType.text = '[center]' + Item.TypeToString(item.itemType) + '[/center]'
+	itemType.text = '[center]' + Item.type_to_string(item.itemType) + '[/center]'
 	itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
 	itemDescription.text = item.itemDescription
 	

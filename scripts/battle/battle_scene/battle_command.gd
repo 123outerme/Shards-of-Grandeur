@@ -84,6 +84,8 @@ static func apply_timing_to_string(t: ApplyTiming) -> String:
 			return "After The User's Turn Ends"
 		ApplyTiming.AFTER_ROUND:
 			return 'After The Round Ends'
+		ApplyTiming.AFTER_RECIEVING_DMG:
+			return 'After Taking An Attack'
 	return 'UNKNOWN'
 
 static func is_command_multi_target(t: Targets) -> bool:
