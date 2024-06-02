@@ -124,6 +124,11 @@ grow_horizontal = 2
 theme = ExtResource("5_msabb")
 alignment = 1
 
+[node name="AllButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "All"
+
 [node name="HealingButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 layout_mode = 2
 toggle_mode = true
@@ -242,6 +247,7 @@ offset_bottom = 720.0
 
 [connection signal="item_used" from="." to="." method="_on_item_used"]
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ShardsButton" to="." method="_on_shards_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/WeaponsButton" to="." method="_on_weapons_button_toggled"]

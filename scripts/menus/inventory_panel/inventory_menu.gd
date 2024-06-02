@@ -27,6 +27,7 @@ var shopInventory: Inventory = null
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
 @onready var toggleShopButton: Button = get_node("InventoryPanel/Panel/ToggleShopInventoryButton")
 
+@onready var allFilterBtn: Button = get_node('InventoryPanel/Panel/HBoxContainer/AllButton')
 @onready var healingFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/HealingButton")
 @onready var shardFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ShardsButton")
 @onready var weaponFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/WeaponsButton")
@@ -113,6 +114,9 @@ func get_centermost_filter() -> Button:
 		
 	if not keyItemFilterBtn.disabled:
 		return keyItemFilterBtn
+		
+	if not allFilterBtn.disabled:
+		return allFilterBtn
 	
 	return null
 
@@ -146,6 +150,10 @@ func load_inventory_panel(rebuild: bool = true):
 	# lock all filters so that they can be unlocked as the inventory slots get created
 	# and set initial focus neighbors to back
 	if rebuild:
+		allFilterBtn.disabled = lockFilters
+		allFilterBtn.focus_neighbor_top = allFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
+		allFilterBtn.focus_neighbor_bottom = allFilterBtn.get_path_to(backButton)
+		
 		healingFilterBtn.disabled = true
 		healingFilterBtn.focus_neighbor_top = healingFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
 		healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(backButton)
@@ -217,6 +225,7 @@ func load_inventory_panel(rebuild: bool = true):
 			if slot.item.itemType == Item.Type.KEY_ITEM:
 				keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
 		if firstPanel != null: # if focus still not grabbed by another panel
+			allFilterBtn.focus_neighbor_bottom = allFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(firstPanel.get_leftmost_button())
@@ -312,6 +321,7 @@ func check_filters():
 		selectedFilter = Item.Type.ALL
 
 func update_filter_buttons():
+	allFilterBtn.button_pressed = selectedFilter == Item.Type.ALL
 	healingFilterBtn.button_pressed = selectedFilter == Item.Type.HEALING
 	shardFilterBtn.button_pressed = selectedFilter == Item.Type.SHARD
 	weaponFilterBtn.button_pressed = selectedFilter == Item.Type.WEAPON
@@ -333,6 +343,12 @@ func _on_details_back_button_pressed():
 	else:
 		restore_last_focus('detailsButton')
 	viewingEquipItemDetails = false
+
+func _on_all_button_toggled(button_pressed):
+	if lockFilters:
+		return
+	if button_pressed:
+		filter_by()
 
 func _on_healing_button_toggled(button_pressed):
 	if lockFilters: # ignore toggle if filters are supposed to be locked
