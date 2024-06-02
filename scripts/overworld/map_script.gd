@@ -82,6 +82,10 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1),
 			Vector2i(0, -1),
 			Vector2i(0, -1),
+			Vector2i(0, -1),
+			Vector2i(0, -1),
+			Vector2i(0, -1),
+			Vector2i(0, -1),
 		]
 		
 		var tilemap: TileMap = get_node("TileMap")
