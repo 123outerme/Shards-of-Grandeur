@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://cpmh4qw3gwv3b"]
+
+[ext_resource type="Texture2D" uid="uid://cu7xth0vm5eb3" path="res://graphics/items/healing/leavenport_loaf.png" id="1_2gbfb"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_6t56r"]
+
+[resource]
+script = ExtResource("1_6t56r")
+healBy = 200
+statusStrengthHeal = 0
+itemSprite = ExtResource("1_2gbfb")
+itemName = "Leavenport Loaf"
+itemType = 0
+itemDescription = "A delicious loaf of bread made locally in Leavenport. A crunchy crust combine with a soft, melt-in-your-mouth interior to make this humble staple shine."
+cost = 14
+maxCount = 50
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 1

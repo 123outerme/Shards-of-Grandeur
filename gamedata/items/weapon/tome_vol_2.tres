@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://blr4ud6lqybmv"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_c3esj"]
+[ext_resource type="Texture2D" uid="uid://f5nuw46q1cp4" path="res://graphics/items/weapons/book_vol_2.png" id="1_ouq7r"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_8ulwm"]
+
+[sub_resource type="Resource" id="Resource_8dn1x"]
+script = ExtResource("3_8ulwm")
+physAttackIncrease = 0
+magicAttackIncrease = 5
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[resource]
+script = ExtResource("1_c3esj")
+statChanges = SubResource("Resource_8dn1x")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_ouq7r")
+itemName = "Genesis of Magic, Vol. 2"
+itemType = 2
+itemDescription = "An excerpt from \"Genesis of Magic, Vol. 2\":
+\"Magic can be used to create or destroy. It is possible to create something from nothing by absorbing a Shard's power, or to manipulate the Elements to the form of your will.\""
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

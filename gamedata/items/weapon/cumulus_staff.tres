@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://dr78fexspx8je"]
+
+[ext_resource type="Texture2D" uid="uid://di4fhubpmhq21" path="res://graphics/items/weapons/cumulus_staff.png" id="1_fnug3"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_g1kfy"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_fnnvo"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_fyprm"]
+
+[sub_resource type="Resource" id="Resource_uwt23"]
+script = ExtResource("2_fnnvo")
+element = 4
+multiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_jbr6u"]
+script = ExtResource("3_fyprm")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_fnnvo")]([SubResource("Resource_uwt23")])
+
+[resource]
+script = ExtResource("1_g1kfy")
+statChanges = SubResource("Resource_jbr6u")
+timing = 0
+bonusOrbs = 0
+itemSprite = ExtResource("1_fnug3")
+itemName = "Cumulus Staff"
+itemType = 2
+itemDescription = "No one is quite sure exactly how it happened, but one day, a staff-shaped cloud fell to Earth. It is genuinely a solid object, and lighter than a feather too."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

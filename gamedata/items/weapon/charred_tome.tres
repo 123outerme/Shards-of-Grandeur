@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://dlef7iporyguj"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_88hpl"]
+[ext_resource type="Texture2D" uid="uid://dcjhievpwdtjl" path="res://graphics/items/weapons/charred_tome.png" id="1_ht4vf"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_4ag34"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_wv5mo"]
+
+[sub_resource type="Resource" id="Resource_3meb8"]
+script = ExtResource("2_4ag34")
+element = 2
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_syy0s"]
+script = ExtResource("3_wv5mo")
+physAttackIncrease = 0
+magicAttackIncrease = 1
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_4ag34")]([SubResource("Resource_3meb8")])
+
+[resource]
+script = ExtResource("1_88hpl")
+statChanges = SubResource("Resource_syy0s")
+timing = 0
+bonusOrbs = 0
+itemSprite = ExtResource("1_ht4vf")
+itemName = "Charred Tome"
+itemType = 2
+itemDescription = "A burnt book with an obvious story behind it: Some mage's apprentice cast a fire spell that didn't end well. Although its pages did end up surviving, there's no way to read any of them anymore."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

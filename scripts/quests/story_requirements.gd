@@ -24,7 +24,7 @@ class_name StoryRequirements
 
 func _init(
 	i_minAct = 0,
-	i_maxAct = 5,
+	i_maxAct = -1,
 	i_prereqQuests: Array[String] = [],
 	i_prereqCutscenes: Array[String] = [],
 	i_prereqDialogues: Array[String] = [],
