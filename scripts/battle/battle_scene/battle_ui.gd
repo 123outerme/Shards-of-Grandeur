@@ -253,13 +253,11 @@ func restore_focus():
 
 func open_inventory(forSummon: bool):
 	if not forSummon:
-		inventoryPanel.summoning = forSummon
-		inventoryPanel.lockFilters = forSummon
-		if forSummon:
-			inventoryPanel.selectedFilter = Item.Type.SHARD
-		else:
-			if commandingMinion and battleController.playerCombatant.is_alive():
-				inventoryPanel.slotQueuedForBattleUse = battleController.playerCombatant.combatant.command.slot
+		inventoryPanel.summoning = false
+		inventoryPanel.lockFilters = false
+		inventoryPanel.selectedFilter = Item.Type.HEALING
+		if commandingMinion and battleController.playerCombatant.is_alive():
+			inventoryPanel.slotQueuedForBattleUse = battleController.playerCombatant.combatant.command.slot
 		inventoryPanel.toggle()
 	else:
 		summonMinionPanel.load_summon_minion_panel()
