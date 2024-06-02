@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://c48ja8pjniutk"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_movho"]
+[ext_resource type="Texture2D" uid="uid://dqofst3bwy6" path="res://graphics/items/weapons/tangleroot_band.png" id="1_tfcws"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_hsxuo"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_r4aix"]
+
+[sub_resource type="Resource" id="Resource_scmuk"]
+script = ExtResource("3_r4aix")
+element = 6
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_p3poq"]
+script = ExtResource("3_hsxuo")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 1
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_r4aix")]([SubResource("Resource_scmuk")])
+
+[resource]
+script = ExtResource("1_movho")
+statChanges = SubResource("Resource_p3poq")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_tfcws")
+itemName = "Tangleroot Band"
+itemType = 2
+itemDescription = "A ring made out of Tangleroot. It emanates Affinity power, and while wearing it you can feel the natural world draw slightly closer."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

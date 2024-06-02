@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://bwsv5hh8mitat"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_f4wn1"]
+[ext_resource type="Texture2D" uid="uid://v4k2qs5po26l" path="res://graphics/items/armor/turtle_plate.png" id="1_f48vr"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_26fx3"]
+
+[sub_resource type="Resource" id="Resource_lhbhf"]
+script = ExtResource("2_26fx3")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 1
+resistanceIncrease = 1
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[resource]
+script = ExtResource("1_f4wn1")
+statChanges = SubResource("Resource_lhbhf")
+timing = 6
+bonusOrbs = 0
+itemSprite = ExtResource("1_f48vr")
+itemName = "Turtle Plate"
+itemType = 3
+itemDescription = "Chest armor inspired by the defensive abilities of the turtle. Like a turtle retreating to safety, this plate armor becomes more protective after taking a hit."
+cost = 28
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

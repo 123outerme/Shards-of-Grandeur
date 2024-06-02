@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://dtkqs2hnsyopd"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_3qw5m"]
+[ext_resource type="Texture2D" uid="uid://b4gvy858lg5lg" path="res://graphics/items/armor/mountaineer_boots.png" id="1_7rmw5"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_jkq8j"]
+
+[sub_resource type="Resource" id="Resource_vchpy"]
+script = ExtResource("2_jkq8j")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[resource]
+script = ExtResource("1_3qw5m")
+statChanges = SubResource("Resource_vchpy")
+timing = 1
+bonusOrbs = 0
+itemSprite = ExtResource("1_7rmw5")
+itemName = "Mountaineer Boots"
+itemType = 3
+itemDescription = "These leather boots are perfect for wilderness treks. They provide ample support for the foot, and seem to get better the more they're broken in."
+cost = 28
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
