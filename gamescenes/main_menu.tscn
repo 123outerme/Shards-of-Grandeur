@@ -10,15 +10,15 @@
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="7_swlwd"]
 [ext_resource type="Texture2D" uid="uid://cs66yfoyhxwo2" path="res://graphics/items/key_items/enchanted_hammer.png" id="8_3vdg2"]
 [ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://graphics/characters/player/player_walk.png" id="8_w3grk"]
-[ext_resource type="Texture2D" uid="uid://bamq0i0s6h4l5" path="res://graphics/ui/knight.png" id="9_iovbg"]
 [ext_resource type="Texture2D" uid="uid://chumycjya5hmc" path="res://graphics/ui/house_icon.png" id="9_jdjmu"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="10_650uu"]
+[ext_resource type="Texture2D" uid="uid://dr7u8syuxmuqb" path="res://graphics/characters/solius/solius_stand.png" id="12_63e6b"]
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="12_h6rgv"]
 [ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="17_qsm70"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
 atlas = ExtResource("8_w3grk")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(112, 0, 16, 16)
 
 [node name="MainMenu" type="Control" groups=["Scenes"]]
 layout_mode = 3
@@ -96,26 +96,27 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -106.0
+offset_left = -190.0
 offset_top = 136.0
-offset_right = 108.0
+offset_right = 190.0
 offset_bottom = 186.0
 grow_horizontal = 2
 theme = ExtResource("7_swlwd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[center]Uvutu DX[/center]"
+text = "[center]Shards of Uvutu[/center]"
 fit_content = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="Panel"]
-position = Vector2(500, 162)
+position = Vector2(400, 162)
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_nrgl8")
 
-[node name="GuardSprite" type="Sprite2D" parent="Panel"]
-position = Vector2(802, 132)
+[node name="SoliusSprite" type="Sprite2D" parent="Panel"]
+position = Vector2(884, 162)
 scale = Vector2(4, 4)
-texture = ExtResource("9_iovbg")
+texture = ExtResource("12_63e6b")
+flip_h = true
 
 [node name="LoadGamePanel" parent="Panel" instance=ExtResource("17_qsm70")]
 visible = false

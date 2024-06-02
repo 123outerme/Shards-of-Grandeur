@@ -1,5 +1,5 @@
-# Uvutu-DX-Godot
-Uvutu DX Godot port, thanks EA.
+# Shards of Uvutu
+Shards of Uvutu is a creature-collector RPG. Acquire consumable Shards in order to summon Minions in turn-based battles!
 
 # LICENSE INFORMATION
 The code is licensed under GPL 3.0, as found in the repository's root `LICENSE` file.   
