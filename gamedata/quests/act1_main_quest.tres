@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=19 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=21 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
@@ -121,7 +121,7 @@ name = "Wild Cave Chase"
 description = "The Cave is in the swamps near Leavenport. We'd better secure it this time, for good!"
 type = 3
 count = 1
-objectiveName = ""
+objectiveName = "etreus_appears"
 turnInNames = Array[String]([])
 displayObjName = "Radiant Cave"
 displayTurnInName = ""
@@ -129,10 +129,38 @@ customStatusStr = "Reach the Radiant Cave!"
 turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
 
+[sub_resource type="Resource" id="Resource_rnfyw"]
+script = ExtResource("2_8mv8e")
+name = "Etreus Appears!"
+description = "The Chain Legion commander Etreus has appeared at the mouth of the Radiant Cave, standing between Grandstone and the Shards!"
+type = 3
+count = 1
+objectiveName = "etreus1_defeated"
+turnInNames = Array[String]([])
+displayObjName = "Etreus"
+displayTurnInName = ""
+customStatusStr = "Defeat Etreus!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_8kfnv"]
+script = ExtResource("2_8mv8e")
+name = "Escape Leavenport!"
+description = "Solius is creating a diversion for the Chain Legion, giving you an opportunity to escape! Don't let this chance go to waste!"
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = "???"
+displayTurnInName = ""
+customStatusStr = "Escape Leavenport!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
 [resource]
 script = ExtResource("1_jiru6")
 questName = "War is Declared"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv")])
 isMainQuest = true
 advanceActActerComplete = true
