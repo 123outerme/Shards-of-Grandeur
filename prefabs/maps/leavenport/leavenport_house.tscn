@@ -46,6 +46,9 @@ layer_4/name = "Invisible"
 layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array()
 
+[node name="WarpZone" parent="." instance=ExtResource("3_8pkwn")]
+position = Vector2(-8.5, 18)
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -56,6 +59,3 @@ navigation_layers = 2
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
-
-[node name="WarpZone" parent="." instance=ExtResource("3_8pkwn")]
-position = Vector2(-8.5, 18)
