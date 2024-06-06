@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://b101o7kvw7n3f"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_lagll"]
+[ext_resource type="Texture2D" uid="uid://b0l7ij8daqk7l" path="res://graphics/items/armor/shady_cloak.png" id="1_tgc5f"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_6hl4v"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_x3enm"]
+
+[sub_resource type="Resource" id="Resource_2as30"]
+script = ExtResource("3_x3enm")
+element = 7
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_5y861"]
+script = ExtResource("3_6hl4v")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_x3enm")]([SubResource("Resource_2as30")])
+
+[resource]
+script = ExtResource("1_lagll")
+statChanges = SubResource("Resource_5y861")
+timing = 0
+bonusOrbs = 0
+itemSprite = ExtResource("1_tgc5f")
+itemName = "Shady Cloak"
+itemType = 0
+itemDescription = "Given its outwardly ragged appearance, this patchy cloak works well to prevent others from noticing the wearer. Whether that is because of the minor enchantment on the cloak, or because it looks sketchy, is unknown."
+cost = 20
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
