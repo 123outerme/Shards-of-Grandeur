@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://de8i2d27j6eja"]
+[gd_scene load_steps=13 format=3 uid="uid://de8i2d27j6eja"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5o6yw"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_21pn3"]
@@ -6,11 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_gjg5d"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_xft2m"]
 [ext_resource type="Resource" uid="uid://yn7vsg2kvoaq" path="res://gamedata/dialogue/leavenport/destruction_shopkeeper/destruction_shopkeeper1.tres" id="5_2475n"]
-[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="6_r47vu"]
-[ext_resource type="Resource" uid="uid://dlef7iporyguj" path="res://gamedata/items/weapon/charred_tome.tres" id="7_no0ef"]
-[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="7_ru57d"]
-[ext_resource type="Resource" uid="uid://60w8y3xovsxd" path="res://gamedata/items/weapon/strikewood_limb.tres" id="9_nolts"]
-[ext_resource type="Resource" uid="uid://b101o7kvw7n3f" path="res://gamedata/items/armor/shady_cloak.tres" id="10_w8v6p"]
+[ext_resource type="Resource" uid="uid://beq5xd7c3we0q" path="res://gamedata/shops/leavenport/leavenport_destruction_shop.tres" id="6_mjla3"]
 [ext_resource type="SpriteFrames" uid="uid://bu7txxof6npce" path="res://graphics/animations/a_man4.tres" id="11_hcvam"]
 
 [sub_resource type="Resource" id="Resource_6ba4f"]
@@ -30,28 +26,6 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
-
-[sub_resource type="Resource" id="Resource_gky4h"]
-script = ExtResource("7_ru57d")
-sinceVersion = "0.1.0"
-item = ExtResource("7_no0ef")
-count = 1
-
-[sub_resource type="Resource" id="Resource_ie7lw"]
-script = ExtResource("7_ru57d")
-sinceVersion = "0.1.0"
-item = ExtResource("9_nolts")
-count = 1
-
-[sub_resource type="Resource" id="Resource_8sumc"]
-script = ExtResource("7_ru57d")
-sinceVersion = "0.1.0"
-item = ExtResource("10_w8v6p")
-count = 1
-
-[sub_resource type="Resource" id="Resource_mj5kr"]
-script = ExtResource("6_r47vu")
-shopItemSlots = Array[ExtResource("7_ru57d")]([SubResource("Resource_gky4h"), SubResource("Resource_ie7lw"), SubResource("Resource_8sumc")])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -101,7 +75,7 @@ saveName = "leavenport_destruction_shopkeeper"
 data = SubResource("Resource_6ba4f")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_2475n")])
 hasShop = true
-npcShop = SubResource("Resource_mj5kr")
+npcShop = ExtResource("6_mjla3")
 
 [node name="NPCSprite" parent="TileMap/Shopkeeper" index="0"]
 sprite_frames = ExtResource("11_hcvam")

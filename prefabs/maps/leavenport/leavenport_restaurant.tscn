@@ -1,16 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://84wmvuo7jkx3"]
+[gd_scene load_steps=13 format=3 uid="uid://84wmvuo7jkx3"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_pi30f"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wspdn"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_o3ng4"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_xjgea"]
 [ext_resource type="SpriteFrames" uid="uid://bu7txxof6npce" path="res://graphics/animations/a_man4.tres" id="5_dk8mp"]
-[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="5_m6aag"]
 [ext_resource type="Resource" uid="uid://cavschyk5vxg2" path="res://gamedata/dialogue/leavenport/restaurant_owner/restaurant_owner1.tres" id="5_qg71i"]
-[ext_resource type="Resource" uid="uid://bkre2g7wcak0v" path="res://gamedata/items/healing/leavenport_meal.tres" id="6_4cdj1"]
-[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="6_n7jio"]
-[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="8_t28qp"]
-[ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="9_rysnc"]
+[ext_resource type="Resource" uid="uid://vlsqi7vf1gie" path="res://gamedata/shops/leavenport/leavenport_restaurant.tres" id="6_fvkvi"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
 
 [sub_resource type="Resource" id="Resource_4yu8v"]
@@ -30,28 +26,6 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
-
-[sub_resource type="Resource" id="Resource_pkev8"]
-script = ExtResource("6_n7jio")
-sinceVersion = "0.1.0"
-item = ExtResource("6_4cdj1")
-count = -1
-
-[sub_resource type="Resource" id="Resource_2isjs"]
-script = ExtResource("6_n7jio")
-sinceVersion = "0.1.0"
-item = ExtResource("8_t28qp")
-count = -1
-
-[sub_resource type="Resource" id="Resource_mhlv0"]
-script = ExtResource("6_n7jio")
-sinceVersion = "0.1.0"
-item = ExtResource("9_rysnc")
-count = -1
-
-[sub_resource type="Resource" id="Resource_csk8j"]
-script = ExtResource("5_m6aag")
-shopItemSlots = Array[ExtResource("6_n7jio")]([SubResource("Resource_pkev8"), SubResource("Resource_2isjs"), SubResource("Resource_mhlv0")])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -101,7 +75,7 @@ saveName = "leavenport_restaurant_owner"
 data = SubResource("Resource_4yu8v")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_qg71i")])
 hasShop = true
-npcShop = SubResource("Resource_csk8j")
+npcShop = ExtResource("6_fvkvi")
 
 [node name="NPCSprite" parent="TileMap/RestaurantOwner" index="0"]
 sprite_frames = ExtResource("5_dk8mp")

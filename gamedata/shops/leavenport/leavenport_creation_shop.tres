@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=15 format=3 uid="uid://ddlmxukxwqaxh"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_50f5e"]
+[ext_resource type="Resource" uid="uid://dyb6sssuoh538" path="res://gamedata/items/armor/geode_amulet.tres" id="2_nn6w3"]
+[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_qj6xg"]
+[ext_resource type="Resource" uid="uid://dtkqs2hnsyopd" path="res://gamedata/items/armor/mountaineer_boots.tres" id="4_ps73q"]
+[ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="5_uh2c2"]
+[ext_resource type="Resource" uid="uid://cjom7udtbr5dg" path="res://gamedata/items/weapon/frozen_spear.tres" id="6_00v1a"]
+[ext_resource type="Resource" uid="uid://dr78fexspx8je" path="res://gamedata/items/weapon/cumulus_staff.tres" id="7_cijwo"]
+[ext_resource type="Resource" uid="uid://c48ja8pjniutk" path="res://gamedata/items/weapon/tangleroot_band.tres" id="8_sba52"]
+
+[sub_resource type="Resource" id="Resource_svk2x"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("2_nn6w3")
+count = 1
+
+[sub_resource type="Resource" id="Resource_hjn05"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("4_ps73q")
+count = 1
+
+[sub_resource type="Resource" id="Resource_1wes3"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("5_uh2c2")
+count = 1
+
+[sub_resource type="Resource" id="Resource_5ly43"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("6_00v1a")
+count = 1
+
+[sub_resource type="Resource" id="Resource_u64fl"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("7_cijwo")
+count = 1
+
+[sub_resource type="Resource" id="Resource_rigld"]
+script = ExtResource("3_qj6xg")
+sinceVersion = "0.1.0"
+item = ExtResource("8_sba52")
+count = 1
+
+[resource]
+script = ExtResource("1_50f5e")
+shopItemSlots = Array[ExtResource("3_qj6xg")]([SubResource("Resource_svk2x"), SubResource("Resource_hjn05"), SubResource("Resource_1wes3"), SubResource("Resource_5ly43"), SubResource("Resource_u64fl"), SubResource("Resource_rigld")])
