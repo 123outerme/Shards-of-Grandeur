@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TeleportStone" load_steps=3 format=3 uid="uid://cc2ef1x6grvaj"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/key_items/teleport_stone.gd" id="1_f52q8"]
+[ext_resource type="Texture2D" uid="uid://b6wuoh5tkl3e5" path="res://graphics/items/key_items/leavenport_teleport_stone.png" id="1_qm4wx"]
+
+[resource]
+script = ExtResource("1_f52q8")
+targetMap = "leavenport"
+targetPos = Vector2(352, 416)
+keyItemType = 1
+useMessage = "The stone opens a swirling portal, bringing you back to Leavenport..."
+effectText = "Teleports you back to Leavenport!"
+itemSprite = ExtResource("1_qm4wx")
+itemName = "Leavenport Teleport Stone"
+itemType = 4
+itemDescription = "This enchanted stone can open a portal to Leavenport at a moment's notice. Once done, it becomes inert and returns to being an ordinary rock."
+cost = 50
+maxCount = 2
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 1
