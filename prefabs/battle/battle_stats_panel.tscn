@@ -92,48 +92,21 @@ anchor_bottom = 0.5
 offset_left = 10.0
 offset_top = -178.0
 offset_right = 570.0
-offset_bottom = 226.0
+offset_bottom = 177.0
 grow_vertical = 2
 readOnly = true
-
-[node name="EquipmentPanel" parent="." instance=ExtResource("6_isj4x")]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -570.0
-offset_top = -84.0
-offset_right = -10.0
-offset_bottom = 271.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="ItemDetailsPanel" parent="EquipmentPanel" index="2"]
-anchors_preset = -1
-anchor_left = -1.268
-anchor_top = -1.0
-anchor_right = 1.018
-anchor_bottom = 1.851
-offset_left = 0.0800171
-offset_top = 0.105011
-offset_right = -0.0800171
-offset_bottom = -0.105042
+battleStats = true
 
 [node name="ElementDmgMultPanel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -570.0
-offset_top = -178.0
-offset_right = -10.0
-offset_bottom = -84.0
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -102.0
+offset_right = 570.0
+offset_bottom = -6.0
+grow_vertical = 0
 theme_override_styles/panel = ExtResource("12_nophx")
 
 [node name="ElementDmgMultText" type="RichTextLabel" parent="ElementDmgMultPanel"]
@@ -148,6 +121,58 @@ bbcode_enabled = true
 text = "[center]Element Damage Boosts:
 Fire Dmg +999%, Water Dmg +999%, Lightning Dmg +999%, Wind Dmg +999%, Earth Dmg +999%, Nature Dmg +999%, Dark Dmg +999%, Astral Dmg +999%[/center]"
 fit_content = true
+
+[node name="ElementEffectivenessPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -570.0
+offset_top = -102.0
+offset_right = -10.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("12_nophx")
+
+[node name="ElementEffectivenessText" type="RichTextLabel" parent="ElementEffectivenessPanel"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Weak to Fire, Water, Lightning, Wind, Earth, Nature, Dark, and Astral
+Resistant to Fire, Water, Lightning, Wind, Earth, Nature, Dark, and Astral[/center]"
+
+[node name="EquipmentPanel" parent="." instance=ExtResource("6_isj4x")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -178.0
+offset_right = -10.0
+offset_bottom = 177.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ItemDetailsPanel" parent="EquipmentPanel" index="2"]
+anchors_preset = -1
+anchor_left = -1.268
+anchor_top = -1.0
+anchor_right = 1.018
+anchor_bottom = 1.851
+offset_left = 0.0800171
+offset_top = 0.105011
+offset_right = -0.0800171
+offset_bottom = -0.105042
 
 [node name="TooltipPanel" parent="." instance=ExtResource("8_ipv3d")]
 visible = false

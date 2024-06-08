@@ -350,6 +350,24 @@ func get_move_effectiveness() -> MoveEffectiveness:
 	else:
 		return evolution.moveEffectiveness
 
+func get_element_weaknesses() -> Array[Move.Element]:
+	var weaknesses: Array[Move.Element] = []
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness != null:
+		weaknesses.append_array(effectiveness.elementWeaknesses)
+	
+	return weaknesses
+
+func get_element_resistances() -> Array[Move.Element]:
+	var resistances: Array[Move.Element] = []
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness != null:
+		resistances.append_array(effectiveness.elementResistances)
+		
+	return resistances
+
 func get_element_effectiveness_multiplier(element: Move.Element) -> float:
 	var effectiveness: MoveEffectiveness = get_move_effectiveness()
 	
@@ -363,6 +381,24 @@ func get_element_effectiveness_multiplier(element: Move.Element) -> float:
 		return ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
 	
 	return ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
+
+func get_status_resistances() -> Array[StatusEffect.Type]:
+	var resistances: Array[StatusEffect.Type] = []
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness != null:
+		resistances.append_array(effectiveness.statusResistances)
+	
+	return resistances
+
+func get_status_immunities() -> Array[StatusEffect.Type]:
+	var immunities: Array[StatusEffect.Type] = []
+	var effectiveness: MoveEffectiveness = get_move_effectiveness()
+	
+	if effectiveness != null:
+		immunities.append_array(effectiveness.statusImmunities)
+	
+	return immunities
 
 func get_status_effectiveness_multiplier(type: StatusEffect.Type) -> float:
 	var effectiveness: MoveEffectiveness = get_move_effectiveness()

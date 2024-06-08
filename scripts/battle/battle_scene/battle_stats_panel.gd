@@ -10,9 +10,10 @@ class_name BattleStatsPanel
 @onready var statusHelpButton: Button = get_node('HBoxContainer/StatusHelpButton')
 @onready var orbDisplay: OrbDisplay = get_node('OrbDisplay')
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
+@onready var elementEffectivenessText: RichTextLabel = get_node('ElementEffectivenessPanel/ElementEffectivenessText')
+@onready var elementDmgMultText: RichTextLabel = get_node('ElementDmgMultPanel/ElementDmgMultText')
 @onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
 @onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
-@onready var elementDmgMultText: RichTextLabel = get_node('ElementDmgMultPanel/ElementDmgMultText')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,6 +53,31 @@ func load_battle_stats_panel():
 		elMultTexts = combatant.statChanges.get_element_multiplier_texts()
 	elementDmgMultText.text = '[center]Element Damage Boosts:\n' \
 			+ StatMultiplierText.multiplier_text_list_to_string(elMultTexts) + '[/center]'
+	
+	var hasBeatenStoryReq: StoryRequirements = StoryRequirements.new()
+	hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
+	if hasBeatenStoryReq.is_valid():
+		elementEffectivenessText.text = '[center]'
+		var elementWeaknesses: Array[Move.Element] = combatant.get_element_weaknesses()
+		if len(elementWeaknesses) > 0:
+			elementEffectivenessText.text += 'Weak to '
+			for idx in range(len(elementWeaknesses)):
+				elementEffectivenessText.text += Move.element_to_string(elementWeaknesses[idx])
+				if idx < len(elementWeaknesses) - 1:
+					elementEffectivenessText.text += ', '
+			elementEffectivenessText.text += '\n'
+		var elementResistances: Array[Move.Element] = combatant.get_element_resistances()
+		if len(elementResistances) > 0:
+			elementEffectivenessText.text += 'Resistant to '
+			for idx in range(len(elementWeaknesses)):
+				elementEffectivenessText.text += Move.element_to_string(elementResistances[idx])
+				if idx < len(elementResistances) - 1:
+					elementEffectivenessText.text += ', '
+			elementEffectivenessText.text += '\n'
+		
+		elementEffectivenessText.text += '[/center]'
+	else:
+		elementEffectivenessText.text = '[center]Weak to ???\nResistant to ???[/center]'
 	
 	equipmentPanel.load_equipment_panel()
 

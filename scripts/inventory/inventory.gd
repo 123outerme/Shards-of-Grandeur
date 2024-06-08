@@ -72,7 +72,8 @@ func get_slot_for_item(item: Item) -> InventorySlot:
 func add_shard_minion_entry(item: Item):
 	if isPlayerInventory and item.itemType == Item.Type.SHARD:
 		var shard: Shard = item as Shard
-		PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
+		if shard.combatantSaveName != '':
+			PlayerResources.minions.get_minion(shard.combatantSaveName) # if it does not exist, this will create it
 		
 func use_item(item: Item, target: Combatant) -> bool:
 	var last: bool = false
@@ -140,14 +141,14 @@ func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
 		if isPlayerInventory:
 			inventorySlots.erase(inventorySlot)
 		lastInSlot = true
-	PlayerResources.questInventory.auto_update_quests()
+	if isPlayerInventory:
+		PlayerResources.questInventory.auto_update_quests()
 	return lastInSlot
 
 func trash_items_by_name(itemName: String, count: int = 1):
 	for slot in inventorySlots:
 		if slot.item.itemName == itemName:
 			trash_item(slot, count)
-	PlayerResources.questInventory.auto_update_quests()
 
 func get_sorted_slots() -> Array[InventorySlot]:
 	var slots: Array[InventorySlot] = []
