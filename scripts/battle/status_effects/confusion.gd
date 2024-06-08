@@ -19,9 +19,10 @@ const _icon: Texture2D = preload('res://graphics/ui/confusion.png')
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0
 ):
-	super(Type.CONFUSION, i_potency, i_turnsLeft)
+	super(Type.CONFUSION, i_potency, i_overwrites, i_turnsLeft)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	if timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC:
@@ -42,5 +43,6 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Confusion.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft
 	)

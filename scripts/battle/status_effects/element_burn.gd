@@ -25,13 +25,14 @@ const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0,
 	i_element = Move.Element.NONE,
 	i_power: float = 0,
 	i_attackerStat: float = 0,
 	i_attackerLv: int = 1,
 ):
-	super(Type.ELEMENT_BURN, i_potency, i_turnsLeft)
+	super(Type.ELEMENT_BURN, i_potency, i_overwrites, i_turnsLeft)
 	element = i_element
 	power = i_power
 	attackerStat = i_attackerStat
@@ -112,6 +113,7 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return ElementBurn.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft,
 		element,
 		power,

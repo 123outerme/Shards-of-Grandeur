@@ -12,9 +12,10 @@ const _icon: Texture2D = preload('res://graphics/ui/reflect.png')
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0
 ):
-	super(Type.REFLECT, i_potency, i_turnsLeft)
+	super(Type.REFLECT, i_potency, i_overwrites, i_turnsLeft)
 
 func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int:
 	var damage: int = 0
@@ -65,5 +66,6 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Reflect.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft
 	)

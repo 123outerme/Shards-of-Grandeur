@@ -12,9 +12,10 @@ const _icon: Texture2D = preload('res://graphics/ui/interception.png')
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0
 ):
-	super(Type.INTERCEPTION, i_potency, i_turnsLeft)
+	super(Type.INTERCEPTION, i_potency, i_overwrites, i_turnsLeft)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	return super.apply_status(combatant, allCombatants, timing)
@@ -31,5 +32,6 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Interception.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft
 	)

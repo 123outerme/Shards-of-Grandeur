@@ -549,7 +549,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			var boostedStatsTotal: float = boostedStats.get_stat_total()
 			var newBoostedStats: Stats = moveEffect.selfStatChanges.apply(boostedStats)
 			# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones, but limiting the multiplier to not go negative or 0
-			var elementBoostsAvg: float = max(0.01, moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS)
+			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
 			# multiply in the stat total c`hange ratio (stat gains multiply >1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
 			weight *= (newBoostedStats.get_stat_total() / boostedStatsTotal) * (elementBoostsAvg * (3.0 / 5.0))
 	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
@@ -559,12 +559,12 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		var newBoostedStats: Stats = moveEffect.targetStatChanges.apply(newStats)
 		if BattleCommand.is_command_enemy_targeting(moveEffect.targets):
 			# get the weighted average of elemental multipliers to be gained, weighting negative multipliers higher than positive ones, but limiting the multiplier to not go negative or 9
-			var elementBoostsAvg: float = max(0.01, moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS)
+			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
 			# multiply in the stat total change ratio (stat gains multiply <1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
 			weight *= (newStatsTotal / newBoostedStats.get_stat_total()) * (elementBoostsAvg * (3.0 / 5.0))
 		else:
 			# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones, but limiting the multiplier to not go negative or 0
-			var elementBoostsAvg: float = max(0.01, moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS)
+			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
 			# multiply in the stat total change ratio (stat gains multiply >1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
 			weight *= (newBoostedStats.get_stat_total() / newStatsTotal) * (elementBoostsAvg * (3.0 / 5.0))
 	return weight

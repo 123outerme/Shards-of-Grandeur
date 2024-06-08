@@ -12,9 +12,10 @@ const _icon: Texture2D = preload('res://graphics/ui/berserk.png')
 
 func _init(
 	i_potency: Potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0
 ):
-	super(Type.BERSERK, i_potency, i_turnsLeft)
+	super(Type.BERSERK, i_potency, i_overwrites, i_turnsLeft)
 
 func get_recoil_damage(combatant: Combatant) -> int:
 	var damage: int = 0
@@ -53,5 +54,6 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Berserk.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft
 	)

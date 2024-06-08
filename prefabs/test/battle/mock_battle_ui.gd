@@ -55,6 +55,15 @@ func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NO
 			battleController.turnExecutor.play_turn() # start the first turn
 			return
 		if menuState == BattleState.Menu.POST_ROUND:
+			var allCombatants: Array[Combatant] = []
+			for combatantNode in battleController.get_all_combatant_nodes(): # gather array of all combatants
+				if combatantNode.combatant != null:
+					allCombatants.append(combatantNode.combatant)
+			for combatantNode in battleController.get_all_combatant_nodes(): # apply after-round effects
+				if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
+					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_POST_ROUND)
+					if combatantNode.combatant.statusEffect == null:
+						combatantNode.update_hp_tag() # status effect just got cleared, update HP tag
 			if result == WinCon.TurnResult.NOTHING: # check again before completing round
 				result = battleController.turnExecutor.check_battle_end_conditions()
 			if result != WinCon.TurnResult.NOTHING:

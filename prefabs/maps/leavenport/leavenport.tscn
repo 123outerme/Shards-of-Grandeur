@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://l6qd745efbcx" path="res://gamedata/cutscenes/leavenport/north_soldiers_turn_around.tres" id="14_iarnq"]
 [ext_resource type="Resource" uid="uid://d1303grvlgie" path="res://gamedata/cutscenes/leavenport/east_soldiers_turn_around.tres" id="15_dsi35"]
 
-[sub_resource type="Resource" id="Resource_o8vxn"]
+[sub_resource type="Resource" id="Resource_frieq"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -37,7 +37,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_euloo"]
+[sub_resource type="Resource" id="Resource_w772u"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -55,7 +55,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_iqeo4"]
+[sub_resource type="Resource" id="Resource_b3ni5"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -73,7 +73,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_56l7o"]
+[sub_resource type="Resource" id="Resource_sslq4"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -91,7 +91,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_miu63"]
+[sub_resource type="Resource" id="Resource_kr5oa"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -151,7 +151,7 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
-[sub_resource type="Resource" id="Resource_m1jr8"]
+[sub_resource type="Resource" id="Resource_5khhe"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -266,11 +266,29 @@ sprite_frames = ExtResource("4_uq3gf")
 [node name="Collision" parent="TileMap/FloatingRockColumnDecoration6" index="1"]
 position = Vector2(0, 14)
 
+[node name="FloatingRockColumnDecoration9" parent="TileMap" instance=ExtResource("3_tnhbb")]
+position = Vector2(681, 475)
+
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration9" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration9" index="1"]
+position = Vector2(0, 14)
+
+[node name="FloatingRockColumnDecoration10" parent="TileMap" instance=ExtResource("3_tnhbb")]
+position = Vector2(448, 254)
+
+[node name="AnimatedSprite2D" parent="TileMap/FloatingRockColumnDecoration10" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TileMap/FloatingRockColumnDecoration10" index="1"]
+position = Vector2(0, 14)
+
 [node name="Solius" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_o8vxn")
+data = SubResource("Resource_frieq")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -295,7 +313,7 @@ visible = false
 position = Vector2(-28, 101)
 loadFlipH = true
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_euloo")
+data = SubResource("Resource_w772u")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("10_7cmn1")
@@ -313,7 +331,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(25, 105)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_iqeo4")
+data = SubResource("Resource_b3ni5")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -331,7 +349,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_56l7o")
+data = SubResource("Resource_sslq4")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -349,7 +367,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_miu63")
+data = SubResource("Resource_kr5oa")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -468,7 +486,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
-data = SubResource("Resource_m1jr8")
+data = SubResource("Resource_5khhe")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.46489
@@ -482,6 +500,8 @@ flip_h = true
 [editable path="TileMap/FloatingRockColumnDecoration8"]
 [editable path="TileMap/FloatingRockColumnDecoration5"]
 [editable path="TileMap/FloatingRockColumnDecoration6"]
+[editable path="TileMap/FloatingRockColumnDecoration9"]
+[editable path="TileMap/FloatingRockColumnDecoration10"]
 [editable path="TileMap/Solius"]
 [editable path="TileMap/ChainLegionSoldier1"]
 [editable path="TileMap/ChainLegionSoldier2"]

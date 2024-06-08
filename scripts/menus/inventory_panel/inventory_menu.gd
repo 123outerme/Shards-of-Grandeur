@@ -187,6 +187,7 @@ func load_inventory_panel(rebuild: bool = true):
 		for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 			panel.queue_free()
 		
+		var previousPanel: InventorySlotPanel = null
 		var firstPanel: InventorySlotPanel = null
 		var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
 		for slot in currentInventory.get_sorted_slots():
@@ -212,8 +213,10 @@ func load_inventory_panel(rebuild: bool = true):
 				vboxViewport.add_child(instantiatedPanel)
 				if firstPanel == null:
 					firstPanel = instantiatedPanel
-				backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.get_leftmost_button()) # last panel keeps the focus neighbor of the back button
-				# unlock filter button for filter of item's type
+				backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.get_leftmost_button()) # last panel keeps the focus neighbor of the back button				
+				instantiatedPanel.connect_button_focus_to(previousPanel)
+				previousPanel = instantiatedPanel
+			# unlock filter button for filter of item's type
 			if slot.item.itemType == Item.Type.HEALING:
 				healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING
 			if slot.item.itemType == Item.Type.SHARD:

@@ -111,14 +111,14 @@ func update_menu_state(grabFocus: bool = true):
 	backButton.focus_neighbor_left = backButton.get_path_to(backButton)
 	backButton.focus_neighbor_right = backButton.get_path_to(backButton)
 
-func reset_menu_state():
+func reset_menu_state(grabFocus: bool = true):
 	state = MenuState.SELECTING_MOVEPOOL_MOVE
 	selectedMove = null
 	previousMoveListSlot = -1
 	previousMovePoolMove = null
 	replaceMoveSourceSlot = -1
 	moveListPanel.moveDetailsPanel.visible = false
-	update_menu_state()
+	update_menu_state(grabFocus)
 
 func _on_move_pool_panel_details_button_clicked(move: Move):
 	moveListPanel.moveDetailsPanel.move = move

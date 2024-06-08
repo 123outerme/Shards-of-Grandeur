@@ -99,6 +99,29 @@ func get_leftmost_button() -> Button:
 			return buttonArr[idx]
 	return null
 
+func connect_button_focus_to(previousPanel: InventorySlotPanel):
+	if previousPanel == null:
+		return
+	
+	var firstButton: Button = useButton
+	var previousFirstButton: Button = previousPanel.useButton
+	if equipButton.visible:
+		firstButton = equipButton
+	if previousPanel.equipButton.visible:
+		previousFirstButton = previousPanel.equipButton
+	
+	firstButton.focus_neighbor_top = firstButton.get_path_to(previousFirstButton)
+	trashButton.focus_neighbor_top = trashButton.get_path_to(previousPanel.trashButton)
+	buyButton.focus_neighbor_top = buyButton.get_path_to(previousPanel.buyButton)
+	sellButton.focus_neighbor_top = sellButton.get_path_to(previousPanel.sellButton)
+	detailsButton.focus_neighbor_top = detailsButton.get_path_to(previousPanel.detailsButton)
+	
+	previousFirstButton.focus_neighbor_bottom = previousFirstButton.get_path_to(firstButton)
+	previousPanel.trashButton.focus_neighbor_bottom = previousPanel.trashButton.get_path_to(trashButton)
+	previousPanel.buyButton.focus_neighbor_bottom = previousPanel.buyButton.get_path_to(buyButton)
+	previousPanel.sellButton.focus_neighbor_bottom = previousPanel.sellButton.get_path_to(sellButton)
+	previousPanel.detailsButton.focus_neighbor_bottom = previousPanel.detailsButton.get_path_to(detailsButton)
+
 func _on_use_button_pressed():
 	inventoryMenu.item_used.emit(inventorySlot)
 

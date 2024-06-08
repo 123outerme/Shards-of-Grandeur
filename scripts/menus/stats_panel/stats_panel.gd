@@ -53,7 +53,7 @@ func toggle():
 	else:
 		equipmentPanel.itemDetailsPanel.visible = false
 		moveListPanel.moveDetailsPanel.visible = false
-		editMovesPanel.reset_menu_state()
+		editMovesPanel.reset_menu_state(false)
 		editMovesPanel.visible = false
 		minionsPanel.end_edit_name(false)
 		minionsPanel.reset_reorder_state()

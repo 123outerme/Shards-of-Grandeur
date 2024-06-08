@@ -84,11 +84,12 @@ func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Arr
 		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
 	if statusEffect != null:
-		effects.append(
-			StatusEffect.potency_to_string(statusEffect.potency) \
+		var statusString: String = StatusEffect.potency_to_string(statusEffect.potency) \
 			+ ' ' + statusEffect.get_status_type_string() \
 			+ ' (' + String.num(roundi(statusChance * 100)) + '%)'
-		)
+		if statusEffect.overwritesOtherStatuses:
+			statusString += ', Replaces'
+		effects.append(statusString)
 	
 	return effects
 

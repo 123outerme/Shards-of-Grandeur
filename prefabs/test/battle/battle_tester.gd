@@ -1,5 +1,6 @@
 extends BattleController
 
+@export var encounter: EnemyEncounter = null
 @export var _playerCombatant: Combatant
 @export var playerLv: int = 1
 @export var _minionCombatant: Combatant
@@ -23,6 +24,8 @@ extends BattleController
 func _ready():
 	battleUI = get_node('MockBattleUI')
 	SceneLoader.audioHandler = get_node('AudioHandler')
+	PlayerResources.playerInfo = PlayerInfo.new()
+	PlayerResources.playerInfo.encounter = encounter
 	nextButton.grab_focus()
 	var combatants: Array[Combatant] = [_playerCombatant, _minionCombatant, enemy1Combatant, enemy2Combatant, enemy3Combatant]
 	var combatantLvs: Array[int] = [playerLv, minionLv, enemy1Lv, enemy2Lv, enemy3Lv]

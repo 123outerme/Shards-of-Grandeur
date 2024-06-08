@@ -1,8 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=68 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="2_sffs8"]
+[ext_resource type="Script" path="res://scripts/battle/win_conditions/total_defeat_win_con.gd" id="3_3k7vy"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="4_cmvjq"]
 [ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="5_0er0p"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
@@ -39,6 +41,28 @@
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="28_3l5fj"]
 [ext_resource type="Resource" uid="uid://c8if1u55s37vs" path="res://gamedata/combatants/cloud_gull/cloud_gull_sprite.tres" id="28_huiyb"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
+
+[sub_resource type="Resource" id="Resource_8wt0b"]
+script = ExtResource("3_3k7vy")
+
+[sub_resource type="Resource" id="Resource_gsvj1"]
+script = ExtResource("2_sffs8")
+combatant1Level = 1
+combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Level = 1
+combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Level = 1
+combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyLevel = 1
+autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+specialBattleId = ""
+bossBattle = false
+canEscape = true
+rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
+useStaticRewards = false
+specialRules = 0
+winCon = SubResource("Resource_8wt0b")
+customWinText = ""
 
 [sub_resource type="Resource" id="Resource_hvfly"]
 script = ExtResource("9_jd22b")
@@ -336,6 +360,7 @@ downed = false
 
 [node name="BattleTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_7scea")
+encounter = SubResource("Resource_gsvj1")
 _playerCombatant = SubResource("Resource_ysrhl")
 playerLv = 10
 _minionCombatant = SubResource("Resource_4p0wd")
@@ -363,17 +388,28 @@ battleController = NodePath("..")
 
 [node name="PlayerCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, 1)
+initialCombatantLv = 1
+role = 0
+leftSide = false
+spriteFacesRight = false
 battlePosition = "You"
 battleController = NodePath("..")
 
 [node name="MinionCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, -42)
+initialCombatantLv = 1
+role = 0
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Ally"
 battleController = NodePath("..")
 
 [node name="Enemy1CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(49, -18)
+initialCombatantLv = 1
 role = 1
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Center"
 battleController = NodePath("..")
 
@@ -382,13 +418,19 @@ position = Vector2(-16, 0)
 
 [node name="Enemy2CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(56, -66)
+initialCombatantLv = 1
 role = 1
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Top"
 battleController = NodePath("..")
 
 [node name="Enemy3CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(59, 25)
+initialCombatantLv = 1
 role = 1
+leftSide = false
+spriteFacesRight = false
 battlePosition = "Bottom"
 battleController = NodePath("..")
 

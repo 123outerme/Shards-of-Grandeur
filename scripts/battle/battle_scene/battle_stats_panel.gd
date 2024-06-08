@@ -56,10 +56,12 @@ func load_battle_stats_panel():
 	
 	var hasBeatenStoryReq: StoryRequirements = StoryRequirements.new()
 	hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
-	if hasBeatenStoryReq.is_valid():
+	if hasBeatenStoryReq.is_valid() or combatant.save_name() == 'player':
 		elementEffectivenessText.text = '[center]'
+		var hasText: bool = false
 		var elementWeaknesses: Array[Move.Element] = combatant.get_element_weaknesses()
 		if len(elementWeaknesses) > 0:
+			hasText = true
 			elementEffectivenessText.text += 'Weak to '
 			for idx in range(len(elementWeaknesses)):
 				elementEffectivenessText.text += Move.element_to_string(elementWeaknesses[idx])
@@ -68,12 +70,16 @@ func load_battle_stats_panel():
 			elementEffectivenessText.text += '\n'
 		var elementResistances: Array[Move.Element] = combatant.get_element_resistances()
 		if len(elementResistances) > 0:
+			hasText = true
 			elementEffectivenessText.text += 'Resistant to '
 			for idx in range(len(elementWeaknesses)):
 				elementEffectivenessText.text += Move.element_to_string(elementResistances[idx])
 				if idx < len(elementResistances) - 1:
 					elementEffectivenessText.text += ', '
 			elementEffectivenessText.text += '\n'
+		
+		if not hasText:
+			elementEffectivenessText.text += 'No Weaknesses or Resistances'
 		
 		elementEffectivenessText.text += '[/center]'
 	else:

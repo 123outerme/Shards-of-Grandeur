@@ -16,10 +16,11 @@ var endured: bool = false
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0,
 	i_lowestHp = -1,
 ):
-	super(Type.ENDURE, i_potency, i_turnsLeft)
+	super(Type.ENDURE, i_potency, i_overwrites, i_turnsLeft)
 	endured = false
 	lowestHp = i_lowestHp
 
@@ -56,6 +57,7 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Endure.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft,
 		lowestHp
 	)

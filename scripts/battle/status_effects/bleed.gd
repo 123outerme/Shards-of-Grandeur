@@ -12,9 +12,10 @@ const _icon: Texture2D = preload('res://graphics/ui/bleed.png')
 
 func _init(
 	i_potency = Potency.NONE,
+	i_overwrites = false,
 	i_turnsLeft = 0,
 ):
-	super(Type.BLEED, i_potency, i_turnsLeft)
+	super(Type.BLEED, i_potency, i_overwrites, i_turnsLeft)
 
 func get_bleed_damage(combatant: Combatant) -> int:
 	return roundi(combatant.stats.maxHp * Bleed.PERCENT_DAMAGE_DICT[potency])
@@ -41,5 +42,6 @@ func get_icon() -> Texture2D:
 func copy() -> StatusEffect:
 	return Bleed.new(
 		potency,
+		overwritesOtherStatuses,
 		turnsLeft
 	)
