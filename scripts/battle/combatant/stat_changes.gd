@@ -235,6 +235,16 @@ func get_element_multiplier(e: Move.Element) -> float:
 	
 	return 1.0
 
+func sum_weighted_elemental_multipliers(positiveWeight: float = 1.0, negativeWeight: float = 1.0) -> float:
+	var sum: float = 0
+	for mult: ElementMultiplier in elementMultipliers:
+		if mult.multiplier > 1.0:
+			sum += (mult.multiplier - 1.0) * positiveWeight
+		elif mult.multiplier < 1.0:
+			sum += (mult.multiplier - 1.0) * negativeWeight
+	
+	return sum
+
 func has_stat_changes() -> bool:
 	# check if any element multipliers exist that aren't 1x. If there is at least one, this obj has stat changes
 	for mult: ElementMultiplier in elementMultipliers:

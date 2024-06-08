@@ -18,6 +18,7 @@ enum Element {
 	DARK = 7,
 	ASTRAL = 8
 }
+const NUM_ELEMENTS = 8
 
 enum MoveEffectType {
 	NONE = 0,
