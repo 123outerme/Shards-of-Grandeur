@@ -622,13 +622,7 @@ func get_multiplier_affected_targets() -> Array[Combatant]:
 func get_command_animation() -> String:
 	match type:
 		Type.MOVE:
-			match move.category:
-				Move.DmgCategory.PHYSICAL:
-					return 'attack_phys'
-				Move.DmgCategory.MAGIC:
-					return 'attack_magic'
-				Move.DmgCategory.AFFINITY:
-					return 'attack_affinity'
+			return move.moveAnimation.combatantAnimation
 		Type.USE_ITEM:
 			return ''
 		Type.ESCAPE:
