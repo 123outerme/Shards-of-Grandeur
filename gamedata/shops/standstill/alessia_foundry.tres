@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://d3kk3dviteboh"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=14 format=3 uid="uid://d3kk3dviteboh"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_v3g1w"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_5yojq"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_3kv6q"]
 [ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="4_l345y"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_0jk3l"]
+[ext_resource type="Resource" uid="uid://cl71ahl7hjw1d" path="res://gamedata/items/armor/darksteel_helm.tres" id="6_u1cor"]
+[ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="7_d72ul"]
 
 [sub_resource type="Resource" id="Resource_85q30"]
 script = ExtResource("3_3kv6q")
@@ -36,6 +38,36 @@ sinceVersion = "0.1.0"
 item = ExtResource("4_l345y")
 count = 1
 
+[sub_resource type="Resource" id="Resource_ymjd0"]
+script = ExtResource("5_0jk3l")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_ljvhx"]
+script = ExtResource("3_3kv6q")
+storyRequirements = SubResource("Resource_ymjd0")
+sinceVersion = "0.1.0"
+item = ExtResource("6_u1cor")
+count = 1
+
+[sub_resource type="Resource" id="Resource_8kv86"]
+script = ExtResource("3_3kv6q")
+sinceVersion = "0.1.0"
+item = ExtResource("7_d72ul")
+count = 1
+
 [resource]
 script = ExtResource("1_v3g1w")
-shopItemSlots = Array[ExtResource("3_3kv6q")]([SubResource("Resource_85q30"), SubResource("Resource_xt4j7")])
+shopItemSlots = Array[ExtResource("3_3kv6q")]([SubResource("Resource_85q30"), SubResource("Resource_xt4j7"), SubResource("Resource_ljvhx"), SubResource("Resource_8kv86")])

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://cl71ahl7hjw1d"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_6gcnp"]
+[ext_resource type="Texture2D" uid="uid://cckxu8du8qq2i" path="res://graphics/items/armor/dark_helm.png" id="1_bmfnt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_8621i"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_5ihsg"]
+
+[sub_resource type="Resource" id="Resource_llrx7"]
+script = ExtResource("3_5ihsg")
+element = 7
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_5v66d"]
+script = ExtResource("2_8621i")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 3
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_5ihsg")]([SubResource("Resource_llrx7")])
+
+[resource]
+script = ExtResource("1_6gcnp")
+statChanges = SubResource("Resource_5v66d")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_bmfnt")
+itemName = "Darksteel Helm"
+itemType = 3
+itemDescription = "This helmet is made out of a special metal and a rigorous smithing process. The blacksmith pounds at the metal furiously in order to infuse Darkness into the helm."
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
