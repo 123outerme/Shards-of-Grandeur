@@ -388,28 +388,17 @@ battleController = NodePath("..")
 
 [node name="PlayerCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, 1)
-initialCombatantLv = 1
-role = 0
-leftSide = false
-spriteFacesRight = false
 battlePosition = "You"
 battleController = NodePath("..")
 
 [node name="MinionCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, -42)
-initialCombatantLv = 1
-role = 0
-leftSide = false
-spriteFacesRight = false
 battlePosition = "Ally"
 battleController = NodePath("..")
 
 [node name="Enemy1CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(49, -18)
-initialCombatantLv = 1
 role = 1
-leftSide = false
-spriteFacesRight = false
 battlePosition = "Center"
 battleController = NodePath("..")
 
@@ -418,19 +407,13 @@ position = Vector2(-16, 0)
 
 [node name="Enemy2CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(56, -66)
-initialCombatantLv = 1
 role = 1
-leftSide = false
-spriteFacesRight = false
 battlePosition = "Top"
 battleController = NodePath("..")
 
 [node name="Enemy3CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
 position = Vector2(59, 25)
-initialCombatantLv = 1
 role = 1
-leftSide = false
-spriteFacesRight = false
 battlePosition = "Bottom"
 battleController = NodePath("..")
 

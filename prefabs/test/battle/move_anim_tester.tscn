@@ -14,8 +14,6 @@ moveAnimation = ExtResource("2_kgtvt")
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-72, 0)
 combatant = ExtResource("6_px5i6")
-initialCombatantLv = 1
-role = 0
 leftSide = true
 spriteFacesRight = true
 battlePosition = "Player"
@@ -29,10 +27,7 @@ position = Vector2(16, 0)
 [node name="TargetNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(59, 22)
 combatant = ExtResource("7_5ibcc")
-initialCombatantLv = 1
 role = 1
-leftSide = false
-spriteFacesRight = false
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../UserTeamMarker")
