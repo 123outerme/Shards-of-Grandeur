@@ -1,0 +1,121 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://b2rhsj1klgelg"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_6emnc"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_h0ce0"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_u3wjm"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="2_0jyyw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="2_e2bha"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_jatg4"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_32wch"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_58b0w"]
+
+[sub_resource type="Resource" id="Resource_s48dm"]
+script = ExtResource("2_e2bha")
+actorTreePath = "TileMap/Soldier10"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_gli0j"]
+script = ExtResource("2_0jyyw")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TileMap/Soldier10"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_xihnd"]
+script = ExtResource("2_jatg4")
+speaker = "Soldier"
+texts = Array[String](["This way is the road to Steelspire, adventurer. Turn around now, or your journey will end in our prison!"])
+
+[sub_resource type="Resource" id="Resource_gbus2"]
+script = ExtResource("1_h0ce0")
+frameLength = 0.1
+annotation = "stop the player, have the guard shout"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("2_e2bha")]([ExtResource("1_u3wjm"), SubResource("Resource_s48dm")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_0jyyw")]([SubResource("Resource_gli0j")])
+dialogues = Array[ExtResource("2_jatg4")]([SubResource("Resource_xihnd")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wat33"]
+script = ExtResource("1_h0ce0")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("2_e2bha")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_0jyyw")]([])
+dialogues = Array[ExtResource("2_jatg4")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6hte7"]
+script = ExtResource("2_e2bha")
+actorTreePath = "TileMap/Soldier10"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_idv5k"]
+script = ExtResource("4_32wch")
+value = Vector2(524, -40)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_gdvbe"]
+script = ExtResource("1_h0ce0")
+frameLength = 1.25
+annotation = "have the player walk away from the soldier"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_idv5k")])
+actorAnims = Array[ExtResource("2_e2bha")]([ExtResource("4_58b0w"), SubResource("Resource_6hte7")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_0jyyw")]([])
+dialogues = Array[ExtResource("2_jatg4")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1o50o"]
+script = ExtResource("1_h0ce0")
+frameLength = 0.1
+annotation = "have the player stand again"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("2_e2bha")]([ExtResource("1_u3wjm")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_0jyyw")]([])
+dialogues = Array[ExtResource("2_jatg4")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("1_6emnc")
+cutsceneFrames = Array[ExtResource("1_h0ce0")]([SubResource("Resource_gbus2"), SubResource("Resource_wat33"), SubResource("Resource_gdvbe"), SubResource("Resource_1o50o")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

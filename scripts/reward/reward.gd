@@ -22,7 +22,9 @@ func copy() -> Reward:
 
 func scale_reward_by_level(initialLv: int, currentLv: int) -> Reward:
 	var scaledReward: Reward = copy()
-	var scaleFactor: float = 1.0 + ((currentLv - initialLv) * 0.05) # +5% more gains per level
+	# c = current, i = initial
+	# scale factor = 1 + (0.007 * (c-i)^2) + (0.1 * (c-i))
+	var scaleFactor: float = 1.0 + (0.007 * pow(currentLv - initialLv, 2)) + (0.1 * currentLv - initialLv)
 	scaledReward.experience = roundi(scaledReward.experience * scaleFactor)
 	scaledReward.gold = roundi(scaledReward.gold * scaleFactor)
 	# can't really scale the item reward!! or the full attunement!
