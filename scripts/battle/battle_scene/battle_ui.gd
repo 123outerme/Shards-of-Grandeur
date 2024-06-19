@@ -19,6 +19,7 @@ var previousFocus: Control = null
 @onready var surge: SurgeMenu = get_node_or_null('BattleTextBox/TextContainer/MarginContainer/Surge')
 @onready var results: Results = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/Results")
 @onready var battleComplete: BattleCompleteMenu = get_node_or_null("BattleTextBox/TextContainer/MarginContainer/BattleComplete")
+@onready var customWinText: CustomWinTextPanel = get_node("UIPanels/CustomWinTextPanel")
 
 @onready var battlePanels: BattlePanels = get_node_or_null("UIPanels")
 @onready var summonMinionPanel: SummonMinionPanel = get_node_or_null("UIPanels/SummonMinionPanel")

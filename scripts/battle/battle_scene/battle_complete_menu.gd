@@ -29,9 +29,8 @@ func load_battle_over_menu():
 	battleUI.update_hp_tags()
 	rewardsVBox.visible = playerWins
 	if PlayerResources.playerInfo.encounter.customWinText != '':
-		battleWinLabel.text = PlayerResources.playerInfo.encounter.customWinText
-	else:
-		battleWinLabel.text = 'You won the battle!'
+		battleUI.customWinText.customText = PlayerResources.playerInfo.encounter.customWinText
+		battleUI.customWinText.load_custom_win_text_panel()
 	battleWinLabel.visible = playerWins
 	battleRewardsLabel.visible = playerWins
 	battleLoseLabel.visible = not playerWins and not playerEscapes
