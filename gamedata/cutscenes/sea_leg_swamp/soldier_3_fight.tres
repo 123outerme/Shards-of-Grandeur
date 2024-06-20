@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=26 format=3 uid="uid://boesh5625cx8x"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://ctdtex5qa4alr"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_dswjn"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_gwqn3"]
@@ -11,42 +11,42 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="3_iti0f"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_qnevf"]
 
-[sub_resource type="Resource" id="Resource_8hm4h"]
+[sub_resource type="Resource" id="Resource_2h8lh"]
 script = ExtResource("2_3m4dt")
-actorTreePath = "TileMap/Soldier3"
+actorTreePath = "TileMap/Soldier4"
 isPlayer = false
 animation = "talk"
 
-[sub_resource type="Resource" id="Resource_oip8k"]
+[sub_resource type="Resource" id="Resource_x8r13"]
 script = ExtResource("3_iti0f")
-actorTreePath = "TileMap/Soldier3"
+actorTreePath = "TileMap/Soldier4"
 isPlayer = false
 targetTreePath = ""
 targetPosition = Vector2(0, 0)
 targetIsPlayer = true
 
-[sub_resource type="Resource" id="Resource_douo0"]
+[sub_resource type="Resource" id="Resource_76boh"]
 script = ExtResource("3_iti0f")
 actorTreePath = ""
 isPlayer = true
-targetTreePath = "TileMap/Soldier3"
+targetTreePath = "TileMap/Soldier4"
 targetPosition = Vector2(0, 0)
 targetIsPlayer = false
 
-[sub_resource type="Resource" id="Resource_br04v"]
+[sub_resource type="Resource" id="Resource_cs0yo"]
 script = ExtResource("3_ffh1d")
 speaker = "Soldier"
-texts = Array[String](["That's far enough, pal!"])
+texts = Array[String](["You'll go no further!"])
 
-[sub_resource type="Resource" id="Resource_oshdy"]
+[sub_resource type="Resource" id="Resource_a0bfm"]
 script = ExtResource("2_yex7x")
 frameLength = 0.1
-annotation = "Stop the player, have the soldier talk"
+annotation = "Stop the player and have the soldier call out"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("2_3m4dt")]([ExtResource("1_gwqn3"), SubResource("Resource_8hm4h")])
+actorAnims = Array[ExtResource("2_3m4dt")]([ExtResource("1_gwqn3"), SubResource("Resource_2h8lh")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[ExtResource("3_iti0f")]([SubResource("Resource_oip8k"), SubResource("Resource_douo0")])
-dialogues = Array[ExtResource("3_ffh1d")]([SubResource("Resource_br04v")])
+actorFaceTargets = Array[ExtResource("3_iti0f")]([SubResource("Resource_x8r13"), SubResource("Resource_76boh")])
+dialogues = Array[ExtResource("3_ffh1d")]([SubResource("Resource_cs0yo")])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -55,7 +55,7 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_ni08a"]
+[sub_resource type="Resource" id="Resource_73qlx"]
 script = ExtResource("2_yex7x")
 frameLength = 0.1
 annotation = "wait for the textbox to be closed"
@@ -72,27 +72,21 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_g5adk"]
-script = ExtResource("2_3m4dt")
-actorTreePath = "TileMap/Soldier3"
-isPlayer = false
-animation = "stand"
-
-[sub_resource type="Resource" id="Resource_j8p1d"]
+[sub_resource type="Resource" id="Resource_ucvcd"]
 script = ExtResource("1_hxr8m")
-value = Vector2(277, -36)
+value = Vector2(511, -130)
 actorTreePath = ""
 isPlayer = true
 propertyName = "position"
 easeType = 2
 transitionType = 0
 
-[sub_resource type="Resource" id="Resource_d1x83"]
+[sub_resource type="Resource" id="Resource_q6gv2"]
 script = ExtResource("2_yex7x")
-frameLength = 1.5
-annotation = "move the player to the soldier"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_j8p1d")])
-actorAnims = Array[ExtResource("2_3m4dt")]([ExtResource("4_qnevf"), SubResource("Resource_g5adk")])
+frameLength = 1.0
+annotation = "walk the player over to the soldier"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ucvcd")])
+actorAnims = Array[ExtResource("2_3m4dt")]([ExtResource("4_qnevf")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 actorFaceTargets = Array[ExtResource("3_iti0f")]([])
 dialogues = Array[ExtResource("3_ffh1d")]([])
@@ -104,26 +98,26 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_2otcy"]
+[sub_resource type="Resource" id="Resource_5pvhi"]
 script = ExtResource("2_3m4dt")
-actorTreePath = "TileMap/Soldier3"
+actorTreePath = "TileMap/Soldier4"
 isPlayer = false
 animation = "talk"
 
-[sub_resource type="Resource" id="Resource_86mus"]
+[sub_resource type="Resource" id="Resource_jymts"]
 script = ExtResource("3_ffh1d")
 speaker = "Soldier"
-texts = Array[String](["You're getting too close to our operation. I'll be taking you out of here.", "Oh, sorry, I meant it this way: I'm taking you out!"])
+texts = Array[String](["If you think we're letting you through to the Cave, then you're dumb as the rocks they built Grandstone from!"])
 
-[sub_resource type="Resource" id="Resource_4ohv2"]
+[sub_resource type="Resource" id="Resource_88x8e"]
 script = ExtResource("2_yex7x")
 frameLength = 0.1
-annotation = "have the soldier challenge the player"
+annotation = "Have the soldier taunt the player"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("2_3m4dt")]([SubResource("Resource_2otcy")])
+actorAnims = Array[ExtResource("2_3m4dt")]([ExtResource("1_gwqn3"), SubResource("Resource_5pvhi")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 actorFaceTargets = Array[ExtResource("3_iti0f")]([])
-dialogues = Array[ExtResource("3_ffh1d")]([SubResource("Resource_86mus")])
+dialogues = Array[ExtResource("3_ffh1d")]([SubResource("Resource_jymts")])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -132,10 +126,10 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_ios87"]
+[sub_resource type="Resource" id="Resource_ergu3"]
 script = ExtResource("2_yex7x")
 frameLength = 0.1
-annotation = "wait for the textbox to be closed"
+annotation = "Wait for the textbox to be closed"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("2_3m4dt")]([])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
@@ -149,18 +143,18 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_i42gb"]
+[sub_resource type="Resource" id="Resource_2016u"]
 script = ExtResource("2_3m4dt")
-actorTreePath = "TileMap/Soldier3"
+actorTreePath = "TileMap/Soldier4"
 isPlayer = false
 animation = "stand"
 
-[sub_resource type="Resource" id="Resource_7pxub"]
+[sub_resource type="Resource" id="Resource_ej1g7"]
 script = ExtResource("2_yex7x")
 frameLength = 0.1
-annotation = "make the soldier stop talking animation"
+annotation = "stop the soldier talking"
 actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[ExtResource("2_3m4dt")]([SubResource("Resource_i42gb")])
+actorAnims = Array[ExtResource("2_3m4dt")]([SubResource("Resource_2016u")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 actorFaceTargets = Array[ExtResource("3_iti0f")]([])
 dialogues = Array[ExtResource("3_ffh1d")]([])
@@ -174,7 +168,7 @@ endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("1_dswjn")
-cutsceneFrames = Array[ExtResource("2_yex7x")]([SubResource("Resource_oshdy"), SubResource("Resource_ni08a"), SubResource("Resource_d1x83"), SubResource("Resource_4ohv2"), SubResource("Resource_ios87"), SubResource("Resource_7pxub")])
+cutsceneFrames = Array[ExtResource("2_yex7x")]([SubResource("Resource_a0bfm"), SubResource("Resource_73qlx"), SubResource("Resource_q6gv2"), SubResource("Resource_88x8e"), SubResource("Resource_ergu3"), SubResource("Resource_ej1g7")])
 saveName = ""
 storyRequirements = ExtResource("2_vs8pc")
 unlockCameraHoldAfter = true
