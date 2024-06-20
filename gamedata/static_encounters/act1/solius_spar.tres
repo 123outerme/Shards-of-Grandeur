@@ -1,29 +1,29 @@
 [gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://dqy41ewbyu3fe"]
 
-[ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_do7y8"]
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_f2qy1"]
-[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="1_y7spk"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_o2y8n"]
-[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_cuav0"]
-[ext_resource type="Script" path="res://scripts/battle/win_conditions/weaken_enemy_win_con.gd" id="3_fs6nd"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="4_4q7k2"]
+[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="1_4o4lf"]
+[ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="2_kjvce"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_pulid"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="4_wfia4"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="5_mx2yn"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="6_jc4wi"]
+[ext_resource type="Script" path="res://scripts/battle/win_conditions/weaken_enemy_win_con.gd" id="7_ptg40"]
 
 [sub_resource type="Resource" id="Resource_yihxc"]
-script = ExtResource("2_o2y8n")
+script = ExtResource("5_mx2yn")
 experience = 65
 gold = 12
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_4qwca"]
-script = ExtResource("3_fs6nd")
+script = ExtResource("7_ptg40")
 enemyPosition = "Center"
 targetPercentHp = 0.25
 
 [resource]
-script = ExtResource("1_f2qy1")
+script = ExtResource("6_jc4wi")
 combatant1Level = 8
-combatant1Armor = ExtResource("3_cuav0")
-combatant1Weapon = ExtResource("4_4q7k2")
+combatant1Armor = ExtResource("3_pulid")
+combatant1Weapon = ExtResource("4_wfia4")
 combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 combatant2Level = 1
 combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
@@ -34,10 +34,10 @@ autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 specialBattleId = "solius_spar"
 bossBattle = false
 canEscape = false
-rewards = Array[ExtResource("2_o2y8n")]([SubResource("Resource_yihxc")])
+rewards = Array[ExtResource("5_mx2yn")]([SubResource("Resource_yihxc")])
 useStaticRewards = true
-battleMusic = ExtResource("1_y7spk")
-combatant1 = ExtResource("1_do7y8")
+battleMusic = ExtResource("1_4o4lf")
+combatant1 = ExtResource("2_kjvce")
 specialRules = 7
 winCon = SubResource("Resource_4qwca")
-customWinText = "\"Ok, I give up!\""
+customWinText = "\"Ok, I give up! You fight pretty well.\""

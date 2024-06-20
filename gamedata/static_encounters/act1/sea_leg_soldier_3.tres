@@ -1,33 +1,33 @@
 [gd_resource type="Resource" script_class="StaticEncounter" load_steps=8 format=3 uid="uid://jf8rgyteryhw"]
 
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_55q4i"]
-[ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_jhdqu"]
-[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_rxgsf"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_ggop5"]
-[ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="3_nydau"]
-[ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="4_8ydgj"]
-[ext_resource type="Resource" uid="uid://o1mgegqnrwga" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/2/chain_legion_soldier_3.tres" id="4_nkxgn"]
+[ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_a7b2x"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_0n3ht"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_5dgnb"]
+[ext_resource type="Resource" uid="uid://o1mgegqnrwga" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/2/chain_legion_soldier_3.tres" id="4_ar76s"]
+[ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="5_ku4bb"]
+[ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="6_5w176"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="7_fxlki"]
 
 [resource]
-script = ExtResource("1_55q4i")
+script = ExtResource("7_fxlki")
 combatant1Level = 10
 combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
-combatant2 = ExtResource("3_nydau")
+combatant2 = ExtResource("5_ku4bb")
 combatant2Level = 9
 combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
-combatant3 = ExtResource("4_8ydgj")
+combatant3 = ExtResource("6_5w176")
 combatant3Level = 9
 combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
-autoAlly = ExtResource("1_jhdqu")
+autoAlly = ExtResource("1_a7b2x")
 autoAllyLevel = 9
-autoAllyArmor = ExtResource("2_rxgsf")
-autoAllyWeapon = ExtResource("3_ggop5")
+autoAllyArmor = ExtResource("2_0n3ht")
+autoAllyWeapon = ExtResource("3_5dgnb")
 autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 specialBattleId = "sea_leg_soldier_3"
 bossBattle = false
 canEscape = false
 rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
 useStaticRewards = false
-combatant1 = ExtResource("4_nkxgn")
+combatant1 = ExtResource("4_ar76s")
 specialRules = 0
-customWinText = ""
+customWinText = "\"I was the last line of defense until the Cave... I'm sorry, Commander!\""

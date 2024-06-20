@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="StaticEncounter" load_steps=5 format=3 uid="uid://bhp3rl4iwmmyc"]
 
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_2uwkn"]
-[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="1_kyu54"]
-[ext_resource type="Resource" uid="uid://dw87ml8gkhk0w" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/ambusher/ambusher.tres" id="1_s0430"]
-[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="2_wkqcw"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="1_ljrp0"]
+[ext_resource type="Resource" uid="uid://dw87ml8gkhk0w" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/ambusher/ambusher.tres" id="2_gxkqb"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_se5ds"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="4_ycn2p"]
 
 [resource]
-script = ExtResource("1_2uwkn")
-combatant1 = ExtResource("1_s0430")
+script = ExtResource("4_ycn2p")
 combatant1Level = 3
 combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
-combatant2 = ExtResource("2_wkqcw")
+combatant2 = ExtResource("3_se5ds")
 combatant2Level = 2
 combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 combatant3Level = 1
@@ -22,4 +21,7 @@ bossBattle = true
 canEscape = false
 rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
 useStaticRewards = false
-battleMusic = ExtResource("1_kyu54")
+battleMusic = ExtResource("1_ljrp0")
+combatant1 = ExtResource("2_gxkqb")
+specialRules = 0
+customWinText = "\"Gahh! That smarts... I can't fight anymore...\""
