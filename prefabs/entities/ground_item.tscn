@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdnsjlf3gwbkf"]
 
-[ext_resource type="Script" path="res://prefabs/overworld/ground_item.gd" id="1_st01v"]
+[ext_resource type="Script" path="res://scripts/overworld/ground_item.gd" id="1_st01v"]
 [ext_resource type="Texture2D" uid="uid://r1lpcu518qt8" path="res://graphics/furniture/chest.png" id="2_68o7i"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="3_7ropx"]
 [ext_resource type="Resource" uid="uid://c0h5clacsbune" path="res://gamedata/items/ground_item_sparkle_particles.tres" id="4_bskfn"]
@@ -12,7 +12,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhvu1"]
 size = Vector2(17, 17)
 
-[node name="GroundItem" type="Area2D"]
+[node name="GroundItem" type="Area2D" groups=["Interactable"]]
 z_index = -12
 collision_layer = 2
 collision_mask = 2

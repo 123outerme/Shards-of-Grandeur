@@ -13,7 +13,8 @@ const RUN_STEP_SFX_COOLDOWN: float = 0.3636
 @export var stepSfx: Array[AudioStream] = []
 
 var speed = BASE_SPEED
-var pickedUpItem: PickedUpItem = null
+var interactableDialogues: Array[InteractableDialogue] = []
+var interactableDialogueIndex: int = 0
 var inCutscene: bool = false
 var cutsceneTexts: Array[CutsceneDialogue] = []
 var cutsceneTextIndex: int = 0
@@ -40,8 +41,9 @@ var startingBattle: bool = false
 
 var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
-var groundItems: Array[GroundItem] = []
+var interactables: Array[Interactable] = []
 var running: bool = false
+var interactable: Interactable = null
 var useTeleportStone: TeleportStone = null
 # play a step immediately when moving the next time
 var stepSfxTimer: float = BASE_STEP_SFX_COOLDOWN
@@ -49,7 +51,7 @@ var lastStepIdx: int = -1
 
 func _unhandled_input(event):
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
-			and not ((len(talkNPCcandidates) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0)) \
+			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice and not cutscenePaused and not inCutscene \
 			and SceneLoader.curMapEntry.isRecoverLocation and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
@@ -82,20 +84,22 @@ func _unhandled_input(event):
 		
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline") \
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
-			and (len(talkNPCcandidates) > 0 or len(groundItems) > 0 or pickedUpItem != null or len(cutsceneTexts) > 0) \
+			and (len(interactables) > 0 or len(talkNPCcandidates) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not makingChoice and not cutscenePaused and \
 			not startingBattle and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
-		if len(groundItems) > 0 and event.is_action_pressed("game_interact"):
-			var closestGroundItem: GroundItem = null
-			# find the closest ground item (using squared distance bc faster; the distance only matters relative to other ground items)
-			groundItems = groundItems.filter(_filter_out_null)
-			for groundItem: GroundItem in groundItems:
-				if (closestGroundItem == null or \
-						(groundItem.global_position - global_position).length_squared() < (closestGroundItem.global_position - global_position).length_squared()):
-					closestGroundItem = groundItem
-			if closestGroundItem != null:
-				pick_up(closestGroundItem)
+		if len(interactables) > 0 and not textBox.visible and event.is_action_pressed("game_interact"):
+			# if the text box isn't open and there's at least one nearby interactable:
+			# find the closest interactable (using squared distance bc faster; the distance only matters relative to other interactables)
+			var closestInteractable: Interactable = null
+			interactables = interactables.filter(_filter_out_null)
+			interactables.sort_custom(_sort_interactables)
+			for interactable: Interactable in interactables:
+				if (closestInteractable == null or \
+						(interactable.global_position - global_position).length_squared() < (closestInteractable.global_position - global_position).length_squared()):
+					closestInteractable = interactable
+			if closestInteractable != null:
+				closestInteractable.interact()
 		elif textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		elif textBox.visible:
@@ -277,9 +281,8 @@ func advance_dialogue(canStart: bool = true):
 		else:
 			textBox.hide_textbox() # is this necessary??
 			set_talk_npc(null, true) # is this necessary??
-	elif pickedUpItem != null: # picked up dialogue
-		pickedUpItem.savedTextIdx += 1
-		put_pick_up_text()
+	elif len(interactableDialogues) > 0: # interactable dialogue
+		put_interactable_text(true)
 	if len(cutsceneTexts) > 0: # cutscene dialogue
 		cutsceneLineIndex += 1
 		if cutsceneLineIndex >= len(cutsceneTexts[cutsceneTextIndex].texts): # if this dialogue item is done, move to the next
@@ -299,16 +302,26 @@ func advance_dialogue(canStart: bool = true):
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 
 func select_choice(choice: DialogueChoice):
-	if choice.opensShop:
-		pickedChoice = choice
-		_on_shop_button_pressed()
+	makingChoice = false
+	if interactable != null:
+		interactable.select_choice(choice)
 		return
+	
+	if choice is NPCDialogueChoice:
+		var npcChoice: NPCDialogueChoice = choice as NPCDialogueChoice
+		if npcChoice.opensShop:
+			makingChoice = true # leave choice buttons up for now
+			pickedChoice = choice
+			_on_shop_button_pressed()
+			return
+	
 	if choice.turnsInQuest:
+		makingChoice = true # leave choice buttons up for now
 		pickedChoice = choice
 		_on_turn_in_button_pressed()
 		return
+		
 	if choice.repeatsItem:
-		makingChoice = false
 		talkNPC.repeat_dialogue_item()
 		var dialogueText = talkNPC.get_cur_dialogue_item()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
@@ -365,12 +378,26 @@ func show_all_talk_alert_sprites():
 	for candidate in talkNPCcandidates:
 		candidate.talkAlertSprite.visible = true
 
-func restore_picked_up_item_text(groundItem: PickedUpItem):
-	pickedUpItem = groundItem
-	if pickedUpItem != null:
-		SceneLoader.pause_autonomous_movers()
-		put_pick_up_text()
-		textBox.show_text_instant()
+func restore_interactable_dialogue(dialogues: Array[InteractableDialogue]):
+	await get_tree().process_frame # wait for nearby interactables to register with the player
+	await get_tree().process_frame # wait for nearby interactables to register with the player
+	interactableDialogues.append_array(dialogues)
+	if len(interactableDialogues) > 0:
+		interactable = null
+		for inter: Interactable in interactables:
+			if inter.saveName == PlayerResources.playerInfo.interactableName:
+				interactable = inter
+				break
+		
+		if interactable != null:
+			face_horiz(interactable.global_position.x - global_position.x)
+			SceneLoader.pause_autonomous_movers()
+			put_interactable_text()
+			textBox.show_text_instant()
+		else:
+			printerr('Restore Interactable Dialogue error: could not find interactable to restore for')
+			interactableDialogues = []
+			interactableDialogueIndex = 0
 
 func pause_movement():
 	disableMovement = true
@@ -400,45 +427,105 @@ func snap_camera_back_to_player(duration: float = 0.5):
 		uiRoot.position = Vector2(0, 0)
 
 func pick_up(groundItem: GroundItem):
-	var idx: int = groundItems.find(groundItem)
-	if idx != -1:
-		groundItems.remove_at(idx)
-	
 	groundItem.show_pick_up_sprite(false)
 	
-	if PlayerResources.playerInfo.has_picked_up(groundItem.pickedUpItem.uniqueId):
+	if PlayerResources.playerInfo.has_picked_up(groundItem.saveName):
 		return
 	
-	pickedUpItem = groundItem.pickedUpItem
-	pickedUpItem.wasPickedUp = PlayerResources.inventory.add_item(pickedUpItem.item)
-	if pickedUpItem.wasPickedUp:
-		PlayerResources.playerInfo.pickedUpItems.append(pickedUpItem.uniqueId)
-		groundItem.queue_free()
+	interactableDialogues.append(groundItem.pickedUpItem)
+	groundItem.pickedUpItem.wasPickedUp = PlayerResources.inventory.add_item(groundItem.pickedUpItem.item)
+	if groundItem.pickedUpItem.wasPickedUp:
+		#PlayerResources.playerInfo.pickedUpItems.append(groundItem.saveName)
+		groundItem.visible = false
 		if PlayerResources.questInventory.can_start_quest(groundItem.startsQuest):
 			PlayerResources.questInventory.accept_quest(groundItem.startsQuest)
 			cam.show_alert('Started Quest:\n' + groundItem.startsQuest.questName)
 	
-	pickedUpItem.savedTextIdx = 0
+	groundItem.pickedUpItem.savedTextIdx = 0
 	play_animation('stand')
-	put_pick_up_text()
+	interactable = groundItem
+	put_interactable_text()
 
-func put_pick_up_text():
+func interact_interactable(inter: Interactable):
+	if inter.dialogue != null:
+		interactable = inter
+		interactableDialogues.append(interactable.dialogue)
+		put_interactable_text()
+
+func put_interactable_text(advance: bool = false):
 	var hasNextDialogue: bool = true
-	if not pickedUpItem.wasPickedUp:
-		if pickedUpItem.savedTextIdx > 0:
-			hasNextDialogue = false
-		else:
-			textBox.set_textbox_text('Your inventory is too full for this ' + pickedUpItem.item.itemName + '!', 'Inventory Full')
+	
+	var interactableDialogue: InteractableDialogue = null
+	if interactableDialogueIndex < len(interactableDialogues):
+		interactableDialogue = interactableDialogues[interactableDialogueIndex]
+	
+	if advance:
+		interactableDialogue.savedTextIdx += 1
+		# if this current DialogueItem is done: advance the item
+		if interactableDialogue.savedTextIdx >= len(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines):
+			interactableDialogue.savedTextIdx = 0
+			interactableDialogue.savedItemIdx += 1
+			# if this current DialogueEntry is done: first process the entry options, then advance the entry
+			if interactableDialogue.savedItemIdx >= len(interactableDialogue.dialogueEntry.items):
+				if interactable.saveName != '' and interactableDialogue.dialogueEntry.entryId != '':
+					PlayerResources.playerInfo.set_dialogue_seen(interactable.saveName, interactableDialogue.dialogueEntry.entryId)
+				var startingCutscene: bool = false
+				if interactableDialogue.dialogueEntry.startsCutscene != null:
+					SceneLoader.cutscenePlayer.start_cutscene(interactableDialogue.dialogueEntry.startsCutscene)
+					startingCutscene = true
+				if interactableDialogue.dialogueEntry.closesDialogue or startingCutscene:
+					interactableDialogueIndex = len(interactableDialogues) # set to the last entry
+				if interactableDialogue.dialogueEntry.entryId != '' and interactable.saveName != '':
+					# attempt to progress Talk quest(s) that require this NPC and dialogue item
+					PlayerResources.questInventory.progress_quest(interactable.saveName + '#' + interactableDialogue.dialogueEntry.entryId, QuestStep.Type.TALK)
+				if interactableDialogue.dialogueEntry.givesItem:
+					PlayerResources.inventory.add_item(interactableDialogue.dialogueEntry.givesItem)
+					cam.show_alert('Got Item:\n' + interactableDialogue.dialogueEntry.givesItem.itemName)
+				if interactableDialogue.dialogueEntry.fullHealsPlayer:
+					PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
+					cam.show_alert('Fully Healed!')
+				if interactableDialogue.dialogueEntry.startsStaticEncounter != null: # if it starts a static encounter (auto-closes dialogue)
+					PlayerResources.playerInfo.encounter = interactableDialogue.dialogueEntry.startsStaticEncounter
+					interactableDialogueIndex = len(interactableDialogues) # set to the last entry
+				
+				interactableDialogueIndex += 1
+				while interactableDialogueIndex < len(interactableDialogues) and not interactableDialogues[interactableDialogueIndex].can_use_dialogue():
+					interactableDialogueIndex += 1 # skip dialogues that cannot be used
+				# update what the interactable dialogue is pointing to
+				if interactableDialogueIndex >= len(interactableDialogues):
+					hasNextDialogue = false
+					interactableDialogue = null
+				else:
+					interactableDialogue = interactableDialogues[interactableDialogueIndex]
+	# if not null, check and then show the dialogue
+	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
+		var speaker: String = interactableDialogue.speaker
+		if interactableDialogue is PickedUpItem:
+			var pickedUpItem: PickedUpItem = interactableDialogue as PickedUpItem
+			speaker = 'Picked Up ' + pickedUpItem.item.itemName
+			if not pickedUpItem.wasPickedUp:
+				# if the dialogue was advanced at all, the "too full" message was closed
+				if pickedUpItem.savedTextIdx > 0:
+					hasNextDialogue = false
+				else:
+					textBox.dialogueItem = null
+					textBox.set_textbox_text('Your inventory is too full for this ' + pickedUpItem.item.itemName + '!', 'Inventory Full')
+				return
+
+		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]
+		textBox.set_textbox_text(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines[interactableDialogue.savedTextIdx], speaker, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(textBox.dialogueItem.lines) - 1)
 	else:
-		if pickedUpItem.savedTextIdx >= len(pickedUpItem.pickUpTexts):
-			hasNextDialogue = false
-		else:
-			textBox.set_textbox_text(pickedUpItem.pickUpTexts[pickedUpItem.savedTextIdx], 'Picked Up ' + pickedUpItem.item.itemName, pickedUpItem.savedTextIdx == len(pickedUpItem.pickUpTexts) - 1)
+		hasNextDialogue = false
 	
 	if not hasNextDialogue:
 		textBox.hide_textbox()
 		SceneLoader.unpause_autonomous_movers()
-		pickedUpItem = null
+		if interactable != null:
+			interactable.finished_dialogue()
+		interactableDialogue = null
+		interactableDialogues = []
+		interactableDialogueIndex = 0
+		interactable = null
 	else:
 		SceneLoader.pause_autonomous_movers()
 
@@ -489,7 +576,15 @@ func _on_shop_button_pressed():
 	inventoryPanel.toggle()
 
 func _on_turn_in_button_pressed():
-	questsPanel.turnInTargetName = talkNPC.saveName
+	var turnInTarget: String = ''
+	
+	if talkNPC != null:
+		turnInTarget = talkNPC.saveName
+	
+	if interactable != null:
+		turnInTarget = interactable.saveName
+	
+	questsPanel.turnInTargetName = turnInTarget
 	get_viewport().gui_release_focus()
 	questsPanel.toggle()
 	disableMovement = true
@@ -595,3 +690,13 @@ func _on_pause_menu_resume_game():
 
 func _filter_out_null(value):
 	return value != null
+
+func _sort_interactables(a: Interactable, b: Interactable):
+	if a.interactPriority > b.interactPriority:
+		return true
+	elif a.interactPriority < b.interactPriority:
+		return false
+	
+	if (a.global_position - global_position).length_squared() <= (b.global_position - global_position).length_squared():
+		return true
+	return false

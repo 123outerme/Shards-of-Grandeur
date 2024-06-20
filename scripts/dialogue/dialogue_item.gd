@@ -2,6 +2,7 @@ extends Resource
 class_name DialogueItem
 
 @export_multiline var lines: Array[String]
+## for NPCs using this dialogue item, the NPC will play this animation until all this item's text is advanced.
 @export var animation: String = ''
 @export var choices: Array[DialogueChoice] = []
 

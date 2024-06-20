@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://r3b3pmjv5kfp"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_e3ell"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_hbgqe"]
+
+[sub_resource type="Resource" id="Resource_248el"]
+script = ExtResource("1_e3ell")
+lines = Array[String](["This looks like a pretty sturdy stick. I might want to lean on this, and it'll make me look pretty wise too!"])
+animation = ""
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("2_hbgqe")
+entryId = ""
+items = Array[ExtResource("1_e3ell")]([SubResource("Resource_248el")])
+closesDialogue = false
+fullHealsPlayer = false

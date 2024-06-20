@@ -75,7 +75,8 @@ func load_data(save_path):
 		if playerInfo.combatant.get_sprite_frames() != null:
 			player.set_sprite_frames(playerInfo.combatant.get_sprite_frames())
 		player.facingLeft = playerInfo.flipH
-		player.restore_picked_up_item_text(playerInfo.pickedUpItem)
+		player.interactableDialogueIndex = playerInfo.interactableDialogueIdx
+		player.restore_interactable_dialogue.call_deferred(playerInfo.interactableDialogues)
 		player.running = playerInfo.running
 	inventory = Inventory.new(true)
 	var newInv = inventory.load_data(save_path)
@@ -100,7 +101,12 @@ func save_data(save_path) -> int:
 		if player != null:
 			playerInfo.position = player.position
 			playerInfo.flipH = player.sprite.flip_h
-			playerInfo.pickedUpItem = player.pickedUpItem
+			playerInfo.interactableDialogues = player.interactableDialogues
+			playerInfo.interactableDialogueIdx = player.interactableDialogueIndex
+			if player.interactable:
+				playerInfo.interactableName = player.interactable.saveName
+			else:
+				playerInfo.interactableName = ''
 			playerInfo.running = player.running
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy()
 		playerInfo.combatant.version = GameSettings.get_game_version()

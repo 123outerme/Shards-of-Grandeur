@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://dmt1f8243dw6g"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_sp8e4"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_1rmv4"]
+
+[sub_resource type="Resource" id="Resource_bi47m"]
+script = ExtResource("2_1rmv4")
+name = "Bag of Shrooms"
+description = ""
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Place the Bag!"
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_8dmek"]
+script = ExtResource("2_1rmv4")
+name = "Retrieve the Bag"
+description = ""
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_yyc8x"]
+script = ExtResource("2_1rmv4")
+name = ""
+description = ""
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[resource]
+script = ExtResource("1_sp8e4")
+questName = "Shroom Zone"
+description = "A mysterious mushroom-y grove... what could it all be?"
+steps = Array[ExtResource("2_1rmv4")]([SubResource("Resource_bi47m"), SubResource("Resource_8dmek"), SubResource("Resource_yyc8x")])
+isMainQuest = false
+advanceActActerComplete = false

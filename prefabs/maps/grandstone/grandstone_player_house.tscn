@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dv3hqx6w7swgi"]
+[gd_scene load_steps=26 format=3 uid="uid://dv3hqx6w7swgi"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_cpk56"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_igmcl"]
@@ -11,11 +11,12 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="5_foeso"]
 [ext_resource type="Texture2D" uid="uid://doiqcamfkfg4w" path="res://graphics/ui/talk_indicator_think.png" id="5_rdebt"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="8_aps1l"]
+[ext_resource type="Resource" uid="uid://e8os0ml3cmli" path="res://gamedata/dialogue/interactables/ground_items/player_house_tp_stone.tres" id="9_7hc5o"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="9_c3the"]
 [ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="9_gsr1v"]
 [ext_resource type="Texture2D" uid="uid://cchci3b78fjbu" path="res://graphics/items/key_items/teleport_stone.png" id="11_6qp72"]
 
-[sub_resource type="Resource" id="Resource_4v2aq"]
+[sub_resource type="Resource" id="Resource_m3yce"]
 script = ExtResource("4_xksqv")
 saveName = "npc"
 animation = "stand"
@@ -61,11 +62,12 @@ size = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_rmc0h"]
 script = ExtResource("9_c3the")
-uniqueId = "phouse_tp_stone"
 item = ExtResource("9_gsr1v")
-pickUpTexts = Array[String](["Aha! I knew I had one of these Teleport Stones lying around somewhere. I'll want this so I can come back to Grandstone easily."])
-savedTextIdx = 0
 wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("9_7hc5o")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -111,7 +113,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="InvisibleBed" parent="TileMap" instance=ExtResource("3_u6vbk")]
 position = Vector2(72, -103)
 displayName = "@"
-data = SubResource("Resource_4v2aq")
+data = SubResource("Resource_m3yce")
 dialogueEntries = Array[ExtResource("5_5eepf")]([SubResource("Resource_d5x3t")])
 
 [node name="NPCSprite" parent="TileMap/InvisibleBed" index="0"]
@@ -134,6 +136,7 @@ visible = false
 position = Vector2(-25, -139)
 pickedUpItem = SubResource("Resource_rmc0h")
 disguiseSprite = ExtResource("11_6qp72")
+saveName = "phouse_tp_stone"
 
 [node name="Sprite2D" parent="TileMap/GroundItem" index="2"]
 scale = Vector2(0.5, 0.5)

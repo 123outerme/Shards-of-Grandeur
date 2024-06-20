@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dwc8py4u2ei65"]
+
+[ext_resource type="Texture2D" uid="uid://d1xc0q118hg8" path="res://graphics/ui/interact_icon.png" id="1_e2gvw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiqd3"]
+atlas = ExtResource("1_e2gvw")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt2qt"]
+atlas = ExtResource("1_e2gvw")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70i5v"]
+atlas = ExtResource("1_e2gvw")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvinb"]
+atlas = ExtResource("1_e2gvw")
+region = Rect2(24, 0, 8, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiqd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt2qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70i5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvinb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

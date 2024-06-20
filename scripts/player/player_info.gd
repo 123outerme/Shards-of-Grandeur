@@ -27,10 +27,13 @@ class_name PlayerInfo
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
-@export var pickedUpItem: PickedUpItem = null
+@export var interactableDialogues: Array[InteractableDialogue] = []
+@export var interactableDialogueIdx: int = 0
+@export var interactableName: String = ''
 @export var placesVisited: Array[String] = []
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
+@export var puzzlesSolved: Array[String] = []
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
 @export var running: bool = false
@@ -56,7 +59,9 @@ func _init(
 	i_completedSpecialBattles: Array[String] = [],
 	i_enemiesDefeated: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
-	i_pickedUpItem = null,
+	i_interactableDialogues: Array[InteractableDialogue] = [],
+	i_interactableDialogueIdx = 0,
+	i_interactableName = '',
 	i_placesVisited: Array[String] = [],
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
@@ -85,7 +90,9 @@ func _init(
 	completedSpecialBattles = i_completedSpecialBattles
 	enemiesDefeated = i_enemiesDefeated
 	pickedUpItems = i_pickedUpItems
-	pickedUpItem = i_pickedUpItem
+	interactableDialogues = i_interactableDialogues
+	interactableDialogueIdx = i_interactableDialogueIdx
+	interactableName = i_interactableName
 	placesVisited = i_placesVisited
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
@@ -139,6 +146,13 @@ func has_completed_special_battle(battleId: String) -> bool:
 func set_special_battle_completed(battleId: String):
 	if not has_completed_special_battle(battleId):
 		completedSpecialBattles.append(battleId)
+
+func has_solved_puzzle(puzzleId: String) -> bool:
+	return puzzleId in puzzlesSolved
+
+func set_puzzle_solved(puzzleId: String):
+	if not has_solved_puzzle(puzzleId):
+		puzzlesSolved.append(puzzleId)
 
 func has_seen_codex_entry(entryName: String) -> bool:
 	return entryName in codexEntriesSeen
