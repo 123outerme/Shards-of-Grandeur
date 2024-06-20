@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=20 format=3 uid="uid://8pf1vr5htkgf"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_k4yud"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_r1rn3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_wyupn"]
+[ext_resource type="Resource" uid="uid://bssacuu5rffpw" path="res://gamedata/dialogue/leavenport/curator/curator_nature_painting.tres" id="2_mv6al"]
+[ext_resource type="Resource" uid="uid://bnlhjwcnamv1p" path="res://gamedata/dialogue/leavenport/curator/curator_storm_painting.tres" id="3_o0kym"]
+[ext_resource type="Resource" uid="uid://bs10ug04qpsco" path="res://gamedata/dialogue/leavenport/curator/curator_moon_painting.tres" id="4_8f5qr"]
+[ext_resource type="Resource" uid="uid://cqd3dle6giuke" path="res://gamedata/dialogue/leavenport/curator/curator_food_painting.tres" id="5_h6poq"]
+[ext_resource type="Resource" uid="uid://d0np1lfjlqnta" path="res://gamedata/dialogue/leavenport/curator/curator_boat_sculpture.tres" id="6_dvj1m"]
+[ext_resource type="Resource" uid="uid://b0scnljcayc05" path="res://gamedata/dialogue/leavenport/curator/curator_pottery.tres" id="7_kr5u1"]
+[ext_resource type="Resource" uid="uid://bxxuo371yw5wg" path="res://gamedata/dialogue/leavenport/curator/curator_statue.tres" id="8_gqtk8"]
+
+[sub_resource type="Resource" id="Resource_oa55x"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Ok."
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_crbi6"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Nature Painting?"
+leadsTo = ExtResource("2_mv6al")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_1tctn"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Storm Painting?"
+leadsTo = ExtResource("3_o0kym")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_k80mn"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Moon Painting?"
+leadsTo = ExtResource("4_8f5qr")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_njjyr"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Food Painting?"
+leadsTo = ExtResource("5_h6poq")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_xif2k"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Boat Sculpture?"
+leadsTo = ExtResource("6_dvj1m")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_fcql0"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "Pottery?"
+leadsTo = ExtResource("7_kr5u1")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_xaypf"]
+script = ExtResource("1_r1rn3")
+choiceBtn = "The Statue?"
+leadsTo = ExtResource("8_gqtk8")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+opensShop = false
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_fu0ne"]
+script = ExtResource("1_k4yud")
+lines = Array[String](["This is the Leavenport Museum, a place to witness our history in this town.", "If you would like to know about any of the pieces on display, feel free to ask."])
+animation = "talk"
+choices = Array[ExtResource("1_r1rn3")]([SubResource("Resource_oa55x"), SubResource("Resource_crbi6"), SubResource("Resource_1tctn"), SubResource("Resource_k80mn"), SubResource("Resource_njjyr"), SubResource("Resource_xif2k"), SubResource("Resource_fcql0"), SubResource("Resource_xaypf")])
+
+[resource]
+script = ExtResource("1_wyupn")
+entryId = ""
+items = Array[ExtResource("1_k4yud")]([SubResource("Resource_fu0ne")])
+closesDialogue = false
+fullHealsPlayer = false

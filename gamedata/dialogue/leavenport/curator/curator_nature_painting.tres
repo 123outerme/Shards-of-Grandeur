@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://bssacuu5rffpw"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_u0uru"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_xoqt5"]
+
+[sub_resource type="Resource" id="Resource_i83v1"]
+script = ExtResource("1_xoqt5")
+lines = Array[String](["This painting depicts a calm river winding through the land, with a breeze rustling the trees.", "Leavenport aims to preserve these scenes in all ways, including through the fine arts."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_u0uru")
+entryId = ""
+items = Array[ExtResource("1_xoqt5")]([SubResource("Resource_i83v1")])
+closesDialogue = false
+fullHealsPlayer = false
