@@ -18,13 +18,13 @@
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="14_6nead"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="15_xc56y"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="18_481j8"]
-[ext_resource type="Resource" uid="uid://co8xtwrinpjke" path="res://gamedata/static_encounters/intro_encounter.tres" id="18_ld2et"]
+[ext_resource type="Resource" uid="uid://co8xtwrinpjke" path="res://gamedata/static_encounters/prologue/intro_encounter.tres" id="18_ld2et"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="22_mlmt5"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="24_mgy6p"]
 
-[sub_resource type="Resource" id="Resource_wvggi"]
+[sub_resource type="Resource" id="Resource_7dnhi"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 animation = "stand"
@@ -45,7 +45,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_26xdh"]
+[sub_resource type="Resource" id="Resource_05p3x"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 animation = "stand"
@@ -137,7 +137,7 @@ agent_radius = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
 size = Vector2(48, 59)
 
-[sub_resource type="Resource" id="Resource_bg1qg"]
+[sub_resource type="Resource" id="Resource_noa6t"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 animation = "stand"
@@ -183,7 +183,7 @@ layer_4/tile_data = PackedInt32Array(131063, 65539, 65537, 65527, 65539, 65537, 
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_wvggi")
+data = SubResource("Resource_7dnhi")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -209,7 +209,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_26xdh")
+data = SubResource("Resource_05p3x")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -301,7 +301,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1008, 8)
-data = SubResource("Resource_bg1qg")
+data = SubResource("Resource_noa6t")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

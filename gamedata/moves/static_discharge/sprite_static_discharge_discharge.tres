@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://cggy3nhj54gvv"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_w7yu3"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_x32np"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_70i1f"]
+[ext_resource type="SpriteFrames" uid="uid://dvl1uba3nteei" path="res://graphics/moves/lightning/a_lightning.tres" id="2_df03h"]
+[ext_resource type="Resource" uid="uid://biuo2voob3rwy" path="res://gamedata/moves/static_discharge/particles_static_discharge.tres" id="3_sfewv"]
+
+[sub_resource type="Resource" id="Resource_4khem"]
+script = ExtResource("1_x32np")
+annotation = "prepare position and wait for draw animation to play"
+animation = ""
+duration = 1.267
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_wptoc"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vssih"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_c07ui"]
+script = ExtResource("1_x32np")
+annotation = ""
+animation = "static_discharge_discharge"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_wptoc")
+yCurve = SubResource("Curve_vssih")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_70i1f")
+
+[sub_resource type="Resource" id="Resource_vn16b"]
+script = ExtResource("1_x32np")
+annotation = "play hit particles"
+animation = "default"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_sfewv")
+
+[resource]
+script = ExtResource("1_w7yu3")
+spriteFrames = ExtResource("2_df03h")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_x32np")]([SubResource("Resource_4khem"), SubResource("Resource_c07ui"), SubResource("Resource_vn16b")])
+delayedUntilReposition = false
+onePerTarget = true

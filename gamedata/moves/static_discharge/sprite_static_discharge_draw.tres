@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://vh5qd2gep1ff"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_a6xut"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_ujg1x"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_ajce7"]
+[ext_resource type="SpriteFrames" uid="uid://dvl1uba3nteei" path="res://graphics/moves/lightning/a_lightning.tres" id="2_u51ya"]
+
+[sub_resource type="Curve" id="Curve_8ik66"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_33r0e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ts4jl"]
+script = ExtResource("1_a6xut")
+annotation = "position sprite at user"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_8ik66")
+yCurve = SubResource("Curve_33r0e")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_qrybe"]
+script = ExtResource("1_a6xut")
+annotation = "draw electricity towards the user"
+animation = "static_discharge_draw"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_ajce7")
+
+[resource]
+script = ExtResource("1_ujg1x")
+spriteFrames = ExtResource("2_u51ya")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_a6xut")]([SubResource("Resource_ts4jl"), SubResource("Resource_qrybe")])
+delayedUntilReposition = false
+onePerTarget = true
