@@ -13,6 +13,7 @@ class_name StoryRequirements
 @export var prereqPlacesVisited: Array[String] = []
 @export var prereqSpecialBattles: Array[String] = []
 @export var prereqDefeatedEnemies: Array[String] = []
+@export var prereqPuzzles: Array[String] = []
 
 @export_category("Invalidations")
 @export var invalidAfterCompletingQuests: Array[String] = []
@@ -21,6 +22,7 @@ class_name StoryRequirements
 @export var invalidAfterDialogues: Array[String] = []
 @export var invalidAfterVistingPlaces: Array[String] = []
 @export var invalidAfterSpecialBattles: Array[String] = []
+@export var invalidAfterSolvingPuzzles: Array[String] = []
 
 func _init(
 	i_minAct = 0,
@@ -31,12 +33,14 @@ func _init(
 	i_prereqPlaces: Array[String] = [],
 	i_prereqBattles: Array[String] = [],
 	i_prereqDefeatedEnemies: Array[String] = [],
+	i_prereqPuzzles: Array[String] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
 	i_invalidDialogues: Array[String] = [],
 	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
+	i_invalidPuzzles: Array[String] = [],
 ):
 	minAct = i_minAct
 	maxAct = i_maxAct
@@ -46,12 +50,14 @@ func _init(
 	prereqPlacesVisited = i_prereqPlaces
 	prereqSpecialBattles = i_prereqBattles
 	prereqDefeatedEnemies = i_prereqDefeatedEnemies
+	prereqPuzzles = i_prereqPuzzles
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
 	invalidAfterDialogues = i_invalidDialogues
 	invalidAfterVistingPlaces = i_invalidPlacesVisited
 	invalidAfterSpecialBattles = i_invalidBattles
+	invalidAfterSolvingPuzzles = i_invalidPuzzles
 
 func is_valid() -> bool:
 	if Engine.is_editor_hint():
@@ -85,6 +91,10 @@ func is_valid() -> bool:
 		if not PlayerResources.playerInfo.has_defeated_enemy(enemy):
 			return false
 	
+	for puzzle in prereqPuzzles:
+		if not PlayerResources.playerInfo.has_solved_puzzle(puzzle):
+			return false
+	
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):
 		return false
 		
@@ -107,6 +117,10 @@ func is_valid() -> bool:
 	
 	for battle in invalidAfterSpecialBattles:
 		if PlayerResources.playerInfo.has_completed_special_battle(battle):
+			return false
+			
+	for puzzle in invalidAfterSolvingPuzzles:
+		if PlayerResources.playerInfo.has_solved_puzzle(puzzle):
 			return false
 	
 	return true

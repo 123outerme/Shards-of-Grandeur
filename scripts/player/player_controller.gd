@@ -94,10 +94,10 @@ func _unhandled_input(event):
 			var closestInteractable: Interactable = null
 			interactables = interactables.filter(_filter_out_null)
 			interactables.sort_custom(_sort_interactables)
-			for interactable: Interactable in interactables:
+			for inter: Interactable in interactables:
 				if (closestInteractable == null or \
-						(interactable.global_position - global_position).length_squared() < (closestInteractable.global_position - global_position).length_squared()):
-					closestInteractable = interactable
+						(inter.global_position - global_position).length_squared() < (closestInteractable.global_position - global_position).length_squared()):
+					closestInteractable = inter
 			if closestInteractable != null:
 				closestInteractable.interact()
 		elif textBox.is_textbox_complete():
@@ -467,6 +467,7 @@ func put_interactable_text(advance: bool = false):
 			interactableDialogue.savedItemIdx += 1
 			# if this current DialogueEntry is done: first process the entry options, then advance the entry
 			if interactableDialogue.savedItemIdx >= len(interactableDialogue.dialogueEntry.items):
+				interactableDialogue.savedItemIdx = 0
 				if interactable.saveName != '' and interactableDialogue.dialogueEntry.entryId != '':
 					PlayerResources.playerInfo.set_dialogue_seen(interactable.saveName, interactableDialogue.dialogueEntry.entryId)
 				var startingCutscene: bool = false

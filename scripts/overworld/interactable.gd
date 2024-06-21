@@ -6,7 +6,7 @@ class_name Interactable
 @export var dialogue: InteractableDialogue = null
 @export var interactSfx: AudioStream = null
 
-func interact(args: Array = []):
+func interact(_args: Array = []):
 	PlayerFinder.player.interact_interactable(self)
 	if interactSfx != null:
 		SceneLoader.audioHandler.play_sfx(interactSfx)

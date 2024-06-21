@@ -24,3 +24,4 @@ func is_solved() -> bool:
 ## executes the solution steps and sets the puzzle as solved to the player
 func solve():
 	PlayerResources.playerInfo.set_puzzle_solved(id)
+	PlayerResources.story_requirements_updated.emit()

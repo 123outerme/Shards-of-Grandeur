@@ -48,7 +48,7 @@ func show_pick_up_sprite(showSprite: bool = true):
 	else:
 		pickUpSprite.stop()
 
-func interact(args: Array = []):
+func interact(_args: Array = []):
 	if not PlayerResources.playerInfo.has_picked_up(saveName):
 		PlayerFinder.player.pick_up(self)
 
