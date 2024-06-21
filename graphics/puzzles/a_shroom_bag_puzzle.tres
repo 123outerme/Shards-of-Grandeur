@@ -1,6 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://8kkhb0pqbyxu"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://8kkhb0pqbyxu"]
 
 [ext_resource type="Texture2D" uid="uid://bur2cndim6tmj" path="res://graphics/puzzles/shroom_bag_puzzle.png" id="1_jwxn2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rwd5"]
+atlas = ExtResource("1_jwxn2")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mav53"]
 atlas = ExtResource("1_jwxn2")
@@ -28,6 +32,14 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rwd5")
+}],
+"loop": true,
+"name": &"bag_placed",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": null

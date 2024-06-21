@@ -37,7 +37,7 @@ func play_dialogue_animation(animName: String):
 
 func select_choice(choice: DialogueChoice):
 	if choice.repeatsItem:
-		PlayerFinder.player.put_interactable_text()
+		PlayerFinder.player.put_interactable_text(false, false)
 		return
 	
 	if choice.leadsTo != null:
@@ -53,7 +53,7 @@ func select_choice(choice: DialogueChoice):
 				PlayerFinder.player.interactableDialogueIdx = index
 				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].savedItemIdx = 0
 				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].savedTextIdx = 0
-				PlayerFinder.player.put_interactable_text()
+				PlayerFinder.player.put_interactable_text(false, true)
 			else:
 				index = mini(PlayerFinder.player.interactableDialogueIndex + 1, len(PlayerFinder.player.interactableDialogues))
 				var newInterDialogue: InteractableDialogue = InteractableDialogue.new()

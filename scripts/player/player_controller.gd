@@ -407,7 +407,7 @@ func restore_interactable_dialogue(dialogues: Array[InteractableDialogue]):
 		if interactable != null:
 			face_horiz(interactable.global_position.x - global_position.x)
 			SceneLoader.pause_autonomous_movers()
-			put_interactable_text()
+			put_interactable_text(false, true)
 			textBox.show_text_instant()
 		else:
 			printerr('Restore Interactable Dialogue error: could not find interactable to restore for')
@@ -459,7 +459,8 @@ func pick_up(groundItem: GroundItem):
 	groundItem.pickedUpItem.savedTextIdx = 0
 	play_animation('stand')
 	interactable = groundItem
-	put_interactable_text()
+	# don't advance, and if this is up next, play the animation
+	put_interactable_text(false, interactableDialogues[interactableDialogueIndex] == groundItem.pickedUpItem)
 
 func interact_interactable(inter: Interactable, dialogue: InteractableDialogue = null):
 	var interDialogue: InteractableDialogue = dialogue
@@ -468,18 +469,21 @@ func interact_interactable(inter: Interactable, dialogue: InteractableDialogue =
 	if interDialogue != null:
 		interactable = inter
 		interactableDialogues.append(interDialogue)
-		put_interactable_text()
+		# if this one is up next, play the animation
+		put_interactable_text(false, interactableDialogues[interactableDialogueIndex] == interDialogue)
 
-func put_interactable_text(advance: bool = false):
+func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false):
 	var hasNextDialogue: bool = true
 	
 	var interactableDialogue: InteractableDialogue = null
 	if interactableDialogueIndex < len(interactableDialogues):
 		interactableDialogue = interactableDialogues[interactableDialogueIndex]
 	
+	# if we're advancing, check if this needs to be played (DialogueItem is advancing)
+	# if not advancing, only play the dialogue if selected
+	var playDialogueItemAnim: bool = not advance and playDialogueAnim
 	if advance:
 		interactableDialogue.savedTextIdx += 1
-		var playDialogueItemAnim: bool = false
 		# if this current DialogueItem is done: advance the item
 		if interactableDialogue.savedTextIdx >= len(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines):
 			interactableDialogue.savedTextIdx = 0
@@ -518,8 +522,8 @@ func put_interactable_text(advance: bool = false):
 					interactableDialogue = null
 				else:
 					interactableDialogue = interactableDialogues[interactableDialogueIndex]
-		if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
-			interactable.play_dialogue_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
+	if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
+		interactable.play_dialogue_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
 		var speaker: String = interactableDialogue.speaker
