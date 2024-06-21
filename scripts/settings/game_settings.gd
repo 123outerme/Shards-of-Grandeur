@@ -18,7 +18,8 @@ var save_file = 'game_settings.tres'
 static var STORED_ACTIONS = [
 	'move_up', 'move_down', 'move_left', 'move_right', 'game_interact',
 	'game_decline', 'game_quests', 'game_inventory', 'game_stats', 'game_pause',
-	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select'
+	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select',
+	'game_console'
 ]
 
 enum VersionDiffs {

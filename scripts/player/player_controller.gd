@@ -187,7 +187,7 @@ func _process(delta):
 		cam.position.x = holdingCameraAt.x - position.x
 		uiRoot.position.x = holdingCameraAt.x - position.x
 	if holdCameraY:
-		cam.position.x = holdingCameraAt.x - position.x
+		cam.position.y = holdingCameraAt.y - position.y
 		uiRoot.position.y = holdingCameraAt.y - position.y
 	# placed here instead of _physics_process because graphics are updated in sync with _process
 	if velocity.length_squared() > 0:
@@ -728,6 +728,5 @@ func _sort_interactables(a: Interactable, b: Interactable):
 		return true
 	return false
 
-
 func _on_overworld_console_console_closed():
-	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are paused
+	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are unpaused
