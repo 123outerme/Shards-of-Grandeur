@@ -13,6 +13,8 @@ func _init(
 	item = i_item
 
 func passes_prereqs() -> bool:
+	if is_solved():
+		return true
 	if not super.passes_prereqs():
 		return false
 	var inventorySlot: InventorySlot = PlayerResources.inventory.get_slot_for_item(item)

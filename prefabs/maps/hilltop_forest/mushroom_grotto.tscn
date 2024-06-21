@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://juq8847hl56c"]
+[gd_scene load_steps=24 format=3 uid="uid://juq8847hl56c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajihy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_x0la4"]
@@ -8,6 +8,10 @@
 [ext_resource type="SpriteFrames" uid="uid://8kkhb0pqbyxu" path="res://graphics/puzzles/a_shroom_bag_puzzle.tres" id="4_5lwai"]
 [ext_resource type="Script" path="res://scripts/overworld/puzzles/item_use_puzzle.gd" id="4_7ol7v"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_ibmro"]
+[ext_resource type="Resource" uid="uid://botcupn1ufya1" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_noprereqs.tres" id="7_6wp14"]
+[ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="7_u3ss7"]
+[ext_resource type="Resource" uid="uid://dtpatqhw4hmfi" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle1.tres" id="7_wqnk3"]
+[ext_resource type="Resource" uid="uid://msrja6h8nj2y" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_solved.tres" id="9_ej3x3"]
 
 [sub_resource type="Resource" id="Resource_16kas"]
 script = ExtResource("4_7ol7v")
@@ -18,8 +22,36 @@ prereqStoryRequirements = Array[Resource("res://scripts/quests/story_requirement
 puzzleSpriteFrames = ExtResource("4_5lwai")
 unsolvedAnimation = "default"
 solvingAnimation = "place_bag"
-solvedAnimation = "bag_placed"
+solvedAnimation = "default"
 disableCollisionOnSolve = false
+updateAnimOnSolve = false
+
+[sub_resource type="Resource" id="Resource_4ffr4"]
+script = ExtResource("7_u3ss7")
+speaker = "@"
+dialogueEntry = ExtResource("7_6wp14")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_3omei"]
+script = ExtResource("7_u3ss7")
+speaker = "@"
+dialogueEntry = ExtResource("9_ej3x3")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_5vjg3"]
+script = ExtResource("7_u3ss7")
+speaker = "@"
+dialogueEntry = ExtResource("7_wqnk3")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7q4j"]
+size = Vector2(7, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfpkn"]
+size = Vector2(18, 13)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 vertices = PackedVector2Array(-327, 87, -327, 124, -329, 124, -329, 108, -345, 87, -345, 108, -231, 103, -231, 108, -247, 108, -249, 103, -249, 124, -247, 124, -311, 60, -313, 60, -313, 39, -311, 39, -279, 76, -281, 76, -281, 55, -279, 55, 57, 92, 39, 92, 39, 71, 57, 71, 569, 7, 585, 7, 585, 28, 567, 28, 567, 12, 551, 12, 551, -9, 569, -9, 681, 39, 697, 39, 697, 55, 663, 44, 713, 55, 713, 60, 697, 60, 697, 76, 663, 76, 631, 44, 631, 23, 681, 23, -199, 60, -217, 60, -217, 23, -199, 23, -663, 28, -681, 28, -681, 7, -663, 7, -631, -20, -633, -20, -633, -41, -631, -41, 489, -57, 505, -57, 505, -36, 489, -36, 489, -20, 487, -20, 487, -36, 487, -57, 471, -36, 471, -57, 489, -73, 487, -73, -631, -180, -631, -164, -633, -164, -633, -185, -617, -185, -599, -180, -599, -201, -617, -201, 169, -164, 167, -164, 167, -185, 169, -185, 39, -233, 57, -233, 57, -212, 41, -212, 39, -217, 41, -196, 39, -196, 39, -212, 7, -212, 7, -217, 201, -233, 201, -212, 199, -212, 199, -228, 183, -233, 183, -228, 713, -212, 711, -212, 711, -217, 713, -217, -359, -249, -359, -228, -361, -228, -361, -244, -375, -249, -377, -244, -377, -265, -375, -265, 681, -244, 663, -244, 663, -249, 681, -249, 713, -244, 711, -244, 711, -249, 713, -249, -119, -292, -121, -292, -121, -297, -119, -297, 201, -297, 201, -276, 185, -276, 167, -297, 185, -260, 183, -260, 183, -276, 167, -276, -551, -276, -569, -276, -569, -281, -553, -281, -551, -297, -553, -297, 281, -297, 281, -292, 265, -292, 263, -297, 263, -276, 265, -276, 441, -276, 439, -276, 439, -281, 441, -281, 345, -313, 345, -308, 329, -308, 327, -313, 327, -292, 329, -292, 729, -329, 729, -308, 727, -308, 727, -324, 711, -329, 711, -324, -439, -361, -423, -361, -423, -340, -439, -340, -439, -324, -441, -324, -441, -377, -439, -377, 313, -345, 313, -324, 311, -324, 311, -340, 295, -345, 295, -340, 457, -324, 455, -324, 455, -345, 457, -345, -615, -340, -633, -340, -633, -361, -615, -361, 729, -356, 727, -356, 727, -377, 729, -377, 377, -388, 375, -388, 375, -425, 377, -425, 455, -455, 473, -452, 457, -452, 455, -436, 457, -436, -439, 44, -439, 92, -471, 92, -486, 70, -492, 54, 137, -457, 153, -457, 153, -441, 121, -388, 185, -441, 185, -436, 169, -436, 169, -404, 153, -404, 153, -388, 87, -441, 121, -372, 73, -372, -121, -425, -121, -441, 73, -356, 71, -356, 71, -372, 25, -372, 25, -356, 7, -356, 7, -372, -153, -409, -103, -372, -103, -356, -151, -356, -185, -393, -185, -409, -233, -361, -217, -377, -151, -276, -167, -276, -249, -329, -167, -244, -183, -244, -265, -249, -265, -329, -297, -68, -183, -169, -135, -169, -135, -153, -281, -52, -297, -52, -103, -153, -103, -89, -87, -89, -87, -57, -105, -20, -281, -20, 105, 28, 71, -57, 71, -89, 87, -89, 121, -4, 121, 28, 87, -121, 105, -121, 105, -105, 135, -105, 135, -121, 199, -121, 215, -4, 199, -137, 231, -137, 281, -84, 281, -25, 231, 28, 231, -153, 247, -153, 247, -180, 231, -180, 231, -185, 295, -185, 295, -217, 455, -217, 345, -100, 455, -233, 471, -233, 487, -265, 487, -281, 489, -281, 489, -260, 473, -260, 471, -265, 473, -233, 503, -233, 503, -249, 519, -249, 601, -212, 569, -132, 505, -116, 503, -308, 487, -308, 487, -313, 505, -313, 505, -297, 503, -292, 519, -292, 521, -297, 521, -281, 551, -281, 551, -377, 633, -377, 633, -361, 663, -361, 663, -377, 665, -377, 665, -340, 633, -340, 633, -260, 617, -260, 617, -212, 601, -132, 569, -116, 505, -100, 345, -84, 329, -25, 329, 23, 295, 76, 233, 76, 441, 23, 441, 39, 295, 92, 473, 39, 473, 55, 457, 76, 489, 55, 489, 76, 457, 92, 169, 92, 169, 108, 151, 108, 151, 92, 119, 92, 119, 87, 151, 87, 153, 87, 151, 71, 153, 71, 231, 87, 233, 92, 215, 28, 105, 44, -89, 44, -89, 12, -105, 12, -313, -68, -313, -84, -281, -153, -391, -84, -391, -68, -407, -68, -521, -121, -505, -153, -393, -169, -407, -36, -423, -36, -423, 44, -471, 108, -487, 108, -518, 70, -487, 124, -489, 124, -489, 108, -569, 108, -569, 92, -585, 92, -585, 60, -518, 55, -601, 60, -601, 39, -585, 39, -585, -25, -569, -25, -511, 48, -569, -89, -553, -89, -498, 48, -553, -121, -521, -153, -505, -169, -393, -185, -375, -185, -375, -153, -281, -249, -249, -361, -233, -377, -217, -393, -153, -425, 87, -457, 103, -457, 103, -473, 137, -473)
@@ -82,7 +114,18 @@ layer_4/tile_data = PackedInt32Array()
 [node name="PuzzleDecoration" parent="TileMap" instance=ExtResource("3_0pcqa")]
 position = Vector2(-504, 56)
 puzzle = SubResource("Resource_16kas")
+failedPrereqsDialogue = SubResource("Resource_4ffr4")
+solvedDialogue = SubResource("Resource_3omei")
 saveName = "shroom_bag"
+dialogue = SubResource("Resource_5vjg3")
+
+[node name="CollisionShape2D" parent="TileMap/PuzzleDecoration/AnimatedDecoration/Collision" index="0"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_h7q4j")
+
+[node name="CollisionShape2D" parent="TileMap/PuzzleDecoration" index="1"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_lfpkn")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -118,5 +161,7 @@ shape = SubResource("RectangleShape2D_onnol")
 [node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
 position = Vector2(0, 41)
 
+[editable path="TileMap/PuzzleDecoration"]
+[editable path="TileMap/PuzzleDecoration/AnimatedDecoration"]
 [editable path="HilltopEastWarpZone"]
 [editable path="CameraHoldZone"]

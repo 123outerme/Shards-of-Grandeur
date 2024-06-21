@@ -38,6 +38,7 @@ var startingBattle: bool = false
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
 @onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
+@onready var overworldConsole: OverworldConsole = get_node('UI/OverworldConsole')
 
 var talkNPC: NPCScript = null
 var talkNPCcandidates: Array[NPCScript] = []
@@ -53,8 +54,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not makingChoice and not cutscenePaused and not inCutscene \
-			and SceneLoader.curMapEntry.isRecoverLocation and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
+			not cutscenePaused and not inCutscene and SceneLoader.curMapEntry.isRecoverLocation \
+			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
 	
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
@@ -71,7 +73,7 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		statsPanel.toggle()
@@ -86,8 +88,9 @@ func _unhandled_input(event):
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
 			and (len(interactables) > 0 or len(talkNPCcandidates) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not makingChoice and not cutscenePaused and \
-			not startingBattle and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
+			not cutscenePaused and not startingBattle and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if len(interactables) > 0 and not textBox.visible and event.is_action_pressed("game_interact"):
 			# if the text box isn't open and there's at least one nearby interactable:
 			# find the closest interactable (using squared distance bc faster; the distance only matters relative to other interactables)
@@ -107,7 +110,7 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -121,7 +124,7 @@ func _unhandled_input(event):
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		questsPanel.toggle()
@@ -131,6 +134,18 @@ func _unhandled_input(event):
 			statsPanel.toggle()
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
+			
+	if event.is_action_pressed('game_console') and not pausePanel.isPaused and \
+			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+		overworldConsole.load_overworld_console()
+		SceneLoader.pause_autonomous_movers()
+		if statsPanel.visible:
+			statsPanel.toggle()
+		if inventoryPanel.visible:
+			inventoryPanel.toggle()
+		if questsPanel.visible:
+			questsPanel.toggle()
 	
 func _physics_process(_delta):
 	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
@@ -446,10 +461,13 @@ func pick_up(groundItem: GroundItem):
 	interactable = groundItem
 	put_interactable_text()
 
-func interact_interactable(inter: Interactable):
-	if inter.dialogue != null:
+func interact_interactable(inter: Interactable, dialogue: InteractableDialogue = null):
+	var interDialogue: InteractableDialogue = dialogue
+	if interDialogue == null:
+		interDialogue = inter.dialogue
+	if interDialogue != null:
 		interactable = inter
-		interactableDialogues.append(interactable.dialogue)
+		interactableDialogues.append(interDialogue)
 		put_interactable_text()
 
 func put_interactable_text(advance: bool = false):
@@ -461,10 +479,12 @@ func put_interactable_text(advance: bool = false):
 	
 	if advance:
 		interactableDialogue.savedTextIdx += 1
+		var playDialogueItemAnim: bool = false
 		# if this current DialogueItem is done: advance the item
 		if interactableDialogue.savedTextIdx >= len(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines):
 			interactableDialogue.savedTextIdx = 0
 			interactableDialogue.savedItemIdx += 1
+			playDialogueItemAnim = true
 			# if this current DialogueEntry is done: first process the entry options, then advance the entry
 			if interactableDialogue.savedItemIdx >= len(interactableDialogue.dialogueEntry.items):
 				interactableDialogue.savedItemIdx = 0
@@ -490,7 +510,7 @@ func put_interactable_text(advance: bool = false):
 					interactableDialogueIndex = len(interactableDialogues) # set to the last entry
 				
 				interactableDialogueIndex += 1
-				while interactableDialogueIndex < len(interactableDialogues) and not interactableDialogues[interactableDialogueIndex].can_use_dialogue():
+				while interactableDialogueIndex < len(interactableDialogues) and not interactableDialogues[interactableDialogueIndex].dialogueEntry.can_use_dialogue():
 					interactableDialogueIndex += 1 # skip dialogues that cannot be used
 				# update what the interactable dialogue is pointing to
 				if interactableDialogueIndex >= len(interactableDialogues):
@@ -498,6 +518,8 @@ func put_interactable_text(advance: bool = false):
 					interactableDialogue = null
 				else:
 					interactableDialogue = interactableDialogues[interactableDialogueIndex]
+		if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
+			interactable.play_dialogue_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
 		var speaker: String = interactableDialogue.speaker
@@ -701,3 +723,7 @@ func _sort_interactables(a: Interactable, b: Interactable):
 	if (a.global_position - global_position).length_squared() <= (b.global_position - global_position).length_squared():
 		return true
 	return false
+
+
+func _on_overworld_console_console_closed():
+	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are paused

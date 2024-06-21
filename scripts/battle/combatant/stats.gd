@@ -123,11 +123,24 @@ func level_up(newLvs: int):
 		pts += Stats.floating_stat_pt_gain(level)
 	maxHp = statGrowth.calculate_max_hp(level)
 	physAttack += statGrowth.calculate_stat_category(level, Category.PHYS_ATK) - statGrowth.calculate_stat_category(level - newLvs, Category.PHYS_ATK)
-	magicAttack += statGrowth.calculate_stat_category(level, Category.MAGIC_ATK) -  statGrowth.calculate_stat_category(level - newLvs, Category.MAGIC_ATK)
-	affinity += statGrowth.calculate_stat_category(level, Category.AFFINITY) -  statGrowth.calculate_stat_category(level - newLvs, Category.AFFINITY)
-	resistance += statGrowth.calculate_stat_category(level, Category.RESISTANCE) -  statGrowth.calculate_stat_category(level - newLvs, Category.RESISTANCE)
-	speed += statGrowth.calculate_stat_category(level, Category.SPEED) -  statGrowth.calculate_stat_category(level - newLvs, Category.SPEED)
+	magicAttack += statGrowth.calculate_stat_category(level, Category.MAGIC_ATK) - statGrowth.calculate_stat_category(level - newLvs, Category.MAGIC_ATK)
+	affinity += statGrowth.calculate_stat_category(level, Category.AFFINITY) - statGrowth.calculate_stat_category(level - newLvs, Category.AFFINITY)
+	resistance += statGrowth.calculate_stat_category(level, Category.RESISTANCE) - statGrowth.calculate_stat_category(level - newLvs, Category.RESISTANCE)
+	speed += statGrowth.calculate_stat_category(level, Category.SPEED) - statGrowth.calculate_stat_category(level - newLvs, Category.SPEED)
 	statPts += pts
+
+func set_level(lv: int):
+	level = lv
+	var pts = 0
+	for i in range(1, level + 1):
+		pts += Stats.floating_stat_pt_gain(level)
+	maxHp = statGrowth.calculate_max_hp(level)
+	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK) 
+	magicAttack = statGrowth.calculate_stat_category(level, Category.MAGIC_ATK)
+	affinity = statGrowth.calculate_stat_category(level, Category.AFFINITY)
+	resistance = statGrowth.calculate_stat_category(level, Category.RESISTANCE)
+	speed = statGrowth.calculate_stat_category(level, Category.SPEED)
+	statPts = pts
 
 func is_item_equipped(item: Item):
 	return equippedWeapon == item or equippedArmor == item

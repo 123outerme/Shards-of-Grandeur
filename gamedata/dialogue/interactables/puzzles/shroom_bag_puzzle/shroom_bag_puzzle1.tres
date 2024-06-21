@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dtpatqhw4hmfi"]
+
+[ext_resource type="Resource" uid="uid://dt0cqp1f5pn53" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_noplace.tres" id="1_cybfr"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sxmm1"]
+[ext_resource type="Resource" uid="uid://by0c0k5yxplr5" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_place.tres" id="3_shp3p"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_wdwgr"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="5_mnpyc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="6_augbt"]
+
+[sub_resource type="Resource" id="Resource_slaxe"]
+script = ExtResource("2_sxmm1")
+choiceBtn = "No"
+leadsTo = ExtResource("1_cybfr")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_k55f7"]
+script = ExtResource("4_wdwgr")
+acceptsSolve = true
+choiceBtn = "Yes"
+leadsTo = ExtResource("3_shp3p")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_0lko5"]
+script = ExtResource("5_mnpyc")
+lines = Array[String](["This tree stump was the place, as far as the person said... Should I place the bag here?"])
+animation = ""
+choices = Array[ExtResource("2_sxmm1")]([SubResource("Resource_slaxe"), SubResource("Resource_k55f7")])
+
+[resource]
+script = ExtResource("6_augbt")
+entryId = ""
+items = Array[ExtResource("5_mnpyc")]([SubResource("Resource_0lko5")])
+closesDialogue = false
+fullHealsPlayer = false

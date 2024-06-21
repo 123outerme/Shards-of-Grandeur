@@ -14,7 +14,10 @@ class_name Puzzle
 @export var solvedAnimation: String = ''
 ## if true, the AnimatedDecoration collision is disabled when the puzzle is in the solved state
 @export var disableCollisionOnSolve: bool = false
+## if true, the AnimatedDecoration's animation is updated to `solvedAnimation` immediately after finishing the `solvingAnimation`. By setting to false, you must manually update the animation to `solved` later in the solving dialogue sequence
+@export var updateAnimOnSolve: bool = true
 
+## the reward to give the player when the puzzle is solved
 @export var solvedReward: Reward = null
 
 func _init(
@@ -25,6 +28,7 @@ func _init(
 	i_solvingAnim = '',
 	i_solvedAnim = '',
 	i_disableCollisionOnSolve = false,
+	i_updateAnimOnSolve: bool = true,
 	i_solvedReward = null,
 ):
 	id = i_id
@@ -34,16 +38,19 @@ func _init(
 	solvingAnimation = i_solvingAnim
 	solvedAnimation = i_solvedAnim
 	disableCollisionOnSolve = i_disableCollisionOnSolve
+	updateAnimOnSolve = i_updateAnimOnSolve
 	solvedReward = i_solvedReward
 
 func passes_prereqs() -> bool:
-	var passes = len(prereqStoryRequirements) == 0 # if no prereqs, then auto-passes
+	if is_solved():
+		return true
+	var passes: bool = len(prereqStoryRequirements) == 0 # if no prereqs, then auto-passes
 	for requirement: StoryRequirements in prereqStoryRequirements:
 		passes = requirement.is_valid() or passes
 	return passes
 
 func is_solved() -> bool:
-	return passes_prereqs() and PlayerResources.playerInfo.has_solved_puzzle(id)
+	return PlayerResources.playerInfo.has_solved_puzzle(id)
 
 ## executes the solution steps and sets the puzzle as solved to the player
 func solve():
