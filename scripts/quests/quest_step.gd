@@ -7,6 +7,7 @@ enum Type {
 	DEFEAT = 2,
 	CUTSCENE = 3,
 	STATIC_ENCOUNTER = 4,
+	SOLVE_PUZZLE = 5,
 	ALL = -1,
 }
 
@@ -21,6 +22,8 @@ static func type_to_string(t: Type) -> String:
 		Type.STATIC_ENCOUNTER:
 			return 'Beat'
 		Type.CUTSCENE:
+			return ''
+		Type.SOLVE_PUZZLE:
 			return ''
 		Type.ALL:
 			return 'All'

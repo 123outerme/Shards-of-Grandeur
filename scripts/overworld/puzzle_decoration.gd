@@ -3,15 +3,6 @@ class_name PuzzleDecoration
 
 @export var puzzle: Puzzle = null
 
-## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle remains unsolved
-@export var unsolvedAnimation: String = 'default'
-## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle was just solved (transition animation)
-@export var solvingAnimation: String = ''
-## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle remains solved
-@export var solvedAnimation: String = ''
-## if true, the AnimatedDecoration collision is disabled when the puzzle is in the solved state
-@export var disableCollisionOnSolve: bool = false
-
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
@@ -20,6 +11,7 @@ var solved = false
 func _ready():
 	show_interact_sprite(false)
 	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+	animatedDecoration.animSprite.sprite_frames = puzzle.puzzleSpriteFrames
 	_story_reqs_updated(false)
 
 func show_interact_sprite(showSprite: bool = true):
@@ -53,17 +45,17 @@ func _story_reqs_updated(playSolving: bool = true):
 	if updatedSolved:
 		show_interact_sprite(false)
 		if playSolving and not solved:
-			animatedDecoration.play_animation(solvingAnimation)
+			animatedDecoration.play_animation(puzzle.solvingAnimation)
 			animatedDecoration.anim_finished.connect(play_solved_anim)
 		else:
 			play_solved_anim()
-		if disableCollisionOnSolve:
+		if puzzle.disableCollisionOnSolve:
 			animatedDecoration.collision.collision_layer = 0
 		exit_player_range()
 	else:
-		animatedDecoration.play_animation(unsolvedAnimation)
+		animatedDecoration.play_animation(puzzle.unsolvedAnimation)
 		animatedDecoration.collision.collision_layer = 0b01
 	solved = updatedSolved
 
 func play_solved_anim():
-	animatedDecoration.play_animation(solvedAnimation)
+	animatedDecoration.play_animation(puzzle.solvedAnimation)

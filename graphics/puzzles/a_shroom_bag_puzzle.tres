@@ -1,0 +1,52 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://8kkhb0pqbyxu"]
+
+[ext_resource type="Texture2D" uid="uid://bur2cndim6tmj" path="res://graphics/puzzles/shroom_bag_puzzle.png" id="1_jwxn2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0irm7"]
+atlas = ExtResource("1_jwxn2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mav53"]
+atlas = ExtResource("1_jwxn2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrwnm"]
+atlas = ExtResource("1_jwxn2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_824s0"]
+atlas = ExtResource("1_jwxn2")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0irm7")
+}],
+"loop": true,
+"name": &"bag_placed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mav53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrwnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_824s0")
+}],
+"loop": false,
+"name": &"place_bag",
+"speed": 6.0
+}]

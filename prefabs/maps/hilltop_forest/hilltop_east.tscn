@@ -595,7 +595,8 @@ shape = SubResource("RectangleShape2D_x5yjw")
 [node name="MushroomGrottoWarpZone" parent="." instance=ExtResource("3_xsjvu")]
 position = Vector2(608, 1187)
 mapName = "mushroom_grotto"
-warpEnabled = false
+mapPos = Vector2(592, -476)
+useHorizontalOffset = true
 
 [node name="WarpArea" parent="MushroomGrottoWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_geesu")
@@ -675,6 +676,7 @@ shape = SubResource("RectangleShape2D_wq0ev")
 [node name="UnfinishedSCutsceneTrigger" parent="." instance=ExtResource("4_di4ud")]
 position = Vector2(615, 1168)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_1so7l")])
+disabled = true
 
 [node name="CollisionShape2D" parent="UnfinishedSCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_qf5xs")

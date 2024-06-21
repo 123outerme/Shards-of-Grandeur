@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dweb5hyoegjw7"]
+[gd_scene load_steps=12 format=3 uid="uid://dweb5hyoegjw7"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_b0t1l"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_xcvh2"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_7umvu"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_xt43b"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_2l8si"]
+[ext_resource type="Resource" uid="uid://8pf1vr5htkgf" path="res://gamedata/dialogue/leavenport/curator/curator_1.tres" id="5_3lx3c"]
 [ext_resource type="SpriteFrames" uid="uid://d4g4prd6e6rsd" path="res://graphics/animations/a_lady4-2.tres" id="5_jukt4"]
 
-[sub_resource type="Resource" id="Resource_ityup"]
+[sub_resource type="Resource" id="Resource_w6u1p"]
 script = ExtResource("4_2l8si")
 saveName = "npc"
 animation = "stand"
@@ -70,7 +71,8 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-40, -31)
 displayName = "Curator"
 saveName = "leavenport_museum_curator"
-data = SubResource("Resource_ityup")
+data = SubResource("Resource_w6u1p")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_3lx3c")])
 
 [node name="NPCSprite" parent="TileMap/Curator" index="0"]
 sprite_frames = ExtResource("5_jukt4")
@@ -87,6 +89,8 @@ visible = false
 
 [node name="WarpZone" parent="." instance=ExtResource("3_7umvu")]
 position = Vector2(-8.5, 18)
+mapName = "leavenport"
+mapPos = Vector2(1015, 216)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

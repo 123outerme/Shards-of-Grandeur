@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://dv21u38jm6nul"]
+
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_5rehu"]
+[ext_resource type="AudioStream" uid="uid://bj4frgcnkyepf" path="res://audio/music/overworld/leavenport.mp3" id="1_82t2i"]
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_vjylb"]
+
+[sub_resource type="Resource" id="Resource_0rgfo"]
+script = ExtResource("1_vjylb")
+path = "leavenport/leavenport_museum"
+overworldTheme = ExtResource("1_82t2i")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("1_5rehu")
+locationName = "Leavenport"
+maps = Array[ExtResource("1_vjylb")]([SubResource("Resource_0rgfo")])

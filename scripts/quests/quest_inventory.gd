@@ -105,6 +105,8 @@ func auto_update_quests():
 	for specialBattle in PlayerResources.playerInfo.completedSpecialBattles:
 		if PlayerResources.playerInfo.has_completed_special_battle(specialBattle):
 			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
+	for puzzle in PlayerResources.playerInfo.puzzlesSolved:
+		progress_quest(puzzle, QuestStep.Type.SOLVE_PUZZLE)
 	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
 		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
 		auto_turn_in_cutscene_steps(cutscene)
@@ -120,10 +122,14 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 				tracker.add_current_step_progress(progress)
 
 func auto_turn_in_cutscene_steps(target: String):
+	var hasTurnedIn: bool = false
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE:
 			turn_in_cur_step(tracker)
+			hasTurnedIn = true
+	if hasTurnedIn:
+		PlayerResources.story_requirements_updated.emit()
 
 func turn_in_cur_step(tracker: QuestTracker) -> int:
 	var curStep: QuestStep = tracker.get_current_step()
