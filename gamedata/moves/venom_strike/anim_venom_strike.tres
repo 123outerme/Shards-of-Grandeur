@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://bf27ftneba8av"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_40ttb"]
+[ext_resource type="Resource" uid="uid://bn3ak4egjifnk" path="res://gamedata/moves/venom_strike/sprite_venom_strike.tres" id="1_v1de8"]
+
+[resource]
+script = ExtResource("1_40ttb")
+combatantAnimation = "attack_phys"
+makesContact = true
+chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_v1de8")])
+surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_v1de8")])

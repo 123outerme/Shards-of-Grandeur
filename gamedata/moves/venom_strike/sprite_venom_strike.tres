@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://bn3ak4egjifnk"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_gr1qt"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_w1h6a"]
+[ext_resource type="Resource" uid="uid://txb0gen6dgt2" path="res://gamedata/moves/venom_strike/particles_venom_strike.tres" id="2_2adua"]
+[ext_resource type="SpriteFrames" uid="uid://cpa43w68ats30" path="res://graphics/moves/nature/a_nature.tres" id="2_5ii5o"]
+
+[sub_resource type="Curve" id="Curve_6qj4q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_7kf6y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_yc8ku"]
+script = ExtResource("1_w1h6a")
+annotation = "Move the effect centered on the front part of the target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(6, 0)
+offset = 1
+xCurve = SubResource("Curve_6qj4q")
+yCurve = SubResource("Curve_7kf6y")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_35o2p"]
+script = ExtResource("1_w1h6a")
+annotation = "play the strike anim"
+animation = "venom_strike"
+duration = 1.4
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_2adua")
+
+[resource]
+script = ExtResource("1_gr1qt")
+spriteFrames = ExtResource("2_5ii5o")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_w1h6a")]([SubResource("Resource_yc8ku"), SubResource("Resource_35o2p")])
+delayedUntilReposition = true
+onePerTarget = true

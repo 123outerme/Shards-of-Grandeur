@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=61 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
@@ -21,7 +21,6 @@
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="15_qn3hw"]
 [ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="16_1n64h"]
 [ext_resource type="Resource" uid="uid://byhxd5t7pvevm" path="res://gamedata/combatants/solius/solius_effectiveness.tres" id="16_nt2je"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="17_hdtqw"]
 [ext_resource type="Resource" uid="uid://4pup88f5tgtg" path="res://gamedata/combatants/solius/solius_sprite.tres" id="17_idd5h"]
 [ext_resource type="Resource" uid="uid://bstxqhg72gire" path="res://gamedata/combatants/solius/solius_movepool.tres" id="18_duw15"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
@@ -122,7 +121,6 @@ aiType = 0
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.0
-teamTable = Array[ExtResource("17_hdtqw")]([])
 innateStatCategories = Array[int]([])
 command = SubResource("Resource_hvfly")
 downed = false
@@ -171,7 +169,6 @@ strategy = 1
 aiOverrideWeight = 0.0
 moveEffectiveness = ExtResource("16_nt2je")
 weightedEquipment = ExtResource("20_fk61q")
-teamTable = Array[ExtResource("17_hdtqw")]([])
 dropTable = ExtResource("14_qb2p1")
 innateStatCategories = Array[int]([0, 1, 2])
 command = SubResource("Resource_i3ge1")
@@ -214,21 +211,6 @@ potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 2
 
-[sub_resource type="Resource" id="Resource_b3lik"]
-script = ExtResource("17_hdtqw")
-string = "rat"
-weight = 0.55
-
-[sub_resource type="Resource" id="Resource_41kde"]
-script = ExtResource("17_hdtqw")
-string = "tree_bear"
-weight = 0.15
-
-[sub_resource type="Resource" id="Resource_8n3fm"]
-script = ExtResource("17_hdtqw")
-string = ""
-weight = 0.3
-
 [sub_resource type="Resource" id="Resource_dvq57"]
 script = ExtResource("2_12odb")
 sprite = ExtResource("19_8nfrw")
@@ -245,7 +227,6 @@ aiType = 1
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
-teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_b3lik"), SubResource("Resource_41kde"), SubResource("Resource_8n3fm")])
 innateStatCategories = Array[int]([0, 4])
 command = SubResource("Resource_h71dw")
 downed = false
@@ -283,21 +264,6 @@ potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 3
 
-[sub_resource type="Resource" id="Resource_rdypo"]
-script = ExtResource("17_hdtqw")
-string = "tree_bear"
-weight = 0.2
-
-[sub_resource type="Resource" id="Resource_baii4"]
-script = ExtResource("17_hdtqw")
-string = "rat"
-weight = 0.5
-
-[sub_resource type="Resource" id="Resource_ex7rj"]
-script = ExtResource("17_hdtqw")
-string = ""
-weight = 0.3
-
 [sub_resource type="Resource" id="Resource_r1f0o"]
 script = ExtResource("2_12odb")
 sprite = ExtResource("14_8tdek")
@@ -314,7 +280,6 @@ aiType = 3
 damageAggroType = 0
 strategy = 2
 aiOverrideWeight = 0.4
-teamTable = Array[ExtResource("17_hdtqw")]([SubResource("Resource_rdypo"), SubResource("Resource_baii4"), SubResource("Resource_ex7rj")])
 innateStatCategories = Array[int]([3, 1, 2])
 command = SubResource("Resource_lly4o")
 downed = false
@@ -353,7 +318,6 @@ damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.35
 moveEffectiveness = ExtResource("24_tv3k6")
-teamTable = Array[ExtResource("17_hdtqw")]([])
 dropTable = ExtResource("22_xbjvk")
 innateStatCategories = Array[int]([])
 downed = false

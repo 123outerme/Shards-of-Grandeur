@@ -64,8 +64,6 @@ const MAX_ORBS = 10
 @export var aiOverrideWeight: float = 0.35
 @export var moveEffectiveness: MoveEffectiveness = null
 @export var weightedEquipment: CombatantEquipment = null
-@export var teamTable: Array[WeightedString] = []
-# NOTE: having a weighted combatant caused recursion errors, so this is the workaround
 @export var dropTable: CombatantRewards = null
 @export var innateStatCategories: Array[Stats.Category] = []
 
@@ -103,7 +101,6 @@ func _init(
 	i_overrideWeight = 0.35,
 	i_moveEffectiveness = null,
 	i_weightedEquipment = null,
-	i_teamTable: Array[WeightedString] = [],
 	i_dropTable: CombatantRewards = null,
 	i_innateStats: Array[Stats.Category] = [],
 	i_command = null,
@@ -128,7 +125,6 @@ func _init(
 	aiOverrideWeight = i_overrideWeight
 	moveEffectiveness = i_moveEffectiveness
 	weightedEquipment = i_weightedEquipment
-	teamTable = i_teamTable
 	dropTable = i_dropTable
 	innateStatCategories = i_innateStats
 	command = i_command
@@ -598,7 +594,6 @@ func save_from_object(c: Combatant):
 	aiOverrideWeight = c.aiOverrideWeight
 	moveEffectiveness = c.moveEffectiveness
 	weightedEquipment = c.weightedEquipment
-	teamTable = c.teamTable.duplicate(false)
 	dropTable = c.dropTable
 	innateStatCategories = c.innateStatCategories.duplicate(false)
 	

@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://eq5onf8hmiau"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_ish1p"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_x54e8"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="2_oloy0"]
+[ext_resource type="Resource" uid="uid://bf27ftneba8av" path="res://gamedata/moves/venom_strike/anim_venom_strike.tres" id="3_mujui"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_ft3k0"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_x14ap"]
+
+[sub_resource type="Resource" id="Resource_b01uv"]
+script = ExtResource("2_oloy0")
+element = 6
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_1k7jw"]
+script = ExtResource("1_x54e8")
+role = 1
+orbChange = 1
+power = 50
+targets = 5
+statusEffect = SubResource("Resource_b01uv")
+selfGetsStatus = false
+statusChance = 0.9
+
+[sub_resource type="Resource" id="Resource_crxt4"]
+script = ExtResource("2_oloy0")
+element = 6
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_sxrxg"]
+script = ExtResource("4_x14ap")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.95
+speedMultiplier = 1.0
+elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_153u1"]
+script = ExtResource("4_ft3k0")
+powerPerOrb = 2
+targetStatChangesPerOrb = SubResource("Resource_sxrxg")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 6
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.01
+
+[sub_resource type="Resource" id="Resource_36jd4"]
+script = ExtResource("1_x54e8")
+role = 1
+orbChange = -3
+power = 65
+targets = 5
+statusEffect = SubResource("Resource_crxt4")
+selfGetsStatus = false
+statusChance = 0.95
+surgeChanges = SubResource("Resource_153u1")
+
+[resource]
+script = ExtResource("1_ish1p")
+moveName = "Venom Strike"
+requiredLv = 7
+category = 0
+element = 6
+chargeEffect = SubResource("Resource_1k7jw")
+surgeEffect = SubResource("Resource_36jd4")
+description = "The target is hit with a venomous bite."
+moveLearnedText = "Meditating on the Shard, you taste something sour in your mouth. Instinctively, you spit it out, and hear it hiss on the ground. Opening your eyes, you see a green fluid fizzing on the ground, and you now have Venom in your attacks."
+moveAnimation = ExtResource("3_mujui")

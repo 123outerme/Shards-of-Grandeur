@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://ca8mmu0qg4nkf"]
+
+[ext_resource type="Resource" uid="uid://02npb310yofl" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_rewards.tres" id="1_14urk"]
+[ext_resource type="Resource" uid="uid://dwa6lf7yrxmoi" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_evolutions.tres" id="1_s43c7"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_y7w4d"]
+[ext_resource type="Resource" uid="uid://c2i0h8p3adynn" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_effectiveness.tres" id="2_prj8u"]
+[ext_resource type="Resource" uid="uid://ck3xgd78t8lai" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_sprite.tres" id="3_okug7"]
+[ext_resource type="Resource" uid="uid://jd1wpl7yeja0" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_movepool.tres" id="4_qwq6j"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_8k7ro"]
+[ext_resource type="Resource" uid="uid://n1rk0vkg85vi" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_stat_growth.tres" id="6_o3s0o"]
+[ext_resource type="Resource" uid="uid://jjlp04vf86ik" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_equipment.tres" id="8_sbohe"]
+
+[sub_resource type="Resource" id="Resource_xs45x"]
+script = ExtResource("5_8k7ro")
+displayName = "Shroom Lizard"
+saveName = "shroom_lizard"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("6_o3s0o")
+moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+movepool = ExtResource("4_qwq6j")
+
+[resource]
+script = ExtResource("1_y7w4d")
+sprite = ExtResource("3_okug7")
+nickname = ""
+stats = SubResource("Resource_xs45x")
+evolutions = ExtResource("1_s43c7")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 1
+damageAggroType = 2
+strategy = 0
+aiOverrideWeight = 0.3
+moveEffectiveness = ExtResource("2_prj8u")
+weightedEquipment = ExtResource("8_sbohe")
+dropTable = ExtResource("1_14urk")
+innateStatCategories = Array[int]([0, 3])
+downed = false

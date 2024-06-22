@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://cpa43w68ats30"]
+[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://cpa43w68ats30"]
 
 [ext_resource type="Texture2D" uid="uid://c3j7aebwxfq1m" path="res://graphics/moves/nature/consuming_roots.png" id="1_edggx"]
 [ext_resource type="Texture2D" uid="uid://l175u74uv8og" path="res://graphics/moves/nature/druidic_pulse_gather.png" id="2_bi8c3"]
 [ext_resource type="Texture2D" uid="uid://dkmxvnn7fppem" path="res://graphics/moves/nature/druidic_pulse_wave.png" id="2_codug"]
+[ext_resource type="Texture2D" uid="uid://w1luy4lkxxug" path="res://graphics/moves/nature/venom_strike.png" id="4_a3mi0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jckml"]
 atlas = ExtResource("1_edggx")
@@ -83,6 +84,34 @@ region = Rect2(0, 0, 16, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_loeik"]
 atlas = ExtResource("2_codug")
 region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyc1x"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffqi7"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40sv4"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2mdh"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj1qi"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbakh"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8mp3"]
+atlas = ExtResource("4_a3mi0")
+region = Rect2(96, 0, 16, 16)
 
 [resource]
 animations = [{
@@ -168,4 +197,30 @@ animations = [{
 "loop": true,
 "name": &"druidic_pulse_wave",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyc1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffqi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40sv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2mdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj1qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbakh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8mp3")
+}],
+"loop": false,
+"name": &"venom_strike",
+"speed": 5.0
 }]
