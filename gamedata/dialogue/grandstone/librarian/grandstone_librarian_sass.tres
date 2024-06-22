@@ -13,7 +13,6 @@ leadsTo = ExtResource("1_jymbl")
 repeatsItem = false
 buttonDims = Vector2(400, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_eejiw"]
@@ -32,12 +31,14 @@ prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["grandstone_librarian#gs_librarian_has_script"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("4_1msl6")

@@ -43,12 +43,14 @@ func toggle_section(enable: bool):
 			changeButton1.focus_neighbor_left = changeButton1.get_path_to(sectionToggleButton)
 			if not changeButton1.pressed.is_connected(_on_change_pressed.bind(changeButton1)):
 				changeButton1.pressed.connect(_on_change_pressed.bind(changeButton1))
-			var changeButton2: Button = controlMap.get_node('ChangeButton2')
-			if not changeButton2.pressed.is_connected(_on_change_pressed.bind(changeButton2)):
-				changeButton2.pressed.connect(_on_change_pressed.bind(changeButton2))
-			var clearSecondaryButton: Button = controlMap.get_node('ClearSecondaryButton')
-			if not clearSecondaryButton.pressed.is_connected(_on_clear_secondary_pressed.bind(clearSecondaryButton)):
-				clearSecondaryButton.pressed.connect(_on_clear_secondary_pressed.bind(clearSecondaryButton))
+			var changeButton2: Button = controlMap.get_node_or_null('ChangeButton2')
+			if changeButton2 != null:
+				if not changeButton2.pressed.is_connected(_on_change_pressed.bind(changeButton2)):
+					changeButton2.pressed.connect(_on_change_pressed.bind(changeButton2))
+			var clearSecondaryButton: Button = controlMap.get_node_or_null('ClearSecondaryButton')
+			if clearSecondaryButton != null:
+				if not clearSecondaryButton.pressed.is_connected(_on_clear_secondary_pressed.bind(clearSecondaryButton)):
+					clearSecondaryButton.pressed.connect(_on_clear_secondary_pressed.bind(clearSecondaryButton))
 		
 		for controlMap in get_tree().get_nodes_in_group('ControllerControlMap'):
 			var changeButton1: Button = controlMap.get_node('ChangeButton1')
@@ -76,18 +78,19 @@ func build_map_value_strings():
 		if keycode1 == 0:
 			keycode1 = actionEvents[actionIndex1].physical_keycode
 		keyValue1.text = '[center]' + OS.get_keycode_string(keycode1) + '[/center]'
-		var keyValue2: RichTextLabel = controlMap.get_node('Value2')
-		var changeButton2: Button = controlMap.get_node('ChangeButton2')
-		var actionIndex2: int = changeButton2.get_meta('index')
-		if actionIndex2 < len(actionEvents) and not (actionEvents[actionIndex2] is InputEventKey):
-				actionIndex2 += 1
-		if actionIndex2 < len(actionEvents) and (actionEvents[actionIndex2] is InputEventKey):
-			var keycode2 = actionEvents[actionIndex2].keycode
-			if keycode2 == 0:
-				keycode2 = actionEvents[actionIndex2].physical_keycode
-			keyValue2.text = '[center]' + OS.get_keycode_string(keycode2) + '[/center]'
-		else:
-			keyValue2.text = ''
+		var keyValue2: RichTextLabel = controlMap.get_node_or_null('Value2')
+		var changeButton2: Button = controlMap.get_node_or_null('ChangeButton2')
+		if changeButton2 != null and keyValue2 != null:
+			var actionIndex2: int = changeButton2.get_meta('index')
+			if actionIndex2 < len(actionEvents) and not (actionEvents[actionIndex2] is InputEventKey):
+					actionIndex2 += 1
+			if actionIndex2 < len(actionEvents) and (actionEvents[actionIndex2] is InputEventKey):
+				var keycode2 = actionEvents[actionIndex2].keycode
+				if keycode2 == 0:
+					keycode2 = actionEvents[actionIndex2].physical_keycode
+				keyValue2.text = '[center]' + OS.get_keycode_string(keycode2) + '[/center]'
+			else:
+				keyValue2.text = ''
 			
 	var change1Group: HBoxContainer = movementActionControl.get_node('Change1Group')
 	var change2Group: HBoxContainer = movementActionControl.get_node('Change2Group')

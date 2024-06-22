@@ -12,7 +12,6 @@ choiceBtn = "OK."
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_6yei0"]
@@ -22,7 +21,6 @@ leadsTo = ExtResource("2_ea06c")
 repeatsItem = false
 buttonDims = Vector2(180, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_q8tcr"]
@@ -41,12 +39,14 @@ prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["hilltop_ambush"])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("1_07ylg")

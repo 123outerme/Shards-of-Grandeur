@@ -110,7 +110,7 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 		if step.type == QuestStep.Type.STATIC_ENCOUNTER:
 			st += 'Beat'
 		st += ' ' + step.displayObjName + ' (' + TextUtils.num_to_comma_string(get_step_progress(step)) + ' / ' + TextUtils.num_to_comma_string(step.count) + ')!'
-		if step.type == QuestStep.Type.CUTSCENE:
+		if step.type == QuestStep.Type.CUTSCENE or step.type == QuestStep.Type.SOLVE_PUZZLE:
 			st = '???'
 		if step.customStatusStr != '':
 			st = step.customStatusStr

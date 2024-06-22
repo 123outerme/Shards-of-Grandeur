@@ -1,9 +1,10 @@
-[gd_scene load_steps=98 format=3 uid="uid://bnvwcifufgons"]
+[gd_scene load_steps=101 format=3 uid="uid://bnvwcifufgons"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_1a6lo"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_316ec"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_480b4"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_xsjvu"]
+[ext_resource type="Resource" uid="uid://cymlyc24swpx0" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_potion.tres" id="4_1t5qv"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="4_di4ud"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_f7e3a"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_p055s"]
@@ -13,9 +14,11 @@
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="6_ut1n5"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="6_v6gsi"]
 [ext_resource type="Resource" uid="uid://cy1issl7bi7ba" path="res://gamedata/items/weapon/walking_staff.tres" id="6_w48to"]
+[ext_resource type="Resource" uid="uid://r3b3pmjv5kfp" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_staff.tres" id="7_jbwmt"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_l2pl1"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="7_l3tuv"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="8_lceu0"]
+[ext_resource type="Resource" uid="uid://ybvqwgqe25cv" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_sword.tres" id="9_n6psx"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="10_7hqow"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="11_8wnil"]
 [ext_resource type="Resource" uid="uid://dpp2ku1ps3jkf" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_unfinished_n.tres" id="11_teqmx"]
@@ -24,27 +27,30 @@
 
 [sub_resource type="Resource" id="Resource_v7jof"]
 script = ExtResource("5_6h135")
-uniqueId = "ht_east_river"
 item = ExtResource("4_p055s")
-pickUpTexts = Array[String](["I wonder if this Potion floated down the river to rest here..."])
-savedTextIdx = 0
 wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("4_1t5qv")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_ospg2"]
 script = ExtResource("5_6h135")
-uniqueId = "ht_east_stick"
 item = ExtResource("6_w48to")
-pickUpTexts = Array[String](["This looks like a pretty sturdy stick. I might want to lean on this, and it'll make me look pretty wise too!"])
-savedTextIdx = 0
 wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("7_jbwmt")
+savedItemIdx = 0
+savedTextIdx = null
 
 [sub_resource type="Resource" id="Resource_jk4k7"]
 script = ExtResource("5_6h135")
-uniqueId = "ht_east_sword"
 item = ExtResource("7_l3tuv")
-pickUpTexts = Array[String](["What's this doing here? This isn't a high quality weapon, but someone still dropped this!"])
-savedTextIdx = 0
 wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("9_n6psx")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_8dsnc"]
 script = ExtResource("4_f7e3a")
@@ -467,14 +473,17 @@ layer_4/tile_data = PackedInt32Array()
 [node name="GroundItem" parent="TileMap" instance=ExtResource("3_480b4")]
 position = Vector2(1720, 48)
 pickedUpItem = SubResource("Resource_v7jof")
+saveName = "ht_east_river"
 
 [node name="GroundItem2" parent="TileMap" instance=ExtResource("3_480b4")]
 position = Vector2(568, 200)
 pickedUpItem = SubResource("Resource_ospg2")
+saveName = "ht_east_stick"
 
 [node name="GroundItem3" parent="TileMap" instance=ExtResource("3_480b4")]
 position = Vector2(648, 1080)
 pickedUpItem = SubResource("Resource_jk4k7")
+saveName = "ht_east_sword"
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_v6gsi")]
 position = Vector2(254, 102)
@@ -588,7 +597,8 @@ shape = SubResource("RectangleShape2D_x5yjw")
 [node name="MushroomGrottoWarpZone" parent="." instance=ExtResource("3_xsjvu")]
 position = Vector2(608, 1187)
 mapName = "mushroom_grotto"
-warpEnabled = false
+mapPos = Vector2(592, -476)
+useHorizontalOffset = true
 
 [node name="WarpArea" parent="MushroomGrottoWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_geesu")
@@ -668,6 +678,7 @@ shape = SubResource("RectangleShape2D_wq0ev")
 [node name="UnfinishedSCutsceneTrigger" parent="." instance=ExtResource("4_di4ud")]
 position = Vector2(615, 1168)
 cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("12_1so7l")])
+disabled = true
 
 [node name="CollisionShape2D" parent="UnfinishedSCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_qf5xs")

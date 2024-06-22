@@ -13,7 +13,6 @@ choiceBtn = "Hold on..."
 repeatsItem = false
 buttonDims = Vector2(220, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_uia7v"]
@@ -23,7 +22,6 @@ leadsTo = ExtResource("3_ps2ui")
 repeatsItem = false
 buttonDims = Vector2(300, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_m00ba"]
@@ -33,7 +31,6 @@ leadsTo = ExtResource("2_hk8so")
 repeatsItem = false
 buttonDims = Vector2(260, 40)
 turnsInQuest = "Protect the Convoy#Is This War?"
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_60efa"]
@@ -52,12 +49,14 @@ prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("2_d1wvm")

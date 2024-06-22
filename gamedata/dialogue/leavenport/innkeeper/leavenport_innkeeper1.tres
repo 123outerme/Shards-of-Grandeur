@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://r4jmy0mxrwbn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://r4jmy0mxrwbn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gfnvw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jp7ey"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nf34q"]
 [ext_resource type="Resource" uid="uid://caul65lodxx0d" path="res://gamedata/dialogue/leavenport/innkeeper/leavenport_innkeeper_rest.tres" id="2_ufplw"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="3_4p5am"]
 
 [sub_resource type="Resource" id="Resource_hqsis"]
 script = ExtResource("1_gfnvw")
@@ -11,7 +12,6 @@ choiceBtn = "No Thanks"
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_3e4vh"]
@@ -21,23 +21,22 @@ leadsTo = ExtResource("2_ufplw")
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = false
 
-[sub_resource type="Resource" id="Resource_wtd1c"]
-script = ExtResource("1_gfnvw")
+[sub_resource type="Resource" id="Resource_nbxgu"]
+script = ExtResource("3_4p5am")
+opensShop = true
 choiceBtn = "Shop"
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
-opensShop = true
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_8tlei"]
 script = ExtResource("1_nf34q")
 lines = Array[String](["Hello, welcome to the Leavenport Inn. We can rent you a room, if you wish to rest here. If you need any basic supplies, we carry some of the essentials!"])
 animation = "talk"
-choices = Array[ExtResource("1_gfnvw")]([SubResource("Resource_hqsis"), SubResource("Resource_3e4vh"), SubResource("Resource_wtd1c")])
+choices = Array[ExtResource("1_gfnvw")]([SubResource("Resource_hqsis"), SubResource("Resource_3e4vh"), SubResource("Resource_nbxgu")])
 
 [resource]
 script = ExtResource("1_jp7ey")

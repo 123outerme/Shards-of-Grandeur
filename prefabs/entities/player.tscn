@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=18 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="7_afh8o"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="8_cq6oo"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="9_n4log"]
+[ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
 size = Vector2(13.5, 4)
@@ -202,6 +203,10 @@ isPlayer = true
 visible = false
 position = Vector2(-640, -360)
 
+[node name="OverworldConsole" parent="UI" instance=ExtResource("15_u1tpv")]
+visible = false
+position = Vector2(-640, -360)
+
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
@@ -215,3 +220,4 @@ position = Vector2(-640, -360)
 [connection signal="back_pressed" from="UI/StatsPanelNode" to="." method="_on_stats_panel_node_back_pressed"]
 [connection signal="back_pressed" from="UI/StatsPanelNode" to="UI/InventoryPanelNode" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="UI/PauseMenu" to="." method="_on_pause_menu_resume_game"]
+[connection signal="console_closed" from="UI/OverworldConsole" to="." method="_on_overworld_console_console_closed"]

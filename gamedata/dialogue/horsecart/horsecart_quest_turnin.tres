@@ -11,7 +11,6 @@ choiceBtn = "(Don't Give)"
 repeatsItem = false
 buttonDims = Vector2(200, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_cxc1e"]
@@ -20,7 +19,6 @@ choiceBtn = "(Give)"
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = "Hay is For Horses#Hay There"
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_13chl"]
@@ -40,12 +38,14 @@ prereqDialogues = Array[String](["horse_cart_standstill#1"])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("1_c3247")

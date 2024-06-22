@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://coqeee0n1wuob"]
+
+[ext_resource type="Script" path="res://scripts/overworld/interactable_decoration.gd" id="1_cxfgm"]
+[ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="1_o5wg0"]
+[ext_resource type="SpriteFrames" uid="uid://dwc8py4u2ei65" path="res://graphics/ui/a_interact_icon.tres" id="3_a2871"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdqs"]
+size = Vector2(17, 17)
+
+[node name="InteractableDecoration" type="Area2D" groups=["Interactable"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_cxfgm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mfdqs")
+
+[node name="AnimatedDecoration" parent="." instance=ExtResource("1_o5wg0")]
+
+[node name="InteractSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = ExtResource("3_a2871")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+
+[editable path="AnimatedDecoration"]

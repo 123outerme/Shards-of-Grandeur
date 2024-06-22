@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=14 format=3 uid="uid://d3kk3dviteboh"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=15 format=3 uid="uid://d3kk3dviteboh"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_v3g1w"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_5yojq"]
@@ -24,12 +24,14 @@ prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_xt4j7"]
 script = ExtResource("3_3kv6q")
@@ -48,12 +50,14 @@ prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_ljvhx"]
 script = ExtResource("3_3kv6q")
@@ -62,8 +66,28 @@ sinceVersion = "0.1.0"
 item = ExtResource("6_u1cor")
 count = 1
 
+[sub_resource type="Resource" id="Resource_bpgcg"]
+script = ExtResource("5_0jk3l")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
 [sub_resource type="Resource" id="Resource_8kv86"]
 script = ExtResource("3_3kv6q")
+storyRequirements = SubResource("Resource_bpgcg")
 sinceVersion = "0.1.0"
 item = ExtResource("7_d72ul")
 count = 1

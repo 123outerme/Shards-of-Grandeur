@@ -12,7 +12,6 @@ choiceBtn = "Wait..."
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_s2dxt"]
@@ -22,7 +21,6 @@ leadsTo = ExtResource("2_ve5e5")
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = "War is Declared#It's Gone?"
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_f3s76"]
@@ -48,12 +46,14 @@ prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_hyx34"]
 script = ExtResource("1_r7g25")
@@ -63,7 +63,6 @@ leadsTo = SubResource("Resource_ouii1")
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
-opensShop = false
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_ergge"]

@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://c2obob7w8r46f" path="res://gamedata/shops/leavenport/leavenport_inn_store.tres" id="5_nc1s1"]
 [ext_resource type="SpriteFrames" uid="uid://dwey0atg51hb0" path="res://graphics/animations/a_innkeeper2.tres" id="7_ahn2y"]
 
-[sub_resource type="Resource" id="Resource_oox1y"]
+[sub_resource type="Resource" id="Resource_ikekq"]
 script = ExtResource("4_3m61i")
 saveName = "npc"
 animation = "stand"
@@ -78,10 +78,10 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="Innkeeper" parent="TileMap" instance=ExtResource("3_64jd5")]
 position = Vector2(29, -78)
-displayName = "leavenport_innkeeper"
-saveName = "Innkeeper"
+displayName = "Innkeeper"
+saveName = "leavenport_innkeeper"
 loadFlipH = true
-data = SubResource("Resource_oox1y")
+data = SubResource("Resource_ikekq")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_bh1km")])
 hasShop = true
 npcShop = ExtResource("5_nc1s1")
@@ -105,6 +105,8 @@ visible = false
 
 [node name="WarpZone" parent="." instance=ExtResource("3_quoci")]
 position = Vector2(-8.5, 18)
+mapName = "leavenport"
+mapPos = Vector2(743, 296)
 
 [node name="UpstairsWarpZone" parent="." instance=ExtResource("3_quoci")]
 position = Vector2(-71, -42)

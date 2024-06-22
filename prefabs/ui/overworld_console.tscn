@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7ltlhbnu5jgp"]
+
+[ext_resource type="Script" path="res://scripts/menus/overworld_console.gd" id="1_sjx0r"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_1uf0e"]
+
+[node name="OverworldConsole" type="Node2D"]
+script = ExtResource("1_sjx0r")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConsoleTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("2_1uf0e")
+bbcode_enabled = true
+text = "[center]Overworld Console[/center]"
+fit_content = true
+
+[node name="ConsoleOutput" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26"
+
+[node name="LineEdit" type="LineEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Type here... Type \"exit\" to exit. Type \"help\" for a list of commands."
+context_menu_enabled = false
+caret_blink = true
+caret_mid_grapheme = true
+
+[connection signal="gui_input" from="Panel/LineEdit" to="." method="_on_line_edit_gui_input"]
+[connection signal="text_submitted" from="Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]

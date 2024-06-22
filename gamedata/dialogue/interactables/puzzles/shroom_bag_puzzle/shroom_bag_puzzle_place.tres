@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://by0c0k5yxplr5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0dn70"]
+[ext_resource type="Resource" uid="uid://ck4mdnbm5fw10" path="res://gamedata/items/key_items/shroom_bag_full.tres" id="1_oixag"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_y2pmb"]
+
+[sub_resource type="Resource" id="Resource_ad5g8"]
+script = ExtResource("1_0dn70")
+lines = Array[String](["Ok, set it down, and...", "Wait a minute, does it look like it's full now?"])
+animation = "bag_placed"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[sub_resource type="Resource" id="Resource_gatt6"]
+script = ExtResource("1_0dn70")
+lines = Array[String](["...", "It IS full!! I just set it down... that's so weird!"])
+animation = "remove_bag"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_y2pmb")
+entryId = ""
+items = Array[ExtResource("1_0dn70")]([SubResource("Resource_ad5g8"), SubResource("Resource_gatt6")])
+givesItem = ExtResource("1_oixag")
+closesDialogue = false
+fullHealsPlayer = false
