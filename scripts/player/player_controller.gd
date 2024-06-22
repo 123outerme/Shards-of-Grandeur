@@ -452,9 +452,6 @@ func pick_up(groundItem: GroundItem):
 	if groundItem.pickedUpItem.wasPickedUp:
 		#PlayerResources.playerInfo.pickedUpItems.append(groundItem.saveName)
 		groundItem.visible = false
-		if PlayerResources.questInventory.can_start_quest(groundItem.startsQuest):
-			PlayerResources.questInventory.accept_quest(groundItem.startsQuest)
-			cam.show_alert('Started Quest:\n' + groundItem.startsQuest.questName)
 	
 	groundItem.pickedUpItem.savedTextIdx = 0
 	play_animation('stand')
@@ -660,6 +657,24 @@ func equip_to_combatant_helper(stats: Stats):
 	menu_closed()
 	inventoryPanel.toggle()
 
+func level_up(newLevels: int):
+	if newLevels == 0:
+		return
+	
+	if inventoryPanel.visible and inventoryPanel.itemUsePanel.visible:
+		await inventoryPanel.item_use_panel_closed # open the level up panel after the use panel is closed
+	
+	statsPanel.levelUp = true
+	statsPanel.newLvs = newLevels
+	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
+	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+	statsPanel.isPlayer = true
+	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused
+	inventoryPanel.visible = false
+	questsPanel.visible = false
+	statsPanel.visible = false # show stats panel for sure
+	statsPanel.toggle()
+
 func _on_stats_panel_node_back_pressed():
 	if statsPanel.levelUp and questsPanel.visible:
 		questsPanel.toggle()
@@ -680,18 +695,7 @@ func _on_quests_panel_node_turn_in_step_to(saveName):
 		talkNPC.fetch_quest_dialogue_info()
 
 func _on_quests_panel_node_level_up(newLevels: int):
-	if newLevels == 0:
-		return
-	statsPanel.levelUp = true
-	statsPanel.newLvs = newLevels
-	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
-	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
-	statsPanel.isPlayer = true
-	SceneLoader.pause_autonomous_movers() # make sure autonomous movers are paused
-	inventoryPanel.visible = false
-	questsPanel.visible = false
-	statsPanel.visible = false # show stats panel for sure
-	statsPanel.toggle()
+	level_up(newLevels)
 
 func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
 	if not inCutscene:

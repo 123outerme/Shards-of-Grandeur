@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://jd1wpl7yeja0"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=7 format=3 uid="uid://jd1wpl7yeja0"]
 
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="1_70jid"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="1_jwy41"]
 [ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain/stamina_drain.tres" id="2_2js5g"]
-[ext_resource type="Resource" uid="uid://ddvnewdtettic" path="res://gamedata/moves/silent_strike/silent_strike.tres" id="3_4qla1"]
 [ext_resource type="Resource" uid="uid://eq5onf8hmiau" path="res://gamedata/moves/venom_strike/venom_strike.tres" id="4_7xus1"]
+[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="4_p2lln"]
+[ext_resource type="Resource" uid="uid://dtf1txvaxx3vc" path="res://gamedata/moves/druidic_pulse/druidic_pulse.tres" id="5_whunl"]
 
 [resource]
 script = ExtResource("1_jwy41")
-pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_70jid"), ExtResource("2_2js5g"), ExtResource("3_4qla1"), ExtResource("4_7xus1")])
+pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_70jid"), ExtResource("2_2js5g"), ExtResource("4_7xus1"), ExtResource("4_p2lln"), ExtResource("5_whunl")])
 preferredMove1Role = 1
 preferredMove2Role = 2
 preferredMove3Role = 4

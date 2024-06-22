@@ -3,7 +3,8 @@ class_name KeyItem
 
 enum KeyItemType {
 	STORY_ITEM = 0,
-	TELEPORT_STONE = 1
+	TELEPORT_STONE = 1,
+	EXP_ITEM = 2,
 }
 
 @export var keyItemType: KeyItemType = KeyItemType.STORY_ITEM
@@ -38,6 +39,9 @@ func get_effect_text(inBattle: bool = true) -> String:
 	return effectText
 
 func get_as_key_item_type():
-	if keyItemType == KeyItemType.TELEPORT_STONE:
-		return self as TeleportStone
+	match keyItemType:
+		KeyItemType.TELEPORT_STONE:
+			return self as TeleportStone
+		KeyItemType.EXP_ITEM:
+			return self as ExpItem
 	return self

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://dg5eb4c64m3nj"]
+
+[ext_resource type="Texture2D" uid="uid://dnosmvagimhp4" path="res://graphics/items/healing/mushroom.png" id="1_ttwt8"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_xg51n"]
+
+[resource]
+script = ExtResource("1_xg51n")
+healBy = 70
+statusStrengthHeal = 2
+itemSprite = ExtResource("1_ttwt8")
+itemName = "Mushroom"
+itemType = 0
+itemDescription = "It looks like a Shroom Gnome, but smaller, and without eyes. Eating it will cure Potent Status Effects and restore some health too!"
+cost = 6
+maxCount = 30
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

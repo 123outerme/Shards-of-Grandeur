@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bsx15gtbnpwml"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://bsx15gtbnpwml"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ip5u1"]
 [ext_resource type="Resource" uid="uid://d0uia2okt4moc" path="res://gamedata/combatants/blob/blob_rewards.tres" id="1_l26v3"]
@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://cjvy7bpksrpdn" path="res://gamedata/combatants/blob/blob_sprite.tres" id="5_s7s05"]
 [ext_resource type="Resource" uid="uid://di8ocnjfrgra7" path="res://gamedata/combatants/blob/blob_equipment.tres" id="6_cushu"]
 [ext_resource type="Resource" uid="uid://dq2jf25b6suci" path="res://gamedata/combatants/blob/blob_movepool.tres" id="6_dk1gx"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_string.gd" id="7_ykau4"]
 [ext_resource type="Resource" uid="uid://ws05wh4xvnis" path="res://gamedata/combatants/blob/blob_stat_growth.tres" id="8_88ku6"]
 
 [sub_resource type="Resource" id="Resource_aybo8"]
@@ -28,21 +27,6 @@ statGrowth = ExtResource("8_88ku6")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("6_dk1gx")
 
-[sub_resource type="Resource" id="Resource_go75j"]
-script = ExtResource("7_ykau4")
-string = "blob"
-weight = 0.35
-
-[sub_resource type="Resource" id="Resource_le05c"]
-script = ExtResource("7_ykau4")
-string = "cloud_gull"
-weight = 0.45
-
-[sub_resource type="Resource" id="Resource_vw8se"]
-script = ExtResource("7_ykau4")
-string = ""
-weight = 0.2
-
 [resource]
 script = ExtResource("1_ip5u1")
 sprite = ExtResource("5_s7s05")
@@ -61,7 +45,6 @@ strategy = 1
 aiOverrideWeight = 0.25
 moveEffectiveness = ExtResource("2_kfjnm")
 weightedEquipment = ExtResource("6_cushu")
-teamTable = Array[ExtResource("7_ykau4")]([SubResource("Resource_go75j"), SubResource("Resource_le05c"), SubResource("Resource_vw8se")])
 dropTable = ExtResource("1_l26v3")
 innateStatCategories = Array[int]([1, 2])
 downed = false

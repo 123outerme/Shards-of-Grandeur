@@ -4,6 +4,7 @@ class_name InventoryMenu
 signal item_used(slot: InventorySlot)
 signal open_stats(combatant: Combatant)
 signal back_pressed
+signal item_use_panel_closed
 signal learn_shard_tutorial_finished
 
 @export_category("InventoryPanel - Filters")
@@ -427,6 +428,7 @@ func _on_item_used(slot: InventorySlot):
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
+	item_use_panel_closed.emit()
 	if inShardLearnTutorial:
 		inShardLearnTutorial = false
 		shardTutorialSlotPanel = null

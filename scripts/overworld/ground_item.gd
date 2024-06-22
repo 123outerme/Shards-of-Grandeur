@@ -1,11 +1,15 @@
 extends Interactable
 class_name GroundItem
 
+## don't fill in the `dialogue` property of GroundItem, leave it blank and use `pickedUpItem` instead. 
 @export var pickedUpItem: PickedUpItem = null
+## the texture the GroundItem will appear as. If null, uses the texture of the Item
 @export var disguiseSprite: Texture = null
+## if one of these requirements passes (or if there are no requirements), the item will appear
 @export var storyRequirements: Array[StoryRequirements] = []
-@export var startsQuest: Quest = null
+## if true, the item will be invisible on the ground (except for particles)
 @export var invisible: bool = false
+## define up to 4 particle textures to be emitted to draw attention to the item. If empty, default gold particles will appear
 @export var particleTextures: Array[Texture2D] = []
 
 @onready var sprite: Sprite2D = get_node('Sprite2D')
@@ -17,8 +21,8 @@ var disabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if pickedUpItem == null or pickedUpItem.item == null:
-		printerr('GroundItem ERR: no item defined')
+	if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null:
+		printerr('GroundItem ERR: PickedUpItem not defined properly')
 		queue_free()
 	
 	_story_reqs_updated()

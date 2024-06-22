@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://juq8847hl56c"]
+[gd_scene load_steps=76 format=3 uid="uid://juq8847hl56c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajihy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_x0la4"]
@@ -12,6 +12,21 @@
 [ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="7_u3ss7"]
 [ext_resource type="Resource" uid="uid://dtpatqhw4hmfi" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle1.tres" id="7_wqnk3"]
 [ext_resource type="Resource" uid="uid://msrja6h8nj2y" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_solved.tres" id="9_ej3x3"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="11_jehcq"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="12_glhvx"]
+[ext_resource type="Resource" uid="uid://dgp466c3yurmf" path="res://gamedata/dialogue/interactables/ground_items/mushroom_grotto/ground_shroom.tres" id="12_s44kb"]
+[ext_resource type="Resource" uid="uid://dg5eb4c64m3nj" path="res://gamedata/items/healing/mushroom.tres" id="12_stl3j"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="12_ufwox"]
+[ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="13_8526p"]
+[ext_resource type="Resource" uid="uid://ca8mmu0qg4nkf" path="res://gamedata/combatants/shroom_lizard/shroom_lizard.tres" id="13_yxvax"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="14_e43t0"]
+[ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="14_pr2nn"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="15_dgyt7"]
+[ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard.tres" id="15_s6o02"]
+[ext_resource type="Resource" uid="uid://dpbimvvargjw0" path="res://gamedata/dialogue/interactables/ground_items/mushroom_grotto/ground_memory_shard.tres" id="15_wfg5x"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="16_5uw6k"]
+[ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="24_4qonj"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="25_dnjs2"]
 
 [sub_resource type="Resource" id="Resource_16kas"]
 script = ExtResource("4_7ol7v")
@@ -53,6 +68,24 @@ size = Vector2(7, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfpkn"]
 size = Vector2(18, 13)
 
+[sub_resource type="Resource" id="Resource_gvftn"]
+script = ExtResource("12_glhvx")
+item = ExtResource("12_stl3j")
+wasPickedUp = false
+speaker = "@"
+dialogueEntry = ExtResource("12_s44kb")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_uca2o"]
+script = ExtResource("12_glhvx")
+item = ExtResource("15_s6o02")
+wasPickedUp = false
+speaker = "@"
+dialogueEntry = ExtResource("15_wfg5x")
+savedItemIdx = 0
+savedTextIdx = 0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 vertices = PackedVector2Array(-327, 87, -327, 124, -329, 124, -329, 108, -345, 87, -345, 108, -231, 103, -231, 108, -247, 108, -249, 103, -249, 124, -247, 124, -311, 60, -313, 60, -313, 39, -311, 39, -279, 76, -281, 76, -281, 55, -279, 55, 57, 92, 39, 92, 39, 71, 57, 71, 569, 7, 585, 7, 585, 28, 567, 28, 567, 12, 551, 12, 551, -9, 569, -9, 681, 39, 697, 39, 697, 55, 663, 44, 713, 55, 713, 60, 697, 60, 697, 76, 663, 76, 631, 44, 631, 23, 681, 23, -199, 60, -217, 60, -217, 23, -199, 23, -663, 28, -681, 28, -681, 7, -663, 7, -631, -20, -633, -20, -633, -41, -631, -41, 489, -57, 505, -57, 505, -36, 489, -36, 489, -20, 487, -20, 487, -36, 487, -57, 471, -36, 471, -57, 489, -73, 487, -73, -631, -180, -631, -164, -633, -164, -633, -185, -617, -185, -599, -180, -599, -201, -617, -201, 169, -164, 167, -164, 167, -185, 169, -185, 39, -233, 57, -233, 57, -212, 41, -212, 39, -217, 41, -196, 39, -196, 39, -212, 7, -212, 7, -217, 201, -233, 201, -212, 199, -212, 199, -228, 183, -233, 183, -228, 713, -212, 711, -212, 711, -217, 713, -217, -359, -249, -359, -228, -361, -228, -361, -244, -375, -249, -377, -244, -377, -265, -375, -265, 681, -244, 663, -244, 663, -249, 681, -249, 713, -244, 711, -244, 711, -249, 713, -249, -119, -292, -121, -292, -121, -297, -119, -297, 201, -297, 201, -276, 185, -276, 167, -297, 185, -260, 183, -260, 183, -276, 167, -276, -551, -276, -569, -276, -569, -281, -553, -281, -551, -297, -553, -297, 281, -297, 281, -292, 265, -292, 263, -297, 263, -276, 265, -276, 441, -276, 439, -276, 439, -281, 441, -281, 345, -313, 345, -308, 329, -308, 327, -313, 327, -292, 329, -292, 729, -329, 729, -308, 727, -308, 727, -324, 711, -329, 711, -324, -439, -361, -423, -361, -423, -340, -439, -340, -439, -324, -441, -324, -441, -377, -439, -377, 313, -345, 313, -324, 311, -324, 311, -340, 295, -345, 295, -340, 457, -324, 455, -324, 455, -345, 457, -345, -615, -340, -633, -340, -633, -361, -615, -361, 729, -356, 727, -356, 727, -377, 729, -377, 377, -388, 375, -388, 375, -425, 377, -425, 455, -455, 473, -452, 457, -452, 455, -436, 457, -436, -439, 44, -439, 92, -471, 92, -486, 70, -492, 54, 137, -457, 153, -457, 153, -441, 121, -388, 185, -441, 185, -436, 169, -436, 169, -404, 153, -404, 153, -388, 87, -441, 121, -372, 73, -372, -121, -425, -121, -441, 73, -356, 71, -356, 71, -372, 25, -372, 25, -356, 7, -356, 7, -372, -153, -409, -103, -372, -103, -356, -151, -356, -185, -393, -185, -409, -233, -361, -217, -377, -151, -276, -167, -276, -249, -329, -167, -244, -183, -244, -265, -249, -265, -329, -297, -68, -183, -169, -135, -169, -135, -153, -281, -52, -297, -52, -103, -153, -103, -89, -87, -89, -87, -57, -105, -20, -281, -20, 105, 28, 71, -57, 71, -89, 87, -89, 121, -4, 121, 28, 87, -121, 105, -121, 105, -105, 135, -105, 135, -121, 199, -121, 215, -4, 199, -137, 231, -137, 281, -84, 281, -25, 231, 28, 231, -153, 247, -153, 247, -180, 231, -180, 231, -185, 295, -185, 295, -217, 455, -217, 345, -100, 455, -233, 471, -233, 487, -265, 487, -281, 489, -281, 489, -260, 473, -260, 471, -265, 473, -233, 503, -233, 503, -249, 519, -249, 601, -212, 569, -132, 505, -116, 503, -308, 487, -308, 487, -313, 505, -313, 505, -297, 503, -292, 519, -292, 521, -297, 521, -281, 551, -281, 551, -377, 633, -377, 633, -361, 663, -361, 663, -377, 665, -377, 665, -340, 633, -340, 633, -260, 617, -260, 617, -212, 601, -132, 569, -116, 505, -100, 345, -84, 329, -25, 329, 23, 295, 76, 233, 76, 441, 23, 441, 39, 295, 92, 473, 39, 473, 55, 457, 76, 489, 55, 489, 76, 457, 92, 169, 92, 169, 108, 151, 108, 151, 92, 119, 92, 119, 87, 151, 87, 153, 87, 151, 71, 153, 71, 231, 87, 233, 92, 215, 28, 105, 44, -89, 44, -89, 12, -105, 12, -313, -68, -313, -84, -281, -153, -391, -84, -391, -68, -407, -68, -521, -121, -505, -153, -393, -169, -407, -36, -423, -36, -423, 44, -471, 108, -487, 108, -518, 70, -487, 124, -489, 124, -489, 108, -569, 108, -569, 92, -585, 92, -585, 60, -518, 55, -601, 60, -601, 39, -585, 39, -585, -25, -569, -25, -511, 48, -569, -89, -553, -89, -498, 48, -553, -121, -521, -153, -505, -169, -393, -185, -375, -185, -375, -153, -281, -249, -249, -361, -233, -377, -217, -393, -153, -425, 87, -457, 103, -457, 103, -473, 137, -473)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 9, 8, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(24, 25, 26, 27, 28), PackedInt32Array(28, 29, 30, 31, 24), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(34, 36, 37, 38), PackedInt32Array(38, 39, 40, 35), PackedInt32Array(34, 38, 35), PackedInt32Array(35, 41, 42, 43, 32), PackedInt32Array(44, 45, 46, 47), PackedInt32Array(48, 49, 50, 51), PackedInt32Array(52, 53, 54, 55), PackedInt32Array(56, 57, 58, 59), PackedInt32Array(59, 60, 61, 62), PackedInt32Array(56, 59, 62, 63), PackedInt32Array(62, 64, 65, 63), PackedInt32Array(66, 56, 63, 67), PackedInt32Array(68, 69, 70, 71), PackedInt32Array(68, 71, 72, 73), PackedInt32Array(74, 73, 72, 75), PackedInt32Array(76, 77, 78, 79), PackedInt32Array(80, 81, 82, 83, 84), PackedInt32Array(83, 85, 86, 87), PackedInt32Array(84, 83, 87), PackedInt32Array(84, 87, 88, 89), PackedInt32Array(90, 91, 92, 93), PackedInt32Array(94, 90, 93, 95), PackedInt32Array(96, 97, 98, 99), PackedInt32Array(100, 101, 102, 103), PackedInt32Array(104, 100, 103, 105), PackedInt32Array(104, 105, 106, 107), PackedInt32Array(108, 109, 110, 111), PackedInt32Array(112, 113, 114, 115), PackedInt32Array(116, 117, 118, 119), PackedInt32Array(120, 121, 122, 123), PackedInt32Array(122, 124, 125, 126), PackedInt32Array(123, 122, 126), PackedInt32Array(123, 126, 127), PackedInt32Array(128, 129, 130, 131), PackedInt32Array(132, 128, 131, 133), PackedInt32Array(134, 135, 136, 137), PackedInt32Array(138, 137, 136, 139), PackedInt32Array(140, 141, 142, 143), PackedInt32Array(144, 145, 146, 147), PackedInt32Array(148, 147, 146, 149), PackedInt32Array(150, 151, 152, 153), PackedInt32Array(154, 150, 153, 155), PackedInt32Array(156, 157, 158, 159), PackedInt32Array(159, 160, 161, 162), PackedInt32Array(156, 159, 162), PackedInt32Array(163, 156, 162), PackedInt32Array(164, 165, 166, 167), PackedInt32Array(168, 164, 167, 169), PackedInt32Array(170, 171, 172, 173), PackedInt32Array(174, 175, 176, 177), PackedInt32Array(178, 179, 180, 181), PackedInt32Array(182, 183, 184, 185), PackedInt32Array(186, 187, 188), PackedInt32Array(189, 186, 188, 190), PackedInt32Array(191, 192, 193, 194, 195), PackedInt32Array(196, 197, 198, 199), PackedInt32Array(198, 200, 201, 202), PackedInt32Array(202, 203, 204, 198), PackedInt32Array(204, 205, 199), PackedInt32Array(206, 199, 207, 208, 209, 210), PackedInt32Array(208, 211, 212, 213), PackedInt32Array(214, 215, 216, 217), PackedInt32Array(218, 219, 220, 221, 222, 223), PackedInt32Array(224, 225, 222, 221, 226, 227, 228), PackedInt32Array(228, 227, 229, 230, 231, 232), PackedInt32Array(233, 234, 235, 236, 237, 238), PackedInt32Array(236, 239, 240, 237), PackedInt32Array(237, 240, 241, 242, 243, 244), PackedInt32Array(245, 246, 247, 248, 249, 250), PackedInt32Array(248, 251, 252, 253), PackedInt32Array(254, 255, 256), PackedInt32Array(257, 256, 258, 259, 260, 261, 262), PackedInt32Array(259, 263, 264, 260), PackedInt32Array(265, 266, 267, 268), PackedInt32Array(268, 269, 270, 271), PackedInt32Array(270, 272, 273), PackedInt32Array(274, 275, 276, 277), PackedInt32Array(274, 277, 278, 279), PackedInt32Array(273, 279, 278, 280), PackedInt32Array(281, 282, 283, 284, 285, 286), PackedInt32Array(287, 288, 289, 290), PackedInt32Array(287, 290, 291, 292), PackedInt32Array(293, 292, 291, 294), PackedInt32Array(293, 294, 295, 283), PackedInt32Array(296, 297, 298, 299), PackedInt32Array(300, 301, 302, 303), PackedInt32Array(300, 303, 304, 299), PackedInt32Array(296, 299, 304), PackedInt32Array(296, 304, 305, 306), PackedInt32Array(296, 306, 307, 284, 283, 295), PackedInt32Array(284, 308, 285), PackedInt32Array(285, 309, 286), PackedInt32Array(273, 280, 286, 310, 271, 270), PackedInt32Array(265, 268, 271, 311, 260, 264), PackedInt32Array(262, 261, 312, 313, 314, 315), PackedInt32Array(313, 316, 317, 318, 314), PackedInt32Array(317, 319, 320, 321, 318), PackedInt32Array(320, 322, 323, 321), PackedInt32Array(321, 324, 318), PackedInt32Array(325, 326, 327, 328), PackedInt32Array(328, 329, 330, 331), PackedInt32Array(325, 328, 331, 332), PackedInt32Array(331, 333, 334, 332), PackedInt32Array(325, 332, 335, 336), PackedInt32Array(315, 336, 335, 262), PackedInt32Array(262, 337, 257), PackedInt32Array(246, 245, 338, 339, 340, 242), PackedInt32Array(340, 341, 243, 242), PackedInt32Array(234, 233, 342, 343, 344), PackedInt32Array(345, 346, 347, 348, 349, 350), PackedInt32Array(347, 351, 352, 348), PackedInt32Array(352, 353, 191), PackedInt32Array(194, 193, 354, 355, 356), PackedInt32Array(355, 357, 358, 359), PackedInt32Array(359, 360, 361, 356), PackedInt32Array(356, 361, 362, 363, 364), PackedInt32Array(363, 365, 366, 367, 364), PackedInt32Array(364, 367, 368, 369, 370), PackedInt32Array(369, 371, 372, 373, 370), PackedInt32Array(195, 373, 372, 374, 348, 352, 191), PackedInt32Array(348, 375, 349), PackedInt32Array(349, 376, 350), PackedInt32Array(350, 377, 378, 379, 345), PackedInt32Array(234, 344, 380, 231, 230), PackedInt32Array(228, 381, 224), PackedInt32Array(224, 382, 225), PackedInt32Array(225, 383, 222), PackedInt32Array(219, 218, 384, 209, 217), PackedInt32Array(206, 385, 386, 199), PackedInt32Array(386, 387, 388, 196, 199), PackedInt32Array(280, 281, 286), PackedInt32Array(356, 355, 359), PackedInt32Array(256, 257, 249, 254), PackedInt32Array(253, 254, 249, 248), PackedInt32Array(198, 204, 199), PackedInt32Array(209, 208, 213), PackedInt32Array(209, 213, 214), PackedInt32Array(209, 214, 217), PackedInt32Array(379, 344, 343, 345)])
@@ -79,6 +112,193 @@ parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
+
+[sub_resource type="Resource" id="Resource_fmrvr"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_1"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_usfdw"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_pd32i"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_n6a3j"]
+script = ExtResource("15_dgyt7")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_dys7r"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("16_5uw6k")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_vqvoc"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_lqi1m"]
+script = ExtResource("15_dgyt7")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_4scpq"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 7
+combatantsMaxLevel = 20
+combatantsLvToPlayerLvRatio = 0.95
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_usfdw"), SubResource("Resource_pd32i"), SubResource("Resource_n6a3j")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_dys7r"), SubResource("Resource_vqvoc"), SubResource("Resource_lqi1m")])
+combatant1 = ExtResource("13_yxvax")
+specialRules = 0
+customWinText = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sbu"]
+size = Vector2(146, 105)
+
+[sub_resource type="Resource" id="Resource_f3udq"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_2"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_lvgps"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_tvom7"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_kihof"]
+script = ExtResource("15_dgyt7")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_47bet"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_bwqu8"]
+script = ExtResource("15_dgyt7")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_tc1yl"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 7
+combatantsMaxLevel = 20
+combatantsLvToPlayerLvRatio = 0.95
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_lvgps"), SubResource("Resource_tvom7"), SubResource("Resource_kihof")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_47bet"), SubResource("Resource_bwqu8")])
+combatant1 = ExtResource("16_5uw6k")
+specialRules = 0
+customWinText = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8m7g"]
+size = Vector2(184, 115)
+
+[sub_resource type="Resource" id="Resource_etjs4"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_3"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_8tx8h"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_kecs8"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("24_4qonj")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_8as1t"]
+script = ExtResource("15_dgyt7")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_ja647"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("25_dnjs2")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_0wdub"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("16_5uw6k")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_yerqv"]
+script = ExtResource("15_dgyt7")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_o2ca8"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 8
+combatantsMaxLevel = 22
+combatantsLvToPlayerLvRatio = 1.05
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_8tx8h"), SubResource("Resource_kecs8"), SubResource("Resource_8as1t")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_ja647"), SubResource("Resource_0wdub"), SubResource("Resource_yerqv")])
+combatant1 = ExtResource("14_pr2nn")
+specialRules = 0
+customWinText = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o26et"]
+size = Vector2(159, 165)
+
+[sub_resource type="Resource" id="Resource_nt13d"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_4"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_8ul3h"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_8ngyb"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_f27w8"]
+script = ExtResource("15_dgyt7")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_o2x08"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("16_5uw6k")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_mkexj"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("25_dnjs2")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_llw6u"]
+script = ExtResource("15_dgyt7")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_tsk8t"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 8
+combatantsMaxLevel = 22
+combatantsLvToPlayerLvRatio = 1.1
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_8ul3h"), SubResource("Resource_8ngyb"), SubResource("Resource_f27w8")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_o2x08"), SubResource("Resource_mkexj"), SubResource("Resource_llw6u")])
+combatant1 = ExtResource("13_yxvax")
+specialRules = 0
+customWinText = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u11xh"]
+size = Vector2(177, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wexlf"]
 size = Vector2(96, 8)
@@ -127,6 +347,16 @@ shape = SubResource("RectangleShape2D_h7q4j")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_lfpkn")
 
+[node name="MushroomGroundItem" parent="TileMap" instance=ExtResource("11_jehcq")]
+position = Vector2(390, 63)
+pickedUpItem = SubResource("Resource_gvftn")
+saveName = "shroom_grotto_shroom"
+
+[node name="MemoryShardGroundItem" parent="TileMap" instance=ExtResource("11_jehcq")]
+position = Vector2(134, -442)
+pickedUpItem = SubResource("Resource_uca2o")
+saveName = "shroom_grotto_memshard"
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
@@ -140,6 +370,46 @@ navigation_layers = 2
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(570, -236)
+spawnerData = SubResource("Resource_fmrvr")
+enemyEncounter = SubResource("Resource_4scpq")
+tilemap = NodePath("../TileMap")
+
+[node name="SpawnShape" parent="EnemySpawner/SpawnArea" index="0"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_f3sbu")
+
+[node name="EnemySpawner2" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(199, -94)
+spawnerData = SubResource("Resource_f3udq")
+enemyEncounter = SubResource("Resource_tc1yl")
+tilemap = NodePath("../TileMap")
+
+[node name="SpawnShape" parent="EnemySpawner2/SpawnArea" index="0"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_v8m7g")
+
+[node name="EnemySpawner3" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(-160, -84)
+spawnerData = SubResource("Resource_etjs4")
+enemyEncounter = SubResource("Resource_o2ca8")
+tilemap = NodePath("../TileMap")
+
+[node name="SpawnShape" parent="EnemySpawner3/SpawnArea" index="0"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_o26et")
+
+[node name="EnemySpawner4" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(-181, -366)
+spawnerData = SubResource("Resource_nt13d")
+enemyEncounter = SubResource("Resource_tsk8t")
+tilemap = NodePath("../TileMap")
+
+[node name="SpawnShape" parent="EnemySpawner4/SpawnArea" index="0"]
+position = Vector2(1.5, -2.5)
+shape = SubResource("RectangleShape2D_u11xh")
 
 [node name="HilltopEastWarpZone" parent="." instance=ExtResource("3_8xw1n")]
 position = Vector2(592, -495)
@@ -163,5 +433,9 @@ position = Vector2(0, 41)
 
 [editable path="TileMap/PuzzleDecoration"]
 [editable path="TileMap/PuzzleDecoration/AnimatedDecoration"]
+[editable path="EnemySpawner"]
+[editable path="EnemySpawner2"]
+[editable path="EnemySpawner3"]
+[editable path="EnemySpawner4"]
 [editable path="HilltopEastWarpZone"]
 [editable path="CameraHoldZone"]
