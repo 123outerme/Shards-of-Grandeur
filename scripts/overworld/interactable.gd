@@ -32,7 +32,7 @@ func exit_player_range():
 	if PlayerFinder.player.interactable == self:
 		PlayerFinder.player.interactable = null
 
-func play_dialogue_animation(animName: String):
+func play_animation(animName: String):
 	pass
 
 func select_choice(choice: DialogueChoice):

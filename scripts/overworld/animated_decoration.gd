@@ -13,6 +13,5 @@ func load_decoration():
 func play_animation(animation: String):
 	animSprite.play(animation)
 
-
 func _on_animated_sprite_2d_animation_finished():
 	anim_finished.emit()

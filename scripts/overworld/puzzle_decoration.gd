@@ -41,7 +41,7 @@ func interact(_args: Array = []):
 	
 	super.interact(args)
 
-func play_dialogue_animation(animName: String):
+func play_animation(animName: String):
 	animatedDecoration.play_animation(animName)
 
 func _on_area_entered(area):

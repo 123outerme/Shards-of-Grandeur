@@ -471,6 +471,7 @@ func interact_interactable(inter: Interactable, dialogue: InteractableDialogue =
 		interactableDialogues.append(interDialogue)
 		# if this one is up next, play the animation
 		put_interactable_text(false, interactableDialogues[interactableDialogueIndex] == interDialogue)
+		play_animation('stand')
 
 func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false):
 	var hasNextDialogue: bool = true
@@ -523,7 +524,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 				else:
 					interactableDialogue = interactableDialogues[interactableDialogueIndex]
 	if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
-		interactable.play_dialogue_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
+		interactable.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
 		var speaker: String = interactableDialogue.speaker
