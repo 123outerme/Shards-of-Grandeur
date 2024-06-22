@@ -1,13 +1,21 @@
 extends Node2D
 class_name EnemySpawner
 
+## the spawner's unique data
 @export var spawnerData: SpawnerData = SpawnerData.new()
+## the encounter to trigger when the enemy hits the player
 @export var enemyEncounter: EnemyEncounter = null
+## if not valid, will disable the spawner
 @export var storyRequirements: StoryRequirements = null
+## if true, this spawner can spawn an enemy when the player cannot move. Useful for spawning enemies as part of a cutscene
 @export var spawnWhenPlayerLocked: bool = false
+## radius of the circle the enemy can spawn in
 @export var spawnRange: float = 48.0
+## radius of the circle the enemy will patrol in
 @export var enemyPatrolRange: float = 32.0
+## set before loading; points to the tilemap to place the enemy object in
 @export var tilemap: TileMap
+## do not set
 @export var enemy: OverworldEnemy = null
 
 var overworldEnemyScene = load("res://prefabs/entities/overworld_enemy.tscn")

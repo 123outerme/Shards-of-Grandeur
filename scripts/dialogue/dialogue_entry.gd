@@ -1,14 +1,22 @@
 extends Resource
 class_name DialogueEntry
 
+## not mandatory, but is required if this dialogue is required for a SaveRequirements
 @export var entryId: String = ''
 @export var items: Array[DialogueItem] = []
+## requirements to see this dialogue
 @export var storyRequirements: StoryRequirements = null
+## after this dialogue is over, starts the provided quest. If this quest can't be started, this dialogue won't be played
 @export var startsQuest: Quest = null
+## after this dialogue is over, starts the provided cutscene. If this cutscene can't be played, this dialogue won't be used
 @export var startsCutscene: Cutscene = null
+## after this dialogue is over, gives the provided item
 @export var givesItem: Item = null
+## if true, after this dialogue is over, all queued dialogues get dropped and the text box closes
 @export var closesDialogue: bool = false
+## if true, after this dialogue is over, fully heals the player
 @export var fullHealsPlayer: bool = false
+## if true, after this dialogue is over, starts a static encounter
 @export var startsStaticEncounter: StaticEncounter = null
 
 func _init(
@@ -36,8 +44,8 @@ func can_use_dialogue() -> bool:
 	
 	if startsQuest != null and not PlayerResources.questInventory.can_start_quest(startsQuest):
 		return false
-		
+	
 	if startsCutscene != null and startsCutscene.storyRequirements != null and not startsCutscene.storyRequirements.is_valid():
 		return false
-		
+	
 	return true
