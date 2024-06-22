@@ -10,7 +10,9 @@ class_name PuzzleDecoration
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
-var solved = false
+var solved: bool = false
+var playingSolvingAnim: bool = false
+var queuedAnim: String = ''
 
 func _ready():
 	show_interact_sprite(false)
@@ -42,7 +44,10 @@ func interact(_args: Array = []):
 	super.interact(args)
 
 func play_animation(animName: String):
-	animatedDecoration.play_animation(animName)
+	if not playingSolvingAnim:
+		animatedDecoration.play_animation(animName)
+	else:
+		queuedAnim = animName
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
@@ -62,6 +67,8 @@ func _story_reqs_updated(playSolving: bool = true):
 		show_interact_sprite(false)
 		if playSolving and not solved:
 			animatedDecoration.play_animation(puzzle.solvingAnimation)
+			playingSolvingAnim = true
+			animatedDecoration.anim_finished.connect(_solving_anim_finished)
 			if puzzle.updateAnimOnSolve:
 				animatedDecoration.anim_finished.connect(play_solved_anim)
 		else:
@@ -72,6 +79,12 @@ func _story_reqs_updated(playSolving: bool = true):
 		animatedDecoration.play_animation(puzzle.unsolvedAnimation)
 		animatedDecoration.collision.collision_layer = 0b01
 	solved = updatedSolved
+
+func _solving_anim_finished():
+	playingSolvingAnim = false
+	if queuedAnim != '':
+		play_animation(queuedAnim)
+	queuedAnim = ''
 
 func play_solved_anim():
 	animatedDecoration.play_animation(puzzle.solvedAnimation)
