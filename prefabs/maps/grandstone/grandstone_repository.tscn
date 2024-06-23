@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjyyxe0l2l5jd"]
+[gd_scene load_steps=27 format=3 uid="uid://cjyyxe0l2l5jd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ft524"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jkifd"]
@@ -7,10 +7,17 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_st1ox"]
 [ext_resource type="SpriteFrames" uid="uid://1hdkx5x4cud5" path="res://graphics/animations/a_librarian.tres" id="5_4l0iu"]
 [ext_resource type="Resource" uid="uid://dewgn4e34f6ri" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_hello.tres" id="5_elhq5"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="9_e5s14"]
+[ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="10_1psif"]
+[ext_resource type="Resource" uid="uid://thnl6oq21dd7" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase1.tres" id="10_yhqjf"]
+[ext_resource type="Resource" uid="uid://dc81ejrkicggd" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase2.tres" id="12_p1efd"]
+[ext_resource type="Resource" uid="uid://bv0t00r42br4a" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase3.tres" id="13_32xu0"]
 [ext_resource type="Resource" uid="uid://d1fpcigv6juic" path="res://gamedata/dialogue/grandstone/librarian/gs_librarian_get_script.tres" id="13_vmbtd"]
 [ext_resource type="Resource" uid="uid://cl155fhxtnnv3" path="res://gamedata/shops/grandstone/grandstone_repository.tres" id="14_i6suk"]
+[ext_resource type="Resource" uid="uid://ypcj1hsxfhdn" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase4.tres" id="14_xw1ml"]
+[ext_resource type="Resource" uid="uid://butoexa60sxyq" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase5.tres" id="15_blccy"]
 
-[sub_resource type="Resource" id="Resource_61xcb"]
+[sub_resource type="Resource" id="Resource_6ctix"]
 script = ExtResource("4_st1ox")
 saveName = "npc"
 animation = "stand"
@@ -27,6 +34,41 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
+
+[sub_resource type="Resource" id="Resource_urmnm"]
+script = ExtResource("10_1psif")
+speaker = "\"The Radiant Cave\""
+dialogueEntry = ExtResource("10_yhqjf")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_ir15s"]
+script = ExtResource("10_1psif")
+speaker = "\"Nomads and Ruins\""
+dialogueEntry = ExtResource("12_p1efd")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_playn"]
+script = ExtResource("10_1psif")
+speaker = "\"The Banished Tribe\""
+dialogueEntry = ExtResource("13_32xu0")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_frf6f"]
+script = ExtResource("10_1psif")
+speaker = "\"Riverside Leavenport\""
+dialogueEntry = ExtResource("14_xw1ml")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_bpawh"]
+script = ExtResource("10_1psif")
+speaker = "\"History of Grandstone\""
+dialogueEntry = ExtResource("15_blccy")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -78,7 +120,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-38, -101)
 displayName = "Librarian"
 saveName = "grandstone_librarian"
-data = SubResource("Resource_61xcb")
+data = SubResource("Resource_6ctix")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("13_vmbtd"), ExtResource("5_elhq5")])
 hasShop = true
 npcShop = ExtResource("14_i6suk")
@@ -98,6 +140,31 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TileMap/Librarian" index="4"]
 visible = false
+
+[node name="InteractableDecoration" parent="TileMap" instance=ExtResource("9_e5s14")]
+position = Vector2(56, -136)
+saveName = "gs_repo_bookcase1"
+dialogue = SubResource("Resource_urmnm")
+
+[node name="InteractableDecoration2" parent="TileMap" instance=ExtResource("9_e5s14")]
+position = Vector2(24, -136)
+saveName = "gs_repo_bookcase2"
+dialogue = SubResource("Resource_ir15s")
+
+[node name="InteractableDecoration3" parent="TileMap" instance=ExtResource("9_e5s14")]
+position = Vector2(-8, -136)
+saveName = "gs_repo_bookcase3"
+dialogue = SubResource("Resource_playn")
+
+[node name="InteractableDecoration4" parent="TileMap" instance=ExtResource("9_e5s14")]
+position = Vector2(-40, -136)
+saveName = "gs_repo_bookcase4"
+dialogue = SubResource("Resource_frf6f")
+
+[node name="InteractableDecoration5" parent="TileMap" instance=ExtResource("9_e5s14")]
+position = Vector2(-72, -136)
+saveName = "gs_repo_bookcase5"
+dialogue = SubResource("Resource_bpawh")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

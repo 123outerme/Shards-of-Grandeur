@@ -137,7 +137,8 @@ func _unhandled_input(event):
 			
 	if event.is_action_pressed('game_console') and not pausePanel.isPaused and \
 			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
-			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			SceneLoader.debug:
 		overworldConsole.load_overworld_console()
 		SceneLoader.pause_autonomous_movers()
 		if statsPanel.visible:
