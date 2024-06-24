@@ -428,15 +428,16 @@ func _on_item_used(slot: InventorySlot):
 
 func _on_item_use_panel_ok_pressed():
 	backButton.disabled = false
-	item_use_panel_closed.emit()
 	if inShardLearnTutorial:
 		inShardLearnTutorial = false
 		shardTutorialSlotPanel = null
 		learn_shard_tutorial_finished.emit()
 		toggle() # hide the panel
+		item_use_panel_closed.emit()
 		return
 	load_inventory_panel(lastSlotInteracted == null)
 	restore_last_focus('useButton')
+	item_use_panel_closed.emit()
 
 func _on_shard_learn_panel_back_pressed():
 	backButton.disabled = false

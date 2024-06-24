@@ -36,4 +36,4 @@ func parse_cmdline_args():
 	
 	if nextArgIsDebugVal:
 		SceneLoader.debug = true # if the last arg is just "--debug" then it's set
-	print('debug is ', SceneLoader.debug)
+	#print('debug is ', SceneLoader.debug)

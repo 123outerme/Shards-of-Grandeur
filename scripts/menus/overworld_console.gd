@@ -8,7 +8,7 @@ signal console_closed
 
 const HELP_COMMAND_LIST: Array[String] = [
 	'help: Prints this message.',
-	'exit: Exits the console and returns to the game',
+	'exit / quit / q: Exits the console and returns to the game',
 	'echo: The console responds with an "Echo!"',
 	'clear: Clear the console output',
 	'giveitem <item name>: Gives the player 1x the specified item (not case sensitive)',
@@ -16,7 +16,9 @@ const HELP_COMMAND_LIST: Array[String] = [
 	'givegold <amount>: Gives the player the specified amount of gold',
 	'givexp <amount>: Gives the player the specified amount of Exp',
 	'setlevel <level>: Sets the player\'s level to the given amount, resetting stat points if it would be a lv decrease',
-	'puzzle <set|clear> <puzzle name>: Sets or clears the specified puzzle\'s solved status'
+	'puzzle <set|clear> <puzzle name>: Sets or clears the specified puzzle\'s solved status',
+	'tp <map name>: Teleports to the specified map',
+	'position <x> <y>: Moves the player to the specified position'
 ]
 
 const MAX_CONSOLE_LINES = 20
@@ -53,7 +55,7 @@ func parse_command(command: String):
 	if command.to_lower() == 'clear':
 		clear_console()
 		return
-	if command.to_lower() == 'exit':
+	if command.to_lower() == 'exit' || command.to_lower() == 'quit' || command.to_lower() == 'q':
 		hide_overworld_console()
 		return
 	if command.to_lower() == 'echo':
@@ -79,7 +81,7 @@ func parse_command(command: String):
 		set_level(lv)
 		return
 	if command.to_lower().begins_with('givexp '):
-		var xp: int = command.substr(8).to_int()
+		var xp: int = command.substr(7).to_int()
 		give_exp(xp)
 		return
 	if command.to_lower().begins_with('puzzle '):
@@ -95,6 +97,17 @@ func parse_command(command: String):
 		for idx: int in range(2, len(pieces)):
 			puzzleName += pieces[idx]
 		puzzle_update(puzzleName, pieces[1] == 'clear')
+		return
+	if command.to_lower().begins_with('tp '):
+		var mapName: String = command.substr(3)
+		teleport_to(mapName)
+		return
+	if command.to_lower().begins_with('position '):
+		var args: PackedStringArray = command.split(' ')
+		if len(args) != 3:
+			print_to_console('Syntax error: Two numerical arguments are required. Command is: position <x> <y>.')
+		else:
+			move_player_to(Vector2(args[1].to_float(), args[2].to_float()))
 		return
 	# if none of the above match, the command is not recognized.
 	print_to_console('Command not recognized.')
@@ -182,9 +195,9 @@ func set_level(lv: int):
 func give_exp(xp: int):
 	var lvDiff: int = PlayerResources.playerInfo.combatant.stats.add_exp(xp)
 	if lvDiff > 0:
-		print_to_console('Added ' + String.num(xp) + 'Exp and leveled up ' + String.num(lvDiff) + ' level(s)!')
+		print_to_console('Added ' + String.num(xp) + ' Exp and leveled up ' + String.num(lvDiff) + ' level(s)!')
 	else:
-		print_to_console('Added ' + String.num(xp) + 'Exp.')
+		print_to_console('Added ' + String.num(xp) + ' Exp.')
 
 func puzzle_update(puzzleName: String, clear: bool):
 	if clear:
@@ -199,6 +212,17 @@ func puzzle_update(puzzleName: String, clear: bool):
 		PlayerResources.playerInfo.set_puzzle_solved(puzzleName)
 		print_to_console('Set puzzle "' + puzzleName + '" as solved.')
 		PlayerResources.story_requirements_updated.emit()
+
+func teleport_to(mapName: String):
+	if MapLoader.get_world_location_for_name(mapName) != null:
+		SceneLoader.mapLoader.entered_warp(mapName, PlayerFinder.player.position, PlayerFinder.player.position)
+		print_to_console('Teleported to map "' + mapName + '".')
+	else:
+		print_to_console('The map "' + mapName + '" does not exist.')
+
+func move_player_to(pos: Vector2):
+	PlayerFinder.player.position = pos
+	print_to_console('Moved player to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ').')
 
 func _on_line_edit_gui_input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
