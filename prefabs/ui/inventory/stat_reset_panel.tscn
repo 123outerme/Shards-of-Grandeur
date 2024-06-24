@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://mfj250ugvh12"]
+
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/stat_reset_panel.gd" id="1_im2iy"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_b74kv"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_oh6bx"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="5_8gvum"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_ra8ns"]
+
+[node name="StatResetPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_im2iy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1240.0
+offset_bottom = 680.0
+theme = ExtResource("2_b74kv")
+
+[node name="EquipTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 24.0
+offset_right = 350.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme = ExtResource("3_oh6bx")
+bbcode_enabled = true
+text = "[center]Reset Stat Point Allocations[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 82.0
+offset_right = -80.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+script = ExtResource("5_8gvum")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(1040, 112)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" parent="Panel" instance=ExtResource("6_ra8ns")]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -52.0
+offset_right = 25.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

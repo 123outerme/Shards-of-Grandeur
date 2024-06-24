@@ -1,0 +1,184 @@
+[gd_scene load_steps=7 format=3 uid="uid://ff0jujk8ygil"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_p26vp"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/stat_reset_combatant_panel.gd" id="2_aose8"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="4_cfbg6"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="5_8g0sl"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="8_8gsp7"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_hjygq"]
+
+[node name="StatResetCombatantPanel" type="Panel" groups=["StatResetCombatantPanel"]]
+custom_minimum_size = Vector2(1040, 112)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -240.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p26vp")
+script = ExtResource("2_aose8")
+
+[node name="SpriteControl" type="Control" parent="."]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="CombatantSprite" type="AnimatedSprite2D" parent="SpriteControl"]
+position = Vector2(48, 48)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_cfbg6")
+animation = &"walk"
+
+[node name="CenterCombatantName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_right = 519.0
+grow_vertical = 2
+alignment = 1
+
+[node name="CombatantName" type="RichTextLabel" parent="CenterCombatantName"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("5_8g0sl")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+text = "Combatant Name Goes Here"
+fit_content = true
+
+[node name="MaxHpLabel" type="RichTextLabel" parent="CenterCombatantName"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Max HP: 99,999"
+
+[node name="CenterStats" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.073
+anchor_right = 0.838
+anchor_bottom = 1.0
+offset_top = -8.176
+offset_right = 0.479919
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterStats"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="PhysAtkLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Phys Atk:  99,999"
+
+[node name="ResistanceLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Resistance: 99,999"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterStats"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="MagicAtkLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Magic Atk: 99,999"
+
+[node name="SpeedLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Speed:          99,999"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterStats"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="AffinityLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Affinity:    99,999"
+
+[node name="StatPtsLabel" type="RichTextLabel" parent="CenterStats/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+text = "Stat Pts:      99,999"
+
+[node name="CenterButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+layout_mode = 2
+theme = ExtResource("8_8gsp7")
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("9_hjygq")]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Stats"
+
+[node name="ResetButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("9_hjygq")]
+custom_minimum_size = Vector2(85, 50)
+layout_mode = 2
+text = "Reset"
+
+[connection signal="pressed" from="CenterButtons/HBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="CenterButtons/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
 
-[sub_resource type="Resource" id="Resource_cw8gk"]
+[sub_resource type="Resource" id="Resource_dgjmb"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 animation = "stand"
@@ -52,7 +52,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_rqe77"]
+[sub_resource type="Resource" id="Resource_1w6vq"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 animation = "stand"
@@ -89,7 +89,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_15rnx"]
+[sub_resource type="Resource" id="Resource_xhusu"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 animation = "stand"
@@ -134,7 +134,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-data = SubResource("Resource_cw8gk")
+data = SubResource("Resource_dgjmb")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_imxxv"), ExtResource("4_38wkq"), ExtResource("5_hlk4r")])
 
 [node name="NPCSprite" parent="TileMap/Innkeeper" index="0"]
@@ -163,7 +163,7 @@ position = Vector2(40, -86)
 displayName = "Spelunker"
 saveName = "spelunker_inn"
 spawnRequirements = SubResource("Resource_05tf0")
-data = SubResource("Resource_rqe77")
+data = SubResource("Resource_1w6vq")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("8_axpn3")
@@ -190,7 +190,7 @@ position = Vector2(-6, -61)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_inn"
 spawnRequirements = SubResource("Resource_b7ibc")
-data = SubResource("Resource_15rnx")
+data = SubResource("Resource_xhusu")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_qm568"), ExtResource("9_460im")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]

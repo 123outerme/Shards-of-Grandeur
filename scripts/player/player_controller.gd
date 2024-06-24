@@ -342,7 +342,7 @@ func select_choice(choice: DialogueChoice):
 		var dialogueText = talkNPC.get_cur_dialogue_item()
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 		return
-		
+	
 	if choice.leadsTo != null:
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
 		# skip any remaining dialogue we might have here

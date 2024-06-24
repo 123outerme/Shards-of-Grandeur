@@ -82,7 +82,11 @@ func use_item(item: Item, target: Combatant) -> bool:
 		if slot.item == item and item.consumable:
 			last = trash_item(slot) # remove one of the appropriate items
 	return last
-	
+
+func use_item_from_slot(inventorySlot: InventorySlot, target: Combatant) -> bool:
+	inventorySlot.item.use(target)
+	return trash_item(inventorySlot)
+
 func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats = null):
 	var item: Item = inventorySlot.item
 	if contextStats == null:

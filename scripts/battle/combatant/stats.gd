@@ -132,8 +132,8 @@ func level_up(newLvs: int):
 func set_level(lv: int):
 	level = lv
 	var pts = 0
-	for i in range(1, level + 1):
-		pts += Stats.floating_stat_pt_gain(level)
+	for i in range(2, level + 1):
+		pts += Stats.floating_stat_pt_gain(i)
 	maxHp = statGrowth.calculate_max_hp(level)
 	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK) 
 	magicAttack = statGrowth.calculate_stat_category(level, Category.MAGIC_ATK)
@@ -173,6 +173,12 @@ func get_stat_for_dmg_category(category: Move.DmgCategory) -> int:
 	if category == Move.DmgCategory.MAGIC:
 		return magicAttack
 	return affinity
+
+func get_total_gained_stat_points() -> int:
+	var pts: int = 0
+	for i in range(2, level + 1):
+		pts += Stats.floating_stat_pt_gain(i)
+	return pts
 
 func get_stat_total():
 	return physAttack + magicAttack + affinity + resistance + speed + statPts

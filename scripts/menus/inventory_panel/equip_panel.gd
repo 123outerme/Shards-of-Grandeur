@@ -80,8 +80,8 @@ func restore_focus(button: String = ''):
 				break
 
 func stats_pressed(combatant: Combatant):
-	stats_button_pressed.emit(combatant)
 	lastCombatant = combatant
+	stats_button_pressed.emit(combatant)
 	
 func equip_pressed(combatant: Combatant):
 	var prevEvolution: Evolution = combatant.get_evolution()
@@ -144,8 +144,8 @@ func unequip_pressed(combatant: Combatant):
 	load_equip_panel(false)
 
 func show_item_details(combatant: Combatant, item: Item):
-	show_details_for_item.emit(item)
 	lastCombatant = combatant
+	show_details_for_item.emit(item)
 
 func _on_back_button_pressed():
 	close_equip_panel.emit()

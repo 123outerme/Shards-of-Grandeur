@@ -52,6 +52,7 @@ var shopInventory: Inventory = null
 @onready var itemUsePanel: ItemUsePanel = get_node("ItemUsePanel")
 @onready var shardLearnPanel: ShardLearnPanel = get_node("ShardLearnPanel")
 @onready var equipPanel: EquipPanel = get_node("EquipPanel")
+@onready var statResetPanel: StatResetPanel = get_node('StatResetPanel')
 @onready var itemConfirmPanel: ItemConfirmPanel = get_node("ItemConfirmPanel")
 
 var currentInventory: Inventory = null
@@ -60,10 +61,10 @@ var otherInventory: Inventory = null # player inventory if looking at NPC shop; 
 var lastFocused: Control = null
 var lastSlotInteracted: InventorySlot = null
 var confirmingAction: String = ''
-var viewingEquipStats: bool = false
 var viewingEquipItemDetails: bool = false
 var inShardLearnTutorial: bool = false
 var shardTutorialSlotPanel: InventorySlotPanel = null
+var viewingStatsFromPanel: String = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -88,13 +89,14 @@ func toggle():
 			shardLearnPanel.credit_back_shard()
 		shardLearnPanel.visible = false
 		equipPanel.visible = false
+		statResetPanel.visible = false
 		itemConfirmPanel.visible = false
 		backButton.disabled = false
 		if equipContextStats != null:
 			lockFilters = false
 			selectedFilter = Item.Type.ALL
 		equipContextStats = null
-		viewingEquipStats = false
+		viewingStatsFromPanel = ''
 		viewingEquipItemDetails = false
 		backButton.disabled = false
 		back_pressed.emit()
@@ -404,7 +406,12 @@ func _on_key_items_button_toggled(button_pressed):
 
 func _on_item_used(slot: InventorySlot):
 	lastSlotInteracted = slot
-	if slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
+	if slot.item.get_as_subclass() is StatResetItem:
+		# will have a non-empty use message, but first it has to open the reset panel and confirm the target
+		statResetPanel.load_stat_reset_panel(true)
+		backButton.disabled = true
+		return
+	elif slot.item.get_as_subclass().get_use_message(PlayerResources.playerInfo.combatant) != '' and showItemUsePanel:
 		itemUsePanel.item = slot.item
 		itemUsePanel.target = PlayerResources.playerInfo.combatant
 		itemUsePanel.load_item_use_panel()
@@ -422,7 +429,7 @@ func _on_item_used(slot: InventorySlot):
 	if PlayerResources.playerInfo.combatant.would_item_have_effect(slot.item) \
 			and slot.item.itemType != Item.Type.SHARD and not inBattle:
 		# if not in battle and it would have effect, use it immediately
-		var last = PlayerResources.inventory.use_item(slot.item, PlayerResources.playerInfo.combatant)
+		var last = PlayerResources.inventory.use_item_from_slot(slot, PlayerResources.playerInfo.combatant)
 		if last:
 			lastSlotInteracted = null
 
@@ -496,13 +503,16 @@ func _on_equip_panel_close_equip_panel():
 func _on_equip_panel_stats_button_pressed(combatant: Combatant):
 	open_stats.emit(combatant)
 	visible = false
-	viewingEquipStats = true
+	viewingStatsFromPanel = 'equip'
 
 func _on_stats_panel_node_back_pressed():
-	if viewingEquipStats:
+	if viewingStatsFromPanel != '':
 		visible = true
-		equipPanel.restore_focus('stats')
-	viewingEquipStats = false
+		if viewingStatsFromPanel == 'equip':
+			equipPanel.restore_focus('stats')
+		if viewingStatsFromPanel == 'statReset':
+			statResetPanel.restore_focus('stats')
+	viewingStatsFromPanel = ''
 
 func _on_equip_panel_show_details_for_item(item: Item):
 	itemDetailsPanel.item = item
@@ -541,3 +551,23 @@ func start_learn_shard_tutorial():
 	shardTutorialSlotPanel.useButton.focus_neighbor_right = NodePath('.')
 	tutorialArrowControl.global_position = shardTutorialSlotPanel.tutorialArrowTargetControl.global_position
 	tutorialArrow.play()
+
+func _on_stat_reset_panel_close_stat_reset_panel(combatant: Combatant):
+	if combatant != null:
+		itemUsePanel.item = lastSlotInteracted.item
+		itemUsePanel.target = combatant
+		itemUsePanel.load_item_use_panel()
+		if combatant.would_item_have_effect(lastSlotInteracted.item):
+			var last = PlayerResources.inventory.use_item_from_slot(lastSlotInteracted, combatant)
+			if last:
+				lastSlotInteracted = null
+	else:
+		load_inventory_panel()
+		restore_last_focus('useButton')
+	statResetPanel.visible = false
+	backButton.disabled = false
+
+func _on_stat_reset_panel_stats_button_pressed(combatant: Combatant):
+	open_stats.emit(combatant)
+	visible = false
+	viewingStatsFromPanel = 'statReset'

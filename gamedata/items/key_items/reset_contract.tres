@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatResetItem" load_steps=3 format=3 uid="uid://c4fdyahda7qvf"]
+
+[ext_resource type="Texture2D" uid="uid://cfiv7h6k28ww6" path="res://graphics/items/key_items/reset_contract.png" id="1_sb3wp"]
+[ext_resource type="Script" path="res://scripts/inventory/items/key_items/stat_reset_item.gd" id="2_wsb3e"]
+
+[resource]
+script = ExtResource("2_wsb3e")
+keyItemType = 3
+useMessage = ""
+effectText = "Use outside of battle to reset one combatant's stat point allocations!"
+itemSprite = ExtResource("1_sb3wp")
+itemName = "Reset Contract"
+itemType = 4
+itemDescription = "A contract embued with sketchy magic. Signing one's name on the document exchanges one's power for their potential. In the fine print, it reads, \"Not liable for damages as a result of wasted potential\"."
+cost = 120
+maxCount = 3
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 1

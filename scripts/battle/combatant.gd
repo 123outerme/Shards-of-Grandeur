@@ -234,6 +234,12 @@ func validate_all_evolutions_stat_totals():
 			print('WARN: ', save_name(), ' evolution ', index, "'s stat total was invalid. Resetting.")
 			eStats.reset_stat_points()
 
+func reset_all_evolutions_stat_totals():
+	stats.reset_stat_points()
+	for index in evolutionStats:
+		var eStats: Stats = evolutionStats[index]
+		eStats.reset_stat_points()
+
 func get_sprite_frames() -> SpriteFrames:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:
@@ -316,6 +322,9 @@ func get_mania_level() -> StatusEffect.Potency:
 func would_item_have_effect(item: Item) -> bool:
 	if item.itemType == Item.Type.HEALING:
 		return currentHp < stats.maxHp
+	if item.itemType == Item.Type.KEY_ITEM:
+		if item.get_as_subclass() is StatResetItem:
+			return stats.statPts < stats.get_total_gained_stat_points()
 	return true
 
 func add_orbs(num: int):

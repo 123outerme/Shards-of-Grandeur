@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=15 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmj1y0ptr5di5" path="res://prefabs/ui/inventory/shard_learn_panel.tscn" id="8_suef4"]
 [ext_resource type="SpriteFrames" uid="uid://mihrqii33xe7" path="res://graphics/ui/a_tutorial_arrow.tres" id="9_p30lc"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="9_vr3fk"]
+[ext_resource type="PackedScene" uid="uid://mfj250ugvh12" path="res://prefabs/ui/inventory/stat_reset_panel.tscn" id="10_yjhqm"]
 [ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="11_c0y15"]
 [ext_resource type="PackedScene" uid="uid://n55f6tk0t25u" path="res://prefabs/ui/inventory/equip_panel.tscn" id="12_eeu1a"]
 
@@ -226,6 +227,11 @@ offset_bottom = 720.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="StatResetPanel" parent="." instance=ExtResource("10_yjhqm")]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("6_ay1wk")]
 visible = false
 offset_right = 1280.0
@@ -259,6 +265,8 @@ offset_bottom = 720.0
 [connection signal="close_equip_panel" from="EquipPanel" to="." method="_on_equip_panel_close_equip_panel"]
 [connection signal="show_details_for_item" from="EquipPanel" to="." method="_on_equip_panel_show_details_for_item"]
 [connection signal="stats_button_pressed" from="EquipPanel" to="." method="_on_equip_panel_stats_button_pressed"]
+[connection signal="close_stat_reset_panel" from="StatResetPanel" to="." method="_on_stat_reset_panel_close_stat_reset_panel"]
+[connection signal="stats_button_pressed" from="StatResetPanel" to="." method="_on_stat_reset_panel_stats_button_pressed"]
 [connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_details_back_button_pressed"]
 [connection signal="pressed" from="ItemDetailsPanel/Panel/BackButton" to="." method="_on_details_back_button_pressed"]
 [connection signal="ok_pressed" from="ItemUsePanel" to="." method="_on_item_use_panel_ok_pressed"]

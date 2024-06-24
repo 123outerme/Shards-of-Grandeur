@@ -23,9 +23,12 @@ func _unhandled_input(event):
 
 func load_item_use_panel():
 	var itemUseText: String = ''
+	if target == null:
+		target = PlayerResources.playerInfo.combatant
+	
 	if item != null:
 		itemSprite.texture = item.itemSprite
-		if PlayerResources.playerInfo.combatant.would_item_have_effect(item):
+		if target.would_item_have_effect(item):
 			itemUsedTitle.text = '[center]Item Used - ' + item.itemName + '[/center]'
 			if learnedMove == null:
 				itemUseText = item.get_as_subclass().get_use_message(target)
@@ -38,6 +41,9 @@ func load_item_use_panel():
 			itemUseText = 'You attempted to use the ' + item.itemName + ', but it has no effect'
 			if item.itemType == Item.Type.HEALING:
 				itemUseText += ', because you are at full health already'
+			if item.itemType == Item.Type.KEY_ITEM:
+				if item.get_as_subclass() is StatResetItem:
+					itemUseText += ', because ' + target.disp_name() + ' has not allocated any Stat Points'
 			itemUseText += '.'
 		visible = true
 		okButton.grab_focus()
