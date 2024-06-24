@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=7 format=3 uid="uid://c2obob7w8r46f"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://c2obob7w8r46f"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_cfe7n"]
 [ext_resource type="Resource" uid="uid://cc2ef1x6grvaj" path="res://gamedata/items/key_items/leavenport_teleport_stone.tres" id="2_0f2mr"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_yok23"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_2mbw0"]
+[ext_resource type="Resource" uid="uid://cylyev1ny8klx" path="res://gamedata/items/key_items/reset_pearl.tres" id="5_3hces"]
 
 [sub_resource type="Resource" id="Resource_x3w1x"]
 script = ExtResource("3_yok23")
@@ -17,6 +18,12 @@ sinceVersion = "0.1.0"
 item = ExtResource("2_0f2mr")
 count = -1
 
+[sub_resource type="Resource" id="Resource_wboy0"]
+script = ExtResource("3_yok23")
+sinceVersion = "0.1.0"
+item = ExtResource("5_3hces")
+count = 3
+
 [resource]
 script = ExtResource("1_cfe7n")
-shopItemSlots = Array[ExtResource("3_yok23")]([SubResource("Resource_x3w1x"), SubResource("Resource_pymm8")])
+shopItemSlots = Array[ExtResource("3_yok23")]([SubResource("Resource_x3w1x"), SubResource("Resource_pymm8"), SubResource("Resource_wboy0")])
