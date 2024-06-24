@@ -1,6 +1,10 @@
 extends Resource
 class_name PlayerMinions
 
+const minion_reqs: Dictionary = {
+	'king_rat': preload('res://gamedata/story_requirements/minions/king_rat_reqs.tres') as StoryRequirements
+}
+
 @export var minionList: Array[String] = []
 var minionsDict: Dictionary = {}
 
@@ -122,9 +126,15 @@ func load_data(save_path):
 	return data
 
 func _load_data_each_minion(save_path):
+	var removeMinionNames: Array[String] = []
 	for minionName in minionList:
 		var minion = null
-		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres'):
+		var passesReqs: bool = true
+		if minion_reqs.has(minionName):
+			var reqs: StoryRequirements = minion_reqs.get(minionName) as StoryRequirements
+			passesReqs = reqs.is_valid()
+		
+		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres') and passesReqs:
 			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
 			if minion == null or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR:
 				print('minion ', minionName, ' failed load validation')
@@ -150,6 +160,12 @@ func _load_data_each_minion(save_path):
 			minion.validate_all_evolutions_stat_totals()
 			# now, the minion is valid and can be added to the list
 			set_minion(minion)
+		elif not passesReqs:
+			removeMinionNames.append(minionName)
+	
+	for name: String in removeMinionNames:
+		minionList.erase(name)
+		print('WARNING: Minion ', name, ' no longer passes story requirements. Removing.')
 
 func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + save_file)
