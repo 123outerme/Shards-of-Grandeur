@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccw35yps5qgs1"]
+[gd_scene load_steps=13 format=3 uid="uid://ccw35yps5qgs1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_mmxh4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jnb7w"]
@@ -8,11 +8,11 @@
 [ext_resource type="Resource" uid="uid://danfrkuhowl8k" path="res://gamedata/dialogue/leavenport/skipper/leavenport_skipper1.tres" id="5_fdnmb"]
 [ext_resource type="SpriteFrames" uid="uid://vjnpidcqa4jj" path="res://graphics/animations/a_skipper.tres" id="5_hu66c"]
 
-[sub_resource type="Resource" id="Resource_44hff"]
+[sub_resource type="Resource" id="Resource_5a6yf"]
 script = ExtResource("4_jjv6j")
 saveName = "npc"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(-42, -50)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -25,6 +25,9 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtxje"]
+size = Vector2(32, 28)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -71,7 +74,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-42, -50)
 displayName = "Skipper"
 saveName = "leavenport_skipper"
-data = SubResource("Resource_44hff")
+data = SubResource("Resource_5a6yf")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_fdnmb")])
 
 [node name="NPCSprite" parent="TileMap/Skipper" index="0"]
@@ -86,6 +89,7 @@ position = Vector2(0, 4)
 
 [node name="TalkAreaShape" parent="TileMap/Skipper/TalkArea" index="0"]
 position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_qtxje")
 
 [node name="MoveTrigger" parent="TileMap/Skipper" index="4"]
 visible = false
