@@ -30,7 +30,7 @@
 [ext_resource type="Resource" uid="uid://60cy3xsvene1" path="res://gamedata/cutscenes/leavenport/south_spar_turnaround.tres" id="25_d60sx"]
 [ext_resource type="Resource" uid="uid://cpdkluglde3uh" path="res://gamedata/cutscenes/leavenport/south_precave_turnaround.tres" id="26_638c0"]
 
-[sub_resource type="Resource" id="Resource_yl7gm"]
+[sub_resource type="Resource" id="Resource_npysp"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -48,7 +48,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_wjgt1"]
+[sub_resource type="Resource" id="Resource_incel"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -66,7 +66,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_mwdll"]
+[sub_resource type="Resource" id="Resource_dhy52"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -84,7 +84,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_aqung"]
+[sub_resource type="Resource" id="Resource_6dd0x"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -102,7 +102,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_wief3"]
+[sub_resource type="Resource" id="Resource_3lxhn"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -174,7 +174,7 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
-[sub_resource type="Resource" id="Resource_2iegr"]
+[sub_resource type="Resource" id="Resource_ie354"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -194,8 +194,8 @@ hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
-metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0, 98.0, 192.0, 1238.0, 1712.0, 1444.0, 1464.0, 1408.0, 1270.0, 1316.0, 1535.0, 616.0]
-metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0, 606.0, 540.0, 904.0]
+metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0, 98.0, 192.0, 1238.0, 1712.0, 1444.0, 1464.0, 1408.0, 1270.0, 1316.0, 1535.0, 616.0, 824.0]
+metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0, 606.0, 540.0, 904.0, 120.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -311,7 +311,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_yl7gm")
+data = SubResource("Resource_npysp")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -336,7 +336,7 @@ visible = false
 position = Vector2(-28, 101)
 loadFlipH = true
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_wjgt1")
+data = SubResource("Resource_incel")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("10_7cmn1")
@@ -354,7 +354,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(25, 105)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_mwdll")
+data = SubResource("Resource_dhy52")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -372,7 +372,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_aqung")
+data = SubResource("Resource_6dd0x")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -390,7 +390,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_wief3")
+data = SubResource("Resource_3lxhn")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -449,6 +449,14 @@ mapName = "leavenport_museum"
 mapPos = Vector2(-8, 4)
 
 [node name="WarpArea" parent="MuseumWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_ho4gv")
+
+[node name="BoathouseWarpZone" parent="." instance=ExtResource("5_2lmvq")]
+position = Vector2(823.5, 98)
+mapName = "leavenport_boathouse"
+mapPos = Vector2(-8, 4)
+
+[node name="WarpArea" parent="BoathouseWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_ho4gv")
 
 [node name="NorthWarpCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
@@ -539,7 +547,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
-data = SubResource("Resource_2iegr")
+data = SubResource("Resource_ie354")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.46489
@@ -565,6 +573,7 @@ flip_h = true
 [editable path="DestructionShopWarpZone"]
 [editable path="InnWarpZone"]
 [editable path="MuseumWarpZone"]
+[editable path="BoathouseWarpZone"]
 [editable path="NorthWarpCutsceneTrigger"]
 [editable path="EastWarpCutsceneTrigger"]
 [editable path="SouthWarpCutsceneTrigger"]

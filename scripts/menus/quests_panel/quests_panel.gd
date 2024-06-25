@@ -46,7 +46,7 @@ func toggle():
 		initial_focus()
 	else:
 		if questDetailsPanel.visible:
-			questDetailsPanel.hide_panel()
+			questDetailsPanel.hide_panel(false)
 		backButton.disabled = false
 		back_pressed.emit()
 

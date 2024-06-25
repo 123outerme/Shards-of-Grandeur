@@ -107,6 +107,7 @@ func auto_update_quests():
 			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
 	for puzzle in PlayerResources.playerInfo.puzzlesSolved:
 		progress_quest(puzzle, QuestStep.Type.SOLVE_PUZZLE)
+		auto_turn_in_puzzle_steps(puzzle) # only auto-turns in if no turn-in entity has been specified
 	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
 		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
 		auto_turn_in_cutscene_steps(cutscene)
@@ -126,6 +127,18 @@ func auto_turn_in_cutscene_steps(target: String):
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE:
+			turn_in_cur_step(tracker)
+			hasTurnedIn = true
+	if hasTurnedIn:
+		PlayerResources.story_requirements_updated.emit()
+
+func auto_turn_in_puzzle_steps(target: String):
+	var hasTurnedIn: bool = false
+	for tracker in get_cur_trackers_for_target(target):
+		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
+				and tracker.get_current_step().type == QuestStep.Type.SOLVE_PUZZLE \
+				and len(tracker.get_current_step().turnInNames) == 0:
+			# only turn in if completed and there are no turn in names specified
 			turn_in_cur_step(tracker)
 			hasTurnedIn = true
 	if hasTurnedIn:

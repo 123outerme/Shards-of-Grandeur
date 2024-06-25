@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dyaavpt2j7573"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2wb2l"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_vcl4l"]
+
+[sub_resource type="Resource" id="Resource_g3il4"]
+script = ExtResource("1_2wb2l")
+lines = Array[String](["Grr... I'll hope it was the surrealness of that place that's got your mind wired, but know you'd best give me the bag!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_vcl4l")
+entryId = ""
+items = Array[ExtResource("1_2wb2l")]([SubResource("Resource_g3il4")])
+closesDialogue = false
+fullHealsPlayer = false

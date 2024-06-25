@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://b6kpee21bpn3j"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ckmli"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_r5uiw"]
+
+[sub_resource type="Resource" id="Resource_do161"]
+script = ExtResource("1_r5uiw")
+lines = Array[String](["Did ya check out the grove? It's a surreal place. I prefer my strange experiences out on the vast ocean, not a speck of dirt in sight!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_ckmli")
+entryId = ""
+items = Array[ExtResource("1_r5uiw")]([SubResource("Resource_do161")])
+closesDialogue = false
+fullHealsPlayer = false

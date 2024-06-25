@@ -6,7 +6,9 @@ class_name Quest
 @export_multiline var description: String
 @export var steps: Array[QuestStep]
 @export var storyRequirements: StoryRequirements
+## if true, is marked with the main quest icon in the quests panel
 @export var isMainQuest: bool = false
+## if true, increments the act number after the last step is completed
 @export var advanceActActerComplete: bool = false
 
 func _init(

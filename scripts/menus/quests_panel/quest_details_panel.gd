@@ -77,10 +77,11 @@ func load_quest_details(rebuild: bool = true):
 	
 	restore_previous_focus.call_deferred()
 
-func hide_panel():
+func hide_panel(emitHide: bool = true):
 	itemDetailsPanel.visible = false
 	visible = false
-	panel_hidden.emit()
+	if emitHide:
+		panel_hidden.emit()
 	destroy_panel_items()
 
 func destroy_panel_items():

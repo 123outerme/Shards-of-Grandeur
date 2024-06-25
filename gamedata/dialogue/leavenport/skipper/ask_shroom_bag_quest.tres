@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bx7nwcm0icnmu"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3h5nx"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_pj0gu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_j2hqy"]
+[ext_resource type="Resource" uid="uid://csrl08jw25vjk" path="res://gamedata/dialogue/leavenport/skipper/start_shroom_quest.tres" id="2_lmlka"]
+
+[sub_resource type="Resource" id="Resource_a1x1w"]
+script = ExtResource("1_pj0gu")
+choiceBtn = "I'll Pass."
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_s4ejb"]
+script = ExtResource("1_pj0gu")
+choiceBtn = "Aye Aye!"
+leadsTo = ExtResource("2_lmlka")
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_vsjhp"]
+script = ExtResource("1_3h5nx")
+lines = Array[String](["Aye, as a matter of fact, I do. You see, inland of this fine port town, there lies a strange forest littered with mushrooms.", "At the end of the path we've cut through the forest, there lies a tree stump that fills your bag full of loot!", "... Well, it's not really monetary riches, really, it's mushrooms. And the last trade ship to leave here didn't have any!", "Would you take this empty bag to the forest and bring us back some delicious mushrooms? For this old sea dog?"])
+animation = "talk"
+choices = Array[ExtResource("1_pj0gu")]([SubResource("Resource_a1x1w"), SubResource("Resource_s4ejb")])
+
+[resource]
+script = ExtResource("2_j2hqy")
+entryId = ""
+items = Array[ExtResource("1_3h5nx")]([SubResource("Resource_vsjhp")])
+closesDialogue = false
+fullHealsPlayer = false
