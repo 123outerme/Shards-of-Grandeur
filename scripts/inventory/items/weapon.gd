@@ -36,7 +36,10 @@ func apply_effects(target: Combatant, applyTiming: BattleCommand.ApplyTiming):
 func get_apply_text(target: Combatant, applyTiming: BattleCommand.ApplyTiming) -> String:
 	if timing == applyTiming and statChanges != null and statChanges.has_stat_changes():
 		var multipliers: Array[StatMultiplierText] = statChanges.get_multipliers_text()
-		return target.disp_name() + ' gains ' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + ' from wielding the ' + itemName + '.'
+		var prefix: String = ''
+		if applyTiming == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
+			prefix = 'On hit, '
+		return prefix + target.disp_name() + ' gains ' + StatMultiplierText.multiplier_text_list_to_string(multipliers) + ' from wielding the ' + itemName + '.'
 	return ''
 
 func get_effect_text(inBattle: bool = true) -> String:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=66 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
@@ -10,8 +10,11 @@
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_ohjbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_ouq35"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="8_dralb"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="8_thl3q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="9_n5hae"]
+[ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="10_dx6md"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/endure.gd" id="10_tg47m"]
 [ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="14_8tdek"]
 [ext_resource type="Resource" uid="uid://bfkpkrjtkr1yh" path="res://gamedata/combatants/solius/solius_rewards.tres" id="14_qb2p1"]
@@ -72,6 +75,25 @@ orbChange = 0
 targetPositions = Array[String](["Bottom"])
 randomNums = Array[float]([])
 
+[sub_resource type="Resource" id="Resource_nhsw0"]
+script = ExtResource("8_dralb")
+element = 3
+multiplier = 1.5
+
+[sub_resource type="Resource" id="Resource_jshmu"]
+script = ExtResource("9_n5hae")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("8_dralb")]([SubResource("Resource_nhsw0")])
+
 [sub_resource type="Resource" id="Resource_5jl4o"]
 script = ExtResource("6_ohjbr")
 pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
@@ -94,6 +116,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("8_thl3q")
+equippedArmor = ExtResource("10_dx6md")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
 movepool = SubResource("Resource_5jl4o")
 
@@ -113,6 +136,7 @@ stats = SubResource("Resource_vwmsm")
 evolutionStats = {}
 currentHp = 1
 orbs = 0
+statChanges = SubResource("Resource_jshmu")
 statusEffect = SubResource("Resource_rjdbl")
 friendship = 0.0
 maxFriendship = 30.0
