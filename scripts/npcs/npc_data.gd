@@ -12,6 +12,7 @@ class_name NPCData
 @export var loops: int = 0
 @export var disableMovement: bool = false
 @export var previousDisableMove: bool = false
+@export var afterMoveWaitAccum: float = 0
 @export var version: String = ''
 
 @export_category("NPCData - Dialogue")
@@ -35,6 +36,7 @@ func _init(
 	i_loops = 0,
 	i_disableMovement = false,
 	i_previousDisableMove = false,
+	i_afterMoveWaitAccum = 0,
 	i_version = '',
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
@@ -57,6 +59,7 @@ func _init(
 	else:
 		version = GameSettings.get_game_version()
 	previousDisableMove = i_previousDisableMove
+	afterMoveWaitAccum = i_afterMoveWaitAccum
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
 	dialogueItemIdx = i_dialogueItemIdx

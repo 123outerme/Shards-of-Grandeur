@@ -3,12 +3,15 @@ class_name NPCMovement
 
 @onready var NPC: NPCScript = get_parent()
 
-@export var targetPoints: Array[Vector2] = []
+@export var targetPoints: Array[NPCMovePoint] = []
 @export var selectedTarget: int = 0
 @export var loops: int = 0 # -1 to loop indefinitely
 @export var waitsForMoveTrigger: bool = true
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
+
+var reachedTarget: bool = false
+var afterMoveWaitAccum: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +20,12 @@ func _ready():
 		start_movement()
 
 func _physics_process(delta):
+	if not disableMovement and reachedTarget and selectedTarget < len(targetPoints):
+		afterMoveWaitAccum += delta
+		if afterMoveWaitAccum >= targetPoints[selectedTarget].pauseSecs:
+			afterMoveWaitAccum = 0
+			update_target_pos()
+		
 	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and loops != 0:
 		var nextPos = get_next_path_position()
 		var vel = nextPos - NPC.position
@@ -41,6 +50,11 @@ func _physics_process(delta):
 		else:
 			NPC.npcSprite.play('stand')
 
+func set_target_pos():
+	target_position = targetPoints[selectedTarget].position
+	if targetPoints[selectedTarget].relativeToCurrentPos:
+		target_position += NPC.position
+
 func update_target_pos():
 	if disableMovement:
 		return
@@ -52,17 +66,20 @@ func update_target_pos():
 				return
 			if loops > 0:
 				loops -= 1 # don't need to keep track of loops when looping indefinitely
-		target_position = targetPoints[selectedTarget]
+		set_target_pos()
 
 func start_movement():
-	if not disableMovement and loops != 0:
-		target_position = targetPoints[selectedTarget]
+	if not disableMovement and loops != 0 and len(targetPoints) > 0:
+		set_target_pos()
 
 func _on_target_reached():
-	update_target_pos()
+	reachedTarget = true
+	afterMoveWaitAccum = 0
+	if targetPoints[selectedTarget].pauseSecs <= 0:
+		update_target_pos()
 
 func _on_navigation_finished():
-	update_target_pos()
-
-func _nav_map_changed():
-	print('map changed')
+	reachedTarget = true
+	afterMoveWaitAccum = 0
+	if targetPoints[selectedTarget].pauseSecs <= 0:
+		update_target_pos()

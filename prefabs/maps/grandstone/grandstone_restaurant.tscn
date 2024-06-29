@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://dioyw5xcfyilb" path="res://gamedata/dialogue/grandstone/restaurant_mgr/grandstone_restaurant_mgr_1.tres" id="5_ungnv"]
 [ext_resource type="Resource" uid="uid://bfhqa3cyyddnk" path="res://gamedata/shops/grandstone/half_captain_restaurant.tres" id="9_v4dj0"]
 
-[sub_resource type="Resource" id="Resource_q5a6w"]
+[sub_resource type="Resource" id="Resource_hcdd2"]
 script = ExtResource("4_fh8xe")
 saveName = "npc"
 animation = "stand"
@@ -20,6 +20,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -75,7 +76,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-45, -30)
 displayName = "Manager"
 saveName = "grandstone_restaurant_mgr"
-data = SubResource("Resource_q5a6w")
+data = SubResource("Resource_hcdd2")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_ungnv")])
 hasShop = true
 npcShop = ExtResource("9_v4dj0")

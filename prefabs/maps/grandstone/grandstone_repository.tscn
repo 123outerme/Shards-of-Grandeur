@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://ypcj1hsxfhdn" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase4.tres" id="14_xw1ml"]
 [ext_resource type="Resource" uid="uid://butoexa60sxyq" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/repository_bookcase5.tres" id="15_blccy"]
 
-[sub_resource type="Resource" id="Resource_sr7nk"]
+[sub_resource type="Resource" id="Resource_qoq2w"]
 script = ExtResource("4_st1ox")
 saveName = "npc"
 animation = "stand"
@@ -28,6 +28,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -120,7 +121,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-38, -101)
 displayName = "Librarian"
 saveName = "grandstone_librarian"
-data = SubResource("Resource_sr7nk")
+data = SubResource("Resource_qoq2w")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("13_vmbtd"), ExtResource("5_elhq5")])
 hasShop = true
 npcShop = ExtResource("14_i6suk")

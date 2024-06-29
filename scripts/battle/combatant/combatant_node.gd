@@ -255,6 +255,20 @@ func play_animation(animationName: String):
 		await animatedSprite.animation_looped
 		animatedSprite.stop()
 
+func get_animation_fps(animationName: String) -> float:
+	return animatedSprite.sprite_frames.get_animation_speed(animationName)
+
+func get_total_anim_time(animationName: String) -> float:
+	var fps: float = get_animation_fps(animationName)
+	var moveTime: float = 0
+	for frameIdx in range(animatedSprite.sprite_frames.get_frame_count(animatedSprite.animation)):
+		# add (duration of frame / per-frame time) = amount of time to display this frame
+		moveTime += animatedSprite.sprite_frames.get_frame_duration(animatedSprite.animation, frameIdx) / fps
+	return moveTime
+
+func get_auto_reposition_tween_time(animationName: String) -> float:
+	return get_total_anim_time(animationName) * 0.5
+
 func tween_to(pos: Vector2):
 	if combatant.get_idle_size().x > 16:
 		if pos.x > global_position.x:
@@ -273,20 +287,25 @@ func tween_to(pos: Vector2):
 		global_position = returnToPos
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	returnToPos = global_position
-	var moveTime = pos.length() / ANIMATE_MOVE_SPEED
+	var moveTime: float = pos.length() / ANIMATE_MOVE_SPEED
+	var downTime: float = 0
+	# if there's an animation playing:
 	if animatedSprite.animation != 'battle_idle':
-		# if there's an animation playing:
-		moveTime = 0
-		var fps = animatedSprite.sprite_frames.get_animation_speed(animatedSprite.animation)
-		for frameIdx in range(animatedSprite.sprite_frames.get_frame_count(animatedSprite.animation)):
-			# add (duration of frame / per-frame time) = amount of time to display this frame
-			moveTime += animatedSprite.sprite_frames.get_frame_duration(animatedSprite.animation, frameIdx) / fps
-		moveTime *= 0.5 #0.667 # half the time so the destination is reached for the latter half of the animation
-		
+		moveTime = get_auto_reposition_tween_time(animatedSprite.animation)
+		var arriveFrame = combatant.get_sprite_obj().get_arrive_frame(animatedSprite.animation)
+		# if no arrive frame (value < 0), auto-time (arrive at the destination with halfway through the animation)
+		if arriveFrame >= 0:
+			# arrive at the chosen arrival frame and wait the remainder of the move time 
+			var fps: float = get_animation_fps(animatedSprite.animation)
+			downTime = moveTime - (arriveFrame / fps)
+			moveTime = arriveFrame / fps
 	# move to target position
 	animateTween.tween_property(spriteContainer, 'global_position', pos, moveTime)
 	# emit that the move was completed
 	animateTween.tween_callback(_on_animate_tween_target_move_finished)
+	# wait for any downtime as a result of an earlier arrival frame
+	if downTime > 0:
+		animateTween.tween_property(spriteContainer, 'rotation', 0, downTime) # will not rotate, is simply doing nothing for the length of the down time
 	# wait
 	animateTween.tween_property(spriteContainer, 'rotation', 0, 1) # will not rotate, is simply doing nothing for a beat
 	# and return at a constant rate
@@ -355,6 +374,23 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 	var nodes: Array[CombatantNode] = moveSpriteTargets
 	if not moveAnimSprite.onePerTarget and len(nodes) > 0:
 		nodes = [moveSpriteTargets[0]]
+	# for each target in the list of target nodes at this point, one sprite will be spawned 
+	playedMoveSprites += len(nodes)
+	
+	var impactFrame: int = combatant.get_sprite_obj().get_impact_frame(animatedSprite.animation)
+	if impactFrame > 0 and moveAnimSprite.playsOnImpactFrame:
+		# wait to spawn the move sprite until the impact frame arrives
+		var fps: float = animatedSprite.sprite_frames.get_animation_speed(animatedSprite.animation)
+		var timeUntilImpact: float = impactFrame / fps
+		# if the sprite also delays until reposition: take the arrival frame into account
+		if moveAnimSprite.delayedUntilReposition:
+			var arrivalFrame: float = combatant.get_sprite_obj().get_arrive_frame(animatedSprite.animation)
+			if arrivalFrame < 0:
+				arrivalFrame = get_auto_reposition_tween_time(animatedSprite.animation)
+			timeUntilImpact -= arrivalFrame / fps
+		if timeUntilImpact > 0:
+			await get_tree().create_timer(timeUntilImpact).timeout
+	
 	for node in nodes:
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
 		spriteNode.user = self
@@ -367,7 +403,6 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
 		#spriteNode.call_deferred('play_sprite_animation')
 		add_child(spriteNode)
-		playedMoveSprites += 1
 
 func move_animation_callback(callback: Callable):
 	moveSpritesCallback = callback

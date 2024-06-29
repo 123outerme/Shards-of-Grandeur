@@ -30,7 +30,7 @@
 [ext_resource type="Resource" uid="uid://60cy3xsvene1" path="res://gamedata/cutscenes/leavenport/south_spar_turnaround.tres" id="25_d60sx"]
 [ext_resource type="Resource" uid="uid://cpdkluglde3uh" path="res://gamedata/cutscenes/leavenport/south_precave_turnaround.tres" id="26_638c0"]
 
-[sub_resource type="Resource" id="Resource_npysp"]
+[sub_resource type="Resource" id="Resource_icu44"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -41,6 +41,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -48,7 +49,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_incel"]
+[sub_resource type="Resource" id="Resource_07hhw"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -59,6 +60,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -66,7 +68,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_dhy52"]
+[sub_resource type="Resource" id="Resource_pspn8"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -77,6 +79,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -84,7 +87,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_6dd0x"]
+[sub_resource type="Resource" id="Resource_uh5of"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -95,6 +98,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -102,7 +106,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_3lxhn"]
+[sub_resource type="Resource" id="Resource_verhm"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -113,6 +117,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -174,7 +179,7 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
-[sub_resource type="Resource" id="Resource_ie354"]
+[sub_resource type="Resource" id="Resource_akamg"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 animation = "stand"
@@ -185,6 +190,7 @@ selectedTarget = 0
 loops = 0
 disableMovement = false
 previousDisableMove = false
+afterMoveWaitAccum = 0.0
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -194,8 +200,8 @@ hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
-metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0, 98.0, 192.0, 1238.0, 1712.0, 1444.0, 1464.0, 1408.0, 1270.0, 1316.0, 1535.0, 616.0, 824.0]
-metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0, 606.0, 540.0, 904.0, 120.0]
+metadata/_edit_vertical_guides_ = [1655.0, 78.0, -88.0, 98.0, 192.0, 1238.0, 1712.0, 1444.0, 1464.0, 1408.0, 1270.0, 1316.0, 1535.0, 616.0]
+metadata/_edit_horizontal_guides_ = [560.0, 206.0, 480.0, -176.0, 606.0, 540.0, 904.0]
 
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
@@ -311,7 +317,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_npysp")
+data = SubResource("Resource_icu44")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -336,7 +342,7 @@ visible = false
 position = Vector2(-28, 101)
 loadFlipH = true
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_incel")
+data = SubResource("Resource_07hhw")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("10_7cmn1")
@@ -354,7 +360,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(25, 105)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_dhy52")
+data = SubResource("Resource_pspn8")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -372,7 +378,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_6dd0x")
+data = SubResource("Resource_uh5of")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -390,7 +396,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_3lxhn")
+data = SubResource("Resource_verhm")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -457,6 +463,14 @@ mapName = "leavenport_boathouse"
 mapPos = Vector2(-8, 4)
 
 [node name="WarpArea" parent="BoathouseWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_ho4gv")
+
+[node name="HouseWarpZone" parent="." instance=ExtResource("5_2lmvq")]
+position = Vector2(519.5, 146)
+mapName = "leavenport_house"
+mapPos = Vector2(-8, 4)
+
+[node name="WarpArea" parent="HouseWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_ho4gv")
 
 [node name="NorthWarpCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
@@ -547,7 +561,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
-data = SubResource("Resource_ie354")
+data = SubResource("Resource_akamg")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.46489
@@ -574,6 +588,7 @@ flip_h = true
 [editable path="InnWarpZone"]
 [editable path="MuseumWarpZone"]
 [editable path="BoathouseWarpZone"]
+[editable path="HouseWarpZone"]
 [editable path="NorthWarpCutsceneTrigger"]
 [editable path="EastWarpCutsceneTrigger"]
 [editable path="SouthWarpCutsceneTrigger"]

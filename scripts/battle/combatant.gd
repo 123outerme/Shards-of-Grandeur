@@ -271,6 +271,12 @@ func get_innate_stat_categories() -> Array[Stats.Category]:
 		return evolution.innateStatCategories
 	return innateStatCategories
 
+func get_sprite_obj() -> CombatantSprite:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite
+	return sprite
+
 func get_max_size() -> Vector2:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:

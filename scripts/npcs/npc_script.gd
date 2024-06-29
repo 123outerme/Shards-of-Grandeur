@@ -97,6 +97,11 @@ func save_data(save_path) -> int:
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
 	data.disableMovement = NavAgent.disableMovement
+	data.afterMoveWaitAccum = NavAgent.afterMoveWaitAccum
+	# in case we're saving the frame the nav agent reached its target, add a little offset
+	# this is so on load, reachedTarget will be set to be true
+	if NavAgent.reachedTarget:
+		data.afterMoveWaitAccum += 0.0001
 	data.inventory = inventory
 	data.visible = visible
 	return data.save_data(save_path + npcsDir, data)
@@ -121,6 +126,8 @@ func load_data(save_path):
 		NavAgent.loops = data.loops
 		NavAgent.disableMovement = data.previousDisableMove
 		NavAgent.radius = max(spriteSize.x, spriteSize.y) / 2
+		NavAgent.afterMoveWaitAccum = data.afterMoveWaitAccum
+		NavAgent.reachedTarget = NavAgent.afterMoveWaitAccum > 0
 		NavAgent.start_movement()
 		fetch_player()
 		fetch_quest_dialogue_info()
