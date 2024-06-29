@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_6s4wi"]
 script = ExtResource("1_6j4b2")
-lines = Array[String](["I will be with you on your travels from now on. All you must do is Summon me, and I will fight beside you!"])
+lines = Array[String](["Since you have defeated me, I will retreat and regroup my rat subjects. I will return to fight for rodent freedom!"])
 animation = "talk"
 choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
 
@@ -31,7 +31,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("1_5mbqb")
-entryId = ""
+entryId = "king_rat_defeated"
 items = Array[ExtResource("1_6j4b2")]([SubResource("Resource_6s4wi")])
 storyRequirements = SubResource("Resource_ug4js")
 closesDialogue = false

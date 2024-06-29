@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=18 format=3 uid="uid://danfrkuhowl8k"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_an67t"]
+[ext_resource type="Resource" uid="uid://degvt1e84u2hf" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_whats_boathouse.tres" id="2_d0fn4"]
+[ext_resource type="Resource" uid="uid://bx7nwcm0icnmu" path="res://gamedata/dialogue/leavenport/skipper/ask_shroom_bag_quest.tres" id="3_r5rpe"]
+[ext_resource type="Resource" uid="uid://cj622vf85csid" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_1.tres" id="4_bbet3"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_6ht4f"]
+[ext_resource type="Resource" uid="uid://kiwaeu7fllpl" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_2.tres" id="6_kglhw"]
+[ext_resource type="Resource" uid="uid://lmjp4usobbhv" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_3.tres" id="7_02qqd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="8_hemmw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="9_8jgaa"]
+
+[sub_resource type="Resource" id="Resource_dil3q"]
+script = ExtResource("1_an67t")
+choiceBtn = "Fare Thee Well!"
+randomDialogues = Array[ExtResource("5_6ht4f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_a0eyl"]
+script = ExtResource("1_an67t")
+choiceBtn = "Boathouse?"
+leadsTo = ExtResource("2_d0fn4")
+randomDialogues = Array[ExtResource("5_6ht4f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_uic50"]
+script = ExtResource("1_an67t")
+choiceBtn = "Have Any Work?"
+leadsTo = ExtResource("3_r5rpe")
+randomDialogues = Array[ExtResource("5_6ht4f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_ipmqy"]
+script = ExtResource("5_6ht4f")
+dialogueEntry = ExtResource("4_bbet3")
+weight = 0.34
+
+[sub_resource type="Resource" id="Resource_j5mue"]
+script = ExtResource("5_6ht4f")
+dialogueEntry = ExtResource("6_kglhw")
+weight = 0.33
+
+[sub_resource type="Resource" id="Resource_0nwhi"]
+script = ExtResource("5_6ht4f")
+dialogueEntry = ExtResource("7_02qqd")
+weight = 0.33
+
+[sub_resource type="Resource" id="Resource_w3sj1"]
+script = ExtResource("1_an67t")
+choiceBtn = "Have Any Sea Stories?"
+randomDialogues = Array[ExtResource("5_6ht4f")]([SubResource("Resource_ipmqy"), SubResource("Resource_j5mue"), SubResource("Resource_0nwhi")])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_sblfs"]
+script = ExtResource("8_hemmw")
+lines = Array[String](["Welcome to the Boathouse, landlubber."])
+animation = "talk"
+choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
+
+[resource]
+script = ExtResource("9_8jgaa")
+entryId = ""
+items = Array[ExtResource("8_hemmw")]([SubResource("Resource_sblfs")])
+closesDialogue = false
+fullHealsPlayer = false

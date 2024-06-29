@@ -343,8 +343,14 @@ func select_choice(choice: DialogueChoice):
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 		return
 	
-	if choice.leadsTo != null:
-		var reused = talkNPC.add_dialogue_entry_in_dialogue(choice.leadsTo)
+	var leadsTo: DialogueEntry = choice.leadsTo
+	if choice.leadsTo != null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
+		var randomIdx = WeightedThing.pick_item(choice.randomDialogues)
+		if randomIdx > -1:
+			leadsTo = choice.randomDialogues[randomIdx].dialogueEntry
+	
+	if leadsTo != null:
+		var reused = talkNPC.add_dialogue_entry_in_dialogue(leadsTo)
 		# skip any remaining dialogue we might have here
 		talkNPC.data.dialogueItemIdx = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items) - 1
 		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].lines) - 1

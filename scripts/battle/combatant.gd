@@ -195,6 +195,7 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	# if this is a player evolution, keep learned moves and add moves granted by new evolution
 	if save_name() == 'player':
 		# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution
+		print('adjust movepool for player evo')
 		var movepool: MovePool = get_evolution_stats(null).stats.movepool.copy()
 		# for each move granted by this evolution, if not in the movepool, add it
 		for move: Move in evolution.stats.movepool.pool:

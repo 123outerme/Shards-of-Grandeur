@@ -40,12 +40,18 @@ func select_choice(choice: DialogueChoice):
 		PlayerFinder.player.put_interactable_text(false, false)
 		return
 	
-	if choice.leadsTo != null:
-		if choice.leadsTo.can_use_dialogue():
+	var leadsTo: DialogueEntry = choice.leadsTo
+	if choice.leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
+		var randomIdx: int = WeightedThing.pick_item(choice.randomDialogues)
+		if randomIdx > -1:
+			leadsTo = choice.randomDialogues[randomIdx].dialogueEntry
+	
+	if leadsTo != null:
+		if leadsTo.can_use_dialogue():
 			var index: int = -1
 			for dialogueIdx: int in range(len(PlayerFinder.player.interactableDialogues)):
 				var interDialogue: InteractableDialogue = PlayerFinder.player.interactableDialogues[dialogueIdx]
-				if interDialogue.dialogueEntry == choice.leadsTo:
+				if interDialogue.dialogueEntry == leadsTo:
 					index = dialogueIdx
 					break
 					
@@ -57,7 +63,7 @@ func select_choice(choice: DialogueChoice):
 			else:
 				index = mini(PlayerFinder.player.interactableDialogueIndex + 1, len(PlayerFinder.player.interactableDialogues))
 				var newInterDialogue: InteractableDialogue = InteractableDialogue.new()
-				newInterDialogue.dialogueEntry = choice.leadsTo
+				newInterDialogue.dialogueEntry = leadsTo
 				newInterDialogue.speaker = dialogue.speaker
 				PlayerFinder.player.interactableDialogues.insert(index, newInterDialogue)
 				PlayerFinder.player.put_interactable_text(true)
