@@ -347,7 +347,12 @@ func calculate_escape_chance(user: Combatant, target: Combatant) -> float:
 	var targetStatChanges = StatChanges.new()
 	targetStatChanges.stack(target.statChanges)
 	var userStats = userStatChanges.apply(user.stats)
+	if user.statusEffect != null and user.statusEffect.is_stat_altering():
+		userStats = user.statusEffect.apply_stat_change(userStats)
+	
 	var targetStats = targetStatChanges.apply(target.stats)
+	if target.statusEffect != null and target.statusEffect.is_stat_altering():
+		targetStats = target.statusEffect.apply_stat_change(targetStats)
 	# 90% flee base rate + 30% of (speed difference over speed totals)
 	# => 90% flee base rate that increases as player speed increases (~proportional to stat scaling)
 	# and decreases as target speed increases (~proportional to stat scaling

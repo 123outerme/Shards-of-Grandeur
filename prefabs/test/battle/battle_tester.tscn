@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=70 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
@@ -35,6 +35,7 @@
 [ext_resource type="Resource" uid="uid://b44rt6x6fxqsj" path="res://gamedata/combatants/solius/solius_equipment.tres" id="20_fk61q"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
 [ext_resource type="Resource" uid="uid://dsi3u88tbgf0n" path="res://gamedata/combatants/cloud_gull/cloud_gull_rewards.tres" id="22_xbjvk"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/mania.gd" id="23_1anbk"]
 [ext_resource type="Resource" uid="uid://cnmexck5i2y38" path="res://gamedata/combatants/cloud_gull/cloud_gull_evolutions.tres" id="23_djiok"]
 [ext_resource type="Resource" uid="uid://c6q3qr32go02t" path="res://gamedata/combatants/cloud_gull/cloud_gull_effectiveness.tres" id="24_tv3k6"]
 [ext_resource type="Resource" uid="uid://bmsshj6dewl55" path="res://gamedata/combatants/cloud_gull/cloud_gull_movepool.tres" id="26_nv623"]
@@ -43,6 +44,7 @@
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="28_3l5fj"]
 [ext_resource type="Resource" uid="uid://c8if1u55s37vs" path="res://gamedata/combatants/cloud_gull/cloud_gull_sprite.tres" id="28_huiyb"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/guard_break.gd" id="40_2p3y1"]
 
 [sub_resource type="Resource" id="Resource_8wt0b"]
 script = ExtResource("3_3k7vy")
@@ -175,6 +177,13 @@ statGrowth = ExtResource("19_fdfdx")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("18_duw15")
 
+[sub_resource type="Resource" id="Resource_lcaln"]
+script = ExtResource("23_1anbk")
+type = 7
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
+
 [sub_resource type="Resource" id="Resource_4p0wd"]
 script = ExtResource("2_12odb")
 sprite = ExtResource("17_idd5h")
@@ -184,6 +193,7 @@ evolutions = ExtResource("15_i6rka")
 evolutionStats = {}
 currentHp = -1
 orbs = 0
+statusEffect = SubResource("Resource_lcaln")
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -325,6 +335,13 @@ statGrowth = ExtResource("27_lam2n")
 moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
 movepool = ExtResource("26_nv623")
 
+[sub_resource type="Resource" id="Resource_fyhex"]
+script = ExtResource("40_2p3y1")
+type = 10
+potency = 3
+overwritesOtherStatuses = false
+turnsLeft = 2
+
 [sub_resource type="Resource" id="Resource_eeq5k"]
 script = ExtResource("2_12odb")
 sprite = ExtResource("28_huiyb")
@@ -334,6 +351,7 @@ evolutions = ExtResource("23_djiok")
 evolutionStats = {}
 currentHp = -1
 orbs = 0
+statusEffect = SubResource("Resource_fyhex")
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
