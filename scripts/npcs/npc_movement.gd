@@ -60,6 +60,7 @@ func update_target_pos():
 		return
 	if len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
+		reachedTarget = false
 		if selectedTarget == 0:
 			if loops == 0 or len(targetPoints) == 1:
 				disableMovement = true
