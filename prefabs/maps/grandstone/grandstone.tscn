@@ -37,7 +37,7 @@
 [ext_resource type="Resource" uid="uid://67f45roiioow" path="res://gamedata/cutscenes/grandstone/quarry_block.tres" id="29_og3i4"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="40_h5fsr"]
 
-[sub_resource type="Resource" id="Resource_j4vc8"]
+[sub_resource type="Resource" id="Resource_m8761"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -68,7 +68,7 @@ position = Vector2(150, 64)
 relativeToCurrentPos = false
 pauseSecs = 1.25
 
-[sub_resource type="Resource" id="Resource_3a4ri"]
+[sub_resource type="Resource" id="Resource_vb08f"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -93,7 +93,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_lm1wk"]
+[sub_resource type="Resource" id="Resource_l74s4"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -112,7 +112,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_choa3"]
+[sub_resource type="Resource" id="Resource_x1obf"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -131,7 +131,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ydgvw"]
+[sub_resource type="Resource" id="Resource_oimjo"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -150,7 +150,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_wa3x3"]
+[sub_resource type="Resource" id="Resource_ccbkr"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -169,7 +169,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ph6fl"]
+[sub_resource type="Resource" id="Resource_5i5ul"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -188,7 +188,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_l4gpd"]
+[sub_resource type="Resource" id="Resource_5l816"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -207,7 +207,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ic8hm"]
+[sub_resource type="Resource" id="Resource_re47d"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -310,7 +310,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_sknc4"]
+[sub_resource type="Resource" id="Resource_wcuqt"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 animation = "stand"
@@ -356,7 +356,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(8, 24)
 displayName = "Lady"
 saveName = "grandstone_lady1"
-data = SubResource("Resource_j4vc8")
+data = SubResource("Resource_m8761")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_flmpr")])
 
 [node name="NPCSprite" parent="TileMap/Lady1" index="0"]
@@ -385,7 +385,7 @@ position = Vector2(680, 1)
 displayName = "Horse"
 saveName = "horse_cart_grandstone"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_3a4ri")
+data = SubResource("Resource_vb08f")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_q1mh4")])
 facesPlayer = false
 
@@ -422,7 +422,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(634, 11)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_grandstone"
-data = SubResource("Resource_lm1wk")
+data = SubResource("Resource_l74s4")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_i7gb8"), ExtResource("10_rabli")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -451,7 +451,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(617, -9)
 displayName = "Spelunker"
 saveName = "spelunker_grandstone"
-data = SubResource("Resource_choa3")
+data = SubResource("Resource_x1obf")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("10_ndj5n")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
@@ -477,7 +477,7 @@ visible = false
 position = Vector2(-40, -81)
 displayName = "Man"
 saveName = "grandstone_market_man"
-data = SubResource("Resource_ydgvw")
+data = SubResource("Resource_oimjo")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("17_wrdj8")])
 hasShop = true
 npcShop = ExtResource("21_3bgi6")
@@ -503,7 +503,7 @@ visible = false
 position = Vector2(-194, -208)
 displayName = "Man"
 saveName = "grandstone_man2"
-data = SubResource("Resource_wa3x3")
+data = SubResource("Resource_ccbkr")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("22_syaye"), ExtResource("23_vjxk8"), ExtResource("23_65cfo"), ExtResource("23_gbw8g")])
 
 [node name="NPCSprite" parent="TileMap/Man2" index="0"]
@@ -524,7 +524,7 @@ visible = false
 position = Vector2(-174, -208)
 displayName = "Man"
 saveName = "grandstone_man3"
-data = SubResource("Resource_ph6fl")
+data = SubResource("Resource_5i5ul")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("24_fp8pg"), ExtResource("28_3x5yj")])
 
 [node name="NPCSprite" parent="TileMap/Man3" index="0"]
@@ -546,7 +546,7 @@ visible = false
 position = Vector2(-23, 232)
 displayName = "Spelunker"
 saveName = "grandstone_spelunker2"
-data = SubResource("Resource_l4gpd")
+data = SubResource("Resource_5l816")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("22_00ip3")])
 
 [node name="NPCSprite" parent="TileMap/Spelunker2" index="0"]
@@ -566,7 +566,7 @@ visible = false
 [node name="EtchingStone" parent="TileMap" instance=ExtResource("3_d2cxy")]
 position = Vector2(192, -50)
 displayName = "Etching Stone"
-data = SubResource("Resource_ic8hm")
+data = SubResource("Resource_re47d")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("22_b052n")])
 facesPlayer = false
 
@@ -729,7 +729,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-62, 248)
-data = SubResource("Resource_sknc4")
+data = SubResource("Resource_wcuqt")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.158554

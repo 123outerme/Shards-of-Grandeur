@@ -12,10 +12,9 @@ enum Type {
 	MANIA = 7, # positive; move-first
 	REFLECT = 8, # TODO better name; causes recoil damage when hit with attack
 	INTERCEPTION = 9, # "attracts" a percentage of damage dealt to allies to self
-	GUARD_BREAK = 10,
-	ELEMENT_BURN = 11,
-	ENDURE = 12,
-	# other ones could be positive effects?
+	GUARD_BREAK = 10, # reduces resistance
+	ELEMENT_BURN = 11, # DoT based on damage of inflicting move
+	ENDURE = 12, # HP cannot be lowered below some minimum while the status is active
 }
 
 enum Potency {
@@ -94,6 +93,9 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 			combatant.statusEffect = null
 	return []
 
+func apply_stat_change(stats: Stats) -> Stats:
+	return stats.copy()
+
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	return '' # each status effect needs to implement this separately
 
@@ -108,6 +110,16 @@ func status_effect_to_string() -> String:
 
 func get_status_type_string() -> String:
 	return StatusEffect.status_type_to_string(type)
+
+func is_stat_altering() -> bool:
+	if type in [Type.WEAKNESS, Type.CONFUSION, Type.JINX, Type.GUARD_BREAK, Type.EXHAUSTION, Type.MANIA]:
+		return true
+	return false
+
+func affects_turn_order_calc() -> bool:
+	if type in [Type.EXHAUSTION, Type.MANIA]:
+		return true
+	return false
 
 func copy() -> StatusEffect:
 	return StatusEffect.new(

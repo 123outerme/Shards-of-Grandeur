@@ -229,6 +229,9 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					var userStatChanges = StatChanges.new()
 					userStatChanges.stack(user.statChanges) # copy stat changes
 					var userStats: Stats = userStatChanges.apply(user.stats)
+					if user.statusEffect != null and user.statusEffect.is_stat_altering():
+						userStats = user.statusEffect.apply_stat_change(userStats)
+					
 					var atkStat: float = userStats.physAttack # use physical for physical attacks
 					if move.category == Move.DmgCategory.MAGIC:
 						atkStat = userStats.magicAttack # use magic for magic attacks
@@ -308,7 +311,12 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 				targetStatChanges.undo_changes(moveEffect.targetStatChanges)
 	
 	var userStats: Stats = userStatChanges.apply(user.stats)
+	if user.statusEffect != null and user.statusEffect.is_stat_altering():
+		userStats = user.statusEffect.apply_stat_change(userStats)
+	
 	var targetStats: Stats = targetStatChanges.apply(target.stats)
+	if target.statusEffect != null and target.statusEffect.is_stat_altering():
+		targetStats = target.statusEffect.apply_stat_change(targetStats)
 	
 	if type == Type.MOVE:
 		var atkStat: float = userStats.physAttack # use physical for physical attacks
@@ -316,7 +324,6 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 			atkStat = userStats.magicAttack # use magic for magic attacks
 		if move.category == Move.DmgCategory.AFFINITY:
 			atkStat = userStats.affinity # use affinity for affinity-based attacks
-		
 		return BattleCommand.damage_formula(power, atkStat, targetStats.resistance, user.stats.level, target.stats.level, elEffectivenessMultiplier)
 	if type == Type.USE_ITEM and target.currentHp > 0: # if item and current target is still alive
 		if slot.item is Healing: # if healing
@@ -382,7 +389,13 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	var targetStatChanges = StatChanges.new()
 	targetStatChanges.stack(targets[targetIdx].statChanges)
 	var userStats = userStatChanges.apply(user.stats)
+	if user.statusEffect != null and user.statusEffect.is_stat_altering():
+		userStats = user.statusEffect.apply_stat_change(userStats)
+
 	var targetStats = targetStatChanges.apply(targets[targetIdx].stats)
+	if targets[targetIdx].statusEffect != null and targets[targetIdx].statusEffect.is_stat_altering():
+		targetStats = targets[targetIdx].statusEffect.apply_stat_change(targetStats)
+	
 	var statusEffectivenessMultiplier: float = 1
 	if user != targets[targetIdx]:
 		statusEffectivenessMultiplier = targets[targetIdx].get_status_effectiveness_multiplier(moveEffect.statusEffect.type)

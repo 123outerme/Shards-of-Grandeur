@@ -49,18 +49,17 @@ func combatant_stable_sort(): # insertion sort - there will never be more than 5
 '''
 
 func sort_turns(a: Combatant, b: Combatant) -> bool:
-	if a.get_exhaustion_level() < b.get_exhaustion_level():
-		return true # a is less exhausted than b
-	if a.get_exhaustion_level() > b.get_exhaustion_level():
-		return false # a is more exhausted than b
-	if a.get_mania_level() < b.get_mania_level():
-		return false # b is more manic than a
-	if a.get_mania_level() > b.get_mania_level():
-		return true # a is more manic than b
-	# otherwise, "turn priority" levels are the same
-	if a.stats.speed > b.stats.speed:
+	var aStats: Stats = a.stats
+	if a.statusEffect != null and a.statusEffect.affects_turn_order_calc():
+		aStats = a.statusEffect.apply_stat_change(aStats)
+	
+	var bStats: Stats = b.stats
+	if b.statusEffect != null and b.statusEffect.affects_turn_order_calc():
+		bStats = b.statusEffect.apply_stat_change(bStats)
+	
+	if aStats.speed > bStats.speed:
 		return true # a goes before b
-	if a.stats.speed < b.stats.speed:
+	if aStats.speed < bStats.speed:
 		return false # a goes after b
 	# if both have equal speed:
 	if b.disp_name() == PlayerResources.playerInfo.combatant.disp_name():

@@ -1,7 +1,13 @@
 extends StatusEffect
 class_name Mania
 
-# general idea: mania affects turn order positively, also maybe increases resistance?
+# general idea: mania affects turn order positively (increases speed)
+var statChangesDict: Dictionary = {
+	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
+	Potency.WEAK: StatChanges.new(1, 1, 1, 1, 1.2),
+	Potency.STRONG: StatChanges.new(1, 1, 1, 1, 1.4),
+	Potency.OVERWHELMING: StatChanges.new(1, 1, 1, 1, 1.6),
+}
 
 const _icon: Texture2D = preload('res://graphics/ui/mania.png')
 
@@ -14,14 +20,17 @@ func _init(
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	return super.apply_status(combatant, allCombatants, timing)
-	
+
+func apply_stat_change(stats: Stats) -> Stats:
+	return statChangesDict[potency].apply(stats)
+
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:
 		return combatant.disp_name() + " is moving extremely quickly due to " + status_effect_to_string() + '!'
 	return ''
 
 func get_status_effect_tooltip():
-	return 'A combatant with Mania moves first in a turn, before all combatants without Mania.'
+	return 'A combatant with Mania gains a temporary Speed boost when determining turn order.'
 
 func get_icon() -> Texture2D:
 	return _icon

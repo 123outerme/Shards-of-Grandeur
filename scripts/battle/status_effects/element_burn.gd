@@ -47,6 +47,9 @@ func get_burn_damage(combatant: Combatant) -> int:
 	targetStatChanges.stack(combatant.statChanges)
 	var elEffectivenessMultiplier: float = combatant.get_element_effectiveness_multiplier(element)
 	var targetStats: Stats = targetStatChanges.apply(combatant.stats)
+	if combatant.statusEffect != null and combatant.statusEffect.is_stat_altering():
+		targetStats = combatant.statusEffect.apply_stat_change(targetStats)
+
 	return BattleCommand.damage_formula(power * PERCENT_DAMAGE_DICT[potency], attackerStat, targetStats.resistance, attackerLv, combatant.stats.level, elEffectivenessMultiplier)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
