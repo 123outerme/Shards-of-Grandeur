@@ -183,6 +183,9 @@ func get_total_gained_stat_points() -> int:
 func get_stat_total():
 	return physAttack + magicAttack + affinity + resistance + speed + statPts
 
+func get_stat_total_including_dmg_boosts(additionalBoosts: float = 1.0):
+	return (physAttack + magicAttack + affinity) * additionalBoosts + resistance + speed + statPts
+
 func reset_stat_points():
 	save_from_object(Stats.calculate_base_stats(self, level))
 

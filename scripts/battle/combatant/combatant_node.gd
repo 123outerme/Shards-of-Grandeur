@@ -584,9 +584,8 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			var boostedStatsTotal: float = boostedStats.get_stat_total()
 			var newBoostedStats: Stats = moveEffect.selfStatChanges.apply(boostedStats)
 			# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones, but limiting the multiplier to not go negative or 0
-			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
-			# multiply in the stat total c`hange ratio (stat gains multiply >1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
-			weight *= (newBoostedStats.get_stat_total() / boostedStatsTotal) * (elementBoostsAvg * (3.0 / 5.0))
+			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.selfStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
+			weight *= (newBoostedStats.get_stat_total_including_dmg_boosts(elementBoostsAvg) / boostedStatsTotal)
 	if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 		# make dummy stats to easily detect percentage of stats that will be changed
 		var newStats: Stats = Stats.new('Dummy', 'dummy_stats', 1, 0, 50, 100, 100, 100, 100, 100)
@@ -594,14 +593,12 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		var newBoostedStats: Stats = moveEffect.targetStatChanges.apply(newStats)
 		if BattleCommand.is_command_enemy_targeting(moveEffect.targets):
 			# get the weighted average of elemental multipliers to be gained, weighting negative multipliers higher than positive ones, but limiting the multiplier to not go negative or 9
-			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
-			# multiply in the stat total change ratio (stat gains multiply <1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
-			weight *= (newStatsTotal / newBoostedStats.get_stat_total()) * (elementBoostsAvg * (3.0 / 5.0))
+			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(0.75, 1.25) / Move.NUM_ELEMENTS))
+			weight *= newStatsTotal / newBoostedStats.get_stat_total_including_dmg_boosts(elementBoostsAvg)
 		else:
 			# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones, but limiting the multiplier to not go negative or 0
 			var elementBoostsAvg: float = max(0.01, 1 + (moveEffect.targetStatChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
-			# multiply in the stat total change ratio (stat gains multiply >1.0), and the weighted elemental boost average * 3/5 (because of all stats, Phys, Magic, and Affinity are the only ones to benefit from elemental boosts)
-			weight *= (newBoostedStats.get_stat_total() / newStatsTotal) * (elementBoostsAvg * (3.0 / 5.0))
+			weight *= newBoostedStats.get_stat_total_including_dmg_boosts(elementBoostsAvg) / newStatsTotal
 	return weight
 
 func ai_get_move_effect_weights(combatantNodes: Array[CombatantNode]) -> Array[ChosenMove]:
@@ -670,7 +667,9 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 			var maxStatTotal: int = 0
 			for combatantNode in targetableCombatants:
 				var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
-				var statTotal: int = stats.get_stat_total()
+				# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones
+				var elementBoostsAvg: float = max(0.01, 1 + (combatantNode.combatant.statChanges.sum_weighted_elemental_multipliers(1.25, 0.75) / Move.NUM_ELEMENTS))
+				var statTotal: float = stats.get_stat_total_including_dmg_boosts(elementBoostsAvg)
 				if maxStatTotal < statTotal:
 					maxStatTotal = statTotal
 					pickedTarget = combatantNode.battlePosition
