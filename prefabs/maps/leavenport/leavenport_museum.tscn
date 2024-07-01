@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dweb5hyoegjw7"]
+[gd_scene load_steps=30 format=3 uid="uid://dweb5hyoegjw7"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_b0t1l"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_xcvh2"]
@@ -7,8 +7,17 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_2l8si"]
 [ext_resource type="Resource" uid="uid://8pf1vr5htkgf" path="res://gamedata/dialogue/leavenport/curator/curator_1.tres" id="5_3lx3c"]
 [ext_resource type="SpriteFrames" uid="uid://d4g4prd6e6rsd" path="res://graphics/animations/a_lady4-2.tres" id="5_jukt4"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="7_ont3y"]
+[ext_resource type="Resource" uid="uid://c1h08luged1mu" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/nature_painting.tres" id="8_5uynx"]
+[ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="9_1x2b8"]
+[ext_resource type="Resource" uid="uid://c5rbxh5xqqyc8" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/storm_painting.tres" id="10_4vx87"]
+[ext_resource type="Resource" uid="uid://d2au13slvmsg3" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/moon_painting.tres" id="11_2427h"]
+[ext_resource type="Resource" uid="uid://bhunxb16tlfpt" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/food_painting.tres" id="12_hu6my"]
+[ext_resource type="Resource" uid="uid://bv0teve4rw4tk" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/pottery.tres" id="13_kgorc"]
+[ext_resource type="Resource" uid="uid://61srcxkpdnld" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/boat_sculpture.tres" id="14_pea1r"]
+[ext_resource type="Resource" uid="uid://bmrmnggtkpau3" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/statue.tres" id="15_0p2up"]
 
-[sub_resource type="Resource" id="Resource_2p6hx"]
+[sub_resource type="Resource" id="Resource_v5xhe"]
 script = ExtResource("4_2l8si")
 saveName = "npc"
 animation = "stand"
@@ -26,6 +35,65 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
+
+[sub_resource type="Resource" id="Resource_lra8n"]
+script = ExtResource("9_1x2b8")
+speaker = "\"The River\""
+dialogueEntry = ExtResource("8_5uynx")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_34lls"]
+script = ExtResource("9_1x2b8")
+speaker = "\"Power of the Storm\""
+dialogueEntry = ExtResource("10_4vx87")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_bcviu"]
+script = ExtResource("9_1x2b8")
+speaker = "\"Our Night Sky\""
+dialogueEntry = ExtResource("11_2427h")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_lxr10"]
+script = ExtResource("9_1x2b8")
+speaker = "\"A Feast for Man\""
+dialogueEntry = ExtResource("12_hu6my")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_312fv"]
+script = ExtResource("9_1x2b8")
+speaker = "Pottery"
+dialogueEntry = ExtResource("13_kgorc")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_qmt1n"]
+script = ExtResource("9_1x2b8")
+speaker = "Bronze Boat"
+dialogueEntry = ExtResource("14_pea1r")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvksn"]
+size = Vector2(34, 15)
+
+[sub_resource type="Resource" id="Resource_qj708"]
+script = ExtResource("9_1x2b8")
+speaker = "Pottery"
+dialogueEntry = ExtResource("13_kgorc")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_m8dom"]
+script = ExtResource("9_1x2b8")
+speaker = "Statue"
+dialogueEntry = ExtResource("15_0p2up")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -51,6 +119,7 @@ script = ExtResource("1_b0t1l")
 [node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
 y_sort_enabled = true
 tile_set = ExtResource("2_xcvh2")
+collision_visibility_mode = 1
 format = 2
 layer_0/name = "Midground"
 layer_0/y_sort_enabled = true
@@ -72,7 +141,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-40, -31)
 displayName = "Curator"
 saveName = "leavenport_museum_curator"
-data = SubResource("Resource_2p6hx")
+data = SubResource("Resource_v5xhe")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_3lx3c")])
 
 [node name="NPCSprite" parent="TileMap/Curator" index="0"]
@@ -87,6 +156,62 @@ position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TileMap/Curator" index="4"]
 visible = false
+
+[node name="InteractableDecoration" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(-40, -120)
+saveName = "nature_painting"
+dialogue = SubResource("Resource_lra8n")
+
+[node name="InteractableDecoration2" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(-24, -120)
+saveName = "storm_painting"
+dialogue = SubResource("Resource_34lls")
+
+[node name="InteractableDecoration3" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(8, -120)
+saveName = "moon_painting"
+dialogue = SubResource("Resource_bcviu")
+
+[node name="InteractableDecoration4" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(56, -120)
+saveName = "food_painting"
+dialogue = SubResource("Resource_lxr10")
+
+[node name="InteractableDecoration5" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(-72, -88)
+saveName = "pottery_1"
+dialogue = SubResource("Resource_312fv")
+
+[node name="CollisionShape2D" parent="TileMap/InteractableDecoration5/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="InteractableDecoration6" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(16, -87)
+saveName = "boat_sculpture"
+dialogue = SubResource("Resource_qmt1n")
+
+[node name="CollisionShape2D" parent="TileMap/InteractableDecoration6" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_vvksn")
+
+[node name="CollisionShape2D" parent="TileMap/InteractableDecoration6/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="InteractableDecoration7" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(72, -72)
+saveName = "pottery_2"
+dialogue = SubResource("Resource_qj708")
+
+[node name="CollisionShape2D" parent="TileMap/InteractableDecoration7/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="InteractableDecoration8" parent="TileMap" instance=ExtResource("7_ont3y")]
+position = Vector2(72, -40)
+saveName = "statue"
+dialogue = SubResource("Resource_m8dom")
+
+[node name="CollisionShape2D" parent="TileMap/InteractableDecoration8/AnimatedDecoration/Collision" index="0"]
+disabled = true
 
 [node name="WarpZone" parent="." instance=ExtResource("3_7umvu")]
 position = Vector2(-8.5, 18)
@@ -105,3 +230,11 @@ navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
 [editable path="TileMap/Curator"]
+[editable path="TileMap/InteractableDecoration5"]
+[editable path="TileMap/InteractableDecoration5/AnimatedDecoration"]
+[editable path="TileMap/InteractableDecoration6"]
+[editable path="TileMap/InteractableDecoration6/AnimatedDecoration"]
+[editable path="TileMap/InteractableDecoration7"]
+[editable path="TileMap/InteractableDecoration7/AnimatedDecoration"]
+[editable path="TileMap/InteractableDecoration8"]
+[editable path="TileMap/InteractableDecoration8/AnimatedDecoration"]

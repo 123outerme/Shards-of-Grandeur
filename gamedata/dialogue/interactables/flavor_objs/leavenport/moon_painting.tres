@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://d2au13slvmsg3"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_6mkf5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ljbsd"]
+
+[sub_resource type="Resource" id="Resource_4yeyg"]
+script = ExtResource("1_ljbsd")
+lines = Array[String](["This painting depicts the moon and stars. It depicts how awe-inspiring the night sky is."])
+animation = ""
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_6mkf5")
+entryId = ""
+items = Array[ExtResource("1_ljbsd")]([SubResource("Resource_4yeyg")])
+closesDialogue = false
+fullHealsPlayer = false

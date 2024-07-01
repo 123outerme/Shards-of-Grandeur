@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://c1h08luged1mu"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_lon8x"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_u5bop"]
+
+[sub_resource type="Resource" id="Resource_65y3w"]
+script = ExtResource("1_lon8x")
+lines = Array[String](["This painting depicts the tranquility of nature, capturing one of the wonderful vistas in this area."])
+animation = ""
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_u5bop")
+entryId = ""
+items = Array[ExtResource("1_lon8x")]([SubResource("Resource_65y3w")])
+closesDialogue = false
+fullHealsPlayer = false
