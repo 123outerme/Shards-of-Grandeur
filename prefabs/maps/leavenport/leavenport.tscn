@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=52 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -133,6 +133,63 @@ speaker = ""
 dialogueEntry = ExtResource("13_q8qvf")
 savedItemIdx = 0
 savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_kh0bo"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_xdxli"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="Resource" id="Resource_cr320"]
+script = ExtResource("6_jui48")
+saveName = "npc"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho4gv"]
 size = Vector2(8, 1)
@@ -416,6 +473,18 @@ position = Vector2(219, -141)
 pickedUpItem = SubResource("Resource_c70i6")
 particleTextures = Array[Texture2D]([ExtResource("15_llrp6"), ExtResource("16_0ng0y"), ExtResource("17_a2b6x"), ExtResource("18_liw0c")])
 saveName = "leavenport_outside_1"
+
+[node name="NPC" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(617, -40)
+data = SubResource("Resource_kh0bo")
+
+[node name="NPC2" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(1031, 119)
+data = SubResource("Resource_xdxli")
+
+[node name="NPC3" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(472, 479)
+data = SubResource("Resource_cr320")
 
 [node name="RestaurantWarpZone" parent="." instance=ExtResource("5_2lmvq")]
 position = Vector2(1015.5, 434)
