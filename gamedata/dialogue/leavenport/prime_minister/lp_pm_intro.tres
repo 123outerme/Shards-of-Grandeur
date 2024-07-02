@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://beg8gy0jt3gtj"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_swjlq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_ye5ti"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_n2gfd"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_b7ocu"]
+
+[sub_resource type="Resource" id="Resource_co4cg"]
+script = ExtResource("1_swjlq")
+choiceBtn = "You mean, the Cave?"
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_84smw"]
+script = ExtResource("2_ye5ti")
+lines = Array[String](["Welcome to Leavenport, traveller. I am the prime minister of Leavenport, and attend to all its affairs.", "I can tell you hail from Grandstone. Although we have great relationship with your city, we cannot aid you in your quest."])
+animation = "talk"
+choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_co4cg")])
+
+[sub_resource type="Resource" id="Resource_rtd3l"]
+script = ExtResource("1_swjlq")
+choiceBtn = "Yeah, I do, we're at war."
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_djbng"]
+script = ExtResource("2_ye5ti")
+lines = Array[String](["Right, the Radiant Cave. Leavenport has no great need for the powers of magic. We already thrive without it.", "Furthermore, our cooperation would anger Steelspire, a great military might. You must understand."])
+animation = "talk"
+choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_rtd3l")])
+
+[sub_resource type="Resource" id="Resource_65kra"]
+script = ExtResource("1_swjlq")
+choiceBtn = "I understand."
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_cbwby"]
+script = ExtResource("2_ye5ti")
+lines = Array[String](["At war? I knew that it was just a matter of time. Then you see why we must remain neutral.", "You may remain purely as a visitor, but do not bring your war into our borders."])
+animation = "talk"
+choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_65kra")])
+
+[sub_resource type="Resource" id="Resource_75cvf"]
+script = ExtResource("4_b7ocu")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["leavenport_takeover"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("3_n2gfd")
+entryId = "lp_pm_intro"
+items = Array[ExtResource("2_ye5ti")]([SubResource("Resource_84smw"), SubResource("Resource_djbng"), SubResource("Resource_cbwby")])
+storyRequirements = SubResource("Resource_75cvf")
+closesDialogue = false
+fullHealsPlayer = false
