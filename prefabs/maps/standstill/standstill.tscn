@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=82 format=3 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://gamedata/dialogue/horsecart/horsecart_1.tres" id="8_oaplt"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_ygb36"]
 [ext_resource type="Resource" uid="uid://bh7405n87iojt" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_1.tres" id="10_4ix1i"]
+[ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="10_mbkh4"]
 [ext_resource type="Resource" uid="uid://vhnccnobqc45" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_leave_2.tres" id="11_j5vtg"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="11_lx2nn"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="12_uy85b"]
@@ -42,9 +43,10 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="35_uryo8"]
 [ext_resource type="Resource" uid="uid://ddl47k7hjo25b" path="res://gamedata/cutscenes/standstill/standstill_to_grandstone.tres" id="36_sds6n"]
 
-[sub_resource type="Resource" id="Resource_c8edi"]
+[sub_resource type="Resource" id="Resource_njm58"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-256, 80)
 flipH = false
@@ -108,9 +110,10 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_t4fs4"]
+[sub_resource type="Resource" id="Resource_pe3qt"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-15, 128)
 flipH = false
@@ -133,9 +136,10 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_7vsab"]
+[sub_resource type="Resource" id="Resource_4tixe"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-8, 88)
 flipH = false
@@ -152,9 +156,10 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_jyr6k"]
+[sub_resource type="Resource" id="Resource_w60i8"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(216, -160)
 flipH = false
@@ -195,9 +200,10 @@ position = Vector2(216, -160)
 relativeToCurrentPos = false
 pauseSecs = 1.5
 
-[sub_resource type="Resource" id="Resource_lwdiy"]
+[sub_resource type="Resource" id="Resource_k4wdt"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(778, 0)
 flipH = false
@@ -388,9 +394,10 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_io8u5"]
+[sub_resource type="Resource" id="Resource_ayasv"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-566, 120)
 flipH = false
@@ -435,7 +442,7 @@ layer_4/tile_data = PackedInt32Array()
 [node name="Signpost" parent="TileMap" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-data = SubResource("Resource_c8edi")
+data = SubResource("Resource_njm58")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([SubResource("Resource_r3rp4")])
 facesPlayer = false
 
@@ -470,8 +477,12 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
+stateSpritesDict = {
+"default": ExtResource("9_ygb36"),
+"shards_cart": ExtResource("10_mbkh4")
+}
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_t4fs4")
+data = SubResource("Resource_pe3qt")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -507,7 +518,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-data = SubResource("Resource_7vsab")
+data = SubResource("Resource_4tixe")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg"), ExtResource("13_k8mkq")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -534,7 +545,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_jyr6k")
+data = SubResource("Resource_w60i8")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TileMap/Lance" index="0"]
@@ -569,7 +580,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-data = SubResource("Resource_lwdiy")
+data = SubResource("Resource_k4wdt")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("22_g7o8t")
@@ -747,7 +758,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_io8u5")
+data = SubResource("Resource_ayasv")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

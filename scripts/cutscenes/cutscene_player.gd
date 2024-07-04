@@ -113,8 +113,8 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 	
 	for animSet in frame.actorAnimSets:
 		var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
-		if node != null and node.has_method('set_sprite_frames'):
-			node.call('set_sprite_frames', animSet.animationSet)
+		if node != null and node.has_method('set_sprite_state'):
+			node.call('set_sprite_state', animSet.spriteState)
 	for animation in frame.actorAnims:
 		var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
 		if node != null and node.has_method('play_animation'):

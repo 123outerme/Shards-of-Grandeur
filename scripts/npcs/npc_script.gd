@@ -13,6 +13,12 @@ class_name NPCScript
 @export var loadFlipH: bool = false
 ## if true, flips the walking animation to walk backwards
 @export var walkBackwards: bool = false
+## sprite state to use when first loading the NPC (w/o save data for this NPC)
+@export var spriteState: String = 'default'
+## String -> SpriteFrames: maps NPC sprite state string to the SpriteFrames for that state
+@export var stateSpritesDict: Dictionary = {
+	'default': null
+}
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 ## if the provided requirements are invalid, the NPC will be freed from the scene
 @export var spawnRequirements: StoryRequirements = null
@@ -70,10 +76,12 @@ func _ready():
 	initialTalkAlertSprPos = talkAlertSprite.position
 	initialTalkAreaPos = talkArea.position
 	initialTalkAreaShapePos = talkAreaShape.position
+	set_sprite_state(spriteState)
 	
 	data = NPCData.new()
 	data.position = position
 	data.inventory = inventory
+	data.spriteState = spriteState
 	call_deferred("fetch_player")
 	if spawnRequirements != null and not spawnRequirements.is_valid():
 		queue_free() # or alternatively set visible to false?
@@ -90,7 +98,7 @@ func save_data(save_path) -> int:
 	if saveName == '' or Engine.is_editor_hint():
 		return 0
 	data.saveName = saveName
-	data.animSet = npcSprite.sprite_frames
+	data.spriteState = spriteState
 	data.animation = npcSprite.animation
 	data.flipH = flip_h
 	data.position = position
@@ -117,9 +125,8 @@ func load_data(save_path):
 	if newData != null:
 		data = newData
 		# only load the new NPC data if it exists
-		if data.animSet != null:
-			npcSprite.set_sprite_frames(data.animSet)
-			npcSprite.play(data.animation)
+		set_sprite_state(data.spriteState)
+		npcSprite.play(data.animation)
 		position = data.position
 		_set_flip_h(data.flipH)
 		NavAgent.selectedTarget = data.selectedTarget
@@ -379,8 +386,10 @@ func face_player():
 	if facesPlayer:
 		face_horiz(player.position.x - position.x)
 
-func set_sprite_frames(spriteFrames: SpriteFrames):
-	npcSprite.sprite_frames = spriteFrames
+func set_sprite_state(state: String):
+	spriteState = state
+	if stateSpritesDict[spriteState] != null:
+		npcSprite.sprite_frames = stateSpritesDict[spriteState]
 
 func play_animation(animation: String):
 	if animation != '':

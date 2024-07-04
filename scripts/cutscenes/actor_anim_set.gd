@@ -3,13 +3,13 @@ class_name ActorAnimSet
 
 @export var actorTreePath: String = ''
 @export var isPlayer: bool = false
-@export var animationSet: SpriteFrames
+@export var spriteState: String = 'default'
 
 func _init(
 	i_actor = '',
 	i_isPlayer = false,
-	i_animationSet = null,
+	i_spriteState = 'default',
 ):
 	actorTreePath = i_actor
 	isPlayer = i_isPlayer
-	animationSet = i_animationSet
+	spriteState = i_spriteState
