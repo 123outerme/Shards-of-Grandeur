@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://vlsqi7vf1gie" path="res://gamedata/shops/leavenport/leavenport_restaurant.tres" id="6_fvkvi"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
 
-[sub_resource type="Resource" id="Resource_tdcf5"]
+[sub_resource type="Resource" id="Resource_g3qps"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 animation = "stand"
@@ -28,7 +28,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_y2xpg"]
+[sub_resource type="Resource" id="Resource_670yi"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 animation = "stand"
@@ -47,7 +47,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_46eu3"]
+[sub_resource type="Resource" id="Resource_ed4x3"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 animation = "stand"
@@ -111,7 +111,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_tdcf5")
+data = SubResource("Resource_g3qps")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_qg71i")])
 hasShop = true
 npcShop = ExtResource("6_fvkvi")
@@ -131,11 +131,11 @@ visible = false
 
 [node name="NPC" parent="TileMap" instance=ExtResource("3_o3ng4")]
 position = Vector2(20, -79)
-data = SubResource("Resource_y2xpg")
+data = SubResource("Resource_670yi")
 
 [node name="NPC2" parent="TileMap" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
-data = SubResource("Resource_46eu3")
+data = SubResource("Resource_ed4x3")
 
 [node name="WarpZone" parent="." instance=ExtResource("12_3gk7r")]
 position = Vector2(-8.5, 18)

@@ -1,17 +1,28 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://caul65lodxx0d"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://caul65lodxx0d"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_esp6s"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_kjhwl"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_x8u4t"]
+
+[sub_resource type="Resource" id="Resource_28p1l"]
+script = ExtResource("1_kjhwl")
+choiceBtn = "Will Do!"
+returnsToParentId = "lp_innkeeper1"
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_dfcnh"]
 script = ExtResource("1_esp6s")
 lines = Array[String](["We have a room for you, enjoy your rest."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("1_kjhwl")]([SubResource("Resource_28p1l")])
 
 [resource]
 script = ExtResource("1_x8u4t")
 entryId = ""
 items = Array[ExtResource("1_esp6s")]([SubResource("Resource_dfcnh")])
-closesDialogue = true
+closesDialogue = false
 fullHealsPlayer = true

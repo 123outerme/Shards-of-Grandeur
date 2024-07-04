@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bv0xdd1t2gie7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bv0xdd1t2gie7"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_6ag4p"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gd7ha"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t2r8a"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_jhgt1"]
+
+[sub_resource type="Resource" id="Resource_bemet"]
+script = ExtResource("1_gd7ha")
+choiceBtn = "Yeah..."
+returnsToParentId = "alessia_1"
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_6ynpx"]
 script = ExtResource("1_t2r8a")
 lines = Array[String](["Lance is cutting it too close, that slacker... He needs to show me he's learned enough to be considered a master.", "If he can't keep the furnace hot, then he can't make a butter knife, let alone a blade strong enough to keep the monsters out of the town.", "I just hope he'll rise to the occasion and show me he means business."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("1_gd7ha")]([SubResource("Resource_bemet")])
 
 [sub_resource type="Resource" id="Resource_k4lb2"]
 script = ExtResource("2_jhgt1")
