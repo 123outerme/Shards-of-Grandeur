@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://c4cibo3c6oybp"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6llds"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ij8mc"]
+
+[sub_resource type="Resource" id="Resource_xx7e7"]
+script = ExtResource("1_6llds")
+lines = Array[String](["Oh, my food is just lovely. I'm so glad we came all this way for it!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_ij8mc")
+entryId = ""
+items = Array[ExtResource("1_6llds")]([SubResource("Resource_xx7e7")])
+closesDialogue = false
+fullHealsPlayer = false

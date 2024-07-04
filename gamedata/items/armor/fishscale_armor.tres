@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://dcr7qq13h87da"]
+
+[ext_resource type="Texture2D" uid="uid://pij76jy720mt" path="res://graphics/items/armor/fishscale_armor.png" id="1_daefh"]
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="2_tt3b1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_vqqpq"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_eouki"]
+
+[sub_resource type="Resource" id="Resource_mxjru"]
+script = ExtResource("3_vqqpq")
+element = 1
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_oqowx"]
+script = ExtResource("4_eouki")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.15
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_vqqpq")]([SubResource("Resource_mxjru")])
+
+[resource]
+script = ExtResource("2_tt3b1")
+statChanges = SubResource("Resource_oqowx")
+timing = 1
+bonusOrbs = 1
+itemSprite = ExtResource("1_daefh")
+itemName = "Fishscale Armor"
+itemType = 3
+itemDescription = "Chainmail fashioned from iridescent fish scales. Its protective abilities are enhanced by the Affinity energy embued within each scale."
+cost = 35
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

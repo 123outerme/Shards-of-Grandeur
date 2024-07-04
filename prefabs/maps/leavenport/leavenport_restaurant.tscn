@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://84wmvuo7jkx3"]
+[gd_scene load_steps=19 format=3 uid="uid://84wmvuo7jkx3"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_pi30f"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wspdn"]
@@ -7,11 +7,16 @@
 [ext_resource type="SpriteFrames" uid="uid://bu7txxof6npce" path="res://graphics/animations/a_man4.tres" id="5_dk8mp"]
 [ext_resource type="Resource" uid="uid://cavschyk5vxg2" path="res://gamedata/dialogue/leavenport/restaurant_owner/restaurant_owner1.tres" id="5_qg71i"]
 [ext_resource type="Resource" uid="uid://vlsqi7vf1gie" path="res://gamedata/shops/leavenport/leavenport_restaurant.tres" id="6_fvkvi"]
+[ext_resource type="Resource" uid="uid://c8h031jxebn5v" path="res://gamedata/dialogue/leavenport/restaurant_man/lp_restaurant_man1.tres" id="8_ncx5c"]
+[ext_resource type="SpriteFrames" uid="uid://bof5d0mnj8tjb" path="res://graphics/animations/a_man1.tres" id="8_qmane"]
+[ext_resource type="SpriteFrames" uid="uid://p6ibhgoibhir" path="res://graphics/animations/a_lady4.tres" id="9_02nw7"]
+[ext_resource type="Resource" uid="uid://c4cibo3c6oybp" path="res://gamedata/dialogue/leavenport/restaurant_lady/lp_restaurant_lady1.tres" id="9_3ft4f"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
 
-[sub_resource type="Resource" id="Resource_g3qps"]
+[sub_resource type="Resource" id="Resource_0anbf"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-43, -31)
 flipH = false
@@ -28,9 +33,10 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_670yi"]
+[sub_resource type="Resource" id="Resource_txfrx"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(20, -79)
 flipH = false
@@ -47,9 +53,10 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ed4x3"]
+[sub_resource type="Resource" id="Resource_v062m"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-19, -78)
 flipH = false
@@ -111,7 +118,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_g3qps")
+data = SubResource("Resource_0anbf")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_qg71i")])
 hasShop = true
 npcShop = ExtResource("6_fvkvi")
@@ -131,11 +138,42 @@ visible = false
 
 [node name="NPC" parent="TileMap" instance=ExtResource("3_o3ng4")]
 position = Vector2(20, -79)
-data = SubResource("Resource_670yi")
+displayName = "Man"
+loadFlipH = true
+data = SubResource("Resource_txfrx")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_ncx5c")])
+
+[node name="NPCSprite" parent="TileMap/NPC" index="0"]
+sprite_frames = ExtResource("8_qmane")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/NPC" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/NPC" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/NPC" index="4"]
+visible = false
 
 [node name="NPC2" parent="TileMap" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
-data = SubResource("Resource_ed4x3")
+displayName = "Lady"
+data = SubResource("Resource_v062m")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_3ft4f")])
+
+[node name="NPCSprite" parent="TileMap/NPC2" index="0"]
+sprite_frames = ExtResource("9_02nw7")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/NPC2" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/NPC2" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/NPC2" index="4"]
+visible = false
 
 [node name="WarpZone" parent="." instance=ExtResource("12_3gk7r")]
 position = Vector2(-8.5, 18)
@@ -154,3 +192,5 @@ navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
 [editable path="TileMap/RestaurantOwner"]
+[editable path="TileMap/NPC"]
+[editable path="TileMap/NPC2"]

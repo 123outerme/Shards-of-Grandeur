@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://bpvf2xv1p41ii"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_q0b41"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_r4tho"]
+[ext_resource type="Resource" uid="uid://diemk80we7jgs" path="res://gamedata/items/weapon/iridescent_scale.tres" id="4_vv1ab"]
+
+[sub_resource type="Resource" id="Resource_b8suq"]
+script = ExtResource("2_r4tho")
+experience = 120
+gold = 5
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_t3xbb"]
+script = ExtResource("2_q0b41")
+name = "What a Shock!"
+description = "The fisherman thinks using one of the bugs in a Storm Swarm will be attractive bait for the fish. Defeat a Storm Swarm to capture one!"
+reward = SubResource("Resource_b8suq")
+type = 2
+count = 1
+objectiveName = "storm_swarm"
+turnInNames = Array[String](["lp_fisherman"])
+displayObjName = "Storm Swarm"
+displayTurnInName = "Fisherman"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[sub_resource type="Resource" id="Resource_2f23j"]
+script = ExtResource("2_r4tho")
+experience = 150
+gold = 20
+item = ExtResource("4_vv1ab")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_nv2nx"]
+script = ExtResource("2_q0b41")
+name = "Last Step"
+description = "This will be the last step of the quest, rewarding the Iridescent Scale."
+reward = SubResource("Resource_2f23j")
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String](["lp_fisherman"])
+displayObjName = "---"
+displayTurnInName = "Fisherman"
+customStatusStr = ""
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+
+[resource]
+script = ExtResource("1_mhsm3")
+questName = "Angry Angler"
+description = "The fisherman is upset -- the fish aren't biting! Figure out what's scaring all the fish off, and bring them back."
+steps = Array[ExtResource("2_q0b41")]([SubResource("Resource_t3xbb"), SubResource("Resource_nv2nx")])
+isMainQuest = false
+advanceActActerComplete = false
