@@ -15,9 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
 
-[sub_resource type="Resource" id="Resource_qx41k"]
+[sub_resource type="Resource" id="Resource_leef8"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(42, -27)
 flipH = false
@@ -53,9 +54,10 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_pxsx3"]
+[sub_resource type="Resource" id="Resource_nvflc"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(40, -86)
 flipH = false
@@ -91,9 +93,10 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_qsw34"]
+[sub_resource type="Resource" id="Resource_2ujs1"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-6, -61)
 flipH = false
@@ -137,7 +140,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-data = SubResource("Resource_qx41k")
+data = SubResource("Resource_leef8")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_imxxv"), ExtResource("4_38wkq"), ExtResource("5_hlk4r")])
 
 [node name="NPCSprite" parent="TileMap/Innkeeper" index="0"]
@@ -166,7 +169,7 @@ position = Vector2(40, -86)
 displayName = "Spelunker"
 saveName = "spelunker_inn"
 spawnRequirements = SubResource("Resource_05tf0")
-data = SubResource("Resource_pxsx3")
+data = SubResource("Resource_nvflc")
 
 [node name="NPCSprite" parent="TileMap/Spelunker" index="0"]
 sprite_frames = ExtResource("8_axpn3")
@@ -193,7 +196,7 @@ position = Vector2(-6, -61)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_inn"
 spawnRequirements = SubResource("Resource_b7ibc")
-data = SubResource("Resource_qsw34")
+data = SubResource("Resource_2ujs1")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_qm568"), ExtResource("9_460im")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]

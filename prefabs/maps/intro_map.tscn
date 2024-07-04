@@ -34,9 +34,10 @@ dialogueEntry = ExtResource("4_gdydo")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_od5q5"]
+[sub_resource type="Resource" id="Resource_gaujo"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(1, 16)
 flipH = false
@@ -56,9 +57,10 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_4ijdi"]
+[sub_resource type="Resource" id="Resource_5pxjw"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(-98, 4)
 flipH = false
@@ -143,9 +145,10 @@ agent_radius = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
 size = Vector2(48, 59)
 
-[sub_resource type="Resource" id="Resource_o8115"]
+[sub_resource type="Resource" id="Resource_78ri5"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(1008, 8)
 flipH = false
@@ -195,7 +198,7 @@ saveName = "intro_sword"
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_od5q5")
+data = SubResource("Resource_gaujo")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TileMap/DrHudson" index="0"]
@@ -221,7 +224,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_4ijdi")
+data = SubResource("Resource_5pxjw")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -309,7 +312,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1008, 8)
-data = SubResource("Resource_o8115")
+data = SubResource("Resource_78ri5")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

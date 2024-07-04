@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw758t8yxr7j1"]
+[gd_scene load_steps=8 format=3 uid="uid://bw758t8yxr7j1"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_2fy1t"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_details_panel.gd" id="2_8fu0e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="4_o3847"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_5a3sp"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="5_gg50a"]
+[ext_resource type="PackedScene" uid="uid://fgxno6ekoy3o" path="res://prefabs/ui/inventory/item_details_panels/equipment_details_panel.tscn" id="7_10cu2"]
 
 [node name="ItemDetailsPanel" type="Control"]
 layout_mode = 3
@@ -72,6 +73,20 @@ bbcode_enabled = true
 text = "[center]Item Type Here[/center]"
 fit_content = true
 
+[node name="EquipmentDetailsPanel" parent="Panel" instance=ExtResource("7_10cu2")]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -165.0
+offset_right = -135.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ItemEffect" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 14
@@ -79,9 +94,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 135.0
-offset_top = -140.0
+offset_top = -100.0
 offset_right = -135.0
-offset_bottom = -50.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -95,9 +110,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 135.0
-offset_top = -36.0
+offset_top = 34.0
 offset_right = -135.0
-offset_bottom = 188.0
+offset_bottom = 258.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "This is a really long item description. This will help me test the Item Details Panel, which will display the details of the selected item, as well as (if in an inventory) the amount of that item that is present. The general idea is to give a lot of lore/backstory to these items, describe how they work, and maybe tell the player where they can be found! Hopefully there is enough room for all of this text, easily."

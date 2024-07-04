@@ -286,7 +286,7 @@ func get_element_multiplier_texts() -> Array[StatMultiplierText]:
 			)
 	return texts
 
-func get_multipliers_text() -> Array[StatMultiplierText]:
+func get_stat_multiplier_texts() -> Array[StatMultiplierText]:
 	var texts: Array[StatMultiplierText] = []
 	
 	if physAttackIncrease != 0 or physAttackMultiplier != 1.0:
@@ -303,7 +303,12 @@ func get_multipliers_text() -> Array[StatMultiplierText]:
 	
 	if speedIncrease != 0 or speedMultiplier != 1.0:
 		texts.append(get_speed_multiplier())
+	
+	return texts
 
+func get_multipliers_text() -> Array[StatMultiplierText]:
+	var texts: Array[StatMultiplierText] = []
+	texts.append_array(get_stat_multiplier_texts())
 	texts.append_array(get_element_multiplier_texts())
 
 	return texts

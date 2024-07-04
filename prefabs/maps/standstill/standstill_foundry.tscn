@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nmnw1"]
 [ext_resource type="Resource" uid="uid://d3kk3dviteboh" path="res://gamedata/shops/standstill/alessia_foundry.tres" id="10_dq3hc"]
 
-[sub_resource type="Resource" id="Resource_wsris"]
+[sub_resource type="Resource" id="Resource_yhun5"]
 script = ExtResource("7_1u1ei")
 saveName = "npc"
+spriteState = "default"
 animation = "stand"
 position = Vector2(26, -76)
 flipH = false
@@ -56,7 +57,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(26, -76)
 displayName = "Alessia"
 saveName = "alessia_foundry"
-data = SubResource("Resource_wsris")
+data = SubResource("Resource_yhun5")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_73wvo"), ExtResource("5_72q0a")])
 hasShop = true
 npcShop = ExtResource("10_dq3hc")

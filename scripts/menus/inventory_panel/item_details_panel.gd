@@ -9,6 +9,7 @@ signal back_pressed
 @onready var itemSprite: Sprite2D = get_node("Panel/ItemSprite")
 @onready var itemType: RichTextLabel = get_node("Panel/ItemType")
 @onready var itemEffect: RichTextLabel = get_node("Panel/ItemEffect")
+@onready var equipmentDetailsPanel: EquipmentDetailsPanel = get_node('Panel/EquipmentDetailsPanel')
 @onready var itemDescription: RichTextLabel = get_node("Panel/ItemDescription")
 @onready var itemCostGroup: Control = get_node("Panel/ItemCostGroup")
 @onready var itemCost: RichTextLabel = get_node("Panel/ItemCostGroup/ItemCost")
@@ -31,7 +32,13 @@ func load_item_details():
 	itemName.text = '[center]' + item.itemName + '[/center]'
 	itemSprite.texture = item.itemSprite
 	itemType.text = '[center]' + Item.type_to_string(item.itemType) + '[/center]'
-	itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
+	if item is Weapon or item is Armor:
+		equipmentDetailsPanel.item = item
+		equipmentDetailsPanel.load_equipment_details_panel()
+	else:
+		equipmentDetailsPanel.visible = false
+		itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
+	
 	itemDescription.text = item.itemDescription
 	
 	if item.cost >= 0:
