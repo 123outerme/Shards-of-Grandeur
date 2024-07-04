@@ -17,7 +17,7 @@ class_name EquipmentDetailsPanel
 
 # Called when the node enters the scene tree for the first time.
 func load_equipment_details_panel():
-	if not (item is Weapon or item is Armor):
+	if item.type != Item.Type.WEAPON and item.type != Item.Type.ARMOR:
 		visible = false
 		return
 	visible = true

@@ -32,11 +32,13 @@ func load_item_details():
 	itemName.text = '[center]' + item.itemName + '[/center]'
 	itemSprite.texture = item.itemSprite
 	itemType.text = '[center]' + Item.type_to_string(item.itemType) + '[/center]'
-	if item is Weapon or item is Armor:
+	if item.type == Item.Type.WEAPON or item.type == Item.Type.ARMOR:
 		equipmentDetailsPanel.item = item
 		equipmentDetailsPanel.load_equipment_details_panel()
+		itemEffect.visible = false
 	else:
 		equipmentDetailsPanel.visible = false
+		itemEffect.visible = true
 		itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
 	
 	itemDescription.text = item.itemDescription
