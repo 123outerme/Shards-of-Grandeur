@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=11 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
+[ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_q0b41"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_r4tho"]
 [ext_resource type="Resource" uid="uid://diemk80we7jgs" path="res://gamedata/items/weapon/iridescent_scale.tres" id="4_vv1ab"]
+[ext_resource type="Resource" uid="uid://csb54kuorfycb" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_turnin.tres" id="5_fygax"]
 
 [sub_resource type="Resource" id="Resource_b8suq"]
 script = ExtResource("2_r4tho")
@@ -13,7 +15,7 @@ fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_t3xbb"]
 script = ExtResource("2_q0b41")
-name = "What a Shock!"
+name = "What a Shocker!"
 description = "The fisherman thinks using one of the bugs in a Storm Swarm will be attractive bait for the fish. Defeat a Storm Swarm to capture one!"
 reward = SubResource("Resource_b8suq")
 type = 2
@@ -23,8 +25,8 @@ turnInNames = Array[String](["lp_fisherman"])
 displayObjName = "Storm Swarm"
 displayTurnInName = "Fisherman"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_fygax")])
+inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_j7ur3")])
 
 [sub_resource type="Resource" id="Resource_2f23j"]
 script = ExtResource("2_r4tho")

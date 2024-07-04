@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=63 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -17,6 +17,7 @@
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="11_jmbbv"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="12_6xs76"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
+[ext_resource type="Resource" uid="uid://bvfmtuhh1im8u" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman1.tres" id="12_ccnp4"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="13_lrtnp"]
 [ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="13_n502q"]
 [ext_resource type="Resource" uid="uid://cvfoto5uagako" path="res://gamedata/dialogue/interactables/ground_items/leavenport/leavenport_remedy.tres" id="13_q8qvf"]
@@ -24,6 +25,8 @@
 [ext_resource type="Resource" uid="uid://d1303grvlgie" path="res://gamedata/cutscenes/leavenport/east_soldiers_turn_around.tres" id="15_dsi35"]
 [ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity/affinity_1.png" id="15_llrp6"]
 [ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity/affinity_2.png" id="16_0ng0y"]
+[ext_resource type="SpriteFrames" uid="uid://8j0dgh4vu5gp" path="res://graphics/animations/a_lady3_elder.tres" id="16_5fdbc"]
+[ext_resource type="Resource" uid="uid://dtwqyxa8yw6ar" path="res://gamedata/dialogue/leavenport/elder_lady/a_elder_lady1.tres" id="16_81mpk"]
 [ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity/affinity_3.png" id="17_a2b6x"]
 [ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity/affinity_4.png" id="18_liw0c"]
 [ext_resource type="SpriteFrames" uid="uid://ixvh8dcxfmwp" path="res://graphics/animations/a_fisherman.tres" id="20_ls845"]
@@ -516,6 +519,7 @@ position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
 data = SubResource("Resource_veb2m")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TileMap/Fisherman" index="0"]
 sprite_frames = ExtResource("20_ls845")
@@ -555,9 +559,25 @@ position = Vector2(0, 4)
 [node name="MoveTrigger" parent="TileMap/Elder" index="4"]
 visible = false
 
-[node name="NPC" parent="TileMap" instance=ExtResource("5_q2te8")]
-position = Vector2(472, 479)
+[node name="ElderLady" parent="TileMap" instance=ExtResource("5_q2te8")]
+position = Vector2(397, 315)
+displayName = "Lady"
+saveName = "lp_elder_lady"
 data = SubResource("Resource_igx3m")
+dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("16_81mpk")])
+
+[node name="NPCSprite" parent="TileMap/ElderLady" index="0"]
+sprite_frames = ExtResource("16_5fdbc")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TileMap/ElderLady" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TileMap/ElderLady" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TileMap/ElderLady" index="4"]
+visible = false
 
 [node name="GroundItem" parent="TileMap" instance=ExtResource("12_6xs76")]
 position = Vector2(219, -141)
@@ -704,6 +724,7 @@ shape = SubResource("RectangleShape2D_6e1cw")
 position = Vector2(0, 46)
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("12_8fbvy")]
+visible = false
 triggerOrNPC = NodePath("../EastWarpCutsceneTrigger")
 cutscene = ExtResource("15_dsi35")
 rootNode = NodePath("..")
@@ -734,6 +755,7 @@ flip_h = true
 [editable path="TileMap/ChainLegionSoldier4"]
 [editable path="TileMap/Fisherman"]
 [editable path="TileMap/Elder"]
+[editable path="TileMap/ElderLady"]
 [editable path="RestaurantWarpZone"]
 [editable path="CreationShopWarpZone"]
 [editable path="DestructionShopWarpZone"]

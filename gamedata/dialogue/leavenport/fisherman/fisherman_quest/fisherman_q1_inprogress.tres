@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cqw21ceu4ppue"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_5wk8l"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tmf64"]
+
+[sub_resource type="Resource" id="Resource_4afyb"]
+script = ExtResource("1_tmf64")
+lines = Array[String](["I can keep trying to hook something while you go get me that Storm Swarm critter. But I've had no luck so far, I don't expect that to change."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_5wk8l")
+entryId = ""
+items = Array[ExtResource("1_tmf64")]([SubResource("Resource_4afyb")])
+closesDialogue = false
+fullHealsPlayer = false

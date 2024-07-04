@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://g8s3vr1fy43n"]
+
+[ext_resource type="Resource" uid="uid://cvagngsvbmij3" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman_q1_inquiry_no.tres" id="1_udqkj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hiplf"]
+[ext_resource type="Resource" uid="uid://cb3se537hajxd" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_start_quest.tres" id="3_gmlt3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="4_whcov"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_b8nte"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_l3g1i"]
+
+[sub_resource type="Resource" id="Resource_8ebaf"]
+script = ExtResource("2_hiplf")
+choiceBtn = "Nope."
+leadsTo = ExtResource("1_udqkj")
+returnsToParentId = ""
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_po0o8"]
+script = ExtResource("2_hiplf")
+choiceBtn = "I'll Help!"
+leadsTo = ExtResource("3_gmlt3")
+returnsToParentId = ""
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_r0s6k"]
+script = ExtResource("4_whcov")
+lines = Array[String](["As a matter of fact, nothing's biting! I've tried the usual fixes, but nothing's helped. It's getting on my nerves.", "I'll tell you, nothing gets the fish to bite better than one of the bugs in a Storm Swarm. Too bad those things bite back!.", "Say, you look pretty well equipped to take on a Swarm, do you think you could come back with one of those bugs for me?"])
+animation = "talk"
+choices = Array[ExtResource("2_hiplf")]([SubResource("Resource_8ebaf"), SubResource("Resource_po0o8")])
+
+[sub_resource type="Resource" id="Resource_68uqv"]
+script = ExtResource("6_l3g1i")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["lp_fisherman#lp_fisherman_start_quest"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("5_b8nte")
+entryId = ""
+items = Array[ExtResource("4_whcov")]([SubResource("Resource_r0s6k")])
+storyRequirements = SubResource("Resource_68uqv")
+closesDialogue = false
+fullHealsPlayer = false

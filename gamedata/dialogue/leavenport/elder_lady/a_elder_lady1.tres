@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dtwqyxa8yw6ar"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8kxrd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ofrg6"]
+
+[sub_resource type="Resource" id="Resource_faqxj"]
+script = ExtResource("1_8kxrd")
+lines = Array[String](["You don't seem like a familiar face! You must be a visitor to Leavenport.", "Long ago, our ancestors sailed down this river and built this town atop the wet soil.", "Now, we even run bridges across the river to live as close to the water as we can!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_ofrg6")
+entryId = ""
+items = Array[ExtResource("1_8kxrd")]([SubResource("Resource_faqxj")])
+closesDialogue = false
+fullHealsPlayer = false

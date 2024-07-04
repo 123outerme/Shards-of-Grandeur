@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://b5hm1ld8qxwup"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_htl46"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_uwrnu"]
+
+[sub_resource type="Resource" id="Resource_3am72"]
+script = ExtResource("1_uwrnu")
+lines = Array[String](["Thanks for the bait! I'll be careful with this one."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_htl46")
+entryId = ""
+items = Array[ExtResource("1_uwrnu")]([SubResource("Resource_3am72")])
+closesDialogue = false
+fullHealsPlayer = false
