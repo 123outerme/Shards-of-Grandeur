@@ -1,13 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://calgv8aphjhgo"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://calgv8aphjhgo"]
 
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_30bdv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_yeowq"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jpj2k"]
+
+[sub_resource type="Resource" id="Resource_beoxt"]
+script = ExtResource("1_30bdv")
+choiceBtn = "Thanks!"
+returnsToParentId = "gs_librarian_qs"
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_t0cqd"]
 script = ExtResource("1_yeowq")
 lines = Array[String](["You certainly know a lot about magic, but I can tell you a few things.", "All living creatures can harness magic power. Magical energy is constantly pouring from the Radiant Cave, and solid magic can be found in the form of Shards. With a lot of Shards in hand, we could even move mountains!", "As well, there is a natural energy completely distinct from the magic of the Cave, which is only referred to as Affinity. That's as much as I know."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("1_30bdv")]([SubResource("Resource_beoxt")])
 
 [resource]
 script = ExtResource("2_jpj2k")

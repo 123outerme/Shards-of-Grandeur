@@ -9,6 +9,7 @@
 [sub_resource type="Resource" id="Resource_nd0w4"]
 script = ExtResource("1_vqm6r")
 choiceBtn = "I'm Good."
+returnsToParentId = ""
 randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
@@ -19,6 +20,7 @@ isDeclineChoice = true
 script = ExtResource("1_vqm6r")
 choiceBtn = "Question!"
 leadsTo = ExtResource("2_qb20o")
+returnsToParentId = ""
 randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
 repeatsItem = false
 buttonDims = Vector2(200, 40)
@@ -29,6 +31,7 @@ isDeclineChoice = false
 script = ExtResource("3_wuetg")
 opensShop = true
 choiceBtn = "Shop"
+returnsToParentId = ""
 randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
@@ -43,7 +46,7 @@ choices = Array[ExtResource("1_vqm6r")]([SubResource("Resource_nd0w4"), SubResou
 
 [resource]
 script = ExtResource("1_wu72u")
-entryId = ""
+entryId = "gs_librarian_hello"
 items = Array[ExtResource("1_5ya01")]([SubResource("Resource_q183j")])
 closesDialogue = false
 fullHealsPlayer = false

@@ -40,11 +40,26 @@ func select_choice(choice: DialogueChoice):
 		PlayerFinder.player.put_interactable_text(false, false)
 		return
 	
-	var leadsTo: DialogueEntry = choice.leadsTo
-	if choice.leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
+	var leadsTo: DialogueEntry = null
+	if choice.returnsToParentId != '':
+		var parentIdx: int = -1
+		for dialogueIdx: int in range(len(PlayerFinder.player.interactableDialogues)):
+			var interDialogue: InteractableDialogue = PlayerFinder.player.interactableDialogues[dialogueIdx]
+			if interDialogue.dialogueEntry.entryId == choice.returnsToParentId:
+				parentIdx = dialogueIdx
+				break
+		if parentIdx > -1:
+			# remove all dialogues that came after this one and make it the "leadsTo" dialogue for use below
+			PlayerFinder.player.interactableDialogues = PlayerFinder.player.interactableDialogues.slice(0, parentIdx + 1)
+			leadsTo = PlayerFinder.player.interactableDialogues[parentIdx].dialogueEntry
+	
+	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
 		var randomIdx: int = WeightedThing.pick_item(choice.randomDialogues)
 		if randomIdx > -1:
 			leadsTo = choice.randomDialogues[randomIdx].dialogueEntry
+	
+	if leadsTo == null:
+		leadsTo = choice.leadsTo
 	
 	if leadsTo != null:
 		if leadsTo.can_use_dialogue():

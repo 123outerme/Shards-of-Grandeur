@@ -319,6 +319,13 @@ func advance_dialogue(canStart: bool = true):
 
 func select_choice(choice: DialogueChoice):
 	makingChoice = false
+	
+	if choice.turnsInQuest:
+		makingChoice = true # leave choice buttons up for now
+		pickedChoice = choice
+		_on_turn_in_button_pressed()
+		return
+
 	if interactable != null:
 		interactable.select_choice(choice)
 		return
@@ -330,12 +337,6 @@ func select_choice(choice: DialogueChoice):
 			pickedChoice = choice
 			_on_shop_button_pressed()
 			return
-	
-	if choice.turnsInQuest:
-		makingChoice = true # leave choice buttons up for now
-		pickedChoice = choice
-		_on_turn_in_button_pressed()
-		return
 		
 	if choice.repeatsItem:
 		talkNPC.repeat_dialogue_item()
@@ -343,11 +344,25 @@ func select_choice(choice: DialogueChoice):
 		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
 		return
 	
-	var leadsTo: DialogueEntry = choice.leadsTo
-	if choice.leadsTo != null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
+	var leadsTo: DialogueEntry = null
+	if choice.returnsToParentId != '':
+		var parentIdx: int = -1
+		for dialogueEntryIdx in range(len(talkNPC.data.dialogueItems)):
+			var dialogueEntry: DialogueEntry = talkNPC.data.dialogueItems[dialogueEntryIdx]
+			if dialogueEntry.entryId == choice.returnsToParentId:
+				parentIdx = dialogueEntryIdx
+				break
+		if parentIdx > -1:
+			talkNPC.data.dialogueItems = talkNPC.data.dialogueItems.slice(0, parentIdx + 1)
+			leadsTo = talkNPC.data.dialogueItems[parentIdx]
+	
+	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
 		var randomIdx = WeightedThing.pick_item(choice.randomDialogues)
 		if randomIdx > -1:
 			leadsTo = choice.randomDialogues[randomIdx].dialogueEntry
+	
+	if leadsTo == null:
+		leadsTo = choice.leadsTo
 	
 	if leadsTo != null:
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(leadsTo)
@@ -643,7 +658,13 @@ func _on_quests_panel_node_back_pressed():
 				var status: QuestTracker.Status = questTracker.get_step_status(step)
 				if status == QuestTracker.Status.COMPLETED:
 					if pickedChoice.leadsTo != null:
-						talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
+						if talkNPC != null:
+							talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
+						elif interactable != null:
+							var interDialogue: InteractableDialogue = InteractableDialogue.new()
+							interDialogue.dialogueEntry = pickedChoice.leadsTo
+							interDialogue.speaker = interactableDialogues[interactableDialogueIndex].speaker
+							interactableDialogues.append(interDialogue)
 					advance_dialogue()
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
