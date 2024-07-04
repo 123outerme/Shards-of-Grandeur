@@ -3,25 +3,41 @@ extends Resource
 class_name StoryRequirements
 
 @export_category("Acts")
+## 0 == Prologue
 @export var minAct: int = 0
+## 0 == Prologue. -1 == no max
 @export var maxAct: int = -1
 
 @export_category("Prerequisites")
+## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
 @export var prereqQuests: Array[String] = []
+## specified by a cutscene ID
 @export var prereqCutscenes: Array[String] = []
+## specified by "<NPC ID>#<dialogue ID>"
 @export var prereqDialogues: Array[String] = []
+## specified by "<map name>"
 @export var prereqPlacesVisited: Array[String] = []
+## specified by "<static encounter ID>"
 @export var prereqSpecialBattles: Array[String] = []
+## specified by "<enemy save name>"
 @export var prereqDefeatedEnemies: Array[String] = []
+## specified by "<puzzle ID>"
 @export var prereqPuzzles: Array[String] = []
 
 @export_category("Invalidations")
+## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
 @export var invalidAfterCompletingQuests: Array[String] = []
+## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
 @export var invalidAfterFailingQuests: Array[String] = []
+## specified by a cutscene ID
 @export var invalidAfterCutscenes: Array[String] = []
+## specified by "<NPC ID>#<dialogue ID>"
 @export var invalidAfterDialogues: Array[String] = []
+## specified by "<map name>"
 @export var invalidAfterVistingPlaces: Array[String] = []
+## specified by "<static encounter ID>"
 @export var invalidAfterSpecialBattles: Array[String] = []
+## specified by "<puzzle ID>"
 @export var invalidAfterSolvingPuzzles: Array[String] = []
 
 func _init(

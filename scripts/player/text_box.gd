@@ -88,13 +88,19 @@ func add_choices():
 	delete_choices()
 	var buttonIdx: int = 0
 	for idx in range(len(dialogueItem.choices)):
-		#if buttonIdx >= 5:
-		#	continue
+		var isValid: bool = dialogueItem.choices[idx].is_valid()
+		if dialogueItem.choices[idx].leadsTo != null:
+			isValid = isValid and dialogueItem.choices[idx].leadsTo.can_use_dialogue()
 		
-		#get_node('Panel/HBoxContainer/Button' + String.num_int64(buttonIdx + 1))
+		if len(dialogueItem.choices[idx].randomDialogues) > 0:
+			# if at least one random option is valid, this can be selected
+			var aDialogueOptionIsValid: bool = false
+			for randomDialogue: WeightedDialogueEntry in dialogueItem.choices[idx].randomDialogues:
+				aDialogueOptionIsValid = aDialogueOptionIsValid or randomDialogue.dialogueEntry.can_use_dialogue()
+			isValid = isValid and aDialogueOptionIsValid
+		# choice is valid if it and the dialogue options it can lead to have valid StoryRequirements
 		
-		if dialogueItem.choices[idx].is_valid() \
-				and not (dialogueItem.choices[idx].leadsTo != null and not dialogueItem.choices[idx].leadsTo.can_use_dialogue()):
+		if isValid:
 			var choice = dialogueItem.choices[idx]
 			if choice.turnsInQuest != '':
 				var questName = choice.turnsInQuest.split('#')[0]

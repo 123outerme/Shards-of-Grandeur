@@ -357,7 +357,14 @@ func select_choice(choice: DialogueChoice):
 			leadsTo = talkNPC.data.dialogueItems[parentIdx]
 	
 	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
-		var randomIdx = WeightedThing.pick_item(choice.randomDialogues)
+		var randomDialogues: Array[WeightedDialogueEntry] = []
+		var sumWeights: float = 0
+		for dialogue in choice.randomDialogues:
+			if dialogue.dialogueEntry.can_use_dialogue():
+				randomDialogues.append(dialogue)
+				sumWeights += dialogue.weight
+		
+		var randomIdx: int = WeightedThing.pick_item(randomDialogues, sumWeights)
 		if randomIdx > -1:
 			leadsTo = choice.randomDialogues[randomIdx].dialogueEntry
 	

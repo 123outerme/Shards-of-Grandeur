@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://g8s3vr1fy43n"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_014aj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_kvrxe"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_o8jl0"]
+[ext_resource type="Resource" uid="uid://cb3se537hajxd" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman_start_quest.tres" id="2_po6et"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_uqnun"]
+
+[sub_resource type="Resource" id="Resource_8ebaf"]
+script = ExtResource("1_kvrxe")
+choiceBtn = "Nope."
+returnsToParentId = ""
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_po0o8"]
+script = ExtResource("1_kvrxe")
+choiceBtn = "I'll Help!"
+leadsTo = ExtResource("2_po6et")
+returnsToParentId = ""
+randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_r0s6k"]
+script = ExtResource("1_014aj")
+lines = Array[String]([""])
+animation = "talk"
+choices = Array[ExtResource("1_kvrxe")]([SubResource("Resource_8ebaf"), SubResource("Resource_po0o8")])
+
+[sub_resource type="Resource" id="Resource_68uqv"]
+script = ExtResource("2_uqnun")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["lp_fisherman#lp_fisherman_start_quest"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("1_o8jl0")
+entryId = ""
+items = Array[ExtResource("1_014aj")]([SubResource("Resource_r0s6k")])
+storyRequirements = SubResource("Resource_68uqv")
+closesDialogue = false
+fullHealsPlayer = false

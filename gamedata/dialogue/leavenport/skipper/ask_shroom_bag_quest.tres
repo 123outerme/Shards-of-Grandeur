@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bx7nwcm0icnmu"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bx7nwcm0icnmu"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3h5nx"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_pj0gu"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_j2hqy"]
 [ext_resource type="Resource" uid="uid://csrl08jw25vjk" path="res://gamedata/dialogue/leavenport/skipper/start_shroom_quest.tres" id="2_lmlka"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_85h7r"]
 
 [sub_resource type="Resource" id="Resource_a1x1w"]
 script = ExtResource("1_pj0gu")
@@ -32,9 +33,29 @@ lines = Array[String](["Aye, as a matter of fact, I do. You see, inland of this 
 animation = "talk"
 choices = Array[ExtResource("1_pj0gu")]([SubResource("Resource_a1x1w"), SubResource("Resource_s4ejb")])
 
+[sub_resource type="Resource" id="Resource_gkpie"]
+script = ExtResource("5_85h7r")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["leavenport_skipper#start_shroom_quest"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
 [resource]
 script = ExtResource("2_j2hqy")
 entryId = ""
 items = Array[ExtResource("1_3h5nx")]([SubResource("Resource_vsjhp")])
+storyRequirements = SubResource("Resource_gkpie")
 closesDialogue = false
 fullHealsPlayer = false

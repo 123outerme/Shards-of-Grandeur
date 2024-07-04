@@ -3,13 +3,13 @@ class_name WeightedThing
 
 @export var weight: float = 0.0
 
-static func pick_item(weights: Array) -> int:
-	if len(weights) == 0 or not (weights[0] is WeightedThing):
+static func pick_item(weights: Array, sumWeights: float = 1.0) -> int:
+	if len(weights) == 0 or not (weights[0] is WeightedThing) or sumWeights == 0:
 		print("WeightedThing error: array is not properly formed")
 		return -1
 		
 	var accumulator: float = 0
-	var randomNum: float = randf()
+	var randomNum: float = randf_range(0, sumWeights)
 	for i in range(len(weights)):
 		accumulator += weights[i].weight
 		if randomNum <= accumulator:
