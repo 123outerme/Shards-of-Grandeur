@@ -15,7 +15,7 @@ var equipCombatantPanelScene: PackedScene = preload('res://prefabs/ui/inventory/
 
 @onready var equipTitle: RichTextLabel = get_node('Panel/EquipTitle')
 @onready var itemSprite: Sprite2D = get_node('Panel/ItemSpriteControl/ItemSprite')
-@onready var itemEffect: RichTextLabel = get_node('Panel/ItemEffect')
+@onready var equipmentDetailsPanel: EquipmentDetailsPanel = get_node('Panel/EquipmentDetailsPanel')
 @onready var scrollContainer: ScrollBetterFollow = get_node('Panel/ScrollContainer')
 @onready var vboxContainer: VBoxContainer = get_node('Panel/ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('Panel/BackButton')
@@ -60,7 +60,8 @@ func load_equip_panel(initial: bool = true):
 		for panel: EquipCombatantPanel in get_tree().get_nodes_in_group('EquipCombatantPanel'):
 			panel.load_equip_combatant_panel()
 	
-	itemEffect.text = '[center]' + inventorySlot.item.get_effect_text() + '[/center]'
+	equipmentDetailsPanel.item = inventorySlot.item
+	equipmentDetailsPanel.load_equipment_details_panel()
 	equipTitle.text = '[center]Equip - ' + inventorySlot.item.itemName + '[/center]'
 	itemSprite.texture = inventorySlot.item.itemSprite
 	playerPanel.call_deferred('connect_to_equip_button', backButton, false)

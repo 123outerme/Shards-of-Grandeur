@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_aq2cf"]
 
 [node name="EquipmentDetailsPanel" type="Panel"]
-custom_minimum_size = Vector2(930, 190)
+custom_minimum_size = Vector2(930, 184)
 theme = ExtResource("1_xajy3")
 script = ExtResource("1_mdyi5")
 item = ExtResource("3_aq2cf")
@@ -25,7 +25,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="HBoxOrbs" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="OrbsLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxOrbs"]
@@ -36,11 +36,10 @@ text = "Orbs Gained:"
 fit_content = true
 
 [node name="OrbsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxOrbs"]
-custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]+10 [img=32x32]res://graphics/ui/orb_filled.png[/img] At The Start Of Battle[/center]"
+text = "[center]+10 [img=24x24]res://graphics/ui/orb_filled.png[/img] At The Start Of Battle[/center]"
 
 [node name="HBoxTiming" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://n55f6tk0t25u"]
+[gd_scene load_steps=9 format=3 uid="uid://n55f6tk0t25u"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_33myd"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/equip_panel.gd" id="1_d0fb1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_mg8vn"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="4_v4nb2"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_2r15b"]
+[ext_resource type="PackedScene" uid="uid://fgxno6ekoy3o" path="res://prefabs/ui/inventory/item_details_panels/equipment_details_panel.tscn" id="5_s2gpk"]
 [ext_resource type="PackedScene" uid="uid://cksd5oyh48til" path="res://prefabs/ui/inventory/evolve_results_panel.tscn" id="7_x3ke2"]
 
 [node name="EquipPanel" type="Control"]
@@ -40,9 +41,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -350.0
-offset_top = 24.0
+offset_top = 6.0
 offset_right = 350.0
-offset_bottom = 74.0
+offset_bottom = 56.0
 grow_horizontal = 2
 theme = ExtResource("2_f26fv")
 bbcode_enabled = true
@@ -50,33 +51,31 @@ text = "[center]Equip - Item Name Goes Here[/center]"
 fit_content = true
 
 [node name="ItemSpriteControl" type="Control" parent="Panel"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 105.0
-offset_top = 24.0
-offset_right = 169.0
-offset_bottom = 88.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -540.0
+offset_top = 114.0
+offset_right = -476.0
+offset_bottom = 178.0
+grow_horizontal = 2
 
 [node name="ItemSprite" type="Sprite2D" parent="Panel/ItemSpriteControl"]
 position = Vector2(32, 32)
 scale = Vector2(4, 4)
 texture = ExtResource("4_v4nb2")
 
-[node name="ItemEffect" type="RichTextLabel" parent="Panel"]
-custom_minimum_size = Vector2(850, 90)
+[node name="EquipmentDetailsPanel" parent="Panel" instance=ExtResource("5_s2gpk")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -425.0
-offset_top = 82.0
-offset_right = 425.0
-offset_bottom = 172.0
+offset_left = -422.0
+offset_top = 52.0
+offset_right = 508.0
+offset_bottom = 242.0
 grow_horizontal = 2
-bbcode_enabled = true
-text = "[center]While Equipped, Before The User's Turn Starts:
-+100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]
-"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
@@ -84,9 +83,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = 178.0
+offset_top = 242.0
 offset_right = -40.0
-offset_bottom = -58.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
@@ -106,10 +105,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -52.0
-offset_right = 25.0
-offset_bottom = -18.0
+offset_left = -40.0
+offset_top = -48.0
+offset_right = 40.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
