@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bf050uvxxgcqh"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_4ju1j"]
+[ext_resource type="Resource" uid="uid://b43rwlnaf3rcu" path="res://gamedata/items/key_items/fishermans_usual.tres" id="1_svyq6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ydj8n"]
+
+[sub_resource type="Resource" id="Resource_34muu"]
+script = ExtResource("1_4ju1j")
+lines = Array[String](["Ah, is that old sea turtle too lazy to get his own food? That's no surprise to me.", "Here you go, here's his special order. It's about his time to come in for lunch anyhow, so we had it ready."])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_ydj8n")
+entryId = ""
+items = Array[ExtResource("1_4ju1j")]([SubResource("Resource_34muu")])
+givesItem = ExtResource("1_svyq6")
+closesDialogue = false
+fullHealsPlayer = false
