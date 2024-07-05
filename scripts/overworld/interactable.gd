@@ -56,10 +56,10 @@ func select_choice(choice: DialogueChoice):
 	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
 		var randomDialogues: Array[WeightedDialogueEntry] = []
 		var sumWeights: float = 0
-		for dialogue in choice.randomDialogues:
-			if dialogue.dialogueEntry.can_use_dialogue():
-				randomDialogues.append(dialogue)
-				sumWeights += dialogue.weight
+		for randDialogue in choice.randomDialogues:
+			if randDialogue.dialogueEntry.can_use_dialogue():
+				randomDialogues.append(randDialogue)
+				sumWeights += randDialogue.weight
 		
 		var randomIdx: int = WeightedThing.pick_item(randomDialogues, sumWeights)
 		if randomIdx > -1:

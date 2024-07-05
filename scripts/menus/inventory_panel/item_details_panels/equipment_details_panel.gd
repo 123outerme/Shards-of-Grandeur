@@ -17,30 +17,34 @@ class_name EquipmentDetailsPanel
 
 # Called when the node enters the scene tree for the first time.
 func load_equipment_details_panel():
-	if item.type != Item.Type.WEAPON and item.type != Item.Type.ARMOR:
+	if item.itemType != Item.Type.WEAPON and item.itemType != Item.Type.ARMOR:
 		visible = false
 		return
 	visible = true
 	var statChanges: StatChanges = item.statChanges
-	var statMultipliersText: Array[StatMultiplierText] = statChanges.get_stat_multiplier_texts()
-	if len(statMultipliersText) == 0:
+	if statChanges != null:
+		var statMultipliersText: Array[StatMultiplierText] = statChanges.get_stat_multiplier_texts()
+		if len(statMultipliersText) == 0:
+			hboxBoosts.visible = false
+		else:
+			hboxBoosts.visible = true
+			boostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(statMultipliersText) + '[/center]'
+		
+		var elMultipliersText: Array[StatMultiplierText] = statChanges.get_element_multiplier_texts()
+		if len(elMultipliersText) == 0:
+			hboxElBoosts.visible = false
+		else:
+			hboxElBoosts.visible = true
+			elBoostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(elMultipliersText) + '[/center]'
+	else:
 		hboxBoosts.visible = false
-	else:
-		hboxBoosts.visible = true
-		boostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(statMultipliersText) + '[/center]'
-	
-	var elMultipliersText: Array[StatMultiplierText] = statChanges.get_element_multiplier_texts()
-	if len(elMultipliersText) == 0:
 		hboxElBoosts.visible = false
-	else:
-		hboxElBoosts.visible = true
-		elBoostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(elMultipliersText) + '[/center]'
-	
-	if hboxBoosts.visible or hboxElBoosts.visible:
-		hboxTiming.visible = true
-		timingText.text = '[center]' + BattleCommand.apply_timing_to_string(item.timing) + '[/center]'
-	else:
-		hboxTiming.visible = false
+		
+		if hboxBoosts.visible or hboxElBoosts.visible:
+			hboxTiming.visible = true
+			timingText.text = '[center]' + BattleCommand.apply_timing_to_string(item.timing) + '[/center]'
+		else:
+			hboxTiming.visible = false
 	
 	if item.bonusOrbs == 0:
 		hboxOrbs.visible = false

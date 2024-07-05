@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://fgxno6ekoy3o"]
+[gd_scene load_steps=5 format=3 uid="uid://fgxno6ekoy3o"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_details_panels/equipment_details_panel.gd" id="1_mdyi5"]
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_xajy3"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_17o1d"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_aq2cf"]
 
 [node name="EquipmentDetailsPanel" type="Panel"]
 custom_minimum_size = Vector2(930, 184)
 theme = ExtResource("1_xajy3")
+theme_override_styles/panel = ExtResource("2_17o1d")
 script = ExtResource("1_mdyi5")
 item = ExtResource("3_aq2cf")
 
@@ -39,7 +41,7 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]+10 [img=24x24]res://graphics/ui/orb_filled.png[/img] At The Start Of Battle[/center]"
+text = "+10 [img=24x24]res://graphics/ui/orb_filled.png[/img] At The Start Of Battle"
 
 [node name="HBoxTiming" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -56,7 +58,7 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]Before The User's Turn Starts[/center]"
+text = "Before The User's Turn Starts"
 
 [node name="HBoxBoosts" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -72,7 +74,7 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
+text = "+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed"
 fit_content = true
 
 [node name="HBoxElBoosts" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -89,5 +91,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]+999% Fire Dmg, +999% Water Dmg, +999% Lightning Dmg, +999% Wind Dmg,+999% Earth Dmg , +999% Nature Dmg, +999% Dark Dmg, and +999% Astral Dmg[/center]"
+text = "+999% Fire Dmg, +999% Water Dmg, +999% Lightning Dmg, +999% Wind Dmg,+999% Earth Dmg , +999% Nature Dmg, +999% Dark Dmg, and +999% Astral Dmg"
 fit_content = true
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

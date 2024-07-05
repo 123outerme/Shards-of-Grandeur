@@ -503,8 +503,12 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	var allEnemiesResistStatus: bool = moveEffect.statusEffect != null
 	var allEnemiesImmuneToStatus: bool = moveEffect.statusEffect != null
 	for combatantNode in get_targetable_combatant_nodes(tmpAllCombatantNodes, moveEffect.targets):
-		if combatantNode.combatant.statusEffect == null or \
-				(moveEffect.statusEffect != null and moveEffect.statusEffect.overwritesOtherStatuses):
+		if combatantNode.combatant.statusEffect == null or ( \
+					moveEffect.statusEffect != null and \
+					moveEffect.statusEffect.overwritesOtherStatuses and \
+					not (combatantNode.combatant.statusEffect.type == moveEffect.statusEffect.type and combatantNode.combatant.statusEffect.potency >= moveEffect.statusEffect.potency) \
+				):
+			# the opponent can be affected by status (and if this status overrides, would be a potency upgrade)
 			numCanStatus += 1
 		var maxHp: float = combatantNode.combatant.stats.maxHp
 		# if 60% or less health, could use healing
