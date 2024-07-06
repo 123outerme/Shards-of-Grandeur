@@ -18,9 +18,24 @@ var save_file = 'game_settings.tres'
 static var STORED_ACTIONS = [
 	'move_up', 'move_down', 'move_left', 'move_right', 'game_interact',
 	'game_decline', 'game_quests', 'game_inventory', 'game_stats', 'game_pause',
+	'ui_repeat_up', 'ui_repeat_down', 'ui_repeat_left', 'ui_repeat_right',
 	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select',
 	'game_console'
 ]
+
+static var UI_TO_MAKE_REPEATING_ACTION_NAMES = [
+	'ui_up',
+	'ui_down',
+	'ui_left',
+	'ui_right',
+]
+
+static var UI_ACTIONS_TO_REPEAT_ACTION: Dictionary = {
+	'ui_up': 'ui_repeat_up',
+	'ui_down': 'ui_repeat_down',
+	'ui_left': 'ui_repeat_left',
+	'ui_right': 'ui_repeat_right',
+}
 
 enum VersionDiffs {
 	NONE = 0,
@@ -108,10 +123,34 @@ func get_default_controls() -> Dictionary:
 	return defaultInputMap
 
 func apply_from_stored_inputs():
+	var fixingInputMap: Dictionary = {}
 	for action in inputMap.keys(): # assign input map settings
 		InputMap.action_erase_events(action)
 		for event: InputEvent in inputMap[action]:
-			InputMap.action_add_event(action, event)
+			# If this action is one that will be converted to a "repeat" action (for triggering repeated presses in the UI)
+			#	(this action is one of the actions that should, and this specific event is a controller event, because keyboard has its own repeat functionality)
+			if action in GameSettings.UI_TO_MAKE_REPEATING_ACTION_NAMES and is_event_controller_event(event):
+				# if this should be mapped to a "repeat" action, do it
+				var repeatAction: String = GameSettings.UI_ACTIONS_TO_REPEAT_ACTION[action]
+				InputMap.action_add_event(repeatAction, event)
+				if not fixingInputMap.has(action):
+					fixingInputMap[action] = [event]
+				else:
+					fixingInputMap[action].append(event)
+			else:
+				# otherwise, this is a normal action/event pair, proceed as normal
+				InputMap.action_add_event(action, event)
+	
+	for fixingAction: String in fixingInputMap.keys():
+		var repeatAction: String = GameSettings.UI_ACTIONS_TO_REPEAT_ACTION[fixingAction]
+		var inputMapEvents: Array[InputEvent] = inputMap[fixingAction]
+		for event: InputEvent in fixingInputMap[fixingAction]:
+			if event in inputMapEvents:
+				inputMapEvents.erase(event)
+			if not inputMap.has(repeatAction):
+					inputMap[repeatAction] = [event]
+			if not (event in inputMap[repeatAction]):
+					inputMap[repeatAction].append(event)
 
 func apply_from_diffs(diffs: Dictionary):
 	var inputCopy: Dictionary = inputMap.duplicate()
@@ -157,5 +196,8 @@ func save_data(save_path, data) -> int:
 		printerr("GameSettings ResourceSaver error: ", err)
 	return err
 
-func _filter_input_map(action):
+func is_event_controller_event(event: InputEvent) -> bool:
+	return event is InputEventJoypadButton or event is InputEventJoypadMotion
+
+func _filter_input_map(action: String) -> bool:
 	return action in GameSettings.STORED_ACTIONS

@@ -320,12 +320,14 @@ func replace_controller_movement(actions: Dictionary, secondary: bool):
 			
 		changedInputsMap[action] = newEvents.duplicate()
 		
-		# change UI navigation as well as player movement
-		var uiAction = 'ui_' + action.substr(5)
+		# change (repeating) UI navigation as well as player movement
+		var uiAction = 'ui_repeat_' + action.substr(5)
 		var uiActions = InputMap.action_get_events(uiAction)
 		var newUiEvents: Array[InputEvent] = uiActions.duplicate()
-		if index < len(newUiEvents):
-			newUiEvents[index] = actions[action]
+		# index 0 is the primary controller map index, 1 is the secondary
+		var uiIndex: int = 0 if not secondary else 1
+		if uiIndex < len(newUiEvents):
+			newUiEvents[uiIndex] = actions[action]
 		else:
 			newUiEvents.append(actions[action])
 		InputMap.action_erase_events(uiAction)
@@ -354,7 +356,7 @@ func clear_secondary_controller_movement():
 		
 		changedInputsMap[action] = newEvents.duplicate()
 		
-		var uiAction = 'ui_' + action.substr(5)
+		var uiAction = 'ui_repeat_' + action.substr(5)
 		var uiActions = InputMap.action_get_events(uiAction)
 		var newUiEvents: Array[InputEvent] = []
 		for i in range(len(uiActions)):

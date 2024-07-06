@@ -10,3 +10,7 @@ script = ExtResource("1_4ory4")
 [node name="AudioHandler" parent="." instance=ExtResource("1_vywri")]
 
 [node name="CutscenePlayer" parent="." instance=ExtResource("3_jv7l6")]
+
+[node name="UiRepeatTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="UiRepeatTimer" to="." method="_on_ui_repeat_timer_timeout"]
