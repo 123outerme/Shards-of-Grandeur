@@ -28,6 +28,7 @@ var actChanged: bool = false
 var pauseDisabled: bool = false
 var cutscenePaused: bool = false
 var startingBattle: bool = false
+var enteredWarpZone: bool = false
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")

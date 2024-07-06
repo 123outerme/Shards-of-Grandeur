@@ -17,10 +17,10 @@ func load_custom_win_text_panel():
 		visible = false
 		return
 	visible = true
-	showTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	showTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	var panelSize: Vector2 = panel.size
 	panel.size = Vector2.ZERO
-	showTween.tween_property(panel, 'size', panelSize, 1.0)
+	showTween.tween_property(panel, 'size', panelSize, 0.75)
 	showTween.finished.connect(_tween_finished)
 
 func _tween_finished():

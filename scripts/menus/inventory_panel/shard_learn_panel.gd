@@ -39,6 +39,7 @@ func load_shard_learn_panel():
 	movePoolPanel.level = PlayerResources.playerInfo.combatant.stats.level
 	movePoolPanel.load_move_pool_panel()
 	movePoolPanel.show_learn_buttons(true)
+	movePoolPanel.connect_bottom_panel_buttons_focus_bottom_to(backButton)
 	backButton.disabled = inTutorial and movePoolPanel.get_learnable_move_count() > 0
 	if inTutorial:
 		load_tutorial()

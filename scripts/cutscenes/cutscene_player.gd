@@ -308,7 +308,7 @@ func complete_cutscene():
 	
 	# re-enable the collision for nodes whose collision was enabled
 	for node in collisionDisabledNodes:
-		if node.has_method('enable_collision') and collisionPrevEnabledNodes[node.name]:
+		if node != null and node.has_method('enable_collision') and collisionPrevEnabledNodes[node.name]:
 			node.call('enable_collision')
 		#if node.has_method('enable_event_collisions'):
 			#node.call('enable_event_collisions')
@@ -379,10 +379,14 @@ func skip_cutscene_process():
 		if tween.is_valid():
 			tween.stop()
 	tweens = []
+	var skipAnims: bool = false
 	
 	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):
 		var frame: CutsceneFrame = cutscene.cutsceneFrames[idx]
-		animate_next_frame(frame, true)
+		if not skipAnims:
+			animate_next_frame(frame, true)
+		if PlayerFinder.player.enteredWarpZone and not skipAnims:
+			skipAnims = true
 		if frame.givesItem:
 			PlayerResources.inventory.add_item(frame.givesItem)
 			PlayerFinder.player.cam.show_alert('Got Item:\n' + frame.givesItem.itemName)

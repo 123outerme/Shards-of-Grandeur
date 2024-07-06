@@ -146,7 +146,7 @@ func _on_back_button_pressed():
 		toggle()
 		if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic):
 			if SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
-				SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme)
+				SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme, -1)
 			else:
 				SceneLoader.audioHandler.cross_fade(null) # fade out the track
 	else:

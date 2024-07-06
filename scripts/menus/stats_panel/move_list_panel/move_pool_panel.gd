@@ -88,6 +88,19 @@ func get_move_list_item(move: Move) -> MoveListItemPanel:
 			return movePanel
 	return null
 
+func connect_bottom_panel_buttons_focus_bottom_to(control: Control):
+	var panels: Array[Node] = get_tree().get_nodes_in_group('MovePoolPanelMove')
+	var bottomPanel: MoveListItemPanel = panels[len(panels) - 1] as MoveListItemPanel
+	
+	bottomPanel.detailsButton.focus_neighbor_bottom = bottomPanel.detailsButton.get_path_to(control)
+	bottomPanel.replaceButton.focus_neighbor_bottom = bottomPanel.replaceButton.get_path_to(control)
+	bottomPanel.learnButton.focus_neighbor_bottom = bottomPanel.learnButton.get_path_to(control)
+	bottomPanel.cancelButton.focus_neighbor_bottom = bottomPanel.cancelButton.get_path_to(control)
+	bottomPanel.reorderButton.focus_neighbor_bottom = bottomPanel.reorderButton.get_path_to(control)
+	bottomPanel.selectButton.focus_neighbor_bottom = bottomPanel.selectButton.get_path_to(control)
+	
+	control.focus_neighbor_top = control.get_path_to(bottomPanel.detailsButton)
+
 func focus_move_details(move: Move) -> bool:
 	var focusGrabbed: bool = false
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):

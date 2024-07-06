@@ -18,7 +18,8 @@ const HELP_COMMAND_LIST: Array[String] = [
 	'setlevel <level>: Sets the player\'s level to the given amount, resetting stat points if it would be a lv decrease',
 	'puzzle <set|clear> <puzzle name>: Sets or clears the specified puzzle\'s solved status',
 	'tp <map name>: Teleports to the specified map',
-	'position <x> <y>: Moves the player to the specified position'
+	'position <x> <y>: Moves the player to the specified position',
+	'noclip <true|false>: enable/disable noclip'
 ]
 
 const MAX_CONSOLE_LINES = 20
@@ -108,6 +109,13 @@ func parse_command(command: String):
 			print_to_console('Syntax error: Two numerical arguments are required. Command is: position <x> <y>.')
 		else:
 			move_player_to(Vector2(args[1].to_float(), args[2].to_float()))
+		return
+	if command.to_lower().begins_with('noclip '):
+		var args: PackedStringArray = command.split(' ')
+		if len(args) == 2 and (args[1].to_lower() == 'true' or args[1].to_lower() == 'false'):
+			set_noclip(args[1].to_lower() == 'true')
+		else:
+			print_to_console('Syntax error: true or false argument required. Command is: noclip <true|false>.')
 		return
 	# if none of the above match, the command is not recognized.
 	print_to_console('Command not recognized.')
@@ -223,6 +231,14 @@ func teleport_to(mapName: String):
 func move_player_to(pos: Vector2):
 	PlayerFinder.player.position = pos
 	print_to_console('Moved player to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ').')
+
+func set_noclip(enable: bool):
+	if enable:
+		PlayerFinder.player.disable_collision()
+		print_to_console('Noclip enabled.')
+	else:
+		PlayerFinder.player.enable_collision()
+		print_to_console('Noclip disabled.')
 
 func _on_line_edit_gui_input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():

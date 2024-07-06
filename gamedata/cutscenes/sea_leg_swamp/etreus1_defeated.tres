@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=57 format=3 uid="uid://bd6gwmbcvsaby"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=60 format=3 uid="uid://bd6gwmbcvsaby"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_hl1w8"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="2_4c03b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="4_lo87u"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="5_sqt60"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_68e6f"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="7_jejqk"]
 [ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="7_koady"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="8_wxse1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="9_g24ck"]
@@ -215,16 +216,34 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_0pukq"]
+script = ExtResource("3_k7nb1")
+speaker = "Etreus"
+texts = Array[String](["Haaaaaaaaaaagh!"])
+
+[sub_resource type="Resource" id="Resource_44b2g"]
+script = ExtResource("4_lo87u")
+frameLength = 0.1
+annotation = "Etreus dialogue for him yelling while casting his spell"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_hl1w8")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_4c03b")]([])
+dialogues = Array[ExtResource("3_k7nb1")]([SubResource("Resource_0pukq")])
+playSfx = ExtResource("7_jejqk")
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
 [sub_resource type="Resource" id="Resource_jici4"]
 script = ExtResource("1_hl1w8")
 actorTreePath = "TileMap/Etreus"
 isPlayer = false
 animation = "attack_magic"
-
-[sub_resource type="Resource" id="Resource_b40vq"]
-script = ExtResource("3_k7nb1")
-speaker = "Etreus"
-texts = Array[String](["Haaaaaaaaaaagh!"])
 
 [sub_resource type="Resource" id="Resource_ksm7p"]
 script = ExtResource("4_lo87u")
@@ -234,7 +253,7 @@ actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
 actorAnims = Array[ExtResource("1_hl1w8")]([SubResource("Resource_jici4")])
 actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
 actorFaceTargets = Array[ExtResource("2_4c03b")]([])
-dialogues = Array[ExtResource("3_k7nb1")]([SubResource("Resource_b40vq")])
+dialogues = Array[ExtResource("3_k7nb1")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
 endHoldCamera = false
@@ -486,9 +505,26 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_ab0v4"]
+script = ExtResource("4_lo87u")
+frameLength = 5.0
+annotation = "wait for the player to fully process going through the Warp Zone"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[ExtResource("1_hl1w8")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[ExtResource("2_4c03b")]([])
+dialogues = Array[ExtResource("3_k7nb1")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
 [resource]
 script = ExtResource("9_g24ck")
-cutsceneFrames = Array[ExtResource("4_lo87u")]([SubResource("Resource_238n4"), SubResource("Resource_dlwu2"), SubResource("Resource_y58i5"), SubResource("Resource_w3us1"), SubResource("Resource_3vri4"), SubResource("Resource_mb41e"), SubResource("Resource_ksm7p"), SubResource("Resource_o184r"), SubResource("Resource_vxd7m"), SubResource("Resource_hybo4"), SubResource("Resource_giut1"), SubResource("Resource_annls"), SubResource("Resource_0ir87"), SubResource("Resource_a3xmf"), SubResource("Resource_3trk3"), SubResource("Resource_auobb")])
+cutsceneFrames = Array[ExtResource("4_lo87u")]([SubResource("Resource_238n4"), SubResource("Resource_dlwu2"), SubResource("Resource_y58i5"), SubResource("Resource_w3us1"), SubResource("Resource_3vri4"), SubResource("Resource_mb41e"), SubResource("Resource_44b2g"), SubResource("Resource_ksm7p"), SubResource("Resource_o184r"), SubResource("Resource_vxd7m"), SubResource("Resource_hybo4"), SubResource("Resource_giut1"), SubResource("Resource_annls"), SubResource("Resource_0ir87"), SubResource("Resource_a3xmf"), SubResource("Resource_3trk3"), SubResource("Resource_auobb"), SubResource("Resource_ab0v4")])
 saveName = "etreus1_defeated"
 storyRequirements = ExtResource("10_h5sgx")
 unlockCameraHoldAfter = false

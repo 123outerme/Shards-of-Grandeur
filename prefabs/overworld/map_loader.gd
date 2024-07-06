@@ -119,6 +119,7 @@ func get_map_entry_for_map_name(mapName: String) -> MapEntry:
 	return null
 
 func reparent_player():
+	player.enteredWarpZone = false
 	player.get_parent().remove_child(player)
 	#await get_tree().process_frame
 	var tilemapPath: String = mapInstance.get_path().get_concatenated_names().c_escape()
@@ -144,7 +145,7 @@ func _fade_out_complete():
 
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
-		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, 0.5)
+		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, -1, 0.5)
 	loading = false
 	#print('fade in complete')
 	
