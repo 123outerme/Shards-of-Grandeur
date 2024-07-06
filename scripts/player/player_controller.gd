@@ -232,10 +232,10 @@ func set_sprite_frames(spriteFrames: SpriteFrames):
 	sprite.sprite_frames = spriteFrames
 
 func disable_collision():
-	collider.disabled = true
+	collider.set_deferred('disabled', true)
 
 func enable_collision():
-	collider.disabled = false
+	collider.set_deferred('disabled', false)
 
 func is_collision_enabled():
 	return not collider.disabled

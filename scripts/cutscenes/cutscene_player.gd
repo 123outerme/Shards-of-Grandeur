@@ -213,8 +213,8 @@ func start_cutscene(newCutscene: Cutscene):
 			collisionPrevEnabledNodes[node.name] = node.call('is_collision_enabled')
 			node.call('disable_collision')
 			collisionDisabledNodes.append(node)
-		if node.has_method('disable_event_collisions'):
-			node.call('disable_event_collisions')
+		#if node.has_method('disable_event_collisions'):
+			#node.call('disable_event_collisions')
 	
 	if not Engine.is_editor_hint() and PlayerFinder.player != null:
 		PlayerFinder.player.cutsceneTexts = []
@@ -310,8 +310,8 @@ func complete_cutscene():
 	for node in collisionDisabledNodes:
 		if node.has_method('enable_collision') and collisionPrevEnabledNodes[node.name]:
 			node.call('enable_collision')
-		if node.has_method('enable_event_collisions'):
-			node.call('enable_event_collisions')
+		#if node.has_method('enable_event_collisions'):
+			#node.call('enable_event_collisions')
 	collisionDisabledNodes = []
 	
 	PlayerFinder.player.pauseDisabled = false

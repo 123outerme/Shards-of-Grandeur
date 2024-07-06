@@ -62,7 +62,7 @@ func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
 
 func show_alert(message: String, lifetime: float = 2):
-	if newActAnimPlaying:
+	if player.actChanged:
 		await new_act_anim_complete
 	
 	var panel: AlertPanel = alertPanelPrefab.instantiate()

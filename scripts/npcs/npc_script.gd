@@ -186,10 +186,10 @@ func _set_invisible(value: bool):
 		collision_layer = 0b01
 
 func disable_collision():
-	colliderShape.disabled = true
+	colliderShape.set_deferred('disabled', true)
 
 func enable_collision():
-	colliderShape.disabled = false
+	colliderShape.set_deferred('disabled', false)
 
 func is_collision_enabled():
 	return not colliderShape.disabled
