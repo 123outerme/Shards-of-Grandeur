@@ -668,7 +668,7 @@ func ai_pick_single_target(move: Move, effect: MoveEffect, targetableCombatants:
 					timesOverrided += 1
 		if combatant.get_aggro_type() == Combatant.AggroType.HIGHEST_STATS:
 			# pick highest (current) stats
-			var maxStatTotal: int = 0
+			var maxStatTotal: float = 0
 			for combatantNode in targetableCombatants:
 				var stats: Stats = combatantNode.combatant.statChanges.apply(combatantNode.combatant.stats)
 				# get the weighted average of elemental multipliers to be gained, weighing positive multipliers higher than negative ones

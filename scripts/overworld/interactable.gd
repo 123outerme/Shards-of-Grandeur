@@ -49,9 +49,14 @@ func select_choice(choice: DialogueChoice):
 				parentIdx = dialogueIdx
 				break
 		if parentIdx > -1:
-			# remove all dialogues that came after this one and make it the "leadsTo" dialogue for use below
-			PlayerFinder.player.interactableDialogues = PlayerFinder.player.interactableDialogues.slice(0, parentIdx + 1)
-			leadsTo = PlayerFinder.player.interactableDialogues[parentIdx].dialogueEntry
+			# remove the parent dialogue and make it the "leadsTo" dialogue for use below (so it gets pushed to the list of dialogues after finishing this one up)
+			var parentDialogueEntry: DialogueEntry = PlayerFinder.player.interactableDialogues[parentIdx].dialogueEntry
+			var prevLen: int = len(PlayerFinder.player.interactableDialogues)
+			PlayerFinder.player.interactableDialogues.erase(parentDialogueEntry)
+			# if the dialogue entry was erased and it was before our current index, update the index of the current dialogue!
+			if prevLen != len(PlayerFinder.player.interactableDialogues) and parentIdx <= PlayerFinder.player.interactableDialogueIdx:
+				PlayerFinder.player.interactableDialogueIdx -= 1
+			leadsTo = parentDialogueEntry
 	
 	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
 		var randomDialogues: Array[WeightedDialogueEntry] = []

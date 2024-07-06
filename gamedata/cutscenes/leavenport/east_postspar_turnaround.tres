@@ -1,0 +1,103 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://v8f4ty25ydau"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_6k1xv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_sh4ae"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_5fa85"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_6r51u"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_bpdn2"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="6_idvc8"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_xqknd"]
+
+[sub_resource type="Resource" id="Resource_m7war"]
+script = ExtResource("1_6k1xv")
+speaker = "@"
+texts = Array[String](["I should go talk to Solius before heading in a random direction, since I don't know the way to the Cave."])
+
+[sub_resource type="Resource" id="Resource_ghfr8"]
+script = ExtResource("2_sh4ae")
+frameLength = 0.1
+annotation = "have the player speak"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_6k1xv")]([SubResource("Resource_m7war")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_i7gfo"]
+script = ExtResource("4_6r51u")
+value = Vector2(1238, 540)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_mfoyy"]
+script = ExtResource("2_sh4ae")
+frameLength = 1.25
+annotation = "Have the player move away from the exit"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_i7gfo")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_5fa85")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_6k1xv")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_u3q2y"]
+script = ExtResource("2_sh4ae")
+frameLength = 0.1
+annotation = "wait for the text box to be closed and stop the player walk anim"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_bpdn2")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("1_6k1xv")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_whecf"]
+script = ExtResource("7_xqknd")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["solius_spar"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["solius_to_cave_path"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("6_idvc8")
+cutsceneFrames = Array[ExtResource("2_sh4ae")]([SubResource("Resource_ghfr8"), SubResource("Resource_mfoyy"), SubResource("Resource_u3q2y")])
+saveName = ""
+storyRequirements = SubResource("Resource_whecf")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

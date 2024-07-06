@@ -31,6 +31,7 @@ var startingBattle: bool = false
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
+@onready var eventCollider: CollisionShape2D = get_node('PlayerEventCollider/EventColliderShape')
 @onready var cam: PlayerCamera = get_node("Camera")
 @onready var uiRoot: Node2D = get_node('UI')
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
@@ -230,6 +231,21 @@ func eight_dir_movement(input: Vector2) -> Vector2:
 func set_sprite_frames(spriteFrames: SpriteFrames):
 	sprite.sprite_frames = spriteFrames
 
+func disable_collision():
+	collider.disabled = true
+
+func enable_collision():
+	collider.disabled = false
+
+func is_collision_enabled():
+	return not collider.disabled
+
+func disable_event_collisions():
+	eventCollider.disabled = true
+
+func enable_event_collisions():
+	eventCollider.disabled = false
+
 func play_animation(animation: String):
 	sprite.play(animation)
 
@@ -353,8 +369,14 @@ func select_choice(choice: DialogueChoice):
 				parentIdx = dialogueEntryIdx
 				break
 		if parentIdx > -1:
-			talkNPC.data.dialogueItems = talkNPC.data.dialogueItems.slice(0, parentIdx + 1)
-			leadsTo = talkNPC.data.dialogueItems[parentIdx]
+			var parentDialogueEntry: DialogueEntry = talkNPC.data.dialogueItems[parentIdx]
+			var prevLen: int = len(talkNPC.data.dialogueItems)
+			talkNPC.data.dialogueItems.erase(parentDialogueEntry)
+			# if the dialogue entry was erased and it was before our current index, update the index of the current dialogue!
+			if prevLen != len(talkNPC.data.dialogueItems) and parentIdx <= talkNPC.data.dialogueIndex:
+				talkNPC.data.dialogueIndex -= 1
+			
+			leadsTo = parentDialogueEntry
 	
 	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
 		var randomDialogues: Array[WeightedDialogueEntry] = []

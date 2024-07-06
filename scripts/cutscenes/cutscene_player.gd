@@ -21,6 +21,9 @@ var skipCutsceneFrameIndex: int = -1
 var skipping: bool = true
 var awaitingPlayer: bool = false
 
+var collisionDisabledNodes: Array = []
+var collisionPrevEnabledNodes: Dictionary = {}
+
 func _process(delta):
 	if cutscene != null and playing and not isPaused and not awaitingPlayer and skipCutsceneFrameIndex == -1:
 		var frame: CutsceneFrame = cutscene.get_keyframe_at_time(timer, lastFrame)
@@ -106,6 +109,27 @@ func handle_start_shard_learn_tutorial():
 	PlayerFinder.player.inventoryPanel.start_learn_shard_tutorial()
 	PlayerFinder.player.inventoryPanel.learn_shard_tutorial_finished.connect(_learn_shard_tutorial_finished)
 
+func get_all_actor_nodes_in_cutscene() -> Array:
+	var nodeDict: Dictionary = {}
+	for frame: CutsceneFrame in cutscene.cutsceneFrames:
+		for animSet in frame.actorAnimSets:
+			var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+		for animation in frame.actorAnims:
+			var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+		for actorTween in frame.actorTweens:
+			var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+		for actorFaceTarget: ActorFaceTarget in frame.actorFaceTargets:
+			var node = fetch_actor_node(actorFaceTarget.actorTreePath, actorFaceTarget.isPlayer)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+	return nodeDict.values()
+
 func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 	lastFrame = frame
 	if frame.shakeCamForDuration:
@@ -152,7 +176,8 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 		else:
 			targetPos = actorFaceTarget.targetPosition
 		#print(targetPos.x - actorNode.global_position.x)
-		actorNode.face_horiz(targetPos.x - actorNode.global_position.x)
+		if actorNode.has_method('face_horiz'):
+			actorNode.face_horiz(targetPos.x - actorNode.global_position.x)
 
 func handle_start_cam_shake():
 	PlayerFinder.player.cam.start_cam_shake()
@@ -180,6 +205,17 @@ func start_cutscene(newCutscene: Cutscene):
 	skipCutsceneFrameIndex = -1
 	cutscene.calc_total_time()
 	playing = true
+	
+	# disable the collision of all actors in the 
+	var allActors: Array = get_all_actor_nodes_in_cutscene()
+	for node in allActors:
+		if node.has_method('disable_collision') and node.has_method('is_collision_enabled'):
+			collisionPrevEnabledNodes[node.name] = node.call('is_collision_enabled')
+			node.call('disable_collision')
+			collisionDisabledNodes.append(node)
+		if node.has_method('disable_event_collisions'):
+			node.call('disable_event_collisions')
+	
 	if not Engine.is_editor_hint() and PlayerFinder.player != null:
 		PlayerFinder.player.cutsceneTexts = []
 		PlayerFinder.player.cutsceneTextIndex = 0
@@ -269,6 +305,15 @@ func complete_cutscene():
 	
 	lastFrame = null
 	skipping = false
+	
+	# re-enable the collision for nodes whose collision was enabled
+	for node in collisionDisabledNodes:
+		if node.has_method('enable_collision') and collisionPrevEnabledNodes[node.name]:
+			node.call('enable_collision')
+		if node.has_method('enable_event_collisions'):
+			node.call('enable_event_collisions')
+	collisionDisabledNodes = []
+	
 	PlayerFinder.player.pauseDisabled = false
 	PlayerFinder.player.show_all_talk_alert_sprites()
 	if PlayerFinder.player.is_in_dialogue():
@@ -330,6 +375,11 @@ func _fade_in_complete():
 		PlayerFinder.player.pauseDisabled = false
 
 func skip_cutscene_process():
+	for tween: Tween in tweens:
+		if tween.is_valid():
+			tween.stop()
+	tweens = []
+	
 	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):
 		var frame: CutsceneFrame = cutscene.cutsceneFrames[idx]
 		animate_next_frame(frame, true)

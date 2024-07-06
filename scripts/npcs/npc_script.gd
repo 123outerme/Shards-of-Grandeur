@@ -48,6 +48,7 @@ var turningInSteps: Array[QuestStep] = []
 @onready var colliderShape: CollisionShape2D = get_node('ColliderShape')
 @onready var talkArea: Area2D = get_node('TalkArea')
 @onready var talkAreaShape: CollisionShape2D = get_node('TalkArea/TalkAreaShape')
+@onready var moveAreaShape: CollisionShape2D = get_node('MoveTrigger/MoveTriggerShape')
 @onready var NavAgent: NPCMovement = get_node('NavAgent')
 
 var invisible: bool:
@@ -178,9 +179,28 @@ func add_shop_items_to_inventory():
 func _set_invisible(value: bool):
 	visible = not value
 	if value:
+		# not calling disable_collision() so cutscenes don't re-enable NPC collision after they are made invisible
 		collision_layer = 0
 	else:
+		# not calling enable_collision() for same reasoning as above
 		collision_layer = 0b01
+
+func disable_collision():
+	colliderShape.disabled = true
+
+func enable_collision():
+	colliderShape.disabled = false
+
+func is_collision_enabled():
+	return not colliderShape.disabled
+
+func disable_event_collisions():
+	talkAreaShape.disabled = true
+	moveAreaShape.disabled = true
+
+func enable_event_collisions():
+	talkAreaShape.disabled = false
+	moveAreaShape.disabled = false
 
 func _set_flip_h(value: bool):
 	if value:
@@ -365,7 +385,11 @@ func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool =
 		var index: int = data.dialogueItems.find(dialogueEntry, 0)
 		if index != -1: # reuse entry if it exists to support going back in the dialogue tree
 			if repeat:
-				data.dialogueIndex = index
+				# remove it and stick it at the end of the dialogue stack, so dialogue traversal doesn't reuse any items we've already seen
+				data.dialogueItems.erase(dialogueEntry)
+				data.dialogueItems.append(dialogueEntry)
+				
+				data.dialogueIndex = len(data.dialogueItems) - 1
 				data.dialogueItemIdx = 0
 				data.dialogueLine = 0
 			return true

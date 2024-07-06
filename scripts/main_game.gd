@@ -42,7 +42,7 @@ func _input(event):
 		# hide cursor
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
-func _process(delta):
+func _process(_delta):
 	for action: String in UI_REPEAT_ACTION_NAMES_X:
 		if Input.is_action_pressed(action):
 			if lastRepeatedActionX != action:
@@ -81,7 +81,7 @@ func parse_cmdline_args():
 
 # Solution from https://www.reddit.com/r/godot/comments/x4v5ty/ui_repeated_movement_when_holding_directions_ui/
 func start_repeat(changeX: bool):
-	print('Start pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY, '!')
+	#print('Start pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY, '!')
 	if lastRepeatedActionX != '' and changeX:
 		create_repeat_press_event(lastRepeatedActionX)
 	if lastRepeatedActionY != '' and not changeX:
