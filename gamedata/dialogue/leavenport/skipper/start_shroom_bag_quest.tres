@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dh8gdbr64sotd"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_rftnn"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_s8cih"]
+[ext_resource type="Resource" uid="uid://dmt1f8243dw6g" path="res://gamedata/quests/shroom_zone.tres" id="2_rfv3c"]
+
+[sub_resource type="Resource" id="Resource_wcexc"]
+script = ExtResource("1_rftnn")
+lines = Array[String](["Great, bring it back once it's full of mushrooms! Trust me, won't take long. It fills itself!"])
+animation = "talk"
+choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+
+[resource]
+script = ExtResource("1_s8cih")
+entryId = ""
+items = Array[ExtResource("1_rftnn")]([SubResource("Resource_wcexc")])
+startsQuest = ExtResource("2_rfv3c")
+closesDialogue = false
+fullHealsPlayer = false

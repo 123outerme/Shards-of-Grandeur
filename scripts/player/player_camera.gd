@@ -1,5 +1,6 @@
 extends Camera2D
 class_name PlayerCamera
+signal new_act_anim_complete
 
 const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 	Vector2(0,0),
@@ -30,6 +31,7 @@ var fadeInTween: Tween = null
 var interruptTween: bool = false
 var camShaking: bool = false
 var camShakingTime: float = 0
+var newActAnimPlaying: bool = false
 
 var registeredFadeInCallbacks: Array[Callable] = []
 var registeredFadeOutCallbacks: Array[Callable] = []
@@ -60,6 +62,9 @@ func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
 
 func show_alert(message: String, lifetime: float = 2):
+	if newActAnimPlaying:
+		await new_act_anim_complete
+	
 	var panel: AlertPanel = alertPanelPrefab.instantiate()
 	panel.message = message
 	panel.lifetime = lifetime
@@ -180,7 +185,12 @@ func _new_act_fade_out(callback: Callable):
 			'[/center]'
 	shadeLabel.visible = true
 	await get_tree().create_timer(2.5).timeout
+	registeredFadeInCallbacks.append(_emit_new_act_anim_complete)
 	fade_in(callback)
+
+func _emit_new_act_anim_complete():
+	newActAnimPlaying = false
+	new_act_anim_complete.emit()
 
 func _on_resume_button_pressed():
 	SceneLoader.cutscenePlayer.toggle_pause_cutscene()

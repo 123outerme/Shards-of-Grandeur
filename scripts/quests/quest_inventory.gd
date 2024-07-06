@@ -91,7 +91,8 @@ func accept_quest(q: Quest):
 	quests.append(tracker)
 	auto_update_quests()
 
-func auto_update_quests():
+func auto_update_quests(recursiveCall: bool = false):
+	var emitChanges: bool = false
 	for tracker in quests:
 		var step: QuestStep = tracker.get_current_step()
 		if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or tracker.get_step_status(step) == QuestTracker.Status.FAILED:
@@ -107,10 +108,15 @@ func auto_update_quests():
 			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
 	for puzzle in PlayerResources.playerInfo.puzzlesSolved:
 		progress_quest(puzzle, QuestStep.Type.SOLVE_PUZZLE)
-		auto_turn_in_puzzle_steps(puzzle) # only auto-turns in if no turn-in entity has been specified
+		emitChanges = emitChanges or auto_turn_in_puzzle_steps(puzzle) # only auto-turns in if no turn-in entity has been specified
 	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
 		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
-		auto_turn_in_cutscene_steps(cutscene)
+		emitChanges = emitChanges or auto_turn_in_cutscene_steps(cutscene)
+	if emitChanges:
+		# prevent more than one recursive call from happening to update quest states
+		if not recursiveCall:
+			auto_update_quests(true)
+			PlayerResources.story_requirements_updated.emit()
 
 func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
 	for tracker in get_cur_trackers_for_target(target):
@@ -122,41 +128,41 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 			if tracker.get_current_step().type == type and (tracker.quest.storyRequirements == null or tracker.quest.storyRequirements.is_valid()):
 				tracker.add_current_step_progress(progress)
 
-func auto_turn_in_cutscene_steps(target: String):
+func auto_turn_in_cutscene_steps(target: String) -> bool:
 	var hasTurnedIn: bool = false
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE:
-			turn_in_cur_step(tracker)
+			turn_in_cur_step(tracker, true)
 			hasTurnedIn = true
-	if hasTurnedIn:
-		PlayerResources.story_requirements_updated.emit()
+	return hasTurnedIn
 
-func auto_turn_in_puzzle_steps(target: String):
+func auto_turn_in_puzzle_steps(target: String) -> bool:
 	var hasTurnedIn: bool = false
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
 				and tracker.get_current_step().type == QuestStep.Type.SOLVE_PUZZLE \
 				and len(tracker.get_current_step().turnInNames) == 0:
 			# only turn in if completed and there are no turn in names specified
-			turn_in_cur_step(tracker)
+			turn_in_cur_step(tracker, true)
 			hasTurnedIn = true
-	if hasTurnedIn:
-		PlayerResources.story_requirements_updated.emit()
+	return hasTurnedIn
 
-func turn_in_cur_step(tracker: QuestTracker) -> int:
+func turn_in_cur_step(tracker: QuestTracker, isAutoUpdate: bool = false) -> int:
 	var curStep: QuestStep = tracker.get_current_step()
 	var newLvs: int = PlayerResources.accept_rewards([curStep.reward])
 	var allDone: bool = tracker.turn_in_step()
 	if curStep.type == QuestStep.Type.COLLECT_ITEM:
 		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)
 	
-	auto_update_quests()
+	if not isAutoUpdate:
+		auto_update_quests()
 	
 	if allDone and tracker.quest.advanceActActerComplete:
 		currentAct += 1 # advance act after quest completion
 	
-	PlayerResources.story_requirements_updated.emit()
+	if not isAutoUpdate:
+		PlayerResources.story_requirements_updated.emit()
 	return newLvs
 
 func get_sorted_trackers() -> Array[QuestTracker]:

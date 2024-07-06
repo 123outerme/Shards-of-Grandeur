@@ -28,27 +28,27 @@ func load_equipment_details_panel():
 			hboxBoosts.visible = false
 		else:
 			hboxBoosts.visible = true
-			boostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(statMultipliersText) + '[/center]'
+			boostsText.text = StatMultiplierText.multiplier_text_list_to_string(statMultipliersText)
 		
 		var elMultipliersText: Array[StatMultiplierText] = statChanges.get_element_multiplier_texts()
 		if len(elMultipliersText) == 0:
 			hboxElBoosts.visible = false
 		else:
 			hboxElBoosts.visible = true
-			elBoostsText.text = '[center]' + StatMultiplierText.multiplier_text_list_to_string(elMultipliersText) + '[/center]'
+			elBoostsText.text = StatMultiplierText.multiplier_text_list_to_string(elMultipliersText)
 	else:
 		hboxBoosts.visible = false
 		hboxElBoosts.visible = false
 		
-		if hboxBoosts.visible or hboxElBoosts.visible:
-			hboxTiming.visible = true
-			timingText.text = '[center]' + BattleCommand.apply_timing_to_string(item.timing) + '[/center]'
-		else:
-			hboxTiming.visible = false
+	if hboxBoosts.visible or hboxElBoosts.visible:
+		hboxTiming.visible = true
+		timingText.text = BattleCommand.apply_timing_to_string(item.timing)
+	else:
+		hboxTiming.visible = false
 	
 	if item.bonusOrbs == 0:
 		hboxOrbs.visible = false
 	else:
 		hboxOrbs.visible = true
-		orbsText.text = '[center]' + TextUtils.rich_text_substitute('+' + String.num(item.bonusOrbs) + ' $orb At The Start Of Battle', Vector2i(24, 24)) + '[/center]'
+		orbsText.text = TextUtils.rich_text_substitute('+' + String.num(item.bonusOrbs) + ' $orb At The Start Of Battle', Vector2i(24, 24))
 	

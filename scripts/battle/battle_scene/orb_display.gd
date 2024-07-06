@@ -29,10 +29,10 @@ func _process(delta):
 	if not focused:
 		return
 	lastInputAccum = max(-1, lastInputAccum - delta)
-	if Input.is_action_pressed('ui_right') and lastInputAccum <= 0:
+	if (Input.is_action_pressed('ui_right') or Input.is_action_pressed('ui_repeat_right')) and lastInputAccum <= 0:
 		update_orb_count(currentOrbs + 1)
 		lastInputAccum = ORB_INTERACT_INTERVAL
-	if Input.is_action_pressed('ui_left') and lastInputAccum <= 0:
+	if (Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_repeat_left')) and lastInputAccum <= 0:
 		update_orb_count(currentOrbs - 1)
 		lastInputAccum = ORB_INTERACT_INTERVAL
 

@@ -54,7 +54,7 @@ func is_solved() -> bool:
 
 ## executes the solution steps and sets the puzzle as solved to the player
 func solve():
+	# TODO give player the reward for solving the puzzle, then potentially handle level ups or full inventory (?)
+	# if level up, delay setting the puzzle solved until after the level up prompt has been dismissed
 	PlayerResources.playerInfo.set_puzzle_solved(id)
 	PlayerResources.questInventory.auto_update_quests()
-	PlayerResources.story_requirements_updated.emit()
-	# TODO give player the reward for solving the puzzle, then potentially handle level ups or full items (?)
