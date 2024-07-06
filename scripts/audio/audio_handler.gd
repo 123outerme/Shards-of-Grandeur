@@ -1,5 +1,6 @@
 extends Node
 class_name AudioHandler
+signal music_fade_completed
 
 const MUSIC_DB_HEAD_ROOM = 5
 
@@ -153,8 +154,9 @@ func fade_in_music(sec: float = 0.5):
 func _fade_music_callback(killMusic: bool):
 	musicFadeTween = null
 	if killMusic:
-		musicStreamPlayer1.stream = null
+		get_cur_music_player().stream = null
 	load_audio_settings()
+	music_fade_completed.emit()
 
 func _fade_to_new_callback(stream: AudioStream, ms: float):
 	musicFadeTween = null

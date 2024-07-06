@@ -369,5 +369,6 @@ func _fade_in_finish():
 func _fade_out_finish():
 	SaveHandler.save_data('save')
 	SceneLoader.audioHandler.fade_out_music()
+	await SceneLoader.audioHandler.music_fade_completed
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld('save')
