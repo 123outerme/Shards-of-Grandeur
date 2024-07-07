@@ -56,7 +56,6 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 	else:
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
-		set_fob_button_enabled(false)
 		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor
 		if battleController.battleUI.results.visible:
 			fobButton.focus_neighbor_left = fobButton.get_path_to(battleController.battleUI.results.textBoxText)

@@ -203,11 +203,11 @@ func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 
 func _on_equipment_panel_attempt_equip_weapon():
 	if not readOnly:
-		attempt_equip_weapon_to.emit(stats)
+		pass #attempt_equip_weapon_to.emit(stats)
 
 func _on_equipment_panel_attempt_equip_armor():
 	if not readOnly:
-		attempt_equip_armor_to.emit(stats)
+		pass #attempt_equip_armor_to.emit(stats)
 
 func _on_inventory_panel_node_open_stats(combatant: Combatant):
 	stats = combatant.stats

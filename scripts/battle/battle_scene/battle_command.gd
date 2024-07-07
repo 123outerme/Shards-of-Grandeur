@@ -128,10 +128,10 @@ static func dmg_logistic(userLv: int, targetLv: int) -> float:
 	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
 
 static func damage_formula(power: float, atkStat: float, resistanceStat: float, userLv: int, targetLv: int, elEffectivenessMultiplier: float) -> int:
-	var atkExpression: float = round(atkStat * 1.1) + 5
+	var atkExpression: float = round(atkStat * 1.1)
 	if power < 0:
 		atkExpression *= 2.5 # 2.5x heal multiplier
-	var resExpression: float = round(resistanceStat * 0.9) + 5
+	var resExpression: float = round(resistanceStat * 0.9)
 	if power < 0:
 		resExpression = 5 # no resistance
 	var apparentUserLv = BattleCommand.dmg_logistic(userLv, targetLv) # "apparent" user levels:
@@ -141,7 +141,7 @@ static func damage_formula(power: float, atkStat: float, resistanceStat: float, 
 	var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
 	#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
 	#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
-	var damage: int = roundi( power * usrLvMultiplier * ((apparentUserLv / apparentTargetLv) / 4.0) * statCheckMultiplier * elEffectivenessMultiplier )
+	var damage: int = roundi( power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * elEffectivenessMultiplier )
 	if power > 0 and damage <= 0:
 		damage = 1 # if move IS a damaging move, make it do at least 1 damage
 	return damage

@@ -93,7 +93,7 @@ func _unhandled_input(event):
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
 			not cutscenePaused and not startingBattle and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
-		if len(interactables) > 0 and not textBox.visible and event.is_action_pressed("game_interact"):
+		if len(interactables) > 0 and not textBox.visible and (event.is_action_pressed("game_interact") or event is InputEventMouseButton):
 			# if the text box isn't open and there's at least one nearby interactable:
 			# find the closest interactable (using squared distance bc faster; the distance only matters relative to other interactables)
 			var closestInteractable: Interactable = null

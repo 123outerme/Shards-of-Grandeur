@@ -44,7 +44,6 @@ func apply_menu_state():
 	
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
-		battlePanels.flowOfBattle.set_fob_button_enabled() # show the FoB button again
 	
 	allCommands.visible = menuState == BattleState.Menu.ALL_COMMANDS or menuState == BattleState.Menu.ITEMS
 	if allCommands.visible:
@@ -75,6 +74,8 @@ func apply_menu_state():
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
 			or menuState == BattleState.Menu.POST_ROUND
 	if results.visible:
+		# toggle the Flow of Battle button based on if the battle is starting/round is starting or ending
+		battlePanels.flowOfBattle.set_fob_button_enabled(menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.POST_ROUND)
 		results.initial_focus()
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(results.textBoxText)
 		battleController.reset_intermediate_state_strs()
