@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=62 format=3 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
 [ext_resource type="Resource" uid="uid://c3gj8c3m11yyt" path="res://gamedata/cutscenes/leavenport/meet_solius.tres" id="9_8qf0q"]
 [ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="9_djdq1"]
-[ext_resource type="SpriteFrames" uid="uid://ytkab3km2sof" path="res://graphics/animations/a_chain_legion_soldier_2.tres" id="10_7cmn1"]
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="11_jmbbv"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="12_6xs76"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
@@ -21,7 +20,6 @@
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="13_lrtnp"]
 [ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="13_n502q"]
 [ext_resource type="Resource" uid="uid://cvfoto5uagako" path="res://gamedata/dialogue/interactables/ground_items/leavenport/leavenport_remedy.tres" id="13_q8qvf"]
-[ext_resource type="Resource" uid="uid://l6qd745efbcx" path="res://gamedata/cutscenes/leavenport/north_soldiers_turn_around.tres" id="14_iarnq"]
 [ext_resource type="Resource" uid="uid://d1303grvlgie" path="res://gamedata/cutscenes/leavenport/east_soldiers_turn_around.tres" id="15_dsi35"]
 [ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity/affinity_1.png" id="15_llrp6"]
 [ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity/affinity_2.png" id="16_0ng0y"]
@@ -40,7 +38,7 @@
 [ext_resource type="Resource" uid="uid://b4lp0et0owd07" path="res://gamedata/cutscenes/leavenport/south_demo_end_turnaround.tres" id="35_13spq"]
 [ext_resource type="Resource" uid="uid://dcgrjbl2yg0yl" path="res://gamedata/cutscenes/leavenport/leavenport_takeover.tres" id="37_nlfdj"]
 
-[sub_resource type="Resource" id="Resource_6rsxl"]
+[sub_resource type="Resource" id="Resource_es7o0"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -60,47 +58,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_2ncon"]
-script = ExtResource("6_jui48")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(-28, 101)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-hasShop = false
-
-[sub_resource type="Resource" id="Resource_2bug1"]
-script = ExtResource("6_jui48")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(25, 105)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-hasShop = false
-
-[sub_resource type="Resource" id="Resource_u8ay1"]
+[sub_resource type="Resource" id="Resource_7ouya"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -120,7 +78,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_dgts7"]
+[sub_resource type="Resource" id="Resource_gehw2"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -140,7 +98,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_28cpg"]
+[sub_resource type="Resource" id="Resource_6yi21"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -160,7 +118,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_2qtwu"]
+[sub_resource type="Resource" id="Resource_6o4dq"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -204,7 +162,7 @@ position = Vector2(972, 196)
 relativeToCurrentPos = false
 pauseSecs = 1.25
 
-[sub_resource type="Resource" id="Resource_v1q3k"]
+[sub_resource type="Resource" id="Resource_7gf1r"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -284,7 +242,7 @@ size = Vector2(56, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e1cw"]
 size = Vector2(112, 56)
 
-[sub_resource type="Resource" id="Resource_jm5fe"]
+[sub_resource type="Resource" id="Resource_8x4s3"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -423,7 +381,7 @@ position = Vector2(0, 14)
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
-data = SubResource("Resource_6rsxl")
+data = SubResource("Resource_es7o0")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TileMap/Solius" index="0"]
@@ -444,47 +402,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TileMap/Solius" index="4"]
 visible = false
 
-[node name="ChainLegionSoldier1" parent="TileMap" instance=ExtResource("5_q2te8")]
-position = Vector2(-28, 101)
-loadFlipH = true
-spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_2ncon")
-
-[node name="NPCSprite" parent="TileMap/ChainLegionSoldier1" index="0"]
-sprite_frames = ExtResource("10_7cmn1")
-animation = &"stand"
-
-[node name="ColliderShape" parent="TileMap/ChainLegionSoldier1" index="1"]
-position = Vector2(0, 3.5)
-
-[node name="TalkArea" parent="TileMap/ChainLegionSoldier1" index="3"]
-position = Vector2(0, 4)
-
-[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier1" index="4"]
-visible = false
-
-[node name="ChainLegionSoldier2" parent="TileMap" instance=ExtResource("5_q2te8")]
-position = Vector2(25, 105)
-spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_2bug1")
-
-[node name="NPCSprite" parent="TileMap/ChainLegionSoldier2" index="0"]
-sprite_frames = ExtResource("11_jmbbv")
-animation = &"stand"
-
-[node name="ColliderShape" parent="TileMap/ChainLegionSoldier2" index="1"]
-position = Vector2(0, 3.5)
-
-[node name="TalkArea" parent="TileMap/ChainLegionSoldier2" index="3"]
-position = Vector2(0, 4)
-
-[node name="MoveTrigger" parent="TileMap/ChainLegionSoldier2" index="4"]
-visible = false
-
 [node name="ChainLegionSoldier3" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_u8ay1")
+data = SubResource("Resource_7ouya")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -502,7 +423,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TileMap" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_dgts7")
+data = SubResource("Resource_gehw2")
 
 [node name="NPCSprite" parent="TileMap/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -521,7 +442,7 @@ visible = false
 position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
-data = SubResource("Resource_28cpg")
+data = SubResource("Resource_6yi21")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TileMap/Fisherman" index="0"]
@@ -541,7 +462,7 @@ visible = false
 position = Vector2(996, 108)
 displayName = "Elder"
 saveName = "lp_elder"
-data = SubResource("Resource_2qtwu")
+data = SubResource("Resource_6o4dq")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TileMap/Elder" index="0"]
@@ -566,7 +487,7 @@ visible = false
 position = Vector2(397, 315)
 displayName = "Lady"
 saveName = "lp_elder_lady"
-data = SubResource("Resource_v1q3k")
+data = SubResource("Resource_7gf1r")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TileMap/ElderLady" index="0"]
@@ -646,7 +567,7 @@ shape = SubResource("RectangleShape2D_ho4gv")
 
 [node name="NorthWarpCutsceneTrigger" parent="." instance=ExtResource("8_1vtdr")]
 position = Vector2(6, 153)
-cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("9_8qf0q"), ExtResource("14_iarnq")])
+cutscenes = Array[Resource("res://scripts/cutscenes/cutscene.gd")]([ExtResource("9_8qf0q")])
 
 [node name="CollisionShape2D" parent="NorthWarpCutsceneTrigger" index="0"]
 position = Vector2(34.5, 0)
@@ -736,7 +657,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1238, 540)
 facingLeft = true
-data = SubResource("Resource_jm5fe")
+data = SubResource("Resource_8x4s3")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.46489
@@ -753,8 +674,6 @@ flip_h = true
 [editable path="TileMap/FloatingRockColumnDecoration9"]
 [editable path="TileMap/FloatingRockColumnDecoration10"]
 [editable path="TileMap/Solius"]
-[editable path="TileMap/ChainLegionSoldier1"]
-[editable path="TileMap/ChainLegionSoldier2"]
 [editable path="TileMap/ChainLegionSoldier3"]
 [editable path="TileMap/ChainLegionSoldier4"]
 [editable path="TileMap/Fisherman"]

@@ -1,0 +1,106 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://c71mhqpyp5au8"]
+
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_h1t6v"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_jdyxo"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="3_ki5sx"]
+[ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="4_i8s7l"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="5_moew1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="6_dvjun"]
+[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="7_i0c5u"]
+
+[sub_resource type="Resource" id="Resource_d2xy4"]
+script = ExtResource("2_jdyxo")
+speaker = "@"
+texts = Array[String](["Oh no!"])
+
+[sub_resource type="Resource" id="Resource_euiiw"]
+script = ExtResource("3_ki5sx")
+frameLength = 0.1
+annotation = "Have player exclaim"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_h1t6v")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_jdyxo")]([SubResource("Resource_d2xy4")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ckn7m"]
+script = ExtResource("3_ki5sx")
+frameLength = 0.1
+annotation = "Wait for text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_jdyxo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wgakg"]
+script = ExtResource("5_moew1")
+value = Vector2(729, 744)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ro4vc"]
+script = ExtResource("2_jdyxo")
+speaker = "@"
+texts = Array[String](["That was too close, I was almost seen! Better find another way out of here.", "I think the south way out of Leavenport was unguarded..."])
+
+[sub_resource type="Resource" id="Resource_wgweb"]
+script = ExtResource("3_ki5sx")
+frameLength = 1.0
+annotation = "Move the player south and have the player speak after doing so"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_wgakg")])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("4_i8s7l")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_jdyxo")]([SubResource("Resource_ro4vc")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_7uh7u"]
+script = ExtResource("3_ki5sx")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_h1t6v")])
+actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+dialogues = Array[ExtResource("2_jdyxo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("6_dvjun")
+cutsceneFrames = Array[ExtResource("3_ki5sx")]([SubResource("Resource_euiiw"), SubResource("Resource_ckn7m"), SubResource("Resource_wgweb"), SubResource("Resource_7uh7u")])
+saveName = ""
+storyRequirements = ExtResource("7_i0c5u")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
