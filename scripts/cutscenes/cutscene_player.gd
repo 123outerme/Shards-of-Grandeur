@@ -256,7 +256,6 @@ func skip_cutscene():
 	if cutscene == null:
 		return
 	
-	isPaused = false
 	skipping = true
 	PlayerFinder.player.pauseDisabled = true
 	PlayerFinder.player.cam.stop_cam_shake()
@@ -272,6 +271,7 @@ func skip_cutscene():
 	isFadingIn = false
 	completeAfterFadeIn = false
 	await cutscene_fadeout_done
+	isPaused = false
 	timer = cutscene.totalTime
 	skipCutsceneFrameIndex = cutscene.get_index_for_frame(lastFrame)
 	skip_cutscene_process()
@@ -377,7 +377,7 @@ func _fade_in_complete():
 func skip_cutscene_process():
 	for tween: Tween in tweens:
 		if tween.is_valid():
-			tween.stop()
+			tween.kill()
 	tweens = []
 	var skipAnims: bool = false
 	
