@@ -25,6 +25,10 @@ func create_reports():
 		['Cost', 'Max Count'],
 		[csv_item_cost, csv_item_max_count]
 	)
+	reports['combatants/reward_report.csv'] = create_report_for_all_combatants_series(
+		['Avg Reward Exp', 'Avg Reward Gold'],
+		[csv_combatant_avg_reward_xp, csv_combatant_avg_reward_gold]
+	)
 	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR)
@@ -158,6 +162,24 @@ func csv_combatant_status_immunities(combatant: Combatant) -> String:
 		if statusIdx < len(moveEffectiveness.statusImmunities) - 1:
 			immunities += ' | '
 	return immunities
+
+func csv_combatant_avg_reward_xp(combatant: Combatant) -> String:
+	var sum: float = 0
+	var count: int = 0
+	if combatant.dropTable != null:
+		for reward: WeightedReward in combatant.dropTable.weightedRewards:
+			sum += reward.reward.experience
+			count += 1
+	return String.num(sum / count)
+
+func csv_combatant_avg_reward_gold(combatant: Combatant) -> String:
+	var sum: float = 0
+	var count: int = 0
+	if combatant.dropTable != null:
+		for reward: WeightedReward in combatant.dropTable.weightedRewards:
+			sum += reward.reward.gold
+			count += 1
+	return String.num(sum / count)
 
 # CSV move queries
 func create_report_for_all_moves_series(columns: Array[String], queries: Array[Callable]) -> String:
