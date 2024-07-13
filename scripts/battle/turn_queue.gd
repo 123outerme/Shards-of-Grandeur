@@ -35,7 +35,12 @@ func copy() -> TurnQueue:
 	return TurnQueue.new(combatants)
 
 func filter_turns(value: Combatant) -> bool:
-	return value != null and value.currentHp > 0
+	if value == null:
+		return false
+	if value.currentHp <= 0:
+		value.command = null
+		return false
+	return true
 
 '''
 func combatant_stable_sort(): # insertion sort - there will never be more than 5 items in this queue so I don't care

@@ -19,6 +19,9 @@ func _init(
 
 func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int:
 	var damage: int = 0
+	if allCombatants[attackerIdx].command == null:
+		printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
+		return damage
 	# Assumption: targets are already fetched
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
 	for targetIdx in range(len(allCombatants[attackerIdx].command.targets)):
@@ -32,8 +35,8 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int
 
 func find_attacker_idx(combatant, allCombatants: Array) -> int:
 	for idx in range(len(allCombatants)):
-		# if this combatant is not the afflicted, and is using a command (has already been resolved)
-		if allCombatants[idx] != combatant and not allCombatants[idx].downed and allCombatants[idx].command != null:
+		# if this combatant is not the afflicted, and is using a command (has already been resolved though)
+		if allCombatants[idx] != combatant and allCombatants[idx].command != null:
 			return idx
 	return -1
 
@@ -41,12 +44,16 @@ func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTi
 	var dealtDmgCombatants: Array[Combatant] = []
 	if timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
 		var attackerIdx = find_attacker_idx(combatant, allCombatants)
-		allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - get_recoil_damage(combatant, allCombatants, attackerIdx), 0) # recoil can never knock you out!
-		# if the combatant damage is reflected to is Enduring, apply the status again to ensure the Endure is applied appropriately
-		if allCombatants[attackerIdx].statusEffect != null and allCombatants[attackerIdx].statusEffect.type == Type.ENDURE:
-			allCombatants[attackerIdx].statusEffect.apply_status(combatant, allCombatants, timing)
-		if get_recoil_damage(combatant, allCombatants, attackerIdx) > 0:
-			dealtDmgCombatants = [allCombatants[attackerIdx]]
+		if attackerIdx > -1:
+			var recoilDmg = get_recoil_damage(combatant, allCombatants, attackerIdx)
+			allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - recoilDmg, 0) # recoil can never knock you out!
+			# if the combatant damage is reflected to is Enduring, apply the status again to ensure the Endure is applied appropriately
+			if allCombatants[attackerIdx].statusEffect != null and allCombatants[attackerIdx].statusEffect.type == Type.ENDURE:
+				allCombatants[attackerIdx].statusEffect.apply_status(combatant, allCombatants, timing)
+			if recoilDmg > 0:
+				dealtDmgCombatants = [allCombatants[attackerIdx]]
+		else:
+			printerr('Reflect error: timing ', timing, ' on combatant ', combatant.disp_name(), ' no attacker found?')
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
 	
