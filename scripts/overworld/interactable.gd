@@ -26,6 +26,8 @@ func enter_player_range():
 		PlayerFinder.player.interactables.append(self)
 
 func exit_player_range():
+	if PlayerFinder.player == null:
+		return
 	var idx: int = PlayerFinder.player.interactables.find(self)
 	if idx != -1:
 		PlayerFinder.player.interactables.remove_at(idx)
