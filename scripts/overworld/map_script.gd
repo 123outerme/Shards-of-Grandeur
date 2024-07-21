@@ -43,6 +43,8 @@ func _assign_two_layer_tiles():
 			TileDef.new(1, 1, Vector2i(0,3)), # trees.png, 1st snowy tree base
 			TileDef.new(1, 1, Vector2i(1,3)), # trees.png, 2nd snowy tree base
 			TileDef.new(1, 1, Vector2i(2,3)), # trees.png, 3rd snowy tree base
+			TileDef.new(1, 1, Vector2i(3,3)), # trees.png, 1st desert tree base
+			TileDef.new(1, 1, Vector2i(4,3)), # trees.png, 2nd desert tree base
 			TileDef.new(1, 2, Vector2i(0,1)), # house.png, 1st left house
 			TileDef.new(1, 2, Vector2i(1,1)), # house.png, 1st middle house
 			TileDef.new(1, 2, Vector2i(2,1)), # house.png, 1st right house
@@ -65,16 +67,19 @@ func _assign_two_layer_tiles():
 			TileDef.new(2, 1, Vector2i(0,2)), # trees.png, 1st snowy tree top
 			TileDef.new(2, 1, Vector2i(1,2)), # trees.png, 2nd snowy tree top
 			TileDef.new(2, 1, Vector2i(2,2)), # trees.png, 3rd snowy tree top
+			TileDef.new(2, 1, Vector2i(3,2)), # trees.png, 1st desert tree top
+			TileDef.new(2, 1, Vector2i(4,2)), # trees.png, 2nd desert tree top
 			TileDef.new(2, 2, Vector2i(0,0)), # house.png, 1st left house roof
 			TileDef.new(2, 2, Vector2i(1,0)), # house.png, 1st middle house roof
 			TileDef.new(2, 2, Vector2i(2,0)), # house.png, 1st right house roof 
 			TileDef.new(2, 2, Vector2i(3,0)), # house.png, 2nd left house roof
 			TileDef.new(2, 2, Vector2i(4,0)), # house.png, 2nd middle house roof
 			TileDef.new(2, 2, Vector2i(5,0)), # house.png, 2nd right house roof
-			TileDef.new(1, 22, Vector2i(2,0)), # ruined_castle.png, 1st house left roof
-			TileDef.new(1, 22, Vector2i(3,0)), # ruined_castle.png, 1st house right roof
-			TileDef.new(1, 22, Vector2i(4,0)), # ruined_castle.png, 2nd house left roof
-			TileDef.new(1, 22, Vector2i(5,0)), # ruined_castle.png, 2nd house right roof
+			TileDef.new(2, 5, Vector2i(0,0)), # well.png, well roof
+			TileDef.new(2, 22, Vector2i(2,0)), # ruined_castle.png, 1st house left roof
+			TileDef.new(2, 22, Vector2i(3,0)), # ruined_castle.png, 1st house right roof
+			TileDef.new(2, 22, Vector2i(4,0)), # ruined_castle.png, 2nd house left roof
+			TileDef.new(2, 22, Vector2i(5,0)), # ruined_castle.png, 2nd house right roof
 		]
 		var deltas: Array[Vector2i] = [
 			Vector2i(0, -1), # shift trees.png, 1st tree top up 1 from tree bottom position
@@ -86,6 +91,8 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1), # shift trees.png, 1st snowy tree top up 1
 			Vector2i(0, -1), # shift trees.png, 2nd snowy tree top up 1
 			Vector2i(0, -1), # shift trees.png, 3rd snowy tree top up 1
+			Vector2i(0, -1), # shift trees.png, 1st desert tree top up 1
+			Vector2i(0, -1), # shift trees.png, 2nd desert tree top up 1
 			Vector2i(0, -1), # shift house.png, 1st left house roof up 1
 			Vector2i(0, -1), # shift house.png, 1st middle house roof up 1
 			Vector2i(0, -1), # shift house.png, 1st right house roof up 1
