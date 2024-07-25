@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://c4cibo3c6oybp" path="res://gamedata/dialogue/leavenport/restaurant_lady/lp_restaurant_lady1.tres" id="9_3ft4f"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
 
-[sub_resource type="Resource" id="Resource_1wb1w"]
+[sub_resource type="Resource" id="Resource_jy0c7"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -33,7 +33,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_pnhfn"]
+[sub_resource type="Resource" id="Resource_bvcjp"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -53,7 +53,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_so13l"]
+[sub_resource type="Resource" id="Resource_paa17"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -118,7 +118,7 @@ layer_4/tile_data = PackedInt32Array()
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_1wb1w")
+data = SubResource("Resource_jy0c7")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_qg71i")])
 hasShop = true
 npcShop = ExtResource("6_fvkvi")
@@ -140,7 +140,7 @@ visible = false
 position = Vector2(20, -79)
 displayName = "Man"
 loadFlipH = true
-data = SubResource("Resource_pnhfn")
+data = SubResource("Resource_bvcjp")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("8_ncx5c")])
 
 [node name="NPCSprite" parent="TileMap/NPC" index="0"]
@@ -159,7 +159,7 @@ visible = false
 [node name="NPC2" parent="TileMap" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
 displayName = "Lady"
-data = SubResource("Resource_so13l")
+data = SubResource("Resource_paa17")
 dialogueEntries = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("9_3ft4f")])
 
 [node name="NPCSprite" parent="TileMap/NPC2" index="0"]

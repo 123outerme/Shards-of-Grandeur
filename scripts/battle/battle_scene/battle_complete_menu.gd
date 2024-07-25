@@ -28,7 +28,7 @@ func _ready():
 func load_battle_over_menu():
 	battleUI.update_hp_tags()
 	rewardsVBox.visible = playerWins
-	if PlayerResources.playerInfo.encounter.customWinText != '':
+	if playerWins and PlayerResources.playerInfo.encounter.customWinText != '':
 		battleUI.customWinText.customText = PlayerResources.playerInfo.encounter.customWinText
 		battleUI.customWinText.load_custom_win_text_panel()
 	battleWinLabel.visible = playerWins
