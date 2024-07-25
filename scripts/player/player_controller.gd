@@ -719,6 +719,7 @@ func level_up(newLevels: int):
 	if newLevels == 0:
 		return
 	
+	PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 	if inventoryPanel.visible and inventoryPanel.itemUsePanel.visible:
 		await inventoryPanel.item_use_panel_closed # open the level up panel after the use panel is closed
 	

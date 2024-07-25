@@ -7,7 +7,7 @@ class_name BattleUI
 
 var commandingCombatant: CombatantNode = null
 var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
-var playerWins: bool = true
+var playerWins: bool = false
 var escapes: bool = false
 
 var previousFocus: Control = null
@@ -176,6 +176,8 @@ func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NO
 				result = battleController.turnExecutor.check_battle_end_conditions()
 			if result != WinCon.TurnResult.NOTHING:
 				newMenuState = BattleState.Menu.BATTLE_COMPLETE
+				playerWins = result == WinCon.TurnResult.PLAYER_WIN
+				escapes = result == WinCon.TurnResult.ESCAPE
 			else:
 				round_complete()
 				return

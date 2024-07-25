@@ -267,7 +267,6 @@ func check_battle_end_conditions() -> WinCon.TurnResult:
 			combatantNode.combatant.update_downed()
 		if not combatantNode.is_alive(): # if combatant is not alive (after being updated)
 			combatantNode.update_hp_tag() # then the combatant should be shown as defeated
-	# TODO: put the WinCon checking here, if result != NONE then return it, otherwise continue onward
 	var turnResult: WinCon.TurnResult = PlayerResources.playerInfo.encounter.get_win_con_result(battleController.get_all_combatant_nodes(), battleController.state)
 	if turnResult != WinCon.TurnResult.NOTHING:
 		return turnResult

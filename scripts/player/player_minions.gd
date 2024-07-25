@@ -135,7 +135,7 @@ func _load_data_each_minion(save_path):
 			passesReqs = reqs.is_valid()
 		
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres') and passesReqs:
-			minion = load(save_path + minions_dir + minionName + '.tres') as Combatant
+			minion = ResourceLoader.load(save_path + minions_dir + minionName + '.tres', '', ResourceLoader.CACHE_MODE_IGNORE) as Combatant
 			if minion == null or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR:
 				print('minion ', minionName, ' failed load validation')
 				var savedFriendship: int = 0

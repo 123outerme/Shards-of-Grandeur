@@ -7,7 +7,7 @@ class_name BattleCompleteMenu
 @export var loseMusic: AudioStream = null
 @export var escapeMusic: AudioStream = null
 
-var playerWins: bool = true
+var playerWins: bool = false
 var playerEscapes: bool = false
 var rewards: Array[Reward] = []
 var gainedLevels: int = 0
@@ -55,6 +55,7 @@ func load_battle_over_menu():
 	okBtn.grab_focus()
 
 func _on_ok_button_pressed():
+	okBtn.disabled = true
 	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)
 	# copy player changes to PlayerResources
 	if playerWins:

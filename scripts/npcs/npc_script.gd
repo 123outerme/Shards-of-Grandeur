@@ -174,8 +174,8 @@ func add_shop_items_to_inventory():
 	# for each shop item slot in the NPC shop object:
 	for shopItemSlot: ShopInventorySlot in npcShop.shopItemSlots:
 		var existingSlot: InventorySlot = inventory.get_slot_for_item(shopItemSlot.item)
-		# if there is no slot for this object or it should be updated: add it to the inventory
-		if existingSlot == null or shopItemSlot.should_add(data.version):
+		# if there is no slot for this object: add it to the inventory
+		if existingSlot == null: #or shopItemSlot.should_add(data.version):
 			inventory.add_slot(shopItemSlot)
 
 func _set_invisible(value: bool):

@@ -28,6 +28,7 @@ func load_battle(saveFolder: String = ''):
 func load_overworld(saveFolder: String = ''):
 	if saveFolder != '':
 		SaveHandler.load_data(saveFolder)
+		PlayerResources.battleSaveFolder = ''
 	call_deferred('load_scene', preload("res://gamescenes/overworld.tscn"))
 	
 func load_main_menu():

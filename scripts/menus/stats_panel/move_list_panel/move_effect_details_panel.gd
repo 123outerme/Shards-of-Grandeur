@@ -1,6 +1,7 @@
 extends Panel
 class_name MoveEffectDetailsPanel
 
+signal tooltip_panel_opened
 signal tooltip_panel_ok_pressed
 
 @export var moveEffect: MoveEffect = null
@@ -121,6 +122,7 @@ func _on_status_help_button_pressed():
 	tooltipPanel.title = moveEffect.statusEffect.get_status_type_string()
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
+	tooltip_panel_opened.emit()
 	tooltipPanel.z_index = 1
 
 func _on_tooltip_panel_ok_pressed():
