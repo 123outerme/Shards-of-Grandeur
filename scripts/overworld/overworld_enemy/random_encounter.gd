@@ -13,6 +13,10 @@ class_name RandomEncounter
 
 func _init(
 	i_combatant1 = null,
+	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
+	i_specialRules = SpecialRules.NONE,
+	i_winCon = null,
+	i_customWinText = '',
 	i_minLevel = 1,
 	i_maxLevel = 1,
 	i_levelRatio = 1,
@@ -25,7 +29,7 @@ func _init(
 	i_combatant3Equipment = null,
 	i_combatant3Rewards = null,
 ):
-	super(i_combatant1)
+	super(i_combatant1, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
 	combatantsMinLevel = i_minLevel
 	combatantsMaxLevel = i_maxLevel
 	combatantsLvToPlayerLvRatio = i_levelRatio

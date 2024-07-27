@@ -76,7 +76,7 @@ func load_into_battle():
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
-			enemyCombatant1.combatant.level_up_nonplayer(staticEncounter.combatant1Level)
+			enemyCombatant1.combatant.level_up_nonplayer(staticEncounter.combatant1Level, staticEncounter.combatant1StatAllocStrat)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			if len(staticEncounter.combatant1Moves) == 0:
 				enemyCombatant1.combatant.assign_moves_nonplayer()
@@ -91,7 +91,7 @@ func load_into_battle():
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(staticEncounter.combatant2Level)
+				enemyCombatant2.combatant.level_up_nonplayer(staticEncounter.combatant2Level, staticEncounter.combatant2StatAllocStrat)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				if len(staticEncounter.combatant2Moves) == 0:
 					enemyCombatant2.combatant.assign_moves_nonplayer()
@@ -105,7 +105,7 @@ func load_into_battle():
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
-				enemyCombatant3.combatant.level_up_nonplayer(staticEncounter.combatant3Level)
+				enemyCombatant3.combatant.level_up_nonplayer(staticEncounter.combatant3Level, staticEncounter.combatant3StatAllocStrat)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				if len(staticEncounter.combatant3Moves) == 0:
 					enemyCombatant3.combatant.assign_moves_nonplayer()
@@ -120,7 +120,7 @@ func load_into_battle():
 				if minionCombatant.combatant.get_evolution() != null:
 					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
-				minionCombatant.combatant.level_up_nonplayer(staticEncounter.autoAllyLevel)
+				minionCombatant.combatant.level_up_nonplayer(staticEncounter.autoAllyLevel, staticEncounter.autoAllyStatAllocStrat)
 				minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 				if len(staticEncounter.autoAllyMoves) == 0:
 					minionCombatant.combatant.assign_moves_nonplayer()
@@ -140,7 +140,7 @@ func load_into_battle():
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
-			enemyCombatant1.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
+			enemyCombatant1.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), randomEncounter.combatant1StatAllocStrat)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
@@ -162,7 +162,7 @@ func load_into_battle():
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
+				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				enemyCombatant2.combatant.assign_moves_nonplayer()
 			else:
@@ -185,7 +185,7 @@ func load_into_battle():
 					enemyCombatant3.combatant.pick_equipment()
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
-				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level())
+				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()

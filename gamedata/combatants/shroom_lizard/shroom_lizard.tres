@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://ca8mmu0qg4nkf"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://ca8mmu0qg4nkf"]
 
 [ext_resource type="Resource" uid="uid://02npb310yofl" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_rewards.tres" id="1_14urk"]
 [ext_resource type="Resource" uid="uid://dwa6lf7yrxmoi" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_evolutions.tres" id="1_s43c7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://ck3xgd78t8lai" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_sprite.tres" id="3_okug7"]
 [ext_resource type="Resource" uid="uid://jd1wpl7yeja0" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_movepool.tres" id="4_qwq6j"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_8k7ro"]
+[ext_resource type="Resource" uid="uid://1vpvi5n2kk0l" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_stat_alloc_strategy.tres" id="6_h37t6"]
 [ext_resource type="Resource" uid="uid://n1rk0vkg85vi" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_stat_growth.tres" id="6_o3s0o"]
 [ext_resource type="Resource" uid="uid://jjlp04vf86ik" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_equipment.tres" id="8_sbohe"]
 
@@ -47,4 +48,5 @@ moveEffectiveness = ExtResource("2_prj8u")
 weightedEquipment = ExtResource("8_sbohe")
 dropTable = ExtResource("1_14urk")
 innateStatCategories = Array[int]([0, 3])
+statAllocationStrategy = ExtResource("6_h37t6")
 downed = false

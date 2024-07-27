@@ -6,16 +6,19 @@ class_name StaticEncounter
 @export var combatant1Weapon: Weapon = null
 @export var combatant1Moves: Array[Move] = []
 @export var combatant2: Combatant = null
+@export var combatant2StatAllocStrat: StatAllocationStrategy = null
 @export var combatant2Level: int = 1
 @export var combatant2Armor: Armor = null
 @export var combatant2Weapon: Weapon = null
 @export var combatant2Moves: Array[Move] = []
 @export var combatant3: Combatant = null
+@export var combatant3StatAllocStrat: StatAllocationStrategy = null
 @export var combatant3Level: int = 1
 @export var combatant3Armor: Armor = null
 @export var combatant3Weapon: Weapon = null
 @export var combatant3Moves: Array[Move] = []
 @export var autoAlly: Combatant = null
+@export var autoAllyStatAllocStrat: StatAllocationStrategy = null
 @export var autoAllyLevel: int = 1
 @export var autoAllyArmor: Armor = null
 @export var autoAllyWeapon: Weapon = null
@@ -29,21 +32,28 @@ class_name StaticEncounter
 
 func _init(
 	i_combatant1 = null,
+	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
+	i_specialRules = SpecialRules.NONE,
+	i_winCon = null,
+	i_customWinText = '',
 	i_combatant1Lv = 1,
 	i_combatant1Armor = null,
 	i_combatant1Weapon = null,
 	i_combatant1Moves: Array[Move] = [],
 	i_combatant2 = null,
+	i_combatant2StatAllocStrat: StatAllocationStrategy = null,
 	i_combatant2Lv = 1,
 	i_combatant2Armor = null,
 	i_combatant2Weapon = null,
 	i_combatant2Moves: Array[Move] = [],
 	i_combatant3 = null,
+	i_combatant3StatAllocStrat: StatAllocationStrategy = null,
 	i_combatant3Lv = 1,
 	i_combatant3Armor = null,
 	i_combatant3Weapon = null,
 	i_combatant3Moves: Array[Move] = [],
 	i_autoAlly = null,
+	i_autoAllyStatAllocStrat: StatAllocationStrategy = null,
 	i_autoAllyLv = 1,
 	i_autoAllyArmor = null,
 	i_autoAllyWeapon = null,
@@ -54,26 +64,33 @@ func _init(
 	i_useRewards = false,
 	i_battleMusic = null,
 ):
-	super(i_combatant1)
+	super(i_combatant1, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
 	combatant1Level = i_combatant1Lv
 	combatant1Armor = i_combatant1Armor
 	combatant1Weapon = i_combatant1Weapon
 	combatant1Moves = i_combatant1Moves
+
 	combatant2 = i_combatant2
+	combatant2StatAllocStrat = i_combatant2StatAllocStrat
 	combatant2Level = i_combatant2Lv
 	combatant2Armor = i_combatant2Armor
 	combatant2Weapon = i_combatant2Weapon
 	combatant2Moves = i_combatant2Moves
+	
 	combatant3 = i_combatant3
+	combatant3StatAllocStrat = i_combatant3StatAllocStrat
 	combatant3Level = i_combatant3Lv
 	combatant3Armor = i_combatant3Armor
 	combatant3Weapon = i_combatant3Weapon
 	combatant3Moves = i_combatant3Moves
+
 	autoAlly = i_autoAlly
+	autoAllyStatAllocStrat = i_autoAllyStatAllocStrat
 	autoAllyLevel = i_autoAllyLv
 	autoAllyArmor = i_autoAllyArmor
 	autoAllyWeapon = i_autoAllyWeapon
 	autoAllyMoves = i_autoAllyMoves
+	
 	specialBattleId = i_specialBattleId
 	canEscape = i_canEscape
 	rewards = i_rewards

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://ta4xvquq2dev"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://ta4xvquq2dev"]
 
 [ext_resource type="Resource" uid="uid://bfdxdq68lovd" path="res://gamedata/combatants/tree_bear/tree_bear_rewards.tres" id="1_14jae"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_c0qja"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_p3p6n"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="4_iv7qh"]
 [ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="5_itqsk"]
+[ext_resource type="Resource" uid="uid://baicjoy0o2qpe" path="res://gamedata/combatants/tree_bear/tree_bear_stat_alloc_strategy.tres" id="6_bq1w6"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="7_47w4f"]
 [ext_resource type="Resource" uid="uid://6r4vglpm6u13" path="res://gamedata/combatants/tree_bear/tree_bear_equipment.tres" id="10_tefol"]
 
@@ -47,4 +48,5 @@ moveEffectiveness = ExtResource("3_omc8n")
 weightedEquipment = ExtResource("10_tefol")
 dropTable = ExtResource("1_14jae")
 innateStatCategories = Array[int]([3, 1, 2])
+statAllocationStrategy = ExtResource("6_bq1w6")
 downed = false

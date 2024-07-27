@@ -11,6 +11,7 @@ class_name Evolution
 @export_category("Evolution - Stats")
 @export var stats: Stats = Stats.new()
 @export var innateStatCategories: Array[Stats.Category] = []
+@export var statAllocationStrategy: StatAllocationStrategy = null
 @export var moveEffectiveness: MoveEffectiveness = null
 @export var aiType: Combatant.AiType = Combatant.AiType.NONE
 @export var aggroType: Combatant.AggroType = Combatant.AggroType.LOWEST_HP
@@ -23,6 +24,7 @@ func _init(
 	i_requiredWeapon = null,
 	i_stats = Stats.new(),
 	i_innateStatCategories: Array[Stats.Category] = [],
+	i_statAllocStrat: StatAllocationStrategy = null,
 	i_moveEffectiveness = null,
 	i_aiType = Combatant.AiType.NONE,
 	i_aggroType = Combatant.AggroType.LOWEST_HP,
@@ -34,6 +36,7 @@ func _init(
 	requiredWeapon = i_requiredWeapon
 	stats = i_stats
 	innateStatCategories = i_innateStatCategories
+	statAllocationStrategy = i_statAllocStrat
 	moveEffectiveness = i_moveEffectiveness
 	aiType = i_aiType
 	aggroType = i_aggroType

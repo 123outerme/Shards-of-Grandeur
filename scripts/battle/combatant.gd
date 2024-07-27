@@ -66,6 +66,7 @@ const MAX_ORBS = 10
 @export var weightedEquipment: CombatantEquipment = null
 @export var dropTable: CombatantRewards = null
 @export var innateStatCategories: Array[Stats.Category] = []
+@export var statAllocationStrategy: StatAllocationStrategy = null
 
 @export_category("Combatant - In Battle")
 @export var command: BattleCommand = null
@@ -103,6 +104,7 @@ func _init(
 	i_weightedEquipment = null,
 	i_dropTable: CombatantRewards = null,
 	i_innateStats: Array[Stats.Category] = [],
+	i_statAllocStrat: StatAllocationStrategy = null,
 	i_command = null,
 	i_downed = false,
 ):
@@ -127,6 +129,7 @@ func _init(
 	weightedEquipment = i_weightedEquipment
 	dropTable = i_dropTable
 	innateStatCategories = i_innateStats
+	statAllocationStrategy = i_statAllocStrat
 	command = i_command
 	downed = i_downed
 
@@ -270,6 +273,12 @@ func get_innate_stat_categories() -> Array[Stats.Category]:
 	if evolution != null:
 		return evolution.innateStatCategories
 	return innateStatCategories
+
+func get_stat_allocation_strategy() -> StatAllocationStrategy:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.statAllocationStrategy
+	return statAllocationStrategy
 
 func get_sprite_obj() -> CombatantSprite:
 	var evolution: Evolution = get_evolution()
@@ -467,27 +476,17 @@ func get_orbs_change_choice(moveEffect: MoveEffect) -> int:
 				return spending
 		return moveEffect.orbChange # default: always spend minimum
 
-func level_up_nonplayer(newLv: int):
+func level_up_nonplayer(newLv: int, overrideStatAllocStrat: StatAllocationStrategy = null):
 	var lvDiff: int = newLv - stats.level
 	if lvDiff > 0:
 		stats.level_up(lvDiff)
 		currentHp = stats.maxHp
-		# if there are innate stat categories to allocate to
-		if len(get_innate_stat_categories()) > 0:
-			while stats.statPts > 0:
-				# randomly allocate stats to the innate stat categories
-				var randomCategory: Stats.Category = get_innate_stat_categories().pick_random()
-				if randomCategory == Stats.Category.PHYS_ATK:
-					stats.physAttack += 1
-				if randomCategory == Stats.Category.MAGIC_ATK:
-					stats.magicAttack += 1
-				if randomCategory == Stats.Category.RESISTANCE or randomCategory == Stats.Category.HP: # HP shouldn't be picked, but in case, just increase resistance
-					stats.resistance += 1
-				if randomCategory == Stats.Category.AFFINITY:
-					stats.affinity += 1
-				if randomCategory == Stats.Category.SPEED:
-					stats.speed += 1
-				stats.statPts -= 1
+		var statAllocationStrategy: StatAllocationStrategy = get_stat_allocation_strategy()
+		if overrideStatAllocStrat != null:
+			statAllocationStrategy = overrideStatAllocStrat
+		# if a strategy is defined for this combatant: execute it
+		if statAllocationStrategy != null:
+			statAllocationStrategy.allocate_stats(stats)
 	elif lvDiff < 0:
 		printerr("level up nonplayer err: level diff is negative")
 
@@ -612,6 +611,7 @@ func save_from_object(c: Combatant):
 	weightedEquipment = c.weightedEquipment
 	dropTable = c.dropTable
 	innateStatCategories = c.innateStatCategories.duplicate(false)
+	statAllocationStrategy = c.statAllocationStrategy.duplicate(false)
 	
 	if c.command != null:
 		command = c.command.duplicate(false)

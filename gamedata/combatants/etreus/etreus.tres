@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://46enf3g55g1q"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://46enf3g55g1q"]
 
 [ext_resource type="Resource" uid="uid://v2ahalvrgass" path="res://gamedata/combatants/etreus/etreus_rewards.tres" id="1_471x8"]
 [ext_resource type="Resource" uid="uid://d4ap1s0yi5hye" path="res://gamedata/combatants/etreus/etreus_effectiveness.tres" id="1_vbrok"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bht2dey5uaip7" path="res://gamedata/combatants/etreus/etreus_sprite.tres" id="2_jubff"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_mexbd"]
 [ext_resource type="Resource" uid="uid://oth4vp1x7roh" path="res://gamedata/combatants/etreus/etreus_stat_growth.tres" id="3_1rgm2"]
+[ext_resource type="Resource" uid="uid://43loov7vgt6s" path="res://gamedata/combatants/etreus/etreus_stat_alloc_strategy.tres" id="6_x5imm"]
 [ext_resource type="Resource" uid="uid://bo3ot8xbews4i" path="res://gamedata/combatants/etreus/etreus_equipment.tres" id="7_2oqi4"]
 
 [sub_resource type="Resource" id="Resource_4n4qd"]
@@ -47,4 +48,5 @@ moveEffectiveness = ExtResource("1_vbrok")
 weightedEquipment = ExtResource("7_2oqi4")
 dropTable = ExtResource("1_471x8")
 innateStatCategories = Array[int]([0])
+statAllocationStrategy = ExtResource("6_x5imm")
 downed = false

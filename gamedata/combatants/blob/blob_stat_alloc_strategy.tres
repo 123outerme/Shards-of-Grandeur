@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeightedRandomAllocationStrategy" load_steps=5 format=3 uid="uid://bhkog7p1huw2g"]
+
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="1_dslnc"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="1_fnvnm"]
+
+[sub_resource type="Resource" id="Resource_5e4yx"]
+script = ExtResource("1_dslnc")
+category = 1
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_3h6g4"]
+script = ExtResource("1_dslnc")
+category = 2
+weight = 0.5
+
+[resource]
+script = ExtResource("1_fnvnm")
+categories = Array[ExtResource("1_dslnc")]([SubResource("Resource_5e4yx"), SubResource("Resource_3h6g4")])

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://dw87ml8gkhk0w"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://dw87ml8gkhk0w"]
 
 [ext_resource type="Resource" uid="uid://kwqkkku3d25w" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/ambusher/ambusher_rewards.tres" id="1_1spoh"]
 [ext_resource type="Resource" uid="uid://cvp8cunpa0fum" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_evolutions.tres" id="2_nj2ek"]
 [ext_resource type="Resource" uid="uid://cqyalxxp2huxe" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_move_effectiveness.tres" id="3_8y6i8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="4_2f8ce"]
 [ext_resource type="Resource" uid="uid://ddtarppaxmlwu" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_sprite.tres" id="5_w3vdd"]
+[ext_resource type="Resource" uid="uid://cj2514570miiv" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_alloc_strategy.tres" id="6_07v5p"]
 [ext_resource type="Resource" uid="uid://dq1r1nlas024y" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_movepool.tres" id="6_hthx3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_bjdnr"]
 [ext_resource type="Resource" uid="uid://bgnu1kkxkiasp" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/ambusher/ambusher_stat_growth.tres" id="8_2bcsk"]
@@ -47,4 +48,5 @@ moveEffectiveness = ExtResource("3_8y6i8")
 weightedEquipment = ExtResource("10_ru87h")
 dropTable = ExtResource("1_1spoh")
 innateStatCategories = Array[int]([0, 2])
+statAllocationStrategy = ExtResource("6_07v5p")
 downed = false

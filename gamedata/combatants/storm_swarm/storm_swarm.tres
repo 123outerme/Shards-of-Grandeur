@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=11 format=3 uid="uid://b14w15l2gg5oc"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://b14w15l2gg5oc"]
 
 [ext_resource type="Resource" uid="uid://1q8kcxf52trs" path="res://gamedata/combatants/storm_swarm/storm_swarm_rewards.tres" id="1_ho4yf"]
 [ext_resource type="Resource" uid="uid://blvh1d27lxlkh" path="res://gamedata/combatants/storm_swarm/storm_swarm_evolutions.tres" id="1_qpqep"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://qlmui81cuji5" path="res://gamedata/combatants/storm_swarm/storm_swarm_movepool.tres" id="3_8nsbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_umtkk"]
 [ext_resource type="Resource" uid="uid://q6grlgkjvwp7" path="res://gamedata/combatants/storm_swarm/storm_swarm_stat_growth.tres" id="4_g6fdu"]
+[ext_resource type="Resource" uid="uid://b7ucdjou8e6wg" path="res://gamedata/combatants/storm_swarm/storm_swarm_stat_alloc_strategy.tres" id="6_qgjj6"]
 [ext_resource type="Resource" uid="uid://c36tyo1kj36jw" path="res://gamedata/combatants/storm_swarm/storm_swarm_equipment.tres" id="8_qjipm"]
 
 [sub_resource type="Resource" id="Resource_tjhow"]
@@ -47,4 +48,5 @@ moveEffectiveness = ExtResource("2_w055f")
 weightedEquipment = ExtResource("8_qjipm")
 dropTable = ExtResource("1_ho4yf")
 innateStatCategories = Array[int]([1, 3, 4])
+statAllocationStrategy = ExtResource("6_qgjj6")
 downed = false
