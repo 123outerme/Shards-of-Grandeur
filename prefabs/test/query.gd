@@ -30,6 +30,8 @@ func create_reports():
 		[csv_combatant_avg_reward_xp, csv_combatant_avg_reward_gold]
 	)
 	
+	reports['combatants/levels.csv'] = create_report_for_all_combatants_lvs(100)
+	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR)
 		
@@ -180,6 +182,35 @@ func csv_combatant_avg_reward_gold(combatant: Combatant) -> String:
 			sum += reward.reward.gold
 			count += 1
 	return String.num(sum / count)
+
+# special CSV query for reporting (one random instance of a) combatant's stats at all levels
+func create_report_for_all_combatants_lvs(maxLv: int = 100) -> String:
+	var combatantsPath = 'res://gamedata/combatants/'
+	var combatantDirs: PackedStringArray = DirAccess.get_directories_at(combatantsPath)
+	var reportContents: String = 'Stats for All Combatants For Levels 1 - ' + String.num(maxLv) + '\n\n'
+	
+	for dir: String in combatantDirs:
+		var combatant: Combatant = Combatant.load_combatant_resource(dir)
+		if combatant != null:
+			reportContents += combatant.save_name() + '\n'
+			reportContents += csv_combatant_all_lvs_report_helper(combatant, maxLv) + '\n'
+			if combatant.evolutions != null:
+				for evolution: Evolution in combatant.evolutions.evolutionList:
+					combatant = Combatant.load_combatant_resource(dir)
+					combatant.switch_evolution(evolution, null)
+					reportContents += evolution.evolutionSaveName + ' (evo ' + combatant.save_name() + ')\n'
+					reportContents += csv_combatant_all_lvs_report_helper(combatant, maxLv) + '\n'
+	return reportContents
+
+func csv_combatant_all_lvs_report_helper(combatant: Combatant, maxLv: int = 100) -> String:
+	var reportContents: String = 'Level,Max HP,Phys Attack,Magic Attack,Affinity,Resistance,Speed\n'
+	for lv: int in range(1, maxLv + 1):
+		combatant.level_up_nonplayer(lv)
+		reportContents += String.num(lv) + ',' + String.num(combatant.stats.maxHp) + ','
+		reportContents += String.num(combatant.stats.physAttack) + ',' + String.num(combatant.stats.magicAttack) + ','
+		reportContents += String.num(combatant.stats.affinity) + ',' + String.num(combatant.stats.resistance) + ','
+		reportContents += String.num(combatant.stats.speed) + '\n'
+	return reportContents
 
 # CSV move queries
 func create_report_for_all_moves_series(columns: Array[String], queries: Array[Callable]) -> String:

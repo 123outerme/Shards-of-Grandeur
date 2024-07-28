@@ -481,12 +481,12 @@ func level_up_nonplayer(newLv: int, overrideStatAllocStrat: StatAllocationStrate
 	if lvDiff > 0:
 		stats.level_up(lvDiff)
 		currentHp = stats.maxHp
-		var statAllocationStrategy: StatAllocationStrategy = get_stat_allocation_strategy()
+		var allocStrat: StatAllocationStrategy = get_stat_allocation_strategy()
 		if overrideStatAllocStrat != null:
-			statAllocationStrategy = overrideStatAllocStrat
+			allocStrat = overrideStatAllocStrat
 		# if a strategy is defined for this combatant: execute it
-		if statAllocationStrategy != null:
-			statAllocationStrategy.allocate_stats(stats)
+		if allocStrat != null:
+			allocStrat.allocate_stats(stats)
 	elif lvDiff < 0:
 		printerr("level up nonplayer err: level diff is negative")
 
@@ -611,7 +611,10 @@ func save_from_object(c: Combatant):
 	weightedEquipment = c.weightedEquipment
 	dropTable = c.dropTable
 	innateStatCategories = c.innateStatCategories.duplicate(false)
-	statAllocationStrategy = c.statAllocationStrategy.duplicate(false)
+	if c.statAllocationStrategy != null:
+		statAllocationStrategy = c.statAllocationStrategy.duplicate(false)
+	else:
+		statAllocationStrategy = null
 	
 	if c.command != null:
 		command = c.command.duplicate(false)

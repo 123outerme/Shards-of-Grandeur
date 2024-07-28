@@ -14,15 +14,16 @@ func allocate_stats(stats: Stats, allocateAmount: int = -1):
 		return
 
 	var totalStatPts: int = stats.get_total_gained_stat_points()
+	var spentStatPts: int = totalStatPts - stats.statPts
 
 	var statPtsAccum: int = 0
 	var allocationIdx: int = -1
 
 	# loop the defined allocations after the end of the array (so that allocations can continue infinitely, starting at the strategy for stat point #1 again)
-	while allocationIdx != -1:
+	while allocationIdx == -1:
 		for idx in range(len(allocations)):
 			statPtsAccum += allocations[idx].forStatPoints
-			if totalStatPts <= statPtsAccum:
+			if spentStatPts <= statPtsAccum:
 				allocationIdx = idx
 				break
 		# if there are no stat points accumulated, then 
