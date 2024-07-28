@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=19 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="7_afh8o"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="8_cq6oo"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="9_n4log"]
+[ext_resource type="PackedScene" uid="uid://bne1cb4ygidfj" path="res://prefabs/ui/overworld_touch_controls.tscn" id="10_2ab6v"]
 [ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -182,6 +183,8 @@ z_index = 3
 z_as_relative = false
 scale = Vector2(0.25, 0.25)
 
+[node name="OverworldTouchControls" parent="UI" instance=ExtResource("10_2ab6v")]
+
 [node name="TextBoxRoot" parent="UI" instance=ExtResource("5_q82jg")]
 visible = false
 
@@ -209,6 +212,11 @@ position = Vector2(-640, -360)
 
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
+[connection signal="inventory_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_inventory_pressed"]
+[connection signal="pause_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_pause_pressed"]
+[connection signal="quests_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_quests_pressed"]
+[connection signal="run_toggled" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_run_toggled"]
+[connection signal="stats_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_stats_pressed"]
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
 [connection signal="open_stats" from="UI/InventoryPanelNode" to="UI/StatsPanelNode" method="_on_inventory_panel_node_open_stats"]
 [connection signal="act_changed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_act_changed"]

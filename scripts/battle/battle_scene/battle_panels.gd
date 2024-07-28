@@ -47,3 +47,19 @@ func _unhandled_input(event):
 
 func _on_pause_menu_resume_game():
 	battleUI.restore_focus()
+
+func _on_stats_open_button_pressed():
+	statsMenu.stats = battleUI.battleController.playerCombatant.combatant.stats
+	statsMenu.curHp = battleUI.battleController.playerCombatant.combatant.currentHp
+	statsMenu.readOnly = true
+	statsMenu.isPlayer = true
+	statsMenu.toggle()
+	inventoryMenu.visible = false
+	questsMenu.visible = false
+	summonMinionPanel.visible = false
+
+func _on_quests_open_button_pressed():
+	questsMenu.toggle()
+	inventoryMenu.visible = false
+	statsMenu.visible = false
+	summonMinionPanel.visible = false

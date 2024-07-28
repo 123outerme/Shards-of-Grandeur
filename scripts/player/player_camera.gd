@@ -77,6 +77,7 @@ func set_alert_panels_lifetime_pause(pause: bool):
 func show_letterbox(showing: bool = true):
 	letterbox.visible = showing
 	player.inCutscene = showing
+	player.overworldTouchControls.set_in_cutscene(showing)
 
 func fade_out(callback: Callable, duration: float = 0.5):
 	set_alert_panels_lifetime_pause(true)

@@ -2,6 +2,7 @@ extends Node
 signal settings_changed
 
 @export var gameSettings: GameSettings = GameSettings.new()
+@export var isMobile: bool = false
 var save_path = 'user://'
 
 func _init():

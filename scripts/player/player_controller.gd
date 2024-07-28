@@ -35,6 +35,7 @@ var enteredWarpZone: bool = false
 @onready var eventCollider: CollisionShape2D = get_node('PlayerEventCollider/EventColliderShape')
 @onready var cam: PlayerCamera = get_node("Camera")
 @onready var uiRoot: Node2D = get_node('UI')
+@onready var overworldTouchControls: OverworldTouchControls = get_node('UI/OverworldTouchControls')
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
@@ -155,11 +156,13 @@ func _physics_process(_delta):
 		if speed != RUN_SPEED:
 			# play a step sound the next frame (for animation change when moving and switching run status)
 			stepSfxTimer = RUN_STEP_SFX_COOLDOWN
+			overworldTouchControls.set_running(true)
 		speed = RUN_SPEED
 	elif speed != BASE_SPEED:
 		speed = BASE_SPEED
 		# play a step sound the next frame (for animation change when moving and switching run status) 
 		stepSfxTimer = BASE_STEP_SFX_COOLDOWN
+		overworldTouchControls.set_running(false)
 	
 	if not disableMovement:
 		# omni-directional movement
@@ -616,6 +619,7 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
 	inCutscene = false
+	overworldTouchControls.set_in_cutscene(false)
 	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
 func get_collider(): # for use before full player initialization in MapLoader
@@ -794,3 +798,35 @@ func _sort_interactables(a: Interactable, b: Interactable):
 
 func _on_overworld_console_console_closed():
 	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are unpaused
+
+func _on_overworld_touch_controls_run_toggled():
+	running = not running
+
+func _on_overworld_touch_controls_pause_pressed():
+	if inCutscene:
+		# if awaiting player, don't even check if the pause panel can be opened, just stop here
+		if not SceneLoader.cutscenePlayer.awaitingPlayer:
+			SceneLoader.cutscenePlayer.toggle_pause_cutscene()
+			cam.toggle_cutscene_paused_shade()
+			cutscenePaused = cam.cutscenePaused
+	else:
+		pausePanel.toggle_pause()
+
+func _on_overworld_touch_controls_inventory_pressed():
+	inventoryPanel.inShop = false
+	inventoryPanel.showPlayerInventory = false
+	inventoryPanel.lockFilters = false
+	inventoryPanel.toggle()
+	SceneLoader.pause_autonomous_movers()
+
+func _on_overworld_touch_controls_quests_pressed():
+	questsPanel.turnInTargetName = ''
+	questsPanel.lockFilters = false
+	questsPanel.toggle()
+	SceneLoader.pause_autonomous_movers()
+
+func _on_overworld_touch_controls_stats_pressed():
+	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
+	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+	statsPanel.toggle()
+	SceneLoader.pause_autonomous_movers()

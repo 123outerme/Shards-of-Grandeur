@@ -32,6 +32,13 @@ func _ready():
 	SettingsHandler.gameSettings.apply_window_size(get_viewport())
 	SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	
+	match OS.get_name():
+		"Windows", "macOS", "Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
+			SettingsHandler.isMobile = false
+		"Android":
+			SettingsHandler.isMobile = true
+
+	
 	SceneLoader.load_main_menu()
 
 func _input(event):

@@ -1,0 +1,134 @@
+[gd_scene load_steps=17 format=3 uid="uid://bne1cb4ygidfj"]
+
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="1_mtcr4"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_touch_controls.gd" id="1_u8cae"]
+[ext_resource type="Texture2D" uid="uid://cxxt4mrq1k1jy" path="res://graphics/ui/touch_ui_icons/run_toggle_icon_run.png" id="2_q588r"]
+[ext_resource type="Texture2D" uid="uid://copnjmfswsin0" path="res://graphics/ui/touch_ui_icons/pause_icon.png" id="3_12oi1"]
+[ext_resource type="Texture2D" uid="uid://btyf2cpk0mbbr" path="res://graphics/ui/touch_ui_icons/inventory_icon.png" id="4_v8w2s"]
+[ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="5_f5vdn"]
+[ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="5_kl5p5"]
+[ext_resource type="Texture2D" uid="uid://bjh4vn3j1ju0v" path="res://graphics/ui/touch_ui_icons/run_toggle_icon_walk.png" id="7_84hkr"]
+[ext_resource type="Texture2D" uid="uid://bkiffwlpn455c" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_up.png" id="9_cfmt2"]
+[ext_resource type="Texture2D" uid="uid://cwjhq3gyl13ux" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_down.png" id="10_rht64"]
+[ext_resource type="Texture2D" uid="uid://dpthvawadrurb" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_left.png" id="11_v4cet"]
+[ext_resource type="Texture2D" uid="uid://c4b41kirftvxy" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_right.png" id="12_gtkef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qg5m"]
+size = Vector2(192, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h75kj"]
+size = Vector2(192, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j68dk"]
+size = Vector2(72, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vq8u"]
+size = Vector2(72, 192)
+
+[node name="OverworldTouchControls" type="Control"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_u8cae")
+runIcon = ExtResource("2_q588r")
+walkIcon = ExtResource("7_84hkr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -480.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_constants/separation = 32
+
+[node name="InventoryButton" parent="HBoxContainer" instance=ExtResource("1_mtcr4")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("4_v8w2s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuestsButton" parent="HBoxContainer" instance=ExtResource("1_mtcr4")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("5_f5vdn")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StatsButton" parent="HBoxContainer" instance=ExtResource("1_mtcr4")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("5_kl5p5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RunToggleButton" parent="HBoxContainer" instance=ExtResource("1_mtcr4")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("7_84hkr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PauseButton" parent="HBoxContainer" instance=ExtResource("1_mtcr4")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("3_12oi1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="VirtualArrows" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = -64.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="UpArrowButton" type="TouchScreenButton" parent="VirtualArrows"]
+position = Vector2(96, 16)
+texture_normal = ExtResource("9_cfmt2")
+shape = SubResource("RectangleShape2D_5qg5m")
+passby_press = true
+action = "move_up"
+
+[node name="DownArrowButton" type="TouchScreenButton" parent="VirtualArrows"]
+position = Vector2(96, 176)
+texture_normal = ExtResource("10_rht64")
+shape = SubResource("RectangleShape2D_h75kj")
+passby_press = true
+action = "move_down"
+
+[node name="LeftArrowButton" type="TouchScreenButton" parent="VirtualArrows"]
+position = Vector2(16, 96)
+texture_normal = ExtResource("11_v4cet")
+shape = SubResource("RectangleShape2D_j68dk")
+passby_press = true
+action = "move_left"
+
+[node name="RightArrowButton" type="TouchScreenButton" parent="VirtualArrows"]
+position = Vector2(176, 96)
+texture_normal = ExtResource("12_gtkef")
+shape = SubResource("RectangleShape2D_3vq8u")
+passby_press = true
+action = "move_right"
+
+[connection signal="pressed" from="HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuestsButton" to="." method="_on_quests_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RunToggleButton" to="." method="_on_run_toggle_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
