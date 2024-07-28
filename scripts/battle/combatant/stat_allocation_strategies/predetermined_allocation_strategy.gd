@@ -30,7 +30,6 @@ func allocate_stats(stats: Stats, allocateAmount: int = -1):
 		if statPtsAccum == 0:
 			return
 
-
 	var stopAt: int = max(stats.statPts - allocateAmount, 0)
 	if allocateAmount == -1:
 		stopAt = 0
@@ -41,7 +40,7 @@ func allocate_stats(stats: Stats, allocateAmount: int = -1):
 		
 		# Calc the IDX, like, for example:
 		# with 2 allocation strat items, both of stat pts length 3: 5/5 stat points remaining -> idx 0, 4/5 -> 1, 3/5 -> 2, then 2/5 -> the next item idx 0, 1/5 that item idx 1, etc.
-		var categoryIdx = (totalStatPts - stats.statPts) - (statPtsAccum - allocation.forStatPoints)
+		var categoryIdx: int = (totalStatPts - stats.statPts) - (statPtsAccum - allocation.forStatPoints)
 		if categoryIdx >= numAllocationLoops * len(allocation.allocations):
 			allocationIdx = (allocationIdx + 1) % len(allocations)
 			statPtsAccum += allocations[allocationIdx].forStatPoints
