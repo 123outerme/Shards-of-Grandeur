@@ -577,6 +577,16 @@ func pick_equipment():
 		stats.equippedWeapon = null
 		stats.equippedArmor = null
 
+func validate_allocation_strategy_non_null():
+	if statAllocationStrategy == null:
+		print('Combatant ', save_name(), ' is missing its stat allocation strategy. Fixing...')
+		var combatantOfType: Combatant = Combatant.load_combatant_resource(save_name()) as Combatant
+		statAllocationStrategy = combatantOfType.statAllocationStrategy
+		if statAllocationStrategy != null:
+			print('Combatant ', save_name(), ' stat allocation strategy validation error fixed.')
+		else:
+			printerr('Combatant ', save_name(), ' stat allocation strategy validation error was not fixed.')
+
 func copy() -> Combatant:
 	var newCombatant: Combatant = Combatant.new()
 	newCombatant.save_from_object(self)

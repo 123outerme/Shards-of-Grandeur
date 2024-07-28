@@ -158,6 +158,8 @@ func _load_data_each_minion(save_path):
 			validate_minion_moves(minion)
 			# validate evolution stats data structure, and validate all stat totals (resetting if invalid)
 			minion.validate_all_evolutions_stat_totals()
+			# validate that the base minion object has an allocation strategy, and if not, give it the base one from its combatant "blueprint"
+			minion.validate_allocation_strategy_non_null()
 			# now, the minion is valid and can be added to the list
 			set_minion(minion)
 		elif not passesReqs:
