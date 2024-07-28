@@ -7,10 +7,12 @@ class_name ItemUsePuzzle
 func _init(
 	i_id = '',
 	i_prereqRequirements: Array[StoryRequirements] = [],
-	i_item: Item = null
+	i_item: Item = null,
+	i_requiredCount = 1,
 ):
 	super(i_id, i_prereqRequirements)
 	item = i_item
+	requiredCount = i_requiredCount
 
 func passes_prereqs() -> bool:
 	if is_solved():
