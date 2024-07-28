@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmlhhy2yvh2bq"]
+
+[ext_resource type="Script" path="res://scripts/menus/sfx_nine_patch_button.gd" id="1_j362l"]
+[ext_resource type="Texture2D" uid="uid://qlue23ko7fbt" path="res://graphics/ui/selection_nine_patch_unselected.png" id="2_oy5ar"]
+[ext_resource type="Texture2D" uid="uid://suchgolkk4fi" path="res://graphics/ui/selection_nine_patch_selected.png" id="3_golnh"]
+[ext_resource type="Texture2D" uid="uid://cmnsi7hxd6e3a" path="res://graphics/ui/selection_nine_patch_unselected_focused.png" id="4_txa5d"]
+[ext_resource type="Texture2D" uid="uid://xjwfulerfora" path="res://graphics/ui/selection_nine_patch_selected_focused.png" id="5_g2lxs"]
+[ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="6_jtbhb"]
+[ext_resource type="Shader" path="res://prefabs/ui/sfx_nine_patch_button_disabled.gdshader" id="7_e141p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8dpy"]
+shader = ExtResource("7_e141p")
+shader_parameter/disabled = false
+
+[node name="SfxNinePatchButton" type="TextureButton"]
+offset_right = 16.0
+offset_bottom = 16.0
+ignore_texture_size = true
+script = ExtResource("1_j362l")
+unselectedTexture = ExtResource("2_oy5ar")
+selectedTexture = ExtResource("3_golnh")
+unselectedFocusedTexture = ExtResource("4_txa5d")
+selectedFocusedTexture = ExtResource("5_g2lxs")
+sfx = ExtResource("6_jtbhb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+material = SubResource("ShaderMaterial_j8dpy")
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("2_oy5ar")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed_update_texture"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -396,15 +396,11 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="toggled" from="Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton" to="." method="_on_onscreen_keyboard_button_toggled"]
-[connection signal="pressed" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
-[connection signal="pressed" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="." method="_on_run_toggle_button_toggled"]
 [connection signal="focus_exited" from="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider" to="." method="_on_deadzone_slider_focus_exited"]
 [connection signal="pressed" from="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton" to="Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton" method="_on_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" to="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
-[connection signal="pressed" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" method="_on_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton" to="." method="_on_vysnc_button_toggled"]
 [connection signal="focus_entered" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_entered"]
 [connection signal="focus_exited" from="Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit" to="." method="_on_framerate_line_edit_focus_exited"]

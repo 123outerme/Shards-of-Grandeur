@@ -65,7 +65,7 @@ var isBeingStatusAfflicted: bool = false
 @onready var orbDisplay: OrbDisplay = get_node('HPTag/OrbDisplay')
 @onready var spriteContainer: Node2D = get_node('SpriteContainer')
 @onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
-@onready var selectCombatantBtn: TextureButton = get_node('SelectCombatantBtn')
+@onready var selectCombatantBtn: SFXNinePatchButton = get_node('SelectCombatantBtn')
 @onready var statusSprite: Sprite2D = get_node('HPTag/LvText/HPProgressBar/StatusSpriteControl/StatusSprite')
 @onready var behindParticleContainer: Node2D = get_node('SpriteContainer/BehindParticleContainer')
 @onready var surgeParticles: Particles = get_node('SpriteContainer/BehindParticleContainer/SurgeParticleEmitter')
@@ -168,9 +168,9 @@ func update_hp_tag():
 	
 	#hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
-		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 4, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 2, -0.5 * hpTag.size.y)
 	else:
-		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 4, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 2, -0.5 * hpTag.size.y)
 	
 	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		#orbDisplay.visible = true
@@ -189,19 +189,11 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
-	update_select_btn_texture()
 	
-	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(8, 8) # set size of selecting button to sprite size + 8px
+	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(12, 12) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
-
-func update_select_btn_texture():
-	if selectCombatantBtn.disabled:
-		if is_selected():
-			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_pressed
-		else:
-			selectCombatantBtn.texture_disabled = selectCombatantBtn.texture_normal
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -240,7 +232,7 @@ func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
-	update_select_btn_texture()
+	selectCombatantBtn._on_pressed_update_texture()
 	
 func is_selected() -> bool:
 	return selectCombatantBtn.button_pressed
