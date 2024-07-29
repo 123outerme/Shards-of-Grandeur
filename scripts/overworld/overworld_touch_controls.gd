@@ -29,7 +29,7 @@ func _ready():
 	set_running(PlayerFinder.player.running)
 
 func set_all_visible(isVisible: bool = true):
-	visible = isVisible and SettingsHandler.isMobile
+	visible = isVisible# and SettingsHandler.isMobile
 
 func set_running(isRunning: bool):
 	runToggleButton.button_pressed = isRunning
@@ -44,11 +44,11 @@ func set_in_dialogue(isInDialogue: bool):
 	update_controls_visibility()
 
 func update_controls_visibility():
-	virtualArrows.visible = not inCutscene
 	inventoryButton.visible = not inCutscene
 	questsButton.visible = not inCutscene
 	statsButton.visible = not inCutscene
-	runToggleButton.visible = not inCutscene and not inDialogue
+	runToggleButton.visible = not inCutscene
+	virtualArrows.visible = not inCutscene and not inDialogue
 	talkButton.visible = not inCutscene and not inDialogue
 
 func _on_pause_button_pressed():
