@@ -18,24 +18,38 @@ signal run_toggled
 
 @onready var virtualArrows: Control = get_node('VirtualArrows')
 
+@onready var talkButton: Control = get_node('TalkControl')
+
+var inCutscene: bool = false
+var inDialogue: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_all_visible()
 	set_running(PlayerFinder.player.running)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func set_all_visible(isVisible: bool = true):
+	visible = isVisible and SettingsHandler.isMobile
 
 func set_running(isRunning: bool):
 	runToggleButton.button_pressed = isRunning
 	runToggleButton.icon = runIcon if isRunning else walkIcon
 
-func set_in_cutscene(inCutscene: bool):
+func set_in_cutscene(isInCutscene: bool):
+	inCutscene = isInCutscene
+	update_controls_visibility()
+
+func set_in_dialogue(isInDialogue: bool):
+	inDialogue = isInDialogue
+	update_controls_visibility()
+
+func update_controls_visibility():
 	virtualArrows.visible = not inCutscene
 	inventoryButton.visible = not inCutscene
 	questsButton.visible = not inCutscene
 	statsButton.visible = not inCutscene
-	runToggleButton.visible = not inCutscene
+	runToggleButton.visible = not inCutscene and not inDialogue
+	talkButton.visible = not inCutscene and not inDialogue
 
 func _on_pause_button_pressed():
 	pause_pressed.emit()

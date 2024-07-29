@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=32 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -25,8 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
+[ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="19_rcmd4"]
 [ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="20_gbnnj"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/custom_win_text_panel.gd" id="20_qmlyh"]
+[ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="20_tmnh1"]
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="21_r3cu2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql8sa"]
@@ -771,18 +773,24 @@ anchor_bottom = 0.5
 offset_left = -624.0
 offset_top = -344.0
 offset_right = -292.0
-offset_bottom = -304.0
+offset_bottom = -280.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
-
-[node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_oisw1")]
-layout_mode = 2
-text = "Stats"
+theme_override_constants/separation = 32
 
 [node name="QuestsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-text = "Quests"
+icon = ExtResource("20_tmnh1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("19_rcmd4")
+icon_alignment = 1
+expand_icon = true
 
 [node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" node_paths=PackedStringArray("battleController")]
 layout_mode = 3
@@ -900,7 +908,6 @@ battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
 [node name="Shade" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 custom_minimum_size = Vector2(320, 240)
 anchors_preset = 8
@@ -936,8 +943,8 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_back_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
-[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/StatsOpenButton" to="BattleCam/UIPanels" method="_on_stats_open_button_pressed"]
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/QuestsOpenButton" to="BattleCam/UIPanels" method="_on_quests_open_button_pressed"]
+[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/StatsOpenButton" to="BattleCam/UIPanels" method="_on_stats_open_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_back_pressed"]
 [connection signal="minion_summoned" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_minion_summoned"]

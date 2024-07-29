@@ -61,6 +61,7 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 		newSpeaker = true
 	delete_choices()
 	visible = true
+	PlayerFinder.player.overworldTouchControls.set_in_dialogue(true)
 	ReadySprite.visible = false
 	lastDialogueItem = lastItem
 	if newSpeaker:
@@ -161,6 +162,7 @@ func hide_textbox():
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
 	delete_choices()
+	PlayerFinder.player.overworldTouchControls.set_in_dialogue(false)
 
 func show_text_instant():
 	SpeakerText.visible_characters = len(SpeakerText.text)

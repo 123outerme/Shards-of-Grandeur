@@ -86,9 +86,10 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle()
-		
+	
+	var mobileNotInDialogue: bool = SettingsHandler.isMobile and not textBox.visible
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline") \
-			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed())) \
+			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and not mobileNotInDialogue)) \
 			and (len(interactables) > 0 or len(talkNPCcandidates) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \

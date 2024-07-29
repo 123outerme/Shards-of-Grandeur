@@ -20,7 +20,7 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 @onready var shadeColor: ColorRect = get_node("Shade/ColorRect")
 @onready var shadeLabel: RichTextLabel = get_node("Shade/ShadeLabel")
 
-@onready var cutscenePauseButtons: VBoxContainer = get_node('Shade/ShadeLabel/CutscenePauseButtons')
+@onready var cutscenePauseButtons: HBoxContainer = get_node('Shade/ShadeLabel/CutscenePauseButtons')
 @onready var resumeButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/ResumeButton')
 
 var cutscenePaused: bool = false
@@ -83,6 +83,7 @@ func fade_out(callback: Callable, duration: float = 0.5):
 	set_alert_panels_lifetime_pause(true)
 	shade.visible = true
 	cutscenePauseButtons.visible = false
+	PlayerFinder.player.overworldTouchControls.set_all_visible(false)
 	if fadeInTween != null and fadeInTween.is_valid():
 		interruptTween = true
 		fadeInTween.kill()
@@ -178,6 +179,7 @@ func _fade_in_complete():
 	shadeLabel.visible = false # hide label if it was already visible
 	shadeLabel.modulate.a = 1 # make it opaque again after hidden
 	set_alert_panels_lifetime_pause(false)
+	PlayerFinder.player.overworldTouchControls.set_all_visible(true)
 
 func _new_act_fade_out(callback: Callable):
 	shadeLabel.text = '[center]Act ' + \

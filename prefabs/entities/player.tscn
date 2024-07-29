@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=21 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="8_cq6oo"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="9_n4log"]
 [ext_resource type="PackedScene" uid="uid://bne1cb4ygidfj" path="res://prefabs/ui/overworld_touch_controls.tscn" id="10_2ab6v"]
+[ext_resource type="StyleBox" uid="uid://cnr1gqh42uesc" path="res://themes/nested_ui/cutscene_pause_button_bg.tres" id="10_ofshw"]
+[ext_resource type="StyleBox" uid="uid://cuxaypnts5fdn" path="res://themes/nested_ui/cutscene_pause_button_hover_bg.tres" id="11_f58rg"]
 [ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -113,7 +115,7 @@ offset_left = -5000.0
 offset_top = -5000.0
 offset_right = 5000.0
 offset_bottom = 5000.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="Camera/Shade"]
 layout_mode = 1
@@ -122,6 +124,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ShadeLabel" type="RichTextLabel" parent="Camera/Shade"]
@@ -147,27 +150,35 @@ bbcode_enabled = true
 text = "[center]Cutscene: Paused[/center]"
 fit_content = true
 
-[node name="CutscenePauseButtons" type="VBoxContainer" parent="Camera/Shade/ShadeLabel"]
+[node name="CutscenePauseButtons" type="HBoxContainer" parent="Camera/Shade/ShadeLabel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.5
-offset_top = 32.0
-offset_right = 125.5
-offset_bottom = 160.0
+offset_left = -334.0
+offset_top = 19.0
+offset_right = 334.0
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
+alignment = 1
 
 [node name="ResumeButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
+theme_override_styles/normal = ExtResource("10_ofshw")
+theme_override_styles/hover = ExtResource("11_f58rg")
 text = "Resume"
 
 [node name="SkipButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
+theme_override_styles/normal = ExtResource("10_ofshw")
+theme_override_styles/hover = ExtResource("11_f58rg")
 text = "Skip Cutscene"
 
 [node name="PlayerEventCollider" type="Area2D" parent="."]
@@ -184,6 +195,7 @@ z_as_relative = false
 scale = Vector2(0.25, 0.25)
 
 [node name="OverworldTouchControls" parent="UI" instance=ExtResource("10_2ab6v")]
+visible = false
 
 [node name="TextBoxRoot" parent="UI" instance=ExtResource("5_q82jg")]
 visible = false
