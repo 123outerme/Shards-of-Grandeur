@@ -29,7 +29,7 @@ func _ready():
 	set_running(PlayerFinder.player.running)
 
 func set_all_visible(isVisible: bool = true):
-	visible = isVisible# and SettingsHandler.isMobile
+	visible = isVisible and SettingsHandler.isMobile
 
 func set_running(isRunning: bool):
 	runToggleButton.button_pressed = isRunning
