@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnxpf28wkpw5k"]
+
+[ext_resource type="Script" path="res://prefabs/ui/touch_virtual_joystick/touch_virtual_joystick.gd" id="1_hm3cf"]
+[ext_resource type="StyleBox" uid="uid://dkm3f7uosiwgp" path="res://prefabs/ui/touch_virtual_joystick/virtual_joystick_zone_panel.tres" id="2_ensm6"]
+[ext_resource type="Texture2D" uid="uid://bbu4c2ejhy1ch" path="res://graphics/ui/touch_ui_icons/virtual_joystick_base.png" id="2_kfciq"]
+[ext_resource type="Texture2D" uid="uid://dc8c4h84geuf4" path="res://graphics/ui/touch_ui_icons/virtual_joystick_stick.png" id="3_meyne"]
+
+[node name="TouchVirtualJoystick" type="Control"]
+process_physics_priority = 1
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hm3cf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_ensm6")
+
+[node name="JoystickBaseTexture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -96.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_kfciq")
+
+[node name="JoystickStickTexture" type="TextureRect" parent="JoystickBaseTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_meyne")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

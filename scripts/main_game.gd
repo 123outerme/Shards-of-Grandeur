@@ -29,15 +29,19 @@ func _ready():
 	parse_cmdline_args()
 	SceneLoader.audioHandler = audioHandler
 	SceneLoader.cutscenePlayer = cutscenePlayer
-	SettingsHandler.gameSettings.apply_window_size(get_viewport())
-	SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	
 	match OS.get_name():
 		"Windows", "macOS", "Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
 			SettingsHandler.isMobile = false
 		"Android":
 			SettingsHandler.isMobile = true
-
+	
+	if not SettingsHandler.isMobile:
+		SettingsHandler.gameSettings.apply_window_size(get_viewport())
+		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
+	else:
+		SettingsHandler.gameSettings.fullscreen = true
+		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	
 	SceneLoader.load_main_menu()
 
@@ -111,7 +115,7 @@ func _on_ui_repeat_timer_timeout():
 	uiRepeatTimer.start()
 
 func create_repeat_press_event(repeatAction: String):
-	var repeatEvent = InputEventAction.new()
+	var repeatEvent: InputEventAction = InputEventAction.new()
 	repeatEvent.action = UI_REPEAT_ACTIONS_TO_ACTION[repeatAction]
 	repeatEvent.pressed = true
 	Input.parse_input_event(repeatEvent)

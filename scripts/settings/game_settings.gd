@@ -180,7 +180,8 @@ func apply_window_size(viewport: Viewport):
 
 func apply_fullscreen(viewport: Viewport):
 	viewport.get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if fullscreen else Window.MODE_WINDOWED
-	apply_window_size(viewport)
+	if not fullscreen:
+		apply_window_size(viewport)
 
 func load_data(save_path):
 	var data = null

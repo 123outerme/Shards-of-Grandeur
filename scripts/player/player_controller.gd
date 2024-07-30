@@ -475,6 +475,7 @@ func pause_movement():
 
 func unpause_movement():
 	disableMovement = textBox.visible or inCutscene
+	overworldTouchControls.set_all_visible(not disableMovement)
 	
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
 	if holdCameraX or holdCameraY:

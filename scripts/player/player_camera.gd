@@ -179,7 +179,7 @@ func _fade_in_complete():
 	shadeLabel.visible = false # hide label if it was already visible
 	shadeLabel.modulate.a = 1 # make it opaque again after hidden
 	set_alert_panels_lifetime_pause(false)
-	PlayerFinder.player.overworldTouchControls.set_all_visible(true)
+	#PlayerFinder.player.overworldTouchControls.set_all_visible(true)
 
 func _new_act_fade_out(callback: Callable):
 	shadeLabel.text = '[center]Act ' + \

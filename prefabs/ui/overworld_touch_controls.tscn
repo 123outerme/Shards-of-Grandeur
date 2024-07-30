@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bne1cb4ygidfj"]
+[gd_scene load_steps=20 format=3 uid="uid://bne1cb4ygidfj"]
 
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="1_mtcr4"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_touch_controls.gd" id="1_u8cae"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="5_kl5p5"]
 [ext_resource type="Texture2D" uid="uid://bjh4vn3j1ju0v" path="res://graphics/ui/touch_ui_icons/run_toggle_icon_walk.png" id="7_84hkr"]
 [ext_resource type="Texture2D" uid="uid://bkiffwlpn455c" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_up.png" id="9_cfmt2"]
+[ext_resource type="PackedScene" uid="uid://bnxpf28wkpw5k" path="res://prefabs/ui/touch_virtual_joystick/touch_virtual_joystick.tscn" id="9_r1qor"]
 [ext_resource type="Texture2D" uid="uid://cwjhq3gyl13ux" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_down.png" id="10_rht64"]
 [ext_resource type="Texture2D" uid="uid://dpthvawadrurb" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_left.png" id="11_v4cet"]
 [ext_resource type="Texture2D" uid="uid://c4b41kirftvxy" path="res://graphics/ui/touch_ui_icons/virtual_move_arrow_right.png" id="12_gtkef"]
@@ -94,7 +95,18 @@ icon = ExtResource("3_12oi1")
 icon_alignment = 1
 expand_icon = true
 
+[node name="TouchVirtualJoystick" parent="." instance=ExtResource("9_r1qor")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -384.0
+offset_right = 500.0
+grow_horizontal = 1
+grow_vertical = 0
+
 [node name="VirtualArrows" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -153,7 +165,6 @@ mouse_filter = 1
 [node name="TalkButton" type="TouchScreenButton" parent="TalkControl"]
 texture_normal = ExtResource("13_i5n7g")
 shape = SubResource("RectangleShape2D_j6amh")
-action = "game_interact"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -165,3 +176,4 @@ offset_bottom = 40.0
 [connection signal="pressed" from="HBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RunToggleButton" to="." method="_on_run_toggle_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="released" from="TalkControl/TalkButton" to="." method="_on_talk_button_released"]
