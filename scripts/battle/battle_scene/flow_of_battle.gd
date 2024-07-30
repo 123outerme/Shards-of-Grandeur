@@ -35,13 +35,12 @@ func hide_fob_tabs():
 func connect_fob_focus_button_to(bottomNeighbor: Control):
 	fobButton.focus_neighbor_bottom = fobButton.get_path_to(bottomNeighbor)
 	bottomNeighbor.focus_neighbor_top = bottomNeighbor.get_path_to(fobButton)
-	
+
 func _on_toggle_fob_button_toggled(button_pressed: bool):
 	if button_pressed and fobButton.focus_neighbor_bottom.get_concatenated_names() != '':
 		prevMenuControlFobBtnNeighbor = fobButton.focus_neighbor_bottom
 		fobButton.focus_neighbor_bottom = ''
-		fobButton.focus_neighbor_left = ''
-		fobButton.focus_neighbor_right = ''
+		fobButton.focus_neighbor_left = '.'
 	
 	fobTabs.visible = button_pressed
 	if button_pressed:
@@ -57,12 +56,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
 		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor
-		if battleController.battleUI.results.visible:
-			fobButton.focus_neighbor_left = fobButton.get_path_to(battleController.battleUI.results.textBoxText)
-			fobButton.focus_neighbor_right = fobButton.get_path_to(battleController.battleUI.results.okBtn)
-		else:
-			fobButton.focus_neighbor_left = ''
-			fobButton.focus_neighbor_right = ''
+		fobButton.focus_neighbor_left = fobButton.get_path_to(battleController.battlePanels.statsOpenButton)
 		fobButton.grab_focus.call_deferred()
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):

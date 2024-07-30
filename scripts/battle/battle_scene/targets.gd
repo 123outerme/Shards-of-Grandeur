@@ -76,9 +76,15 @@ func load_targets():
 	for node in nodes:
 		node.set_buttons_bottom_neighbor(backButton)
 		node.set_buttons_bottom_neighbor(confirmButton)
-		
-	nodes = battleUI.battleController.get_top_most_targetable_combatant_nodes()
-	for node in nodes:
+	
+	var node: CombatantNode = battleUI.battleController.get_top_left_most_targetable_combatant_node()
+	if node != null:
+		node.set_buttons_top_neighbor(battleUI.battlePanels.questsOpenButton)
+		# process stats last so quests can navigate to it too
+		node.set_buttons_top_neighbor(battleUI.battlePanels.statsOpenButton)
+	
+	node = battleUI.battleController.get_top_right_most_targetable_combatant_node()
+	if node != null:
 		node.set_buttons_top_neighbor(battleUI.battlePanels.flowOfBattle.fobButton)
 	
 	if focusedCombatant != null:

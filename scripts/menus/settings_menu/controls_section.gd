@@ -26,6 +26,8 @@ func _ready():
 	#keyboardTab.focus_neighbor_bottom = keyboardTab.get_path_to(primaryUpKeyBtn)
 	#var controllerTab: Control = tabContainer.get_tab_control(1)
 	#controllerTab.focus_neighbor_bottom = '' # TODO
+	if SettingsHandler.isMobile:
+		keyboardTab.queue_free()
 	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 
 func _viewport_focus_changed(control: Control):
@@ -62,10 +64,12 @@ func toggle_section(enable: bool):
 		
 func build_map_value_strings():
 	if len(changedInputsMap.values()) > 0:
-		keyboardSaveButton.icon = unsavedKeybindsSprite
+		if keyboardSaveButton != null:
+			keyboardSaveButton.icon = unsavedKeybindsSprite
 		controllerSaveButton.icon = unsavedKeybindsSprite
 	else:
-		keyboardSaveButton.icon = null
+		if keyboardSaveButton != null:
+			keyboardSaveButton.icon = null
 		controllerSaveButton.icon = null
 	
 	for controlMap in get_tree().get_nodes_in_group('KeyboardControlMap'):
@@ -171,7 +175,7 @@ func _on_change_pressed(btn: Button):
 		PlayerFinder.player.pauseDisabled = btn.button_pressed
 
 func _on_capture_control_gui_input(event: InputEvent):
-	if keyboardTab.visible and not (event is InputEventKey) or \
+	if (keyboardTab != null and keyboardTab.visible) and not (event is InputEventKey) or \
 			controllerTab.visible and not (event is InputEventJoypadButton or \
 			(event is InputEventJoypadMotion and (event.axis == 4 or event.axis == 5))):
 		call_deferred('unlock_focus_trap')
@@ -182,7 +186,7 @@ func _on_capture_control_gui_input(event: InputEvent):
 	var actionIndex: int = buttonToChange.get_meta('index')
 	
 	if actionIndex < len(actionEvents):
-		if (keyboardTab.visible and not (actionEvents[actionIndex] is InputEventKey)) \
+		if ((keyboardTab != null and keyboardTab.visible) and not (actionEvents[actionIndex] is InputEventKey)) \
 				or (controllerTab.visible and not (actionEvents[actionIndex] is InputEventJoypadButton or actionEvents[actionIndex] is InputEventJoypadMotion)):
 			actionIndex += 1
 	

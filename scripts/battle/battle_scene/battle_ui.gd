@@ -41,6 +41,7 @@ func apply_menu_state():
 	if summonMenu.visible:
 		summonMenu.initial_focus()
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(summonMenu.yesSummonBtn)
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(summonMenu.noSummonBtn, summonMenu.noSummonBtn)
 	
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
@@ -50,6 +51,7 @@ func apply_menu_state():
 		allCommands.commandingMinion = commandingMinion
 		allCommands.commandingCombatant = commandingCombatant
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(allCommands.inventoryBtn)
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(allCommands.chargeMovesBtn, allCommands.chargeMovesBtn)
 		allCommands.load_all_commands()
 	if menuState == BattleState.Menu.ITEMS:
 		open_inventory(false)
@@ -59,6 +61,7 @@ func apply_menu_state():
 		battleController.state.moveEffectType = Move.MoveEffectType.CHARGE if menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE
 		moves.load_moves()
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(moves.get_node('MoveButton2'))
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(moves.get_node('MoveButton1'), moves.get_node('MoveButton1'))
 	
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
@@ -68,6 +71,8 @@ func apply_menu_state():
 	surge.visible = menuState == BattleState.Menu.SURGE_SPEND
 	if surge.visible:
 		surge.load_surge()
+		# connect these first so the flow of battle button takes precedence
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(surge.orbControl, surge.orbControl)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(surge.orbControl)
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
@@ -77,6 +82,8 @@ func apply_menu_state():
 		# toggle the Flow of Battle button based on if the battle is starting/round is starting or ending
 		battlePanels.flowOfBattle.set_fob_button_enabled(menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.POST_ROUND)
 		results.initial_focus()
+		# connect these first so the flow of battle button takes precedence
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(results.textBoxText, results.textBoxText)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(results.textBoxText)
 		battleController.reset_intermediate_state_strs()
 		battleController.turnExecutor.update_turn_text()
@@ -87,6 +94,8 @@ func apply_menu_state():
 		battleComplete.playerWins = playerWins
 		battleComplete.playerEscapes = escapes
 		battleComplete.rewards = battleController.state.rewards
+		# connect these first so the flow of battle button takes precedence
+		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(battleComplete.okBtn, battleComplete.okBtn)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(battleComplete.okBtn)
 		if playerWins and len(battleComplete.rewards) == 0:
 			if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:
@@ -314,10 +323,9 @@ func _on_quests_panel_node_back_pressed():
 
 func _on_focus_changed(control: Control):
 	if control == battlePanels.flowOfBattle.fobButton and previousFocus != battlePanels.flowOfBattle.fobButton \
-			and not battlePanels.flowOfBattle.fobButton.button_pressed and not 'FlowOfBattle' in previousFocus.get_path().get_concatenated_names():
+			and not battlePanels.flowOfBattle.fobButton.button_pressed and \
+			not ('FlowOfBattle' in previousFocus.get_path().get_concatenated_names() or 'PanelsButtons' in previousFocus.get_path().get_concatenated_names()):
 		battlePanels.flowOfBattle.fobButton.focus_neighbor_bottom = battlePanels.flowOfBattle.fobButton.get_path_to(previousFocus)
-		battlePanels.flowOfBattle.fobButton.focus_neighbor_left = '.'
-		battlePanels.flowOfBattle.fobButton.focus_neighbor_right = '.'
 	if not statsPanel.visible and not inventoryPanel.visible and \
 		not battlePanels.pauseMenu.visible and not battlePanels.questsMenu.visible and \
 		not battlePanels.summonMinionPanel.visible:

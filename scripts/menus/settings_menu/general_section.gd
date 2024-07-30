@@ -27,13 +27,20 @@ var allFramerateTextSelected: bool = false
 
 @onready var onscreenKeyboardButton: CheckButton = get_node('Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton')
 @onready var screenShakeButton: CheckButton = get_node('Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton')
+
+@onready var runToggleControl: Control = get_node('Control/VBoxContainer/RunToggleControl')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
 
+@onready var windowControl: Control = get_node('Control/VBoxContainer/WindowControl')
 @onready var windowOptionsButton: MenuButton = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton')
 @onready var windowMenuBtnLabel: RichTextLabel = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton/WindowMenuBtnLabel')
 
+@onready var fullscreenControl: Control = get_node('Control/VBoxContainer/FullscreenControl')
 @onready var fullscreenButton: CheckButton = get_node('Control/VBoxContainer/FullscreenControl/FullscreenLabel/FullscreenButton')
+
+@onready var vsyncControl: Control = get_node('Control/VBoxContainer/VSyncControl')
 @onready var vsyncButton: CheckButton = get_node('Control/VBoxContainer/VSyncControl/VsyncLabel/VsyncButton')
+
 @onready var deadzoneSlider: HSlider = get_node('Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider')
 @onready var framerateLineEdit: LineEdit = get_node('Control/VBoxContainer/FramerateControl/FramerateLabel/FramerateLineEdit')
 
@@ -42,11 +49,22 @@ var allFramerateTextSelected: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	framerateLineEdit.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard
 	windowSizeOptionsMenu = windowOptionsButton.get_popup()
 	for key in windowSizeOptions.keys():
 		windowSizeOptionsMenu.add_radio_check_item(String.num(windowSizeOptions[key].x) + ' x ' + String.num(windowSizeOptions[key].y), key)
 	if not windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
 		windowSizeOptionsMenu.id_pressed.connect(_on_window_option_chosen)
+	
+	if SettingsHandler.isMobile:
+		runToggleControl.visible = false
+		windowControl.visible = false
+		fullscreenControl.visible = false
+		vsyncControl.visible = false
+		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(deadzoneSlider)
+		deadzoneSlider.focus_neighbor_top = deadzoneSlider.get_path_to(screenShakeButton)
+		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(framerateLineEdit)
+		framerateLineEdit.focus_neighbor_top = framerateLineEdit.get_path_to(deadzoneSlider)
 
 func _exit_tree():
 	#if windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
@@ -90,6 +108,7 @@ func _on_onscreen_keyboard_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.useVirtualKeyboard = toggled_on
 	SettingsHandler.settings_changed.emit()
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	framerateLineEdit.virtual_keyboard_enabled = not virtualKeyboard.enabled
 	if virtualKeyboard.visible and not virtualKeyboard.enabled:
 		virtualKeyboard.hide_keyboard()
 

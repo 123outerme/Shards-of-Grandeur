@@ -788,6 +788,8 @@ expand_icon = true
 [node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_neighbor_left = NodePath("../QuestsOpenButton")
+focus_neighbor_right = NodePath("../../FlowOfBattle/ToggleFobButton")
 icon = ExtResource("19_rcmd4")
 icon_alignment = 1
 expand_icon = true
@@ -813,6 +815,7 @@ offset_top = -344.0
 offset_right = 620.0
 offset_bottom = -260.0
 grow_horizontal = 0
+focus_neighbor_left = NodePath("../../PanelsButtons/StatsOpenButton")
 theme_override_font_sizes/font_size = 28
 toggle_mode = true
 text = "Read the
