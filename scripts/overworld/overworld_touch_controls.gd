@@ -24,16 +24,16 @@ signal run_toggled
 
 var inCutscene: bool = false
 var inDialogue: bool = false
-var interactAvailable: bool = true
+var interactAvailable: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_all_visible()
+	# defer a frame because the player and PlayerFinder will _ready() AFTER this control
+	await get_tree().process_frame
 	set_running(PlayerFinder.player.running)
 	set_in_cutscene(PlayerFinder.player.inCutscene)
 	set_in_dialogue(PlayerFinder.player.textBox.visible)
-	# defer a frame because the player will _ready() AFTER this control
-	PlayerFinder.player.update_interact_touch_ui.call_deferred()
+	PlayerFinder.player.update_interact_touch_ui()
 
 func set_all_visible(isVisible: bool = true):
 	var shouldShow: bool = isVisible and SettingsHandler.isMobile

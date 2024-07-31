@@ -476,7 +476,6 @@ func pause_movement():
 
 func unpause_movement():
 	disableMovement = textBox.visible or inCutscene
-	overworldTouchControls.set_all_visible(not disableMovement)
 	
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):
 	if holdCameraX or holdCameraY:
@@ -644,7 +643,6 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
 	inCutscene = false
-	overworldTouchControls.set_in_cutscene(false)
 	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
 func get_collider(): # for use before full player initialization in MapLoader
@@ -786,10 +784,11 @@ func _on_quests_panel_node_level_up(newLevels: int):
 	level_up(newLevels)
 
 func _fade_in_force_unlock_cutscene(cutsceneSaveName: String):
+	overworldTouchControls.set_in_cutscene(inCutscene)
+	PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
+	PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
 	if not inCutscene:
 		cam.show_letterbox(false)
-		PlayerResources.playerInfo.set_cutscene_seen(cutsceneSaveName)
-		PlayerResources.questInventory.auto_update_quests() # complete any quest steps that end on this cutscene
 		unpause_movement()
 		SceneLoader.cutscenePlayer.complete_cutscene()
 

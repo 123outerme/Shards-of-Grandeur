@@ -88,6 +88,7 @@ func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 
 func handle_fade_out():
 	PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
+	
 	isFadedOut = true
 	isFadingIn = false
 	

@@ -9,9 +9,17 @@ var prevMenuControlFobBtnNeighbor: NodePath = ''
 @onready var fobButton: Button = get_node("ToggleFobButton")
 @onready var fobTabs: TabContainer = get_node("TabContainer")
 
+var leftOfFobControl: Control = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# await one frame since this _ready() will fire before the parent UIPanels node
+	await get_tree().process_frame
+	if SettingsHandler.isMobile:
+		leftOfFobControl = battleController.battlePanels.pauseButton
+	else:
+		leftOfFobControl = battleController.battlePanels.statsOpenButton
+	fobButton.focus_neighbor_left = fobButton.get_path_to(leftOfFobControl)
 
 func _unhandled_input(event):
 	if fobTabs.visible and event.is_action_pressed('game_decline'):
@@ -56,7 +64,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		for node in get_tree().get_nodes_in_group('BattleStatsPanel'):
 			node.queue_free()
 		fobButton.focus_neighbor_bottom = prevMenuControlFobBtnNeighbor
-		fobButton.focus_neighbor_left = fobButton.get_path_to(battleController.battlePanels.statsOpenButton)
+		fobButton.focus_neighbor_left = fobButton.get_path_to(leftOfFobControl)
 		fobButton.grab_focus.call_deferred()
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):

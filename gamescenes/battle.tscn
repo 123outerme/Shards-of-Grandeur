@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=33 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="20_gbnnj"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/custom_win_text_panel.gd" id="20_qmlyh"]
 [ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="20_tmnh1"]
+[ext_resource type="Texture2D" uid="uid://copnjmfswsin0" path="res://graphics/ui/touch_ui_icons/pause_icon.png" id="21_4ekjo"]
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="21_r3cu2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql8sa"]
@@ -789,8 +790,17 @@ expand_icon = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_neighbor_left = NodePath("../QuestsOpenButton")
-focus_neighbor_right = NodePath("../../FlowOfBattle/ToggleFobButton")
+focus_neighbor_right = NodePath("../PauseButton")
 icon = ExtResource("19_rcmd4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PauseButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_neighbor_left = NodePath("../StatsOpenButton")
+focus_neighbor_right = NodePath("../../FlowOfBattle/ToggleFobButton")
+icon = ExtResource("21_4ekjo")
 icon_alignment = 1
 expand_icon = true
 
@@ -815,7 +825,7 @@ offset_top = -344.0
 offset_right = 620.0
 offset_bottom = -260.0
 grow_horizontal = 0
-focus_neighbor_left = NodePath("../../PanelsButtons/StatsOpenButton")
+focus_neighbor_left = NodePath("../../PanelsButtons/PauseButton")
 theme_override_font_sizes/font_size = 28
 toggle_mode = true
 text = "Read the
@@ -911,6 +921,7 @@ battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
 [node name="Shade" type="ColorRect" parent="."]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(320, 240)
 anchors_preset = 8
@@ -948,6 +959,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/QuestsOpenButton" to="BattleCam/UIPanels" method="_on_quests_open_button_pressed"]
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/StatsOpenButton" to="BattleCam/UIPanels" method="_on_stats_open_button_pressed"]
+[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/PauseButton" to="BattleCam/UIPanels" method="_on_pause_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_back_pressed"]
 [connection signal="minion_summoned" from="BattleCam/UIPanels/SummonMinionPanel" to="BattleCam" method="_on_summon_minion_panel_minion_summoned"]

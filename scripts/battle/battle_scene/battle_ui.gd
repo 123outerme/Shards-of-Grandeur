@@ -41,7 +41,7 @@ func apply_menu_state():
 	if summonMenu.visible:
 		summonMenu.initial_focus()
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(summonMenu.yesSummonBtn)
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(summonMenu.noSummonBtn, summonMenu.noSummonBtn)
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(summonMenu.noSummonBtn)
 	
 	if prevMenu == BattleState.Menu.SUMMON: # if PREVIOUS menu was summoning, reset the filter
 		inventoryPanel.selectedFilter = Item.Type.ALL
@@ -51,7 +51,7 @@ func apply_menu_state():
 		allCommands.commandingMinion = commandingMinion
 		allCommands.commandingCombatant = commandingCombatant
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(allCommands.inventoryBtn)
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(allCommands.chargeMovesBtn, allCommands.chargeMovesBtn)
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(allCommands.chargeMovesBtn)
 		allCommands.load_all_commands()
 	if menuState == BattleState.Menu.ITEMS:
 		open_inventory(false)
@@ -61,7 +61,7 @@ func apply_menu_state():
 		battleController.state.moveEffectType = Move.MoveEffectType.CHARGE if menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE
 		moves.load_moves()
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(moves.get_node('MoveButton2'))
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(moves.get_node('MoveButton1'), moves.get_node('MoveButton1'))
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(moves.get_node('MoveButton1'))
 	
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
@@ -72,7 +72,7 @@ func apply_menu_state():
 	if surge.visible:
 		surge.load_surge()
 		# connect these first so the flow of battle button takes precedence
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(surge.orbControl, surge.orbControl)
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(surge.orbControl)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(surge.orbControl)
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
@@ -83,7 +83,7 @@ func apply_menu_state():
 		battlePanels.flowOfBattle.set_fob_button_enabled(menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.POST_ROUND)
 		results.initial_focus()
 		# connect these first so the flow of battle button takes precedence
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(results.textBoxText, results.textBoxText)
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(results.textBoxText)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(results.textBoxText)
 		battleController.reset_intermediate_state_strs()
 		battleController.turnExecutor.update_turn_text()
@@ -95,7 +95,7 @@ func apply_menu_state():
 		battleComplete.playerEscapes = escapes
 		battleComplete.rewards = battleController.state.rewards
 		# connect these first so the flow of battle button takes precedence
-		battlePanels.connect_quests_stats_open_buttons_bottom_neighbor(battleComplete.okBtn, battleComplete.okBtn)
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(battleComplete.okBtn)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(battleComplete.okBtn)
 		if playerWins and len(battleComplete.rewards) == 0:
 			if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:

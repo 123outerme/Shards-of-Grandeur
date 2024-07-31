@@ -12,10 +12,11 @@ class_name BattlePanels
 
 @onready var questsOpenButton: Button = get_node('PanelsButtons/QuestsOpenButton')
 @onready var statsOpenButton: Button = get_node('PanelsButtons/StatsOpenButton')
+@onready var pauseButton: Button = get_node('PanelsButtons/PauseButton')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pauseButton.visible = SettingsHandler.isMobile
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS):
@@ -51,12 +52,12 @@ func _unhandled_input(event):
 func _on_pause_menu_resume_game():
 	battleUI.restore_focus()
 
-func connect_quests_stats_open_buttons_bottom_neighbor(questsBottomNeighbor: Control, statsBottomNeighbor: Control):
-	questsOpenButton.focus_neighbor_bottom = questsOpenButton.get_path_to(questsBottomNeighbor)
-	questsBottomNeighbor.focus_neighbor_top = questsBottomNeighbor.get_path_to(questsOpenButton)
+func connect_top_left_panel_buttons_bottom_neighbor(bottomNeighbor: Control):
+	questsOpenButton.focus_neighbor_bottom = questsOpenButton.get_path_to(bottomNeighbor)
 	# process stats last so if quests/stats are both the same, stats is prioritized
-	statsOpenButton.focus_neighbor_bottom = statsOpenButton.get_path_to(statsBottomNeighbor)
-	statsBottomNeighbor.focus_neighbor_top = statsBottomNeighbor.get_path_to(statsOpenButton)
+	statsOpenButton.focus_neighbor_bottom = statsOpenButton.get_path_to(bottomNeighbor)
+	pauseButton.focus_neighbor_bottom = pauseButton.get_path_to(bottomNeighbor)
+	bottomNeighbor.focus_neighbor_top = bottomNeighbor.get_path_to(pauseButton)
 
 func _on_stats_open_button_pressed():
 	statsMenu.stats = battleUI.battleController.playerCombatant.combatant.stats
@@ -73,3 +74,10 @@ func _on_quests_open_button_pressed():
 	inventoryMenu.visible = false
 	statsMenu.visible = false
 	summonMinionPanel.visible = false
+
+func _on_pause_button_pressed():
+	pauseMenu.pause_game()
+	inventoryMenu.visible = false
+	statsMenu.visible = false
+	summonMinionPanel.visible = false
+	questsMenu.visible = false

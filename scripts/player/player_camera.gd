@@ -121,6 +121,9 @@ func fade_in(callback: Callable, duration: float = 0.5):
 		fadeInTween.finished.connect(registeredCallback)
 	registeredFadeInCallbacks = []
 	fadeInTween.pause()
+	# after half the duration of the fade up, set the controls to be visible again (invisible from fading out)
+	await get_tree().create_timer(duration / 2).timeout
+	PlayerFinder.player.overworldTouchControls.set_all_visible()
 
 func connect_to_fade_out(callback: Callable):
 	if fadeOutTween != null and fadeOutTween.is_valid():
