@@ -32,6 +32,8 @@ func _ready():
 	set_running(PlayerFinder.player.running)
 	set_in_cutscene(PlayerFinder.player.inCutscene)
 	set_in_dialogue(PlayerFinder.player.textBox.visible)
+	# defer a frame because the player will _ready() AFTER this control
+	PlayerFinder.player.update_interact_touch_ui.call_deferred()
 
 func set_all_visible(isVisible: bool = true):
 	var shouldShow: bool = isVisible and SettingsHandler.isMobile

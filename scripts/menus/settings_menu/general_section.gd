@@ -67,6 +67,7 @@ func _ready():
 		touchJoystickTypeControl.visible = true
 		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(deadzoneSlider)
 		deadzoneSlider.focus_neighbor_top = deadzoneSlider.get_path_to(screenShakeButton)
+		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(touchJoystickTypeToggleButton)
 	else:
 		touchJoystickTypeControl.visible = false
 
