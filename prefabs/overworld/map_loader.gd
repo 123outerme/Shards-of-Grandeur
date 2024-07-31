@@ -157,6 +157,7 @@ func _map_loaded():
 		PlayerFinder.player.play_animation('stand')
 	await get_tree().create_timer(0.15).timeout
 	SceneLoader.call_deferred('unpause_autonomous_movers')
+	PlayerFinder.player.overworldTouchControls.call_deferred('set_all_visible', true)
 	player.collider.set_deferred('disabled', false)
 	PlayerFinder.player.set_deferred('disableMovement', player.inCutscene or player.textBox.visible)
 	if usedWarpZone:

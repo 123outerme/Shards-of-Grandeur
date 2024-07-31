@@ -20,10 +20,14 @@ func interact(_args: Array = []):
 	if interactSfx != null:
 		SceneLoader.audioHandler.play_sfx(interactSfx)
 
+func has_dialogue() -> bool:
+	return dialogue != null and dialogue.can_use_dialogue()
+
 func enter_player_range():
 	var idx: int = PlayerFinder.player.interactables.find(self)
 	if idx == -1:
 		PlayerFinder.player.interactables.append(self)
+	PlayerFinder.player.update_interact_touch_ui()
 
 func exit_player_range():
 	if PlayerFinder.player == null:
@@ -33,6 +37,7 @@ func exit_player_range():
 		PlayerFinder.player.interactables.remove_at(idx)
 	if PlayerFinder.player.interactable == self:
 		PlayerFinder.player.interactable = null
+	PlayerFinder.player.update_interact_touch_ui()
 
 func play_animation(animName: String):
 	pass

@@ -90,6 +90,7 @@ func _ready():
 	if not Engine.is_editor_hint():
 		if loadFlipH:
 			flip_h = not flip_h
+		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 
 func fetch_player():
 	if not Engine.is_editor_hint():
@@ -225,8 +226,8 @@ func _on_move_trigger_area_entered(area):
 
 func _on_talk_area_area_entered(area):
 	if area.name == "PlayerEventCollider" and data.dialogueLine < 0:
-		player.set_talk_npc(self)
 		reset_dialogue()
+		player.set_talk_npc(self)
 		if len(data.dialogueItems) > 0 and not player.inCutscene:
 			talkAlertSprite.visible = true
 			pause_movement()
@@ -429,3 +430,13 @@ func face_horiz(xDirection: float):
 
 func _on_npc_sprite_animation_finished():
 	play_animation('stand')
+
+func _story_reqs_updated():
+	if player != null and self in player.talkNPCcandidates and not self == player.talkNPC:
+		reset_dialogue()
+		if len(data.dialogueItems) > 0 and not player.inCutscene:
+			talkAlertSprite.visible = true
+			pause_movement()
+			face_player()
+		data.dialogueLine = -1
+		player.update_interact_touch_ui()

@@ -76,7 +76,8 @@ func _on_gui_input(event):
 			# this position is in the local Control coordinate space
 			lastTouchedPosition = event.position - (0.5 * baseTexture.size * baseTexture.scale)
 			if not beingHeld:
-				firstTouchedPosition = lastTouchedPosition
+				if SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FLOATING:
+					firstTouchedPosition = lastTouchedPosition
 				beingHeld = true
 			baseTexture.modulate.a = 1.0
 		else:

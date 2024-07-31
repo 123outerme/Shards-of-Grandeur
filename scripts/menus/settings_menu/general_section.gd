@@ -31,6 +31,9 @@ var allFramerateTextSelected: bool = false
 @onready var runToggleControl: Control = get_node('Control/VBoxContainer/RunToggleControl')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
 
+@onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
+@onready var touchJoystickTypeToggleButton: Button = get_node('Control/VBoxContainer/TouchJoystickTypeControl/TouchJoystickTypeLabel/CenterButtonHBox/TouchJoystickTypeToggleButton')
+
 @onready var windowControl: Control = get_node('Control/VBoxContainer/WindowControl')
 @onready var windowOptionsButton: MenuButton = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton')
 @onready var windowMenuBtnLabel: RichTextLabel = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton/WindowMenuBtnLabel')
@@ -61,10 +64,11 @@ func _ready():
 		windowControl.visible = false
 		fullscreenControl.visible = false
 		vsyncControl.visible = false
+		touchJoystickTypeControl.visible = true
 		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(deadzoneSlider)
 		deadzoneSlider.focus_neighbor_top = deadzoneSlider.get_path_to(screenShakeButton)
-		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(framerateLineEdit)
-		framerateLineEdit.focus_neighbor_top = framerateLineEdit.get_path_to(deadzoneSlider)
+	else:
+		touchJoystickTypeControl.visible = false
 
 func _exit_tree():
 	#if windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
@@ -90,6 +94,8 @@ func toggle_section(toggle: bool):
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
+		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
+		touchJoystickTypeToggleButton.button_pressed = SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FIXED
 		windowMenuBtnLabel.text = '[center]' + String.num(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
 		fullscreenButton.button_pressed = SettingsHandler.gameSettings.fullscreen
 		vsyncButton.button_pressed = SettingsHandler.gameSettings.vsync
@@ -99,11 +105,12 @@ func toggle_section(toggle: bool):
 		sectionToggleButton.focus_neighbor_right = sectionToggleButton.get_path_to(onscreenKeyboardButton)
 		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
 		runToggleButton.focus_neighbor_left = runToggleButton.get_path_to(sectionToggleButton)
+		touchJoystickTypeToggleButton.focus_neighbor_left = touchJoystickTypeToggleButton.get_path_to(sectionToggleButton)
 		windowOptionsButton.focus_neighbor_left = windowOptionsButton.get_path_to(sectionToggleButton)
 		fullscreenButton.focus_neighbor_left = fullscreenButton.get_path_to(sectionToggleButton)
 		vsyncButton.focus_neighbor_left = vsyncButton.get_path_to(sectionToggleButton)
 		framerateLineEdit.focus_neighbor_left = framerateLineEdit.get_path_to(sectionToggleButton)
-
+	
 func _on_onscreen_keyboard_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.useVirtualKeyboard = toggled_on
 	SettingsHandler.settings_changed.emit()
@@ -226,3 +233,7 @@ func _on_item_confirm_panel_confirm_option(yes):
 	waitingForResizeConfirm = false
 	windowOptionsButton.grab_focus()
 
+func _on_touch_joystick_type_toggle_button_toggled(toggled_on: bool):
+	SettingsHandler.gameSettings.touchJoystickType = GameSettings.TouchJoystickType.FIXED if toggled_on else GameSettings.TouchJoystickType.FLOATING
+	touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
+	SettingsHandler.settings_changed.emit()

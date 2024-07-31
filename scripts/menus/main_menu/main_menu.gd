@@ -37,8 +37,8 @@ func _ready():
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
 	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
-	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
+	_on_settings_changed()
 
 func _unhandled_input(event):
 	var declineIsShift: bool = false
@@ -138,6 +138,7 @@ func _on_virtual_keyboard_enter_pressed():
 
 func _on_settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	nameInput.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard
 	if not virtualKeyboard.enabled:
 		virtualKeyboard.hide_keyboard()
 

@@ -18,3 +18,6 @@ func _init(
 	dialogueEntry = i_dialogueEntry
 	savedItemIdx = i_savedItemIdx
 	savedTextIdx = i_savedTextIdx
+
+func can_use_dialogue():
+	return dialogueEntry != null and dialogueEntry.can_use_dialogue()

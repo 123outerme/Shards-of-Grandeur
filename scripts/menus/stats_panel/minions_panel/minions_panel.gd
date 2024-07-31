@@ -30,7 +30,7 @@ var reorderingMinion: Combatant = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
-	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	_on_settings_changed()
 
 func _exit_tree():
 	firstMinionPanel = null
@@ -152,7 +152,6 @@ func _on_reorder_clicked(combatant: Combatant):
 				vboxContainer.move_child(panel, idx)
 		reorderingMinion = null
 	update_panels_reorder_buttons()
-	
 
 func _on_name_input_text_changed(new_text: String):
 	confirmName.disabled = false
@@ -217,3 +216,6 @@ func _on_reorder_button_pressed():
 
 func _on_settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	nameInput.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard
+	if not virtualKeyboard.enabled:
+		virtualKeyboard.hide_keyboard()

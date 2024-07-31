@@ -1,6 +1,11 @@
 extends Resource
 class_name GameSettings
 
+enum TouchJoystickType {
+	FIXED = 0,
+	FLOATING = 1,
+}
+
 @export var inputMap: Dictionary = {}
 @export var musicVolume: float = 0.5
 @export var sfxVolume: float = 0.5
@@ -12,6 +17,7 @@ class_name GameSettings
 @export var framerate: int = 60
 @export var windowSize: Vector2i = Vector2i(1280, 720)
 @export var fullscreen: bool = false
+@export var touchJoystickType: TouchJoystickType = TouchJoystickType.FLOATING
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -79,6 +85,14 @@ static func get_version_differences_between(version1: String, version2: String) 
 		return VersionDiffs.PATCH
 	
 	return VersionDiffs.NONE
+
+static func touch_joystick_type_to_string(t: TouchJoystickType) -> String:
+	match t:
+		TouchJoystickType.FIXED:
+			return 'Fixed'
+		TouchJoystickType.FLOATING:
+			return 'Floating'
+	return 'UNKNOWN'
 
 func _init(
 	i_inputMap: Dictionary = {},

@@ -431,6 +431,7 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 				disableMovement = false
 	if not npc in talkNPCcandidates and not remove:
 		talkNPCcandidates.append(npc)
+	update_interact_touch_ui()
 	
 func restore_dialogue(npc: NPCScript):
 	var dialogueText = npc.get_cur_dialogue_item()
@@ -610,6 +611,28 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 		interactable = null
 	else:
 		SceneLoader.pause_autonomous_movers()
+
+func update_interact_touch_ui():
+	if len(interactables) > 0 or len(talkNPCcandidates) > 0:
+		var oneHasDialogue: bool = false
+		for inter: Interactable in interactables:
+			if inter == null:
+				continue
+			if inter.has_dialogue():
+				oneHasDialogue = true
+				break
+		if not oneHasDialogue:
+			for npc: NPCScript in talkNPCcandidates:
+				if npc == null:
+					continue
+				if len(npc.data.dialogueItems) > 0:
+					oneHasDialogue = true
+					break
+		
+		if oneHasDialogue:
+			overworldTouchControls.set_interact_available(true)
+			return
+	overworldTouchControls.set_interact_available(false)
 
 func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 	cutsceneTexts.append(cutsceneDialogue)

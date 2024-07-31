@@ -23,6 +23,8 @@ func load_game(saveFolder: String = 'save'):
 func load_battle(saveFolder: String = ''):
 	if saveFolder != '':
 		SaveHandler.load_data(saveFolder)
+	if PlayerFinder.player != null:
+		PlayerFinder.player.overworldTouchControls.touchVirtualJoystick.release_joystick()
 	call_deferred('load_scene', preload("res://gamescenes/battle.tscn"))
 
 func load_overworld(saveFolder: String = ''):
@@ -32,6 +34,8 @@ func load_overworld(saveFolder: String = ''):
 	call_deferred('load_scene', preload("res://gamescenes/overworld.tscn"))
 	
 func load_main_menu():
+	if PlayerFinder.player != null:
+		PlayerFinder.player.overworldTouchControls.touchVirtualJoystick.release_joystick()
 	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"))
 	PlayerResources.timeSinceLastLoad = -1
 

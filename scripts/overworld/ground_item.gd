@@ -56,6 +56,12 @@ func interact(_args: Array = []):
 	if not PlayerResources.playerInfo.has_picked_up(saveName):
 		PlayerFinder.player.pick_up(self)
 
+func has_dialogue() -> bool:
+	if pickedUpItem != null and pickedUpItem.dialogueEntry != null and not PlayerResources.playerInfo.has_picked_up(saveName):
+		return pickedUpItem.dialogueEntry.can_use_dialogue()
+	
+	return false
+
 func set_disabled(value: bool):
 	disabled = value
 	visible = not value

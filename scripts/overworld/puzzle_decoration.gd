@@ -43,6 +43,14 @@ func interact(_args: Array = []):
 	
 	super.interact(args)
 
+func has_dialogue() -> bool:
+	if puzzle.is_solved():
+		return solvedDialogue != null and solvedDialogue.can_use_dialogue()
+	elif not puzzle.passes_prereqs():
+		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue()
+	
+	return super.has_dialogue()
+
 func play_animation(animName: String):
 	if not playingSolvingAnim:
 		animatedDecoration.play_animation(animName)
