@@ -13,9 +13,13 @@ signal orb_count_change(change: int)
 
 #const orbUnitDisplayScene: PackedScene = preload('res://prefabs/battle/orb_unit_display.tscn')
 const ORB_INTERACT_INTERVAL = 7
+const ORB_SFX_INTERVAL = 0.09
 
 var lastInputAccum: int = 0
-var focused = false
+var lastSfxTriggered: float = 0
+var focused: bool = false
+var lastOrbClicked: int = -1
+var lastOrbHovered: int = -1
 
 @onready var hboxContainer: HBoxContainer = get_node('HBoxContainer')
 @onready var selectedPanel: Panel = get_node('SelectedPanel')
@@ -50,6 +54,7 @@ func load_orb_display():
 		unit.readOnly = readOnly
 		unit.index = idx + 1
 		unit.orb_clicked.connect(_orb_clicked)
+		unit.being_hovered.connect(_orb_hovered)
 	update_orb_display()
 
 func update_orb_display():
@@ -66,22 +71,31 @@ func update_orb_count(orbs: int, playSfx: bool = true):
 	var setOrbs = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
 	if setOrbs != currentOrbs:
 		orb_count_change.emit(setOrbs)
-		if SceneLoader.audioHandler != null:
+		if SceneLoader.audioHandler != null and Time.get_unix_time_from_system() - lastSfxTriggered > ORB_SFX_INTERVAL:
 			SceneLoader.audioHandler.play_sfx(modifySfx)
+			lastSfxTriggered = Time.get_unix_time_from_system()
 	elif SceneLoader.audioHandler != null:
 		SceneLoader.audioHandler.play_sfx(atBoundSfx)
 	currentOrbs = setOrbs
 	update_orb_display()
-	
 
 func _orb_clicked(index: int):
 	# index is [1, Combatant.MAX_ORBS]
+	lastOrbClicked = index
 	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else hboxContainer.get_child_count() + 1 - index
 	update_orb_count(orbCount)
 	#print('clicked on ', orbCount, ' orbs')
 	if not selectedPanel.visible:
 		selectedPanel.visible = true
 		grab_focus()
+
+func _orb_hovered(index: int):
+	lastOrbHovered = index
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and lastOrbHovered != lastOrbClicked and lastOrbHovered != -1:
+			_orb_clicked(lastOrbHovered)
 
 func _on_focus_entered():
 	focused = true

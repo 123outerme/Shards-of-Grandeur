@@ -4,6 +4,7 @@ class_name SummonMenu
 @export var battleUI: BattleUI
 
 @onready var yesSummonBtn: Button = get_node('YesSummon')
+@onready var noSummonBtn: Button = get_node('NoSummon')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

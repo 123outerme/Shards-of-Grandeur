@@ -2,6 +2,7 @@ extends Control
 class_name OrbUnitDisplay
 
 signal orb_clicked(index: int)
+signal being_hovered(index: int)
 
 @export var unfilledOrbSprite: Texture2D = null
 @export var filledOrbSprite: Texture2D = null
@@ -29,13 +30,14 @@ func load_orb_unit_display():
 
 func _on_gui_input(event):
 	if not readOnly:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			orb_clicked.emit(index)
 			#print('orb clicked: ', index)
 
 func _on_mouse_entered():
 	if not readOnly:
 		sprite.texture = filledHoverOrbSprite if filledOrb else unfilledHoverOrbSprite
+		being_hovered.emit(index)
 
 func _on_mouse_exited():
 	load_orb_unit_display()

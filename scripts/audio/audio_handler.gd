@@ -12,6 +12,8 @@ var crossFadeTime: float = -1
 var crossFadeAccum: float = 0
 var musicPlayingOnStream2: bool = false
 
+var fadingOutMusic: bool = false
+
 var openSfxPlayers: Array[bool] = []
 var lastSfxIdx: int = -1
 
@@ -92,18 +94,28 @@ func get_cur_music() -> AudioStream:
 func is_music_already_playing(stream: AudioStream):
 	return get_cur_music() == stream and get_cur_music_player().playing
 
+func which_sfx_channel_playing(stream: AudioStream) -> int:
+	for idx: int in range(len(sfxStreamPlayers)):
+		if not openSfxPlayers[idx] and sfxStreamPlayers[idx].stream == stream:
+			return idx
+	return -1
+
 func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
 	if stream == null:
 		return
 	
-	var idx: int = get_first_open_sfx_player_idx()
-	if sfxPlayerIdx != -1:
-		idx = sfxPlayerIdx
-	sfxStreamPlayers[idx].stream = stream
-	sfxLoops[idx] = loops
-	openSfxPlayers[idx] = false
-	sfxStreamPlayers[idx].play()
-	lastSfxIdx = idx
+	var idx: int = sfxPlayerIdx
+	if sfxPlayerIdx == -1:
+		idx = which_sfx_channel_playing(stream)
+		if idx == -1:
+			idx = get_first_open_sfx_player_idx()
+	
+	if idx != -1:
+		sfxStreamPlayers[idx].stream = stream
+		sfxLoops[idx] = loops
+		openSfxPlayers[idx] = false
+		sfxStreamPlayers[idx].play()
+		lastSfxIdx = idx
 
 func stop_sfx(stream: AudioStream):
 	for idx in range(len(sfxStreamPlayers)):
@@ -133,10 +145,10 @@ func _cross_fade_finished():
 		musicStreamPlayer2.stop()
 	load_audio_settings()
 	
-func fade_to_new_music(stream: AudioStream, secFadeOut: float = 0.5, secFadeIn: float = 0.5):
+func fade_to_new_music(stream: AudioStream, loops: int = -1, secFadeOut: float = 0.5, secFadeIn: float = 0.5):
 	fade_out_music(secFadeOut)
-	musicFadeTween.finished.disconnect(_fade_music_callback.bind(true)) # replace callback with new music callback
-	musicFadeTween.finished.connect(_fade_to_new_callback.bind(stream, secFadeIn))
+	await music_fade_completed
+	fade_in_new_music(stream, loops, secFadeIn)
 
 func fade_out_music(sec: float = 0.5):
 	if musicFadeTween != null and musicFadeTween.is_valid():
@@ -144,10 +156,17 @@ func fade_out_music(sec: float = 0.5):
 	musicFadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	musicFadeTween.tween_method(set_cur_music_volume, SettingsHandler.gameSettings.musicVolume, 0, sec)
 	musicFadeTween.finished.connect(_fade_music_callback.bind(true))
+	fadingOutMusic = true
 
-func fade_in_music(sec: float = 0.5):
+func fade_in_music(sec: float = 0.5, loops: int = -1):
 	if musicFadeTween != null and musicFadeTween.is_valid():
 		musicFadeTween.kill()
+	musicLoops = loops
+	if sec <= 0:
+		# don't bother with a tween, just do it
+		set_cur_music_volume(SettingsHandler.gameSettings.musicVolume)
+		_fade_music_callback(false)
+		return
 	musicFadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	musicFadeTween.tween_method(set_cur_music_volume, 0, SettingsHandler.gameSettings.musicVolume, sec)
 	musicFadeTween.finished.connect(_fade_music_callback.bind(false))
@@ -157,12 +176,15 @@ func _fade_music_callback(killMusic: bool):
 	if killMusic:
 		get_cur_music_player().stream = null
 	load_audio_settings()
+	fadingOutMusic = false
 	music_fade_completed.emit()
 
-func _fade_to_new_callback(stream: AudioStream, ms: float):
-	musicFadeTween = null
+func fade_in_new_music(stream: AudioStream, loops: int, ms: float):
+	if fadingOutMusic:
+		await music_fade_completed
 	get_cur_music_player().stream = stream
-	fade_in_music(ms)
+	get_cur_music_player().play()
+	fade_in_music(ms, loops)
 
 func _on_music_stream_player_1_finished():
 	if musicPlayingOnStream2:

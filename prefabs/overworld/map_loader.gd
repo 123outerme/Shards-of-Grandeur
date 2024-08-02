@@ -67,6 +67,7 @@ func load_recover_map():
 		load_map(PlayerResources.playerInfo.map)
 
 func load_map(mapName: String):
+	#SceneLoader.audioHandler.fade_out_music() # fade out here if not checking for same music when loading a new map
 	loading = true
 	#destroy_overworld_enemies()
 	PlayerResources.playerInfo.map = mapName
@@ -82,6 +83,8 @@ func load_map(mapName: String):
 	if newMapEntry != null:
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
+		if newMapEntry.overworldTheme != SceneLoader.audioHandler.get_cur_music():
+			SceneLoader.audioHandler.fade_out_music()
 		''' #multithreaded map loading
 		ResourceLoader.load_threaded_request(newMapEntry.get_map_path())
 		while ResourceLoader.load_threaded_get_status(newMapEntry.get_map_path()) != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
@@ -145,7 +148,7 @@ func _fade_out_complete():
 
 func _fade_in_complete():
 	if not SceneLoader.audioHandler.is_music_already_playing(mapEntry.overworldTheme):
-		SceneLoader.audioHandler.cross_fade(mapEntry.overworldTheme, -1, 0.5)
+		SceneLoader.audioHandler.fade_in_new_music(mapEntry.overworldTheme, -1, 0)
 	loading = false
 	#print('fade in complete')
 	
