@@ -121,6 +121,8 @@ func fade_in(callback: Callable, duration: float = 0.5):
 		fadeInTween.finished.connect(registeredCallback)
 	registeredFadeInCallbacks = []
 	fadeInTween.pause()
+	# recheck that the joystick is still considered as held now
+	PlayerFinder.player.overworldTouchControls.touchVirtualJoystick.recheck_joystick_hold()
 	# after half the duration of the fade up, set the controls to be visible again (invisible from fading out)
 	await get_tree().create_timer(duration / 2).timeout
 	PlayerFinder.player.overworldTouchControls.set_all_visible()
