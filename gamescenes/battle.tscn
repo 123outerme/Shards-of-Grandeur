@@ -64,6 +64,9 @@ allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("../..")
 
+[node name="SelectCombatantBtn" parent="CombatantGroup/PlayerCombatant" index="0"]
+focus_neighbor_left = NodePath(".")
+
 [node name="OnAttackPos" parent="CombatantGroup/PlayerCombatant" index="3"]
 position = Vector2(16, 0)
 
@@ -77,6 +80,9 @@ battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 battleController = NodePath("../..")
+
+[node name="SelectCombatantBtn" parent="CombatantGroup/MinionCombatant" index="0"]
+focus_neighbor_left = NodePath(".")
 
 [node name="OnAttackPos" parent="CombatantGroup/MinionCombatant" index="3"]
 position = Vector2(16, 0)
@@ -92,6 +98,9 @@ enemyTeamMarker = NodePath("../PlayerTeamMarker")
 battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
+[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant1" index="0"]
+focus_neighbor_right = NodePath(".")
+
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant1" index="3"]
 position = Vector2(-16, 0)
 
@@ -106,6 +115,9 @@ enemyTeamMarker = NodePath("../PlayerTeamMarker")
 battleController = NodePath("../..")
 metadata/_edit_lock_ = true
 
+[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant2" index="0"]
+focus_neighbor_right = NodePath(".")
+
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant2" index="3"]
 position = Vector2(-16, 0)
 
@@ -119,6 +131,9 @@ allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
 battleController = NodePath("../..")
 metadata/_edit_lock_ = true
+
+[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant3" index="0"]
+focus_neighbor_right = NodePath(".")
 
 [node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant3" index="3"]
 position = Vector2(-16, 0)
@@ -921,7 +936,6 @@ battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
 [node name="Shade" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 custom_minimum_size = Vector2(320, 240)
 anchors_preset = 8

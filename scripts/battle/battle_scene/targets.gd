@@ -87,11 +87,69 @@ func load_targets():
 	if node != null:
 		node.set_buttons_top_neighbor(battleUI.battlePanels.flowOfBattle.fobButton)
 	
+	connect_targetable_combatants_to_each_other(allCombatantNodes, targetableCombatants)
+	
 	if focusedCombatant != null:
 		focusedCombatant.set_selected(true)
 	update_targets_listing(true, focusedCombatant)
 	update_confirm_btn()
+
+func connect_targetable_combatants_to_each_other(allCombatantNodes: Array[CombatantNode], targetableCombatantNodes: Array[CombatantNode]):
+	var combatantsDict: Dictionary = {}
 	
+	for combatantNode: CombatantNode in allCombatantNodes:
+		combatantsDict[combatantNode.battlePosition] = combatantNode
+	
+	# MINION COMBATANT
+	if combatantsDict['Ally'] in targetableCombatantNodes:
+		var targetNode: CombatantNode = null
+		var playerCombatantNeighbors: Array[String] = ['Top', 'Center', 'Bottom', 'Ally']
+		for neighbor: String in playerCombatantNeighbors:
+			if combatantsDict[neighbor] in targetableCombatantNodes:
+				targetNode = combatantsDict[neighbor]
+				break
+		combatantsDict['Ally'].set_focus_right_combatant_node_neighbor(targetNode)
+	
+	# PLAYER COMBATANT
+	if combatantsDict['You'] in targetableCombatantNodes:
+		var targetNode: CombatantNode = null
+		var playerCombatantNeighbors: Array[String] = ['Center', 'Bottom', 'Top', 'You']
+		for neighbor: String in playerCombatantNeighbors:
+			if combatantsDict[neighbor] in targetableCombatantNodes:
+				targetNode = combatantsDict[neighbor]
+				break
+		combatantsDict['You'].set_focus_right_combatant_node_neighbor(targetNode)
+	
+	# BOTTOM ENEMY COMBATANT
+	if combatantsDict['Bottom'] in targetableCombatantNodes:
+		var targetNode: CombatantNode = null
+		var playerCombatantNeighbors: Array[String] = ['You', 'Ally', 'Bottom']
+		for neighbor: String in playerCombatantNeighbors:
+			if combatantsDict[neighbor] in targetableCombatantNodes:
+				targetNode = combatantsDict[neighbor]
+				break
+		combatantsDict['Bottom'].set_focus_left_combatant_node_neighbor(targetNode)
+	
+	# TOP ENEMY COMBATANT
+	if combatantsDict['Top'] in targetableCombatantNodes:
+		var targetNode: CombatantNode = null
+		var playerCombatantNeighbors: Array[String] = ['Ally', 'You', 'Top']
+		for neighbor: String in playerCombatantNeighbors:
+			if combatantsDict[neighbor] in targetableCombatantNodes:
+				targetNode = combatantsDict[neighbor]
+				break
+		combatantsDict['Top'].set_focus_left_combatant_node_neighbor(targetNode)
+	
+	# CENTER ENEMY COMBATANT
+	if combatantsDict['Center'] in targetableCombatantNodes:
+		var targetNode: CombatantNode = null
+		var playerCombatantNeighbors: Array[String] = ['You', 'Ally', 'Center']
+		for neighbor: String in playerCombatantNeighbors:
+			if combatantsDict[neighbor] in targetableCombatantNodes:
+				targetNode = combatantsDict[neighbor]
+				break
+		combatantsDict['Center'].set_focus_left_combatant_node_neighbor(targetNode)
+
 func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):
 	var names: Array[String] = []
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
