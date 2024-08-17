@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://djwyy6mursaro"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_lpu5n"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7c3f2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_dulfk"]
+
+[sub_resource type="Resource" id="Resource_xpc1i"]
+script = ExtResource("1_lpu5n")
+lines = Array[String](["This fruit didn't drop from the tree too long ago. This oasis is just too good to be true!"])
+animation = ""
+choices = Array[ExtResource("2_7c3f2")]([])
+
+[resource]
+script = ExtResource("3_dulfk")
+entryId = ""
+items = Array[ExtResource("1_lpu5n")]([SubResource("Resource_xpc1i")])
+closesDialogue = false
+fullHealsPlayer = false

@@ -21,7 +21,7 @@ var disabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null:
+	if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null or saveName == '':
 		printerr('GroundItem ERR: PickedUpItem not defined properly')
 		queue_free()
 		return

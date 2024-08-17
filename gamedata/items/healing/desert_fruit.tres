@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://brg1fruikt0np"]
+
+[ext_resource type="Texture2D" uid="uid://dk586osrwhsxq" path="res://graphics/items/healing/desert_fruit.png" id="1_16ypu"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_renid"]
+
+[resource]
+script = ExtResource("1_renid")
+healBy = 200
+statusStrengthHeal = 0
+itemSprite = ExtResource("1_16ypu")
+itemName = "Desert Fruit"
+itemType = 0
+itemDescription = "This thorny fruit seems to have come from the rare blooms of the trees that live in the Forbidden Desert. Once the spiky parts are removed, it's really quite tasty!"
+cost = 7
+maxCount = 30
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

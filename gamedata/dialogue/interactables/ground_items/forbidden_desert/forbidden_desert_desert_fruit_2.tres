@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://d2aj5133alwp0"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hdo87"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_by5u4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_h6674"]
+
+[sub_resource type="Resource" id="Resource_jv7g0"]
+script = ExtResource("1_hdo87")
+lines = Array[String](["This tree must have died recently, seeing as the fruit is still good. So good in fact, that I'll take it!"])
+animation = ""
+choices = Array[ExtResource("2_by5u4")]([])
+
+[resource]
+script = ExtResource("3_h6674")
+entryId = ""
+items = Array[ExtResource("1_hdo87")]([SubResource("Resource_jv7g0")])
+closesDialogue = false
+fullHealsPlayer = false

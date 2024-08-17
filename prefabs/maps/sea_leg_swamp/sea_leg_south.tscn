@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://csetgkqaalapc"]
+[gd_scene load_steps=88 format=4 uid="uid://csetgkqaalapc"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5qcr2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_o5f5u"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_12gis"]
 [ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard_1.tres" id="4_cd2vy"]
 [ext_resource type="Resource" uid="uid://bovav4mx2vts6" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_mem_shard.tres" id="4_x6rh6"]
+[ext_resource type="Resource" uid="uid://gqh3lxvsrx88" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_loaf.tres" id="7_ke1x7"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="9_5kw30"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="10_5wear"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="11_0slln"]
@@ -20,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="16_dx7to"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="18_qcpuj"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="19_e7wn2"]
+[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="21_ayb5e"]
 
 [sub_resource type="Resource" id="Resource_3vw0t"]
 script = ExtResource("4_6xxye")
@@ -41,6 +43,15 @@ savedTextIdx = 0
 script = ExtResource("4_6xxye")
 wasPickedUp = false
 speaker = "@"
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_qt48y"]
+script = ExtResource("4_6xxye")
+item = ExtResource("21_ayb5e")
+wasPickedUp = false
+speaker = "@"
+dialogueEntry = ExtResource("7_ke1x7")
 savedItemIdx = 0
 savedTextIdx = 0
 
@@ -233,13 +244,42 @@ spawnerId = "sea_leg_south_4"
 disabled = false
 spawnedLastEncounter = false
 
+[sub_resource type="Resource" id="Resource_nvkt6"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("12_oenmv")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_xn5rq"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("16_dx7to")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_02bvk"]
+script = ExtResource("13_m7ce4")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_1cy57"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("18_qcpuj")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_1hwcn"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("19_e7wn2")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_kjvsw"]
+script = ExtResource("13_m7ce4")
+weight = 0.3
+
 [sub_resource type="Resource" id="Resource_hgcb8"]
 script = ExtResource("11_oyso1")
 combatantsMinLevel = 9
 combatantsMaxLevel = 11
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("13_m7ce4")]([])
-combatant3Options = Array[ExtResource("13_m7ce4")]([])
+combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_nvkt6"), SubResource("Resource_xn5rq"), SubResource("Resource_02bvk")])
+combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_1cy57"), SubResource("Resource_1hwcn"), SubResource("Resource_kjvsw")])
+combatant1 = ExtResource("12_oenmv")
 specialRules = 0
 customWinText = ""
 
@@ -252,13 +292,42 @@ spawnerId = "sea_leg_south_5"
 disabled = false
 spawnedLastEncounter = false
 
+[sub_resource type="Resource" id="Resource_fvx5m"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("11_0slln")
+weight = 0.55
+
+[sub_resource type="Resource" id="Resource_qvo50"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("19_e7wn2")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_w6uvj"]
+script = ExtResource("13_m7ce4")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_mgrkm"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("11_0slln")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_m3llo"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("12_oenmv")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_y2dc5"]
+script = ExtResource("13_m7ce4")
+weight = 0.3
+
 [sub_resource type="Resource" id="Resource_n511s"]
 script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 11
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("13_m7ce4")]([])
-combatant3Options = Array[ExtResource("13_m7ce4")]([])
+combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_fvx5m"), SubResource("Resource_qvo50"), SubResource("Resource_w6uvj")])
+combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_mgrkm"), SubResource("Resource_m3llo"), SubResource("Resource_y2dc5")])
+combatant1 = ExtResource("14_juy6k")
 specialRules = 0
 customWinText = ""
 
@@ -271,13 +340,42 @@ spawnerId = "sea_leg_south_6"
 disabled = false
 spawnedLastEncounter = false
 
+[sub_resource type="Resource" id="Resource_5cp5n"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("18_qcpuj")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_aqwx1"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("11_0slln")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_d06ia"]
+script = ExtResource("13_m7ce4")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_s8qp4"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("18_qcpuj")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_41acy"]
+script = ExtResource("13_m7ce4")
+combatant = ExtResource("16_dx7to")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_j8ixp"]
+script = ExtResource("13_m7ce4")
+weight = 0.3
+
 [sub_resource type="Resource" id="Resource_ci5kh"]
 script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 11
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("13_m7ce4")]([])
-combatant3Options = Array[ExtResource("13_m7ce4")]([])
+combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_5cp5n"), SubResource("Resource_aqwx1"), SubResource("Resource_d06ia")])
+combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_s8qp4"), SubResource("Resource_41acy"), SubResource("Resource_j8ixp")])
+combatant1 = ExtResource("12_oenmv")
 specialRules = 0
 customWinText = ""
 
@@ -329,14 +427,22 @@ tile_set = ExtResource("2_o5f5u")
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
 position = Vector2(-248, 496)
 pickedUpItem = SubResource("Resource_3vw0t")
+saveName = "sea_leg_s_mem_shard"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
 position = Vector2(-144, 376)
 pickedUpItem = SubResource("Resource_5b4ea")
+saveName = "sea_leg_s_lake_item"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
 position = Vector2(-524, -267)
 pickedUpItem = SubResource("Resource_43d07")
+saveName = "sea_leg_s_offering"
+
+[node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
+position = Vector2(51, 115)
+pickedUpItem = SubResource("Resource_qt48y")
+saveName = "sea_leg_s_loaf"
 
 [node name="LeavenportWarpZone" parent="." instance=ExtResource("3_j3j2u")]
 position = Vector2(0, -448)
