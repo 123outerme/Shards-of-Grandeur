@@ -339,7 +339,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_y5m7x"]
+[sub_resource type="Resource" id="Resource_qhu2o"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 spriteState = "default"
@@ -375,6 +375,7 @@ tile_set = ExtResource("2_wvq5a")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_wvq5a")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -567,7 +568,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_y5m7x")
+data = SubResource("Resource_qhu2o")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

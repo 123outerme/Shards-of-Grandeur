@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://ij767am021wb" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/phouse_bookcase.tres" id="14_l80ng"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="19_w4rjf"]
 
-[sub_resource type="Resource" id="Resource_pedw4"]
+[sub_resource type="Resource" id="Resource_ctykb"]
 script = ExtResource("4_xksqv")
 saveName = "npc"
 spriteState = "default"
@@ -121,6 +121,7 @@ tile_set = ExtResource("2_igmcl")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_igmcl")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -147,7 +148,7 @@ tile_set = ExtResource("2_igmcl")
 [node name="InvisibleBed" parent="TilemapRoot" instance=ExtResource("3_u6vbk")]
 position = Vector2(72, -103)
 displayName = "@"
-data = SubResource("Resource_pedw4")
+data = SubResource("Resource_ctykb")
 dialogueEntries = Array[ExtResource("5_5eepf")]([SubResource("Resource_d5x3t")])
 
 [node name="NPCSprite" parent="TilemapRoot/InvisibleBed" index="0"]

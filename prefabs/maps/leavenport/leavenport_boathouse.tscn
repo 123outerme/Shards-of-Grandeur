@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://danfrkuhowl8k" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper1.tres" id="5_fdnmb"]
 [ext_resource type="SpriteFrames" uid="uid://vjnpidcqa4jj" path="res://graphics/animations/a_skipper.tres" id="5_hu66c"]
 
-[sub_resource type="Resource" id="Resource_l761e"]
+[sub_resource type="Resource" id="Resource_jjbue"]
 script = ExtResource("4_jjv6j")
 saveName = "npc"
 spriteState = "default"
@@ -64,12 +64,14 @@ tile_set = ExtResource("2_jnb7w")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_map_data = PackedByteArray("AAABAPv/FwAFAAAAAAAEAPz/FwAFAAAAAAA=")
+tile_set = ExtResource("2_jnb7w")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
 y_sort_enabled = true
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD//wAABgABAAYAAAD+/wAABgAAAAYAAQAAAAAABgACAAYAAgD9/wAABgAAAAcAAAD8/wAABgAAAAcAAAD7/wAABgAAAAcAAAABAAAABgACAAcAAAACAAAABgACAAcAAAADAAAABgACAAcAAAAEAAAABgACAAcAAAAFAAAABgACAAcAAQD6/wAABgAAAAcAAQD6////BgADAAYAAAD5////BgACAAcAAQD5//7/BgADAAYAAAD5//3/BgADAAYAAAD5//z/BgADAAYAAAD5//v/BgAGAAYAAAD5//r/BgADAAYAAAD5//n/BgAFAAcAAAD6//j/BgAFAAcAAAD6//n/BgADAAgAAAD7//j/BgAAAAcAAAD8//j/BgAAAAcAAAD9//j/BgAAAAcAAAD+//j/BgAAAAYAAAD///j/BgAAAAcAAAAAAPj/BgAAAAcAAAABAPj/BgACAAYAAAACAPj/BgACAAcAAAADAPj/BgAAAAcAAAAEAPj/BgAAAAcAAAAFAPj/BgAEAAcAAAAGAPn/BgAEAAcAAAAFAPn/BgAEAAgAAAAGAPr/BgADAAcAAAAGAPv/BgADAAcAAAAGAPz/BgADAAcAAAAGAP3/BgAGAAcAAAAGAP7/BgADAAcAAAAGAP//BgAAAAcAAQAFAP//BgADAAcAAAADAPn/FwAAAAEAAAAEAPn/FwABAAEAAAD7//3/CgABAAEAAAD8//3/CgABAAEAAAD9//3/CgABAAEAAAD6//3/CgAAAAEAAAD+//3/CgACAAEAAAD7//n/CgAEAAAAAAD8//n/CgAAAAAAAAD9//n/CgABAAAAAAD8//z/CwAAAAEAABD+//n/CwABAAEAAAAEAP//FwAAAAAAAAD7////FwAAAAAAAAABAPv/FwAFAAAAAAAEAPz/FwAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wAABgABAAYAAAD+/wAABgAAAAYAAQAAAAAABgACAAYAAgD9/wAABgAAAAcAAAD8/wAABgAAAAcAAAD7/wAABgAAAAcAAAABAAAABgACAAcAAAACAAAABgACAAcAAAADAAAABgACAAcAAAAEAAAABgACAAcAAAAFAAAABgACAAcAAQD6/wAABgAAAAcAAQD6////BgADAAYAAAD5////BgACAAcAAQD5//7/BgADAAYAAAD5//3/BgADAAYAAAD5//z/BgADAAYAAAD5//v/BgAGAAYAAAD5//r/BgADAAYAAAD5//n/BgAFAAcAAAD6//j/BgAFAAcAAAD6//n/BgADAAgAAAD7//j/BgAAAAcAAAD8//j/BgAAAAcAAAD9//j/BgAAAAcAAAD+//j/BgAAAAYAAAD///j/BgAAAAcAAAAAAPj/BgAAAAcAAAABAPj/BgACAAYAAAACAPj/BgACAAcAAAADAPj/BgAAAAcAAAAEAPj/BgAAAAcAAAAFAPj/BgAEAAcAAAAGAPn/BgAEAAcAAAAFAPn/BgAEAAgAAAAGAPr/BgADAAcAAAAGAPv/BgADAAcAAAAGAPz/BgADAAcAAAAGAP3/BgAGAAcAAAAGAP7/BgADAAcAAAAGAP//BgAAAAcAAQAFAP//BgADAAcAAAADAPn/FwAAAAEAAAAEAPn/FwABAAEAAAD7//3/CgABAAEAAAD8//3/CgABAAEAAAD9//3/CgABAAEAAAD6//3/CgAAAAEAAAD+//3/CgACAAEAAAD7//n/CgAEAAAAAAD8//n/CgAAAAAAAAD9//n/CgABAAAAAAD8//z/CwAAAAEAABD+//n/CwABAAEAAAAEAP//FwAAAAAAAAD7////FwAAAAAAAAA=")
 tile_set = ExtResource("2_jnb7w")
 
 [node name="Foreground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -92,7 +94,7 @@ tile_set = ExtResource("2_jnb7w")
 position = Vector2(-42, -50)
 displayName = "Skipper"
 saveName = "leavenport_skipper"
-data = SubResource("Resource_l761e")
+data = SubResource("Resource_jjbue")
 dialogueEntries = Array[ExtResource("4_hcru3")]([ExtResource("5_fdnmb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Skipper" index="0"]

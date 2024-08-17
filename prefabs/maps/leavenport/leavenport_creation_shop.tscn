@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://c48ja8pjniutk" path="res://gamedata/items/weapon/tangleroot_band.tres" id="12_ffnse"]
 [ext_resource type="SpriteFrames" uid="uid://c2ysxjb3buth2" path="res://graphics/animations/a_man5.tres" id="14_pfjcx"]
 
-[sub_resource type="Resource" id="Resource_vbgai"]
+[sub_resource type="Resource" id="Resource_nu5w0"]
 script = ExtResource("4_3yd42")
 saveName = "npc"
 spriteState = "default"
@@ -109,6 +109,7 @@ tile_set = ExtResource("2_arj26")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_arj26")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -138,7 +139,7 @@ position = Vector2(14, -47)
 displayName = "Shopkeeper"
 saveName = "leavenport_creation_shopkeeper"
 loadFlipH = true
-data = SubResource("Resource_vbgai")
+data = SubResource("Resource_nu5w0")
 dialogueEntries = Array[ExtResource("5_vtt8k")]([ExtResource("5_btdvd")])
 hasShop = true
 npcShop = SubResource("Resource_t4m6p")

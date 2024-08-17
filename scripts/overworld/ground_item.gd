@@ -24,6 +24,7 @@ func _ready():
 	if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null:
 		printerr('GroundItem ERR: PickedUpItem not defined properly')
 		queue_free()
+		return
 	
 	_story_reqs_updated()
 	if PlayerResources.playerInfo.has_picked_up(saveName):

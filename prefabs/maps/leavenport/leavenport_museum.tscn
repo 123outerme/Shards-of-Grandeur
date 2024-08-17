@@ -18,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://61srcxkpdnld" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/boat_sculpture.tres" id="14_pea1r"]
 [ext_resource type="Resource" uid="uid://bmrmnggtkpau3" path="res://gamedata/dialogue/interactables/flavor_objs/leavenport/statue.tres" id="15_0p2up"]
 
-[sub_resource type="Resource" id="Resource_5ug7c"]
+[sub_resource type="Resource" id="Resource_qaegc"]
 script = ExtResource("4_2l8si")
 saveName = "npc"
 spriteState = "default"
@@ -129,6 +129,7 @@ tile_set = ExtResource("2_xcvh2")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_xcvh2")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -157,7 +158,7 @@ tile_set = ExtResource("2_xcvh2")
 position = Vector2(-40, -31)
 displayName = "Curator"
 saveName = "leavenport_museum_curator"
-data = SubResource("Resource_5ug7c")
+data = SubResource("Resource_qaegc")
 dialogueEntries = Array[ExtResource("5_xxms1")]([ExtResource("5_3lx3c")])
 
 [node name="NPCSprite" parent="TilemapRoot/Curator" index="0"]

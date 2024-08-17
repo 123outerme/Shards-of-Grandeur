@@ -149,6 +149,7 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 			continue # skip null tweens
 		var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
 		if node == null:
+			print('Actor ', actorTween.actorTreePath, ' (player: ', actorTween.isPlayer, ') was found null. Attempted property/value tween: ', actorTween.propertyName, ' // ', actorTween.value)
 			continue # skip null actors
 		if not isSkipping:
 			var tween = create_tween().set_ease(actorTween.easeType).set_trans(actorTween.transitionType)
@@ -156,6 +157,7 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 			if actorTween.propertyName == 'position' and node.has_method('face_horiz'):
 				node.call('face_horiz', actorTween.value.x - node.position.x)
 			tweens.append(tween)
+			#print('actor ', actorTween.actorTreePath, ' animates ', actorTween.propertyName, ' to ', actorTween.value, ' (current is ', node[actorTween.propertyName], ')')
 		else:
 			node.set(actorTween.propertyName, actorTween.value)
 	for actorFaceTarget: ActorFaceTarget in frame.actorFaceTargets:
@@ -164,7 +166,7 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 			continue
 		var actorNode = fetch_actor_node(actorFaceTarget.actorTreePath, actorFaceTarget.isPlayer)
 		if actorNode == null or not actorNode.has_method('face_horiz'):
-			printerr('actor node ', actorFaceTarget.actorTreePath, 'was null')
+			printerr('actor node ', actorFaceTarget.actorTreePath, ' was null')
 			continue
 		var targetPos: Vector2 = Vector2.ZERO
 		if actorFaceTarget.targetTreePath != '' or actorFaceTarget.targetIsPlayer:
@@ -172,7 +174,7 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 			if targetNode != null:
 				targetPos = targetNode.global_position
 			else:
-				printerr('face target node ', actorFaceTarget.targetTreePath, 'was null')
+				printerr('face target node ', actorFaceTarget.targetTreePath, ' was null')
 				continue
 		else:
 			targetPos = actorFaceTarget.targetPosition

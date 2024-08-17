@@ -427,6 +427,8 @@ func face_horiz(xDirection: float):
 		flip_h = facesRight
 	if xDirection > 0:
 		flip_h = not facesRight
+	if walkBackwards:
+		flip_h = not flip_h
 
 func _on_npc_sprite_animation_finished():
 	play_animation('stand')

@@ -1,10 +1,12 @@
-[gd_scene load_steps=70 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=72 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_4cfte"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="2_sffs8"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/total_defeat_win_con.gd" id="3_3k7vy"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_y7nw7"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="4_cmvjq"]
 [ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="5_0er0p"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
@@ -52,17 +54,17 @@ script = ExtResource("3_3k7vy")
 [sub_resource type="Resource" id="Resource_gsvj1"]
 script = ExtResource("2_sffs8")
 combatant1Level = 1
-combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant1Moves = Array[ExtResource("2_4cfte")]([])
 combatant2Level = 1
-combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Moves = Array[ExtResource("2_4cfte")]([])
 combatant3Level = 1
-combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Moves = Array[ExtResource("2_4cfte")]([])
 autoAllyLevel = 1
-autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyMoves = Array[ExtResource("2_4cfte")]([])
 specialBattleId = ""
 bossBattle = false
 canEscape = true
-rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
+rewards = Array[ExtResource("3_y7nw7")]([])
 useStaticRewards = false
 specialRules = 0
 winCon = SubResource("Resource_8wt0b")
@@ -98,7 +100,7 @@ elementMultipliers = Array[ExtResource("8_dralb")]([SubResource("Resource_nhsw0"
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
 script = ExtResource("6_ohjbr")
-pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
+pool = Array[ExtResource("2_4cfte")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
 preferredMove1Role = 0
 preferredMove2Role = 0
 preferredMove3Role = 0
@@ -119,7 +121,7 @@ speed = 1
 statPts = 0
 statGrowth = ExtResource("8_thl3q")
 equippedArmor = ExtResource("10_dx6md")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
+moves = Array[ExtResource("2_4cfte")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
 movepool = SubResource("Resource_5jl4o")
 
 [sub_resource type="Resource" id="Resource_rjdbl"]
@@ -174,7 +176,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("19_fdfdx")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("2_4cfte")]([])
 movepool = ExtResource("18_duw15")
 
 [sub_resource type="Resource" id="Resource_lcaln"]
@@ -231,7 +233,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("16_1n64h")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("2_4cfte")]([])
 movepool = ExtResource("15_qn3hw")
 
 [sub_resource type="Resource" id="Resource_g8u4s"]
@@ -288,7 +290,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("15_ahtpg")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("2_4cfte")]([])
 movepool = ExtResource("14_tebfq")
 
 [sub_resource type="Resource" id="Resource_g23lp"]
@@ -332,7 +334,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("27_lam2n")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("2_4cfte")]([])
 movepool = ExtResource("26_nv623")
 
 [sub_resource type="Resource" id="Resource_fyhex"]

@@ -14,7 +14,7 @@
 [ext_resource type="Resource" uid="uid://c4cibo3c6oybp" path="res://gamedata/dialogue/leavenport/restaurant_lady/lp_restaurant_lady1.tres" id="9_3ft4f"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
 
-[sub_resource type="Resource" id="Resource_5e2x1"]
+[sub_resource type="Resource" id="Resource_gekea"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -34,7 +34,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_uoskt"]
+[sub_resource type="Resource" id="Resource_ut3hk"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -54,7 +54,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_wdts2"]
+[sub_resource type="Resource" id="Resource_ycjts"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -106,6 +106,7 @@ tile_set = ExtResource("2_wspdn")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_wspdn")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -134,7 +135,7 @@ tile_set = ExtResource("2_wspdn")
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_5e2x1")
+data = SubResource("Resource_gekea")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("5_qg71i")])
 hasShop = true
 npcShop = ExtResource("6_fvkvi")
@@ -156,7 +157,7 @@ visible = false
 position = Vector2(20, -79)
 displayName = "Man"
 loadFlipH = true
-data = SubResource("Resource_uoskt")
+data = SubResource("Resource_ut3hk")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("8_ncx5c")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC" index="0"]
@@ -175,7 +176,7 @@ visible = false
 [node name="NPC2" parent="TilemapRoot" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
 displayName = "Lady"
-data = SubResource("Resource_wdts2")
+data = SubResource("Resource_ycjts")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("9_3ft4f")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC2" index="0"]

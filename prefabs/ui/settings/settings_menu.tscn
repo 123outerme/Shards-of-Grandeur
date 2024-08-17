@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cmh0663np3wdv" path="res://prefabs/ui/settings/settings_audio_section.tscn" id="7_51o1i"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_ov783"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_g6iqb"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_s5dxi"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_88fe6"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_matmh"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_tlxe8"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_imric"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -59,11 +59,11 @@ offset_right = 150.0
 offset_bottom = 114.0
 grow_horizontal = 2
 theme = ExtResource("3_321yr")
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
 theme_override_font_sizes/normal_font_size = 28
 theme_override_font_sizes/bold_font_size = 28
-theme_override_font_sizes/italics_font_size = 28
-theme_override_font_sizes/bold_italics_font_size = 28
-theme_override_font_sizes/mono_font_size = 28
 bbcode_enabled = true
 text = "[center]Controls[/center]"
 
@@ -88,20 +88,20 @@ text = "Back"
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_g6iqb")
+button_group = SubResource("ButtonGroup_s5dxi")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_88fe6")
+button_group = SubResource("ButtonGroup_matmh")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_tlxe8")
+button_group = SubResource("ButtonGroup_imric")
 text = "Audio"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]

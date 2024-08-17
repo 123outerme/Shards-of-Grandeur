@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://c2obob7w8r46f" path="res://gamedata/shops/leavenport/leavenport_inn_store.tres" id="5_nc1s1"]
 [ext_resource type="SpriteFrames" uid="uid://dwey0atg51hb0" path="res://graphics/animations/a_innkeeper2.tres" id="7_ahn2y"]
 
-[sub_resource type="Resource" id="Resource_yqarq"]
+[sub_resource type="Resource" id="Resource_cnxu3"]
 script = ExtResource("4_3m61i")
 saveName = "npc"
 spriteState = "default"
@@ -70,6 +70,7 @@ tile_set = ExtResource("2_bqt5e")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
+tile_set = ExtResource("2_bqt5e")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -10
@@ -99,7 +100,7 @@ position = Vector2(29, -78)
 displayName = "Innkeeper"
 saveName = "leavenport_innkeeper"
 loadFlipH = true
-data = SubResource("Resource_yqarq")
+data = SubResource("Resource_cnxu3")
 dialogueEntries = Array[ExtResource("5_gim7h")]([ExtResource("5_bh1km")])
 hasShop = true
 npcShop = ExtResource("5_nc1s1")
