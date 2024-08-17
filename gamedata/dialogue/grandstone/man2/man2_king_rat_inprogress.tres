@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c4mssqwc5dpqc"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c4mssqwc5dpqc"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0gfg1"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_2rh15"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_lx1bu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_swsmn"]
 
 [sub_resource type="Resource" id="Resource_kwp7n"]
 script = ExtResource("1_0gfg1")
 lines = Array[String](["I would go visit the King Rat, before he wages war against us! The Giant Rats say he lives deep within Hilltop Forest."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_swsmn")]([])
 
 [sub_resource type="Resource" id="Resource_0agwj"]
 script = ExtResource("2_lx1bu")

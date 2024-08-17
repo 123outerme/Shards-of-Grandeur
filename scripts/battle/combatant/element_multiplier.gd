@@ -10,4 +10,3 @@ func _init(
 ):
 	element = i_element
 	multiplier = i_multiplier
-

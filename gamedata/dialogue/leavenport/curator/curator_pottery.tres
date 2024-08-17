@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b0scnljcayc05"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b0scnljcayc05"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_0pbig"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_iahet"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_jhl0q"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_wheos"]
 
 [sub_resource type="Resource" id="Resource_j2x7n"]
 script = ExtResource("1_jhl0q")
 choiceBtn = "Fascinating..."
 returnsToParentId = "curator1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_wheos")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

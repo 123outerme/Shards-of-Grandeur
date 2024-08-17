@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=7 format=3 uid="uid://co8xtwrinpjke"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=8 format=3 uid="uid://co8xtwrinpjke"]
 
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="1_1dnon"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="1_j7mrf"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_qwbik"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="1_vt14m"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="2_n5k2b"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_xr40k"]
@@ -16,13 +17,13 @@ fullyAttuneCombatantSaveName = ""
 [resource]
 script = ExtResource("1_j7mrf")
 combatant1Level = 1
-combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant1Moves = Array[ExtResource("1_qwbik")]([])
 combatant2Level = 1
-combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Moves = Array[ExtResource("1_qwbik")]([])
 combatant3Level = 1
-combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Moves = Array[ExtResource("1_qwbik")]([])
 autoAllyLevel = 1
-autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyMoves = Array[ExtResource("1_qwbik")]([])
 specialBattleId = "first_rat"
 bossBattle = false
 canEscape = false

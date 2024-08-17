@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://crqjbksl25fej"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://crqjbksl25fej"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_6yf2w"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fheir"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_kh2jp"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_6bmab"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_fwpld"]
 [ext_resource type="Resource" uid="uid://brqx2ej3flo72" path="res://gamedata/dialogue/lance/lance_apprentice_no.tres" id="3_li2gi"]
 [ext_resource type="Resource" uid="uid://dv2hjafiad5x2" path="res://gamedata/dialogue/lance/lance_apprentice_accept.tres" id="3_nbedg"]
 
@@ -11,7 +12,7 @@
 script = ExtResource("1_6yf2w")
 choiceBtn = "@."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fwpld")]([])
 repeatsItem = false
 buttonDims = Vector2(300, 40)
 turnsInQuest = ""
@@ -28,7 +29,7 @@ script = ExtResource("1_6yf2w")
 choiceBtn = "No"
 leadsTo = ExtResource("3_li2gi")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fwpld")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -39,7 +40,7 @@ script = ExtResource("1_6yf2w")
 choiceBtn = "Sure!"
 leadsTo = ExtResource("3_nbedg")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fwpld")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = ""

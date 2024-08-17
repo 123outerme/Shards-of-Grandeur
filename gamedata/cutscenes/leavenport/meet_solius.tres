@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://c3gj8c3m11yyt"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://c3gj8c3m11yyt"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="1_5yurt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_b031n"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kytaw"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_w4hne"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_4q1dy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_hlnu7"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_ms11y"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_ip3b7"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_npric"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_hruq5"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_g4s6v"]
 
 [sub_resource type="Resource" id="Resource_bi4sv"]
@@ -34,9 +37,9 @@ texts = Array[String](["Hey, @!"])
 script = ExtResource("1_kytaw")
 frameLength = 0.1
 annotation = "have Solius call to the player"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_npric")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorTweens = Array[ExtResource("6_hruq5")]([])
+actorAnims = Array[ExtResource("3_ip3b7")]([ExtResource("5_npric")])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([SubResource("Resource_bi4sv"), SubResource("Resource_gsyb8")])
 dialogues = Array[ExtResource("1_b031n")]([SubResource("Resource_kfke8")])
 endTextBoxPauses = true
@@ -51,9 +54,9 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_kytaw")
 frameLength = 0.1
 annotation = "wait for the player to close the textbox"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorTweens = Array[ExtResource("6_hruq5")]([])
+actorAnims = Array[ExtResource("3_ip3b7")]([])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([])
 dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true
@@ -77,9 +80,9 @@ transitionType = 0
 script = ExtResource("1_kytaw")
 frameLength = 1.5
 annotation = "the player walks over to Solius"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_6n7du")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("2_ms11y")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorTweens = Array[ExtResource("6_hruq5")]([SubResource("Resource_6n7du")])
+actorAnims = Array[ExtResource("3_ip3b7")]([ExtResource("2_ms11y")])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([])
 dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true
@@ -115,9 +118,9 @@ texts = Array[String](["It's me, Solius!", "...", "What, do you not remember me?
 script = ExtResource("1_kytaw")
 frameLength = 0.1
 annotation = "The player stands, face each other, Solius talks again"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_npric")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorTweens = Array[ExtResource("6_hruq5")]([])
+actorAnims = Array[ExtResource("3_ip3b7")]([ExtResource("5_npric")])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([SubResource("Resource_71hnc"), SubResource("Resource_mo7qf")])
 dialogues = Array[ExtResource("1_b031n")]([SubResource("Resource_ielkh")])
 endTextBoxPauses = true
@@ -132,9 +135,9 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_kytaw")
 frameLength = 0.1
 annotation = "Solius heals the player"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
+actorTweens = Array[ExtResource("6_hruq5")]([])
+actorAnims = Array[ExtResource("3_ip3b7")]([])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([])
 dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://do80x2jnb0txk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://do80x2jnb0txk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_85x51"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p8lp3"]
@@ -6,13 +6,14 @@
 [ext_resource type="Resource" uid="uid://bv0xdd1t2gie7" path="res://gamedata/dialogue/alessia/alessia_about_lance.tres" id="2_8mkm0"]
 [ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="2_e6tgt"]
 [ext_resource type="Resource" uid="uid://codhhy4vkequv" path="res://gamedata/dialogue/alessia/alessia_about_lance_good.tres" id="3_dhagt"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_x0fp8"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_pitiy"]
 
 [sub_resource type="Resource" id="Resource_ksx8v"]
 script = ExtResource("1_p8lp3")
 choiceBtn = "Goodbye!"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_x0fp8")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -23,7 +24,7 @@ script = ExtResource("2_e6tgt")
 opensShop = true
 choiceBtn = "Shop"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_x0fp8")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = ""
@@ -34,7 +35,7 @@ script = ExtResource("1_p8lp3")
 choiceBtn = "Lance?"
 leadsTo = ExtResource("2_8mkm0")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_x0fp8")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -45,7 +46,7 @@ script = ExtResource("1_p8lp3")
 choiceBtn = "Lance?"
 leadsTo = ExtResource("3_dhagt")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_x0fp8")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""

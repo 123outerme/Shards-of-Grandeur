@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dv2hjafiad5x2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dv2hjafiad5x2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_bfp5c"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_bm84l"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nh4dh"]
 [ext_resource type="Resource" uid="uid://2ycrrv0dbqxt" path="res://gamedata/quests/lance_apprentice_quest.tres" id="3_f3kyt"]
 
 [sub_resource type="Resource" id="Resource_vogh6"]
 script = ExtResource("1_bfp5c")
 lines = Array[String](["Great, thank you so much! I'll get right to work preparing everything I need. Come back here when you have the bark, okay?"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_nh4dh")]([])
 
 [resource]
 script = ExtResource("1_bm84l")

@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=39 format=3 uid="uid://qjr3xv1j4joj"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=42 format=3 uid="uid://qjr3xv1j4joj"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_b87y5"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_gaqvo"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_lr7yh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_ixwyl"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_doxbo"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="4_22dg1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_td412"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="5_hoy7r"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_jbt45"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="6_rbc1h"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_v4s2u"]
 
@@ -18,10 +21,10 @@ texts = Array[String](["Now that we're back in Grandstone, we should report to D
 script = ExtResource("1_b87y5")
 frameLength = 0.1
 annotation = "Start Dr. Hudson dialogue"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_jbt45")]([])
 actorAnims = Array[ExtResource("4_22dg1")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([SubResource("Resource_mvfnq")])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -89,10 +92,10 @@ transitionType = 0
 script = ExtResource("1_b87y5")
 frameLength = 4.25
 annotation = "Start walking player, spelunker, Dr. Hudson, horse cart to split in the road towards HQ building"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_qnhhe"), SubResource("Resource_24agf"), SubResource("Resource_xvtbo"), SubResource("Resource_q7hao")])
+actorTweens = Array[ExtResource("5_jbt45")]([SubResource("Resource_qnhhe"), SubResource("Resource_24agf"), SubResource("Resource_xvtbo"), SubResource("Resource_q7hao")])
 actorAnims = Array[ExtResource("4_22dg1")]([ExtResource("3_doxbo"), SubResource("Resource_1vxmu"), SubResource("Resource_pqj6t"), SubResource("Resource_1oktx")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -142,10 +145,10 @@ transitionType = 0
 script = ExtResource("1_b87y5")
 frameLength = 1.5
 annotation = "Walk all actors north towards HQ building"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_74e1p"), SubResource("Resource_d6cqu"), SubResource("Resource_j05g6"), SubResource("Resource_t44vs")])
+actorTweens = Array[ExtResource("5_jbt45")]([SubResource("Resource_74e1p"), SubResource("Resource_d6cqu"), SubResource("Resource_j05g6"), SubResource("Resource_t44vs")])
 actorAnims = Array[ExtResource("4_22dg1")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -195,10 +198,10 @@ transitionType = 0
 script = ExtResource("1_b87y5")
 frameLength = 1.5
 annotation = "Angle actors to not run into each other and still reach their destinations"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_43fcf"), SubResource("Resource_kq0uo"), SubResource("Resource_r27kh"), SubResource("Resource_r3427")])
+actorTweens = Array[ExtResource("5_jbt45")]([SubResource("Resource_43fcf"), SubResource("Resource_kq0uo"), SubResource("Resource_r27kh"), SubResource("Resource_r3427")])
 actorAnims = Array[ExtResource("4_22dg1")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -248,10 +251,10 @@ transitionType = 0
 script = ExtResource("1_b87y5")
 frameLength = 3.0
 annotation = "Actors move towards final positions near HQ building"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_poop7"), SubResource("Resource_fgl7q"), SubResource("Resource_ievku"), SubResource("Resource_moasw")])
+actorTweens = Array[ExtResource("5_jbt45")]([SubResource("Resource_poop7"), SubResource("Resource_fgl7q"), SubResource("Resource_ievku"), SubResource("Resource_moasw")])
 actorAnims = Array[ExtResource("4_22dg1")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -283,10 +286,10 @@ animation = "stand"
 script = ExtResource("1_b87y5")
 frameLength = 0.1
 annotation = "Make actors stand"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_jbt45")]([])
 actorAnims = Array[ExtResource("4_22dg1")]([ExtResource("6_rbc1h"), SubResource("Resource_q3yxp"), SubResource("Resource_xv35f"), SubResource("Resource_31u4w")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_ixwyl")]([])
+actorFaceTargets = Array[ExtResource("4_td412")]([])
 dialogues = Array[ExtResource("1_lr7yh")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

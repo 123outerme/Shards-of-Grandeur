@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dnp7vctcv3hxv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dnp7vctcv3hxv"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_g8bp4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_gmtbo"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_rvflg"]
 
 [sub_resource type="Resource" id="Resource_kfkjw"]
 script = ExtResource("1_g8bp4")
 lines = Array[String](["Neigh?"])
 animation = ""
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_rvflg")]([])
 
 [resource]
 script = ExtResource("2_gmtbo")

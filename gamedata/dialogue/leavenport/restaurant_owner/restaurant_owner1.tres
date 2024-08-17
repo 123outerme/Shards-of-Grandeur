@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://cavschyk5vxg2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://cavschyk5vxg2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3uxcm"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_5tgvs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_8ukjo"]
 [ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="2_5n0ms"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_bja2j"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_j7i12"]
 [ext_resource type="Resource" uid="uid://bf050uvxxgcqh" path="res://gamedata/dialogue/leavenport/restaurant_owner/fishermans_usual.tres" id="3_piwbi"]
 
@@ -11,7 +12,7 @@
 script = ExtResource("1_5tgvs")
 choiceBtn = "No Thanks!"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_bja2j")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -22,7 +23,7 @@ script = ExtResource("2_5n0ms")
 opensShop = true
 choiceBtn = "I'll Have..."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_bja2j")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -53,7 +54,7 @@ choiceBtn = "Fisherman's Usual?"
 storyRequirements = SubResource("Resource_dkl72")
 leadsTo = ExtResource("3_piwbi")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_bja2j")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

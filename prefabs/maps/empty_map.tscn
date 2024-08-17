@@ -24,27 +24,37 @@ agent_radius = 23.0
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_lrybw")
 
-[node name="TileMap" type="TileMap" parent="." groups=["NavigationGroup"]]
-y_sort_enabled = true
+[node name="TilemapRoot" type="Node2D" parent="."]
+
+[node name="Background" type="TileMapLayer" parent="TilemapRoot"]
+z_index = -20
+use_parent_material = true
 tile_set = ExtResource("2_7egks")
-format = 2
-layer_0/name = "Midground"
-layer_0/y_sort_enabled = true
-layer_0/z_index = -10
-layer_1/name = "Background"
-layer_1/z_index = -20
-layer_1/tile_data = PackedInt32Array()
-layer_2/name = "Paths"
-layer_2/z_index = -19
-layer_2/tile_data = PackedInt32Array()
-layer_3/name = "Foreground"
-layer_3/tile_data = PackedInt32Array()
-layer_4/name = "Sky"
-layer_4/z_index = 1
-layer_4/tile_data = PackedInt32Array()
-layer_5/name = "Invisible"
-layer_5/modulate = Color(1, 1, 1, 0)
-layer_5/tile_data = PackedInt32Array()
+
+[node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+z_index = -19
+use_parent_material = true
+tile_set = ExtResource("2_7egks")
+
+[node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+z_index = -10
+y_sort_enabled = true
+use_parent_material = true
+tile_set = ExtResource("2_7egks")
+
+[node name="Foreground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+use_parent_material = true
+tile_set = ExtResource("2_7egks")
+
+[node name="Sky" type="TileMapLayer" parent="TilemapRoot"]
+z_index = 1
+use_parent_material = true
+tile_set = ExtResource("2_7egks")
+
+[node name="Invisible" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+modulate = Color(1, 1, 1, 0)
+use_parent_material = true
+tile_set = ExtResource("2_7egks")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

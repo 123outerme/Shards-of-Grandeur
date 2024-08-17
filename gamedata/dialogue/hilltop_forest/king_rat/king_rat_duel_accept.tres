@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cj2fo62xdb7e7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cj2fo62xdb7e7"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6kubs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_x3pkd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0pydf"]
 [ext_resource type="Resource" uid="uid://dcbpdlrd4i5cj" path="res://gamedata/static_encounters/king_rat_encounter.tres" id="2_e6s22"]
 
 [sub_resource type="Resource" id="Resource_siwe4"]
 script = ExtResource("1_6kubs")
 lines = Array[String](["Then face me in combat!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_0pydf")]([])
 
 [resource]
 script = ExtResource("1_x3pkd")

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bxkaxgf5v3g62"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bxkaxgf5v3g62"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_2vnkr"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="2_dhkfo"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_kvnu8"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_fbvp4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_w8dn5"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_om4xe"]
 
@@ -11,7 +12,7 @@ script = ExtResource("1_2vnkr")
 choiceBtn = "It's Gone!"
 leadsTo = ExtResource("2_dhkfo")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_fbvp4")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""

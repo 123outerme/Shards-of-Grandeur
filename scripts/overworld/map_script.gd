@@ -115,14 +115,15 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1), # shift ruined_castle.png, 2nd house right roof up 1
 		]
 		
-		var tilemap: TileMap = get_node("TileMap")
-		
-		var layerNameToIndexDict: Dictionary = {}
-		
-		for layer: int in range(tilemap.get_layers_count()):
-			layerNameToIndexDict[tilemap.get_layer_name(layer)] = layer
-		
 		for idx in len(bottomTiles):
-			for tilePos in tilemap.get_used_cells_by_id(layerNameToIndexDict[bottomTiles[idx].layer], bottomTiles[idx].atlasId, bottomTiles[idx].atlasPos, bottomTiles[idx].altTileId):
-				var topTilePos: Vector2i = Vector2i(tilePos.x + deltas[idx].x, tilePos.y + deltas[idx].y)
-				tilemap.set_cell(layerNameToIndexDict[topTiles[idx].layer], topTilePos, topTiles[idx].atlasId, topTiles[idx].atlasPos, topTiles[idx].altTileId)
+			var bottomTileLayer: TileMapLayer = get_node_or_null('TilemapRoot/' + bottomTiles[idx].layer)
+			if bottomTileLayer != null:
+				for tilePos in bottomTileLayer.get_used_cells_by_id(bottomTiles[idx].atlasId, bottomTiles[idx].atlasPos, bottomTiles[idx].altTileId):
+					var topTilePos: Vector2i = Vector2i(tilePos.x + deltas[idx].x, tilePos.y + deltas[idx].y)
+					var topTileLayer: TileMapLayer = get_node_or_null('TilemapRoot/' + topTiles[idx].layer)
+					if topTileLayer != null:
+						topTileLayer.set_cell(topTilePos, topTiles[idx].atlasId, topTiles[idx].atlasPos, topTiles[idx].altTileId)
+					else:
+						printerr('Top tile layer ', topTiles[idx].layer, ' was not found (idx ', idx, ')!')
+			else:
+				printerr('Bottom tile layer ', bottomTiles[idx].layer, ' was not found (idx ', idx, ')!')

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://ds07os34cyne0"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://ds07os34cyne0"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_4nw67"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_28sgj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4gj5l"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_7p6eb"]
 
 [sub_resource type="Resource" id="Resource_dabgo"]
 script = ExtResource("1_28sgj")
 lines = Array[String](["Begone, biped! This is the domain of the King Rat. You are not welcome here!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_4gj5l")]([])
 
 [sub_resource type="Resource" id="Resource_8r7b2"]
 script = ExtResource("3_7p6eb")

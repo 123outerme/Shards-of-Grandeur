@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dakn7l24oxwu2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=11 format=3 uid="uid://dakn7l24oxwu2"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ooolb"]
 [ext_resource type="Resource" uid="uid://dnp7vctcv3hxv" path="res://gamedata/dialogue/horsecart/horsecart_3.tres" id="2_2e7ve"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_iv6q3"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_kpw43"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_x64nr"]
 [ext_resource type="Resource" uid="uid://dlkhn1y7yjjbx" path="res://gamedata/dialogue/horsecart/horsecart_quest_turnin.tres" id="4_3icqe"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_0blq3"]
 
@@ -25,8 +26,8 @@ turnInNames = Array[String](["horse_cart_standstill", "horse_cart_hilltop_cave",
 displayObjName = "Haybale"
 displayTurnInName = "Horse"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_3icqe")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_2e7ve")])
+turnInDialogue = Array[ExtResource("3_x64nr")]([ExtResource("4_3icqe")])
+inProgressDialogue = Array[ExtResource("3_x64nr")]([ExtResource("2_2e7ve")])
 
 [sub_resource type="Resource" id="Resource_4uih2"]
 script = ExtResource("6_0blq3")

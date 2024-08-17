@@ -21,7 +21,7 @@ var battleLoaded: bool = false
 var battleEnded: bool = false
 
 @onready var tilemapParent: Node2D = get_node_or_null('TileMapParent')
-var tilemap: TileMap = null
+var tilemap: Node2D = null
 var battleMapPath: String = ''
 
 @onready var combatantGroup: Node2D = get_node_or_null('CombatantGroup')

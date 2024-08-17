@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://dtyxffrmithfp"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://dtyxffrmithfp"]
 
 [ext_resource type="Resource" uid="uid://cfjatc2rydxw" path="res://gamedata/moves/druidic_pulse/sprite_druidic_pulse.tres" id="1_h2svk"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_l32yl"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_w25yr"]
 
 [resource]
 script = ExtResource("1_w25yr")
 combatantAnimation = "attack_affinity"
 makesContact = false
-chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_h2svk")])
-surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_h2svk")])
+chargeMoveSprites = Array[ExtResource("1_l32yl")]([ExtResource("1_h2svk")])
+surgeMoveSprites = Array[ExtResource("1_l32yl")]([ExtResource("1_h2svk")])

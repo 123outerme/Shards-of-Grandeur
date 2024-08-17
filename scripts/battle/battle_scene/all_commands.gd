@@ -70,4 +70,3 @@ func _on_escape_button_pressed():
 
 func _on_back_to_player_button_pressed():
 	battleUI.return_to_player_command()
-

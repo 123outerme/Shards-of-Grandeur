@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://c8tcdexcmue3k"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://c8tcdexcmue3k"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_e783d"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_0skq2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_pvnv0"]
 
 [sub_resource type="Resource" id="Resource_7bdex"]
 script = ExtResource("1_e783d")
 lines = Array[String](["You are here because of my messengers, yes? Not many bipeds make their way into the domain of the King Rat willingly. Bring me five Rat Shards, and we will discuss my terms."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_pvnv0")]([])
 
 [resource]
 script = ExtResource("2_0skq2")

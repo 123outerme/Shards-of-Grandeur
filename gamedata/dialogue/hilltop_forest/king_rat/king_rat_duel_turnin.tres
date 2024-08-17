@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://ccrbr8doigjee"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://ccrbr8doigjee"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_c5hrw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_eg0hv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_f8rqk"]
 [ext_resource type="Resource" uid="uid://d4i1gxw8smm2q" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel_turnin_holdon.tres" id="1_ij0ba"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_wdpbs"]
 
 [sub_resource type="Resource" id="Resource_s8yns"]
 script = ExtResource("1_eg0hv")
 choiceBtn = "Wait..."
 leadsTo = ExtResource("1_ij0ba")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_wdpbs")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -20,7 +21,7 @@ isDeclineChoice = true
 script = ExtResource("1_eg0hv")
 choiceBtn = "Ok."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_wdpbs")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = "Voice of the Rats#A Monster Duel#"

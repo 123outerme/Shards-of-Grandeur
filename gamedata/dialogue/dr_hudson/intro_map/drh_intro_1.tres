@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c2evqklw38yrd"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c2evqklw38yrd"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_644xs"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a4kdf"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_d0oiq"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_3e3op"]
 
@@ -8,7 +9,7 @@
 script = ExtResource("1_644xs")
 lines = Array[String](["Once you've taken care of that Rat, we need to hurry down the road here and get to the next town."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_a4kdf")]([])
 
 [sub_resource type="Resource" id="Resource_e80yn"]
 script = ExtResource("3_3e3op")

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://bwsv5hh8mitat"]
+[gd_resource type="Resource" script_class="Armor" load_steps=6 format=3 uid="uid://bwsv5hh8mitat"]
 
 [ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_f4wn1"]
 [ext_resource type="Texture2D" uid="uid://v4k2qs5po26l" path="res://graphics/items/armor/turtle_plate.png" id="1_f48vr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="2_26fx3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_daav4"]
 
 [sub_resource type="Resource" id="Resource_lhbhf"]
 script = ExtResource("2_26fx3")
@@ -16,7 +17,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("3_daav4")]([])
 
 [resource]
 script = ExtResource("1_f4wn1")

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://coimy8duu0f1u"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://coimy8duu0f1u"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_4j71p"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_sk1m4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ngv3e"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_21a36"]
 
 [sub_resource type="Resource" id="Resource_uvsma"]
 script = ExtResource("1_sk1m4")
 lines = Array[String](["You've stopped the Rat invasion, @! You certainly are a hero. Thank you so much for taking me seriously!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_ngv3e")]([])
 
 [sub_resource type="Resource" id="Resource_sosbe"]
 script = ExtResource("3_21a36")

@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://df3cu03mvw4jw"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://df3cu03mvw4jw"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p7ajh"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_p378q"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_so6vj"]
 [ext_resource type="Resource" uid="uid://bg68kvsf0cr27" path="res://gamedata/dialogue/spelunker/spelunker_ambush_argue.tres" id="2_45yb0"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ui3vq"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_a5myt"]
 
 [sub_resource type="Resource" id="Resource_ebcte"]
 script = ExtResource("1_p7ajh")
 choiceBtn = "Right!"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_a5myt")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = ""
@@ -21,7 +22,7 @@ script = ExtResource("1_p7ajh")
 choiceBtn = "Give me better!"
 leadsTo = ExtResource("2_45yb0")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_a5myt")]([])
 repeatsItem = false
 buttonDims = Vector2(260, 40)
 turnsInQuest = ""

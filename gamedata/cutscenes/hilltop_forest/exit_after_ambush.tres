@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://ckexqmyrnv0sb"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://ckexqmyrnv0sb"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_10kwk"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ksyal"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_ufge2"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="2_8hg62"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_83uxt"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_elhrb"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="2_ssafh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_66k8b"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_8wkxy"]
 
 [sub_resource type="Resource" id="Resource_rhwb1"]
 script = ExtResource("1_ksyal")
@@ -28,10 +31,10 @@ texts = Array[String](["Before you lead us out, @, I want you to meditate on thi
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "Dr. Hudson speaks to discuss learning moves from Shards"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([SubResource("Resource_rhwb1"), SubResource("Resource_k45fe")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([SubResource("Resource_82s7e")])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -45,10 +48,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "Await Dr. Hudson to be done talking"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -62,10 +65,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "Do Shard Learn tutorial here"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -90,10 +93,10 @@ texts = Array[String](["Now that you're better equipped, let's get these Shards 
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "Dr. Hudson speaks"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([SubResource("Resource_nlgh4")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([SubResource("Resource_3fjuh")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -107,10 +110,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "The screen starts to fade out"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -124,10 +127,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_10kwk")
 frameLength = 0.75
 annotation = "Wait for the screen to be faded out"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -150,10 +153,10 @@ transitionType = 0
 script = ExtResource("1_10kwk")
 frameLength = 0.1
 annotation = "Teleport the player back to Standstill"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_hw1na")])
+actorTweens = Array[ExtResource("5_8wkxy")]([SubResource("Resource_hw1na")])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -167,10 +170,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_10kwk")
 frameLength = 5.0
 annotation = "Wait for warp to load"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_83uxt")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([])
 dialogues = Array[ExtResource("2_8hg62")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

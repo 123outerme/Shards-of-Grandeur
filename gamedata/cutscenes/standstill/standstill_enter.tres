@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://drqc7ms1tgy62"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=41 format=3 uid="uid://drqc7ms1tgy62"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_bsu0g"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ijdb7"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_l83ch"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_sfute"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_o2fv3"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rr5xp"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="2_udvm0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="4_13jd0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_5cc1k"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_y1vms"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_7jsmr"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="7_h0jiw"]
 
 [sub_resource type="Resource" id="Resource_261h1"]
@@ -58,10 +61,10 @@ texts = Array[String](["It looks as if we're finally arriving at Standstill. Thi
 script = ExtResource("1_sfute")
 frameLength = 0.1
 annotation = "Dr. Hudson exposition about Standstill"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_ppteb"), SubResource("Resource_tp73u"), SubResource("Resource_x1gt6")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_261h1"), SubResource("Resource_kf4oy"), ExtResource("2_udvm0")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([SubResource("Resource_2bar6")])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -102,10 +105,10 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 10.0
 annotation = "Walk the horse, Dr. Hudson, and player in to town"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_r1jf1"), SubResource("Resource_ug8h1"), SubResource("Resource_e6rbe")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_r1jf1"), SubResource("Resource_ug8h1"), SubResource("Resource_e6rbe")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -146,10 +149,10 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 0.5
 annotation = "Move player out of the way of the cart"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_4ypfc"), SubResource("Resource_raqbr"), SubResource("Resource_rrkc3")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_4ypfc"), SubResource("Resource_raqbr"), SubResource("Resource_rrkc3")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -181,10 +184,10 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 1.0
 annotation = "Move Dr. Hudson and horse farther along path"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_e5ssa"), SubResource("Resource_up4xj")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_e5ssa"), SubResource("Resource_up4xj")])
 actorAnims = Array[ExtResource("1_ijdb7")]([ExtResource("5_y1vms")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -216,10 +219,10 @@ transitionType = 0
 script = ExtResource("1_sfute")
 frameLength = 3.0
 annotation = "Split Dr. Hudson and horse to final positions"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_he6ky"), SubResource("Resource_e24o5")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_he6ky"), SubResource("Resource_e24o5")])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
@@ -259,10 +262,10 @@ texts = Array[String](["Let me know when you're ready to leave town and head to 
 script = ExtResource("1_sfute")
 frameLength = 0.1
 annotation = "Make Dr. Hudson face Player and both him and horse stand. Dr. Hudson speaks"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_g2blc")])
+actorTweens = Array[ExtResource("6_7jsmr")]([SubResource("Resource_g2blc")])
 actorAnims = Array[ExtResource("1_ijdb7")]([SubResource("Resource_t86cw"), SubResource("Resource_pt2yx")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([SubResource("Resource_6o1aj")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -276,10 +279,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_sfute")
 frameLength = 0.1
 annotation = "Wait for text box to be closed"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_7jsmr")]([])
 actorAnims = Array[ExtResource("1_ijdb7")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_o2fv3")]([])
+actorFaceTargets = Array[ExtResource("5_5cc1k")]([])
 dialogues = Array[ExtResource("4_13jd0")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

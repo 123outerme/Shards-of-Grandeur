@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://beg8gy0jt3gtj"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://beg8gy0jt3gtj"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_swjlq"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_ye5ti"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jqaqk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_n2gfd"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_b7ocu"]
 
@@ -9,7 +10,7 @@
 script = ExtResource("1_swjlq")
 choiceBtn = "You mean, the Cave?"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_jqaqk")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -25,7 +26,7 @@ choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_co4cg")])
 script = ExtResource("1_swjlq")
 choiceBtn = "Yeah, I do, we're at war."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_jqaqk")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -41,7 +42,7 @@ choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_rtd3l")])
 script = ExtResource("1_swjlq")
 choiceBtn = "I understand."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_jqaqk")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

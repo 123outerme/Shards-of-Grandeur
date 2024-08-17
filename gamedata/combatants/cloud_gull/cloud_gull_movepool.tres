@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=8 format=3 uid="uid://bmsshj6dewl55"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://bmsshj6dewl55"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_4yi63"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="1_72ri4"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="1_flywg"]
 [ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="2_wm8io"]
@@ -10,7 +11,7 @@
 
 [resource]
 script = ExtResource("1_72ri4")
-pool = Array[Resource("res://scripts/battle/combatant/move.gd")]([ExtResource("1_flywg"), ExtResource("2_ymwhg"), ExtResource("2_wm8io"), ExtResource("4_ms73y"), ExtResource("5_86ej3"), ExtResource("6_1rako")])
+pool = Array[ExtResource("1_4yi63")]([ExtResource("1_flywg"), ExtResource("2_ymwhg"), ExtResource("2_wm8io"), ExtResource("4_ms73y"), ExtResource("5_86ej3"), ExtResource("6_1rako")])
 preferredMove1Role = 2
 preferredMove2Role = 1
 preferredMove3Role = 1

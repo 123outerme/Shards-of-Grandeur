@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dsm8qcyr0dxg8"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://dsm8qcyr0dxg8"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cxmpg"]
 [ext_resource type="Resource" uid="uid://72gmvkna34rg" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_no.tres" id="1_j4hh1"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ycqrj"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_11g8g"]
 [ext_resource type="Resource" uid="uid://dx6o7007uuouv" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_yes.tres" id="3_t0svk"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_it6ud"]
 
 [sub_resource type="Resource" id="Resource_rjfmh"]
 script = ExtResource("1_oyhry")
 choiceBtn = "No."
 leadsTo = ExtResource("1_j4hh1")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_it6ud")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -23,7 +24,7 @@ script = ExtResource("1_oyhry")
 choiceBtn = "Sure!"
 leadsTo = ExtResource("3_t0svk")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_it6ud")]([])
 repeatsItem = false
 buttonDims = Vector2(140, 40)
 turnsInQuest = ""

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://bgcqfdgfube7s"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://bgcqfdgfube7s"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_24jer"]
 [ext_resource type="Resource" uid="uid://cnwb2atjfgs81" path="res://gamedata/dialogue/grandstone/man2/man2_king_rat_disbelief.tres" id="1_pinjo"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1nmbo"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_ek0ie"]
 [ext_resource type="Resource" uid="uid://b2eodcn2x424e" path="res://gamedata/dialogue/grandstone/man2/man2_king_rat_no.tres" id="4_6tx3g"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_rahmo"]
 [ext_resource type="Resource" uid="uid://c5obqqohklvkh" path="res://gamedata/dialogue/grandstone/man2/man2_king_rat_start.tres" id="4_tpqsm"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_jwe6f"]
 
@@ -13,7 +14,7 @@ script = ExtResource("2_1nmbo")
 choiceBtn = "Ok..."
 leadsTo = ExtResource("1_pinjo")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_rahmo")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -23,7 +24,7 @@ isDeclineChoice = true
 script = ExtResource("2_1nmbo")
 choiceBtn = "Invasion?"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_rahmo")]([])
 repeatsItem = false
 buttonDims = Vector2(180, 40)
 turnsInQuest = ""
@@ -40,7 +41,7 @@ script = ExtResource("2_1nmbo")
 choiceBtn = "No."
 leadsTo = ExtResource("4_6tx3g")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_rahmo")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -51,7 +52,7 @@ script = ExtResource("2_1nmbo")
 choiceBtn = "Ok!"
 leadsTo = ExtResource("4_tpqsm")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_rahmo")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

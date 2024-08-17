@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://jhhxu2gbjenp"]
+[gd_resource type="Resource" script_class="Armor" load_steps=6 format=3 uid="uid://jhhxu2gbjenp"]
 
 [ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://graphics/items/armor/rusty_armor.png" id="1_gi3s1"]
 [ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_hl3b4"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_a2167"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_hhbhg"]
 
 [sub_resource type="Resource" id="Resource_a0rth"]
@@ -16,7 +17,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("3_a2167")]([])
 
 [resource]
 script = ExtResource("1_hl3b4")

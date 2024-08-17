@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=16 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_q0b41"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_r4tho"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ua7ar"]
 [ext_resource type="Resource" uid="uid://diemk80we7jgs" path="res://gamedata/items/weapon/iridescent_scale.tres" id="4_vv1ab"]
 [ext_resource type="Resource" uid="uid://csb54kuorfycb" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_turnin.tres" id="5_fygax"]
 [ext_resource type="Resource" uid="uid://bh147d2v2tt7k" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q2_inprogress.tres" id="6_oav0c"]
@@ -27,8 +28,8 @@ turnInNames = Array[String](["lp_fisherman"])
 displayObjName = "Storm Swarm"
 displayTurnInName = "Fisherman"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_fygax")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_j7ur3")])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("5_fygax")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("2_j7ur3")])
 
 [sub_resource type="Resource" id="Resource_csm2g"]
 script = ExtResource("2_r4tho")
@@ -48,8 +49,8 @@ turnInNames = Array[String](["lp_fisherman"])
 displayObjName = "Fisherman's Usual"
 displayTurnInName = "Fisherman"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_k0tkb")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_oav0c")])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("7_k0tkb")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("6_oav0c")])
 
 [sub_resource type="Resource" id="Resource_2f23j"]
 script = ExtResource("2_r4tho")
@@ -70,8 +71,8 @@ turnInNames = Array[String](["lp_fisherman"])
 displayObjName = "???"
 displayTurnInName = "Fisherman"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
 [resource]
 script = ExtResource("1_mhsm3")

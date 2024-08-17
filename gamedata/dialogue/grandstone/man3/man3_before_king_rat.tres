@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://daqlklvmvahla"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://daqlklvmvahla"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hhpcv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_7kog4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nqsti"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_ccuog"]
 
 [sub_resource type="Resource" id="Resource_3m0lf"]
 script = ExtResource("1_hhpcv")
 lines = Array[String](["Hi @! I just don't get what he's saying... I don't think talking to Rats is even possible!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_nqsti")]([])
 
 [sub_resource type="Resource" id="Resource_j5p17"]
 script = ExtResource("3_ccuog")

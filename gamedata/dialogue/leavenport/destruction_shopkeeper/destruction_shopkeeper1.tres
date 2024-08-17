@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://yn7vsg2kvoaq"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://yn7vsg2kvoaq"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_1iy72"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cjeo7"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_wtaum"]
 [ext_resource type="Resource" uid="uid://c30vmmj8dg2gp" path="res://gamedata/dialogue/leavenport/destruction_shopkeeper/destruction_explain.tres" id="2_cmps8"]
 [ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="2_k3q8l"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ef7uj"]
 
 [sub_resource type="Resource" id="Resource_km0bp"]
 script = ExtResource("1_1iy72")
 choiceBtn = "No Thanks..."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ef7uj")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -21,7 +22,7 @@ script = ExtResource("2_k3q8l")
 opensShop = true
 choiceBtn = "Shop"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ef7uj")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -32,7 +33,7 @@ script = ExtResource("1_1iy72")
 choiceBtn = "Destruction?"
 leadsTo = ExtResource("2_cmps8")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ef7uj")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bxbqwna702dj5"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bxbqwna702dj5"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_02txf"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_e1qeh"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fbu2e"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_lq0sl"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_xfhtj"]
 
 [sub_resource type="Resource" id="Resource_2ups0"]
 script = ExtResource("1_02txf")
 choiceBtn = "Yes."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_lq0sl")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = ""

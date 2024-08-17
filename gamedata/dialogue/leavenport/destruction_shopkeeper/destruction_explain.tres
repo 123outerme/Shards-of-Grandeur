@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c30vmmj8dg2gp"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c30vmmj8dg2gp"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6725h"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_nnrhr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_txgal"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8op6j"]
 
 [sub_resource type="Resource" id="Resource_lfy6f"]
 script = ExtResource("1_nnrhr")
 choiceBtn = "I See."
 returnsToParentId = "destruction_shopkeeper1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_8op6j")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

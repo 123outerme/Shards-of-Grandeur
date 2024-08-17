@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dxjk5hnwyvtlb"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dxjk5hnwyvtlb"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_kjatm"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_t6i2o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_klyh5"]
 
 [sub_resource type="Resource" id="Resource_kpm7j"]
 script = ExtResource("1_kjatm")
 lines = Array[String](["All of the buildings in Grandstone are made of marble. Even though we are surrounded by forest here, stone proves to be a much stronger material.", "It doesn't burn or rot, and it's much harder to knock over. The downside is, it takes a lot of manual labor. Trust me, I should know!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_klyh5")]([])
 
 [resource]
 script = ExtResource("1_t6i2o")

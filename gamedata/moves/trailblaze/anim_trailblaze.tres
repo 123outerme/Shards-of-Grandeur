@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://gbxudcev1jic"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://gbxudcev1jic"]
 
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_kfk3c"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="1_tyjxe"]
 [ext_resource type="Resource" uid="uid://b3u582xunvkup" path="res://gamedata/moves/trailblaze/sprite_trailblaze_particles.tres" id="1_ydbq4"]
 [ext_resource type="Resource" uid="uid://c7btvreu865wk" path="res://gamedata/moves/trailblaze/sprite_trailblaze.tres" id="2_p384j"]
@@ -8,5 +9,5 @@
 script = ExtResource("1_tyjxe")
 combatantAnimation = "attack_phys"
 makesContact = false
-chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_ydbq4"), ExtResource("2_p384j")])
-surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_ydbq4"), ExtResource("2_p384j")])
+chargeMoveSprites = Array[ExtResource("1_kfk3c")]([ExtResource("1_ydbq4"), ExtResource("2_p384j")])
+surgeMoveSprites = Array[ExtResource("1_kfk3c")]([ExtResource("1_ydbq4"), ExtResource("2_p384j")])

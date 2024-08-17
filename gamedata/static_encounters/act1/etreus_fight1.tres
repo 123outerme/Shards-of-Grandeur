@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=12 format=3 uid="uid://b7kpq2t2u4lhc"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=13 format=3 uid="uid://b7kpq2t2u4lhc"]
 
 [ext_resource type="Resource" uid="uid://46enf3g55g1q" path="res://gamedata/combatants/etreus/etreus.tres" id="1_ilf1h"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_xyrqx"]
 [ext_resource type="Resource" uid="uid://dbn5mhjawwmv0" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier.tres" id="2_7gmtn"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_fhtro"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="3_rrluy"]
@@ -33,15 +34,15 @@ fullyAttuneCombatantSaveName = ""
 [resource]
 script = ExtResource("3_fhtro")
 combatant1Level = 12
-combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant1Moves = Array[ExtResource("1_xyrqx")]([])
 combatant2 = ExtResource("2_7gmtn")
 combatant2Level = 10
-combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Moves = Array[ExtResource("1_xyrqx")]([])
 combatant3 = ExtResource("3_rrluy")
 combatant3Level = 10
-combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Moves = Array[ExtResource("1_xyrqx")]([])
 autoAllyLevel = 1
-autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyMoves = Array[ExtResource("1_xyrqx")]([])
 specialBattleId = "etreus_fight1"
 bossBattle = true
 canEscape = false

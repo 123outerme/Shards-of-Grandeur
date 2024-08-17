@@ -126,7 +126,7 @@ func reparent_player():
 	player.get_parent().remove_child(player)
 	#await get_tree().process_frame
 	var tilemapPath: String = mapInstance.get_path().get_concatenated_names().c_escape()
-	var tilemap = get_node_or_null('/' + tilemapPath + '/TileMap')
+	var tilemap = get_node_or_null('/' + tilemapPath + '/TilemapRoot')
 	if tilemap != null:
 		tilemap.add_child(player)
 		player = get_node('/' + tilemap.get_path().get_concatenated_names().c_escape() + '/Player')

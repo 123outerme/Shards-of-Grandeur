@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://bds0jxde1x3l3"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bds0jxde1x3l3"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_141cc"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_h1afc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_vyqrm"]
 
 [sub_resource type="Resource" id="Resource_hun68"]
 script = ExtResource("1_141cc")
 lines = Array[String](["I hope nobody wants this Haybale, because I'm taking it!"])
 animation = ""
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_vyqrm")]([])
 
 [resource]
 script = ExtResource("1_h1afc")

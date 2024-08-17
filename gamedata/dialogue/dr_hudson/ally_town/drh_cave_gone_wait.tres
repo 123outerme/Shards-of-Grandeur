@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dgjuv25wgvitl"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dgjuv25wgvitl"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mau64"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_6s360"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qk5dq"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_grn0n"]
 
 [sub_resource type="Resource" id="Resource_sta5u"]
 script = ExtResource("1_mau64")
 lines = Array[String](["Go quickly, and check on the Cave! If it's just moved..."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_qk5dq")]([])
 
 [sub_resource type="Resource" id="Resource_ikh44"]
 script = ExtResource("3_grn0n")

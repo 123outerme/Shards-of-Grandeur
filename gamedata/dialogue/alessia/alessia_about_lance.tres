@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bv0xdd1t2gie7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bv0xdd1t2gie7"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_6ag4p"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gd7ha"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t2r8a"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_jhgt1"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_i2bft"]
 
 [sub_resource type="Resource" id="Resource_bemet"]
 script = ExtResource("1_gd7ha")
 choiceBtn = "Yeah..."
 returnsToParentId = "alessia_1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_i2bft")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

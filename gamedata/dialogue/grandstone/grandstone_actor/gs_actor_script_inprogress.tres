@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://gbj5cdm688uh"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://gbj5cdm688uh"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1mmch"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_eg2fr"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_x4eet"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_272wg"]
 
 [sub_resource type="Resource" id="Resource_1f4ht"]
 script = ExtResource("1_1mmch")
 lines = Array[String](["\"Ack... my pride, and my body... both shattered... why did I not trust you, father...?\""])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_x4eet")]([])
 
 [sub_resource type="Resource" id="Resource_djnh2"]
 script = ExtResource("3_272wg")

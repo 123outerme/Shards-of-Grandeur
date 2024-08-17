@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://bovav4mx2vts6"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bovav4mx2vts6"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_54ylw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_s352j"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_d0ctw"]
 
 [sub_resource type="Resource" id="Resource_cani8"]
 script = ExtResource("1_54ylw")
 lines = Array[String](["A red Shard...? There's no creature inside this, only a glowing orb. While holding it, I'm seeing... someone's memories...?"])
 animation = ""
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_d0ctw")]([])
 
 [resource]
 script = ExtResource("1_s352j")

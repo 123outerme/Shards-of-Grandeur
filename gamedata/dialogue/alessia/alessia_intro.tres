@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://d3wbqlm1g5sul"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://d3wbqlm1g5sul"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7h8g6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nba2t"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_qftwu"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e4ij4"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_pfw8b"]
 
 [sub_resource type="Resource" id="Resource_23lff"]
 script = ExtResource("1_qftwu")
 choiceBtn = "I am @!"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_e4ij4")]([])
 repeatsItem = false
 buttonDims = Vector2(300, 40)
 turnsInQuest = ""

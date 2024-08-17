@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Healing" load_steps=5 format=3 uid="uid://b2rih6hsrjtun"]
+[gd_resource type="Resource" script_class="Healing" load_steps=6 format=3 uid="uid://b2rih6hsrjtun"]
 
 [ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_1r83c"]
 [ext_resource type="Texture2D" uid="uid://jl8abbtb40e3" path="res://graphics/items/healing/natural_remedy.png" id="1_47oii"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_6bs61"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_ehfe2"]
 
 [sub_resource type="Resource" id="Resource_5bina"]
@@ -16,7 +17,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.3
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("3_6bs61")]([])
 
 [resource]
 script = ExtResource("1_1r83c")

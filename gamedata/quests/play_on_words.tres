@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://dceket8ss1r7r"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dceket8ss1r7r"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ualhr"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_cbrf7"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_h17nn"]
 [ext_resource type="Resource" uid="uid://msmyi5xhncg2" path="res://gamedata/items/key_items/play_script.tres" id="2_tte2o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_nk1hr"]
 [ext_resource type="Resource" uid="uid://n4g1jdtyh5nq" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_turnin_script.tres" id="5_f88yb"]
 
 [sub_resource type="Resource" id="Resource_tnbv4"]
@@ -25,8 +26,8 @@ turnInNames = Array[String](["grandstone_librarian"])
 displayObjName = "Librarian"
 displayTurnInName = "Librarian"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_nk1hr")]([])
+inProgressDialogue = Array[ExtResource("3_nk1hr")]([])
 
 [sub_resource type="Resource" id="Resource_hwgy6"]
 script = ExtResource("2_cbrf7")
@@ -39,8 +40,8 @@ turnInNames = Array[String](["grandstone_actor"])
 displayObjName = "Play Script"
 displayTurnInName = "Actor"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("5_f88yb")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_nk1hr")]([ExtResource("5_f88yb")])
+inProgressDialogue = Array[ExtResource("3_nk1hr")]([])
 
 [resource]
 script = ExtResource("1_ualhr")

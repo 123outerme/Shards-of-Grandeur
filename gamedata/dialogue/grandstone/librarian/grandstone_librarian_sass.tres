@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://epxva4agnpl6"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://epxva4agnpl6"]
 
 [ext_resource type="Resource" uid="uid://depru66ql671w" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_has_script.tres" id="1_jymbl"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_dnry1"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_w1s02"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_1msl6"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_yor8d"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_u75v5"]
 
 [sub_resource type="Resource" id="Resource_pmn3h"]
@@ -11,7 +12,7 @@ script = ExtResource("2_dnry1")
 choiceBtn = "But You Do, Don't You?"
 leadsTo = ExtResource("1_jymbl")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_yor8d")]([])
 repeatsItem = false
 buttonDims = Vector2(400, 40)
 turnsInQuest = ""

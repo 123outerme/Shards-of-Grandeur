@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cvagngsvbmij3"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cvagngsvbmij3"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_on0ht"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_rvce6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_wnlip"]
 
 [sub_resource type="Resource" id="Resource_txsjl"]
 script = ExtResource("1_on0ht")
 lines = Array[String](["Well, worth a shot. I didn't take up this job because I liked action, so I think I'll just keep trying the slow way."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_wnlip")]([])
 
 [resource]
 script = ExtResource("1_rvce6")

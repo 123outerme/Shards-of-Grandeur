@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://g8s3vr1fy43n"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://g8s3vr1fy43n"]
 
 [ext_resource type="Resource" uid="uid://cvagngsvbmij3" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman_q1_inquiry_no.tres" id="1_udqkj"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hiplf"]
 [ext_resource type="Resource" uid="uid://cb3se537hajxd" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_start_quest.tres" id="3_gmlt3"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_usbdy"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="4_whcov"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_b8nte"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_l3g1i"]
@@ -12,7 +13,7 @@ script = ExtResource("2_hiplf")
 choiceBtn = "Nope."
 leadsTo = ExtResource("1_udqkj")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_usbdy")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -23,7 +24,7 @@ script = ExtResource("2_hiplf")
 choiceBtn = "I'll Help!"
 leadsTo = ExtResource("3_gmlt3")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("4_usbdy")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

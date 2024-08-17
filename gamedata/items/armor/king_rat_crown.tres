@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Armor" load_steps=5 format=3 uid="uid://b1t5puusdxlu7"]
+[gd_resource type="Resource" script_class="Armor" load_steps=6 format=3 uid="uid://b1t5puusdxlu7"]
 
 [ext_resource type="Texture2D" uid="uid://mqvic1bhebci" path="res://graphics/items/armor/king_rat_crown.png" id="1_378vt"]
 [ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_ayw1u"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_max5c"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_nex5c"]
 
 [sub_resource type="Resource" id="Resource_mpga2"]
 script = ExtResource("3_max5c")
@@ -16,7 +17,7 @@ magicAttackMultiplier = 1.1
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.2
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("3_nex5c")]([])
 
 [resource]
 script = ExtResource("1_ayw1u")

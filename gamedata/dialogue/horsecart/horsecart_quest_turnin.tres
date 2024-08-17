@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dlkhn1y7yjjbx"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dlkhn1y7yjjbx"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_c3247"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_s36nl"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_uy1pi"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_hg6hg"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_gw28j"]
 
 [sub_resource type="Resource" id="Resource_1b6lh"]
 script = ExtResource("1_uy1pi")
 choiceBtn = "(Don't Give)"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_hg6hg")]([])
 repeatsItem = false
 buttonDims = Vector2(200, 40)
 turnsInQuest = ""
@@ -19,7 +20,7 @@ isDeclineChoice = true
 script = ExtResource("1_uy1pi")
 choiceBtn = "(Give)"
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_hg6hg")]([])
 repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = "Hay is For Horses#Hay There"

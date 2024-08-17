@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://calgv8aphjhgo"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://calgv8aphjhgo"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_30bdv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_yeowq"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jpj2k"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8w1ee"]
 
 [sub_resource type="Resource" id="Resource_beoxt"]
 script = ExtResource("1_30bdv")
 choiceBtn = "Thanks!"
 returnsToParentId = "gs_librarian_qs"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_8w1ee")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

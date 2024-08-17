@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cj622vf85csid"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cj622vf85csid"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_0klyw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_q2d6l"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_doyl0"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ieh6s"]
 
 [sub_resource type="Resource" id="Resource_8578k"]
 script = ExtResource("1_0klyw")
 choiceBtn = "Incredible!"
 returnsToParentId = "lp_skipper1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ieh6s")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bx7nwcm0icnmu"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://bx7nwcm0icnmu"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3h5nx"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_pj0gu"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_j2hqy"]
 [ext_resource type="Resource" uid="uid://csrl08jw25vjk" path="res://gamedata/dialogue/leavenport/skipper/pickup_shroom_bag.tres" id="2_lmlka"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ollab"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_85h7r"]
 
 [sub_resource type="Resource" id="Resource_a1x1w"]
 script = ExtResource("1_pj0gu")
 choiceBtn = "I'll Pass."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ollab")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -21,7 +22,7 @@ script = ExtResource("1_pj0gu")
 choiceBtn = "Aye Aye!"
 leadsTo = ExtResource("2_lmlka")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_ollab")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

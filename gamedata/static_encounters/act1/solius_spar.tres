@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://dqy41ewbyu3fe"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=11 format=3 uid="uid://dqy41ewbyu3fe"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_0ofp7"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="1_4o4lf"]
 [ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="2_kjvce"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="3_pulid"]
@@ -24,13 +25,13 @@ script = ExtResource("6_jc4wi")
 combatant1Level = 8
 combatant1Armor = ExtResource("3_pulid")
 combatant1Weapon = ExtResource("4_wfia4")
-combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant1Moves = Array[ExtResource("1_0ofp7")]([])
 combatant2Level = 1
-combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Moves = Array[ExtResource("1_0ofp7")]([])
 combatant3Level = 1
-combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Moves = Array[ExtResource("1_0ofp7")]([])
 autoAllyLevel = 1
-autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyMoves = Array[ExtResource("1_0ofp7")]([])
 specialBattleId = "solius_spar"
 bossBattle = false
 canEscape = false

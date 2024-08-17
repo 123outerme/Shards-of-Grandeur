@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://d0kf7biblnn8h"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://d0kf7biblnn8h"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2yccg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_wge4o"]
 [ext_resource type="Resource" uid="uid://0mdoxu22shce" path="res://gamedata/cutscenes/leavenport/solius_to_cave_path.tres" id="2_3kapu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jlv8q"]
 
 [sub_resource type="Resource" id="Resource_quuki"]
 script = ExtResource("1_2yccg")
 lines = Array[String](["Great, follow me to the start of the path! I'll heal you right up again."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_jlv8q")]([])
 
 [resource]
 script = ExtResource("1_wge4o")

@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=31 format=3 uid="uid://8ilocm42bf2h"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://8ilocm42bf2h"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_5q5ui"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_8im1w"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_anga4"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_dlan0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_2rdwm"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rvhmr"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="3_p5bhj"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_u72j8"]
 [ext_resource type="AudioStream" uid="uid://c3okt26v0e8er" path="res://audio/sfx/earthquake.mp3" id="4_xkybw"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="5_7khme"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_sv1ef"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_b1e3f"]
 
 [sub_resource type="Resource" id="Resource_8jq25"]
 script = ExtResource("1_anga4")
@@ -19,10 +22,10 @@ texts = Array[String](["What...? Is the ground shaking?!"])
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Show text box announcing that the ground will shake"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_b1e3f")]([])
 actorAnims = Array[ExtResource("5_7khme")]([ExtResource("1_dlan0")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([SubResource("Resource_8jq25")])
 endTextBoxPauses = true
 shakeCamForDuration = true
@@ -36,10 +39,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Wait for the text box to close"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_b1e3f")]([])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -53,10 +56,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_5q5ui")
 frameLength = 1.0
 annotation = "The screen shakes"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([null])
+actorTweens = Array[ExtResource("6_b1e3f")]([null])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 playSfx = ExtResource("4_xkybw")
 endTextBoxPauses = false
@@ -80,10 +83,10 @@ transitionType = 0
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Activate Dr. Hudson"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_v5gna")])
+actorTweens = Array[ExtResource("6_b1e3f")]([SubResource("Resource_v5gna")])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = true
@@ -106,10 +109,10 @@ transitionType = 0
 script = ExtResource("1_5q5ui")
 frameLength = 0.5
 annotation = "Move Dr. Hudson to your right"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_ogx28")])
+actorTweens = Array[ExtResource("6_b1e3f")]([SubResource("Resource_ogx28")])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = true
@@ -132,10 +135,10 @@ transitionType = 0
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Activate the spelunker"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_wjyjj")])
+actorTweens = Array[ExtResource("6_b1e3f")]([SubResource("Resource_wjyjj")])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = true
@@ -158,10 +161,10 @@ transitionType = 0
 script = ExtResource("1_5q5ui")
 frameLength = 0.5
 annotation = "Move the spelunker to your left"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_58ik1")])
+actorTweens = Array[ExtResource("6_b1e3f")]([SubResource("Resource_58ik1")])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = true
@@ -204,10 +207,10 @@ texts = Array[String](["Was that an earthquake? Quickly, @, check on the Radiant
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Dr. Hudson turns to the player and speaks"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_wst6a"), SubResource("Resource_vgcex")])
+actorTweens = Array[ExtResource("6_b1e3f")]([SubResource("Resource_wst6a"), SubResource("Resource_vgcex")])
 actorAnims = Array[ExtResource("5_7khme")]([SubResource("Resource_kaol4")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([SubResource("Resource_dhp7a")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -221,10 +224,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_b1e3f")]([])
 actorAnims = Array[ExtResource("5_7khme")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -244,10 +247,10 @@ animation = "stand"
 script = ExtResource("1_5q5ui")
 frameLength = 0.1
 annotation = "Dr. Hudson stops talking"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_b1e3f")]([])
 actorAnims = Array[ExtResource("5_7khme")]([SubResource("Resource_tke4q")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_2rdwm")]([])
+actorFaceTargets = Array[ExtResource("5_sv1ef")]([])
 dialogues = Array[ExtResource("1_anga4")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

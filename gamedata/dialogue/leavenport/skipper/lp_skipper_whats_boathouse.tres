@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://degvt1e84u2hf"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://degvt1e84u2hf"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_a6fia"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_cww3f"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fo6i2"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_hcxao"]
 
 [sub_resource type="Resource" id="Resource_0m055"]
 script = ExtResource("1_a6fia")
 choiceBtn = "I See..."
 returnsToParentId = "lp_skipper1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_hcxao")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

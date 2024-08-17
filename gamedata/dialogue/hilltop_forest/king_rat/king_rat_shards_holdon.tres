@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cu87gjsm75bjn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cu87gjsm75bjn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_dijfr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_uahoj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qfgsx"]
 
 [sub_resource type="Resource" id="Resource_pp0lu"]
 script = ExtResource("1_uahoj")
 lines = Array[String](["What? What are you holding on for? If this is a trick, I promise..."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_qfgsx")]([])
 
 [resource]
 script = ExtResource("1_dijfr")

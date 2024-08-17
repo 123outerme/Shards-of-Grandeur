@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=8 format=3 uid="uid://xr0uecdpmu4w"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=12 format=3 uid="uid://xr0uecdpmu4w"]
 
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_5xf0u"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_weie0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_x4qsh"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ytspw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_vv6uk"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_dgoo2"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_g5hti"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_c8awi"]
 
 [sub_resource type="Resource" id="Resource_g6rb5"]
 script = ExtResource("1_x4qsh")
@@ -14,10 +18,10 @@ texts = Array[String](["Ah... home, sweet home."])
 script = ExtResource("1_ytspw")
 frameLength = 0.1
 annotation = "Say \"Home sweet home\""
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("1_5xf0u")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorTweens = Array[ExtResource("6_c8awi")]([])
+actorAnims = Array[ExtResource("3_dgoo2")]([ExtResource("1_5xf0u")])
+actorAnimSets = Array[ExtResource("2_vv6uk")]([])
+actorFaceTargets = Array[ExtResource("5_g5hti")]([])
 dialogues = Array[ExtResource("1_x4qsh")]([SubResource("Resource_g6rb5")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -31,10 +35,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_ytspw")
 frameLength = 0.1
 annotation = "Wait for text box to close"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorTweens = Array[ExtResource("6_c8awi")]([])
+actorAnims = Array[ExtResource("3_dgoo2")]([])
+actorAnimSets = Array[ExtResource("2_vv6uk")]([])
+actorFaceTargets = Array[ExtResource("5_g5hti")]([])
 dialogues = Array[ExtResource("1_x4qsh")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

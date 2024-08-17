@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bvfmtuhh1im8u"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bvfmtuhh1im8u"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_3iwrv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_sk3go"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_wa2mq"]
 [ext_resource type="Resource" uid="uid://g8s3vr1fy43n" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inquiry.tres" id="2_lmth6"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pdkxu"]
 
 [sub_resource type="Resource" id="Resource_5idrx"]
 script = ExtResource("1_3iwrv")
 choiceBtn = "OK."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_pdkxu")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -20,7 +21,7 @@ script = ExtResource("1_3iwrv")
 choiceBtn = "What's Biting?"
 leadsTo = ExtResource("2_lmth6")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_pdkxu")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

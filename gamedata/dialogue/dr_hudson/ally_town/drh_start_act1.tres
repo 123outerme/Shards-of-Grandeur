@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cjadv85pgyepl"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cjadv85pgyepl"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jx05f"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_plhmv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_wfai3"]
 [ext_resource type="Resource" uid="uid://da1pe0gmj3wiq" path="res://gamedata/quests/act1_main_quest.tres" id="2_ykngq"]
 
 [sub_resource type="Resource" id="Resource_2rwmp"]
 script = ExtResource("1_plhmv")
 lines = Array[String](["Great, meet with me outside once you've made your preparations for the trip back."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_wfai3")]([])
 
 [resource]
 script = ExtResource("1_jx05f")

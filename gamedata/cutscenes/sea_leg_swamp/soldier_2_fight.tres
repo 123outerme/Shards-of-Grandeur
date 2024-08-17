@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://b31xhto3mw71x"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=26 format=3 uid="uid://b31xhto3mw71x"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_l1esp"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_w44q6"]
@@ -6,9 +6,12 @@
 [ext_resource type="Resource" uid="uid://d3ojcpprcwhyu" path="res://gamedata/story_requirements/main_story/act1/swamp_soldier_2_fight.tres" id="2_ebku1"]
 [ext_resource type="Resource" uid="uid://d2jjcpbdlqb6n" path="res://gamedata/static_encounters/act1/sea_leg_soldier_2.tres" id="2_pnite"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="2_qrq7i"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_sye8k"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="3_lhhrl"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_nq7os"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_3x80a"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="5_hial0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_oamsq"]
 
 [sub_resource type="Resource" id="Resource_hopc0"]
 script = ExtResource("2_qrq7i")
@@ -25,10 +28,10 @@ texts = Array[String](["Stop right there!"])
 script = ExtResource("1_w44q6")
 frameLength = 0.1
 annotation = "Stop the player and have the soldier call out"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_oamsq")]([])
 actorAnims = Array[ExtResource("2_qrq7i")]([ExtResource("1_xe5nx"), SubResource("Resource_hopc0")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([SubResource("Resource_vfvp1")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -42,10 +45,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_w44q6")
 frameLength = 0.1
 annotation = "Wait until the text box is closed"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_oamsq")]([])
 actorAnims = Array[ExtResource("2_qrq7i")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -74,10 +77,10 @@ transitionType = 0
 script = ExtResource("1_w44q6")
 frameLength = 1.5
 annotation = "Walk the player over to the soldier"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_cgjyn")])
+actorTweens = Array[ExtResource("6_oamsq")]([SubResource("Resource_cgjyn")])
 actorAnims = Array[ExtResource("2_qrq7i")]([ExtResource("3_nq7os"), SubResource("Resource_gmmay")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -102,10 +105,10 @@ texts = Array[String](["Your little city of pebbles is never getting your hands 
 script = ExtResource("1_w44q6")
 frameLength = 0.1
 annotation = "Stop the player again, have the soldier challenge the player"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_oamsq")]([])
 actorAnims = Array[ExtResource("2_qrq7i")]([ExtResource("1_xe5nx"), SubResource("Resource_u0un6")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([SubResource("Resource_b8rig")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -119,10 +122,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_w44q6")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_oamsq")]([])
 actorAnims = Array[ExtResource("2_qrq7i")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -142,10 +145,10 @@ animation = "stand"
 script = ExtResource("1_w44q6")
 frameLength = 0.1
 annotation = "make the soldier stop talking animation"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("6_oamsq")]([])
 actorAnims = Array[ExtResource("2_qrq7i")]([SubResource("Resource_7xvls")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_sye8k")]([])
+actorFaceTargets = Array[ExtResource("5_3x80a")]([])
 dialogues = Array[ExtResource("3_lhhrl")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

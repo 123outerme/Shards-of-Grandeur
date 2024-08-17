@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://bwg8cky4fu6ri"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bwg8cky4fu6ri"]
 
 [ext_resource type="Resource" uid="uid://dh6e75rip05dq" path="res://gamedata/combatants/mystic_fox/mystic_fox_rewards.tres" id="1_vcg6j"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_wrdnk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://datrt56lguyo0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_growth.tres" id="3_fq3j1"]
 [ext_resource type="Resource" uid="uid://4nsqpm33jl17" path="res://gamedata/combatants/mystic_fox/mystic_fox_sprite.tres" id="5_5co32"]
 [ext_resource type="Resource" uid="uid://dv17w1o2t2cb0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_alloc_strategy.tres" id="6_drorv"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_i54sw"]
 [ext_resource type="Resource" uid="uid://dqfilgeyd3ody" path="res://gamedata/combatants/mystic_fox/mystic_fox_equipment.tres" id="10_1pflv"]
 
 [sub_resource type="Resource" id="Resource_5svlm"]
@@ -25,7 +26,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("3_fq3j1")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("8_i54sw")]([])
 movepool = ExtResource("2_g1m61")
 
 [resource]

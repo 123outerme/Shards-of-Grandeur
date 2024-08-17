@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://caul65lodxx0d"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://caul65lodxx0d"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_esp6s"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_kjhwl"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_x8u4t"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e6dyc"]
 
 [sub_resource type="Resource" id="Resource_28p1l"]
 script = ExtResource("1_kjhwl")
 choiceBtn = "Will Do!"
 returnsToParentId = "lp_innkeeper1"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_e6dyc")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

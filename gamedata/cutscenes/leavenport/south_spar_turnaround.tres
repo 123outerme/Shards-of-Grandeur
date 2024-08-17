@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://60cy3xsvene1"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://60cy3xsvene1"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_lvbeh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_f7gue"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="2_nxuv5"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="3_b5j8t"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_h8r4v"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="4_0fnbh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_gomos"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_2bc14"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_h0ntr"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="6_4xnyd"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_oy6pu"]
 
@@ -17,10 +21,10 @@ texts = Array[String](["Solius is waiting to spar with me, I'd better go give hi
 script = ExtResource("2_nxuv5")
 frameLength = 0.1
 annotation = "have the player talk"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorTweens = Array[ExtResource("5_h0ntr")]([])
+actorAnims = Array[ExtResource("3_h8r4v")]([])
+actorAnimSets = Array[ExtResource("2_f7gue")]([])
+actorFaceTargets = Array[ExtResource("4_gomos")]([])
 dialogues = Array[ExtResource("1_lvbeh")]([SubResource("Resource_fmfov")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -43,10 +47,10 @@ transitionType = 0
 script = ExtResource("2_nxuv5")
 frameLength = 1.25
 annotation = "have the player walk away from the exit"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_0cocv")])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("3_b5j8t")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorTweens = Array[ExtResource("5_h0ntr")]([SubResource("Resource_0cocv")])
+actorAnims = Array[ExtResource("3_h8r4v")]([ExtResource("3_b5j8t")])
+actorAnimSets = Array[ExtResource("2_f7gue")]([])
+actorFaceTargets = Array[ExtResource("4_gomos")]([])
 dialogues = Array[ExtResource("1_lvbeh")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -60,10 +64,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("2_nxuv5")
 frameLength = 0.1
 annotation = "wait for the textbox to be closed and stop walking anim"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
-actorAnims = Array[Resource("res://scripts/cutscenes/actor_sprite_anim.gd")]([ExtResource("5_2bc14")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorTweens = Array[ExtResource("5_h0ntr")]([])
+actorAnims = Array[ExtResource("3_h8r4v")]([ExtResource("5_2bc14")])
+actorAnimSets = Array[ExtResource("2_f7gue")]([])
+actorFaceTargets = Array[ExtResource("4_gomos")]([])
 dialogues = Array[ExtResource("1_lvbeh")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

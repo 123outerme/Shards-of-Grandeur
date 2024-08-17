@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dx6o7007uuouv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dx6o7007uuouv"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5hntk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_hlswh"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_msf1h"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_icbbb"]
 [ext_resource type="Resource" uid="uid://dceket8ss1r7r" path="res://gamedata/quests/play_on_words.tres" id="3_rmd4w"]
 
 [sub_resource type="Resource" id="Resource_gunhf"]
 script = ExtResource("1_hlswh")
 choiceBtn = "O-okay..."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_icbbb")]([])
 repeatsItem = false
 buttonDims = Vector2(200, 40)
 turnsInQuest = ""

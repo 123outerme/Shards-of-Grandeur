@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://d01uh7t7qa558"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://d01uh7t7qa558"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jfce2"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_o1v61"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f1kje"]
 [ext_resource type="Resource" uid="uid://dcbpdlrd4i5cj" path="res://gamedata/static_encounters/king_rat_encounter.tres" id="3_l1mrd"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_ismcx"]
 
@@ -9,7 +10,7 @@
 script = ExtResource("1_o1v61")
 lines = Array[String](["Once I am done crushing you, I'll flatten that repugnant gravel patch you call a city!"])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_f1kje")]([])
 
 [sub_resource type="Resource" id="Resource_4h1nn"]
 script = ExtResource("4_ismcx")

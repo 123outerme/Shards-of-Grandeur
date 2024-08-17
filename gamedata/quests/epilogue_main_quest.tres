@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://bh8why6u7cadp"]
+[gd_resource type="Resource" script_class="Quest" load_steps=16 format=3 uid="uid://bh8why6u7cadp"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_lqkgd"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_y7ojr"]
 [ext_resource type="Resource" uid="uid://dnkctjc6jccia" path="res://gamedata/dialogue/spelunker/spelunker_saved.tres" id="3_5tyuu"]
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="3_c8yf2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rxgpr"]
 [ext_resource type="Resource" uid="uid://df3cu03mvw4jw" path="res://gamedata/dialogue/spelunker/spelunker_ambushed.tres" id="3_vwp4v"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_lrp1d"]
 
@@ -18,8 +19,8 @@ turnInNames = Array[String]([])
 displayObjName = "Standstill"
 displayTurnInName = ""
 customStatusStr = "Arrive at Standstill!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_5nirr"]
 script = ExtResource("2_y7ojr")
@@ -32,8 +33,8 @@ turnInNames = Array[String]([])
 displayObjName = "Hilltop"
 displayTurnInName = ""
 customStatusStr = "Leave the Town!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_0hu12"]
 script = ExtResource("2_y7ojr")
@@ -46,8 +47,8 @@ turnInNames = Array[String]([])
 displayObjName = "Hilltop"
 displayTurnInName = ""
 customStatusStr = "Get to the Cave!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_wrl1p"]
 script = ExtResource("4_lrp1d")
@@ -68,8 +69,8 @@ turnInNames = Array[String](["spelunker_hilltop"])
 displayObjName = "Ambusher"
 displayTurnInName = "Spelunker"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_5tyuu")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_vwp4v")])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([ExtResource("3_5tyuu")])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([ExtResource("3_vwp4v")])
 
 [sub_resource type="Resource" id="Resource_l6go8"]
 script = ExtResource("2_y7ojr")
@@ -82,8 +83,8 @@ turnInNames = Array[String]([])
 displayObjName = "Standstill"
 displayTurnInName = ""
 customStatusStr = "Return to the Town!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_gmhha"]
 script = ExtResource("4_lrp1d")
@@ -103,8 +104,8 @@ turnInNames = Array[String](["dr_hudson_inn"])
 displayObjName = "Dr. Hudson"
 displayTurnInName = "Dr. Hudson"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_rxgpr")]([])
+inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [resource]
 script = ExtResource("1_lqkgd")

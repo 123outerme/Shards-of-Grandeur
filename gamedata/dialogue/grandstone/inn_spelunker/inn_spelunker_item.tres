@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cf8rl6pihimbv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cf8rl6pihimbv"]
 
 [ext_resource type="Resource" uid="uid://bgwbbpulv7yov" path="res://gamedata/items/healing/steak.tres" id="1_2r8a4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7e8nv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_nqc0c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="3_if0p3"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_mpqqs"]
 
 [sub_resource type="Resource" id="Resource_5yu3n"]
 script = ExtResource("1_7e8nv")
 lines = Array[String](["I'm in a good mood. You should take this! It's a steak dinner I ordered at the Half Captain Restaurant."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("3_if0p3")]([])
 
 [sub_resource type="Resource" id="Resource_86oxh"]
 script = ExtResource("3_mpqqs")

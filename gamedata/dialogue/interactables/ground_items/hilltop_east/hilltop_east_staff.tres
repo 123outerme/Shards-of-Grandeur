@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://r3b3pmjv5kfp"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://r3b3pmjv5kfp"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_e3ell"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_hbgqe"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lskir"]
 
 [sub_resource type="Resource" id="Resource_248el"]
 script = ExtResource("1_e3ell")
 lines = Array[String](["This looks like a pretty sturdy stick. I might want to lean on this, and it'll make me look pretty wise too!"])
 animation = ""
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_lskir")]([])
 
 [resource]
 script = ExtResource("2_hbgqe")

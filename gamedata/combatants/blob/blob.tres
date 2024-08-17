@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://bsx15gtbnpwml"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bsx15gtbnpwml"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ip5u1"]
 [ext_resource type="Resource" uid="uid://d0uia2okt4moc" path="res://gamedata/combatants/blob/blob_rewards.tres" id="1_l26v3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://di8ocnjfrgra7" path="res://gamedata/combatants/blob/blob_equipment.tres" id="6_cushu"]
 [ext_resource type="Resource" uid="uid://dq2jf25b6suci" path="res://gamedata/combatants/blob/blob_movepool.tres" id="6_dk1gx"]
 [ext_resource type="Resource" uid="uid://bhkog7p1huw2g" path="res://gamedata/combatants/blob/blob_stat_alloc_strategy.tres" id="6_fc6b3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_84kb7"]
 [ext_resource type="Resource" uid="uid://ws05wh4xvnis" path="res://gamedata/combatants/blob/blob_stat_growth.tres" id="8_88ku6"]
 
 [sub_resource type="Resource" id="Resource_aybo8"]
@@ -25,7 +26,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("8_88ku6")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("8_84kb7")]([])
 movepool = ExtResource("6_dk1gx")
 
 [resource]

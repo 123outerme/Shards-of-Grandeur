@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bgp8xg4solw5p"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://bgp8xg4solw5p"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ep0x"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ct52j"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_ka42w"]
 [ext_resource type="Resource" uid="uid://calgv8aphjhgo" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_magic.tres" id="2_d73qj"]
 [ext_resource type="Resource" uid="uid://epxva4agnpl6" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_sass.tres" id="2_ll1ga"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_fyppu"]
 [ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="5_fvhal"]
 [ext_resource type="Resource" uid="uid://dxfxdy303wcan" path="res://gamedata/dialogue/grandstone/librarian/gs_librarian_surge.tres" id="5_ku511"]
 
@@ -12,7 +13,7 @@
 script = ExtResource("1_ka42w")
 choiceBtn = "Nevermind."
 returnsToParentId = "gs_librarian_hello"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fyppu")]([])
 repeatsItem = false
 buttonDims = Vector2(200, 40)
 turnsInQuest = ""
@@ -23,7 +24,7 @@ script = ExtResource("1_ka42w")
 choiceBtn = "A Play?"
 leadsTo = ExtResource("2_ll1ga")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fyppu")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -34,7 +35,7 @@ script = ExtResource("1_ka42w")
 choiceBtn = "Magic?"
 leadsTo = ExtResource("2_d73qj")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fyppu")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""
@@ -46,7 +47,7 @@ choiceBtn = "Surge?"
 storyRequirements = ExtResource("5_fvhal")
 leadsTo = ExtResource("5_ku511")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_fyppu")]([])
 repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = ""

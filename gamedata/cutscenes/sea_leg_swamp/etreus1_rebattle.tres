@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://bupndod38b11l"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://bupndod38b11l"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_ekdxh"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_f0ln1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_f8oo5"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_1ndas"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_x2epl"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="3_rxqf0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_hfu1x"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="4_i0ge6"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_khcm4"]
 [ext_resource type="Resource" uid="uid://b7kpq2t2u4lhc" path="res://gamedata/static_encounters/act1/etreus_fight1.tres" id="6_i4bem"]
 
 [sub_resource type="Resource" id="Resource_h0ugr"]
@@ -21,10 +24,10 @@ transitionType = 0
 script = ExtResource("1_f8oo5")
 frameLength = 1.0
 annotation = "Move the player right next to Etreus"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([SubResource("Resource_h0ugr")])
+actorTweens = Array[ExtResource("5_khcm4")]([SubResource("Resource_h0ugr")])
 actorAnims = Array[ExtResource("4_i0ge6")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_1ndas")]([])
+actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
 dialogues = Array[ExtResource("3_rxqf0")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -49,10 +52,10 @@ texts = Array[String](["Try all you like, @. Fate has already determined that th
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Have Etreus taunt the player on rebattle"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_khcm4")]([])
 actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_vmdkt")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_1ndas")]([])
+actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
 dialogues = Array[ExtResource("3_rxqf0")]([SubResource("Resource_yh78m")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -66,10 +69,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Wait for the player to close the text box"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_khcm4")]([])
 actorAnims = Array[ExtResource("4_i0ge6")]([])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_1ndas")]([])
+actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
 dialogues = Array[ExtResource("3_rxqf0")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -89,10 +92,10 @@ animation = "stand"
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Make etreus stand before rebattle starts"
-actorTweens = Array[Resource("res://scripts/cutscenes/actor_tween.gd")]([])
+actorTweens = Array[ExtResource("5_khcm4")]([])
 actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_7x8na")])
-actorAnimSets = Array[Resource("res://scripts/cutscenes/actor_anim_set.gd")]([])
-actorFaceTargets = Array[Resource("res://scripts/cutscenes/actor_face_target.gd")]([])
+actorAnimSets = Array[ExtResource("2_1ndas")]([])
+actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
 dialogues = Array[ExtResource("3_rxqf0")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://8hrdloy8r6ya"]
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://8hrdloy8r6ya"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_ew4ce"]
 [ext_resource type="Resource" uid="uid://c6crih1t1ldox" path="res://gamedata/moves/battle_chant/anim_battle_chant.tres" id="1_xokrs"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_jid33"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_nym8k"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_g5hwt"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_m3hqb"]
 
@@ -18,7 +19,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.3
 speedMultiplier = 1.2
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("2_nym8k")]([])
 
 [sub_resource type="Resource" id="Resource_niwc4"]
 script = ExtResource("1_ew4ce")
@@ -42,7 +43,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
 speedMultiplier = 1.05
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("2_nym8k")]([])
 
 [sub_resource type="Resource" id="Resource_wdree"]
 script = ExtResource("5_m3hqb")
@@ -66,7 +67,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.5
 speedMultiplier = 1.25
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("2_nym8k")]([])
 
 [sub_resource type="Resource" id="Resource_t6gsw"]
 script = ExtResource("1_ew4ce")

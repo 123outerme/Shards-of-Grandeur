@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://dlvou480hinjf"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dlvou480hinjf"]
 
 [ext_resource type="Resource" uid="uid://bot66oub5eciv" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_rewards.tres" id="1_0y103"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_64cgh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://cplxv255kicip" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_effectiveness.tres" id="5_bmxru"]
 [ext_resource type="Resource" uid="uid://choamg7fqp3xo" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_sprite.tres" id="5_msbff"]
 [ext_resource type="Resource" uid="uid://cnr1ewj2v6xf0" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_alloc_strategy.tres" id="6_ocfub"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_vo7xr"]
 [ext_resource type="Resource" uid="uid://bedv0uc7cmbto" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_equipment.tres" id="12_q5a5h"]
 
 [sub_resource type="Resource" id="Resource_fc7ct"]
@@ -25,7 +26,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("3_pxbev")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("8_vo7xr")]([])
 movepool = ExtResource("2_2qujl")
 
 [resource]

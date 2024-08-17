@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://ypcj1hsxfhdn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://ypcj1hsxfhdn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_kymfb"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_sfwp3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tjg8x"]
 
 [sub_resource type="Resource" id="Resource_kvpo6"]
 script = ExtResource("1_kymfb")
 lines = Array[String](["Everything we know about Leavenport is documented here.", "\"Leavenport is a proud and lively city founded on the outskirts of the Sea Leg Swamp. They have a long history in Uvutu.\"", "\"The first settlers were a river folk, and came to settle there by ship. With them, they brought food, art, and culture irreplacable to our lands.\"", "\"Although Grandstone has friendly relations with Leavenport, they have so far refused to help us locate the Radiant Cave when it moves.\""])
 animation = ""
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_tjg8x")]([])
 
 [resource]
 script = ExtResource("1_sfwp3")

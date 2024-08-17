@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://dmt1f8243dw6g"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dmt1f8243dw6g"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_sp8e4"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_1rmv4"]
 [ext_resource type="Resource" uid="uid://b6kpee21bpn3j" path="res://gamedata/dialogue/leavenport/skipper/shroom_quest_inprogress.tres" id="2_vj58d"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_hy7pm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_wfowm"]
 [ext_resource type="Resource" uid="uid://doo3lqyhk4eqt" path="res://gamedata/dialogue/leavenport/skipper/shroom_quest_ready_turnin.tres" id="4_r010r"]
 
 [sub_resource type="Resource" id="Resource_bi47m"]
@@ -17,8 +18,8 @@ turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
 customStatusStr = "Place the Bag!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_wfowm")]([])
+inProgressDialogue = Array[ExtResource("3_wfowm")]([])
 
 [sub_resource type="Resource" id="Resource_bp31e"]
 script = ExtResource("3_hy7pm")
@@ -38,8 +39,8 @@ turnInNames = Array[String](["leavenport_skipper"])
 displayObjName = "Full Shroom Bag"
 displayTurnInName = "Skipper"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_r010r")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_vj58d")])
+turnInDialogue = Array[ExtResource("3_wfowm")]([ExtResource("4_r010r")])
+inProgressDialogue = Array[ExtResource("3_wfowm")]([ExtResource("2_vj58d")])
 
 [resource]
 script = ExtResource("1_sp8e4")

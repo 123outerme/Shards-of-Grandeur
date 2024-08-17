@@ -14,7 +14,7 @@ class_name EnemySpawner
 ## radius of the circle the enemy will patrol in
 @export var enemyPatrolRange: float = 32.0
 ## set before loading; points to the tilemap to place the enemy object in
-@export var tilemap: TileMap
+@export var tilemap: Node2D
 ## do not set
 @export var enemy: OverworldEnemy = null
 
@@ -27,6 +27,9 @@ var enemiesDir: String = 'enemies/'
 func _ready():
 	if enemyEncounter.combatant1 == null:
 		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: no combatant1 provided')
+		queue_free()
+	if tilemap == null:
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: Tilemap root node not defined')
 		queue_free()
 
 func _on_area_2d_area_entered(area):

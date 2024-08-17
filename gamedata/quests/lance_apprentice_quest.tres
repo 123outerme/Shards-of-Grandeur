@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://2ycrrv0dbqxt"]
+[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://2ycrrv0dbqxt"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_nw4bk"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_brhbv"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_kcg01"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mdmqf"]
 [ext_resource type="Resource" uid="uid://cn2h2aafogaos" path="res://gamedata/dialogue/lance/lance_apprentice_progress_1.tres" id="2_y8nwp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_l2d2t"]
 [ext_resource type="Resource" uid="uid://cyxtkc4m2lj2j" path="res://gamedata/dialogue/lance/lance_apprentice_turnin_1.tres" id="4_josly"]
 [ext_resource type="Resource" uid="uid://dh755ctiol8rl" path="res://gamedata/dialogue/lance/lance_hammer_progress.tres" id="6_5swio"]
 [ext_resource type="Resource" uid="uid://dgbmha3sgul4u" path="res://gamedata/dialogue/lance/lance_hammer_turnin.tres" id="7_wxak4"]
@@ -27,8 +28,8 @@ turnInNames = Array[String](["lance_standstill"])
 displayObjName = "Tree Bear"
 displayTurnInName = "Lance"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_josly")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("2_y8nwp")])
+turnInDialogue = Array[ExtResource("3_l2d2t")]([ExtResource("4_josly")])
+inProgressDialogue = Array[ExtResource("3_l2d2t")]([ExtResource("2_y8nwp")])
 
 [sub_resource type="Resource" id="Resource_ascq0"]
 script = ExtResource("2_brhbv")
@@ -48,8 +49,8 @@ turnInNames = Array[String](["lance_standstill"])
 displayObjName = "Enchanted Hammer"
 displayTurnInName = "Lance"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_wxak4")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_5swio")])
+turnInDialogue = Array[ExtResource("3_l2d2t")]([ExtResource("7_wxak4")])
+inProgressDialogue = Array[ExtResource("3_l2d2t")]([ExtResource("6_5swio")])
 
 [sub_resource type="Resource" id="Resource_cajel"]
 script = ExtResource("2_mdmqf")

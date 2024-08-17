@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=12 format=3 uid="uid://dbn5mhjawwmv0"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dbn5mhjawwmv0"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_r4g5i"]
 [ext_resource type="Resource" uid="uid://cvp8cunpa0fum" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_evolutions.tres" id="1_s5rq4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dq1r1nlas024y" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_movepool.tres" id="6_rd7gx"]
 [ext_resource type="Resource" uid="uid://cj2514570miiv" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_alloc_strategy.tres" id="6_uki13"]
 [ext_resource type="Resource" uid="uid://d15ic1np56op5" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_growth.tres" id="7_riqim"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_d3v1h"]
 [ext_resource type="Resource" uid="uid://dkkji03qnavh" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_equipment.tres" id="9_766rk"]
 
 [sub_resource type="Resource" id="Resource_hp03l"]
@@ -25,7 +26,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("7_riqim")
-moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+moves = Array[ExtResource("8_d3v1h")]([])
 movepool = ExtResource("6_rd7gx")
 
 [resource]

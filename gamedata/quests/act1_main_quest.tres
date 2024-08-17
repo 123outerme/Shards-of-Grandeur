@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=21 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=22 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4gvsg"]
 [ext_resource type="Resource" uid="uid://bxkaxgf5v3g62" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_report.tres" id="3_qpgt1"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="4_0vfgl"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_801qh"]
@@ -20,8 +21,8 @@ turnInNames = Array[String]([])
 displayObjName = "Standstill"
 displayTurnInName = ""
 customStatusStr = "Leave the inn!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_idvsa"]
 script = ExtResource("2_8mv8e")
@@ -34,8 +35,8 @@ turnInNames = Array[String]([])
 displayObjName = "Radiant Cave"
 displayTurnInName = ""
 customStatusStr = "Head to the Cave!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_e32iq"]
 script = ExtResource("4_801qh")
@@ -55,8 +56,8 @@ turnInNames = Array[String](["dr_hudson_standstill"])
 displayObjName = "Dr. Hudson"
 displayTurnInName = "Dr. Hudson"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("4_0vfgl")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("3_qpgt1")])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("4_0vfgl")])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("3_qpgt1")])
 
 [sub_resource type="Resource" id="Resource_c0wbw"]
 script = ExtResource("4_801qh")
@@ -76,8 +77,8 @@ turnInNames = Array[String](["grandstone_dr_ildran"])
 displayObjName = "Dr. Ildran"
 displayTurnInName = "Dr. Ildran"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_wntyx"]
 script = ExtResource("2_8mv8e")
@@ -90,8 +91,8 @@ turnInNames = Array[String]([])
 displayObjName = "Leavenport"
 displayTurnInName = ""
 customStatusStr = "Reach Leavenport!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_t68es"]
 script = ExtResource("4_801qh")
@@ -112,8 +113,8 @@ turnInNames = Array[String](["solius_leavenport"])
 displayObjName = "Solius"
 displayTurnInName = "Solius"
 customStatusStr = ""
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("7_cbync")])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([ExtResource("6_c8xco")])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("7_cbync")])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("6_c8xco")])
 
 [sub_resource type="Resource" id="Resource_a8qhh"]
 script = ExtResource("2_8mv8e")
@@ -126,8 +127,8 @@ turnInNames = Array[String]([])
 displayObjName = "Radiant Cave"
 displayTurnInName = ""
 customStatusStr = "Reach the Radiant Cave!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_rnfyw"]
 script = ExtResource("2_8mv8e")
@@ -140,8 +141,8 @@ turnInNames = Array[String]([])
 displayObjName = "Etreus"
 displayTurnInName = ""
 customStatusStr = "Defeat Etreus!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_8kfnv"]
 script = ExtResource("2_8mv8e")
@@ -154,8 +155,8 @@ turnInNames = Array[String]([])
 displayObjName = "???"
 displayTurnInName = ""
 customStatusStr = "Escape Leavenport!"
-turnInDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
-inProgressDialogue = Array[Resource("res://scripts/dialogue/dialogue_entry.gd")]([])
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [resource]
 script = ExtResource("1_jiru6")

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://uhrjiigdc4cp"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://uhrjiigdc4cp"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_re1ui"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_wyga7"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_b7q2p"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_n5pd0"]
 
 [sub_resource type="Resource" id="Resource_qob0q"]
 script = ExtResource("1_wyga7")
 choiceBtn = "Got It!"
 returnsToParentId = "drh_cart_stuck"
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_n5pd0")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

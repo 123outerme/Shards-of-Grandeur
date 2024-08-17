@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://dyndcsofhgcr6"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://dyndcsofhgcr6"]
 
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_1uuay"]
 [ext_resource type="Resource" uid="uid://cbqoygqr0xhla" path="res://gamedata/moves/marlin_spike/sprite_marlin_spike.tres" id="1_ge71w"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_notdi"]
 
@@ -7,5 +8,5 @@
 script = ExtResource("2_notdi")
 combatantAnimation = "attack_phys"
 makesContact = true
-chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_ge71w")])
-surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([ExtResource("1_ge71w")])
+chargeMoveSprites = Array[ExtResource("1_1uuay")]([ExtResource("1_ge71w")])
+surgeMoveSprites = Array[ExtResource("1_1uuay")]([ExtResource("1_ge71w")])

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dk6ni0sxklyj5"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dk6ni0sxklyj5"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_f6o8f"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_n0ddb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_iska5"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_8u23t"]
 
 [sub_resource type="Resource" id="Resource_rafie"]
 script = ExtResource("1_f6o8f")
 lines = Array[String](["Dr. Hudson tells me you are on an important mission, @. When you get back, these rooms will be ready for you and your party."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_iska5")]([])
 
 [sub_resource type="Resource" id="Resource_5nkvd"]
 script = ExtResource("3_8u23t")

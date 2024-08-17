@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cxr66hncv2g4u"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cxr66hncv2g4u"]
 
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uboej"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_ut6ma"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_51m4o"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_06lod"]
@@ -8,7 +9,7 @@
 script = ExtResource("3_51m4o")
 lines = Array[String](["With the Chain Legion being this bold, I fear war is upon us.", "Steelspire is a formidable opponent. That city is larger and more influential than Grandstone, but we will have to prevail regardless."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_uboej")]([])
 
 [sub_resource type="Resource" id="Resource_ak28q"]
 script = ExtResource("4_06lod")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://d3yj2khqaukni"]
+[gd_resource type="Resource" script_class="Move" load_steps=14 format=3 uid="uid://d3yj2khqaukni"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_f7jf4"]
 [ext_resource type="Resource" uid="uid://d3urfcu4env61" path="res://gamedata/moves/stamina_drain/anim_stamina_drain.tres" id="1_hl6lw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/battle/status_effects/exhaustion.gd" id="3_wetfp"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_b53h7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="6_82bdc"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="6_bdvvm"]
 
 [sub_resource type="Resource" id="Resource_ea11q"]
 script = ExtResource("3_wetfp")
@@ -43,7 +44,7 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.05
-elementMultipliers = Array[Resource("res://scripts/battle/combatant/element_multiplier.gd")]([])
+elementMultipliers = Array[ExtResource("6_bdvvm")]([])
 
 [sub_resource type="Resource" id="Resource_onqfx"]
 script = ExtResource("5_b53h7")

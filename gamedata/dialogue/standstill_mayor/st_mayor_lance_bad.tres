@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b2extw7573w3p"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b2extw7573w3p"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_a7xw2"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_0nddp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e508l"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_mkxuk"]
 
 [sub_resource type="Resource" id="Resource_xh1lo"]
 script = ExtResource("1_a7xw2")
 lines = Array[String](["She also is training an apprentice smith, Lance, however he has not been proving himself lately."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_e508l")]([])
 
 [sub_resource type="Resource" id="Resource_g160x"]
 script = ExtResource("3_mkxuk")

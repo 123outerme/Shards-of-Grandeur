@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://4o02emahx2vv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://4o02emahx2vv"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_amqhb"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_o5j10"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_sale0"]
 [ext_resource type="Resource" uid="uid://bkp6unp7ys28m" path="res://gamedata/story_requirements/main_story/act1/leavenport_takeover.tres" id="2_nhttm"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_3vkbi"]
 
 [sub_resource type="Resource" id="Resource_41k25"]
 script = ExtResource("1_sale0")
 choiceBtn = "..."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_3vkbi")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""

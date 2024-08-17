@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b4d2wrrbaa21l"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://b4d2wrrbaa21l"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_07ylg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_cxehe"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vgb1i"]
 [ext_resource type="Resource" uid="uid://uhrjiigdc4cp" path="res://gamedata/dialogue/dr_hudson/hilltop_forest/drh_hilltop_shards_help.tres" id="2_ea06c"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_f4djd"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_wsf8k"]
 
 [sub_resource type="Resource" id="Resource_y728j"]
 script = ExtResource("1_cxehe")
 choiceBtn = "OK."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_wsf8k")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
@@ -21,7 +22,7 @@ script = ExtResource("1_cxehe")
 choiceBtn = "Shards?"
 leadsTo = ExtResource("2_ea06c")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_wsf8k")]([])
 repeatsItem = false
 buttonDims = Vector2(180, 40)
 turnsInQuest = ""

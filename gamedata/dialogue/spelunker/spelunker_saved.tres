@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dnkctjc6jccia"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dnkctjc6jccia"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_dv5bk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ok13b"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qa6wl"]
 [ext_resource type="Resource" uid="uid://cbhbyv3xl4q5t" path="res://gamedata/dialogue/spelunker/spelunker_leave_hilltop.tres" id="2_sd7nv"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_vc11j"]
 
 [sub_resource type="Resource" id="Resource_770qi"]
 script = ExtResource("1_dv5bk")
 choiceBtn = "Hold On..."
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_vc11j")]([])
 repeatsItem = false
 buttonDims = Vector2(200, 40)
 turnsInQuest = ""
@@ -20,7 +21,7 @@ script = ExtResource("1_dv5bk")
 choiceBtn = "Yeah."
 leadsTo = ExtResource("2_sd7nv")
 returnsToParentId = ""
-randomDialogues = Array[Resource("res://scripts/battle/weighted_things/weighted_dialogue_entry.gd")]([])
+randomDialogues = Array[ExtResource("3_vc11j")]([])
 repeatsItem = false
 buttonDims = Vector2(140, 40)
 turnsInQuest = "Protect the Convoy#Ambush!"

@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://b5hm1ld8qxwup"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b5hm1ld8qxwup"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_htl46"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_uwrnu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4rg5s"]
 
 [sub_resource type="Resource" id="Resource_3am72"]
 script = ExtResource("1_uwrnu")
 lines = Array[String](["Thanks for the bait! I'll be careful with this one.", "... Oh boy, I'm quite hungry now, I've been out here all day!", "While I prepare the bait, would you get me something from the restaurant here? You passed by it on your way to the swamp.", "Just ask the chef for my usual, that's all you need to order for. He'll know what I want.", "By the time you're back, I'll be able to show you how well this Storm Swarm trick works, too."])
 animation = "talk"
-choices = Array[Resource("res://scripts/dialogue/dialogue_choice.gd")]([])
+choices = Array[ExtResource("2_4rg5s")]([])
 
 [resource]
 script = ExtResource("1_htl46")
