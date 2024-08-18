@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=16 format=3 uid="uid://u602ucp7i26y"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_kf6fg"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_x3vyi"]
+[ext_resource type="Resource" uid="uid://2m2sy63006u0" path="res://gamedata/items/shard/mirage_shard.tres" id="3_75qgo"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_ej6qq"]
+[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="5_qg6pq"]
+[ext_resource type="Resource" uid="uid://bkre2g7wcak0v" path="res://gamedata/items/healing/leavenport_meal.tres" id="6_dfk47"]
+[ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="7_cwthy"]
+
+[sub_resource type="Resource" id="Resource_tfbha"]
+script = ExtResource("4_ej6qq")
+experience = 48
+gold = 14
+item = ExtResource("3_75qgo")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_undbn"]
+script = ExtResource("2_x3vyi")
+reward = SubResource("Resource_tfbha")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_8iuus"]
+script = ExtResource("4_ej6qq")
+experience = 48
+gold = 14
+item = ExtResource("5_qg6pq")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_1j8g4"]
+script = ExtResource("2_x3vyi")
+reward = SubResource("Resource_8iuus")
+weight = 0.05
+
+[sub_resource type="Resource" id="Resource_y6pm7"]
+script = ExtResource("4_ej6qq")
+experience = 48
+gold = 14
+item = ExtResource("6_dfk47")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_praje"]
+script = ExtResource("2_x3vyi")
+reward = SubResource("Resource_y6pm7")
+weight = 0.05
+
+[sub_resource type="Resource" id="Resource_2sj4y"]
+script = ExtResource("4_ej6qq")
+experience = 48
+gold = 14
+item = ExtResource("7_cwthy")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_hv604"]
+script = ExtResource("2_x3vyi")
+reward = SubResource("Resource_2sj4y")
+weight = 0.05
+
+[resource]
+script = ExtResource("1_kf6fg")
+weightedRewards = Array[ExtResource("2_x3vyi")]([SubResource("Resource_undbn"), SubResource("Resource_1j8g4"), SubResource("Resource_praje"), SubResource("Resource_hv604")])

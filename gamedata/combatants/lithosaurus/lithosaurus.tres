@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dm3g1qy72w0lg"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_f6ol8"]
+[ext_resource type="Resource" uid="uid://bttd5rydjd5ru" path="res://gamedata/combatants/lithosaurus/lithosaurus_rewards.tres" id="1_t4fbu"]
+[ext_resource type="Resource" uid="uid://b5t3tbqhxci0h" path="res://gamedata/combatants/lithosaurus/lithosaurus_evolutions.tres" id="2_l01vg"]
+[ext_resource type="Resource" uid="uid://ggnxtbhne72i" path="res://gamedata/combatants/lithosaurus/lithosaurus_effectiveness.tres" id="3_2b6wo"]
+[ext_resource type="Resource" uid="uid://dxsdq0nmvpyri" path="res://gamedata/combatants/missingno_sprite.tres" id="5_4kktv"]
+[ext_resource type="Resource" uid="uid://s38jp5ynkbwh" path="res://gamedata/combatants/lithosaurus/lithosaurus_stat_alloc_strat.tres" id="6_dweem"]
+[ext_resource type="Resource" uid="uid://cwr684jwgernf" path="res://gamedata/combatants/lithosaurus/lithosaurus_movepool.tres" id="7_bdkr8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_brrnm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="9_qu71t"]
+[ext_resource type="Resource" uid="uid://bjqkf5plgcfts" path="res://gamedata/combatants/lithosaurus/lithosaurus_stat_growth.tres" id="10_yvsds"]
+[ext_resource type="Resource" uid="uid://ceft7xlha38j2" path="res://gamedata/combatants/lithosaurus/lithosaurus_equipment.tres" id="11_a4mcr"]
+
+[sub_resource type="Resource" id="Resource_til3p"]
+script = ExtResource("9_qu71t")
+displayName = "Lithosaurus"
+saveName = "lithosaurus"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("10_yvsds")
+moves = Array[ExtResource("8_brrnm")]([])
+movepool = ExtResource("7_bdkr8")
+
+[resource]
+script = ExtResource("1_f6ol8")
+sprite = ExtResource("5_4kktv")
+nickname = ""
+stats = SubResource("Resource_til3p")
+evolutions = ExtResource("2_l01vg")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 3
+damageAggroType = 0
+strategy = 1
+aiOverrideWeight = 0.4
+moveEffectiveness = ExtResource("3_2b6wo")
+weightedEquipment = ExtResource("11_a4mcr")
+dropTable = ExtResource("1_t4fbu")
+innateStatCategories = Array[int]([])
+statAllocationStrategy = ExtResource("6_dweem")
+downed = false

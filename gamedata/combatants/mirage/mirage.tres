@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://0qma1pdmr3vo"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_f0ok0"]
+[ext_resource type="Resource" uid="uid://u602ucp7i26y" path="res://gamedata/combatants/mirage/mirage_rewards.tres" id="1_jhprc"]
+[ext_resource type="Resource" uid="uid://b7iurk220xpxl" path="res://gamedata/combatants/mirage/mirage_evolutions.tres" id="2_qngi6"]
+[ext_resource type="Resource" uid="uid://brycbskrmt4nw" path="res://gamedata/combatants/mirage/mirage_effectiveness.tres" id="3_rjocx"]
+[ext_resource type="Resource" uid="uid://dxsdq0nmvpyri" path="res://gamedata/combatants/missingno_sprite.tres" id="5_toue1"]
+[ext_resource type="Resource" uid="uid://bfs8j5vcm15po" path="res://gamedata/combatants/mirage/mirage_stat_alloc_strat.tres" id="6_58fn0"]
+[ext_resource type="Resource" uid="uid://cmuns5870fyw0" path="res://gamedata/combatants/mirage/mirage_movepool.tres" id="7_1v7lk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_q4uok"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="9_jys4l"]
+[ext_resource type="Resource" uid="uid://psb4ucy4d2nw" path="res://gamedata/combatants/mirage/mirage_stat_growth.tres" id="10_msnuc"]
+[ext_resource type="Resource" uid="uid://i67trh53tp6i" path="res://gamedata/combatants/mirage/mirage_equipment.tres" id="11_xgqef"]
+
+[sub_resource type="Resource" id="Resource_43iin"]
+script = ExtResource("9_jys4l")
+displayName = "Mirage"
+saveName = "mirage"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("10_msnuc")
+moves = Array[ExtResource("8_q4uok")]([])
+movepool = ExtResource("7_1v7lk")
+
+[resource]
+script = ExtResource("1_f0ok0")
+sprite = ExtResource("5_toue1")
+nickname = ""
+stats = SubResource("Resource_43iin")
+evolutions = ExtResource("2_qngi6")
+evolutionStats = {}
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 4
+damageAggroType = 1
+strategy = 0
+aiOverrideWeight = 0.25
+moveEffectiveness = ExtResource("3_rjocx")
+weightedEquipment = ExtResource("11_xgqef")
+dropTable = ExtResource("1_jhprc")
+innateStatCategories = Array[int]([])
+statAllocationStrategy = ExtResource("6_58fn0")
+downed = false
