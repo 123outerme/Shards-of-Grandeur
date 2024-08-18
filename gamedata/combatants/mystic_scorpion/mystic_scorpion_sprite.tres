@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://cxrjjb4ssvyxa"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_8emdt"]
+[ext_resource type="SpriteFrames" uid="uid://bubdpc4idrc2j" path="res://graphics/animations/a_mystic_scorpion.tres" id="2_cispe"]
+
+[resource]
+script = ExtResource("1_8emdt")
+spriteFrames = ExtResource("2_cispe")
+maxSize = Vector2(32, 16)
+idleSize = Vector2(24, 16)
+centerPosition = Vector2(12, 11)
+feetPosition = Vector2(12, 14)
+spriteFacesRight = false
+navigationLayer = 2
+attackAffinityArrivalFrame = 4
+attackMagicArrivalFrame = 3
+attackPhysArrivalFrame = 2
+attackAffinityImpactFrame = 4
+attackMagicImpactFrame = 3
+attackPhysImpactFrame = 4
