@@ -25,11 +25,20 @@ var enemiesDir: String = 'enemies/'
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
 
 func _ready():
-	if enemyEncounter.combatant1 == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: no combatant1 provided')
+	if spawnerData == null:
+		printerr('EnemySpawner error: no spawner data defined')
 		queue_free()
+		return
+	if enemyEncounter == null:
+		printerr('EnemySpawner ', spawnerData.spawnerId,' error: no encounter defined')
+		queue_free()
+		return
 	if tilemap == null:
 		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: Tilemap root node not defined')
+		queue_free()
+		return
+	if enemyEncounter.combatant1 == null:
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: no combatant1 provided')
 		queue_free()
 
 func _on_area_2d_area_entered(area):
