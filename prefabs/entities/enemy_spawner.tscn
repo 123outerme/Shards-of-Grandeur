@@ -14,5 +14,6 @@ collision_mask = 2
 
 [node name="SpawnShape" type="CollisionShape2D" parent="SpawnArea"]
 shape = SubResource("RectangleShape2D_lfh4r")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [connection signal="area_entered" from="SpawnArea" to="." method="_on_area_2d_area_entered"]
