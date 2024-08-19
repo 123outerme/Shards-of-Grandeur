@@ -26,19 +26,19 @@ var enemiesDir: String = 'enemies/'
 
 func _ready():
 	if spawnerData == null:
-		printerr('EnemySpawner error: no spawner data defined')
+		printerr('EnemySpawner (name ', name, ') error: no spawner data defined')
 		queue_free()
 		return
 	if enemyEncounter == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId,' error: no encounter defined')
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no encounter defined')
 		queue_free()
 		return
 	if tilemap == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: Tilemap root node not defined')
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: Tilemap root node not defined')
 		queue_free()
 		return
 	if enemyEncounter.combatant1 == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' error: no combatant1 provided')
+		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no combatant1 provided')
 		queue_free()
 
 func _on_area_2d_area_entered(area):

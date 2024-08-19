@@ -362,6 +362,9 @@ func end_battle():
 	for combatantNode: CombatantNode in combatantNodes:
 		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
 			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
+			# if this creature is an evolution, set its save name as defeated as well.
+			if combatantNode.combatant.get_evolution() != null:
+				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.get_evolution_save_name())
 	
 	if minionCombatant.combatant != null:
 		#if not minionCombatant.combatant.downed and state.usedShard != null: # credit back used shard if the minion wasn't downed

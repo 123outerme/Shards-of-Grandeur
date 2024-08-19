@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=6 format=3 uid="uid://bgm4lg8udrmj8"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_a5s1o"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_exqan"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_e7yhs"]
+
+[sub_resource type="Resource" id="Resource_l3211"]
+script = ExtResource("3_e7yhs")
+experience = 52
+gold = 6
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_1dkay"]
+script = ExtResource("2_exqan")
+reward = SubResource("Resource_l3211")
+weight = 0.85
+
+[resource]
+script = ExtResource("1_a5s1o")
+weightedRewards = Array[ExtResource("2_exqan")]([SubResource("Resource_1dkay"), null])

@@ -322,6 +322,12 @@ func get_nav_layer() -> int:
 		return evolution.combatantSprite.navigationLayer
 	return sprite.navigationLayer
 
+func get_evolution_save_name() -> String:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.evolutionSaveName
+	return save_name()
+
 func update_downed():
 	downed = currentHp <= 0
 

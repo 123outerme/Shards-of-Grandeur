@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://81npyd53qy3y"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_jtprq"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_a68nb"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_uc3aj"]
+[ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="3_an0aj"]
+[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="4_2o24j"]
+
+[resource]
+script = ExtResource("2_a68nb")
+pool = Array[ExtResource("1_jtprq")]([ExtResource("2_uc3aj"), ExtResource("3_an0aj"), ExtResource("4_2o24j")])
+preferredMove1Role = 1
+preferredMove2Role = 2
+preferredMove3Role = 3
+preferredMove4Role = 0
