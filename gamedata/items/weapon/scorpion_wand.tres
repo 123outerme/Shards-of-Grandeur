@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://2afnf1l2bwk5"]
+
+[ext_resource type="Texture2D" uid="uid://c6pfmi140hbeb" path="res://graphics/items/weapons/scorpion_wand.png" id="1_fkonc"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_w22n8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_m23rg"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_0hqbx"]
+
+[sub_resource type="Resource" id="Resource_10q36"]
+script = ExtResource("3_m23rg")
+element = 7
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_4jdkf"]
+script = ExtResource("4_0hqbx")
+physAttackIncrease = 0
+magicAttackIncrease = 2
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_m23rg")]([SubResource("Resource_10q36")])
+
+[resource]
+script = ExtResource("1_w22n8")
+statChanges = SubResource("Resource_4jdkf")
+timing = 1
+bonusOrbs = 0
+itemSprite = ExtResource("1_fkonc")
+itemName = "Scorpion Wand"
+itemType = 2
+itemDescription = "This magical wand was crafted from the tail of a Mystic Scorpion. Dark powers seem to seep from the gem-like carapace at the tip of the wand, as if the Scorpion this came from is furious at its lost tail..."
+cost = 28
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
