@@ -4,6 +4,7 @@ class_name MinionsPanel
 signal stats_clicked(combatant: Combatant)
 signal minion_auto_alloc_changed(combatant: Combatant)
 signal panel_loaded
+signal minion_renamed
 
 @export var readOnly: bool = false
 @export var minion: Combatant = null
@@ -182,6 +183,7 @@ func _on_name_input_text_submitted(new_text: String):
 func _on_confirm_button_pressed():
 	minion.nickname = nameInput.text
 	end_edit_name()
+	minion_renamed.emit()
 
 func _on_cancel_button_pressed():
 	nameInput.text = minion.nickname

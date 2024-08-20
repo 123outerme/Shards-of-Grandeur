@@ -214,7 +214,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5pwwl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StatsPanel/Panel/TabbedView"]
+[node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel/TabbedView"]
 position = Vector2(160, 56)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_usdlr")
@@ -399,6 +399,7 @@ layout_mode = 1
 [connection signal="attempt_equip_armor" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
 [connection signal="attempt_equip_weapon" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
+[connection signal="minion_renamed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="pressed" from="StatsPanel/Panel/TabbedView/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="stats_saved" from="StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel" to="." method="_on_stat_line_panel_stats_saved"]
@@ -407,6 +408,7 @@ layout_mode = 1
 [connection signal="edit_moves" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
+[connection signal="minion_renamed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]
 [connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]

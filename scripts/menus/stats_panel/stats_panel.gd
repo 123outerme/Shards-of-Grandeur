@@ -66,7 +66,7 @@ var minionsPanel: MinionsPanel = null
 # --- Tabbed View ---
 @onready var tabbedViewPanel: Panel = get_node('StatsPanel/Panel/TabbedView')
 @onready var tabbedViewContainer: TabContainer = get_node('StatsPanel/Panel/TabbedView/TabContainer')
-@onready var tabbedViewCombatantSprite: AnimatedSprite2D
+@onready var tabbedViewCombatantSprite: AnimatedSprite2D = get_node('StatsPanel/Panel/TabbedView/AnimatedCombatantSprite')
 @onready var tabbedViewStatlinePanel: StatLinePanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel')
 @onready var tabbedViewMoveListPanel: MoveListPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel')
 @onready var tabbedViewEquipmentPanel: EquipmentPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel')
@@ -184,8 +184,13 @@ func load_stats_panel(fromToggle: bool = false):
 	
 	if not isTabbedView:
 		minionsPanel.call_deferred('connect_to_top_control', singleViewBackButton)
-	#else:
-	#	minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
+	else:
+		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+		if minion != null:
+			minionsControl.name = minion.disp_name()
+		else:
+			minionsControl.name = 'Minions'
+		#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
 	changingCombatant = false
 
 func restore_previous_stats_panel():
@@ -196,7 +201,8 @@ func restore_previous_stats_panel():
 	isMinionStats = false
 	changingCombatant = true
 	load_stats_panel()
-	update_stats_tab_icon()
+	if isTabbedView:
+		tabbedViewContainer.current_tab = TabbedViewTab.STATS
 	restore_previous_focus()
 
 func update_stats_tab_icon():
@@ -246,7 +252,14 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		isMinionStats = true
 		changingCombatant = true
 		load_stats_panel()
+		if isTabbedView:
+			tabbedViewContainer.current_tab = TabbedViewTab.STATS
 		initial_focus()
+
+func _on_minions_panel_minion_renamed() -> void:
+	if isTabbedView:
+		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+		minionsControl.name = minion.disp_name()
 
 func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 	# the minion changed should never not be the minion being inspected, but just in case, do nothing
