@@ -31,7 +31,7 @@ func allocate_stats(stats: Stats, allocateAmount: int = -1):
 			return
 
 	var stopAt: int = max(stats.statPts - allocateAmount, 0)
-	if allocateAmount == -1:
+	if allocateAmount <= -1:
 		stopAt = 0
 
 	while stats.statPts > stopAt:

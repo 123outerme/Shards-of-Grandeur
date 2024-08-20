@@ -1,6 +1,8 @@
 extends Panel
 class_name StatLinePanel
 
+signal stats_saved
+
 @export var stats: Stats = null
 @export var curHp: int = -1
 @export var readOnly: bool = false
@@ -218,6 +220,7 @@ func _on_save_changes_button_pressed():
 	stats.save_from_object(statsCopy)
 	modified = false
 	load_statline_panel()
+	stats_saved.emit()
 
 func _on_cancel_changes_button_pressed():
 	statsCopy = stats.copy() # copy original stats back into editing stats

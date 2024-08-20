@@ -15,7 +15,7 @@ func _init(
 	i_overwrites = false,
 	i_turnsLeft = 0
 ):
-	super(Type.WEAKNESS, i_potency, overwritesOtherStatuses, i_turnsLeft)
+	super(Type.WEAKNESS, i_potency, i_overwrites, i_turnsLeft)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	#if timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC:

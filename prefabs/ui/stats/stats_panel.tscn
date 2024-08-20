@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=17 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="2_qydtc"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_vg3x4"]
+[ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="3_ao33y"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_usdlr"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_77yq4"]
+[ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="4_sak5l"]
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://prefabs/ui/stats/stat_line_panel.tscn" id="5_lltfh"]
 [ext_resource type="PackedScene" uid="uid://di4m6wwpbc3pl" path="res://prefabs/ui/stats/move_list_panel.tscn" id="6_w55pq"]
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://prefabs/ui/stats/equipment_panel.tscn" id="7_dsgm0"]
@@ -12,9 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://cm57i83oiea42" path="res://prefabs/ui/stats/edit_moves_panel.tscn" id="9_ue80h"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="10_sd4fn"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h8xb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pwwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hatjo"]
+
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_gd13l")
 levelUpMusic = ExtResource("2_qydtc")
+unspentStatPtsIndicator = ExtResource("3_ao33y")
+newMoveIndicator = ExtResource("4_sak5l")
 
 [node name="StatsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -30,28 +40,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="BackButton" parent="StatsPanel/Panel" instance=ExtResource("10_sd4fn")]
-custom_minimum_size = Vector2(60, 40)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = 16.0
-offset_right = 30.0
-offset_bottom = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Back"
-
-[node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel"]
-position = Vector2(64, 44)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("3_usdlr")
-animation = &"walk"
 
 [node name="StatsTitle" type="RichTextLabel" parent="StatsPanel/Panel"]
 layout_mode = 1
@@ -86,14 +74,46 @@ theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 text = "[center]Level Up![/center]"
 
-[node name="StatLinePanel" parent="StatsPanel/Panel" instance=ExtResource("5_lltfh")]
+[node name="SinglePageView" type="Panel" parent="StatsPanel/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2h8xb")
+
+[node name="AnimatedCombatantSprite" type="AnimatedSprite2D" parent="StatsPanel/Panel/SinglePageView"]
+position = Vector2(160, 44)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_usdlr")
+animation = &"walk"
+
+[node name="BackButton" parent="StatsPanel/Panel/SinglePageView" instance=ExtResource("10_sd4fn")]
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="StatLinePanel" parent="StatsPanel/Panel/SinglePageView" instance=ExtResource("5_lltfh")]
 layout_mode = 1
 offset_left = 40.0
 offset_top = 78.0
 offset_right = 600.0
 offset_bottom = 458.0
 
-[node name="MoveListPanel" parent="StatsPanel/Panel" instance=ExtResource("6_w55pq")]
+[node name="MoveListPanel" parent="StatsPanel/Panel/SinglePageView" instance=ExtResource("6_w55pq")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -104,7 +124,7 @@ offset_right = -40.0
 offset_bottom = 419.0
 grow_horizontal = 0
 
-[node name="MoveDetailsPanel" parent="StatsPanel/Panel/MoveListPanel" index="2"]
+[node name="MoveDetailsPanel" parent="StatsPanel/Panel/SinglePageView/MoveListPanel" index="2"]
 anchors_preset = -1
 anchor_left = -1.214
 anchor_top = -0.243
@@ -115,7 +135,7 @@ offset_top = 4.863
 offset_right = 3.03992
 offset_bottom = 11.019
 
-[node name="EquipmentPanel" parent="StatsPanel/Panel" instance=ExtResource("7_dsgm0")]
+[node name="EquipmentPanel" parent="StatsPanel/Panel/SinglePageView" instance=ExtResource("7_dsgm0")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -126,10 +146,10 @@ offset_right = 600.0
 offset_bottom = -6.0
 grow_vertical = 0
 
-[node name="WeaponControl" parent="StatsPanel/Panel/EquipmentPanel" index="0"]
+[node name="WeaponControl" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel" index="0"]
 offset_bottom = -131.0
 
-[node name="WeaponEffects" parent="StatsPanel/Panel/EquipmentPanel/WeaponControl" index="3"]
+[node name="WeaponEffects" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel/WeaponControl" index="3"]
 offset_bottom = 124.0
 theme_override_font_sizes/bold_italics_font_size = 16
 theme_override_font_sizes/italics_font_size = 16
@@ -140,10 +160,14 @@ text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed
 Third Line[/center]"
 
-[node name="ArmorControl" parent="StatsPanel/Panel/EquipmentPanel" index="1"]
+[node name="Control" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel" index="1"]
+offset_top = -6.0
+offset_bottom = -6.0
+
+[node name="ArmorControl" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel" index="2"]
 offset_top = 128.0
 
-[node name="ArmorEffects" parent="StatsPanel/Panel/EquipmentPanel/ArmorControl" index="3"]
+[node name="ArmorEffects" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel/ArmorControl" index="3"]
 offset_bottom = 124.0
 theme_override_font_sizes/bold_italics_font_size = 16
 theme_override_font_sizes/italics_font_size = 16
@@ -154,14 +178,14 @@ text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed
 Third Line[/center]"
 
-[node name="ItemDetailsPanel" parent="StatsPanel/Panel/EquipmentPanel" index="2"]
+[node name="ItemDetailsPanel" parent="StatsPanel/Panel/SinglePageView/EquipmentPanel" index="3"]
 z_index = 1
 offset_left = -40.0
 offset_top = -479.0
 offset_right = 680.0
 offset_bottom = 6.0
 
-[node name="MinionsPanel" parent="StatsPanel/Panel" instance=ExtResource("8_3o74c")]
+[node name="MinionsPanel" parent="StatsPanel/Panel/SinglePageView" instance=ExtResource("8_3o74c")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -175,25 +199,222 @@ offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="VirtualKeyboard" parent="StatsPanel/Panel/MinionsPanel/MinionView" index="5"]
+[node name="VirtualKeyboard" parent="StatsPanel/Panel/SinglePageView/MinionsPanel/MinionView" index="6"]
 offset_left = -636.0
 offset_top = -336.0
 offset_right = -1.0
 offset_bottom = -332.0
 
+[node name="TabbedView" type="Panel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5pwwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StatsPanel/Panel/TabbedView"]
+position = Vector2(160, 56)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_usdlr")
+animation = &"walk"
+
+[node name="BackButton" parent="StatsPanel/Panel/TabbedView" instance=ExtResource("10_sd4fn")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 300.0
+offset_right = 40.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="TabContainer" type="TabContainer" parent="StatsPanel/Panel/TabbedView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 82.0
+offset_right = -16.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hatjo")
+tab_alignment = 1
+current_tab = 0
+
+[node name="Stats" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="StatLinePanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Stats" instance=ExtResource("5_lltfh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -355.5
+offset_top = -267.5
+offset_right = 355.5
+offset_bottom = 188.5
+grow_vertical = 2
+
+[node name="Equipment" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="EquipmentPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment" instance=ExtResource("7_dsgm0")]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.5
+offset_top = -267.5
+offset_right = 458.5
+offset_bottom = 212.5
+grow_horizontal = 2
+grow_vertical = 2
+showEquipmentDetailsPanels = true
+
+[node name="WeaponControl" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="0"]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 236.0
+grow_vertical = 1
+
+[node name="WeaponEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="3"]
+visible = false
+
+[node name="WeaponDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="4"]
+visible = true
+
+[node name="Line2D" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/Control" index="0"]
+points = PackedVector2Array(2, 0, 918, 0)
+
+[node name="ArmorControl" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="2"]
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = 0.0
+offset_top = -225.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="ArmorEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="3"]
+visible = false
+
+[node name="ArmorDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="4"]
+visible = true
+
+[node name="ItemDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="3"]
+offset_left = -704.0
+offset_top = -222.5
+offset_right = -704.0
+offset_bottom = -222.5
+
+[node name="ColorRect" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ItemDetailsPanel" index="0"]
+anchors_preset = -1
+anchor_left = -0.004
+anchor_top = -0.003
+anchor_right = 2.282
+anchor_bottom = 2.275
+offset_left = 2.24
+offset_top = 0.948
+offset_right = 2.07996
+offset_bottom = 1.09998
+
+[node name="Moves" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MoveListPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Moves" instance=ExtResource("6_w55pq")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.5
+offset_top = -267.5
+offset_right = 279.5
+offset_bottom = 136.5
+
+[node name="MoveDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" index="2"]
+anchors_preset = -1
+anchor_left = -0.644
+anchor_top = -0.442
+anchor_right = -0.644
+anchor_bottom = -0.442
+offset_left = 0.640015
+offset_top = 65.568
+offset_right = 1280.64
+offset_bottom = 876.825
+
+[node name="Minions" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="MinionsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Minions" instance=ExtResource("8_3o74c")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.5
+offset_top = -267.5
+offset_right = 279.5
+offset_bottom = 266.5
+
+[node name="VirtualKeyboard" parent="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel/MinionView" index="6"]
+offset_left = -319.0
+offset_top = 293.0
+offset_right = 316.0
+offset_bottom = 59.0
+
 [node name="EditMovesPanel" parent="StatsPanel/Panel" instance=ExtResource("9_ue80h")]
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="StatsPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="edit_moves" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
-[connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
-[connection signal="attempt_equip_armor" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
-[connection signal="attempt_equip_weapon" from="StatsPanel/Panel/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
-[connection signal="stats_clicked" from="StatsPanel/Panel/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
+[connection signal="pressed" from="StatsPanel/Panel/SinglePageView/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="stats_saved" from="StatsPanel/Panel/SinglePageView/StatLinePanel" to="." method="_on_stat_line_panel_stats_saved"]
+[connection signal="edit_moves" from="StatsPanel/Panel/SinglePageView/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
+[connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/SinglePageView/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="attempt_equip_armor" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
+[connection signal="attempt_equip_weapon" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
+[connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
+[connection signal="stats_clicked" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
+[connection signal="pressed" from="StatsPanel/Panel/TabbedView/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="stats_saved" from="StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel" to="." method="_on_stat_line_panel_stats_saved"]
+[connection signal="attempt_equip_armor" from="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
+[connection signal="attempt_equip_weapon" from="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
+[connection signal="edit_moves" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
+[connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
+[connection signal="stats_clicked" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]
 [connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]
 
-[editable path="StatsPanel/Panel/MoveListPanel"]
-[editable path="StatsPanel/Panel/EquipmentPanel"]
-[editable path="StatsPanel/Panel/MinionsPanel"]
+[editable path="StatsPanel/Panel/SinglePageView/MoveListPanel"]
+[editable path="StatsPanel/Panel/SinglePageView/EquipmentPanel"]
+[editable path="StatsPanel/Panel/SinglePageView/MinionsPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ItemDetailsPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel"]

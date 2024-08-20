@@ -58,6 +58,11 @@ func level_up_minion(minion: Combatant, newLevel: int, newMinion: bool = false):
 	if levelDiff > 0:
 		minion.stats.level_up(levelDiff)
 		minion.currentHp = minion.stats.maxHp
+		if minion.should_auto_alloc_stat_pts():
+			if minion.get_stat_allocation_strategy() == null:
+				printerr('Minion ', minion.save_name(), ' has no stat allocation strategy and is levelling up with automatic stat allocation!')
+			else:
+				minion.get_stat_allocation_strategy().allocate_stats(minion.stats)
 	
 	if (levelDiff > 0 or newMinion) and len(minion.stats.moves) < 4:
 		minion.assign_moves_nonplayer()

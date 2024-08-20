@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="29_jjvhg"]
 
-[sub_resource type="Resource" id="Resource_4weuq"]
+[sub_resource type="Resource" id="Resource_pltfb"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 spriteState = "default"
@@ -62,7 +62,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_g2xqi"]
+[sub_resource type="Resource" id="Resource_ysj7x"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 spriteState = "default"
@@ -82,7 +82,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_m8act"]
+[sub_resource type="Resource" id="Resource_nhh3p"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 spriteState = "default"
@@ -102,7 +102,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_l8yt8"]
+[sub_resource type="Resource" id="Resource_qoax6"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 spriteState = "default"
@@ -259,7 +259,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_7l16c"]
+[sub_resource type="Resource" id="Resource_1301y"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
 spriteState = "default"
@@ -322,7 +322,7 @@ position = Vector2(-1054, 538)
 displayName = "Horse"
 saveName = "horse_cart_hilltop_cave"
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_4weuq")
+data = SubResource("Resource_pltfb")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -360,7 +360,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_g2xqi")
+data = SubResource("Resource_ysj7x")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -392,7 +392,7 @@ collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
 loadFlipH = true
-data = SubResource("Resource_m8act")
+data = SubResource("Resource_nhh3p")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -418,7 +418,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_l8yt8")
+data = SubResource("Resource_qoax6")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier" index="0"]
@@ -585,7 +585,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-360, -221)
-data = SubResource("Resource_7l16c")
+data = SubResource("Resource_1301y")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.66253

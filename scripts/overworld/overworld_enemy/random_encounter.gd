@@ -23,10 +23,8 @@ func _init(
 	i_combatant1Equipment = null,
 	i_combatant1Rewards = null,
 	i_combatant2Options: Array[WeightedCombatant] = [],
-	i_combatant2Equipment = null,
 	i_combatant2Rewards = null,
 	i_combatant3Options: Array[WeightedCombatant] = [],
-	i_combatant3Equipment = null,
 	i_combatant3Rewards = null,
 ):
 	super(i_combatant1, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d23cu31e8s3s6"]
+[gd_scene load_steps=12 format=3 uid="uid://d23cu31e8s3s6"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_75e18"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_8n2sy"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="6_p8706"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="6_xgebg"]
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="8_e7n8f"]
+[ext_resource type="PackedScene" uid="uid://fgxno6ekoy3o" path="res://prefabs/ui/inventory/item_details_panels/equipment_details_panel.tscn" id="8_peacu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5uww8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mivc8"]
 
 [node name="EquipmentPanel" type="Panel"]
 offset_right = 560.0
@@ -65,6 +70,28 @@ bbcode_enabled = true
 text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
 
+[node name="WeaponDetailsPanel" parent="WeaponControl" instance=ExtResource("8_peacu")]
+visible = false
+layout_mode = 0
+offset_top = 36.0
+offset_right = 930.0
+offset_bottom = 220.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5uww8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Control"]
+points = PackedVector2Array(2, 0, 558, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 0.631373)
+
 [node name="ArmorControl" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -112,6 +139,15 @@ offset_bottom = 134.0
 bbcode_enabled = true
 text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
+
+[node name="ArmorDetailsPanel" parent="ArmorControl" instance=ExtResource("8_peacu")]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 928.0
+offset_bottom = 220.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mivc8")
 
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("6_7fgnm")]
 visible = false

@@ -2,6 +2,7 @@ extends Panel
 class_name MinionsPanel
 
 signal stats_clicked(combatant: Combatant)
+signal minion_auto_alloc_changed(combatant: Combatant)
 signal panel_loaded
 
 @export var readOnly: bool = false
@@ -25,6 +26,7 @@ var reorderingMinion: Combatant = null
 @onready var confirmName: Button = get_node("MinionView/NameFormControls/ConfirmButton")
 @onready var cancelName: Button = get_node("MinionView/NameFormControls/CancelButton")
 @onready var friendshipBar: ProgressBar = get_node("MinionView/FriendshipBar")
+@onready var autoAllocCheckButton: CheckButton = get_node('MinionView/AutoAllocateCheckButton')
 @onready var virtualKeyboard: VirtualKeyboard = get_node('MinionView/VirtualKeyboard')
 
 # Called when the node enters the scene tree for the first time.
@@ -71,6 +73,7 @@ func load_minions_panel():
 		cancelName.disabled = false
 		friendshipBar.max_value = minion.maxFriendship
 		friendshipBar.value = minion.friendship
+		autoAllocCheckButton.button_pressed = minion.should_auto_alloc_stat_pts()
 		reordering = false
 		reorderingMinion = null
 	else:
@@ -110,6 +113,23 @@ func connect_to_top_control(control: Control):
 	else:
 		editName.focus_neighbor_top = editName.get_path_to(control)
 		control.focus_neighbor_bottom = control.get_path_to(editName)
+
+func connect_to_bottom_control(control: Control):
+	if not loaded:
+		await panel_loaded
+	if minion == null:
+		var panels: Array[MinionSlotPanel] = get_tree().get_nodes_in_group('MinionSlotPanel') as Array[MinionSlotPanel]
+		var minionPanelControl: Control = null
+		if len(panels) > 0:
+			var bottomPanel: MinionSlotPanel = panels[len(panels) - 1]
+			minionPanelControl = bottomPanel.statsButton
+		else:
+			minionPanelControl = reorderButton
+		minionPanelControl.focus_neighbor_bottom = minionPanelControl.get_path_to(control)
+		control.focus_neighbor_top = control.get_path_to(minionPanelControl)
+	else:
+		autoAllocCheckButton.focus_neighbor_bottom = autoAllocCheckButton.get_path_to(control)
+		control.focus_neighbor_top = control.get_path_to(autoAllocCheckButton)
 
 func get_stats_button_for(combatant: Combatant) -> Button:
 	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):
@@ -171,7 +191,7 @@ func end_edit_name(refocus: bool = true):
 	confirmName.visible = false
 	confirmName.disabled = true
 	cancelName.visible = false
-	editName.visible = true
+	editName.disabled = false
 	nameInput.clear_button_enabled = false
 	nameInput.focus_mode = Control.FOCUS_NONE
 	if refocus:
@@ -182,7 +202,7 @@ func _on_edit_button_pressed():
 	confirmName.visible = true
 	confirmName.disabled = true
 	cancelName.visible = true
-	editName.visible = false
+	editName.disabled = true
 	nameInput.clear_button_enabled = true
 	nameInput.focus_mode = Control.FOCUS_ALL
 	nameInput.grab_focus()
@@ -191,6 +211,11 @@ func _on_name_input_gui_input(event):
 	# if ui cancel (Escape) has been pressed to unfocus the input
 	if event.is_action_pressed('ui_cancel') and editingName:
 		_on_cancel_button_pressed()
+
+func _on_auto_allocate_check_button_toggled(toggled_on: bool) -> void:
+	if minion != null:
+		minion.minionStatAllocMode = Combatant.MinionStatAllocationMode.AUTOMATIC if toggled_on else Combatant.MinionStatAllocationMode.MANUAL
+		minion_auto_alloc_changed.emit(minion)
 
 func _on_virtual_keyboard_backspace_pressed():
 	if virtualKeyboard.visible:

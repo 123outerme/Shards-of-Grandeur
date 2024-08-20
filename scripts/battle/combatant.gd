@@ -22,6 +22,12 @@ enum ResourceStrategy {
 	BIG_SAVER = 2,
 }
 
+enum MinionStatAllocationMode {
+	DEFAULT = -1,
+	MANUAL = 0,
+	AUTOMATIC = 1,
+}
+
 const HP_BAR_COLORS: Dictionary = {
 	'full': Color(0, 0.870588, 0), #00de00
 	'warn': Color(1, 0.717647, 0), #ffb700
@@ -45,17 +51,18 @@ const MAX_ORBS = 10
 @export var sprite: CombatantSprite = null
 
 @export_category("Combatant - Stats")
-@export var nickname: String = ''
+@export_storage var nickname: String = ''
 @export var stats: Stats = Stats.new()
 @export var evolutions: Evolutions = null
-@export var evolutionStats: Dictionary = {}
-@export var currentHp: int = -1
-@export var orbs: int = 0
+@export_storage var evolutionStats: Dictionary = {}
+@export_storage var minionStatAllocMode: MinionStatAllocationMode = MinionStatAllocationMode.DEFAULT
+@export_storage var currentHp: int = -1
+@export_storage var orbs: int = 0
 @export var statChanges: StatChanges = StatChanges.new()
-@export var statusEffect: StatusEffect = null
-@export var friendship: float = 0
+@export_storage var statusEffect: StatusEffect = null
+@export_storage var friendship: float = 0
 @export var maxFriendship: float = 30
-@export var version: String = ''
+@export_storage var version: String = ''
 
 @export_category("Combatant - Encounter")
 @export var aiType: AiType = AiType.NONE
@@ -65,12 +72,11 @@ const MAX_ORBS = 10
 @export var moveEffectiveness: MoveEffectiveness = null
 @export var weightedEquipment: CombatantEquipment = null
 @export var dropTable: CombatantRewards = null
-@export var innateStatCategories: Array[Stats.Category] = []
 @export var statAllocationStrategy: StatAllocationStrategy = null
 
-@export_category("Combatant - In Battle")
-@export var command: BattleCommand = null
-@export var downed: bool = false
+#@export_category("Combatant - In Battle")
+@export_storage var command: BattleCommand = null
+@export_storage var downed: bool = false
 
 static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres')
 
@@ -92,6 +98,7 @@ func _init(
 	i_stats = Stats.new(),
 	i_evolutions = null,
 	i_evolutionStats = {},
+	i_minionStatAllocMode: MinionStatAllocationMode = MinionStatAllocationMode.DEFAULT,
 	i_curHp = -1,
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
@@ -103,7 +110,6 @@ func _init(
 	i_moveEffectiveness = null,
 	i_weightedEquipment = null,
 	i_dropTable: CombatantRewards = null,
-	i_innateStats: Array[Stats.Category] = [],
 	i_statAllocStrat: StatAllocationStrategy = null,
 	i_command = null,
 	i_downed = false,
@@ -118,6 +124,7 @@ func _init(
 	
 	evolutionStats = i_evolutionStats
 	
+	minionStatAllocMode = i_minionStatAllocMode
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	sprite = i_sprite
@@ -128,7 +135,6 @@ func _init(
 	moveEffectiveness = i_moveEffectiveness
 	weightedEquipment = i_weightedEquipment
 	dropTable = i_dropTable
-	innateStatCategories = i_innateStats
 	statAllocationStrategy = i_statAllocStrat
 	command = i_command
 	downed = i_downed
@@ -267,12 +273,6 @@ func get_resource_strategy() -> ResourceStrategy:
 	if evolution != null:
 		return evolution.strategy
 	return strategy
-
-func get_innate_stat_categories() -> Array[Stats.Category]:
-	var evolution: Evolution = get_evolution()
-	if evolution != null:
-		return evolution.innateStatCategories
-	return innateStatCategories
 
 func get_stat_allocation_strategy() -> StatAllocationStrategy:
 	var evolution: Evolution = get_evolution()
@@ -593,6 +593,10 @@ func validate_allocation_strategy_non_null():
 		else:
 			printerr('Combatant ', save_name(), ' stat allocation strategy validation error was not fixed.')
 
+func should_auto_alloc_stat_pts() -> bool:
+	# currently, default shouldn't be to auto-allocate, only the explicit automatic setting
+	return minionStatAllocMode == MinionStatAllocationMode.AUTOMATIC
+
 func copy() -> Combatant:
 	var newCombatant: Combatant = Combatant.new()
 	newCombatant.save_from_object(self)
@@ -626,7 +630,6 @@ func save_from_object(c: Combatant):
 	moveEffectiveness = c.moveEffectiveness
 	weightedEquipment = c.weightedEquipment
 	dropTable = c.dropTable
-	innateStatCategories = c.innateStatCategories.duplicate(false)
 	if c.statAllocationStrategy != null:
 		statAllocationStrategy = c.statAllocationStrategy.duplicate(false)
 	else:

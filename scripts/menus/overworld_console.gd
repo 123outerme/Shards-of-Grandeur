@@ -49,7 +49,7 @@ func _ready():
 	visible = false
 	SettingsHandler.settings_changed.connect(_settings_changed)
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
-	update_console_size(virtualKeyboard.enabled)
+	update_console_size.call_deferred(virtualKeyboard.enabled)
 	clear_console()
 
 func load_overworld_console():
@@ -462,8 +462,8 @@ func list_log_files():
 	var dir: DirAccess = DirAccess.open('user://logs')
 	if dir != null:
 		var filenames: PackedStringArray = dir.get_files()
-		for name: String in filenames:
-			print_to_console(name)
+		for filename: String in filenames:
+			print_to_console(filename)
 	else:
 		print_to_console('Game logs directory could not be opened. DirAccess error code: ' + String.num(DirAccess.get_open_error()))
 

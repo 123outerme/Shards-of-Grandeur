@@ -1,16 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://fgxno6ekoy3o"]
+[gd_scene load_steps=4 format=3 uid="uid://fgxno6ekoy3o"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_details_panels/equipment_details_panel.gd" id="1_mdyi5"]
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_xajy3"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_17o1d"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_aq2cf"]
 
 [node name="EquipmentDetailsPanel" type="Panel"]
 custom_minimum_size = Vector2(930, 184)
 theme = ExtResource("1_xajy3")
 theme_override_styles/panel = ExtResource("2_17o1d")
 script = ExtResource("1_mdyi5")
-item = ExtResource("3_aq2cf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
