@@ -29,6 +29,7 @@ signal enter_pressed
 @export var capsLockRow: int = 4
 @export var startShifted: bool = false
 @export var startCapsLock: bool = false
+@export var closeOnEnterPress: bool = true
 var shift: bool = false
 var capsLock: bool = false
 
@@ -224,7 +225,8 @@ func _press_cancel(button: BaseButton = null):
 
 func _press_enter(button: BaseButton = null):
 	enter_pressed.emit()
-	visible = false
+	if closeOnEnterPress:
+		visible = false
 
 func _press_shift(button: BaseButton = null):
 	shift = not shift
