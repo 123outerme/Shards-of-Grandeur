@@ -12,6 +12,7 @@ enum TouchJoystickType {
 @export var useVirtualKeyboard: bool = false
 @export var screenShake: bool = true
 @export var toggleRun: bool = false
+@export var tabbedViewStats: bool = true
 @export var vsync: bool = false
 @export var deadzone: float = 0.5
 @export var framerate: int = 60
@@ -101,6 +102,7 @@ func _init(
 	i_virtualKeyboard = false,
 	i_screenShake = true,
 	i_toggleRun = false,
+	i_tabbedViewStats = true,
 	i_vsync = false,
 	i_deadzone = 0.5,
 	i_framerate = 60,
@@ -113,6 +115,7 @@ func _init(
 	useVirtualKeyboard = i_virtualKeyboard
 	screenShake = i_screenShake
 	toggleRun = i_toggleRun
+	tabbedViewStats = i_tabbedViewStats
 	vsync = i_vsync
 	deadzone = i_deadzone
 	framerate = i_framerate

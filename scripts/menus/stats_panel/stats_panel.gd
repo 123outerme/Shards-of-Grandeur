@@ -75,6 +75,9 @@ var minionsPanel: MinionsPanel = null
 
 @onready var editMovesPanel: EditMovesPanel = get_node("StatsPanel/Panel/EditMovesPanel")
 
+func _ready() -> void:
+	SettingsHandler.settings_changed.connect(_settings_changed)
+
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
 		get_viewport().set_input_as_handled()
@@ -324,3 +327,6 @@ func _on_inventory_panel_node_open_stats(combatant: Combatant):
 		minion = combatant
 	curHp = combatant.currentHp
 	toggle()
+
+func _settings_changed() -> void:
+	isTabbedView = SettingsHandler.gameSettings.tabbedViewStats

@@ -11,6 +11,10 @@ const windowSizeOptions: Dictionary = {
 }
 const resizeWaitTime: float = 15
 
+const MAX_FRAMERATE: int = 144
+const MAX_MOBILE_FRAMERATE = 90
+const MIN_FRAMERATE: int = 30
+
 var windowSizeOptionsMenu: PopupMenu = null
 var waitingForResizeConfirm: bool = false
 var resizeAccum: float = 0
@@ -30,6 +34,9 @@ var allFramerateTextSelected: bool = false
 
 @onready var runToggleControl: Control = get_node('Control/VBoxContainer/RunToggleControl')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
+
+@onready var crowdedStatsViewControl: Control = get_node('Control/VBoxContainer/CrowdedStatsViewControl')
+@onready var crowdedStatsViewButton: CheckButton = get_node('Control/VBoxContainer/CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton')
 
 @onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
 @onready var touchJoystickTypeToggleButton: Button = get_node('Control/VBoxContainer/TouchJoystickTypeControl/TouchJoystickTypeLabel/CenterButtonHBox/TouchJoystickTypeToggleButton')
@@ -65,7 +72,8 @@ func _ready():
 		fullscreenControl.visible = false
 		vsyncControl.visible = false
 		touchJoystickTypeControl.visible = true
-		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(deadzoneSlider)
+		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(crowdedStatsViewButton)
+		crowdedStatsViewButton.focus_neighbor_top = crowdedStatsViewButton.get_path_to(screenShakeButton)
 		deadzoneSlider.focus_neighbor_top = deadzoneSlider.get_path_to(screenShakeButton)
 		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(touchJoystickTypeToggleButton)
 	else:
@@ -94,6 +102,7 @@ func toggle_section(toggle: bool):
 		onscreenKeyboardButton.button_pressed = SettingsHandler.gameSettings.useVirtualKeyboard
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
+		crowdedStatsViewButton.button_pressed = not SettingsHandler.gameSettings.tabbedViewStats
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
 		touchJoystickTypeToggleButton.button_pressed = SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FIXED
@@ -106,6 +115,7 @@ func toggle_section(toggle: bool):
 		sectionToggleButton.focus_neighbor_right = sectionToggleButton.get_path_to(onscreenKeyboardButton)
 		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
 		runToggleButton.focus_neighbor_left = runToggleButton.get_path_to(sectionToggleButton)
+		crowdedStatsViewButton.focus_neighbor_left = crowdedStatsViewButton.get_path_to(sectionToggleButton)
 		touchJoystickTypeToggleButton.focus_neighbor_left = touchJoystickTypeToggleButton.get_path_to(sectionToggleButton)
 		windowOptionsButton.focus_neighbor_left = windowOptionsButton.get_path_to(sectionToggleButton)
 		fullscreenButton.focus_neighbor_left = fullscreenButton.get_path_to(sectionToggleButton)
@@ -126,6 +136,10 @@ func _on_screen_shake_button_toggled(toggled_on):
 
 func _on_run_toggle_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.toggleRun = toggled_on
+	SettingsHandler.settings_changed.emit()
+
+func _on_crowded_stats_view_button_toggled(toggled_on: bool) -> void:
+	SettingsHandler.gameSettings.tabbedViewStats = not toggled_on
 	SettingsHandler.settings_changed.emit()
 
 func _on_fullscreen_button_toggled(toggled_on):
@@ -182,7 +196,10 @@ func _on_framerate_line_edit_focus_exited():
 
 func _on_framerate_line_edit_text_changed(new_text: String):
 	if new_text.is_valid_int():
-		framerate = min(144, max(30, new_text.to_int())) # bound between 144 and 30
+		var maxFramerate: int = MAX_FRAMERATE
+		if SettingsHandler.isMobile:
+			maxFramerate = MAX_MOBILE_FRAMERATE
+		framerate = min(maxFramerate, max(MIN_FRAMERATE, new_text.to_int())) # bound between 144 and 30
 		SettingsHandler.gameSettings.framerate = framerate
 		SettingsHandler.settings_changed.emit()
 
@@ -190,7 +207,10 @@ func _on_framerate_line_edit_text_submitted(new_text):
 	if new_text == '':
 		new_text = '60' # default: 60 FPS
 	if new_text.is_valid_int():
-		framerate = min(144, max(30, new_text.to_int())) # bound between 144 and 30
+		var maxFramerate: int = MAX_FRAMERATE
+		if SettingsHandler.isMobile:
+			maxFramerate = MAX_MOBILE_FRAMERATE
+		framerate = min(maxFramerate, max(MIN_FRAMERATE, new_text.to_int())) # bound between 144 and 30
 	else:
 		framerate = prevFramerate
 	SettingsHandler.gameSettings.framerate = framerate
