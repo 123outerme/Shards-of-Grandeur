@@ -54,6 +54,10 @@ var stepSfxTimer: float = BASE_STEP_SFX_COOLDOWN
 var lastStepIdx: int = -1
 
 func _unhandled_input(event):
+	if cam.fadedOrFadingOut:
+		# if the game is faded out or is fading out, prevent any input
+		return
+	
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
@@ -73,6 +77,7 @@ func _unhandled_input(event):
 				cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			pausePanel.toggle_pause()
+			overworldTouchControls.set_all_visible(not pausePanel.visible)
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
@@ -86,6 +91,7 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle()
+		overworldTouchControls.set_all_visible(not statsPanel.visible)
 	
 	var mobileNotInDialogue: bool = SettingsHandler.isMobile and not textBox.visible
 	if (event.is_action_pressed("game_interact") or event.is_action_pressed("game_decline") \
@@ -125,6 +131,7 @@ func _unhandled_input(event):
 			statsPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle()
+		overworldTouchControls.set_all_visible(not inventoryPanel.visible)
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
@@ -138,6 +145,7 @@ func _unhandled_input(event):
 			statsPanel.toggle()
 		if inventoryPanel.visible:
 			inventoryPanel.toggle()
+		overworldTouchControls.set_all_visible(not questsPanel.visible)
 			
 	if event.is_action_pressed('game_console') and not pausePanel.isPaused and \
 			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
@@ -151,6 +159,7 @@ func _unhandled_input(event):
 			inventoryPanel.toggle()
 		if questsPanel.visible:
 			questsPanel.toggle()
+		overworldTouchControls.set_all_visible(false)
 	
 func _physics_process(_delta):
 	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
@@ -165,7 +174,8 @@ func _physics_process(_delta):
 		stepSfxTimer = BASE_STEP_SFX_COOLDOWN
 		overworldTouchControls.set_running(false)
 	
-	if not disableMovement:
+	# if movement isn't explictly disabled and the camera is faded out or fading out: movement is enabled
+	if not disableMovement and not cam.fadedOrFadingOut:
 		# omni-directional movement
 		#velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		# eight-directional movement (smart - snap to nearest 45 deg line)
@@ -652,6 +662,7 @@ func menu_closed():
 	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
 			and not textBox.visible and not pausePanel.visible:
 		SceneLoader.unpause_autonomous_movers()
+		overworldTouchControls.set_all_visible()
 		if useTeleportStone != null:
 			play_animation('teleport')
 			SceneLoader.audioHandler.play_sfx(teleportSfx)
@@ -806,6 +817,7 @@ func _on_pause_menu_resume_game():
 	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
+	overworldTouchControls.set_all_visible()
 
 func _filter_out_null(value):
 	return value != null
@@ -822,6 +834,7 @@ func _sort_interactables(a: Interactable, b: Interactable):
 
 func _on_overworld_console_console_closed():
 	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are unpaused
+	overworldTouchControls.set_all_visible()
 
 func _on_overworld_touch_controls_run_toggled():
 	running = not running
@@ -835,22 +848,31 @@ func _on_overworld_touch_controls_pause_pressed():
 			cutscenePaused = cam.cutscenePaused
 	else:
 		pausePanel.toggle_pause()
+		overworldTouchControls.set_all_visible(false)
 
 func _on_overworld_touch_controls_inventory_pressed():
 	inventoryPanel.inShop = false
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.lockFilters = false
 	inventoryPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()
 
 func _on_overworld_touch_controls_quests_pressed():
 	questsPanel.turnInTargetName = ''
 	questsPanel.lockFilters = false
 	questsPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()
 
 func _on_overworld_touch_controls_stats_pressed():
 	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 	statsPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
+	SceneLoader.pause_autonomous_movers()
+
+func _on_overworld_touch_controls_console_pressed() -> void:
+	overworldConsole.show()
+	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()

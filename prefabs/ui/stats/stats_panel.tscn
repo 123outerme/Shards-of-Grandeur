@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=19 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="2_qydtc"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_vg3x4"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="3_ao33y"]
+[ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="3_iyrwx"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_usdlr"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_77yq4"]
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="4_sak5l"]
@@ -24,6 +25,7 @@
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_gd13l")
 levelUpMusic = ExtResource("2_qydtc")
+tabChangeSfx = ExtResource("3_iyrwx")
 unspentStatPtsIndicator = ExtResource("3_ao33y")
 newMoveIndicator = ExtResource("4_sak5l")
 minionChangedIndicator = ExtResource("5_jrvq8")

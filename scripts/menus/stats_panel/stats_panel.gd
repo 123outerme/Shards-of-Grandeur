@@ -10,6 +10,7 @@ enum TabbedViewTab {
 	EQUIPMENT = 1,
 	MOVES = 2,
 	MINIONS = 3,
+	TAB_COUNT,
 }
 
 @export_category("StatsPanel - Data")
@@ -29,6 +30,7 @@ enum TabbedViewTab {
 @export_category("StatsPanel - Audio")
 ## when leveling up, plays this music
 @export var levelUpMusic: AudioStream = null
+@export var tabChangeSfx: AudioStream = null
 
 @export_category("StatsPanel - Tab Icons")
 @export var unspentStatPtsIndicator: Texture2D = null
@@ -78,6 +80,7 @@ var minionsPanel: MinionsPanel = null
 
 func _ready() -> void:
 	SettingsHandler.settings_changed.connect(_settings_changed)
+	tabbedViewContainer.tab_selected.connect(_tab_selected)
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
@@ -372,6 +375,10 @@ func _on_inventory_panel_node_open_stats(combatant: Combatant):
 		minion = combatant
 	curHp = combatant.currentHp
 	toggle()
+
+func _tab_selected(idx: int) -> void:
+	if idx >= 0 and idx < TabbedViewTab.TAB_COUNT and visible:
+		SceneLoader.audioHandler.play_sfx(tabChangeSfx)
 
 func _settings_changed() -> void:
 	isTabbedView = SettingsHandler.gameSettings.tabbedViewStats

@@ -48,8 +48,7 @@ var commandHistoryIdx: int = 0
 func _ready():
 	visible = false
 	SettingsHandler.settings_changed.connect(_settings_changed)
-	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
-	update_console_size.call_deferred(virtualKeyboard.enabled)
+	_settings_changed.call_deferred()
 	clear_console()
 
 func load_overworld_console():
@@ -496,6 +495,7 @@ func _on_logs_back_button_pressed() -> void:
 
 func _settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
+	lineEdit.virtual_keyboard_enabled = not virtualKeyboard.enabled
 	update_console_size(virtualKeyboard.enabled)
 	if virtualKeyboard.visible and not virtualKeyboard.enabled:
 		virtualKeyboard.visible = false

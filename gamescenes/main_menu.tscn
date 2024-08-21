@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=18 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
 [ext_resource type="AudioStream" uid="uid://ct61qvva1c8y1" path="res://audio/music/gtl_main_theme.mp3" id="3_bygmc"]
+[ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="4_cso12"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_rb8pb"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_a7rkf"]
 [ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://graphics/items/armor/rusty_armor.png" id="5_t85f5"]
@@ -31,6 +32,7 @@ theme = ExtResource("1_gmnpf")
 theme_type_variation = &"Standard"
 script = ExtResource("2_viou1")
 mainMenuMusic = ExtResource("3_bygmc")
+activateDebugModeSfx = ExtResource("4_cso12")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -356,6 +358,16 @@ text = "Back"
 visible = false
 layout_mode = 1
 
+[node name="DebugClickControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 304.0
+grow_vertical = 0
+mouse_filter = 1
+
 [node name="VersionLabel" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 1
@@ -369,6 +381,7 @@ offset_right = -13.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 fit_content = true
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
@@ -392,3 +405,4 @@ fit_content = true
 [connection signal="keyboard_hidden" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
 [connection signal="pressed" from="Panel/CreditsPanel/BackButton" to="." method="_on_credits_back_button_pressed"]
 [connection signal="back_pressed" from="SettingsMenu" to="." method="_on_settings_menu_back_pressed"]
+[connection signal="gui_input" from="DebugClickControl" to="." method="_on_debug_click_control_gui_input"]

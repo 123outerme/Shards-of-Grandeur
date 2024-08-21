@@ -1,6 +1,9 @@
 extends Control
 
 @export var mainMenuMusic: AudioStream
+@export var activateDebugModeSfx: AudioStream = null
+
+const DEBUG_CLICKS = 5
 
 var playerName: String = 'Player'
 var nameInputFocused: bool = false
@@ -27,6 +30,8 @@ var nameInputFocused: bool = false
 @onready var creditsBack: Button = get_node('Panel/CreditsPanel/BackButton')
 
 @onready var versionLabel: RichTextLabel = get_node('VersionLabel')
+
+var debugCounter: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -158,3 +163,18 @@ func _on_name_input_focus_exited():
 
 func _on_load_game_panel_back_pressed():
 	resumeGameButton.grab_focus()
+
+func _on_debug_click_control_gui_input(event: InputEvent) -> void:
+	var doIncrement: bool = false
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			doIncrement = true
+	elif event is InputEventScreenTouch:
+		if event.pressed:
+			doIncrement = true
+	
+	if doIncrement:
+		debugCounter += 1
+		if debugCounter == DEBUG_CLICKS:
+			SceneLoader.debug = true
+			SceneLoader.audioHandler.play_sfx(activateDebugModeSfx)

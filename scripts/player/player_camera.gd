@@ -25,6 +25,7 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 
 var cutscenePaused: bool = false
 
+var fadedOrFadingOut: bool = false
 var fadeInReady: bool = false
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
@@ -80,6 +81,7 @@ func show_letterbox(showing: bool = true):
 	player.overworldTouchControls.set_in_cutscene(showing)
 
 func fade_out(callback: Callable, duration: float = 0.5):
+	fadedOrFadingOut = true
 	set_alert_panels_lifetime_pause(true)
 	shade.visible = true
 	cutscenePauseButtons.visible = false
@@ -123,6 +125,7 @@ func fade_in(callback: Callable, duration: float = 0.5):
 	fadeInTween.pause()
 	# recheck that the joystick is still considered as held now
 	PlayerFinder.player.overworldTouchControls.touchVirtualJoystick.recheck_joystick_hold()
+	fadedOrFadingOut = false # not faded out anymore, fading in
 	# after half the duration of the fade up, set the controls to be visible again (invisible from fading out)
 	await get_tree().create_timer(duration / 2).timeout
 	PlayerFinder.player.overworldTouchControls.set_all_visible()

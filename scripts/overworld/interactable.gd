@@ -40,7 +40,7 @@ func exit_player_range():
 	PlayerFinder.player.update_interact_touch_ui()
 
 func play_animation(animName: String):
-	pass
+	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
 
 func select_choice(choice: DialogueChoice):
 	if choice.repeatsItem:

@@ -5,6 +5,7 @@ signal pause_pressed
 signal inventory_pressed
 signal stats_pressed
 signal quests_pressed
+signal console_pressed
 signal run_toggled
 
 @export var runIcon: Texture2D = null
@@ -17,6 +18,8 @@ signal run_toggled
 @onready var runToggleButtonPanel: Panel = get_node('HBoxContainer/RunToggleButtonPanel')
 @onready var runToggleButton: TouchScreenButton = get_node('HBoxContainer/RunToggleButtonPanel/RunToggleButton')
 @onready var pauseButtonPanel: Panel = get_node('HBoxContainer/PauseButtonPanel')
+
+@onready var consoleButtonPanel: Panel = get_node('ConsoleButtonPanel')
 
 @onready var touchVirtualJoystick: TouchVirtualJoystick = get_node('TouchVirtualJoystick')
 
@@ -34,6 +37,7 @@ func _ready():
 	set_in_cutscene(PlayerFinder.player.inCutscene)
 	set_in_dialogue(PlayerFinder.player.textBox.visible)
 	PlayerFinder.player.update_interact_touch_ui()
+	consoleButtonPanel.visible = SceneLoader.debug
 
 func set_all_visible(isVisible: bool = true):
 	var shouldShow: bool = isVisible and SettingsHandler.isMobile
@@ -70,29 +74,39 @@ func update_controls_visibility():
 	talkButton.visible = not inCutscene and not inDialogue and interactAvailable
 
 func _on_pause_button_released():
-	pause_pressed.emit()
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	if visible:
+		pause_pressed.emit()
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
 
 func _on_inventory_button_released():
-	inventory_pressed.emit()
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	if visible:
+		inventory_pressed.emit()
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
 
 func _on_stats_button_released():
-	stats_pressed.emit()
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	if visible:
+		stats_pressed.emit()
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
 
 func _on_quests_button_released():
-	quests_pressed.emit()
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	if visible:
+		quests_pressed.emit()
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
 
 func _on_run_toggle_button_pressed():
-	run_toggled.emit()
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	if visible:
+		run_toggled.emit()
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
 
 func _on_talk_button_released():
-	# done on release input rather than defining action to take inside the TouchScreenButton node
-	var interactEvent: InputEventAction = InputEventAction.new()
-	interactEvent.action = 'game_interact'
-	interactEvent.pressed = true
-	Input.parse_input_event(interactEvent)
-	SceneLoader.audioHandler.play_sfx(buttonSfx)
+	# done on release input rather than defining the action to take inside the TouchScreenButton node
+	if visible:
+		var interactEvent: InputEventAction = InputEventAction.new()
+		interactEvent.action = 'game_interact'
+		interactEvent.pressed = true
+		Input.parse_input_event(interactEvent)
+		SceneLoader.audioHandler.play_sfx(buttonSfx)
+
+func _on_console_button_released() -> void:
+	if visible and SceneLoader.debug:
+		console_pressed.emit()

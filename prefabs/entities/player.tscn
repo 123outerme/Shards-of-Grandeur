@@ -224,6 +224,7 @@ position = Vector2(-640, -360)
 
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
+[connection signal="console_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_console_pressed"]
 [connection signal="inventory_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_inventory_pressed"]
 [connection signal="pause_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_pause_pressed"]
 [connection signal="quests_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_quests_pressed"]

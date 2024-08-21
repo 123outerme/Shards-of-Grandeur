@@ -1,15 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://bne1cb4ygidfj"]
+[gd_scene load_steps=19 format=3 uid="uid://bne1cb4ygidfj"]
 
 [ext_resource type="Script" path="res://scripts/overworld/overworld_touch_controls.gd" id="1_u8cae"]
 [ext_resource type="Texture2D" uid="uid://cxxt4mrq1k1jy" path="res://graphics/ui/touch_ui_icons/run_toggle_icon_run.png" id="2_q588r"]
 [ext_resource type="Texture2D" uid="uid://copnjmfswsin0" path="res://graphics/ui/touch_ui_icons/pause_icon.png" id="3_12oi1"]
 [ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="4_i4ml8"]
 [ext_resource type="Texture2D" uid="uid://btyf2cpk0mbbr" path="res://graphics/ui/touch_ui_icons/inventory_icon.png" id="4_v8w2s"]
+[ext_resource type="Texture2D" uid="uid://0jo1cjyqwph0" path="res://graphics/ui/touch_ui_icons/console_icon.png" id="5_55vev"]
 [ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="5_f5vdn"]
 [ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="5_kl5p5"]
 [ext_resource type="Texture2D" uid="uid://bjh4vn3j1ju0v" path="res://graphics/ui/touch_ui_icons/run_toggle_icon_walk.png" id="7_84hkr"]
 [ext_resource type="PackedScene" uid="uid://bnxpf28wkpw5k" path="res://prefabs/ui/touch_virtual_joystick/touch_virtual_joystick.tscn" id="9_r1qor"]
 [ext_resource type="Texture2D" uid="uid://csejfxibpbip0" path="res://graphics/ui/touch_ui_icons/interact_button_icon.png" id="13_i5n7g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_142uf"]
+size = Vector2(22, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avr5e"]
 size = Vector2(22, 22)
@@ -44,6 +48,22 @@ walkIcon = ExtResource("7_84hkr")
 buttonSfx = ExtResource("4_i4ml8")
 metadata/_edit_horizontal_guides_ = [528.0]
 metadata/_edit_vertical_guides_ = [192.0, 1056.0]
+
+[node name="ConsoleButtonPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 32.0
+offset_bottom = 96.0
+grow_horizontal = 0
+
+[node name="ConsoleButton" type="TouchScreenButton" parent="ConsoleButtonPanel"]
+scale = Vector2(4, 4)
+texture_normal = ExtResource("5_55vev")
+shape = SubResource("RectangleShape2D_142uf")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)
@@ -140,6 +160,7 @@ scale = Vector2(2, 2)
 texture_normal = ExtResource("13_i5n7g")
 shape = SubResource("RectangleShape2D_j6amh")
 
+[connection signal="released" from="ConsoleButtonPanel/ConsoleButton" to="." method="_on_console_button_released"]
 [connection signal="released" from="HBoxContainer/InventoryButtonPanel/InventoryButton" to="." method="_on_inventory_button_released"]
 [connection signal="released" from="HBoxContainer/QuestsButtonPanel/QuestsButton" to="." method="_on_quests_button_released"]
 [connection signal="released" from="HBoxContainer/StatsButtonPanel/StatsButton" to="." method="_on_stats_button_released"]
