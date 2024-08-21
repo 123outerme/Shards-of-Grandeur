@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=18 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="2_qydtc"]
@@ -7,6 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="3_usdlr"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_77yq4"]
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="4_sak5l"]
+[ext_resource type="Texture2D" uid="uid://pyq3r07txjk0" path="res://graphics/ui/minion_changed.png" id="5_jrvq8"]
 [ext_resource type="PackedScene" uid="uid://cl2b2giyrbc0i" path="res://prefabs/ui/stats/stat_line_panel.tscn" id="5_lltfh"]
 [ext_resource type="PackedScene" uid="uid://di4m6wwpbc3pl" path="res://prefabs/ui/stats/move_list_panel.tscn" id="6_w55pq"]
 [ext_resource type="PackedScene" uid="uid://d23cu31e8s3s6" path="res://prefabs/ui/stats/equipment_panel.tscn" id="7_dsgm0"]
@@ -25,6 +26,7 @@ script = ExtResource("1_gd13l")
 levelUpMusic = ExtResource("2_qydtc")
 unspentStatPtsIndicator = ExtResource("3_ao33y")
 newMoveIndicator = ExtResource("4_sak5l")
+minionChangedIndicator = ExtResource("5_jrvq8")
 
 [node name="StatsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -398,6 +400,7 @@ layout_mode = 1
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/SinglePageView/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
 [connection signal="attempt_equip_armor" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_armor"]
 [connection signal="attempt_equip_weapon" from="StatsPanel/Panel/SinglePageView/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
+[connection signal="changed_minion_hovered" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_changed_minion_hovered"]
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
 [connection signal="minion_renamed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
@@ -407,6 +410,7 @@ layout_mode = 1
 [connection signal="attempt_equip_weapon" from="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" to="." method="_on_equipment_panel_attempt_equip_weapon"]
 [connection signal="edit_moves" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_edit_moves"]
 [connection signal="move_details_visiblity_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel" to="." method="_on_move_list_panel_move_details_visiblity_changed"]
+[connection signal="changed_minion_hovered" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_changed_minion_hovered"]
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
 [connection signal="minion_renamed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]

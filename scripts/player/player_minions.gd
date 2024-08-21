@@ -6,13 +6,15 @@ const minion_reqs: Dictionary = {
 }
 
 @export var minionList: Array[String] = []
+@export var changedMinions: Array[String] = []
 var minionsDict: Dictionary = {}
 
 var minions_dir = 'minions/'
 var save_file = 'minions.tres'
 
-func _init(i_minionList: Array[String] = []):
+func _init(i_minionList: Array[String] = [], i_changedMinions: Array[String] = []):
 	minionList = i_minionList
+	changedMinions = i_changedMinions
 
 func has_minion(saveName: String) -> bool:
 	return minionList.has(saveName)
@@ -41,6 +43,7 @@ func init_minion(saveName: String) -> Combatant:
 		minion.dropTable = null
 		minionsDict[saveName] = minion
 		if not (minion.save_name() in minionList):
+			mark_minion_as_changed(minion.save_name())
 			minionList.append(minion.save_name())
 	return minion
 
@@ -52,6 +55,16 @@ func get_minion_list() -> Array[Combatant]:
 		else:
 			minions.append(init_minion(minion))
 	return minions
+
+func is_minion_marked_changed(minionSaveName: String) -> bool:
+	return minionSaveName in changedMinions
+
+func mark_minion_as_changed(minionSaveName: String) -> void:
+	if not is_minion_marked_changed(minionSaveName):
+		changedMinions.append(minionSaveName)
+
+func clear_minion_changed(minionSaveName: String) -> void:
+	changedMinions.erase(minionSaveName)
 
 func level_up_minion(minion: Combatant, newLevel: int, newMinion: bool = false):
 	var levelDiff: int = newLevel - minion.stats.level

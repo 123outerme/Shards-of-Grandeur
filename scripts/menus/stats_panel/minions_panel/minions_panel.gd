@@ -3,6 +3,7 @@ class_name MinionsPanel
 
 signal stats_clicked(combatant: Combatant)
 signal minion_auto_alloc_changed(combatant: Combatant)
+signal changed_minion_hovered(combatant: Combatant)
 signal panel_loaded
 signal minion_renamed
 
@@ -96,6 +97,7 @@ func load_minions_panel():
 			instantiatedPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == listed_minion
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
 			instantiatedPanel.reorder_clicked.connect(_on_reorder_clicked)
+			instantiatedPanel.changed_minion_hovered.connect(_changed_minion_hovered)
 			vboxContainer.add_child(instantiatedPanel)
 	
 	minionView.visible = minion != null
@@ -246,3 +248,6 @@ func _on_settings_changed():
 	nameInput.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard
 	if not virtualKeyboard.enabled:
 		virtualKeyboard.hide_keyboard()
+
+func _changed_minion_hovered(combatant: Combatant):
+	changed_minion_hovered.emit(combatant)

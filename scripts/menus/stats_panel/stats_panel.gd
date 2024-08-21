@@ -33,6 +33,7 @@ enum TabbedViewTab {
 @export_category("StatsPanel - Tab Icons")
 @export var unspentStatPtsIndicator: Texture2D = null
 @export var newMoveIndicator: Texture2D = null
+@export var minionChangedIndicator: Texture2D = null
 
 var isTabbedView: bool = true
 
@@ -174,8 +175,6 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.showNewMoveIndicator = levelUp and minion.stats.movepool.has_moves_at_level(minion.stats.level) \
 			if minion != null else false
 	moveListPanel.load_move_list_panel()
-	if isTabbedView and moveListPanel.showNewMoveIndicator:
-		tabbedViewContainer.set_tab_icon(TabbedViewTab.MOVES, newMoveIndicator)
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
 	equipmentPanel.statsPanel = self
@@ -188,11 +187,13 @@ func load_stats_panel(fromToggle: bool = false):
 	if not isTabbedView:
 		minionsPanel.call_deferred('connect_to_top_control', singleViewBackButton)
 	else:
+		update_move_list_tab_icon()
 		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
 		if minion != null:
 			minionsControl.name = minion.disp_name()
 		else:
 			minionsControl.name = 'Minions'
+		update_minions_tab_icon()
 		#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
 	changingCombatant = false
 
@@ -214,6 +215,44 @@ func update_stats_tab_icon():
 		if stats.statPts == 0:
 			statsIcon = null
 		tabbedViewContainer.set_tab_icon(TabbedViewTab.STATS, statsIcon)
+
+func update_move_list_tab_icon():
+	if isTabbedView:
+		var moveListIcon: Texture2D = null
+		if moveListPanel.showNewMoveIndicator:
+			moveListIcon = newMoveIndicator
+		tabbedViewContainer.set_tab_icon(TabbedViewTab.MOVES, moveListIcon)
+
+func update_minions_tab_icon():
+	if isTabbedView:
+		var minionsTabIcon: Texture2D = null
+		var minionChanged: bool = false
+		var minionHasNewMoves: bool = false
+		var minionHasUnspentStatPts: bool = false
+		if minion == null:
+			for m: Combatant in PlayerResources.minions.get_minion_list():
+				if PlayerResources.minions.is_minion_marked_changed(m.save_name()):
+					minionChanged = true
+					break
+				if m.stats.movepool.has_moves_at_level(m.stats.level) and levelUp:
+					minionHasNewMoves = true
+				elif m.stats.statPts > 0:
+					minionHasUnspentStatPts = true
+		else:
+			if PlayerResources.minions.is_minion_marked_changed(minion.save_name()):
+				minionChanged = true
+			elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
+				minionHasNewMoves = true
+			elif minion.stats.statPts > 0:
+				minionHasUnspentStatPts = true
+		
+		if minionChanged:
+			minionsTabIcon = minionChangedIndicator
+		elif minionHasNewMoves:
+			minionsTabIcon = newMoveIndicator
+		elif minionHasUnspentStatPts:
+			minionsTabIcon = unspentStatPtsIndicator
+		tabbedViewContainer.set_tab_icon(TabbedViewTab.MINIONS, minionsTabIcon)
 
 func reset_panel_to_player():
 	if isMinionStats:
@@ -263,6 +302,12 @@ func _on_minions_panel_minion_renamed() -> void:
 	if isTabbedView:
 		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
 		minionsControl.name = minion.disp_name()
+
+func _on_minions_panel_changed_minion_hovered(combatant: Combatant) -> void:
+	if PlayerResources.minions.is_minion_marked_changed(combatant.save_name()):
+		PlayerResources.minions.clear_minion_changed(combatant.save_name())
+		if isTabbedView:
+			update_minions_tab_icon()
 
 func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 	# the minion changed should never not be the minion being inspected, but just in case, do nothing
