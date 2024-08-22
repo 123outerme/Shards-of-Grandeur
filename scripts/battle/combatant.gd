@@ -201,6 +201,11 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	var prevIdx: String = get_evolution_stats_idx(prevEvolution)
 	evolutionStats[prevIdx] = stats
 	stats = get_evolution_stats(evolution)
+	
+	if evolution != null:
+		# if it's already found, nothing will be done
+		PlayerResources.playerInfo.mark_evolution_found(save_name() + '#' + evolution.evolutionSaveName)
+	
 	# if this is a player evolution, keep learned moves and add moves granted by new evolution
 	if save_name() == 'player':
 		# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution

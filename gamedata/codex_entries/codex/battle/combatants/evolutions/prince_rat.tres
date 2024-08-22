@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://8t2jivmdjnjk"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_0cq6n"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_6a3bi"]
+
+[sub_resource type="Resource" id="Resource_cve5m"]
+script = ExtResource("2_6a3bi")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String](["rat#prince_rat"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("1_0cq6n")
+id = "prince_rat"
+title = "Prince Rat"
+storyRequirements = Array[ExtResource("2_6a3bi")]([SubResource("Resource_cve5m")])
+description = "Prince Rat is a Giant Rat evolution. The Giant Rat must be wearing the King Rat Crown. Due to the power of the King Rat Crown, the evolved Rat is more resilent towards damage, while being just as dangerous!"
+childrenEntries = Array[ExtResource("1_0cq6n")]([])

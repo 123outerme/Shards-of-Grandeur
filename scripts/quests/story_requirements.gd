@@ -23,6 +23,8 @@ class_name StoryRequirements
 @export var prereqDefeatedEnemies: Array[String] = []
 ## specified by "<puzzle ID>"
 @export var prereqPuzzles: Array[String] = []
+## specified by "<base combatant save name>#<evolution save name>"
+@export var prereqDiscoveredEvolutions: Array[String] = []
 
 @export_category("Invalidations")
 ## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
@@ -50,6 +52,7 @@ func _init(
 	i_prereqBattles: Array[String] = [],
 	i_prereqDefeatedEnemies: Array[String] = [],
 	i_prereqPuzzles: Array[String] = [],
+	i_prereqEvos: Array[String] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
@@ -67,6 +70,7 @@ func _init(
 	prereqSpecialBattles = i_prereqBattles
 	prereqDefeatedEnemies = i_prereqDefeatedEnemies
 	prereqPuzzles = i_prereqPuzzles
+	prereqDiscoveredEvolutions = i_prereqEvos
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
@@ -109,6 +113,10 @@ func is_valid() -> bool:
 	
 	for puzzle in prereqPuzzles:
 		if not PlayerResources.playerInfo.has_solved_puzzle(puzzle):
+			return false
+	
+	for fullEvoSaveName: String in prereqDiscoveredEvolutions:
+		if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
 			return false
 	
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):

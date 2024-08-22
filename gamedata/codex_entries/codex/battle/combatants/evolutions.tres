@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://bwtu01uomermm"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_exe6l"]
+[ext_resource type="Resource" uid="uid://8t2jivmdjnjk" path="res://gamedata/codex_entries/codex/battle/combatants/evolutions/prince_rat.tres" id="2_j7uwb"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_2s3si"]
+
+[resource]
+script = ExtResource("1_exe6l")
+id = "evolutions"
+title = "Evolutions"
+storyRequirements = Array[ExtResource("3_2s3si")]([])
+description = "Some minions can Evolve by equipping certain Weapons and/or Armor. Minions that evolve may learn or forget some moves. Their base stats change, and they may have unspent Stat Points for you to re-allocate to their new form!"
+childrenEntries = Array[ExtResource("1_exe6l")]([ExtResource("2_j7uwb")])

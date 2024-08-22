@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://6xqux4fnnt7"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_d0b7f"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_nnj0v"]
+
+[resource]
+script = ExtResource("1_d0b7f")
+id = "minion_lv_up"
+title = "Level Up"
+storyRequirements = Array[ExtResource("2_nnj0v")]([])
+description = "Your minions automatically level up when you do. A minion will learn new moves and gain stat points as their level increases. If you check the \"Auto-Allocate Stat Pts\" option in the Stats menu, they will automatically spend their stat points on level up."
+childrenEntries = Array[ExtResource("1_d0b7f")]([])

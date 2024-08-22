@@ -98,6 +98,7 @@ func load_minions_panel():
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
 			instantiatedPanel.reorder_clicked.connect(_on_reorder_clicked)
 			instantiatedPanel.changed_minion_hovered.connect(_changed_minion_hovered)
+			
 			vboxContainer.add_child(instantiatedPanel)
 	
 	minionView.visible = minion != null

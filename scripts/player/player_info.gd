@@ -24,6 +24,7 @@ class_name PlayerInfo
 @export var encounter: EnemyEncounter = null
 @export var completedSpecialBattles: Array[String] = []
 @export var enemiesDefeated: Array[String] = []
+@export var evolutionsFound: Array[String] = []
 
 @export_category("PlayerInfo: Overworld State")
 @export var pickedUpItems: Array[String] = []
@@ -58,6 +59,7 @@ func _init(
 	i_encounter = null,
 	i_completedSpecialBattles: Array[String] = [],
 	i_enemiesDefeated: Array[String] = [],
+	i_evolutionsFound: Array[String] = [],
 	i_pickedUpItems: Array[String] = [],
 	i_interactableDialogues: Array[InteractableDialogue] = [],
 	i_interactableDialogueIdx = 0,
@@ -89,6 +91,7 @@ func _init(
 	encounter = i_encounter
 	completedSpecialBattles = i_completedSpecialBattles
 	enemiesDefeated = i_enemiesDefeated
+	evolutionsFound = i_evolutionsFound
 	pickedUpItems = i_pickedUpItems
 	interactableDialogues = i_interactableDialogues
 	interactableDialogueIdx = i_interactableDialogueIdx
@@ -153,6 +156,14 @@ func has_solved_puzzle(puzzleId: String) -> bool:
 func set_puzzle_solved(puzzleId: String):
 	if not has_solved_puzzle(puzzleId):
 		puzzlesSolved.append(puzzleId)
+
+## fullEvoSaveName intented to be: <combatant save name>#<evolution save name>
+func has_found_evolution(fullEvoSaveName: String) -> bool:
+	return fullEvoSaveName in evolutionsFound
+
+func mark_evolution_found(fullEvoSaveName: String) -> void:
+	if not has_found_evolution(fullEvoSaveName):
+		evolutionsFound.append(fullEvoSaveName)
 
 func has_seen_codex_entry(entryName: String) -> bool:
 	return entryName in codexEntriesSeen
