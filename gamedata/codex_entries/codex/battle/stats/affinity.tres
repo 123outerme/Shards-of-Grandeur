@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://ccsn8shmglt6d"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://ccsn8shmglt6d"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_ooypc"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_s8a77"]
 
 [resource]
 script = ExtResource("1_ooypc")
 id = "affinity"
 title = "Affinity"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_s8a77")]([])
 description = "Affinity is the combatant's \"specialty\" stat, used for the damage or healing calculation of Affinity moves, and for determining the chance a move deals status to the defender. If the attacker using the move has higher Affinity than the defender, the move will be more likely to afflict status."
-childrenEntries = Array[ExtResource("1_ooypc")]([])
+sortOrder = 3

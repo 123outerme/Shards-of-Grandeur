@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://2vtl21w0yyvp"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://2vtl21w0yyvp"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_3bycl"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mvk2m"]
 
 [resource]
 script = ExtResource("1_3bycl")
 id = "resistance"
 title = "Resistance"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_mvk2m")]([])
 description = "Resistance decreases the amount of damage a combatant takes from any direct attack. Status effects that deal damage as a result, like Bleed or Berserk, do not check Resistance in damage calculation. Damage intercepted with the Interception status effect is affected by Resistance, however."
-childrenEntries = Array[ExtResource("1_3bycl")]([])
+sortOrder = 4

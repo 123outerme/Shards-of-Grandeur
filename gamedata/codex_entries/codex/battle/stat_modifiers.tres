@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://bqaxqd6mcpbtx"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://bqaxqd6mcpbtx"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_uy7w8"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ht3ae"]
 
 [resource]
 script = ExtResource("1_uy7w8")
 id = "modifiers"
 title = "Stat Modifiers"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_ht3ae")]([])
 description = "Each battle stat except for HP can be affected by a stat modifier. Stat modifiers appear as a point and/or percentage increase next to your stats in the Flow of Battle menu. A stat modifier permanently adds or multiplies into your base stat to create the final battle stat used to calculate damage, status chances, and turn order! Stat modifiers are reset at the end of each battle."
-childrenEntries = Array[ExtResource("1_uy7w8")]([])
+sortOrder = 2

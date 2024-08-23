@@ -13,11 +13,10 @@ signal back_pressed
 
 var selectedEntryStack: Array[CodexEntry] = []
 
-var buttonPrefab = preload('res://prefabs/ui/sfx_button.tscn')
+var codexEntriesMap: Dictionary = {}
+var entriesLoaded: bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+var buttonPrefab = preload('res://prefabs/ui/sfx_button.tscn')
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
@@ -40,12 +39,16 @@ func load_codex_menu():
 	for button in get_tree().get_nodes_in_group('CodexEntryButton'):
 		button.queue_free()
 	
-	var lastEntry: CodexEntry = get_last_entry_with_children()
-	if lastEntry != initialEntry:
+	if not entriesLoaded:
+		load_codex()
+	
+	var lastEntry: CodexEntry = get_last_entry()
+	if lastEntry != null and lastEntry != initialEntry:
 		entryTitle.text = '[center]' + lastEntry.title + '[/center]'
 	else:
 		entryTitle.text = ''
-	for entry in lastEntry.childrenEntries:
+	var childrenEntries: Array[CodexEntry] = load_children_entries_for_entry(selectedEntryStack)
+	for entry in childrenEntries:
 		if entry.is_valid():
 			instantiate_button_for_entry(entry)
 	
@@ -59,6 +62,52 @@ func load_codex_menu():
 	else:
 		backButton.focus_neighbor_bottom = backButton.get_path_to(backButton)
 
+func load_codex() -> void:
+	load_codex_branch([initialEntry])
+	entriesLoaded = true
+
+func load_codex_branch(stack: Array[CodexEntry]) -> void:
+	if len(stack) == 0:
+		return
+	
+	var childrenEntries: Array[CodexEntry] = load_children_entries_for_entry(stack)
+	childrenEntries.sort_custom(CodexEntry._sort_entries)
+	codexEntriesMap[get_codex_path_for_stack(stack)] = childrenEntries
+	for entry: CodexEntry in childrenEntries:
+		var childStack: Array[CodexEntry] = []
+		childStack.append_array(stack)
+		childStack.append(entry)
+		# Depth-first load codex branch here
+		load_codex_branch(childStack)
+
+## returns -1 if entryStack is empty: otherwise returns ResourceLoader/DirAccess error codes
+func load_children_entries_for_entry(entryStack: Array[CodexEntry]) -> Array[CodexEntry]:
+	if len(entryStack) == 0:
+		return []
+	
+	var path: String = entryStack[0].resource_path.get_base_dir() + '/'
+	for entry: CodexEntry in entryStack:
+		path += entry.id + '/'
+	
+	var codexEntries: Array[CodexEntry] = []
+	if DirAccess.dir_exists_absolute(path):
+		var files: PackedStringArray = DirAccess.get_files_at(path)
+		if len(files) > 0:
+			for file in files:
+				var codexEntry: CodexEntry = ResourceLoader.load(path + file) as CodexEntry
+				if codexEntry != null:
+					codexEntries.append(codexEntry)
+				else:
+					printerr('Codex entry at ', path, file, ' loaded as null.')
+	
+	return codexEntries
+
+func get_codex_path_for_stack(codexEntryStack: Array[CodexEntry]) -> String:
+	var path: String = '/'
+	for entry: CodexEntry in codexEntryStack:
+		path += entry.id + '/'
+	return path
+
 func initial_focus():
 	backButton.grab_focus()
 
@@ -69,7 +118,7 @@ func instantiate_button_for_entry(entry: CodexEntry):
 	button.text = entry.title
 	button.pressed.connect(_on_codex_button_pressed.bind(entry, button))
 	button.add_to_group('CodexEntryButton')
-	var hasNotSeen = has_not_seen_indicator(entry)
+	var hasNotSeen = has_not_seen_indicator(entry, selectedEntryStack)
 	if hasNotSeen:
 		button.icon = notSeenSprite
 		button.expand_icon = true
@@ -82,38 +131,50 @@ func focus_button_for_entry(entry: CodexEntry):
 			button.grab_focus()
 			return
 
-func get_last_entry_with_children() -> CodexEntry:
-	for idx in range(len(selectedEntryStack) - 1, -1, -1):
-		if len(selectedEntryStack[idx].childrenEntries) > 0:
-			return selectedEntryStack[idx]
+func get_last_entry() -> CodexEntry:
+	if len(selectedEntryStack) >= 2:
+		return selectedEntryStack[len(selectedEntryStack) - 2]
 	return null
 
-func has_not_seen_indicator(entry: CodexEntry) -> bool:
+func has_not_seen_indicator(entry: CodexEntry, codexEntryStack: Array[CodexEntry]) -> bool:
 	if not PlayerResources.playerInfo.has_seen_codex_entry(entry.id):
 		return true
 	
-	for child in entry.childrenEntries:
-		if not child.is_valid():
-			continue
-		if has_not_seen_indicator(child):
-			return true
+	var childStack: Array[CodexEntry] = []
+	childStack.append_array(codexEntryStack)
+	childStack.append(entry)
+	var path: String = get_codex_path_for_stack(childStack)
+	if codexEntriesMap.has(path):
+		var children: Array[CodexEntry] = codexEntriesMap[path]
+		if children != null:
+			for child in children:
+				if not child.is_valid():
+					continue
+				if has_not_seen_indicator(child, childStack):
+					return true
 	
 	return false
 
 func _on_codex_button_pressed(entry: CodexEntry, button: Button):
 	codexEntryPanel.codexEntry = entry
 	codexEntryPanel.load_codex_entry_panel()
-	if len(entry.childrenEntries) > 0:
-		var hasValidChildren = false
-		for child in entry.childrenEntries:
-			if child.is_valid():
-				hasValidChildren = true
-				break
-		if hasValidChildren:
-			selectedEntryStack.append(entry)
-			load_codex_menu()
+	var stack: Array[CodexEntry] = []
+	stack.append_array(selectedEntryStack)
+	stack.append(entry)
+	var path: String = get_codex_path_for_stack(stack)
+	if codexEntriesMap.has(path):
+		var children: Array[CodexEntry] = codexEntriesMap[path]
+		if children != null:
+			var hasValidChildren = false
+			for child in children:
+				if child.is_valid():
+					hasValidChildren = true
+					break
+			if hasValidChildren:
+				selectedEntryStack.append(entry)
+				load_codex_menu()
 	PlayerResources.playerInfo.set_codex_entry_seen(entry.id)
-	if not has_not_seen_indicator(entry):
+	if not has_not_seen_indicator(entry, selectedEntryStack):
 		button.icon = null
 
 func _on_back_button_pressed():

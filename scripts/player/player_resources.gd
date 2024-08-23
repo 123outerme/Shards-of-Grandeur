@@ -54,7 +54,6 @@ func load_data(save_path):
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
 		playerInfo.combatant.validate_all_evolutions_stat_totals()
-			
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		playerInfo.combatant.validate_evolution_stats() # validate evolution stats data structure
 		playerInfo.combatant.stats.movepool = playerInfo.combatant.stats.movepool.duplicate(false)

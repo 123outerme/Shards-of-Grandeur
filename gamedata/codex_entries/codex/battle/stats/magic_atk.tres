@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://cvaq2anuelur6"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://cvaq2anuelur6"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_jfmjr"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mny3r"]
 
 [resource]
 script = ExtResource("1_jfmjr")
 id = "magic_atk"
 title = "Magic Attack"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_mny3r")]([])
 description = "Magic Attack is the combatant's attacking stat used in calculating the damage of Magic moves."
-childrenEntries = Array[ExtResource("1_jfmjr")]([])
+sortOrder = 2

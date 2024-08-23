@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://dbchff861wrm5"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://dbchff861wrm5"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_sygcm"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ahxl8"]
 
 [resource]
 script = ExtResource("1_sygcm")
 id = "move_target"
 title = "Move Targeting"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_ahxl8")]([])
 description = "A move targets one or more combatants in the battle. Allies are combatants that are on the same side of the battle, and Enemies are combatants on the opposite side. A move can allow the targeting of the user, or exclude the user from targeting entirely."
-childrenEntries = Array[ExtResource("1_sygcm")]([])
+sortOrder = 5

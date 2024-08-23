@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://celgoq2enr6gn"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://celgoq2enr6gn"]
 
 [ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_7pl4p"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_gnald"]
 
 [resource]
 script = ExtResource("1_7pl4p")
 id = "el_multipliers"
 title = "Element Multipliers"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_gnald")]([])
 description = "A combatant can have Elemental power multipliers applied, up to one per element. These multipliers modify a combatant's damage/healing output for a move of the matching Element type."
-childrenEntries = Array[ExtResource("1_7pl4p")]([])
+sortOrder = 6
