@@ -132,8 +132,8 @@ func instantiate_button_for_entry(entry: CodexEntry):
 		button.icon = notSeenSprite
 		button.expand_icon = true
 	vboxContainer.add_child(button)
+	button.custom_minimum_size.y = 40 # 40px height minimum
 	button.focus_neighbor_left = '.'
-	# NOTE: might need to wait a frame for the button to be placed in the tree for get_path_to() to work
 	button.focus_neighbor_right = button.get_path_to(codexEntryPanel.entryDescription)
 
 func focus_button_for_entry(entry: CodexEntry):
