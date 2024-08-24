@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://cg5chhchrty7r"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_musq0"]
+[ext_resource type="Resource" uid="uid://joetyg56p1on" path="res://gamedata/moves/shade_blast/sprite_shade_blast.tres" id="2_gly1q"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="3_nnl0f"]
+
+[resource]
+script = ExtResource("3_nnl0f")
+combatantAnimation = "attack_magic"
+makesContact = false
+chargeMoveSprites = Array[ExtResource("1_musq0")]([ExtResource("2_gly1q")])
+surgeMoveSprites = Array[ExtResource("1_musq0")]([ExtResource("2_gly1q")])

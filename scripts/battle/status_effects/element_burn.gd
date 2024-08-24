@@ -20,10 +20,13 @@ const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 
 ## "None" element is placeholder'd with the generic name Element Burn and generic icon, but I currently have no plans to use it
 @export var element: Move.Element = Move.Element.NONE
+
 ## when setting in a MoveEffect, if setting this to be >0, that will be the power used to calculate the DoT. If left <=0, will use the move's final calculated power instead
 @export var power: float = 0
+
 ## setting in a MoveEffect is useless; it's always overwritten
 @export var attackerStat: float = 0
+
 ## setting in a MoveEffect is useless; it's always overwritten
 @export var attackerLv: int = 1
 

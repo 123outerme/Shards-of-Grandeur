@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://cq4jjoj6ancn0"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_ixetn"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_ugpjh"]
+[ext_resource type="Resource" uid="uid://cg5chhchrty7r" path="res://gamedata/moves/shade_blast/anim_shade_blast.tres" id="2_jpail"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="3_05nhx"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_m7bkf"]
+
+[sub_resource type="Resource" id="Resource_xwy70"]
+script = ExtResource("1_ugpjh")
+role = 1
+orbChange = 1
+power = 50
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_el2st"]
+script = ExtResource("3_05nhx")
+element = 7
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+type = 11
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 2
+
+[sub_resource type="Resource" id="Resource_jmjmw"]
+script = ExtResource("4_m7bkf")
+powerPerOrb = 5
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 6
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.05
+
+[sub_resource type="Resource" id="Resource_6v056"]
+script = ExtResource("1_ugpjh")
+role = 1
+orbChange = -3
+power = 65
+targets = 5
+statusEffect = SubResource("Resource_el2st")
+selfGetsStatus = false
+statusChance = 0.7
+surgeChanges = SubResource("Resource_jmjmw")
+
+[resource]
+script = ExtResource("1_ixetn")
+moveName = "Shade Blast"
+requiredLv = 11
+category = 1
+element = 7
+chargeEffect = SubResource("Resource_xwy70")
+surgeEffect = SubResource("Resource_6v056")
+description = "Send out a wave of forbidden magic causing great and hopefully long-lasting pain to the recipient."
+moveLearnedText = "The wicked nature of your mentoring minion reveals itself. You can only stand and watch as the creature dips into the territory of forbidden magic, pulls forth a small sphere, and launches it. What a terrible power...!"
+moveAnimation = ExtResource("2_jpail")
