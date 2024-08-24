@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://bjh2nwqxbbis3"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_6ewji"]
+[ext_resource type="Resource" uid="uid://cneyu5gfa8seb" path="res://gamedata/moves/desert_sun_beam/anim_desert_sun_beam.tres" id="1_wmk7m"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="2_jlbld"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_yc5x8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_6rr5l"]
+
+[sub_resource type="Resource" id="Resource_c482t"]
+script = ExtResource("2_jlbld")
+element = 2
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_3242j"]
+script = ExtResource("1_6ewji")
+role = 1
+orbChange = 1
+power = 45
+targets = 5
+statusEffect = SubResource("Resource_c482t")
+selfGetsStatus = false
+statusChance = 0.8
+
+[sub_resource type="Resource" id="Resource_ppkad"]
+script = ExtResource("2_jlbld")
+element = 0
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+type = 11
+potency = 0
+overwritesOtherStatuses = false
+turnsLeft = 0
+
+[sub_resource type="Resource" id="Resource_fypmj"]
+script = ExtResource("5_6rr5l")
+powerPerOrb = 2
+weakThresholdOrbs = 0
+strongThresholdOrbs = 5
+overwhelmingThresholdOrbs = 7
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.01
+
+[sub_resource type="Resource" id="Resource_5n1cl"]
+script = ExtResource("1_6ewji")
+role = 1
+orbChange = -3
+power = 65
+targets = 5
+statusEffect = SubResource("Resource_ppkad")
+selfGetsStatus = false
+statusChance = 0.9
+surgeChanges = SubResource("Resource_fypmj")
+
+[resource]
+script = ExtResource("2_yc5x8")
+moveName = "Desert-Sun Beam"
+requiredLv = 13
+category = 1
+element = 2
+chargeEffect = SubResource("Resource_3242j")
+surgeEffect = SubResource("Resource_5n1cl")
+description = "Cook your enemies with heat like that of the desert sun!"
+moveLearnedText = "Your neck starts to sweat, as you feel an imprint of the Shard used left in your hand, growing hotter and hotter. Out of the hot imprint, a small glowing ball rises. As you stare at it, the ball distorts the air around it, then shoots off a beam of fire into the distance."
+moveAnimation = ExtResource("1_wmk7m")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=3 format=3 uid="uid://dab8dfaja5hsx"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_2v7ly"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_g0xn1"]
+
+[resource]
+script = ExtResource("2_g0xn1")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_2v7ly")]([])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

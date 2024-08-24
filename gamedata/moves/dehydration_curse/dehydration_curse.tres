@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://txaiwb7tiyda"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_id46c"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_ur1kk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_22qvt"]
+[ext_resource type="Resource" uid="uid://b5bs0cqor1a03" path="res://gamedata/moves/dehydration_curse/anim_dehydration_curse.tres" id="4_8af2h"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="5_hukt1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="6_ypdjr"]
+
+[sub_resource type="Resource" id="Resource_1n8ia"]
+script = ExtResource("3_22qvt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.85
+resistanceMultiplier = 0.85
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ur1kk")]([])
+
+[sub_resource type="Resource" id="Resource_wb5k4"]
+script = ExtResource("1_id46c")
+role = 4
+orbChange = 1
+power = 0
+targets = 5
+targetStatChanges = SubResource("Resource_1n8ia")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_p38wd"]
+script = ExtResource("3_22qvt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.02
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ur1kk")]([])
+
+[sub_resource type="Resource" id="Resource_yhhxi"]
+script = ExtResource("6_ypdjr")
+powerPerOrb = 5
+targetStatChangesPerOrb = SubResource("Resource_p38wd")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_mblb6"]
+script = ExtResource("3_22qvt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.7
+resistanceMultiplier = 0.85
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ur1kk")]([])
+
+[sub_resource type="Resource" id="Resource_x8m1h"]
+script = ExtResource("1_id46c")
+role = 1
+orbChange = -2
+power = 45
+targets = 3
+targetStatChanges = SubResource("Resource_mblb6")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_yhhxi")
+
+[resource]
+script = ExtResource("5_hukt1")
+moveName = "Dehydration Curse"
+requiredLv = 12
+category = 1
+element = 1
+chargeEffect = SubResource("Resource_wb5k4")
+surgeEffect = SubResource("Resource_x8m1h")
+description = "Pull the water from your opponent's body, and cause them to become very thirsty."
+moveLearnedText = "As you ponder this Shard, your mouth begins to dry abnormally quickly. You find water suspended in the air over your head. About as much as you need to drink right now... Wait, that's yours!"
+moveAnimation = ExtResource("4_8af2h")

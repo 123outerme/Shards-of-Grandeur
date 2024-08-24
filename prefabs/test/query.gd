@@ -2,6 +2,8 @@ extends Node
 
 const TEST_DIR: String = 'res://test/'
 
+@onready var label: RichTextLabel = get_node('RichTextLabel')
+
 func _ready():
 	create_reports()
 	#print_report()
@@ -60,6 +62,7 @@ func create_reports():
 			if FileAccess.get_open_error() != OK:
 				printerr('FileAccess error opening file ', TEST_DIR + filename, ' (error ', FileAccess.get_open_error(), ')')
 	print('All CSV reports have been saved.')
+	label.text = '[center]All CSV reports have been saved.[/center]'
 
 func print_report():
 	#for_all_combatants_series([print_combatant_weaknesses, print_combatant_status_resistances])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://b5bs0cqor1a03"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_p3rio"]
+[ext_resource type="Resource" uid="uid://chaqgb0m58rwp" path="res://gamedata/moves/dehydration_curse/sprite_dehydration_curse.tres" id="2_lrwoo"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="3_q0q46"]
+
+[resource]
+script = ExtResource("3_q0q46")
+combatantAnimation = "attack_magic"
+makesContact = false
+chargeMoveSprites = Array[ExtResource("1_p3rio")]([ExtResource("2_lrwoo")])
+surgeMoveSprites = Array[ExtResource("1_p3rio")]([ExtResource("2_lrwoo")])
