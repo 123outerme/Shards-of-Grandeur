@@ -5,10 +5,14 @@ signal attempt_equip_weapon
 signal attempt_equip_armor
 
 @export var weapon: Weapon = null
+
 @export var armor: Armor = null
+
 @export var notEquippedSprite: Texture = null
+
 ## If true, will use `EquipmentDetailsPanel` instances instead of generating a text description of each equipment's effects
 @export var showEquipmentDetailsPanels: bool = false
+
 var statsPanel: StatsMenu = null
 
 @onready var weaponSprite: TextureButton = get_node("WeaponControl/WeaponSprite")

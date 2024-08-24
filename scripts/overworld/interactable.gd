@@ -3,10 +3,13 @@ class_name Interactable
 
 ## unique ID for preserving dialogue in progress when save + quitting
 @export var saveName: String = ''
+
 ## higher == better
 @export var interactPriority: int = 0
+
 ## dialogue to show when the player interacts with this Interactable
 @export var dialogue: InteractableDialogue = null
+
 ## sfx to play when the player interacts with this Interactable
 @export var interactSfx: AudioStream = null
 

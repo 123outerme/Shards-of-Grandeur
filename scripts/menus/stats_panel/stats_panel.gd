@@ -14,22 +14,31 @@ enum TabbedViewTab {
 }
 
 @export_category("StatsPanel - Data")
+
 ## the stats to view in this panel
 @export var stats: Stats = null
+
 ## the current HP from the combatant being viewed
 @export var curHp: int = -1
+
 ## if true, show the level up text and newly learned move icons
 @export var levelUp: bool = false
+
 ## if levelling up, how many new levels gained by the level up event
 @export var newLvs: int = 0
+
 ## if true, cannot change stats, equipment, moves, etc.
 @export var readOnly: bool = false
+
 ## if true, viewing the player's stats (not a minion)
 @export var isPlayer: bool = false
 
 @export_category("StatsPanel - Audio")
+
 ## when leveling up, plays this music
 @export var levelUpMusic: AudioStream = null
+
+## sfx to play when the tabs in the Tab View change
 @export var tabChangeSfx: AudioStream = null
 
 @export_category("StatsPanel - Tab Icons")

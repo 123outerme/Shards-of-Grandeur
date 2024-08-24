@@ -2,18 +2,25 @@ extends Resource
 class_name Puzzle
 
 @export var id: String = ''
+
 ## At least one requirement must pass in order for the prereqs to have passed
 @export var prereqStoryRequirements: Array[StoryRequirements] = []
+
 ## the animated sprites that this puzzle displays with
 @export var puzzleSpriteFrames: SpriteFrames = null
+
 ## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle remains unsolved
 @export var unsolvedAnimation: String = 'default'
+
 ## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle was just solved (transition animation)
 @export var solvingAnimation: String = ''
+
 ## the animation from the SpriteFrames loaded in the AnimatedDecoration to use when the puzzle remains solved
 @export var solvedAnimation: String = ''
+
 ## if true, the AnimatedDecoration collision is disabled when the puzzle is in the solved state
 @export var disableCollisionOnSolve: bool = false
+
 ## if true, the AnimatedDecoration's animation is updated to `solvedAnimation` immediately after finishing the `solvingAnimation`. By setting to false, you must manually update the animation to `solved` later in the solving dialogue sequence
 @export var updateAnimOnSolve: bool = true
 

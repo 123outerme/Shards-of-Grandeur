@@ -3,23 +3,32 @@ extends CharacterBody2D
 class_name NPCScript
 
 @export_category("NPC General Data")
+
 ## name used in dialogue
 @export var displayName: String
+
 ## name used in saving NPC data
 @export var saveName: String
+
 ## if true, this NPC's sprite faces right by default (without flipping)
 @export var facesRight: bool = true
+
 ## if true, the NPC's first load (before any save data exist) will load the sprite flipped
 @export var loadFlipH: bool = false
+
 ## if true, flips the walking animation to walk backwards
 @export var walkBackwards: bool = false
+
 ## sprite state to use when first loading the NPC (w/o save data for this NPC)
 @export var spriteState: String = 'default'
+
 ## String -> SpriteFrames: maps NPC sprite state string to the SpriteFrames for that state
 @export var stateSpritesDict: Dictionary = {
 	'default': null
 }
+
 @export var spriteSize: Vector2i = Vector2i(16, 16)
+
 ## if the provided requirements are invalid, the NPC will be freed from the scene
 @export var spawnRequirements: StoryRequirements = null
 
@@ -27,16 +36,21 @@ class_name NPCScript
 @export var data: NPCData
 
 @export_category("NPC Dialogue")
+
 ## dialogue that the NPC will have available
 @export var dialogueEntries: Array[DialogueEntry] = []
+
 ## if true, turns to face the player when starting dialogue
 @export var facesPlayer: bool = true
 
 @export_category("NPC Shop")
+
 ## if true, the NPC has a shop and will create an inventory upon first load (before any save data exists)
 @export var hasShop: bool = false
+
 ## current NPC inventory
 @export var inventory: Inventory
+
 ## the NPC shop object to create/update the inventory from
 @export var npcShop: NpcShop = null
 

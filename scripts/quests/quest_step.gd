@@ -30,23 +30,33 @@ static func type_to_string(t: Type) -> String:
 	return 'Unknown'
 
 @export_category("Quest Step - Details")
+
 @export var name: String
+
 @export_multiline var description: String
+
 ## reward to grant the player on completion. Auto-turned in steps will not announce rewards to the player, so generally avoid defining rewards for those steps
 @export var reward: Reward
 
 @export_category("Quest Step - Completion")
+
 @export var type: Type = Type.TALK
+
 ## amount of objectives to fulfill. Talk, Defeat, Static Encounter, Cutscene, and Puzzle steps should only ever be 1
 @export var count: int = 1
+
 ## the objective name (save name if there is a distinction)
 @export var objectiveName: String
+
 ## The list of saveNames this step can be turned in to. If empty and a Solve Puzzle type, will auto-turn in
 @export var turnInNames: Array[String]
+
 ## the objective name to display to the player
 @export var displayObjName: String
+
 ## the name to tell the player to turn this step into
 @export var displayTurnInName: String
+
 ## if specified, the quest status will be displayed as this until completed
 @export var customStatusStr: String
 

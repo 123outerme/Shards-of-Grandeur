@@ -76,7 +76,7 @@ func vol_percent_to_db(percent: float) -> float: # percent as a float between 0 
 	# ~-70 db = 0% volume
 	# ~-10 db = 50%
 	# 0 db = 100% volume?
-	return 33.22 * log(percent) / log(10) ## 33.22 * log10(percent)
+	return 33.22 * log(percent) / log(10) # 33.22 * log10(percent)
 
 func play_music(stream: AudioStream, loops: int = 0):
 	get_cur_music_player().stream = stream

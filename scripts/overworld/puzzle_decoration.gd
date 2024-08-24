@@ -2,8 +2,10 @@ extends Interactable
 class_name PuzzleDecoration
 
 @export var puzzle: Puzzle = null
+
 ## the dialogue to show when the player doesn't have the prerequisite story requirements. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var failedPrereqsDialogue: InteractableDialogue = null
+
 ## the dialogue to show when the player has already solved this puzzle. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var solvedDialogue: InteractableDialogue = null
 

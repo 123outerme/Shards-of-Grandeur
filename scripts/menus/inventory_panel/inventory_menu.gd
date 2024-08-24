@@ -8,26 +8,36 @@ signal item_use_panel_closed
 signal learn_shard_tutorial_finished
 
 @export_category("InventoryPanel - Filters")
+
 @export var selectedFilter: Item.Type = Item.Type.ALL
+
 ## if true, this menu is in the battle scene
 @export var inBattle: bool = false
+
 ## if true, will filter down to only show Shards
 @export var summoning: bool = false
+
 ## if true, will prevent the player from changing the filters
 @export var lockFilters: bool = false
 
 @export_category("InventoryPanel - Shops")
+
 ## if true, a shop inventory opened the panel
 @export var inShop: bool = false
+
 ## if true, show the player inventory rather than the shop inventory
 @export var showPlayerInventory = false
+
 var shopInventory: Inventory = null
 
 @export_category("InventoryPanel - Item Use Behavior")
+
 ## the inventory slot queued for battle use by the player when selecting minion action
 @export var slotQueuedForBattleUse: InventorySlot = null
+
 ## if true, shows the "Item Used" popup panel when using an item
 @export var showItemUsePanel: bool = false
+
 ## the stats object to equip equipment to if clicked in from the Stats menu
 @export var equipContextStats: Stats = null
 

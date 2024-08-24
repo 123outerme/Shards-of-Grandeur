@@ -7,9 +7,12 @@ signal level_up(newLevels: int)
 signal act_changed
 
 @export_category("Quests Panel - Filters")
+
 @export var selectedFilter: QuestTracker.Status = QuestTracker.Status.ALL
+
 ## if not == '', is the name of the entity to turn quests into
 @export var turnInTargetName: String = ''
+
 ## if true, the player cannot change the selected filter
 @export var lockFilters: bool = false
 

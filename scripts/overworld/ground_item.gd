@@ -3,12 +3,16 @@ class_name GroundItem
 
 ## don't fill in the `dialogue` property of GroundItem, leave it blank and use `pickedUpItem` instead. 
 @export var pickedUpItem: PickedUpItem = null
+
 ## the texture the GroundItem will appear as. If null, uses the texture of the Item
 @export var disguiseSprite: Texture = null
+
 ## if one of these requirements passes (or if there are no requirements), the item will appear
 @export var storyRequirements: Array[StoryRequirements] = []
+
 ## if true, the item will be invisible on the ground (except for particles)
 @export var invisible: bool = false
+
 ## define up to 4 particle textures to be emitted to draw attention to the item. If empty, default gold particles will appear
 @export var particleTextures: Array[Texture2D] = []
 

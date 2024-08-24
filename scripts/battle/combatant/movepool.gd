@@ -5,10 +5,13 @@ class_name MovePool
 
 ## "Other" means no preference
 @export var preferredMove1Role: MoveEffect.Role = MoveEffect.Role.OTHER
+
 ## "Other" means no preference
 @export var preferredMove2Role: MoveEffect.Role = MoveEffect.Role.OTHER
+
 ## "Other" means no preference
 @export var preferredMove3Role: MoveEffect.Role = MoveEffect.Role.OTHER
+
 ## "Other" means no preference
 @export var preferredMove4Role: MoveEffect.Role = MoveEffect.Role.OTHER
 
