@@ -14,10 +14,12 @@ class_name BattlePanels
 @onready var statsOpenButton: Button = get_node('PanelsButtons/StatsOpenButton')
 @onready var pauseButton: Button = get_node('PanelsButtons/PauseButton')
 
+@onready var turnCounter: RichTextLabel = get_node('TurnCounterPanel/TurnCounter')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pauseButton.visible = SettingsHandler.isMobile
-	
+
 func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS):
 		if battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.ITEMS:
@@ -48,6 +50,9 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible:
 		pauseMenu.toggle_pause()
+
+func set_turn_counter(turnCount: int) -> void:
+	turnCounter.text = '[center]Turn ' + String.num(turnCount) + '[/center]'
 
 func _on_pause_menu_resume_game():
 	battleUI.restore_focus()
