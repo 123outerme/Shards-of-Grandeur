@@ -503,37 +503,54 @@ func level_up_nonplayer(newLv: int, overrideStatAllocStrat: StatAllocationStrate
 
 func assign_moves_nonplayer():
 	stats.moves = [null, null, null, null]
-	var preferredMoves: Array[MoveEffect.Role] = [
+	var preferredRoles: Array[MoveEffect.Role] = [
 		stats.movepool.preferredMove1Role,
 		stats.movepool.preferredMove2Role,
 		stats.movepool.preferredMove3Role,
 		stats.movepool.preferredMove4Role
 	]
+	var preferredTypes: Array[Move.DmgCategory] = [
+		stats.movepool.preferredMove1DmgType,
+		stats.movepool.preferredMove2DmgType,
+		stats.movepool.preferredMove3DmgType,
+		stats.movepool.preferredMove4DmgType
+	]
+	var preferredElements: Array[Move.Element] = [
+		stats.movepool.preferredMove1Element,
+		stats.movepool.preferredMove2Element,
+		stats.movepool.preferredMove3Element,
+		stats.movepool.preferredMove4Element
+	]
 	
 	# for each move slot, use the preferred role to find the highest lv move that includes that role
 	# MoveEffect.Role.OTHER means no preference, so a slot with that preference skips this phase and goes onto the next
-	for idx in range(len(preferredMoves)):
-		var highestLvMoveInRole: Move = null
-		for move: Move in stats.movepool.pool:
-			if move.requiredLv <= stats.level \
-					and (move.has_effect_with_role(preferredMoves[idx]) and preferredMoves[idx] != MoveEffect.Role.OTHER ) \
-					and (highestLvMoveInRole == null or highestLvMoveInRole.requiredLv < move.requiredLv) \
-					and not move in stats.moves:
-				highestLvMoveInRole = move
-		if highestLvMoveInRole != null:
-			stats.moves[idx] = highestLvMoveInRole
-	
-	# for the move slots we couldn't find preferred matches for, put anything in there
-	for idx in range(len(preferredMoves)):
-		if stats.moves[idx] == null:
-			var highestLvMove: Move = null
+	for scoreToBeat: int in [7, 0]:
+		for idx: int in range(len(preferredRoles)):
+			var bestMove: Move = null
+			# first time, score to beat is 7: has to be of the specified role (most specific of the filters)
+			# second time, score to beat is 0: min score is 1 because of requiredLv testing logic
+			var bestScore: int = scoreToBeat
 			for move: Move in stats.movepool.pool:
+				var score: int = 0
+				if move.has_effect_with_role(preferredRoles[idx]) and preferredRoles[idx] != MoveEffect.Role.OTHER:
+					score += 8 # most specific criteria: most important
+				
+				if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
+					score += 4
+				
+				if move.category == preferredTypes[idx] and preferredTypes[idx] != Move.DmgCategory.ANY:
+					score += 2
+				
+				if bestMove == null or bestMove.requiredLv < move.requiredLv:
+					score += 1 # least specific criteria: least important
+				
 				if move.requiredLv <= stats.level \
-						and not move in stats.moves \
-						and (highestLvMove == null or highestLvMove.requiredLv < move.requiredLv):
-					highestLvMove = move
-			if highestLvMove != null:
-				stats.moves[idx] = highestLvMove
+						and score > bestScore \
+						and not move in stats.moves:
+					bestMove = move
+					bestScore = score
+			if bestMove != null:
+				stats.moves[idx] = bestMove
 		
 	stats.moves = stats.moves.filter(_filter_null) # remove null entries because they aren't needed
 	# NOTE: check if having null entries breaks anything (specifically move picking) or not

@@ -2,12 +2,12 @@ extends Resource
 class_name MoveEffect
 
 enum Role {
-	OTHER = 0,
-	SINGLE_TARGET_DAMAGE = 1,
-	AOE_DAMAGE = 2,
-	BUFF = 3,
-	DEBUFF = 4,
-	HEAL = 5
+	OTHER = 0, ## Other
+	SINGLE_TARGET_DAMAGE = 1, ## Single-target damage
+	AOE_DAMAGE = 2, ## AoE (multi-target) damage
+	BUFF = 3, ## Buff
+	DEBUFF = 4, ## Debuff
+	HEAL = 5, ## Healing
 }
 
 @export var role: Role = Role.OTHER

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyippeuidy6q4"]
+[gd_scene load_steps=11 format=3 uid="uid://dyippeuidy6q4"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/codex_menu/codex_menu.gd" id="1_4kiky"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_jhen4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://d1u5i7bipsn4t" path="res://gamedata/codex_entries/codex.tres" id="4_pcdn8"]
 [ext_resource type="PackedScene" uid="uid://17jyotb8a5fb" path="res://prefabs/ui/codex/codex_entry_panel.tscn" id="5_6oe10"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="7_8wv70"]
+[ext_resource type="PackedScene" uid="uid://b11xiyik10j7i" path="res://prefabs/ui/reward_panel.tscn" id="10_gxlo7"]
 
 [node name="CodexMenu" type="Control"]
 layout_mode = 3
@@ -112,6 +113,10 @@ offset_right = 1240.0
 offset_bottom = 694.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="RewardPanel" parent="." instance=ExtResource("10_gxlo7")]
+custom_minimum_size = Vector2(0, 70)
+offset_bottom = 70.0
 
 [connection signal="visibility_changed" from="Panel/ClipScrollContainerControl/ScrollContainer" to="Panel/ClipScrollContainerControl/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/ClipScrollContainerControl/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

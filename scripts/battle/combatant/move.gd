@@ -2,29 +2,30 @@ extends Resource
 class_name Move
 
 enum DmgCategory {
-	PHYSICAL = 0,
-	MAGIC = 1,
-	AFFINITY = 2,
+	PHYSICAL = 0, ## Physical
+	MAGIC = 1, ## Magic
+	AFFINITY = 2, ## Affinity
+	ANY = -1, ## only for use in movepool.gd Preferences
 }
 
 enum Element {
-	NONE = 0,
-	WATER = 1,
-	FIRE = 2,
-	LIGHTNING = 3,
-	WIND = 4,
-	EARTH = 5,
-	NATURE = 6,
-	DARK = 7,
-	ASTRAL = 8
+	NONE = 0, ## No element
+	WATER = 1, ## Water
+	FIRE = 2, ## Fire
+	LIGHTNING = 3, ## Lightning
+	WIND = 4, ## Wind
+	EARTH = 5, ## Earth
+	NATURE = 6, ## Nature
+	DARK = 7, ## Dark
+	ASTRAL = 8 ## Astral
 }
 const NUM_ELEMENTS = 8
 
 enum MoveEffectType {
-	NONE = 0,
-	CHARGE = 1,
-	SURGE = 2,
-	BOTH = 3,
+	NONE = 0, ## For use in move-selecting AI only
+	CHARGE = 1, ## Charge
+	SURGE = 2, ## Surge
+	BOTH = 3, ## For use in move-selecting AI only
 }
 
 @export var moveName: String = ''
