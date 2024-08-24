@@ -32,6 +32,7 @@ func toggle_pause():
 		pause_game()
 		resumeButton.grab_focus()
 	else:
+		codexMenu.toggle_codex_menu(false)
 		_on_resume_button_pressed()
 
 func pause_game():

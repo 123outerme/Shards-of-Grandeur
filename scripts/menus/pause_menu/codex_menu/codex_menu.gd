@@ -18,6 +18,11 @@ var entriesLoaded: bool = false
 
 var buttonPrefab = preload('res://prefabs/ui/sfx_button.tscn')
 
+var lastFocusedButton: Button = null
+
+func _ready() -> void:
+	get_viewport().gui_focus_changed.connect(_gui_focus_changed)
+
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline"):
 		get_viewport().set_input_as_handled()
@@ -25,7 +30,7 @@ func _unhandled_input(event):
 
 func toggle_codex_menu(showing: bool):
 	if showing:
-		selectedEntryStack.append(initialEntry)
+		selectedEntryStack = [initialEntry]
 		codexEntryPanel.codexEntry = initialEntry
 		codexEntryPanel.load_codex_entry_panel()
 		load_codex_menu()
@@ -47,7 +52,11 @@ func load_codex_menu():
 		entryTitle.text = '[center]' + lastEntry.title + '[/center]'
 	else:
 		entryTitle.text = ''
-	var childrenEntries: Array[CodexEntry] = load_children_entries_for_entry(selectedEntryStack)
+		
+	var childrenEntries: Array[CodexEntry] = []
+	var selectedPath: String = get_codex_path_for_stack(selectedEntryStack)
+	if codexEntriesMap.has(selectedPath):
+		childrenEntries = codexEntriesMap[selectedPath]
 	for entry in childrenEntries:
 		if entry.is_valid():
 			instantiate_button_for_entry(entry)
@@ -123,7 +132,9 @@ func instantiate_button_for_entry(entry: CodexEntry):
 		button.icon = notSeenSprite
 		button.expand_icon = true
 	vboxContainer.add_child(button)
-	button.focus_neighbor_right = '.'
+	button.focus_neighbor_left = '.'
+	# NOTE: might need to wait a frame for the button to be placed in the tree for get_path_to() to work
+	button.focus_neighbor_right = button.get_path_to(codexEntryPanel.entryDescription)
 
 func focus_button_for_entry(entry: CodexEntry):
 	for button in get_tree().get_nodes_in_group('CodexEntryButton'):
@@ -132,8 +143,8 @@ func focus_button_for_entry(entry: CodexEntry):
 			return
 
 func get_last_entry() -> CodexEntry:
-	if len(selectedEntryStack) >= 2:
-		return selectedEntryStack[len(selectedEntryStack) - 2]
+	if len(selectedEntryStack) >= 1:
+		return selectedEntryStack[len(selectedEntryStack) - 1]
 	return null
 
 func has_not_seen_indicator(entry: CodexEntry, codexEntryStack: Array[CodexEntry]) -> bool:
@@ -187,3 +198,11 @@ func _on_back_button_pressed():
 	else:
 		load_codex_menu()
 		focus_button_for_entry(entry)
+
+func _gui_focus_changed(control: Control) -> void:
+	if is_visible_in_tree():
+		if control is Button and control.is_in_group('CodexEntryButton'):
+			lastFocusedButton = control as Button
+
+func _on_codex_entry_panel_entry_desc_focused() -> void:
+	codexEntryPanel.entryDescription.focus_neighbor_left = codexEntryPanel.entryDescription.get_path_to(lastFocusedButton)

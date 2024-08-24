@@ -11,7 +11,7 @@ class_name CodexEntry
 static func _sort_entries(a: CodexEntry, b: CodexEntry) -> bool:
 	if a.sortOrder < b.sortOrder:
 		return true
-	return false
+	return a.resource_path.naturalnocasecmp_to(b.resource_path) < 0
 
 func _init(
 	i_id = '',
