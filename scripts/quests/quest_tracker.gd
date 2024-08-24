@@ -7,8 +7,9 @@ enum Status {
 	READY_TO_TURN_IN_STEP = 2,
 	COMPLETED = 3,
 	FAILED = 4,
-	INCOMPLETE = -1,
+	INCOMPLETE = -1, # negative numbers: for use as filters, not as quest statuses
 	ALL = -2,
+	MAIN_QUEST = -3,
 }
 
 static func StatusToString(s: Status) -> String:

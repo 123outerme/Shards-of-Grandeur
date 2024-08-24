@@ -176,6 +176,17 @@ func sort_by_pinned(a: QuestTracker, b: QuestTracker) -> bool:
 		return true # a goes before b
 	if b.pinned and not a.pinned:
 		return false # b goes before a
+	
+	var aStatus: QuestTracker.Status = a.get_current_status()
+	var aStatusFinished: bool = aStatus == QuestTracker.Status.COMPLETED or aStatus == QuestTracker.Status.FAILED 
+	var bStatus: QuestTracker.Status = b.get_current_status()
+	var bStatusFinished: bool = bStatus == QuestTracker.Status.COMPLETED or bStatus == QuestTracker.Status.FAILED
+	
+	if not aStatusFinished and bStatusFinished:
+		return true
+	if aStatusFinished and not bStatusFinished:
+		return false
+	
 	return a.quest.questName.naturalnocasecmp_to(b.quest.questName) < 0 # compare names (including natural number comparisons)
 
 func load_data(save_path):

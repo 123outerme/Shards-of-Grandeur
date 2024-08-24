@@ -364,6 +364,8 @@ func _on_all_button_toggled(button_pressed):
 		return
 	if button_pressed:
 		filter_by()
+	elif selectedFilter == Item.Type.ALL:
+		allFilterBtn.button_pressed = true # if deselecting and already filtering on All, re-select
 
 func _on_healing_button_toggled(button_pressed):
 	if lockFilters: # ignore toggle if filters are supposed to be locked
