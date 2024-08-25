@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=2 format=3 uid="uid://c36tyo1kj36jw"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://c36tyo1kj36jw"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_w2jvw"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_33sl6"]
 
 [resource]
 script = ExtResource("1_w2jvw")
-weightedEquipment = Array[Resource("res://scripts/battle/weighted_things/weighted_equipment.gd")]([])
+weightedEquipment = Array[ExtResource("2_33sl6")]([])

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://bh06d3djm71we"]
+
+[ext_resource type="Texture2D" uid="uid://d1s0muneaqbmp" path="res://graphics/particles/fire/fire_1.png" id="1_f4stg"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_ocvnp"]
+[ext_resource type="Texture2D" uid="uid://dt1jful8dnkk7" path="res://graphics/particles/fire/fire_2.png" id="2_jpkto"]
+[ext_resource type="Texture2D" uid="uid://ctxvjxobc6rlo" path="res://graphics/particles/fire/fire_3.png" id="3_4isim"]
+[ext_resource type="Texture2D" uid="uid://o88o6okxdgq3" path="res://graphics/particles/fire/fire_4.png" id="4_6lnab"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="6_p2mcq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hkf4b"]
+lifetime_randomness = 0.25
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4, 6, 1)
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 50.0
+initial_velocity_max = 65.0
+
+[resource]
+script = ExtResource("1_ocvnp")
+emitter = "behind"
+count = 4
+lifetime = 0.51
+duration = 0.5
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_hkf4b")
+particleTextures = Array[Texture2D]([ExtResource("1_f4stg"), ExtResource("2_jpkto"), ExtResource("3_4isim"), ExtResource("4_6lnab")])
+sfx = ExtResource("6_p2mcq")

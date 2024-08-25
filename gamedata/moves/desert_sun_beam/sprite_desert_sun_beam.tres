@@ -1,13 +1,147 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=3 format=3 uid="uid://dab8dfaja5hsx"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=19 format=3 uid="uid://dab8dfaja5hsx"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_2v7ly"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_2ldgl"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_g0xn1"]
+[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_tq5cg"]
+[ext_resource type="SpriteFrames" uid="uid://cy1ihxquyxqfv" path="res://graphics/moves/fire/a_fire.tres" id="3_gq0kd"]
+[ext_resource type="Resource" uid="uid://bh06d3djm71we" path="res://gamedata/moves/desert_sun_beam/particles_desert_sun_beam.tres" id="3_ow76m"]
+
+[sub_resource type="Curve" id="Curve_npxp3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_1qb2g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ypx8r"]
+script = ExtResource("1_2v7ly")
+annotation = "Set up position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(20, -6)
+offset = 5
+xCurve = SubResource("Curve_npxp3")
+yCurve = SubResource("Curve_1qb2g")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_mx1md"]
+script = ExtResource("1_2v7ly")
+annotation = "Start the desert sun descending"
+animation = "desert_sun_beam_set"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_2ldgl")
+
+[sub_resource type="Resource" id="Resource_3jl2s"]
+script = ExtResource("1_2v7ly")
+annotation = "Turn the beam to face target while it's being made"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = true
+
+[sub_resource type="Curve" id="Curve_64l03"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ti8js"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_6fgc2"]
+script = ExtResource("1_2v7ly")
+annotation = "Fire the sun beam at the target, rotating towards target"
+animation = "desert_sun_beam_laser"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(-12, 0)
+offset = 0
+xCurve = SubResource("Curve_64l03")
+yCurve = SubResource("Curve_ti8js")
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = true
+sfx = ExtResource("2_tq5cg")
+
+[sub_resource type="Curve" id="Curve_cguat"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_riiuo"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4howa"]
+script = ExtResource("1_2v7ly")
+annotation = "Play hit animation moving to center on target, fix rotation to face target now"
+animation = "desert_sun_beam_hit"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_cguat")
+yCurve = SubResource("Curve_riiuo")
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(1, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = true
+
+[sub_resource type="Resource" id="Resource_ibcbc"]
+script = ExtResource("1_2v7ly")
+annotation = "Play the hit particles for the laser hitting finally"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_ow76m")
 
 [resource]
 script = ExtResource("2_g0xn1")
+spriteFrames = ExtResource("3_gq0kd")
 centerSprite = true
-maxSize = Vector2(16, 16)
-frames = Array[ExtResource("1_2v7ly")]([])
+maxSize = Vector2(24, 16)
+frames = Array[ExtResource("1_2v7ly")]([SubResource("Resource_ypx8r"), SubResource("Resource_mx1md"), SubResource("Resource_3jl2s"), SubResource("Resource_6fgc2"), SubResource("Resource_4howa"), SubResource("Resource_ibcbc")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true

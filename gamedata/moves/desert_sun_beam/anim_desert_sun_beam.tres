@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://cneyu5gfa8seb"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://cneyu5gfa8seb"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_lslb3"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_4akak"]
+[ext_resource type="Resource" uid="uid://dab8dfaja5hsx" path="res://gamedata/moves/desert_sun_beam/sprite_desert_sun_beam.tres" id="2_r1jp3"]
 
 [resource]
 script = ExtResource("2_4akak")
-combatantAnimation = ""
+combatantAnimation = "attack_magic"
 makesContact = false
-chargeMoveSprites = Array[ExtResource("1_lslb3")]([])
-surgeMoveSprites = Array[ExtResource("1_lslb3")]([])
+chargeMoveSprites = Array[ExtResource("1_lslb3")]([ExtResource("2_r1jp3")])
+surgeMoveSprites = Array[ExtResource("1_lslb3")]([ExtResource("2_r1jp3")])
