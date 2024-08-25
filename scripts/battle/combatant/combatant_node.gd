@@ -41,6 +41,7 @@ const statusWeights: Dictionary = {
 }
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
+var disableHpTag: bool = false
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
@@ -54,6 +55,7 @@ var playParticlesTimingDelay: float = 0
 var playMoveSpritesQueued: Array[MoveAnimSprite] = []
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
+var playingMoveSprites: Array[MoveSprite] = []
 var moveSpritesCallback: Callable = Callable()
 var useItemSprite: Texture2D = null
 var isBeingStatusAfflicted: bool = false
@@ -152,7 +154,7 @@ func update_hp_tag():
 		else:
 			return
 	
-	hpTag.visible = true
+	hpTag.visible = not disableHpTag
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
@@ -246,6 +248,27 @@ func play_animation(animationName: String):
 		await animatedSprite.animation_looped
 		await animatedSprite.animation_looped
 		animatedSprite.stop()
+
+func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: bool):
+	if stopSpriteAnim:
+		animatedSprite.stop()
+	
+	if stopParticles:
+		surgeParticles.makeParticles = false
+		surgeParticles.preset = null
+		behindParticles.makeParticles = false
+		behindParticles.preset = null
+		frontParticles.makeParticles = false
+		frontParticles.preset = null
+		hitParticles.makeParticles = false
+		hitParticles.preset = null
+		shardParticles.makeParticles = false
+	
+	if stopMoveAnim:
+		for moveSprite: MoveSprite in playingMoveSprites:
+			if moveSprite != null:
+				moveSprite.destroy()
+		playingMoveSprites = []
 
 func get_animation_fps(animationName: String) -> float:
 	return animatedSprite.sprite_frames.get_animation_speed(animationName)
@@ -394,6 +417,7 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		spriteNode.staticSprite = useItemSprite
 		spriteNode.move_sprite_complete.connect(_move_sprite_complete)
 		#spriteNode.call_deferred('play_sprite_animation')
+		playingMoveSprites.append(spriteNode)
 		add_child(spriteNode)
 
 func move_animation_callback(callback: Callable):
@@ -813,8 +837,9 @@ func _on_combatant_tween_returned():
 func _on_hp_drain_tween_finished():
 	hpDrainTween = null
 
-func _move_sprite_complete():
+func _move_sprite_complete(sprite: MoveSprite):
 	playedMoveSprites -= 1
+	playingMoveSprites.erase(sprite)
 	# if the combatant's sprite animation is done and all move sprites have finished
 	if battleController != null and playedMoveSprites == 0 and (animatedSprite.animation == 'battle_idle' or animatedSprite.animation == 'hide'):
 		if animatedSprite.animation == 'hide':

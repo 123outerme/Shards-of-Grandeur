@@ -2,7 +2,7 @@ extends AnimatedSprite2D
 class_name MoveSprite
 
 signal frame_complete(frame: int)
-signal move_sprite_complete
+signal move_sprite_complete(sprite: MoveSprite)
 
 @export var anim: MoveAnimSprite:
 	get:
@@ -58,7 +58,7 @@ func load_animation():
 
 func play_sprite_animation():
 	if anim == null:
-		queue_free()
+		destroy()
 		return
 	load_animation()
 	staticSpriteNode.texture = staticSprite
@@ -141,9 +141,7 @@ func next_frame():
 	frame_complete.emit(moveFrame)
 	moveFrame += 1
 	if moveFrame >= len(anim.frames):
-		playing = false
-		move_sprite_complete.emit()
-		queue_free()
+		destroy()
 		return
 	frameTimer = 0
 	load_frame()
@@ -152,3 +150,9 @@ func reset_animation():
 	frameTimer = 0
 	moveFrame = 0
 	playing = false
+
+func destroy():
+	playing = false
+	visible = false
+	move_sprite_complete.emit(self)
+	queue_free()
