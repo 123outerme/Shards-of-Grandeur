@@ -1,14 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://ie2m5n6k0qjg"]
+[gd_scene load_steps=14 format=3 uid="uid://ie2m5n6k0qjg"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_use_panel.gd" id="1_c7w7n"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_oq36k"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_d1bpa"]
+[ext_resource type="Resource" uid="uid://dcsqbgxwc3gv3" path="res://gamedata/items/shard/mystic_scorpion_shard.tres" id="3_ksvbc"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="3_r6lkq"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="4_00pbr"]
+[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="5_1msx6"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/move_learn_animation_controller.gd" id="5_6j06m"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="5_88lle"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_k8tae"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="6_brvpr"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/mock_battle_controller.gd" id="6_im7eq"]
+
+[sub_resource type="Resource" id="Resource_j2xtr"]
+script = ExtResource("4_00pbr")
+nickname = ""
+evolutionStats = {}
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+downed = false
 
 [node name="ItemUsePanel" type="Control"]
 layout_mode = 3
@@ -19,6 +38,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_oq36k")
 script = ExtResource("1_c7w7n")
+item = ExtResource("3_ksvbc")
+target = SubResource("Resource_j2xtr")
+learnedMove = ExtResource("5_1msx6")
 metadata/_edit_horizontal_guides_ = [340.0, 537.0, 439.0]
 metadata/_edit_vertical_guides_ = [640.0]
 

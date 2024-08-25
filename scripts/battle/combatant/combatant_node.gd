@@ -302,7 +302,7 @@ func tween_to(pos: Vector2):
 		global_position = returnToPos
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	returnToPos = global_position
-	var moveTime: float = pos.length() / ANIMATE_MOVE_SPEED
+	var moveTime: float = ((returnToPos - pos) / global_scale).length() / ANIMATE_MOVE_SPEED
 	var downTime: float = 0
 	# if there's an animation playing:
 	if animatedSprite.animation != 'battle_idle':
@@ -333,7 +333,7 @@ func tween_back_to_return_pos():
 		# plays hit particles ONLY unless the combatant really is done
 		battleController.combatants_play_hit.emit()
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, (returnToPos - spriteContainer.global_position).length() / ANIMATE_MOVE_SPEED)
+	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, ((returnToPos - spriteContainer.global_position) / global_scale).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)
 
 func play_particles(preset: ParticlePreset, delay: bool = false, timingDelay: float = 0):
