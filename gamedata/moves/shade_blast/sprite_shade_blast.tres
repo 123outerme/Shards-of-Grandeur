@@ -1,13 +1,103 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=3 format=3 uid="uid://joetyg56p1on"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://joetyg56p1on"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_xgqv5"]
+[ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="2_bgbr8"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_s0q14"]
+[ext_resource type="Resource" uid="uid://c0fvydrvwab4s" path="res://gamedata/moves/shade_blast/particles_shade_blast_explosion.tres" id="3_0yskf"]
+[ext_resource type="SpriteFrames" uid="uid://dbv2ib1mmjvbe" path="res://graphics/moves/dark/a_dark.tres" id="4_d6gom"]
+
+[sub_resource type="Curve" id="Curve_mpipg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_yxr1v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_l1xo6"]
+script = ExtResource("1_xgqv5")
+annotation = "Position in front of user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(14, 0)
+offset = 1
+xCurve = SubResource("Curve_mpipg")
+yCurve = SubResource("Curve_yxr1v")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_k8rxw"]
+script = ExtResource("1_xgqv5")
+annotation = "Play the formation animation"
+animation = "shade_blast_form"
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_bgbr8")
+
+[sub_resource type="Curve" id="Curve_1sv6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.625, 0.494505), -1.26984, -1.26984, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_72en5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ygfwe"]
+script = ExtResource("1_xgqv5")
+annotation = "Send the spinning blast at the opponent"
+animation = "shade_blast_spin"
+duration = 1.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_1sv6j")
+yCurve = SubResource("Curve_72en5")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_efi8p"]
+script = ExtResource("1_xgqv5")
+annotation = "the blast explodes on the opponent"
+animation = "shade_blast_explode"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_0yskf")
 
 [resource]
 script = ExtResource("2_s0q14")
+spriteFrames = ExtResource("4_d6gom")
 centerSprite = true
-maxSize = Vector2(16, 16)
-frames = Array[ExtResource("1_xgqv5")]([])
+maxSize = Vector2(14, 14)
+frames = Array[ExtResource("1_xgqv5")]([SubResource("Resource_l1xo6"), SubResource("Resource_k8rxw"), SubResource("Resource_ygfwe"), SubResource("Resource_efi8p")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true

@@ -90,13 +90,13 @@ func get_percent_complete(time: float, diff: Vector2) -> float:
 	return time / get_real_duration(diff)
 
 func get_x_curve_pos(time: float, diff: Vector2) -> float:
-	var percentComplete = get_percent_complete(time, diff)
+	var percentComplete: float = get_percent_complete(time, diff)
 	if xCurve == null or percentComplete == 1:
 		return percentComplete # default: linear, also bail out if already complete
 	return xCurve.sample_baked(get_percent_complete(time, diff))
 
 func get_y_curve_pos(time: float, diff: Vector2) -> float:
-	var percentComplete = get_percent_complete(time, diff)
+	var percentComplete: float = get_percent_complete(time, diff)
 	if yCurve == null or percentComplete == 1:
 		return percentComplete # default: linear, also bail out if already complete
 	return yCurve.sample_baked(get_percent_complete(time, diff))

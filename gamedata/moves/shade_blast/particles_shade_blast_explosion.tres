@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://c0fvydrvwab4s"]
+
+[ext_resource type="Texture2D" uid="uid://oi8rk845uje8" path="res://graphics/particles/dark/dark_1.png" id="1_cofbn"]
+[ext_resource type="Texture2D" uid="uid://ceaugujdsimv8" path="res://graphics/particles/dark/dark_2.png" id="2_66l6b"]
+[ext_resource type="Texture2D" uid="uid://bg7f8vjh6fgp7" path="res://graphics/particles/dark/dark_3.png" id="3_ln62q"]
+[ext_resource type="Texture2D" uid="uid://bql4uh54mrlv4" path="res://graphics/particles/dark/dark_4.png" id="4_3f8s1"]
+[ext_resource type="Material" uid="uid://dmonjtyvplsyi" path="res://gamedata/moves/shade_blast/shade_blast_particle_process_mat.tres" id="5_1wuds"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_std8t"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="7_pdubp"]
+
+[resource]
+script = ExtResource("6_std8t")
+emitter = "front"
+count = 4
+lifetime = 0.5
+duration = 0.49
+staggered = false
+processMaterial = ExtResource("5_1wuds")
+particleTextures = Array[Texture2D]([ExtResource("1_cofbn"), ExtResource("2_66l6b"), ExtResource("3_ln62q"), ExtResource("4_3f8s1")])
+sfx = ExtResource("7_pdubp")

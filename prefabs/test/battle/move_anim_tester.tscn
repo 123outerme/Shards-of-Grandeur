@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://bpd15ski3ftn" path="res://gamedata/moves/hydro_barrier/anim_hydro_barrier.tres" id="2_neo8t"]
+[ext_resource type="Resource" uid="uid://cg5chhchrty7r" path="res://gamedata/moves/shade_blast/anim_shade_blast.tres" id="2_j8b8y"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
@@ -9,7 +9,7 @@
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_neo8t")
+moveAnimation = ExtResource("2_j8b8y")
 
 [node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
 position = Vector2(-72, 0)
