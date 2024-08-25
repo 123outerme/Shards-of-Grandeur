@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ie2m5n6k0qjg"]
+[gd_scene load_steps=15 format=3 uid="uid://ie2m5n6k0qjg"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_use_panel.gd" id="1_c7w7n"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_oq36k"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_k8tae"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="6_brvpr"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/mock_battle_controller.gd" id="6_im7eq"]
+[ext_resource type="AudioStream" uid="uid://dbe7hfco3d2bu" path="res://audio/sfx/hit.mp3" id="9_15x3o"]
 
 [sub_resource type="Resource" id="Resource_j2xtr"]
 script = ExtResource("4_00pbr")
@@ -118,6 +119,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_6j06m")
+takeDmgSfx = ExtResource("9_15x3o")
 
 [node name="BattleScene" type="Control" parent="Panel/MoveLearnAnimControl"]
 layout_mode = 1
@@ -134,9 +136,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 
-[node name="MockBattleController" type="Node2D" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("moveLearnAnimController", "globalMarker")]
+[node name="MockBattleController" type="Node2D" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("6_im7eq")
-moveLearnAnimController = NodePath("../..")
 globalMarker = NodePath("../GlobalMarker")
 
 [node name="PlayerCombatantNode" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("5_88lle")]
@@ -267,6 +268,8 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
 
+[connection signal="combatant_finished_moving" from="Panel/MoveLearnAnimControl/BattleScene/MockBattleController" to="Panel/MoveLearnAnimControl" method="_on_mock_battle_controller_combatant_finished_moving"]
+[connection signal="combatants_play_hit" from="Panel/MoveLearnAnimControl/BattleScene/MockBattleController" to="Panel/MoveLearnAnimControl" method="_on_mock_battle_controller_combatants_play_hit"]
 [connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]
 
 [editable path="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode"]

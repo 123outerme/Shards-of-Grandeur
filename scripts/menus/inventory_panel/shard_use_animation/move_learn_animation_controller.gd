@@ -3,6 +3,9 @@ class_name MoveLearnAnimationController
 
 @export var move: Move = null
 @export var shard: Shard = null
+@export var takeDmgSfx: AudioStream = null
+
+var moveEffect: MoveEffect = null
 
 @onready var playerCombatantNode: CombatantNode = get_node('BattleScene/PlayerCombatantNode')
 @onready var minionCombatantNode: CombatantNode = get_node('BattleScene/MinionCombatantNode')
@@ -20,13 +23,13 @@ class_name MoveLearnAnimationController
 
 @onready var mockBattleController: Node2D = get_node('BattleScene/MockBattleController')
 
-func _ready() -> void:
-	playerCombatantNode.combatant = Combatant.load_combatant_resource('player')
+func load_move_learn_animation(playSurge: bool = false) -> void:
+	moveEffect = move.surgeEffect if playSurge else move.chargeEffect
+	
+	playerCombatantNode.combatant = PlayerResources.playerInfo.combatant
 	playerCombatantNode.disableHpTag = true
 	playerCombatantNode.load_combatant_node()
-
-func load_move_learn_animation(playSurge: bool = false) -> void:
-	var moveEffect: MoveEffect = move.surgeEffect if playSurge else move.chargeEffect
+	
 	if moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY or \
 			moveEffect.targets == BattleCommand.Targets.ALLY or \
 			moveEffect.targets == BattleCommand.Targets.ALL_ALLIES or \
@@ -71,7 +74,6 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	play_move_animation(playSurge)
 
 func play_move_animation(playSurge: bool = false) -> void:
-	var moveEffect: MoveEffect = move.surgeEffect if playSurge else move.chargeEffect
 	var targetCombatantNodes: Array[CombatantNode] = []
 	var contactGlobalPos: Vector2 = playerCombatantNode.global_position
 	
@@ -112,18 +114,23 @@ func play_move_animation(playSurge: bool = false) -> void:
 	for targetNode: CombatantNode in targetCombatantNodes:
 		targetNode.play_particles(move.moveAnimation.targetsParticlePreset)
 	
-	if move.moveAnimation.makesContact:
+	if move.moveAnimation.makesContact and contactGlobalPos != playerCombatantNode.global_position:
 		playerCombatantNode.tween_to(contactGlobalPos)
 		playerCombatantNode.move_animation_callback(mockBattleController._move_tween_done)
 	else:
 		playerCombatantNode.move_animation_callback(mockBattleController._move_tween_done)
 		mockBattleController.combatant_finished_moving.emit()
 
-func move_tween_done() -> void:
-	pass
-
 func clean_up_animation() -> void:
 	playerCombatantNode.stop_animation(true, true, true)
 	minionCombatantNode.stop_animation(true, true, true)
 	enemy1CombatantNode.stop_animation(true, true, true)
 	enemy2CombatantNode.stop_animation(true, true, true)
+
+func _on_mock_battle_controller_combatants_play_hit() -> void:
+	# if it deals damage: play the take damage SFX
+	if moveEffect.power > 0:
+		SceneLoader.audioHandler.play_sfx(takeDmgSfx)
+
+func _on_mock_battle_controller_combatant_finished_moving() -> void:
+	pass # When the move animation is ENTIRELY done... do something?
