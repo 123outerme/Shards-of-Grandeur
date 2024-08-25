@@ -298,6 +298,7 @@ offset_top = 62.0
 offset_right = 236.5
 offset_bottom = 112.0
 grow_horizontal = 2
+mouse_filter = 2
 theme = ExtResource("7_swlwd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
@@ -316,6 +317,7 @@ offset_right = -8.0
 offset_bottom = 301.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
@@ -354,19 +356,24 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="DebugClickControl" type="Control" parent="Panel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -226.0
+offset_right = 152.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
 [node name="SettingsMenu" parent="." instance=ExtResource("10_650uu")]
 visible = false
 layout_mode = 1
-
-[node name="DebugClickControl" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -64.0
-offset_right = 304.0
-grow_vertical = 0
-mouse_filter = 1
 
 [node name="VersionLabel" type="RichTextLabel" parent="."]
 clip_contents = false
@@ -404,5 +411,5 @@ fit_content = true
 [connection signal="key_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
 [connection signal="keyboard_hidden" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
 [connection signal="pressed" from="Panel/CreditsPanel/BackButton" to="." method="_on_credits_back_button_pressed"]
+[connection signal="gui_input" from="Panel/CreditsPanel/DebugClickControl" to="." method="_on_debug_click_control_gui_input"]
 [connection signal="back_pressed" from="SettingsMenu" to="." method="_on_settings_menu_back_pressed"]
-[connection signal="gui_input" from="DebugClickControl" to="." method="_on_debug_click_control_gui_input"]

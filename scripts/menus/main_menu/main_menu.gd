@@ -3,7 +3,9 @@ extends Control
 @export var mainMenuMusic: AudioStream
 @export var activateDebugModeSfx: AudioStream = null
 
-const DEBUG_CLICKS = 5
+## for some reason, this includes down-events and up-events even if checking event.pressed to be true...
+## intention is 5 clicks to enter Debug mode
+const DEBUG_CLICKS = 10
 
 var playerName: String = 'Player'
 var nameInputFocused: bool = false
@@ -174,6 +176,7 @@ func _on_debug_click_control_gui_input(event: InputEvent) -> void:
 			doIncrement = true
 	
 	if doIncrement:
+		print('increment')
 		debugCounter += 1
 		if debugCounter == DEBUG_CLICKS:
 			SceneLoader.debug = true
