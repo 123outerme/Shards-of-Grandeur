@@ -56,8 +56,12 @@ func load_targets():
 		combatantNode.update_select_btn(false)
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
+	
 	var focusedCombatant: CombatantNode = null
-	for targetableCombatant in targetableCombatants:
+	# prefer targeting the combatant being commanded, if current command can target self
+	if battleUI.commandingCombatant in targetableCombatants:
+		focusedCombatant = battleUI.commandingCombatant
+	for targetableCombatant: CombatantNode in targetableCombatants:
 		targetableCombatant.update_select_btn(true, not singleSelect)
 		if focusedCombatant == null:
 			focusedCombatant = targetableCombatant

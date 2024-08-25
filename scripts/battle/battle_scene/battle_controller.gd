@@ -30,7 +30,7 @@ var tilemap: Node2D = null
 var battleMapPath: String = ''
 
 @onready var combatantGroup: Node2D = get_node_or_null('CombatantGroup')
-@onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("CombatantNode")
+@onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("BattleCombatantNode")
 @onready var playerCombatant: CombatantNode = get_node_or_null("CombatantGroup/PlayerCombatant")
 @onready var minionCombatant: CombatantNode = get_node_or_null("CombatantGroup/MinionCombatant")
 @onready var enemyCombatant1: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant1")
