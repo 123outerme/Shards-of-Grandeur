@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://chvcmkt0av0mi"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_c0fie"]
+[ext_resource type="SpriteFrames" uid="uid://cq3vdsxuvlbrf" path="res://graphics/animations/a_mesa_golem.tres" id="2_p2y8m"]
+
+[resource]
+script = ExtResource("1_c0fie")
+spriteFrames = ExtResource("2_p2y8m")
+maxSize = Vector2(16, 16)
+idleSize = Vector2(14, 16)
+centerPosition = Vector2(8, 8)
+feetPosition = Vector2(8, 15)
+spriteFacesRight = false
+navigationLayer = 1
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 2
+attackMagicImpactFrame = 2
+attackPhysImpactFrame = 5
