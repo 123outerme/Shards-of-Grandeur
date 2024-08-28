@@ -183,6 +183,7 @@ func update_turn_text() -> bool:
 			userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			
 		if userNode != null and combatant.command.commandResult != null:
+			battleController.set_combatant_above_shade(userNode)
 			var moveEffect: MoveEffect = null
 			if combatant.command.move != null:
 				moveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
@@ -198,13 +199,23 @@ func update_turn_text() -> bool:
 					
 					# play recoil dmg effect
 					if combatantNode.combatant in battleController.state.statusEffDamagedCombatants:
+						# link the damaged combatant to the attacking combatant
+						combatantNode.hittingCombatant = userNode
 						combatantNode.play_particles(BattleCommand.get_hit_particles(), true, 0.5)
 					for preset in particlePresets:
+						# skip null presets
+						if preset == null:
+							continue
+						# if this is a "hit" particle effect and the particles will be delayed:
+						if preset.emitter == 'hit' and combatantNode != userNode:
+							# link the damaged combatant to the attacking combatant
+							combatantNode.hittingCombatant = userNode
 						combatantNode.play_particles(preset, combatantNode != userNode)
 					# if there's only one target:
 					if len(combatant.command.targets) == 1:
 						# if this combatant is the target:
 						if combatant.command.targets[0] == combatantNode.combatant:
+							battleController.set_combatant_above_shade(combatantNode)
 							# if the combatant is an ally:
 							if combatantNode.role == userNode.role:
 								if combatantNode.combatant == userNode.combatant:
@@ -215,6 +226,7 @@ func update_turn_text() -> bool:
 								# the combatant is an enemy
 								moveToPos = combatantNode.onAttackMarker.global_position
 					elif combatantNode.combatant in defenders:
+						battleController.set_combatant_above_shade(combatantNode)
 						# if this combatant is an ally
 						if combatantNode.role == userNode.role:
 							multiIsAllies = true
@@ -238,6 +250,8 @@ func update_turn_text() -> bool:
 				else:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
+			battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
+			
 			if not ( \
 					(combatant.command.type == BattleCommand.Type.MOVE and not combatant.command.move.moveAnimation.makesContact) \
 					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
@@ -247,7 +261,7 @@ func update_turn_text() -> bool:
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			else:
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)
-				battleController.combatant_finished_moving.emit() # no tween was started so finish instantly
+				battleController.combatant_finished_moving.emit(userNode) # no tween was started so finish instantly
 			
 		
 	battleUI.results.show_text(text)
@@ -255,11 +269,19 @@ func update_turn_text() -> bool:
 
 func finish_turn() -> WinCon.TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
-	lastCombatant.command = null # remove the command from the previous turn's combatant
+	if lastCombatant != null:
+		lastCombatant.command = null # remove the command from the previous turn's combatant
 	result = check_battle_end_conditions()
 	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
 	return result
+
+func is_on_last_turn() -> bool:
+	# if length of the queue is 1, this is the last turn. If it's 0, the round is over, but this should still return true technically
+	return len(turnQueue.combatants) <= 1
+
+func get_current_turn_combatant() -> Combatant:
+	return turnQueue.peek_next()
 
 func check_battle_end_conditions() -> WinCon.TurnResult:
 	for combatantNode in battleController.get_all_combatant_nodes():

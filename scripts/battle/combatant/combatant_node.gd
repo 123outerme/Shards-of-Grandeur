@@ -50,6 +50,7 @@ var returnToPos: Vector2 = Vector2()
 var playHitQueued: ParticlePreset = null
 var playHitTimingDelay: float = 0
 var playHitEnabled: bool = false
+var hittingCombatant: CombatantNode = null
 var playParticlesQueued: ParticlePreset = null
 var playParticlesTimingDelay: float = 0
 var playMoveSpritesQueued: Array[MoveAnimSprite] = []
@@ -331,7 +332,7 @@ func tween_back_to_return_pos():
 		animateTween.kill()
 	if battleController != null:
 		# plays hit particles ONLY unless the combatant really is done
-		battleController.combatants_play_hit.emit()
+		battleController.combatants_play_hit.emit(self)
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, ((returnToPos - spriteContainer.global_position) / global_scale).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)
@@ -775,17 +776,17 @@ func _on_animated_sprite_animation_finished():
 	if playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position != returnToPos:
 		tween_back_to_return_pos()
 	elif battleController != null and playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position == returnToPos:
-		battleController.combatant_finished_animating.emit()
+		battleController.combatant_finished_animating.emit(self)
 	# in case the combatant (currently using a move) is finished with the move animation and there wasn't any movement, update HP tag
 	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
 	if battleController != null:
-		battleController.combatant_finished_moving.emit()
+		battleController.combatant_finished_moving.emit(self)
 	# when the combatant reaches the target on a "contact" movement, update HP tag
 	update_hp_tag()
 
-func _combatant_finished_moving():
+func _combatant_finished_moving(_combatant: CombatantNode):
 	if playParticlesQueued != null:
 		# if the turn combatant (who's currently using a move) doesn't need this combatant to play hit particles, this is when the tag updates
 		if playHitQueued == null:
@@ -806,15 +807,18 @@ func _combatant_finished_moving():
 	if playHitQueued != null:
 		playHitEnabled = true
 
-func _combatants_play_hit():
-	if playHitQueued != null and playHitEnabled:
+func _combatants_play_hit(combatant: CombatantNode):
+	# if the hit is queued, enabled, and the combatant emitting this event is the combatant to add the hit particles:
+	# (using `hittingCombatant` fixes an issue where the hit particles would play early when queueing/frame perfect on turn advance)
+	if playHitQueued != null and playHitEnabled and combatant == hittingCombatant:
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
 		playHitEnabled = false
+		hittingCombatant = null
 
-func _combatant_finished_animating():
-	_combatants_play_hit()
+func _combatant_finished_animating(combatant: CombatantNode):
+	_combatants_play_hit(combatant)
 	if moveSpritesCallback != Callable() and animateTween == null and playedMoveSprites == 0:
 		moveSpritesCallback.call()
 		moveSpritesCallback = Callable()
@@ -829,7 +833,7 @@ func _on_animate_tween_finished():
 func _on_combatant_tween_returned():
 	animateTween = null
 	if playedMoveSprites == 0:
-		battleController.combatant_finished_animating.emit()
+		battleController.combatant_finished_animating.emit(self)
 		if moveSpritesCallback != Callable():
 			moveSpritesCallback.call()
 			moveSpritesCallback = Callable()
@@ -848,7 +852,7 @@ func _move_sprite_complete(sprite: MoveSprite):
 			if spriteContainer.global_position != returnToPos:
 				tween_back_to_return_pos()
 			else:
-				battleController.combatant_finished_animating.emit()
+				battleController.combatant_finished_animating.emit(self)
 
 func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
 	if a.weight > b.weight:

@@ -2,13 +2,16 @@ extends Node2D
 class_name BattleController
 
 ## When the current-turn combatant fully finishes its Move animation (including MoveSprites, combatant SpriteFrames, movement)
-signal combatant_finished_moving
+signal combatant_finished_moving(combatant: CombatantNode)
 
 ## When the current-turn combatant indicates its move animation has completed enough for its targets to play their taking-damage animations, this fires
-signal combatants_play_hit
+signal combatants_play_hit(combatant: CombatantNode)
 
 ## When the current-turn combatant completes animating its SpriteFrames animation
-signal combatant_finished_animating
+signal combatant_finished_animating(combatant: CombatantNode)
+
+## When the shade over just the battlefield finishes fading, this emits
+signal battlefield_shade_finished_fading
 
  # below this level, 2 enemies cannot spawn from a random battle
 const MIN_LV_TWO_ENEMIES = 4
@@ -36,6 +39,7 @@ var battleMapPath: String = ''
 @onready var enemyCombatant1: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant1")
 @onready var enemyCombatant2: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant2")
 @onready var enemyCombatant3: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant3")
+@onready var battlefieldShade: ColorRect = get_node('CombatantGroup/BattlefieldShade')
 
 @onready var battleUI: BattleUI = get_node_or_null("BattleCam")
 @onready var battlePanels: BattlePanels = get_node_or_null("BattleCam/UIPanels")
@@ -43,11 +47,13 @@ var battleMapPath: String = ''
 @onready var shade: ColorRect = get_node_or_null('Shade')
 
 var shadeTween: Tween = null
+var battlefieldShadeTween: Tween = null
 
 var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	shade.visible = true
 	battleLoaded = false
 	if PlayerResources.battleSaveFolder != '':
 		SaveHandler.load_data(PlayerResources.battleSaveFolder)
@@ -385,10 +391,49 @@ func end_battle():
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
 	shadeTween.finished.connect(_fade_out_finish)
 
-func _fade_in_finish():
-	pass
+## combatant will always be above shade
+func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
+	combatantNode.z_index = 2
 
-func _fade_out_finish():
+## Combatant will always be below shade
+func set_combatant_below_shade(combatantNode: CombatantNode) -> void:
+	combatantNode.z_index = 0
+
+## Default combatant z-index. Sets combatant above the shade if the shade is at its "normal" height, if shade is raised then the combatant will be below
+func set_combatant_between_shade(combatantNode: CombatantNode) -> void:
+	combatantNode.z_index = 1
+
+## Default shade z-index. Sets shade below combatants by default, unless combatants are set to be explicitly below
+func set_shade_above_combatants() -> void:
+	shade.z_index = 1
+
+func set_shade_below_combatants() -> void:
+	shade.z_index = 0
+
+func reset_all_combatants_shade_z_indices() -> void:
+	for combatantNode: CombatantNode in combatantNodes:
+		set_combatant_between_shade(combatantNode)
+
+func modulate_battlefield_shade_to(color: Color, secs: float = 0.5, callback: Callable = Callable()):
+	if battlefieldShadeTween != null and battlefieldShadeTween.is_valid():
+		battlefieldShadeTween.kill()
+	battlefieldShadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	battlefieldShadeTween.tween_property(battlefieldShade, 'color', color, secs)
+	if callback != Callable():
+		battlefieldShadeTween.finished.connect(callback)
+	battlefieldShadeTween.finished.connect(_battlefield_shade_mod_finish)
+
+func _battlefield_shade_mod_finish() -> void:
+	battlefieldShadeTween = null
+	# if the shade is going back to being invisible: reset combatants' z-indicess
+	if battlefieldShade.color.a == 0:
+		reset_all_combatants_shade_z_indices()
+	battlefield_shade_finished_fading.emit()
+
+func _fade_in_finish() -> void:
+	shadeTween = null
+
+func _fade_out_finish() -> void:
 	PlayerResources.playerInfo.encounter = null # clear encounter so other things can't trigger it
 	SaveHandler.save_data('save')
 	SceneLoader.audioHandler.fade_out_music()

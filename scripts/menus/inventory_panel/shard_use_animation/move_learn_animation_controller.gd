@@ -23,6 +23,9 @@ var moveEffect: MoveEffect = null
 
 @onready var mockBattleController: Node2D = get_node('BattleScene/MockBattleController')
 
+func _ready() -> void:
+	mockBattleController.playerCombatantNode = playerCombatantNode
+
 func load_move_learn_animation(playSurge: bool = false) -> void:
 	moveEffect = move.surgeEffect if playSurge else move.chargeEffect
 	
@@ -119,7 +122,7 @@ func play_move_animation(playSurge: bool = false) -> void:
 		playerCombatantNode.move_animation_callback(mockBattleController._move_tween_done)
 	else:
 		playerCombatantNode.move_animation_callback(mockBattleController._move_tween_done)
-		mockBattleController.combatant_finished_moving.emit()
+		mockBattleController.combatant_finished_moving.emit(playerCombatantNode)
 
 func clean_up_animation() -> void:
 	playerCombatantNode.stop_animation(true, true, true)
@@ -127,10 +130,10 @@ func clean_up_animation() -> void:
 	enemy1CombatantNode.stop_animation(true, true, true)
 	enemy2CombatantNode.stop_animation(true, true, true)
 
-func _on_mock_battle_controller_combatants_play_hit() -> void:
+func _on_mock_battle_controller_combatants_play_hit(_combatant: CombatantNode) -> void:
 	# if it deals damage: play the take damage SFX
 	if moveEffect.power > 0:
 		SceneLoader.audioHandler.play_sfx(takeDmgSfx)
 
-func _on_mock_battle_controller_combatant_finished_moving() -> void:
+func _on_mock_battle_controller_combatant_finished_moving(_combatant: CombatantNode) -> void:
 	pass # When the move animation is ENTIRELY done... do something?

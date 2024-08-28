@@ -1,8 +1,8 @@
 extends Node2D
 
-signal combatant_finished_moving
-signal combatants_play_hit
-signal combatant_finished_animating
+signal combatant_finished_moving(combatant: CombatantNode)
+signal combatants_play_hit(combatant: CombatantNode)
+signal combatant_finished_animating(combatant: CombatantNode)
 
 @export var moveAnimation: MoveAnimation = null
 @export var playSurge: bool = false
@@ -36,7 +36,7 @@ func _on_button_pressed():
 		userNode.move_animation_callback(_move_tween_done)
 	else:
 		userNode.move_animation_callback(_move_tween_done)
-		combatant_finished_moving.emit()
+		combatant_finished_moving.emit(userNode)
 		
 func _move_tween_done():
 	button.disabled = false
