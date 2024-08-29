@@ -658,6 +658,17 @@ func get_command_sprites() -> Array[MoveAnimSprite]:
 		return a.chargeMoveSprites
 	return []
 
+func get_command_battlefield_shade_anim() -> BattlefieldShadeAnim:
+	if type == Type.MOVE:
+		if moveEffectType == Move.MoveEffectType.CHARGE:
+			return move.moveAnimation.chargeBattlefieldShade
+		if moveEffectType == Move.MoveEffectType.SURGE:
+			return move.moveAnimation.surgeBattlefieldShade
+	if type == Type.USE_ITEM:
+		var a = useItemAnimation
+		return a.chargeBattlefieldShade
+	return null
+
 func get_particles(combatantNode: CombatantNode, userNode: CombatantNode, isTarget: bool = true) -> Array[ParticlePreset]:
 	var presets: Array[ParticlePreset] = []
 	if commandResult == null:

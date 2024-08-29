@@ -175,6 +175,7 @@ func update_turn_text() -> bool:
 					combatantNode.isBeingStatusAfflicted = true
 		
 		userNode.moveSpriteTargets = targetNodes
+		var battlefieldShade: BattlefieldShadeAnim = combatant.command.get_command_battlefield_shade_anim()
 		var commandMoveSprites: Array[MoveAnimSprite] = combatant.command.get_command_sprites()
 		if combatant.command.type == BattleCommand.Type.USE_ITEM:
 			userNode.useItemSprite = combatant.command.slot.item.itemSprite
@@ -251,7 +252,8 @@ func update_turn_text() -> bool:
 				else:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
-			battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
+			battleController.do_battlefield_shade_anim(battlefieldShade)
+			#battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
 			
 			if not ( \
 					(combatant.command.type == BattleCommand.Type.MOVE and not combatant.command.move.moveAnimation.makesContact) \
@@ -263,8 +265,7 @@ func update_turn_text() -> bool:
 			else:
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 				battleController.combatant_finished_moving.emit(userNode) # no tween was started so finish instantly
-			
-		
+	
 	battleUI.results.show_text(text)
 	return text != ''
 
@@ -277,7 +278,7 @@ func finish_turn() -> WinCon.TurnResult:
 		play_turn() # go to the next turn
 	else:
 		# make sure to fade the battlefield shade back
-		battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0), 0.25)
+		battleController.lift_battlefield_shade()
 	return result
 
 func is_on_last_turn() -> bool:

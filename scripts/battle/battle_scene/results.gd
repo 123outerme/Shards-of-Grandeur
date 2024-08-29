@@ -53,10 +53,9 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			# wait one frame to ensure that all emitted signals related to animations have been emitted
 			await get_tree().process_frame
 			
-			# if the OK press was queued: we didn't yet tween the battlefield shade up, so we need to reset these things manually
-			if queued:
-				if battleUI.battleController.turnExecutor.is_on_last_turn():
-					battleUI.battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0), 0.25)
+			# if the OK press was queued: we didn't yet tween the battlefield shade up, so we need to reset it manually if it's the last turn
+			if queued and battleUI.battleController.turnExecutor.is_on_last_turn():
+				battleUI.battleController.lift_battlefield_shade()
 					
 			result = battleUI.battleController.turnExecutor.finish_turn()
 			
@@ -80,4 +79,4 @@ func _move_tween_finished():
 		ignoreOkPressed = false
 		_on_ok_button_pressed(true)
 	else:
-		battleUI.battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0), 0.25)
+		battleUI.battleController.lift_battlefield_shade()

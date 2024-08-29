@@ -48,6 +48,7 @@ var battleMapPath: String = ''
 
 var shadeTween: Tween = null
 var battlefieldShadeTween: Tween = null
+var battlefieldShadeAnim: BattlefieldShadeAnim = null
 
 var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 
@@ -413,6 +414,25 @@ func set_shade_below_combatants() -> void:
 func reset_all_combatants_shade_z_indices() -> void:
 	for combatantNode: CombatantNode in combatantNodes:
 		set_combatant_between_shade(combatantNode)
+
+func do_battlefield_shade_anim(shadeAnim: BattlefieldShadeAnim, callback: Callable = Callable()) -> void:
+	battlefieldShadeAnim = shadeAnim
+	if shadeAnim == null:
+		return
+	
+	if shadeAnim.startSecs > 0:
+		await get_tree().create_timer(shadeAnim.startSecs).timeout
+	
+	modulate_battlefield_shade_to(shadeAnim.color, shadeAnim.fadeInSecs, callback)
+	
+	if shadeAnim.lastsSecs > 0:
+		await get_tree().create_timer(shadeAnim.lastsSecs).timeout
+		lift_battlefield_shade()
+
+func lift_battlefield_shade(callback: Callable = Callable()) -> void:
+	if battlefieldShadeAnim != null:
+		battlefieldShadeAnim = null
+		modulate_battlefield_shade_to(Color(0, 0, 0, 0), battlefieldShadeAnim.fadeOutSecs, callback)
 
 func modulate_battlefield_shade_to(color: Color, secs: float = 0.5, callback: Callable = Callable()):
 	if battlefieldShadeTween != null and battlefieldShadeTween.is_valid():
