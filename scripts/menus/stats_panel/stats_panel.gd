@@ -255,8 +255,9 @@ func update_minions_tab_icon():
 				minionChanged = true
 			elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
 				minionHasNewMoves = true
-			elif minion.stats.statPts > 0:
-				minionHasUnspentStatPts = true
+			#elif minion.stats.statPts > 0:
+			#	minionHasUnspentStatPts = true
+			# unspent stat points are apparent on the Stats tab
 		
 		if minionChanged:
 			minionsTabIcon = minionChangedIndicator

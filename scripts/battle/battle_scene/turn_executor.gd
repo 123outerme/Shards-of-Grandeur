@@ -124,6 +124,7 @@ func update_turn_text() -> bool:
 					break
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
+		battleUI.battleController.reset_all_combatants_shade_z_indices()
 		var combatant: Combatant = turnQueue.peek_next()
 		var defenders: Array[Combatant] = []
 		if combatant != null:
@@ -274,6 +275,9 @@ func finish_turn() -> WinCon.TurnResult:
 	result = check_battle_end_conditions()
 	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
+	else:
+		# make sure to fade the battlefield shade back
+		battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0), 0.25)
 	return result
 
 func is_on_last_turn() -> bool:

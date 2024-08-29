@@ -57,8 +57,7 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			if queued:
 				if battleUI.battleController.turnExecutor.is_on_last_turn():
 					battleUI.battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0), 0.25)
-				else:
-					battleUI.battleController.reset_all_combatants_shade_z_indices()
+					
 			result = battleUI.battleController.turnExecutor.finish_turn()
 			
 			update_battle_ui_with_results()
