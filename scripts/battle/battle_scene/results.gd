@@ -6,6 +6,7 @@ var result: WinCon.TurnResult = WinCon.TurnResult.NOTHING
 var okPressed: bool = false
 var moveTweenFinished: bool = false
 var moveTweenStarted: bool = false
+var shadeFinished: bool = false
 
 var ignoreOkPressed: bool = false
 
@@ -15,6 +16,7 @@ var ignoreOkPressed: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	textBoxText.text = '' # clear editor testing text
+	battleUI.battleController.battlefield_shade_finished_fading.connect(_battlefield_shade_finished_fading)
 
 func initial_focus():
 	okBtn.grab_focus()
@@ -40,11 +42,12 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			battleUI.advance_intermediate_state(result)
 		return # don't fall-through and potentially run the results code below
 	
-	if not moveTweenStarted or moveTweenFinished:
+	if shadeFinished and (not moveTweenStarted or moveTweenFinished):
 		okPressed = false
 		okBtn.disabled = false
 		moveTweenStarted = false
 		moveTweenFinished = false
+		shadeFinished = false
 		
 		if battleUI.menuState == BattleState.Menu.RESULTS:
 			# update HP tags just to be safe, in case we missed any updates
@@ -53,10 +56,6 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			# wait one frame to ensure that all emitted signals related to animations have been emitted
 			await get_tree().process_frame
 			
-			# if the OK press was queued: we didn't yet tween the battlefield shade up, so we need to reset it manually if it's the last turn
-			if queued and battleUI.battleController.turnExecutor.is_on_last_turn():
-				battleUI.battleController.lift_battlefield_shade()
-					
 			result = battleUI.battleController.turnExecutor.finish_turn()
 			
 			update_battle_ui_with_results()
@@ -72,11 +71,12 @@ func update_battle_ui_with_results():
 		battleUI.escapes = result == WinCon.TurnResult.ESCAPE
 
 func _move_tween_finished():
-	if not moveTweenStarted:
-		return
 	moveTweenFinished = true
-	if okPressed == true:
+	battleUI.battleController.lift_battlefield_shade()
+	shadeFinished = false
+
+func _battlefield_shade_finished_fading() -> void:
+	shadeFinished = true
+	if okPressed and moveTweenFinished:
 		ignoreOkPressed = false
 		_on_ok_button_pressed(true)
-	else:
-		battleUI.battleController.lift_battlefield_shade()

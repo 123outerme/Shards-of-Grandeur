@@ -83,6 +83,7 @@ func apply_menu_state():
 		battlePanels.flowOfBattle.set_fob_button_enabled(menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.POST_ROUND)
 		results.initial_focus()
 		results.ignoreOkPressed = false
+		results.shadeFinished = false
 		# connect these first so the flow of battle button takes precedence
 		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(results.textBoxText)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(results.textBoxText)

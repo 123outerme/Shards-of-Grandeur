@@ -416,9 +416,11 @@ func reset_all_combatants_shade_z_indices() -> void:
 		set_combatant_between_shade(combatantNode)
 
 func do_battlefield_shade_anim(shadeAnim: BattlefieldShadeAnim, callback: Callable = Callable()) -> void:
-	battlefieldShadeAnim = shadeAnim
 	if shadeAnim == null:
+		if battlefieldShadeAnim != null:
+			lift_battlefield_shade()
 		return
+	battlefieldShadeAnim = shadeAnim
 	
 	if shadeAnim.startSecs > 0:
 		await get_tree().create_timer(shadeAnim.startSecs).timeout
@@ -431,8 +433,11 @@ func do_battlefield_shade_anim(shadeAnim: BattlefieldShadeAnim, callback: Callab
 
 func lift_battlefield_shade(callback: Callable = Callable()) -> void:
 	if battlefieldShadeAnim != null:
-		battlefieldShadeAnim = null
 		modulate_battlefield_shade_to(Color(0, 0, 0, 0), battlefieldShadeAnim.fadeOutSecs, callback)
+		battlefieldShadeAnim = null
+	else:
+		await get_tree().process_frame
+		battlefield_shade_finished_fading.emit() # nothing to do so it's already done
 
 func modulate_battlefield_shade_to(color: Color, secs: float = 0.5, callback: Callable = Callable()):
 	if battlefieldShadeTween != null and battlefieldShadeTween.is_valid():
