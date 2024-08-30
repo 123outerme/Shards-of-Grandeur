@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://bubqbwiek5m4p"]
+
+[ext_resource type="Texture2D" uid="uid://btsmsrx4vgg5a" path="res://graphics/particles/earth/sand_1.png" id="1_7hau4"]
+[ext_resource type="Texture2D" uid="uid://dw5r1x16jqgtm" path="res://graphics/particles/earth/sand_2.png" id="2_ke6sy"]
+[ext_resource type="Texture2D" uid="uid://cjaw2f5fl7oxj" path="res://graphics/particles/earth/sand_3.png" id="3_kqnp4"]
+[ext_resource type="Texture2D" uid="uid://ftcvry4cdiqb" path="res://graphics/particles/earth/sand_4.png" id="4_iebkh"]
+[ext_resource type="Material" uid="uid://cy5mymbq5md0d" path="res://gamedata/moves/sands_of_time/sands_of_time_surge_particle_process_mat.tres" id="5_sf4xs"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_w8akf"]
+[ext_resource type="AudioStream" uid="uid://cofxdnt7itu0p" path="res://audio/sfx/coin.ogg" id="7_dsrsm"]
+
+[resource]
+script = ExtResource("6_w8akf")
+emitter = "behind"
+count = 8
+lifetime = 0.51
+duration = 0.5
+staggered = true
+processMaterial = ExtResource("5_sf4xs")
+particleTextures = Array[Texture2D]([ExtResource("1_7hau4"), ExtResource("2_ke6sy"), ExtResource("3_kqnp4"), ExtResource("4_iebkh")])
+sfx = ExtResource("7_dsrsm")

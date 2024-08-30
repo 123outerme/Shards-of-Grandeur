@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://c70ugedp8djk7"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_rbp8q"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_p4htt"]
+[ext_resource type="Resource" uid="uid://bubqbwiek5m4p" path="res://gamedata/moves/sands_of_time/particles_sands_of_time_surge.tres" id="3_qftsm"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="3_vsh77"]
+[ext_resource type="SpriteFrames" uid="uid://cmnhihy4sbyv8" path="res://graphics/moves/earth/a_sands_of_time.tres" id="4_8n7qt"]
+
+[sub_resource type="Curve" id="Curve_bm2wy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_pad4c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_yjdio"]
+script = ExtResource("1_rbp8q")
+annotation = "set initial position above target's head"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+relativeTo = 1
+position = Vector2(0, -10)
+offset = 4
+xCurve = SubResource("Curve_bm2wy")
+yCurve = SubResource("Curve_pad4c")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_h46k2"]
+script = ExtResource("1_rbp8q")
+annotation = "fade in while spinning"
+animation = "hourglass_loop"
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_p4htt")
+
+[sub_resource type="Resource" id="Resource_731t7"]
+script = ExtResource("1_rbp8q")
+annotation = "Play the \"emptying\" animation"
+animation = "hourglass_surge"
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_swtf3"]
+script = ExtResource("1_rbp8q")
+annotation = "Play the \"emptying\" particles"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_qftsm")
+
+[sub_resource type="Resource" id="Resource_h8q7q"]
+script = ExtResource("1_rbp8q")
+annotation = "fade out"
+animation = ""
+duration = 0.35
+speed = 1.0
+opacity = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("3_vsh77")
+spriteFrames = ExtResource("4_8n7qt")
+centerSprite = true
+maxSize = Vector2(56, 44)
+frames = Array[ExtResource("1_rbp8q")]([SubResource("Resource_yjdio"), SubResource("Resource_h46k2"), SubResource("Resource_731t7"), SubResource("Resource_swtf3"), SubResource("Resource_h8q7q")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
