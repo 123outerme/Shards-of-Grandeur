@@ -13,6 +13,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 signal battlefield_shade_finished_fading
 
 @export var globalMarker: Marker2D = null
+@export var battlefieldShade: BattlefieldShade = null
 
 var playerCombatantNode: CombatantNode = null
 var combatantNodes: Array[CombatantNode] = []

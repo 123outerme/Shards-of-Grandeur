@@ -37,10 +37,10 @@ func _on_button_pressed():
 	moveLearnAnimController.playAnimAfterLoad = false
 	if itemSprite != null:
 		userNode.useItemSprite = itemSprite
+		userNode.moveSpriteTargets = [userNode]
 		userNode.play_move_sprites(useItemAnimation.chargeMoveSprites)
 		userNode.play_animation(useItemAnimation.combatantAnimation)
 		userNode.play_particles(useItemAnimation.userParticlePreset)
-		userNode.moveSpriteTargets = [userNode]
 		moveLearnAnimController.battlefieldShade.do_battlefield_shade_anim(useItemAnimation.chargeBattlefieldShade)
 		userNode.move_animation_callback(_use_item_anim_done)
 		combatant_finished_moving.emit(userNode)
@@ -49,7 +49,7 @@ func _use_item_anim_done(_combatantNode: CombatantNode) -> void:
 	moveLearnAnimController.battlefieldShade.lift_battlefield_shade()
 
 func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
-	shadeDown = not shadeDown
+	shadeDown = moveLearnAnimController.battlefieldShade.color.a != 0
 	if not shadeDown:
 		button.disabled = false
 
