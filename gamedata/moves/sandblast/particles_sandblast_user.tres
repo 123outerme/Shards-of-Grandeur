@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://hky2g0lj3kk2"]
+
+[ext_resource type="Texture2D" uid="uid://btsmsrx4vgg5a" path="res://graphics/particles/earth/sand_1.png" id="1_ojrny"]
+[ext_resource type="Texture2D" uid="uid://dw5r1x16jqgtm" path="res://graphics/particles/earth/sand_2.png" id="2_rjs3o"]
+[ext_resource type="Texture2D" uid="uid://cjaw2f5fl7oxj" path="res://graphics/particles/earth/sand_3.png" id="3_lgefd"]
+[ext_resource type="Texture2D" uid="uid://ftcvry4cdiqb" path="res://graphics/particles/earth/sand_4.png" id="4_qf4ks"]
+[ext_resource type="Material" uid="uid://bbv4xdbtixlsw" path="res://graphics/particles/magic/magic_particle_process_mat.tres" id="5_lsjjb"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_fut1s"]
+
+[resource]
+script = ExtResource("6_fut1s")
+emitter = "behind"
+count = 4
+lifetime = 0.5
+duration = 1.0
+staggered = false
+processMaterial = ExtResource("5_lsjjb")
+particleTextures = Array[Texture2D]([ExtResource("1_ojrny"), ExtResource("2_rjs3o"), ExtResource("3_lgefd"), ExtResource("4_qf4ks")])
