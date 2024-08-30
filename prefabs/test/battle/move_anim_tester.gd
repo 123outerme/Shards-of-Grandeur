@@ -55,7 +55,7 @@ func _on_swap_button_pressed():
 	else:
 		userNode = moveLearnAnimController.playerCombatantNode
 		moveLearnAnimController.swapUsersAndTargets = false
-	moveLearnAnimController.load_move_learn_animation()
+	moveLearnAnimController.load_move_learn_animation(playSurge)
 
 
 func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:

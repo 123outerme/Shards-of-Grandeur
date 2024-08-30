@@ -133,7 +133,7 @@ func play_move_animation(playSurge: bool = false) -> void:
 		BattleCommand.Targets.ALL_ENEMIES:
 			targetCombatantNodes.append(targetNode)
 			targetCombatantNodes.append(targetAllyNode)
-			contactGlobalPos = userTeamGlobalPos
+			contactGlobalPos = targetTeamGlobalPos
 		BattleCommand.Targets.ALLY, BattleCommand.Targets.NON_SELF_ALLY:
 			targetCombatantNodes.append(userAllyNode)
 			contactGlobalPos = userAllyNode.onAssistMarker.global_position

@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_f4x2w"]
+[ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="2_x4sd8"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_f4x2w")
+move = ExtResource("2_x4sd8")
 targetCombatant = ExtResource("7_5ibcc")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
@@ -66,10 +66,10 @@ position = Vector2(283.667, 87)
 position = Vector2(283.667, 69.3333)
 
 [node name="PlayerTeamMarker" parent="MoveLearnAnimControl/BattleScene" index="10"]
-position = Vector2(173, 87)
+position = Vector2(181.333, 87)
 
 [node name="EnemyTeamMarker" parent="MoveLearnAnimControl/BattleScene" index="11"]
-position = Vector2(250, 87)
+position = Vector2(241.333, 87)
 
 [node name="GlobalMarker" parent="MoveLearnAnimControl/BattleScene" index="12"]
 position = Vector2(213, 87)
