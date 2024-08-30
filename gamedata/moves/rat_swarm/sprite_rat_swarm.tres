@@ -1,13 +1,93 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=3 format=3 uid="uid://bodgx4jwa7ea8"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://bodgx4jwa7ea8"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_m1itd"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_6caep"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_be0gq"]
+[ext_resource type="Resource" uid="uid://6x1qgyovqecx" path="res://gamedata/moves/rat_swarm/particles_rat_swarm.tres" id="3_2dwpx"]
+[ext_resource type="SpriteFrames" uid="uid://bkxwwplg331hx" path="res://graphics/moves/dark/a_rat_swarm.tres" id="3_hpd7h"]
+
+[sub_resource type="Curve" id="Curve_mjddi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_wjybu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_dxagl"]
+script = ExtResource("1_m1itd")
+annotation = "Set up initial position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_mjddi")
+yCurve = SubResource("Curve_wjybu")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_8tsbp"]
+script = ExtResource("1_m1itd")
+annotation = "Play swarm animation"
+animation = "rat_swarm"
+duration = 1.75
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_6caep")
+
+[sub_resource type="Resource" id="Resource_na5r4"]
+script = ExtResource("1_m1itd")
+annotation = "play particles"
+animation = ""
+duration = 0.125
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_2dwpx")
+
+[sub_resource type="Resource" id="Resource_wgupu"]
+script = ExtResource("1_m1itd")
+annotation = "hide the end of the animation and wait for the particles to be over"
+animation = "default"
+duration = 0.625
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
 
 [resource]
 script = ExtResource("2_be0gq")
+spriteFrames = ExtResource("3_hpd7h")
 centerSprite = true
-maxSize = Vector2(16, 16)
-frames = Array[ExtResource("1_m1itd")]([])
+maxSize = Vector2(80, 48)
+frames = Array[ExtResource("1_m1itd")]([SubResource("Resource_dxagl"), SubResource("Resource_8tsbp"), SubResource("Resource_na5r4"), SubResource("Resource_wgupu")])
 delayedUntilReposition = false
-playsOnImpactFrame = true
+playsOnImpactFrame = false
 onePerTarget = true

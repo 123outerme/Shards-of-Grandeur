@@ -14,7 +14,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 @onready var surgeChargeToggle: Button = get_node('SurgeChargeToggle')
 
 var userNode: CombatantNode = null
-
+var shadeDown: bool = false
 var useItemAnimation: MoveAnimation = load('res://gamedata/items/use_item_animation.tres') as MoveAnimation
 
 func _ready():
@@ -42,11 +42,16 @@ func _on_button_pressed():
 		userNode.play_particles(useItemAnimation.userParticlePreset)
 		userNode.moveSpriteTargets = [userNode]
 		moveLearnAnimController.battlefieldShade.do_battlefield_shade_anim(useItemAnimation.chargeBattlefieldShade)
-		userNode.move_animation_callback(_move_tween_done)
+		userNode.move_animation_callback(_use_item_anim_done)
 		combatant_finished_moving.emit(userNode)
 	
-func _move_tween_done(_combatantNode: CombatantNode):
-	button.disabled = false
+func _use_item_anim_done(_combatantNode: CombatantNode) -> void:
+	moveLearnAnimController.battlefieldShade.lift_battlefield_shade()
+
+func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
+	shadeDown = not shadeDown
+	if not shadeDown:
+		button.disabled = false
 
 func _on_swap_button_pressed():
 	if userNode == moveLearnAnimController.playerCombatantNode:
@@ -56,7 +61,6 @@ func _on_swap_button_pressed():
 		userNode = moveLearnAnimController.playerCombatantNode
 		moveLearnAnimController.swapUsersAndTargets = false
 	moveLearnAnimController.load_move_learn_animation(playSurge)
-
 
 func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:
 	playSurge = toggled_on

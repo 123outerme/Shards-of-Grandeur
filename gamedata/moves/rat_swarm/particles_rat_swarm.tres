@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://6x1qgyovqecx"]
+
+[ext_resource type="Texture2D" uid="uid://bwrdb6i61dp3b" path="res://graphics/particles/dark/darker_1.png" id="1_hfhh5"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_o16v0"]
+[ext_resource type="Texture2D" uid="uid://ggo3ijh1g3qu" path="res://graphics/particles/dark/darker_2.png" id="2_g486m"]
+[ext_resource type="Texture2D" uid="uid://qxxf0yg6ivj2" path="res://graphics/particles/dark/darker_3.png" id="3_7sbkg"]
+[ext_resource type="Texture2D" uid="uid://b5b7ib3u5hkit" path="res://graphics/particles/dark/darker_4.png" id="4_dekh6"]
+[ext_resource type="Material" uid="uid://o5lcd05c4lck" path="res://gamedata/moves/rat_swarm/rat_swarm_particle_process_mat.tres" id="5_5gg4p"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="6_s1jyo"]
+
+[resource]
+script = ExtResource("1_o16v0")
+emitter = "behind"
+count = 4
+lifetime = 0.76
+duration = 0.75
+staggered = false
+processMaterial = ExtResource("5_5gg4p")
+particleTextures = Array[Texture2D]([ExtResource("1_hfhh5"), ExtResource("2_g486m"), ExtResource("3_7sbkg"), ExtResource("4_dekh6")])
+sfx = ExtResource("6_s1jyo")

@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://ckjj6lcsf0l0m" path="res://gamedata/moves/sands_of_time/sands_of_time.tres" id="2_hb2s5"]
+[ext_resource type="Resource" uid="uid://bxontyeery8p1" path="res://gamedata/moves/rat_swarm/rat_swarm.tres" id="2_7yufw"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_hb2s5")
+move = ExtResource("2_7yufw")
 targetCombatant = ExtResource("7_5ibcc")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
@@ -105,7 +105,7 @@ offset_bottom = 77.0
 toggle_mode = true
 text = "Charge"
 
-[connection signal="combatant_finished_moving" from="MoveLearnAnimControl/BattleScene/MockBattleController" to="." method="_move_tween_done"]
+[connection signal="battlefield_shade_finished_fading" from="MoveLearnAnimControl/BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_battlefield_shade_finished_fading"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
 [connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
