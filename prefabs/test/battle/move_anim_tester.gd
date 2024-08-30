@@ -8,10 +8,12 @@ signal combatant_finished_animating(combatant: CombatantNode)
 @export var playSurge: bool = false
 @export var itemSprite: Texture2D = null
 @export var targetCombatant: Combatant = null
+@export var moveCombatantsIfAlone: bool = false
 
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
 @onready var button: Button = get_node('Button')
 @onready var surgeChargeToggle: Button = get_node('SurgeChargeToggle')
+@onready var swapButton: Button = get_node('SwapButton')
 
 var userNode: CombatantNode = null
 var shadeDown: bool = false
@@ -22,6 +24,7 @@ func _ready():
 	PlayerResources.playerInfo = PlayerInfo.new()
 	moveLearnAnimController.customTarget = targetCombatant
 	moveLearnAnimController.move = move
+	moveLearnAnimController.moveCombatantsIfAlone = moveCombatantsIfAlone
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 	if playSurge:
 		surgeChargeToggle.text = 'Surge'
@@ -31,6 +34,8 @@ func _ready():
 
 func _on_button_pressed():
 	button.disabled = true
+	surgeChargeToggle.disabled = true
+	swapButton.disabled = true
 	if itemSprite == null:
 		moveLearnAnimController.playAnimAfterLoad = true
 	moveLearnAnimController.load_move_learn_animation(playSurge)
@@ -52,6 +57,8 @@ func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
 	shadeDown = moveLearnAnimController.battlefieldShade.color.a != 0
 	if not shadeDown:
 		button.disabled = false
+		surgeChargeToggle.disabled = false
+		swapButton.disabled = false
 
 func _on_swap_button_pressed():
 	if userNode == moveLearnAnimController.playerCombatantNode:

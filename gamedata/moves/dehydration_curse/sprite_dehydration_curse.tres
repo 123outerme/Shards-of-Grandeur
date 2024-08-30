@@ -1,13 +1,61 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=3 format=3 uid="uid://chaqgb0m58rwp"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://chaqgb0m58rwp"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_7y158"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4xwlw"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_abw5q"]
+[ext_resource type="Resource" uid="uid://byqwke3l1wone" path="res://gamedata/moves/dehydration_curse/particles_dehydration_curse.tres" id="2_o2w06"]
+[ext_resource type="SpriteFrames" uid="uid://bck2i6f7x3xh1" path="res://graphics/moves/water/a_dehydration_curse.tres" id="3_t1jc5"]
+
+[sub_resource type="Curve" id="Curve_3q7iu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_fqgq8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_yi5w6"]
+script = ExtResource("1_7y158")
+annotation = "set up position and play particles"
+animation = "default"
+duration = 0.35
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, -10)
+offset = 4
+xCurve = SubResource("Curve_3q7iu")
+yCurve = SubResource("Curve_fqgq8")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_o2w06")
+
+[sub_resource type="Resource" id="Resource_dcgml"]
+script = ExtResource("1_7y158")
+annotation = "play animation"
+animation = "dehydration_curse"
+duration = 2.167
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_abw5q")
 
 [resource]
 script = ExtResource("2_4xwlw")
+spriteFrames = ExtResource("3_t1jc5")
 centerSprite = true
-maxSize = Vector2(16, 16)
-frames = Array[ExtResource("1_7y158")]([])
+maxSize = Vector2(16, 48)
+frames = Array[ExtResource("1_7y158")]([SubResource("Resource_yi5w6"), SubResource("Resource_dcgml")])
 delayedUntilReposition = false
-playsOnImpactFrame = true
+playsOnImpactFrame = false
 onePerTarget = true
