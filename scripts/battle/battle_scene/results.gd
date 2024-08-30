@@ -72,7 +72,7 @@ func update_battle_ui_with_results():
 
 func _move_tween_finished():
 	moveTweenFinished = true
-	battleUI.battleController.lift_battlefield_shade()
+	battleUI.battleController.battlefieldShade.lift_battlefield_shade()
 	shadeFinished = false
 
 func _battlefield_shade_finished_fading() -> void:

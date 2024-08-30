@@ -252,7 +252,7 @@ func update_turn_text() -> bool:
 				else:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
 			
-			battleController.do_battlefield_shade_anim(battlefieldShade)
+			battleController.battlefieldShade.do_battlefield_shade_anim(battlefieldShade)
 			#battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
 			
 			if not ( \
@@ -278,7 +278,7 @@ func finish_turn() -> WinCon.TurnResult:
 		play_turn() # go to the next turn
 	else:
 		# make sure to fade the battlefield shade back
-		battleController.lift_battlefield_shade()
+		battleController.battlefieldShade.lift_battlefield_shade()
 	return result
 
 func is_on_last_turn() -> bool:

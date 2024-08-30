@@ -1,15 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ie2m5n6k0qjg"]
+[gd_scene load_steps=7 format=3 uid="uid://ie2m5n6k0qjg"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_use_panel.gd" id="1_c7w7n"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_oq36k"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_d1bpa"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="3_r6lkq"]
-[ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/move_learn_animation_controller.gd" id="5_6j06m"]
-[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="5_88lle"]
+[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="5_ccrll"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_k8tae"]
-[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="6_brvpr"]
-[ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/mock_battle_controller.gd" id="6_im7eq"]
-[ext_resource type="AudioStream" uid="uid://dbe7hfco3d2bu" path="res://audio/sfx/hit.mp3" id="9_15x3o"]
 
 [node name="ItemUsePanel" type="Control"]
 layout_mode = 3
@@ -84,151 +80,16 @@ theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 text = "The item was used, and these were the effects. For example, using a Potion would heal the user by some amount of HP. Just making sure the user knows that this is the effect! Flavor might also be appropriate here, especially for things like using Key Items."
 
-[node name="MoveLearnAnimControl" type="Control" parent="Panel"]
+[node name="MoveLearnAnimControl" parent="Panel" instance=ExtResource("5_ccrll")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 230.0
-offset_right = -8.0
-offset_bottom = -73.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("5_6j06m")
-takeDmgSfx = ExtResource("9_15x3o")
-
-[node name="BattleScene" type="Control" parent="Panel/MoveLearnAnimControl"]
-layout_mode = 1
-anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.657
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.657
 offset_left = -552.0
 offset_top = -98.5
-offset_right = -184.0
-offset_bottom = -32.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-
-[node name="MockBattleController" type="Node2D" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("globalMarker")]
-script = ExtResource("6_im7eq")
-globalMarker = NodePath("../GlobalMarker")
-
-[node name="PlayerCombatantNode" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("5_88lle")]
-position = Vector2(135.667, 40)
-leftSide = true
-spriteFacesRight = true
-battlePosition = "You"
-allyTeamMarker = NodePath("../PlayerTeamMarker")
-enemyTeamMarker = NodePath("../EnemyTeamMarker")
-battleController = NodePath("../MockBattleController")
-
-[node name="SelectCombatantBtn" parent="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode" index="0"]
-visible = false
-
-[node name="AnimatedSprite" parent="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode/SpriteContainer" index="1"]
-sprite_frames = ExtResource("6_brvpr")
-animation = &"battle_idle"
-
-[node name="HPTag" parent="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode" index="2"]
-visible = false
-
-[node name="MinionCombatantNode" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("5_88lle")]
-position = Vector2(111.667, 11.6667)
-leftSide = true
-battlePosition = "Ally"
-allyTeamMarker = NodePath("../PlayerTeamMarker")
-enemyTeamMarker = NodePath("../EnemyTeamMarker")
-battleController = NodePath("../MockBattleController")
-
-[node name="SelectCombatantBtn" parent="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode" index="0"]
-visible = false
-
-[node name="AnimatedSprite" parent="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode/SpriteContainer" index="1"]
-sprite_frames = ExtResource("6_brvpr")
-animation = &"battle_idle"
-
-[node name="HPTag" parent="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode" index="2"]
-visible = false
-
-[node name="OnAttackPos" parent="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode" index="3"]
-position = Vector2(16, 0)
-
-[node name="OnAssistPos" parent="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode" index="4"]
-position = Vector2(0, 16)
-
-[node name="Enemy1CombatantNode" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("5_88lle")]
-position = Vector2(229.667, 15.3333)
-role = 1
-battlePosition = "Center"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../PlayerTeamMarker")
-battleController = NodePath("../MockBattleController")
-
-[node name="SelectCombatantBtn" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode" index="0"]
-visible = false
-
-[node name="AnimatedSprite" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode/SpriteContainer" index="1"]
-sprite_frames = ExtResource("6_brvpr")
-animation = &"battle_idle"
-
-[node name="HPTag" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode" index="2"]
-visible = false
-
-[node name="OnAttackPos" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode" index="3"]
-position = Vector2(-16, 0)
-
-[node name="Enemy2CombatantNode" parent="Panel/MoveLearnAnimControl/BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("5_88lle")]
-position = Vector2(257.667, 48)
-role = 1
-battlePosition = "Bottom"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../PlayerTeamMarker")
-battleController = NodePath("../MockBattleController")
-
-[node name="SelectCombatantBtn" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode" index="0"]
-visible = false
-
-[node name="AnimatedSprite" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode/SpriteContainer" index="1"]
-sprite_frames = ExtResource("6_brvpr")
-animation = &"battle_idle"
-
-[node name="HPTag" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode" index="2"]
-visible = false
-
-[node name="OnAttackPos" parent="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode" index="3"]
-position = Vector2(-16, 0)
-
-[node name="PlayerSelfPos" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(184, 33)
-
-[node name="PlayerSoloPos" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(135.667, 33)
-gizmo_extents = 1.0
-
-[node name="PlayerMultiPos" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(135.667, 40)
-gizmo_extents = 1.0
-
-[node name="Enemy1SoloPos" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(229.667, 33)
-gizmo_extents = 1.0
-
-[node name="Enemy1MultiPos" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(229.667, 15.3333)
-gizmo_extents = 1.0
-
-[node name="PlayerTeamMarker" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(166.667, 33)
-
-[node name="EnemyTeamMarker" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
-position = Vector2(196.667, 33)
-
-[node name="GlobalMarker" type="Marker2D" parent="Panel/MoveLearnAnimControl/BattleScene"]
+offset_right = 552.0
+offset_bottom = 98.5
 
 [node name="OkButton" parent="Panel" instance=ExtResource("5_k8tae")]
 custom_minimum_size = Vector2(80, 50)
@@ -246,19 +107,4 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
 
-[connection signal="combatant_finished_moving" from="Panel/MoveLearnAnimControl/BattleScene/MockBattleController" to="Panel/MoveLearnAnimControl" method="_on_mock_battle_controller_combatant_finished_moving"]
-[connection signal="combatants_play_hit" from="Panel/MoveLearnAnimControl/BattleScene/MockBattleController" to="Panel/MoveLearnAnimControl" method="_on_mock_battle_controller_combatants_play_hit"]
 [connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]
-
-[editable path="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/PlayerCombatantNode/HPTag/OrbDisplay"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/MinionCombatantNode/HPTag/OrbDisplay"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy1CombatantNode/HPTag/OrbDisplay"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="Panel/MoveLearnAnimControl/BattleScene/Enemy2CombatantNode/HPTag/OrbDisplay"]

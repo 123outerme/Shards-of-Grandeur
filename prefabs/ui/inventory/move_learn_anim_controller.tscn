@@ -1,0 +1,206 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjw6dl387qwra"]
+
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/move_learn_animation_controller.gd" id="1_jku5x"]
+[ext_resource type="AudioStream" uid="uid://dbe7hfco3d2bu" path="res://audio/sfx/hit.mp3" id="2_sph7d"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_use_animation/mock_battle_controller.gd" id="3_1f5f0"]
+[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="4_es3wc"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="5_lo50y"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade.gd" id="6_nj6dh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqxxl"]
+bg_color = Color(0, 0, 0, 0)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+anti_aliasing = false
+
+[node name="MoveLearnAnimControl" type="Control"]
+layout_mode = 3
+anchor_left = 0.431
+anchor_top = 0.138
+anchor_right = 0.431
+anchor_bottom = 0.138
+offset_left = -551.68
+offset_top = -99.36
+offset_right = 552.32
+offset_bottom = 99.64
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jku5x")
+takeDmgSfx = ExtResource("2_sph7d")
+
+[node name="BattleScene" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -552.0
+offset_top = -98.5
+offset_right = -184.0
+offset_bottom = -32.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="MockBattleController" type="Node2D" parent="BattleScene" node_paths=PackedStringArray("globalMarker")]
+script = ExtResource("3_1f5f0")
+globalMarker = NodePath("../GlobalMarker")
+
+[node name="PlayerCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+z_index = 1
+position = Vector2(135.667, 40)
+leftSide = true
+spriteFacesRight = true
+battlePosition = "You"
+allyTeamMarker = NodePath("../PlayerTeamMarker")
+enemyTeamMarker = NodePath("../EnemyTeamMarker")
+battleController = NodePath("../MockBattleController")
+
+[node name="SelectCombatantBtn" parent="BattleScene/PlayerCombatantNode" index="0"]
+visible = false
+
+[node name="AnimatedSprite" parent="BattleScene/PlayerCombatantNode/SpriteContainer" index="1"]
+sprite_frames = ExtResource("5_lo50y")
+animation = &"battle_idle"
+
+[node name="HPTag" parent="BattleScene/PlayerCombatantNode" index="2"]
+visible = false
+
+[node name="MinionCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+z_index = 1
+position = Vector2(111.667, 11.6667)
+leftSide = true
+battlePosition = "Ally"
+allyTeamMarker = NodePath("../PlayerTeamMarker")
+enemyTeamMarker = NodePath("../EnemyTeamMarker")
+battleController = NodePath("../MockBattleController")
+
+[node name="SelectCombatantBtn" parent="BattleScene/MinionCombatantNode" index="0"]
+visible = false
+
+[node name="AnimatedSprite" parent="BattleScene/MinionCombatantNode/SpriteContainer" index="1"]
+sprite_frames = ExtResource("5_lo50y")
+animation = &"battle_idle"
+
+[node name="HPTag" parent="BattleScene/MinionCombatantNode" index="2"]
+visible = false
+
+[node name="OnAttackPos" parent="BattleScene/MinionCombatantNode" index="3"]
+position = Vector2(16, 0)
+
+[node name="OnAssistPos" parent="BattleScene/MinionCombatantNode" index="4"]
+position = Vector2(0, 16)
+
+[node name="Enemy1CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+z_index = 1
+position = Vector2(229.667, 15.3333)
+role = 1
+battlePosition = "Center"
+allyTeamMarker = NodePath("../EnemyTeamMarker")
+enemyTeamMarker = NodePath("../PlayerTeamMarker")
+battleController = NodePath("../MockBattleController")
+
+[node name="SelectCombatantBtn" parent="BattleScene/Enemy1CombatantNode" index="0"]
+visible = false
+
+[node name="AnimatedSprite" parent="BattleScene/Enemy1CombatantNode/SpriteContainer" index="1"]
+sprite_frames = ExtResource("5_lo50y")
+animation = &"battle_idle"
+
+[node name="HPTag" parent="BattleScene/Enemy1CombatantNode" index="2"]
+visible = false
+
+[node name="OnAttackPos" parent="BattleScene/Enemy1CombatantNode" index="3"]
+position = Vector2(-16, 0)
+
+[node name="Enemy2CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+z_index = 1
+position = Vector2(257.667, 48)
+role = 1
+battlePosition = "Bottom"
+allyTeamMarker = NodePath("../EnemyTeamMarker")
+enemyTeamMarker = NodePath("../PlayerTeamMarker")
+battleController = NodePath("../MockBattleController")
+
+[node name="SelectCombatantBtn" parent="BattleScene/Enemy2CombatantNode" index="0"]
+visible = false
+
+[node name="AnimatedSprite" parent="BattleScene/Enemy2CombatantNode/SpriteContainer" index="1"]
+sprite_frames = ExtResource("5_lo50y")
+animation = &"battle_idle"
+
+[node name="HPTag" parent="BattleScene/Enemy2CombatantNode" index="2"]
+visible = false
+
+[node name="OnAttackPos" parent="BattleScene/Enemy2CombatantNode" index="3"]
+position = Vector2(-16, 0)
+
+[node name="PlayerSelfPos" type="Marker2D" parent="BattleScene"]
+position = Vector2(184, 33)
+
+[node name="PlayerSoloPos" type="Marker2D" parent="BattleScene"]
+position = Vector2(135.667, 33)
+gizmo_extents = 1.0
+
+[node name="PlayerMultiPos" type="Marker2D" parent="BattleScene"]
+position = Vector2(135.667, 40)
+gizmo_extents = 1.0
+
+[node name="Enemy1SoloPos" type="Marker2D" parent="BattleScene"]
+position = Vector2(229.667, 33)
+gizmo_extents = 1.0
+
+[node name="Enemy1MultiPos" type="Marker2D" parent="BattleScene"]
+position = Vector2(229.667, 15.3333)
+gizmo_extents = 1.0
+
+[node name="PlayerTeamMarker" type="Marker2D" parent="BattleScene"]
+position = Vector2(166.667, 33)
+
+[node name="EnemyTeamMarker" type="Marker2D" parent="BattleScene"]
+position = Vector2(196.667, 33)
+
+[node name="GlobalMarker" type="Marker2D" parent="BattleScene"]
+position = Vector2(184, 33)
+
+[node name="BattlefieldBorder" type="Panel" parent="BattleScene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bqxxl")
+
+[node name="BattlefieldShade" type="ColorRect" parent="BattleScene/BattlefieldBorder" node_paths=PackedStringArray("battleController")]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("6_nj6dh")
+battleController = NodePath("../../MockBattleController")
+
+[connection signal="combatants_play_hit" from="BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_combatants_play_hit"]
+
+[editable path="BattleScene/PlayerCombatantNode"]
+[editable path="BattleScene/PlayerCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleScene/PlayerCombatantNode/HPTag/OrbDisplay"]
+[editable path="BattleScene/MinionCombatantNode"]
+[editable path="BattleScene/MinionCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleScene/MinionCombatantNode/HPTag/OrbDisplay"]
+[editable path="BattleScene/Enemy1CombatantNode"]
+[editable path="BattleScene/Enemy1CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleScene/Enemy1CombatantNode/HPTag/OrbDisplay"]
+[editable path="BattleScene/Enemy2CombatantNode"]
+[editable path="BattleScene/Enemy2CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleScene/Enemy2CombatantNode/HPTag/OrbDisplay"]

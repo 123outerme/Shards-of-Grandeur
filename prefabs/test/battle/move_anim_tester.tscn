@@ -1,74 +1,125 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://cneyu5gfa8seb" path="res://gamedata/moves/desert_sun_beam/anim_desert_sun_beam.tres" id="2_vjtqm"]
-[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="3_veosa"]
-[ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="6_px5i6"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_f4x2w"]
+[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-moveAnimation = ExtResource("2_vjtqm")
+move = ExtResource("2_f4x2w")
+targetCombatant = ExtResource("7_5ibcc")
 
-[node name="UserNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
-position = Vector2(-72, 0)
-combatant = ExtResource("6_px5i6")
-leftSide = true
-spriteFacesRight = true
-battlePosition = "Player"
-allyTeamMarker = NodePath("../UserTeamMarker")
-enemyTeamMarker = NodePath("../EnemyTeamMarker")
-battleController = NodePath("..")
+[node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 1120.0
+offset_bottom = 390.0
+scale = Vector2(0.25, 0.25)
+disableHpTags = false
+playAnimAfterLoad = false
+delayAnimAfterLoad = false
+moveCombatantsIfAlone = false
 
-[node name="OnAttackPos" parent="UserNode" index="3"]
-position = Vector2(16, 0)
+[node name="BattleScene" parent="MoveLearnAnimControl" index="0"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = -853.0
+offset_bottom = -320.0
 
-[node name="TargetNode" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("3_veosa")]
-position = Vector2(59, 22)
-combatant = ExtResource("7_5ibcc")
-role = 1
-battlePosition = "Center"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../UserTeamMarker")
-battleController = NodePath("..")
+[node name="PlayerCombatantNode" parent="MoveLearnAnimControl/BattleScene" index="1"]
+position = Vector2(142.667, 94)
 
-[node name="OnAttackPos" parent="TargetNode" index="3"]
-position = Vector2(-16, 0)
+[node name="MinionCombatantNode" parent="MoveLearnAnimControl/BattleScene" index="2"]
+position = Vector2(118.667, 65.6667)
 
-[node name="GlobalMarker" type="Marker2D" parent="."]
+[node name="Enemy1CombatantNode" parent="MoveLearnAnimControl/BattleScene" index="3"]
+position = Vector2(283.667, 69.3333)
 
-[node name="UserTeamMarker" type="Marker2D" parent="."]
-position = Vector2(-34, -13)
+[node name="Enemy2CombatantNode" parent="MoveLearnAnimControl/BattleScene" index="4"]
+position = Vector2(311.667, 102)
 
-[node name="EnemyTeamMarker" type="Marker2D" parent="."]
-position = Vector2(25, 6)
+[node name="PlayerSelfPos" parent="MoveLearnAnimControl/BattleScene" index="5"]
+position = Vector2(142.667, 87)
+
+[node name="PlayerSoloPos" parent="MoveLearnAnimControl/BattleScene" index="6"]
+position = Vector2(213.333, 87)
+
+[node name="PlayerMultiPos" parent="MoveLearnAnimControl/BattleScene" index="7"]
+position = Vector2(142.667, 94)
+
+[node name="Enemy1SoloPos" parent="MoveLearnAnimControl/BattleScene" index="8"]
+position = Vector2(283.667, 87)
+
+[node name="Enemy1MultiPos" parent="MoveLearnAnimControl/BattleScene" index="9"]
+position = Vector2(283.667, 69.3333)
+
+[node name="PlayerTeamMarker" parent="MoveLearnAnimControl/BattleScene" index="10"]
+position = Vector2(173, 87)
+
+[node name="EnemyTeamMarker" parent="MoveLearnAnimControl/BattleScene" index="11"]
+position = Vector2(250, 87)
+
+[node name="GlobalMarker" parent="MoveLearnAnimControl/BattleScene" index="12"]
+position = Vector2(213, 87)
+
+[node name="BattlefieldBorder" parent="MoveLearnAnimControl/BattleScene" index="13"]
+anchors_preset = -1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
 [node name="Button" type="Button" parent="."]
-offset_left = -94.0
+offset_left = -26.0
 offset_top = 48.0
-offset_right = -42.0
+offset_right = 26.0
 offset_bottom = 79.0
 text = "Play"
 
-[node name="Button2" type="Button" parent="."]
-offset_left = 46.0
-offset_top = 46.0
-offset_right = 104.0
-offset_bottom = 77.0
+[node name="SwapButton" type="Button" parent="."]
+offset_left = 74.0
+offset_top = 48.0
+offset_right = 132.0
+offset_bottom = 79.0
 text = "Swap"
 
 [node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_swap_button_pressed"]
+[node name="SurgeChargeToggle" type="Button" parent="."]
+custom_minimum_size = Vector2(81, 0)
+offset_left = -141.0
+offset_top = 48.0
+offset_right = -60.0
+offset_bottom = 77.0
+toggle_mode = true
+text = "Charge"
 
-[editable path="UserNode"]
-[editable path="UserNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="UserNode/HPTag/OrbDisplay"]
-[editable path="TargetNode"]
-[editable path="TargetNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="TargetNode/HPTag/OrbDisplay"]
+[connection signal="combatant_finished_moving" from="MoveLearnAnimControl/BattleScene/MockBattleController" to="." method="_move_tween_done"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
+[connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
+
+[editable path="MoveLearnAnimControl"]
+[editable path="MoveLearnAnimControl/BattleScene/PlayerCombatantNode"]
+[editable path="MoveLearnAnimControl/BattleScene/PlayerCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="MoveLearnAnimControl/BattleScene/PlayerCombatantNode/HPTag/OrbDisplay"]
+[editable path="MoveLearnAnimControl/BattleScene/MinionCombatantNode"]
+[editable path="MoveLearnAnimControl/BattleScene/MinionCombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="MoveLearnAnimControl/BattleScene/MinionCombatantNode/HPTag/OrbDisplay"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy1CombatantNode"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy1CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy1CombatantNode/HPTag/OrbDisplay"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy2CombatantNode"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy2CombatantNode/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="MoveLearnAnimControl/BattleScene/Enemy2CombatantNode/HPTag/OrbDisplay"]

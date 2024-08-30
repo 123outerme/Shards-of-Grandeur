@@ -4,44 +4,64 @@ signal combatant_finished_moving(combatant: CombatantNode)
 signal combatants_play_hit(combatant: CombatantNode)
 signal combatant_finished_animating(combatant: CombatantNode)
 
-@export var moveAnimation: MoveAnimation = null
+@export var move: Move = null
 @export var playSurge: bool = false
 @export var itemSprite: Texture2D = null
+@export var targetCombatant: Combatant = null
 
-@onready var userNode: CombatantNode = get_node('UserNode')
-@onready var targetNode: CombatantNode = get_node('TargetNode')
+@onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
 @onready var button: Button = get_node('Button')
+@onready var surgeChargeToggle: Button = get_node('SurgeChargeToggle')
 
-@onready var globalMarker: Marker2D = get_node('GlobalMarker')
-@onready var userTeamMarker: Marker2D = get_node('UserTeamMarker')
-@onready var enemyTeamMarker: Marker2D = get_node('EnemyTeamMarker')
+var userNode: CombatantNode = null
 
-const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
+var useItemAnimation: MoveAnimation = load('res://gamedata/items/use_item_animation.tres') as MoveAnimation
 
 func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
-	userNode.load_combatant_node()
-	targetNode.load_combatant_node()
+	PlayerResources.playerInfo = PlayerInfo.new()
+	moveLearnAnimController.customTarget = targetCombatant
+	moveLearnAnimController.move = move
+	moveLearnAnimController.load_move_learn_animation(playSurge)
+	if playSurge:
+		surgeChargeToggle.text = 'Surge'
+	else:
+		surgeChargeToggle.text = 'Charge'
+	userNode = moveLearnAnimController.playerCombatantNode
 
 func _on_button_pressed():
 	button.disabled = true
-	userNode.play_animation(moveAnimation.combatantAnimation)
-	userNode.play_particles(moveAnimation.userParticlePreset)
-	userNode.moveSpriteTargets = [targetNode]
-	userNode.useItemSprite = itemSprite
-	userNode.play_move_sprites(moveAnimation.surgeMoveSprites if playSurge else moveAnimation.chargeMoveSprites)
-	targetNode.play_particles(moveAnimation.targetsParticlePreset)
-	if moveAnimation.makesContact:
-		userNode.tween_to(targetNode.onAttackMarker.global_position)
-		userNode.move_animation_callback(_move_tween_done)
-	else:
+	if itemSprite == null:
+		moveLearnAnimController.playAnimAfterLoad = true
+	moveLearnAnimController.load_move_learn_animation(playSurge)
+	moveLearnAnimController.playAnimAfterLoad = false
+	if itemSprite != null:
+		userNode.useItemSprite = itemSprite
+		userNode.play_move_sprites(useItemAnimation.chargeMoveSprites)
+		userNode.play_animation(useItemAnimation.combatantAnimation)
+		userNode.play_particles(useItemAnimation.userParticlePreset)
+		userNode.moveSpriteTargets = [userNode]
+		moveLearnAnimController.battlefieldShade.do_battlefield_shade_anim(useItemAnimation.chargeBattlefieldShade)
 		userNode.move_animation_callback(_move_tween_done)
 		combatant_finished_moving.emit(userNode)
-		
-func _move_tween_done():
+	
+func _move_tween_done(_combatantNode: CombatantNode):
 	button.disabled = false
 
 func _on_swap_button_pressed():
-	var temp = userNode
-	userNode = targetNode
-	targetNode = temp
+	if userNode == moveLearnAnimController.playerCombatantNode:
+		userNode = moveLearnAnimController.enemy1CombatantNode
+		moveLearnAnimController.swapUsersAndTargets = true
+	else:
+		userNode = moveLearnAnimController.playerCombatantNode
+		moveLearnAnimController.swapUsersAndTargets = false
+	moveLearnAnimController.load_move_learn_animation()
+
+
+func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:
+	playSurge = toggled_on
+	if playSurge:
+		surgeChargeToggle.text = 'Surge'
+	else:
+		surgeChargeToggle.text = 'Charge'
+	moveLearnAnimController.load_move_learn_animation(playSurge)

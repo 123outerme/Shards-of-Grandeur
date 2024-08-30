@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=35 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade.gd" id="3_qj4j6"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="5_3llq4"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_gcm1q"]
@@ -148,7 +149,7 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant3" index="4"]
 position = Vector2(0, -16)
 
-[node name="BattlefieldShade" type="ColorRect" parent="CombatantGroup"]
+[node name="BattlefieldShade" type="ColorRect" parent="CombatantGroup" node_paths=PackedStringArray("battleController")]
 z_index = 1
 offset_left = -160.0
 offset_top = -98.0
@@ -156,6 +157,8 @@ offset_right = 160.0
 offset_bottom = 82.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+script = ExtResource("3_qj4j6")
+battleController = NodePath("../..")
 
 [node name="TileMapParent" type="Node2D" parent="."]
 
