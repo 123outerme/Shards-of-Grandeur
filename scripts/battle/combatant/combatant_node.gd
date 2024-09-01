@@ -60,6 +60,8 @@ var playingMoveSprites: Array[MoveSprite] = []
 var moveSpritesCallback: Callable = Callable()
 var useItemSprite: Texture2D = null
 var isBeingStatusAfflicted: bool = false
+var initialAssistMarkerPos: Vector2
+var initialAttackMarkerPos: Vector2
 
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
@@ -88,6 +90,8 @@ func _ready():
 		battleController.combatants_play_hit.connect(_combatants_play_hit)
 		battleController.combatant_finished_animating.connect(_combatant_finished_animating)
 	orbDisplay.alignment = BoxContainer.ALIGNMENT_END if leftSide else BoxContainer.ALIGNMENT_BEGIN
+	initialAssistMarkerPos = onAssistMarker.position
+	initialAttackMarkerPos = onAttackMarker.position
 
 func load_combatant_node():
 	if not is_alive():
@@ -126,15 +130,15 @@ func load_combatant_node():
 		
 		# nudge the attack marker away from sprite by any amount over 16 wide
 		if onAttackMarker.position.x < position.x:
-			onAttackMarker.position.x -= (combatant.get_idle_size().x - 16) / 2
+			onAttackMarker.position.x = initialAttackMarkerPos.x - (combatant.get_idle_size().x - 16) / 2
 		elif onAttackMarker.position.x > position.x:
-			onAttackMarker.position.x += (combatant.get_idle_size().x - 16) / 2
+			onAttackMarker.position.x = initialAttackMarkerPos.x + (combatant.get_idle_size().x - 16) / 2
 		
 		# nudge the assist marker away from sprite by any amount over 16 tall
 		if onAssistMarker.position.y < position.y:
-			onAssistMarker.position.y -= (combatant.get_idle_size().y - 16) / 2
+			onAssistMarker.position.y = initialAssistMarkerPos.y - (combatant.get_idle_size().y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
-			onAssistMarker.position.y += (combatant.get_idle_size().y - 16) / 2
+			onAssistMarker.position.y = initialAssistMarkerPos.y + (combatant.get_idle_size().y - 16) / 2
 
 func get_in_front_particle_scale() -> float:
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger

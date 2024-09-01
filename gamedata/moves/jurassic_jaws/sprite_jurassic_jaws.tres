@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://b5b3p22ruymt3"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_luuvn"]
+[ext_resource type="Resource" uid="uid://mq748ah8v6bo" path="res://gamedata/moves/jurassic_jaws/particles_jurassic_jaws.tres" id="2_iajde"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_qebom"]
+[ext_resource type="SpriteFrames" uid="uid://dddnahue2if0" path="res://graphics/moves/earth/a_jurassic_jaws.tres" id="3_ultpt"]
+
+[sub_resource type="Curve" id="Curve_3s6fi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_2j5rx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_s2r7m"]
+script = ExtResource("1_luuvn")
+annotation = "Set up position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(4, 0)
+offset = 1
+xCurve = SubResource("Curve_3s6fi")
+yCurve = SubResource("Curve_2j5rx")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_fih0b"]
+script = ExtResource("1_luuvn")
+annotation = "play bite animation"
+animation = "jurassic_jaws"
+duration = 0.25
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_u6xad"]
+script = ExtResource("1_luuvn")
+annotation = "play particles and hit sfx"
+animation = ""
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_iajde")
+
+[resource]
+script = ExtResource("2_qebom")
+spriteFrames = ExtResource("3_ultpt")
+centerSprite = true
+maxSize = Vector2(32, 48)
+frames = Array[ExtResource("1_luuvn")]([SubResource("Resource_s2r7m"), SubResource("Resource_fih0b"), SubResource("Resource_u6xad")])
+delayedUntilReposition = true
+playsOnImpactFrame = false
+onePerTarget = true

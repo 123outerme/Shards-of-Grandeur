@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://pn855kbbl8q7" path="res://gamedata/moves/sandblast/sandblast.tres" id="2_yq7kq"]
+[ext_resource type="Resource" uid="uid://o2esy2ry8yjk" path="res://gamedata/moves/jurassic_jaws/jurassic_jaws.tres" id="2_yb34d"]
+[ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="3_eeiax"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
-[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_5ibcc"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_yq7kq")
-targetCombatant = ExtResource("7_5ibcc")
+move = ExtResource("2_yb34d")
+targetCombatant = ExtResource("3_eeiax")
 moveCombatantsIfAlone = true
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]

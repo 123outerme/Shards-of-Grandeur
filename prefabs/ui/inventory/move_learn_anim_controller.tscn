@@ -70,6 +70,12 @@ animation = &"battle_idle"
 [node name="HPTag" parent="BattleScene/PlayerCombatantNode" index="2"]
 visible = false
 
+[node name="OnAttackPos" parent="BattleScene/PlayerCombatantNode" index="3"]
+position = Vector2(16, 0)
+
+[node name="OnAssistPos" parent="BattleScene/PlayerCombatantNode" index="4"]
+position = Vector2(0, -16)
+
 [node name="MinionCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
 z_index = 1
 position = Vector2(111.667, 11.6667)
