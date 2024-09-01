@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://c53l41ogdmc8i"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_71otm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_elrg4"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_1bix2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_yn0jt"]
+[ext_resource type="Resource" uid="uid://dt68yroy06mqi" path="res://gamedata/moves/hunters_instinct/anim_hunters_instinct.tres" id="4_otcwn"]
+
+[sub_resource type="Resource" id="Resource_ueeli"]
+script = ExtResource("3_yn0jt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.25
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.1
+elementMultipliers = Array[ExtResource("2_1bix2")]([])
+
+[sub_resource type="Resource" id="Resource_7djvh"]
+script = ExtResource("1_elrg4")
+role = 3
+orbChange = 0
+power = 0
+targets = 1
+selfStatChanges = SubResource("Resource_ueeli")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_ef1d2"]
+script = ExtResource("3_yn0jt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.35
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.15
+elementMultipliers = Array[ExtResource("2_1bix2")]([])
+
+[sub_resource type="Resource" id="Resource_cucfr"]
+script = ExtResource("1_elrg4")
+role = 3
+orbChange = -2
+power = 0
+targets = 1
+selfStatChanges = SubResource("Resource_ef1d2")
+selfGetsStatus = false
+statusChance = 0.0
+
+[resource]
+script = ExtResource("1_71otm")
+moveName = "Hunter's Instinct"
+requiredLv = 12
+category = 2
+element = 0
+chargeEffect = SubResource("Resource_7djvh")
+surgeEffect = SubResource("Resource_cucfr")
+description = "Beware a hunter on the prowl... its fangs are sharp and its legs are ready for the pounce!"
+moveLearnedText = ""
+moveAnimation = ExtResource("4_otcwn")

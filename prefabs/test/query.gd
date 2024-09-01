@@ -3,12 +3,14 @@ extends Node
 const TEST_DIR: String = 'res://test/'
 
 @onready var label: RichTextLabel = get_node('RichTextLabel')
+@onready var closeButton: Button = get_node('CloseButton')
 
 func _ready():
 	create_reports()
 	#print_report()
 
 func create_reports():
+	closeButton.disabled = true
 	var reports: Dictionary = {}
 	# add reports one at a time so we can catch and debug errors on a single report easier
 	reports['combatants/movepool_report.csv'] = create_report_for_all_combatants_series(
@@ -63,6 +65,7 @@ func create_reports():
 				printerr('FileAccess error opening file ', TEST_DIR + filename, ' (error ', FileAccess.get_open_error(), ')')
 	print('All CSV reports have been saved.')
 	label.text = '[center]All CSV reports have been saved.[/center]'
+	closeButton.disabled = false
 
 func print_report():
 	#for_all_combatants_series([print_combatant_weaknesses, print_combatant_status_resistances])
@@ -602,3 +605,6 @@ func print_move_effects_overview(move: Move):
 			printStr += ' on self'
 
 	print(printStr)
+
+func _on_close_button_pressed() -> void:
+	get_tree().quit()

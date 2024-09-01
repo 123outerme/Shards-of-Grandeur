@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://d1gqbujfbuu8c"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_eso1i"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_872mi"]
+
+[resource]
+script = ExtResource("2_872mi")
+combatantAnimation = "attack_phys"
+makesContact = true
+chargeMoveSprites = Array[ExtResource("1_eso1i")]([])
+surgeMoveSprites = Array[ExtResource("1_eso1i")]([])

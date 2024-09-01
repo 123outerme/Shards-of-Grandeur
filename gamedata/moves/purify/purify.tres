@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://cul2ps2aecpnj"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_ddbft"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_k6lxr"]
+[ext_resource type="Script" path="res://scripts/battle/status_effect.gd" id="2_4j3rh"]
+[ext_resource type="Resource" uid="uid://dnae6ev3pc2ll" path="res://gamedata/moves/purify/anim_purify.tres" id="3_i6q2f"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_ca8cu"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="5_h5j05"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="6_21com"]
+
+[sub_resource type="Resource" id="Resource_3hn4e"]
+script = ExtResource("2_4j3rh")
+type = 0
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 1
+
+[sub_resource type="Resource" id="Resource_wrm73"]
+script = ExtResource("1_k6lxr")
+role = 3
+orbChange = 2
+power = 0
+targets = 3
+statusEffect = SubResource("Resource_3hn4e")
+selfGetsStatus = false
+statusChance = 1.0
+
+[sub_resource type="Resource" id="Resource_ll2l8"]
+script = ExtResource("2_4j3rh")
+type = 0
+potency = 2
+overwritesOtherStatuses = false
+turnsLeft = 0
+
+[sub_resource type="Resource" id="Resource_jwlbp"]
+script = ExtResource("6_21com")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.05
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("5_h5j05")]([])
+
+[sub_resource type="Resource" id="Resource_wntts"]
+script = ExtResource("4_ca8cu")
+powerPerOrb = 0
+targetStatChangesPerOrb = SubResource("Resource_jwlbp")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 4
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_htqmu"]
+script = ExtResource("6_21com")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("5_h5j05")]([])
+
+[sub_resource type="Resource" id="Resource_vogu5"]
+script = ExtResource("1_k6lxr")
+role = 3
+orbChange = -2
+power = 0
+targets = 3
+targetStatChanges = SubResource("Resource_htqmu")
+statusEffect = SubResource("Resource_ll2l8")
+selfGetsStatus = false
+statusChance = 1.0
+surgeChanges = SubResource("Resource_wntts")
+
+[resource]
+script = ExtResource("1_ddbft")
+moveName = "Purify"
+requiredLv = 13
+category = 2
+element = 6
+chargeEffect = SubResource("Resource_wrm73")
+surgeEffect = SubResource("Resource_vogu5")
+description = "Cleanse an ally of their current afflictions, using power drawn from the natural world."
+moveLearnedText = ""
+moveAnimation = ExtResource("3_i6q2f")

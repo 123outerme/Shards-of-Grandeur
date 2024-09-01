@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://deslgxg0gngoc"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_0b6hd"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_kijsy"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_xosyl"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_5kifq"]
+[ext_resource type="Resource" uid="uid://dsluyqasafr5v" path="res://gamedata/moves/electric_stun/anim_electric_stun.tres" id="4_u0sye"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_obrdc"]
+
+[sub_resource type="Resource" id="Resource_tt6ot"]
+script = ExtResource("3_5kifq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.8
+resistanceMultiplier = 1.0
+speedMultiplier = 0.9
+elementMultipliers = Array[ExtResource("2_xosyl")]([])
+
+[sub_resource type="Resource" id="Resource_5opd7"]
+script = ExtResource("1_0b6hd")
+role = 4
+orbChange = 1
+power = 0
+targets = 5
+targetStatChanges = SubResource("Resource_tt6ot")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_ilc1j"]
+script = ExtResource("3_5kifq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.98
+resistanceMultiplier = 1.0
+speedMultiplier = 0.98
+elementMultipliers = Array[ExtResource("2_xosyl")]([])
+
+[sub_resource type="Resource" id="Resource_03pqp"]
+script = ExtResource("5_obrdc")
+powerPerOrb = 0
+targetStatChangesPerOrb = SubResource("Resource_ilc1j")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_q32a1"]
+script = ExtResource("3_5kifq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 0.7
+resistanceMultiplier = 1.0
+speedMultiplier = 0.8
+elementMultipliers = Array[ExtResource("2_xosyl")]([])
+
+[sub_resource type="Resource" id="Resource_nwnxh"]
+script = ExtResource("1_0b6hd")
+role = 4
+orbChange = -2
+power = 0
+targets = 5
+targetStatChanges = SubResource("Resource_q32a1")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_03pqp")
+
+[resource]
+script = ExtResource("1_kijsy")
+moveName = "Electric Stun"
+requiredLv = 14
+category = 2
+element = 3
+chargeEffect = SubResource("Resource_5opd7")
+surgeEffect = SubResource("Resource_nwnxh")
+description = "Hit an enemy with a controlled shock that disrupts their Affinity and Speed."
+moveLearnedText = ""
+moveAnimation = ExtResource("4_u0sye")

@@ -381,6 +381,8 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	if moveEffect == null or moveEffect.statusEffect == null or moveEffect.statusChance == 0:
 		return false
 	
+	# if the target already has a status, and:
+	# the move does not overwrite other statuses, or it does but the existing status is more potent: fail
 	if targets[targetIdx].statusEffect != null:
 		if not moveEffect.statusEffect.overwritesOtherStatuses or targets[targetIdx].statusEffect.potency > moveEffect.statusEffect.potency:
 			return false
