@@ -10,7 +10,8 @@ class_name OverworldEnemy
 
 var spawner: EnemySpawner = null
 var homePoint: Vector2
-var patrolRange: float
+var patrolRange: float = 48.0
+var despawnRange: float = 960.0
 var encounteredPlayer: bool = false
 var waitUntilNavReady: bool = false
 
@@ -36,6 +37,10 @@ func _ready():
 		get_next_patrol_target()
 
 func _process(delta):
+	if spawner != null and (PlayerFinder.player.global_position - global_position).length() > patrolRange:
+		spawner.delete_enemy()
+		return
+	
 	if waitUntilNavReady:
 		get_next_patrol_target()
 	
@@ -113,4 +118,8 @@ func _on_encounter_collider_area_entered(area):
 			PlayerFinder.player.start_battle()
 			SceneLoader.pause_autonomous_movers()
 		else:
-			queue_free() # despawn enemy if encountered during a cutscene
+			 # despawn enemy if encountered during a cutscene
+			if spawner != null:
+				spawner.delete_enemy()
+			else:
+				queue_free()

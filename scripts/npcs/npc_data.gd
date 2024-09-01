@@ -72,18 +72,18 @@ func _init(
 
 func load_data(save_path):
 	var data = null
-	if ResourceLoader.exists(save_path + save_file()):
-		data = ResourceLoader.load(save_path + save_file(), '', ResourceLoader.CACHE_MODE_IGNORE)
+	if ResourceLoader.exists(save_path + get_save_filename()):
+		data = ResourceLoader.load(save_path + get_save_filename(), '', ResourceLoader.CACHE_MODE_IGNORE)
 		if data != null:
 			return data
 	return data
 
 func save_data(save_path, data) -> int:
 	version = GameSettings.get_game_version()
-	var err = ResourceSaver.save(data, save_path + save_file())
+	var err = ResourceSaver.save(data, save_path + get_save_filename())
 	if err != 0:
 		printerr("NPCData/" + saveName + " ResourceSaver error: " + String.num(err))
 	return err
 
-func save_file() -> String:
+func get_save_filename() -> String:
 	return "npc_" + saveName + ".tres"

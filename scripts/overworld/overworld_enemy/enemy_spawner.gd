@@ -19,6 +19,9 @@ class_name EnemySpawner
 ## radius of the circle the enemy will patrol in
 @export var enemyPatrolRange: float = 32.0
 
+## Once the enemy gets this many units away from the player, they will automatically despawn
+@export var enemyDespawnRange: float = 960.0
+
 ## set before loading; points to the tilemap to place the enemy object in
 @export var tilemap: Node2D
 
@@ -59,6 +62,7 @@ func _on_area_2d_area_entered(area):
 		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemyPos, false, enemyEncounter)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
+		enemy.despawnRange = enemyDespawnRange
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 		#print('spawned new enemy')
 
@@ -101,5 +105,5 @@ func delete_enemy():
 	enemy = null
 	spawnerData.enemyData = null
 
-func save_file() -> String:
+func get_save_filename() -> String:
 	return enemiesDir
