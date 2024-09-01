@@ -1,26 +1,9 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=8 format=3 uid="uid://bbk1euvf6x6x1"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://bbk1euvf6x6x1"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_1jb3d"]
 [ext_resource type="Resource" uid="uid://xak7hle34iws" path="res://gamedata/moves/mage_blast/particles_mage_blast.tres" id="1_cgqfn"]
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="1_els2h"]
 [ext_resource type="Resource" uid="uid://cn6tuokm6l4pq" path="res://gamedata/moves/mage_blast/sprite_mage_blast.tres" id="1_qpp8e"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_vxyx2"]
-
-[sub_resource type="Resource" id="Resource_iv0eb"]
-script = ExtResource("1_els2h")
-startSecs = 0.0
-lastsSecs = -1.0
-color = Color(0, 0, 0, 0.35)
-fadeInSecs = 0.5
-fadeOutSecs = 0.25
-
-[sub_resource type="Resource" id="Resource_syy7r"]
-script = ExtResource("1_els2h")
-startSecs = 0.0
-lastsSecs = -1.0
-color = Color(0, 0, 0, 0.35)
-fadeInSecs = 0.5
-fadeOutSecs = 0.25
 
 [resource]
 script = ExtResource("2_vxyx2")
@@ -29,5 +12,3 @@ makesContact = false
 userParticlePreset = ExtResource("1_cgqfn")
 chargeMoveSprites = Array[ExtResource("1_1jb3d")]([ExtResource("1_qpp8e")])
 surgeMoveSprites = Array[ExtResource("1_1jb3d")]([ExtResource("1_qpp8e")])
-chargeBattlefieldShade = SubResource("Resource_iv0eb")
-surgeBattlefieldShade = SubResource("Resource_syy7r")
