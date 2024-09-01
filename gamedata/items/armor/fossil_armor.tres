@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://b0muf6xqxnbrq"]
+
+[ext_resource type="Texture2D" uid="uid://bjgbtyihkv6nl" path="res://graphics/items/armor/fossil_armor.png" id="1_c57x5"]
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_ulmuw"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_iesaa"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_m5vfp"]
+
+[sub_resource type="Resource" id="Resource_vi31w"]
+script = ExtResource("3_iesaa")
+element = 5
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_ipghd"]
+script = ExtResource("4_m5vfp")
+physAttackIncrease = 1
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 3
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_iesaa")]([SubResource("Resource_vi31w")])
+
+[resource]
+script = ExtResource("1_ulmuw")
+statChanges = SubResource("Resource_ipghd")
+timing = 0
+bonusOrbs = 0
+itemSprite = ExtResource("1_c57x5")
+itemName = "Fossil Armor"
+itemType = 3
+itemDescription = "Hardened over many eras of burial, this fossilized plate has been uplifted to the surface for a tough warrior to wear into battle."
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

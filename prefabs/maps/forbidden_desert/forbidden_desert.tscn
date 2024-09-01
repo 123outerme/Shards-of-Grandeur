@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=4 uid="uid://ds7a44n0mcb01"]
+[gd_scene load_steps=225 format=4 uid="uid://ds7a44n0mcb01"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_f3ods"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_rhxjp"]
@@ -15,6 +15,8 @@
 [ext_resource type="Resource" uid="uid://d2aj5133alwp0" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert/forbidden_desert_desert_fruit_2.tres" id="9_8n2c0"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="9_168dy"]
 [ext_resource type="Resource" uid="uid://2afnf1l2bwk5" path="res://gamedata/items/weapon/scorpion_wand.tres" id="9_bhgth"]
+[ext_resource type="Resource" uid="uid://cturyx26ofqgj" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert/forbidden_desert_fossil_armor.tres" id="9_odfx3"]
+[ext_resource type="Resource" uid="uid://b0muf6xqxnbrq" path="res://gamedata/items/armor/fossil_armor.tres" id="9_ymjf0"]
 [ext_resource type="Resource" uid="uid://djwyy6mursaro" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert/forbidden_desert_desert_fruit_3.tres" id="10_1m5w4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="10_5r742"]
 [ext_resource type="Resource" uid="uid://c0kf8yoqolpls" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert/forbidden_desert_desert_fruit_4.tres" id="11_t8wt6"]
@@ -43,6 +45,15 @@ item = ExtResource("4_c2oqk")
 wasPickedUp = false
 speaker = "@"
 dialogueEntry = ExtResource("7_al4y1")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_imkda"]
+script = ExtResource("5_ta4ih")
+item = ExtResource("9_ymjf0")
+wasPickedUp = false
+speaker = "@"
+dialogueEntry = ExtResource("9_odfx3")
 savedItemIdx = 0
 savedTextIdx = 0
 
@@ -1142,6 +1153,8 @@ saveName = "desert_desert_fruit_1"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_fw0wf")]
 position = Vector2(-1018, 5)
+pickedUpItem = SubResource("Resource_imkda")
+saveName = "forbidden_desert_fossil_armor"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_fw0wf")]
 position = Vector2(-578, -551)
