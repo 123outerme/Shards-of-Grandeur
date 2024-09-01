@@ -94,6 +94,15 @@ func load_frame():
 	if sprFrame.sfx != null:
 		SceneLoader.audioHandler.play_sfx(sprFrame.sfx)
 
+# unused: attempt at fixing how in get_sprite_target_position(), `user` scales the particles unless the sprite is specifically centered on the (single) target
+'''
+func get_last_defined_target() -> MoveAnimSpriteFrame.MoveSpriteTarget:
+	for frame: int in range(min(len(anim.frames) - 1, moveFrame), -1, -1):
+		if anim.frames[frame].relativeTo != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
+			return anim.frames[frame].rotateToFace
+	return MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION
+#'''
+
 func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, posOffset: int) -> Vector2:
 	var pos = Vector2()
 	match spriteTarget:
@@ -110,7 +119,13 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 			MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 				pos = startPos
 	var cNode: CombatantNode = target if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
-	particleEmitter.scale.x = cNode.get_in_front_particle_scale()
+	# scale particles to the user's scale
+	particleEmitter.scale.x = user.get_in_front_particle_scale()
+	# OR, commented out: scale particles to the scale of the reference point of this animation (usually user)
+	#particleEmitter.scale.x = cNode.get_in_front_particle_scale()
+	# OR, commented out: use the last defined target for scaling particles 
+	#var scaleNode: CombatantNode = target if get_last_defined_target() == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
+	#particleEmitter.scale.x = scaleNode.get_in_front_particle_scale()
 	particleEmitter.scale.y = particleEmitter.scale.x
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()
