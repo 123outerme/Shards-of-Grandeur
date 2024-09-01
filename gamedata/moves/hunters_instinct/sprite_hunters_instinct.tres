@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://df21fc00lafjj"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_r1x2g"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_alnhx"]
+[ext_resource type="SpriteFrames" uid="uid://b8ekepbd1jlj5" path="res://graphics/moves/no_element/a_hunters_instinct.tres" id="3_m6b6j"]
+
+[sub_resource type="Curve" id="Curve_ajegf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_h1er1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_3fr7r"]
+script = ExtResource("1_r1x2g")
+annotation = "Set up sprite position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 2
+position = Vector2(-4, -9)
+offset = 5
+xCurve = SubResource("Curve_ajegf")
+yCurve = SubResource("Curve_h1er1")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_vfmvc"]
+script = ExtResource("1_r1x2g")
+annotation = "play eye animation"
+animation = "hunters_instinct"
+duration = 2.0
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("2_alnhx")
+spriteFrames = ExtResource("3_m6b6j")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_r1x2g")]([SubResource("Resource_3fr7r"), SubResource("Resource_vfmvc")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true

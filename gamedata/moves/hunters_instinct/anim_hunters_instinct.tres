@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://dt68yroy06mqi"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=6 format=3 uid="uid://dt68yroy06mqi"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_tshfr"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_i3gbo"]
+[ext_resource type="Resource" uid="uid://df21fc00lafjj" path="res://gamedata/moves/hunters_instinct/sprite_hunters_instinct.tres" id="2_lpbxb"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="3_tn033"]
+
+[sub_resource type="Resource" id="Resource_jp6c7"]
+script = ExtResource("3_tn033")
+startSecs = 0.4
+lastsSecs = 1.6
+color = Color(0, 0, 0, 0.352941)
+fadeInSecs = 0.333
+fadeOutSecs = 0.25
 
 [resource]
 script = ExtResource("2_i3gbo")
 combatantAnimation = "attack_affinity"
 makesContact = false
-chargeMoveSprites = Array[ExtResource("1_tshfr")]([])
-surgeMoveSprites = Array[ExtResource("1_tshfr")]([])
+chargeMoveSprites = Array[ExtResource("1_tshfr")]([ExtResource("2_lpbxb")])
+surgeMoveSprites = Array[ExtResource("1_tshfr")]([ExtResource("2_lpbxb")])
+surgeBattlefieldShade = SubResource("Resource_jp6c7")

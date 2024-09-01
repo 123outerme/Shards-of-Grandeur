@@ -36,7 +36,7 @@ dialogueEntry = ExtResource("4_gdydo")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_sto8k"]
+[sub_resource type="Resource" id="Resource_bjndn"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -59,7 +59,7 @@ hasShop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_wxye4"]
+[sub_resource type="Resource" id="Resource_baggv"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -148,7 +148,7 @@ agent_radius = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
 size = Vector2(48, 59)
 
-[sub_resource type="Resource" id="Resource_jseks"]
+[sub_resource type="Resource" id="Resource_iiudb"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -217,7 +217,7 @@ saveName = "intro_sword"
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_sto8k")
+data = SubResource("Resource_bjndn")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -243,7 +243,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
-data = SubResource("Resource_wxye4")
+data = SubResource("Resource_baggv")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -332,7 +332,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1008, 8)
-data = SubResource("Resource_jseks")
+data = SubResource("Resource_iiudb")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
