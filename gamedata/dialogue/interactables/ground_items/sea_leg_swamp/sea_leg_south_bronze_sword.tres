@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dph3i78lm7wh5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_auj7e"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_da1rh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_j0flf"]
+
+[sub_resource type="Resource" id="Resource_arun4"]
+script = ExtResource("1_auj7e")
+lines = Array[String](["This sword looks really old... was this made by the people who used to live in these houses?"])
+animation = ""
+choices = Array[ExtResource("2_j0flf")]([])
+
+[resource]
+script = ExtResource("2_da1rh")
+entryId = ""
+items = Array[ExtResource("1_auj7e")]([SubResource("Resource_arun4")])
+closesDialogue = false
+fullHealsPlayer = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://csetgkqaalapc"]
+[gd_scene load_steps=91 format=4 uid="uid://csetgkqaalapc"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5qcr2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_o5f5u"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://bovav4mx2vts6" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_mem_shard.tres" id="4_x6rh6"]
 [ext_resource type="Resource" uid="uid://befwa1j262l3j" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_offering_shard.tres" id="7_e0dee"]
 [ext_resource type="Resource" uid="uid://gqh3lxvsrx88" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_loaf.tres" id="7_ke1x7"]
+[ext_resource type="Resource" uid="uid://dph3i78lm7wh5" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_bronze_sword.tres" id="7_w77x1"]
+[ext_resource type="Resource" uid="uid://o4ngs8kwav3p" path="res://gamedata/items/weapon/bronze_sword.tres" id="8_qri7w"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="9_5kw30"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="10_5wear"]
 [ext_resource type="Resource" uid="uid://bo0vnl5ddbe8p" path="res://gamedata/items/shard/mesa_golem_shard.tres" id="10_esfff"]
@@ -35,8 +37,10 @@ savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_5b4ea"]
 script = ExtResource("4_6xxye")
+item = ExtResource("8_qri7w")
 wasPickedUp = false
 speaker = "@"
+dialogueEntry = ExtResource("7_w77x1")
 savedItemIdx = 0
 savedTextIdx = 0
 
@@ -435,7 +439,7 @@ saveName = "sea_leg_s_mem_shard"
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
 position = Vector2(-144, 376)
 pickedUpItem = SubResource("Resource_5b4ea")
-saveName = "sea_leg_s_lake_item"
+saveName = "sea_leg_s_lake_weapon"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_jq65j")]
 position = Vector2(-524, -267)

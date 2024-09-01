@@ -5,8 +5,8 @@ class_name InteractableDialogue
 @export var dialogueEntry: DialogueEntry = null
 
 @export_category("InteractableDialogue - Save Data: Do Not Modify")
-@export var savedItemIdx: int = 0
-@export var savedTextIdx: int = 0
+@export_storage var savedItemIdx: int = 0
+@export_storage var savedTextIdx: int = 0
 
 func _init(
 	i_speaker = '',

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=6 format=3 uid="uid://o4ngs8kwav3p"]
+
+[ext_resource type="Texture2D" uid="uid://5v4ecyk1kbpo" path="res://graphics/items/weapons/bronze_sword.png" id="1_eitih"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_hnn7o"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_263h8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_3n5o4"]
+
+[sub_resource type="Resource" id="Resource_tqo16"]
+script = ExtResource("4_3n5o4")
+physAttackIncrease = 2
+magicAttackIncrease = 0
+affinityIncrease = 1
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_263h8")]([])
+
+[resource]
+script = ExtResource("1_hnn7o")
+statChanges = SubResource("Resource_tqo16")
+timing = 0
+bonusOrbs = 0
+itemSprite = ExtResource("1_eitih")
+itemName = "Bronze Sword"
+itemType = 2
+itemDescription = "This bronze sword was uncovered from the ruins of a fallen city. Despite the identity of the sword's maker being lost to time, it is still easy to marvel at the quality of the sword."
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
