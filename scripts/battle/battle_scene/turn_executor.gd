@@ -322,6 +322,9 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
 			
 			if battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
+				if battleUI.menuState == BattleState.Menu.POST_ROUND and combatantNode.is_alive() and result != WinCon.TurnResult.NOTHING:
+					continue
+				
 				var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else BattleCommand.ApplyTiming.AFTER_ROUND
 				var statusEffectString: String = ''
 				if combatantNode.combatant.statusEffect != null:

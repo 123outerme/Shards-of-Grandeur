@@ -102,12 +102,19 @@ func load_children_entries_for_entry(entryStack: Array[CodexEntry]) -> Array[Cod
 	if DirAccess.dir_exists_absolute(path):
 		var files: PackedStringArray = DirAccess.get_files_at(path)
 		if len(files) > 0:
-			for file in files:
-				var codexEntry: CodexEntry = ResourceLoader.load(path + file) as CodexEntry
+			# each filename has ".remap" at the end of it (if this project is being played as a final build), load that file minus the ".remap"
+			for file: String in files:
+				# just in case there's a ".remap" in the path that's not at the end (although this should never be the case):
+				# get everything except the LAST file extension present
+				var resourceFilename: String = file.get_basename()
+				# if it doesn't have ".tres" at the end (only if being played in the editor): add it
+				if not resourceFilename.ends_with('.tres'):
+					resourceFilename += '.tres'
+				var codexEntry: CodexEntry = ResourceLoader.load(path + resourceFilename) as CodexEntry
 				if codexEntry != null:
 					codexEntries.append(codexEntry)
 				else:
-					printerr('Codex entry at ', path, file, ' loaded as null.')
+					printerr('Codex entry at ', path, resourceFilename, ' loaded as null.')
 	
 	return codexEntries
 
