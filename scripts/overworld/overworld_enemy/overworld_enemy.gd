@@ -37,7 +37,7 @@ func _ready():
 		get_next_patrol_target()
 
 func _process(delta):
-	if spawner != null and (PlayerFinder.player.global_position - global_position).length() > patrolRange:
+	if spawner != null and (PlayerFinder.player.global_position - global_position).length() > despawnRange:
 		spawner.delete_enemy()
 		return
 	

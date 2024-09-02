@@ -84,6 +84,7 @@ var minionsPanel: MinionsPanel = null
 @onready var tabbedViewEquipmentPanel: EquipmentPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel')
 @onready var tabbedViewMinionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
 @onready var tabbedViewBackButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
+@onready var tabbedViewMinionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 
 @onready var editMovesPanel: EditMovesPanel = get_node("StatsPanel/Panel/EditMovesPanel")
 
@@ -205,7 +206,7 @@ func load_stats_panel(fromToggle: bool = false):
 			minionsControl.name = minion.disp_name()
 		else:
 			minionsControl.name = 'Minions'
-		update_minions_tab_icon()
+		update_minions_tab()
 		#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
 	changingCombatant = false
 
@@ -235,13 +236,14 @@ func update_move_list_tab_icon():
 			moveListIcon = newMoveIndicator
 		tabbedViewContainer.set_tab_icon(TabbedViewTab.MOVES, moveListIcon)
 
-func update_minions_tab_icon():
+func update_minions_tab():
 	if isTabbedView:
 		var minionsTabIcon: Texture2D = null
 		var minionChanged: bool = false
 		var minionHasNewMoves: bool = false
 		var minionHasUnspentStatPts: bool = false
 		if minion == null:
+			tabbedViewMinionsControl.name = 'Minions'
 			for m: Combatant in PlayerResources.minions.get_minion_list():
 				if PlayerResources.minions.is_minion_marked_changed(m.save_name()):
 					minionChanged = true
@@ -251,10 +253,12 @@ func update_minions_tab_icon():
 				elif m.stats.statPts > 0:
 					minionHasUnspentStatPts = true
 		else:
-			if PlayerResources.minions.is_minion_marked_changed(minion.save_name()):
-				minionChanged = true
-			elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
-				minionHasNewMoves = true
+			tabbedViewMinionsControl.name = minion.disp_name()
+			# currently not showing any icons over the Minions tab
+			#if PlayerResources.minions.is_minion_marked_changed(minion.save_name()):
+			#	minionChanged = true
+			#elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
+			#	minionHasNewMoves = true
 			#elif minion.stats.statPts > 0:
 			#	minionHasUnspentStatPts = true
 			# unspent stat points are apparent on the Stats tab
@@ -320,7 +324,7 @@ func _on_minions_panel_changed_minion_hovered(combatant: Combatant) -> void:
 	if PlayerResources.minions.is_minion_marked_changed(combatant.save_name()):
 		PlayerResources.minions.clear_minion_changed(combatant.save_name())
 		if isTabbedView:
-			update_minions_tab_icon()
+			update_minions_tab()
 
 func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 	# the minion changed should never not be the minion being inspected, but just in case, do nothing

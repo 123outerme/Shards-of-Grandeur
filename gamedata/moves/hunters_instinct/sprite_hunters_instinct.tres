@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://df21fc00lafjj"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://df21fc00lafjj"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_r1x2g"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_alnhx"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_hhuvi"]
 [ext_resource type="SpriteFrames" uid="uid://b8ekepbd1jlj5" path="res://graphics/moves/no_element/a_hunters_instinct.tres" id="3_m6b6j"]
 
 [sub_resource type="Curve" id="Curve_ajegf"]
@@ -45,6 +46,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_hhuvi")
 
 [resource]
 script = ExtResource("2_alnhx")
