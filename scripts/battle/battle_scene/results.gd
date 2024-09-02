@@ -74,6 +74,9 @@ func _move_tween_finished():
 	moveTweenFinished = true
 	battleUI.battleController.battlefieldShade.lift_battlefield_shade()
 	shadeFinished = false
+	if okPressed and shadeFinished:
+		ignoreOkPressed = false
+		_on_ok_button_pressed(true)
 
 func _battlefield_shade_finished_fading() -> void:
 	shadeFinished = true

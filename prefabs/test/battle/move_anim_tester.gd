@@ -17,6 +17,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 
 var userNode: CombatantNode = null
 var shadeDown: bool = false
+var finishedMoving: bool = true
 var useItemAnimation: MoveAnimation = load('res://gamedata/items/use_item_animation.tres') as MoveAnimation
 
 func _ready():
@@ -36,6 +37,7 @@ func _on_button_pressed():
 	button.disabled = true
 	surgeChargeToggle.disabled = true
 	swapButton.disabled = true
+	finishedMoving = false
 	if itemSprite == null:
 		moveLearnAnimController.playAnimAfterLoad = true
 	moveLearnAnimController.load_move_learn_animation(playSurge)
@@ -48,17 +50,9 @@ func _on_button_pressed():
 		userNode.play_particles(useItemAnimation.userParticlePreset)
 		moveLearnAnimController.battlefieldShade.do_battlefield_shade_anim(useItemAnimation.chargeBattlefieldShade)
 		userNode.move_animation_callback(_use_item_anim_done)
-		combatant_finished_moving.emit(userNode)
 	
 func _use_item_anim_done(_combatantNode: CombatantNode) -> void:
 	moveLearnAnimController.battlefieldShade.lift_battlefield_shade()
-
-func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
-	shadeDown = moveLearnAnimController.battlefieldShade.color.a != 0
-	if not shadeDown:
-		button.disabled = false
-		surgeChargeToggle.disabled = false
-		swapButton.disabled = false
 
 func _on_swap_button_pressed():
 	if userNode == moveLearnAnimController.playerCombatantNode:
@@ -76,3 +70,17 @@ func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:
 	else:
 		surgeChargeToggle.text = 'Charge'
 	moveLearnAnimController.load_move_learn_animation(playSurge)
+
+func _on_move_learn_anim_control_combatant_finished_move_anim() -> void:
+	finishedMoving = true
+	partial_end_move_anim()
+
+func _on_move_learn_anim_control_battlefield_shade_finished_fading() -> void:
+	shadeDown = moveLearnAnimController.battlefieldShade.color.a != 0
+	partial_end_move_anim()
+
+func partial_end_move_anim():
+	if not shadeDown and finishedMoving:
+		button.disabled = false
+		surgeChargeToggle.disabled = false
+		swapButton.disabled = false

@@ -253,6 +253,7 @@ func play_animation(animationName: String):
 		await animatedSprite.animation_looped
 		await animatedSprite.animation_looped
 		animatedSprite.stop()
+		_on_animated_sprite_animation_finished()
 
 func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: bool):
 	if stopSpriteAnim:
@@ -337,6 +338,8 @@ func tween_back_to_return_pos():
 	if battleController != null:
 		# plays hit particles ONLY unless the combatant really is done
 		battleController.combatants_play_hit.emit(self)
+		if returnToPos != spriteContainer.global_position:
+			battleController.combatant_returning_to_rest.emit(self)
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, ((returnToPos - spriteContainer.global_position) / global_scale).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)

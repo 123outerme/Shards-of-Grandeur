@@ -1,6 +1,9 @@
 extends Control
 class_name MoveLearnAnimationController
 
+signal battlefield_shade_finished_fading
+signal combatant_finished_move_anim
+
 @export var move: Move = null
 @export var shard: Shard = null
 @export var takeDmgSfx: AudioStream = null
@@ -169,9 +172,9 @@ func play_move_animation(playSurge: bool = false) -> void:
 	
 	if move.moveAnimation.makesContact and contactGlobalPos != userNode.global_position:
 		userNode.tween_to(contactGlobalPos)
-		userNode.move_animation_callback(_on_combatant_finished_moving)
+		userNode.move_animation_callback(_on_move_anim_finish)
 	else:
-		userNode.move_animation_callback(_on_combatant_finished_moving)
+		userNode.move_animation_callback(_on_move_anim_finish)
 		mockBattleController.combatant_finished_moving.emit(userNode)
 
 func clean_up_animation() -> void:
@@ -186,5 +189,12 @@ func _on_mock_battle_controller_combatants_play_hit(_combatant: CombatantNode) -
 	if moveEffect.power > 0:
 		SceneLoader.audioHandler.play_sfx(takeDmgSfx)
 
-func _on_combatant_finished_moving(_combatant: CombatantNode = null) -> void:
+func _on_move_anim_finish(_combatant: CombatantNode = null) -> void:
 	battlefieldShade.lift_battlefield_shade()
+	combatant_finished_move_anim.emit()
+
+func _on_mock_battle_controller_combatant_returning_to_rest(combatant: CombatantNode) -> void:
+	battlefieldShade.lift_battlefield_shade()
+
+func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
+	battlefield_shade_finished_fading.emit()

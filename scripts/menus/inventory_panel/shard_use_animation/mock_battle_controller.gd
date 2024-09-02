@@ -1,6 +1,9 @@
 extends Node2D
 class_name MockBattleController
 
+## ## When the current-turn combatant is moving back to its "rest" position (initial battle pos) after moving towards some other location
+signal combatant_returning_to_rest(combatant: CombatantNode)
+
 ## When the current-turn combatant fully finishes its Move animation (including MoveSprites, combatant SpriteFrames, movement)
 signal combatant_finished_moving(combatant: CombatantNode)
 

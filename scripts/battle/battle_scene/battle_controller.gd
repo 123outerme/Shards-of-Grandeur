@@ -1,6 +1,9 @@
 extends Node2D
 class_name BattleController
 
+## When the current-turn combatant is moving back to its "rest" position (initial battle pos) after moving towards some other location
+signal combatant_returning_to_rest(combatant: CombatantNode)
+
 ## When the current-turn combatant fully finishes its Move animation (including MoveSprites, combatant SpriteFrames, movement)
 signal combatant_finished_moving(combatant: CombatantNode)
 
@@ -418,3 +421,6 @@ func _fade_out_finish() -> void:
 	await SceneLoader.audioHandler.music_fade_completed
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld('save')
+
+func _on_combatant_returning_to_rest(combatant: CombatantNode) -> void:
+	battlefieldShade.lift_battlefield_shade()

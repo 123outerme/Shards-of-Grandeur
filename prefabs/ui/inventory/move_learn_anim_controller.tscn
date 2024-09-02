@@ -46,9 +46,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 
-[node name="MockBattleController" type="Node2D" parent="BattleScene" node_paths=PackedStringArray("globalMarker")]
+[node name="MockBattleController" type="Node2D" parent="BattleScene" node_paths=PackedStringArray("globalMarker", "battlefieldShade")]
 script = ExtResource("3_1f5f0")
 globalMarker = NodePath("../GlobalMarker")
+battlefieldShade = NodePath("../BattlefieldBorder/BattlefieldShade")
 
 [node name="PlayerCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
 z_index = 1
@@ -196,6 +197,8 @@ color = Color(0, 0, 0, 0)
 script = ExtResource("6_nj6dh")
 battleController = NodePath("../../MockBattleController")
 
+[connection signal="battlefield_shade_finished_fading" from="BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_battlefield_shade_finished_fading"]
+[connection signal="combatant_returning_to_rest" from="BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_combatant_returning_to_rest"]
 [connection signal="combatants_play_hit" from="BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_combatants_play_hit"]
 
 [editable path="BattleScene/PlayerCombatantNode"]

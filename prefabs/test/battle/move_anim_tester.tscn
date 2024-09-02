@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://pn855kbbl8q7" path="res://gamedata/moves/sandblast/sandblast.tres" id="2_expqi"]
+[ext_resource type="Resource" uid="uid://o2esy2ry8yjk" path="res://gamedata/moves/jurassic_jaws/jurassic_jaws.tres" id="2_52c4b"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="3_eeiax"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_expqi")
+move = ExtResource("2_52c4b")
 targetCombatant = ExtResource("3_eeiax")
 moveCombatantsIfAlone = true
 
@@ -38,9 +38,6 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = -853.0
 offset_bottom = -320.0
-
-[node name="MockBattleController" parent="MoveLearnAnimControl/BattleScene" index="0" node_paths=PackedStringArray("battlefieldShade")]
-battlefieldShade = NodePath("../BattlefieldBorder/BattlefieldShade")
 
 [node name="PlayerCombatantNode" parent="MoveLearnAnimControl/BattleScene" index="1"]
 position = Vector2(142.667, 94)
@@ -109,7 +106,8 @@ offset_bottom = 77.0
 toggle_mode = true
 text = "Charge"
 
-[connection signal="battlefield_shade_finished_fading" from="MoveLearnAnimControl/BattleScene/MockBattleController" to="." method="_on_mock_battle_controller_battlefield_shade_finished_fading"]
+[connection signal="battlefield_shade_finished_fading" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_battlefield_shade_finished_fading"]
+[connection signal="combatant_finished_move_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_finished_move_anim"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
 [connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
