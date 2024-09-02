@@ -77,7 +77,7 @@ func apply_menu_state():
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \
-			or menuState == BattleState.Menu.POST_ROUND
+			or (menuState == BattleState.Menu.POST_ROUND and battleController.turnExecutor.result == WinCon.TurnResult.NOTHING)
 	if results.visible:
 		# toggle the Flow of Battle button based on if the battle is starting/round is starting or ending
 		battlePanels.flowOfBattle.set_fob_button_enabled(menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.POST_ROUND)
@@ -91,8 +91,11 @@ func apply_menu_state():
 		battleController.turnExecutor.update_turn_text()
 		return # returns specifically here because of skipping post-round text
 		
-	battleComplete.visible = menuState == BattleState.Menu.BATTLE_COMPLETE
+	battleComplete.visible = menuState == BattleState.Menu.BATTLE_COMPLETE or \
+		(menuState == BattleState.Menu.POST_ROUND and battleController.turnExecutor.result != WinCon.TurnResult.NOTHING)
 	if battleComplete.visible:
+		if menuState == BattleState.Menu.POST_ROUND:
+			menuState = BattleState.Menu.BATTLE_COMPLETE
 		battleComplete.playerWins = playerWins
 		battleComplete.playerEscapes = escapes
 		battleComplete.rewards = battleController.state.rewards
