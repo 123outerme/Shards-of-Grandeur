@@ -202,16 +202,16 @@ func update_turn_text() -> bool:
 					# play recoil dmg effect
 					if combatantNode.combatant in battleController.state.statusEffDamagedCombatants:
 						# link the damaged combatant to the attacking combatant
-						combatantNode.hittingCombatant = userNode
+						#combatantNode.hittingCombatant = userNode
 						combatantNode.play_particles(BattleCommand.get_hit_particles(), true, 0.5)
 					for preset in particlePresets:
 						# skip null presets
 						if preset == null:
 							continue
 						# if this is a "hit" particle effect and the particles will be delayed:
-						if preset.emitter == 'hit' and combatantNode != userNode:
+						#if preset.emitter == 'hit' and combatantNode != userNode:
 							# link the damaged combatant to the attacking combatant
-							combatantNode.hittingCombatant = userNode
+						#	combatantNode.hittingCombatant = userNode
 						combatantNode.play_particles(preset, combatantNode != userNode)
 					# if there's only one target:
 					if len(combatant.command.targets) == 1:

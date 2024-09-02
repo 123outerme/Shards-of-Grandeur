@@ -422,5 +422,5 @@ func _fade_out_finish() -> void:
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld('save')
 
-func _on_combatant_returning_to_rest(combatant: CombatantNode) -> void:
+func _on_combatant_returning_to_rest(_combatant: CombatantNode) -> void:
 	battlefieldShade.lift_battlefield_shade()

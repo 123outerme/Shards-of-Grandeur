@@ -50,7 +50,6 @@ var returnToPos: Vector2 = Vector2()
 var playHitQueued: ParticlePreset = null
 var playHitTimingDelay: float = 0
 var playHitEnabled: bool = false
-var hittingCombatant: CombatantNode = null
 var playParticlesQueued: ParticlePreset = null
 var playParticlesTimingDelay: float = 0
 var playMoveSpritesQueued: Array[MoveAnimSprite] = []
@@ -814,18 +813,17 @@ func _combatant_finished_moving(_combatant: CombatantNode):
 	if playHitQueued != null:
 		playHitEnabled = true
 
-func _combatants_play_hit(combatant: CombatantNode):
+func _combatants_play_hit(cNode: CombatantNode):
 	# if the hit is queued, enabled, and the combatant emitting this event is the combatant to add the hit particles:
 	# (using `hittingCombatant` fixes an issue where the hit particles would play early when queueing/frame perfect on turn advance)
-	if playHitQueued != null and playHitEnabled and combatant == hittingCombatant:
+	if playHitQueued != null and playHitEnabled:
 		update_hp_tag()
 		make_particles_now(playHitQueued, playHitTimingDelay)
 		playHitQueued = null
 		playHitEnabled = false
-		hittingCombatant = null
 
-func _combatant_finished_animating(combatant: CombatantNode):
-	_combatants_play_hit(combatant)
+func _combatant_finished_animating(cNode: CombatantNode):
+	_combatants_play_hit(cNode)
 	if moveSpritesCallback != Callable() and animateTween == null and playedMoveSprites == 0:
 		moveSpritesCallback.call()
 		moveSpritesCallback = Callable()

@@ -41,11 +41,11 @@ func lift_battlefield_shade(callback: Callable = Callable()) -> void:
 		await get_tree().process_frame
 		battleController.battlefield_shade_finished_fading.emit() # nothing to do so it's already done
 
-func modulate_battlefield_shade_to(color: Color, secs: float = 0.5, callback: Callable = Callable()):
+func modulate_battlefield_shade_to(shadeColor: Color, secs: float = 0.5, callback: Callable = Callable()):
 	if battlefieldShadeTween != null and battlefieldShadeTween.is_valid():
 		battlefieldShadeTween.kill()
 	battlefieldShadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	battlefieldShadeTween.tween_property(self, 'color', color, secs)
+	battlefieldShadeTween.tween_property(self, 'color', shadeColor, secs)
 	if callback != Callable():
 		battlefieldShadeTween.finished.connect(callback)
 	battlefieldShadeTween.finished.connect(_battlefield_shade_mod_finish)
