@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://dnae6ev3pc2ll"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://dnae6ev3pc2ll"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_i18cr"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_5j4bb"]
+[ext_resource type="Resource" uid="uid://c071kbkh2ahdn" path="res://gamedata/moves/purify/sprite_purify.tres" id="2_pn5sd"]
+[ext_resource type="Resource" uid="uid://dij1f0d3luipn" path="res://gamedata/moves/purify/particles_purify.tres" id="4_6xykv"]
 
 [resource]
 script = ExtResource("2_5j4bb")
 combatantAnimation = "attack_affinity"
 makesContact = true
-chargeMoveSprites = Array[ExtResource("1_i18cr")]([])
-surgeMoveSprites = Array[ExtResource("1_i18cr")]([])
+userParticlePreset = ExtResource("4_6xykv")
+chargeMoveSprites = Array[ExtResource("1_i18cr")]([ExtResource("2_pn5sd")])
+surgeMoveSprites = Array[ExtResource("1_i18cr")]([ExtResource("2_pn5sd")])

@@ -189,7 +189,8 @@ func update_turn_text() -> bool:
 			var moveEffect: MoveEffect = null
 			if combatant.command.move != null:
 				moveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
-			var moveToPos = userNode.global_position # fallback: self (no movement)
+			var moveToPos: Vector2 = userNode.global_position # fallback: self (no movement)
+			var moveToCombatantNode: CombatantNode = userNode
 			var multiIsAllies: bool = false
 			var multiIsEnemies: bool = false
 			if combatant.command.moveEffectType == Move.MoveEffectType.SURGE:
@@ -222,11 +223,14 @@ func update_turn_text() -> bool:
 							if combatantNode.role == userNode.role:
 								if combatantNode.combatant == userNode.combatant:
 									moveToPos = userNode.global_position # self position
+									moveToCombatantNode = userNode
 								else:
 									moveToPos = combatantNode.onAssistMarker.global_position # ally assist position
+									moveToCombatantNode = combatantNode
 							else:
 								# the combatant is an enemy
 								moveToPos = combatantNode.onAttackMarker.global_position
+								moveToCombatantNode = combatantNode
 					elif combatantNode.combatant in defenders:
 						battleController.set_combatant_above_shade(combatantNode)
 						# if this combatant is an ally
@@ -247,10 +251,13 @@ func update_turn_text() -> bool:
 				# if targeting both allies and enemies
 				if multiIsAllies and multiIsEnemies:
 					moveToPos = battleController.globalMarker.global_position # use global move pos
+					moveToCombatantNode = null
 				elif multiIsAllies:
 					moveToPos = userNode.allyTeamMarker.global_position # use ally team pos
+					moveToCombatantNode = null
 				else:
 					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
+					moveToCombatantNode = null
 			
 			battleController.battlefieldShade.do_battlefield_shade_anim(battlefieldShade)
 			#battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
@@ -260,7 +267,7 @@ func update_turn_text() -> bool:
 					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
 				# if it's a non-contact move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
 				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
-				userNode.tween_to(moveToPos) # tween
+				userNode.tween_to(moveToPos, moveToCombatantNode) # tween
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			else:
 				userNode.move_animation_callback(battleUI.results._move_tween_finished)

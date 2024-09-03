@@ -171,7 +171,10 @@ func play_move_animation(playSurge: bool = false) -> void:
 		battlefieldShade.do_battlefield_shade_anim(shadeAnim)
 	
 	if move.moveAnimation.makesContact and contactGlobalPos != userNode.global_position:
-		userNode.tween_to(contactGlobalPos)
+		var tweenToNode: CombatantNode = null
+		if len(targetCombatantNodes) == 1:
+			tweenToNode = targetCombatantNodes[0]
+		userNode.tween_to(contactGlobalPos, tweenToNode)
 		userNode.move_animation_callback(_on_move_anim_finish)
 	else:
 		userNode.move_animation_callback(_on_move_anim_finish)
