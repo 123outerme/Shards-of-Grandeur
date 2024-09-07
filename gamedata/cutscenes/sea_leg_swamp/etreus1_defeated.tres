@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=62 format=3 uid="uid://bd6gwmbcvsaby"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=67 format=3 uid="uid://bd6gwmbcvsaby"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_hl1w8"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="2_4c03b"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="7_koady"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="8_wxse1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="9_g24ck"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_color.gd" id="9_xjwoj"]
 [ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="10_h5sgx"]
 
 [sub_resource type="Resource" id="Resource_563lh"]
@@ -247,11 +248,29 @@ actorTreePath = "TilemapRoot/Etreus"
 isPlayer = false
 animation = "attack_magic"
 
+[sub_resource type="Resource" id="Resource_dvgrk"]
+script = ExtResource("9_xjwoj")
+value = Color(0, 0.556863, 1, 1)
+actorTreePath = ""
+isPlayer = true
+propertyName = "sprite_modulate"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_h2ktp"]
+script = ExtResource("9_xjwoj")
+value = Color(0, 0.556863, 1, 1)
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+propertyName = "sprite_modulate"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_ksm7p"]
 script = ExtResource("4_lo87u")
 frameLength = 2.0
 annotation = "Etreus casts a spell disabling your teleport stones"
-actorTweens = Array[ExtResource("5_hxjd6")]([])
+actorTweens = Array[ExtResource("5_hxjd6")]([SubResource("Resource_dvgrk"), SubResource("Resource_h2ktp")])
 actorAnims = Array[ExtResource("1_hl1w8")]([SubResource("Resource_jici4")])
 actorAnimSets = Array[ExtResource("2_tulr5")]([])
 actorFaceTargets = Array[ExtResource("2_4c03b")]([])
@@ -270,11 +289,29 @@ actorTreePath = "TilemapRoot/Etreus"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_8hvnd"]
+script = ExtResource("9_xjwoj")
+value = Color(1, 1, 1, 1)
+actorTreePath = ""
+isPlayer = true
+propertyName = "sprite_modulate"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_2pw7b"]
+script = ExtResource("9_xjwoj")
+value = Color(1, 1, 1, 1)
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+propertyName = "sprite_modulate"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_o184r"]
 script = ExtResource("4_lo87u")
 frameLength = 0.5
 annotation = "Wait for a beat and make Etreus stand again"
-actorTweens = Array[ExtResource("5_hxjd6")]([])
+actorTweens = Array[ExtResource("5_hxjd6")]([SubResource("Resource_8hvnd"), SubResource("Resource_2pw7b")])
 actorAnims = Array[ExtResource("1_hl1w8")]([SubResource("Resource_bbamn")])
 actorAnimSets = Array[ExtResource("2_tulr5")]([])
 actorFaceTargets = Array[ExtResource("2_4c03b")]([])

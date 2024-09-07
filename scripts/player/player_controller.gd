@@ -53,6 +53,15 @@ var useTeleportStone: TeleportStone = null
 var stepSfxTimer: float = BASE_STEP_SFX_COOLDOWN
 var lastStepIdx: int = -1
 
+var sprite_modulate: Color:
+	get:
+		if sprite == null:
+			return Color()
+		return sprite.self_modulate
+	set(c):
+		if sprite != null:
+			sprite.self_modulate = c
+
 func _unhandled_input(event):
 	if cam.fadedOrFadingOut:
 		# if the game is faded out or is fading out, prevent any input

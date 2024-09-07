@@ -187,9 +187,17 @@ func _on_confirm_button_pressed():
 	minion.nickname = nameInput.text
 	end_edit_name()
 	minion_renamed.emit()
+	if virtualKeyboard.visible:
+		# like calling hide_keyboard(), but without emitting an event that causes the keyboard to cancel the edit again
+		virtualKeyboard.visible = false
+		virtualKeyboard.reset_keyboard_state()
 
 func _on_cancel_button_pressed():
 	nameInput.text = minion.nickname
+	if virtualKeyboard.visible:
+		# like calling hide_keyboard(), but without emitting an event that causes the keyboard to cancel the edit again
+		virtualKeyboard.visible = false
+		virtualKeyboard.reset_keyboard_state()
 	end_edit_name()
 
 func end_edit_name(refocus: bool = true):

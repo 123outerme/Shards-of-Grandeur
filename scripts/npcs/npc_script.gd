@@ -77,6 +77,16 @@ var flip_h: bool:
 	set(value):
 		_set_flip_h(value)
 
+
+var sprite_modulate: Color:
+	get:
+		if npcSprite == null:
+			return Color()
+		return npcSprite.self_modulate
+	set(c):
+		if npcSprite != null:
+			npcSprite.self_modulate = c
+
 var initialTalkAlertSprPos: Vector2 = Vector2()
 var initialTalkAreaPos: Vector2 = Vector2()
 var initialTalkAreaShapePos: Vector2 = Vector2()

@@ -107,6 +107,7 @@ grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
 [node name="Shade" type="Control" parent="Camera"]
+visible = false
 z_index = 3
 z_as_relative = false
 layout_mode = 3
@@ -188,6 +189,7 @@ input_pickable = false
 
 [node name="EventColliderShape" type="CollisionShape2D" parent="PlayerEventCollider"]
 shape = SubResource("RectangleShape2D_6lcm7")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="UI" type="Node2D" parent="."]
 z_index = 3
