@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://b8alvl0hkt5hu"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_64gef"]
+[ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity/affinity_1.png" id="1_tmje0"]
+[ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity/affinity_2.png" id="2_85l1x"]
+[ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity/affinity_3.png" id="3_vph1y"]
+[ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity/affinity_4.png" id="4_2s3u6"]
+[ext_resource type="Material" uid="uid://cmgju7tomrdh0" path="res://gamedata/moves/commune/commune_particles.tres" id="5_aft4l"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="6_x0xn6"]
+
+[resource]
+script = ExtResource("1_64gef")
+emitter = "behind"
+count = 4
+lifetime = 0.75
+duration = 2.0
+staggered = true
+processMaterial = ExtResource("5_aft4l")
+particleTextures = Array[Texture2D]([ExtResource("1_tmje0"), ExtResource("2_85l1x"), ExtResource("3_vph1y"), ExtResource("4_2s3u6")])
+sfx = ExtResource("6_x0xn6")
