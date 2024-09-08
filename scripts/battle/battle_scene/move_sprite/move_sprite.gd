@@ -79,6 +79,13 @@ func load_frame():
 	if not user.leftSide:
 		offsetPos.x *= -1
 	targetPos = get_sprite_target_position(sprFrame.relativeTo, sprFrame.offset) + offsetPos
+	''' if the sprite is not centered (origin is at top-left instead of center) and anim is to be flipped: set the position to essentially take into account that it should be the top-right
+	if not anim.centerSprite and not user.leftSide and sprFrame.relativeTo != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
+		targetPos.x -= anim.maxSize.x
+		# theoretically flipping a sprite to be right-side should work, but this isn't working so I give up for now
+		# I think this requires a distinction in the MoveSprite scene; the rotation should be applied to the sprite itself, the translation to the whole node
+		# And maybe even separate this translation to be a node in the scene tree that parents the sprite
+	#'''
 	calc_rotation(sprFrame)
 	
 	if sprFrame.particles != null:
@@ -127,6 +134,7 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	#var scaleNode: CombatantNode = target if get_last_defined_target() == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
 	#particleEmitter.scale.x = scaleNode.get_in_front_particle_scale()
 	particleEmitter.scale.y = particleEmitter.scale.x
+	
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
@@ -145,6 +153,10 @@ func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 		if not user.leftSide:
 			rotateOffsetPos.x *= -1
 		var rotateTargetPos: Vector2 = get_sprite_target_position(sprFrame.rotateToFace, sprFrame.rotateToFaceOffset) + rotateOffsetPos
+		# adjust the target Y if the sprite isn't centered (still rotate to the center of the sprite)
+		if not anim.centerSprite and sprFrame.relativeTo != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
+			rotateTargetPos.y -= anim.maxSize.y / 2.0
+		
 		if (rotateTargetPos - global_position).length() >= 1:
 			look_at(rotateTargetPos)
 			if not user.leftSide: # already "rotating" 180 degrees to satisfy sprite rotation, so rotate it back a little

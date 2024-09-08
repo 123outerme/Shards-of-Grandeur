@@ -299,13 +299,22 @@ func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
 		if targetCombatantNode.combatant.get_idle_size().y > combatant.get_idle_size().y:
 			yLargestCombatant = targetCombatantNode.combatant
 	
-	if xLargestCombatant.get_idle_size().x > 16:
+	var shiftX: bool = false
+	var shiftY: bool = false
+	var diffX: bool = (pos.x - global_position.x)
+	var diffY: bool = (pos.y - global_position.y)
+	if diffX > diffY:
+		shiftX = true
+	elif diffY < diffX:
+		shiftY = true
+	
+	if xLargestCombatant.get_idle_size().x > 16 and shiftX:
 		if pos.x > global_position.x:
 			pos.x -= (xLargestCombatant.get_idle_size().x - 16) / 2
 		else:
 			pos.x += (xLargestCombatant.get_idle_size().x - 16) / 2
 	
-	if yLargestCombatant.get_idle_size().y > 16:
+	if yLargestCombatant.get_idle_size().y > 16 and shiftY:
 		if pos.y > global_position.y:
 			pos.y -= (yLargestCombatant.get_idle_size().y - 16) / 2
 		else:
