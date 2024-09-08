@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
 
-[sub_resource type="Resource" id="Resource_uqqdc"]
+[sub_resource type="Resource" id="Resource_btbmp"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 spriteState = "default"
@@ -56,7 +56,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_ghm8f"]
+[sub_resource type="Resource" id="Resource_ka1ny"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 spriteState = "default"
@@ -96,7 +96,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_7vpn0"]
+[sub_resource type="Resource" id="Resource_j8isb"]
 script = ExtResource("4_ky67y")
 saveName = "npc"
 spriteState = "default"
@@ -159,7 +159,7 @@ tile_set = ExtResource("2_bad68")
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-data = SubResource("Resource_uqqdc")
+data = SubResource("Resource_btbmp")
 dialogueEntries = Array[ExtResource("5_1hs1o")]([ExtResource("4_imxxv"), ExtResource("4_38wkq"), ExtResource("5_hlk4r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Innkeeper" index="0"]
@@ -188,7 +188,7 @@ position = Vector2(40, -86)
 displayName = "Spelunker"
 saveName = "spelunker_inn"
 spawnRequirements = SubResource("Resource_05tf0")
-data = SubResource("Resource_ghm8f")
+data = SubResource("Resource_ka1ny")
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
 sprite_frames = ExtResource("8_axpn3")
@@ -215,7 +215,7 @@ position = Vector2(-6, -61)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_inn"
 spawnRequirements = SubResource("Resource_b7ibc")
-data = SubResource("Resource_7vpn0")
+data = SubResource("Resource_j8isb")
 dialogueEntries = Array[ExtResource("5_1hs1o")]([ExtResource("8_qm568"), ExtResource("9_460im")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://br6ljc44v1wlc"]
+
+[ext_resource type="Texture2D" uid="uid://cqbc4t7b7hg58" path="res://graphics/particles/water/ice_1.png" id="1_q1o1s"]
+[ext_resource type="Texture2D" uid="uid://bs6mahpieyhkw" path="res://graphics/particles/water/ice_2.png" id="2_qbe0r"]
+[ext_resource type="Texture2D" uid="uid://ccl4dcdgdvq75" path="res://graphics/particles/water/ice_3.png" id="3_tcdxn"]
+[ext_resource type="Texture2D" uid="uid://cur4mjy3ev262" path="res://graphics/particles/water/ice_4.png" id="4_2a7fr"]
+[ext_resource type="Material" uid="uid://cyhss7hbkoma5" path="res://gamedata/moves/freeze_ray/freeze_ray_particles_surge.tres" id="5_xcxoo"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_1e2jh"]
+[ext_resource type="AudioStream" uid="uid://cofxdnt7itu0p" path="res://audio/sfx/coin.ogg" id="7_3c0ev"]
+
+[resource]
+script = ExtResource("6_1e2jh")
+emitter = "behind"
+count = 4
+lifetime = 0.76
+duration = 0.75
+staggered = false
+processMaterial = ExtResource("5_xcxoo")
+particleTextures = Array[Texture2D]([ExtResource("1_q1o1s"), ExtResource("2_qbe0r"), ExtResource("3_tcdxn"), ExtResource("4_2a7fr")])
+sfx = ExtResource("7_3c0ev")

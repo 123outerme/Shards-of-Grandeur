@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://drrdlog14umhu"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_jeat6"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_lyr7c"]
+[ext_resource type="Resource" uid="uid://br6ljc44v1wlc" path="res://gamedata/moves/freeze_ray/particles_freeze_ray_surge.tres" id="2_y7wl4"]
+[ext_resource type="SpriteFrames" uid="uid://ddmmniehi8lm1" path="res://graphics/moves/water/a_freeze_ray.tres" id="3_ola31"]
+
+[sub_resource type="Curve" id="Curve_nfv4o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_h0sxs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_h2wxs"]
+script = ExtResource("1_jeat6")
+annotation = "start position at opponent"
+animation = "default"
+duration = 1.1
+speed = 1.0
+opacity = 1.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 4
+xCurve = SubResource("Curve_nfv4o")
+yCurve = SubResource("Curve_h0sxs")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_43wfj"]
+script = ExtResource("1_jeat6")
+annotation = "start playing ice block anim"
+animation = "freeze_ray_ice_block"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_2qrhr"]
+script = ExtResource("1_jeat6")
+annotation = "play particles when the block shatters"
+animation = ""
+duration = 0.75
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_y7wl4")
+
+[resource]
+script = ExtResource("2_lyr7c")
+spriteFrames = ExtResource("3_ola31")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_jeat6")]([SubResource("Resource_h2wxs"), SubResource("Resource_43wfj"), SubResource("Resource_2qrhr")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
