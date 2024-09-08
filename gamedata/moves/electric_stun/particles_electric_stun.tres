@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://de4j4qdb5uval"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_3o03v"]
+[ext_resource type="Texture2D" uid="uid://c1d3si87dh4n5" path="res://graphics/particles/lightning/lightning_1.png" id="1_gv77y"]
+[ext_resource type="Texture2D" uid="uid://crmbhmtsbhyh5" path="res://graphics/particles/lightning/lightning_2.png" id="2_3jp62"]
+[ext_resource type="Texture2D" uid="uid://bh0nrgy71xck6" path="res://graphics/particles/lightning/lightning_3.png" id="3_kmakh"]
+[ext_resource type="Texture2D" uid="uid://cmq5dj23vfpre" path="res://graphics/particles/lightning/lightning_4.png" id="4_8k16m"]
+[ext_resource type="Material" uid="uid://bi1ovlqa68tuv" path="res://gamedata/moves/electric_stun/electric_stun_particles.tres" id="5_rn7et"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="7_5lqpt"]
+
+[resource]
+script = ExtResource("1_3o03v")
+emitter = "behind"
+count = 3
+lifetime = 0.63
+duration = 0.625
+staggered = false
+processMaterial = ExtResource("5_rn7et")
+particleTextures = Array[Texture2D]([ExtResource("1_gv77y"), ExtResource("2_3jp62"), ExtResource("3_kmakh"), ExtResource("4_8k16m")])
+sfx = ExtResource("7_5lqpt")

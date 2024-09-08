@@ -290,12 +290,12 @@ func get_auto_reposition_tween_time(animationName: String) -> float:
 	return get_total_anim_time(animationName) * 0.5
 
 func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
-	var xLargestCombatant: Combatant = combatant
+	#var xLargestCombatant: Combatant = combatant
 	var yLargestCombatant: Combatant = combatant
 	
 	if targetCombatantNode != null:
-		if targetCombatantNode.combatant.get_idle_size().x > combatant.get_idle_size().x:
-			xLargestCombatant = targetCombatantNode.combatant
+		#if targetCombatantNode.combatant.get_idle_size().x > combatant.get_idle_size().x:
+		#	xLargestCombatant = targetCombatantNode.combatant
 		if targetCombatantNode.combatant.get_idle_size().y > combatant.get_idle_size().y:
 			yLargestCombatant = targetCombatantNode.combatant
 	
@@ -305,11 +305,11 @@ func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
 	var diffX: bool = (pos.x - global_position.x)
 	var diffY: bool = (pos.y - global_position.y)
 	
-	if xLargestCombatant.get_idle_size().x > 16 and diffX > diffY:
+	if combatant.get_idle_size().x > 16 and diffX > diffY:
 		if pos.x > global_position.x:
-			pos.x -= (xLargestCombatant.get_idle_size().x - 16) / 2
+			pos.x -= (combatant.get_idle_size().x - 16) / 2
 		else:
-			pos.x += (xLargestCombatant.get_idle_size().x - 16) / 2
+			pos.x += (combatant.get_idle_size().x - 16) / 2
 	
 	if yLargestCombatant.get_idle_size().y > 16 and diffX < diffY:
 		if pos.y > global_position.y:

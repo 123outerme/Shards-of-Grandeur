@@ -1,0 +1,75 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://p1uvxmhhbn30"]
+
+[ext_resource type="Texture2D" uid="uid://c0kpeygbeu352" path="res://graphics/moves/lightning/electric_stun/electric_stun.png" id="1_i7m8i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybxdc"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkd8d"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fksk2"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghjka"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbfdf"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgll8"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kakgh"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtgg0"]
+atlas = ExtResource("1_i7m8i")
+region = Rect2(112, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybxdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkd8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fksk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghjka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbfdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgll8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kakgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtgg0")
+}],
+"loop": false,
+"name": &"electric_stun",
+"speed": 8.0
+}]
