@@ -302,10 +302,10 @@ func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
 	# if the greater distance to move is horizontal, then only affect the horizontal target position
 	# otherwise if the greater distance is vertical, then only affect vertical
 	# (generally combatants approach from the top/bottom when that y is a longer distance than x, and vice versa)
-	var diffX: bool = (pos.x - global_position.x)
-	var diffY: bool = (pos.y - global_position.y)
+	var diffX: bool = abs(pos.x - global_position.x)
+	var diffY: bool = abs(pos.y - global_position.y)
 	
-	if combatant.get_idle_size().x > 16 and diffX > diffY:
+	if combatant.get_idle_size().x > 16:
 		if pos.x > global_position.x:
 			pos.x -= (combatant.get_idle_size().x - 16) / 2
 		else:
