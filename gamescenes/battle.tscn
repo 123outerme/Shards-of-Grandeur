@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=34 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
-[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_fgh53"]
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade.gd" id="3_qj4j6"]
+[ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_nd8f1"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="5_3llq4"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/all_commands.gd" id="6_60wgx"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_gcm1q"]
@@ -39,125 +38,24 @@ bg_color = Color(0, 0, 0, 0.686275)
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("globalMarker") groups=["Persist", "Scenes"]]
 script = ExtResource("1_b2bd7")
-globalMarker = NodePath("CombatantGroup/GlobalMarker")
+globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 metadata/_edit_horizontal_guides_ = [-94.0]
 
-[node name="CombatantGroup" type="Node2D" parent="."]
+[node name="BattleAnimationManager" parent="." instance=ExtResource("2_nd8f1")]
 
-[node name="GlobalMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(-5, -27)
-gizmo_extents = 5.0
-metadata/_edit_lock_ = true
-
-[node name="PlayerTeamMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(-19, -26)
-gizmo_extents = 5.0
-metadata/_edit_lock_ = true
-
-[node name="EnemyTeamMarker" type="Marker2D" parent="CombatantGroup"]
-position = Vector2(9, -28)
-gizmo_extents = 5.0
-metadata/_edit_lock_ = true
-
-[node name="PlayerCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") groups=["BattleCombatantNode"] instance=ExtResource("2_fgh53")]
-z_index = 1
-position = Vector2(-44, -5)
-leftSide = true
-battlePosition = "You"
-allyTeamMarker = NodePath("../PlayerTeamMarker")
-enemyTeamMarker = NodePath("../EnemyTeamMarker")
+[node name="PlayerCombatant" parent="BattleAnimationManager" index="3" node_paths=PackedStringArray("battleController")]
 battleController = NodePath("../..")
 
-[node name="SelectCombatantBtn" parent="CombatantGroup/PlayerCombatant" index="0"]
-focus_neighbor_left = NodePath(".")
-
-[node name="OnAttackPos" parent="CombatantGroup/PlayerCombatant" index="3"]
-position = Vector2(16, 0)
-
-[node name="OnAssistPos" parent="CombatantGroup/PlayerCombatant" index="4"]
-position = Vector2(-4, -16)
-
-[node name="MinionCombatant" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") groups=["BattleCombatantNode"] instance=ExtResource("2_fgh53")]
-z_index = 1
-position = Vector2(-60, -41)
-leftSide = true
-battlePosition = "Ally"
-allyTeamMarker = NodePath("../PlayerTeamMarker")
-enemyTeamMarker = NodePath("../EnemyTeamMarker")
+[node name="MinionCombatant" parent="BattleAnimationManager" index="4" node_paths=PackedStringArray("battleController")]
 battleController = NodePath("../..")
 
-[node name="SelectCombatantBtn" parent="CombatantGroup/MinionCombatant" index="0"]
-focus_neighbor_left = NodePath(".")
-
-[node name="OnAttackPos" parent="CombatantGroup/MinionCombatant" index="3"]
-position = Vector2(16, 0)
-
-[node name="OnAssistPos" parent="CombatantGroup/MinionCombatant" index="4"]
-position = Vector2(4, 16)
-
-[node name="EnemyCombatant1" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") groups=["BattleCombatantNode"] instance=ExtResource("2_fgh53")]
-z_index = 1
-position = Vector2(36, -28)
-battlePosition = "Center"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../PlayerTeamMarker")
+[node name="EnemyCombatant1" parent="BattleAnimationManager" index="5" node_paths=PackedStringArray("battleController")]
 battleController = NodePath("../..")
-metadata/_edit_lock_ = true
 
-[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant1" index="0"]
-focus_neighbor_right = NodePath(".")
-
-[node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant1" index="3"]
-position = Vector2(-16, 0)
-
-[node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant1" index="4"]
-position = Vector2(16, 0)
-
-[node name="EnemyCombatant2" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") groups=["BattleCombatantNode"] instance=ExtResource("2_fgh53")]
-z_index = 1
-position = Vector2(52, -59)
-battlePosition = "Top"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../PlayerTeamMarker")
+[node name="EnemyCombatant2" parent="BattleAnimationManager" index="6" node_paths=PackedStringArray("battleController")]
 battleController = NodePath("../..")
-metadata/_edit_lock_ = true
 
-[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant2" index="0"]
-focus_neighbor_right = NodePath(".")
-
-[node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant2" index="3"]
-position = Vector2(-16, 0)
-
-[node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant2" index="4"]
-position = Vector2(0, 16)
-
-[node name="EnemyCombatant3" parent="CombatantGroup" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") groups=["BattleCombatantNode"] instance=ExtResource("2_fgh53")]
-z_index = 1
-position = Vector2(68, 1)
-battlePosition = "Bottom"
-allyTeamMarker = NodePath("../EnemyTeamMarker")
-enemyTeamMarker = NodePath("../PlayerTeamMarker")
-battleController = NodePath("../..")
-metadata/_edit_lock_ = true
-
-[node name="SelectCombatantBtn" parent="CombatantGroup/EnemyCombatant3" index="0"]
-focus_neighbor_right = NodePath(".")
-
-[node name="OnAttackPos" parent="CombatantGroup/EnemyCombatant3" index="3"]
-position = Vector2(-16, 0)
-
-[node name="OnAssistPos" parent="CombatantGroup/EnemyCombatant3" index="4"]
-position = Vector2(0, -16)
-
-[node name="BattlefieldShade" type="ColorRect" parent="CombatantGroup" node_paths=PackedStringArray("battleController")]
-z_index = 1
-offset_left = -160.0
-offset_top = -98.0
-offset_right = 160.0
-offset_bottom = 82.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-script = ExtResource("3_qj4j6")
+[node name="EnemyCombatant3" parent="BattleAnimationManager" index="7" node_paths=PackedStringArray("battleController")]
 battleController = NodePath("../..")
 
 [node name="TileMapParent" type="Node2D" parent="."]
@@ -1005,7 +903,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="combatant_returning_to_rest" from="." to="." method="_on_combatant_returning_to_rest"]
+[connection signal="turn_animation_complete" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_turn_animation_complete"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/ChargeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_charge_moves_button_pressed"]
@@ -1039,18 +937,19 @@ color = Color(0, 0, 0, 1)
 [connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]
 
-[editable path="CombatantGroup/PlayerCombatant"]
-[editable path="CombatantGroup/PlayerCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="CombatantGroup/PlayerCombatant/HPTag/OrbDisplay"]
-[editable path="CombatantGroup/MinionCombatant"]
-[editable path="CombatantGroup/MinionCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="CombatantGroup/MinionCombatant/HPTag/OrbDisplay"]
-[editable path="CombatantGroup/EnemyCombatant1"]
-[editable path="CombatantGroup/EnemyCombatant1/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="CombatantGroup/EnemyCombatant1/HPTag/OrbDisplay"]
-[editable path="CombatantGroup/EnemyCombatant2"]
-[editable path="CombatantGroup/EnemyCombatant2/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="CombatantGroup/EnemyCombatant2/HPTag/OrbDisplay"]
-[editable path="CombatantGroup/EnemyCombatant3"]
-[editable path="CombatantGroup/EnemyCombatant3/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="CombatantGroup/EnemyCombatant3/HPTag/OrbDisplay"]
+[editable path="BattleAnimationManager"]
+[editable path="BattleAnimationManager/PlayerCombatant"]
+[editable path="BattleAnimationManager/PlayerCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleAnimationManager/PlayerCombatant/HPTag/OrbDisplay"]
+[editable path="BattleAnimationManager/MinionCombatant"]
+[editable path="BattleAnimationManager/MinionCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleAnimationManager/MinionCombatant/HPTag/OrbDisplay"]
+[editable path="BattleAnimationManager/EnemyCombatant1"]
+[editable path="BattleAnimationManager/EnemyCombatant1/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleAnimationManager/EnemyCombatant1/HPTag/OrbDisplay"]
+[editable path="BattleAnimationManager/EnemyCombatant2"]
+[editable path="BattleAnimationManager/EnemyCombatant2/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleAnimationManager/EnemyCombatant2/HPTag/OrbDisplay"]
+[editable path="BattleAnimationManager/EnemyCombatant3"]
+[editable path="BattleAnimationManager/EnemyCombatant3/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
+[editable path="BattleAnimationManager/EnemyCombatant3/HPTag/OrbDisplay"]

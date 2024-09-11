@@ -124,7 +124,6 @@ func update_turn_text() -> bool:
 					break
 	
 	if battleUI.menuState == BattleState.Menu.RESULTS:
-		battleUI.battleController.reset_all_combatants_shade_z_indices()
 		var combatant: Combatant = turnQueue.peek_next()
 		var defenders: Array[Combatant] = []
 		if combatant != null:
@@ -158,120 +157,12 @@ func update_turn_text() -> bool:
 									text += ' ' + afterDmgText
 
 		var userNode: CombatantNode = null
-		var defenderNodes: Array[CombatantNode] = []
-		var targetNodes: Array[CombatantNode] = []
 		for combatantNode: CombatantNode in allCombatantNodes:
 			if combatantNode.combatant == combatant:
-				combatantNode.play_animation(combatant.command.get_command_animation())
 				userNode = combatantNode
-			if combatantNode.combatant in defenders:
-				defenderNodes.append(combatantNode)
-				if combatant.command.type == BattleCommand.Type.USE_ITEM:
-					combatantNode.update_hp_tag()
-			if combatantNode.combatant in combatant.command.targets:
-				targetNodes.append(combatantNode)
-				var resultIdx: int = combatant.command.targets.find(combatantNode.combatant)
-				if combatant.command.commandResult != null and resultIdx > -1 and resultIdx < len(combatant.command.commandResult.afflictedStatuses):
-					combatantNode.isBeingStatusAfflicted = true
-		
-		userNode.moveSpriteTargets = targetNodes
-		var battlefieldShade: BattlefieldShadeAnim = combatant.command.get_command_battlefield_shade_anim()
-		var commandMoveSprites: Array[MoveAnimSprite] = combatant.command.get_command_sprites()
-		if combatant.command.type == BattleCommand.Type.USE_ITEM:
-			userNode.useItemSprite = combatant.command.slot.item.itemSprite
-		userNode.play_move_sprites(commandMoveSprites)
-		if len(commandMoveSprites) > 0:
-			battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
-			userNode.move_animation_callback(battleUI.results._move_tween_finished)
 			
 		if userNode != null and combatant.command.commandResult != null:
-			battleController.set_combatant_above_shade(userNode)
-			var moveEffect: MoveEffect = null
-			if combatant.command.move != null:
-				moveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
-			var moveToPos: Vector2 = userNode.global_position # fallback: self (no movement)
-			var moveToCombatantNode: CombatantNode = userNode
-			var multiIsAllies: bool = false
-			var multiIsEnemies: bool = false
-			if combatant.command.moveEffectType == Move.MoveEffectType.SURGE:
-				var surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
-				userNode.play_particles(surgeParticles)
-			for combatantNode in allCombatantNodes:
-				if combatantNode.is_alive() and (combatantNode.combatant in defenders or combatantNode.combatant == userNode.combatant):
-					var particlePresets: Array[ParticlePreset] = combatant.command.get_particles(combatantNode, userNode, combatantNode.combatant in defenders)
-					
-					# play recoil dmg effect
-					if combatantNode.combatant in battleController.state.statusEffDamagedCombatants:
-						# link the damaged combatant to the attacking combatant
-						#combatantNode.hittingCombatant = userNode
-						combatantNode.play_particles(BattleCommand.get_hit_particles(), true, 0.5)
-					for preset in particlePresets:
-						# skip null presets
-						if preset == null:
-							continue
-						# if this is a "hit" particle effect and the particles will be delayed:
-						#if preset.emitter == 'hit' and combatantNode != userNode:
-							# link the damaged combatant to the attacking combatant
-						#	combatantNode.hittingCombatant = userNode
-						combatantNode.play_particles(preset, combatantNode != userNode)
-					# if there's only one target:
-					if len(combatant.command.targets) == 1:
-						# if this combatant is the target:
-						if combatant.command.targets[0] == combatantNode.combatant:
-							battleController.set_combatant_above_shade(combatantNode)
-							# if the combatant is an ally:
-							if combatantNode.role == userNode.role:
-								if combatantNode.combatant == userNode.combatant:
-									moveToPos = userNode.global_position # self position
-									moveToCombatantNode = userNode
-								else:
-									moveToPos = combatantNode.onAssistMarker.global_position # ally assist position
-									moveToCombatantNode = combatantNode
-							else:
-								# the combatant is an enemy
-								moveToPos = combatantNode.onAttackMarker.global_position
-								moveToCombatantNode = combatantNode
-					elif combatantNode.combatant in defenders:
-						battleController.set_combatant_above_shade(combatantNode)
-						# if this combatant is an ally
-						if combatantNode.role == userNode.role:
-							multiIsAllies = true
-						else:
-							multiIsEnemies = true # this combatant is an enemy
-			
-			# if it's a move, fix if a move is multi-targeting but there's only one combatant
-			if combatant.command.type == BattleCommand.Type.MOVE:
-				if not multiIsAllies:
-					multiIsAllies = moveEffect.targets == BattleCommand.Targets.ALL_ALLIES or moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or moveEffect.targets == BattleCommand.Targets.ALL
-				if not multiIsEnemies:
-					multiIsEnemies = moveEffect.targets == BattleCommand.Targets.ALL_ENEMIES or moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or moveEffect.targets == BattleCommand.Targets.ALL
-			
-			# if targeting multiple:
-			if multiIsAllies or multiIsEnemies:
-				# if targeting both allies and enemies
-				if multiIsAllies and multiIsEnemies:
-					moveToPos = battleController.globalMarker.global_position # use global move pos
-					moveToCombatantNode = null
-				elif multiIsAllies:
-					moveToPos = userNode.allyTeamMarker.global_position # use ally team pos
-					moveToCombatantNode = null
-				else:
-					moveToPos = userNode.enemyTeamMarker.global_position # use enemy team pos
-					moveToCombatantNode = null
-			
-			battleController.battlefieldShade.do_battlefield_shade_anim(battlefieldShade)
-			#battleController.modulate_battlefield_shade_to(Color(0, 0, 0, 0.3))
-			
-			if not ( \
-					(combatant.command.type == BattleCommand.Type.MOVE and not combatant.command.move.moveAnimation.makesContact) \
-					or combatant.command.type == BattleCommand.Type.ESCAPE) and moveToPos != userNode.global_position:
-				# if it's a non-contact move, an escape, or the user would move to self, do no move tweening, otherwise do tweening
-				battleUI.results.tween_started() # signal to the UI not to let the player continue until the animation is over
-				userNode.tween_to(moveToPos, moveToCombatantNode) # tween
-				userNode.move_animation_callback(battleUI.results._move_tween_finished)
-			else:
-				userNode.move_animation_callback(battleUI.results._move_tween_finished)
-				battleController.combatant_finished_moving.emit(userNode) # no tween was started so finish instantly
+			battleController.battleAnimationManager.play_turn_animation(userNode, combatant.command, battleController.state.statusEffDamagedCombatants)
 	
 	battleUI.results.show_text(text)
 	return text != ''

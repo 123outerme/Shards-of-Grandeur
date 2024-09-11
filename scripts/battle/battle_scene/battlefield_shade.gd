@@ -1,6 +1,9 @@
 extends ColorRect
 class_name BattlefieldShade
 
+signal shade_faded_down
+signal shade_faded_up
+
 @export var battleController: Node2D
 
 var battlefieldShadeTween: Tween = null
@@ -55,4 +58,7 @@ func _battlefield_shade_mod_finish() -> void:
 	# if the shade is going back to being invisible: reset combatants' z-indicess
 	if color.a == 0:
 		battleController.reset_all_combatants_shade_z_indices()
+		shade_faded_up.emit()
+	else:
+		shade_faded_down.emit()
 	battleController.battlefield_shade_finished_fading.emit()

@@ -1,6 +1,12 @@
 extends Node2D
 class_name CombatantNode
 
+signal move_sprites_finished
+signal tween_to_target_finished
+signal tween_returning_to_rest
+signal tween_back_finished
+signal sprite_animation_finished
+
 enum Role {
 	ALLY = 0,
 	ENEMY = 1
@@ -353,7 +359,7 @@ func tween_back_to_return_pos():
 		# plays hit particles ONLY unless the combatant really is done
 		battleController.combatants_play_hit.emit(self)
 		if returnToPos != spriteContainer.global_position:
-			battleController.combatant_returning_to_rest.emit(self)
+			tween_returning_to_rest.emit()
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, ((returnToPos - spriteContainer.global_position) / global_scale).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)
@@ -792,6 +798,7 @@ func _on_click_combatant_btn_pressed():
 	details_clicked.emit(self)
 
 func _on_animated_sprite_animation_finished():
+	sprite_animation_finished.emit()
 	play_animation('battle_idle')
 	# if all move sprites have finished and move tween has completely finished
 	if playedMoveSprites == 0 and animateTween == null and spriteContainer.global_position != returnToPos:
@@ -802,6 +809,7 @@ func _on_animated_sprite_animation_finished():
 	update_hp_tag()
 
 func _on_animate_tween_target_move_finished():
+	tween_to_target_finished.emit()
 	if battleController != null:
 		battleController.combatant_finished_moving.emit(self)
 	# when the combatant reaches the target on a "contact" movement, update HP tag
@@ -851,6 +859,7 @@ func _on_animate_tween_finished():
 		tween_back_to_return_pos()
 
 func _on_combatant_tween_returned():
+	tween_back_finished.emit()
 	animateTween = null
 	if playedMoveSprites == 0:
 		battleController.combatant_finished_animating.emit(self)
@@ -866,6 +875,7 @@ func _move_sprite_complete(sprite: MoveSprite):
 	playingMoveSprites.erase(sprite)
 	# if the combatant's sprite animation is done and all move sprites have finished
 	if battleController != null and playedMoveSprites == 0 and (animatedSprite.animation == 'battle_idle' or animatedSprite.animation == 'hide'):
+		move_sprites_finished.emit()
 		if animatedSprite.animation == 'hide':
 			_on_animated_sprite_animation_finished()
 		if animateTween == null:

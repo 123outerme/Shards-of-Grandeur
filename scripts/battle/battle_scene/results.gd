@@ -16,7 +16,6 @@ var ignoreOkPressed: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	textBoxText.text = '' # clear editor testing text
-	battleUI.battleController.battlefield_shade_finished_fading.connect(_battlefield_shade_finished_fading)
 
 func initial_focus():
 	okBtn.grab_focus()
@@ -70,16 +69,9 @@ func update_battle_ui_with_results():
 		battleUI.playerWins = result == WinCon.TurnResult.PLAYER_WIN
 		battleUI.escapes = result == WinCon.TurnResult.ESCAPE
 
-func _move_tween_finished():
+func _on_battle_animation_manager_turn_animation_complete() -> void:
 	moveTweenFinished = true
-	battleUI.battleController.battlefieldShade.lift_battlefield_shade()
-	shadeFinished = false
-	if okPressed and shadeFinished:
-		ignoreOkPressed = false
-		_on_ok_button_pressed(true)
-
-func _battlefield_shade_finished_fading() -> void:
 	shadeFinished = true
-	if okPressed and moveTweenFinished:
-		ignoreOkPressed = false
+	ignoreOkPressed = false
+	if okPressed:
 		_on_ok_button_pressed(true)

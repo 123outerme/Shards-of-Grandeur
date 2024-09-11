@@ -1,9 +1,6 @@
 extends Node2D
 class_name BattleController
 
-## When the current-turn combatant is moving back to its "rest" position (initial battle pos) after moving towards some other location
-signal combatant_returning_to_rest(combatant: CombatantNode)
-
 ## When the current-turn combatant fully finishes its Move animation (including MoveSprites, combatant SpriteFrames, movement)
 signal combatant_finished_moving(combatant: CombatantNode)
 
@@ -35,14 +32,13 @@ var battleEnded: bool = false
 var tilemap: Node2D = null
 var battleMapPath: String = ''
 
-@onready var combatantGroup: Node2D = get_node_or_null('CombatantGroup')
+@onready var battleAnimationManager: BattleAnimationManager = get_node('BattleAnimationManager')
 @onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("BattleCombatantNode")
-@onready var playerCombatant: CombatantNode = get_node_or_null("CombatantGroup/PlayerCombatant")
-@onready var minionCombatant: CombatantNode = get_node_or_null("CombatantGroup/MinionCombatant")
-@onready var enemyCombatant1: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant1")
-@onready var enemyCombatant2: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant2")
-@onready var enemyCombatant3: CombatantNode = get_node_or_null("CombatantGroup/EnemyCombatant3")
-@onready var battlefieldShade: BattlefieldShade = get_node('CombatantGroup/BattlefieldShade')
+@onready var playerCombatant: CombatantNode = get_node_or_null("BattleAnimationManager/PlayerCombatant")
+@onready var minionCombatant: CombatantNode = get_node_or_null("BattleAnimationManager/MinionCombatant")
+@onready var enemyCombatant1: CombatantNode = get_node_or_null("BattleAnimationManager/EnemyCombatant1")
+@onready var enemyCombatant2: CombatantNode = get_node_or_null("BattleAnimationManager/EnemyCombatant2")
+@onready var enemyCombatant3: CombatantNode = get_node_or_null("BattleAnimationManager/EnemyCombatant3")
 
 @onready var battleUI: BattleUI = get_node_or_null("BattleCam")
 @onready var battlePanels: BattlePanels = get_node_or_null("BattleCam/UIPanels")
@@ -239,7 +235,7 @@ func load_into_battle():
 	for node in combatantNodes:
 		node.load_combatant_node()
 	
-	combatantGroup.reparent(tilemap)
+	battleAnimationManager.reparent(tilemap)
 	update_combatant_focus_neighbors()
 	
 	if state.menu == BattleState.Menu.SUMMON and \
@@ -395,22 +391,6 @@ func end_battle():
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
 	shadeTween.finished.connect(_fade_out_finish)
 
-## combatant will always be above shade
-func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = 2
-
-## Combatant will always be below shade
-func set_combatant_below_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = 0
-
-## Default combatant z-index. Sets combatant above the shade if the shade is at its "normal" height, if shade is raised then the combatant will be below
-func set_combatant_between_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = 1
-
-func reset_all_combatants_shade_z_indices() -> void:
-	for combatantNode: CombatantNode in combatantNodes:
-		set_combatant_between_shade(combatantNode)
-
 func _fade_in_finish() -> void:
 	shadeTween = null
 
@@ -421,6 +401,3 @@ func _fade_out_finish() -> void:
 	await SceneLoader.audioHandler.music_fade_completed
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld('save')
-
-func _on_combatant_returning_to_rest(_combatant: CombatantNode) -> void:
-	battlefieldShade.lift_battlefield_shade()
