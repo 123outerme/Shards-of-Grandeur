@@ -903,7 +903,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="turn_animation_complete" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_turn_animation_complete"]
+[connection signal="combatant_animation_complete" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_complete"]
+[connection signal="combatant_animation_start" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_start"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/ChargeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_charge_moves_button_pressed"]

@@ -4,9 +4,7 @@ class_name Results
 @export var battleUI: BattleUI
 var result: WinCon.TurnResult = WinCon.TurnResult.NOTHING
 var okPressed: bool = false
-var moveTweenFinished: bool = false
-var moveTweenStarted: bool = false
-var shadeFinished: bool = false
+var animFinished: bool = false
 
 var ignoreOkPressed: bool = false
 
@@ -24,9 +22,6 @@ func show_text(newText: String):
 	textBoxText.text = TextUtils.rich_text_substitute(newText, Vector2i(32, 32))
 	ignoreOkPressed = false
 
-func tween_started():
-	moveTweenStarted = true
-
 func _on_ok_button_pressed(queued: bool = false) -> void:
 	if ignoreOkPressed:
 		return
@@ -41,12 +36,10 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			battleUI.advance_intermediate_state(result)
 		return # don't fall-through and potentially run the results code below
 	
-	if shadeFinished and (not moveTweenStarted or moveTweenFinished):
+	if animFinished:
 		okPressed = false
 		okBtn.disabled = false
-		moveTweenStarted = false
-		moveTweenFinished = false
-		shadeFinished = false
+		animFinished = false
 		
 		if battleUI.menuState == BattleState.Menu.RESULTS:
 			# update HP tags just to be safe, in case we missed any updates
@@ -69,9 +62,11 @@ func update_battle_ui_with_results():
 		battleUI.playerWins = result == WinCon.TurnResult.PLAYER_WIN
 		battleUI.escapes = result == WinCon.TurnResult.ESCAPE
 
-func _on_battle_animation_manager_turn_animation_complete() -> void:
-	moveTweenFinished = true
-	shadeFinished = true
+func _on_battle_animation_manager_combatant_animation_start() -> void:
+	animFinished = false
+
+func _on_battle_animation_manager_combatant_animation_complete() -> void:
+	animFinished = true
 	ignoreOkPressed = false
 	if okPressed:
 		_on_ok_button_pressed(true)

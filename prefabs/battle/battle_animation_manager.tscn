@@ -92,7 +92,7 @@ position = Vector2(0, 16)
 
 [node name="EnemyCombatant3" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 1
-position = Vector2(68, 1)
+position = Vector2(58, 1)
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -116,6 +116,8 @@ offset_bottom = 82.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 script = ExtResource("2_xle2k")
+
+[connection signal="combatant_animation_unit_complete" from="." to="." method="_on_combatant_animation_unit_complete"]
 
 [editable path="PlayerCombatant"]
 [editable path="PlayerCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
