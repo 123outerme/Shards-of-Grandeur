@@ -402,36 +402,31 @@ battleController = NodePath("..")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="PlayerCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
+[node name="PlayerCombatantNode" parent="." instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, 1)
 battlePosition = "You"
-battleController = NodePath("..")
 
-[node name="MinionCombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
+[node name="MinionCombatantNode" parent="." instance=ExtResource("20_2oj5r")]
 position = Vector2(-122, -42)
 battlePosition = "Ally"
-battleController = NodePath("..")
 
-[node name="Enemy1CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
+[node name="Enemy1CombatantNode" parent="." instance=ExtResource("20_2oj5r")]
 position = Vector2(49, -18)
 role = 1
 battlePosition = "Center"
-battleController = NodePath("..")
 
 [node name="OnAttackPos" parent="Enemy1CombatantNode" index="3"]
 position = Vector2(-16, 0)
 
-[node name="Enemy2CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
+[node name="Enemy2CombatantNode" parent="." instance=ExtResource("20_2oj5r")]
 position = Vector2(56, -66)
 role = 1
 battlePosition = "Top"
-battleController = NodePath("..")
 
-[node name="Enemy3CombatantNode" parent="." node_paths=PackedStringArray("battleController") instance=ExtResource("20_2oj5r")]
+[node name="Enemy3CombatantNode" parent="." instance=ExtResource("20_2oj5r")]
 position = Vector2(59, 25)
 role = 1
 battlePosition = "Bottom"
-battleController = NodePath("..")
 
 [node name="AudioHandler" parent="." instance=ExtResource("21_y6pws")]
 

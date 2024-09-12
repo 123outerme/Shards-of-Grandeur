@@ -119,7 +119,7 @@ func update_turn_text() -> bool:
 				battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex] in battleController.state.statusEffDamagedCombatants:
 			for cNode: CombatantNode in allCombatantNodes:
 				if cNode.combatant == battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex]:
-					cNode.play_particles(BattleCommand.get_hit_particles(), false)
+					cNode.play_particles(BattleCommand.get_hit_particles())
 					cNode.update_hp_tag()
 					break
 	

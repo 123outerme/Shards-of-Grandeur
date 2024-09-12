@@ -51,7 +51,7 @@ script = ExtResource("3_1f5f0")
 globalMarker = NodePath("../GlobalMarker")
 battlefieldShade = NodePath("../BattlefieldBorder/BattlefieldShade")
 
-[node name="PlayerCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+[node name="PlayerCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") instance=ExtResource("4_es3wc")]
 z_index = 1
 position = Vector2(135.667, 40)
 leftSide = true
@@ -59,7 +59,7 @@ spriteFacesRight = true
 battlePosition = "You"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
-battleController = NodePath("../MockBattleController")
+globalMarker = NodePath("../GlobalMarker")
 
 [node name="SelectCombatantBtn" parent="BattleScene/PlayerCombatantNode" index="0"]
 visible = false
@@ -77,14 +77,14 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="BattleScene/PlayerCombatantNode" index="4"]
 position = Vector2(0, -16)
 
-[node name="MinionCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+[node name="MinionCombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") instance=ExtResource("4_es3wc")]
 z_index = 1
 position = Vector2(111.667, 11.6667)
 leftSide = true
 battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
-battleController = NodePath("../MockBattleController")
+globalMarker = NodePath("../GlobalMarker")
 
 [node name="SelectCombatantBtn" parent="BattleScene/MinionCombatantNode" index="0"]
 visible = false
@@ -102,14 +102,14 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="BattleScene/MinionCombatantNode" index="4"]
 position = Vector2(0, 16)
 
-[node name="Enemy1CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+[node name="Enemy1CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") instance=ExtResource("4_es3wc")]
 z_index = 1
 position = Vector2(229.667, 15.3333)
 role = 1
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
-battleController = NodePath("../MockBattleController")
+globalMarker = NodePath("../GlobalMarker")
 
 [node name="SelectCombatantBtn" parent="BattleScene/Enemy1CombatantNode" index="0"]
 visible = false
@@ -124,14 +124,14 @@ visible = false
 [node name="OnAttackPos" parent="BattleScene/Enemy1CombatantNode" index="3"]
 position = Vector2(-16, 0)
 
-[node name="Enemy2CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "battleController") instance=ExtResource("4_es3wc")]
+[node name="Enemy2CombatantNode" parent="BattleScene" node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") instance=ExtResource("4_es3wc")]
 z_index = 1
 position = Vector2(257.667, 48)
 role = 1
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
-battleController = NodePath("../MockBattleController")
+globalMarker = NodePath("../GlobalMarker")
 
 [node name="SelectCombatantBtn" parent="BattleScene/Enemy2CombatantNode" index="0"]
 visible = false

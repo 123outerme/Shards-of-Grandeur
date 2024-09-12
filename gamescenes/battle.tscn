@@ -43,21 +43,6 @@ metadata/_edit_horizontal_guides_ = [-94.0]
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("2_nd8f1")]
 
-[node name="PlayerCombatant" parent="BattleAnimationManager" index="3" node_paths=PackedStringArray("battleController")]
-battleController = NodePath("../..")
-
-[node name="MinionCombatant" parent="BattleAnimationManager" index="4" node_paths=PackedStringArray("battleController")]
-battleController = NodePath("../..")
-
-[node name="EnemyCombatant1" parent="BattleAnimationManager" index="5" node_paths=PackedStringArray("battleController")]
-battleController = NodePath("../..")
-
-[node name="EnemyCombatant2" parent="BattleAnimationManager" index="6" node_paths=PackedStringArray("battleController")]
-battleController = NodePath("../..")
-
-[node name="EnemyCombatant3" parent="BattleAnimationManager" index="7" node_paths=PackedStringArray("battleController")]
-battleController = NodePath("../..")
-
 [node name="TileMapParent" type="Node2D" parent="."]
 
 [node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
@@ -937,20 +922,3 @@ color = Color(0, 0, 0, 1)
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]
-
-[editable path="BattleAnimationManager"]
-[editable path="BattleAnimationManager/PlayerCombatant"]
-[editable path="BattleAnimationManager/PlayerCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="BattleAnimationManager/PlayerCombatant/HPTag/OrbDisplay"]
-[editable path="BattleAnimationManager/MinionCombatant"]
-[editable path="BattleAnimationManager/MinionCombatant/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="BattleAnimationManager/MinionCombatant/HPTag/OrbDisplay"]
-[editable path="BattleAnimationManager/EnemyCombatant1"]
-[editable path="BattleAnimationManager/EnemyCombatant1/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="BattleAnimationManager/EnemyCombatant1/HPTag/OrbDisplay"]
-[editable path="BattleAnimationManager/EnemyCombatant2"]
-[editable path="BattleAnimationManager/EnemyCombatant2/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="BattleAnimationManager/EnemyCombatant2/HPTag/OrbDisplay"]
-[editable path="BattleAnimationManager/EnemyCombatant3"]
-[editable path="BattleAnimationManager/EnemyCombatant3/SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
-[editable path="BattleAnimationManager/EnemyCombatant3/HPTag/OrbDisplay"]

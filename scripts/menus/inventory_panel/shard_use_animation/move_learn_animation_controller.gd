@@ -162,7 +162,9 @@ func play_move_animation(playSurge: bool = false) -> void:
 	userNode.play_animation(move.moveAnimation.combatantAnimation)
 	userNode.play_particles(move.moveAnimation.userParticlePreset)
 	userNode.moveSpriteTargets = targetCombatantNodes
-	userNode.play_move_sprites(move.moveAnimation.surgeMoveSprites if playSurge else move.moveAnimation.chargeMoveSprites)
+	var sprites: Array[MoveAnimSprite] = move.moveAnimation.surgeMoveSprites if playSurge else move.moveAnimation.chargeMoveSprites
+	for sprite: MoveAnimSprite in sprites:
+		userNode.play_move_sprite(sprite)
 	for tNode: CombatantNode in targetCombatantNodes:
 		tNode.play_particles(move.moveAnimation.targetsParticlePreset)
 	
@@ -175,9 +177,11 @@ func play_move_animation(playSurge: bool = false) -> void:
 		if len(targetCombatantNodes) == 1:
 			tweenToNode = targetCombatantNodes[0]
 		userNode.tween_to(contactGlobalPos, tweenToNode)
-		userNode.move_animation_callback(_on_move_anim_finish)
+		# TODO fix this entire scene
+		#userNode.move_animation_callback(_on_move_anim_finish)
 	else:
-		userNode.move_animation_callback(_on_move_anim_finish)
+		# TODO fix this entire scene
+		#userNode.move_animation_callback(_on_move_anim_finish)
 		mockBattleController.combatant_finished_moving.emit(userNode)
 
 func clean_up_animation() -> void:
