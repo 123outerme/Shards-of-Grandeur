@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://deslgxg0gngoc" path="res://gamedata/moves/electric_stun/electric_stun.tres" id="2_16web"]
-[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="3_5i4wy"]
+[ext_resource type="Resource" uid="uid://o2esy2ry8yjk" path="res://gamedata/moves/jurassic_jaws/jurassic_jaws.tres" id="2_fc4jx"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="3_eeiax"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_16web")
-item = ExtResource("3_5i4wy")
+move = ExtResource("2_fc4jx")
 targetCombatant = ExtResource("3_eeiax")
 moveCombatantsIfAlone = true
 

@@ -17,6 +17,7 @@ signal combatant_finished_anim
 @export var moveCombatantsIfAlone: bool = true
 @export var useItem: Item = null
 
+var targetNodes: Array[CombatantNode] = []
 var moveEffect: MoveEffect = null
 
 @onready var playerSoloPos: Marker2D = get_node('PlayerSoloPos')
@@ -64,6 +65,13 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	if useItem != null:
 		targets = useItem.battleTargets
 	
+	targetNodes = []
+	
+	if targets == BattleCommand.Targets.SELF or \
+			targets == BattleCommand.Targets.ALL_ALLIES or \
+			targets == BattleCommand.Targets.ALL:
+		targetNodes.append(userNode)
+	
 	if targets == BattleCommand.Targets.NON_SELF_ALLY or \
 			targets == BattleCommand.Targets.ALLY or \
 			targets == BattleCommand.Targets.ALL_ALLIES or \
@@ -73,6 +81,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 		userAllyNode.combatant = targetCombatant
 		userAllyNode.disableHpTag = disableHpTags
 		userAllyNode.load_combatant_node()
+		targetNodes.append(userAllyNode)
 		if moveCombatantsIfAlone:
 			userNode.global_position = userMultiPos
 	else:
@@ -87,6 +96,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 			targets == BattleCommand.Targets.ALL_ENEMIES or \
 			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
 			targets == BattleCommand.Targets.ALL:
+		targetNodes.append(targetNode)
 		targetNode.visible = true
 		targetNode.combatant = targetCombatant if not swapUsersAndTargets else PlayerResources.playerInfo.combatant
 		targetNode.disableHpTag = disableHpTags
@@ -97,6 +107,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	if targets == BattleCommand.Targets.ALL_ENEMIES or \
 			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
 			targets == BattleCommand.Targets.ALL:
+		targetNodes.append(targetAllyNode)
 		targetAllyNode.visible = true
 		targetAllyNode.combatant = targetCombatant
 		targetAllyNode.disableHpTag = disableHpTags
@@ -123,27 +134,26 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 	var targetsDealtDmg: Array[int] = []
 	var afflictedStatuses: Array[bool] = []
 	var wasBoosted: Array[bool] = []
-	for cNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
-		if cNode.visible:
-			targets.append(cNode.battlePosition)
-			var mockDmg: int = 0
-			if moveEffect.power > 0:
-				mockDmg = 10
-			elif moveEffect.power < 0:
-				mockDmg = -10
-			targetsDealtDmg.append(mockDmg)
-			if moveEffect.statusEffect != null and \
-					moveEffect.statusEffect.potency != StatusEffect.Potency.NONE and \
-					moveEffect.statusEffect.type != StatusEffect.Type.NONE and \
-					not (moveEffect.selfGetsStatus and cNode != userNode) and \
-					moveEffect.statusChance > 0:
-				afflictedStatuses.append(true)
-			else:
-				afflictedStatuses.append(false)
-			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
-				wasBoosted.append(true)
-			else:
-				wasBoosted.append(false)
+	for cNode: CombatantNode in targetNodes:
+		targets.append(cNode.battlePosition)
+		var mockDmg: int = 0
+		if moveEffect.power > 0:
+			mockDmg = 10
+		elif moveEffect.power < 0:
+			mockDmg = -10
+		targetsDealtDmg.append(mockDmg)
+		if moveEffect.statusEffect != null and \
+				moveEffect.statusEffect.potency != StatusEffect.Potency.NONE and \
+				moveEffect.statusEffect.type != StatusEffect.Type.NONE and \
+				not (moveEffect.selfGetsStatus and cNode != userNode) and \
+				moveEffect.statusChance > 0:
+			afflictedStatuses.append(true)
+		else:
+			afflictedStatuses.append(false)
+		if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+			wasBoosted.append(true)
+		else:
+			wasBoosted.append(false)
 	
 	var commandResult: CommandResult = CommandResult.new(
 		targetsDealtDmg,
@@ -173,24 +183,23 @@ func play_item_animation(userNode: CombatantNode) -> void:
 	var afflictedStatuses: Array[bool] = []
 	var wasBoosted: Array[bool] = []
 	var orbs: int = 0
-	
+
 	var healing: Healing = null
 	if useItem.itemType == Item.Type.HEALING:
 		healing = useItem as Healing
 		#orbs = healing.orbs
 	
-	for cNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
-		if cNode.visible:
-			targets.append(cNode.battlePosition)
-			if healing != null:
-				targetsDealtDmg.append(-1 * healing.healBy)
-				afflictedStatuses.append(healing.statusStrengthHeal != StatusEffect.Potency.NONE)
-				wasBoosted.append(healing.statChanges != null and healing.statChanges.has_stat_changes())
-			else:
-				targetsDealtDmg.append(0)
-				afflictedStatuses.append(false)
-				wasBoosted.append(false)
-	
+	for cNode: CombatantNode in targetNodes:
+		targets.append(cNode.battlePosition)
+		if healing != null:
+			targetsDealtDmg.append(-1 * healing.healBy)
+			afflictedStatuses.append(healing.statusStrengthHeal != StatusEffect.Potency.NONE)
+			wasBoosted.append(healing.statChanges != null and healing.statChanges.has_stat_changes())
+		else:
+			targetsDealtDmg.append(0)
+			afflictedStatuses.append(false)
+			wasBoosted.append(false)
+
 	var commandResult: CommandResult = CommandResult.new(
 		targetsDealtDmg,
 		[],

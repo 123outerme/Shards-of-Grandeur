@@ -242,10 +242,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.play_particles(preset)
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
-	var allCombatantNodes: Array[CombatantNode] = []
-	for node in combatantNodes:
-		allCombatantNodes.append(node as CombatantNode)
-	return allCombatantNodes
+	return battleAnimationManager.get_all_combatant_nodes()
 
 func save_data(save_path):
 	if battleEnded:

@@ -174,9 +174,6 @@ func finish_turn() -> WinCon.TurnResult:
 	result = check_battle_end_conditions()
 	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
-	else:
-		# make sure to fade the battlefield shade back
-		battleController.battlefieldShade.lift_battlefield_shade()
 	return result
 
 func is_on_last_turn() -> bool:

@@ -42,7 +42,7 @@ func lift_battlefield_shade(callback: Callable = Callable()) -> void:
 		battlefieldShadeAnim = null
 	else:
 		await get_tree().process_frame
-		battleController.battlefield_shade_finished_fading.emit() # nothing to do so it's already done
+		_battlefield_shade_mod_finish()
 
 func modulate_battlefield_shade_to(shadeColor: Color, secs: float = 0.5, callback: Callable = Callable()):
 	if battlefieldShadeTween != null and battlefieldShadeTween.is_valid():
