@@ -6,7 +6,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 
 @export var move: Move = null
 @export var playSurge: bool = false
-@export var itemSprite: Texture2D = null
+@export var item: Item = null
 @export var targetCombatant: Combatant = null
 @export var moveCombatantsIfAlone: bool = false
 
@@ -31,35 +31,26 @@ func _ready():
 		surgeChargeToggle.text = 'Surge'
 	else:
 		surgeChargeToggle.text = 'Charge'
-	userNode = moveLearnAnimController.playerCombatantNode
+	userNode = moveLearnAnimController.battleAnimManager.playerCombatantNode
 
 func _on_button_pressed():
 	button.disabled = true
 	surgeChargeToggle.disabled = true
 	swapButton.disabled = true
 	finishedMoving = false
-	if itemSprite == null:
+	if item == null:
 		moveLearnAnimController.playAnimAfterLoad = true
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 	moveLearnAnimController.playAnimAfterLoad = false
-	if itemSprite != null:
-		userNode.useItemSprite = itemSprite
-		userNode.moveSpriteTargets = [userNode]
-		userNode.play_move_sprites(useItemAnimation.chargeMoveSprites)
-		userNode.play_animation(useItemAnimation.combatantAnimation)
-		userNode.play_particles(useItemAnimation.userParticlePreset)
-		moveLearnAnimController.battlefieldShade.do_battlefield_shade_anim(useItemAnimation.chargeBattlefieldShade)
-		userNode.move_animation_callback(_use_item_anim_done)
-	
-func _use_item_anim_done(_combatantNode: CombatantNode) -> void:
-	moveLearnAnimController.battlefieldShade.lift_battlefield_shade()
+	if item != null:
+		moveLearnAnimController.play_item_animation(userNode, item)
 
 func _on_swap_button_pressed():
-	if userNode == moveLearnAnimController.playerCombatantNode:
-		userNode = moveLearnAnimController.enemy1CombatantNode
+	if userNode == moveLearnAnimController.battleAnimManager.playerCombatantNode:
+		userNode = moveLearnAnimController.battleAnimManager.enemy1CombatantNode
 		moveLearnAnimController.swapUsersAndTargets = true
 	else:
-		userNode = moveLearnAnimController.playerCombatantNode
+		userNode = moveLearnAnimController.battleAnimManager.playerCombatantNode
 		moveLearnAnimController.swapUsersAndTargets = false
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 
@@ -71,16 +62,10 @@ func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:
 		surgeChargeToggle.text = 'Charge'
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 
-func _on_move_learn_anim_control_combatant_finished_move_anim() -> void:
-	finishedMoving = true
-	partial_end_move_anim()
-
-func _on_move_learn_anim_control_battlefield_shade_finished_fading() -> void:
-	shadeDown = moveLearnAnimController.battlefieldShade.color.a != 0
-	partial_end_move_anim()
-
-func partial_end_move_anim():
-	if not shadeDown and finishedMoving:
+func _on_move_learn_anim_control_combatant_finished_anim() -> void:
 		button.disabled = false
 		surgeChargeToggle.disabled = false
 		swapButton.disabled = false
+
+func _on_move_learn_anim_control_combatant_started_anim() -> void:
+	pass # Replace with function body.

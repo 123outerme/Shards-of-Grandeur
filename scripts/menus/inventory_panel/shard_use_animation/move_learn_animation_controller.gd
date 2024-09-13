@@ -1,8 +1,8 @@
 extends Control
 class_name MoveLearnAnimationController
 
-signal battlefield_shade_finished_fading
-signal combatant_finished_move_anim
+signal combatant_started_anim
+signal combatant_finished_anim
 
 @export var move: Move = null
 @export var shard: Shard = null
@@ -18,48 +18,46 @@ signal combatant_finished_move_anim
 
 var moveEffect: MoveEffect = null
 
-@onready var playerCombatantNode: CombatantNode = get_node('BattleScene/PlayerCombatantNode')
-@onready var minionCombatantNode: CombatantNode = get_node('BattleScene/MinionCombatantNode')
-@onready var enemy1CombatantNode: CombatantNode = get_node('BattleScene/Enemy1CombatantNode')
-@onready var enemy2CombatantNode: CombatantNode = get_node('BattleScene/Enemy2CombatantNode')
+@onready var playerSoloPos: Marker2D = get_node('PlayerSoloPos')
+@onready var playerMultiPos: Marker2D = get_node('PlayerMultiPos')
 
-@onready var playerSelfPos: Marker2D = get_node('BattleScene/PlayerSelfPos')
-@onready var playerSoloPos: Marker2D = get_node('BattleScene/PlayerSoloPos')
-@onready var playerMultiPos: Marker2D = get_node('BattleScene/PlayerMultiPos')
-@onready var playerTeamPos: Marker2D = get_node('BattleScene/PlayerTeamMarker')
+@onready var enemy1SoloPos: Marker2D = get_node('Enemy1SoloPos')
+@onready var enemy1MultiPos: Marker2D = get_node('Enemy1MultiPos')
 
-@onready var enemy1SoloPos: Marker2D = get_node('BattleScene/Enemy1SoloPos')
-@onready var enemy1MultiPos: Marker2D = get_node('BattleScene/Enemy1MultiPos')
-@onready var enemyTeamPos: Marker2D = get_node('BattleScene/EnemyTeamMarker')
+@onready var battleAnimManager: BattleAnimationManager = get_node('BattlefieldBorder/BattleAnimationManager')
 
-@onready var mockBattleController: MockBattleController = get_node('BattleScene/MockBattleController')
-
-@onready var battlefieldShade: BattlefieldShade = get_node('BattleScene/BattlefieldBorder/BattlefieldShade')
 
 func _ready() -> void:
-	mockBattleController.playerCombatantNode = playerCombatantNode
-	mockBattleController.combatantNodes = [playerCombatantNode, minionCombatantNode, enemy1CombatantNode, enemy2CombatantNode]
+	battleAnimManager.playerCombatantNode.leftSide = true
+	battleAnimManager.playerCombatantNode.role = CombatantNode.Role.ALLY
+	battleAnimManager.minionCombatantNode.leftSide = true
+	battleAnimManager.minionCombatantNode.role = CombatantNode.Role.ALLY
+	
+	battleAnimManager.enemy1CombatantNode.role = CombatantNode.Role.ENEMY
+	battleAnimManager.enemy2CombatantNode.role = CombatantNode.Role.ENEMY
+	
+	battleAnimManager.enemy3CombatantNode.visible = false
+	battleAnimManager.enemy3CombatantNode.role = CombatantNode.Role.ENEMY
 
 func load_move_learn_animation(playSurge: bool = false) -> void:
 	moveEffect = move.surgeEffect if playSurge else move.chargeEffect
 	
-	var userNode: CombatantNode = playerCombatantNode if not swapUsersAndTargets else enemy1CombatantNode
-	var userAllyNode: CombatantNode = minionCombatantNode if not swapUsersAndTargets else enemy2CombatantNode
-	var targetNode: CombatantNode = enemy1CombatantNode if not swapUsersAndTargets else playerCombatantNode
-	var targetAllyNode: CombatantNode = enemy2CombatantNode if not swapUsersAndTargets else minionCombatantNode
+	var userNode: CombatantNode = battleAnimManager.playerCombatantNode if not swapUsersAndTargets else battleAnimManager.enemy1CombatantNode
+	var userAllyNode: CombatantNode = battleAnimManager.minionCombatantNode if not swapUsersAndTargets else battleAnimManager.enemy2CombatantNode
+	var targetNode: CombatantNode = battleAnimManager.enemy1CombatantNode if not swapUsersAndTargets else battleAnimManager.playerCombatantNode
+	var targetAllyNode: CombatantNode = battleAnimManager.enemy2CombatantNode if not swapUsersAndTargets else battleAnimManager.minionCombatantNode
 	
-	var userSoloPos: Vector2 = playerSoloPos.position if not swapUsersAndTargets else enemy1SoloPos.position
-	var userMultiPos: Vector2 = playerMultiPos.position if not swapUsersAndTargets else enemy1MultiPos.position
-	var targetSoloPos: Vector2 = enemy1SoloPos.position if not swapUsersAndTargets else playerSoloPos.position
-	var targetMultiPos: Vector2 = enemy1MultiPos.position if not swapUsersAndTargets else playerMultiPos.position
-	var userSelfPos: Vector2 = playerSelfPos.position if not swapUsersAndTargets else mockBattleController.globalMarker.position
+	var userSoloPos: Vector2 = playerSoloPos.global_position if not swapUsersAndTargets else enemy1SoloPos.global_position
+	var userMultiPos: Vector2 = playerMultiPos.global_position if not swapUsersAndTargets else enemy1MultiPos.global_position
+	var targetSoloPos: Vector2 = enemy1SoloPos.global_position if not swapUsersAndTargets else playerSoloPos.global_position
+	var targetMultiPos: Vector2 = enemy1MultiPos.global_position if not swapUsersAndTargets else playerMultiPos.global_position
+	var userSelfPos: Vector2 = battleAnimManager.globalMarker.global_position
 	
 	var targetCombatant: Combatant = customTarget if customTarget != null else shard.get_combatant()
 	
 	userNode.combatant = PlayerResources.playerInfo.combatant if not swapUsersAndTargets else targetCombatant
 	userNode.disableHpTag = disableHpTags
 	userNode.load_combatant_node()
-	mockBattleController.set_combatant_above_shade(userNode)
 	
 	if moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY or \
 			moveEffect.targets == BattleCommand.Targets.ALLY or \
@@ -70,16 +68,15 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 		userAllyNode.combatant = targetCombatant
 		userAllyNode.disableHpTag = disableHpTags
 		userAllyNode.load_combatant_node()
-		mockBattleController.set_combatant_above_shade(userAllyNode)
 		if moveCombatantsIfAlone:
-			userNode.position = userMultiPos
+			userNode.global_position = userMultiPos
 	else:
 		userAllyNode.visible = false
 		if moveCombatantsIfAlone:
 			if moveEffect.targets == BattleCommand.Targets.SELF:
-				userNode.position = userSelfPos
+				userNode.global_position = userSelfPos
 			else:
-				userNode.position = userSoloPos
+				userNode.global_position = userSoloPos
 	
 	if moveEffect.targets == BattleCommand.Targets.ENEMY or \
 			moveEffect.targets == BattleCommand.Targets.ALL_ENEMIES or \
@@ -89,7 +86,6 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 		targetNode.combatant = targetCombatant if not swapUsersAndTargets else PlayerResources.playerInfo.combatant
 		targetNode.disableHpTag = disableHpTags
 		targetNode.load_combatant_node()
-		mockBattleController.set_combatant_above_shade(targetNode)
 	else:
 		targetNode.visible = false
 	
@@ -100,13 +96,12 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 		targetAllyNode.combatant = targetCombatant
 		targetAllyNode.disableHpTag = disableHpTags
 		targetAllyNode.load_combatant_node()
-		mockBattleController.set_combatant_above_shade(targetAllyNode)
 		if moveCombatantsIfAlone:
-			targetNode.position = targetMultiPos
+			targetNode.global_position = targetMultiPos
 	else:
 		targetAllyNode.visible = false
 		if moveCombatantsIfAlone:
-			targetNode.position = targetSoloPos
+			targetNode.global_position = targetSoloPos
 	
 	userNode.returnToPos = userNode.global_position
 	targetNode.returnToPos = targetNode.global_position
@@ -114,94 +109,116 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	if delayAnimAfterLoad:
 		await get_tree().create_timer(2).timeout
 	if playAnimAfterLoad:
-		play_move_animation(playSurge)
+		play_move_animation(userNode, playSurge)
 
-func play_move_animation(playSurge: bool = false) -> void:
-	var userNode: CombatantNode = playerCombatantNode if not swapUsersAndTargets else enemy1CombatantNode
-	var userAllyNode: CombatantNode = minionCombatantNode if not swapUsersAndTargets else enemy2CombatantNode
-	var targetNode: CombatantNode = enemy1CombatantNode if not swapUsersAndTargets else playerCombatantNode
-	var targetAllyNode: CombatantNode = enemy2CombatantNode if not swapUsersAndTargets else minionCombatantNode
+func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
+	var moveEffect: MoveEffect = move.surgeEffect if playSurge else move.chargeEffect 
 	
-	var userTeamGlobalPos: Vector2 = playerTeamPos.global_position if not swapUsersAndTargets else enemyTeamPos.global_position
-	var targetTeamGlobalPos: Vector2 = enemyTeamPos.global_position if not swapUsersAndTargets else playerTeamPos.global_position
-	var userSelfGlobalPos: Vector2 = playerSelfPos.global_position if not swapUsersAndTargets else mockBattleController.globalMarker.global_position 
+	var targets: Array[String] = []
+	var targetsDealtDmg: Array[int] = []
+	var afflictedStatuses: Array[bool] = []
+	var wasBoosted: Array[bool] = []
+	for cNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
+		if cNode.visible:
+			targets.append(cNode.battlePosition)
+			var mockDmg: int = 0
+			if moveEffect.power > 0:
+				mockDmg = 10
+			elif moveEffect.power < 0:
+				mockDmg = -10
+			targetsDealtDmg.append(mockDmg)
+			if moveEffect.statusEffect != null and \
+					moveEffect.statusEffect.potency != StatusEffect.Potency.NONE and \
+					moveEffect.statusEffect.type != StatusEffect.Type.NONE and \
+					not (moveEffect.selfGetsStatus and cNode != userNode) and \
+					moveEffect.statusChance > 0:
+				afflictedStatuses.append(true)
+			else:
+				afflictedStatuses.append(false)
+			if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
+				wasBoosted.append(true)
+			else:
+				wasBoosted.append(false)
 	
-	var targetCombatantNodes: Array[CombatantNode] = []
-	var contactGlobalPos: Vector2 = userNode.global_position
+	var commandResult: CommandResult = CommandResult.new(
+		targetsDealtDmg,
+		[],
+		afflictedStatuses,
+		wasBoosted,
+		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()
+	)
 	
-	match moveEffect.targets:
-		BattleCommand.Targets.ENEMY:
-			targetCombatantNodes.append(targetNode)
-			contactGlobalPos = targetNode.onAttackMarker.global_position
-		BattleCommand.Targets.ALL_ENEMIES:
-			targetCombatantNodes.append(targetNode)
-			targetCombatantNodes.append(targetAllyNode)
-			contactGlobalPos = targetTeamGlobalPos
-		BattleCommand.Targets.ALLY, BattleCommand.Targets.NON_SELF_ALLY:
-			targetCombatantNodes.append(userAllyNode)
-			contactGlobalPos = userAllyNode.onAssistMarker.global_position
-		BattleCommand.Targets.ALL_ALLIES:
-			targetCombatantNodes.append(userNode)
-			targetCombatantNodes.append(userAllyNode)
-			contactGlobalPos = userTeamGlobalPos
-		BattleCommand.Targets.SELF:
-			targetCombatantNodes.append(userNode)
-			contactGlobalPos = userSelfGlobalPos
-		BattleCommand.Targets.ALL_EXCEPT_SELF:
-			targetCombatantNodes.append(userAllyNode)
-			targetCombatantNodes.append(targetNode)
-			targetCombatantNodes.append(targetAllyNode)
-			contactGlobalPos = mockBattleController.globalMarker.global_position
-		BattleCommand.Targets.ALL:
-			targetCombatantNodes.append(userNode)
-			targetCombatantNodes.append(userAllyNode)
-			targetCombatantNodes.append(targetNode)
-			targetCombatantNodes.append(targetAllyNode)
-			contactGlobalPos = mockBattleController.globalMarker.global_position
+	var command: BattleCommand = BattleCommand.new(
+		BattleCommand.Type.MOVE,
+		move,
+		Move.MoveEffectType.SURGE if playSurge else Move.MoveEffectType.CHARGE,
+		0,
+		null,
+		targets,
+		[],
+		commandResult
+	)
+	command.get_targets_from_combatant_nodes(battleAnimManager.get_all_combatant_nodes())
 	
-	userNode.play_animation(move.moveAnimation.combatantAnimation)
-	userNode.play_particles(move.moveAnimation.userParticlePreset)
-	userNode.moveSpriteTargets = targetCombatantNodes
-	var sprites: Array[MoveAnimSprite] = move.moveAnimation.surgeMoveSprites if playSurge else move.moveAnimation.chargeMoveSprites
-	for sprite: MoveAnimSprite in sprites:
-		userNode.play_move_sprite(sprite)
-	for tNode: CombatantNode in targetCombatantNodes:
-		tNode.play_particles(move.moveAnimation.targetsParticlePreset)
+	battleAnimManager.play_turn_animation(userNode, command, [])
+
+func play_item_animation(userNode: CombatantNode, item: Item) -> void:
+	var targets: Array[String] = []
+	var targetsDealtDmg: Array[int] = []
+	var afflictedStatuses: Array[bool] = []
+	var wasBoosted: Array[bool] = []
+	var orbs: int = 0
 	
-	var shadeAnim: BattlefieldShadeAnim = move.moveAnimation.surgeBattlefieldShade if playSurge else move.moveAnimation.chargeBattlefieldShade
-	if shadeAnim != null:
-		battlefieldShade.do_battlefield_shade_anim(shadeAnim)
+	var healing: Healing = null
+	if item.itemType == Item.Type.HEALING:
+		healing = item as Healing
+		#orbs = healing.orbs
 	
-	if move.moveAnimation.makesContact and contactGlobalPos != userNode.global_position:
-		var tweenToNode: CombatantNode = null
-		if len(targetCombatantNodes) == 1:
-			tweenToNode = targetCombatantNodes[0]
-		userNode.tween_to(contactGlobalPos, tweenToNode)
-		# TODO fix this entire scene
-		#userNode.move_animation_callback(_on_move_anim_finish)
-	else:
-		# TODO fix this entire scene
-		#userNode.move_animation_callback(_on_move_anim_finish)
-		mockBattleController.combatant_finished_moving.emit(userNode)
+	for cNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
+		if cNode.visible:
+			targets.append(cNode.battlePosition)
+			if healing != null:
+				targetsDealtDmg.append(-1 * healing.healBy)
+				afflictedStatuses.append(healing.statusStrengthHeal != StatusEffect.Potency.NONE)
+				wasBoosted.append(healing.statChanges != null and healing.statChanges.has_stat_changes())
+			else:
+				targetsDealtDmg.append(0)
+				afflictedStatuses.append(false)
+				wasBoosted.append(false)
+	
+	var commandResult: CommandResult = CommandResult.new(
+		targetsDealtDmg,
+		[],
+		afflictedStatuses,
+		wasBoosted,
+		userNode.battlePosition in targets
+	)
+	
+	var slot: InventorySlot = InventorySlot.new(item, 1)
+	
+	var command: BattleCommand = BattleCommand.new(
+		BattleCommand.Type.USE_ITEM,
+		null,
+		Move.MoveEffectType.NONE,
+		orbs,
+		slot,
+		targets,
+		[],
+		commandResult
+	)
+	command.get_targets_from_combatant_nodes(battleAnimManager.get_all_combatant_nodes())
+	
+	battleAnimManager.play_turn_animation(userNode, command, [])
 
 func clean_up_animation() -> void:
-	playerCombatantNode.stop_animation(true, true, true)
-	minionCombatantNode.stop_animation(true, true, true)
-	enemy1CombatantNode.stop_animation(true, true, true)
-	enemy2CombatantNode.stop_animation(true, true, true)
-	battlefieldShade.lift_battlefield_shade()
+	battleAnimManager.playerCombatantNode.stop_animation(true, true, true)
+	battleAnimManager.minionCombatantNode.stop_animation(true, true, true)
+	battleAnimManager.enemy1CombatantNode.stop_animation(true, true, true)
+	battleAnimManager.enemy2CombatantNode.stop_animation(true, true, true)
+	battleAnimManager.battlefieldShade.lift_battlefield_shade()
 
-func _on_mock_battle_controller_combatants_play_hit(_combatant: CombatantNode) -> void:
-	# if it deals damage: play the take damage SFX
-	if moveEffect.power > 0:
-		SceneLoader.audioHandler.play_sfx(takeDmgSfx)
+func _on_battle_animation_manager_combatant_animation_start() -> void:
+	combatant_started_anim.emit()
 
-func _on_move_anim_finish(_combatant: CombatantNode = null) -> void:
-	battlefieldShade.lift_battlefield_shade()
-	combatant_finished_move_anim.emit()
-
-func _on_mock_battle_controller_combatant_returning_to_rest(combatant: CombatantNode) -> void:
-	battlefieldShade.lift_battlefield_shade()
-
-func _on_mock_battle_controller_battlefield_shade_finished_fading() -> void:
-	battlefield_shade_finished_fading.emit()
+func _on_battle_animation_manager_combatant_animation_complete() -> void:
+	combatant_finished_anim.emit()

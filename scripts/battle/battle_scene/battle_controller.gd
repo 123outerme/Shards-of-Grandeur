@@ -199,22 +199,14 @@ func load_into_battle():
 		enemyCombatant3.combatant = state.enemyCombatant3
 		
 	playerCombatant.leftSide = true
-	playerCombatant.spriteFacesRight = playerCombatant.combatant.get_faces_right()
 	playerCombatant.role = CombatantNode.Role.ALLY
 	
 	minionCombatant.leftSide = true
-	if minionCombatant.combatant != null:
-		minionCombatant.spriteFacesRight = minionCombatant.combatant.get_faces_right()
 	minionCombatant.role = CombatantNode.Role.ALLY
 	
 	enemyCombatant1.role = CombatantNode.Role.ENEMY
-	enemyCombatant1.spriteFacesRight = enemyCombatant1.combatant.get_faces_right()
 	enemyCombatant2.role = CombatantNode.Role.ENEMY
-	if enemyCombatant2.combatant != null:
-		enemyCombatant2.spriteFacesRight = enemyCombatant2.combatant.get_faces_right()
 	enemyCombatant3.role = CombatantNode.Role.ENEMY
-	if enemyCombatant3.combatant != null:
-		enemyCombatant3.spriteFacesRight = enemyCombatant3.combatant.get_faces_right()
 	
 	battleUI.commandingMinion = state.commandingMinion
 	battleUI.prevMenu = state.prevMenu
