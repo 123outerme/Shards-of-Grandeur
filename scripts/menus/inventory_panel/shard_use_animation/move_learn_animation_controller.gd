@@ -15,6 +15,7 @@ signal combatant_finished_anim
 @export var delayAnimAfterLoad: bool = true
 @export var swapUsersAndTargets: bool = false
 @export var moveCombatantsIfAlone: bool = true
+@export var useItem: Item = null
 
 var moveEffect: MoveEffect = null
 
@@ -59,11 +60,15 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	userNode.disableHpTag = disableHpTags
 	userNode.load_combatant_node()
 	
-	if moveEffect.targets == BattleCommand.Targets.NON_SELF_ALLY or \
-			moveEffect.targets == BattleCommand.Targets.ALLY or \
-			moveEffect.targets == BattleCommand.Targets.ALL_ALLIES or \
-			moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
-			moveEffect.targets == BattleCommand.Targets.ALL:
+	var targets: BattleCommand.Targets = moveEffect.targets
+	if useItem != null:
+		targets = useItem.battleTargets
+	
+	if targets == BattleCommand.Targets.NON_SELF_ALLY or \
+			targets == BattleCommand.Targets.ALLY or \
+			targets == BattleCommand.Targets.ALL_ALLIES or \
+			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
+			targets == BattleCommand.Targets.ALL:
 		userAllyNode.visible = true
 		userAllyNode.combatant = targetCombatant
 		userAllyNode.disableHpTag = disableHpTags
@@ -78,10 +83,10 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 			else:
 				userNode.global_position = userSoloPos
 	
-	if moveEffect.targets == BattleCommand.Targets.ENEMY or \
-			moveEffect.targets == BattleCommand.Targets.ALL_ENEMIES or \
-			moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
-			moveEffect.targets == BattleCommand.Targets.ALL:
+	if targets == BattleCommand.Targets.ENEMY or \
+			targets == BattleCommand.Targets.ALL_ENEMIES or \
+			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
+			targets == BattleCommand.Targets.ALL:
 		targetNode.visible = true
 		targetNode.combatant = targetCombatant if not swapUsersAndTargets else PlayerResources.playerInfo.combatant
 		targetNode.disableHpTag = disableHpTags
@@ -89,9 +94,9 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	else:
 		targetNode.visible = false
 	
-	if moveEffect.targets == BattleCommand.Targets.ALL_ENEMIES or \
-			moveEffect.targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
-			moveEffect.targets == BattleCommand.Targets.ALL:
+	if targets == BattleCommand.Targets.ALL_ENEMIES or \
+			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
+			targets == BattleCommand.Targets.ALL:
 		targetAllyNode.visible = true
 		targetAllyNode.combatant = targetCombatant
 		targetAllyNode.disableHpTag = disableHpTags
@@ -162,7 +167,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 	
 	battleAnimManager.play_turn_animation(userNode, command, [])
 
-func play_item_animation(userNode: CombatantNode, item: Item) -> void:
+func play_item_animation(userNode: CombatantNode) -> void:
 	var targets: Array[String] = []
 	var targetsDealtDmg: Array[int] = []
 	var afflictedStatuses: Array[bool] = []
@@ -170,8 +175,8 @@ func play_item_animation(userNode: CombatantNode, item: Item) -> void:
 	var orbs: int = 0
 	
 	var healing: Healing = null
-	if item.itemType == Item.Type.HEALING:
-		healing = item as Healing
+	if useItem.itemType == Item.Type.HEALING:
+		healing = useItem as Healing
 		#orbs = healing.orbs
 	
 	for cNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
@@ -194,7 +199,7 @@ func play_item_animation(userNode: CombatantNode, item: Item) -> void:
 		userNode.battlePosition in targets
 	)
 	
-	var slot: InventorySlot = InventorySlot.new(item, 1)
+	var slot: InventorySlot = InventorySlot.new(useItem, 1)
 	
 	var command: BattleCommand = BattleCommand.new(
 		BattleCommand.Type.USE_ITEM,

@@ -26,6 +26,7 @@ func _ready():
 	moveLearnAnimController.customTarget = targetCombatant
 	moveLearnAnimController.move = move
 	moveLearnAnimController.moveCombatantsIfAlone = moveCombatantsIfAlone
+	moveLearnAnimController.useItem = item
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 	if playSurge:
 		surgeChargeToggle.text = 'Surge'
@@ -43,7 +44,7 @@ func _on_button_pressed():
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 	moveLearnAnimController.playAnimAfterLoad = false
 	if item != null:
-		moveLearnAnimController.play_item_animation(userNode, item)
+		moveLearnAnimController.play_item_animation(userNode)
 
 func _on_swap_button_pressed():
 	if userNode == moveLearnAnimController.battleAnimManager.playerCombatantNode:

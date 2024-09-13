@@ -245,6 +245,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 
 func use_item_animation(user: CombatantNode, slot: InventorySlot, targets: Array[CombatantNode]):
 	user.useItemSprite = slot.item.itemSprite
+	user.moveSpriteTargets = targets
 	
 	var spritesCallbackFunc: Callable = _on_combatant_animation_unit_complete.bind(AnimationType.MOVE_SPRITE_ANIM)
 	var shadeCallbackFunc: Callable = _on_combatant_animation_unit_complete.bind(AnimationType.BATTLEFIELD_SHADE)
