@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://q1javnuhtryq"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_hd6eg"]
+[ext_resource type="Texture2D" uid="uid://c8v7ehn2cygkw" path="res://graphics/particles/magic/magic_1.png" id="1_snhkc"]
+[ext_resource type="Texture2D" uid="uid://b1o5ug78e5svt" path="res://graphics/particles/magic/magic_2.png" id="2_l4dle"]
+[ext_resource type="Texture2D" uid="uid://b1ix2m4otqv0e" path="res://graphics/particles/magic/magic_3.png" id="3_5eaoi"]
+[ext_resource type="Texture2D" uid="uid://b2ruklbv2n432" path="res://graphics/particles/magic/magic_4.png" id="4_ll7w0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffeip"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+
+[resource]
+script = ExtResource("1_hd6eg")
+emitter = "behind"
+count = 4
+lifetime = 0.6
+duration = 1.1
+staggered = true
+processMaterial = SubResource("ParticleProcessMaterial_ffeip")
+particleTextures = Array[Texture2D]([ExtResource("1_snhkc"), ExtResource("2_l4dle"), ExtResource("3_5eaoi"), ExtResource("4_ll7w0")])

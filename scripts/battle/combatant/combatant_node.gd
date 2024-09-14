@@ -46,6 +46,7 @@ const statusWeights: Dictionary = {
 }
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
+var loaded: bool = false
 var disableHpTag: bool = false
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var animateTween: Tween = null
@@ -133,6 +134,7 @@ func load_combatant_node():
 			onAssistMarker.position.y = initialAssistMarkerPos.y - (combatant.get_idle_size().y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
 			onAssistMarker.position.y = initialAssistMarkerPos.y + (combatant.get_idle_size().y - 16) / 2
+	loaded = true
 
 func get_in_front_particle_scale() -> float:
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger
@@ -175,14 +177,16 @@ func update_hp_tag():
 	
 	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		#orbDisplay.visible = true
-	orbDisplay.currentOrbs = combatant.orbs
-	orbDisplay.update_orb_display()
+	update_orb_display()
 	#else:
 		#orbDisplay.visible = false
 	if combatant.statusEffect != null:
 		statusSprite.texture = combatant.statusEffect.get_icon()
 	else:
 		statusSprite.texture = null
+
+func update_orb_display():
+	orbDisplay.update_orb_count(combatant.orbs, false, loaded)
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
