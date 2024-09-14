@@ -19,7 +19,7 @@ func _init(
 
 func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int:
 	var damage: int = 0
-	if allCombatants[attackerIdx].command == null:
+	if allCombatants[attackerIdx].command == null or allCombatants[attackerIdx].command.commandResult == null:
 		printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
 		return damage
 	# Assumption: targets are already fetched
@@ -30,8 +30,9 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int
 	for interceptIdx in range(len(allCombatants[attackerIdx].command.interceptingTargets)):
 		if combatant in allCombatants[attackerIdx].command.interceptingTargets and allCombatants[attackerIdx].command.commandResult != null:
 			damage += max(0, allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
-	
-	return roundi(damage * Reflect.PERCENT_DAMAGE_DICT[potency])
+	damage *= Reflect.PERCENT_DAMAGE_DICT[potency]
+	allCombatants[attackerIdx].command.commandResult.selfRecoilDmg += damage
+	return roundi(damage)
 
 func find_attacker_idx(combatant, allCombatants: Array) -> int:
 	for idx in range(len(allCombatants)):

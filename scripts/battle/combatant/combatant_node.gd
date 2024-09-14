@@ -46,6 +46,7 @@ const statusWeights: Dictionary = {
 }
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
+const eventTextScene = preload('res://prefabs/battle/combatant_event_text.tscn')
 var loaded: bool = false
 var disableHpTag: bool = false
 var tmpAllCombatantNodes: Array[CombatantNode] = []
@@ -60,7 +61,9 @@ var useItemSprite: Texture2D = null
 var isBeingStatusAfflicted: bool = false
 var initialAssistMarkerPos: Vector2
 var initialAttackMarkerPos: Vector2
+var initialEventTextContainerPos: Vector2
 
+@onready var eventTextContainer: Control = get_node('SpriteContainer/EventTextContainer')
 @onready var hpTag: Panel = get_node('HPTag')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
@@ -86,6 +89,7 @@ func _ready():
 	orbDisplay.alignment = BoxContainer.ALIGNMENT_END if leftSide else BoxContainer.ALIGNMENT_BEGIN
 	initialAssistMarkerPos = onAssistMarker.position
 	initialAttackMarkerPos = onAttackMarker.position
+	initialEventTextContainerPos = eventTextContainer.position
 
 func load_combatant_node():
 	if not is_alive():
@@ -134,6 +138,11 @@ func load_combatant_node():
 			onAssistMarker.position.y = initialAssistMarkerPos.y - (combatant.get_idle_size().y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
 			onAssistMarker.position.y = initialAssistMarkerPos.y + (combatant.get_idle_size().y - 16) / 2
+	
+	eventTextContainer.position = initialEventTextContainerPos
+	if combatant.get_idle_size().y > 16:
+		eventTextContainer.position.y -= (combatant.get_idle_size().y - 16) / 2
+	
 	loaded = true
 
 func get_in_front_particle_scale() -> float:
@@ -417,6 +426,11 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		#spriteNode.call_deferred('play_sprite_animation')
 		playingMoveSprites.append(spriteNode)
 		add_child(spriteNode)
+
+func play_event_text(text: String, delay: float = 0, center: bool = true) -> void:
+	var instantiatedText: CombatantEventText = eventTextScene.instantiate()
+	instantiatedText.load_event_text(text, delay, center)
+	eventTextContainer.add_child(instantiatedText)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:
 	if targets == BattleCommand.Targets.SELF:

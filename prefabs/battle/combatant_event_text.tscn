@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://de1k07t5tt5ul"]
+
+[ext_resource type="Theme" uid="uid://dd8j100gd5xq2" path="res://themes/damage_text_theme.tres" id="1_frw6m"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_event_text.gd" id="2_44d8i"]
+
+[node name="CombatantEventText" type="RichTextLabel" groups=["CombatantEventText"]]
+clip_contents = false
+custom_minimum_size = Vector2(380, 32)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -32.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("1_frw6m")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][color=d15d57]Afflicted Overwhelming[/color][/center]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+script = ExtResource("2_44d8i")

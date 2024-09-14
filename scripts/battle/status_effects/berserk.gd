@@ -26,8 +26,9 @@ func get_recoil_damage(combatant: Combatant) -> int:
 			damage += max(0, combatant.command.commandResult.damagesDealt[targetIdx]) # do not go negative
 		for interceptIdx in range(len(combatant.command.interceptingTargets)):
 			damage += max(0, combatant.command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
-	
-	return roundi(damage * Berserk.PERCENT_DAMAGE_DICT[potency])
+		damage *= Berserk.PERCENT_DAMAGE_DICT[potency]
+		combatant.command.commandResult.selfRecoilDmg += damage
+	return roundi(damage)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	var dealtDmgCombatants: Array[Combatant] = []

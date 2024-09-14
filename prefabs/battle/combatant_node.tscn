@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=21 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="2_a8f3n"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
 [ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
+[ext_resource type="Resource" uid="uid://blrp1t3gyu213" path="res://graphics/particles/gain_orb_particle_preset.tres" id="20_42705"]
 [ext_resource type="Texture2D" uid="uid://b25no5y38ry06" path="res://graphics/ui/berserk.png" id="20_es783"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsy4x"]
@@ -98,6 +99,14 @@ lifetime = 0.75
 particles = 6
 waves = 0.9
 duration = 0.675
+
+[node name="EventTextContainer" type="Control" parent="SpriteContainer"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_top = -13.0
+offset_bottom = -13.0
+scale = Vector2(0.25, 0.25)
 
 [node name="HPTag" type="Panel" parent="."]
 z_index = 1
@@ -204,6 +213,11 @@ firstOrbParticlePos = Vector2(3, 4)
 
 [node name="ParticleEmitter" parent="HPTag/OrbDisplay" index="2"]
 position = Vector2(3, 4)
+preset = ExtResource("20_42705")
+lifetime = 0.22
+particles = 2
+waves = 0.909091
+duration = 0.2
 
 [node name="OnAttackPos" type="Marker2D" parent="."]
 gizmo_extents = 2.0

@@ -20,6 +20,8 @@ enum AnimationType {
 	TWEEN_TO_TARGET = 3,
 }
 
+@export var disableEventTexts: bool = false
+
 @onready var playerCombatantNode: CombatantNode = get_node('PlayerCombatant')
 @onready var minionCombatantNode: CombatantNode = get_node('MinionCombatant')
 @onready var enemy1CombatantNode: CombatantNode = get_node('EnemyCombatant1')
@@ -211,16 +213,15 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		user.tween_back_to_return_pos()
 		totalWaitingForSignals.append(AnimationType.TWEEN_TO_TARGET)
 	
-	
 	if user.animatedSprite.animation == 'hide' or moveAnimation.combatantAnimation == 'stand':
 		user._on_animated_sprite_animation_finished()
 	
 	# hit particles spawning, updating HP tags
 	for defender: CombatantNode in defenders:
 		defender.update_hp_tag()
-		defender.isBeingStatusAfflicted = false
 		var playHitParticles: bool = false
 		var dealtDmg: int = 0
+		var eventTexts: Array[String] = []
 		var targetIdx: int = command.targets.find(defender.combatant)
 		if targetIdx >= 0 and targetIdx < len(command.commandResult.damagesDealt):
 			dealtDmg += command.commandResult.damagesDealt[targetIdx]
@@ -234,14 +235,24 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if defender in statusDamagedCombatants:
 			playHitParticles = true
 		if playHitParticles:
-			defender.play_particles(BattleCommand.get_hit_particles(), 0.2)
-		if dealtDmg != 0:
-			pass # TODO: add floating damage numbers here
+			defender.play_particles(BattleCommand.get_hit_particles(), 0)
+		if dealtDmg != 0 and not disableEventTexts:
+			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg))
+		if command.commandResult.afflictedStatuses[targetIdx]:
+			if defender.combatant.statusEffect != null:
+				eventTexts.append(CombatantEventText.build_status_get_text(defender.combatant.statusEffect))
+		var textDelayAccum: float = 0
+		for textIdx: int in range(len(eventTexts)):
+			if textIdx > 0:
+				textDelayAccum += 1
+			defender.play_event_text(eventTexts[textIdx], textDelayAccum)
+		defender.isBeingStatusAfflicted = false
 	
 	user.update_hp_tag()
-	if user in statusDamagedCombatants:
-		user.play_particles(BattleCommand.get_hit_particles(), 0.2)
-		# TODO: add floating damage numbers here
+	if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
+		user.play_particles(BattleCommand.get_hit_particles(), 0)
+		if not disableEventTexts:
+			user.play_event_text(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
 	user.isBeingStatusAfflicted = false
 	
 	# lift the battlefield shade now that the animation is over soon
