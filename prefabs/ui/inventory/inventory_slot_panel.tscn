@@ -201,9 +201,14 @@ custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Details"
 
+[node name="OnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(0, 0, 1120, 76)
+
 [connection signal="pressed" from="CenterButtons/HBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/EquipButton" to="." method="_on_equip_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/TrashButton" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]
 [connection signal="pressed" from="CenterButtons/HBoxContainer/DetailsButton" to="." method="_on_details_button_pressed"]
+[connection signal="screen_entered" from="OnscreenNotifier" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="OnscreenNotifier" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

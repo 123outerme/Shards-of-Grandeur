@@ -1,7 +1,11 @@
 extends ScrollContainer
 class_name ScrollBetterFollow
 
+## select the container that is the direct child of this one, to be tracked for scroll fixing
 @export var boxContainer: BoxContainer
+
+## if true, will scroll the list so the that the selected entry (beyond the end of the viewport) will be at the start of the container
+@export var jumpToStartOnEndScroll: bool = true
 
 func _viewport_focus_changed(control):
 	#print('fix focus')
@@ -17,6 +21,8 @@ func _viewport_focus_changed(control):
 				var scrollDist = controlPanel.position.y
 				if scroll_vertical + size.y < scrollDist:
 					scrollDist += controlPanel.size.y
+				elif not jumpToStartOnEndScroll and controlPanel.position.y >= scroll_vertical:
+					scrollDist = scroll_vertical + controlPanel.size.y
 				scroll_vertical = scrollDist
 		else: # HBoxContainer
 			if controlPanel != null and \
@@ -25,6 +31,8 @@ func _viewport_focus_changed(control):
 				var scrollDist = controlPanel.position.x
 				if scroll_horizontal + size.x < scrollDist:
 					scrollDist += controlPanel.size.x
+				elif not jumpToStartOnEndScroll and controlPanel.position.x >= scroll_horizontal:
+					scrollDist = scroll_horizontal + controlPanel.size.x
 				scroll_horizontal = scrollDist
 
 func _on_visibility_changed():

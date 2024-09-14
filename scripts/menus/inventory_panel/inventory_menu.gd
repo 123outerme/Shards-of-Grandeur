@@ -41,7 +41,7 @@ var shopInventory: Inventory = null
 ## the stats object to equip equipment to if clicked in from the Stats menu
 @export var equipContextStats: Stats = null
 
-@onready var vboxViewport = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
+@onready var vboxViewport: VBoxContainer = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
 @onready var toggleShopButton: Button = get_node("InventoryPanel/Panel/ToggleShopInventoryButton")
@@ -211,7 +211,10 @@ func load_inventory_panel(rebuild: bool = true):
 		var previousPanel: InventorySlotPanel = null
 		var firstPanel: InventorySlotPanel = null
 		var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
-		for slot in currentInventory.get_sorted_slots():
+		var inventorySlots: Array[InventorySlot] = currentInventory.get_sorted_slots()
+		var slotPanelIdx: int = 0
+		for slotIdx: int in range(len(inventorySlots)):
+			var slot: InventorySlot = inventorySlots[slotIdx]
 			if slot.count == 0:
 				continue
 			if slot is ShopInventorySlot:
@@ -219,6 +222,7 @@ func load_inventory_panel(rebuild: bool = true):
 				if not shopSlot.is_valid():
 					continue
 			if (selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType) and slot.is_valid():
+				slotPanelIdx += 1
 				var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
 				instantiatedPanel.isShopItem = inShop
 				instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
@@ -231,6 +235,8 @@ func load_inventory_panel(rebuild: bool = true):
 				if otherInventory != null:
 					instantiatedPanel.canOtherPartyHold = not otherInventory.is_slot_for_item_full(slot.item)
 				instantiatedPanel.equipContextStats = equipContextStats
+				# consider it to be onscreen if the panel would fit even partially inside the viewport
+				instantiatedPanel.onscreen = slotPanelIdx <= ceili(vboxViewport.get_parent().size.y / instantiatedPanel.MIN_HEIGHT_PX)
 				vboxViewport.add_child(instantiatedPanel)
 				if firstPanel == null:
 					firstPanel = instantiatedPanel

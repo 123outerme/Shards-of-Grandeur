@@ -117,41 +117,46 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
+offset_left = -350.0
 offset_top = 80.0
-offset_right = 300.0
+offset_right = 350.0
 offset_bottom = 120.0
 grow_horizontal = 2
 theme = ExtResource("5_msabb")
 alignment = 1
 
 [node name="AllButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "All"
 
 [node name="HealingButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Healing"
 
 [node name="ShardsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Shards"
 
 [node name="WeaponsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Weapons"
 
 [node name="ArmorButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Armor"
 
 [node name="KeyItemsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Key Items"
@@ -170,6 +175,7 @@ grow_vertical = 2
 follow_focus = true
 script = ExtResource("7_n4b6m")
 boxContainer = NodePath("VBoxContainer")
+jumpToStartOnEndScroll = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/Panel/ScrollContainer"]
 custom_minimum_size = Vector2(1120, 76)

@@ -12,6 +12,9 @@ class_name InventorySlotPanel
 @export var equipContextStats: Stats = null
 @export var canOtherPartyHold: bool = false
 
+const MIN_HEIGHT_PX = 76 # used by the inventory panel to calculate whether it is set to load immediately (will be onscreen asap) 
+var onscreen: bool = false
+
 @onready var itemSprite: Sprite2D = get_node("ItemSprite")
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
 @onready var itemType: RichTextLabel = get_node("CenterItemType/ItemType")
@@ -25,6 +28,7 @@ class_name InventorySlotPanel
 @onready var buyButton: Button = get_node("CenterButtons/HBoxContainer/BuyButton")
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
 @onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
+@onready var onscreenNotifier: VisibleOnScreenNotifier2D = get_node('OnscreenNotifier')
 
 # shows the Inventory panel where the tutorial arrow should go
 # (but not nested in here, so it isn't clipped by the scroll container)
@@ -38,9 +42,39 @@ func load_inventory_slot_panel():
 	if inventorySlot == null:
 		return
 	
+	# first load all the buttons' states
 	var displayCount: int = inventorySlot.count
 	if queuedForBattleUse:
 		displayCount -= 1
+	
+	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
+	useButton.disabled = not inventorySlot.item.usable or \
+			((not inventorySlot.item.battleUsable or displayCount <= 0) and inBattle) or \
+			not inventorySlot.item.can_be_used_now()
+	
+	equipButton.visible = not isShopItem and inventorySlot.item.equippable
+	equipButton.disabled = inBattle
+	
+	trashButton.visible = not isShopItem
+	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
+	
+	buyButton.visible = isShopItem and not isPlayerItem
+	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold
+	
+	sellButton.visible = isShopItem and isPlayerItem
+	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
+	
+	# then, if it's not onscreen, wait until it enters the screen to load it
+	if not onscreen:
+		itemSprite.texture = null
+		itemName.text = ''
+		itemType.text = ''
+		itemCount.text = ''
+		equippedTo.text = ''
+		centerItemCost.visible = false
+		await onscreenNotifier.screen_entered
+	
+	# once it's onscreen, load the sprites, texts, etc.
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
 	itemType.text = Item.type_to_string(inventorySlot.item.itemType)
@@ -50,20 +84,6 @@ func load_inventory_slot_panel():
 			itemCount.text += ' / ' + TextUtils.num_to_comma_string(inventorySlot.item.maxCount)
 	else:
 		itemCount.text = ''
-	
-	if inventorySlot.item.cost >= 0:
-		itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
-		centerItemCost.visible = true
-	else:
-		centerItemCost.visible = false
-	
-	useButton.visible = not isShopItem and not inventorySlot.item.equippable # hide if it's a shop item or if it's equippable
-	useButton.disabled = not inventorySlot.item.usable or \
-			((not inventorySlot.item.battleUsable or displayCount <= 0) and inBattle) or \
-			not inventorySlot.item.can_be_used_now()
-	
-	equipButton.visible = not isShopItem and inventorySlot.item.equippable
-	equipButton.disabled = inBattle
 	
 	equippedTo.text = ''
 	if inventorySlot.item.equippable:
@@ -76,14 +96,11 @@ func load_inventory_slot_panel():
 		if combatant != null:
 			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
 	
-	trashButton.visible = not isShopItem
-	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
-	
-	buyButton.visible = isShopItem and not isPlayerItem
-	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold
-	
-	sellButton.visible = isShopItem and isPlayerItem
-	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
+	if inventorySlot.item.cost >= 0:
+		itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
+		centerItemCost.visible = true
+	else:
+		centerItemCost.visible = false
 
 func get_leftmost_button() -> Button:
 	var buttonArr: Array[Button] = [
@@ -141,3 +158,9 @@ func _on_sell_button_pressed():
 
 func _on_details_button_pressed():
 	inventoryMenu.view_item_details(inventorySlot)
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	onscreen = true
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	onscreen = false
