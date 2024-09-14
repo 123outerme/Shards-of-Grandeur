@@ -128,7 +128,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 		play_move_animation(userNode, playSurge)
 
 func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
-	var moveEffect: MoveEffect = move.surgeEffect if playSurge else move.chargeEffect 
+	moveEffect = move.surgeEffect if playSurge else move.chargeEffect 
 	
 	var targets: Array[String] = []
 	var targetsDealtDmg: Array[int] = []

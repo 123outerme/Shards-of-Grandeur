@@ -57,17 +57,23 @@ func play_turn_animation(user: CombatantNode, command: BattleCommand, statusDama
 		await use_move_animation(user, command, targetNodes, interceptingNodes, statusDmgdNodes)
 	elif command.type == BattleCommand.Type.USE_ITEM:
 		var targetNodes: Array[CombatantNode] = []
+		var statusDmgdNodes: Array[CombatantNode] = []
 		for cNode: CombatantNode in get_all_combatant_nodes():
 			for target: Combatant in command.targets:
 				if target == cNode.combatant:
 					targetNodes.append(cNode)
-		await use_item_animation(user, command.slot, targetNodes)
+			for dmgd: Combatant in statusDamagedCombatants:
+				if dmgd == cNode.combatant:
+					statusDmgdNodes.append(cNode)
+		await use_move_animation(user, command, targetNodes, [], statusDmgdNodes)
 	elif command.type == BattleCommand.Type.ESCAPE:
 		await escape_animation(user)
 	reset_all_combatants_shade_z_indices()
 	combatant_animation_complete.emit()
 
 func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Array[CombatantNode], interceptors: Array[CombatantNode], statusDamagedCombatants: Array[CombatantNode]):
+	var moveAnimation: MoveAnimation = command.move.moveAnimation if command.type == BattleCommand.Type.MOVE else BattleCommand.useItemAnimation
+	
 	var immediateSprites: Array[MoveAnimSprite] = []
 	var afterTweenSprites: Array[MoveAnimSprite] = []
 	for sprite: MoveAnimSprite in command.get_command_sprites():
@@ -91,23 +97,23 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	waitingForSignals = []
 	totalWaitingForSignals = []
 	
-	if command.moveEffectType == Move.MoveEffectType.CHARGE:
-		shade = command.move.moveAnimation.chargeBattlefieldShade
+	if command.type != BattleCommand.Type.MOVE or command.moveEffectType == Move.MoveEffectType.CHARGE:
+		shade = moveAnimation.chargeBattlefieldShade
 	elif command.moveEffectType == Move.MoveEffectType.SURGE:
-		shade = command.move.moveAnimation.surgeBattlefieldShade
+		shade = moveAnimation.surgeBattlefieldShade
 		var surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
 		user.play_particles(surgeParticles)
 	
 	# play animation sprite if not none or battle idle
-	if command.move.moveAnimation.combatantAnimation != '' and command.move.moveAnimation.combatantAnimation != 'battle_idle':
-		user.play_animation(command.move.moveAnimation.combatantAnimation)
-		if command.move.moveAnimation.combatantAnimation != 'hide':
+	if moveAnimation.combatantAnimation != '' and moveAnimation.combatantAnimation != 'battle_idle':
+		user.play_animation(moveAnimation.combatantAnimation)
+		if moveAnimation.combatantAnimation != 'hide' and moveAnimation.combatantAnimation != 'stand':
 			animCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.SPRITE_ANIM)
 			user.sprite_animation_finished.connect(animCallbackFunc)
 			totalWaitingForSignals.append(AnimationType.SPRITE_ANIM)
 	
 	# play user particles
-	user.play_particles(command.move.moveAnimation.userParticlePreset)
+	user.play_particles(moveAnimation.userParticlePreset)
 	
 	set_combatant_above_shade(user)
 	# build list of defenders
@@ -120,19 +126,22 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	# play target (defender) particles
 	for defender: CombatantNode in defenders:
 		set_combatant_above_shade(defender)
-		defender.play_particles(command.move.moveAnimation.targetsParticlePreset)
+		defender.play_particles(moveAnimation.targetsParticlePreset)
 	
-	# move sprites
+	# move sprites (playing immediately, ignoring timing of tweens)
 	if len(immediateSprites) > 0:
 		user.moveSpriteTargets = targets
+		if command.type == BattleCommand.Type.USE_ITEM and command.slot != null and command.slot.item != null:
+			user.useItemSprite = command.slot.item.itemSprite
 		for sprite: MoveAnimSprite in immediateSprites:
 			user.play_move_sprite(sprite)
 		spriteCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.MOVE_SPRITE_ANIM)
 		user.move_sprites_finished.connect(spriteCallbackFunc)
 		totalWaitingForSignals.append(AnimationType.MOVE_SPRITE_ANIM)
+		user.useItemSprite = null
 	
 	# tween-to (combatant movement)
-	if command.move.moveAnimation.makesContact:
+	if moveAnimation.makesContact:
 		var moveToPos: Vector2 = user.global_position # fallback: self (no movement)
 		var moveToCombatantNode: CombatantNode = user
 		var multiIsAllies: bool = false
@@ -181,7 +190,9 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	
 	# play sprites that should only play after a tween, if one happened
 	if len(afterTweenSprites) > 0:
-		user.moveSpriteTargets = targets 
+		user.moveSpriteTargets = targets
+		if command.type == BattleCommand.Type.USE_ITEM and command.slot != null and command.slot.item != null:
+			user.useItemSprite = command.slot.item.itemSprite
 		for sprite: MoveAnimSprite in afterTweenSprites:
 			user.play_move_sprite(sprite)
 		if spriteCallbackFunc == Callable():
@@ -189,6 +200,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			user.move_sprites_finished.connect(spriteCallbackFunc)
 		if AnimationType.MOVE_SPRITE_ANIM not in totalWaitingForSignals:
 			totalWaitingForSignals.append(AnimationType.MOVE_SPRITE_ANIM)
+		user.useItemSprite = null
 	
 	if len(totalWaitingForSignals) > 0:
 		await animation_waiting_complete
@@ -196,9 +208,11 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	# if a tween was started, return the combatant now (and un-hide while we're at it)
 	if tweenBackCallbackFunc != Callable():
 		user.tween_back_to_return_pos()
-		if user.animatedSprite.animation == 'hide':
-			user._on_animated_sprite_animation_finished()
 		totalWaitingForSignals.append(AnimationType.TWEEN_TO_TARGET)
+	
+	
+	if user.animatedSprite.animation == 'hide' or moveAnimation.combatantAnimation == 'stand':
+		user._on_animated_sprite_animation_finished()
 	
 	# hit particles spawning, updating HP tags
 	for defender: CombatantNode in defenders:
@@ -223,6 +237,12 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if dealtDmg != 0:
 			pass # TODO: add floating damage numbers here
 	
+	user.update_hp_tag()
+	if user in statusDamagedCombatants:
+		user.play_particles(BattleCommand.get_hit_particles(), 0.2)
+		# TODO: add floating damage numbers here
+	user.isBeingStatusAfflicted = false
+	
 	# lift the battlefield shade now that the animation is over soon
 	if shade != null:
 		battlefieldShade.lift_battlefield_shade()
@@ -242,86 +262,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		battlefieldShade.shade_faded_up.disconnect(shadeCallbackFunc)
 
 	# post-move animations?
-
-func use_item_animation(user: CombatantNode, slot: InventorySlot, targets: Array[CombatantNode]):
-	user.useItemSprite = slot.item.itemSprite
-	user.moveSpriteTargets = targets
 	
-	var spritesCallbackFunc: Callable = _on_combatant_animation_unit_complete.bind(AnimationType.MOVE_SPRITE_ANIM)
-	var shadeCallbackFunc: Callable = _on_combatant_animation_unit_complete.bind(AnimationType.BATTLEFIELD_SHADE)
-	var tweenToCallbackFunc: Callable = Callable()
-	var tweenBackCallbackFunc: Callable = Callable()
-	
-	for target: CombatantNode in targets:
-		target.update_hp_tag()
-	
-	set_combatant_above_shade(user)
-	for sprite: MoveAnimSprite in BattleCommand.useItemAnimation.chargeMoveSprites:
-		user.play_move_sprite(sprite)
-	user.move_sprites_finished.connect(spritesCallbackFunc)
-	user.play_particles(BattleCommand.useItemAnimation.userParticlePreset)
-	
-	battlefieldShade.do_battlefield_shade_anim(BattleCommand.useItemAnimation.chargeBattlefieldShade)
-	battlefieldShade.shade_faded_up.connect(shadeCallbackFunc)
-	
-	waitingForSignals = []
-	totalWaitingForSignals = [AnimationType.MOVE_SPRITE_ANIM]
-	
-	# tween-to (combatant movement)
-	if BattleCommand.useItemAnimation.makesContact:
-		var moveToPos: Vector2 = user.global_position # fallback: self (no movement)
-		var moveToCombatantNode: CombatantNode = user
-		var multiIsAllies: bool = false
-		var multiIsEnemies: bool = false
-		if len(targets) == 1:
-			moveToCombatantNode = targets[0]
-			if moveToCombatantNode.leftSide != user.leftSide:
-				moveToPos = moveToCombatantNode.onAttackMarker.global_position
-			else:
-				moveToPos = moveToCombatantNode.onAssistMarker.global_position
-		else:
-			for targetNode: CombatantNode in targets:
-				if targetNode.leftSide != user.leftSide:
-					multiIsEnemies = true
-				else:
-					multiIsAllies = true
-			if multiIsAllies or multiIsEnemies:
-				moveToCombatantNode = null
-				# if targeting both allies and enemies
-				if multiIsAllies and multiIsEnemies:
-					moveToPos = globalMarker.global_position # use global move pos
-				elif multiIsAllies:
-					moveToPos = user.allyTeamMarker.global_position # use ally team pos
-				else: # multiIsEnemies
-					moveToPos = user.enemyTeamMarker.global_position # use enemy team pos
-		if moveToPos != user.global_position:
-			tweenToCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.TWEEN_TO_TARGET)
-			tweenBackCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.TWEEN_TO_TARGET)
-			user.tween_to_target_finished.connect(tweenToCallbackFunc)
-			user.tween_back_finished.connect(tweenBackCallbackFunc)
-			user.tween_to(moveToPos, moveToCombatantNode)
-			totalWaitingForSignals.append(AnimationType.TWEEN_TO_TARGET)
-	
-	await animation_waiting_complete
-	
-	totalWaitingForSignals = [AnimationType.BATTLEFIELD_SHADE]
-	battlefieldShade.lift_battlefield_shade()
-	
-	if tweenBackCallbackFunc != Callable():
-		totalWaitingForSignals.append(AnimationType.TWEEN_TO_TARGET)
-		user.tween_back_to_return_pos()
-	
-	await animation_waiting_complete
-	
-	user.move_sprites_finished.disconnect(spritesCallbackFunc)
-	battlefieldShade.shade_faded_up.disconnect(shadeCallbackFunc)
-	if tweenToCallbackFunc != Callable():
-		user.tween_to_target_finished.disconnect(tweenToCallbackFunc)
-	if tweenBackCallbackFunc != Callable():
-		user.tween_back_finished.disconnect(tweenBackCallbackFunc)
-	user.useItemSprite = null
-	
-	#if slot.item.itemType == Item.ItemType.HEALING:
+	#if command.type == BattleCommand.Type.USE_ITEM and slot.item.itemType == Item.ItemType.HEALING:
 	#	user.play_particles()
 
 func escape_animation(user: CombatantNode):

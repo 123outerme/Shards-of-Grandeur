@@ -1,24 +1,20 @@
 extends BattleController
 
-@export var encounter: EnemyEncounter = null
+@export var encounter: StaticEncounter = null
 @export var _playerCombatant: Combatant
 @export var playerLv: int = 1
-@export var _minionCombatant: Combatant
-@export var minionLv: int = 1
-@export var enemy1Combatant: Combatant
-@export var enemy1Lv: int = 1
-@export var enemy2Combatant: Combatant
-@export var enemy2Lv: int = 1
-@export var enemy3Combatant: Combatant
-@export var enemy3Lv: int = 1
+@export var playerCommand: BattleCommand = null
+@export var playerStatus: StatusEffect = null
+@export var minionCommand: BattleCommand = null
+@export var minionStatus: StatusEffect = null
+@export var enemy1Command: BattleCommand = null
+@export var enemy1Status: StatusEffect = null
+@export var enemy2Command: BattleCommand = null
+@export var enemy2Status: StatusEffect = null
+@export var enemy3Command: BattleCommand = null
+@export var enemy3Status: StatusEffect = null
 
-@onready var allCombatantNodes: Array[CombatantNode] = [
-	get_node('PlayerCombatantNode'),
-	get_node('MinionCombatantNode'),
-	get_node('Enemy1CombatantNode'),
-	get_node('Enemy2CombatantNode'),
-	get_node('Enemy3CombatantNode')
-]
+@onready var battleAnimManager: BattleAnimationManager = get_node('BattleAnimationManager')
 @onready var nextButton: Button = get_node('SfxButton')
 
 func _ready():
@@ -27,8 +23,10 @@ func _ready():
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
 	nextButton.grab_focus()
-	var combatants: Array[Combatant] = [_playerCombatant, _minionCombatant, enemy1Combatant, enemy2Combatant, enemy3Combatant]
-	var combatantLvs: Array[int] = [playerLv, minionLv, enemy1Lv, enemy2Lv, enemy3Lv]
+	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
+	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
+	var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
+	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
 	for idx in range(len(combatants)):
 		var combatant: Combatant = combatants[idx]
 		if combatant != null:
@@ -46,16 +44,18 @@ func _ready():
 				combatant.currentHp = currentCombatantHp
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
+			combatant.command = combatantCommands[idx]
+			combatant.statusEffect = combatantStatuses[idx]
 			combatant = combatant.copy()
-		allCombatantNodes[idx].combatant = combatant
-		allCombatantNodes[idx].load_combatant_node()
+		battleAnimManager.get_all_combatant_nodes()[idx].combatant = combatant
+		battleAnimManager.get_all_combatant_nodes()[idx].load_combatant_node()
 	var battleState = BattleState.new()
 	battleState.menu = BattleState.Menu.PRE_ROUND
 	battleUI.menuState = BattleState.Menu.PRE_ROUND
 	# get command for each combatant, if that combatant is alive and hasn't made a command, get one
-	for combatantNode in allCombatantNodes:
+	for combatantNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.is_alive():
-			combatantNode.get_command(allCombatantNodes)
+			combatantNode.get_command(battleAnimManager.get_all_combatant_nodes())
 	
 	state.calcdStateIndex = 0
 	turnExecutor.start_simulation()
@@ -80,4 +80,10 @@ func _ready():
 	nextButton.visible = false
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
-	return allCombatantNodes
+	return battleAnimManager.get_all_combatant_nodes()
+
+func _on_battle_animation_manager_combatant_animation_start() -> void:
+	nextButton.disabled = true
+
+func _on_battle_animation_manager_combatant_animation_complete() -> void:
+	nextButton.disabled = false

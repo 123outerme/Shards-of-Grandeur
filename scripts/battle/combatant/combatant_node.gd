@@ -769,9 +769,6 @@ func _on_animate_tween_target_move_finished():
 
 func _on_animate_tween_finished():
 	animateTween = null
-	if animatedSprite.animation == 'battle_idle' or animatedSprite.animation == 'hide':
-		if animatedSprite.animation == 'hide':
-			_on_animated_sprite_animation_finished()
 
 func _on_combatant_tween_returned():
 	tween_back_finished.emit()
