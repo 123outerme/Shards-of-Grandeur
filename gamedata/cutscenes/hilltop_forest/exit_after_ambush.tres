@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://ckexqmyrnv0sb"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://ckexqmyrnv0sb"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_10kwk"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_ksyal"]
@@ -22,6 +22,22 @@ actorTreePath = "TilemapRoot/DrHudson"
 isPlayer = false
 animation = "talk"
 
+[sub_resource type="Resource" id="Resource_u3iid"]
+script = ExtResource("4_66k8b")
+actorTreePath = "TilemapRoot/DrHudson"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+
+[sub_resource type="Resource" id="Resource_tc5r0"]
+script = ExtResource("4_66k8b")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/DrHudson"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
 [sub_resource type="Resource" id="Resource_82s7e"]
 script = ExtResource("2_8hg62")
 speaker = "Dr. Hudson"
@@ -34,7 +50,7 @@ annotation = "Dr. Hudson speaks to discuss learning moves from Shards"
 actorTweens = Array[ExtResource("5_8wkxy")]([])
 actorAnims = Array[ExtResource("1_ksyal")]([SubResource("Resource_rhwb1"), SubResource("Resource_k45fe")])
 actorAnimSets = Array[ExtResource("2_83uxt")]([])
-actorFaceTargets = Array[ExtResource("4_66k8b")]([])
+actorFaceTargets = Array[ExtResource("4_66k8b")]([SubResource("Resource_u3iid"), SubResource("Resource_tc5r0")])
 dialogues = Array[ExtResource("2_8hg62")]([SubResource("Resource_82s7e")])
 endTextBoxPauses = false
 shakeCamForDuration = false

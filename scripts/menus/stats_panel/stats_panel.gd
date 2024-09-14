@@ -119,6 +119,9 @@ func close_panel():
 		tabbedViewContainer.current_tab = TabbedViewTab.STATS
 	savedStats = null
 	minion = null
+	# if the level up music is currently playing and this is in the overworld, cross-fade back into the overworld theme
+	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null:
+		SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme)
 	back_pressed.emit()
 
 func initial_focus():

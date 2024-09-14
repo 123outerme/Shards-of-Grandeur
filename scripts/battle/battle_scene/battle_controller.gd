@@ -21,7 +21,6 @@ var tilemap: Node2D = null
 var battleMapPath: String = ''
 
 @onready var battleAnimationManager: BattleAnimationManager = get_node('BattleAnimationManager')
-@onready var combatantNodes: Array[Node] = get_tree().get_nodes_in_group("BattleCombatantNode")
 @onready var playerCombatant: CombatantNode = get_node_or_null("BattleAnimationManager/PlayerCombatant")
 @onready var minionCombatant: CombatantNode = get_node_or_null("BattleAnimationManager/MinionCombatant")
 @onready var enemyCombatant1: CombatantNode = get_node_or_null("BattleAnimationManager/EnemyCombatant1")
@@ -212,7 +211,7 @@ func load_into_battle():
 	battleUI.prevMenu = state.prevMenu
 	battlePanels.set_turn_counter(state.turnNumber)
 	
-	for node in combatantNodes:
+	for node in get_all_combatant_nodes():
 		node.load_combatant_node()
 	
 	battleAnimationManager.reparent(tilemap)
@@ -349,7 +348,7 @@ func end_battle():
 	battleEnded = true
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
-	for combatantNode: CombatantNode in combatantNodes:
+	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
 			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
 			# if this creature is an evolution, set its save name as defeated as well.

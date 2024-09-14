@@ -52,7 +52,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 	
 	fobTabs.visible = button_pressed
 	if button_pressed:
-		for node in battleController.combatantNodes:
+		for node in battleController.get_all_combatant_nodes():
 			var combatantNode: CombatantNode = node as CombatantNode
 			if combatantNode.is_alive():
 				var instantiatedPanel: BattleStatsPanel = battleStatsPanelScene.instantiate()
