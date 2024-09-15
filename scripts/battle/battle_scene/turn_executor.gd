@@ -144,6 +144,7 @@ func update_turn_text() -> bool:
 							statChanges = (equipment as Armor).statChanges
 						if statChanges != null and statChanges.has_stat_changes():
 							eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+						# TODO: play equipment proc'd animation for this equipment
 				var textDelayAccum: float = 0
 				for textIdx: int in range(len(eventTexts)):
 					if textIdx > 0:

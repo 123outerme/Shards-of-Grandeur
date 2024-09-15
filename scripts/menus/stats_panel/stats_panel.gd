@@ -130,6 +130,12 @@ func initial_focus():
 	else:
 		singleViewBackButton.grab_focus()
 
+func get_back_button() -> Button:
+	if isTabbedView:
+		return tabbedViewBackButton
+	else:
+		return singleViewBackButton
+
 func restore_previous_focus():
 	if previousControl == null:
 		if previousMoveListSlot == -1:

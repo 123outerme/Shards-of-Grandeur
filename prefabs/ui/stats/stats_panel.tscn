@@ -300,11 +300,31 @@ offset_right = 0.0
 offset_bottom = 236.0
 grow_vertical = 1
 
+[node name="WeaponLabel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="0"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 97.0
+offset_bottom = 28.0
+
+[node name="WeaponSprite" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="1"]
+offset_left = 98.0
+offset_top = 2.0
+offset_right = 130.0
+offset_bottom = 34.0
+
+[node name="WeaponName" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="2"]
+offset_left = 140.0
+offset_top = 4.0
+offset_right = 412.0
+offset_bottom = 28.0
+
 [node name="WeaponEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="3"]
 visible = false
 
 [node name="WeaponDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="4"]
 visible = true
+offset_left = -2.0
+offset_right = 928.0
 
 [node name="Line2D" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/Control" index="0"]
 points = PackedVector2Array(2, 0, 918, 0)
@@ -318,6 +338,18 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 0
 
+[node name="ArmorLabel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="0"]
+offset_left = 2.0
+offset_right = 82.0
+
+[node name="ArmorSprite" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="1"]
+offset_left = 98.0
+offset_right = 130.0
+
+[node name="ArmorName" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="2"]
+offset_left = 140.0
+offset_right = 412.0
+
 [node name="ArmorEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="3"]
 visible = false
 
@@ -325,10 +357,10 @@ visible = false
 visible = true
 
 [node name="ItemDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="3"]
-offset_left = -704.0
-offset_top = -222.5
-offset_right = -704.0
-offset_bottom = -222.5
+offset_left = -179.0
+offset_top = -113.0
+offset_right = -179.0
+offset_bottom = -113.0
 
 [node name="ColorRect" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ItemDetailsPanel" index="0"]
 anchors_preset = -1
@@ -336,10 +368,10 @@ anchor_left = -0.004
 anchor_top = -0.003
 anchor_right = 2.282
 anchor_bottom = 2.275
-offset_left = 2.24
-offset_top = 0.948
-offset_right = 2.07996
-offset_bottom = 1.09998
+offset_left = 3.68
+offset_top = 1.44
+offset_right = -819.44
+offset_bottom = -372.0
 
 [node name="Moves" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
 visible = false

@@ -75,7 +75,8 @@ func _on_weapon_sprite_pressed():
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
 		if statsPanel != null:
-			statsPanel.backButton.disabled = true
+			statsPanel.tabbedViewBackButton.disabled = true
+			statsPanel.singleViewBackButton.disabled = true
 	else:
 		attempt_equip_weapon.emit()
 
@@ -85,7 +86,8 @@ func _on_armor_sprite_pressed():
 		itemDetailsPanel.visible = true
 		itemDetailsPanel.load_item_details()
 		if statsPanel != null:
-			statsPanel.backButton.disabled = true
+			statsPanel.tabbedViewBackButton.disabled = true
+			statsPanel.singleViewBackButton.disabled = true
 	else:
 		attempt_equip_armor.emit()
 
@@ -95,4 +97,5 @@ func _on_item_details_panel_back_pressed():
 	else:
 		weaponSprite.grab_focus()
 	if statsPanel != null:
-		statsPanel.backButton.disabled = false
+			statsPanel.tabbedViewBackButton.disabled = false
+			statsPanel.singleViewBackButton.disabled = false
