@@ -1,23 +1,14 @@
-[gd_scene load_steps=75 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=62 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
-[ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="2_3w0uv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_4cfte"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_12odb"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="2_sffs8"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/total_defeat_win_con.gd" id="3_3k7vy"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_y7nw7"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="4_cmvjq"]
-[ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="5_0er0p"]
-[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_dh2tk"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_ohjbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_ouq35"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="8_dralb"]
-[ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="8_thl3q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="9_n5hae"]
-[ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="10_dx6md"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/endure.gd" id="10_tg47m"]
 [ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="14_8tdek"]
 [ext_resource type="Resource" uid="uid://bfkpkrjtkr1yh" path="res://gamedata/combatants/solius/solius_rewards.tres" id="14_qb2p1"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="14_tebfq"]
@@ -39,12 +30,14 @@
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="24_d680s"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/bleed.gd" id="27_6lffl"]
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="28_3l5fj"]
+[ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
+[ext_resource type="Resource" uid="uid://dtco7uib2bx3l" path="res://gamedata/moves/impale/impale.tres" id="33_ifyb1"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/interception.gd" id="33_jwbae"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
 [ext_resource type="Resource" uid="uid://eq5onf8hmiau" path="res://gamedata/moves/venom_strike/venom_strike.tres" id="43_7r665"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="44_j7j6h"]
-[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="45_iqu33"]
 [ext_resource type="Resource" uid="uid://bi44lny7wl8lx" path="res://gamedata/moves/shield_wall/shield_wall.tres" id="46_m7oae"]
 
 [sub_resource type="Resource" id="Resource_i3ge1"]
@@ -243,98 +236,6 @@ specialRules = 0
 winCon = SubResource("Resource_8wt0b")
 customWinText = ""
 
-[sub_resource type="Resource" id="Resource_hvfly"]
-script = ExtResource("9_jd22b")
-type = 1
-move = ExtResource("2_3w0uv")
-moveEffectType = 1
-orbChange = 0
-targetPositions = Array[String](["Bottom"])
-randomNums = Array[float]([])
-selfRandomNum = -1.0
-
-[sub_resource type="Resource" id="Resource_nhsw0"]
-script = ExtResource("8_dralb")
-element = 3
-multiplier = 1.5
-
-[sub_resource type="Resource" id="Resource_jshmu"]
-script = ExtResource("9_n5hae")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("8_dralb")]([SubResource("Resource_nhsw0")])
-
-[sub_resource type="Resource" id="Resource_5jl4o"]
-script = ExtResource("6_ohjbr")
-pool = Array[ExtResource("2_4cfte")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
-preferredMove1Role = 0
-preferredMove1DmgType = -1
-preferredMove1Element = 0
-preferredMove2Role = 0
-preferredMove2DmgType = -1
-preferredMove2Element = 0
-preferredMove3Role = 0
-preferredMove3DmgType = -1
-preferredMove3Element = 0
-preferredMove4Role = 0
-preferredMove4DmgType = -1
-preferredMove4Element = 0
-
-[sub_resource type="Resource" id="Resource_vwmsm"]
-script = ExtResource("7_ouq35")
-displayName = "Player"
-saveName = "player"
-level = 1
-experience = 0
-maxHp = 50
-physAttack = 1
-magicAttack = 1
-resistance = 1
-affinity = 1
-speed = 1
-statPts = 0
-statGrowth = ExtResource("8_thl3q")
-equippedArmor = ExtResource("10_dx6md")
-moves = Array[ExtResource("2_4cfte")]([ExtResource("4_cmvjq"), ExtResource("5_dh2tk")])
-movepool = SubResource("Resource_5jl4o")
-
-[sub_resource type="Resource" id="Resource_rjdbl"]
-script = ExtResource("10_tg47m")
-lowestHp = 1
-type = 12
-potency = 1
-overwritesOtherStatuses = false
-turnsLeft = 1
-
-[sub_resource type="Resource" id="Resource_ysrhl"]
-script = ExtResource("2_12odb")
-sprite = ExtResource("5_0er0p")
-nickname = ""
-stats = SubResource("Resource_vwmsm")
-evolutionStats = {}
-minionStatAllocMode = -1
-currentHp = 1
-orbs = 0
-statChanges = SubResource("Resource_jshmu")
-statusEffect = SubResource("Resource_rjdbl")
-friendship = 0.0
-maxFriendship = 30.0
-version = ""
-aiType = 0
-damageAggroType = 0
-strategy = 0
-aiOverrideWeight = 0.0
-command = SubResource("Resource_hvfly")
-downed = false
-
 [sub_resource type="Resource" id="Resource_snunq"]
 script = ExtResource("9_jd22b")
 type = 1
@@ -344,14 +245,6 @@ orbChange = 1
 targetPositions = Array[String](["Bottom"])
 randomNums = Array[float]([1.0])
 selfRandomNum = -1.0
-
-[sub_resource type="Resource" id="Resource_upydd"]
-script = ExtResource("10_tg47m")
-lowestHp = 1
-type = 12
-potency = 1
-overwritesOtherStatuses = false
-turnsLeft = 2
 
 [sub_resource type="Resource" id="Resource_cbcj4"]
 script = ExtResource("44_j7j6h")
@@ -368,14 +261,21 @@ targetPositions = Array[String](["You"])
 randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
 
+[sub_resource type="Resource" id="Resource_5owuj"]
+script = ExtResource("33_jwbae")
+type = 9
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
+
 [sub_resource type="Resource" id="Resource_mx2w5"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("45_iqu33")
+move = ExtResource("33_ifyb1")
 moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["You"])
-randomNums = Array[float]([0.5])
+randomNums = Array[float]([0.0])
 selfRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_2nv1k"]
@@ -387,6 +287,13 @@ orbChange = 1
 targetPositions = Array[String](["Top"])
 randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
+
+[sub_resource type="Resource" id="Resource_y8e5y"]
+script = ExtResource("33_jwbae")
+type = 9
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
 
 [sub_resource type="Resource" id="Resource_hmp4c"]
 script = ExtResource("9_jd22b")
@@ -400,17 +307,27 @@ selfRandomNum = -1.0
 [node name="BattleTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_7scea")
 encounter = SubResource("Resource_gsvj1")
-_playerCombatant = SubResource("Resource_ysrhl")
+_playerCombatant = ExtResource("28_yubvn")
 playerLv = 10
 playerCommand = SubResource("Resource_snunq")
-playerStatus = SubResource("Resource_upydd")
 minionCommand = SubResource("Resource_el0wh")
+minionStatus = SubResource("Resource_5owuj")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy2Command = SubResource("Resource_2nv1k")
+enemy2Status = SubResource("Resource_y8e5y")
 enemy3Command = SubResource("Resource_hmp4c")
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("43_cxami")]
+
+[node name="EnemyCombatant1" parent="BattleAnimationManager" index="5"]
+role = 1
+
+[node name="EnemyCombatant2" parent="BattleAnimationManager" index="6"]
+role = 1
+
+[node name="EnemyCombatant3" parent="BattleAnimationManager" index="7"]
+role = 1
 
 [node name="BattlefieldShade" parent="BattleAnimationManager" index="8"]
 offset_top = -90.0

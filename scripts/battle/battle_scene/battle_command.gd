@@ -649,7 +649,7 @@ func get_targets_from_combatant_nodes(combatantNodes: Array[CombatantNode]):
 			if combatantNode.combatant != null and \
 					combatantNode.is_alive() and \
 					combatantNode.role == targetNode.role and \
-					combatantNode != targetNode and\
+					combatantNode != targetNode and \
 					combatantNode.combatant.statusEffect != null and \
 					combatantNode.combatant.statusEffect.type == StatusEffect.Type.INTERCEPTION:
 				interceptingTargets.append(combatantNode.combatant)

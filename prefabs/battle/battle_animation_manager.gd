@@ -216,7 +216,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if user.animatedSprite.animation == 'hide' or moveAnimation.combatantAnimation == 'stand':
 		user._on_animated_sprite_animation_finished()
 	
-	# hit particles spawning, updating HP tags
+	# hit particles spawning, updating HP tags, playing event texts for damage, status, and stat boosts
 	for defender: CombatantNode in defenders:
 		defender.update_hp_tag()
 		var playHitParticles: bool = false
@@ -236,32 +236,27 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			playHitParticles = true
 		if playHitParticles:
 			defender.play_particles(BattleCommand.get_hit_particles(), 0)
+		# event texts start here: damage
 		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg))
-		if command.commandResult.afflictedStatuses[targetIdx]:
+		# status effect text here
+		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			if defender.combatant.statusEffect != null:
 				eventTexts.append(CombatantEventText.build_status_get_text(defender.combatant.statusEffect))
-		if command.commandResult.wasBoosted[targetIdx]:
+		# stat changes text here
+		if targetIdx > -1 and command.commandResult.wasBoosted[targetIdx]:
 			var statChanges: StatChanges = null
 			if command.type == BattleCommand.Type.MOVE:
 				# if the command type is a move: calculate the stat changes of the move
-				if command.moveEffectType == Move.MoveEffectType.CHARGE:
-					statChanges = command.move.chargeEffect.targetStatChanges.duplicate()
-					# if the defender is also the user and there are self-boosts
-					if defender == user and command.move.chargeEffect.selfStatChanges != null and command.move.chargeEffect.selfStatChanges.has_stat_changes():
-						if statChanges != null:
-							statChanges.stack(command.move.chargeEffect.selfStatChanges)
-						else:
-							statChanges = command.move.chargeEffect.selfStatChanges
-				else:
-					var surgeEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(command.orbChange)
-					if surgeEffect.targetStatChanges != null:
-						statChanges = surgeEffect.targetStatChanges.duplicate()
-					if defender == user and surgeEffect.selfStatChanges != null and surgeEffect.selfStatChanges.has_stat_changes():
-						if statChanges != null:
-							statChanges.stack(surgeEffect.selfStatChanges)
-						else:
-							statChanges = surgeEffect.selfStatChanges
+				var moveEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange)) if command.moveEffectType == Move.MoveEffectType.SURGE else command.move.chargeEffect
+				statChanges = moveEffect.targetStatChanges
+				# if the defender is also the user and there are self-boosts
+				if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+					if statChanges != null:
+						statChanges = statChanges.duplicate()
+						statChanges.stack(moveEffect.selfStatChanges)
+					else:
+						statChanges = moveEffect.selfStatChanges
 			elif command.type == BattleCommand.Type.USE_ITEM:
 				# if the command type is an item (healing item): get the stat changes of the item
 				if command.slot.item.itemType == Item.Type.HEALING:
@@ -269,6 +264,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					statChanges = healing.statChanges
 			if statChanges != null and statChanges.has_stat_changes():
 				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts:
 			for textIdx: int in range(len(eventTexts)):
@@ -277,21 +273,25 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				defender.play_event_text(eventTexts[textIdx], textDelayAccum)
 		defender.isBeingStatusAfflicted = false
 	
+	# if the user wasn't a defender, we still need to update (HP tag, hit particles, event texts)
 	if not user in defenders:
 		user.update_hp_tag()
 		var eventTexts: Array[String] = []
+		# start event texts: damage
 		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
 			user.play_particles(BattleCommand.get_hit_particles(), 0)
 			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
+		# status effect text + stat changes text
 		if command.type == BattleCommand.Type.MOVE:
 			var moveEffect: MoveEffect = command.move.chargeEffect
 			if command.moveEffectType == Move.MoveEffectType.SURGE:
-				moveEffect = command.move.surgeEffect.apply_surge_changes(command.orbChange)
+				moveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange))
 			if moveEffect.selfGetsStatus and command.commandResult.selfAfflictedStatus:
 				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
-			# if the command type is a move: calculate the stat changes of the move
+			# if the command type is a move: calculate the stat changes of the move, use that for texts
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges))
+		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts:
 			for textIdx: int in range(len(eventTexts)):
