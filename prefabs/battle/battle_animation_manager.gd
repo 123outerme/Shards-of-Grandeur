@@ -236,24 +236,69 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			playHitParticles = true
 		if playHitParticles:
 			defender.play_particles(BattleCommand.get_hit_particles(), 0)
-		if dealtDmg != 0 and not disableEventTexts:
+		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg))
 		if command.commandResult.afflictedStatuses[targetIdx]:
 			if defender.combatant.statusEffect != null:
 				eventTexts.append(CombatantEventText.build_status_get_text(defender.combatant.statusEffect))
+		if command.commandResult.wasBoosted[targetIdx]:
+			var statChanges: StatChanges = null
+			if command.type == BattleCommand.Type.MOVE:
+				# if the command type is a move: calculate the stat changes of the move
+				if command.moveEffectType == Move.MoveEffectType.CHARGE:
+					statChanges = command.move.chargeEffect.targetStatChanges.duplicate()
+					# if the defender is also the user and there are self-boosts
+					if defender == user and command.move.chargeEffect.selfStatChanges != null and command.move.chargeEffect.selfStatChanges.has_stat_changes():
+						if statChanges != null:
+							statChanges.stack(command.move.chargeEffect.selfStatChanges)
+						else:
+							statChanges = command.move.chargeEffect.selfStatChanges
+				else:
+					var surgeEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(command.orbChange)
+					if surgeEffect.targetStatChanges != null:
+						statChanges = surgeEffect.targetStatChanges.duplicate()
+					if defender == user and surgeEffect.selfStatChanges != null and surgeEffect.selfStatChanges.has_stat_changes():
+						if statChanges != null:
+							statChanges.stack(surgeEffect.selfStatChanges)
+						else:
+							statChanges = surgeEffect.selfStatChanges
+			elif command.type == BattleCommand.Type.USE_ITEM:
+				# if the command type is an item (healing item): get the stat changes of the item
+				if command.slot.item.itemType == Item.Type.HEALING:
+					var healing: Healing = command.slot.item as Healing
+					statChanges = healing.statChanges
+			if statChanges != null and statChanges.has_stat_changes():
+				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
 		var textDelayAccum: float = 0
-		for textIdx: int in range(len(eventTexts)):
-			if textIdx > 0:
-				textDelayAccum += 1
-			defender.play_event_text(eventTexts[textIdx], textDelayAccum)
+		if not disableEventTexts:
+			for textIdx: int in range(len(eventTexts)):
+				if textIdx > 0:
+					textDelayAccum += 1
+				defender.play_event_text(eventTexts[textIdx], textDelayAccum)
 		defender.isBeingStatusAfflicted = false
 	
-	user.update_hp_tag()
-	if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
-		user.play_particles(BattleCommand.get_hit_particles(), 0)
+	if not user in defenders:
+		user.update_hp_tag()
+		var eventTexts: Array[String] = []
+		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
+			user.play_particles(BattleCommand.get_hit_particles(), 0)
+			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
+		if command.type == BattleCommand.Type.MOVE:
+			var moveEffect: MoveEffect = command.move.chargeEffect
+			if command.moveEffectType == Move.MoveEffectType.SURGE:
+				moveEffect = command.move.surgeEffect.apply_surge_changes(command.orbChange)
+			if moveEffect.selfGetsStatus and command.commandResult.selfAfflictedStatus:
+				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
+			# if the command type is a move: calculate the stat changes of the move
+			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges))
+		var textDelayAccum: float = 0
 		if not disableEventTexts:
-			user.play_event_text(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
-	user.isBeingStatusAfflicted = false
+			for textIdx: int in range(len(eventTexts)):
+				if textIdx > 0:
+					textDelayAccum += 1
+				user.play_event_text(eventTexts[textIdx], textDelayAccum)
+		user.isBeingStatusAfflicted = false
 	
 	# lift the battlefield shade now that the animation is over soon
 	if shade != null:

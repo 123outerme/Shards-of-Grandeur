@@ -31,9 +31,13 @@ static func build_status_get_text(status: StatusEffect) -> String:
 	return 'Afflicted ' + status.status_effect_to_string()
 
 static func build_stat_changes_texts(statChanges: StatChanges) -> Array[String]:
-	if statChanges == null or statChanges.has_stat_changes():
+	if statChanges == null or not statChanges.has_stat_changes():
 		return []
-	return [] # TODO
+	var multiplierTexts: Array[StatMultiplierText] = statChanges.get_multipliers_text()
+	var retValTexts: Array[String] = []
+	for multText: StatMultiplierText in multiplierTexts:
+		retValTexts.append(multText.print_multiplier())
+	return retValTexts
 
 func load_event_text(eventText: String, delay: float = 0, center: bool = true) -> void:
 	if eventText == '':

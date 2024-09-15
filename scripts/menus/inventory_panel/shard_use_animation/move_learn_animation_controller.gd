@@ -171,6 +171,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		null,
 		targets,
 		[],
+		-1,
 		commandResult
 	)
 	command.get_targets_from_combatant_nodes(battleAnimManager.get_all_combatant_nodes())
@@ -218,6 +219,7 @@ func play_item_animation(userNode: CombatantNode) -> void:
 		slot,
 		targets,
 		[],
+		-1,
 		commandResult
 	)
 	command.get_targets_from_combatant_nodes(battleAnimManager.get_all_combatant_nodes())

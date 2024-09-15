@@ -40,6 +40,7 @@ enum ApplyTiming {
 @export var slot: InventorySlot = null
 @export var targetPositions: Array[String] = []
 @export var randomNums: Array[float] = []
+@export var selfRandomNum: float = -1
 @export var commandResult: CommandResult = null
 
 var targets: Array[Combatant] = []
@@ -154,6 +155,7 @@ func _init(
 	i_slot = null,
 	i_targets: Array[String] = [],
 	i_randomNums: Array[float] = [],
+	i_selfRandomNum: float = -1,
 	i_commandResult: CommandResult = null
 ):
 	type = i_type
@@ -169,6 +171,9 @@ func _init(
 		for i in range(len(randomNums), len(targetPositions)):
 			randomNums.append(randomNums.back()) # append the last number to the end of the list of random nums
 	randomNums = i_randomNums
+	selfRandomNum = i_selfRandomNum
+	if selfRandomNum == -1:
+		selfRandomNum = randf()
 	commandResult = i_commandResult
 	
 func set_targets(newTargets: Array[String]):
@@ -176,6 +181,8 @@ func set_targets(newTargets: Array[String]):
 	if len(randomNums) == 0: # if random nums haven't been generated yet
 		for target in targetPositions:
 			randomNums.append(randf()) # generate random numbers now
+	if selfRandomNum == -1:
+		selfRandomNum = randf()
 
 func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
 	commandResult = CommandResult.new()
@@ -219,40 +226,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 
 		if does_target_get_status(user, idx) and moveEffect.statusEffect != null:
-			if moveEffect.statusEffect.type == StatusEffect.Type.NONE:
-				targets[idx].statusEffect = null
-			else:
-				targets[idx].statusEffect = moveEffect.statusEffect.copy()
-				if moveEffect.statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
-					var elementBurn: ElementBurn = targets[idx].statusEffect as ElementBurn
-					# save the attacker's current stats to the element burn
-					var userStatChanges = StatChanges.new()
-					userStatChanges.stack(user.statChanges) # copy stat changes
-					var userStats: Stats = userStatChanges.apply(user.stats)
-					if user.statusEffect != null and user.statusEffect.is_stat_altering():
-						userStats = user.statusEffect.apply_stat_change(userStats)
-					
-					var atkStat: float = userStats.physAttack # use physical for physical attacks
-					if move.category == Move.DmgCategory.MAGIC:
-						atkStat = userStats.magicAttack # use magic for magic attacks
-					if move.category == Move.DmgCategory.AFFINITY:
-						atkStat = userStats.affinity # use affinity for affinity-based attacks
-					# An ally w/ Intercept should NOT reduce the power of the burn
-					var elMultiplier: float = 1.0
-					if user.statChanges != null:
-						elMultiplier = user.statChanges.get_element_multiplier(move.element)
-					var burnPower: float = moveEffect.power
-					# if the status has preset power, use that instead: 
-					if elementBurn.power > 0:
-						burnPower = elementBurn.power
-					elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
-				elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
-					var endure: Endure = targets[idx].statusEffect as Endure
-					# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
-					endure.lowestHp = targets[idx].currentHp
-					# if a move was damaging, don't consider the currently taken damage for the lowestHp
-					if damage > 0:
-						endure.lowestHp += damage
+			setup_status(user, targets[idx], moveEffect, damage)
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:
@@ -272,11 +246,20 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
 				commandResult.wasBoosted[idx] = true
 	
-	if type == Type.MOVE and moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or true in commandResult.afflictedStatuses):
-		# if targets allies, fail to stack stats if status was not applied, otherwise stack
-		if moveEffect.selfStatChanges != null:
-			user.statChanges.stack(moveEffect.selfStatChanges)
-			commandResult.selfBoosted = true
+	if type == Type.MOVE:
+		if moveEffect.selfGetsStatus and user not in targets:
+			if does_target_get_status(user, -1) and moveEffect.statusEffect != null:
+				setup_status(user, user, moveEffect, 0)
+				commandResult.selfAfflictedStatus = true
+		
+		if moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or true in commandResult.afflictedStatuses):
+			# if targets allies, fail to stack stats if status was not applied, otherwise stack
+			if moveEffect.selfStatChanges != null:
+				user.statChanges.stack(moveEffect.selfStatChanges)
+				var userTargetIdx: int = targets.find(user)
+				if userTargetIdx > -1:
+					commandResult.wasBoosted[userTargetIdx] = true
+				commandResult.selfBoosted = true
 
 	if type == Type.USE_ITEM and appliedEffect: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
@@ -286,6 +269,42 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		user.add_orbs(orbChange) # add/subtract orbs from using move
 	
 	return false
+
+func setup_status(user: Combatant, target: Combatant, moveEffect: MoveEffect, damage: int) -> void:
+	if moveEffect.statusEffect.type == StatusEffect.Type.NONE:
+		target.statusEffect = null
+	else:
+		target.statusEffect = moveEffect.statusEffect.copy()
+		if moveEffect.statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
+			var elementBurn: ElementBurn = target.statusEffect as ElementBurn
+			# save the attacker's current stats to the element burn
+			var userStatChanges = StatChanges.new()
+			userStatChanges.stack(user.statChanges) # copy stat changes
+			var userStats: Stats = userStatChanges.apply(user.stats)
+			if user.statusEffect != null and user.statusEffect.is_stat_altering():
+				userStats = user.statusEffect.apply_stat_change(userStats)
+			
+			var atkStat: float = userStats.physAttack # use physical for physical attacks
+			if move.category == Move.DmgCategory.MAGIC:
+				atkStat = userStats.magicAttack # use magic for magic attacks
+			if move.category == Move.DmgCategory.AFFINITY:
+				atkStat = userStats.affinity # use affinity for affinity-based attacks
+			# An ally w/ Intercept should NOT reduce the power of the burn
+			var elMultiplier: float = 1.0
+			if user.statChanges != null:
+				elMultiplier = user.statChanges.get_element_multiplier(move.element)
+			var burnPower: float = moveEffect.power
+			# if the status has preset power, use that instead: 
+			if elementBurn.power > 0:
+				burnPower = elementBurn.power
+			elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
+		elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
+			var endure: Endure = target.statusEffect as Endure
+			# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
+			endure.lowestHp = target.currentHp
+			# if a move was damaging, don't consider the currently taken damage for the lowestHp
+			if damage > 0:
+				endure.lowestHp += damage
 
 func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMoveStatChanges: bool = false) -> int:
 	var userStatChanges = StatChanges.new()
@@ -381,10 +400,12 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	if moveEffect == null or moveEffect.statusEffect == null or moveEffect.statusChance == 0:
 		return false
 	
+	var target: Combatant = targets[targetIdx] if targetIdx >= 0 else user
+	
 	# if the target already has a status, and:
 	# the move does not overwrite other statuses, or it does but the existing status is more potent: fail
-	if targets[targetIdx].statusEffect != null:
-		if not moveEffect.statusEffect.overwritesOtherStatuses or targets[targetIdx].statusEffect.potency > moveEffect.statusEffect.potency:
+	if target.statusEffect != null:
+		if not moveEffect.statusEffect.overwritesOtherStatuses or target.statusEffect.potency > moveEffect.statusEffect.potency:
 			return false
 	
 	# status chance = 100%: auto-pass
@@ -394,20 +415,22 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	var userStatChanges = StatChanges.new()
 	userStatChanges.stack(user.statChanges) # copy stat changes
 	var targetStatChanges = StatChanges.new()
-	targetStatChanges.stack(targets[targetIdx].statChanges)
+	targetStatChanges.stack(target.statChanges)
 	var userStats = userStatChanges.apply(user.stats)
 	if user.statusEffect != null and user.statusEffect.is_stat_altering():
 		userStats = user.statusEffect.apply_stat_change(userStats)
 
-	var targetStats = targetStatChanges.apply(targets[targetIdx].stats)
-	if targets[targetIdx].statusEffect != null and targets[targetIdx].statusEffect.is_stat_altering():
-		targetStats = targets[targetIdx].statusEffect.apply_stat_change(targetStats)
+	var targetStats = targetStatChanges.apply(target.stats)
+	if target.statusEffect != null and target.statusEffect.is_stat_altering():
+		targetStats = target.statusEffect.apply_stat_change(targetStats)
 	
 	var statusEffectivenessMultiplier: float = 1
-	if user != targets[targetIdx]:
-		statusEffectivenessMultiplier = targets[targetIdx].get_status_effectiveness_multiplier(moveEffect.statusEffect.type)
+	if user != target:
+		statusEffectivenessMultiplier = target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type)
 	
-	return randomNums[targetIdx] <= (moveEffect.statusChance * statusEffectivenessMultiplier) + \
+	var randomNum: float = randomNums[targetIdx] if targetIdx >= 0 else selfRandomNum
+	
+	return randomNum <= (moveEffect.statusChance * statusEffectivenessMultiplier) + \
 			0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity)
 
 func get_command_results(user: Combatant) -> String:
