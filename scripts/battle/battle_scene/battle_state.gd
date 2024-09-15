@@ -32,6 +32,9 @@ enum Menu {
 @export var fobButtonEnabled: bool = true
 @export var calcdStateStrings: Array[String] = []
 @export var calcdStateCombatants: Array[Combatant] = []
+@export var calcdStateDamage: Array[int] = []
+@export var calcdStateStatBoosts: Array[StatChanges] = []
+@export var calcdStateEquipmentProcd: Array = []
 @export var statusEffDamagedCombatants: Array[Combatant] = []
 @export var calcdStateIndex: int = 0
 @export var battleMapPath: String = ''
@@ -64,6 +67,12 @@ func _init(
 	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
 	i_usedShard = null,
+	i_calcdStateStrings: Array[String] = [],
+	i_calcdStateDamage: Array[int] = [],
+	i_calcdStateStatBoosts: Array[StatChanges] = [],
+	i_calcdStateEquipmentProcd: Array = [],
+	i_statusEffDamagedCombatants: Array[Combatant] = [],
+	i_calcdStateIdx: int = 0
 ):
 	playerCombatant = i_playerCombatant
 	minionCombatant = i_minionCombatant
@@ -81,6 +90,12 @@ func _init(
 	turnList = i_turnList
 	rewards = i_rewards
 	usedShard = i_usedShard
+	calcdStateStrings = i_calcdStateStrings
+	calcdStateDamage = i_calcdStateDamage
+	calcdStateStatBoosts = i_calcdStateStatBoosts
+	calcdStateEquipmentProcd = i_calcdStateEquipmentProcd
+	statusEffDamagedCombatants = i_statusEffDamagedCombatants
+	calcdStateIndex = i_calcdStateIdx
 
 func load_data(save_path):
 	var data = null

@@ -102,6 +102,9 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 func get_status_effect_tooltip():
 	return '' # each status effect needs to implement separately
 
+func get_status_effect_damage(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> int:
+	return 0 # each stats effect that deals damage after/before round needs to implement separately 
+
 func get_icon() -> Texture2D:
 	return null
 

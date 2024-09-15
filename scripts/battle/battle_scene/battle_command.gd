@@ -198,6 +198,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		commandResult.damagesDealt.append(0)
 		commandResult.afflictedStatuses.append(false)
 		commandResult.wasBoosted.append(false)
+		commandResult.equipmentProcd.append([])
 	for i in range(len(interceptingTargets)):
 		commandResult.damageOnInterceptingTargets.append(0)
 	if type == Type.ESCAPE:

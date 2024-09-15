@@ -29,9 +29,10 @@ func _init(
 func get_use_message(_target: Combatant) -> String:
 	return ''
 
-func apply_effects(target: Combatant, applyTiming: BattleCommand.ApplyTiming):
+func apply_effects(target: Combatant, applyTiming: BattleCommand.ApplyTiming) -> bool:
 	if timing == applyTiming:
 		target.statChanges.stack(statChanges)
+	return timing == applyTiming
 
 func get_apply_text(target: Combatant, applyTiming: BattleCommand.ApplyTiming) -> String:
 	if timing == applyTiming:

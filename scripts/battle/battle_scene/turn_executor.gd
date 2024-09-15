@@ -63,7 +63,8 @@ func play_turn():
 		#	combatant.stats.equippedArmor.apply_effects(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		#if combatant.stats.equippedWeapon != null:
 		#	combatant.stats.equippedWeapon.apply_effects(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
-		for defender in combatant.command.targets:
+		for targetIdx: int in range(len(combatant.command.targets)):
+			var defender: Combatant = combatant.command.targets[targetIdx]
 			if defender.statusEffect != null: # apply "specifically afer taking damage" statuses
 				battleController.state.statusEffDamagedCombatants.append_array(
 					defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
@@ -75,11 +76,17 @@ func play_turn():
 					moveEffect = moveEffect.apply_surge_changes(combatant.command.orbChange * -1)
 				# if the move dealt direct (non-redirected) damage to the defender, then apply After Recieving Damage timing equipment effects
 				if moveEffect.power > 0:
+					var equipmentProcd: Array[Item] = []
 					if defender.stats.equippedArmor != null:
-						defender.stats.equippedArmor.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+						var applied: bool = defender.stats.equippedArmor.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+						if applied:
+							equipmentProcd.append(defender.stats.equippedArmor)
 					if defender.stats.equippedWeapon != null:
-						defender.stats.equippedWeapon.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
-				
+						var applied: bool = defender.stats.equippedWeapon.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+						if applied:
+							equipmentProcd.append(defender.stats.equippedArmor)
+					combatant.command.commandResult.equipmentProcd[targetIdx] = equipmentProcd
+		
 		update_turn_text()
 	else:
 		battleController.state.statusEffDamagedCombatants = []
@@ -115,14 +122,33 @@ func update_turn_text() -> bool:
 		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
 		
-		if battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings) and \
-				battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex] in battleController.state.statusEffDamagedCombatants:
+		if battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
+			var eventTexts: Array[String] = []
+			var subjectNode: CombatantNode = null
 			for cNode: CombatantNode in allCombatantNodes:
 				if cNode.combatant == battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex]:
-					cNode.play_particles(BattleCommand.get_hit_particles())
-					cNode.update_hp_tag()
+					subjectNode = cNode
 					break
-	
+			if subjectNode != null:
+				if subjectNode.combatant in battleController.state.statusEffDamagedCombatants:
+					subjectNode.play_particles(BattleCommand.get_hit_particles())
+					eventTexts.append(CombatantEventText.build_damage_text(battleController.state.calcdStateDamage[battleController.state.calcdStateIndex]))
+					subjectNode.update_hp_tag()
+				var procdEquipment: Array[Item] = battleController.state.calcdStateEquipmentProcd[battleController.state.calcdStateIndex]
+				if procdEquipment != null:
+					for equipment: Item in procdEquipment:
+						var statChanges: StatChanges = null
+						if equipment.itemType == Item.Type.WEAPON:
+							statChanges = (equipment as Weapon).statChanges
+						elif equipment.itemType == Item.Type.ARMOR:
+							statChanges = (equipment as Armor).statChanges
+						if statChanges != null and statChanges.has_stat_changes():
+							eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+				var textDelayAccum: float = 0
+				for textIdx: int in range(len(eventTexts)):
+					if textIdx > 0:
+						textDelayAccum += 1
+					subjectNode.play_event_text(eventTexts[textIdx], textDelayAccum)
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
 		var defenders: Array[Combatant] = []
@@ -200,21 +226,30 @@ func check_battle_end_conditions() -> WinCon.TurnResult:
 func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode]):
 	battleController.state.calcdStateStrings = []
 	battleController.state.calcdStateCombatants = []
+	battleController.state.calcdStateDamage = []
+	battleController.state.calcdStateEquipmentProcd = []
+	battleController.state.calcdStateStatBoosts = []
 	for combatantNode in allCombatantNodes:
 		# instead of combatantNode.is_alive(), check if visible and combatant is not null
 		if combatantNode.combatant != null and combatantNode.visible:
 			if battleUI.menuState == BattleState.Menu.PRE_BATTLE:
+				var procdEquipment: Array[Item] = []
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''
 				if combatantNode.combatant.stats.equippedWeapon != null:
 					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+					if equippedWeaponText != '':
+						procdEquipment.append(combatantNode.combatant.stats.equippedWeapon)
 				if combatantNode.combatant.stats.equippedArmor != null:
 					equippedArmorText = combatantNode.combatant.stats.equippedArmor.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
+					if equippedArmorText != '':
+						procdEquipment.append(combatantNode.combatant.stats.equippedArmor)
 				if equippedWeaponText != '' or equippedArmorText != '':
 					if equippedWeaponText != '' and equippedArmorText != '':
 						equippedWeaponText += ' '
 					battleController.state.calcdStateStrings.append(equippedWeaponText + equippedArmorText)
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
+					battleController.state.calcdStateEquipmentProcd.append(procdEquipment)
 			
 			if battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
 				if battleUI.menuState == BattleState.Menu.POST_ROUND and combatantNode.is_alive() and result != WinCon.TurnResult.NOTHING:
@@ -222,16 +257,23 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				
 				var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else BattleCommand.ApplyTiming.AFTER_ROUND
 				var statusEffectString: String = ''
+				var dmg: int = 0
 				if combatantNode.combatant.statusEffect != null:
+					dmg = combatantNode.combatant.statusEffect.get_status_effect_damage(combatantNode.combatant, allCombatants, timing)
 					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, allCombatants, timing)
 				
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''
+				var procdEquipment: Array[Item] = []
 				
 				if combatantNode.combatant.stats.equippedWeapon != null:
 					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, timing)
+					if equippedWeaponText != '':
+						procdEquipment.append(combatantNode.combatant.stats.equippedWeapon)
 				if combatantNode.combatant.stats.equippedArmor != null:
 					equippedArmorText = combatantNode.combatant.stats.equippedArmor.get_apply_text(combatantNode.combatant, timing)
+					if equippedArmorText != '':
+						procdEquipment.append(combatantNode.combatant.stats.equippedArmor)
 				if equippedWeaponText != '' or equippedArmorText != '':
 					if equippedWeaponText != '' and equippedArmorText != '':
 						equippedWeaponText += ' '
@@ -241,6 +283,8 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				if statusEffectString != '':
 					battleController.state.calcdStateStrings.append(statusEffectString)
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
+					battleController.state.calcdStateEquipmentProcd.append(procdEquipment)
+					battleController.state.calcdStateDamage.append(dmg)
 
 func advance_precalcd_text() -> bool:
 	battleController.state.calcdStateIndex += 1

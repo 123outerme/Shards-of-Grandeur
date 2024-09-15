@@ -244,19 +244,31 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			if defender.combatant.statusEffect != null:
 				eventTexts.append(CombatantEventText.build_status_get_text(defender.combatant.statusEffect))
 		# stat changes text here
-		if targetIdx > -1 and command.commandResult.wasBoosted[targetIdx]:
+		if targetIdx > -1 and (command.commandResult.wasBoosted[targetIdx] or len(command.commandResult.equipmentProcd[targetIdx]) > 0):
 			var statChanges: StatChanges = null
 			if command.type == BattleCommand.Type.MOVE:
-				# if the command type is a move: calculate the stat changes of the move
-				var moveEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange)) if command.moveEffectType == Move.MoveEffectType.SURGE else command.move.chargeEffect
-				statChanges = moveEffect.targetStatChanges
-				# if the defender is also the user and there are self-boosts
-				if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
-					if statChanges != null:
-						statChanges = statChanges.duplicate()
-						statChanges.stack(moveEffect.selfStatChanges)
-					else:
-						statChanges = moveEffect.selfStatChanges
+				if command.commandResult.wasBoosted[targetIdx]:
+					# if the command type is a move: calculate the stat changes of the move
+					var moveEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange)) if command.moveEffectType == Move.MoveEffectType.SURGE else command.move.chargeEffect
+					statChanges = moveEffect.targetStatChanges
+					# if the defender is also the user and there are self-boosts
+					if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
+						if statChanges != null:
+							statChanges = statChanges.duplicate()
+							statChanges.stack(moveEffect.selfStatChanges)
+						else:
+							statChanges = moveEffect.selfStatChanges
+				if len(command.commandResult.equipmentProcd[targetIdx]) > 0:
+					if statChanges == null:
+						statChanges = StatChanges.new()
+					var equipmentArr: Array[Item] = command.commandResult.equipmentProcd[targetIdx]
+					for equipment: Item in equipmentArr:
+						if equipment.itemType == Item.Type.WEAPON:
+							statChanges.stack((equipment as Weapon).statChanges)
+							# TODO: play weapon proc animation
+						else:
+							statChanges.stack((equipment as Armor).statChanges)
+							# TODO: play armor proc animation
 			elif command.type == BattleCommand.Type.USE_ITEM:
 				# if the command type is an item (healing item): get the stat changes of the item
 				if command.slot.item.itemType == Item.Type.HEALING:

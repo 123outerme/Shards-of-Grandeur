@@ -36,6 +36,11 @@ func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant]
 func get_status_effect_tooltip():
 	return 'A combatant with Bleed takes damage at the end of a battle round, equal to a percentage of the combatant\'s Max Health.' 
 
+func get_status_effect_damage(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> int:
+	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
+		return get_bleed_damage(combatant)
+	return 0
+
 func get_icon() -> Texture2D:
 	return _icon
 

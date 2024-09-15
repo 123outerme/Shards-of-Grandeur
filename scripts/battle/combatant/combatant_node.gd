@@ -140,7 +140,7 @@ func load_combatant_node():
 			onAssistMarker.position.y = initialAssistMarkerPos.y + (combatant.get_idle_size().y - 16) / 2
 	
 	eventTextContainer.position = initialEventTextContainerPos
-	if combatant.get_idle_size().y > 16:
+	if combatant != null and combatant.get_idle_size().y > 16:
 		eventTextContainer.position.y -= (combatant.get_idle_size().y - 16) / 2
 	
 	loaded = true
