@@ -44,6 +44,7 @@ func _ready():
 		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	
 	SceneLoader.load_main_menu()
+	get_window().focus_exited.connect(_on_window_focus_exited)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_HIDDEN:
@@ -56,12 +57,16 @@ func _input(event):
 func _process(_delta):
 	for action: String in UI_REPEAT_ACTION_NAMES_X:
 		if Input.is_action_pressed(action):
+			#print('action pressed: ', action, ' / last repeated: ', lastRepeatedActionX)
 			if lastRepeatedActionX != action:
 				lastRepeatedActionX = action
 				start_repeat(true)
-		elif lastRepeatedActionX == action:
-			lastRepeatedActionX = ''
-			attempt_stop_repeat()
+		else:
+			#print('action NOT pressed: ', action, ' / last repeated: ', lastRepeatedActionX)
+			if lastRepeatedActionX == action:
+				create_repeat_press_event(lastRepeatedActionX, false)
+				lastRepeatedActionX = ''
+				attempt_stop_repeat()
 
 	for action: String in UI_REPEAT_ACTION_NAMES_Y:
 		if Input.is_action_pressed(action):
@@ -69,6 +74,7 @@ func _process(_delta):
 				lastRepeatedActionY = action
 				start_repeat(false)
 		elif lastRepeatedActionY == action:
+			create_repeat_press_event(lastRepeatedActionY, false)
 			lastRepeatedActionY = ''
 			attempt_stop_repeat()
 
@@ -92,7 +98,7 @@ func parse_cmdline_args():
 
 # Solution from https://www.reddit.com/r/godot/comments/x4v5ty/ui_repeated_movement_when_holding_directions_ui/
 func start_repeat(changeX: bool):
-	#print('Start pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY, '!')
+	#print('Start pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY)
 	if lastRepeatedActionX != '' and changeX:
 		create_repeat_press_event(lastRepeatedActionX)
 	if lastRepeatedActionY != '' and not changeX:
@@ -101,12 +107,12 @@ func start_repeat(changeX: bool):
 	uiRepeatTimer.start()
 
 func attempt_stop_repeat():
+	#print('Stop pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY)
 	if lastRepeatedActionX == '' and lastRepeatedActionY == '':
-		#print('Stop pressing ', lastRepeatedActionX, ' / ', lastRepeatedActionY)
 		uiRepeatTimer.stop()
 
 func _on_ui_repeat_timer_timeout():
-	#print('Press ', lastRepeatedActionX, ' / ', lastRepeatedActionY, '!')
+	#print('Press ', lastRepeatedActionX, ' / ', lastRepeatedActionY)
 	if lastRepeatedActionX != '':
 		create_repeat_press_event(lastRepeatedActionX)
 	if lastRepeatedActionY != '':
@@ -114,8 +120,14 @@ func _on_ui_repeat_timer_timeout():
 	uiRepeatTimer.wait_time = 0.15
 	uiRepeatTimer.start()
 
-func create_repeat_press_event(repeatAction: String):
+func create_repeat_press_event(repeatAction: String, downEvent: bool = true):
+	#print('create repeat press ', repeatAction)
 	var repeatEvent: InputEventAction = InputEventAction.new()
 	repeatEvent.action = UI_REPEAT_ACTIONS_TO_ACTION[repeatAction]
-	repeatEvent.pressed = true
+	repeatEvent.pressed = downEvent
 	Input.parse_input_event(repeatEvent)
+
+func _on_window_focus_exited() -> void:
+	# if cursor is hidden and focus is being switched off the game: make it visible again
+	if Input.mouse_mode == Input.MOUSE_MODE_HIDDEN:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

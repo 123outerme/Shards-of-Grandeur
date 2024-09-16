@@ -78,7 +78,7 @@ func update_orb_display():
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) >= maxOrbs
 		unit.load_orb_unit_display()
 
-func update_orb_count(orbs: int, playSfx: bool = true, playParticles: bool = true):
+func update_orb_count(orbs: int, playSfx: bool = true, playParticles: bool = true) -> void:
 	var setOrbs = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
 	if setOrbs != currentOrbs:
 		orb_count_change.emit(setOrbs)
@@ -110,7 +110,7 @@ func update_orb_count(orbs: int, playSfx: bool = true, playParticles: bool = tru
 	currentOrbs = setOrbs
 	update_orb_display()
 
-func update_particle_emitter_pos(orb: int):
+func update_particle_emitter_pos(orb: int) -> void:
 	if orb < 1 or orb > Combatant.MAX_ORBS:
 		return
 	if alignment == BoxContainer.AlignmentMode.ALIGNMENT_END:
@@ -120,7 +120,7 @@ func update_particle_emitter_pos(orb: int):
 	const ORB_WIDTH_PLUS_OFFSET: int = 9 # 8px orb width, plus 1 for the HBoxContainer offset
 	particleEmitter.position = firstOrbParticlePos + Vector2(ORB_WIDTH_PLUS_OFFSET * orb, 0)
 
-func _orb_clicked(index: int):
+func _orb_clicked(index: int) -> void:
 	# index is [1, Combatant.MAX_ORBS]
 	lastOrbClicked = index
 	var orbCount = index if alignment != BoxContainer.ALIGNMENT_END else hboxContainer.get_child_count() + 1 - index
@@ -130,16 +130,16 @@ func _orb_clicked(index: int):
 		selectedPanel.visible = true
 		grab_focus()
 
-func _orb_hovered(index: int):
+func _orb_hovered(index: int) -> void:
 	lastOrbHovered = index
 
-func _input(event):
+func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and lastOrbHovered != lastOrbClicked and lastOrbHovered != -1:
 			_orb_clicked(lastOrbHovered)
 
-func _on_focus_entered():
+func _on_focus_entered() -> void:
 	focused = true
 
-func _on_focus_exited():
+func _on_focus_exited() -> void:
 	focused = false
