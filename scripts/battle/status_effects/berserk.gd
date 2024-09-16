@@ -27,16 +27,17 @@ func get_recoil_damage(combatant: Combatant) -> int:
 		for interceptIdx in range(len(combatant.command.interceptingTargets)):
 			damage += max(0, combatant.command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
 		damage *= Berserk.PERCENT_DAMAGE_DICT[potency]
-		combatant.command.commandResult.selfRecoilDmg += damage
 	return roundi(damage)
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	var dealtDmgCombatants: Array[Combatant] = []
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		if combatant.currentHp > 0:
-			combatant.currentHp = max(combatant.currentHp - get_recoil_damage(combatant), 1) # recoil can never knock you out!
-			if get_recoil_damage(combatant) > 0:
+			var damage: int = get_recoil_damage(combatant)
+			combatant.currentHp = max(combatant.currentHp - damage, 1) # recoil can never knock you out!
+			if damage > 0:
 				dealtDmgCombatants = [combatant]
+				combatant.command.commandResult.selfRecoilDmg += damage
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
 

@@ -235,6 +235,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.spriteFacesRight = minionCombatant.combatant.get_faces_right()
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
+	clean_up_minion_combatant()
 	minionCombatant.load_combatant_node()
 	#minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # just in case
 	var preset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")
@@ -354,18 +355,21 @@ func end_battle():
 			# if this creature is an evolution, set its save name as defeated as well.
 			if combatantNode.combatant.get_evolution() != null:
 				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.get_evolution_save_name())
-	
+	clean_up_minion_combatant()
+	if minionCombatant.combatant != null:
+		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed)
+	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
+	shadeTween.finished.connect(_fade_out_finish)
+
+func clean_up_minion_combatant() -> void:
 	if minionCombatant.combatant != null:
 		#if not minionCombatant.combatant.downed and state.usedShard != null: # credit back used shard if the minion wasn't downed
 			#PlayerResources.inventory.add_item(state.usedShard)
-		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed)
 		minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # reset to max HP for next time minion will be summoned
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
-	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
-	shadeTween.finished.connect(_fade_out_finish)
 
 func _fade_in_finish() -> void:
 	shadeTween = null

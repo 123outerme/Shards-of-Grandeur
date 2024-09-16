@@ -75,6 +75,7 @@ func _on_ok_button_pressed():
 		PlayerResources.playerInfo.combatant.downed = not (playerWins or playerEscapes or \
 				PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.RESTAND_ON_DEFEAT) \
 		)
+	battleUI.battleController.clean_up_minion_combatant()
 	if gainedLevels > 0:
 		battleUI.set_menu_state(BattleState.Menu.LEVEL_UP)
 	else:

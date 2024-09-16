@@ -88,6 +88,8 @@ func _unhandled_input(event):
 func toggle():
 	visible = not visible
 	if visible:
+		if inShop:
+			filter_by()
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()

@@ -148,7 +148,7 @@ func update_turn_text() -> bool:
 				var textDelayAccum: float = 0
 				for textIdx: int in range(len(eventTexts)):
 					if textIdx > 0:
-						textDelayAccum += 1
+						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 					subjectNode.play_event_text(eventTexts[textIdx], textDelayAccum)
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()

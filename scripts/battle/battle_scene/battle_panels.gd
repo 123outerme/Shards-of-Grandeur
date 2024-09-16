@@ -18,7 +18,7 @@ class_name BattlePanels
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pauseButton.visible = SettingsHandler.isMobile
+	pass #pauseButton.visible = SettingsHandler.isMobile
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS):

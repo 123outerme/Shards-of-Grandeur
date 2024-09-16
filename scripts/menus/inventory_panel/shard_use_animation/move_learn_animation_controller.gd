@@ -160,8 +160,8 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		[],
 		afflictedStatuses,
 		wasBoosted,
-		[],
-		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes()
+		[[]],
+		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes(),
 	)
 	
 	var command: BattleCommand = BattleCommand.new(
@@ -207,7 +207,7 @@ func play_item_animation(userNode: CombatantNode) -> void:
 		[],
 		afflictedStatuses,
 		wasBoosted,
-		[],
+		[[]],
 		userNode.battlePosition in targets
 	)
 	

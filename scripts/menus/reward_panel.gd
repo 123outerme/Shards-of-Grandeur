@@ -13,14 +13,9 @@ signal show_item_details(item)
 @onready var itemName: RichTextLabel = get_node("ItemGroup/ItemName")
 @onready var noRewardsLabel: RichTextLabel = get_node('NoRewardsLabel')
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func load_reward_panel():
+func load_reward_panel() -> void:
 	if reward != null:
-		visible = true
-		expLabel.text = '[center]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/center]'
+		expLabel.text = '[right]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/right]'
 		goldGroup.visible = true
 		goldLabel.text = TextUtils.num_to_comma_string(reward.gold)
 		if reward.item != null:
@@ -35,8 +30,8 @@ func load_reward_panel():
 		expLabel.visible = false
 		goldGroup.visible = false
 		itemGroup.visible = false
-		visible = true
+	visible = true
 
 
-func _on_item_sprite_button_pressed():
+func _on_item_sprite_button_pressed() -> void:
 	show_item_details.emit(reward.item)

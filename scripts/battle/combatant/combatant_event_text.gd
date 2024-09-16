@@ -4,11 +4,17 @@ class_name CombatantEventText
 signal event_text_completed
 
 static var DAMAGE_COLOR: Color = Color(0.82, 0.365, 0.341) # color #d15d57
+static var SUPER_EFFECTIVE_DAMAGE_COLOR: Color = Color(0.976, 0.729, 0.455) # color #f9ba74
 static var HEAL_COLOR: Color = Color(0.443, 0.82, 0.394) # color #71d164
+
+static var FADE_IN_SECS: float = 0.15
+static var SCROLL_UP_SECS: float = 1.25
+static var FADE_OUT_SECS: float = 0.25
+static var SECS_UNTIL_FADE_OUT: float = 1
 
 var eventTextTween: Tween = null
 
-static func build_damage_text(damage: int) -> String:
+static func build_damage_text(damage: int, superEffective: bool = false) -> String:
 	var isHealing: bool = false
 	var prefix: String = '-'
 	if damage < 0:
@@ -18,9 +24,13 @@ static func build_damage_text(damage: int) -> String:
 	elif damage == 0:
 		return ''
 	
-	var dmgText: String = '[color=' + \
-		(HEAL_COLOR if isHealing else DAMAGE_COLOR).to_html() + \
-		']' + prefix + TextUtils.num_to_comma_string(damage) + '[/color]'
+	var textColor: Color = HEAL_COLOR if isHealing else (SUPER_EFFECTIVE_DAMAGE_COLOR if superEffective else DAMAGE_COLOR)
+	var dmgNumberText: String = TextUtils.num_to_comma_string(damage)
+	if superEffective:
+		dmgNumberText += '!'
+	
+	var dmgText: String = '[color=' + textColor.to_html() + ']' \
+		+ prefix + dmgNumberText + '[/color]'
 	return dmgText
 
 static func build_status_get_text(status: StatusEffect) -> String:
@@ -52,11 +62,11 @@ func load_event_text(eventText: String, delay: float = 0, center: bool = true) -
 	modulate = Color(1, 1, 1, 0)
 	eventTextTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	# fade in quickly
-	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,1), 0.15).set_delay(delay)
+	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,1), CombatantEventText.FADE_IN_SECS).set_delay(delay)
 	# then, slide upwards, and at the same time, prepare to fade out partway through the slide upwards
-	eventTextTween.tween_property(self, 'position', Vector2(0, -36), 1.25).as_relative()
+	eventTextTween.tween_property(self, 'position', Vector2(0, -36), CombatantEventText.SCROLL_UP_SECS).as_relative()
 	eventTextTween.set_parallel()
-	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,0), 0.25).set_delay(1)
+	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,0), CombatantEventText.FADE_OUT_SECS).set_delay(CombatantEventText.SECS_UNTIL_FADE_OUT)
 	# once finished, call the callback
 	eventTextTween.finished.connect(_event_text_completed)
 	

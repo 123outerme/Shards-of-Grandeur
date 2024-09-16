@@ -6,9 +6,8 @@ signal ok_pressed
 @export var reward: Reward = null
 @export var itemDetailsPanel: ItemDetailsPanel
 
-@onready var rewardPanel: RewardPanel = get_node("Panel/RewardPanel")
-@onready var noRewardsLabel: RichTextLabel = get_node("Panel/NoRewardsLabel")
-@onready var fullAttuneLabel: RichTextLabel = get_node("Panel/FullAttuneLabel")
+@onready var rewardPanel: RewardPanel = get_node("Panel/HBoxContainer/RewardPanel")
+@onready var fullAttuneLabel: RichTextLabel = get_node("Panel/HBoxContainer/FullAttuneLabel")
 @onready var okButton: Button = get_node("Panel/OkButton")
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +22,6 @@ func _unhandled_input(event):
 func load_quest_reward_panel():
 	rewardPanel.reward = reward
 	rewardPanel.load_reward_panel()
-	noRewardsLabel.visible = reward == null
 	
 	if reward != null and reward.fullyAttuneCombatantSaveName != '':
 		var combatant = Combatant.load_combatant_resource(reward.fullyAttuneCombatantSaveName)

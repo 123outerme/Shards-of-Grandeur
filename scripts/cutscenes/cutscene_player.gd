@@ -113,19 +113,27 @@ func handle_start_shard_learn_tutorial():
 func get_all_actor_nodes_in_cutscene() -> Array:
 	var nodeDict: Dictionary = {}
 	for frame: CutsceneFrame in cutscene.cutsceneFrames:
-		for animSet in frame.actorAnimSets:
+		for animSet: ActorAnimSet in frame.actorAnimSets:
+			if animSet == null:
+				continue
 			var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)
 			if node != null and not nodeDict.has(node.name):
 				nodeDict[node.name] = node
-		for animation in frame.actorAnims:
+		for animation: ActorSpriteAnim in frame.actorAnims:
+			if animation == null:
+				continue
 			var node = fetch_actor_node(animation.actorTreePath, animation.isPlayer)
 			if node != null and not nodeDict.has(node.name):
 				nodeDict[node.name] = node
-		for actorTween in frame.actorTweens:
+		for actorTween: ActorTween in frame.actorTweens:
+			if actorTween == null:
+				continue
 			var node = fetch_actor_node(actorTween.actorTreePath, actorTween.isPlayer)
 			if node != null and not nodeDict.has(node.name):
 				nodeDict[node.name] = node
 		for actorFaceTarget: ActorFaceTarget in frame.actorFaceTargets:
+			if actorFaceTarget == null:
+				continue
 			var node = fetch_actor_node(actorFaceTarget.actorTreePath, actorFaceTarget.isPlayer)
 			if node != null and not nodeDict.has(node.name):
 				nodeDict[node.name] = node

@@ -30,15 +30,23 @@ func toggle_pause():
 	isPaused = not isPaused
 	if isPaused:
 		pause_game()
-		resumeButton.grab_focus()
 	else:
-		codexMenu.toggle_codex_menu(false)
+		if codexMenu.visible:
+			codexMenu.toggle_codex_menu(false)
+		if saveGamePanel.visible:
+			saveGamePanel.toggle_saves_panel(false)
+		if settingsMenu.visible:
+			settingsMenu.toggle_settings_menu(false)
 		_on_resume_button_pressed()
 
 func pause_game():
 	isPaused = true
 	visible = true
+	initial_focus()
 	SceneLoader.pause_autonomous_movers()
+
+func initial_focus() -> void:
+	resumeButton.grab_focus()
 
 func _on_resume_button_pressed():
 	isPaused = false

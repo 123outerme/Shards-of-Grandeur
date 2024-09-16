@@ -120,8 +120,8 @@ func close_panel():
 	savedStats = null
 	minion = null
 	# if the level up music is currently playing and this is in the overworld, cross-fade back into the overworld theme
-	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null:
-		SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme)
+	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
+		SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme, -1)
 	back_pressed.emit()
 
 func initial_focus():
@@ -228,7 +228,7 @@ func restore_previous_stats_panel():
 	changingCombatant = true
 	load_stats_panel()
 	if isTabbedView:
-		tabbedViewContainer.current_tab = TabbedViewTab.STATS
+		tabbedViewContainer.current_tab = TabbedViewTab.MINIONS
 	restore_previous_focus()
 
 func update_stats_tab_icon():

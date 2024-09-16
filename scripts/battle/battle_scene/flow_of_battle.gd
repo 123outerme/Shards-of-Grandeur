@@ -15,7 +15,7 @@ var leftOfFobControl: Control = null
 func _ready():
 	# await one frame since this _ready() will fire before the parent UIPanels node
 	await get_tree().process_frame
-	if SettingsHandler.isMobile:
+	if battleController.battlePanels.pauseButton.visible:
 		leftOfFobControl = battleController.battlePanels.pauseButton
 	else:
 		leftOfFobControl = battleController.battlePanels.statsOpenButton

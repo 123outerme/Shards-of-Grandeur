@@ -57,6 +57,13 @@ func load_saves_panel():
 	load_save_item_panels()
 	initial_focus()
 
+func toggle_saves_panel(showing: bool) -> void:
+	if showing:
+		visible = true
+		load_saves_panel()
+	else:
+		_on_back_button_pressed()
+
 func load_save_item_panels():
 	var panels = savePanelVbox.get_children()
 	for idx in range(len(panels)):

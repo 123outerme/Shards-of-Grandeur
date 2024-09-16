@@ -26,7 +26,7 @@ func apply_stat_change(stats: Stats) -> Stats:
 
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:
-		return combatant.disp_name() + " can't keep up due to " + status_effect_to_string() + '!'
+		return combatant.disp_name() + " is slowing down from " + status_effect_to_string() + '!'
 	return ''
 
 func get_status_effect_tooltip():

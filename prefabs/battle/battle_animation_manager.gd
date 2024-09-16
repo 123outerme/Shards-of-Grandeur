@@ -18,6 +18,7 @@ enum AnimationType {
 	MOVE_SPRITE_ANIM = 1,
 	BATTLEFIELD_SHADE = 2,
 	TWEEN_TO_TARGET = 3,
+	EVENT_TEXT = 4,
 }
 
 @export var disableEventTexts: bool = false
@@ -216,20 +217,33 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if user.animatedSprite.animation == 'hide' or moveAnimation.combatantAnimation == 'stand':
 		user._on_animated_sprite_animation_finished()
 	
+	var longestTextDelay: float = 0
+	var playedEventTexts: bool = false
 	# hit particles spawning, updating HP tags, playing event texts for damage, status, and stat boosts
 	for defender: CombatantNode in defenders:
 		defender.update_hp_tag()
 		var playHitParticles: bool = false
 		var dealtDmg: int = 0
+		var dmgWasSuperEffective: bool = false
 		var eventTexts: Array[String] = []
 		var targetIdx: int = command.targets.find(defender.combatant)
+		var moveEffect: MoveEffect = null
+		if command.type == BattleCommand.Type.MOVE:
+			moveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange)) if command.moveEffectType == Move.MoveEffectType.SURGE else command.move.chargeEffect
+		
 		if targetIdx >= 0 and targetIdx < len(command.commandResult.damagesDealt):
 			dealtDmg += command.commandResult.damagesDealt[targetIdx]
+			if command.type == BattleCommand.Type.MOVE:
+				if moveEffect.power > 0 and defender.combatant.get_element_effectiveness_multiplier(command.move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+					dmgWasSuperEffective = true
 			if command.commandResult.damagesDealt[targetIdx] > 0:
 				playHitParticles = true
 		var interceptorIdx: int = command.interceptingTargets.find(defender.combatant)
 		if interceptorIdx >= 0 and interceptorIdx < len(command.commandResult.damageOnInterceptingTargets):
 			dealtDmg += command.commandResult.damageOnInterceptingTargets[interceptorIdx]
+			if command.type == BattleCommand.Type.MOVE:
+				if moveEffect.power > 0 and defender.combatant.get_element_effectiveness_multiplier(command.move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+					dmgWasSuperEffective = true
 			if command.commandResult.damageOnInterceptingTargets[interceptorIdx] > 0:
 				playHitParticles = true
 		if defender in statusDamagedCombatants:
@@ -238,7 +252,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			defender.play_particles(BattleCommand.get_hit_particles(), 0)
 		# event texts start here: damage
 		if dealtDmg != 0:
-			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg))
+			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			if defender.combatant.statusEffect != null:
@@ -249,7 +263,6 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			if command.type == BattleCommand.Type.MOVE:
 				if command.commandResult.wasBoosted[targetIdx]:
 					# if the command type is a move: calculate the stat changes of the move
-					var moveEffect: MoveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange)) if command.moveEffectType == Move.MoveEffectType.SURGE else command.move.chargeEffect
 					statChanges = moveEffect.targetStatChanges
 					# if the defender is also the user and there are self-boosts
 					if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
@@ -281,8 +294,11 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if not disableEventTexts:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
-					textDelayAccum += 1
+					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 				defender.play_event_text(eventTexts[textIdx], textDelayAccum)
+			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+		if textDelayAccum > longestTextDelay:
+			longestTextDelay = textDelayAccum
 		defender.isBeingStatusAfflicted = false
 	
 	# if the user wasn't a defender, we still need to update (HP tag, hit particles, event texts)
@@ -308,14 +324,22 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if not disableEventTexts:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
-					textDelayAccum += 1
+					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 				user.play_event_text(eventTexts[textIdx], textDelayAccum)
+			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+		if textDelayAccum > longestTextDelay:
+			longestTextDelay = textDelayAccum
 		user.isBeingStatusAfflicted = false
 	
 	# lift the battlefield shade now that the animation is over soon
 	if shade != null:
 		battlefieldShade.lift_battlefield_shade()
 		totalWaitingForSignals.append(AnimationType.BATTLEFIELD_SHADE)
+	
+	if playedEventTexts:
+		get_tree().create_timer(longestTextDelay + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+			.timeout.connect(_on_combatant_animation_unit_complete.bind(AnimationType.EVENT_TEXT))
+		totalWaitingForSignals.append(AnimationType.EVENT_TEXT)
 	
 	if len(totalWaitingForSignals) > 0:
 		await animation_waiting_complete
