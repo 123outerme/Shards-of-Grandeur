@@ -152,10 +152,11 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var multiIsEnemies: bool = false
 		if len(targets) == 1:
 			moveToCombatantNode = targets[0]
-			if moveToCombatantNode.leftSide != user.leftSide:
-				moveToPos = moveToCombatantNode.onAttackMarker.global_position
-			else:
-				moveToPos = moveToCombatantNode.onAssistMarker.global_position
+			if moveToCombatantNode != user:
+				if moveToCombatantNode.leftSide != user.leftSide:
+					moveToPos = moveToCombatantNode.onAttackMarker.global_position
+				else:
+					moveToPos = moveToCombatantNode.onAssistMarker.global_position
 		else:
 			for targetNode: CombatantNode in targets:
 				if targetNode.leftSide != user.leftSide:
@@ -255,8 +256,12 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
-			if defender.combatant.statusEffect != null:
-				eventTexts.append(CombatantEventText.build_status_get_text(defender.combatant.statusEffect))
+			var statusEffect: StatusEffect = defender.combatant.statusEffect
+			if statusEffect == null and command.type == BattleCommand.Type.USE_ITEM:
+				var healing: Healing = command.slot.item as Healing
+				if healing.statusStrengthHeal != StatusEffect.Potency.NONE:
+					statusEffect = StatusEffect.new(StatusEffect.Type.NONE, healing.statusStrengthHeal, true)
+			eventTexts.append(CombatantEventText.build_status_get_text(statusEffect))
 		# stat changes text here
 		if targetIdx > -1 and (command.commandResult.wasBoosted[targetIdx] or len(command.commandResult.equipmentProcd[targetIdx]) > 0):
 			var statChanges: StatChanges = null

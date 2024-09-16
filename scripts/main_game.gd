@@ -7,6 +7,7 @@ class_name MainGame
 
 var lastRepeatedActionX: String = ''
 var lastRepeatedActionY: String = ''
+var lastFocusedControl: Control = null
 
 const UI_REPEAT_ACTION_NAMES_X = [
 	'ui_repeat_left',
@@ -45,6 +46,7 @@ func _ready():
 	
 	SceneLoader.load_main_menu()
 	get_window().focus_exited.connect(_on_window_focus_exited)
+	get_viewport().gui_focus_changed.connect(_on_gui_focus_changed)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_HIDDEN:
@@ -131,3 +133,6 @@ func _on_window_focus_exited() -> void:
 	# if cursor is hidden and focus is being switched off the game: make it visible again
 	if Input.mouse_mode == Input.MOUSE_MODE_HIDDEN:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _on_gui_focus_changed(control: Control) -> void:
+	lastFocusedControl = control

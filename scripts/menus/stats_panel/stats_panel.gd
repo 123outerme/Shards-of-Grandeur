@@ -119,6 +119,7 @@ func close_panel():
 		tabbedViewContainer.current_tab = TabbedViewTab.STATS
 	savedStats = null
 	minion = null
+	previousControl = null
 	# if the level up music is currently playing and this is in the overworld, cross-fade back into the overworld theme
 	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
 		SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme, -1)
@@ -365,6 +366,7 @@ func _on_edit_moves_panel_back_pressed():
 	singleViewBackButton.disabled = false
 	tabbedViewBackButton.disabled = false
 	restore_previous_focus()
+	previousControl = null
 
 func _on_edit_moves_panel_replace_move(slot: int, newMove: Move):
 	if slot >= len(stats.moves):

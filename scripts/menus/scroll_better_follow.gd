@@ -36,7 +36,7 @@ func _viewport_focus_changed(control):
 				scroll_horizontal = scrollDist
 
 func _on_visibility_changed():
-	if visible and !get_viewport().gui_focus_changed.is_connected(_viewport_focus_changed):
+	if visible and not get_viewport().gui_focus_changed.is_connected(_viewport_focus_changed):
 		get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 	elif get_viewport().gui_focus_changed.is_connected(_viewport_focus_changed):
 		get_viewport().gui_focus_changed.disconnect(_viewport_focus_changed)

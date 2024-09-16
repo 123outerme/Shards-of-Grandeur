@@ -37,7 +37,7 @@ static func build_status_get_text(status: StatusEffect) -> String:
 	if status == null:
 		return ''
 	if status.type == StatusEffect.Type.NONE:
-		return 'Cured' + StatusEffect.potency_to_string(status.potency) + ' Status'
+		return '[color=' + HEAL_COLOR.to_html() + ']Cured ' + StatusEffect.potency_to_string(status.potency) + ' Status[/color]'
 	return 'Afflicted ' + status.status_effect_to_string()
 
 static func build_stat_changes_texts(statChanges: StatChanges) -> Array[String]:

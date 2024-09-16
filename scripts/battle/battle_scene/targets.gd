@@ -216,6 +216,8 @@ func _on_confirm_button_pressed():
 			battleUI.commandingCombatant.combatant.command.moveEffectType != Move.MoveEffectType.SURGE:
 		if moveEffect != null:
 			battleUI.commandingCombatant.combatant.command.orbChange = moveEffect.orbChange
+		else:
+			battleUI.commandingCombatant.combatant.command.orbChange = 0
 		battleUI.complete_command()
 	else:
 		battleUI.set_menu_state(BattleState.Menu.SURGE_SPEND, false)

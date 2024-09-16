@@ -236,6 +236,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					appliedEffect = true
 				if targets[idx].statusEffect != null and targets[idx].statusEffect.potency <= slot.item.statusStrengthHeal:
 					targets[idx].statusEffect = null
+					commandResult.afflictedStatuses[idx] = true
 					appliedEffect = true
 				if slot.item.statChanges != null and slot.item.statChanges.has_stat_changes():
 					targets[idx].statChanges.stack(slot.item.statChanges)
