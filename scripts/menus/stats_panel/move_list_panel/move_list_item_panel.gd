@@ -79,13 +79,35 @@ func load_move_list_item_panel():
 		cancelButton.visible = false
 		newMoveIndicator.visible = false
 
-func clear_button_bottom_neighbors():
-	detailsButton.focus_neighbor_bottom = ''
-	replaceButton.focus_neighbor_bottom = ''
-	reorderButton.focus_neighbor_bottom = ''
-	selectButton.focus_neighbor_bottom = ''
-	learnButton.focus_neighbor_bottom = ''
-	cancelButton.focus_neighbor_bottom = ''
+func set_buttons_bottom_neighbor(path: String) -> void:
+	detailsButton.focus_neighbor_bottom = path
+	replaceButton.focus_neighbor_bottom = path
+	reorderButton.focus_neighbor_bottom = path
+	selectButton.focus_neighbor_bottom = path
+	learnButton.focus_neighbor_bottom = path
+	cancelButton.focus_neighbor_bottom = path
+
+func set_buttons_top_neighbor(path: String) -> void:
+	detailsButton.focus_neighbor_top = path
+	replaceButton.focus_neighbor_top = path
+	reorderButton.focus_neighbor_top = path
+	selectButton.focus_neighbor_top = path
+	learnButton.focus_neighbor_top = path
+	cancelButton.focus_neighbor_top = path
+
+func connect_move_list_item_panel_top_neighbor(other: MoveListItemPanel) -> void:
+	detailsButton.focus_neighbor_top = detailsButton.get_path_to(other.detailsButton)
+	other.detailsButton.focus_neighbor_bottom = other.detailsButton.get_path_to(detailsButton)
+	replaceButton.focus_neighbor_top = replaceButton.get_path_to(other.replaceButton)
+	other.replaceButton.focus_neighbor_bottom = other.replaceButton.get_path_to(replaceButton)
+	reorderButton.focus_neighbor_top = reorderButton.get_path_to(other.reorderButton)
+	other.reorderButton.focus_neighbor_bottom = other.reorderButton.get_path_to(reorderButton)
+	selectButton.focus_neighbor_top = selectButton.get_path_to(other.selectButton)
+	other.selectButton.focus_neighbor_bottom = other.selectButton.get_path_to(selectButton)
+	learnButton.focus_neighbor_top = learnButton.get_path_to(other.learnButton)
+	other.learnButton.focus_neighbor_bottom = other.learnButton.get_path_to(learnButton)
+	cancelButton.focus_neighbor_top = cancelButton.get_path_to(other.cancelButton)
+	other.cancelButton.focus_neighbor_bottom = other.cancelButton.get_path_to(cancelButton)
 
 func _on_details_button_pressed():
 	details_pressed.emit(move)

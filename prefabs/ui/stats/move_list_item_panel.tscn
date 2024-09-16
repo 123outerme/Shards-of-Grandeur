@@ -109,6 +109,7 @@ offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
 text = "Replace"
 
 [node name="ReorderButton" parent="." instance=ExtResource("3_ybytg")]
@@ -126,6 +127,7 @@ offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
 text = "Reorder
 "
 
@@ -144,6 +146,7 @@ offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
 text = "Select"
 
 [node name="LearnButton" parent="." instance=ExtResource("3_ybytg")]
@@ -161,6 +164,7 @@ offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
 text = "Learn"
 
 [node name="CancelButton" parent="." instance=ExtResource("3_ybytg")]
@@ -178,6 +182,7 @@ offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
 text = "Cancel"
 
 [connection signal="pressed" from="DetailsButton" to="." method="_on_details_button_pressed"]

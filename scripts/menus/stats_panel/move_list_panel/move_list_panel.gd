@@ -28,6 +28,11 @@ func load_move_list_panel():
 	lastMovePanel = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
+		if lastMovePanel == null:
+			itemPanel.set_buttons_top_neighbor('')
+		else:
+			itemPanel.connect_move_list_item_panel_top_neighbor(lastMovePanel)
+			itemPanel.set_buttons_bottom_neighbor('')
 		if i < len(moves):
 			itemPanel.move = moves[i]
 			itemPanel.showNewMoveIndicator = levelUp and level == moves[i].requiredLv
@@ -36,10 +41,10 @@ func load_move_list_panel():
 		else:
 			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()
-		itemPanel.clear_button_bottom_neighbors()
 	editMovesButton.visible = not readOnly
 	if not readOnly and lastMovePanel != null:
 		editMovesButton.focus_neighbor_top = editMovesButton.get_path_to(lastMovePanel.detailsButton)
+		lastMovePanel.detailsButton.focus_neighbor_bottom = lastMovePanel.detailsButton.get_path_to(editMovesButton)
 	editMovesButton.icon = newMoveIndicator if showNewMoveIndicator else null
 
 func connect_details_pressed(function: Callable):
