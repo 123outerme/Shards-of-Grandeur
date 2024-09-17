@@ -6,6 +6,8 @@ signal tween_to_target_finished
 signal tween_returning_to_rest
 signal tween_back_finished
 signal sprite_animation_finished
+signal toggled(button_pressed: bool, combatantNode: CombatantNode)
+signal details_clicked(combatantNode: CombatantNode)
 
 enum Role {
 	ALLY = 0,
@@ -22,8 +24,6 @@ class ChosenMove:
 		effectType = i_effectType
 		weight = i_weight
 
-signal toggled(button_pressed: bool, combatantNode: CombatantNode)
-signal details_clicked(combatantNode: CombatantNode)
 
 @export_category("CombatantNode - Details")
 @export var combatant: Combatant = null
@@ -203,6 +203,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
+	selectCombatantBtn.z_index = 1 if selectCombatantBtn.button_pressed else 0
 	
 	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(12, 12) # set size of selecting button to sprite size + 8px
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
@@ -246,6 +247,7 @@ func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
+	selectCombatantBtn.z_index = 1 if selected else 0
 	selectCombatantBtn._on_pressed_update_texture()
 	
 func is_selected() -> bool:
@@ -771,7 +773,8 @@ func _fade_out_finished():
 	visible = false
 	modulate = Color(1,1,1,1)
 
-func _on_select_combatant_btn_toggled(button_pressed):
+func _on_select_combatant_btn_toggled(button_pressed: bool) -> void:
+	selectCombatantBtn.z_index = 1 if button_pressed else 0
 	toggled.emit(button_pressed, self)
 
 func _on_click_combatant_btn_pressed():
