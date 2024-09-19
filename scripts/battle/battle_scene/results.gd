@@ -32,6 +32,8 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 		if result == WinCon.TurnResult.NOTHING and battleUI.menuState == BattleState.Menu.POST_ROUND:
 			result = PlayerResources.playerInfo.encounter.get_win_con_result(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
 			update_battle_ui_with_results()
+		if not animFinished:
+			battleUI.battleController.battleAnimationManager.skip_intermediate_animations(battleUI.battleController.state, battleUI.menuState)
 		if battleUI.battleController.turnExecutor.advance_precalcd_text(): # if was final
 			battleUI.advance_intermediate_state(result)
 		return # don't fall-through and potentially run the results code below

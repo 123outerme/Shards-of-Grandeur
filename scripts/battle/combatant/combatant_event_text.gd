@@ -70,6 +70,12 @@ func load_event_text(eventText: String, delay: float = 0, center: bool = true) -
 	# once finished, call the callback
 	eventTextTween.finished.connect(_event_text_completed)
 	
+func destroy() -> void:
+	_event_text_completed()
+
 func _event_text_completed() -> void:
+	if eventTextTween != null:
+		eventTextTween.kill()
+		eventTextTween = null
 	event_text_completed.emit()
 	queue_free()

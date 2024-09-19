@@ -57,6 +57,8 @@ var returnToPos: Vector2 = Vector2()
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
 var playingMoveSprites: Array[MoveSprite] = []
+var playedEventTexts: int = 0
+var playingEventTexts: Array[CombatantEventText] = []
 var useItemSprite: Texture2D = null
 var isBeingStatusAfflicted: bool = false
 var initialAssistMarkerPos: Vector2
@@ -264,7 +266,7 @@ func play_animation(animationName: String):
 		animatedSprite.stop()
 		_on_animated_sprite_animation_finished()
 
-func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: bool):
+func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: bool, stopEventTexts: bool):
 	if stopSpriteAnim:
 		animatedSprite.stop()
 	
@@ -282,8 +284,17 @@ func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: boo
 	if stopMoveAnim:
 		for moveSprite: MoveSprite in playingMoveSprites:
 			if moveSprite != null:
-				moveSprite.destroy()
+				moveSprite.visible = false
+				moveSprite.destroy.call_deferred()
 		playingMoveSprites = []
+		playedMoveSprites = 0
+		
+	if stopEventTexts:
+		for eventText: CombatantEventText in playingEventTexts:
+			if eventText != null:
+				eventText.visible = false
+				eventText.destroy.call_deferred()
+		playingEventTexts = []
 
 func get_animation_fps(animationName: String) -> float:
 	return animatedSprite.sprite_frames.get_animation_speed(animationName)
@@ -431,6 +442,9 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 
 func play_event_text(text: String, delay: float = 0, center: bool = true) -> void:
 	var instantiatedText: CombatantEventText = eventTextScene.instantiate()
+	playedEventTexts += 1
+	instantiatedText.event_text_completed.connect(_event_text_completed.bind(instantiatedText))
+	playingEventTexts.append(instantiatedText)
 	instantiatedText.load_event_text(text, delay, center)
 	eventTextContainer.add_child(instantiatedText)
 
@@ -799,11 +813,19 @@ func _on_hp_drain_tween_finished():
 	hpDrainTween = null
 
 func _move_sprite_complete(sprite: MoveSprite):
-	playedMoveSprites -= 1
+	playedMoveSprites -= 1 # a number and an array are both kept track of, in case some sprites are freed at this time the erase may not work but the count will
 	playingMoveSprites.erase(sprite)
 	# if the combatant's sprite animation is done and all move sprites have finished
 	if playedMoveSprites == 0:
+		playingMoveSprites = []
 		move_sprites_finished.emit()
+
+func _event_text_completed(eventText: CombatantEventText):
+	playedEventTexts -= 1 # a number and an array are both kept track of, in case some texts are freed at this time the erase may not work but the count will
+	playingEventTexts.erase(eventText)
+	if playedEventTexts == 0:
+		playingEventTexts = []
+		#event_texts_finished.emit()
 
 func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
 	if a.weight > b.weight:

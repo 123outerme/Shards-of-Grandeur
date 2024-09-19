@@ -122,34 +122,7 @@ func update_turn_text() -> bool:
 		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
 		
-		if battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
-			var eventTexts: Array[String] = []
-			var subjectNode: CombatantNode = null
-			for cNode: CombatantNode in allCombatantNodes:
-				if cNode.combatant == battleController.state.calcdStateCombatants[battleController.state.calcdStateIndex]:
-					subjectNode = cNode
-					break
-			if subjectNode != null:
-				if subjectNode.combatant in battleController.state.statusEffDamagedCombatants:
-					subjectNode.play_particles(BattleCommand.get_hit_particles())
-					eventTexts.append(CombatantEventText.build_damage_text(battleController.state.calcdStateDamage[battleController.state.calcdStateIndex]))
-					subjectNode.update_hp_tag()
-				var procdEquipment: Array[Item] = battleController.state.calcdStateEquipmentProcd[battleController.state.calcdStateIndex]
-				if procdEquipment != null:
-					for equipment: Item in procdEquipment:
-						var statChanges: StatChanges = null
-						if equipment.itemType == Item.Type.WEAPON:
-							statChanges = (equipment as Weapon).statChanges
-						elif equipment.itemType == Item.Type.ARMOR:
-							statChanges = (equipment as Armor).statChanges
-						if statChanges != null and statChanges.has_stat_changes():
-							eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
-						# TODO: play equipment proc'd animation for this equipment
-				var textDelayAccum: float = 0
-				for textIdx: int in range(len(eventTexts)):
-					if textIdx > 0:
-						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-					subjectNode.play_event_text(eventTexts[textIdx], textDelayAccum)
+		battleController.battleAnimationManager.play_intermediate_round_animations(battleController.state)
 	if battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
 		var defenders: Array[Combatant] = []

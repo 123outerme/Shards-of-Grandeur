@@ -368,6 +368,73 @@ func escape_animation(user: CombatantNode):
 	user.play_animation('walk')
 	await user.sprite_animation_finished
 
+func play_intermediate_round_animations(state: BattleState):
+	totalWaitingForSignals = []
+	waitingForSignals = []
+	
+	if state.calcdStateIndex < len(state.calcdStateStrings):
+		var eventTexts: Array[String] = []
+		var subjectNode: CombatantNode = null
+		for cNode: CombatantNode in get_all_combatant_nodes():
+			if cNode.combatant == state.calcdStateCombatants[state.calcdStateIndex]:
+				subjectNode = cNode
+				break
+		if subjectNode != null:
+			if subjectNode.combatant in state.statusEffDamagedCombatants:
+				subjectNode.play_particles(BattleCommand.get_hit_particles())
+				eventTexts.append(CombatantEventText.build_damage_text(state.calcdStateDamage[state.calcdStateIndex]))
+				subjectNode.update_hp_tag()
+			var procdEquipment: Array[Item] = state.calcdStateEquipmentProcd[state.calcdStateIndex]
+			if procdEquipment != null:
+				for equipment: Item in procdEquipment:
+					var statChanges: StatChanges = null
+					if equipment.itemType == Item.Type.WEAPON:
+						statChanges = (equipment as Weapon).statChanges
+					elif equipment.itemType == Item.Type.ARMOR:
+						statChanges = (equipment as Armor).statChanges
+					if statChanges != null and statChanges.has_stat_changes():
+						eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+					# TODO: play equipment proc'd animation for this equipment
+			var textDelayAccum: float = 0
+			var playedEventTexts: bool = false
+			if not disableEventTexts:
+				for textIdx: int in range(len(eventTexts)):
+					if textIdx > 0:
+						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
+					subjectNode.play_event_text(eventTexts[textIdx], textDelayAccum)
+					playedEventTexts = true
+			
+			if playedEventTexts:
+				get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+					.timeout.connect(_on_combatant_animation_unit_complete.bind(AnimationType.EVENT_TEXT))
+				totalWaitingForSignals.append(AnimationType.EVENT_TEXT)
+			
+			if len(totalWaitingForSignals) > 0:
+				# start/complete events are only emitted if the subject is found and animations are playing
+				combatant_animation_start.emit()
+				await animation_waiting_complete
+				combatant_animation_complete.emit()
+
+func skip_intermediate_animations(state: BattleState, menuState: BattleState.Menu):
+	# if the current state is pre-battle:
+	if menuState == BattleState.Menu.PRE_BATTLE:
+		# cancel all active animations for the turn combatant
+		var subjectNode: CombatantNode = null
+		for cNode: CombatantNode in get_all_combatant_nodes():
+			if cNode.combatant == state.calcdStateCombatants[state.calcdStateIndex]:
+				subjectNode = cNode
+				break
+		if subjectNode != null:
+			subjectNode.stop_animation(false, false, true, true)
+			if len(totalWaitingForSignals) > 0:
+				totalWaitingForSignals = []
+				animation_waiting_complete.emit()
+	# otherwise, if not pre-battle then don't cancel the active animations, continue as normal
+
+func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay: float = 0, center: bool = true) -> void:
+	if not disableEventTexts:
+		combatantNode.play_event_text(text, delay, center)
+
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
 	combatantNode.z_index = 2

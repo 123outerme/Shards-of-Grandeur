@@ -182,8 +182,10 @@ func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NO
 					allCombatants.append(combatantNode.combatant)
 			for combatantNode in battleController.get_all_combatant_nodes(): # apply after-round effects
 				if combatantNode.is_alive() and combatantNode.combatant.statusEffect != null:
+					var statusEffect: StatusEffect = combatantNode.combatant.statusEffect
 					combatantNode.combatant.statusEffect.apply_status(combatantNode.combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_POST_ROUND)
 					if combatantNode.combatant.statusEffect == null:
+						battleController.battleAnimationManager.play_combatant_event_text(combatantNode, statusEffect.get_status_type_string() + ' Wore Off')
 						combatantNode.update_hp_tag() # status effect just got cleared, update HP tag
 			if result == WinCon.TurnResult.NOTHING: # check again before completing round
 				result = battleController.turnExecutor.check_battle_end_conditions()
