@@ -295,6 +295,7 @@ func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: boo
 				eventText.visible = false
 				eventText.destroy.call_deferred()
 		playingEventTexts = []
+		playedEventTexts = 0
 
 func get_animation_fps(animationName: String) -> float:
 	return animatedSprite.sprite_frames.get_animation_speed(animationName)
