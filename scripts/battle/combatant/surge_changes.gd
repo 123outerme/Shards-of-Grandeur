@@ -85,7 +85,7 @@ func get_description() -> Array[SurgeChangeDescRow]:
 	
 	if additionalStatusChancePerOrb > 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Status Chance Per Orb:', String.num(additionalStatusChancePerOrb * 100) + '%')
+			SurgeChangeDescRow.new('+ Status Chance Per Orb:', String.num(additionalStatusChancePerOrb * 100))
 		)
 	
 	if weakThresholdOrbs > 0 or strongThresholdOrbs > 0 or overwhelmingThresholdOrbs > 0:

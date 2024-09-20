@@ -95,7 +95,10 @@ func load_move_effect_details_panel():
 					+ ' ' + moveEffect.statusEffect.get_status_type_string()
 		else:
 			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
-		moveStatusEffect.text += ' (' + String.num(roundi(moveEffect.statusChance * 100)) + '% Chance'
+		var accuracyString: String = String.num(roundi(moveEffect.statusChance * 100)) + ' Chance'
+		if moveEffect.statusChance >= 1:
+			accuracyString = 'Guaranteed'
+		moveStatusEffect.text += ' (' + accuracyString
 		if moveEffect.statusEffect.overwritesOtherStatuses:
 			moveStatusEffect.text += ', Replaces'
 		moveStatusEffect.text += ')[/center]'

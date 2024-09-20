@@ -84,9 +84,12 @@ func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Arr
 		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
 	if statusEffect != null:
+		var accuracyString: String = String.num(roundi(statusChance * 100)) + ' Chance'
+		if statusChance >= 1:
+			accuracyString = 'Guaranteed'
 		var statusString: String = StatusEffect.potency_to_string(statusEffect.potency) \
 			+ ' ' + statusEffect.get_status_type_string() \
-			+ ' (' + String.num(roundi(statusChance * 100)) + '%)'
+			+ ' (' + accuracyString + ')'
 		if statusEffect.overwritesOtherStatuses:
 			statusString += ', Replaces'
 		effects.append(statusString)
@@ -117,10 +120,13 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 	
 	if changedSurgeEff.statusEffect != null and (changedSurgeEff.statusChance > statusChance or \
 			changedSurgeEff.statusEffect.potency != statusEffect.potency):
+		var accuracyString: String = String.num(roundi(changedSurgeEff.statusChance * 100)) + ' Chance'
+		if changedSurgeEff.statusChance >= 1:
+			accuracyString = 'Guaranteed'
 		effects.append(
 			StatusEffect.potency_to_string(changedSurgeEff.statusEffect.potency) \
 			+ ' ' + changedSurgeEff.statusEffect.get_status_type_string() \
-			+ ' (' + String.num(roundi(changedSurgeEff.statusChance * 100)) + '%)'
+			+ ' (' + accuracyString + ')'
 		)
 	
 	return effects
