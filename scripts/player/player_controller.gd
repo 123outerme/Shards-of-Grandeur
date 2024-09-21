@@ -866,6 +866,7 @@ func _on_overworld_touch_controls_pause_pressed():
 			cam.toggle_cutscene_paused_shade()
 			cutscenePaused = cam.cutscenePaused
 	else:
+		animatedBgPanel.visible = true
 		pausePanel.toggle_pause()
 		overworldTouchControls.set_all_visible(false)
 
@@ -873,6 +874,7 @@ func _on_overworld_touch_controls_inventory_pressed():
 	inventoryPanel.inShop = false
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.lockFilters = false
+	animatedBgPanel.visible = true
 	inventoryPanel.toggle()
 	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()
@@ -880,6 +882,7 @@ func _on_overworld_touch_controls_inventory_pressed():
 func _on_overworld_touch_controls_quests_pressed():
 	questsPanel.turnInTargetName = ''
 	questsPanel.lockFilters = false
+	animatedBgPanel.visible = true
 	questsPanel.toggle()
 	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()
@@ -887,6 +890,7 @@ func _on_overworld_touch_controls_quests_pressed():
 func _on_overworld_touch_controls_stats_pressed():
 	statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 	statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+	animatedBgPanel.visible = true
 	statsPanel.toggle()
 	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()

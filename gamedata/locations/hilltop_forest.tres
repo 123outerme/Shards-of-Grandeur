@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="1_p5mmd"]
 [ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_p80g7"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battletheme_uvutudx_demo.mp3" id="2_pgn85"]
-[ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="3_jfgho"]
+[ext_resource type="AudioStream" uid="uid://c8r88hcpxxo48" path="res://audio/music/overworld/hilltop_forest.mp3" id="4_apo2g"]
 
 [sub_resource type="Resource" id="Resource_ohh8x"]
 script = ExtResource("1_p5mmd")
@@ -18,6 +18,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -30,7 +31,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 script = ExtResource("1_jq1j4")
 path = "hilltop_forest/hilltop_forest_cave"
 requirements = SubResource("Resource_ohh8x")
-overworldTheme = ExtResource("3_jfgho")
+overworldTheme = ExtResource("4_apo2g")
 battleMapName = "forest_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("1_8ryyi"), ExtResource("2_pgn85")])
 isRecoverLocation = false
@@ -47,6 +48,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -59,7 +61,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 script = ExtResource("1_jq1j4")
 path = "hilltop_forest/hilltop_forest"
 requirements = SubResource("Resource_jyusa")
-overworldTheme = ExtResource("3_jfgho")
+overworldTheme = ExtResource("4_apo2g")
 battleMapName = "forest_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("1_8ryyi"), ExtResource("2_pgn85")])
 isRecoverLocation = false

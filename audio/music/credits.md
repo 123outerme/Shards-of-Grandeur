@@ -10,3 +10,4 @@ Here is where I will credit the artist who created each individual track used in
 ## `overworld` Subdirectory
 - `leavenport.mp3`: By Austin Greenlee.
 - `standstill.mp3`: By Ian Groat.
+- `hilltop_forest.mp3`: By Henry Guckes.
