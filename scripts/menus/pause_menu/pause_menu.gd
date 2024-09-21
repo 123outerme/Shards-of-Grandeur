@@ -8,10 +8,11 @@ signal resume_game
 @onready var settingsMenu: SettingsMenu = get_node('Control/SettingsMenu')
 @onready var saveGamePanel: SavesPanel = get_node('Control/SaveGamePanel')
 
-@onready var resumeButton: Button = get_node("Control/Panel/VBoxContainer/ResumeButton")
-@onready var codexButton: Button = get_node('Control/Panel/VBoxContainer/CodexButton')
-@onready var settingsButton: Button = get_node('Control/Panel/VBoxContainer/SettingsButton')
-@onready var saveButton: Button = get_node('Control/Panel/VBoxContainer/SaveButton')
+@onready var pauseMenuPage: Control = get_node('Control/Panel/PauseMenuPage')
+@onready var resumeButton: Button = get_node("Control/Panel/PauseMenuPage/VBoxContainer/ResumeButton")
+@onready var codexButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/CodexButton')
+@onready var settingsButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/SettingsButton')
+@onready var saveButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/SaveButton')
 
 @onready var alertControl: Control = get_node('Control/AlertControl')
 
@@ -31,6 +32,7 @@ func toggle_pause():
 	if isPaused:
 		pause_game()
 	else:
+		pauseMenuPage.visible = true
 		if codexMenu.visible:
 			codexMenu.toggle_codex_menu(false)
 		if saveGamePanel.visible:
@@ -60,12 +62,15 @@ func _on_resume_button_pressed():
 	resume_game.emit()
 
 func _on_codex_button_pressed():
+	pauseMenuPage.visible = false
 	codexMenu.toggle_codex_menu(true)
 
 func _on_settings_button_pressed():
+	pauseMenuPage.visible = false
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_save_button_pressed():
+	pauseMenuPage.visible = false
 	saveGamePanel.load_saves_panel()
 	saveGamePanel.visible = true
 
@@ -76,12 +81,15 @@ func _on_quit_button_pressed():
 	SceneLoader.load_main_menu()
 
 func _on_settings_menu_back_pressed():
+	pauseMenuPage.visible = true
 	settingsButton.grab_focus()
 
 func _on_codex_menu_back_pressed():
+	pauseMenuPage.visible = true
 	codexButton.grab_focus()
 
 func _on_save_game_panel_back_pressed():
+	pauseMenuPage.visible = true
 	saveButton.grab_focus()
 
 func show_alert(message: String, lifetime: float = 2):

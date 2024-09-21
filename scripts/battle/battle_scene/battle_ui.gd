@@ -272,6 +272,7 @@ func restore_focus():
 		previousFocus.grab_focus()
 
 func open_inventory(forSummon: bool):
+	battlePanels.animatedBgPanel.visible = true
 	if not forSummon:
 		inventoryPanel.summoning = false
 		inventoryPanel.lockFilters = false
@@ -292,6 +293,7 @@ func _on_inventory_panel_node_item_used(slot: InventorySlot):
 		commandingCombatant.combatant.command = \
 				BattleCommand.new(BattleCommand.Type.USE_ITEM, null, Move.MoveEffectType.NONE, 0, slot, [])
 		set_menu_state(BattleState.Menu.PICK_TARGETS)
+	battlePanels.animatedBgPanel.visible = false
 	inventoryPanel.toggle()
 
 func open_stats(combatant: Combatant, levelUp: bool = false):
@@ -308,6 +310,7 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.toggle()
 
 func _on_stats_panel_node_back_pressed():
+	battlePanels.animatedBgPanel.visible = false
 	if menuState == BattleState.Menu.LEVEL_UP:
 		end_battle()
 	restore_focus()
@@ -317,15 +320,18 @@ func _on_combatant_details_clicked(combatantNode: CombatantNode):
 	pass
 
 func _on_summon_minion_panel_back_pressed():
+	battlePanels.animatedBgPanel.visible = false
 	summonMenu.initial_focus()
 
 func _on_inventory_panel_node_back_pressed():
+	battlePanels.animatedBgPanel.visible = false
 	if menuState == BattleState.Menu.SUMMON:
 		summonMenu.initial_focus()
 	if menuState == BattleState.Menu.ITEMS:
 		allCommands.inventoryBtn.grab_focus()
 
 func _on_quests_panel_node_back_pressed():
+	battlePanels.animatedBgPanel.visible = false
 	restore_focus()
 
 func _on_focus_changed(control: Control):
@@ -347,6 +353,7 @@ func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):
 	statsPanel.toggle()
 
 func _on_summon_minion_panel_minion_summoned(minion: Combatant, shardSlot: InventorySlot):
+	battlePanels.animatedBgPanel.visible = false
 	var shard = null
 	if shardSlot:
 		PlayerResources.inventory.trash_item(shardSlot)

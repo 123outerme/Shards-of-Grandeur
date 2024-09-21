@@ -37,6 +37,7 @@ var enteredWarpZone: bool = false
 @onready var uiRoot: Node2D = get_node('UI')
 @onready var overworldTouchControls: OverworldTouchControls = get_node('UI/OverworldTouchControls')
 @onready var textBox: TextBox = get_node("UI/TextBoxRoot")
+@onready var animatedBgPanel: AnimatedBgPanel = get_node('UI/AnimatedBgPanel')
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
@@ -85,6 +86,7 @@ func _unhandled_input(event):
 				cam.toggle_cutscene_paused_shade()
 				cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
+			animatedBgPanel.visible = true
 			pausePanel.toggle_pause()
 			overworldTouchControls.set_all_visible(not pausePanel.visible)
 	
@@ -93,6 +95,7 @@ func _unhandled_input(event):
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
+		animatedBgPanel.visible = true
 		statsPanel.toggle()
 		if statsPanel.visible:
 			SceneLoader.pause_autonomous_movers()
@@ -133,6 +136,7 @@ func _unhandled_input(event):
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
+		animatedBgPanel.visible = true
 		inventoryPanel.toggle()
 		if inventoryPanel.visible:
 			SceneLoader.pause_autonomous_movers()
@@ -147,6 +151,8 @@ func _unhandled_input(event):
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
+		animatedBgPanel.visible = true
+		animatedBgPanel.visible = true
 		questsPanel.toggle()
 		if questsPanel.visible:
 			SceneLoader.pause_autonomous_movers()
@@ -670,6 +676,8 @@ func get_collider(): # for use before full player initialization in MapLoader
 func menu_closed():
 	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
 			and not textBox.visible and not pausePanel.visible:
+		animatedBgPanel.visible = false
+		print(animatedBgPanel.visible)
 		SceneLoader.unpause_autonomous_movers()
 		overworldTouchControls.set_all_visible()
 		if useTeleportStone != null:
@@ -759,8 +767,8 @@ func equip_to_combatant_helper(stats: Stats):
 	inventoryPanel.shopInventory = null
 	statsPanel.visible = false
 	statsPanel.reset_panel_to_player()
-	menu_closed()
 	inventoryPanel.toggle()
+	menu_closed()
 
 func level_up(newLevels: int):
 	if newLevels == 0:
@@ -823,9 +831,11 @@ func _after_start_battle_fade_out():
 	SceneLoader.load_battle()
 
 func _on_pause_menu_resume_game():
-	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
+	if not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not pausePanel.visible:
-		textBox.refocus_choice(pickedChoice)
+		animatedBgPanel.visible = false
+		if textBox.visible:
+			textBox.refocus_choice(pickedChoice)
 	overworldTouchControls.set_all_visible()
 
 func _filter_out_null(value):

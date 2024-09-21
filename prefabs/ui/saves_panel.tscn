@@ -1,6 +1,5 @@
 [gd_scene load_steps=8 format=3 uid="uid://dadkuus73lmt3"]
 
-[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_bjsbo"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/saves_panel.gd" id="1_xr6w7"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_kwud6"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_tdsiv"]
@@ -8,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_pcdf1"]
 [ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="6_6dgbh"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66as2"]
+
 [node name="SavesPanel" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_bjsbo")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_66as2")
 script = ExtResource("1_xr6w7")
 
 [node name="SavesPanelLabel" type="RichTextLabel" parent="."]

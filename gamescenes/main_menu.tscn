@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=22 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
@@ -6,20 +6,25 @@
 [ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="4_cso12"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_rb8pb"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_a7rkf"]
+[ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="5_bi187"]
 [ext_resource type="Texture2D" uid="uid://hjfj3p4f3w5y" path="res://graphics/items/armor/rusty_armor.png" id="5_t85f5"]
 [ext_resource type="Texture2D" uid="uid://dgkky8sonbl42" path="res://graphics/items/book.png" id="6_8y84x"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="7_swlwd"]
 [ext_resource type="Texture2D" uid="uid://cs66yfoyhxwo2" path="res://graphics/items/key_items/enchanted_hammer.png" id="8_3vdg2"]
-[ext_resource type="Texture2D" uid="uid://bib16nhg78kim" path="res://graphics/characters/player/player_walk.png" id="8_w3grk"]
 [ext_resource type="Texture2D" uid="uid://chumycjya5hmc" path="res://graphics/ui/house_icon.png" id="9_jdjmu"]
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="10_650uu"]
-[ext_resource type="Texture2D" uid="uid://dr7u8syuxmuqb" path="res://graphics/characters/solius/solius_stand.png" id="12_63e6b"]
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="12_h6rgv"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="13_ycmgk"]
+[ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="14_amh01"]
 [ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="17_qsm70"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nrgl8"]
-atlas = ExtResource("8_w3grk")
-region = Rect2(112, 0, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e75oi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bf22s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8w0dn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqwdb"]
 
 [node name="MainMenu" type="Control" groups=["Scenes"]]
 layout_mode = 3
@@ -34,12 +39,27 @@ script = ExtResource("2_viou1")
 mainMenuMusic = ExtResource("3_bygmc")
 activateDebugModeSfx = ExtResource("4_cso12")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+[node name="AnimatedBgPanel" parent="." instance=ExtResource("5_bi187")]
+layout_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e75oi")
+
+[node name="MainMenuPage" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainMenuPage"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 
-[node name="ResumeGameButton" parent="Panel/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="ResumeGameButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -62,7 +82,7 @@ text = "Load Game"
 icon = ExtResource("5_t85f5")
 expand_icon = true
 
-[node name="NewGameButton" parent="Panel/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="NewGameButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -70,7 +90,7 @@ text = "New Game"
 icon = ExtResource("6_8y84x")
 expand_icon = true
 
-[node name="SettingsButton" parent="Panel/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="SettingsButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -78,14 +98,14 @@ text = "Settings"
 icon = ExtResource("5_a7rkf")
 expand_icon = true
 
-[node name="CreditsButton" parent="Panel/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="CreditsButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Credits"
 icon = ExtResource("8_3vdg2")
 expand_icon = true
 
-[node name="QuitButton" parent="Panel/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="QuitButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -93,32 +113,51 @@ text = "Quit Game"
 icon = ExtResource("9_jdjmu")
 expand_icon = true
 
-[node name="TitleText" type="RichTextLabel" parent="Panel"]
+[node name="TitleText" type="RichTextLabel" parent="Panel/MainMenuPage"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -190.0
+offset_left = -420.0
 offset_top = 136.0
-offset_right = 190.0
-offset_bottom = 186.0
+offset_right = 420.0
+offset_bottom = 218.0
 grow_horizontal = 2
 theme = ExtResource("7_swlwd")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[center]Shards of Grandeur[/center]"
 fit_content = true
 
-[node name="PlayerSprite" type="Sprite2D" parent="Panel"]
-position = Vector2(400, 162)
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage"]
+position = Vector2(426, 306)
 scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_nrgl8")
+sprite_frames = ExtResource("13_ycmgk")
+animation = &"stand"
 
-[node name="SoliusSprite" type="Sprite2D" parent="Panel"]
-position = Vector2(884, 162)
+[node name="SoliusSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage"]
+position = Vector2(854, 306)
 scale = Vector2(4, 4)
-texture = ExtResource("12_63e6b")
+sprite_frames = ExtResource("14_amh01")
+animation = &"stand"
 flip_h = true
+
+[node name="VersionLabel" type="RichTextLabel" parent="Panel/MainMenuPage"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -34.0
+offset_right = -13.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+fit_content = true
 
 [node name="LoadGamePanel" parent="Panel" instance=ExtResource("17_qsm70")]
 visible = false
@@ -132,6 +171,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bf22s")
 
 [node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
 layout_mode = 1
@@ -202,6 +242,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8w0dn")
 
 [node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/PlayerNamePanel"]
 layout_mode = 1
@@ -287,6 +328,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eqwdb")
 
 [node name="CreditsLabel" type="RichTextLabel" parent="Panel/CreditsPanel"]
 layout_mode = 1
@@ -375,27 +417,11 @@ mouse_filter = 1
 visible = false
 layout_mode = 1
 
-[node name="VersionLabel" type="RichTextLabel" parent="."]
-clip_contents = false
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = -34.0
-offset_right = -13.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-fit_content = true
-
-[connection signal="pressed" from="Panel/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="Panel/LoadGamePanel" to="." method="_on_load_game_panel_back_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Panel/NewGameConfirmPanel/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

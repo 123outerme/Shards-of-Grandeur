@@ -10,10 +10,11 @@ const DEBUG_CLICKS = 10
 var playerName: String = 'Player'
 var nameInputFocused: bool = false
 
-@onready var newGameButton: Button = get_node("Panel/VBoxContainer/NewGameButton")
-@onready var resumeGameButton: Button = get_node("Panel/VBoxContainer/ResumeGameButton")
-@onready var settingsMenuButton: Button = get_node('Panel/VBoxContainer/SettingsButton')
-@onready var creditsButton: Button = get_node('Panel/VBoxContainer/CreditsButton')
+@onready var mainMenuPage: Control = get_node("Panel/MainMenuPage")
+@onready var newGameButton: Button = get_node("Panel/MainMenuPage/VBoxContainer/NewGameButton")
+@onready var resumeGameButton: Button = get_node("Panel/MainMenuPage/VBoxContainer/ResumeGameButton")
+@onready var settingsMenuButton: Button = get_node('Panel/MainMenuPage/VBoxContainer/SettingsButton')
+@onready var creditsButton: Button = get_node('Panel/MainMenuPage/VBoxContainer/CreditsButton')
 
 @onready var loadGamePanel: SavesPanel = get_node('Panel/LoadGamePanel')
 
@@ -31,7 +32,7 @@ var nameInputFocused: bool = false
 @onready var creditsPanel: Panel = get_node('Panel/CreditsPanel')
 @onready var creditsBack: Button = get_node('Panel/CreditsPanel/BackButton')
 
-@onready var versionLabel: RichTextLabel = get_node('VersionLabel')
+@onready var versionLabel: RichTextLabel = get_node('Panel/MainMenuPage/VersionLabel')
 
 var debugCounter: int = 0
 
@@ -82,13 +83,16 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 
 func _on_settings_button_pressed():
+	mainMenuPage.visible = false
 	settingsMenu.toggle_settings_menu(true)
 
 func _on_resume_game_button_pressed():
+	mainMenuPage.visible = false
 	loadGamePanel.load_saves_panel()
 	loadGamePanel.visible = true
 
 func _on_new_game_button_pressed():
+	mainMenuPage.visible = false
 	if resumeGameButton.visible:
 		newGameConfirmPanel.visible = true
 		overwriteWarningLabel.visible = loadGamePanel.has_quick_save()
@@ -98,6 +102,7 @@ func _on_new_game_button_pressed():
 
 func _on_no_button_pressed():
 	newGameConfirmPanel.visible = false
+	mainMenuPage.visible = true
 	set_initial_main_menu_focus()
 
 func _on_yes_button_pressed():
@@ -117,9 +122,11 @@ func _on_confirm_button_pressed():
 
 func _on_cancel_button_pressed():
 	playerNamePanel.visible = false
+	mainMenuPage.visible = true
 	set_initial_main_menu_focus()
 
 func _on_settings_menu_back_pressed():
+	mainMenuPage.visible = true
 	settingsMenuButton.grab_focus()
 
 func _on_name_input_gui_input(event):
@@ -150,11 +157,13 @@ func _on_settings_changed():
 		virtualKeyboard.hide_keyboard()
 
 func _on_credits_button_pressed():
+	mainMenuPage.visible = false
 	creditsPanel.visible = true
 	creditsBack.grab_focus()
 
 func _on_credits_back_button_pressed():
 	creditsPanel.visible = false
+	mainMenuPage.visible = true
 	creditsButton.grab_focus()
 
 func _on_name_input_focus_entered():
@@ -164,6 +173,7 @@ func _on_name_input_focus_exited():
 	nameInputFocused = false
 
 func _on_load_game_panel_back_pressed():
+	mainMenuPage.visible = true
 	resumeGameButton.grab_focus()
 
 func _on_debug_click_control_gui_input(event: InputEvent) -> void:

@@ -3,6 +3,7 @@ class_name BattlePanels
 
 @export var battleUI: BattleUI
 
+@onready var animatedBgPanel: AnimatedBgPanel = get_node('AnimatedBgPanel')
 @onready var inventoryMenu: InventoryMenu = get_node("InventoryPanelNode")
 @onready var questsMenu: QuestsMenu = get_node("QuestsPanelNode")
 @onready var statsMenu: StatsMenu = get_node("StatsPanelNode")
@@ -23,6 +24,7 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not pauseMenu.isPaused and (inventoryMenu.visible or battleUI.menuState == BattleState.Menu.ALL_COMMANDS):
 		if battleUI.menuState == BattleState.Menu.ALL_COMMANDS or battleUI.menuState == BattleState.Menu.ITEMS:
+			animatedBgPanel.visible = true
 			var newMenuState: BattleState.Menu = BattleState.Menu.ITEMS # if in all commands, go to items
 			if battleUI.menuState == BattleState.Menu.ITEMS:
 				newMenuState = BattleState.Menu.ALL_COMMANDS # if in items, go back to all commands
@@ -33,6 +35,7 @@ func _unhandled_input(event):
 			summonMinionPanel.visible = false
 
 	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
+		animatedBgPanel.visible = true
 		questsMenu.toggle()
 		inventoryMenu.visible = false
 		statsMenu.visible = false
@@ -43,18 +46,21 @@ func _unhandled_input(event):
 		statsMenu.curHp = battleUI.battleController.playerCombatant.combatant.currentHp
 		statsMenu.readOnly = true
 		statsMenu.isPlayer = true
+		animatedBgPanel.visible = true
 		statsMenu.toggle()
 		inventoryMenu.visible = false
 		questsMenu.visible = false
 		summonMinionPanel.visible = false
 	
 	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible:
+		animatedBgPanel.visible = true
 		pauseMenu.toggle_pause()
 
 func set_turn_counter(turnCount: int) -> void:
 	turnCounter.text = '[center]Turn ' + String.num(turnCount) + '[/center]'
 
 func _on_pause_menu_resume_game():
+	animatedBgPanel.visible = false
 	battleUI.restore_focus()
 
 func connect_top_left_panel_buttons_bottom_neighbor(bottomNeighbor: Control):

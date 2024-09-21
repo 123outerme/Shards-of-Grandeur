@@ -169,7 +169,7 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	
 	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs
 	
-	newEffect.lifesteal += surgeChanges.lifestealPerOrb * additionalOrbs
+	newEffect.lifesteal = max(0, newEffect.lifesteal + surgeChanges.lifestealPerOrb * additionalOrbs)
 	
 	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate(true) if surgeChanges.selfStatChangesPerOrb else StatChanges.new()
 	finalSelfStatChanges.times(additionalOrbs)

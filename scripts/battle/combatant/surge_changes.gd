@@ -66,6 +66,15 @@ func get_description() -> Array[SurgeChangeDescRow]:
 		descriptionLines.append(
 			SurgeChangeDescRow.new('+ Heal Power Per Orb:', '+' + String.num(powerPerOrb * -1))
 		)
+	
+	if lifestealPerOrb > 0:
+		descriptionLines.append(
+			SurgeChangeDescRow.new('+ Lifesteal % Per Orb:' ,'+' + String.num(roundi(lifestealPerOrb * 100)))
+		)
+	elif lifestealPerOrb < 0:
+		descriptionLines.append(
+			SurgeChangeDescRow.new('- Lifesteal % Per Orb:', '-' + String.num(roundi(lifestealPerOrb * -100)))
+		)
 		
 	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()

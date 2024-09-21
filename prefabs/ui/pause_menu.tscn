@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=15 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="9_y122n"]
 [ext_resource type="PackedScene" uid="uid://dyippeuidy6q4" path="res://prefabs/ui/codex/codex_menu.tscn" id="10_10tem"]
 [ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="11_kf012"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo17n"]
 
 [node name="PauseMenu" type="Node2D"]
 script = ExtResource("2_mu5pd")
@@ -31,8 +33,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eo17n")
 
-[node name="PauseTitle" type="RichTextLabel" parent="Control/Panel"]
+[node name="PauseMenuPage" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseTitle" type="RichTextLabel" parent="Control/Panel/PauseMenuPage"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -40,29 +51,29 @@ anchor_right = 0.5
 offset_left = -152.0
 offset_top = 12.0
 offset_right = 153.0
-offset_bottom = 12.0
+offset_bottom = 58.0
 grow_horizontal = 2
 theme = ExtResource("2_uieg0")
 bbcode_enabled = true
 text = "[center]Paused[/center]"
 fit_content = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/PauseMenuPage"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -80.0
+offset_top = -170.0
+offset_right = 80.0
+offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="ResumeButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="ResumeButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
@@ -70,7 +81,7 @@ text = "Resume"
 icon = ExtResource("5_ujvjg")
 expand_icon = true
 
-[node name="MapButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="MapButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 disabled = true
@@ -78,28 +89,28 @@ text = "Map"
 icon = ExtResource("5_vfawn")
 expand_icon = true
 
-[node name="CodexButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="CodexButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 text = "Codex"
 icon = ExtResource("7_vpar7")
 expand_icon = true
 
-[node name="SettingsButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="SettingsButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 text = "Settings"
 icon = ExtResource("7_vgjg1")
 expand_icon = true
 
-[node name="SaveButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="SaveButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 text = "Save"
 icon = ExtResource("9_8jyde")
 expand_icon = true
 
-[node name="QuitButton" parent="Control/Panel/VBoxContainer" instance=ExtResource("9_clpva")]
+[node name="QuitButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ResumeButton")
@@ -131,11 +142,11 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 mouse_filter = 2
 
-[connection signal="pressed" from="Control/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_back_pressed"]
 [connection signal="game_save_failed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_save_failed"]
 [connection signal="game_saved" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_saved"]

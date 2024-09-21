@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx5i04ygfxw3m"]
+[gd_scene load_steps=8 format=3 uid="uid://dx5i04ygfxw3m"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_wut40"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/summon_minion_panel.gd" id="2_2fkw7"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_e2762"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="4_6dk5j"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_kkthk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ga0k1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bmve"]
 
@@ -25,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ga0k1")
 
 [node name="SummonMinionTitle" type="RichTextLabel" parent="Panel"]
 layout_mode = 1

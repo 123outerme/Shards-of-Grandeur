@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=22 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bne1cb4ygidfj" path="res://prefabs/ui/overworld_touch_controls.tscn" id="10_2ab6v"]
 [ext_resource type="StyleBox" uid="uid://cnr1gqh42uesc" path="res://themes/nested_ui/cutscene_pause_button_bg.tres" id="10_ofshw"]
 [ext_resource type="StyleBox" uid="uid://cuxaypnts5fdn" path="res://themes/nested_ui/cutscene_pause_button_hover_bg.tres" id="11_f58rg"]
+[ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="14_vfyno"]
 [ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
@@ -200,6 +201,13 @@ visible = false
 
 [node name="TextBoxRoot" parent="UI" instance=ExtResource("5_q82jg")]
 visible = false
+
+[node name="AnimatedBgPanel" parent="UI" instance=ExtResource("14_vfyno")]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [node name="InventoryPanelNode" parent="UI" instance=ExtResource("6_gev0q")]
 visible = false

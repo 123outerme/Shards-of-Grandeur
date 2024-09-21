@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxln0q5pum4mm"]
+[gd_scene load_steps=10 format=3 uid="uid://cxln0q5pum4mm"]
 
 [ext_resource type="Script" path="res://scripts/menus/quests_panel/quests_panel.gd" id="1_qksmf"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_8e668"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="6_pwv1a"]
 [ext_resource type="PackedScene" uid="uid://drk83hqtne0tp" path="res://prefabs/ui/quests/quest_reward_panel.tscn" id="6_qheyf"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_8xbdg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41iyw"]
 
 [node name="QuestsPanelNode" type="Node2D"]
 script = ExtResource("1_qksmf")
@@ -28,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_41iyw")
 
 [node name="QuestsTitle" type="RichTextLabel" parent="QuestsPanel/Panel"]
 layout_mode = 1

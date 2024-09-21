@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5sjy2lo7i5i"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_2vrl4"]
+[ext_resource type="Texture2D" uid="uid://cqk3toihrimg7" path="res://graphics/ui/ui_panel_background_2.png" id="1_51fbw"]
+[ext_resource type="Script" path="res://scripts/menus/animated_bg_panel.gd" id="2_1vi6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bljp"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+
+[node name="AnimatedBgPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2vrl4")
+script = ExtResource("2_1vi6k")
+
+[node name="ShardsTexture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -912.0
+offset_bottom = -492.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("1_51fbw")
+stretch_mode = 1
+
+[node name="BorderPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bljp")

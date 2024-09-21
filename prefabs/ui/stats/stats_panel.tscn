@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=20 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="2_qydtc"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dqtu7xjqahxq" path="res://prefabs/ui/stats/minions_panel.tscn" id="8_3o74c"]
 [ext_resource type="PackedScene" uid="uid://cm57i83oiea42" path="res://prefabs/ui/stats/edit_moves_panel.tscn" id="9_ue80h"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="10_sd4fn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpob3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h8xb"]
 
@@ -44,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vpob3")
 
 [node name="StatsTitle" type="RichTextLabel" parent="StatsPanel/Panel"]
 layout_mode = 1
@@ -233,9 +236,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -40.0
-offset_top = -70.0
+offset_top = -72.0
 offset_right = 40.0
-offset_bottom = -20.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
