@@ -4,6 +4,7 @@ extends BattleController
 @export var _playerCombatant: Combatant
 @export var playerLv: int = 1
 @export var playerCommand: BattleCommand = null
+@export var currentPlayerHp: int = -1
 @export var playerStatus: StatusEffect = null
 @export var minionCommand: BattleCommand = null
 @export var minionStatus: StatusEffect = null
@@ -27,21 +28,20 @@ func _ready():
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
 	var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
 	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
+	var currentHps: Array[int] = [currentPlayerHp, -1, -1, -1, -1]
 	for idx in range(len(combatants)):
 		var combatant: Combatant = combatants[idx]
 		if combatant != null:
-			# keep track of current HP since we will do level ups immediately here
-			var currentCombatantHp: int = combatant.currentHp
 			if combatantLvs[idx] > combatant.stats.level:
 				combatant.level_up_nonplayer(combatantLvs[idx])
 			if len(combatant.stats.moves) == 0:
 				combatant.assign_moves_nonplayer()
 			for move: Move in combatant.stats.moves:
 				print(combatant.disp_name(), ': ', move.moveName)
-			if currentCombatantHp == -1:
+			if currentHps[idx] == -1:
 				combatant.currentHp = combatant.stats.maxHp
 			else:
-				combatant.currentHp = currentCombatantHp
+				combatant.currentHp = currentHps[idx]
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
 			combatant.command = combatantCommands[idx]

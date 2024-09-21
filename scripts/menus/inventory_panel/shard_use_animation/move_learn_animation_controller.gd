@@ -162,6 +162,9 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		wasBoosted,
 		[[]],
 		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes(),
+		0,
+		userNode.combatant in afflictedStatuses,
+		10 if moveEffect.lifesteal > 0 else 0
 	)
 	
 	var command: BattleCommand = BattleCommand.new(
@@ -208,7 +211,7 @@ func play_item_animation(userNode: CombatantNode) -> void:
 		afflictedStatuses,
 		wasBoosted,
 		[[]],
-		userNode.battlePosition in targets
+		userNode.battlePosition in targets,
 	)
 	
 	var slot: InventorySlot = InventorySlot.new(useItem, 1)

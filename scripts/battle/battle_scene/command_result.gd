@@ -9,6 +9,7 @@ class_name CommandResult
 @export var selfBoosted: bool = false
 @export var selfRecoilDmg: int = 0
 @export var selfAfflictedStatus: bool = false
+@export var lifestealHeal: int = 0
 
 func _init(
 	i_damagesDealt: Array[int] = [],
@@ -19,6 +20,7 @@ func _init(
 	i_selfBoosted: bool = false,
 	i_selfRecoilDmg: int = 0,
 	i_selfAfflictedStatus: bool = false,
+	i_lifestealHeal: int = 0,
 ):
 	damagesDealt = i_damagesDealt
 	damageOnInterceptingTargets = i_damageOnInterceptingTargets
@@ -28,3 +30,4 @@ func _init(
 	selfBoosted = i_selfBoosted
 	selfRecoilDmg = i_selfRecoilDmg
 	selfAfflictedStatus = i_selfAfflictedStatus
+	lifestealHeal = i_lifestealHeal

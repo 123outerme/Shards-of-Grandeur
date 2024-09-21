@@ -9,16 +9,37 @@ enum Role {
 	DEBUFF = 4, ## Debuff
 	HEAL = 5, ## Healing
 }
-
+## move role (for use in auto-learning moves)
 @export var role: Role = Role.OTHER
-@export_range(-10, 10) var orbChange: int = 0 # negative is orb surge, positive is orb charge
-@export_range(-100, 100) var power: int = 0 # negative power is healing, positive power is damage
+
+## negative is minimum orb surge, positive is orb charge
+@export_range(-10, 10) var orbChange: int = 0
+
+## negative power is healing, positive power is damage
+@export_range(-100, 100) var power: int = 0 
+
+## <= 0 is no lifesteal, otherwise a percentage of all final damage (including intercepted damage)
+@export var lifesteal: float = 0
+
+## who this move can target
 @export var targets: BattleCommand.Targets = BattleCommand.Targets.SELF
+
+## how this move changes user's stats
 @export var selfStatChanges: StatChanges = StatChanges.new()
+
+## how this move changes its targets's stats (not including interceptors)
 @export var targetStatChanges: StatChanges = StatChanges.new()
+
+## the status effect this move will inflict
 @export var statusEffect: StatusEffect = null
-@export var selfGetsStatus: bool = false # if false, target gets status. If true, give it self
+
+## if false, target gets status. If true, gives it to user
+@export var selfGetsStatus: bool = false
+
+## Base percentage chance to apply status. 0% is auto-fail, 100% is auto-pass
 @export var statusChance: float = 0.0
+
+## how the surge effect changes when an additional orb is added
 @export var surgeChanges: SurgeChanges = null
 
 static func role_to_string(r: Role) -> String:
@@ -41,6 +62,7 @@ func _init(
 	i_role = Role.OTHER,
 	i_power = 0,
 	i_orbChange = 0,
+	i_lifesteal = 0,
 	i_targets = BattleCommand.Targets.SELF,
 	i_selfStatChanges = StatChanges.new(),
 	i_targetStatChanges = StatChanges.new(),
@@ -52,6 +74,7 @@ func _init(
 	role = i_role
 	power = i_power
 	orbChange = i_orbChange
+	lifesteal = i_lifesteal
 	targets = i_targets
 	selfStatChanges = i_selfStatChanges
 	targetStatChanges = i_targetStatChanges
@@ -74,6 +97,9 @@ func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Arr
 		effects.append(powerString)
 	elif power < 0:
 		effects.append(String.num(power * -1) + ' Heal Power')
+	
+	if lifesteal > 0:
+		effects.append(String.num(roundi(lifesteal * 100)) + '% Lifesteal')
 	
 	if selfStatChanges != null and selfStatChanges.has_stat_changes():
 		var multiplierTexts: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
@@ -105,6 +131,9 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 			effects.append(String.num(changedSurgeEff.power) + ' Power')
 		elif changedSurgeEff.power < 0:
 			effects.append(String.num(changedSurgeEff.power * -1) + ' Heal Power')
+	
+	if changedSurgeEff.lifesteal > lifesteal:
+		effects.append(String.num(roundi(changedSurgeEff.lifesteal * 100)) + '% Lifesteal')
 	
 	if changedSurgeEff.selfStatChanges != null and not changedSurgeEff.selfStatChanges.equals(selfStatChanges):
 		var diffs: StatChanges = changedSurgeEff.selfStatChanges.subtract(selfStatChanges)
@@ -140,6 +169,8 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	
 	newEffect.power += surgeChanges.powerPerOrb * additionalOrbs
 	
+	newEffect.lifesteal += surgeChanges.lifestealPerOrb * additionalOrbs
+	
 	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate(true) if surgeChanges.selfStatChangesPerOrb else StatChanges.new()
 	finalSelfStatChanges.times(additionalOrbs)
 	if newEffect.selfStatChanges == null:
@@ -167,6 +198,7 @@ func copy() -> MoveEffect:
 		role,
 		power,
 		orbChange,
+		lifesteal,
 		targets,
 		selfStatChanges.duplicate(true) if selfStatChanges != null else null,
 		targetStatChanges.duplicate(true) if targetStatChanges != null else null,

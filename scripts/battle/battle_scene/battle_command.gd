@@ -205,6 +205,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 		return get_is_escaping(user)
 	
 	var appliedEffect: bool = false
+	var totalInflictedDamage: int = 0
 	for idx in range(len(targets)):
 		if targets[idx].currentHp <= 0:
 			continue # skip already downed opponents
@@ -218,10 +219,12 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 					var interceptingPower: float = moveEffect.power * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
 					finalPower -= interceptingPower
 					var interceptedDmg = calculate_damage(user, interceptingTargets[interceptIdx], interceptingPower)
+					totalInflictedDamage += interceptedDmg
 					commandResult.damageOnInterceptingTargets[interceptIdx] += interceptedDmg
 					interceptingTargets[interceptIdx].currentHp = min(max(0, interceptingTargets[interceptIdx].currentHp - interceptedDmg), interceptingTargets[interceptIdx].stats.maxHp)
 					
 		var damage = calculate_damage(user, targets[idx], finalPower)
+		totalInflictedDamage += damage
 		commandResult.damagesDealt[idx] += damage
 		if targets[idx].currentHp > 0:
 			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
@@ -262,6 +265,11 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				if userTargetIdx > -1:
 					commandResult.wasBoosted[userTargetIdx] = true
 				commandResult.selfBoosted = true
+				
+		if moveEffect != null and moveEffect.lifesteal > 0 and totalInflictedDamage > 0:
+			var hpHealed: int = roundi(moveEffect.lifesteal * totalInflictedDamage)
+			commandResult.lifestealHeal = hpHealed
+			user.currentHp = max(0, min(user.stats.maxHp, user.currentHp + hpHealed))
 
 	if type == Type.USE_ITEM and appliedEffect: # item was used and healing was applied
 		PlayerResources.inventory.trash_item(slot) # trash the item
@@ -588,6 +596,9 @@ func get_command_results(user: Combatant) -> String:
 						moveElString += Move.element_to_string(move.element) + ' '
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + \
 						String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + moveElString + 'damage!'
+		if type == Type.MOVE and moveEffect.lifesteal > 0 and commandResult.lifestealHeal > 0:
+			resultsText += '\n' + user.disp_name() + ' stole ' + String.num(commandResult.lifestealHeal) + ' HP from the targets!'
+		
 		if type == Type.MOVE and ( \
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
 					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \

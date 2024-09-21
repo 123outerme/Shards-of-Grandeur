@@ -254,6 +254,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		# event texts start here: damage
 		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
+		if defender == user and command.commandResult.lifestealHeal > 0:
+			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifeStealHeal))
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			var statusEffect: StatusEffect = defender.combatant.statusEffect
@@ -314,6 +316,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
 			user.play_particles(BattleCommand.get_hit_particles(), 0)
 			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
+		if command.commandResult.lifestealHeal > 0:
+			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
 		# status effect text + stat changes text
 		if command.type == BattleCommand.Type.MOVE:
 			var moveEffect: MoveEffect = command.move.chargeEffect
