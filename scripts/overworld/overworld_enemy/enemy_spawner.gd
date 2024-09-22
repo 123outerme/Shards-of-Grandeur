@@ -19,8 +19,14 @@ class_name EnemySpawner
 ## radius of the circle the enemy will patrol in
 @export var enemyPatrolRange: float = 32.0
 
+## radius of the circle the enemy with chase the player within
+@export var enemyChaseRange: float = 48.0
+
 ## Once the enemy gets this many units away from the player, they will automatically despawn
 @export var enemyDespawnRange: float = 960.0
+
+## the max speed of the enemy
+@export var enemyMaxSpeed: float = 40
 
 ## set before loading; points to the tilemap to place the enemy object in
 @export var tilemap: Node2D
@@ -63,6 +69,8 @@ func _on_area_2d_area_entered(area):
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		enemy.despawnRange = enemyDespawnRange
+		enemy.chaseRange = enemyChaseRange
+		enemy.maxSpeed = enemyMaxSpeed
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 		#print('spawned new enemy')
 

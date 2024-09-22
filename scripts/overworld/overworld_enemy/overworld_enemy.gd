@@ -4,6 +4,7 @@ class_name OverworldEnemy
 @export var combatant: Combatant
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
+@export var chaseRange = 48
 @export var patrolling: bool = true
 @export var patrolWaitSecs: float = 1.0
 @export var enemyData: OverworldEnemyData = OverworldEnemyData.new()
@@ -32,7 +33,7 @@ func _ready():
 	navAgent.radius = (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2) - 1
 	navAgent.max_speed = maxSpeed
 	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
-	rangeCircle.radius = 48 + (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
+	rangeCircle.radius = chaseRange + (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
 	if patrolling:
 		get_next_patrol_target()
 
