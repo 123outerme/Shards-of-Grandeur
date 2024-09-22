@@ -22,7 +22,7 @@ class_name CutsceneVisualizer
 	get:
 		return isPaused
 	set(value):
-		if not playing:
+		if not playing and not pauseVisualization:
 			return
 		
 		if value:
@@ -144,7 +144,7 @@ func pause_cutscene():
 
 func resume_cutscene():
 	for tween: Tween in tweens:
-		if tween.is_valid():
+		if tween != null and tween.is_valid():
 			tween.play()
 	isPaused = false
 

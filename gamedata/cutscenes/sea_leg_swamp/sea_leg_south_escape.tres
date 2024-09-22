@@ -1,0 +1,106 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=16 format=3 uid="uid://1echdgevusxk"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_d16av"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_4bval"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_xdjnw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_bss2j"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_nbpiq"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_lqsim"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_j56xa"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_8ms3t"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_kwolp"]
+
+[sub_resource type="Resource" id="Resource_sphxo"]
+script = ExtResource("6_8ms3t")
+speaker = "@"
+texts = Array[String](["Gotta get back to Grandstone and gather reinforcements to rescue Solius.", "I'll be reaching Grandstone from the south, and if I remember correctly, there's a large desert somewhere there.", "I just have to cross that desert, and I'll be back home..."])
+
+[sub_resource type="Resource" id="Resource_jf1u7"]
+script = ExtResource("1_d16av")
+frameLength = 0.1
+annotation = "Start textbox of player talking to self"
+actorTweens = Array[ExtResource("5_j56xa")]([])
+actorAnims = Array[ExtResource("3_bss2j")]([])
+actorAnimSets = Array[ExtResource("2_xdjnw")]([])
+actorFaceTargets = Array[ExtResource("4_lqsim")]([])
+dialogues = Array[ExtResource("6_8ms3t")]([SubResource("Resource_sphxo")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vbuc0"]
+script = ExtResource("7_kwolp")
+value = Vector2(0, -320)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vcf2t"]
+script = ExtResource("1_d16av")
+frameLength = 2.0
+annotation = "Move player south some while talking"
+actorTweens = Array[ExtResource("5_j56xa")]([SubResource("Resource_vbuc0")])
+actorAnims = Array[ExtResource("3_bss2j")]([])
+actorAnimSets = Array[ExtResource("2_xdjnw")]([])
+actorFaceTargets = Array[ExtResource("4_lqsim")]([])
+dialogues = Array[ExtResource("6_8ms3t")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6lcgv"]
+script = ExtResource("1_d16av")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_j56xa")]([])
+actorAnims = Array[ExtResource("3_bss2j")]([])
+actorAnimSets = Array[ExtResource("2_xdjnw")]([])
+actorFaceTargets = Array[ExtResource("4_lqsim")]([])
+dialogues = Array[ExtResource("6_8ms3t")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5g822"]
+script = ExtResource("3_nbpiq")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["sea_leg_south_escape"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_4bval")
+cutsceneFrames = Array[ExtResource("1_d16av")]([SubResource("Resource_jf1u7"), SubResource("Resource_vcf2t"), SubResource("Resource_6lcgv")])
+saveName = "sea_leg_south_escape"
+storyRequirements = SubResource("Resource_5g822")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

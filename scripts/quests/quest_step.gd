@@ -57,7 +57,7 @@ static func type_to_string(t: Type) -> String:
 ## the name to tell the player to turn this step into
 @export var displayTurnInName: String
 
-## if specified, the quest status will be displayed as this until completed
+## if specified, the quest status will be displayed as this until completed. If defined, no `displayObjName` or `displayTurnInName` need be defined.
 @export var customStatusStr: String
 
 @export_category("Quest Step - Dialogue")

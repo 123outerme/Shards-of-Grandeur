@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=22 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=23 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
@@ -150,11 +150,25 @@ name = "Escape Leavenport!"
 description = "Solius is creating a diversion for the Chain Legion, giving you an opportunity to escape! Don't let this chance go to waste!"
 type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "sea_leg_south_escape"
 turnInNames = Array[String]([])
-displayObjName = "???"
+displayObjName = ""
 displayTurnInName = ""
 customStatusStr = "Escape Leavenport!"
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
+
+[sub_resource type="Resource" id="Resource_bdslt"]
+script = ExtResource("2_8mv8e")
+name = "Press On"
+description = "Continue to travel the road until you reach Grandstone. If you keep moving forward, eventually you'll get there, right?"
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Reach Grandstone!"
 turnInDialogue = Array[ExtResource("3_4gvsg")]([])
 inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
@@ -162,6 +176,6 @@ inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 script = ExtResource("1_jiru6")
 questName = "War is Declared"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv"), SubResource("Resource_bdslt")])
 isMainQuest = true
 advanceActActerComplete = true
