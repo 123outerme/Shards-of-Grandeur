@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bm8mui0vb3lff"]
+
+[ext_resource type="Texture2D" uid="uid://da5eqoxrsuqfa" path="res://graphics/characters/horse_cart/horse_cart_marble_stand.png" id="1_uvidp"]
+[ext_resource type="Texture2D" uid="uid://chhx8dpyr51lq" path="res://graphics/characters/horse_cart/horse_cart_marble_walk.png" id="2_vsuru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjkfd"]
+atlas = ExtResource("1_uvidp")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le8xx"]
+atlas = ExtResource("2_vsuru")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12ovt"]
+atlas = ExtResource("2_vsuru")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bvjv"]
+atlas = ExtResource("2_vsuru")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbchi"]
+atlas = ExtResource("2_vsuru")
+region = Rect2(192, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjkfd")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjkfd")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le8xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12ovt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bvjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbchi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
