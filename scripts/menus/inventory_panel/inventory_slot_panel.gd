@@ -59,7 +59,12 @@ func load_inventory_slot_panel():
 	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
 	
 	buyButton.visible = isShopItem and not isPlayerItem
-	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold
+	
+	var buyDisabled: bool = false
+	if inventorySlot is ShopInventorySlot:
+		buyDisabled = inventorySlot.buyableStoryReqs != null and not inventorySlot.buyableStoryReqs.is_valid()
+	
+	buyButton.disabled = inventorySlot.item.cost > PlayerResources.playerInfo.gold or not canOtherPartyHold or buyDisabled
 	
 	sellButton.visible = isShopItem and isPlayerItem
 	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0

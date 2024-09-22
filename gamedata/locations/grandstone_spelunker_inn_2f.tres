@@ -1,12 +1,64 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://b5qeu2u866lwj"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=9 format=3 uid="uid://b5qeu2u866lwj"]
 
 [ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_0e4by"]
 [ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_f7rtf"]
 [ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_qo7u4"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_jejg5"]
+
+[sub_resource type="Resource" id="Resource_x21en"]
+script = ExtResource("3_jejg5")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_u5ohj"]
 script = ExtResource("1_f7rtf")
 path = "grandstone/grandstone_spelunker_inn_2f"
+requirements = SubResource("Resource_x21en")
+overworldTheme = ExtResource("1_0e4by")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_8jxt7"]
+script = ExtResource("3_jejg5")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_b6xd7"]
+script = ExtResource("1_f7rtf")
+path = "grandstone/grandstone_spelunker_inn_2f_cracking"
+requirements = SubResource("Resource_8jxt7")
 overworldTheme = ExtResource("1_0e4by")
 battleMapName = "forest_battle_map"
 battleMusic = Array[AudioStream]([])
@@ -16,4 +68,4 @@ recoverPosition = Vector2(0, 0)
 [resource]
 script = ExtResource("1_qo7u4")
 locationName = "Grandstone"
-maps = Array[ExtResource("1_f7rtf")]([SubResource("Resource_u5ohj")])
+maps = Array[ExtResource("1_f7rtf")]([SubResource("Resource_u5ohj"), SubResource("Resource_b6xd7")])

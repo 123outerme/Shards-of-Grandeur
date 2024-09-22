@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://dufgei1vjio8v"]
+[gd_scene load_steps=69 format=4 uid="uid://dufgei1vjio8v"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wdq4m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jrrc0"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_fcgwp"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_sk2j3"]
 [ext_resource type="SpriteFrames" uid="uid://dc75vnwlrr6ws" path="res://graphics/animations/a_dr_ildran.tres" id="5_udpn3"]
-[ext_resource type="Resource" uid="uid://ee2utsdhavr6" path="res://gamedata/dialogue/grandstone/lady1/lady1_chatter.tres" id="6_4sqe6"]
 [ext_resource type="SpriteFrames" uid="uid://b65nqsvqeoxfw" path="res://graphics/animations/a_lady1.tres" id="7_ebdae"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_1iw4v"]
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="10_4lf1j"]
@@ -75,6 +74,32 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
+
+[sub_resource type="Resource" id="Resource_6xgm0"]
+script = ExtResource("4_fcgwp")
+saveName = "npc"
+spriteState = "shards_cart"
+animation = "stand"
+position = Vector2(680, 1)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+hasShop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l5jp"]
+size = Vector2(64, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g55jj"]
+size = Vector2(34, 32)
 
 [sub_resource type="Resource" id="Resource_pwwfp"]
 script = ExtResource("4_fcgwp")
@@ -448,11 +473,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 visible = false
 
 [node name="Lady1" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
-position = Vector2(54, 44)
+position = Vector2(-70, -79)
 displayName = "Lady"
 saveName = "grandstone_lady1"
 data = SubResource("Resource_ysy4w")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("6_4sqe6")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lady1" index="0"]
 sprite_frames = ExtResource("7_ebdae")
@@ -474,6 +498,48 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 visible = false
 
 [node name="HorseCart" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
+position = Vector2(208, -134)
+displayName = "Horse"
+saveName = "horse_cart_grandstone"
+loadFlipH = true
+stateSpritesDict = {
+"default": ExtResource("9_1iw4v"),
+"shards_cart": ExtResource("10_4lf1j")
+}
+spriteSize = Vector2i(64, 32)
+data = SubResource("Resource_6xgm0")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("11_utksi")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/HorseCart" index="0"]
+sprite_frames = ExtResource("9_1iw4v")
+animation = &"walk"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/HorseCart/NPCSprite" index="0"]
+position = Vector2(29, -18)
+
+[node name="ColliderShape" parent="TilemapRoot/HorseCart" index="1"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_0l5jp")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="NavAgent" parent="TilemapRoot/HorseCart" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/HorseCart" index="3"]
+position = Vector2(18, 8)
+
+[node name="TalkAreaShape" parent="TilemapRoot/HorseCart/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_g55jj")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/HorseCart" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/HorseCart/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="HorseMarble" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-166, 228)
 displayName = "Horse"
 saveName = "horse_cart_grandstone"
@@ -489,32 +555,32 @@ data = SubResource("Resource_pwwfp")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("11_utksi")])
 facesPlayer = false
 
-[node name="NPCSprite" parent="TilemapRoot/HorseCart" index="0"]
+[node name="NPCSprite" parent="TilemapRoot/HorseMarble" index="0"]
 sprite_frames = ExtResource("11_wtvo4")
 animation = &"stand"
 
-[node name="TalkAlertSprite" parent="TilemapRoot/HorseCart/NPCSprite" index="0"]
+[node name="TalkAlertSprite" parent="TilemapRoot/HorseMarble/NPCSprite" index="0"]
 position = Vector2(29, -18)
 
-[node name="ColliderShape" parent="TilemapRoot/HorseCart" index="1"]
+[node name="ColliderShape" parent="TilemapRoot/HorseMarble" index="1"]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_1iqsf")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="NavAgent" parent="TilemapRoot/HorseCart" index="2"]
+[node name="NavAgent" parent="TilemapRoot/HorseMarble" index="2"]
 disableMovement = true
 
-[node name="TalkArea" parent="TilemapRoot/HorseCart" index="3"]
+[node name="TalkArea" parent="TilemapRoot/HorseMarble" index="3"]
 position = Vector2(18, 8)
 
-[node name="TalkAreaShape" parent="TilemapRoot/HorseCart/TalkArea" index="0"]
+[node name="TalkAreaShape" parent="TilemapRoot/HorseMarble/TalkArea" index="0"]
 shape = SubResource("RectangleShape2D_ti3hh")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="MoveTrigger" parent="TilemapRoot/HorseCart" index="4"]
+[node name="MoveTrigger" parent="TilemapRoot/HorseMarble" index="4"]
 visible = false
 
-[node name="MoveTriggerShape" parent="TilemapRoot/HorseCart/MoveTrigger" index="0"]
+[node name="MoveTriggerShape" parent="TilemapRoot/HorseMarble/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="DrHudson" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
@@ -874,6 +940,7 @@ frame_progress = 0.158554
 [editable path="TilemapRoot/DrIldran"]
 [editable path="TilemapRoot/Lady1"]
 [editable path="TilemapRoot/HorseCart"]
+[editable path="TilemapRoot/HorseMarble"]
 [editable path="TilemapRoot/DrHudson"]
 [editable path="TilemapRoot/Spelunker"]
 [editable path="TilemapRoot/Spelunker2"]
