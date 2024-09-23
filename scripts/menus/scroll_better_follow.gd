@@ -4,8 +4,8 @@ class_name ScrollBetterFollow
 ## select the container that is the direct child of this one, to be tracked for scroll fixing
 @export var boxContainer: BoxContainer
 
-## if true, will scroll the list so the that the selected entry (beyond the end of the viewport) will be at the start of the container
-@export var jumpToStartOnEndScroll: bool = true
+## if true, will scroll the list so the that the selected entry (beyond the end of the viewport) will be at the start of the container, instead of the bottom
+@export var jumpToStartOnEndScroll: bool = false
 
 func _viewport_focus_changed(control):
 	#print('fix focus')

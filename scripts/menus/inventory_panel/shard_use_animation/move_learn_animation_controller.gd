@@ -61,11 +61,10 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	userNode.disableHpTag = disableHpTags
 	userNode.load_combatant_node()
 	
+	targetNodes = []
 	var targets: BattleCommand.Targets = moveEffect.targets
 	if useItem != null:
 		targets = useItem.battleTargets
-	
-	targetNodes = []
 	
 	if targets == BattleCommand.Targets.SELF or \
 			targets == BattleCommand.Targets.ALL_ALLIES or \
@@ -134,6 +133,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 	var targetsDealtDmg: Array[int] = []
 	var afflictedStatuses: Array[bool] = []
 	var wasBoosted: Array[bool] = []
+	var selfAfflictedStatus: bool = false
 	for cNode: CombatantNode in targetNodes:
 		targets.append(cNode.battlePosition)
 		var mockDmg: int = 0
@@ -148,6 +148,8 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 				not (moveEffect.selfGetsStatus and cNode != userNode) and \
 				moveEffect.statusChance > 0:
 			afflictedStatuses.append(true)
+			if cNode == userNode:
+				selfAfflictedStatus = true
 		else:
 			afflictedStatuses.append(false)
 		if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
@@ -157,13 +159,13 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 	
 	var commandResult: CommandResult = CommandResult.new(
 		targetsDealtDmg,
-		[],
+		[] as Array[int],
 		afflictedStatuses,
 		wasBoosted,
-		[[]],
+		[[] as Array[Item]] as Array,
 		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes(),
 		0,
-		userNode.combatant in afflictedStatuses,
+		selfAfflictedStatus,
 		10 if moveEffect.lifesteal > 0 else 0
 	)
 	
