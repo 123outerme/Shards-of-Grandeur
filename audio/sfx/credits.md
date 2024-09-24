@@ -19,13 +19,11 @@ This is the place where I will properly catalogue the creators and/or licenses o
 - `mage_blast_9.mp3`: Copyright (c) 2024 Ian Groat.
 - `mage_blast_10.mp3`: Copyright (c) 2024 Ian Groat.
 - `fire/flamewind.mp3`: Authored by scarbelly25 -- https://freesound.org/s/33943/ -- License: Creative Commons 0
-- `ice/glass_shattering_icy_magic.mp3`: Authored by C_Rogers -- https://freesound.org/s/203375 -- License: Creative Commons 0
+- `ice/glass_shattering.mp3`: Authored by C_Rogers -- https://freesound.org/s/203375 -- License: Creative Commons 0
 - `wind/wind_whoosh.mp3`: Copyright (c) 2022 EminYILDIRIM -- https://freesound.org/s/634365/ -- License: Attribution 4.0
 
 ## `ui` Subdirectory
 - `stat_boost.mp3`: Authored by DustyWind -- https://freesound.org/s/691005/ -- License: Creative Commons 0
-
-
 
 # Licensing Information
 

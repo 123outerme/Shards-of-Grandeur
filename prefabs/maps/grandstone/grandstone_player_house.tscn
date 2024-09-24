@@ -15,13 +15,13 @@
 [ext_resource type="Resource" uid="uid://e8os0ml3cmli" path="res://gamedata/dialogue/interactables/ground_items/grandstone/player_house_tp_stone.tres" id="9_7hc5o"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="9_c3the"]
 [ext_resource type="Resource" uid="uid://bh6ynrbc3vetm" path="res://gamedata/items/key_items/grandstone_teleport_stone.tres" id="9_gsr1v"]
-[ext_resource type="Texture2D" uid="uid://cchci3b78fjbu" path="res://graphics/items/key_items/teleport_stone.png" id="11_6qp72"]
+[ext_resource type="Texture2D" uid="uid://c8igsoo3pru24" path="res://graphics/items/key_items/grandstone_teleport_stone.png" id="13_fnnx0"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="13_yhi24"]
 [ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="14_dcmpr"]
 [ext_resource type="Resource" uid="uid://ij767am021wb" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/phouse_bookcase.tres" id="14_l80ng"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="19_w4rjf"]
 
-[sub_resource type="Resource" id="Resource_ifite"]
+[sub_resource type="Resource" id="Resource_v6fyp"]
 script = ExtResource("4_xksqv")
 saveName = "npc"
 spriteState = "default"
@@ -148,7 +148,7 @@ tile_set = ExtResource("2_igmcl")
 [node name="InvisibleBed" parent="TilemapRoot" instance=ExtResource("3_u6vbk")]
 position = Vector2(72, -103)
 displayName = "@"
-data = SubResource("Resource_ifite")
+data = SubResource("Resource_v6fyp")
 dialogueEntries = Array[ExtResource("5_5eepf")]([SubResource("Resource_d5x3t")])
 
 [node name="NPCSprite" parent="TilemapRoot/InvisibleBed" index="0"]
@@ -170,12 +170,12 @@ visible = false
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("8_aps1l")]
 position = Vector2(-25, -139)
 pickedUpItem = SubResource("Resource_rmc0h")
-disguiseSprite = ExtResource("11_6qp72")
+disguiseSprite = ExtResource("13_fnnx0")
 saveName = "phouse_tp_stone"
 
 [node name="Sprite2D" parent="TilemapRoot/GroundItem" index="2"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_6qp72")
+texture = ExtResource("13_fnnx0")
 
 [node name="InteractableDecoration" parent="TilemapRoot" instance=ExtResource("13_yhi24")]
 position = Vector2(8, -136)

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://cu5gyajcfnp4b"]
+
+[ext_resource type="Texture2D" uid="uid://dm3c1i2f7ot4e" path="res://graphics/items/healing/water_jar.png" id="1_4g0pm"]
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="2_fqfkn"]
+
+[resource]
+script = ExtResource("2_fqfkn")
+healBy = 160
+statusStrengthHeal = 1
+itemSprite = ExtResource("1_4g0pm")
+itemName = "Quenching Water"
+itemType = 0
+itemDescription = "Water is a necessity for travellers to carry with them. It rebukes thirst, cleans wounds, and has a calming effect."
+cost = 9
+maxCount = 40
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

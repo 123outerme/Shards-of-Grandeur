@@ -45,6 +45,9 @@ func exit_player_range():
 func play_animation(animName: String):
 	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
 
+func play_animation_default():
+	print('Warning: Interactable', name, ' was told to play default animation, but play_animation_default() was not overrided.')
+
 func select_choice(choice: DialogueChoice):
 	if choice.repeatsItem:
 		PlayerFinder.player.put_interactable_text(false, false)

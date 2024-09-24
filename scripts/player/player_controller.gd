@@ -291,7 +291,7 @@ func repeat_dialogue_item():
 	if talkNPC == null:
 		return
 	talkNPC.repeat_dialogue_item()
-	var dialogueText = talkNPC.get_cur_dialogue_item()
+	var dialogueText: String = talkNPC.get_cur_dialogue_string()
 	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last())
 
 func advance_dialogue(canStart: bool = true):
@@ -316,12 +316,13 @@ func advance_dialogue(canStart: bool = true):
 			talkNPC = null
 			return
 		
-		var dialogueText = talkNPC.get_cur_dialogue_item()
-		if dialogueText != null: # if there is NPC dialogue to display
+		var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
+		var dialogueText: String = talkNPC.get_cur_dialogue_string()
+		if dialogueItem != null: # if there is NPC dialogue to display
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
 				#SceneLoader.unpauseExcludedMover = talkNPC
-				textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
+				textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
 				face_horiz(talkNPC.talkArea.global_position.x - global_position.x)
 				for npc in talkNPCcandidates:
 					if npc != talkNPC:
@@ -386,8 +387,9 @@ func select_choice(choice: DialogueChoice):
 		
 	if choice.repeatsItem:
 		talkNPC.repeat_dialogue_item()
-		var dialogueText = talkNPC.get_cur_dialogue_item()
-		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
+		var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
+		var dialogueText: String = talkNPC.get_cur_dialogue_string()
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
 		return
 	
 	var leadsTo: DialogueEntry = null
@@ -430,8 +432,9 @@ func select_choice(choice: DialogueChoice):
 		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].lines) - 1
 		if reused:
 			talkNPC.data.dialogueLine = 0
-			var dialogueText = talkNPC.get_cur_dialogue_item()
-			textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
+			var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
+			var dialogueText: String = talkNPC.get_cur_dialogue_string()
+			textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
 			return
 	
 	makingChoice = false
@@ -459,8 +462,9 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 	update_interact_touch_ui()
 	
 func restore_dialogue(npc: NPCScript):
-	var dialogueText = npc.get_cur_dialogue_item()
-	if dialogueText != null and talkNPC == null:
+	var dialogueItem: DialogueItem = npc.get_cur_dialogue_item()
+	var dialogueText: String = npc.get_cur_dialogue_string()
+	if dialogueItem != null and talkNPC == null:
 		if not npc in talkNPCcandidates:
 			talkNPCcandidates.append(npc)
 		talkNPC = npc
@@ -468,7 +472,7 @@ func restore_dialogue(npc: NPCScript):
 		talkNPC.talkAlertSprite.visible = true
 		SceneLoader.pause_autonomous_movers()
 		pause_movement()
-		textBox.set_textbox_text(dialogueText, talkNPC.displayName, talkNPC.is_dialogue_item_last())
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
 		textBox.show_text_instant()
 
 func show_all_talk_alert_sprites():
@@ -604,6 +608,17 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					interactableDialogue = interactableDialogues[interactableDialogueIndex]
 	if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
 		interactable.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
+	if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation != '':
+		if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorIsPlayer:
+			play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
+		else:
+			var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorTreePath, false)
+			if node != null:
+				if node.has_method('play_animation'):
+					node.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
+				else:
+					print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
+	
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
 		var speaker: String = interactableDialogue.speaker
@@ -620,7 +635,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 				return
 
 		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]
-		textBox.set_textbox_text(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines[interactableDialogue.savedTextIdx], speaker, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(textBox.dialogueItem.lines) - 1)
+		textBox.set_textbox_text(textBox.dialogueItem.lines[interactableDialogue.savedTextIdx], speaker if textBox.dialogueItem.speakerOverride == '' else textBox.dialogueItem.speakerOverride, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(textBox.dialogueItem.lines) - 1)
 	else:
 		hasNextDialogue = false
 	

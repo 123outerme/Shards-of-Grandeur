@@ -264,10 +264,19 @@ func _on_talk_area_area_exited(area):
 		unpause_movement()
 		talkAlertSprite.visible = false
 
-func get_cur_dialogue_item():
+func get_cur_dialogue_item() -> DialogueItem:
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
 		player.textBox.dialogueItem = null
 		return null
+	
+	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+	
+	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+
+func get_cur_dialogue_string() -> String:
+	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
+		player.textBox.dialogueItem = null
+		return ''
 	
 	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 	
@@ -325,8 +334,17 @@ func advance_dialogue() -> bool:
 				data.dialogueItemIdx = 0
 				data.dialogueLine = -1
 				data.dialogueItems = []
-		elif data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
-			play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
+		else:
+			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
+				play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
+			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].actorAnimation != '':
+				var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorTreePath, data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorIsPlayer)
+				if node != null:
+					if node.has_method('play_animation'):
+						node.play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].actorAnimation)
+					else:
+						print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
+
 	if data.dialogueIndex == 0 and data.dialogueItemIdx == 0 and data.dialogueLine == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
 		play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)

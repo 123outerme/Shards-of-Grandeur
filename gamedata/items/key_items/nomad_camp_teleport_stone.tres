@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TeleportStone" load_steps=3 format=3 uid="uid://caaq1wnanxqrf"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/key_items/teleport_stone.gd" id="1_p2181"]
+[ext_resource type="Texture2D" uid="uid://sg7hgjs3wat6" path="res://graphics/items/key_items/nomad_camp_teleport_stone.png" id="1_uunp4"]
+
+[resource]
+script = ExtResource("1_p2181")
+targetMap = ""
+targetPos = Vector2(0, 0)
+keyItemType = 1
+useMessage = "The stone opens a swirling portal, bringing you back to the nomads' camp..."
+effectText = "Teleports you back to the Nomad Camp!"
+itemSprite = ExtResource("1_uunp4")
+itemName = "Nomad Camp Teleport Stone"
+itemType = 4
+itemDescription = "This enchanted stone can open a portal to the Nomad Camp at a moment's notice. Once done, it becomes inert and returns to being an ordinary rock."
+cost = 50
+maxCount = 3
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 1
