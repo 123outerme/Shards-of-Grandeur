@@ -60,28 +60,28 @@ func _on_back_button_pressed():
 	back_pressed.emit()
 
 func _on_general_button_toggled(toggled_on):
-	generalSection.toggle_section(toggled_on)
 	if toggled_on:
 		controlsSection.toggle_section(false)
 		controlsButton.button_pressed = false
 		audioSection.toggle_section(false)
 		audioButton.button_pressed = false
 		set_button_right_neighbors(generalSection.onscreenKeyboardButton)
+	generalSection.toggle_section(toggled_on)
 
 func _on_controls_button_toggled(toggled_on):
-	controlsSection.toggle_section(toggled_on)
 	if toggled_on:
 		generalSection.toggle_section(false)
 		generalButton.button_pressed = false
 		audioSection.toggle_section(false)
 		audioButton.button_pressed = false
 		set_button_right_neighbors(null)
+	controlsSection.toggle_section(toggled_on)
 
 func _on_audio_button_toggled(toggled_on):
-	audioSection.toggle_section(toggled_on)
 	if toggled_on:
 		generalSection.toggle_section(false)
 		generalButton.button_pressed = false
 		controlsSection.toggle_section(false)
 		controlsButton.button_pressed = false
 		set_button_right_neighbors(audioSection.musicVolumeSlider)
+	audioSection.toggle_section(toggled_on)

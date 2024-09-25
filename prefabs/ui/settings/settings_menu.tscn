@@ -11,11 +11,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj8xg"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_gqgu5"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_5o0vq"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_nekyk"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_g1t7t"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_fuwg5"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_lx2yr"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -93,14 +93,14 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_gqgu5")
+button_group = SubResource("ButtonGroup_5o0vq")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_nekyk")
+button_group = SubResource("ButtonGroup_g1t7t")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
@@ -108,7 +108,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_fuwg5")
+button_group = SubResource("ButtonGroup_lx2yr")
 text = "Audio"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]
