@@ -77,40 +77,6 @@ offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton")
-
-[node name="ScreenShakeControl" type="Control" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(0, 26)
-layout_mode = 2
-
-[node name="ScreenShakeLabel" type="RichTextLabel" parent="Control/VBoxContainer/ScreenShakeControl"]
-clip_contents = false
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -13.0
-offset_right = 285.0
-offset_bottom = 13.0
-grow_vertical = 2
-text = "Screen Shake"
-fit_content = true
-
-[node name="ScreenShakeButton" parent="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel" instance=ExtResource("3_rg6wg")]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -12.0
-offset_bottom = 12.0
-grow_horizontal = 0
-grow_vertical = 2
-focus_neighbor_top = NodePath("../../../OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton")
-focus_neighbor_right = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
 focus_neighbor_bottom = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
 
 [node name="RunToggleControl" type="Control" parent="Control/VBoxContainer"]
@@ -143,7 +109,109 @@ offset_top = -12.0
 offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_neighbor_top = NodePath("../../../OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton")
+
+[node name="ScreenShakeControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="ScreenShakeLabel" type="RichTextLabel" parent="Control/VBoxContainer/ScreenShakeControl"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 285.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Screen Shake"
+fit_content = true
+
+[node name="ScreenShakeButton" parent="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel" instance=ExtResource("3_rg6wg")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../BackgroundMotionControl/BackgroundMotionLabel/BackgroundMotionButton")
+
+[node name="BackgroundMotionControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="BackgroundMotionLabel" type="RichTextLabel" parent="Control/VBoxContainer/BackgroundMotionControl"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 285.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Background UI Motion"
+fit_content = true
+
+[node name="BackgroundMotionButton" parent="Control/VBoxContainer/BackgroundMotionControl/BackgroundMotionLabel" instance=ExtResource("3_rg6wg")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
 focus_neighbor_top = NodePath("../../../ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton")
+
+[node name="BattleAnimsControl" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="BattleAnimsLabel" type="RichTextLabel" parent="Control/VBoxContainer/BattleAnimsControl"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_right = 285.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Battle Animations"
+fit_content = true
+
+[node name="BattleAnimsButton" parent="Control/VBoxContainer/BattleAnimsControl/BattleAnimsLabel" instance=ExtResource("3_rg6wg")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../BackgroundMotionControl/BackgroundMotionLabel/BackgroundMotionButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton")
 
@@ -162,7 +230,7 @@ offset_top = -13.0
 offset_right = 285.0
 offset_bottom = 13.0
 grow_vertical = 2
-text = "Stats Menu: Crowded View"
+text = "Stats Menu: Dense View (Pro)"
 fit_content = true
 
 [node name="CrowdedStatsViewButton" parent="Control/VBoxContainer/CrowdedStatsViewControl/CrowdedStatsViewLabel" instance=ExtResource("3_rg6wg")]
@@ -177,7 +245,7 @@ offset_top = -12.0
 offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
+focus_neighbor_top = NodePath("../../../BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../DeadzoneControl/DeadzoneLabel/DeadzoneSlider")
 
@@ -207,7 +275,7 @@ offset_top = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_neighbor_top = NodePath("../../../RunToggleControl/RunToggleLabel/RunToggleButton")
+focus_neighbor_top = NodePath("../../../CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../WindowControl/WindowLabel/WindowOptionsButton")
 min_value = 20.0
@@ -473,8 +541,10 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="toggled" from="Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton" to="." method="_on_onscreen_keyboard_button_toggled"]
-[connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton" to="." method="_on_run_toggle_button_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton" to="." method="_on_screen_shake_button_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/BackgroundMotionControl/BackgroundMotionLabel/BackgroundMotionButton" to="." method="_on_background_motion_button_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton" to="." method="_on_battle_anims_button_toggled"]
 [connection signal="toggled" from="Control/VBoxContainer/CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton" to="." method="_on_crowded_stats_view_button_toggled"]
 [connection signal="focus_exited" from="Control/VBoxContainer/DeadzoneControl/DeadzoneLabel/DeadzoneSlider" to="." method="_on_deadzone_slider_focus_exited"]
 [connection signal="toggled" from="Control/VBoxContainer/TouchJoystickTypeControl/TouchJoystickTypeLabel/CenterButtonHBox/TouchJoystickTypeToggleButton" to="." method="_on_touch_joystick_type_toggle_button_toggled"]

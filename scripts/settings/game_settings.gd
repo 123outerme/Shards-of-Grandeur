@@ -11,6 +11,8 @@ enum TouchJoystickType {
 @export var sfxVolume: float = 0.5
 @export var useVirtualKeyboard: bool = false
 @export var screenShake: bool = true
+@export var backgroundMotion: bool = true
+@export var battleAnims: bool = true
 @export var toggleRun: bool = false
 @export var tabbedViewStats: bool = true
 @export var vsync: bool = false
@@ -101,6 +103,8 @@ func _init(
 	i_sfxVolume = 0.5,
 	i_virtualKeyboard = false,
 	i_screenShake = true,
+	i_backgroundMotion = true,
+	i_battleAnims = true,
 	i_toggleRun = false,
 	i_tabbedViewStats = true,
 	i_vsync = false,
@@ -114,6 +118,8 @@ func _init(
 	sfxVolume = i_sfxVolume
 	useVirtualKeyboard = i_virtualKeyboard
 	screenShake = i_screenShake
+	backgroundMotion = i_backgroundMotion
+	battleAnims = i_battleAnims
 	toggleRun = i_toggleRun
 	tabbedViewStats = i_tabbedViewStats
 	vsync = i_vsync

@@ -30,12 +30,16 @@ var allFramerateTextSelected: bool = false
 @onready var virtualKeyboard: VirtualKeyboard = get_node('Control/VirtualKeyboard')
 
 @onready var onscreenKeyboardButton: CheckButton = get_node('Control/VBoxContainer/OnscreenKeyboardControl/OnscreenKeyboardLabel/OnscreenKeyboardButton')
-@onready var screenShakeButton: CheckButton = get_node('Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton')
 
 @onready var runToggleControl: Control = get_node('Control/VBoxContainer/RunToggleControl')
 @onready var runToggleButton: CheckButton = get_node('Control/VBoxContainer/RunToggleControl/RunToggleLabel/RunToggleButton')
 
-@onready var crowdedStatsViewControl: Control = get_node('Control/VBoxContainer/CrowdedStatsViewControl')
+@onready var screenShakeButton: CheckButton = get_node('Control/VBoxContainer/ScreenShakeControl/ScreenShakeLabel/ScreenShakeButton')
+
+@onready var bgMotionButton: CheckButton = get_node('Control/VBoxContainer/BackgroundMotionControl/BackgroundMotionLabel/BackgroundMotionButton')
+
+@onready var battleAnimsButton: CheckButton = get_node('Control/VBoxContainer/BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton')
+
 @onready var crowdedStatsViewButton: CheckButton = get_node('Control/VBoxContainer/CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton')
 
 @onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
@@ -72,9 +76,8 @@ func _ready():
 		fullscreenControl.visible = false
 		vsyncControl.visible = false
 		touchJoystickTypeControl.visible = true
-		screenShakeButton.focus_neighbor_bottom = screenShakeButton.get_path_to(crowdedStatsViewButton)
-		crowdedStatsViewButton.focus_neighbor_top = crowdedStatsViewButton.get_path_to(screenShakeButton)
-		deadzoneSlider.focus_neighbor_top = deadzoneSlider.get_path_to(screenShakeButton)
+		onscreenKeyboardButton.focus_neighbor_bottom = onscreenKeyboardButton.get_path_to(screenShakeButton)
+		screenShakeButton.focus_neighbor_top = screenShakeButton.get_path_to(onscreenKeyboardButton)
 		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(touchJoystickTypeToggleButton)
 	else:
 		touchJoystickTypeControl.visible = false
@@ -100,8 +103,10 @@ func toggle_section(toggle: bool):
 	prevFramerate = framerate
 	if toggle:
 		onscreenKeyboardButton.button_pressed = SettingsHandler.gameSettings.useVirtualKeyboard
-		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
+		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
+		bgMotionButton.button_pressed = SettingsHandler.gameSettings.backgroundMotion
+		battleAnimsButton.button_pressed = SettingsHandler.gameSettings.battleAnims
 		crowdedStatsViewButton.button_pressed = not SettingsHandler.gameSettings.tabbedViewStats
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
@@ -113,8 +118,10 @@ func toggle_section(toggle: bool):
 		
 		onscreenKeyboardButton.focus_neighbor_left = onscreenKeyboardButton.get_path_to(sectionToggleButton)
 		sectionToggleButton.focus_neighbor_right = sectionToggleButton.get_path_to(onscreenKeyboardButton)
-		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
 		runToggleButton.focus_neighbor_left = runToggleButton.get_path_to(sectionToggleButton)
+		bgMotionButton.focus_neighbor_left = bgMotionButton.get_path_to(sectionToggleButton)
+		battleAnimsButton.focus_neighbor_left = battleAnimsButton.get_path_to(sectionToggleButton)
+		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
 		crowdedStatsViewButton.focus_neighbor_left = crowdedStatsViewButton.get_path_to(sectionToggleButton)
 		touchJoystickTypeToggleButton.focus_neighbor_left = touchJoystickTypeToggleButton.get_path_to(sectionToggleButton)
 		windowOptionsButton.focus_neighbor_left = windowOptionsButton.get_path_to(sectionToggleButton)
@@ -130,12 +137,20 @@ func _on_onscreen_keyboard_button_toggled(toggled_on):
 	if virtualKeyboard.visible and not virtualKeyboard.enabled:
 		virtualKeyboard.hide_keyboard()
 
+func _on_run_toggle_button_toggled(toggled_on):
+	SettingsHandler.gameSettings.toggleRun = toggled_on
+	SettingsHandler.settings_changed.emit()
+
 func _on_screen_shake_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.screenShake = toggled_on
 	SettingsHandler.settings_changed.emit()
 
-func _on_run_toggle_button_toggled(toggled_on):
-	SettingsHandler.gameSettings.toggleRun = toggled_on
+func _on_background_motion_button_toggled(toggled_on: bool) -> void:
+	SettingsHandler.gameSettings.backgroundMotion = toggled_on
+	SettingsHandler.settings_changed.emit()
+
+func _on_battle_anims_button_toggled(toggled_on: bool) -> void:
+	SettingsHandler.gameSettings.battleAnims = toggled_on
 	SettingsHandler.settings_changed.emit()
 
 func _on_crowded_stats_view_button_toggled(toggled_on: bool) -> void:

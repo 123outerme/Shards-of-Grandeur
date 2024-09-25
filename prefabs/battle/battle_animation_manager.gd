@@ -109,7 +109,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		user.update_orb_display()
 	
 	# play animation sprite if not none or battle idle
-	if moveAnimation.combatantAnimation != '' and moveAnimation.combatantAnimation != 'battle_idle':
+	if moveAnimation.combatantAnimation != '' and moveAnimation.combatantAnimation != 'battle_idle' and SettingsHandler.gameSettings.battleAnims:
 		user.play_animation(moveAnimation.combatantAnimation)
 		if moveAnimation.combatantAnimation != 'hide' and moveAnimation.combatantAnimation != 'stand':
 			animCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.SPRITE_ANIM)
@@ -133,7 +133,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		defender.play_particles(moveAnimation.targetsParticlePreset)
 	
 	# move sprites (playing immediately, ignoring timing of tweens)
-	if len(immediateSprites) > 0:
+	if len(immediateSprites) > 0 and SettingsHandler.gameSettings.battleAnims:
 		user.moveSpriteTargets = targets
 		if command.type == BattleCommand.Type.USE_ITEM and command.slot != null and command.slot.item != null:
 			user.useItemSprite = command.slot.item.itemSprite
@@ -145,7 +145,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		user.useItemSprite = null
 	
 	# tween-to (combatant movement)
-	if moveAnimation.makesContact:
+	if moveAnimation.makesContact and SettingsHandler.gameSettings.battleAnims:
 		var moveToPos: Vector2 = user.global_position # fallback: self (no movement)
 		var moveToCombatantNode: CombatantNode = user
 		var multiIsAllies: bool = false
@@ -181,7 +181,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			waitingForSignals.append(AnimationType.TWEEN_TO_TARGET)
 	
 	# battlefield shade
-	if shade != null:
+	if shade != null and SettingsHandler.gameSettings.battleAnims:
 		battlefieldShade.do_battlefield_shade_anim(shade)
 		shadeCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.BATTLEFIELD_SHADE)
 		battlefieldShade.shade_faded_up.connect(shadeCallbackFunc)
@@ -194,7 +194,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			user.tween_to_target_finished.disconnect(tweenToCallbackFunc)
 	
 	# play sprites that should only play after a tween, if one happened
-	if len(afterTweenSprites) > 0:
+	if len(afterTweenSprites) > 0 and SettingsHandler.gameSettings.battleAnims:
 		user.moveSpriteTargets = targets
 		if command.type == BattleCommand.Type.USE_ITEM and command.slot != null and command.slot.item != null:
 			user.useItemSprite = command.slot.item.itemSprite
@@ -298,7 +298,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
 		# END event texts
 		var textDelayAccum: float = 0
-		if not disableEventTexts:
+		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
@@ -330,7 +330,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges))
 		# END event texts
 		var textDelayAccum: float = 0
-		if not disableEventTexts:
+		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
@@ -341,7 +341,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		user.isBeingStatusAfflicted = false
 	
 	# lift the battlefield shade now that the animation is over soon
-	if shade != null:
+	if shade != null and SettingsHandler.gameSettings.battleAnims:
 		battlefieldShade.lift_battlefield_shade()
 		totalWaitingForSignals.append(AnimationType.BATTLEFIELD_SHADE)
 	
@@ -369,8 +369,9 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	#	user.play_particles()
 
 func escape_animation(user: CombatantNode):
-	user.play_animation('walk')
-	await user.sprite_animation_finished
+	if SettingsHandler.gameSettings.battleAnims:
+		user.play_animation('walk')
+		await user.sprite_animation_finished
 
 func play_intermediate_round_animations(state: BattleState):
 	totalWaitingForSignals = []
@@ -401,7 +402,7 @@ func play_intermediate_round_animations(state: BattleState):
 					# TODO: play equipment proc'd animation for this equipment
 			var textDelayAccum: float = 0
 			var playedEventTexts: bool = false
-			if not disableEventTexts:
+			if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 				for textIdx: int in range(len(eventTexts)):
 					if textIdx > 0:
 						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
@@ -436,7 +437,7 @@ func skip_intermediate_animations(state: BattleState, menuState: BattleState.Men
 	# otherwise, if not pre-battle then don't cancel the active animations, continue as normal
 
 func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay: float = 0, center: bool = true) -> void:
-	if not disableEventTexts:
+	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 		combatantNode.play_event_text(text, delay, center)
 
 ## combatant will always be above shade

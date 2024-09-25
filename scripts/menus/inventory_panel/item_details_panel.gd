@@ -39,7 +39,10 @@ func load_item_details():
 	else:
 		equipmentDetailsPanel.visible = false
 		itemEffect.visible = true
-		itemEffect.text = '[center]' + item.get_effect_text() + '[/center]'
+		itemEffect.text = '[center]' + item.get_effect_text()
+		if item.battleUsable:
+			itemEffect.text += '\nIn Battle, Targets ' + BattleCommand.targets_to_string(item.battleTargets)
+		itemEffect.text += '[/center]'
 	
 	itemDescription.text = item.itemDescription
 	
