@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmbx4qteugtm0"]
+[gd_scene load_steps=6 format=3 uid="uid://bmbx4qteugtm0"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/orb_display.gd" id="1_jpk48"]
 [ext_resource type="AudioStream" uid="uid://dg6b4d27ahmo1" path="res://audio/sfx/standard_button.mp3" id="2_gmbsp"]
 [ext_resource type="AudioStream" uid="uid://bj0i1vekyc0vn" path="res://audio/sfx/step1.ogg" id="3_4qshc"]
 [ext_resource type="Theme" uid="uid://cwqpqfli3ybvh" path="res://themes/custom_control_theme.tres" id="3_7qgse"]
 [ext_resource type="PackedScene" uid="uid://c6xiq4jwsbj6t" path="res://prefabs/battle/orb_unit_display.tscn" id="3_w3h8w"]
-[ext_resource type="Resource" uid="uid://blrp1t3gyu213" path="res://graphics/particles/gain_orb_particle_preset.tres" id="4_ajvha"]
-[ext_resource type="Resource" uid="uid://q1javnuhtryq" path="res://graphics/particles/spend_orbs_particle_preset.tres" id="5_vtnn4"]
-[ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="6_uee83"]
 
 [node name="OrbDisplay" type="Control"]
 custom_minimum_size = Vector2(94, 12)
@@ -23,8 +20,6 @@ mouse_filter = 1
 script = ExtResource("1_jpk48")
 modifySfx = ExtResource("2_gmbsp")
 atBoundSfx = ExtResource("3_4qshc")
-gainParticlePreset = ExtResource("4_ajvha")
-spendParticlePreset = ExtResource("5_vtnn4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(88, 8)
@@ -83,9 +78,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("3_7qgse")
-
-[node name="ParticleEmitter" parent="." instance=ExtResource("6_uee83")]
-position = Vector2(6, 6)
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

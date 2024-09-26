@@ -272,7 +272,6 @@ func restore_focus():
 		previousFocus.grab_focus()
 
 func open_inventory(forSummon: bool):
-	battlePanels.animatedBgPanel.visible = true
 	if not forSummon:
 		inventoryPanel.summoning = false
 		inventoryPanel.lockFilters = false
@@ -282,6 +281,7 @@ func open_inventory(forSummon: bool):
 		inventoryPanel.toggle()
 	else:
 		summonMinionPanel.load_summon_minion_panel()
+	battlePanels.animatedBgPanel.visible = true
 
 func _on_inventory_panel_node_item_used(slot: InventorySlot):
 	if menuState == BattleState.Menu.SUMMON:
@@ -308,6 +308,7 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.visible = false # force it to be turned on
 	statsPanel.isPlayer = combatant == PlayerResources.playerInfo.combatant or combatant == battleController.playerCombatant.combatant
 	statsPanel.toggle()
+	battlePanels.animatedBgPanel.visible = true
 
 func _on_stats_panel_node_back_pressed():
 	battlePanels.animatedBgPanel.visible = false
@@ -351,6 +352,7 @@ func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):
 	statsPanel.stats = minion.stats
 	statsPanel.savedStats = null
 	statsPanel.toggle()
+	battlePanels.animatedBgPanel.visible = true
 
 func _on_summon_minion_panel_minion_summoned(minion: Combatant, shardSlot: InventorySlot):
 	battlePanels.animatedBgPanel.visible = false
