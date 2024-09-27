@@ -47,7 +47,7 @@ func start_cam_shake():
 	
 func stop_cam_shake():
 	camShaking = false
-	mockShade.position = Vector2(-160, -190)
+	mockShade.position = Vector2(-160, -90)
 	camShakingTime = 0
 
 func hold_camera_at(pos: Vector2, holdX = true, holdY = true):

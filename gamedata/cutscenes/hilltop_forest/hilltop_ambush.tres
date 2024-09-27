@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=68 format=3 uid="uid://c8g3p1lo0jdr3"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=73 format=3 uid="uid://c8g3p1lo0jdr3"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_2trho"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_t8muq"]
@@ -325,13 +325,7 @@ endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
-[sub_resource type="Resource" id="Resource_u71bg"]
-script = ExtResource("7_wau4e")
-actorTreePath = "TilemapRoot/Spelunker"
-isPlayer = false
-animation = "talk"
-
-[sub_resource type="Resource" id="Resource_6kwqi"]
+[sub_resource type="Resource" id="Resource_o5l3x"]
 script = ExtResource("8_sgtue")
 value = false
 actorTreePath = "TilemapRoot/Spelunker"
@@ -339,6 +333,69 @@ isPlayer = false
 propertyName = "invisible"
 easeType = 2
 transitionType = 0
+
+[sub_resource type="Resource" id="Resource_allvx"]
+script = ExtResource("2_pkwfi")
+frameLength = 0.1
+annotation = "Make the spelunker visible"
+actorTweens = Array[ExtResource("6_bjy82")]([SubResource("Resource_o5l3x")])
+actorAnims = Array[ExtResource("7_wau4e")]([])
+actorAnimSets = Array[ExtResource("2_dubib")]([])
+actorFaceTargets = Array[ExtResource("5_m8d0e")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_cd85h"]
+script = ExtResource("7_wau4e")
+actorTreePath = "TilemapRoot/Spelunker"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_nqyco"]
+script = ExtResource("1_2trho")
+value = Vector2(-383, -221)
+actorTreePath = "TilemapRoot/Spelunker"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_830re"]
+script = ExtResource("2_pkwfi")
+frameLength = 1.0
+annotation = "Make the spelunker walk to Dr. Hudson"
+actorTweens = Array[ExtResource("6_bjy82")]([SubResource("Resource_nqyco")])
+actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_cd85h")])
+actorAnimSets = Array[ExtResource("2_dubib")]([])
+actorFaceTargets = Array[ExtResource("5_m8d0e")]([])
+dialogues = Array[ExtResource("4_0n8c1")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_u71bg"]
+script = ExtResource("7_wau4e")
+actorTreePath = "TilemapRoot/Spelunker"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_pno87"]
+script = ExtResource("5_m8d0e")
+actorTreePath = "TilemapRoot/Spelunker"
+isPlayer = false
+targetTreePath = "TilemapRoot/DrHudson"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
 
 [sub_resource type="Resource" id="Resource_8f0i0"]
 script = ExtResource("4_0n8c1")
@@ -348,11 +405,11 @@ texts = Array[String](["Here you are Doctor, there's more where that came from i
 [sub_resource type="Resource" id="Resource_u0q4i"]
 script = ExtResource("2_pkwfi")
 frameLength = 0.1
-annotation = "Make the spelunker visible and start talking to Dr. Hudson, giving him some Shards"
-actorTweens = Array[ExtResource("6_bjy82")]([SubResource("Resource_6kwqi")])
+annotation = "Make the spelunker face and start talking to Dr. Hudson, giving him some Shards"
+actorTweens = Array[ExtResource("6_bjy82")]([])
 actorAnims = Array[ExtResource("7_wau4e")]([SubResource("Resource_u71bg")])
 actorAnimSets = Array[ExtResource("2_dubib")]([])
-actorFaceTargets = Array[ExtResource("5_m8d0e")]([])
+actorFaceTargets = Array[ExtResource("5_m8d0e")]([SubResource("Resource_pno87")])
 dialogues = Array[ExtResource("4_0n8c1")]([SubResource("Resource_8f0i0")])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -571,7 +628,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("1_wyxwv")
-cutsceneFrames = Array[ExtResource("2_pkwfi")]([SubResource("Resource_1dvtu"), SubResource("Resource_lqe1l"), SubResource("Resource_yevn4"), SubResource("Resource_yxnuj"), SubResource("Resource_lyap2"), SubResource("Resource_yfrg5"), SubResource("Resource_7wbb6"), SubResource("Resource_et4yl"), SubResource("Resource_wvafv"), SubResource("Resource_ujrc5"), SubResource("Resource_h4327"), SubResource("Resource_u0q4i"), SubResource("Resource_fxtrd"), SubResource("Resource_30vif"), SubResource("Resource_kft17"), SubResource("Resource_jak4u"), SubResource("Resource_5edrb"), SubResource("Resource_wamxs"), SubResource("Resource_6duyd")])
+cutsceneFrames = Array[ExtResource("2_pkwfi")]([SubResource("Resource_1dvtu"), SubResource("Resource_lqe1l"), SubResource("Resource_yevn4"), SubResource("Resource_yxnuj"), SubResource("Resource_lyap2"), SubResource("Resource_yfrg5"), SubResource("Resource_7wbb6"), SubResource("Resource_et4yl"), SubResource("Resource_wvafv"), SubResource("Resource_ujrc5"), SubResource("Resource_h4327"), SubResource("Resource_allvx"), SubResource("Resource_830re"), SubResource("Resource_u0q4i"), SubResource("Resource_fxtrd"), SubResource("Resource_30vif"), SubResource("Resource_kft17"), SubResource("Resource_jak4u"), SubResource("Resource_5edrb"), SubResource("Resource_wamxs"), SubResource("Resource_6duyd")])
 saveName = "hilltop_ambush"
 storyRequirements = SubResource("Resource_162n4")
 unlockCameraHoldAfter = true
