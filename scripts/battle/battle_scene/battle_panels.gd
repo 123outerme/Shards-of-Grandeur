@@ -76,18 +76,21 @@ func _on_stats_open_button_pressed():
 	statsMenu.readOnly = true
 	statsMenu.isPlayer = true
 	statsMenu.toggle()
+	animatedBgPanel.visible = true
 	inventoryMenu.visible = false
 	questsMenu.visible = false
 	summonMinionPanel.visible = false
 
 func _on_quests_open_button_pressed():
 	questsMenu.toggle()
+	animatedBgPanel.visible = true
 	inventoryMenu.visible = false
 	statsMenu.visible = false
 	summonMinionPanel.visible = false
 
 func _on_pause_button_pressed():
 	pauseMenu.pause_game()
+	animatedBgPanel.visible = true
 	inventoryMenu.visible = false
 	statsMenu.visible = false
 	summonMinionPanel.visible = false

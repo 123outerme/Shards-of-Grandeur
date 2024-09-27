@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://drp76xa6t7vh7"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_tvahj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_liccw"]
+[ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="3_r4pht"]
+
+[resource]
+script = ExtResource("1_tvahj")
+id = "orbs"
+title = "Orbs"
+storyRequirements = Array[ExtResource("2_liccw")]([ExtResource("3_r4pht")])
+description = "Orbs $orb are a magic unit of power that allow combatants to Surge their moves to become more powerful. Orbs are gained from using most Charge moves. Orbs can also be gained by equipping a Weapon or Armor piece that grants Orbs at the beginning of battle."
+sortOrder = 4

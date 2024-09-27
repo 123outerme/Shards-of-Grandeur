@@ -1,0 +1,248 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=28 format=3 uid="uid://vfw5dc7mtds"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_lfpjn"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_81ulg"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_wt010"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_rhngp"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_yhugk"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_6ee8y"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_ba36x"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_fxxos"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_up3um"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_oswpj"]
+
+[sub_resource type="Resource" id="Resource_14ssd"]
+script = ExtResource("6_up3um")
+value = Vector2(45, 66)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_132ui"]
+script = ExtResource("1_lfpjn")
+frameLength = 1.5
+annotation = "walk player a little bit"
+actorTweens = Array[ExtResource("5_fxxos")]([SubResource("Resource_14ssd")])
+actorAnims = Array[ExtResource("3_rhngp")]([ExtResource("4_6ee8y")])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rsl0d"]
+script = ExtResource("6_up3um")
+value = Vector2(82, 81)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_2e6d1"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.75
+annotation = "walk player a little more, in sort of a drunken stumbling fashion"
+actorTweens = Array[ExtResource("5_fxxos")]([SubResource("Resource_rsl0d")])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_0nnt8"]
+script = ExtResource("7_oswpj")
+speaker = "@"
+texts = Array[String](["If I don't hurry... Grandstone will be..."])
+
+[sub_resource type="Resource" id="Resource_hsq1a"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.1
+annotation = "start a little dialogue saying it's so over"
+actorTweens = Array[ExtResource("5_fxxos")]([])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([SubResource("Resource_0nnt8")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_luv4s"]
+script = ExtResource("6_up3um")
+value = Vector2(145, 92)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_nppyd"]
+script = ExtResource("1_lfpjn")
+frameLength = 1.5
+annotation = "walk the player a little more, slower this time"
+actorTweens = Array[ExtResource("5_fxxos")]([SubResource("Resource_luv4s")])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_4jjtr"]
+script = ExtResource("3_rhngp")
+actorTreePath = ""
+isPlayer = true
+animation = "collapse"
+
+[sub_resource type="Resource" id="Resource_vmgpx"]
+script = ExtResource("1_lfpjn")
+frameLength = 2.667
+annotation = "collapse the player"
+actorTweens = Array[ExtResource("5_fxxos")]([])
+actorAnims = Array[ExtResource("3_rhngp")]([SubResource("Resource_4jjtr")])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_c774u"]
+script = ExtResource("3_rhngp")
+actorTreePath = ""
+isPlayer = true
+animation = "collapsed"
+
+[sub_resource type="Resource" id="Resource_seoff"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.1
+annotation = "Keep the collapsed animation going and wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_fxxos")]([])
+actorAnims = Array[ExtResource("3_rhngp")]([SubResource("Resource_c774u")])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mv213"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.1
+annotation = "fade out"
+actorTweens = Array[ExtResource("5_fxxos")]([])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_r0x4u"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.6
+annotation = "wait for fade out to finish"
+actorTweens = Array[ExtResource("5_fxxos")]([])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_j8r47"]
+script = ExtResource("6_up3um")
+value = Vector2(849, 184)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vvh6r"]
+script = ExtResource("1_lfpjn")
+frameLength = 0.3
+annotation = "move the player to the warp zone to start the next sequence"
+actorTweens = Array[ExtResource("5_fxxos")]([SubResource("Resource_j8r47")])
+actorAnims = Array[ExtResource("3_rhngp")]([])
+actorAnimSets = Array[ExtResource("2_wt010")]([])
+actorFaceTargets = Array[ExtResource("4_ba36x")]([])
+dialogues = Array[ExtResource("7_oswpj")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rxpdn"]
+script = ExtResource("3_yhugk")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["player_collapse"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_81ulg")
+cutsceneFrames = Array[ExtResource("1_lfpjn")]([SubResource("Resource_132ui"), SubResource("Resource_2e6d1"), SubResource("Resource_hsq1a"), SubResource("Resource_nppyd"), SubResource("Resource_vmgpx"), SubResource("Resource_seoff"), SubResource("Resource_mv213"), SubResource("Resource_r0x4u"), SubResource("Resource_vvh6r")])
+saveName = "player_collapse"
+storyRequirements = SubResource("Resource_rxpdn")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

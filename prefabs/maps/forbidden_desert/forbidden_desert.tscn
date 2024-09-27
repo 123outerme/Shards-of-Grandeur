@@ -1,4 +1,4 @@
-[gd_scene load_steps=228 format=4 uid="uid://ds7a44n0mcb01"]
+[gd_scene load_steps=230 format=4 uid="uid://ds7a44n0mcb01"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_f3ods"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_rhxjp"]
@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="16_qpbkp"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="18_a7e3l"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="20_e4wjj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="28_6r7pf"]
 
 [sub_resource type="Resource" id="Resource_klbj0"]
 script = ExtResource("5_ta4ih")
@@ -1072,6 +1073,26 @@ size = Vector2(8, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyyja"]
 size = Vector2(102, 8)
 
+[sub_resource type="Resource" id="Resource_f6dfs"]
+script = ExtResource("28_6r7pf")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["player_collapse"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1yee"]
 size = Vector2(56, 96)
 
@@ -1134,6 +1155,7 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_f3ods")
+metadata/_edit_vertical_guides_ = [1092.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1468,9 +1490,20 @@ shape = SubResource("RectangleShape2D_cum80")
 
 [node name="NorthWarpZone" parent="." instance=ExtResource("7_8iati")]
 position = Vector2(-1264, -1244)
+mapName = "nomad_camp"
+mapPos = Vector2(0, 637)
 warpEnabled = false
+useHorizontalOffset = true
 
 [node name="WarpArea" parent="NorthWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_cyyja")
+
+[node name="CollapseWarpZone" parent="." instance=ExtResource("7_8iati")]
+position = Vector2(-1264, -1243)
+mapName = "desert_collapse"
+storyRequirements = SubResource("Resource_f6dfs")
+
+[node name="WarpArea" parent="CollapseWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_cyyja")
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("8_gkijx")]
@@ -1550,5 +1583,6 @@ position = Vector2(1116, -48)
 [editable path="EnemySpawner21"]
 [editable path="SeaLegSouthWarpZone"]
 [editable path="NorthWarpZone"]
+[editable path="CollapseWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]

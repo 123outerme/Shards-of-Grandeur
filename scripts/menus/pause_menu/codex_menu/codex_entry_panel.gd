@@ -18,7 +18,7 @@ func load_codex_entry_panel():
 		return
 	
 	entryTitle.text = '[center]' + codexEntry.title + '[/center]'
-	entryDescription.text = codexEntry.description
+	entryDescription.text = TextUtils.rich_text_substitute(codexEntry.description, Vector2i(32, 32))
 	entryImage.texture = codexEntry.image
 
 func _on_entry_description_label_focus_entered() -> void:

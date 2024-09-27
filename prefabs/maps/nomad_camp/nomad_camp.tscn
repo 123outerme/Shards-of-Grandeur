@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="8_sta7v"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="9_6h1pt"]
 
-[sub_resource type="Resource" id="Resource_2ld2d"]
+[sub_resource type="Resource" id="Resource_tmtvc"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -62,6 +62,7 @@ size = Vector2(118, 56)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_octrj")
+metadata/_edit_horizontal_guides_ = [637.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -107,7 +108,7 @@ position = Vector2(202, 217)
 position = Vector2(53, 446)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_2ld2d")
+data = SubResource("Resource_tmtvc")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
 sprite_frames = ExtResource("6_al45b")
@@ -118,6 +119,9 @@ position = Vector2(0, 3.5)
 
 [node name="TalkArea" parent="TilemapRoot/Nomad1" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Nomad1/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/Nomad1" index="4"]
 visible = false

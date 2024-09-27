@@ -24,4 +24,4 @@ func load_custom_win_text_panel():
 	showTween.finished.connect(_tween_finished)
 
 func _tween_finished():
-	customTextLabel.text = '[center]' + TextUtils.rich_text_substitute(customText, Vector2i(24, 24)) + '[/center]'
+	customTextLabel.text = '[center]' + TextUtils.rich_text_substitute(customText, Vector2i(32, 32)) + '[/center]'
