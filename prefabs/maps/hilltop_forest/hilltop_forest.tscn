@@ -339,7 +339,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_c6ihy"]
+[sub_resource type="Resource" id="Resource_flmjr"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 spriteState = "default"
@@ -375,7 +375,7 @@ tile_set = ExtResource("2_wvq5a")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
-tile_map_data = PackedByteArray("AAC9/wgAAAABAAIAAADC/wEAAAABAAIAAADG/wkAAAABAAIAAADL/x8AAAABAAIAAADR//3/AAABAAIAAADS/wkAAAABAAIAAADS/xEAAAABAAIAAADV/wMAAAABAAIAAADV/xcAAAABAAIAAADX/yIAAAABAAIAAADY/x0AAAABAAIAAADa/w4AAAABAAIAAADf/xgAAAABAAIAAADi//L/AAABAAIAAADl/+z/AAABAAIAAADn/xoAAAABAAIAAADo/wMAAAABAAIAAADr//r/AAABAAIAAADs//v/AAABAAIAAADz/wMAAAABAAIAAAD7//z/AAABAAIAAAAQAPz/AAABAAIAAAAbAAAAAAABAAIAAAAYAAgAAAABAAIAAAAmAAgAAAABAAIAAAAyAA4AAAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAC9/wgAAAABAAIAAADC/wEAAAABAAIAAADG/wkAAAABAAIAAADL/x8AAAABAAIAAADR//3/AAABAAIAAADS/wkAAAABAAIAAADS/xEAAAABAAIAAADV/wMAAAABAAIAAADV/xcAAAABAAIAAADX/yIAAAABAAIAAADY/x0AAAABAAIAAADa/w4AAAABAAIAAADf/xgAAAABAAIAAADi//L/AAABAAIAAADl/+z/AAABAAIAAADn/xoAAAABAAIAAADo/wMAAAABAAIAAADr//r/AAABAAIAAADs//v/AAABAAIAAADz/wMAAAABAAIAAAD7//z/AAABAAIAAAAQAPz/AAABAAIAAAAbAAAAAAABAAIAAAAYAAgAAAABAAIAAAAmAAgAAAABAAIAAAAyAA4AAAABAAIAAADm//D/DAAAAAMAAADm//H/DAAAAAQAAADn//D/DAABAAMAAADn//H/DAABAAQAAADo//D/DAACAAMAAADo//H/DAACAAQAAAA=")
 tile_set = ExtResource("2_wvq5a")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -569,7 +569,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_c6ihy")
+data = SubResource("Resource_flmjr")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771
