@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dk34fxbbodqua"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_suf47"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_7evvs"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jht3b"]
+
+[sub_resource type="Resource" id="Resource_vqv4w"]
+script = ExtResource("2_7evvs")
+name = ""
+description = ""
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+
+[resource]
+script = ExtResource("1_suf47")
+questName = "Act 2 Main Quest TBD"
+description = ""
+steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w")])
+isMainQuest = true
+advanceActActerComplete = true

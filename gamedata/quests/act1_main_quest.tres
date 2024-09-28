@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=23 format=3 uid="uid://da1pe0gmj3wiq"]
+[gd_resource type="Resource" script_class="Quest" load_steps=24 format=3 uid="uid://da1pe0gmj3wiq"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
@@ -164,7 +164,7 @@ name = "Press On"
 description = "Continue to travel the road until you reach Grandstone. If you keep moving forward, eventually you'll get there, right?"
 type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "player_collapse"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
@@ -172,10 +172,24 @@ customStatusStr = "Reach Grandstone!"
 turnInDialogue = Array[ExtResource("3_4gvsg")]([])
 inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
+[sub_resource type="Resource" id="Resource_2vrqx"]
+script = ExtResource("2_8mv8e")
+name = "Get Your Bearings"
+description = ""
+type = 3
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_4gvsg")]([])
+inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
+
 [resource]
 script = ExtResource("1_jiru6")
-questName = "War is Declared"
+questName = "The Radiant War"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow."
-steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv"), SubResource("Resource_bdslt")])
+steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv"), SubResource("Resource_bdslt"), SubResource("Resource_2vrqx")])
 isMainQuest = true
 advanceActActerComplete = true

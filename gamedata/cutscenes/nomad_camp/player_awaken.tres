@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://cqvmbesm2tdob"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_outm1"]
+[ext_resource type="Resource" uid="uid://dk34fxbbodqua" path="res://gamedata/quests/act2_main_quest.tres" id="2_3dnrp"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_aupwg"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_pxpax"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_hkf4v"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_k7j61"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_0pg6d"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_hf4di"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_cyl32"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_7jcyc"]
+
+[sub_resource type="Resource" id="Resource_60ekd"]
+script = ExtResource("6_7jcyc")
+speaker = "@"
+texts = Array[String](["Ugh... where am I? Did I make it...?"])
+
+[sub_resource type="Resource" id="Resource_osf48"]
+script = ExtResource("1_outm1")
+frameLength = 0.1
+annotation = "Player is set to stand, wakes up and asks where they are"
+actorTweens = Array[ExtResource("5_cyl32")]([])
+actorAnims = Array[ExtResource("3_hkf4v")]([ExtResource("4_hf4di")])
+actorAnimSets = Array[ExtResource("2_aupwg")]([])
+actorFaceTargets = Array[ExtResource("4_0pg6d")]([])
+dialogues = Array[ExtResource("6_7jcyc")]([SubResource("Resource_60ekd")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_o0jyu"]
+script = ExtResource("1_outm1")
+frameLength = 0.1
+annotation = "wait for text box to disappear"
+actorTweens = Array[ExtResource("5_cyl32")]([])
+actorAnims = Array[ExtResource("3_hkf4v")]([])
+actorAnimSets = Array[ExtResource("2_aupwg")]([])
+actorFaceTargets = Array[ExtResource("4_0pg6d")]([])
+dialogues = Array[ExtResource("6_7jcyc")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = true
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_8atgh"]
+script = ExtResource("3_k7j61")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["player_awaken"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_pxpax")
+cutsceneFrames = Array[ExtResource("1_outm1")]([SubResource("Resource_osf48"), SubResource("Resource_o0jyu")])
+saveName = "player_awaken"
+storyRequirements = SubResource("Resource_8atgh")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+givesQuest = ExtResource("2_3dnrp")
+tempDisabledAfter = false

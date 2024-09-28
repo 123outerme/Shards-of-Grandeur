@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://btkpgo8r4sxar"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7wqtc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jxji5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_l1y40"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_nxwmm"]
+
+[sub_resource type="Resource" id="Resource_1fiux"]
+script = ExtResource("1_7wqtc")
+lines = Array[String](["We're looking for an older man, he left camp and headed south, towards that "])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_l1y40")]([])
+
+[sub_resource type="Resource" id="Resource_6jb4g"]
+script = ExtResource("3_nxwmm")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_jxji5")
+entryId = "player_awake"
+items = Array[ExtResource("1_7wqtc")]([SubResource("Resource_1fiux")])
+storyRequirements = SubResource("Resource_6jb4g")
+closesDialogue = false
+fullHealsPlayer = false
