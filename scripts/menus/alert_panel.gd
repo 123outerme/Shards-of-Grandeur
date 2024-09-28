@@ -7,18 +7,21 @@ const TWEEN_OFFSCREEN_TIME = 1.25
 @export var message: String = ''
 @export var lifetime: float = 2
 @export var alertSfx: AudioStream = null
+@export var alertIcon: Texture2D = null
 
 var panelTween: Tween = null
 var pauseTimer: bool = false
 var lifetimeAccum: float = 0
 
+@onready var alertIconSprite: Sprite2D = get_node('AlertSprite')
 @onready var messageLabel: RichTextLabel = get_node('MessageLabel')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	panelTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	position = Vector2(0, -150)
-	messageLabel.text = '[center]' + message + '[/center]'
+	messageLabel.text = '[center]' + TextUtils.rich_text_substitute(message, Vector2i(32, 32)) + '[/center]'
+	alertIconSprite.texture = alertIcon
 	panelTween.tween_property(self, 'position', Vector2(0, 0), TWEEN_ONSCREEN_TIME)
 	panelTween.finished.connect(_show_finished)
 

@@ -62,13 +62,20 @@ func _physics_process(delta):
 func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
 
-func show_alert(message: String, lifetime: float = 2):
+func show_alert(message: String, icon: Texture2D = null, sfx: AudioStream = null, disableSfx: bool = false, lifetime: float = 2):
 	if player.actChanged:
 		await new_act_anim_complete
 	
 	var panel: AlertPanel = alertPanelPrefab.instantiate()
 	panel.message = message
 	panel.lifetime = lifetime
+	
+	if icon != null:
+		panel.alertIcon = icon
+	
+	if sfx != null or disableSfx:
+		panel.alertSfx = sfx if not disableSfx else null
+	
 	alertControl.add_child(panel)
 
 func set_alert_panels_lifetime_pause(pause: bool):

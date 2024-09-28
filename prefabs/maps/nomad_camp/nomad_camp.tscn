@@ -16,12 +16,12 @@
 [ext_resource type="Resource" uid="uid://cbjmmycmx2h58" path="res://gamedata/cutscenes/nomad_camp/leave_awaken_house.tres" id="11_7ifcc"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="15_upvib"]
 
-[sub_resource type="Resource" id="Resource_tmtvc"]
+[sub_resource type="Resource" id="Resource_lv8vd"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(53, 446)
+position = Vector2(36, 312)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -119,7 +119,7 @@ position = Vector2(202, 217)
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_tmtvc")
+data = SubResource("Resource_lv8vd")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -154,6 +154,8 @@ position = Vector2(0, 661)
 
 [node name="ElderHouseWarpZone" parent="." instance=ExtResource("8_sta7v")]
 position = Vector2(96, 290)
+mapName = "nomad_camp_elders_hut"
+mapPos = Vector2(-8, 4)
 
 [node name="WarpArea" parent="ElderHouseWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_kvahx")

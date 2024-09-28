@@ -589,7 +589,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					PlayerResources.questInventory.progress_quest(interactable.saveName + '#' + interactableDialogue.dialogueEntry.entryId, QuestStep.Type.TALK)
 				if interactableDialogue.dialogueEntry.givesItem:
 					PlayerResources.inventory.add_item(interactableDialogue.dialogueEntry.givesItem)
-					cam.show_alert('Got Item:\n' + interactableDialogue.dialogueEntry.givesItem.itemName)
+					cam.show_alert('Got Item:\n' + interactableDialogue.dialogueEntry.givesItem.itemName, interactableDialogue.dialogueEntry.givesItem.itemSprite)
 				if interactableDialogue.dialogueEntry.fullHealsPlayer:
 					PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 					cam.show_alert('Fully Healed!')

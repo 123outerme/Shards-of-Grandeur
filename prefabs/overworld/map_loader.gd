@@ -3,11 +3,16 @@ class_name MapLoader
 
 signal warp_fadeout_done
 
+const mapIcon: Texture2D = preload('res://graphics/ui/map_icon.png')
+
 var mapInstance: Node = null
 var mapNavReady: bool = false
+var worldLocation: WorldLocation = null
 var mapEntry: MapEntry = null
 var usedWarpZone: bool = false
 var loading: bool = false
+
+var previousWorldLocationName: String = ''
 
 @onready var player: PlayerController = get_node_or_null("../Player")
 
@@ -54,7 +59,10 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 
 func load_recover_map():
 	usedWarpZone = true # not technically a warp zone, but is a mid-game warp (not initial game load)
-	var recoveryMapEntry: MapEntry = get_map_entry_for_map_name(PlayerResources.playerInfo.recoverMap)
+	var recoveryWorldLocation: WorldLocation = MapLoader.get_world_location_for_name(PlayerResources.playerInfo.recoverMap)
+	if recoveryWorldLocation == null:
+		printerr('Error: recovery map World Location is null for map name ', PlayerResources.playerInfo.recoverMap)
+	var recoveryMapEntry: MapEntry = get_map_entry_for_map_location(recoveryWorldLocation)
 	PlayerResources.playerInfo.combatant.downed = false
 	player.disableMovement = true
 	player.get_collider().set_deferred('disabled', true)
@@ -78,8 +86,15 @@ func load_map(mapName: String):
 	if mapInstance != null:
 		mapInstance.queue_free()
 	var mapScene = null
+	# update the previous world location name
+	if worldLocation != null:
+		previousWorldLocationName = worldLocation.locationName
+	# load the world location with all of the map info
+	var newWorldLocation: WorldLocation = MapLoader.get_world_location_for_name(mapName)
+	if newWorldLocation == null:
+		printerr('Error: World location is null for map name ', mapName)
 	# if this act has a specific map for this act, load it
-	var newMapEntry = get_map_entry_for_map_name(mapName)
+	var newMapEntry = get_map_entry_for_map_location(newWorldLocation)
 	if newMapEntry != null:
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
@@ -92,6 +107,7 @@ func load_map(mapName: String):
 		mapScene = ResourceLoader.load_threaded_get(newMapEntry.get_map_path())
 		#'''
 		mapScene = load(newMapEntry.get_map_path())
+		worldLocation = newWorldLocation
 		mapEntry = newMapEntry
 		SceneLoader.curMapEntry = mapEntry
 	if mapScene == null:
@@ -109,16 +125,15 @@ func set_map_to_scene():
 	SaveHandler.call_deferred("load_data")
 	call_deferred("reparent_player")
 
-func get_map_entry_for_map_name(mapName: String) -> MapEntry:
-	var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(mapName)
-	if worldLocation != null:
-		var entry: MapEntry = worldLocation.get_map_entry_for_location()
+func get_map_entry_for_map_location(location: WorldLocation) -> MapEntry:
+	if location != null:
+		var entry: MapEntry = location.get_map_entry_for_location()
 		if entry != null:
 			return entry
 		else:
-			printerr('No map entry could be found for: ', mapName)
+			printerr('No map entry could be found for: ', location.resource_path)
 	else:
-		printerr('World location could not be found for: ', mapName)
+		printerr('World location was null')
 	return null
 
 func reparent_player():
@@ -140,6 +155,15 @@ func destroy_overworld_enemies():
 	for spawnerNode in get_tree().get_nodes_in_group('EnemySpawner'):
 		if spawnerNode.has_method('delete_enemy'):
 			spawnerNode.delete_enemy()
+
+func show_new_world_location_alert():
+	# if the map has changed our world location name:
+	if previousWorldLocationName != '' and previousWorldLocationName != worldLocation.locationName:
+		# if the player is in a cutscene, wait till it completes to tell the player where they are
+		if player.inCutscene:
+			await SceneLoader.cutscenePlayer.cutscene_completed
+		# show an alert telling the player where they are in the world
+		player.cam.show_alert(worldLocation.locationName, mapIcon, null, true)
 
 func _fade_out_complete():
 	#print('fade out complete')
@@ -169,6 +193,7 @@ func _map_loaded():
 		PlayerFinder.player.pause_movement()
 	else:
 		PlayerFinder.player.unpause_movement()
+	show_new_world_location_alert()
 	
 func _nav_map_changed(_arg):
 	mapNavReady = true

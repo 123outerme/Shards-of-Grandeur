@@ -99,7 +99,7 @@ func handle_fade_in():
 
 func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)
-	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName)
+	PlayerFinder.player.cam.show_alert('Got Item:\n' + lastFrame.givesItem.itemName, lastFrame.givesItem.itemSprite)
 
 func handle_heal_player():
 	PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
@@ -400,7 +400,7 @@ func skip_cutscene_process():
 			skipAnims = true
 		if frame.givesItem:
 			PlayerResources.inventory.add_item(frame.givesItem)
-			PlayerFinder.player.cam.show_alert('Got Item:\n' + frame.givesItem.itemName)
+			PlayerFinder.player.cam.show_alert('Got Item:\n' + frame.givesItem.itemName, frame.givesItem.itemSprite)
 		await get_tree().process_frame
 	end_cutscene()
 	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)

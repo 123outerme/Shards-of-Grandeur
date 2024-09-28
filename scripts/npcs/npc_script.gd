@@ -309,7 +309,7 @@ func advance_dialogue() -> bool:
 				PlayerResources.questInventory.progress_quest(saveName + '#' + data.dialogueItems[data.dialogueIndex].entryId, QuestStep.Type.TALK)
 			if data.dialogueItems[data.dialogueIndex].givesItem:
 				PlayerResources.inventory.add_item(data.dialogueItems[data.dialogueIndex].givesItem)
-				PlayerFinder.player.cam.show_alert('Got Item:\n' + data.dialogueItems[data.dialogueIndex].givesItem.itemName)
+				PlayerFinder.player.cam.show_alert('Got Item:\n' + data.dialogueItems[data.dialogueIndex].givesItem.itemName, data.dialogueItems[data.dialogueIndex].givesItem.itemSprite)
 			if data.dialogueItems[data.dialogueIndex].fullHealsPlayer:
 				PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 				PlayerFinder.player.cam.show_alert('Fully Healed!')
