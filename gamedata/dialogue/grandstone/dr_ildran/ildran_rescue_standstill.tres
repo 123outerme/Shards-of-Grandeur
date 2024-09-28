@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://3a2vkbddq6lv"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_l0o25"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ch1ob"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xe0jh"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_05eun"]
+[ext_resource type="Resource" uid="uid://c0cedgck2fvkh" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_standstill_turnin.tres" id="3_hd832"]
+
+[sub_resource type="Resource" id="Resource_bryqd"]
+script = ExtResource("1_l0o25")
+lines = Array[String](["A witch is attacking Standstill, torching the town, and we promised to defend them for their hospitality. I must honor that!", "It's our duty to help those we see in need. I can't let another town lose their homes.", "Please, once you can spare the muscle, send reinforcements to Standstill!"])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ch1ob")]([])
+
+[sub_resource type="Resource" id="Resource_ehu4i"]
+script = ExtResource("2_ch1ob")
+choiceBtn = "I Will."
+leadsTo = ExtResource("3_hd832")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_05eun")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_ien2d"]
+script = ExtResource("1_l0o25")
+lines = Array[String](["Very well then, @. I cannot stop you. As soon as I'm able to leave the repairs here, I will do what I can for our neighbor.", "But, remember that we're relying upon your to save our homes, too."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ch1ob")]([SubResource("Resource_ehu4i")])
+
+[resource]
+script = ExtResource("2_xe0jh")
+entryId = "rescue_standstill"
+items = Array[ExtResource("1_l0o25")]([SubResource("Resource_bryqd"), SubResource("Resource_ien2d")])
+closesDialogue = false
+fullHealsPlayer = false

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://d16omrg1xn2ax"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_i1b3u"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_s2wtm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_p5gx7"]
+
+[sub_resource type="Resource" id="Resource_qsyog"]
+script = ExtResource("1_i1b3u")
+lines = Array[String](["Then luck be with you. I'll pull myself away to visit Standstill when we get things stabilized here."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_s2wtm")]([])
+
+[resource]
+script = ExtResource("3_p5gx7")
+entryId = "standstill_good_luck"
+items = Array[ExtResource("1_i1b3u")]([SubResource("Resource_qsyog")])
+closesDialogue = true
+fullHealsPlayer = false

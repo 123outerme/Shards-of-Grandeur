@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://c0cedgck2fvkh"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8p316"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a6ts5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_nxvup"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_1kuy3"]
+[ext_resource type="Resource" uid="uid://d16omrg1xn2ax" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_standstill_luck.tres" id="4_274rh"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_1xuu0"]
+
+[sub_resource type="Resource" id="Resource_3w711"]
+script = ExtResource("2_a6ts5")
+choiceBtn = "I'll Prepare First."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_1kuy3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_nrs3a"]
+script = ExtResource("2_a6ts5")
+choiceBtn = "I'm Going Now."
+leadsTo = ExtResource("4_274rh")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_1kuy3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Act 2 Main Quest TBD#Make Your Decision"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_upvlm"]
+script = ExtResource("1_8p316")
+lines = Array[String](["Be well prepared before you go to Standstill's aid.", "I'm sure Alessia and Lance have some combat skills and can hold off the witch until then."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_a6ts5")]([SubResource("Resource_3w711"), SubResource("Resource_nrs3a")])
+
+[sub_resource type="Resource" id="Resource_476b2"]
+script = ExtResource("5_1xuu0")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String](["Act 2 Main Quest TBD#Make Your Decision"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_nxvup")
+entryId = ""
+items = Array[ExtResource("1_8p316")]([SubResource("Resource_upvlm")])
+storyRequirements = SubResource("Resource_476b2")
+closesDialogue = false
+fullHealsPlayer = false

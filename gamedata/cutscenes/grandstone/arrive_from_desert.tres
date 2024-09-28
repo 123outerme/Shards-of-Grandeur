@@ -1,0 +1,394 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=44 format=3 uid="uid://cyeljpv4xilvt"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_nu4lt"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_7oqok"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_t1cep"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_5ajem"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_4431w"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_degwe"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_x1rc0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_3r0eo"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_tgirw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_kncbf"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_goa3h"]
+
+[sub_resource type="Resource" id="Resource_nri4b"]
+script = ExtResource("2_t1cep")
+actorTreePath = "TilemapRoot/HorseCart"
+isPlayer = false
+spriteState = "default"
+
+[sub_resource type="Resource" id="Resource_gwm4i"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "set up horse cart to be empty again"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([SubResource("Resource_nri4b")])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_4rrgg"]
+script = ExtResource("8_kncbf")
+value = Vector2(-62, 214)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_wlrx0"]
+script = ExtResource("1_nu4lt")
+frameLength = 1.0
+annotation = "Walk player closer towards Dr. Ildran"
+actorTweens = Array[ExtResource("5_x1rc0")]([SubResource("Resource_4rrgg")])
+actorAnims = Array[ExtResource("3_4431w")]([ExtResource("7_tgirw")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_u1oh7"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_xgd4h"]
+script = ExtResource("6_3r0eo")
+speaker = "Dr. Ildran"
+texts = Array[String](["Oh, @! I sure am glad to see you!"])
+
+[sub_resource type="Resource" id="Resource_bjc4s"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "the player stops and Dr. Ildran calls out"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([ExtResource("9_goa3h"), SubResource("Resource_u1oh7")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_xgd4h")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ohbgw"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "Wait for the textbox to be cleared"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mqd05"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_s74m4"]
+script = ExtResource("8_kncbf")
+value = Vector2(-64, 164)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_cv2v2"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.7
+annotation = "Dr. Ildran stops talking, the player moves to him"
+actorTweens = Array[ExtResource("5_x1rc0")]([SubResource("Resource_s74m4")])
+actorAnims = Array[ExtResource("3_4431w")]([ExtResource("7_tgirw"), SubResource("Resource_mqd05")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wolx3"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_nalcc"]
+script = ExtResource("6_3r0eo")
+speaker = "Dr. Ildran"
+texts = Array[String](["When you and Solius didn't return, I was worried sick. But now you're back!"])
+
+[sub_resource type="Resource" id="Resource_lp1m5"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "the player stops walking, Dr. Ildran says he was worred"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([ExtResource("9_goa3h"), SubResource("Resource_wolx3")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_nalcc")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_dbwd3"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_esbxu"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_5xex8"]
+script = ExtResource("6_3r0eo")
+speaker = "@"
+texts = Array[String](["That's just it, we..."])
+
+[sub_resource type="Resource" id="Resource_nmkey"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "The player tries to get in a word in"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([SubResource("Resource_esbxu")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_5xex8")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ukn1s"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_e6kuy"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_7rvjc"]
+script = ExtResource("6_3r0eo")
+speaker = "@"
+texts = Array[String](["Yes, yes! You got the Cave under our control, and left Solius to guard it.", "I can tell, although it took you quite a long time, and you returned from the desert.", "You shouldn't have taken the scenic route to report such good news, but there'll be time for a lecture later.", "There's important work to be done here, more buildings are crumbling and they need to be stabilized!"])
+
+[sub_resource type="Resource" id="Resource_owc5b"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "Dr. Ildran talks right over the player"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([SubResource("Resource_e6kuy")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_7rvjc")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_o45nv"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_dcwh7"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_8xprs"]
+script = ExtResource("6_3r0eo")
+speaker = "@"
+texts = Array[String](["No!! That's not it...", "Once again we didn't capture the Radiant Cave, Steelspire has total control of it.", "I had to leave Solius behind to escape... We need to gather a party and strike the Chain Legion back!", "Not only that, Standstill is burning we speak. We have to go help them!"])
+
+[sub_resource type="Resource" id="Resource_oeuj8"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "The player gets a chance to butt in"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([SubResource("Resource_dcwh7")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_8xprs")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_br10f"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pk2ry"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_cn2te"]
+script = ExtResource("6_3r0eo")
+speaker = "Dr. Ildran"
+texts = Array[String](["This is troubling news, @. These buildings get weaker as each day passes.", "Our spelunkers are all working around the clock to stabilize them, but we needed those Shards to complete the job.", "I must consider our next action, but for now, we need you here, focused on the reconstruction of the city.", "Look around and see what has transpired here before you make your decision."])
+
+[sub_resource type="Resource" id="Resource_3p57x"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "Dr. Ildran speaks again"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([SubResource("Resource_pk2ry")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([SubResource("Resource_cn2te")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vjfy4"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_4gri1"]
+script = ExtResource("3_5ajem")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["grandstone_arrive_from_desert"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_7oqok")
+cutsceneFrames = Array[ExtResource("1_nu4lt")]([SubResource("Resource_gwm4i"), SubResource("Resource_wlrx0"), SubResource("Resource_bjc4s"), SubResource("Resource_ohbgw"), SubResource("Resource_cv2v2"), SubResource("Resource_lp1m5"), SubResource("Resource_dbwd3"), SubResource("Resource_nmkey"), SubResource("Resource_ukn1s"), SubResource("Resource_owc5b"), SubResource("Resource_o45nv"), SubResource("Resource_oeuj8"), SubResource("Resource_br10f"), SubResource("Resource_3p57x"), SubResource("Resource_vjfy4")])
+saveName = "grandstone_arrive_from_desert"
+storyRequirements = SubResource("Resource_4gri1")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

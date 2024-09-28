@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cll3hc4unphdp"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1ri6y"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_25rlg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_i2w6n"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_6tnk0"]
+
+[sub_resource type="Resource" id="Resource_qkb2o"]
+script = ExtResource("1_1ri6y")
+lines = Array[String](["Go, help Standstill then! We did promise them. I'll visit as soon as the critical repairs are made."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_i2w6n")]([])
+
+[sub_resource type="Resource" id="Resource_l4ybl"]
+script = ExtResource("4_6tnk0")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Act 2 Main Quest TBD#Make Your Decision"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_25rlg")
+entryId = ""
+items = Array[ExtResource("1_1ri6y")]([SubResource("Resource_qkb2o")])
+storyRequirements = SubResource("Resource_l4ybl")
+closesDialogue = false
+fullHealsPlayer = false

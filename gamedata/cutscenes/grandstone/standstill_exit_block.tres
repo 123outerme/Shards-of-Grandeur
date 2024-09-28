@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://dxxrvljo2bccx"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_iql7r"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_4ut3g"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_atxpg"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_bb0lc"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_j3u5t"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_lpppj"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_hdwth"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_njsjq"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_1jxfa"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_guhi1"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="11_jia14"]
+
+[sub_resource type="Resource" id="Resource_rmqh2"]
+script = ExtResource("6_hdwth")
+speaker = "@"
+texts = Array[String](["I have to try to convince Dr. Ildran to send reinforcements to Standstill!"])
+
+[sub_resource type="Resource" id="Resource_2oljh"]
+script = ExtResource("1_iql7r")
+frameLength = 0.1
+annotation = "The player exclaims they need to convince Dr. Ildran"
+actorTweens = Array[ExtResource("5_lpppj")]([])
+actorAnims = Array[ExtResource("3_bb0lc")]([])
+actorAnimSets = Array[ExtResource("2_atxpg")]([])
+actorFaceTargets = Array[ExtResource("4_j3u5t")]([])
+dialogues = Array[ExtResource("6_hdwth")]([SubResource("Resource_rmqh2")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ajr6d"]
+script = ExtResource("8_1jxfa")
+value = Vector2(500, 12)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ka6t1"]
+script = ExtResource("1_iql7r")
+frameLength = 1.0
+annotation = "Walk the player away from the warp zone"
+actorTweens = Array[ExtResource("5_lpppj")]([SubResource("Resource_ajr6d")])
+actorAnims = Array[ExtResource("3_bb0lc")]([ExtResource("7_njsjq")])
+actorAnimSets = Array[ExtResource("2_atxpg")]([])
+actorFaceTargets = Array[ExtResource("4_j3u5t")]([])
+dialogues = Array[ExtResource("6_hdwth")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ujyo7"]
+script = ExtResource("1_iql7r")
+frameLength = 0.1
+annotation = "Make player stand and wait for the dialogue box to be closed"
+actorTweens = Array[ExtResource("5_lpppj")]([])
+actorAnims = Array[ExtResource("3_bb0lc")]([ExtResource("9_guhi1")])
+actorAnimSets = Array[ExtResource("2_atxpg")]([])
+actorFaceTargets = Array[ExtResource("4_j3u5t")]([])
+dialogues = Array[ExtResource("6_hdwth")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_g33eh"]
+script = ExtResource("11_jia14")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["dr_ildran_gs_cracking#standstill_good_luck"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_4ut3g")
+cutsceneFrames = Array[ExtResource("1_iql7r")]([SubResource("Resource_2oljh"), SubResource("Resource_ka6t1"), SubResource("Resource_ujyo7")])
+saveName = "gs_prevent_standstill_exit"
+storyRequirements = SubResource("Resource_g33eh")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

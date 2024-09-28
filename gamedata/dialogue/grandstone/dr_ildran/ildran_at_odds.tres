@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dqe63k3ojpw3x"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hgnnu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_dgs0y"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_idbmb"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_lf0xj"]
+[ext_resource type="Resource" uid="uid://3a2vkbddq6lv" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_rescue_standstill.tres" id="4_ae0gn"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_g2iro"]
+
+[sub_resource type="Resource" id="Resource_lkyj3"]
+script = ExtResource("2_idbmb")
+choiceBtn = "Let Me Look Around."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_lf0xj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_guu50"]
+script = ExtResource("2_idbmb")
+choiceBtn = "I Must Go!"
+leadsTo = ExtResource("4_ae0gn")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_lf0xj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_0ba5t"]
+script = ExtResource("1_hgnnu")
+lines = Array[String](["@, stay here and help me restore our home! We are stretched thin as it is."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_idbmb")]([SubResource("Resource_lkyj3"), SubResource("Resource_guu50")])
+
+[sub_resource type="Resource" id="Resource_t7gq4"]
+script = ExtResource("6_g2iro")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["dr_ildran_gs_cracking#rescue_standstill"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_dgs0y")
+entryId = ""
+items = Array[ExtResource("1_hgnnu")]([SubResource("Resource_0ba5t")])
+storyRequirements = SubResource("Resource_t7gq4")
+closesDialogue = false
+fullHealsPlayer = false

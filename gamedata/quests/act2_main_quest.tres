@@ -1,20 +1,56 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dk34fxbbodqua"]
+[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://dk34fxbbodqua"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_suf47"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_7evvs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jht3b"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_npd1k"]
 
 [sub_resource type="Resource" id="Resource_vqv4w"]
 script = ExtResource("2_7evvs")
-name = ""
-description = ""
-type = 0
+name = "Go Home At Last"
+description = "Now that you've helped the Nomads, it is time to start once again on the road back to Grandstone."
+type = 3
 count = 1
-objectiveName = ""
+objectiveName = "grandstone_arrive_from_desert"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
+customStatusStr = "Reach Grandstone!"
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+
+[sub_resource type="Resource" id="Resource_qd0dt"]
+script = ExtResource("4_npd1k")
+experience = 100
+gold = 0
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_v8nab"]
+script = ExtResource("2_7evvs")
+name = "Make Your Decision"
+description = "Dr. Ildran needs you to help restore the city, meanwhile Standstill is being attacked... What should you do?"
+reward = SubResource("Resource_qd0dt")
+type = 0
+count = 1
+objectiveName = "dr_ildran_gs_cracking#rescue_standstill"
+turnInNames = Array[String](["dr_ildran_gs_cracking"])
+displayObjName = "Dr. Ildran"
+displayTurnInName = "Dr. Ildran"
 customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+
+[sub_resource type="Resource" id="Resource_1x80q"]
+script = ExtResource("2_7evvs")
+name = "Standstill Ablaze"
+description = ""
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
 turnInDialogue = Array[ExtResource("3_jht3b")]([])
 inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
@@ -22,6 +58,6 @@ inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 script = ExtResource("1_suf47")
 questName = "Act 2 Main Quest TBD"
 description = ""
-steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w")])
+steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q")])
 isMainQuest = true
 advanceActActerComplete = true

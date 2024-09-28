@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=28 format=3 uid="uid://cbjmmycmx2h58"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://cbjmmycmx2h58"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dmmds"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_b46e3"]
@@ -106,21 +106,6 @@ script = ExtResource("6_bfl1h")
 speaker = "???"
 texts = Array[String](["You got a long way in the desert for someone so bundled up. What brings you out here?"])
 
-[sub_resource type="Resource" id="Resource_44mqn"]
-script = ExtResource("6_bfl1h")
-speaker = "@"
-texts = Array[String](["I'm just trying to get back to my home, Grandstone. Who are you?"])
-
-[sub_resource type="Resource" id="Resource_ytgl3"]
-script = ExtResource("6_bfl1h")
-speaker = "???"
-texts = Array[String](["I am a Nomad. We drift from fallen city to ruined town, scavenging what remains."])
-
-[sub_resource type="Resource" id="Resource_la02y"]
-script = ExtResource("6_bfl1h")
-speaker = "Nomad"
-texts = Array[String](["It's the only way to survive for those of us who used to liven in one of those ruined towns.", "It's our duty to help those in need of a home, we adopt this way of life when we are accepted as Nomads.", "Now, we need that help ourselves... one of our own went missing."])
-
 [sub_resource type="Resource" id="Resource_4obgt"]
 script = ExtResource("1_dmmds")
 frameLength = 0.1
@@ -129,7 +114,7 @@ actorTweens = Array[ExtResource("5_yhacm")]([])
 actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_x1ury")])
 actorAnimSets = Array[ExtResource("2_yrswj")]([])
 actorFaceTargets = Array[ExtResource("4_nk41c")]([])
-dialogues = Array[ExtResource("6_bfl1h")]([SubResource("Resource_k2dwt"), SubResource("Resource_44mqn"), SubResource("Resource_ytgl3"), SubResource("Resource_la02y")])
+dialogues = Array[ExtResource("6_bfl1h")]([SubResource("Resource_k2dwt")])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -142,6 +127,101 @@ endStartsShardLearnTutorial = false
 script = ExtResource("1_dmmds")
 frameLength = 0.1
 annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_yhacm")]([])
+actorAnims = Array[ExtResource("3_ixu3g")]([])
+actorAnimSets = Array[ExtResource("2_yrswj")]([])
+actorFaceTargets = Array[ExtResource("4_nk41c")]([])
+dialogues = Array[ExtResource("6_bfl1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_o6vy2"]
+script = ExtResource("3_ixu3g")
+actorTreePath = "TilemapRoot/Nomad1"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_44mqn"]
+script = ExtResource("6_bfl1h")
+speaker = "@"
+texts = Array[String](["I'm just trying to get back to my home, Grandstone. Who are you?"])
+
+[sub_resource type="Resource" id="Resource_b7sc7"]
+script = ExtResource("1_dmmds")
+frameLength = 0.1
+annotation = "The player responds"
+actorTweens = Array[ExtResource("5_yhacm")]([])
+actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_o6vy2")])
+actorAnimSets = Array[ExtResource("2_yrswj")]([])
+actorFaceTargets = Array[ExtResource("4_nk41c")]([])
+dialogues = Array[ExtResource("6_bfl1h")]([SubResource("Resource_44mqn")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_l2my0"]
+script = ExtResource("1_dmmds")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_yhacm")]([])
+actorAnims = Array[ExtResource("3_ixu3g")]([])
+actorAnimSets = Array[ExtResource("2_yrswj")]([])
+actorFaceTargets = Array[ExtResource("4_nk41c")]([])
+dialogues = Array[ExtResource("6_bfl1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_brh6g"]
+script = ExtResource("3_ixu3g")
+actorTreePath = "TilemapRoot/Nomad1"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_ytgl3"]
+script = ExtResource("6_bfl1h")
+speaker = "???"
+texts = Array[String](["I am a Nomad. We drift from fallen city to ruined town, scavenging what remains."])
+
+[sub_resource type="Resource" id="Resource_la02y"]
+script = ExtResource("6_bfl1h")
+speaker = "Nomad"
+texts = Array[String](["It's the only way to survive for those of us who used to liven in one of those ruined towns.", "It's our duty to help those we see in need. We adopt this way of life when we are accepted as Nomads.", "Now, we need that help ourselves... one of our own went missing."])
+
+[sub_resource type="Resource" id="Resource_utjhk"]
+script = ExtResource("1_dmmds")
+frameLength = 0.1
+annotation = "The nomad responds"
+actorTweens = Array[ExtResource("5_yhacm")]([])
+actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_brh6g")])
+actorAnimSets = Array[ExtResource("2_yrswj")]([])
+actorFaceTargets = Array[ExtResource("4_nk41c")]([])
+dialogues = Array[ExtResource("6_bfl1h")]([SubResource("Resource_ytgl3"), SubResource("Resource_la02y")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_m2xby"]
+script = ExtResource("1_dmmds")
+frameLength = 0.1
+annotation = "wait for the textbox to be closed"
 actorTweens = Array[ExtResource("5_yhacm")]([])
 actorAnims = Array[ExtResource("3_ixu3g")]([])
 actorAnimSets = Array[ExtResource("2_yrswj")]([])
@@ -200,7 +280,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("2_b46e3")
-cutsceneFrames = Array[ExtResource("1_dmmds")]([SubResource("Resource_ajo81"), SubResource("Resource_6i7kh"), SubResource("Resource_sjg2c"), SubResource("Resource_4obgt"), SubResource("Resource_5p83t"), SubResource("Resource_df5i0")])
+cutsceneFrames = Array[ExtResource("1_dmmds")]([SubResource("Resource_ajo81"), SubResource("Resource_6i7kh"), SubResource("Resource_sjg2c"), SubResource("Resource_4obgt"), SubResource("Resource_5p83t"), SubResource("Resource_b7sc7"), SubResource("Resource_l2my0"), SubResource("Resource_utjhk"), SubResource("Resource_m2xby"), SubResource("Resource_df5i0")])
 saveName = "leave_awaken_house"
 storyRequirements = SubResource("Resource_ckjew")
 unlockCameraHoldAfter = true
