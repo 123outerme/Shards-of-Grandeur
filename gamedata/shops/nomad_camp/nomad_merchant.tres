@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://cndc855sqjd1c"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_ech2e"]
+[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_et0km"]
+[ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="3_ycj5y"]
+[ext_resource type="Resource" uid="uid://caaq1wnanxqrf" path="res://gamedata/items/key_items/nomad_camp_teleport_stone.tres" id="4_niiq8"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_x6ecc"]
+
+[sub_resource type="Resource" id="Resource_watll"]
+script = ExtResource("2_et0km")
+sinceVersion = "0.1.4"
+item = ExtResource("3_ycj5y")
+count = -1
+
+[sub_resource type="Resource" id="Resource_5fcmk"]
+script = ExtResource("4_x6ecc")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_tudoy"]
+script = ExtResource("2_et0km")
+buyableStoryReqs = SubResource("Resource_5fcmk")
+sinceVersion = "0.1.4"
+item = ExtResource("4_niiq8")
+count = -1
+
+[resource]
+script = ExtResource("1_ech2e")
+shopItemSlots = Array[ExtResource("2_et0km")]([SubResource("Resource_watll"), SubResource("Resource_tudoy")])

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://2h45yd0rkqyo"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_dlmv8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_61rnv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nma1t"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_l6wgj"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_nidgj"]
+
+[sub_resource type="Resource" id="Resource_r4bx7"]
+script = ExtResource("2_nma1t")
+choiceBtn = "No Thanks"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_l6wgj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_jd0ir"]
+script = ExtResource("4_nidgj")
+opensShop = true
+choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_l6wgj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_r4gx7"]
+script = ExtResource("1_dlmv8")
+lines = Array[String](["Welcome to our Supplies Corner. We don't have much, but I hope it helps!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_nma1t")]([SubResource("Resource_r4bx7"), SubResource("Resource_jd0ir")])
+
+[resource]
+script = ExtResource("2_61rnv")
+entryId = ""
+items = Array[ExtResource("1_dlmv8")]([SubResource("Resource_r4gx7")])
+closesDialogue = false
+fullHealsPlayer = false
