@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://d38sxpfrfyo18"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_s04dm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_g7od8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_n1vr6"]
+
+[sub_resource type="Resource" id="Resource_cu1h5"]
+script = ExtResource("1_s04dm")
+lines = Array[String]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_n1vr6")]([])
+
+[resource]
+script = ExtResource("2_g7od8")
+entryId = "elder_help"
+items = Array[ExtResource("1_s04dm")]([SubResource("Resource_cu1h5")])
+closesDialogue = false
+fullHealsPlayer = false

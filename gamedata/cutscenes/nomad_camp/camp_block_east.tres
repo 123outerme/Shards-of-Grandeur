@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://n8b80e2ty0aw"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_hhapn"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_pwc4a"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_q78cv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_k4id6"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_vehkh"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_gg7vf"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_dvgvy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_8fkcb"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="7_4j6k6"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_sqjqp"]
+
+[sub_resource type="Resource" id="Resource_cou07"]
+script = ExtResource("6_8fkcb")
+speaker = "@"
+texts = Array[String](["I still don't understand what's happening here...", "I'd better go talk to that Nomad before I go."])
+
+[sub_resource type="Resource" id="Resource_ddve6"]
+script = ExtResource("1_hhapn")
+frameLength = 0.1
+annotation = "Have the player stop and speak"
+actorTweens = Array[ExtResource("5_dvgvy")]([])
+actorAnims = Array[ExtResource("3_k4id6")]([])
+actorAnimSets = Array[ExtResource("2_q78cv")]([])
+actorFaceTargets = Array[ExtResource("4_gg7vf")]([])
+dialogues = Array[ExtResource("6_8fkcb")]([SubResource("Resource_cou07")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_hsmo3"]
+script = ExtResource("7_sqjqp")
+value = Vector2(267, -170)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_pkgdr"]
+script = ExtResource("1_hhapn")
+frameLength = 1.0
+annotation = "walk the player away from the warp zone"
+actorTweens = Array[ExtResource("5_dvgvy")]([SubResource("Resource_hsmo3")])
+actorAnims = Array[ExtResource("3_k4id6")]([])
+actorAnimSets = Array[ExtResource("2_q78cv")]([])
+actorFaceTargets = Array[ExtResource("4_gg7vf")]([])
+dialogues = Array[ExtResource("6_8fkcb")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_2tjbs"]
+script = ExtResource("1_hhapn")
+frameLength = 0.1
+annotation = "Stop the player walking and wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_dvgvy")]([])
+actorAnims = Array[ExtResource("3_k4id6")]([ExtResource("7_4j6k6")])
+actorAnimSets = Array[ExtResource("2_q78cv")]([])
+actorFaceTargets = Array[ExtResource("4_gg7vf")]([])
+dialogues = Array[ExtResource("6_8fkcb")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_s5xqw"]
+script = ExtResource("3_vehkh")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["nomad1#elder_help"])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("2_pwc4a")
+cutsceneFrames = Array[ExtResource("1_hhapn")]([SubResource("Resource_ddve6"), SubResource("Resource_pkgdr"), SubResource("Resource_2tjbs")])
+saveName = ""
+storyRequirements = SubResource("Resource_s5xqw")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

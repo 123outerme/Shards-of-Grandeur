@@ -54,7 +54,11 @@ func _assign_two_layer_tiles():
 			TileDef.new('Midground', 2, Vector2i(3,1)), # house.png, 2nd left house
 			TileDef.new('Midground', 2, Vector2i(4,1)), # house.png, 2nd middle house
 			TileDef.new('Midground', 2, Vector2i(5,1)), # house.png, 2nd right house
-			TileDef.new('Midground', 5, Vector2i(0,1)), # well.png, well base
+			TileDef.new('Midground', 2, Vector2i(0,3)), # house.png, Standstill burned left house
+			TileDef.new('Midground', 2, Vector2i(1,3)), # house.png, Standstill burned middle house
+			TileDef.new('Midground', 2, Vector2i(2,3)), # house.png, Standstill burned right house
+			TileDef.new('Midground', 5, Vector2i(0,1)), # well.png, 1st well base
+			TileDef.new('Midground', 5, Vector2i(1,1)), # well.png, 2nd well base
 			TileDef.new('Midground', 22, Vector2i(2,1)), # ruined_castle.png, 1st house left
 			TileDef.new('Midground', 22, Vector2i(3,1)), # ruined_castle.png, 1st house right
 			TileDef.new('Midground', 22, Vector2i(4,1)), # ruined_castle.png, 2nd house left
@@ -81,7 +85,11 @@ func _assign_two_layer_tiles():
 			TileDef.new('Foreground', 2, Vector2i(3,0)), # house.png, 2nd left house roof
 			TileDef.new('Foreground', 2, Vector2i(4,0)), # house.png, 2nd middle house roof
 			TileDef.new('Foreground', 2, Vector2i(5,0)), # house.png, 2nd right house roof
-			TileDef.new('Foreground', 5, Vector2i(0,0)), # well.png, well roof
+			TileDef.new('Foreground', 2, Vector2i(0,2)), # house.png, Standstill burned left house roof
+			TileDef.new('Foreground', 2, Vector2i(1,2)), # house.png, Standstill burned middle house roof
+			TileDef.new('Foreground', 2, Vector2i(2,2)), # house.png, Standstill burned right house roof
+			TileDef.new('Foreground', 5, Vector2i(0,0)), # well.png, 1st well roof
+			TileDef.new('Foreground', 5, Vector2i(1,0)), # well.png, 2nd well roof
 			TileDef.new('Foreground', 22, Vector2i(2,0)), # ruined_castle.png, 1st house left roof
 			TileDef.new('Foreground', 22, Vector2i(3,0)), # ruined_castle.png, 1st house right roof
 			TileDef.new('Foreground', 22, Vector2i(4,0)), # ruined_castle.png, 2nd house left roof
@@ -108,7 +116,11 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1), # shift house.png, 2nd left house roof up 1
 			Vector2i(0, -1), # shift house.png, 2nd middle house roof up 1
 			Vector2i(0, -1), # shift house.png, 2nd right house roof up 1
-			Vector2i(0, -1), # shift well.png, well roof up 1
+			Vector2i(0, -1), # shift house.png, burned left house roof up 1
+			Vector2i(0, -1), # shift house.png, burned middle house roof up 1
+			Vector2i(0, -1), # shift house.png, burned right house roof up 1
+			Vector2i(0, -1), # shift well.png, 1st well roof up 1
+			Vector2i(0, -1), # shift well.png, 2nd well roof up 1
 			Vector2i(0, -1), # shift ruined_castle.png, 1st house left roof up 1
 			Vector2i(0, -1), # shift ruined_castle.png, 1st house right roof up 1
 			Vector2i(0, -1), # shift ruined_castle.png, 2nd house left roof up 1
