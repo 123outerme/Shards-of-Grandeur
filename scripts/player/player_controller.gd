@@ -534,7 +534,7 @@ func pick_up(groundItem: GroundItem):
 		return
 	
 	interactableDialogues.append(groundItem.pickedUpItem)
-	groundItem.pickedUpItem.wasPickedUp = PlayerResources.inventory.add_item(groundItem.pickedUpItem.item)
+	groundItem.pickedUpItem.wasPickedUp = PlayerResources.inventory.can_add_item(groundItem.pickedUpItem.item)
 	if groundItem.pickedUpItem.wasPickedUp:
 		#PlayerResources.playerInfo.pickedUpItems.append(groundItem.saveName)
 		groundItem.visible = false

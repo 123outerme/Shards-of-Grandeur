@@ -407,8 +407,8 @@ func special_battle_update(encounterId: String, clear: bool):
 		PlayerResources.story_requirements_updated.emit()
 
 func ground_item_update(groundItemId: String, clear: bool):
+	var idx: int = PlayerResources.playerInfo.pickedUpItems.find(groundItemId)
 	if clear:
-		var idx: int = PlayerResources.playerInfo.pickedUpItems.find(groundItemId)
 		if idx != -1:
 			PlayerResources.playerInfo.pickedUpItems.remove_at(idx)
 			print_to_console('Cleared acquired state on ground item "' + groundItemId + '".')
@@ -416,9 +416,12 @@ func ground_item_update(groundItemId: String, clear: bool):
 		else:
 			print_to_console('Ground item "' + groundItemId + '" was already not picked up. No operation performed.')
 	else:
-		PlayerResources.playerInfo.pickedUpItems.append(groundItemId)
-		print_to_console('Set ground item "' + groundItemId + '" as picked up.')
-		PlayerResources.story_requirements_updated.emit()
+		if idx == -1:
+			PlayerResources.playerInfo.pickedUpItems.append(groundItemId)
+			print_to_console('Set ground item "' + groundItemId + '" as picked up.')
+			PlayerResources.story_requirements_updated.emit()
+		else:
+			print_to_console('Ground item "' + groundItemId + '" was already picked up. No operation performed.')
 
 func teleport_to(mapName: String):
 	if MapLoader.get_world_location_for_name(mapName) != null:

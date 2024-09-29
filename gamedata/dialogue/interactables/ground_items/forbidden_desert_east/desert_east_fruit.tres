@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b405l6t0bpmhx"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_48byj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_l8tks"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_oxt31"]
+
+[sub_resource type="Resource" id="Resource_3a468"]
+script = ExtResource("1_48byj")
+lines = Array[String](["Good thing I found a fruit here, it'll come in handy when I get to the elder Nomad."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_oxt31")]([])
+
+[resource]
+script = ExtResource("2_l8tks")
+entryId = ""
+items = Array[ExtResource("1_48byj")]([SubResource("Resource_3a468")])
+closesDialogue = false
+fullHealsPlayer = false

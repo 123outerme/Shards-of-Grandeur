@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://bgre0eix1l2ll"]
+
+[ext_resource type="Texture2D" uid="uid://c5wxdbhbbb0wy" path="res://graphics/items/weapons/fossil_axe.png" id="1_meiqx"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_oev2f"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_ot7w6"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_ej4ih"]
+
+[sub_resource type="Resource" id="Resource_7lbdr"]
+script = ExtResource("3_ot7w6")
+element = 5
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_o501d"]
+script = ExtResource("4_ej4ih")
+physAttackIncrease = 2
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_ot7w6")]([SubResource("Resource_7lbdr")])
+
+[resource]
+script = ExtResource("1_oev2f")
+statChanges = SubResource("Resource_o501d")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_meiqx")
+itemName = "Fossil Axe"
+itemType = 2
+itemDescription = "This short battleaxe was crafted from the fossilized remains of a terrible lizard. The blowing desert winds sharpened the bone blade. as it laid in the sand."
+cost = 35
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

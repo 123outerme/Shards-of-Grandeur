@@ -102,6 +102,7 @@ func finished_dialogue():
 	var playerPickedUp: bool = false
 	if PlayerFinder.player.interactableDialogues[0] is PickedUpItem:
 		var pickedUp: PickedUpItem = PlayerFinder.player.interactableDialogues[0] as PickedUpItem
+		PlayerResources.inventory.add_item(pickedUp.item)
 		playerPickedUp = pickedUp.wasPickedUp
 		
 	if playerPickedUp:

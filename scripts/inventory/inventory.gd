@@ -42,7 +42,7 @@ func add_item(item: Item) -> bool:
 		if slot.item == item:
 			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
 			# either way we aren't creating a new slot
-			if slot.count < slot.item.maxCount or slot.item.maxCount == 0:
+			if slot.count < slot.item.maxCount or slot.item.maxCount <= 0:
 				if slot.count < 0:
 					return true # if negative (infinite-size shop slot), don't do anything
 				slot.count += 1
@@ -56,6 +56,19 @@ func add_item(item: Item) -> bool:
 		PlayerResources.questInventory.auto_update_quests()
 		return true
 	return false
+
+func can_add_item(item: Item) -> bool:
+	if item == null:
+		return false
+	var found: bool = false
+	for slot in inventorySlots:
+		if slot.item == item:
+			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
+			# either way we aren't creating a new slot
+			if slot.count < slot.item.maxCount or slot.item.maxCount <= 0:
+				return true
+	# if not found, add a new slot
+	return not found
 
 func has_item(item: Item) -> bool:
 	for slot in inventorySlots:

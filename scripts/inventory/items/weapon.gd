@@ -1,8 +1,13 @@
 extends Item
 class_name Weapon
 
+## stat changes that occur when the `timing` condition is met.
 @export var statChanges: StatChanges = StatChanges.new()
+
+## the timing for when stat changes occur. Unreachable timings are: "Before/During/After Dmg Calc", "After Post Round"
 @export var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND
+
+## orbs to gain ONLY at the beginning of battle
 @export var bonusOrbs: int = 0
 
 func _init(
