@@ -1,32 +1,22 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://btkpgo8r4sxar"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://btkpgo8r4sxar"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7wqtc"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jxji5"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_l1y40"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_nxwmm"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pctpy"]
-[ext_resource type="Resource" uid="uid://d38sxpfrfyo18" path="res://gamedata/dialogue/nomad_camp/nomad1/nomad1_elder_help.tres" id="4_23b24"]
+[ext_resource type="Resource" uid="uid://d38sxpfrfyo18" path="res://gamedata/dialogue/nomad_camp/nomad1/nomad1_elder_east.tres" id="3_u4i0u"]
 
-[sub_resource type="Resource" id="Resource_8nwuj"]
+[sub_resource type="Resource" id="Resource_as4xd"]
 script = ExtResource("2_l1y40")
-choiceBtn = "I Don't Know..."
+choiceBtn = "East?"
+leadsTo = ExtResource("3_u4i0u")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_pctpy")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = true
-
-[sub_resource type="Resource" id="Resource_as4xd"]
-script = ExtResource("2_l1y40")
-choiceBtn = ""
-leadsTo = ExtResource("4_23b24")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_pctpy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_1fiux"]
 script = ExtResource("1_7wqtc")
@@ -36,7 +26,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_l1y40")]([SubResource("Resource_8nwuj"), SubResource("Resource_as4xd")])
+choices = Array[ExtResource("2_l1y40")]([SubResource("Resource_as4xd")])
 
 [sub_resource type="Resource" id="Resource_6jb4g"]
 script = ExtResource("3_nxwmm")
@@ -53,7 +43,7 @@ prereqDiscoveredEvolutions = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String](["nomad1#elder_help"])
+invalidAfterDialogues = Array[String](["nomad1#player_awake"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])

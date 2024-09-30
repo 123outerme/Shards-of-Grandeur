@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://c26uetv4g5ym2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://c26uetv4g5ym2"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ckbbk"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_qiuql"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_7xcwj"]
 script = ExtResource("2_qiuql")
-name = "Track The Elder"
+name = "The Ruinous Cavern?"
 description = "The elder left to the east of the Nomad Camp, so retrace his steps. Hopefully he hasn't gone too far..."
 type = 3
 count = 1
@@ -40,10 +40,24 @@ customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_a40f2")]([])
 inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
+[sub_resource type="Resource" id="Resource_yee4y"]
+script = ExtResource("2_qiuql")
+name = "Back to Base Camp"
+description = "With the Dragon vanquished and the elder secured, you'd best head back to the Nomad Camp. Too bad about that Radiant Cave mouth being collapsed..."
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_a40f2")]([])
+inProgressDialogue = Array[ExtResource("3_a40f2")]([])
+
 [resource]
 script = ExtResource("1_ckbbk")
 questName = "Nomadic Rescue"
 description = "The desert Nomads have rescued you, and now they need someone to rescue one of them! You're tasked with rescuing their elder."
-steps = Array[ExtResource("2_qiuql")]([SubResource("Resource_7xcwj"), SubResource("Resource_sxfel")])
+steps = Array[ExtResource("2_qiuql")]([SubResource("Resource_7xcwj"), SubResource("Resource_sxfel"), SubResource("Resource_yee4y")])
 isMainQuest = true
 advanceActActerComplete = true
