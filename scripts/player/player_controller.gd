@@ -606,18 +606,19 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					interactableDialogue = null
 				else:
 					interactableDialogue = interactableDialogues[interactableDialogueIndex]
-	if interactableDialogue != null and playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
-		interactable.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
-	if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation != '':
-		if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorIsPlayer:
-			play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
-		else:
-			var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorTreePath, false)
-			if node != null:
-				if node.has_method('play_animation'):
-					node.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
-				else:
-					print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
+	if interactableDialogue != null:
+		if playDialogueItemAnim and interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation != '':
+			interactable.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animation)
+		if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation != '':
+			if interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorIsPlayer:
+				play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
+			else:
+				var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].animateActorTreePath, false)
+				if node != null:
+					if node.has_method('play_animation'):
+						node.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
+					else:
+						print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
 	
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:
@@ -689,18 +690,19 @@ func get_collider(): # for use before full player initialization in MapLoader
 	return get_node('ColliderShape')
 
 func menu_closed():
-	if not inventoryPanel.visible and not questsPanel.visible and not statsPanel.visible \
-			and not textBox.visible and not pausePanel.visible:
+	if not inventoryPanel.visible and not questsPanel.visible and \
+			not statsPanel.visible and not pausePanel.visible:
 		animatedBgPanel.visible = false
-		SceneLoader.unpause_autonomous_movers()
-		overworldTouchControls.set_all_visible()
-		if useTeleportStone != null:
-			play_animation('teleport')
-			SceneLoader.audioHandler.play_sfx(teleportSfx)
-			disableMovement = true
-			await get_tree().create_timer(0.5).timeout
-			if not SceneLoader.mapLoader.loading:
-				SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+		if not textBox.visible:
+			SceneLoader.unpause_autonomous_movers()
+			overworldTouchControls.set_all_visible()
+			if useTeleportStone != null:
+				play_animation('teleport')
+				SceneLoader.audioHandler.play_sfx(teleportSfx)
+				disableMovement = true
+				await get_tree().create_timer(0.5).timeout
+				if not SceneLoader.mapLoader.loading:
+					SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
 
 func start_battle():
 	if startingBattle:
@@ -720,6 +722,7 @@ func _on_shop_button_pressed():
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.shopInventory = talkNPC.inventory
 	inventoryPanel.toggle()
+	animatedBgPanel.visible = true
 
 func _on_turn_in_button_pressed():
 	var turnInTarget: String = ''

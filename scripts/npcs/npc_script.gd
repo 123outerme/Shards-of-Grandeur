@@ -338,7 +338,10 @@ func advance_dialogue() -> bool:
 			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
 				play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].actorAnimation != '':
-				var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorTreePath, data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorIsPlayer)
+				var node: Node = SceneLoader.cutscenePlayer.fetch_actor_node(
+					data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorTreePath,
+					data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animateActorIsPlayer
+				)
 				if node != null:
 					if node.has_method('play_animation'):
 						node.play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].actorAnimation)
