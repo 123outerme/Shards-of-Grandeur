@@ -1,6 +1,10 @@
 extends StatAllocationStrategy
 class_name PredeterminedAllocationStrategy
 
+# see the PreterminedAllocation script for a full explanation on how each allocation should be defined
+# when more stat points need to be allocated than the total summed up in each allocation of `allocations`,
+# The process is repeated started at the first allocation again
+
 ## must have length > 0
 @export var allocations: Array[PreterminedAllocation] = []
 

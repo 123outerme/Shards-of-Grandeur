@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://bmjv8myy78i10"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_3g718"]
+[ext_resource type="SpriteFrames" uid="uid://28idy1aoh440" path="res://graphics/animations/a_dragon.tres" id="2_4iev4"]
+
+[resource]
+script = ExtResource("1_3g718")
+spriteFrames = ExtResource("2_4iev4")
+maxSize = Vector2(48, 48)
+idleSize = Vector2(48, 48)
+centerPosition = Vector2(27, 32)
+feetPosition = Vector2(27, 47)
+spriteFacesRight = false
+navigationLayer = 4
+attackAffinityArrivalFrame = 3
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 5
+attackMagicImpactFrame = 3
+attackPhysImpactFrame = 11

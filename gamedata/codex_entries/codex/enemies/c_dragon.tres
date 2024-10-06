@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://ddfj43v1bh4eo"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_sct6m"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ev7mc"]
+
+[sub_resource type="Resource" id="Resource_plw1u"]
+script = ExtResource("2_ev7mc")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String](["dragon"])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+
+[resource]
+script = ExtResource("1_sct6m")
+id = "dragpn"
+title = "Dragon"
+storyRequirements = Array[ExtResource("2_ev7mc")]([SubResource("Resource_plw1u")])
+description = "Encountering a Dragon is said to be one of the three most sure ways to meet your end. It is said only a force from the heavens is capable of slaying a Dragon for good. Its hardened scales resist most elemental burns."
+sortOrder = 0

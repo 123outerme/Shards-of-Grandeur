@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=7 format=3 uid="uid://bnsb3lh67aygs"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_wcfs6"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_opyj2"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_ru111"]
+[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="3_hattw"]
+[ext_resource type="Resource" uid="uid://ch4ub4fjauove" path="res://gamedata/moves/gale_force/gale_force.tres" id="4_e8fj0"]
+[ext_resource type="Resource" uid="uid://c53l41ogdmc8i" path="res://gamedata/moves/hunters_instinct/hunters_instinct.tres" id="5_l01lq"]
+
+[resource]
+script = ExtResource("2_opyj2")
+pool = Array[ExtResource("1_wcfs6")]([ExtResource("2_ru111"), ExtResource("3_hattw"), ExtResource("4_e8fj0"), ExtResource("5_l01lq")])
+preferredMove1Role = 2
+preferredMove1DmgType = 1
+preferredMove1Element = 2
+preferredMove2Role = 1
+preferredMove2DmgType = -1
+preferredMove2Element = 2
+preferredMove3Role = 3
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0

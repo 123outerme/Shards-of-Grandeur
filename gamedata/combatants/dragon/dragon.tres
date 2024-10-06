@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://dfd6upveebcdv"]
+
+[ext_resource type="Resource" uid="uid://mj8m21sd3moj" path="res://gamedata/combatants/dragon/dragon_evolutions.tres" id="1_8y2wj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_a8e76"]
+[ext_resource type="Resource" uid="uid://cx6h8xnss3tpk" path="res://gamedata/combatants/dragon/dragon_rewards.tres" id="1_kveld"]
+[ext_resource type="Resource" uid="uid://bmjv8myy78i10" path="res://gamedata/combatants/dragon/dragon_sprite.tres" id="2_4jscl"]
+[ext_resource type="Resource" uid="uid://bnsb3lh67aygs" path="res://gamedata/combatants/dragon/dragon_movepool.tres" id="3_tud1b"]
+[ext_resource type="Resource" uid="uid://blpifx5qrqya5" path="res://gamedata/combatants/dragon/dragon_effectiveness.tres" id="3_ws8o1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="3_yi5y7"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="4_8rdpt"]
+[ext_resource type="Resource" uid="uid://bn2mx500twghp" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy.tres" id="6_hfde2"]
+[ext_resource type="Resource" uid="uid://djd8jqk4tr3ll" path="res://gamedata/combatants/dragon/dragon_stat_growth.tres" id="6_smgtq"]
+[ext_resource type="Resource" uid="uid://c15i72ewcdht3" path="res://gamedata/combatants/dragon/dragon_equipment.tres" id="11_ppunh"]
+
+[sub_resource type="Resource" id="Resource_8fkj1"]
+script = ExtResource("4_8rdpt")
+displayName = "Dragon"
+saveName = "dragon"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("6_smgtq")
+moves = Array[ExtResource("3_yi5y7")]([])
+movepool = ExtResource("3_tud1b")
+
+[resource]
+script = ExtResource("1_a8e76")
+sprite = ExtResource("2_4jscl")
+nickname = ""
+stats = SubResource("Resource_8fkj1")
+evolutions = ExtResource("1_8y2wj")
+evolutionStats = {}
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+aiType = 1
+damageAggroType = 3
+strategy = 1
+aiOverrideWeight = 0.15
+moveEffectiveness = ExtResource("3_ws8o1")
+weightedEquipment = ExtResource("11_ppunh")
+dropTable = ExtResource("1_kveld")
+statAllocationStrategy = ExtResource("6_hfde2")
+downed = false

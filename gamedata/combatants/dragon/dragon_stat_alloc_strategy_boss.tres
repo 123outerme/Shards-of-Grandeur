@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PredeterminedAllocationStrategy" load_steps=4 format=3 uid="uid://dqg27upoc4fmw"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation.gd" id="1_723cu"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation_strategy.gd" id="2_o7w7a"]
+
+[sub_resource type="Resource" id="Resource_hkc5u"]
+script = ExtResource("1_723cu")
+allocations = Array[int]([1, 1, 0, 1, 2, 1, 4, 0, 1, 0])
+forStatPoints = 10
+
+[resource]
+script = ExtResource("2_o7w7a")
+allocations = Array[ExtResource("1_723cu")]([SubResource("Resource_hkc5u")])
