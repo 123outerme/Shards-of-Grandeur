@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=9 format=3 uid="uid://50ylfmea7s1f"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_6nlll"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_leily"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_q75ij"]
+[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="3_3db0c"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_y6hm3"]
+[ext_resource type="Resource" uid="uid://dqg27upoc4fmw" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy_boss.tres" id="4_26adn"]
+[ext_resource type="Resource" uid="uid://206otuqdhqhy" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion.tres" id="5_irb44"]
+[ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="6_wfitb"]
+
+[resource]
+script = ExtResource("3_y6hm3")
+combatant1Level = 18
+combatant1Moves = Array[ExtResource("1_6nlll")]([])
+combatant2 = ExtResource("5_irb44")
+combatant2Level = 16
+combatant2Moves = Array[ExtResource("1_6nlll")]([])
+combatant3 = ExtResource("6_wfitb")
+combatant3Level = 16
+combatant3Moves = Array[ExtResource("1_6nlll")]([])
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_6nlll")]([])
+specialBattleId = "dragon1"
+bossBattle = true
+canEscape = false
+rewards = Array[ExtResource("2_leily")]([])
+useStaticRewards = false
+battleMusic = ExtResource("2_q75ij")
+combatant1 = ExtResource("3_3db0c")
+combatant1StatAllocStrat = ExtResource("4_26adn")
+specialRules = 0
+customWinText = "Wrauuughhhhh..."
