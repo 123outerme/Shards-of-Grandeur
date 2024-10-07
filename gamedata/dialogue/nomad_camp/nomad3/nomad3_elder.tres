@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://ch7bdks1pj2du"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://ch7bdks1pj2du"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t6j7e"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jdyth"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qgbvp"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8atxi"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_2td52"]
+[ext_resource type="Resource" uid="uid://bdykwa0xcvodk" path="res://gamedata/dialogue/nomad_camp/nomad3/nomad3_elder_y.tres" id="5_qkb5l"]
 
 [sub_resource type="Resource" id="Resource_vgq4q"]
 script = ExtResource("4_2td52")
@@ -61,6 +62,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 script = ExtResource("2_qgbvp")
 choiceBtn = "Yes, I Am."
 storyRequirements = SubResource("Resource_v58p6")
+leadsTo = ExtResource("5_qkb5l")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_8atxi")]([])
 repeatsItem = false
@@ -70,7 +72,7 @@ isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_gpp2w"]
 script = ExtResource("1_t6j7e")
-lines = Array[String](["Are you going to look for our elder, adventurer?"])
+lines = Array[String](["Are you going to look for my husband, adventurer?"])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""

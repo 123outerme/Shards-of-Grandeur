@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://lma6iu1hy74f"]
+[gd_scene load_steps=42 format=4 uid="uid://lma6iu1hy74f"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_octrj"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_5iptf"]
@@ -18,12 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_aoyhc"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="10_s7muu"]
 [ext_resource type="Resource" uid="uid://cbjmmycmx2h58" path="res://gamedata/cutscenes/nomad_camp/leave_awaken_house.tres" id="11_7ifcc"]
+[ext_resource type="SpriteFrames" uid="uid://dqby3p8d5cox2" path="res://graphics/animations/a_nomad3.tres" id="13_cotb0"]
 [ext_resource type="Resource" uid="uid://b08vha6maa8rm" path="res://gamedata/cutscenes/nomad_camp/camp_block_north.tres" id="15_su72i"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="15_upvib"]
 [ext_resource type="Resource" uid="uid://n8b80e2ty0aw" path="res://gamedata/cutscenes/nomad_camp/camp_block_east.tres" id="16_urnk2"]
 [ext_resource type="Resource" uid="uid://da6ixck58qpq8" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_help.tres" id="19_s87p8"]
 
-[sub_resource type="Resource" id="Resource_ail2v"]
+[sub_resource type="Resource" id="Resource_6he35"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -43,7 +44,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_tsd54"]
+[sub_resource type="Resource" id="Resource_jmxfu"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -63,7 +64,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_aifxw"]
+[sub_resource type="Resource" id="Resource_g1osw"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -83,7 +84,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_y33aj"]
+[sub_resource type="Resource" id="Resource_r6swn"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -151,7 +152,7 @@ size = Vector2(118, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rca68"]
 size = Vector2(56, 87)
 
-[sub_resource type="Resource" id="Resource_gpk6e"]
+[sub_resource type="Resource" id="Resource_gjihn"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -220,7 +221,7 @@ position = Vector2(202, 217)
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_ail2v")
+data = SubResource("Resource_6he35")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -243,7 +244,7 @@ visible = false
 visible = false
 collision_layer = 0
 displayName = "Elder"
-data = SubResource("Resource_tsd54")
+data = SubResource("Resource_jmxfu")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -264,11 +265,11 @@ position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
 loadFlipH = true
-data = SubResource("Resource_aifxw")
+data = SubResource("Resource_g1osw")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
-sprite_frames = ExtResource("6_al45b")
+sprite_frames = ExtResource("13_cotb0")
 animation = &"stand"
 flip_h = true
 
@@ -285,7 +286,7 @@ visible = false
 [node name="Nomad4" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
 position = Vector2(-124, 208)
 displayName = "Nomad"
-data = SubResource("Resource_y33aj")
+data = SubResource("Resource_r6swn")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad4" index="0"]
 sprite_frames = ExtResource("6_al45b")
@@ -433,7 +434,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(387, -167)
-data = SubResource("Resource_gpk6e")
+data = SubResource("Resource_gjihn")
 
 [editable path="TilemapRoot/Nomad1"]
 [editable path="TilemapRoot/Nomad2"]

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bdykwa0xcvodk"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_wtcyk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jj1tg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tpv7y"]
+
+[sub_resource type="Resource" id="Resource_a7htl"]
+script = ExtResource("1_wtcyk")
+lines = Array[String](["Oh, thank you! Come back safe, now..."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_tpv7y")]([])
+
+[resource]
+script = ExtResource("2_jj1tg")
+entryId = ""
+items = Array[ExtResource("1_wtcyk")]([SubResource("Resource_a7htl")])
+closesDialogue = false
+fullHealsPlayer = false
