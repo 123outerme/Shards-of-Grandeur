@@ -19,6 +19,7 @@ enum CameraFade {
 @export var endTextBoxPauses: bool = true
 @export var shakeCamForDuration: bool = false
 @export var endHoldCamera: bool = false
+@export var cameraMovement: CutsceneCameraMovement = null
 @export var endFade: CameraFade = CameraFade.NONE
 @export var endFadeLength: float = 0
 @export var givesItem: Item = null
@@ -38,6 +39,7 @@ func _init(
 	i_endTextPauses = true,
 	i_shakeCamForDuration = false,
 	i_endHoldCam = false,
+	i_cameraMovement = null,
 	i_endFade = CameraFade.NONE,
 	i_givesItem = null,
 	i_healsPlayer = false,
@@ -54,6 +56,7 @@ func _init(
 	endTextBoxPauses = i_endTextPauses
 	shakeCamForDuration = i_shakeCamForDuration
 	endHoldCamera = i_endHoldCam
+	cameraMovement = i_cameraMovement
 	endFade = i_endFade
 	givesItem = i_givesItem
 	healsPlayer = i_healsPlayer

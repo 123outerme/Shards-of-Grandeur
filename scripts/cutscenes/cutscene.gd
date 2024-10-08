@@ -45,6 +45,17 @@ func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> Cutsc
 		accumulator += frame.frameLength
 	return null
 
+func get_current_frame_time(totalTime: float, prevFrame: CutsceneFrame = null) -> float:
+	var accumulator: float = 0
+	var foundPrevFrame: bool = false
+	for frame in cutsceneFrames:
+		if (totalTime >= accumulator and totalTime < accumulator + frame.frameLength) or foundPrevFrame:
+			return totalTime - accumulator
+		if prevFrame == frame:
+			foundPrevFrame = true
+		accumulator += frame.frameLength
+	return accumulator
+
 func get_index_for_frame(frame: CutsceneFrame) -> int:
 	for idx in range(len(cutsceneFrames)):
 		if frame == cutsceneFrames[idx]:

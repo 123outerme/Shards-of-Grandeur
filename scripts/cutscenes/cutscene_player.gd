@@ -20,6 +20,7 @@ var completeAfterFadeIn: bool = false
 var skipCutsceneFrameIndex: int = -1
 var skipping: bool = true
 var awaitingPlayer: bool = false
+var lastFrameCameraPos: Vector2 = Vector2.ZERO
 
 var collisionDisabledNodes: Array = []
 var collisionPrevEnabledNodes: Dictionary = {}
@@ -63,7 +64,7 @@ func _process(delta):
 		if frame == null: # end of cutscene
 			end_cutscene()
 			return
-				
+		
 		if lastFrame == frame:
 			return
 		
@@ -72,7 +73,12 @@ func _process(delta):
 func is_in_dialogue() -> bool:
 	return PlayerFinder.player.is_in_dialogue()
 
-func handle_camera(frame: CutsceneFrame):
+func handle_camera_move(percentTime: float, frame: CutsceneFrame, lFrame: CutsceneFrame) -> void:
+	if frame != null and frame.cameraMovement != null and lFrame != null and lFrame.endHoldCamera and (PlayerFinder.player.holdCameraX and PlayerFinder.player.holdCameraY):
+		var camPosition: Vector2 = frame.cameraMovement.get_camera_position_at_time(percentTime, 1, lastFrameCameraPos, PlayerFinder.player.position)
+		PlayerFinder.player.holdingCameraAt = camPosition
+
+func handle_camera(frame: CutsceneFrame) -> void:
 	if lastFrame.endHoldCamera and not (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
 		PlayerFinder.player.hold_camera_at(PlayerFinder.player.position)
 	if not lastFrame.endHoldCamera and (PlayerFinder.player.holdCameraX or PlayerFinder.player.holdCameraY):
@@ -139,10 +145,19 @@ func get_all_actor_nodes_in_cutscene() -> Array:
 				nodeDict[node.name] = node
 	return nodeDict.values()
 
+func get_last_player_cam_pos() -> Vector2:
+	return PlayerFinder.player.holdingCameraAt if lastFrame != null and lastFrame.cameraMovement != null else PlayerFinder.player.position
+
 func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
+	var prevLastFrame: CutsceneFrame = lastFrame
 	lastFrame = frame
+	lastFrameCameraPos = get_last_player_cam_pos()
 	if frame.shakeCamForDuration:
 		handle_start_cam_shake()
+	
+	if frame.cameraMovement != null:
+		var camMoveTween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		camMoveTween.tween_method(handle_camera_move.bind(frame, prevLastFrame), 0.0, 1.0, frame.frameLength)
 	
 	for animSet in frame.actorAnimSets:
 		var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)

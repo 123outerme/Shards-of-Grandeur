@@ -46,7 +46,7 @@ var shownTextNotPaused: bool = false
 
 var fetchedActors: Array[Node2D] = []
 
-@onready var mockPlayer: Node = get_node('MockPlayer')
+@onready var mockPlayer: MockPlayer = get_node('MockPlayer')
 
 func _init():
 	if not Engine.is_editor_hint():
@@ -78,6 +78,14 @@ func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
 
 func is_in_dialogue() -> bool:
 	return false
+
+func handle_camera_move(percentTime: float, frame: CutsceneFrame, lFrame: CutsceneFrame) -> void:
+	if frame != null and frame.cameraMovement != null and lFrame != null and lFrame.endHoldCamera and (mockPlayer.holdCameraX or mockPlayer.holdCameraY):
+		var camPosition: Vector2 = frame.cameraMovement.get_camera_position_at_time(percentTime, 1, lastFrameCameraPos, mockPlayer.position)
+		mockPlayer.hold_camera_at(camPosition)
+
+func get_last_player_cam_pos() -> Vector2:
+	return mockPlayer.holdCameraPos if lastFrame != null and lastFrame.cameraMovement != null else mockPlayer.position
 
 func handle_camera(frame: CutsceneFrame):
 	if lastFrame.endHoldCamera and not (mockPlayer.holdCameraX or mockPlayer.holdCameraY):

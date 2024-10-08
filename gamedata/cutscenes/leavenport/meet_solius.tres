@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=25 format=3 uid="uid://c3gj8c3m11yyt"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://c3gj8c3m11yyt"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="1_5yurt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_b031n"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="5_npric"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_hruq5"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_g4s6v"]
+[ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="8_o6w1j"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="9_ie041"]
 
 [sub_resource type="Resource" id="Resource_bi4sv"]
 script = ExtResource("1_5yurt")
@@ -44,15 +46,25 @@ actorFaceTargets = Array[ExtResource("1_5yurt")]([SubResource("Resource_bi4sv"),
 dialogues = Array[ExtResource("1_b031n")]([SubResource("Resource_kfke8")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_elpry"]
+script = ExtResource("8_o6w1j")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_1f4mw"]
+script = ExtResource("9_ie041")
+movementCurve = SubResource("Resource_elpry")
+finalPos = Vector2(98, 206)
+relative = false
+
 [sub_resource type="Resource" id="Resource_qeqlo"]
 script = ExtResource("1_kytaw")
-frameLength = 0.1
+frameLength = 1.25
 annotation = "wait for the player to close the textbox"
 actorTweens = Array[ExtResource("6_hruq5")]([])
 actorAnims = Array[ExtResource("3_ip3b7")]([])
@@ -61,7 +73,8 @@ actorFaceTargets = Array[ExtResource("1_5yurt")]([])
 dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_1f4mw")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -87,7 +100,7 @@ actorFaceTargets = Array[ExtResource("1_5yurt")]([])
 dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -123,9 +136,37 @@ actorAnims = Array[ExtResource("3_ip3b7")]([ExtResource("5_npric")])
 actorAnimSets = Array[ExtResource("2_hlnu7")]([])
 actorFaceTargets = Array[ExtResource("1_5yurt")]([SubResource("Resource_71hnc"), SubResource("Resource_mo7qf")])
 dialogues = Array[ExtResource("1_b031n")]([SubResource("Resource_ielkh")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_jlffl"]
+script = ExtResource("8_o6w1j")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_5rcwy"]
+script = ExtResource("9_ie041")
+movementCurve = SubResource("Resource_jlffl")
+finalPos = Vector2(0, 0)
+relative = true
+
+[sub_resource type="Resource" id="Resource_87257"]
+script = ExtResource("1_kytaw")
+frameLength = 0.5
+annotation = "camera resets back onto player"
+actorTweens = Array[ExtResource("6_hruq5")]([])
+actorAnims = Array[ExtResource("3_ip3b7")]([])
+actorAnimSets = Array[ExtResource("2_hlnu7")]([])
+actorFaceTargets = Array[ExtResource("1_5yurt")]([])
+dialogues = Array[ExtResource("1_b031n")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_5rcwy")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -170,7 +211,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 
 [resource]
 script = ExtResource("1_w4hne")
-cutsceneFrames = Array[ExtResource("1_kytaw")]([SubResource("Resource_7pjny"), SubResource("Resource_qeqlo"), SubResource("Resource_cxng8"), SubResource("Resource_7g5fd"), SubResource("Resource_knmkm")])
+cutsceneFrames = Array[ExtResource("1_kytaw")]([SubResource("Resource_7pjny"), SubResource("Resource_qeqlo"), SubResource("Resource_cxng8"), SubResource("Resource_7g5fd"), SubResource("Resource_87257"), SubResource("Resource_knmkm")])
 saveName = "meet_solius"
 storyRequirements = SubResource("Resource_3rq3p")
 unlockCameraHoldAfter = true
