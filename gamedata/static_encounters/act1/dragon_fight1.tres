@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=9 format=3 uid="uid://50ylfmea7s1f"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=11 format=3 uid="uid://50ylfmea7s1f"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_6nlll"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_leily"]
@@ -8,6 +8,11 @@
 [ext_resource type="Resource" uid="uid://dqg27upoc4fmw" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy_boss.tres" id="4_26adn"]
 [ext_resource type="Resource" uid="uid://206otuqdhqhy" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion.tres" id="5_irb44"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="6_wfitb"]
+[ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="9_p5b7j"]
+
+[sub_resource type="Resource" id="Resource_8ehk7"]
+script = ExtResource("9_p5b7j")
+minTurns = 5
 
 [resource]
 script = ExtResource("3_y6hm3")
@@ -30,4 +35,5 @@ battleMusic = ExtResource("2_q75ij")
 combatant1 = ExtResource("3_3db0c")
 combatant1StatAllocStrat = ExtResource("4_26adn")
 specialRules = 0
+winCon = SubResource("Resource_8ehk7")
 customWinText = "Wrauuughhhhh..."

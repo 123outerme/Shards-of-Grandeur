@@ -1,7 +1,13 @@
 extends WinCon
 class_name SurviveWinCon
 
-@export_range(2, INF) var minTurns: int = 2
+@export var minTurns: int = 2
+
+func _init(
+	i_minTurns: int = 2,
+):
+	super()
+	minTurns = i_minTurns
 
 func get_result(combatants: Array[CombatantNode], battleState: BattleState) -> TurnResult:
 	if battleState.turnNumber >= minTurns:
