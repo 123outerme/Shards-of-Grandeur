@@ -2,10 +2,10 @@
 extends Resource
 class_name AnimCurve2D
 
-## curve shape of the X value from t=0 (start time) to t=1 (end time)
+## curve shape of the X value from t=0 (start time) to t=1 (end time). If null, will use linear interpolation
 @export var curveX: Curve = null
 
-## curve shape of the Y value from t=0 (start time) to t=1 (end time)
+## curve shape of the Y value from t=0 (start time) to t=1 (end time). If null, will use linear interpolation
 @export var curveY: Curve = null
 
 ## if true, overrides curveX/curveY values and simply provides linear interpolation from t=0 to t=1
@@ -28,7 +28,7 @@ func get_position_at_time(percentTime: float, initialPos: Vector2, finalPos: Vec
 	percentTime = min(1, max(0, percentTime)) # bound percentTime between 0 and 1
 	var diff: Vector2 = (finalPos - initialPos)
 	
-	if linearInterp:
+	if linearInterp or curveX == null or curveY == null:
 		return initialPos + diff * percentTime
 	else:
 		var pos: Vector2 = Vector2.ZERO
