@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://c26uetv4g5ym2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://c26uetv4g5ym2"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ckbbk"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_qiuql"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_a40f2"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_2el6d"]
 
 [sub_resource type="Resource" id="Resource_7xcwj"]
 script = ExtResource("2_qiuql")
@@ -19,31 +18,24 @@ customStatusStr = "Find the Elder!"
 turnInDialogue = Array[ExtResource("3_a40f2")]([])
 inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
-[sub_resource type="Resource" id="Resource_t00ns"]
-script = ExtResource("4_2el6d")
-experience = 80
-gold = 20
-fullyAttuneCombatantSaveName = ""
-
 [sub_resource type="Resource" id="Resource_sxfel"]
 script = ExtResource("2_qiuql")
 name = "A Dragon?!"
 description = "The elder is collapsed, and a Dragon stares you down!"
-reward = SubResource("Resource_t00ns")
-type = 4
+type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "dragon1_survive"
 turnInNames = Array[String](["nomad2_east"])
-displayObjName = "Dragon"
-displayTurnInName = "Elder"
-customStatusStr = ""
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Fight the Dragon!"
 turnInDialogue = Array[ExtResource("3_a40f2")]([])
 inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
 [sub_resource type="Resource" id="Resource_yee4y"]
 script = ExtResource("2_qiuql")
 name = "Back to Base Camp"
-description = "With the Dragon vanquished and the elder secured, you'd best head back to the Nomad Camp. Too bad about that Radiant Cave mouth being collapsed..."
+description = "With the Dragon chased off and the elder secured, you'd best head back to the Nomad Camp. Too bad about that Radiant Cave mouth being collapsed..."
 type = 3
 count = 1
 objectiveName = "---"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4bahmif0u56p"]
+[gd_scene load_steps=10 format=3 uid="uid://b4bahmif0u56p"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tool_cutscene_visualizer.gd" id="1_vxik6"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="2_edynv"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/mock_player.gd" id="3_dsl0g"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_jf0m3"]
 
-[sub_resource type="Resource" id="Resource_njvjn"]
+[sub_resource type="Resource" id="Resource_emrum"]
 script = ExtResource("4_jf0m3")
 saveName = "npc"
 spriteState = "default"
@@ -26,6 +26,9 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu7ln"]
+size = Vector2(13.5, 4)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvq5a"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 8
@@ -43,11 +46,15 @@ script = ExtResource("1_vxik6")
 [node name="MockPlayer" parent="." instance=ExtResource("2_edynv")]
 script = ExtResource("3_dsl0g")
 facingLeft = false
-data = SubResource("Resource_njvjn")
+data = SubResource("Resource_emrum")
 
 [node name="NPCSprite" parent="MockPlayer" index="0"]
 sprite_frames = ExtResource("3_0pscs")
 animation = &"stand"
+
+[node name="ColliderShape" parent="MockPlayer" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_xu7ln")
 
 [node name="TalkArea" parent="MockPlayer" index="3"]
 visible = false
