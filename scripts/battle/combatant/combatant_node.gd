@@ -70,6 +70,7 @@ var initialEventTextContainerPos: Vector2
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
 @onready var hpProgressBar: TextureProgressBar = get_node('HPTag/LvText/HPProgressBar')
+@onready var weakenTargetHp: Panel = get_node('HPTag/LvText/WeakenTargetHp')
 @onready var orbDisplay: OrbDisplay = get_node('HPTag/OrbDisplay')
 @onready var spriteContainer: Node2D = get_node('SpriteContainer')
 @onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
@@ -113,6 +114,7 @@ func load_combatant_node():
 		animatedSprite.offset = feetOffset
 		play_animation('battle_idle')
 		update_select_btn(false)
+		weakenTargetHp.visible = false
 		hpProgressBar.max_value = combatant.stats.maxHp
 		hpProgressBar.value = combatant.currentHp
 		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp)
@@ -195,6 +197,10 @@ func update_hp_tag():
 		statusSprite.texture = combatant.statusEffect.get_icon()
 	else:
 		statusSprite.texture = null
+
+func set_weaken_target_hp_display(targetPercent: float) -> void:
+	weakenTargetHp.visible = true
+	weakenTargetHp.size.x = 156 * targetPercent
 
 func update_orb_display():
 	orbDisplay.update_orb_count(combatant.orbs, false, loaded)

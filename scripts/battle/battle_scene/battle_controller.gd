@@ -196,7 +196,7 @@ func load_into_battle():
 		enemyCombatant1.combatant = state.enemyCombatant1
 		enemyCombatant2.combatant = state.enemyCombatant2
 		enemyCombatant3.combatant = state.enemyCombatant3
-		
+	
 	playerCombatant.leftSide = true
 	playerCombatant.role = CombatantNode.Role.ALLY
 	
@@ -213,6 +213,10 @@ func load_into_battle():
 	
 	for node in get_all_combatant_nodes():
 		node.load_combatant_node()
+		if PlayerResources.playerInfo.encounter.winCon != null and PlayerResources.playerInfo.encounter.winCon is WeakenEnemyWinCon:
+			var weakenWinCon: WeakenEnemyWinCon = PlayerResources.playerInfo.encounter.winCon as WeakenEnemyWinCon
+			if weakenWinCon.enemyPosition == node.battlePosition:
+				node.set_weaken_target_hp_display(weakenWinCon.targetPercentHp)
 	
 	battleAnimationManager.reparent(tilemap)
 	update_combatant_focus_neighbors()
