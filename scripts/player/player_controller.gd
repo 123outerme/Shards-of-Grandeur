@@ -29,6 +29,7 @@ var pauseDisabled: bool = false
 var cutscenePaused: bool = false
 var startingBattle: bool = false
 var enteredWarpZone: bool = false
+var walkBackwards: bool = false ## flips the walking direction to face backwards from the direction of travel
 
 @onready var collider: CollisionShape2D = get_node("ColliderShape")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedPlayerSprite")
@@ -281,11 +282,15 @@ func play_animation(animation: String):
 
 func face_horiz(xDirection: float):
 	if xDirection > 0:
-		facingLeft = false
-		sprite.flip_h = false
+		# walking to the right:
+		# flip = false if not walking backwards
+		facingLeft = walkBackwards
+		sprite.flip_h = walkBackwards
 	if xDirection < 0:
-		facingLeft = true
-		sprite.flip_h = true
+		# walking to the left:
+		# flip = true if not walking backwards
+		facingLeft = not walkBackwards
+		sprite.flip_h = not walkBackwards
 
 func repeat_dialogue_item():
 	if talkNPC == null:
