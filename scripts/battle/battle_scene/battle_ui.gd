@@ -238,7 +238,7 @@ func update_downed():
 
 func round_complete():
 	battleController.state.turnNumber += 1
-	battlePanels.set_turn_counter(battleController.state.turnNumber)
+	battlePanels.set_turn_counter(battleController.state.turnNumber, PlayerResources.playerInfo.encounter.winCon)
 	battlePanels.flowOfBattle.set_fob_button_enabled()
 	return_to_player_command()
 

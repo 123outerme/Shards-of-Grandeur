@@ -158,6 +158,7 @@ func animate_next_frame(frame: CutsceneFrame, isSkipping: bool = false):
 	if frame.cameraMovement != null:
 		var camMoveTween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		camMoveTween.tween_method(handle_camera_move.bind(frame, prevLastFrame), 0.0, 1.0, frame.frameLength)
+		tweens.append(camMoveTween)
 	
 	for animSet in frame.actorAnimSets:
 		var node = fetch_actor_node(animSet.actorTreePath, animSet.isPlayer)

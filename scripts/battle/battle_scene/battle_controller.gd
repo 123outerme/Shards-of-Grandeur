@@ -209,7 +209,7 @@ func load_into_battle():
 	
 	battleUI.commandingMinion = state.commandingMinion
 	battleUI.prevMenu = state.prevMenu
-	battlePanels.set_turn_counter(state.turnNumber)
+	battlePanels.set_turn_counter(state.turnNumber, PlayerResources.playerInfo.encounter.winCon)
 	
 	for node in get_all_combatant_nodes():
 		node.load_combatant_node()
@@ -268,7 +268,7 @@ func load_data(save_path):
 	if newState != null:
 		state = newState
 		battleMapPath = state.battleMapPath
-		battlePanels.set_turn_counter(state.turnNumber)
+		battlePanels.set_turn_counter(state.turnNumber, PlayerResources.playerInfo.encounter.winCon)
 		battlePanels.flowOfBattle.set_fob_button_enabled(state.fobButtonEnabled)
 		turnExecutor.turnQueue = TurnQueue.new(state.turnList, false)
 		if not battleLoaded:

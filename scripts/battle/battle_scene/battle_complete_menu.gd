@@ -31,6 +31,14 @@ func load_battle_over_menu():
 	if playerWins and PlayerResources.playerInfo.encounter.customWinText != '':
 		battleUI.customWinText.customText = PlayerResources.playerInfo.encounter.customWinText
 		battleUI.customWinText.load_custom_win_text_panel()
+	if PlayerResources.playerInfo.encounter.winCon != null:
+		battleWinLabel.text = PlayerResources.playerInfo.encounter.winCon.get_win_text(battleUI.battleController.get_all_combatant_nodes())
+		battleLoseLabel.text = '[center]' + PlayerResources.playerInfo.encounter.winCon.get_lose_text(battleUI.battleController.get_all_combatant_nodes()) + '[/center]'
+		battleEscapeLabel.text = '[center]' + PlayerResources.playerInfo.encounter.winCon.get_escape_text(battleUI.battleController.get_all_combatant_nodes()) + '[/center]'
+	else:
+		battleWinLabel.text = WinCon.DEFAULT_WIN_TEXT
+		battleLoseLabel.text = '[center]' + WinCon.DEFAULT_LOSE_TEXT + '[/center]'
+		battleEscapeLabel.text = '[center]' + WinCon.DEFAULT_ESCAPE_TEXT + '[/center]'
 	battleWinLabel.visible = playerWins
 	battleRewardsLabel.visible = playerWins
 	battleLoseLabel.visible = not playerWins and not playerEscapes

@@ -15,7 +15,10 @@ class_name BattlePanels
 @onready var statsOpenButton: Button = get_node('PanelsButtons/StatsOpenButton')
 @onready var pauseButton: Button = get_node('PanelsButtons/PauseButton')
 
-@onready var turnCounter: RichTextLabel = get_node('TurnCounterPanel/TurnCounter')
+@onready var turnCounter: RichTextLabel = get_node('VBoxContainer/TurnCounterPanel/TurnCounter')
+
+@onready var surviveCounterPanel: Panel = get_node('VBoxContainer/SurviveCounterPanel')
+@onready var surviveCounter: RichTextLabel = get_node('VBoxContainer/SurviveCounterPanel/SurviveCounter')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +37,7 @@ func _unhandled_input(event):
 			statsMenu.visible = false
 			summonMinionPanel.visible = false
 
-	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused:
+	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused and battleUI.menuState != BattleState.Menu.LEVEL_UP:
 		animatedBgPanel.visible = true
 		questsMenu.toggle()
 		inventoryMenu.visible = false
@@ -56,8 +59,17 @@ func _unhandled_input(event):
 		animatedBgPanel.visible = true
 		pauseMenu.toggle_pause()
 
-func set_turn_counter(turnCount: int) -> void:
+func set_turn_counter(turnCount: int, winCon: WinCon) -> void:
 	turnCounter.text = '[center]Turn ' + String.num(turnCount) + '[/center]'
+	
+	if winCon != null and winCon is SurviveWinCon:
+		surviveCounterPanel.visible = true
+		var surviveWinCon: SurviveWinCon = winCon as SurviveWinCon
+		surviveCounter.text = '[center]Survive' \
+				+ String.num(max(0, surviveWinCon.minTurns - turnCount)) \
+				+ ' Turns![/center]'
+	else:
+		surviveCounterPanel.visible = false
 
 func _on_pause_menu_resume_game():
 	animatedBgPanel.visible = false
