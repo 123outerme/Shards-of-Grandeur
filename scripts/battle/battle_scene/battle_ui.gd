@@ -155,7 +155,17 @@ func apply_menu_state():
 						battleComplete.rewards.append( \
 								reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level) \
 							)
-				# all rewards now obtained
+			# if the win con is a Survive win con:
+			if PlayerResources.playerInfo.encounter.winCon != null and PlayerResources.playerInfo.encounter.winCon is SurviveWinCon:
+				var surviveWinCon: SurviveWinCon = PlayerResources.playerInfo.encounter.winCon as SurviveWinCon
+				# if static rewards for achieving a Total Defeat victory are defined: check that WinCon's results
+				if len(surviveWinCon.staticTotalDefeatRewards) > 0:
+					var totalDefeatWinCon: TotalDefeatWinCon = TotalDefeatWinCon.new()
+					var totalDefeatResult: WinCon.TurnResult = totalDefeatWinCon.get_result(battleController.get_all_combatant_nodes(), battleController.state)
+					# if the player achieved Total Defeat victory: use those static rewards instead
+					if totalDefeatResult == WinCon.TurnResult.PLAYER_WIN:
+						battleComplete.rewards = surviveWinCon.staticTotalDefeatRewards.duplicate(true)
+			# all rewards now obtained
 			for combatantNode in battleController.get_all_combatant_nodes():
 				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
 					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)

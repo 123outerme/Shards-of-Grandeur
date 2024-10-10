@@ -134,6 +134,7 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	#var scaleNode: CombatantNode = target if get_last_defined_target() == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
 	#particleEmitter.scale.x = scaleNode.get_in_front_particle_scale()
 	particleEmitter.scale.y = particleEmitter.scale.x
+	# make the ring radii match the scale
 	
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()

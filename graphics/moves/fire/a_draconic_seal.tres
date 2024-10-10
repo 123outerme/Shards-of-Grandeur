@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dyvrr32ymne4d"]
+
+[ext_resource type="Texture2D" uid="uid://tspjo8auuor7" path="res://graphics/moves/fire/draconic_seal_burn.png" id="1_7jkxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apfv1"]
+atlas = ExtResource("1_7jkxf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gya4"]
+atlas = ExtResource("1_7jkxf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypexa"]
+atlas = ExtResource("1_7jkxf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8hen"]
+atlas = ExtResource("1_7jkxf")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apfv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gya4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypexa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8hen")
+}],
+"loop": true,
+"name": &"draconic_seal_burn",
+"speed": 6.0
+}]

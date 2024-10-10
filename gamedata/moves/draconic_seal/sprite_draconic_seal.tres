@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://cqv8i5otdvkdh"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_gnbhh"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_rws0l"]
+[ext_resource type="Resource" uid="uid://dj1ujlm2ro66d" path="res://gamedata/moves/draconic_seal/particles_draconic_seal.tres" id="2_sjsdp"]
+[ext_resource type="SpriteFrames" uid="uid://dyvrr32ymne4d" path="res://graphics/moves/fire/a_draconic_seal.tres" id="3_fevl8"]
+
+[sub_resource type="Curve" id="Curve_8rem0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_vdt2r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_yasi6"]
+script = ExtResource("1_gnbhh")
+annotation = "set up on top of target at 0 opacity"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_8rem0")
+yCurve = SubResource("Curve_vdt2r")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_p1gpq"]
+script = ExtResource("1_gnbhh")
+annotation = "fade in to burn target"
+animation = "draconic_seal_burn"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_sjsdp")
+
+[sub_resource type="Resource" id="Resource_em5ts"]
+script = ExtResource("1_gnbhh")
+annotation = "let the animation loop for 1.5s"
+animation = ""
+duration = 1.5
+speed = 1.0
+opacity = 1.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_sjsdp")
+
+[sub_resource type="Resource" id="Resource_ux1ne"]
+script = ExtResource("1_gnbhh")
+annotation = "let the animation fade out over 1s"
+animation = ""
+duration = 0.75
+speed = 1.0
+opacity = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_3h2mn"]
+script = ExtResource("1_gnbhh")
+annotation = "stop the animation"
+animation = "#stop"
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("2_rws0l")
+spriteFrames = ExtResource("3_fevl8")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_gnbhh")]([SubResource("Resource_yasi6"), SubResource("Resource_p1gpq"), SubResource("Resource_em5ts"), SubResource("Resource_ux1ne"), SubResource("Resource_3h2mn")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

@@ -57,7 +57,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	
 	var targetCombatant: Combatant = customTarget if customTarget != null else shard.get_combatant()
 	
-	userNode.combatant = PlayerResources.playerInfo.combatant if not swapUsersAndTargets else targetCombatant
+	userNode.combatant = PlayerResources.playerInfo.combatant if not swapUsersAndTargets else targetCombatant.copy()
 	userNode.disableHpTag = disableHpTags
 	userNode.load_combatant_node()
 	
@@ -77,7 +77,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 			targets == BattleCommand.Targets.ALL_EXCEPT_SELF or \
 			targets == BattleCommand.Targets.ALL:
 		userAllyNode.visible = true
-		userAllyNode.combatant = targetCombatant
+		userAllyNode.combatant = targetCombatant.copy()
 		userAllyNode.disableHpTag = disableHpTags
 		userAllyNode.load_combatant_node()
 		targetNodes.append(userAllyNode)
@@ -97,7 +97,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 			targets == BattleCommand.Targets.ALL:
 		targetNodes.append(targetNode)
 		targetNode.visible = true
-		targetNode.combatant = targetCombatant if not swapUsersAndTargets else PlayerResources.playerInfo.combatant
+		targetNode.combatant = targetCombatant.copy() if not swapUsersAndTargets else PlayerResources.playerInfo.combatant
 		targetNode.disableHpTag = disableHpTags
 		targetNode.load_combatant_node()
 	else:
@@ -108,7 +108,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 			targets == BattleCommand.Targets.ALL:
 		targetNodes.append(targetAllyNode)
 		targetAllyNode.visible = true
-		targetAllyNode.combatant = targetCombatant
+		targetAllyNode.combatant = targetCombatant.copy()
 		targetAllyNode.disableHpTag = disableHpTags
 		targetAllyNode.load_combatant_node()
 		if moveCombatantsIfAlone:
@@ -134,6 +134,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 	var afflictedStatuses: Array[bool] = []
 	var wasBoosted: Array[bool] = []
 	var selfAfflictedStatus: bool = false
+	var equipmentProcd: Array = []
 	for cNode: CombatantNode in targetNodes:
 		targets.append(cNode.battlePosition)
 		var mockDmg: int = 0
@@ -142,6 +143,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		elif moveEffect.power < 0:
 			mockDmg = -10
 		targetsDealtDmg.append(mockDmg)
+		equipmentProcd.append([] as Array[Item])
 		if moveEffect.statusEffect != null and \
 				moveEffect.statusEffect.potency != StatusEffect.Potency.NONE and \
 				moveEffect.statusEffect.type != StatusEffect.Type.NONE and \
@@ -162,7 +164,7 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		[] as Array[int],
 		afflictedStatuses,
 		wasBoosted,
-		[[] as Array[Item]] as Array,
+		equipmentProcd,
 		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes(),
 		0,
 		selfAfflictedStatus,

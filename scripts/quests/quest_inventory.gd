@@ -6,8 +6,8 @@ class_name QuestInventory
 
 const actNames: Array[String] = [
 	'Prologue', # act 0
-	'The Radiant War', # act 1
-	'act2placeholder', # act 2
+	'The Radiant War Begins', # act 1
+	'Flames of Combat', # act 2
 	'act3placeholder', # act 3
 	'act4placeholder', # act 4
 ]

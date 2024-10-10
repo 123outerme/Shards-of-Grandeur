@@ -255,7 +255,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
 		if defender == user and command.commandResult.lifestealHeal > 0:
-			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifeStealHeal))
+			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			var statusEffect: StatusEffect = defender.combatant.statusEffect
@@ -359,7 +359,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		user.sprite_animation_finished.disconnect(animCallbackFunc)
 	if spriteCallbackFunc != Callable():
 		user.move_sprites_finished.disconnect(spriteCallbackFunc)
-		user.moveSpriteTargets = []
+	user.moveSpriteTargets = []
 	if shadeCallbackFunc != Callable():
 		battlefieldShade.shade_faded_up.disconnect(shadeCallbackFunc)
 

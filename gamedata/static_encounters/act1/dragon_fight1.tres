@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=11 format=3 uid="uid://50ylfmea7s1f"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=18 format=3 uid="uid://50ylfmea7s1f"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_6nlll"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_leily"]
@@ -9,10 +9,41 @@
 [ext_resource type="Resource" uid="uid://206otuqdhqhy" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion.tres" id="5_irb44"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="6_wfitb"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="9_p5b7j"]
+[ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="10_p55te"]
+[ext_resource type="Resource" uid="uid://dcsqbgxwc3gv3" path="res://gamedata/items/shard/mystic_scorpion_shard.tres" id="11_v48u5"]
+[ext_resource type="Resource" uid="uid://2m2sy63006u0" path="res://gamedata/items/shard/mirage_shard.tres" id="12_ditdj"]
+
+[sub_resource type="Resource" id="Resource_lxlw8"]
+script = ExtResource("2_leily")
+experience = 100
+gold = 20
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_aui8p"]
+script = ExtResource("2_leily")
+experience = 130
+gold = 30
+item = ExtResource("10_p55te")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_qysxn"]
+script = ExtResource("2_leily")
+experience = 80
+gold = 12
+item = ExtResource("11_v48u5")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_x8haj"]
+script = ExtResource("2_leily")
+experience = 80
+gold = 12
+item = ExtResource("12_ditdj")
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_8ehk7"]
 script = ExtResource("9_p5b7j")
 minTurns = 6
+staticTotalDefeatRewards = Array[ExtResource("2_leily")]([SubResource("Resource_aui8p"), SubResource("Resource_qysxn"), SubResource("Resource_x8haj")])
 winText = "You survived the battle!"
 loseText = "You were defeated..."
 escapeText = "You escaped successfully!"
@@ -32,8 +63,8 @@ autoAllyMoves = Array[ExtResource("1_6nlll")]([])
 specialBattleId = "dragon1"
 bossBattle = true
 canEscape = false
-rewards = Array[ExtResource("2_leily")]([])
-useStaticRewards = false
+rewards = Array[ExtResource("2_leily")]([SubResource("Resource_lxlw8")])
+useStaticRewards = true
 battleMusic = ExtResource("2_q75ij")
 combatant1 = ExtResource("3_3db0c")
 combatant1StatAllocStrat = ExtResource("4_26adn")

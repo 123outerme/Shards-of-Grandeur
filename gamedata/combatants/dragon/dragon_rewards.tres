@@ -1,8 +1,33 @@
-[gd_resource type="Resource" script_class="CombatantRewards" load_steps=3 format=3 uid="uid://cx6h8xnss3tpk"]
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=9 format=3 uid="uid://cx6h8xnss3tpk"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_ane44"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_1jcuc"]
+[ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="3_ieem8"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_wxarr"]
+
+[sub_resource type="Resource" id="Resource_r3vbg"]
+script = ExtResource("4_wxarr")
+experience = 65
+gold = 10
+item = ExtResource("3_ieem8")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_h3oma"]
+script = ExtResource("2_1jcuc")
+reward = SubResource("Resource_r3vbg")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_85od2"]
+script = ExtResource("4_wxarr")
+experience = 65
+gold = 10
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_n852g"]
+script = ExtResource("2_1jcuc")
+reward = SubResource("Resource_85od2")
+weight = 0.2
 
 [resource]
 script = ExtResource("1_ane44")
-weightedRewards = Array[ExtResource("2_1jcuc")]([])
+weightedRewards = Array[ExtResource("2_1jcuc")]([SubResource("Resource_h3oma"), SubResource("Resource_n852g")])
