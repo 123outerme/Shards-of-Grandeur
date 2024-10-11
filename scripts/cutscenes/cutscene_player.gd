@@ -57,7 +57,13 @@ func _process(delta):
 			
 			if lastFrame.healsPlayer:
 				handle_heal_player()
-				
+			
+			if lastFrame.addsFollowerId != '':
+				handle_add_follower()
+			
+			if lastFrame.removesFollowerId != '':
+				handle_remove_follower()
+			
 			if lastFrame.endStartsShardLearnTutorial:
 				handle_start_shard_learn_tutorial()
 		
@@ -102,6 +108,12 @@ func handle_fade_in():
 	PlayerFinder.player.cam.fade_in(_fade_in_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 	isFadedOut = false
 	isFadingIn = true
+
+func handle_add_follower() -> void:
+	PlayerResources.set_follower_active(lastFrame.addsFollowerId)
+	
+func handle_remove_follower() -> void:
+	PlayerResources.remove_follower(lastFrame.removesFollowerId)
 
 func handle_give_item():
 	PlayerResources.inventory.add_item(lastFrame.givesItem)

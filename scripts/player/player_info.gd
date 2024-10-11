@@ -37,6 +37,7 @@ class_name PlayerInfo
 @export var puzzlesSolved: Array[String] = []
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
+@export var activeFollowers: Array[String] = []
 @export var running: bool = false
 
 var save_file = "playerinfo.tres"
@@ -181,6 +182,21 @@ func set_cutscene_temp_disabled(saveName: String):
 
 func clear_cutscenes_temp_disabled():
 	cutscenesTempDisabled = []
+
+func has_active_follower(followerId: String) -> bool:
+	return followerId in activeFollowers
+
+func set_follower_active(followerId: String) -> bool:
+	if not has_active_follower(followerId):
+		activeFollowers.append(followerId)
+		return true
+	return false
+
+func remove_follower(followerId: String) -> bool:
+	if has_active_follower(followerId):
+		activeFollowers.erase(followerId)
+		return true
+	return false
 
 func load_data(save_path):
 	var data = null

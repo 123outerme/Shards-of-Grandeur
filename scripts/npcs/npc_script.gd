@@ -10,6 +10,9 @@ class_name NPCScript
 ## name used in saving NPC data
 @export var saveName: String
 
+## name used for determining whether this NPC acts as a follower (separate from saveName for consistency between maps)
+@export var followerId: String = ''
+
 ## if true, this NPC's sprite faces right by default (without flipping)
 @export var facesRight: bool = true
 
@@ -101,6 +104,7 @@ func _ready():
 	initialTalkAlertSprPos = talkAlertSprite.position
 	initialTalkAreaPos = talkArea.position
 	initialTalkAreaShapePos = talkAreaShape.position
+	print(name, ' ', spriteState)
 	set_sprite_state(spriteState)
 	
 	data = NPCData.new()
@@ -179,6 +183,11 @@ func load_data(save_path):
 		if hasShop and inventory == null:
 			inventory = Inventory.new()
 		add_shop_items_to_inventory()
+	if not data.followerHomeSet:
+		data.followerHomePosition = position
+		data.followerHomeSet = true
+	if followerId != '':
+		set_following_player(PlayerResources.playerInfo.has_active_follower(followerId), true)
 
 func add_shop_items_to_inventory():
 	if not hasShop or inventory == null:
@@ -205,8 +214,11 @@ func add_shop_items_to_inventory():
 
 func _set_invisible(value: bool):
 	visible = not value
-	if value:
-		# not calling disable_collision() so cutscenes don't re-enable NPC collision after they are made invisible
+	update_collision_layer(not value)
+
+func update_collision_layer(enabled: bool):
+	if not enabled:
+		# not calling disable_collision() so cutscenes don't re-enable NPC collision after they are made invisible/followers
 		collision_layer = 0
 	else:
 		# not calling enable_collision() for same reasoning as above
@@ -254,6 +266,7 @@ func _on_talk_area_area_entered(area):
 		player.set_talk_npc(self)
 		if len(data.dialogueItems) > 0 and not player.inCutscene:
 			talkAlertSprite.visible = true
+			#if not data.followingPlayer:
 			pause_movement()
 			face_player()
 		data.dialogueLine = -1
@@ -475,6 +488,36 @@ func face_horiz(xDirection: float):
 	if walkBackwards:
 		flip_h = not flip_h
 
+func set_following_player(following: bool, onLoad: bool = false):
+	if not visible:
+		return
+	
+	update_collision_layer(not following)
+	
+	var navToHomeFirst: bool = false
+	# the NPC is being set to follow/unfollow while already being loaded
+	if following:
+		if onLoad:
+			# the follower NPC is loading in (almost done); snap the NPC to the player's position
+			position = PlayerFinder.player.position
+			unpause_movement()
+		else:
+			# if the NPC is just being set as a follower after being loaded: let the follower nav to the player
+			if not data.followingPlayer:
+				data.followerHomePosition = position
+				data.followerHomeSet = true
+				unpause_movement()
+	else:
+		# the NPC is not a follower now
+		if onLoad:
+			if data.followingPlayer:
+				position = data.followerHomePosition # TODO: this NPC has been unset to follow the player while unloaded; snap it back to its home
+		else:
+			if data.followingPlayer:
+				navToHomeFirst = true
+	data.followingPlayer = following
+	NavAgent.set_follower_mode(following, navToHomeFirst)
+
 func _on_npc_sprite_animation_finished():
 	play_animation('stand')
 
@@ -487,3 +530,7 @@ func _story_reqs_updated():
 			face_player()
 		data.dialogueLine = -1
 		player.update_interact_touch_ui()
+	
+	var setFollower: bool = PlayerResources.playerInfo.has_active_follower(followerId)
+	if setFollower != data.followingPlayer and visible:
+		set_following_player(setFollower)

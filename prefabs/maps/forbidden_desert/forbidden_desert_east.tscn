@@ -34,7 +34,7 @@
 [ext_resource type="Resource" uid="uid://csdxsrxjaby7w" path="res://gamedata/cutscenes/forbidden_desert/desert_east_dragon1_encounter.tres" id="28_qdh6o"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="32_ifu68"]
 
-[sub_resource type="Resource" id="Resource_ibiy7"]
+[sub_resource type="Resource" id="Resource_8jl55"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -47,6 +47,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -54,7 +57,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_yeodm"]
+[sub_resource type="Resource" id="Resource_nnsfj"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -67,6 +70,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -469,7 +475,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_yow70"]
+[sub_resource type="Resource" id="Resource_hjmmf"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -482,6 +488,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -535,13 +544,14 @@ tile_set = ExtResource("2_2v0rj")
 position = Vector2(1044, -498)
 displayName = "Elder"
 saveName = "nomad2_desert_east"
+followerId = ""
 loadFlipH = true
 spriteState = "collapsed"
 stateSpritesDict = {
 "collapsed": ExtResource("4_j42rk"),
 "default": ExtResource("5_tspdh")
 }
-data = SubResource("Resource_ibiy7")
+data = SubResource("Resource_8jl55")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("4_j42rk")
@@ -562,9 +572,10 @@ visible = false
 position = Vector2(1260, -529)
 displayName = "Dragon"
 saveName = "desert_east_dragon"
+followerId = ""
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_yeodm")
+data = SubResource("Resource_nnsfj")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -761,7 +772,8 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1061, -466)
 facingLeft = true
-data = SubResource("Resource_yow70")
+followerId = ""
+data = SubResource("Resource_hjmmf")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.40071

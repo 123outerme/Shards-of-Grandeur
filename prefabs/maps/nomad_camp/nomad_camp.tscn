@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://n8b80e2ty0aw" path="res://gamedata/cutscenes/nomad_camp/camp_block_east.tres" id="16_urnk2"]
 [ext_resource type="Resource" uid="uid://da6ixck58qpq8" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_help.tres" id="19_s87p8"]
 
-[sub_resource type="Resource" id="Resource_7ruo4"]
+[sub_resource type="Resource" id="Resource_vvuaa"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -37,6 +37,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -44,7 +47,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_gnf3w"]
+[sub_resource type="Resource" id="Resource_k82sq"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -57,6 +60,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -64,7 +70,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_dn4jn"]
+[sub_resource type="Resource" id="Resource_7t1ji"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -77,6 +83,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -84,7 +93,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_emt16"]
+[sub_resource type="Resource" id="Resource_caksx"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -97,6 +106,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -152,7 +164,7 @@ size = Vector2(118, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rca68"]
 size = Vector2(56, 87)
 
-[sub_resource type="Resource" id="Resource_kyx84"]
+[sub_resource type="Resource" id="Resource_bu207"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -165,6 +177,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -221,7 +236,8 @@ position = Vector2(202, 217)
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_7ruo4")
+followerId = ""
+data = SubResource("Resource_vvuaa")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -244,7 +260,8 @@ visible = false
 visible = false
 collision_layer = 0
 displayName = "Elder"
-data = SubResource("Resource_gnf3w")
+followerId = ""
+data = SubResource("Resource_k82sq")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -264,8 +281,9 @@ visible = false
 position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
+followerId = ""
 loadFlipH = true
-data = SubResource("Resource_dn4jn")
+data = SubResource("Resource_7t1ji")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
@@ -286,7 +304,8 @@ visible = false
 [node name="Nomad4" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
 position = Vector2(-124, 208)
 displayName = "Nomad"
-data = SubResource("Resource_emt16")
+followerId = ""
+data = SubResource("Resource_caksx")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad4" index="0"]
 sprite_frames = ExtResource("6_al45b")
@@ -434,7 +453,8 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(387, -167)
-data = SubResource("Resource_kyx84")
+followerId = ""
+data = SubResource("Resource_bu207")
 
 [editable path="TilemapRoot/Nomad1"]
 [editable path="TilemapRoot/Nomad2"]

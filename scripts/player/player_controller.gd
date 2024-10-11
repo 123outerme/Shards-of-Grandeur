@@ -384,6 +384,11 @@ func select_choice(choice: DialogueChoice):
 	
 	if choice is NPCDialogueChoice:
 		var npcChoice: NPCDialogueChoice = choice as NPCDialogueChoice
+		if npcChoice.addsFollowerId != '':
+			PlayerResources.set_follower_active(npcChoice.addsFollowerId)
+		if npcChoice.removesFollowerId != '':
+			PlayerResources.remove_follower(npcChoice.removesFollowerId)
+		
 		if npcChoice.opensShop:
 			makingChoice = true # leave choice buttons up for now
 			pickedChoice = choice
@@ -691,8 +696,8 @@ func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutsc
 	inCutscene = false
 	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
-func get_collider(): # for use before full player initialization in MapLoader
-	return get_node('ColliderShape')
+func get_collider() -> CollisionShape2D: # for use before full player initialization in MapLoader
+	return get_node('ColliderShape') as CollisionShape2D
 
 func menu_closed():
 	if not inventoryPanel.visible and not questsPanel.visible and \
@@ -741,6 +746,7 @@ func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = turnInTarget
 	get_viewport().gui_release_focus()
 	questsPanel.toggle()
+	animatedBgPanel.visible = true
 	disableMovement = true
 
 func _on_inventory_panel_node_back_pressed():

@@ -14,6 +14,9 @@ class_name NPCData
 @export var disableMovement: bool = false
 @export var previousDisableMove: bool = false
 @export var afterMoveWaitAccum: float = 0
+@export var followerHomePosition: Vector2
+@export var followingPlayer: bool = false
+@export var followerHomeSet: bool = false
 @export var version: String = ''
 
 @export_category("NPCData - Dialogue")
@@ -39,6 +42,9 @@ func _init(
 	i_disableMovement = false,
 	i_previousDisableMove = false,
 	i_afterMoveWaitAccum = 0,
+	i_followerHomePosition = Vector2(),
+	i_followingPlayer = false,
+	i_followerHomeSet = false,
 	i_version = '',
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
@@ -63,6 +69,9 @@ func _init(
 		version = GameSettings.get_game_version()
 	previousDisableMove = i_previousDisableMove
 	afterMoveWaitAccum = i_afterMoveWaitAccum
+	followerHomePosition = i_followerHomePosition
+	followingPlayer = i_followingPlayer
+	followerHomeSet = i_followerHomeSet
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
 	dialogueItemIdx = i_dialogueItemIdx

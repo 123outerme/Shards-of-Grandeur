@@ -36,6 +36,9 @@ class_name StoryRequirements
 ## specified by "<base combatant save name>#<evolution save name>"
 @export var prereqDiscoveredEvolutions: Array[String] = []
 
+## specified by "<follower ID>"
+@export var prereqHavingFollowers: Array[String] = []
+
 @export_category("Invalidations")
 
 ## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
@@ -59,6 +62,9 @@ class_name StoryRequirements
 ## specified by "<puzzle ID>"
 @export var invalidAfterSolvingPuzzles: Array[String] = []
 
+## specified by "<follower ID>"
+@export var invalidFromHavingFollowers: Array[String] = []
+
 func _init(
 	i_minAct = 0,
 	i_maxAct = -1,
@@ -70,6 +76,7 @@ func _init(
 	i_prereqDefeatedEnemies: Array[String] = [],
 	i_prereqPuzzles: Array[String] = [],
 	i_prereqEvos: Array[String] = [],
+	i_prereqFollowers: Array[String] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
@@ -77,6 +84,7 @@ func _init(
 	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
+	i_invalidFollowers: Array[String] = [],
 ):
 	minAct = i_minAct
 	maxAct = i_maxAct
@@ -88,6 +96,7 @@ func _init(
 	prereqDefeatedEnemies = i_prereqDefeatedEnemies
 	prereqPuzzles = i_prereqPuzzles
 	prereqDiscoveredEvolutions = i_prereqEvos
+	prereqHavingFollowers = i_prereqFollowers
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
@@ -95,6 +104,7 @@ func _init(
 	invalidAfterVistingPlaces = i_invalidPlacesVisited
 	invalidAfterSpecialBattles = i_invalidBattles
 	invalidAfterSolvingPuzzles = i_invalidPuzzles
+	invalidFromHavingFollowers = i_invalidFollowers
 
 func is_valid() -> bool:
 	if Engine.is_editor_hint():
@@ -106,34 +116,38 @@ func is_valid() -> bool:
 	if not PlayerResources.questInventory.has_completed_prereqs(prereqQuests):
 		return false
 	
-	for cutscene in prereqCutscenes:
+	for cutscene: String in prereqCutscenes:
 		if not PlayerResources.playerInfo.has_seen_cutscene(cutscene):
 			return false
 	
-	for dialogue in prereqDialogues:
+	for dialogue: String in prereqDialogues:
 		var npcSaveName = dialogue.split('#')[0]
 		var dialogueId = dialogue.split('#')[1]
 		if not PlayerResources.playerInfo.has_seen_dialogue(npcSaveName, dialogueId):
 			return false
 	
-	for place in prereqPlacesVisited:
+	for place: String in prereqPlacesVisited:
 		if not PlayerResources.playerInfo.has_visited_place(place):
 			return false
 	
-	for battle in prereqSpecialBattles:
+	for battle: String in prereqSpecialBattles:
 		if not PlayerResources.playerInfo.has_completed_special_battle(battle):
 			return false
 			
-	for enemy in prereqDefeatedEnemies:
+	for enemy: String in prereqDefeatedEnemies:
 		if not PlayerResources.playerInfo.has_defeated_enemy(enemy):
 			return false
 	
-	for puzzle in prereqPuzzles:
+	for puzzle: String in prereqPuzzles:
 		if not PlayerResources.playerInfo.has_solved_puzzle(puzzle):
 			return false
 	
 	for fullEvoSaveName: String in prereqDiscoveredEvolutions:
 		if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
+			return false
+	
+	for followerId: String in prereqHavingFollowers:
+		if not PlayerResources.playerInfo.has_active_follower(followerId):
 			return false
 	
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):
@@ -142,26 +156,30 @@ func is_valid() -> bool:
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterFailingQuests, QuestTracker.Status.FAILED):
 		return false
 	
-	for cutscene in invalidAfterCutscenes:
+	for cutscene: String in invalidAfterCutscenes:
 		if PlayerResources.playerInfo.has_seen_cutscene(cutscene):
 			return false
 	
-	for dialogue in invalidAfterDialogues:
+	for dialogue: String in invalidAfterDialogues:
 		var npcSaveName = dialogue.split('#')[0]
 		var dialogueId = dialogue.split('#')[1]
 		if PlayerResources.playerInfo.has_seen_dialogue(npcSaveName, dialogueId):
 			return false
 	
-	for place in invalidAfterVistingPlaces:
+	for place: String in invalidAfterVistingPlaces:
 		if PlayerResources.playerInfo.has_visited_place(place):
 			return false
 	
-	for battle in invalidAfterSpecialBattles:
+	for battle: String in invalidAfterSpecialBattles:
 		if PlayerResources.playerInfo.has_completed_special_battle(battle):
 			return false
 			
-	for puzzle in invalidAfterSolvingPuzzles:
+	for puzzle: String in invalidAfterSolvingPuzzles:
 		if PlayerResources.playerInfo.has_solved_puzzle(puzzle):
+			return false
+	
+	for followerId: String in invalidFromHavingFollowers:
+		if PlayerResources.playerInfo.has_active_follower(followerId):
 			return false
 	
 	return true

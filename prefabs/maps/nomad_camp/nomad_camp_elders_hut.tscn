@@ -23,6 +23,7 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -30,8 +31,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_3e2ff"]
+[sub_resource type="Resource" id="Resource_r4pqw"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -44,6 +46,9 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -115,8 +120,9 @@ tile_set = ExtResource("2_ut3e1")
 position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
+followerId = ""
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_3e2ff")
+data = SubResource("Resource_r4pqw")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("5_pow4s")

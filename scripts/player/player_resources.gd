@@ -47,6 +47,14 @@ func set_cutscene_seen(saveName: String):
 	questInventory.progress_quest(saveName, QuestStep.Type.CUTSCENE)
 	questInventory.auto_turn_in_cutscene_steps(saveName)
 
+func set_follower_active(followerId: String) -> void:
+	if playerInfo.set_follower_active(followerId):
+		story_requirements_updated.emit()
+	
+func remove_follower(followerId: String) -> void:
+	if playerInfo.remove_follower(followerId):
+		story_requirements_updated.emit()
+
 func load_data(save_path):
 	if playerInfo == null:
 		playerInfo = PlayerInfo.new()

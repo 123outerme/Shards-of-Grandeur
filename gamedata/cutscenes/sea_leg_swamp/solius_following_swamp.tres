@@ -1,0 +1,117 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://dh0ucgf7fhcb8"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ly6x8"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_aqy4w"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_iiuia"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_omk8b"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_kqe3j"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_usgmp"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_lo14d"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_al7wt"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_lwxl6"]
+
+[sub_resource type="Resource" id="Resource_07ota"]
+script = ExtResource("3_omk8b")
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_t0dqq"]
+script = ExtResource("6_al7wt")
+speaker = "Solius"
+texts = Array[String](["Ok, let's head down to the Cave! I'll be by your side."])
+
+[sub_resource type="Resource" id="Resource_mnicb"]
+script = ExtResource("1_ly6x8")
+frameLength = 0.1
+annotation = "set Solius to talk and follow the player"
+actorTweens = Array[ExtResource("5_lo14d")]([])
+actorAnims = Array[ExtResource("3_omk8b")]([ExtResource("4_usgmp"), SubResource("Resource_07ota")])
+actorAnimSets = Array[ExtResource("2_iiuia")]([])
+actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
+dialogues = Array[ExtResource("6_al7wt")]([SubResource("Resource_t0dqq")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = "solius"
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_yppb2"]
+script = ExtResource("1_ly6x8")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed (half a second at least)"
+actorTweens = Array[ExtResource("5_lo14d")]([])
+actorAnims = Array[ExtResource("3_omk8b")]([])
+actorAnimSets = Array[ExtResource("2_iiuia")]([])
+actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
+dialogues = Array[ExtResource("6_al7wt")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_h3oq8"]
+script = ExtResource("3_omk8b")
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_ytcn1"]
+script = ExtResource("1_ly6x8")
+frameLength = 0.5
+annotation = "wait 0.5s after textbox closed, make Solius stop talking"
+actorTweens = Array[ExtResource("5_lo14d")]([])
+actorAnims = Array[ExtResource("3_omk8b")]([SubResource("Resource_h3oq8")])
+actorAnimSets = Array[ExtResource("2_iiuia")]([])
+actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
+dialogues = Array[ExtResource("6_al7wt")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ohdwh"]
+script = ExtResource("8_lwxl6")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["etreus1_defeated"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String](["solius"])
+
+[resource]
+script = ExtResource("2_aqy4w")
+cutsceneFrames = Array[ExtResource("1_ly6x8")]([SubResource("Resource_mnicb"), SubResource("Resource_yppb2"), SubResource("Resource_ytcn1")])
+saveName = ""
+storyRequirements = SubResource("Resource_ohdwh")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

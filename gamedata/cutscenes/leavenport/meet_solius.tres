@@ -50,6 +50,8 @@ endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_elpry"]
@@ -78,6 +80,8 @@ cameraMovement = SubResource("Resource_1f4mw")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_6n7du"]
@@ -104,6 +108,8 @@ endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_71hnc"]
@@ -142,6 +148,8 @@ endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_jlffl"]
@@ -170,6 +178,8 @@ cameraMovement = SubResource("Resource_5rcwy")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_knmkm"]
@@ -187,6 +197,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = true
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_3rq3p"]
@@ -201,6 +213,7 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["meet_solius"])
@@ -208,6 +221,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_w4hne")

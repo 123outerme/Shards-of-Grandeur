@@ -131,6 +131,12 @@ func handle_give_item():
 	if lastFrame.givesItem != null:
 		print('Cutscene gives item ' + lastFrame.givesItem.itemName)
 
+func handle_add_follower() -> void:
+	print('Cutscene sets follower "', lastFrame.addsFollowerId, '" active')
+
+func handle_remove_follower() -> void:
+	print('Cutscene removes follower "', lastFrame.removesFollowerId, '"')
+
 func handle_heal_player():
 	print('Player gets fully healed.')
 
