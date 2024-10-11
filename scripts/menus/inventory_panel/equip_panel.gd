@@ -99,7 +99,7 @@ func equip_pressed(combatant: Combatant):
 		if prevLosingEvolution != newLosingEvolution:
 			combatantLosingPrevEvolution = prevLosingEvolution
 			combatantLosingEvolving = unequippingCombatant
-			combatantLosingFlags = combatantLosingEvolving.switch_evolution(newLosingEvolution, prevLosingEvolution)
+			combatantLosingFlags = combatantLosingEvolving.switch_evolution(newLosingEvolution, prevLosingEvolution, combatantLosingEvolving != PlayerResources.playerInfo.combatant)
 	
 	combatant.stats.equip_item(inventorySlot.item)
 	#close_equip_panel.emit()
@@ -110,7 +110,7 @@ func equip_pressed(combatant: Combatant):
 		evolveResultsPanel.newEvolution = newEvolution
 		evolveResultsPanel.prevEvolution = prevEvolution
 		evolveResultsPanel.equipment = inventorySlot.item
-		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
+		var flags = combatant.switch_evolution(newEvolution, prevEvolution, combatant != PlayerResources.playerInfo.combatant)
 		evolveResultsPanel.switchEvolutionFlags = flags
 		evolveResultsPanel.combatantLosingEvolving = combatantLosingEvolving
 		evolveResultsPanel.load_evolve_results_panel()
@@ -136,7 +136,7 @@ func unequip_pressed(combatant: Combatant):
 		evolveResultsPanel.newEvolution = newEvolution
 		evolveResultsPanel.prevEvolution = prevEvolution
 		evolveResultsPanel.equipment = inventorySlot.item
-		var flags = combatant.switch_evolution(newEvolution, prevEvolution)
+		var flags = combatant.switch_evolution(newEvolution, prevEvolution, combatant != PlayerResources.playerInfo.combatant)
 		evolveResultsPanel.switchEvolutionFlags = flags
 		evolveResultsPanel.combatantLosingEvolving = null
 		evolveResultsPanel.load_evolve_results_panel()

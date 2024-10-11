@@ -185,12 +185,13 @@ func get_evolution() -> Evolution:
 	return null
 
 # null for base form, otherwise an Evolution
-# returns 0 if no lv/move changes were made
-# adds 0b01 if lv changed
-# adds 0b10 if movepool changed
-# adds 0b100 if assigned moves changed
-# adds 0b1000 if ALL moves were found invalid
-func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
+# returns 0b00000 if no lv/move changes were made
+# adds 0b00001 if lv changed
+# adds 0b00010 if movepool changed
+# adds 0b00100 if assigned moves changed
+# adds 0b01000 if ALL moves were found invalid
+# adds 0b10000 if stat pts were automatically assigned
+func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: bool = false, overrideStatAllocStrat: StatAllocationStrategy = null) -> int:
 	validate_evolution_stats()
 	validate_all_evolutions_stat_totals()
 	if evolutions == null:
@@ -220,25 +221,34 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution) -> int:
 	# if this stats set is underlevelled, level it up now
 	if stats.level < evolutionStats[prevIdx].level:
 		stats.level_up(evolutionStats[prevIdx].level - stats.level)
-		returnCode += 0b0001
+		returnCode += 0b00001
 	# change the current HP by keeping the same HP ratio
 	var hpRatio: float = (currentHp as float) / evolutionStats[prevIdx].maxHp
 	# don't gain any HP by switching forms
 	currentHp = floori(hpRatio * stats.maxHp)
+	# allocate stat points if set to do so
+	if isMinion and should_auto_alloc_stat_pts():
+		var statAllocStrat: StatAllocationStrategy = get_stat_allocation_strategy()
+		if overrideStatAllocStrat != null:
+			statAllocStrat = overrideStatAllocStrat
+		if statAllocStrat != null:
+			statAllocStrat.allocate_stats(stats)
+			returnCode += 0b10000
+	
 	# copy over moves, equipment
 	stats.moves = evolutionStats[prevIdx].moves
 	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
 	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
 	# if the movepool changed: alert the player
 	if stats.movepool != evolutionStats[prevIdx].movepool:
-		returnCode += 0b0010
+		returnCode += 0b00010
 	var nullMoves: int = validate_moves()
 	# if any moves were invalidated, alert the user
 	if prevNullMoves != nullMoves:
-		returnCode += 0b0100
+		returnCode += 0b00100
 	# if all set moves were invalidated alert the user
 	if nullMoves == 4:
-		returnCode += 0b1000
+		returnCode += 0b01000
 	return returnCode
 
 func validate_all_evolutions_stat_totals():

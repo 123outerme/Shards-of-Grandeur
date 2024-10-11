@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dndfi1geoc6ml" path="res://graphics/particles/affinity/affinity_1.png" id="15_llrp6"]
 [ext_resource type="Texture2D" uid="uid://bl57ynwqbrsdu" path="res://graphics/particles/affinity/affinity_2.png" id="16_0ng0y"]
 [ext_resource type="SpriteFrames" uid="uid://8j0dgh4vu5gp" path="res://graphics/animations/a_lady3_elder.tres" id="16_5fdbc"]
-[ext_resource type="Resource" uid="uid://dtwqyxa8yw6ar" path="res://gamedata/dialogue/leavenport/elder_lady/a_elder_lady1.tres" id="16_81mpk"]
+[ext_resource type="Resource" uid="uid://dtwqyxa8yw6ar" path="res://gamedata/dialogue/leavenport/elder_lady/elder_lady1.tres" id="16_81mpk"]
 [ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity/affinity_3.png" id="17_a2b6x"]
 [ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity/affinity_4.png" id="18_liw0c"]
 [ext_resource type="SpriteFrames" uid="uid://ixvh8dcxfmwp" path="res://graphics/animations/a_fisherman.tres" id="20_ls845"]
@@ -40,7 +40,7 @@
 [ext_resource type="Resource" uid="uid://ducs4iipc6fx6" path="res://gamedata/cutscenes/leavenport/solius_disband_lp.tres" id="37_b24o1"]
 [ext_resource type="Resource" uid="uid://dcgrjbl2yg0yl" path="res://gamedata/cutscenes/leavenport/leavenport_takeover.tres" id="37_nlfdj"]
 
-[sub_resource type="Resource" id="Resource_q6icg"]
+[sub_resource type="Resource" id="Resource_ndsbi"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -63,7 +63,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_8m48c"]
+[sub_resource type="Resource" id="Resource_in6jw"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -86,7 +86,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_1y7sy"]
+[sub_resource type="Resource" id="Resource_xoe5o"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -109,7 +109,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_dopeh"]
+[sub_resource type="Resource" id="Resource_wxv3v"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -132,7 +132,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_amxxk"]
+[sub_resource type="Resource" id="Resource_2mp2t"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -179,7 +179,7 @@ position = Vector2(972, 196)
 relativeToCurrentPos = false
 pauseSecs = 1.25
 
-[sub_resource type="Resource" id="Resource_iuq6t"]
+[sub_resource type="Resource" id="Resource_0pd2m"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -271,7 +271,7 @@ size = Vector2(128, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftvu4"]
 size = Vector2(128, 55)
 
-[sub_resource type="Resource" id="Resource_64atg"]
+[sub_resource type="Resource" id="Resource_us6ql"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -424,12 +424,30 @@ sprite_frames = ExtResource("4_uq3gf")
 [node name="Collision" parent="TilemapRoot/FloatingRockColumnDecoration10" index="1"]
 position = Vector2(0, 14)
 
+[node name="FloatingRockColumnDecoration11" parent="TilemapRoot" instance=ExtResource("3_tnhbb")]
+position = Vector2(276, 526)
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/FloatingRockColumnDecoration11" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TilemapRoot/FloatingRockColumnDecoration11" index="1"]
+position = Vector2(0, 14)
+
+[node name="FloatingRockColumnDecoration12" parent="TilemapRoot" instance=ExtResource("3_tnhbb")]
+position = Vector2(1092, 656)
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/FloatingRockColumnDecoration12" index="0"]
+sprite_frames = ExtResource("4_uq3gf")
+
+[node name="Collision" parent="TilemapRoot/FloatingRockColumnDecoration12" index="1"]
+position = Vector2(0, 14)
+
 [node name="Solius" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(98, 202)
 displayName = "Solius"
 saveName = "solius_leavenport"
 followerId = "solius"
-data = SubResource("Resource_q6icg")
+data = SubResource("Resource_ndsbi")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("7_2c63l")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -456,7 +474,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_8m48c")
+data = SubResource("Resource_in6jw")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -474,7 +492,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_1y7sy")
+data = SubResource("Resource_xoe5o")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -493,7 +511,7 @@ visible = false
 position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
-data = SubResource("Resource_dopeh")
+data = SubResource("Resource_wxv3v")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Fisherman" index="0"]
@@ -511,9 +529,9 @@ visible = false
 
 [node name="Elder" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(996, 108)
-displayName = "Elder"
+displayName = "Gentleman"
 saveName = "lp_elder"
-data = SubResource("Resource_amxxk")
+data = SubResource("Resource_2mp2t")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TilemapRoot/Elder" index="0"]
@@ -538,7 +556,7 @@ visible = false
 position = Vector2(397, 315)
 displayName = "Lady"
 saveName = "lp_elder_lady"
-data = SubResource("Resource_iuq6t")
+data = SubResource("Resource_0pd2m")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TilemapRoot/ElderLady" index="0"]
@@ -736,7 +754,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(78, 206)
-data = SubResource("Resource_64atg")
+data = SubResource("Resource_us6ql")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.307282
@@ -754,6 +772,8 @@ disabled = true
 [editable path="TilemapRoot/FloatingRockColumnDecoration6"]
 [editable path="TilemapRoot/FloatingRockColumnDecoration9"]
 [editable path="TilemapRoot/FloatingRockColumnDecoration10"]
+[editable path="TilemapRoot/FloatingRockColumnDecoration11"]
+[editable path="TilemapRoot/FloatingRockColumnDecoration12"]
 [editable path="TilemapRoot/Solius"]
 [editable path="TilemapRoot/ChainLegionSoldier3"]
 [editable path="TilemapRoot/ChainLegionSoldier4"]

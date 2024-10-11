@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://bcrxu04acy0or"]
+[gd_scene load_steps=117 format=4 uid="uid://bcrxu04acy0or"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_aweo5"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2v0rj"]
@@ -33,7 +33,10 @@
 [ext_resource type="SpriteFrames" uid="uid://28idy1aoh440" path="res://graphics/animations/a_dragon.tres" id="27_frf1a"]
 [ext_resource type="Resource" uid="uid://msc76enduo5l" path="res://gamedata/cutscenes/forbidden_desert/desert_east_dragon1_survive.tres" id="28_ct8qx"]
 [ext_resource type="Resource" uid="uid://csdxsrxjaby7w" path="res://gamedata/cutscenes/forbidden_desert/desert_east_dragon1_encounter.tres" id="28_qdh6o"]
+[ext_resource type="Resource" uid="uid://bokbigb7xuvvh" path="res://gamedata/cutscenes/forbidden_desert/desert_east_cave_turnback.tres" id="31_beumq"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="32_ifu68"]
+[ext_resource type="Resource" uid="uid://cbuuri2nj43a" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_rescue_turnback.tres" id="33_1qv80"]
+[ext_resource type="Resource" uid="uid://w0ndy7kvicc1" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_follower_turnback.tres" id="37_hamdx"]
 
 [sub_resource type="Resource" id="Resource_jr0x0"]
 script = ExtResource("6_1p87e")
@@ -57,7 +60,7 @@ invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_dqrut"]
+[sub_resource type="Resource" id="Resource_5kvod"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -80,7 +83,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_o5rit"]
+[sub_resource type="Resource" id="Resource_34ofk"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -396,11 +399,49 @@ customWinText = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu33u"]
 size = Vector2(269, 176)
 
+[sub_resource type="Resource" id="Resource_3oswi"]
+script = ExtResource("14_75u7d")
+spawnerId = "desert_east_7"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_i4rnp"]
+script = ExtResource("16_1ful6")
+combatant = ExtResource("17_hncb7")
+weight = 0.9
+
+[sub_resource type="Resource" id="Resource_gn3fu"]
+script = ExtResource("16_1ful6")
+combatant = ExtResource("18_wmoer")
+weight = 0.1
+
+[sub_resource type="Resource" id="Resource_t0p74"]
+script = ExtResource("16_1ful6")
+combatant = ExtResource("17_hncb7")
+weight = 1.0
+
+[sub_resource type="Resource" id="Resource_s6s8v"]
+script = ExtResource("17_hdwwf")
+combatantsMinLevel = 18
+combatantsMaxLevel = 20
+combatantsLvToPlayerLvRatio = 1.0
+combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_i4rnp"), SubResource("Resource_gn3fu")])
+combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_t0p74")])
+combatant1 = ExtResource("17_hncb7")
+specialRules = 0
+customWinText = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0utjn"]
+size = Vector2(258, 149)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhswq"]
-size = Vector2(20, 157)
+size = Vector2(13, 157)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oit28"]
 size = Vector2(25, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dajf3"]
+size = Vector2(197, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rp0e"]
 size = Vector2(8, 86)
@@ -498,7 +539,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_msm5e"]
+[sub_resource type="Resource" id="Resource_1isc8"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -523,8 +564,8 @@ hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_aweo5")
-metadata/_edit_vertical_guides_ = [1022.0, 1161.0, 1260.0, 1060.0, 1028.0]
-metadata/_edit_horizontal_guides_ = [-496.0, -529.0, -481.0, -466.0]
+metadata/_edit_vertical_guides_ = [1022.0, 1161.0, 1260.0, 1060.0, 1028.0, 459.0]
+metadata/_edit_horizontal_guides_ = [-496.0, -529.0, -481.0, -466.0, 117.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -575,7 +616,7 @@ stateSpritesDict = {
 "default": ExtResource("5_tspdh")
 }
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_dqrut")
+data = SubResource("Resource_5kvod")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("4_j42rk")
@@ -598,7 +639,7 @@ displayName = "Dragon"
 saveName = "desert_east_dragon"
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_o5rit")
+data = SubResource("Resource_34ofk")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -707,12 +748,22 @@ tilemap = NodePath("../TilemapRoot")
 position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_cu33u")
 
+[node name="EnemySpawner7" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_flo5u")]
+position = Vector2(1681, -137)
+spawnerData = SubResource("Resource_3oswi")
+enemyEncounter = SubResource("Resource_s6s8v")
+tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner7/SpawnArea" index="0"]
+position = Vector2(-1, -9.5)
+shape = SubResource("RectangleShape2D_0utjn")
+
 [node name="RescueCutsceneTrigger" parent="." instance=ExtResource("22_hsr8o")]
 position = Vector2(857, -453)
-cutscenes = Array[ExtResource("27_4ejj6")]([ExtResource("28_qdh6o")])
+cutscenes = Array[ExtResource("27_4ejj6")]([ExtResource("28_qdh6o"), ExtResource("31_beumq")])
 
 [node name="CollisionShape2D" parent="RescueCutsceneTrigger" index="0"]
-position = Vector2(0, 11.5)
+position = Vector2(-3.5, 11.5)
 shape = SubResource("RectangleShape2D_xhswq")
 
 [node name="DragonSurviveCutscene" parent="." instance=ExtResource("22_hsr8o")]
@@ -722,6 +773,14 @@ cutscenes = Array[ExtResource("27_4ejj6")]([ExtResource("28_ct8qx")])
 [node name="CollisionShape2D" parent="DragonSurviveCutscene" index="0"]
 position = Vector2(18.5, 0)
 shape = SubResource("RectangleShape2D_oit28")
+
+[node name="SideAreaCutsceneTrigger" parent="." instance=ExtResource("22_hsr8o")]
+position = Vector2(464, 166)
+cutscenes = Array[ExtResource("27_4ejj6")]([ExtResource("33_1qv80")])
+
+[node name="CollisionShape2D" parent="SideAreaCutsceneTrigger" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_dajf3")
 
 [node name="NomadCampWarpZone" parent="." instance=ExtResource("14_chtsl")]
 position = Vector2(-477, -39)
@@ -788,17 +847,17 @@ navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("14_vwoqh")]
-triggerOrNPC = NodePath("../DragonSurviveCutscene")
-cutscene = ExtResource("28_ct8qx")
+triggerOrNPC = NodePath("../SideAreaCutsceneTrigger")
+cutscene = ExtResource("37_hamdx")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(1061, -466)
+position = Vector2(459, 117)
 facingLeft = true
-data = SubResource("Resource_msm5e")
+data = SubResource("Resource_1isc8")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.40071
+frame_progress = 0.17493
 flip_h = true
 
 [node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
@@ -813,8 +872,10 @@ disabled = true
 [editable path="EnemySpawner4"]
 [editable path="EnemySpawner5"]
 [editable path="EnemySpawner6"]
+[editable path="EnemySpawner7"]
 [editable path="RescueCutsceneTrigger"]
 [editable path="DragonSurviveCutscene"]
+[editable path="SideAreaCutsceneTrigger"]
 [editable path="NomadCampWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="ToolCutsceneVisualizer"]

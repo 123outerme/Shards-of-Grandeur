@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dtwqyxa8yw6ar"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8kxrd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ofrg6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0f2wc"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ws5r7"]
+[ext_resource type="Resource" uid="uid://75s3tiikg2dh" path="res://gamedata/dialogue/leavenport/elder_lady/elder_lady_floating_rocks.tres" id="4_ahh6u"]
+
+[sub_resource type="Resource" id="Resource_1yfm7"]
+script = ExtResource("2_0f2wc")
+choiceBtn = "Cool!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_ws5r7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_ixw4d"]
+script = ExtResource("2_0f2wc")
+choiceBtn = "Floating Rocks?"
+leadsTo = ExtResource("4_ahh6u")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_ws5r7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_faqxj"]
+script = ExtResource("1_8kxrd")
+lines = Array[String](["You don't seem like a familiar face! You must be a visitor to Leavenport.", "Long ago, our ancestors sailed down this river and built this town atop the wet soil.", "Now, we even run bridges across the river to live as close to the water as we can!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0f2wc")]([SubResource("Resource_1yfm7"), SubResource("Resource_ixw4d")])
+
+[resource]
+script = ExtResource("1_ofrg6")
+entryId = ""
+items = Array[ExtResource("1_8kxrd")]([SubResource("Resource_faqxj")])
+closesDialogue = false
+fullHealsPlayer = false

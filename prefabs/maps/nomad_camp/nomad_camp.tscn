@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://lma6iu1hy74f"]
+[gd_scene load_steps=43 format=4 uid="uid://lma6iu1hy74f"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_octrj"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_5iptf"]
@@ -23,8 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="15_upvib"]
 [ext_resource type="Resource" uid="uid://n8b80e2ty0aw" path="res://gamedata/cutscenes/nomad_camp/camp_block_east.tres" id="16_urnk2"]
 [ext_resource type="Resource" uid="uid://da6ixck58qpq8" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_help.tres" id="19_s87p8"]
+[ext_resource type="Resource" uid="uid://bi86w03kwxch2" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_demo.tres" id="21_qqmeu"]
 
-[sub_resource type="Resource" id="Resource_kbf0x"]
+[sub_resource type="Resource" id="Resource_fkvej"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -47,7 +48,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_pktct"]
+[sub_resource type="Resource" id="Resource_7ta7p"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -70,7 +71,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_sxop5"]
+[sub_resource type="Resource" id="Resource_swfgp"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -93,7 +94,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_1aeih"]
+[sub_resource type="Resource" id="Resource_6lu5w"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -153,7 +154,7 @@ size = Vector2(8, 86)
 size = Vector2(124, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duxrb"]
-size = Vector2(20, 87)
+size = Vector2(66, 87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aw3ob"]
 size = Vector2(102, 56)
@@ -164,7 +165,7 @@ size = Vector2(118, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rca68"]
 size = Vector2(56, 87)
 
-[sub_resource type="Resource" id="Resource_2tmkl"]
+[sub_resource type="Resource" id="Resource_vvt7d"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -236,7 +237,7 @@ position = Vector2(202, 217)
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_kbf0x")
+data = SubResource("Resource_fkvej")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -260,7 +261,7 @@ visible = false
 collision_layer = 0
 displayName = "Elder"
 followerId = "elder_nomad2"
-data = SubResource("Resource_pktct")
+data = SubResource("Resource_7ta7p")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -281,7 +282,7 @@ position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
 loadFlipH = true
-data = SubResource("Resource_sxop5")
+data = SubResource("Resource_swfgp")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
@@ -302,7 +303,7 @@ visible = false
 [node name="Nomad4" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
 position = Vector2(-124, 208)
 displayName = "Nomad"
-data = SubResource("Resource_1aeih")
+data = SubResource("Resource_6lu5w")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad4" index="0"]
 sprite_frames = ExtResource("6_al45b")
@@ -396,7 +397,7 @@ shape = SubResource("RectangleShape2D_lxgbc")
 
 [node name="NorthCutsceneTrigger" parent="." instance=ExtResource("10_aoyhc")]
 position = Vector2(0, -453)
-cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("15_su72i"), ExtResource("19_s87p8")])
+cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("15_su72i"), ExtResource("19_s87p8"), ExtResource("21_qqmeu")])
 
 [node name="CollisionShape2D" parent="NorthCutsceneTrigger" index="0"]
 position = Vector2(8, 0)
@@ -407,7 +408,7 @@ position = Vector2(347, -170)
 cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("16_urnk2")])
 
 [node name="CollisionShape2D" parent="EastCutsceneTrigger" index="0"]
-position = Vector2(0, 2.5)
+position = Vector2(23, 2.5)
 shape = SubResource("RectangleShape2D_duxrb")
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("9_6h1pt")]
@@ -450,7 +451,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(387, -167)
-data = SubResource("Resource_2tmkl")
+data = SubResource("Resource_vvt7d")
 
 [editable path="TilemapRoot/Nomad1"]
 [editable path="TilemapRoot/Nomad2"]

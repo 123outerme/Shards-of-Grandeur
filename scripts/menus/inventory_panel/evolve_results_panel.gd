@@ -24,19 +24,24 @@ func load_evolve_results_panel():
 				+ ', ' + nickNameOrPrevDispName + ' has reverted back to base form.'
 	
 	if combatantLosingEvolving != null:
-		details += '\n' + combatantLosingEvolving.disp_name() + ' unequipped the ' + equipment.itemName + ' and reverted back to base form.'
+		var combatantLosingEvolution: Evolution = combatantLosingEvolving.get_evolution()
+		var combatantLosingForm: String = 'base form' if combatantLosingEvolution == null else combatantLosingEvolving.stats.displayName
+		details += '\n' + combatantLosingEvolving.disp_name() + ' unequipped the ' + equipment.itemName + ' and reverted back to ' + combatantLosingForm + '.'
 	
 	# if stats were changed, tell the player
 	if switchEvolutionFlags != 0:
 		details += ' This form has grown since it has last seen battle:'
 		var changesStrings: Array[String] = []
-		if switchEvolutionFlags & 1 == 1: # 0b0001
-			changesStrings.append('It may have Stat Points to allocate!')
-		if (switchEvolutionFlags >> 1) & 1 == 1: # 0b0010
+		if switchEvolutionFlags & 1 == 1: # 0b00001
+			if (switchEvolutionFlags >> 4) & 1 == 1: # 0b10000
+				changesStrings.append('It auto-allocated some Stat Points!')
+			else:
+				changesStrings.append('It may have Stat Points to allocate!')
+		if (switchEvolutionFlags >> 1) & 1 == 1: # 0b00010
 			changesStrings.append('It has different moves in this form.')
-		if (switchEvolutionFlags >> 2) & 1 == 1: # 0b0100
+		if (switchEvolutionFlags >> 2) & 1 == 1: # 0b00100
 			var forgotStr: String = 'It forgot how to use some moves'
-			if (switchEvolutionFlags >> 3) & 1 == 1: # 0b1000
+			if (switchEvolutionFlags >> 3) & 1 == 1: # 0b01000
 				forgotStr += ', so it completely changed up its moveset!'
 			else:
 				forgotStr += '.'

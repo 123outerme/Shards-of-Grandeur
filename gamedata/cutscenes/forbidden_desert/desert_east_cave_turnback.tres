@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://bokbigb7xuvvh"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_abndu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_4ohwn"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_o3p4b"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_87s3e"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_es86m"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_ayy33"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_f3m2o"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_oaxf1"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_i5h4x"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_j6sxs"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_8y7gc"]
+
+[sub_resource type="Resource" id="Resource_26w5k"]
+script = ExtResource("6_j6sxs")
+value = Vector2(905, -453)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_nqhba"]
+script = ExtResource("6_i5h4x")
+speaker = "@"
+texts = Array[String](["I can't just leave that old man to the Dragon...!"])
+
+[sub_resource type="Resource" id="Resource_px1jl"]
+script = ExtResource("1_abndu")
+frameLength = 1.0
+annotation = "Walk the player back towards the Nomad and talk"
+actorTweens = Array[ExtResource("5_oaxf1")]([SubResource("Resource_26w5k")])
+actorAnims = Array[ExtResource("3_87s3e")]([ExtResource("4_ayy33")])
+actorAnimSets = Array[ExtResource("2_o3p4b")]([])
+actorFaceTargets = Array[ExtResource("4_f3m2o")]([])
+dialogues = Array[ExtResource("6_i5h4x")]([SubResource("Resource_nqhba")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_u7lfl"]
+script = ExtResource("1_abndu")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_oaxf1")]([])
+actorAnims = Array[ExtResource("3_87s3e")]([ExtResource("9_8y7gc")])
+actorAnimSets = Array[ExtResource("2_o3p4b")]([])
+actorFaceTargets = Array[ExtResource("4_f3m2o")]([])
+dialogues = Array[ExtResource("6_i5h4x")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mawxi"]
+script = ExtResource("3_es86m")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["dragon1_encounter"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["dragon1_survive"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_4ohwn")
+cutsceneFrames = Array[ExtResource("1_abndu")]([SubResource("Resource_px1jl"), SubResource("Resource_u7lfl")])
+saveName = ""
+storyRequirements = SubResource("Resource_mawxi")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
