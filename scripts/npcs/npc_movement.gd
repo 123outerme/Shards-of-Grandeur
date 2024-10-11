@@ -23,7 +23,7 @@ func _ready():
 		start_movement()
 
 func _physics_process(delta):
-	if not disableMovement:
+	if can_npc_move():
 		if not followerMode and not returnToFollowerHome and reachedTarget and selectedTarget < len(targetPoints):
 			afterMoveWaitAccum += delta
 			if afterMoveWaitAccum >= targetPoints[selectedTarget].pauseSecs:
@@ -33,7 +33,7 @@ func _physics_process(delta):
 			update_target_pos()
 	
 	var vel: Vector2 = Vector2.ZERO
-	if not disableMovement and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and (loops != 0 or followerMode or returnToFollowerHome):
+	if can_npc_move() and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and (loops != 0 or followerMode or returnToFollowerHome):
 		#print(NPC.name, ' ', target_position)
 		var nextPos: Vector2 = get_next_path_position()
 		if followerMode and not is_target_reachable():
@@ -56,13 +56,13 @@ func _physics_process(delta):
 			if NPC.walkBackwards:
 				flip = not flip # if walking backwards and would flip, don't
 			NPC.npcSprite.flip_h = flip
-	if vel.length() > 0:
-		if NPC.walkBackwards:
-			NPC.npcSprite.play_backwards('walk')
+		if vel.length() > 0:
+			if NPC.walkBackwards:
+				NPC.npcSprite.play_backwards('walk')
+			else:
+				NPC.npcSprite.play('walk')
 		else:
-			NPC.npcSprite.play('walk')
-	else:
-		NPC.npcSprite.play('stand')
+			NPC.npcSprite.play('stand')
 
 func set_target_pos():
 	if not followerMode and not returnToFollowerHome:
@@ -77,7 +77,7 @@ func set_target_pos():
 		max_speed = PlayerFinder.player.speed * 1.2
 
 func update_target_pos():
-	if disableMovement:
+	if not can_npc_move():
 		return
 	if not followerMode and not returnToFollowerHome and len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
@@ -133,6 +133,9 @@ func get_following_target_position() -> Vector2:
 			targetPos.y += NPC.spriteSize.y * 1.5 # target top of player to move next to
 	return targetPos
 
+func can_npc_move() -> bool:
+	return not disableMovement and not (PlayerFinder.player != null and PlayerFinder.player.inCutscene)
+
 func _on_target_reached():
 	if not followerMode and not returnToFollowerHome and selectedTarget < len(targetPoints):
 		reachedTarget = true
@@ -141,8 +144,9 @@ func _on_target_reached():
 			update_target_pos()
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
-		print('target reached now')
+		NPC.npcSprite.play('stand')
 		disableMovement = NPC.data.previousDisableMove or len(targetPoints) == 0 or loops == 0
+		NPC.face_player()
 
 func _on_navigation_finished():
 	if not followerMode and not returnToFollowerHome and selectedTarget < len(targetPoints):
@@ -152,5 +156,6 @@ func _on_navigation_finished():
 			update_target_pos()
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
-		print('finish now')
+		NPC.npcSprite.play('stand')
 		disableMovement = NPC.data.previousDisableMove or len(targetPoints) == 0 or loops == 0
+		NPC.face_player()
