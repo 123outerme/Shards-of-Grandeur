@@ -222,11 +222,12 @@ func load_into_battle():
 	update_combatant_focus_neighbors()
 	
 	if state.menu == BattleState.Menu.SUMMON and \
-			(PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 or hasStaticMinion \
+			((PlayerResources.inventory.count_of(Item.Type.SHARD) == 0 and not PlayerResources.minions.has_fully_attuned_minion()) \
+				or hasStaticMinion \
 				or PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.NO_SUMMONS) \
 			):
 		state.menu = BattleState.Menu.PRE_BATTLE
-	
+
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 0), 0.5)
 	shadeTween.finished.connect(_fade_in_finish)

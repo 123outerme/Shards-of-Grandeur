@@ -33,6 +33,7 @@ func set_menu_state(newState: BattleState.Menu, savePrevState: bool = true):
 	if savePrevState:
 		prevMenu = menuState
 	menuState = newState
+	battleController.state.menu = newState
 	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
 	apply_menu_state()
 

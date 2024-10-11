@@ -57,7 +57,7 @@ invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_tjoq1"]
+[sub_resource type="Resource" id="Resource_dqrut"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -80,7 +80,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_gpa4e"]
+[sub_resource type="Resource" id="Resource_o5rit"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -498,7 +498,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_k00m3"]
+[sub_resource type="Resource" id="Resource_msm5e"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -575,7 +575,7 @@ stateSpritesDict = {
 "default": ExtResource("5_tspdh")
 }
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_tjoq1")
+data = SubResource("Resource_dqrut")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("4_j42rk")
@@ -598,7 +598,7 @@ displayName = "Dragon"
 saveName = "desert_east_dragon"
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_gpa4e")
+data = SubResource("Resource_o5rit")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -795,7 +795,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1061, -466)
 facingLeft = true
-data = SubResource("Resource_k00m3")
+data = SubResource("Resource_msm5e")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.40071

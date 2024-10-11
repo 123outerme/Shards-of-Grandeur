@@ -95,10 +95,16 @@ func add_friendship(minionName: String, wasDowned: bool):
 
 func which_minion_equipped(item: Item) -> String:
 	var saveName: String = ''
-	for minion in get_minion_list():
+	for minion: Combatant in get_minion_list():
 		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or (minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName):
 			saveName = minion.save_name()
 	return saveName
+
+func has_fully_attuned_minion() -> bool:
+	for minion: Combatant in get_minion_list():
+		if minion.friendship >= minion.maxFriendship:
+			return true
+	return false
 
 func reorder_minion(chosenMinion: Combatant, aboveMinion: Combatant) -> int:
 	var idx = minionList.find(aboveMinion.save_name())

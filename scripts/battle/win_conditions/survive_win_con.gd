@@ -19,6 +19,9 @@ func _init(
 	staticTotalDefeatRewards = i_totalDefeatRewards.duplicate(true)
 
 func get_result(combatants: Array[CombatantNode], battleState: BattleState) -> TurnResult:
-	if battleState.turnNumber >= minTurns:
+	var turnNumber: int = battleState.turnNumber
+	if battleState.menu == BattleState.Menu.POST_ROUND:
+		turnNumber += 1
+	if turnNumber >= minTurns:
 		return TurnResult.PLAYER_WIN
 	return super.get_result(combatants, battleState)
