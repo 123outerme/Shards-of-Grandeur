@@ -429,6 +429,12 @@ func skip_cutscene_process():
 		if frame.givesItem:
 			PlayerResources.inventory.add_item(frame.givesItem)
 			PlayerFinder.player.cam.show_alert('Got Item:\n' + frame.givesItem.itemName, frame.givesItem.itemSprite)
+		if frame.healsPlayer:
+			handle_heal_player()
+		if frame.addsFollowerId != '':
+			PlayerResources.set_follower_active(frame.addsFollowerId)
+		if frame.removesFollowerId != '':
+			PlayerResources.remove_follower(frame.removesFollowerId)
 		await get_tree().process_frame
 	end_cutscene()
 	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
