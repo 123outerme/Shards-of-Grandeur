@@ -36,10 +36,10 @@ func load_move_pool_panel(rebuild: bool = true):
 					not (hideMovesInMoveList and (move in moves)):
 				var instantiatedPanel: MoveListItemPanel = moveListItemPanel.instantiate()
 				if lastMovePanel == null:
-					instantiatedPanel.call_deferred('set_buttons_top_neighbor', '')
+					instantiatedPanel.call_deferred('set_buttons_top_neighbor', '.')
 				else:
 					instantiatedPanel.call_deferred('connect_move_list_item_panel_top_neighbor', lastMovePanel)
-					instantiatedPanel.call_deferred('set_buttons_bottom_neighbor', '')
+					instantiatedPanel.call_deferred('set_buttons_bottom_neighbor', '.')
 				instantiatedPanel.move = move
 				instantiatedPanel.showNewMoveIndicator = levelUp and move.requiredLv == level
 				instantiatedPanel.details_pressed.connect(_on_details_button_clicked)
@@ -61,6 +61,7 @@ func load_move_pool_panel(rebuild: bool = true):
 
 func show_select_buttons(showing: bool = true, exception: Move = null, grabFocus = true):
 	var hasFocused = not grabFocus # take focus if grabFocus is true, otherwise pretend like it's already been taken
+	var lastPanel: MoveListItemPanel = null
 	for panel in get_tree().get_nodes_in_group('MovePoolPanelMove'):
 		var movePanel: MoveListItemPanel = panel as MoveListItemPanel
 		movePanel.movepoolSelect = showing and exception != movePanel.move and not (movePanel.move in moves)
@@ -69,6 +70,9 @@ func show_select_buttons(showing: bool = true, exception: Move = null, grabFocus
 		if not hasFocused and movePanel.selectButton.visible:
 			movePanel.selectButton.grab_focus()
 			hasFocused = true
+		if lastPanel != null:
+			movePanel.connect_move_list_item_panel_top_neighbor(lastPanel)
+		lastPanel = movePanel
 		
 func show_learn_buttons(showing: bool = true):
 	var hasFocused = false

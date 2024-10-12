@@ -98,16 +98,51 @@ func set_buttons_top_neighbor(path: String) -> void:
 func connect_move_list_item_panel_top_neighbor(other: MoveListItemPanel) -> void:
 	detailsButton.focus_neighbor_top = detailsButton.get_path_to(other.detailsButton)
 	other.detailsButton.focus_neighbor_bottom = other.detailsButton.get_path_to(detailsButton)
-	replaceButton.focus_neighbor_top = replaceButton.get_path_to(other.replaceButton)
-	other.replaceButton.focus_neighbor_bottom = other.replaceButton.get_path_to(replaceButton)
-	reorderButton.focus_neighbor_top = reorderButton.get_path_to(other.reorderButton)
-	other.reorderButton.focus_neighbor_bottom = other.reorderButton.get_path_to(reorderButton)
-	selectButton.focus_neighbor_top = selectButton.get_path_to(other.selectButton)
-	other.selectButton.focus_neighbor_bottom = other.selectButton.get_path_to(selectButton)
-	learnButton.focus_neighbor_top = learnButton.get_path_to(other.learnButton)
-	other.learnButton.focus_neighbor_bottom = other.learnButton.get_path_to(learnButton)
-	cancelButton.focus_neighbor_top = cancelButton.get_path_to(other.cancelButton)
-	other.cancelButton.focus_neighbor_bottom = other.cancelButton.get_path_to(cancelButton)
+	
+	if other.replaceButton.visible:
+		if replaceButton.visible:
+			replaceButton.focus_neighbor_top = replaceButton.get_path_to(other.replaceButton)
+			other.replaceButton.focus_neighbor_bottom = other.replaceButton.get_path_to(replaceButton)
+		else:
+			other.replaceButton.focus_neighbor_bottom = other.replaceButton.get_path_to(detailsButton)
+	else:
+		replaceButton.focus_neighbor_top = replaceButton.get_path_to(other.detailsButton)
+	
+	if other.reorderButton.visible:
+		if reorderButton.visible:
+			reorderButton.focus_neighbor_top = reorderButton.get_path_to(other.reorderButton)
+			other.reorderButton.focus_neighbor_bottom = other.reorderButton.get_path_to(reorderButton)
+		else:
+			other.reorderButton.focus_neighbor_bottom = other.reorderButton.get_path_to(detailsButton)
+	else: 
+		reorderButton.focus_neighbor_top = reorderButton.get_path_to(other.detailsButton)
+		
+	if other.selectButton.visible:
+		if selectButton.visible:
+			selectButton.focus_neighbor_top = selectButton.get_path_to(other.selectButton)
+			other.selectButton.focus_neighbor_bottom = other.selectButton.get_path_to(selectButton)
+		else:
+			other.selectButton.focus_neighbor_bottom = other.selectButton.get_path_to(detailsButton)
+	else:
+		selectButton.focus_neighbor_top = selectButton.get_path_to(other.detailsButton)
+	
+	if other.learnButton.visible:
+		if learnButton.visible:
+			learnButton.focus_neighbor_top = learnButton.get_path_to(other.learnButton)
+			other.learnButton.focus_neighbor_bottom = other.learnButton.get_path_to(learnButton)
+		else:
+			other.learnButton.focus_neighbor_bottom = other.learnButton.get_path_to(detailsButton)
+	else:
+		learnButton.focus_neighbor_top = learnButton.get_path_to(other.detailsButton)
+	
+	if other.cancelButton.visible:
+		if cancelButton.visible:
+			cancelButton.focus_neighbor_top = cancelButton.get_path_to(other.cancelButton)
+			other.cancelButton.focus_neighbor_bottom = other.cancelButton.get_path_to(cancelButton)
+		else:
+			other.cancelButton.focus_neighbor_bottom = other.cancelButton.get_path_to(detailsButton)
+	else:
+		cancelButton.focus_neighbor_top = cancelButton.get_path_to(other.detailsButton)
 
 func _on_details_button_pressed():
 	details_pressed.emit(move)

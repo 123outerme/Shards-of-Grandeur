@@ -24,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	if can_npc_move():
-		if not followerMode and not returnToFollowerHome and reachedTarget and selectedTarget < len(targetPoints):
+		if not followerMode and not returnToFollowerHome and reachedTarget and len(targetPoints) > 0:
 			afterMoveWaitAccum += delta
 			if afterMoveWaitAccum >= targetPoints[selectedTarget].pauseSecs:
 				afterMoveWaitAccum = 0
@@ -81,6 +81,7 @@ func update_target_pos():
 		return
 	if not followerMode and not returnToFollowerHome and len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
+		print(selectedTarget)
 		reachedTarget = false
 		if selectedTarget == 0:
 			if loops == 0 or len(targetPoints) == 1:

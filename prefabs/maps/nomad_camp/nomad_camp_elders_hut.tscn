@@ -44,7 +44,7 @@ invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_mawuv"]
+[sub_resource type="Resource" id="Resource_mebe7"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -67,7 +67,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_rkil0"]
+[sub_resource type="Resource" id="Resource_jk8ib"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -127,12 +127,12 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_x2b76"]
+[sub_resource type="Resource" id="Resource_p65km"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(448, -294)
+position = Vector2(-52, -44)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -198,7 +198,7 @@ position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_mawuv")
+data = SubResource("Resource_mebe7")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_7105x")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -218,7 +218,7 @@ visible = false
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(480, -320)
 displayName = "Sign"
-data = SubResource("Resource_rkil0")
+data = SubResource("Resource_jk8ib")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_if42d")])
 facesPlayer = false
 
@@ -294,7 +294,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-52, -44)
-data = SubResource("Resource_x2b76")
+data = SubResource("Resource_p65km")
 
 [editable path="TilemapRoot/Nomad2"]
 [editable path="TilemapRoot/Signpost"]

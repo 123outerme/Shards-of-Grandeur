@@ -29,10 +29,10 @@ func load_move_list_panel():
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if lastMovePanel == null:
-			itemPanel.set_buttons_top_neighbor('')
+			itemPanel.set_buttons_top_neighbor('.')
 		else:
 			itemPanel.connect_move_list_item_panel_top_neighbor(lastMovePanel)
-			itemPanel.set_buttons_bottom_neighbor('')
+			itemPanel.set_buttons_bottom_neighbor('.')
 		if i < len(moves):
 			itemPanel.move = moves[i]
 			itemPanel.showNewMoveIndicator = levelUp and level == moves[i].requiredLv
@@ -60,22 +60,43 @@ func disconnect_details_pressed(function: Callable):
 			itemPanel.details_pressed.disconnect(function)
 
 func show_move_list_item_details_btns(showing: bool = true):
+	var lastPanel: MoveListItemPanel = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.showDetailsButton = showing
 		itemPanel.load_move_list_item_panel()
+		if lastPanel != null:
+			itemPanel.connect_move_list_item_panel_top_neighbor(lastPanel)
+		else:
+			itemPanel.set_buttons_top_neighbor('.')
+		lastPanel = itemPanel
+	lastPanel.set_buttons_bottom_neighbor('.')
 
 func show_move_list_item_replace_btns(showing: bool = false):
+	var lastPanel: MoveListItemPanel = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.editShowReplace = showing
 		itemPanel.load_move_list_item_panel()
+		if lastPanel != null:
+			itemPanel.connect_move_list_item_panel_top_neighbor(lastPanel)
+		else:
+			itemPanel.set_buttons_top_neighbor('.')
+		lastPanel = itemPanel
+	lastPanel.set_buttons_bottom_neighbor('.')
 
 func show_move_list_item_reorder_btns(showing: bool = false):
+	var lastPanel: MoveListItemPanel = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.editShowReorder = showing
 		itemPanel.load_move_list_item_panel()
+		if lastPanel != null:
+			itemPanel.connect_move_list_item_panel_top_neighbor(lastPanel)
+		else:
+			itemPanel.set_buttons_top_neighbor('.')
+		lastPanel = itemPanel
+	lastPanel.set_buttons_bottom_neighbor('.')
 
 func get_move_list_item(index: int) -> MoveListItemPanel:
 	return get_node("VBoxContainer/MoveListItemPanel" + String.num(index + 1))

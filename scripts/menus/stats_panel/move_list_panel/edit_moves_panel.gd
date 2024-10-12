@@ -104,8 +104,14 @@ func update_menu_state(grabFocus: bool = true):
 			moveListPanel.get_move_list_item(3).focus_neighbor_bottom = moveListPanel.lastMovePanel.replaceButton.get_path_to(backButton)
 	
 	if movePoolPanel.firstMovePanel != null:
-		backButton.focus_neighbor_bottom = backButton.get_path_to(movePoolPanel.firstMovePanel.detailsButton)
-		movePoolPanel.firstMovePanel.detailsButton.focus_neighbor_top = movePoolPanel.firstMovePanel.detailsButton.get_path_to(backButton)
+		if state == MenuState.SELECTING_MOVEPOOL_MOVE:
+			backButton.focus_neighbor_bottom = backButton.get_path_to(movePoolPanel.firstMovePanel.selectButton)
+		else:
+			if movePoolPanel.firstMovePanel.move == selectedMove:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(movePoolPanel.firstMovePanel.cancelButton)
+			else:
+				backButton.focus_neighbor_bottom = backButton.get_path_to(movePoolPanel.firstMovePanel.detailsButton)
+		movePoolPanel.firstMovePanel.set_buttons_top_neighbor.call_deferred(movePoolPanel.firstMovePanel.detailsButton.get_path_to(backButton))
 	else:
 		backButton.focus_neighbor_bottom = backButton.get_path_to(backButton) # get path to self to prevent losing focus
 	backButton.focus_neighbor_left = backButton.get_path_to(backButton)
