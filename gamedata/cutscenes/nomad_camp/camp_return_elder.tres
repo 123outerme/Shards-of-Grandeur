@@ -1,0 +1,393 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=44 format=3 uid="uid://cvnh5aii3b3y8"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_8f015"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_ttiu7"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_y3pjm"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_21h40"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_opyxc"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_a1bfl"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_y7885"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_maclo"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_b1qhf"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_xnn25"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_cd420"]
+
+[sub_resource type="Resource" id="Resource_wradl"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_mpitm"]
+script = ExtResource("6_b1qhf")
+value = Vector2(216, -170)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_cskf0"]
+script = ExtResource("6_b1qhf")
+value = Vector2(236, -170)
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ggh0t"]
+script = ExtResource("1_8f015")
+frameLength = 2.0
+annotation = "Walk the player and the elder into town"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_mpitm"), SubResource("Resource_cskf0")])
+actorAnims = Array[ExtResource("3_opyxc")]([ExtResource("4_a1bfl"), SubResource("Resource_wradl")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wl2wq"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_j660n"]
+script = ExtResource("4_y7885")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/Nomad2"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_axnow"]
+script = ExtResource("4_y7885")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+targetTreePath = "TilemapRoot/Nomad2"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_v6uuw"]
+script = ExtResource("7_xnn25")
+speaker = "Elder"
+texts = Array[String](["Dear!"])
+
+[sub_resource type="Resource" id="Resource_wqk7w"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "the elder speaks and everyone faces him"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([ExtResource("9_cd420"), SubResource("Resource_wl2wq")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([SubResource("Resource_j660n"), SubResource("Resource_axnow")])
+dialogues = Array[ExtResource("7_xnn25")]([SubResource("Resource_v6uuw")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_r5khl"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "wait for textbox to be closed"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_jetkn"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_ngemb"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_u1htw"]
+script = ExtResource("6_b1qhf")
+value = Vector2(232, -184)
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_f5ir0"]
+script = ExtResource("7_xnn25")
+speaker = "Nomad"
+texts = Array[String](["Oh, you're okay!!"])
+
+[sub_resource type="Resource" id="Resource_s00gx"]
+script = ExtResource("1_8f015")
+frameLength = 0.5
+annotation = "the wife nomad walks over to him and speaks"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_u1htw")])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_jetkn"), SubResource("Resource_ngemb")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([SubResource("Resource_f5ir0")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_l23ex"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xd1xr"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_kvlv1"]
+script = ExtResource("4_y7885")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+
+[sub_resource type="Resource" id="Resource_roknv"]
+script = ExtResource("7_xnn25")
+speaker = "Nomad"
+texts = Array[String](["Thank you, adventurer!"])
+
+[sub_resource type="Resource" id="Resource_x5br4"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "She turns to the player and thanks him"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_xd1xr")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([SubResource("Resource_kvlv1")])
+dialogues = Array[ExtResource("7_xnn25")]([SubResource("Resource_roknv")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1qgja"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "Wait for the dialogue box to be closed"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wu6xn"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_wi0ge"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_6o5ai"]
+script = ExtResource("4_y7885")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+targetTreePath = "TilemapRoot/Nomad2"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_m8jvt"]
+script = ExtResource("7_xnn25")
+speaker = "Elder"
+texts = Array[String](["I need to retire to my study. @, when you are ready, come talk to me in my hut.", "I will reward you for your bravery, and for reuniting me with my family."])
+
+[sub_resource type="Resource" id="Resource_kqgh6"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "She turns back to the elder, he speaks"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_wu6xn"), SubResource("Resource_wi0ge")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([SubResource("Resource_6o5ai")])
+dialogues = Array[ExtResource("7_xnn25")]([SubResource("Resource_m8jvt")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_w6t5b"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "Wait for the dialogue box to be closed"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_lyiem"]
+script = ExtResource("6_b1qhf")
+value = Vector2(236, -148)
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vu5y1"]
+script = ExtResource("1_8f015")
+frameLength = 0.4
+annotation = "The elder starts to walk offscreen, disbands from the player's party"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_lyiem")])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = "elder_nomad2"
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_y5l05"]
+script = ExtResource("6_b1qhf")
+value = Vector2(0, -96)
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_oampx"]
+script = ExtResource("1_8f015")
+frameLength = 2.5
+annotation = "The elder continues offscreen"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_y5l05")])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_0nto8"]
+script = ExtResource("3_21h40")
+minAct = 1
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["dragon1_survive"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String](["elder_nomad2"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["return_elder_nomad"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_y3pjm")
+cutsceneFrames = Array[ExtResource("1_8f015")]([SubResource("Resource_ggh0t"), SubResource("Resource_wqk7w"), SubResource("Resource_r5khl"), SubResource("Resource_s00gx"), SubResource("Resource_l23ex"), SubResource("Resource_x5br4"), SubResource("Resource_1qgja"), SubResource("Resource_kqgh6"), SubResource("Resource_w6t5b"), SubResource("Resource_vu5y1"), SubResource("Resource_oampx")])
+saveName = "return_elder_nomad"
+storyRequirements = SubResource("Resource_0nto8")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false

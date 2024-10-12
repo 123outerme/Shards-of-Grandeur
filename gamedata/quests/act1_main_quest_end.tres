@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://c26uetv4g5ym2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=12 format=3 uid="uid://c26uetv4g5ym2"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ckbbk"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_qiuql"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_a40f2"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_2idsp"]
+[ext_resource type="Resource" uid="uid://c7yin6damtnyk" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_answers_inprogress.tres" id="4_uknb2"]
+[ext_resource type="Resource" uid="uid://d3d633nvsvkxa" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_answers_turnin.tres" id="6_81bju"]
 
 [sub_resource type="Resource" id="Resource_7xcwj"]
 script = ExtResource("2_qiuql")
@@ -38,27 +41,34 @@ name = "Back to Base Camp"
 description = "With the Dragon chased off and the elder revived, you'd both best head back to the Nomad Camp."
 type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "return_elder_nomad"
 turnInNames = Array[String]([])
 displayObjName = ""
-displayTurnInName = ""
-customStatusStr = "???"
+displayTurnInName = "Return to Camp!"
+customStatusStr = "Return to Nomad Camp!"
 turnInDialogue = Array[ExtResource("3_a40f2")]([])
 inProgressDialogue = Array[ExtResource("3_a40f2")]([])
+
+[sub_resource type="Resource" id="Resource_vt8bs"]
+script = ExtResource("4_2idsp")
+experience = 120
+gold = 5
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_hkuv4"]
 script = ExtResource("2_qiuql")
 name = "Get Some Answers"
 description = "A Ruinous Cave, a Dragon in the desert, and this old man can use Affinity! What's happening here?"
+reward = SubResource("Resource_vt8bs")
 type = 0
 count = 1
 objectiveName = "---"
-turnInNames = Array[String](["nomad2"])
+turnInNames = Array[String](["nomad2_hut"])
 displayObjName = "Elder"
 displayTurnInName = "Elder"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_a40f2")]([])
-inProgressDialogue = Array[ExtResource("3_a40f2")]([])
+turnInDialogue = Array[ExtResource("3_a40f2")]([ExtResource("6_81bju")])
+inProgressDialogue = Array[ExtResource("3_a40f2")]([ExtResource("4_uknb2")])
 
 [resource]
 script = ExtResource("1_ckbbk")

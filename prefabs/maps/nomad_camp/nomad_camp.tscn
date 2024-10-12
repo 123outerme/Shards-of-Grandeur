@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://lma6iu1hy74f"]
+[gd_scene load_steps=44 format=4 uid="uid://lma6iu1hy74f"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_octrj"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_5iptf"]
@@ -24,6 +24,7 @@
 [ext_resource type="Resource" uid="uid://n8b80e2ty0aw" path="res://gamedata/cutscenes/nomad_camp/camp_block_east.tres" id="16_urnk2"]
 [ext_resource type="Resource" uid="uid://da6ixck58qpq8" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_help.tres" id="19_s87p8"]
 [ext_resource type="Resource" uid="uid://bi86w03kwxch2" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_demo.tres" id="21_qqmeu"]
+[ext_resource type="Resource" uid="uid://cvnh5aii3b3y8" path="res://gamedata/cutscenes/nomad_camp/camp_return_elder.tres" id="23_mvglk"]
 
 [sub_resource type="Resource" id="Resource_fkvej"]
 script = ExtResource("5_b34g3")
@@ -190,8 +191,8 @@ hasShop = false
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_octrj")
-metadata/_edit_horizontal_guides_ = [637.0, -170.0]
-metadata/_edit_vertical_guides_ = [267.0]
+metadata/_edit_horizontal_guides_ = [637.0, -170.0, -184.0, -148.0, -96.0]
+metadata/_edit_vertical_guides_ = [264.0, 216.0, 232.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -257,10 +258,9 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 visible = false
 
 [node name="Nomad2" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
-visible = false
+position = Vector2(573, -173)
 collision_layer = 0
 displayName = "Elder"
-followerId = "elder_nomad2"
 data = SubResource("Resource_7ta7p")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -405,7 +405,7 @@ shape = SubResource("RectangleShape2D_kxf5n")
 
 [node name="EastCutsceneTrigger" parent="." instance=ExtResource("10_aoyhc")]
 position = Vector2(347, -170)
-cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("16_urnk2")])
+cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("16_urnk2"), ExtResource("23_mvglk")])
 
 [node name="CollisionShape2D" parent="EastCutsceneTrigger" index="0"]
 position = Vector2(23, 2.5)
@@ -445,13 +445,19 @@ shape = SubResource("RectangleShape2D_rca68")
 position = Vector2(-10, 0)
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("15_upvib")]
-triggerOrNPC = NodePath("../AwakenCutsceneTrigger")
-cutscene = ExtResource("11_7ifcc")
+triggerOrNPC = NodePath("../EastCutsceneTrigger")
+cutscene = ExtResource("23_mvglk")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(387, -167)
+position = Vector2(216, -170)
 data = SubResource("Resource_vvt7d")
+
+[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
+frame_progress = 0.728176
+
+[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
+disabled = true
 
 [editable path="TilemapRoot/Nomad1"]
 [editable path="TilemapRoot/Nomad2"]
