@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://ccbrrh3t1f3qm"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_lebd7"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_74r5s"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_gmika"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_en6to"]
+[ext_resource type="Resource" uid="uid://d3d633nvsvkxa" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_vision_start.tres" id="4_6fxaj"]
+
+[sub_resource type="Resource" id="Resource_j1w56"]
+script = ExtResource("1_lebd7")
+lines = Array[String](["This vision you had, from the Shard... what was it?"])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_74r5s")]([])
+
+[sub_resource type="Resource" id="Resource_cbh70"]
+script = ExtResource("2_74r5s")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_en6to")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_u84hi"]
+script = ExtResource("2_74r5s")
+choiceBtn = "Sure."
+leadsTo = ExtResource("4_6fxaj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_en6to")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Nomadic Rescue#Get Some Answers"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_kpbn8"]
+script = ExtResource("1_lebd7")
+lines = Array[String](["With my Affinity, I think I can show you. Care to see?"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_74r5s")]([SubResource("Resource_cbh70"), SubResource("Resource_u84hi")])
+
+[resource]
+script = ExtResource("2_gmika")
+entryId = ""
+items = Array[ExtResource("1_lebd7")]([SubResource("Resource_j1w56"), SubResource("Resource_kpbn8")])
+closesDialogue = false
+fullHealsPlayer = false

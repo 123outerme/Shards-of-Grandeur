@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dh3dbbpbbjgf6"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_f5ccd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0g6vk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_fsr7d"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_f4dod"]
+[ext_resource type="Resource" uid="uid://cq6mkbcsgod6p" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_vision_repeat.tres" id="4_bog2t"]
+
+[sub_resource type="Resource" id="Resource_b4t5u"]
+script = ExtResource("2_0g6vk")
+choiceBtn = "Never Mind."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_f4dod")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_ln2hh"]
+script = ExtResource("2_0g6vk")
+choiceBtn = "Vision..."
+leadsTo = ExtResource("4_bog2t")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_f4dod")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_5t2xa"]
+script = ExtResource("1_f5ccd")
+lines = Array[String](["Yes, @. What do you need?"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0g6vk")]([SubResource("Resource_b4t5u"), SubResource("Resource_ln2hh")])
+
+[resource]
+script = ExtResource("2_fsr7d")
+entryId = ""
+items = Array[ExtResource("1_f5ccd")]([SubResource("Resource_5t2xa")])
+closesDialogue = false
+fullHealsPlayer = false

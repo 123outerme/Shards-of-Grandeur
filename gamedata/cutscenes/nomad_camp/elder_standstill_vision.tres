@@ -1,0 +1,469 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=46 format=3 uid="uid://qg0pf3h6l4kv"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qka7m"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_2uv64"]
+[ext_resource type="Resource" uid="uid://dk34fxbbodqua" path="res://gamedata/quests/act2_main_quest.tres" id="2_ak4rm"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_blbay"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_5v3rg"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_8po81"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_d6g8i"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_nldep"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_njggs"]
+[ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="7_s26md"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="8_2fy3x"]
+
+[sub_resource type="Resource" id="Resource_08gth"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "Start fade out"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.75
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_etnm3"]
+script = ExtResource("6_njggs")
+speaker = "Elder"
+texts = Array[String](["I see into the future, @... a great disaster will befall soon..."])
+
+[sub_resource type="Resource" id="Resource_w8f7w"]
+script = ExtResource("1_qka7m")
+frameLength = 0.75
+annotation = "Fade out and hold the camera while the elder speaks"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_etnm3")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5awt1"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_lbbyr"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_5awt1")
+finalPos = Vector2(448, -294)
+relative = false
+
+[sub_resource type="Resource" id="Resource_345na"]
+script = ExtResource("1_qka7m")
+frameLength = 0.25
+annotation = "while the camera is faded out, it moves to the start of the good Standstill. Wait for textbox to be closed"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_lbbyr")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_a2n6g"]
+script = ExtResource("6_njggs")
+speaker = "Elder"
+texts = Array[String](["I see a quiet forest village, living carefree.", "The inhabitants believe they are safe..."])
+
+[sub_resource type="Resource" id="Resource_el6is"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = " the Elder speaks, fade in"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_a2n6g")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_q7gpp"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_af41s"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_q7gpp")
+finalPos = Vector2(794, -505)
+relative = false
+
+[sub_resource type="Resource" id="Resource_nsw24"]
+script = ExtResource("1_qka7m")
+frameLength = 8.0
+annotation = "Start slowly moving along northeast over the good Standstill"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_af41s")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_33ixn"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = " wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5dp8d"]
+script = ExtResource("6_njggs")
+speaker = "Elder"
+texts = Array[String](["Then, I see..."])
+
+[sub_resource type="Resource" id="Resource_oyiyp"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "Fade out the camera, the elder speaks again"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_5dp8d")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 1
+endFadeLength = 0.75
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_bgxfa"]
+script = ExtResource("1_qka7m")
+frameLength = 0.75
+annotation = "Wait for the camera to be fully faded out (pass on waiting for textbox to next frame)"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_fmc5r"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_udp1h"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_fmc5r")
+finalPos = Vector2(448, 286)
+relative = false
+
+[sub_resource type="Resource" id="Resource_ga5nl"]
+script = ExtResource("1_qka7m")
+frameLength = 0.25
+annotation = "Move the camera to the burned Standstill, wait for textbox to be closed"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_udp1h")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_nherq"]
+script = ExtResource("6_njggs")
+speaker = "Elder"
+texts = Array[String](["Oh, a sad sight to bear... the forest burned to the ground...", "Homes destroyed, people missing..."])
+
+[sub_resource type="Resource" id="Resource_6hegg"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "The elder speaks again, the camera fades in"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_nherq")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ecjq4"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_2pim4"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_ecjq4")
+finalPos = Vector2(794, 75)
+relative = false
+
+[sub_resource type="Resource" id="Resource_1hq67"]
+script = ExtResource("1_qka7m")
+frameLength = 8.0
+annotation = "Start slowly moving along northeast over the burned Standstill"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_2pim4")
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_og243"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "wait for the textbox to be closed"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_oi104"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "Fade out the camera"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 1
+endFadeLength = 0.75
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_jnl18"]
+script = ExtResource("1_qka7m")
+frameLength = 0.75
+annotation = "Wait for the camera to be faded out"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_gp7cx"]
+script = ExtResource("6_njggs")
+speaker = "Elder"
+texts = Array[String](["And... I see a person, a witch...", "I can't quite make it out, but she has Fire in her hands...!"])
+
+[sub_resource type="Resource" id="Resource_pw5ib"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "The elder describes that he sees a face but can't make it out"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_gp7cx")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_683hk"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_k4v75"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_683hk")
+finalPos = Vector2(0, 0)
+relative = true
+
+[sub_resource type="Resource" id="Resource_x8ajh"]
+script = ExtResource("1_qka7m")
+frameLength = 0.25
+annotation = "Pause while the camera returns to the player"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_k4v75")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_46p2v"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "Fade in"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_cdal4"]
+script = ExtResource("1_qka7m")
+frameLength = 0.5
+annotation = "Wait for the camera to be faded in"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ldja2"]
+script = ExtResource("3_5v3rg")
+minAct = 1
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_blbay")
+cutsceneFrames = Array[ExtResource("1_qka7m")]([SubResource("Resource_08gth"), SubResource("Resource_w8f7w"), SubResource("Resource_345na"), SubResource("Resource_el6is"), SubResource("Resource_nsw24"), SubResource("Resource_33ixn"), SubResource("Resource_oyiyp"), SubResource("Resource_bgxfa"), SubResource("Resource_ga5nl"), SubResource("Resource_6hegg"), SubResource("Resource_1hq67"), SubResource("Resource_og243"), SubResource("Resource_oi104"), SubResource("Resource_jnl18"), SubResource("Resource_pw5ib"), SubResource("Resource_x8ajh"), SubResource("Resource_46p2v"), SubResource("Resource_cdal4")])
+saveName = "standstill_vision"
+storyRequirements = SubResource("Resource_ldja2")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+givesQuest = ExtResource("2_ak4rm")
+tempDisabledAfter = false
+notes = "TODO: make impossible to watch again after reaching Grandstone/Standstill? Somewhere"

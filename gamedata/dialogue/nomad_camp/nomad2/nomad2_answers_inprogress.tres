@@ -1,11 +1,109 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=3 format=3 uid="uid://c7yin6damtnyk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://c7yin6damtnyk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mq075"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_d5kqt"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sgoqa"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_vvn1m"]
+[ext_resource type="Resource" uid="uid://ccbrrh3t1f3qm" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_vision_q.tres" id="4_70byx"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_rjokv"]
+
+[sub_resource type="Resource" id="Resource_6s151"]
+script = ExtResource("1_mq075")
+lines = Array[String](["I cannot thank you enough for your help, @. You fended off that Dragon while I was unconcious."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sgoqa")]([])
+
+[sub_resource type="Resource" id="Resource_y2tds"]
+script = ExtResource("1_mq075")
+lines = Array[String](["How'd you get knocked out, anyways?"])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sgoqa")]([])
+
+[sub_resource type="Resource" id="Resource_ik4t3"]
+script = ExtResource("1_mq075")
+lines = Array[String](["I out there was collecting crystals by the Ruinous Cavern.", "I reached out to pick one up, and all of a sudden I was given a vision, a vision of great pain.", "There was some power in that crystal that showed the vision to me. I had never experienced anything like it!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sgoqa")]([])
+
+[sub_resource type="Resource" id="Resource_5rnsi"]
+script = ExtResource("1_mq075")
+lines = Array[String](["This \"Ruinous Cavern\", I think I understand now. It's what my people refer to as the Radiant Cave.", "It's a cave where magical crystals grow. We call them Shards, and they are very powerful.", "What do you do with the Shards you collect?"])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sgoqa")]([])
+
+[sub_resource type="Resource" id="Resource_ne6hf"]
+script = ExtResource("2_sgoqa")
+choiceBtn = "Repeat That..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_vvn1m")]([])
+repeatsItem = true
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_tsavy"]
+script = ExtResource("2_sgoqa")
+choiceBtn = "The Vision?"
+leadsTo = ExtResource("4_70byx")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_vvn1m")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_ol3k5"]
+script = ExtResource("1_mq075")
+lines = Array[String](["Oh, nothing, it's just an old man's obsession. They're pretty, that's all. Guess I learned my lesson there.", "Some of the other Nomads have seen the pile of rocks I was rooting around in, and told us about the Ruinous Cavern.", "They recounted how it spewed monsters and upheaved the land, causing untold destruction.", "And then, suddenly, the cavern entrance collapsed in, and it was almost as if it was never there.", "I figured with this cavern collapsed, that was the end of the danger."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sgoqa")]([SubResource("Resource_ne6hf"), SubResource("Resource_tsavy")])
+
+[sub_resource type="Resource" id="Resource_wtxcc"]
+script = ExtResource("4_rjokv")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([""])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("2_d5kqt")
-entryId = ""
-items = Array[ExtResource("1_mq075")]([])
+entryId = "rescued_answers"
+items = Array[ExtResource("1_mq075")]([SubResource("Resource_6s151"), SubResource("Resource_y2tds"), SubResource("Resource_ik4t3"), SubResource("Resource_5rnsi"), SubResource("Resource_ol3k5")])
+storyRequirements = SubResource("Resource_wtxcc")
 closesDialogue = false
 fullHealsPlayer = false

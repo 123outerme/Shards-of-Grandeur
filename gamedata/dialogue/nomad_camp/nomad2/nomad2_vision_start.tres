@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://d3d633nvsvkxa"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_sqob4"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_oed7u"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_y62wj"]
+[ext_resource type="Resource" uid="uid://qg0pf3h6l4kv" path="res://gamedata/cutscenes/nomad_camp/elder_standstill_vision.tres" id="4_bhklx"]
+
+[sub_resource type="Resource" id="Resource_2pdy7"]
+script = ExtResource("1_sqob4")
+lines = Array[String](["Okay... here it goes."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_oed7u")]([])
+
+[sub_resource type="Resource" id="Resource_fcij8"]
+script = ExtResource("1_sqob4")
+lines = Array[String](["..."])
+animation = "attack_affinity"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = "attack_affinity"
+animateActorIsPlayer = true
+choices = Array[ExtResource("2_oed7u")]([])
+
+[resource]
+script = ExtResource("3_y62wj")
+entryId = ""
+items = Array[ExtResource("1_sqob4")]([SubResource("Resource_2pdy7"), SubResource("Resource_fcij8")])
+startsCutscene = ExtResource("4_bhklx")
+closesDialogue = false
+fullHealsPlayer = false

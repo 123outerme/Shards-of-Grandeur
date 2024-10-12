@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://cq6mkbcsgod6p"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tkd1p"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_266vp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_wh3w5"]
+[ext_resource type="Resource" uid="uid://d3d633nvsvkxa" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_vision_start.tres" id="3_jj13u"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_vfam7"]
+[ext_resource type="Resource" uid="uid://qg0pf3h6l4kv" path="res://gamedata/cutscenes/nomad_camp/elder_standstill_vision.tres" id="4_auu83"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_ikofk"]
+
+[sub_resource type="Resource" id="Resource_xi5cf"]
+script = ExtResource("1_tkd1p")
+lines = Array[String](["Could you... show me this vision again?"])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_266vp")]([])
+
+[sub_resource type="Resource" id="Resource_77bif"]
+script = ExtResource("2_266vp")
+choiceBtn = "Ready."
+leadsTo = ExtResource("3_jj13u")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_ikofk")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_e8v7g"]
+script = ExtResource("1_tkd1p")
+lines = Array[String](["Certainly, are you ready?"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_266vp")]([SubResource("Resource_77bif")])
+
+[sub_resource type="Resource" id="Resource_l6egd"]
+script = ExtResource("3_vfam7")
+minAct = 2
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_wh3w5")
+entryId = ""
+items = Array[ExtResource("1_tkd1p")]([SubResource("Resource_xi5cf"), SubResource("Resource_e8v7g")])
+storyRequirements = SubResource("Resource_l6egd")
+startsCutscene = ExtResource("4_auu83")
+closesDialogue = false
+fullHealsPlayer = false

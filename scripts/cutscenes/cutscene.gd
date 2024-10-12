@@ -2,27 +2,49 @@
 extends Resource
 class_name Cutscene
 
+## the keyframes that make up this cutscene
 @export var cutsceneFrames: Array[CutsceneFrame] = []
+
+## if not empty, the save name to set as seen the first time this cutscene plays
 @export var saveName: String = ''
+
+## the requirements to trigger this cutscene
 @export var storyRequirements: StoryRequirements = null
+
+## if false and the camera is being held, the camera will continue to be held when normal gameplay resumes. Only meant for instances where the camera is held and a warpzone is hit offscreen
 @export var unlockCameraHoldAfter: bool = true
+
+## set these actors' `invisible` or `visible` properties to be visible before the first frame processes
 @export var activateActorsBefore: Array[String] = []
+
+## set these actors' `invisible` or `visible` properties to not be visible after the last frame processes
 @export var deactivateActorsAfter: Array[String] = []
+
+## gives this quest at the end of the cutscene, if defined and the quest hasn't already been obtained
 @export var givesQuest: Quest = null
+
+## starts this static encounter if possible at the end of the cutscene
 @export var staticEncounter: StaticEncounter = null
+
+## if true, this cutscene won't play again until the map is reloaded (assuming `storyRequirements` still pass)
 @export var tempDisabledAfter: bool = false
+
+## misc. notes for editor usage only
+@export_multiline var notes: String = ''
+
 var totalTime: float = 0
 
 func _init(
 	i_frames: Array[CutsceneFrame] = [],
-	i_saveName = '',
-	i_storyRequirements = null,
-	i_unlockCameraAfter = true,
+	i_saveName: String = '',
+	i_storyRequirements: StoryRequirements = null,
+	i_unlockCameraAfter: bool = true,
 	i_activateActorsBefore: Array[String] = [],
 	i_deactivateActorsAfter: Array[String] = [],
-	i_givesQuest = null,
-	i_staticEncounter = null,
-	i_tempDisabledAfter = false,
+	i_givesQuest: Quest = null,
+	i_staticEncounter: StaticEncounter = null,
+	i_tempDisabledAfter: bool = false,
+	i_notes: String = '',
 ):
 	cutsceneFrames = i_frames
 	saveName = i_saveName
@@ -33,6 +55,7 @@ func _init(
 	givesQuest = i_givesQuest
 	staticEncounter = i_staticEncounter
 	tempDisabledAfter = i_tempDisabledAfter
+	notes = i_notes
 
 func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> CutsceneFrame:
 	var accumulator: float = 0
