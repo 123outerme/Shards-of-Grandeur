@@ -534,33 +534,34 @@ func assign_moves_nonplayer():
 	
 	# for each move slot, use the preferred role to find the highest lv move that includes that role
 	# MoveEffect.Role.OTHER means no preference, so a slot with that preference skips this phase and goes onto the next
-	for scoreToBeat: int in [7, 0]:
-		for idx: int in range(len(preferredRoles)):
-			var bestMove: Move = null
-			# first time, score to beat is 7: has to be of the specified role (most specific of the filters)
-			# second time, score to beat is 0: min score is 1 because of requiredLv testing logic
-			var bestScore: int = scoreToBeat
-			for move: Move in stats.movepool.pool:
-				var score: int = 0
-				if move.has_effect_with_role(preferredRoles[idx]) and preferredRoles[idx] != MoveEffect.Role.OTHER:
-					score += 8 # most specific criteria: most important
-				
-				if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
-					score += 4
-				
-				if move.category == preferredTypes[idx] and preferredTypes[idx] != Move.DmgCategory.ANY:
-					score += 2
-				
-				if bestMove == null or bestMove.requiredLv < move.requiredLv:
-					score += 1 # least specific criteria: least important
-				
-				if move.requiredLv <= stats.level \
-						and score > bestScore \
-						and not move in stats.moves:
-					bestMove = move
-					bestScore = score
-			if bestMove != null:
-				stats.moves[idx] = bestMove
+	#for scoreToBeat: int in [7, 0]:
+	for idx: int in range(len(preferredRoles)):
+		var bestMove: Move = stats.moves[idx]
+		# first time, score to beat is 7: has to be of the specified role (most specific of the filters)
+		# second time, score to beat is 0: min score is 1 because of requiredLv testing logic
+		var bestScore: int = -1
+		for move: Move in stats.movepool.pool:
+			var score: int = 0
+			if move.has_effect_with_role(preferredRoles[idx]) and preferredRoles[idx] != MoveEffect.Role.OTHER:
+				score += 8 # most specific criteria: most important
+			
+			if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
+				score += 4
+			
+			if move.category == preferredTypes[idx] and preferredTypes[idx] != Move.DmgCategory.ANY:
+				score += 2
+			
+			if bestMove == null or bestMove.requiredLv < move.requiredLv:
+				score += 1 # least specific criteria: least important
+			
+			if move.requiredLv <= stats.level \
+					and score > bestScore \
+					and not move in stats.moves:
+				bestMove = move
+				bestScore = score
+		if bestMove != null:
+			print(stats.displayName + ' move ', idx, ' is now ', bestMove.moveName)
+			stats.moves[idx] = bestMove
 		
 	stats.moves = stats.moves.filter(_filter_null) # remove null entries because they aren't needed
 	# NOTE: check if having null entries breaks anything (specifically move picking) or not

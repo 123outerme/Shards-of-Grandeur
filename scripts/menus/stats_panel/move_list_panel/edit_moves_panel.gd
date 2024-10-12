@@ -92,16 +92,12 @@ func update_menu_state(grabFocus: bool = true):
 	movePoolPanel.show_select_buttons(state == MenuState.SELECTING_MOVEPOOL_MOVE, selectedMove, grabFocus)
 	
 	if state == MenuState.SELECTING_NEW_SLOT:
-		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.get_move_list_item(3).replaceButton)
+		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.replaceButton)
 	elif moveListPanel.lastMovePanel != null:
 		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.reorderButton)
 	
 	if moveListPanel.lastMovePanel != null:
-		moveListPanel.lastMovePanel.detailsButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton)
-		if state == MenuState.SELECTING_MOVEPOOL_MOVE:
-			moveListPanel.lastMovePanel.reorderButton.focus_neighbor_bottom = moveListPanel.lastMovePanel.reorderButton.get_path_to(backButton)
-		else:
-			moveListPanel.get_move_list_item(3).focus_neighbor_bottom = moveListPanel.lastMovePanel.replaceButton.get_path_to(backButton)
+		moveListPanel.lastMovePanel.set_buttons_bottom_neighbor.call_deferred(moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton))
 	
 	if movePoolPanel.firstMovePanel != null:
 		if state == MenuState.SELECTING_MOVEPOOL_MOVE:

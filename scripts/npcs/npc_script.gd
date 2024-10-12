@@ -35,6 +35,9 @@ class_name NPCScript
 ## if the provided requirements are invalid, the NPC will be freed from the scene
 @export var spawnRequirements: StoryRequirements = null
 
+## StoryRequirement results or'd together: if all of the provided requirements are invalid, the NPC will be freed from the scene. `spawnRequirements` is processed first so it will override these
+@export var orSpawnRequirements: Array[StoryRequirements] = []
+
 @export_category("NPC Persistent Data")
 @export var data: NPCData
 
@@ -90,9 +93,23 @@ var sprite_modulate: Color:
 		if npcSprite != null:
 			npcSprite.self_modulate = c
 
+var follower_home_pos: Vector2:
+	get:
+		if data != null:
+			return data.followerHomePosition
+		return Vector2.ZERO
+	set(p):
+		if data != null:
+			data.followerHomePosition = p
+
+var combatMode: bool = false
+
 var initialTalkAlertSprPos: Vector2 = Vector2()
 var initialTalkAreaPos: Vector2 = Vector2()
 var initialTalkAreaShapePos: Vector2 = Vector2()
+
+## if true, will make the current position the NPC's new follower home when being unset as a follower. Used in cutscenes to have more control over followers
+var unfollowMakeNewHome: bool = false
 
 var player: PlayerController = null
 var npcsDir: String = "npcs/"
@@ -104,7 +121,7 @@ func _ready():
 	initialTalkAlertSprPos = talkAlertSprite.position
 	initialTalkAreaPos = talkArea.position
 	initialTalkAreaShapePos = talkAreaShape.position
-	print(name, ' ', spriteState)
+	#print(name, ' ', spriteState)
 	set_sprite_state(spriteState)
 	
 	data = NPCData.new()
@@ -112,10 +129,19 @@ func _ready():
 	data.inventory = inventory
 	data.spriteState = spriteState
 	call_deferred("fetch_player")
-	if spawnRequirements != null and not spawnRequirements.is_valid():
-		queue_free() # or alternatively set visible to false?
 	
 	if not Engine.is_editor_hint():
+		if spawnRequirements != null and not spawnRequirements.is_valid():
+			queue_free() # or alternatively set visible to false?
+		var allowedToSpawn: bool = orSpawnRequirements == null or len(orSpawnRequirements) == 0
+		if orSpawnRequirements != null:
+			for requirement: StoryRequirements in orSpawnRequirements:
+				if requirement == null or requirement.is_valid():
+					allowedToSpawn = true
+					break
+		if not allowedToSpawn:
+			queue_free()
+
 		if loadFlipH:
 			flip_h = not flip_h
 		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
@@ -132,6 +158,7 @@ func save_data(save_path) -> int:
 	data.animation = npcSprite.animation
 	data.flipH = flip_h
 	data.position = position
+	data.combatMode = combatMode
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
 	data.disableMovement = NavAgent.disableMovement
@@ -158,6 +185,7 @@ func load_data(save_path):
 		set_sprite_state(data.spriteState)
 		npcSprite.play(data.animation)
 		position = data.position
+		combatMode = data.combatMode
 		_set_flip_h(data.flipH)
 		NavAgent.selectedTarget = data.selectedTarget
 		NavAgent.loops = data.loops
@@ -342,7 +370,7 @@ func advance_dialogue() -> bool:
 					PlayerResources.questInventory.accept_quest(q)
 					PlayerFinder.player.cam.show_alert('Started Quest:\n' + q.questName)
 				if not startingCutscene:
-					play_animation('stand')
+					play_animation(get_stand_animation())
 				data.dialogueIndex = 0
 				data.dialogueItemIdx = 0
 				data.dialogueLine = -1
@@ -462,7 +490,7 @@ func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool =
 func pause_movement():
 	NavAgent.disableMovement = true
 	if self != PlayerFinder.player.talkNPC:
-		play_animation('stand')
+		play_animation(get_stand_animation())
 	
 func unpause_movement():
 	NavAgent.disableMovement = false
@@ -479,6 +507,9 @@ func set_sprite_state(state: String):
 func play_animation(animation: String):
 	if animation != '':
 		npcSprite.play(animation)
+
+func get_stand_animation() -> String:
+	return 'stand' if not combatMode else 'battle_idle'
 
 func face_horiz(xDirection: float):
 	if xDirection < 0:
@@ -514,14 +545,20 @@ func set_following_player(following: bool, onLoad: bool = false):
 				position = data.followerHomePosition # TODO: this NPC has been unset to follow the player while unloaded; snap it back to its home
 		else:
 			if data.followingPlayer:
-				navToHomeFirst = true
+				# if the NPC should make this place their new home when unfollowing instead of going back to their old home
+				if unfollowMakeNewHome:
+					data.followerHomePosition = position
+				else:
+					navToHomeFirst = true
 	data.followingPlayer = following
 	NavAgent.set_follower_mode(following, navToHomeFirst)
 
 func _on_npc_sprite_animation_finished():
-	play_animation('stand')
+	play_animation(get_stand_animation())
 
 func _story_reqs_updated():
+	# NOTE: being spawned not automatically updated here because if the NPC is onscreen, it would look strange
+	# this logic is already being depended on by the King Rat in Hilltop Forest
 	if player != null and self in player.talkNPCcandidates and not self == player.talkNPC:
 		reset_dialogue()
 		if len(data.dialogueItems) > 0 and not player.inCutscene:

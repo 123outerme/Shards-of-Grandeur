@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://83b1hyn2uhjy"]
+[gd_scene load_steps=111 format=4 uid="uid://83b1hyn2uhjy"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_u0d82"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_b2n1i"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_klaa4"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_y2wfg"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_8xf2k"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="5_j35yv"]
 [ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="5_n1yd4"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="5_w1qbi"]
@@ -40,7 +41,7 @@
 [ext_resource type="Resource" uid="uid://b2rhsj1klgelg" path="res://gamedata/cutscenes/sea_leg_swamp/east_exit_guarded.tres" id="31_u6cg4"]
 [ext_resource type="Resource" uid="uid://f1d8hssfanlk" path="res://gamedata/cutscenes/sea_leg_swamp/north_exit_guarded.tres" id="32_apshv"]
 
-[sub_resource type="Resource" id="Resource_547fo"]
+[sub_resource type="Resource" id="Resource_1454s"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -56,6 +57,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -63,7 +65,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_2mjhi"]
+[sub_resource type="Resource" id="Resource_u4cnr"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -79,6 +81,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -86,7 +89,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_m28yf"]
+[sub_resource type="Resource" id="Resource_ivvmg"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -102,6 +105,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -109,7 +113,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_j7okg"]
+[sub_resource type="Resource" id="Resource_gto87"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -125,6 +129,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -132,7 +137,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_gc8du"]
+[sub_resource type="Resource" id="Resource_y2nb1"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -148,6 +153,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -155,7 +161,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_fljsm"]
+[sub_resource type="Resource" id="Resource_a38pp"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -171,6 +177,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -178,7 +185,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_ixjjx"]
+[sub_resource type="Resource" id="Resource_crjnr"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -194,6 +201,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -201,7 +209,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_nmybs"]
+[sub_resource type="Resource" id="Resource_ea30i"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -217,6 +225,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -224,7 +233,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_2hq4k"]
+[sub_resource type="Resource" id="Resource_j3onw"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -240,6 +249,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -247,7 +257,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_yiuia"]
+[sub_resource type="Resource" id="Resource_dp4pv"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -263,6 +273,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -270,7 +281,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_qar5a"]
+[sub_resource type="Resource" id="Resource_ovwnb"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -286,6 +297,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -293,7 +305,7 @@ dialogueItemIdx = -1
 dialogueLine = -1
 hasShop = false
 
-[sub_resource type="Resource" id="Resource_wvc76"]
+[sub_resource type="Resource" id="Resource_3lwb2"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -309,6 +321,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -610,7 +623,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_sgjeb"]
+[sub_resource type="Resource" id="Resource_y6fgb"]
 script = ExtResource("4_klaa4")
 saveName = "npc"
 spriteState = "default"
@@ -626,6 +639,7 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = null
 version = ""
 dialogueItems = []
 dialogueIndex = -1
@@ -679,7 +693,8 @@ position = Vector2(-105, 59)
 displayName = "Chain Legion Soldier"
 loadFlipH = true
 spawnRequirements = ExtResource("4_2uwfd")
-data = SubResource("Resource_547fo")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_1454s")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier1" index="0"]
 sprite_frames = ExtResource("6_jv8ig")
@@ -700,7 +715,8 @@ position = Vector2(207, 74)
 displayName = "Chain Legion Soldier"
 loadFlipH = true
 spawnRequirements = ExtResource("7_iuaha")
-data = SubResource("Resource_2mjhi")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_u4cnr")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier2" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -721,7 +737,8 @@ position = Vector2(511, -148)
 displayName = "Chain Legion Soldier"
 loadFlipH = true
 spawnRequirements = ExtResource("8_d47ja")
-data = SubResource("Resource_m28yf")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_ivvmg")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier3" index="0"]
 sprite_frames = ExtResource("10_b5rpe")
@@ -742,7 +759,8 @@ position = Vector2(806, -216)
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_5"
 loadFlipH = true
-data = SubResource("Resource_j7okg")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_gto87")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier5" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -765,7 +783,8 @@ collision_layer = 0
 displayName = "Etreus"
 saveName = "etreus_swamp"
 loadFlipH = true
-data = SubResource("Resource_gc8du")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_y2nb1")
 
 [node name="NPCSprite" parent="TilemapRoot/Etreus" index="0"]
 sprite_frames = ExtResource("10_n6x4g")
@@ -792,7 +811,8 @@ displayName = "Solius"
 saveName = "solius_swamp_follower"
 followerId = "solius"
 loadFlipH = true
-data = SubResource("Resource_fljsm")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_a38pp")
 dialogueEntries = Array[ExtResource("12_foc5b")]([ExtResource("13_ihf7j")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -818,7 +838,8 @@ position = Vector2(651, -131)
 collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_6"
-data = SubResource("Resource_ixjjx")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_crjnr")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier6" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -840,7 +861,8 @@ position = Vector2(563, -181)
 collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_7"
-data = SubResource("Resource_nmybs")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_ea30i")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier7" index="0"]
 sprite_frames = ExtResource("10_b5rpe")
@@ -863,7 +885,8 @@ collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_8"
 spawnRequirements = ExtResource("14_af7he")
-data = SubResource("Resource_2hq4k")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_j3onw")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier8" index="0"]
 sprite_frames = ExtResource("6_jv8ig")
@@ -885,7 +908,8 @@ collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_9"
 spawnRequirements = ExtResource("14_af7he")
-data = SubResource("Resource_yiuia")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_dp4pv")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier9" index="0"]
 sprite_frames = ExtResource("10_b5rpe")
@@ -907,7 +931,8 @@ collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_10"
 loadFlipH = true
-data = SubResource("Resource_qar5a")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_ovwnb")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier10" index="0"]
 sprite_frames = ExtResource("6_jv8ig")
@@ -929,7 +954,8 @@ collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_11"
 loadFlipH = true
-data = SubResource("Resource_wvc76")
+orSpawnRequirements = Array[ExtResource("5_8xf2k")]([])
+data = SubResource("Resource_3lwb2")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier11" index="0"]
 sprite_frames = ExtResource("5_n1yd4")
@@ -1097,7 +1123,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(754, -215)
-data = SubResource("Resource_sgjeb")
+data = SubResource("Resource_y6fgb")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.28187

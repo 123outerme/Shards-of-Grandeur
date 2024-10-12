@@ -62,7 +62,7 @@ func _physics_process(delta):
 			else:
 				NPC.npcSprite.play('walk')
 		else:
-			NPC.npcSprite.play('stand')
+			NPC.npcSprite.play(NPC.get_stand_animation())
 
 func set_target_pos():
 	if not followerMode and not returnToFollowerHome:
@@ -81,7 +81,7 @@ func update_target_pos():
 		return
 	if not followerMode and not returnToFollowerHome and len(targetPoints) > 0:
 		selectedTarget = (selectedTarget + 1) % len(targetPoints)
-		print(selectedTarget)
+		#print(selectedTarget)
 		reachedTarget = false
 		if selectedTarget == 0:
 			if loops == 0 or len(targetPoints) == 1:
@@ -145,7 +145,7 @@ func _on_target_reached():
 			update_target_pos()
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
-		NPC.npcSprite.play('stand')
+		NPC.npcSprite.play(NPC.get_stand_animation())
 		disableMovement = NPC.data.previousDisableMove or len(targetPoints) == 0 or loops == 0
 		NPC.face_player()
 
@@ -157,6 +157,6 @@ func _on_navigation_finished():
 			update_target_pos()
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
-		NPC.npcSprite.play('stand')
+		NPC.npcSprite.play(NPC.get_stand_animation())
 		disableMovement = NPC.data.previousDisableMove or len(targetPoints) == 0 or loops == 0
 		NPC.face_player()

@@ -198,6 +198,9 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.showNewMoveIndicator = levelUp and minion.stats.movepool.has_moves_at_level(minion.stats.level) \
 			if minion != null else false
 	moveListPanel.load_move_list_panel()
+	var firstMoveListItem: MoveListItemPanel = moveListPanel.get_move_list_item(0)
+	if firstMoveListItem != null:
+		firstMoveListItem.set_buttons_top_neighbor('')
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
 	equipmentPanel.statsPanel = self

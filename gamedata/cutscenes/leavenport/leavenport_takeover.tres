@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=43 format=3 uid="uid://dcgrjbl2yg0yl"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=49 format=3 uid="uid://dcgrjbl2yg0yl"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_3lfdx"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_agf5v"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="6_om2ry"]
 [ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="7_8q43n"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="7_mxawy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="11_h3riv"]
 
 [sub_resource type="Resource" id="Resource_5ov5a"]
 script = ExtResource("1_agf5v")
@@ -126,6 +127,31 @@ actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_o2670")])
 actorAnimSets = Array[ExtResource("2_t6ejw")]([])
 actorFaceTargets = Array[ExtResource("7_mxawy")]([])
 dialogues = Array[ExtResource("5_1gkpm")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qnedp"]
+script = ExtResource("6_om2ry")
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_wah18"]
+script = ExtResource("1_3lfdx")
+frameLength = 0.1
+annotation = "Make solius stand, wait for textbox to be closed"
+actorTweens = Array[ExtResource("6_7vyi3")]([])
+actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_qnedp")])
+actorAnimSets = Array[ExtResource("2_t6ejw")]([])
+actorFaceTargets = Array[ExtResource("7_mxawy")]([])
+dialogues = Array[ExtResource("5_1gkpm")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -140,7 +166,7 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_om2ry")
 actorTreePath = "TilemapRoot/Solius"
 isPlayer = false
-animation = "stand"
+animation = "talk"
 
 [sub_resource type="Resource" id="Resource_k8ll1"]
 script = ExtResource("7_mxawy")
@@ -229,11 +255,38 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_jgd7l"]
+script = ExtResource("11_h3riv")
+value = true
+actorTreePath = "TilemapRoot/Solius"
+isPlayer = false
+propertyName = "combatMode"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_rj54g"]
+script = ExtResource("11_h3riv")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionSoldier3"
+isPlayer = false
+propertyName = "combatMode"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_atbeb"]
+script = ExtResource("11_h3riv")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionSoldier4"
+isPlayer = false
+propertyName = "combatMode"
+easeType = 2
+transitionType = 0
+
 [sub_resource type="Resource" id="Resource_8e1fo"]
 script = ExtResource("1_3lfdx")
 frameLength = 1.0
 annotation = "Have Solius step forward and the player step away from the fight. Start soldiers battle idle animation"
-actorTweens = Array[ExtResource("6_7vyi3")]([SubResource("Resource_5wofj"), SubResource("Resource_7wrgq")])
+actorTweens = Array[ExtResource("6_7vyi3")]([SubResource("Resource_5wofj"), SubResource("Resource_7wrgq"), SubResource("Resource_jgd7l"), SubResource("Resource_rj54g"), SubResource("Resource_atbeb")])
 actorAnims = Array[ExtResource("6_om2ry")]([SubResource("Resource_qd3aw"), ExtResource("7_8q43n"), SubResource("Resource_8m27j"), SubResource("Resource_macge")])
 actorAnimSets = Array[ExtResource("2_t6ejw")]([])
 actorFaceTargets = Array[ExtResource("7_mxawy")]([])
@@ -377,7 +430,7 @@ invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_y6xge")
-cutsceneFrames = Array[ExtResource("1_3lfdx")]([SubResource("Resource_om01c"), SubResource("Resource_2ya57"), SubResource("Resource_wb8vi"), SubResource("Resource_7i6r7"), SubResource("Resource_6gc20"), SubResource("Resource_pckcd"), SubResource("Resource_8e1fo"), SubResource("Resource_d7a6q"), SubResource("Resource_wmx0r"), SubResource("Resource_1boua"), SubResource("Resource_t3cew")])
+cutsceneFrames = Array[ExtResource("1_3lfdx")]([SubResource("Resource_om01c"), SubResource("Resource_2ya57"), SubResource("Resource_wb8vi"), SubResource("Resource_7i6r7"), SubResource("Resource_wah18"), SubResource("Resource_6gc20"), SubResource("Resource_pckcd"), SubResource("Resource_8e1fo"), SubResource("Resource_d7a6q"), SubResource("Resource_wmx0r"), SubResource("Resource_1boua"), SubResource("Resource_t3cew")])
 saveName = "leavenport_takeover"
 storyRequirements = SubResource("Resource_5ml3h")
 unlockCameraHoldAfter = true

@@ -67,9 +67,13 @@ func show_select_buttons(showing: bool = true, exception: Move = null, grabFocus
 		movePanel.movepoolSelect = showing and exception != movePanel.move and not (movePanel.move in moves)
 		movePanel.movepoolCancel = exception == movePanel.move
 		movePanel.load_move_list_item_panel()
-		if not hasFocused and movePanel.selectButton.visible:
-			movePanel.selectButton.grab_focus()
-			hasFocused = true
+		if not hasFocused:
+			if movePanel.selectButton.visible:
+				movePanel.selectButton.grab_focus()
+				hasFocused = true
+			elif exception == movePanel.move and not showing:
+				movePanel.cancelButton.grab_focus()
+				hasFocused = true
 		if lastPanel != null:
 			movePanel.connect_move_list_item_panel_top_neighbor(lastPanel)
 		lastPanel = movePanel

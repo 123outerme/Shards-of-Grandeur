@@ -17,6 +17,7 @@ class_name NPCData
 @export var followerHomePosition: Vector2
 @export var followingPlayer: bool = false
 @export var followerHomeSet: bool = false
+@export var combatMode: bool = false
 @export var version: String = ''
 
 @export_category("NPCData - Dialogue")
@@ -45,6 +46,7 @@ func _init(
 	i_followerHomePosition = Vector2(),
 	i_followingPlayer = false,
 	i_followerHomeSet = false,
+	i_combatMode = false,
 	i_version = '',
 	i_dialogueItems = [],
 	i_dialogueIndex = -1,
@@ -72,6 +74,7 @@ func _init(
 	followerHomePosition = i_followerHomePosition
 	followingPlayer = i_followingPlayer
 	followerHomeSet = i_followerHomeSet
+	combatMode = i_combatMode
 	dialogueItems = i_dialogueItems
 	dialogueIndex = i_dialogueIndex
 	dialogueItemIdx = i_dialogueItemIdx
