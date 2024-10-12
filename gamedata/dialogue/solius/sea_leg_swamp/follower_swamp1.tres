@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c7lbk83vojd0r"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_l7rlh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_k1vuq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nrcdi"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_qal3o"]
+
+[sub_resource type="Resource" id="Resource_qr21t"]
+script = ExtResource("1_l7rlh")
+lines = Array[String](["I'm raring to go, @! Let's keep pushing forward. I'll be with you when you're fighting the Chain Legion soldiers."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_nrcdi")]([])
+
+[sub_resource type="Resource" id="Resource_lqjoo"]
+script = ExtResource("3_qal3o")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String](["solius"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_k1vuq")
+entryId = ""
+items = Array[ExtResource("1_l7rlh")]([SubResource("Resource_qr21t")])
+storyRequirements = SubResource("Resource_lqjoo")
+closesDialogue = false
+fullHealsPlayer = false

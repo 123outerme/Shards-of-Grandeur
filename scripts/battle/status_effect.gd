@@ -88,8 +88,6 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	if timing == BattleCommand.ApplyTiming.AFTER_POST_ROUND:
 		turnsLeft -= 1
 		if turnsLeft <= 0:
-			type = Type.NONE
-			potency = Potency.NONE
 			combatant.statusEffect = null
 	return []
 

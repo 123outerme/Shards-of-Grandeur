@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://4jm8oh3eyfa4"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_j483b"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_k7htw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_orp4e"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_27fcm"]
+
+[sub_resource type="Resource" id="Resource_y11ob"]
+script = ExtResource("1_j483b")
+lines = Array[String](["I can keep going, @. But if you need to restock, let's do that. We have to be prepared to capture the Cave!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_k7htw")]([])
+
+[sub_resource type="Resource" id="Resource_c1grq"]
+script = ExtResource("3_27fcm")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String](["solius"])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_orp4e")
+entryId = ""
+items = Array[ExtResource("1_j483b")]([SubResource("Resource_y11ob")])
+storyRequirements = SubResource("Resource_c1grq")
+closesDialogue = false
+fullHealsPlayer = false

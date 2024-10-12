@@ -17,8 +17,8 @@ choices = Array[ExtResource("2_yqv04")]([])
 
 [sub_resource type="Resource" id="Resource_8e127"]
 script = ExtResource("3_b2qd5")
-minAct = 0
-maxAct = 5
+minAct = 1
+maxAct = -1
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["solius_to_cave_path"])
 prereqDialogues = Array[String]([])
@@ -30,12 +30,12 @@ prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
+invalidAfterCutscenes = Array[String](["leavenport_takeover"])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingFollowers = Array[String](["solius"])
 
 [resource]
 script = ExtResource("1_2q8gb")
