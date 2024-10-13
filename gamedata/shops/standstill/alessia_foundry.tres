@@ -26,6 +26,7 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -33,26 +34,28 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_xt4j7"]
 script = ExtResource("3_3kv6q")
-storyRequirements = SubResource("Resource_yrvnn")
+buyableStoryReqs = SubResource("Resource_yrvnn")
 sinceVersion = "0.1.0"
 item = ExtResource("4_l345y")
 count = 1
 
 [sub_resource type="Resource" id="Resource_ymjd0"]
 script = ExtResource("5_0jk3l")
-minAct = 1
+minAct = 0
 maxAct = -1
 prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
+prereqCutscenes = Array[String](["impossible_to_obtain"])
 prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -60,10 +63,11 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_ljvhx"]
 script = ExtResource("3_3kv6q")
-storyRequirements = SubResource("Resource_ymjd0")
+buyableStoryReqs = SubResource("Resource_ymjd0")
 sinceVersion = "0.1.0"
 item = ExtResource("6_u1cor")
 count = 1
@@ -80,6 +84,7 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -87,10 +92,11 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [sub_resource type="Resource" id="Resource_8kv86"]
 script = ExtResource("3_3kv6q")
-storyRequirements = SubResource("Resource_bpgcg")
+buyableStoryReqs = SubResource("Resource_bpgcg")
 sinceVersion = "0.1.0"
 item = ExtResource("7_d72ul")
 count = 1
