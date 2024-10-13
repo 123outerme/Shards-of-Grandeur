@@ -65,9 +65,11 @@ func set_turn_counter(turnCount: int, winCon: WinCon) -> void:
 	if winCon != null and winCon is SurviveWinCon:
 		surviveCounterPanel.visible = true
 		var surviveWinCon: SurviveWinCon = winCon as SurviveWinCon
-		surviveCounter.text = '[center]Survive' \
-				+ String.num(max(0, surviveWinCon.minTurns - turnCount)) \
-				+ ' Turns![/center]'
+		var surviveCount: int = max(0, surviveWinCon.minTurns - turnCount)
+		var surviveText: String = '[center]Survive ' + String.num(surviveCount) + ' Turn'
+		if surviveCount != 1:
+			surviveText += 's'
+		surviveCounter.text = surviveText + '![/center]'
 	else:
 		surviveCounterPanel.visible = false
 

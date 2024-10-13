@@ -576,8 +576,13 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 		return 0
 	
 	var weightModifier: float = 1
+	
+	# 1.2x modifier for signature moves
+	if move in combatant.stats.movepool.signatureMoves:
+		weightModifier *= 1.2
+	
 	if not combatant.would_ai_spend_orbs(moveEffect):
-		weightModifier = 0.5
+		weightModifier *= 0.5
 	elif moveEffect.orbChange >= 0:
 		# modifier is [0.8, 3] based on the amount of orbs that can be gained by using the move
 		var gainableOrbs: int = max(Combatant.MAX_ORBS, moveEffect.orbChange + combatant.orbs) - combatant.orbs
@@ -594,6 +599,7 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 			(combatant.get_ai_type() == Combatant.AiType.DEBUFFER and moveEffect.role == MoveEffect.Role.DEBUFF) or \
 			(combatant.get_ai_type() == Combatant.AiType.SUPPORT and ((moveEffect.role == MoveEffect.Role.HEAL and combatantCouldUseHealing) or moveEffect.role == MoveEffect.Role.OTHER)): 
 		weightModifier *= 1.5 # prioritize moves aligning with AI type
+	
 	var boostedStats: Stats = combatant.statChanges.apply(combatant.stats)
 	var elementMultiplier = combatant.statChanges.get_element_multiplier(move.element)
 	var damageStat: int = boostedStats.physAttack
@@ -609,16 +615,16 @@ func ai_get_move_effect_weight(move: Move, moveEffect: MoveEffect, randValue: fl
 	var weight: float = 1
 	if (moveEffect.role == MoveEffect.Role.AOE_DAMAGE or moveEffect.role == MoveEffect.Role.SINGLE_TARGET_DAMAGE) and \
 			combatant.get_ai_type() == Combatant.AiType.DAMAGE and randValue < combatant.aiOverrideWeight:
-		weight = randf() * (moveEffect.power + 1) * elementMultiplier * weightModifier + 1
+		weight = randf() * (moveEffect.power + 1) * (1 + moveEffect.lifesteal) * elementMultiplier * weightModifier + 1
 	else:
 		if BattleCommand.is_command_multi_target(moveEffect.targets):
 			var numEnemies: int = 0
 			for combatantNode: CombatantNode in tmpAllCombatantNodes:
 				if combatantNode.role != role and combatantNode.is_alive():
 					numEnemies += 1
-			weight = abs(moveEffect.power + 1) * elementMultiplier * numEnemies * weightModifier + 1
+			weight = abs(moveEffect.power + 1) * (1 + moveEffect.lifesteal) * elementMultiplier * numEnemies * weightModifier + 1
 		else:
-			weight = abs(moveEffect.power + 1) * elementMultiplier * weightModifier + 1
+			weight = abs(moveEffect.power + 1) * (1 + moveEffect.lifesteal) * elementMultiplier * weightModifier + 1
 	if moveEffect.power != 0:
 		weight *= damageStat / maxDamageStat
 		if enemyIsWeakToElement:

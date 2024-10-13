@@ -48,34 +48,78 @@ const STATUS_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
 
 const MAX_ORBS = 10
 
+## sprite used to display the combatant
 @export var sprite: CombatantSprite = null
 
 @export_category("Combatant - Stats")
+
+## nickname of the minion, overrides the display name
 @export_storage var nickname: String = ''
+
+## stats of the combatant
 @export var stats: Stats = Stats.new()
+
+## defines evolutions for the combatant
 @export var evolutions: Evolutions = null
+
+## stats for each evolution the combatant has
 @export_storage var evolutionStats: Dictionary = {}
+
+## whether or not the minion should auto-allocate stat points
 @export_storage var minionStatAllocMode: MinionStatAllocationMode = MinionStatAllocationMode.DEFAULT
+
+## current HP
 @export_storage var currentHp: int = -1
+
+## current orbs in a battle
 @export_storage var orbs: int = 0
+
+## stat and element buffs/debuffs
 @export var statChanges: StatChanges = StatChanges.new()
+
+## the currently applied status effect in a battle
 @export_storage var statusEffect: StatusEffect = null
+
+## how much Attunement the minion has
 @export_storage var friendship: float = 0
+
+## the amount of Attunement needed to reach max
 @export var maxFriendship: float = 30
+
+## game version last saved on
 @export_storage var version: String = ''
 
 @export_category("Combatant - Encounter")
+
+## AI "combat role" type
 @export var aiType: AiType = AiType.NONE
+
+## AI targeting strategy
 @export var damageAggroType: AggroType = AggroType.LOWEST_HP
+
+## Orb spending strategy
 @export var strategy: ResourceStrategy = ResourceStrategy.GREEDY
+
+## if a random roll [0,1] hits below this amount, the AI will act "randomly"
 @export var aiOverrideWeight: float = 0.35
+
+## the effectiveness of elements/statuses on this combatant
 @export var moveEffectiveness: MoveEffectiveness = null
+
+## the equipment this enemy could spawn with
 @export var weightedEquipment: CombatantEquipment = null
+
+## the loot this enemy could drop
 @export var dropTable: CombatantRewards = null
+
+## the way this combatant allocates stat points automatically (enemy or auto-alloc minion)
 @export var statAllocationStrategy: StatAllocationStrategy = null
 
 #@export_category("Combatant - In Battle")
+## the current command this combatant has entered for their battle turn
 @export_storage var command: BattleCommand = null
+
+## if true, this combatant cannot fight in the battle anymore
 @export_storage var downed: bool = false
 
 static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres')

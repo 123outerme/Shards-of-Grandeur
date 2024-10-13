@@ -1,7 +1,11 @@
 extends Resource
 class_name MovePool
 
+## all moves a combatant will learn
 @export var pool: Array[Move] = []
+
+## the moves a combatant can use that should be given slight priority for selection by AI in battles
+@export var signatureMoves: Array[Move] = []
 
 ## "Other" means no preference
 @export var preferredMove1Role: MoveEffect.Role = MoveEffect.Role.OTHER
@@ -41,6 +45,7 @@ class_name MovePool
 
 func _init(
 	i_pool: Array[Move] = [],
+	i_signatureMoves: Array[Move] = [],
 	i_prefRole1 = MoveEffect.Role.OTHER,
 	i_prefType1 = Move.DmgCategory.ANY,
 	i_prefElement1 = Move.Element.NONE,
@@ -78,4 +83,19 @@ func has_moves_at_level(level: int) -> bool:
 	return false
 
 func copy() -> MovePool:
-	return MovePool.new(pool.duplicate(false))
+	return MovePool.new(
+		pool.duplicate(false),
+		signatureMoves.duplicate(false),
+		preferredMove1Role,
+		preferredMove1DmgType,
+		preferredMove1Element,
+		preferredMove2Role,
+		preferredMove2DmgType,
+		preferredMove2Element,
+		preferredMove3Role,
+		preferredMove3DmgType,
+		preferredMove3Element,
+		preferredMove4Role,
+		preferredMove4DmgType,
+		preferredMove4Element,
+	)

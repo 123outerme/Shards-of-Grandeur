@@ -21,6 +21,14 @@ enum AnimationType {
 	EVENT_TEXT = 4,
 }
 
+const originalCombatantZIndices: Dictionary = {
+	'You': 3,
+	'Ally': 2,
+	'Center': 2,
+	'Bottom': 3,
+	'Top': 1,
+}
+
 @export var disableEventTexts: bool = false
 
 @onready var playerCombatantNode: CombatantNode = get_node('PlayerCombatant')
@@ -442,7 +450,7 @@ func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay
 
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = 2
+	combatantNode.z_index = 4
 
 ## Combatant will always be below shade
 func set_combatant_below_shade(combatantNode: CombatantNode) -> void:
@@ -450,7 +458,7 @@ func set_combatant_below_shade(combatantNode: CombatantNode) -> void:
 
 ## Default combatant z-index. Sets combatant above the shade if the shade is at its "normal" height, if shade is raised then the combatant will be below
 func set_combatant_between_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = 1
+	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition]
 
 func reset_all_combatants_shade_z_indices() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
