@@ -28,7 +28,6 @@ class_name NPCData
 
 @export_category("NPCData - Shopkeeping")
 @export var inventory: Inventory
-@export var hasShop: bool = false
 
 func _init(
 	i_saveName = "npc",
@@ -53,7 +52,6 @@ func _init(
 	i_dialogueItemIdx = -1,
 	i_dialogueLine = -1,
 	i_inventory = Inventory.new(),
-	i_hasShop = false,
 ):
 	saveName = i_saveName
 	animSet = i_animSet
@@ -80,7 +78,6 @@ func _init(
 	dialogueItemIdx = i_dialogueItemIdx
 	dialogueLine = i_dialogueLine
 	inventory = i_inventory
-	hasShop = i_hasShop
 
 func load_data(save_path):
 	var data = null

@@ -10,12 +10,12 @@
 [ext_resource type="Resource" uid="uid://2h45yd0rkqyo" path="res://gamedata/dialogue/nomad_camp/nomad_merchant/nomad_merchant1.tres" id="6_gipeg"]
 [ext_resource type="Resource" uid="uid://cndc855sqjd1c" path="res://gamedata/shops/nomad_camp/nomad_merchant.tres" id="7_3pkm6"]
 
-[sub_resource type="Resource" id="Resource_cu3ap"]
+[sub_resource type="Resource" id="Resource_omv8x"]
 script = ExtResource("4_dns23")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(-25, -62)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -23,12 +23,15 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -93,7 +96,7 @@ tile_set = ExtResource("2_d1ogj")
 position = Vector2(-25, -62)
 displayName = "Merchant"
 saveName = "nomad_merchant"
-data = SubResource("Resource_cu3ap")
+data = SubResource("Resource_omv8x")
 dialogueEntries = Array[ExtResource("5_ek1s1")]([ExtResource("6_gipeg")])
 npcShop = ExtResource("7_3pkm6")
 

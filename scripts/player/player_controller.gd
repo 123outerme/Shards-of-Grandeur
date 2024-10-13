@@ -297,7 +297,8 @@ func repeat_dialogue_item():
 		return
 	talkNPC.repeat_dialogue_item()
 	var dialogueText: String = talkNPC.get_cur_dialogue_string()
-	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last())
+	var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item(false)
+	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last(), talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride)
 
 func advance_dialogue(canStart: bool = true):
 	if len(talkNPCcandidates) > 0 and not inCutscene: # if in NPC conversation
@@ -333,7 +334,7 @@ func advance_dialogue(canStart: bool = true):
 					if npc != talkNPC:
 						npc.talkAlertSprite.visible = false
 			else: # this is continuing the NPC dialogue
-				textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last())
+				textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last(), talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride)
 		elif not inCutscene: # this is the end of NPC dialogue and it didn't start a cutscene
 			textBox.hide_textbox()
 			SceneLoader.unpause_autonomous_movers()
@@ -381,6 +382,14 @@ func select_choice(choice: DialogueChoice):
 	if interactable != null:
 		interactable.select_choice(choice)
 		return
+	
+	# from here on: this is an NPC's dialogue choice
+	var entry: DialogueEntry = null
+	if talkNPC != null:
+		entry = talkNPC.get_cur_dialogue_entry()
+		if entry != null and talkNPC.saveName != '' and entry.entryId != '':
+			PlayerResources.playerInfo.set_dialogue_seen(talkNPC.saveName, entry.entryId)
+			PlayerResources.questInventory.progress_quest(talkNPC.saveName + '#' + entry.entryId, QuestStep.Type.TALK)
 	
 	if choice is NPCDialogueChoice:
 		var npcChoice: NPCDialogueChoice = choice as NPCDialogueChoice
@@ -801,6 +810,8 @@ func equip_to_combatant_helper(stats: Stats):
 func level_up(newLevels: int):
 	if newLevels == 0:
 		return
+	
+	PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level)
 	
 	PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 	if inventoryPanel.visible and inventoryPanel.itemUsePanel.visible:

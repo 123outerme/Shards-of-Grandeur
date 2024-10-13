@@ -69,10 +69,14 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 		speaker_visible_chars_partial = 0
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	
-func advance_textbox(text: String, lastItem: bool = true):
+func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: String = ''):
 	TextBoxText.text = TextUtils.substitute_playername(text)
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
+	if overrideSpeaker != '' and SpeakerText.text != TextUtils.substitute_playername(overrideSpeaker) + ":":
+		SpeakerText.text = TextUtils.substitute_playername(overrideSpeaker) + ":"
+		SpeakerText.visible_characters = 0
+		speaker_visible_chars_partial = 0
 	ReadySprite.visible = false
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	lastDialogueItem = lastItem

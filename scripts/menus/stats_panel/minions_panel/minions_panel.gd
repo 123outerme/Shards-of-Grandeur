@@ -6,6 +6,7 @@ signal minion_auto_alloc_changed(combatant: Combatant)
 signal changed_minion_hovered(combatant: Combatant)
 signal panel_loaded
 signal minion_renamed
+signal minions_reordered
 
 @export var readOnly: bool = false
 @export var minion: Combatant = null
@@ -84,6 +85,7 @@ func load_minions_panel():
 		else:
 			reorderButton.text = 'Reorder'
 		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
+		var lastPanel: MinionSlotPanel = null
 		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
 			if firstMinionPanel == null:
@@ -98,7 +100,9 @@ func load_minions_panel():
 			instantiatedPanel.stats_clicked.connect(_on_stats_clicked)
 			instantiatedPanel.reorder_clicked.connect(_on_reorder_clicked)
 			instantiatedPanel.changed_minion_hovered.connect(_changed_minion_hovered)
-			
+			if lastPanel != null:
+				instantiatedPanel.call_deferred('connect_to_above_panel', lastPanel)
+			lastPanel = instantiatedPanel
 			vboxContainer.add_child(instantiatedPanel)
 	
 	minionView.visible = minion != null
@@ -148,12 +152,18 @@ func get_panel_for(combatant: Combatant) -> MinionSlotPanel:
 	return null
 
 func update_panels_reorder_buttons():
+	var lastPanel: MinionSlotPanel = null
 	for panel in get_tree().get_nodes_in_group('MinionSlotPanel'):
 		var minionSlotPanel: MinionSlotPanel = panel as MinionSlotPanel
 		minionSlotPanel.showReorderButton = reordering
 		minionSlotPanel.reorderButtonIsTarget = reorderingMinion != null and reorderingMinion != minionSlotPanel.combatant
 		minionSlotPanel.reorderButtonIsCancel = reorderingMinion != null and reorderingMinion == minionSlotPanel.combatant
 		minionSlotPanel.load_minion_slot_panel()
+		if lastPanel != null:
+			minionSlotPanel.connect_to_above_panel(lastPanel, true)
+		else:
+			firstMinionPanel = minionSlotPanel
+		lastPanel = minionSlotPanel
 
 func reset_reorder_state(reload: bool = false):
 	if reordering:
@@ -176,6 +186,7 @@ func _on_reorder_clicked(combatant: Combatant):
 				vboxContainer.move_child(panel, idx)
 		reorderingMinion = null
 	update_panels_reorder_buttons()
+	minions_reordered.emit()
 
 func _on_name_input_text_changed(new_text: String):
 	confirmName.disabled = false

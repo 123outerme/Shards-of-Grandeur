@@ -46,6 +46,17 @@ func play_animation(animName: String):
 	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
 
 func select_choice(choice: DialogueChoice):
+	if PlayerFinder.player.interactableDialogueIdx > 0:
+		# find the dialogue entry being read by the player currently
+		var dialogueEntry: DialogueEntry = PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].dialogueEntry
+		if dialogueEntry != null and saveName != '' and dialogueEntry.entryId != '':
+			# if the entry is found, the saveName of this interactable is defined, and so is the dialogue entry ID: set this dialogue seen
+			print(dialogueEntry.entryId, ': dialogue seen being set for ', saveName, '')
+			PlayerResources.playerInfo.set_dialogue_seen(saveName, dialogueEntry.entryId)
+			PlayerResources.questInventory.progress_quest(saveName + '#' + dialogueEntry.entryId, QuestStep.Type.TALK)
+		elif dialogueEntry == null:
+			print('dialogue entry not found for ', saveName, ' choice ', choice.choiceBtp)
+		# TODO: test this
 	if choice.repeatsItem:
 		PlayerFinder.player.put_interactable_text(false, false)
 		return

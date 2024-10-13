@@ -55,6 +55,16 @@ func load_minion_slot_panel():
 	
 	panel_ready.emit()
 
+func connect_to_above_panel(abovePanel: MinionSlotPanel, resetBelowFocusNeighbor: bool = false) -> void:
+	statsButton.focus_neighbor_top = statsButton.get_path_to(abovePanel.statsButton)
+	abovePanel.statsButton.focus_neighbor_bottom = abovePanel.statsButton.get_path_to(statsButton)
+	reorderButton.focus_neighbor_top = reorderButton.get_path_to(abovePanel.reorderButton)
+	abovePanel.reorderButton.focus_neighbor_bottom = abovePanel.reorderButton.get_path_to(reorderButton)
+	
+	if resetBelowFocusNeighbor:
+		statsButton.focus_neighbor_bottom = ''
+		reorderButton.focus_neighbor_bottom = ''
+
 func _on_stats_button_pressed():
 	stats_clicked.emit(combatant)
 

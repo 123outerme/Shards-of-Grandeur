@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://cbjmmycmx2h58"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://cbjmmycmx2h58"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dmmds"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_b46e3"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_yhacm"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_bfl1h"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_cye3f"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_n2pi6"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_simhj"]
 
 [sub_resource type="Resource" id="Resource_jjjeu"]
 script = ExtResource("3_ixu3g")
@@ -84,10 +86,10 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_sjg2c"]
 script = ExtResource("1_dmmds")
-frameLength = 0.5
+frameLength = 0.75
 annotation = "the player walks to the nomad, who stops talking"
 actorTweens = Array[ExtResource("5_yhacm")]([SubResource("Resource_afjya")])
-actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_lrga2")])
+actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_lrga2"), ExtResource("7_n2pi6")])
 actorAnimSets = Array[ExtResource("2_yrswj")]([])
 actorFaceTargets = Array[ExtResource("4_nk41c")]([])
 dialogues = Array[ExtResource("6_bfl1h")]([])
@@ -115,9 +117,9 @@ texts = Array[String](["You got a long way in the desert for someone so bundled 
 [sub_resource type="Resource" id="Resource_4obgt"]
 script = ExtResource("1_dmmds")
 frameLength = 0.1
-annotation = "The nomad speaks again, introducing himself and conversing with the player"
+annotation = "The nomad speaks again, asking the player why the desert"
 actorTweens = Array[ExtResource("5_yhacm")]([])
-actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_x1ury")])
+actorAnims = Array[ExtResource("3_ixu3g")]([SubResource("Resource_x1ury"), ExtResource("9_simhj")])
 actorAnimSets = Array[ExtResource("2_yrswj")]([])
 actorFaceTargets = Array[ExtResource("4_nk41c")]([])
 dialogues = Array[ExtResource("6_bfl1h")]([SubResource("Resource_k2dwt")])
@@ -213,7 +215,7 @@ texts = Array[String](["I am a Nomad. We drift from fallen city to ruined town, 
 [sub_resource type="Resource" id="Resource_la02y"]
 script = ExtResource("6_bfl1h")
 speaker = "Nomad"
-texts = Array[String](["It's the only way to survive for those of us who used to liven in one of those ruined towns.", "It's our duty to help those we see in need. We adopt this way of life when we are accepted as Nomads.", "Now, we need that help ourselves... one of our own went missing."])
+texts = Array[String](["It's the only way to survive, for those of us who used to live in one of those ruined towns.", "Our duty is to help those we see in need. We adopt this way of life, when we are accepted as Nomads.", "Now, we need that help ourselves... one of our own went missing."])
 
 [sub_resource type="Resource" id="Resource_utjhk"]
 script = ExtResource("1_dmmds")

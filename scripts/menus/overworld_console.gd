@@ -333,6 +333,7 @@ func set_level(lv: int):
 	var lvDiff: int = lv - PlayerResources.playerInfo.combatant.stats.level
 	if lvDiff > 0:
 		PlayerResources.playerInfo.combatant.stats.level_up(lvDiff)
+		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level)
 		print_to_console('Increased player level to ' + String.num(lv) + '.')
 	elif lvDiff < 0:
 		PlayerResources.playerInfo.combatant.stats.set_level(lv)

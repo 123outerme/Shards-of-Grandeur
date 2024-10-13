@@ -51,9 +51,6 @@ class_name NPCScript
 
 @export_category("NPC Shop")
 
-## if true, the NPC has a shop and will create an inventory upon first load (before any save data exists)
-@export var hasShop: bool = false
-
 ## current NPC inventory
 @export var inventory: Inventory
 
@@ -126,6 +123,8 @@ func _ready():
 	
 	data = NPCData.new()
 	data.position = position
+	if npcShop != null and inventory == null and not Engine.is_editor_hint():
+		inventory = Inventory.new()
 	data.inventory = inventory
 	data.spriteState = spriteState
 	call_deferred("fetch_player")
@@ -208,7 +207,7 @@ func load_data(save_path):
 			add_shop_items_to_inventory()
 		invisible = not data.visible
 	else:
-		if hasShop and inventory == null:
+		if npcShop != null and inventory == null:
 			inventory = Inventory.new()
 		add_shop_items_to_inventory()
 	if not data.followerHomeSet:
@@ -218,7 +217,7 @@ func load_data(save_path):
 		set_following_player(PlayerResources.playerInfo.has_active_follower(followerId), true)
 
 func add_shop_items_to_inventory():
-	if not hasShop or inventory == null:
+	if not npcShop != null or inventory == null:
 		return
 	
 	# for each item in the NPC's shop, if it's a shop slot and the NPC shop object has no record of it: remove it
@@ -305,12 +304,20 @@ func _on_talk_area_area_exited(area):
 		unpause_movement()
 		talkAlertSprite.visible = false
 
-func get_cur_dialogue_item() -> DialogueItem:
+func get_cur_dialogue_entry() -> DialogueEntry:
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
-		player.textBox.dialogueItem = null
+		return null
+		
+	return data.dialogueItems[data.dialogueIndex]
+
+func get_cur_dialogue_item(updateTextBox: bool = true) -> DialogueItem:
+	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
+		if updateTextBox:
+			player.textBox.dialogueItem = null
 		return null
 	
-	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+	if updateTextBox:
+		player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 
@@ -375,6 +382,9 @@ func advance_dialogue() -> bool:
 				data.dialogueItemIdx = 0
 				data.dialogueLine = -1
 				data.dialogueItems = []
+			else:
+				if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
+					play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 		else:
 			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
 				play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)

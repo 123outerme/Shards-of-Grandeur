@@ -43,13 +43,12 @@ position = Vector2(-4, -16)
 
 [node name="MinionCombatant" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 1
-position = Vector2(-60, -39)
+position = Vector2(-54, -39)
 leftSide = true
 battlePosition = "Ally"
 allyTeamMarker = NodePath("../PlayerTeamMarker")
 enemyTeamMarker = NodePath("../EnemyTeamMarker")
 globalMarker = NodePath("../GlobalMarker")
-metadata/_edit_lock_ = true
 
 [node name="SelectCombatantBtn" parent="MinionCombatant" index="0"]
 focus_neighbor_left = NodePath(".")

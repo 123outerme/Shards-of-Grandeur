@@ -355,6 +355,10 @@ func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 		else:
 			printerr('Minion ', combatant.save_name(), ' has no defined stat allocation strategy and is being auto-allocated after setting was switched')
 
+func _on_minions_panel_minions_reordered() -> void:
+	if not isTabbedView:
+		minionsPanel.call_deferred('connect_to_top_control', singleViewBackButton)
+
 func _on_move_list_panel_edit_moves():
 	previousControl = moveListPanel.editMovesButton
 	editMovesPanel.moves = stats.moves

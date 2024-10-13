@@ -89,7 +89,7 @@ func toggle():
 	visible = not visible
 	if visible:
 		if inShop:
-			filter_by()
+			selectedFilter = Item.Type.ALL
 		get_display_inventory()
 		check_filters()
 		load_inventory_panel()

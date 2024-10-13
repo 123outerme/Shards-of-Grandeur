@@ -13,7 +13,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtxvu"]
 
 [node name="MinionSlotPanel" type="Panel" groups=["MinionSlotPanel"]]
-custom_minimum_size = Vector2(548, 70)
+custom_minimum_size = Vector2(548, 100)
 theme = ExtResource("1_nhnmf")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sjlhe")
 script = ExtResource("1_mfddu")
@@ -24,14 +24,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -31.0
-offset_right = 68.0
-offset_bottom = 33.0
+offset_top = -48.0
+offset_right = 96.0
+offset_bottom = 48.0
 grow_vertical = 2
 
 [node name="MinionSprite" type="AnimatedSprite2D" parent="SpriteControl"]
-position = Vector2(32, 32)
+position = Vector2(48, 48)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xtxvu")
 
@@ -40,10 +39,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 72.0
-offset_top = -12.5
-offset_right = 330.0
-offset_bottom = 13.5
+offset_left = 100.0
+offset_top = -22.0
+offset_right = 306.0
+offset_bottom = 24.0
 grow_vertical = 2
 text = "Minion Name Goes Here"
 fit_content = true

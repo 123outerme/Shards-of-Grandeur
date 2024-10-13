@@ -442,6 +442,7 @@ layout_mode = 1
 [connection signal="changed_minion_hovered" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_changed_minion_hovered"]
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
 [connection signal="minion_renamed" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
+[connection signal="minions_reordered" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_minions_reordered"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/SinglePageView/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
 [connection signal="pressed" from="StatsPanel/Panel/TabbedView/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="stats_saved" from="StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel" to="." method="_on_stat_line_panel_stats_saved"]
