@@ -45,6 +45,7 @@ enum ApplyTiming {
 
 var targets: Array[Combatant] = []
 var interceptingTargets: Array[Combatant] = []
+var completingCommand: bool = false
 
 static var hitParticles: ParticlePreset = preload("res://gamedata/moves/particles_hit.tres") as ParticlePreset
 static var useItemAnimation: MoveAnimation = load('res://gamedata/items/use_item_animation.tres') as MoveAnimation

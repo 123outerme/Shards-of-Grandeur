@@ -9,6 +9,7 @@ var commandingCombatant: CombatantNode = null
 var prevMenu: BattleState.Menu = BattleState.Menu.SUMMON
 var playerWins: bool = false
 var escapes: bool = false
+var checkingSummonStats: bool = false
 
 var previousFocus: Control = null
 
@@ -322,10 +323,16 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	battlePanels.animatedBgPanel.visible = true
 
 func _on_stats_panel_node_back_pressed():
-	battlePanels.animatedBgPanel.visible = false
+	battlePanels.animatedBgPanel.visible = checkingSummonStats
 	if menuState == BattleState.Menu.LEVEL_UP:
 		end_battle()
-	restore_focus()
+	else:
+		if checkingSummonStats:
+			summonMinionPanel.visible = true
+			summonMinionPanel.initial_focus()
+		else:
+			restore_focus()
+	checkingSummonStats = false
 
 func _on_combatant_details_clicked(combatantNode: CombatantNode):
 	#open_stats(combatantNode.combatant) # disable for testing/designing
@@ -357,6 +364,8 @@ func _on_focus_changed(control: Control):
 		previousFocus = control
 
 func _on_summon_minion_panel_show_stats_for_minion(minion: Combatant):
+	checkingSummonStats = true
+	summonMinionPanel.visible = false
 	statsPanel.readOnly = true
 	statsPanel.isMinionStats = true
 	statsPanel.minion = minion

@@ -17,10 +17,11 @@ func _init(
 ):
 	super(Type.REFLECT, i_potency, i_overwrites, i_turnsLeft)
 
-func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int:
+func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int, justCalc: bool = false) -> int:
 	var damage: int = 0
-	if allCombatants[attackerIdx].command == null or allCombatants[attackerIdx].command.commandResult == null:
-		printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
+	if attackerIdx < 0 or attackerIdx >= len(allCombatants) or allCombatants[attackerIdx].command == null or allCombatants[attackerIdx].command.commandResult == null:
+		#printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
+		# emergency bail out of recoil dmg calculation
 		return damage
 	# Assumption: targets are already fetched
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
@@ -31,21 +32,22 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int) -> int
 		if combatant in allCombatants[attackerIdx].command.interceptingTargets and allCombatants[attackerIdx].command.commandResult != null:
 			damage += max(0, allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
 	damage *= Reflect.PERCENT_DAMAGE_DICT[potency]
-	allCombatants[attackerIdx].command.commandResult.selfRecoilDmg += damage
+	if not justCalc:
+		allCombatants[attackerIdx].command.commandResult.selfRecoilDmg += damage
 	return roundi(damage)
 
 func find_attacker_idx(combatant, allCombatants: Array) -> int:
 	for idx in range(len(allCombatants)):
 		# if this combatant is not the afflicted, and is using a command (has already been resolved though)
-		if allCombatants[idx] != combatant and allCombatants[idx].command != null:
+		if allCombatants[idx] != combatant and allCombatants[idx].command != null and allCombatants[idx].command.commandResult != null:
 			return idx
 	return -1
 
 func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	var dealtDmgCombatants: Array[Combatant] = []
 	if timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG:
-		var attackerIdx = find_attacker_idx(combatant, allCombatants)
-		if attackerIdx > -1:
+		var attackerIdx: int = find_attacker_idx(combatant, allCombatants)
+		if attackerIdx > -1 and attackerIdx < len(allCombatants):
 			var recoilDmg = get_recoil_damage(combatant, allCombatants, attackerIdx)
 			allCombatants[attackerIdx].currentHp = max(allCombatants[attackerIdx].currentHp - recoilDmg, 0) # recoil can never knock you out!
 			# if the combatant damage is reflected to is Enduring, apply the status again to ensure the Endure is applied appropriately
@@ -53,16 +55,17 @@ func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTi
 				allCombatants[attackerIdx].statusEffect.apply_status(combatant, allCombatants, timing)
 			if recoilDmg > 0:
 				dealtDmgCombatants = [allCombatants[attackerIdx]]
-		else:
-			printerr('Reflect error: timing ', timing, ' on combatant ', combatant.disp_name(), ' no attacker found?')
+		#else:
+		#	printerr('Reflect error: timing ', timing, ' on combatant ', combatant.disp_name(), ' no attacker found? Was this move self-targeting?')
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
 	
 func get_status_effect_str(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> String:
-	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and get_recoil_damage(combatant, allCombatants, find_attacker_idx(combatant, allCombatants)) > 0:
-		var attackerIdx = find_attacker_idx(combatant, allCombatants)
+	var attackerIdx: int = find_attacker_idx(combatant, allCombatants)
+	var recoilDmg: int = get_recoil_damage(combatant, allCombatants, attackerIdx, true)
+	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and recoilDmg > 0:
 		return combatant.disp_name() + "'s " + StatusEffect.potency_to_string(potency) \
-				+ ' ' + get_status_type_string() + ' deals ' + TextUtils.num_to_comma_string(get_recoil_damage(combatant, allCombatants, attackerIdx)) + ' damage back to ' + allCombatants[attackerIdx].disp_name() + '!'
+				+ ' ' + get_status_type_string() + ' deals ' + TextUtils.num_to_comma_string(recoilDmg) + ' damage back to ' + allCombatants[attackerIdx].disp_name() + '!'
 	return ''
 
 func get_status_effect_tooltip():

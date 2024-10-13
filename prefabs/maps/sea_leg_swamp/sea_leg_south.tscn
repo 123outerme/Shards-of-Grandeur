@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://csetgkqaalapc"]
+[gd_scene load_steps=100 format=4 uid="uid://csetgkqaalapc"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5qcr2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_o5f5u"]
@@ -30,6 +30,7 @@
 [ext_resource type="Resource" uid="uid://1echdgevusxk" path="res://gamedata/cutscenes/sea_leg_swamp/sea_leg_south_escape.tres" id="28_imanj"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="29_evks2"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="30_1os0e"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="30_3i84k"]
 
 [sub_resource type="Resource" id="Resource_3vw0t"]
 script = ExtResource("4_6xxye")
@@ -370,7 +371,7 @@ radius = 141.004
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6juiv"]
 size = Vector2(128, 36)
 
-[sub_resource type="Resource" id="Resource_0h1dt"]
+[sub_resource type="Resource" id="Resource_ceju4"]
 script = ExtResource("30_1os0e")
 saveName = "npc"
 spriteState = "default"
@@ -607,7 +608,8 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-600, 798)
-data = SubResource("Resource_0h1dt")
+orSpawnRequirements = Array[ExtResource("30_3i84k")]([])
+data = SubResource("Resource_ceju4")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

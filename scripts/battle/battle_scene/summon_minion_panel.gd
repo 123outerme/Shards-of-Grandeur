@@ -9,6 +9,7 @@ var summonMinionListPanel = preload('res://prefabs/battle/summon_minion_list_pan
 var statsShowMinion: Combatant = null
 
 @onready var vboxContainer: VBoxContainer = get_node("Panel/Panel/ScrollContainer/VBoxContainer")
+@onready var scrollContainer: ScrollBetterFollow = get_node('Panel/Panel/ScrollContainer')
 @onready var backButton: Button = get_node("Panel/BackButton")
 
 # Called when the node enters the scene tree for the first time.
@@ -20,9 +21,10 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
 
-func load_summon_minion_panel():
+func load_summon_minion_panel(initialLoad: bool = true):
 	statsShowMinion = null
 	var focused: bool = false
+	
 	for panel in get_tree().get_nodes_in_group('SummonMinionListPanel'):
 		panel.queue_free()
 	
@@ -40,6 +42,11 @@ func load_summon_minion_panel():
 
 	if not focused:
 		initial_focus()
+	
+	if initialLoad:
+		
+		scrollContainer.set_deferred('scroll_vertical', 0)
+	
 	visible = true
 
 func summon_minion(minion: Combatant, shardSlot: InventorySlot):
