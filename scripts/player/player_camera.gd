@@ -171,11 +171,11 @@ func toggle_cutscene_paused_shade():
 		shade.visible = true
 		shadeLabel.visible = true
 	else:
-		shade.visible = cutscenePaused
-		shadeLabel.visible = shade.visible
+		shade.visible = cutscenePaused or fadedOrFadingOut 
+		shadeLabel.visible = cutscenePaused
 	if cutscenePaused:
 		shadeLabel.modulate = Color(1, 1, 1, 1) # just in case fadein messed with it and didn't properly reset it
-		shadeColor.modulate = Color(0, 0, 0, 0.7)
+		shadeColor.modulate = Color(0, 0, 0, max(shadeColor.modulate.a, 0.7))
 		resumeButton.grab_focus()
 	set_alert_panels_lifetime_pause(cutscenePaused)
 

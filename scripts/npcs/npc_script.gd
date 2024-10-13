@@ -374,8 +374,9 @@ func advance_dialogue() -> bool:
 			if data.dialogueIndex >= len(data.dialogueItems): # if the last entry, dialogue is over
 				fetch_quest_dialogue_info()
 				for q in acceptableQuests:
-					PlayerResources.questInventory.accept_quest(q)
-					PlayerFinder.player.cam.show_alert('Started Quest:\n' + q.questName)
+					var accepted: bool = PlayerResources.questInventory.accept_quest(q)
+					if accepted:
+						PlayerFinder.player.cam.show_alert('Started Quest:\n' + q.questName)
 				if not startingCutscene:
 					play_animation(get_stand_animation())
 				data.dialogueIndex = 0

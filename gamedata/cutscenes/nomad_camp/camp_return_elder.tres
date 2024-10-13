@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=44 format=3 uid="uid://cvnh5aii3b3y8"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=58 format=3 uid="uid://cvnh5aii3b3y8"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_8f015"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_ttiu7"]
@@ -11,6 +11,153 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_b1qhf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_xnn25"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_cd420"]
+
+[sub_resource type="Resource" id="Resource_av2b6"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_ryv1o"]
+script = ExtResource("6_b1qhf")
+value = Vector2(308, -170)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vl1ul"]
+script = ExtResource("6_b1qhf")
+value = Vector2(506, -173)
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_b2c5v"]
+script = ExtResource("1_8f015")
+frameLength = 1.0
+annotation = "The player walks a little ahead, and the elder approaches a little too"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_ryv1o"), SubResource("Resource_vl1ul")])
+actorAnims = Array[ExtResource("3_opyxc")]([ExtResource("4_a1bfl"), SubResource("Resource_av2b6")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ut4co"]
+script = ExtResource("7_xnn25")
+speaker = "Elder"
+texts = Array[String](["Wait, you're going too fast! My legs don't carry me like that anymore!"])
+
+[sub_resource type="Resource" id="Resource_x8h4j"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "The elder quips that you're going too fast"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([SubResource("Resource_ut4co")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6r0iu"]
+script = ExtResource("4_y7885")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/Nomad2"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_xkvq2"]
+script = ExtResource("6_b1qhf")
+value = Vector2(328, -170)
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_j1vt6"]
+script = ExtResource("1_8f015")
+frameLength = 3.0
+annotation = "the player stops, faces the elder, and waits for him to catch up"
+actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_xkvq2")])
+actorAnims = Array[ExtResource("3_opyxc")]([ExtResource("9_cd420")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([SubResource("Resource_6r0iu")])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_v2pw8"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_xx4n6"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "The elder talks standing"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_v2pw8")])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pekns"]
+script = ExtResource("1_8f015")
+frameLength = 0.1
+annotation = "Wait for textbox to be closed"
+actorTweens = Array[ExtResource("5_maclo")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnimSets = Array[ExtResource("2_ttiu7")]([])
+actorFaceTargets = Array[ExtResource("4_y7885")]([])
+dialogues = Array[ExtResource("7_xnn25")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_wradl"]
 script = ExtResource("3_opyxc")
@@ -124,7 +271,7 @@ endStartsShardLearnTutorial = false
 script = ExtResource("3_opyxc")
 actorTreePath = "TilemapRoot/Nomad3"
 isPlayer = false
-animation = "talk"
+animation = "walk"
 
 [sub_resource type="Resource" id="Resource_ngemb"]
 script = ExtResource("3_opyxc")
@@ -165,12 +312,18 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_2egho"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad3"
+isPlayer = false
+animation = "talk"
+
 [sub_resource type="Resource" id="Resource_l23ex"]
 script = ExtResource("1_8f015")
 frameLength = 0.1
 annotation = "Wait for the textbox to be closed"
 actorTweens = Array[ExtResource("5_maclo")]([])
-actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_2egho")])
 actorAnimSets = Array[ExtResource("2_ttiu7")]([])
 actorFaceTargets = Array[ExtResource("4_y7885")]([])
 dialogues = Array[ExtResource("7_xnn25")]([])
@@ -304,6 +457,12 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_k7hmk"]
+script = ExtResource("3_opyxc")
+actorTreePath = "TilemapRoot/Nomad2"
+isPlayer = false
+animation = "walk"
+
 [sub_resource type="Resource" id="Resource_lyiem"]
 script = ExtResource("6_b1qhf")
 value = Vector2(236, -148)
@@ -315,10 +474,10 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_vu5y1"]
 script = ExtResource("1_8f015")
-frameLength = 0.4
+frameLength = 0.6
 annotation = "The elder starts to walk offscreen, disbands from the player's party"
 actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_lyiem")])
-actorAnims = Array[ExtResource("3_opyxc")]([])
+actorAnims = Array[ExtResource("3_opyxc")]([SubResource("Resource_k7hmk")])
 actorAnimSets = Array[ExtResource("2_ttiu7")]([])
 actorFaceTargets = Array[ExtResource("4_y7885")]([])
 dialogues = Array[ExtResource("7_xnn25")]([])
@@ -343,7 +502,7 @@ transitionType = 0
 
 [sub_resource type="Resource" id="Resource_oampx"]
 script = ExtResource("1_8f015")
-frameLength = 2.5
+frameLength = 3.5
 annotation = "The elder continues offscreen"
 actorTweens = Array[ExtResource("5_maclo")]([SubResource("Resource_y5l05")])
 actorAnims = Array[ExtResource("3_opyxc")]([])
@@ -384,11 +543,11 @@ invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("2_y3pjm")
-cutsceneFrames = Array[ExtResource("1_8f015")]([SubResource("Resource_ggh0t"), SubResource("Resource_wqk7w"), SubResource("Resource_r5khl"), SubResource("Resource_s00gx"), SubResource("Resource_l23ex"), SubResource("Resource_x5br4"), SubResource("Resource_1qgja"), SubResource("Resource_kqgh6"), SubResource("Resource_w6t5b"), SubResource("Resource_vu5y1"), SubResource("Resource_oampx")])
+cutsceneFrames = Array[ExtResource("1_8f015")]([SubResource("Resource_b2c5v"), SubResource("Resource_x8h4j"), SubResource("Resource_j1vt6"), SubResource("Resource_xx4n6"), SubResource("Resource_pekns"), SubResource("Resource_ggh0t"), SubResource("Resource_wqk7w"), SubResource("Resource_r5khl"), SubResource("Resource_s00gx"), SubResource("Resource_l23ex"), SubResource("Resource_x5br4"), SubResource("Resource_1qgja"), SubResource("Resource_kqgh6"), SubResource("Resource_w6t5b"), SubResource("Resource_vu5y1"), SubResource("Resource_oampx")])
 saveName = "return_elder_nomad"
 storyRequirements = SubResource("Resource_0nto8")
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
+deactivateActorsAfter = Array[String](["TilemapRoot/Nomad2"])
 tempDisabledAfter = false
 notes = ""

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://ch7bdks1pj2du"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://ch7bdks1pj2du"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t6j7e"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jdyth"]
@@ -84,9 +84,32 @@ animateActorTreePath = ""
 animateActorIsPlayer = false
 choices = Array[ExtResource("2_qgbvp")]([SubResource("Resource_5itmx"), SubResource("Resource_1rvnk")])
 
+[sub_resource type="Resource" id="Resource_mapfh"]
+script = ExtResource("4_2td52")
+minAct = 0
+maxAct = 1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["return_elder_nomad"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
 [resource]
 script = ExtResource("2_jdyth")
 entryId = ""
 items = Array[ExtResource("1_t6j7e")]([SubResource("Resource_gpp2w")])
+storyRequirements = SubResource("Resource_mapfh")
 closesDialogue = false
 fullHealsPlayer = false

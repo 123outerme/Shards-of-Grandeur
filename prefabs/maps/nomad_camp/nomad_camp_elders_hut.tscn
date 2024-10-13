@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://byo1uqtqrripw"]
+[gd_scene load_steps=35 format=4 uid="uid://byo1uqtqrripw"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_pqsws"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ut3e1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="5_06rm0"]
 [ext_resource type="SpriteFrames" uid="uid://bcasoh23cl7vc" path="res://graphics/animations/a_nomad2.tres" id="5_pow4s"]
 [ext_resource type="Resource" uid="uid://cqvmbesm2tdob" path="res://gamedata/cutscenes/nomad_camp/player_awaken.tres" id="6_ufl5g"]
+[ext_resource type="Resource" uid="uid://ccbrrh3t1f3qm" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_vision_q.tres" id="7_4ocgs"]
 [ext_resource type="Resource" uid="uid://dh3dbbpbbjgf6" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_act2_1.tres" id="7_7105x"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="7_dtsyx"]
 [ext_resource type="Resource" uid="uid://1yrmjllfawx7" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_sign1.tres" id="8_if42d"]
@@ -26,7 +27,7 @@
 script = ExtResource("4_hem8p")
 minAct = 1
 maxAct = -1
-prereqQuests = Array[String](["A Nomadic Rescue# Back to Base Camp"])
+prereqQuests = Array[String](["A Nomadic Rescue#Back to Base Camp"])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
@@ -44,7 +45,7 @@ invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_eh18o"]
+[sub_resource type="Resource" id="Resource_y2355"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -67,7 +68,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_8uy4g"]
+[sub_resource type="Resource" id="Resource_hkacj"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -127,7 +128,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_0lqsu"]
+[sub_resource type="Resource" id="Resource_qr435"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -198,8 +199,8 @@ position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_eh18o")
-dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_7105x")])
+data = SubResource("Resource_y2355")
+dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_4ocgs"), ExtResource("7_7105x")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("5_pow4s")
@@ -218,7 +219,7 @@ visible = false
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(480, -320)
 displayName = "Sign"
-data = SubResource("Resource_8uy4g")
+data = SubResource("Resource_hkacj")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_if42d")])
 facesPlayer = false
 
@@ -294,7 +295,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-52, -44)
-data = SubResource("Resource_0lqsu")
+data = SubResource("Resource_qr435")
 
 [editable path="TilemapRoot/Nomad2"]
 [editable path="TilemapRoot/Signpost"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=4 uid="uid://bcrxu04acy0or"]
+[gd_scene load_steps=122 format=4 uid="uid://bcrxu04acy0or"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_aweo5"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2v0rj"]
@@ -13,11 +13,12 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="7_kjrd8"]
 [ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="7_q484k"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="8_6o8d6"]
+[ext_resource type="Resource" uid="uid://blkqir34h65pl" path="res://gamedata/dialogue/forbidden_desert_east/elder_downed.tres" id="9_pfacr"]
+[ext_resource type="Resource" uid="uid://ls3chsx0rffe" path="res://gamedata/dialogue/forbidden_desert_east/elder_follow1.tres" id="10_1ft2r"]
 [ext_resource type="Resource" uid="uid://c3ulcihjkfu1n" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_east/desert_east_axe.tres" id="10_my0nn"]
 [ext_resource type="Resource" uid="uid://bgre0eix1l2ll" path="res://gamedata/items/weapon/fossil_axe.tres" id="11_l6utv"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="14_75u7d"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="14_chtsl"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="14_vwoqh"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="15_28mfe"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="15_j6po0"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="16_1ful6"]
@@ -36,7 +37,6 @@
 [ext_resource type="Resource" uid="uid://bokbigb7xuvvh" path="res://gamedata/cutscenes/forbidden_desert/desert_east_cave_turnback.tres" id="31_beumq"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="32_ifu68"]
 [ext_resource type="Resource" uid="uid://cbuuri2nj43a" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_rescue_turnback.tres" id="33_1qv80"]
-[ext_resource type="Resource" uid="uid://w0ndy7kvicc1" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_follower_turnback.tres" id="37_hamdx"]
 
 [sub_resource type="Resource" id="Resource_jr0x0"]
 script = ExtResource("6_1p87e")
@@ -60,7 +60,7 @@ invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_m4rn4"]
+[sub_resource type="Resource" id="Resource_vgpv1"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -83,7 +83,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_6cr2r"]
+[sub_resource type="Resource" id="Resource_vjho1"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -568,29 +568,6 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_sd6wr"]
-script = ExtResource("4_ts6ro")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(459, 117)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_aweo5")
 metadata/_edit_vertical_guides_ = [1022.0, 1161.0, 1260.0, 1060.0, 1028.0, 459.0]
@@ -645,7 +622,8 @@ stateSpritesDict = {
 "default": ExtResource("5_tspdh")
 }
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_m4rn4")
+data = SubResource("Resource_vgpv1")
+dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("9_pfacr"), ExtResource("10_1ft2r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("4_j42rk")
@@ -668,7 +646,7 @@ displayName = "Dragon"
 saveName = "desert_east_dragon"
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_6cr2r")
+data = SubResource("Resource_vjho1")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -875,23 +853,6 @@ modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("14_vwoqh")]
-triggerOrNPC = NodePath("../SideAreaCutsceneTrigger")
-cutscene = ExtResource("37_hamdx")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(459, 117)
-facingLeft = true
-data = SubResource("Resource_sd6wr")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.17493
-flip_h = true
-
-[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
-
 [editable path="TilemapRoot/Nomad2"]
 [editable path="TilemapRoot/Dragon"]
 [editable path="TilemapRoot/AffinityAttack"]
@@ -907,5 +868,3 @@ disabled = true
 [editable path="SideAreaCutsceneTrigger"]
 [editable path="NomadCampWarpZone"]
 [editable path="CameraHoldZone"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

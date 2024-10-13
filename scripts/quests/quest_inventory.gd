@@ -59,6 +59,7 @@ func has_completed_prereqs(prereqNames: Array[String]) -> bool:
 		else:
 			var questName: String = name.split('#')[0]
 			var stepName: String = name.split('#')[1]
+			#print('Quest: "', questName, '". Step: "', stepName, '"')
 			var tracker: QuestTracker = get_quest_tracker_by_name(questName)
 			if tracker != null:
 				var step: QuestStep = tracker.get_step_by_name(stepName)
@@ -84,12 +85,13 @@ func has_reached_status_for_one_quest_of(questNames: Array[String], status: Ques
 						return true
 	return false
 
-func accept_quest(q: Quest):
+func accept_quest(q: Quest) -> bool:
 	if q == null or get_quest_tracker_by_quest(q) != null or not can_start_quest(q):
-		return
+		return false
 	var tracker: QuestTracker = QuestTracker.new(q)
 	quests.append(tracker)
 	auto_update_quests()
+	return true
 
 func auto_update_quests(recursiveCall: bool = false):
 	var emitChanges: bool = false

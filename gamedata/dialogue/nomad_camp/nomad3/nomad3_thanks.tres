@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://lupg0el1kd4r"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_he51a"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1f2h2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_65skt"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_5ug8m"]
+
+[sub_resource type="Resource" id="Resource_idynu"]
+script = ExtResource("1_he51a")
+lines = Array[String](["Oh, thank you so much for reuniting me and my husband!", "He's not only important to me, but to our whole Camp. We'd be in trouble without him!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_1f2h2")]([])
+
+[sub_resource type="Resource" id="Resource_ykncx"]
+script = ExtResource("4_5ug8m")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["return_elder_nomad"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_65skt")
+entryId = ""
+items = Array[ExtResource("1_he51a")]([SubResource("Resource_idynu")])
+storyRequirements = SubResource("Resource_ykncx")
+closesDialogue = false
+fullHealsPlayer = false

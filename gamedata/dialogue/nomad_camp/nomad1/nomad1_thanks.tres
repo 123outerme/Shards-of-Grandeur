@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dy04gf3rmeewa"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8ab53"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_dccwp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_fng4q"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_c8n5m"]
+
+[sub_resource type="Resource" id="Resource_c25s2"]
+script = ExtResource("1_8ab53")
+lines = Array[String](["You found our Elder, @!", "We cannot thank you enough for helping us in our time of need.", "He has returned to his hut here, resting from his excursion."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_dccwp")]([])
+
+[sub_resource type="Resource" id="Resource_uythl"]
+script = ExtResource("4_c8n5m")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["return_elder_nomad"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_fng4q")
+entryId = ""
+items = Array[ExtResource("1_8ab53")]([SubResource("Resource_c25s2")])
+storyRequirements = SubResource("Resource_uythl")
+closesDialogue = false
+fullHealsPlayer = false

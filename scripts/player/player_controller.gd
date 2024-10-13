@@ -65,21 +65,19 @@ var sprite_modulate: Color:
 			sprite.self_modulate = c
 
 func _unhandled_input(event):
-	if cam.fadedOrFadingOut:
-		# if the game is faded out or is fading out, prevent any input
-		return
-	
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
-			not cutscenePaused and not inCutscene and SceneLoader.curMapEntry.isRecoverLocation \
-			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			and not statsPanel.visible and not overworldConsole.visible and not makingChoice \
+			and not cutscenePaused and not inCutscene and SceneLoader.curMapEntry.isRecoverLocation \
+			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) \
+			and not cam.fadedOrFadingOut:
 		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
 	
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
 			(cutscenePaused and event.is_action_pressed('game_decline')) and \
-			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			not cam.fadedOrFadingOut:
 		if inCutscene:
 			# if awaiting player, don't even check if the pause panel can be opened, just stop here
 			if not SceneLoader.cutscenePlayer.awaitingPlayer:
@@ -93,7 +91,8 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
+			not cam.fadedOrFadingOut:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		animatedBgPanel.visible = true
@@ -133,7 +132,8 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
+			not cam.fadedOrFadingOut:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -149,7 +149,8 @@ func _unhandled_input(event):
 		
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible:
+			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
+			not cam.fadedOrFadingOut:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		animatedBgPanel.visible = true
@@ -166,6 +167,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed('game_console') and not pausePanel.isPaused and \
 			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
+			not cam.fadedOrFadingOut and \
 			SceneLoader.debug:
 		overworldConsole.load_overworld_console()
 		SceneLoader.pause_autonomous_movers()
@@ -301,7 +303,7 @@ func repeat_dialogue_item():
 	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last(), talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride)
 
 func advance_dialogue(canStart: bool = true):
-	if len(talkNPCcandidates) > 0 and not inCutscene: # if in NPC conversation
+	if len(talkNPCcandidates) > 0 and (not inCutscene or talkNPC != null): # if in NPC conversation
 		if talkNPC == null:
 			var minDistance: float = -1.0
 			for npc in talkNPCcandidates:

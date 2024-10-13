@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://blkqir34h65pl"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7y1le"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4sk6u"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_328f3"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_xe6xw"]
+
+[sub_resource type="Resource" id="Resource_q6v6m"]
+script = ExtResource("1_7y1le")
+lines = Array[String](["Ggghhhh..."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_4sk6u")]([])
+
+[sub_resource type="Resource" id="Resource_62il6"]
+script = ExtResource("4_xe6xw")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["dragon1_survive"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("2_328f3")
+entryId = ""
+items = Array[ExtResource("1_7y1le")]([SubResource("Resource_q6v6m")])
+storyRequirements = SubResource("Resource_62il6")
+closesDialogue = false
+fullHealsPlayer = false

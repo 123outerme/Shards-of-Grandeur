@@ -329,8 +329,9 @@ func end_cutscene(force: bool = false):
 	PlayerResources.set_cutscene_seen(cutscene.saveName)
 	PlayerFinder.player.cam.stop_cam_shake()
 	if cutscene.givesQuest != null:
-		PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
-		PlayerFinder.player.cam.show_alert('Started Quest:\n' + cutscene.givesQuest.questName)
+		var accepted: bool = PlayerResources.questInventory.accept_quest(cutscene.givesQuest)
+		if accepted:
+			PlayerFinder.player.cam.show_alert('Started Quest:\n' + cutscene.givesQuest.questName)
 	if not isFadedOut:
 		complete_cutscene()
 	else:
@@ -419,6 +420,7 @@ func skip_cutscene_process():
 			tween.kill()
 	tweens = []
 	var skipAnims: bool = false
+	PlayerFinder.player.snap_camera_back_to_player(0)
 	
 	for idx in range(skipCutsceneFrameIndex, len(cutscene.cutsceneFrames)):
 		var frame: CutsceneFrame = cutscene.cutsceneFrames[idx]
