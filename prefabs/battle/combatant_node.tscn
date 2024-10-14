@@ -16,22 +16,11 @@
 [ext_resource type="Resource" uid="uid://c6c4ckakjjq0h" path="res://gamedata/moves/particles_hit.tres" id="14_nv53v"]
 [ext_resource type="Texture2D" uid="uid://bm1nhtfi2l8tn" path="res://graphics/ui/health_bar_monochrome.png" id="14_psvf6"]
 [ext_resource type="Resource" uid="uid://san44exp8d7j" path="res://gamedata/moves/particles_shard.tres" id="15_gu381"]
+[ext_resource type="StyleBox" uid="uid://drituq7kghxiq" path="res://themes/weaken_target_hp_panel.tres" id="15_jqrxg"]
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
 [ext_resource type="Texture2D" uid="uid://b25no5y38ry06" path="res://graphics/ui/berserk.png" id="20_es783"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsy4x"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0hhm"]
-bg_color = Color(0.835938, 0.310211, 0.310211, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 1
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 2
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
@@ -136,9 +125,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 1.0
+offset_left = 2.0
 offset_top = -3.0
-offset_right = 77.0
+offset_right = 78.0
 offset_bottom = 17.0
 grow_vertical = 2
 scale = Vector2(0.25, 0.25)
@@ -155,12 +144,12 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -24.0
+offset_top = -22.0
 offset_right = 160.0
-offset_bottom = 24.0
+offset_bottom = 26.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m0hhm")
+theme_override_styles/panel = ExtResource("15_jqrxg")
 
 [node name="HPProgressBar" type="TextureProgressBar" parent="HPTag/LvText"]
 layout_mode = 1
@@ -170,9 +159,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 8.0
-offset_top = -20.0
+offset_top = -18.0
 offset_right = 160.0
-offset_bottom = 20.0
+offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 2
 max_value = 5250.0
@@ -192,9 +181,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 8.0
+offset_left = 4.0
 offset_top = -16.0
-offset_right = 40.0
+offset_right = 36.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
