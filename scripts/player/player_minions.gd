@@ -160,11 +160,13 @@ func _load_data_each_minion(save_path):
 		
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres') and passesReqs:
 			minion = ResourceLoader.load(save_path + minions_dir + minionName + '.tres', '', ResourceLoader.CACHE_MODE_IGNORE) as Combatant
-			if minion == null or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR:
+			if minion == null: # or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR
 				print('minion ', minionName, ' failed load validation')
 				var savedFriendship: int = 0
 				var savedMaxFriendship: int = 0
 				var savedNickname: String = ''
+				# currently unused because the only way to get here is if the minions doesn't load
+				# in the future, some additional test may be added that fails validation and requires the whole minion to be rebuilt
 				if minion != null:
 					savedFriendship = minion.friendship
 					savedMaxFriendship = minion.maxFriendship
