@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw6gj40op07vr"]
+[gd_scene load_steps=10 format=3 uid="uid://cw6gj40op07vr"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_60ioc"]
 [ext_resource type="Script" path="res://scripts/menus/quests_panel/quest_details_panel.gd" id="2_k8rm2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="6_6nmhd"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_pbljs"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_7airq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snq7j"]
 
 [node name="QuestDetailsPanel" type="Control"]
 layout_mode = 3
@@ -19,19 +21,11 @@ grow_vertical = 2
 theme = ExtResource("1_60ioc")
 script = ExtResource("2_k8rm2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.431373)
-
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_snq7j")
 
 [node name="QuestName" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -191,7 +185,6 @@ follow_focus = true
 horizontal_scroll_mode = 0
 script = ExtResource("6_6nmhd")
 boxContainer = NodePath("VBoxContainer")
-jumpToStartOnEndScroll = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
 custom_minimum_size = Vector2(900, 76)

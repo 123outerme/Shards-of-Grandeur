@@ -21,6 +21,8 @@ var rewardNewLvs: int = 0
 var lastFocused: Control = null
 var lastInteractedTracker: QuestTracker = null
 
+@onready var questsPanelControl: Control = get_node('QuestsPanel')
+
 @onready var questsTitle: RichTextLabel = get_node("QuestsPanel/Panel/QuestsTitle")
 @onready var actTitle: RichTextLabel = get_node("QuestsPanel/Panel/ActTitle")
 
@@ -54,6 +56,7 @@ func toggle():
 	else:
 		if questDetailsPanel.visible:
 			questDetailsPanel.hide_panel(false)
+			questsPanelControl.visible = true
 		backButton.disabled = false
 		back_pressed.emit()
 
@@ -220,6 +223,7 @@ func show_details(questTracker: QuestTracker):
 	backButton.disabled = true
 	questDetailsPanel.questTracker = questTracker
 	questDetailsPanel.visible = true
+	questsPanelControl.visible = false
 	questDetailsPanel.load_quest_details()
 
 func _on_all_button_toggled(toggled_on: bool) -> void:
@@ -276,4 +280,5 @@ func _on_quest_reward_panel_ok_pressed():
 
 func _on_quest_details_panel_panel_hidden():
 	backButton.disabled = false
+	questsPanelControl.visible = true
 	restore_previous_focus('detailsButton')

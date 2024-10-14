@@ -38,13 +38,12 @@ collision_mask = 2
 [node name="ChaseRangeShape" type="CollisionShape2D" parent="ChaseRange"]
 shape = SubResource("CircleShape2D_n35g2")
 
-[node name="EncounterCollider" type="Area2D" parent="."]
+[node name="EnemyEncounterCollider" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
-[node name="EncounterColliderShape" type="CollisionShape2D" parent="EncounterCollider"]
+[node name="EncounterColliderShape" type="CollisionShape2D" parent="EnemyEncounterCollider"]
 shape = SubResource("RectangleShape2D_6i6r2")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -54,4 +53,4 @@ shape = SubResource("RectangleShape2D_tv2xr")
 [connection signal="target_reached" from="NavAgent" to="." method="_on_nav_agent_target_reached"]
 [connection signal="area_entered" from="ChaseRange" to="." method="_on_chase_range_area_entered"]
 [connection signal="area_exited" from="ChaseRange" to="." method="_on_chase_range_area_exited"]
-[connection signal="area_entered" from="EncounterCollider" to="." method="_on_encounter_collider_area_entered"]
+[connection signal="area_entered" from="EnemyEncounterCollider" to="." method="_on_encounter_collider_area_entered"]

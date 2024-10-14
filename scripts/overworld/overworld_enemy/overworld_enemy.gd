@@ -90,16 +90,22 @@ func unpause_movement():
 	if patrolRange != 0:
 		disableMovement = false
 
+func chase_player():
+	patrolling = false
+	navAgent.avoidance_enabled = true
+
+func stop_chasing_player():
+	patrolling = true
+	navAgent.avoidance_enabled = false
+	get_next_patrol_target()
+
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":
-		patrolling = false
-		navAgent.avoidance_enabled = true
-		
+		chase_player()
+
 func _on_chase_range_area_exited(area):
 	if area.name == "PlayerEventCollider":
-		patrolling = true
-		navAgent.avoidance_enabled = false
-		get_next_patrol_target()
+		stop_chasing_player()
 
 func _on_nav_agent_navigation_finished():
 	await get_tree().create_timer(patrolWaitSecs).timeout

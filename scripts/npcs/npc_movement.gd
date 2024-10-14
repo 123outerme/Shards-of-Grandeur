@@ -36,8 +36,9 @@ func _physics_process(delta):
 	if can_npc_move() and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapNavReady and (loops != 0 or followerMode or returnToFollowerHome):
 		#print(NPC.name, ' ', target_position)
 		var nextPos: Vector2 = get_next_path_position()
-		if followerMode and not is_target_reachable():
-			nextPos = get_following_target_position()
+		# if the follower is not able to go to the next target pos; ignore nav meshes and move straight there
+		#if followerMode and not is_target_reachable():
+		#	nextPos = get_following_target_position()
 		vel = nextPos - NPC.position
 		if disableMovement:
 			# if movement is disabled by calculating the next path: cancel this movement now
