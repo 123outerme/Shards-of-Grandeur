@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_f3ods"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_rhxjp"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_fw0wf"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="3_o35l5"]
 [ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="4_c2oqk"]
 [ext_resource type="Resource" uid="uid://ojb4drc1f528" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert/forbidden_desert_offering_mem_shard.tres" id="4_v0au4"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="5_ta4ih"]
@@ -1116,6 +1115,9 @@ size = Vector2(8, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyyja"]
 size = Vector2(102, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gclwi"]
+size = Vector2(4, 1)
+
 [sub_resource type="Resource" id="Resource_f6dfs"]
 script = ExtResource("28_6r7pf")
 minAct = 0
@@ -1551,6 +1553,14 @@ useHorizontalOffset = true
 [node name="WarpArea" parent="NomadCampWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_cyyja")
 
+[node name="HutWarpZone" parent="." instance=ExtResource("7_8iati")]
+position = Vector2(560, 354)
+mapName = "forbidden_desert_hut"
+mapPos = Vector2(-8, 4)
+
+[node name="WarpArea" parent="HutWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_gclwi")
+
 [node name="CollapseWarpZone" parent="." instance=ExtResource("7_8iati")]
 position = Vector2(-1264, -1243)
 mapName = "desert_collapse"
@@ -1611,9 +1621,6 @@ modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="TestCamera" parent="." instance=ExtResource("3_o35l5")]
-position = Vector2(1116, -48)
-
 [editable path="EnemySpawner"]
 [editable path="EnemySpawner2"]
 [editable path="EnemySpawner3"]
@@ -1637,6 +1644,7 @@ position = Vector2(1116, -48)
 [editable path="EnemySpawner21"]
 [editable path="SeaLegSouthWarpZone"]
 [editable path="NomadCampWarpZone"]
+[editable path="HutWarpZone"]
 [editable path="CollapseWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
