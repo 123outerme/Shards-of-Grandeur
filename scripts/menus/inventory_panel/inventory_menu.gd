@@ -64,6 +64,7 @@ var shopInventory: Inventory = null
 @onready var equipPanel: EquipPanel = get_node("EquipPanel")
 @onready var statResetPanel: StatResetPanel = get_node('StatResetPanel')
 @onready var itemConfirmPanel: ItemConfirmPanel = get_node("ItemConfirmPanel")
+@onready var itemCountChoosePanel: ItemCountChoosePanel = get_node('ItemCountChoosePanel')
 
 var currentInventory: Inventory = null
 var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
@@ -95,23 +96,27 @@ func toggle():
 		load_inventory_panel()
 		initial_focus()
 	else:
-		itemDetailsPanel.visible = false
-		itemUsePanel.visible = false
-		if shardLearnPanel.visible:
-			shardLearnPanel.credit_back_shard()
-		shardLearnPanel.visible = false
-		equipPanel.visible = false
-		statResetPanel.visible = false
-		itemConfirmPanel.visible = false
-		backButton.disabled = false
-		if equipContextStats != null:
-			lockFilters = false
-			selectedFilter = Item.Type.ALL
-		equipContextStats = null
-		viewingStatsFromPanel = ''
-		viewingEquipItemDetails = false
-		backButton.disabled = false
+		cleanup_inventory_panel_state()
 		back_pressed.emit()
+
+func cleanup_inventory_panel_state() -> void:
+	itemDetailsPanel.visible = false
+	itemUsePanel.visible = false
+	if shardLearnPanel.visible:
+		shardLearnPanel.credit_back_shard()
+	shardLearnPanel.visible = false
+	equipPanel.visible = false
+	statResetPanel.visible = false
+	itemConfirmPanel.visible = false
+	itemCountChoosePanel.visible = false
+	backButton.disabled = false
+	if equipContextStats != null:
+		lockFilters = false
+		selectedFilter = Item.Type.ALL
+	equipContextStats = null
+	viewingStatsFromPanel = ''
+	viewingEquipItemDetails = false
+	backButton.disabled = false
 
 func initial_focus():
 	var centerMostFilter: Button = get_centermost_filter()
@@ -282,31 +287,31 @@ func load_inventory_panel(rebuild: bool = true):
 	
 func buy_item(slot: InventorySlot):
 	lastSlotInteracted = slot
-	PlayerResources.inventory.add_item(slot.item)
-	var full: bool = false
-	if PlayerResources.inventory.is_slot_for_item_full(slot.item):
-		full = true
-	PlayerResources.playerInfo.gold -= slot.item.cost
-	var last = shopInventory.trash_item(slot)
-	load_inventory_panel(last or full)
-	if last:
-		initial_focus()
-	else:
-		restore_last_focus('buyButton')
+	itemCountChoosePanel.item = slot.item
+	itemCountChoosePanel.chooseReason = ItemCountChoosePanel.CountChooseReason.BUY
+	itemCountChoosePanel.minValue = 1
+	itemCountChoosePanel.inventoryCount = slot.count
+	var otherInventoryCount: int = 0
+	var otherInventorySlot: InventorySlot = otherInventory.get_slot_for_item(slot.item)
+	if otherInventorySlot != null:
+		otherInventoryCount = otherInventorySlot.count
+	itemCountChoosePanel.otherInventoryCount = otherInventoryCount
+	itemCountChoosePanel.load_item_count_choose_panel()
+	# resolved in count choose panel's `panel_closed` signal handler
 	
 func sell_item(slot: InventorySlot):
 	lastSlotInteracted = slot
-	var last = PlayerResources.inventory.trash_item(slot)
-	PlayerResources.playerInfo.gold += slot.item.cost
-	shopInventory.add_item(slot.item)
-	var full: bool = false
-	if shopInventory.is_slot_for_item_full(slot.item):
-		full = true
-	load_inventory_panel(last or full)
-	if last:
-		initial_focus()
-	else:
-		restore_last_focus('sellButton')
+	itemCountChoosePanel.item = slot.item
+	itemCountChoosePanel.chooseReason = ItemCountChoosePanel.CountChooseReason.SELL
+	itemCountChoosePanel.minValue = 1
+	itemCountChoosePanel.inventoryCount = slot.count
+	var otherInventoryCount: int = 0
+	var otherInventorySlot: InventorySlot = otherInventory.get_slot_for_item(slot.item)
+	if otherInventorySlot != null:
+		otherInventoryCount = otherInventorySlot.count
+	itemCountChoosePanel.otherInventoryCount = otherInventoryCount
+	itemCountChoosePanel.load_item_count_choose_panel()
+	# resolved in count choose panel's `panel_closed` signal handler
 
 func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 	lastSlotInteracted = slot
@@ -321,11 +326,11 @@ func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 	
 func trash_pressed(slot: InventorySlot):
 	lastSlotInteracted = slot
-	itemConfirmPanel.title = 'Trash Item?'
-	itemConfirmPanel.description = 'Are you sure you want to trash 1x ' + slot.item.itemName \
-			+ '? You will get ' + String.num(roundi(slot.item.cost / 2.0)) + ' gold from trashing it.'
-	itemConfirmPanel.load_item_confirm_panel()
-	confirmingAction = 'trash'
+	itemCountChoosePanel.item = slot.item
+	itemCountChoosePanel.chooseReason = ItemCountChoosePanel.CountChooseReason.TRASH
+	itemCountChoosePanel.minValue = 1
+	itemCountChoosePanel.inventoryCount = slot.count
+	itemCountChoosePanel.load_item_count_choose_panel()
 
 func view_item_details(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -483,12 +488,6 @@ func _on_shard_learn_panel_learned_move(move: Move):
 
 func _on_item_confirm_panel_confirm_option(yes: bool):
 	match confirmingAction:
-		'trash':
-			if yes:
-				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
-				PlayerResources.playerInfo.gold += roundi(lastSlotInteracted.item.cost / 2.0)
-				if last:
-					lastSlotInteracted = null
 		'shardLearn':
 			if yes:
 				var playerCombatant: Combatant = PlayerResources.playerInfo.combatant
@@ -509,8 +508,6 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 	else:
 		backButton.disabled = false
 	match confirmingAction:
-		'trash':
-			restore_last_focus('trashButton')
 		'shardLearn':
 			if not yes: # if yes, the item use panel will capture focus and handle restoring it after
 				restore_last_focus('useButton')
@@ -592,3 +589,42 @@ func _on_stat_reset_panel_stats_button_pressed(combatant: Combatant):
 	open_stats.emit(combatant)
 	visible = false
 	viewingStatsFromPanel = 'statReset'
+
+
+func _on_item_count_choose_panel_panel_closed(count: int, backPressed: bool) -> void:
+	match itemCountChoosePanel.chooseReason:
+		ItemCountChoosePanel.CountChooseReason.BUY:
+			if not backPressed:
+				PlayerResources.inventory.add_item(lastSlotInteracted.item, count)
+				var full: bool = false
+				if PlayerResources.inventory.is_slot_for_item_full(lastSlotInteracted.item):
+					full = true
+				PlayerResources.playerInfo.gold -= lastSlotInteracted.item.cost * count
+				var last = shopInventory.trash_item(lastSlotInteracted, count)
+				load_inventory_panel(last or full)
+				if last:
+					lastSlotInteracted = null
+					# setting this makes restore_last_focus not find anything, defaulting to initial focus
+			restore_last_focus('buyButton')
+		ItemCountChoosePanel.CountChooseReason.SELL:
+			if not backPressed:
+				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
+				PlayerResources.playerInfo.gold += lastSlotInteracted.item.cost * count
+				shopInventory.add_item(lastSlotInteracted.item)
+				var full: bool = false
+				if shopInventory.is_slot_for_item_full(lastSlotInteracted.item):
+					full = true
+				load_inventory_panel(last or full)
+				if last:
+					lastSlotInteracted = null
+					# setting this makes restore_last_focus not find anything, defaulting to initial focus
+			restore_last_focus('sellButton')
+		ItemCountChoosePanel.CountChooseReason.TRASH:
+			if not backPressed:
+				var last = PlayerResources.inventory.trash_item(lastSlotInteracted, count)
+				PlayerResources.playerInfo.gold += roundi(count * lastSlotInteracted.item.cost * 0.5)
+				load_inventory_panel(last)
+				if last:
+					lastSlotInteracted = null
+					# setting this makes restore_last_focus not find anything, defaulting to initial focus
+			restore_last_focus('trashButton')

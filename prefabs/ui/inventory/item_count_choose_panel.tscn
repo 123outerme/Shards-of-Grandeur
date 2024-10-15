@@ -1,0 +1,260 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6mlmipkb6u3c"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_8rq8b"]
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/item_count_choose_panel.gd" id="2_87o3g"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="2_a7l1x"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_0d1xi"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_b5024"]
+[ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="5_fm0fo"]
+[ext_resource type="PackedScene" uid="uid://caybcff4f85xd" path="res://prefabs/ui/count_choose_control/count_choose_control.tscn" id="5_ousix"]
+[ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="6_x4hn8"]
+
+[node name="ItemCountChoosePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8rq8b")
+script = ExtResource("2_87o3g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 110.0
+offset_right = 1200.0
+offset_bottom = 610.0
+
+[node name="ItemSpriteControl" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 41.0
+offset_top = 24.0
+offset_right = 105.0
+offset_bottom = 88.0
+mouse_filter = 2
+
+[node name="ItemSprite" type="Sprite2D" parent="Panel/ItemSpriteControl"]
+position = Vector2(32, 32)
+scale = Vector2(4, 4)
+texture = ExtResource("2_a7l1x")
+
+[node name="ItemCountChooseTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 24.0
+offset_right = 450.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme = ExtResource("3_0d1xi")
+bbcode_enabled = true
+text = "[center]Trash Item - Item Name Goes Here[/center]"
+fit_content = true
+
+[node name="ItemCountChooseDesc" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 94.0
+offset_right = -24.0
+offset_bottom = -341.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[center]How many Item Name Goes Here will you trash?
+You will get half its value in gold for each one trashed.[/center]"
+
+[node name="InventoryCountsHboxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 168.0
+offset_right = -8.0
+offset_bottom = -286.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="InventoryCountLabel" type="RichTextLabel" parent="Panel/InventoryCountsHboxContainer"]
+custom_minimum_size = Vector2(538, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[right]You have 9,999x Item Name Goes Here (max 9,999).[/right]"
+fit_content = true
+
+[node name="OtherInventoryCountLabel" type="RichTextLabel" parent="Panel/InventoryCountsHboxContainer"]
+custom_minimum_size = Vector2(538, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Shop has 9,999x Item Name Goes Here (max 9,999)."
+fit_content = true
+
+[node name="GoldCountControl" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = 82.0
+offset_right = 183.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GoldVerbLabel" type="RichTextLabel" parent="Panel/GoldCountControl"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.462
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = -8.36801
+offset_bottom = 12.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[right]Recoup[/right]"
+
+[node name="GoldSpriteControl" type="Control" parent="Panel/GoldCountControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GoldSprite" type="Sprite2D" parent="Panel/GoldCountControl/GoldSpriteControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("5_fm0fo")
+
+[node name="GoldCountLabel" type="RichTextLabel" parent="Panel/GoldCountControl"]
+custom_minimum_size = Vector2(106, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.538
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.09198
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "456,789?"
+fit_content = true
+
+[node name="OkButton" parent="Panel" instance=ExtResource("5_b5024")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -68.0
+offset_right = -10.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath(".")
+text = "OK"
+
+[node name="BackButton" parent="Panel" instance=ExtResource("5_b5024")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -68.0
+offset_right = 90.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath("../OkButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
+
+[node name="CountChooseControl" parent="Panel" instance=ExtResource("5_ousix")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -36.0
+offset_right = 260.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VirtualKeyboard" parent="." instance=ExtResource("6_x4hn8")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -180.0
+offset_right = 149.0
+offset_bottom = 4.0
+enabled = false
+rows = Array[String](["123", "456", "789", "0"])
+customShiftRows = Array[String]([])
+backspaceRow = 3
+cancelRow = -1
+enterRow = 3
+shiftRow = -1
+capsLockRow = -1
+
+[connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="intercepted_input_in_line_edit" from="Panel/CountChooseControl" to="." method="_on_count_choose_control_intercepted_input_in_line_edit"]
+[connection signal="line_edit_submitted" from="Panel/CountChooseControl" to="." method="_on_count_choose_control_line_edit_submitted"]
+[connection signal="value_changed" from="Panel/CountChooseControl" to="." method="_on_count_choose_control_value_changed"]
+[connection signal="backspace_pressed" from="VirtualKeyboard" to="." method="_on_virtual_keyboard_backspace_pressed"]
+[connection signal="enter_pressed" from="VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
+[connection signal="key_pressed" from="VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
+[connection signal="keyboard_hidden" from="VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]

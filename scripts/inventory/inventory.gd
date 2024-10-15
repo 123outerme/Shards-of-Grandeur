@@ -34,24 +34,25 @@ func add_slot(slot: InventorySlot) -> bool:
 		return true
 	return false
 
-func add_item(item: Item) -> bool:
+func add_item(item: Item, count: int = 1) -> bool:
 	if item == null:
 		return false
 	var found: bool = false
+	# assumption: count is withing the range [1, item.maxCount]
 	for slot in inventorySlots:
 		if slot.item == item:
 			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
 			# either way we aren't creating a new slot
-			if slot.count < slot.item.maxCount or slot.item.maxCount <= 0:
+			if slot.count + count <= slot.item.maxCount or slot.item.maxCount <= 0:
 				if slot.count < 0:
 					return true # if negative (infinite-size shop slot), don't do anything
-				slot.count += 1
+				slot.count += count
 				add_shard_minion_entry(item)
 				PlayerResources.questInventory.auto_update_quests()
 				return true
 	# if not found, add a new slot
 	if not found:
-		inventorySlots.append(InventorySlot.new(item))
+		inventorySlots.append(InventorySlot.new(item, count))
 		add_shard_minion_entry(item)
 		PlayerResources.questInventory.auto_update_quests()
 		return true

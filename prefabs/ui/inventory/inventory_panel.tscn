@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=17 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://mfj250ugvh12" path="res://prefabs/ui/inventory/stat_reset_panel.tscn" id="10_yjhqm"]
 [ext_resource type="PackedScene" uid="uid://b03wrcogq8csb" path="res://prefabs/ui/inventory/item_confirm_panel.tscn" id="11_c0y15"]
 [ext_resource type="PackedScene" uid="uid://n55f6tk0t25u" path="res://prefabs/ui/inventory/equip_panel.tscn" id="12_eeu1a"]
+[ext_resource type="PackedScene" uid="uid://c6mlmipkb6u3c" path="res://prefabs/ui/inventory/item_count_choose_panel.tscn" id="15_vx1mf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h51sc"]
 
@@ -265,6 +266,11 @@ visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 
+[node name="ItemCountChoosePanel" parent="." instance=ExtResource("15_vx1mf")]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+
 [connection signal="item_used" from="." to="." method="_on_item_used"]
 [connection signal="pressed" from="InventoryPanel/Panel/ToggleShopInventoryButton" to="." method="_on_toggle_shop_inventory_button_pressed"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
@@ -286,5 +292,6 @@ offset_bottom = 720.0
 [connection signal="back_pressed" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_back_pressed"]
 [connection signal="learned_move" from="ShardLearnPanel" to="." method="_on_shard_learn_panel_learned_move"]
 [connection signal="confirm_option" from="ItemConfirmPanel" to="." method="_on_item_confirm_panel_confirm_option"]
+[connection signal="panel_closed" from="ItemCountChoosePanel" to="." method="_on_item_count_choose_panel_panel_closed"]
 
 [editable path="ItemDetailsPanel"]

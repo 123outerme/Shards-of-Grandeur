@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://caybcff4f85xd"]
+
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="1_f12ot"]
+[ext_resource type="Script" path="res://prefabs/ui/count_choose_control/count_choose_control.gd" id="1_ixisr"]
+
+[node name="CountChooseControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 520.0
+offset_bottom = 96.0
+script = ExtResource("1_ixisr")
+
+[node name="ButtonsHboxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="DecTenButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../DecOneButton")
+focus_neighbor_bottom = NodePath("../../LineEdit")
+text = "< -10"
+
+[node name="DecOneButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath("../DecTenButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../IncOneButton")
+focus_neighbor_bottom = NodePath("../../LineEdit")
+text = "< -1"
+
+[node name="Control" type="Control" parent="ButtonsHboxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="IncOneButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath("../DecOneButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../IncTenButton")
+focus_neighbor_bottom = NodePath("../../LineEdit")
+text = "+1 >"
+
+[node name="IncTenButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath("../IncOneButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../LineEdit")
+text = "+10 >"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+process_priority = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -40.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ButtonsHboxContainer/IncOneButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+placeholder_text = "Amount"
+alignment = 1
+max_length = 4
+context_menu_enabled = false
+virtual_keyboard_type = 2
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+caret_blink = true
+
+[connection signal="pressed" from="ButtonsHboxContainer/DecTenButton" to="." method="_on_button_pressed" binds= [-10]]
+[connection signal="pressed" from="ButtonsHboxContainer/DecOneButton" to="." method="_on_button_pressed" binds= [-1]]
+[connection signal="pressed" from="ButtonsHboxContainer/IncOneButton" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="ButtonsHboxContainer/IncTenButton" to="." method="_on_button_pressed" binds= [10]]
+[connection signal="focus_entered" from="LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
