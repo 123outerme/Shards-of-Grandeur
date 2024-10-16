@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://cvgl8v58qfuwg"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://cvgl8v58qfuwg"]
 
 [ext_resource type="Texture2D" uid="uid://cwh5shm70gctk" path="res://graphics/characters/nomad_kid/nomad_kid_stand.png" id="1_c5ptd"]
 [ext_resource type="Texture2D" uid="uid://o7o4mpl3ed6b" path="res://graphics/characters/nomad_kid/nomad_kid_talk.png" id="2_nwbsa"]
@@ -7,6 +7,14 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_1o02a"]
 atlas = ExtResource("1_c5ptd")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4cun"]
+atlas = ExtResource("1_c5ptd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6p33"]
+atlas = ExtResource("1_c5ptd")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1njo"]
 atlas = ExtResource("2_nwbsa")
@@ -53,10 +61,16 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1o02a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4cun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6p33")
 }],
 "loop": true,
 "name": &"stand",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
