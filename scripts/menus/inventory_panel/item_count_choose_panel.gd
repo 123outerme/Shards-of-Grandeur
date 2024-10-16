@@ -69,7 +69,7 @@ func load_item_count_choose_panel() -> void:
 	match chooseReason:
 		CountChooseReason.BUY:
 			title = 'Buy Item'
-			description = 'How many ' + item.itemName + ' will you buy?'
+			description = 'How many will you buy?'
 			if inventoryCount > 0:
 				invCountString = '[right]Shop has ' + TextUtils.num_to_comma_string(inventoryCount) + 'x ' + item.itemName + '.[/right]'
 				inventoryCountLabel.visible = true
@@ -86,7 +86,7 @@ func load_item_count_choose_panel() -> void:
 				otherInvCountString += '[/center]'
 		CountChooseReason.SELL:
 			title = 'Sell Item'
-			description = 'How many ' + item.itemName + ' will you sell?'
+			description = 'How many will you sell?'
 			inventoryCountLabel.visible = true
 			var invCountTag: String = 'right'
 			if otherInventoryCount > 0:
@@ -104,7 +104,7 @@ func load_item_count_choose_panel() -> void:
 			
 		CountChooseReason.TRASH:
 			title = 'Trash Item'
-			description = 'How many ' + item.itemName + " will you trash?\nYou will get half its value in gold for each one trashed."
+			description = "How many will you trash?\nYou will get half the item's value in gold for each one trashed."
 			invCountString = '[center]You have ' + TextUtils.num_to_comma_string(inventoryCount) + 'x ' + item.itemName + '.[/center]'
 			inventoryCountLabel.visible = true
 			otherInventoryCountLabel.visible = false
