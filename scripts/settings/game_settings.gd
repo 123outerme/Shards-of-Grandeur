@@ -21,6 +21,7 @@ enum TouchJoystickType {
 @export var windowSize: Vector2i = Vector2i(1280, 720)
 @export var fullscreen: bool = false
 @export var touchJoystickType: TouchJoystickType = TouchJoystickType.FLOATING
+@export var enableExperimentalFeatures: bool = false
 
 var defaultInputMap: Dictionary = {}
 var save_file = 'game_settings.tres'
@@ -112,6 +113,7 @@ func _init(
 	i_framerate = 60,
 	i_windowSize = Vector2i(1280, 720),
 	i_fullscreen = false,
+	i_experimental = true,
 ):
 	inputMap = i_inputMap.duplicate()
 	musicVolume = i_musicVolume
@@ -127,6 +129,7 @@ func _init(
 	framerate = i_framerate
 	windowSize = i_windowSize
 	fullscreen = i_fullscreen
+	enableExperimentalFeatures = i_experimental
 	defaultInputMap = {}
 	InputMap.load_from_project_settings() # NOTE side-effect: resets input settings for current execution of game program
 	for action in InputMap.get_actions().filter(_filter_input_map):

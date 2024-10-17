@@ -70,6 +70,7 @@ func _unhandled_input(event):
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice \
 			and not cutscenePaused and not inCutscene \
+			and (SceneLoader.curMapEntry.isRecoverLocation or SettingsHandler.gameSettings.enableExperimentalFeatures) \
 			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) \
 			and not cam.fadedOrFadingOut:
 		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
@@ -181,8 +182,7 @@ func _unhandled_input(event):
 		overworldTouchControls.set_all_visible(false)
 	
 func _physics_process(_delta):
-	if Input.is_action_pressed("game_decline") or running:
-		# and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation) # add to the above conditional to disable running when not in a safe zone map
+	if (Input.is_action_pressed("game_decline") or running) and not (not SettingsHandler.gameSettings.enableExperimentalFeatures and SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapEntry.isRecoverLocation):
 		if speed != RUN_SPEED:
 			# play a step sound the next frame (for animation change when moving and switching run status)
 			stepSfxTimer = RUN_STEP_SFX_COOLDOWN
