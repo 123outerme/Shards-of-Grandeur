@@ -69,11 +69,11 @@ func _unhandled_input(event):
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice \
-			and not cutscenePaused and not inCutscene and SceneLoader.curMapEntry.isRecoverLocation \
+			and not cutscenePaused and not inCutscene \
 			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) \
 			and not cam.fadedOrFadingOut:
 		running = not running # toggle running when press decline and not in a menu/dialogue/cutscene and in a runnable place
-	
+		
 	if (not pauseDisabled and event.is_action_pressed("game_pause")) or \
 			(cutscenePaused and event.is_action_pressed('game_decline')) and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
@@ -180,7 +180,7 @@ func _unhandled_input(event):
 		overworldTouchControls.set_all_visible(false)
 	
 func _physics_process(_delta):
-	if (Input.is_action_pressed("game_decline") or running) and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation):
+	if Input.is_action_pressed("game_decline") or running:
 		if speed != RUN_SPEED:
 			# play a step sound the next frame (for animation change when moving and switching run status)
 			stepSfxTimer = RUN_STEP_SFX_COOLDOWN
@@ -191,6 +191,8 @@ func _physics_process(_delta):
 		# play a step sound the next frame (for animation change when moving and switching run status) 
 		stepSfxTimer = BASE_STEP_SFX_COOLDOWN
 		overworldTouchControls.set_running(false)
+		if SignalBus.lastPlayerRunVal:
+				SignalBus.player_running(false)
 	
 	# if movement isn't explictly disabled and the camera is faded out or fading out: movement is enabled
 	if not disableMovement and not cam.fadedOrFadingOut:
@@ -206,13 +208,21 @@ func _physics_process(_delta):
 		if velocity.length() > 0:
 			if speed == RUN_SPEED:
 				play_animation('run')
+				if not SignalBus.lastPlayerRunVal:
+					SignalBus.player_running(true)
 			else:
 				play_animation('walk')
+				if SignalBus.lastPlayerRunVal:
+					SignalBus.player_running(false)
 		else:
 			play_animation('stand')
+			if SignalBus.lastPlayerRunVal:
+				SignalBus.player_running(false)
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
+		if SignalBus.lastPlayerRunVal:
+			SignalBus.player_running(false)
 	if inCutscene and false: # debug mode move camera in cutscene
 		var vel = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * speed
 		cam.position += vel * _delta

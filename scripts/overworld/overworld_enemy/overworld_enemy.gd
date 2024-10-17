@@ -3,8 +3,11 @@ class_name OverworldEnemy
 
 @export var combatant: Combatant
 @export var disableMovement: bool = false
-@export var maxSpeed = 40
-@export var chaseRange = 48
+@export var maxSpeed: float = 40
+@export var runningMaxSpeed: float = 80
+@export var chaseRange: float = 48
+@export var runningChaseRange: float = 96
+@export var chaseSwapCooldownSecs: float = 1
 @export var patrolling: bool = true
 @export var patrolWaitSecs: float = 1.0
 @export var enemyData: OverworldEnemyData = OverworldEnemyData.new()
@@ -15,6 +18,8 @@ var patrolRange: float = 48.0
 var despawnRange: float = 960.0
 var encounteredPlayer: bool = false
 var waitUntilNavReady: bool = false
+var runningChaseMode: bool = false
+var lastPlayerChaseUpdateTime: float = 0
 
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
@@ -31,9 +36,9 @@ func _ready():
 	disableMovement = enemyData.disableMovement
 	navAgent.navigation_layers = combatant.get_nav_layer()
 	navAgent.radius = (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2) - 1
-	navAgent.max_speed = maxSpeed
-	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
-	rangeCircle.radius = chaseRange + (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
+	SignalBus.player_run_toggled.connect(_player_running_changed)
+	update_chase_mode(SignalBus.lastPlayerRunVal)
+	update_speed()
 	if patrolling:
 		get_next_patrol_target()
 
@@ -50,8 +55,8 @@ func _process(delta):
 			navAgent.target_position = PlayerFinder.player.position
 		var nextPos = navAgent.get_next_path_position()
 		var vel = nextPos - position
-		if vel.length() > maxSpeed * delta:
-			vel = vel.normalized() * maxSpeed * delta
+		if vel.length() > navAgent.max_speed * delta:
+			vel = vel.normalized() * navAgent.max_speed * delta
 		position += vel
 		if vel.x < 0:
 			enemySprite.flip_h = false
@@ -99,13 +104,38 @@ func stop_chasing_player():
 	navAgent.avoidance_enabled = false
 	get_next_patrol_target()
 
+func update_chase_mode(playerRunning: bool) -> void:
+	runningChaseMode = playerRunning
+	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
+	rangeCircle.radius = (chaseRange if not runningChaseMode else runningChaseRange) + \
+			(max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
+
+func update_speed() -> void:
+	navAgent.max_speed = runningMaxSpeed if runningChaseMode and not patrolling else maxSpeed
+
+func _player_running_changed(playerRunning: bool) -> void:
+	# if the enemy patrolling, or if it's chasing the player and the player starts to run, update the chase mode
+	if patrolling or (not patrolling and playerRunning and not runningChaseMode):
+		update_chase_mode(playerRunning)
+		update_speed()
+
 func _on_chase_range_area_entered(area):
 	if area.name == "PlayerEventCollider":
 		chase_player()
+		update_speed()
+		lastPlayerChaseUpdateTime = Time.get_unix_time_from_system()
 
 func _on_chase_range_area_exited(area):
 	if area.name == "PlayerEventCollider":
 		stop_chasing_player()
+		update_speed()
+		var updateTime: float = Time.get_unix_time_from_system()
+		lastPlayerChaseUpdateTime = updateTime
+		if runningChaseMode:
+			await get_tree().create_timer(chaseSwapCooldownSecs).timeout
+			if lastPlayerChaseUpdateTime == updateTime and patrolling:
+				update_chase_mode(false)
+				update_speed()
 
 func _on_nav_agent_navigation_finished():
 	await get_tree().create_timer(patrolWaitSecs).timeout
