@@ -20,7 +20,10 @@ signal intercepted_input_in_line_edit
 ## if true, no maximum will be enforced
 @export var useMax: bool = true
 
+@onready var decTenButton: Button = get_node('ButtonsHboxContainer/DecTenButton')
+@onready var decOneButton: Button = get_node('ButtonsHboxContainer/DecOneButton')
 @onready var incOneButton: Button = get_node('ButtonsHboxContainer/IncOneButton')
+@onready var incTenButton: Button = get_node('ButtonsHboxContainer/IncTenButton')
 @onready var lineEdit: LineEdit = get_node('LineEdit')
 
 var allCountTextSelected: bool = false
@@ -57,17 +60,33 @@ func set_count_value(newVal: int) -> void:
 		lineEdit.caret_column = len(lineEdit.text)
 	value_changed.emit(value)
 
-func enforce_min_max(value: int) -> int:
-	var newVal: int = value
+func enforce_min_max(val: int) -> int:
+	var newVal: int = val
 	if useMin:
 		newVal = max(minValue, newVal)
 	if useMax:
 		newVal = min(maxValue, newVal)
 	return newVal
 
-func set_lineedit_bottom_focus_neighbor(control: Control) -> void:
-	lineEdit.focus_neighbor_bottom = lineEdit.get_path_to(control)
-	control.focus_neighbor_top = control.get_path_to(lineEdit)
+func set_line_edit_top_focus_neighbor(control: Control) -> void:
+	lineEdit.focus_neighbor_top = lineEdit.get_path_to(control)
+	control.focus_neighbor_bottom = control.get_path_to(lineEdit)
+
+func set_dec_ten_bottom_focus_neighbor(control: Control) -> void:
+	decTenButton.focus_neighbor_bottom = decTenButton.get_path_to(control)
+	control.focus_neighbor_top = control.get_path_to(decTenButton)
+
+func set_dec_one_bottom_focus_neighbor(control: Control) -> void:
+	decOneButton.focus_neighbor_bottom = decOneButton.get_path_to(control)
+	control.focus_neighbor_top = control.get_path_to(decOneButton)
+
+func set_inc_one_bottom_focus_neighbor(control: Control) -> void:
+	incOneButton.focus_neighbor_bottom = incOneButton.get_path_to(control)
+	control.focus_neighbor_top = control.get_path_to(incOneButton)
+
+func set_inc_ten_bottom_focus_neighbor(control: Control) -> void:
+	incTenButton.focus_neighbor_bottom = incTenButton.get_path_to(control)
+	control.focus_neighbor_top = control.get_path_to(incTenButton)
 
 func _on_button_pressed(changeVal: int) -> void:
 	set_count_value(value + changeVal)
@@ -93,7 +112,11 @@ func _on_line_edit_focus_entered() -> void:
 	allCountTextSelected = true
 
 func _on_line_edit_focus_exited() -> void:
-	_on_line_edit_text_submitted(lineEdit.text)
+	if lineEdit.text == '':
+		set_count_value(0)
+	elif lineEdit.text.is_valid_int():
+		set_count_value(lineEdit.text.to_int())
+	initial_focus()
 
 func _on_settings_changed():
 	lineEdit.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard

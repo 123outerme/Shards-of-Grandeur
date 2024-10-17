@@ -12,31 +12,34 @@ script = ExtResource("1_ixisr")
 
 [node name="ButtonsHboxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -56.0
-offset_right = 56.0
-offset_bottom = 40.0
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -40.0
+offset_right = 178.0
 grow_horizontal = 2
+grow_vertical = 0
 alignment = 2
 
 [node name="DecTenButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
+focus_neighbor_top = NodePath("../../LineEdit")
 focus_neighbor_right = NodePath("../DecOneButton")
-focus_neighbor_bottom = NodePath("../../LineEdit")
+focus_neighbor_bottom = NodePath(".")
 text = "< -10"
 
 [node name="DecOneButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../DecTenButton")
-focus_neighbor_top = NodePath(".")
+focus_neighbor_top = NodePath("../../LineEdit")
 focus_neighbor_right = NodePath("../IncOneButton")
-focus_neighbor_bottom = NodePath("../../LineEdit")
+focus_neighbor_bottom = NodePath(".")
 text = "< -1"
 
 [node name="Control" type="Control" parent="ButtonsHboxContainer"]
@@ -47,37 +50,34 @@ layout_mode = 2
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../DecOneButton")
-focus_neighbor_top = NodePath(".")
+focus_neighbor_top = NodePath("../../LineEdit")
 focus_neighbor_right = NodePath("../IncTenButton")
-focus_neighbor_bottom = NodePath("../../LineEdit")
+focus_neighbor_bottom = NodePath(".")
 text = "+1 >"
 
 [node name="IncTenButton" parent="ButtonsHboxContainer" instance=ExtResource("1_f12ot")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../IncOneButton")
-focus_neighbor_top = NodePath(".")
+focus_neighbor_top = NodePath("../../LineEdit")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../LineEdit")
+focus_neighbor_bottom = NodePath(".")
 text = "+10 >"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 process_priority = 1
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -80.0
-offset_top = -40.0
 offset_right = 80.0
+offset_bottom = 40.0
 grow_horizontal = 2
-grow_vertical = 0
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../ButtonsHboxContainer/IncOneButton")
+focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
+focus_neighbor_bottom = NodePath("../ButtonsHboxContainer/IncOneButton")
 placeholder_text = "Amount"
 alignment = 1
 max_length = 4

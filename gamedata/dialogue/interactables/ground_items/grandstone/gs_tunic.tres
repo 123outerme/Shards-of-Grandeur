@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://doj83lbbfnqon"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_e45pw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_27wbt"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_pogpn"]
+
+[sub_resource type="Resource" id="Resource_dvau4"]
+script = ExtResource("1_e45pw")
+lines = Array[String](["It's a Tunic! This must have blown off of a clothesline somewhere...", "But I doubt the owner would want it back now, it's a little dirty."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_27wbt")]([])
+
+[resource]
+script = ExtResource("3_pogpn")
+entryId = ""
+items = Array[ExtResource("1_e45pw")]([SubResource("Resource_dvau4")])
+closesDialogue = false
+fullHealsPlayer = false

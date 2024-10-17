@@ -49,13 +49,18 @@ var maxValue: int = 1
 func _ready() -> void:
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 	_on_settings_changed()
-	countChooseControl.set_lineedit_bottom_focus_neighbor(backButton)
-	countChooseControl.set_lineedit_bottom_focus_neighbor(okButton)
+	countChooseControl.set_dec_ten_bottom_focus_neighbor(okButton)
+	countChooseControl.set_dec_one_bottom_focus_neighbor(okButton)
+	countChooseControl.set_inc_ten_bottom_focus_neighbor(backButton)
+	countChooseControl.set_inc_one_bottom_focus_neighbor(backButton)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("game_decline") and visible:
 		get_viewport().set_input_as_handled()
-		_on_back_button_pressed()
+		if not virtualKeyboard.visible:
+			_on_back_button_pressed()
+		else:
+			virtualKeyboard.hide_keyboard()
 
 func load_item_count_choose_panel() -> void:
 	if item == null:
@@ -79,6 +84,7 @@ func load_item_count_choose_panel() -> void:
 				otherInvCountString = '[center]'
 				maxValue = min(item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost))
 			otherInvCountString += 'You have ' + TextUtils.num_to_comma_string(otherInventoryCount) + 'x ' + item.itemName
+			otherInventoryCountLabel.visible = true
 			if item.maxCount > 0:
 				otherInvCountString += ' (max ' + TextUtils.num_to_comma_string(item.maxCount) + ')'
 			otherInvCountString += '.'
@@ -139,13 +145,13 @@ func update_gold_count_label() -> void:
 			goldVerbLabel.text = '[right]Spend[/right]'
 		CountChooseReason.SELL:
 			goldCountLabel.text += TextUtils.num_to_comma_string(cost)
-			goldVerbLabel.text = '[right]Gain[/right]'
+			goldVerbLabel.text = '[right]Sell for[/right]'
 		CountChooseReason.TRASH:
 			goldCountLabel.text += TextUtils.num_to_comma_string(roundi(cost * 0.5))
 			goldVerbLabel.text = '[right]Recoup[/right]'
 	goldCountLabel.text += '?'
 
-func _on_count_choose_control_value_changed(newVal: int) -> void:
+func _on_count_choose_control_value_changed(_newVal: int) -> void:
 	update_gold_count_label()
 
 func _on_virtual_keyboard_backspace_pressed() -> void:
@@ -178,10 +184,7 @@ func _on_virtual_keyboard_keyboard_hidden() -> void:
 	countChooseControl.initial_focus()
 
 func _on_count_choose_control_line_edit_submitted(text: String) -> void:
-	if SettingsHandler.gameSettings.useVirtualKeyboard:
-		okButton.grab_focus()
-	else:
-		countChooseControl.initial_focus()
+	okButton.grab_focus()
 
 func _on_ok_button_pressed() -> void:
 	# make sure text is validated before emitting this value

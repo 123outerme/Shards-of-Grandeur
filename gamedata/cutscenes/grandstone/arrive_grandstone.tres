@@ -32,6 +32,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_1vxmu"]
@@ -103,6 +105,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_74e1p"]
@@ -156,6 +160,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_43fcf"]
@@ -209,6 +215,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_poop7"]
@@ -262,6 +270,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_q3yxp"]
@@ -297,6 +307,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_qto5c"]
@@ -311,6 +323,7 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["arrive_grandstone"])
@@ -318,6 +331,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_gaqvo")
@@ -328,3 +342,4 @@ unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String]([])
 tempDisabledAfter = false
+notes = ""

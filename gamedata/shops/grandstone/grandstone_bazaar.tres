@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_t0jpo"]
 [ext_resource type="Resource" uid="uid://gsk7qwlmuwdb" path="res://gamedata/items/armor/warrior_headband.tres" id="2_tyor1"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_r076o"]
-[ext_resource type="Resource" uid="uid://c5kv12qhdpe5p" path="res://gamedata/items/armor/tunic.tres" id="4_rojlc"]
+[ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="4_vaei8"]
 
 [sub_resource type="Resource" id="Resource_6on5u"]
 script = ExtResource("3_r076o")
@@ -11,12 +11,12 @@ sinceVersion = "0.0.5"
 item = ExtResource("2_tyor1")
 count = 1
 
-[sub_resource type="Resource" id="Resource_kl41s"]
+[sub_resource type="Resource" id="Resource_ewwxo"]
 script = ExtResource("3_r076o")
-sinceVersion = "0.0.5"
-item = ExtResource("4_rojlc")
-count = 1
+sinceVersion = "0.2.0"
+item = ExtResource("4_vaei8")
+count = -1
 
 [resource]
 script = ExtResource("1_t0jpo")
-shopItemSlots = Array[ExtResource("3_r076o")]([SubResource("Resource_6on5u"), SubResource("Resource_kl41s")])
+shopItemSlots = Array[ExtResource("3_r076o")]([SubResource("Resource_6on5u"), SubResource("Resource_ewwxo")])
