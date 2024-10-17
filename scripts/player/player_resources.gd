@@ -61,6 +61,9 @@ func load_data(save_path):
 	var newPlayerInfo = playerInfo.load_data(save_path)
 	if newPlayerInfo != null:
 		playerInfo = newPlayerInfo
+		# if this save was created before the seed was introduced: generate it now
+		if playerInfo.saveSeed == -1:
+			playerInfo.saveSeed = randi()
 		playerInfo.combatant.validate_all_evolutions_stat_totals()
 		playerInfo.combatant.stats = playerInfo.combatant.stats.copy() # copy stats to Combatant obj
 		playerInfo.combatant.validate_evolution_stats() # validate evolution stats data structure
@@ -143,6 +146,7 @@ func save_data(save_path) -> int:
 	
 func new_game(save_path):
 	playerInfo = PlayerInfo.new()
+	playerInfo.saveSeed = randi() # generate a random seed on new game in the range [0, (2^32) - 1]
 	inventory = Inventory.new(true)
 	inventory.save_data(save_path, inventory)
 	questInventory = QuestInventory.new()

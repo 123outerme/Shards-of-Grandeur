@@ -11,6 +11,7 @@ class_name PlayerInfo
 @export var underworldDepth: int
 @export var savedPosition: Vector2
 @export var scene: String = "Overworld"
+@export var saveSeed: int = -1
 @export var version: String = ''
 
 @export_category("PlayerInfo: Stats")
@@ -51,6 +52,7 @@ func _init(
 	i_savedPosition = Vector2(-50,0),
 	i_flipH = false,
 	i_scene = "Overworld",
+	i_seed = -1,
 	i_version = '',
 	i_combatant = (load("res://gamedata/combatants/player/player.tres") as Combatant).copy(),
 	i_gold = 20,
@@ -80,6 +82,7 @@ func _init(
 	savedPosition = i_savedPosition
 	flipH = i_flipH
 	scene = i_scene
+	saveSeed = i_seed
 	if i_version != '':
 		version = i_version
 	else:
