@@ -2,6 +2,7 @@ extends Resource
 class_name CombatantSprite
 
 @export var spriteFrames: SpriteFrames = null
+@export var combatantOverworld: CombatantOverworld = null
 
 ## the largest canvas size of all the SpriteFrames animations
 @export var maxSize: Vector2 = Vector2(16, 16)
@@ -43,6 +44,7 @@ class_name CombatantSprite
 
 func _init(
 	i_spriteFrames = null,
+	i_combatantOverworld = null,
 	i_maxSize = Vector2(16, 16),
 	i_idleSize = Vector2(16, 16),
 	i_centerPosition = Vector2(8, 8),
@@ -57,6 +59,7 @@ func _init(
 	i_attackAffinityArrivalFrame = -1,
 ):
 	spriteFrames = i_spriteFrames
+	combatantOverworld = i_combatantOverworld
 	maxSize = i_maxSize
 	idleSize = i_idleSize
 	centerPosition = i_centerPosition

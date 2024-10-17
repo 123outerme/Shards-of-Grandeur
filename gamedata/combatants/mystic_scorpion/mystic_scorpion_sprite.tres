@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://cxrjjb4ssvyxa"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://cxrjjb4ssvyxa"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_8emdt"]
+[ext_resource type="Resource" uid="uid://c38vjaujruu3m" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_overworld.tres" id="1_mxxta"]
 [ext_resource type="SpriteFrames" uid="uid://bubdpc4idrc2j" path="res://graphics/animations/a_mystic_scorpion.tres" id="2_cispe"]
 
 [resource]
 script = ExtResource("1_8emdt")
 spriteFrames = ExtResource("2_cispe")
+combatantOverworld = ExtResource("1_mxxta")
 maxSize = Vector2(32, 16)
 idleSize = Vector2(24, 16)
 centerPosition = Vector2(12, 11)

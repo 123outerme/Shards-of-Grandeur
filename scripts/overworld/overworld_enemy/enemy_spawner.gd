@@ -19,14 +19,26 @@ class_name EnemySpawner
 ## radius of the circle the enemy will patrol in
 @export var enemyPatrolRange: float = 32.0
 
-## radius of the circle the enemy with chase the player within
+## Only if overrides, radius of the circle the enemy will chase the player within
 @export var enemyChaseRange: float = 48.0
+
+## Only if overrides, radius of the circle the enemy will chase the player within while the player is running
+@export var enemyRunningChaseRange: float = 96
+
+## if true, the above values will override the combatant's chase ranges
+@export var overrideEnemyRanges: bool = false
 
 ## Once the enemy gets this many units away from the player, they will automatically despawn
 @export var enemyDespawnRange: float = 960.0
 
-## the max speed of the enemy
+## Only if overrides, the max speed of the enemy
 @export var enemyMaxSpeed: float = 40
+
+## Only if overrides, the max speed of the enemy while it is chasing a player that it caught running
+@export var enemyRunningMaxSpeed: float = 80
+
+## if true, the above values will override the combatant's speeds
+@export var overrideEnemySpeeds: bool = false
 
 ## set before loading; points to the tilemap to place the enemy object in
 @export var tilemap: Node2D
@@ -65,12 +77,16 @@ func _on_area_2d_area_entered(area):
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
 		enemy = overworldEnemyScene.instantiate()
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemyPos, false, enemyEncounter)
+		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemyPos, false, enemyEncounter, false)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		enemy.despawnRange = enemyDespawnRange
 		enemy.chaseRange = enemyChaseRange
+		enemy.runningChaseRange = enemyRunningChaseRange
+		enemy.overrideRanges = overrideEnemyRanges
 		enemy.maxSpeed = enemyMaxSpeed
+		enemy.runningMaxSpeed = enemyRunningMaxSpeed
+		enemy.overrideSpeeds = overrideEnemySpeeds
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 		#print('spawned new enemy')
 
@@ -78,7 +94,7 @@ func save_data(save_path) -> int:
 	if spawnerData != null:
 		spawnerData.enemyData = null
 		if enemy != null and not enemy.encounteredPlayer:
-			spawnerData.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemy.position, enemy.disableMovement, enemyEncounter)
+			spawnerData.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemy.position, enemy.disableMovement, enemyEncounter, enemy.runningChaseMode)
 		return spawnerData.save_data(save_path + enemiesDir, spawnerData)
 	else:
 		return 0
@@ -97,6 +113,13 @@ func load_data(save_path):
 			enemy.enemyData = spawnerData.enemyData
 			enemy.homePoint = position
 			enemy.patrolRange = enemyPatrolRange
+			enemy.despawnRange = enemyDespawnRange
+			enemy.chaseRange = enemyChaseRange
+			enemy.runningChaseRange = enemyRunningChaseRange
+			enemy.overrideRanges = overrideEnemyRanges
+			enemy.maxSpeed = enemyMaxSpeed
+			enemy.runningMaxSpeed = enemyRunningMaxSpeed
+			enemy.overrideSpeeds = overrideEnemySpeeds
 			tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
 		if spawnerData.disabled or importantFight:
 			spawnerData.disabled = false # re-enable if this is the second time it's loaded after causing an encounter

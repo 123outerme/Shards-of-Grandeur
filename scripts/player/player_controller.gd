@@ -112,6 +112,7 @@ func _unhandled_input(event):
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
 			not cutscenePaused and not startingBattle and \
+			# SceneLoader.curMapEntry.isRecoverLocation and \ # uncomment to make the player unable to toggle running while not in a recover location
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if len(interactables) > 0 and not textBox.visible and (event.is_action_pressed("game_interact") or event is InputEventMouseButton):
 			# if the text box isn't open and there's at least one nearby interactable:
@@ -181,6 +182,7 @@ func _unhandled_input(event):
 	
 func _physics_process(_delta):
 	if Input.is_action_pressed("game_decline") or running:
+		# and (SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry.isRecoverLocation) # add to the above conditional to disable running when not in a safe zone map
 		if speed != RUN_SPEED:
 			# play a step sound the next frame (for animation change when moving and switching run status)
 			stepSfxTimer = RUN_STEP_SFX_COOLDOWN

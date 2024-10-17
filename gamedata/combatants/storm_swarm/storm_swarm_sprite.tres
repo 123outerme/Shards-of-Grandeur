@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://b7m1k3n2stdsy"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://b7m1k3n2stdsy"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_136w3"]
+[ext_resource type="Resource" uid="uid://c06lfao2tfbcv" path="res://gamedata/combatants/storm_swarm/storm_swarm_overworld.tres" id="1_e3unm"]
 [ext_resource type="SpriteFrames" uid="uid://pyn47ukltyeg" path="res://graphics/animations/a_storm_swarm.tres" id="2_hnh2l"]
 
 [resource]
 script = ExtResource("1_136w3")
 spriteFrames = ExtResource("2_hnh2l")
+combatantOverworld = ExtResource("1_e3unm")
 maxSize = Vector2(32, 32)
 idleSize = Vector2(32, 32)
 centerPosition = Vector2(16, 16)

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://bht2dey5uaip7"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://bht2dey5uaip7"]
 
+[ext_resource type="Resource" uid="uid://bm5hula8p71fy" path="res://gamedata/combatants/etreus/etreus_overworld.tres" id="1_ay5o7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_qmvjg"]
 [ext_resource type="SpriteFrames" uid="uid://cwj3n3dd1qq14" path="res://graphics/animations/a_etreus.tres" id="2_5n5uv"]
 
 [resource]
 script = ExtResource("1_qmvjg")
 spriteFrames = ExtResource("2_5n5uv")
+combatantOverworld = ExtResource("1_ay5o7")
 maxSize = Vector2(32, 24)
 idleSize = Vector2(23, 23)
 centerPosition = Vector2(16, 16)

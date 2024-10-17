@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://4nsqpm33jl17"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://4nsqpm33jl17"]
 
+[ext_resource type="Resource" uid="uid://bhcogqeb45je3" path="res://gamedata/combatants/mystic_fox/mystic_fox_overworld.tres" id="1_4ila7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_up4qh"]
 [ext_resource type="SpriteFrames" uid="uid://c8eqberu16r6u" path="res://graphics/animations/a_mystic_fox.tres" id="2_h71p1"]
 
 [resource]
 script = ExtResource("1_up4qh")
 spriteFrames = ExtResource("2_h71p1")
+combatantOverworld = ExtResource("1_4ila7")
 maxSize = Vector2(16, 16)
 idleSize = Vector2(16, 16)
 centerPosition = Vector2(8, 10)

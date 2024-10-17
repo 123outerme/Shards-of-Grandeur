@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://ck3xgd78t8lai"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://ck3xgd78t8lai"]
 
+[ext_resource type="Resource" uid="uid://rp2h63h1mff" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_overworld.tres" id="1_ojmfh"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_usfco"]
 [ext_resource type="SpriteFrames" uid="uid://bnkxqooepjojc" path="res://graphics/animations/a_shroom_lizard.tres" id="2_puum0"]
 
 [resource]
 script = ExtResource("1_usfco")
 spriteFrames = ExtResource("2_puum0")
+combatantOverworld = ExtResource("1_ojmfh")
 maxSize = Vector2(32, 16)
 idleSize = Vector2(32, 16)
 centerPosition = Vector2(15, 10)

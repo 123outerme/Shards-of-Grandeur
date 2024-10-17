@@ -5,8 +5,10 @@ class_name OverworldEnemy
 @export var disableMovement: bool = false
 @export var maxSpeed: float = 40
 @export var runningMaxSpeed: float = 80
+@export var overrideSpeeds: bool = false
 @export var chaseRange: float = 48
 @export var runningChaseRange: float = 96
+@export var overrideRanges: bool = false
 @export var chaseSwapCooldownSecs: float = 1
 @export var patrolling: bool = true
 @export var patrolWaitSecs: float = 1.0
@@ -21,9 +23,12 @@ var waitUntilNavReady: bool = false
 var runningChaseMode: bool = false
 var lastPlayerChaseUpdateTime: float = 0
 
+var encounterColliderOffset: Vector2 = Vector2.ZERO
+
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
 @onready var chaseRangeShape: CollisionShape2D = get_node("ChaseRange/ChaseRangeShape")
+@onready var encounterColliderShape: CollisionShape2D = get_node('EnemyEncounterCollider/EncounterColliderShape')
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
 # so all that needs to be used for save/load functionality is the save_path coming through
@@ -31,13 +36,26 @@ var lastPlayerChaseUpdateTime: float = 0
 func _ready():
 	combatant = enemyData.combatant
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
+	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
+	if combatantOverworld != null:
+		if not overrideSpeeds:
+			maxSpeed = combatantOverworld.maxSpeed
+			runningMaxSpeed = combatantOverworld.runningMaxSpeed
+		if not overrideRanges:
+			chaseRange = combatantOverworld.chaseRange
+			runningChaseRange = combatantOverworld.runningChaseRange
+		var colliderRect: RectangleShape2D = encounterColliderShape.shape as RectangleShape2D
+		colliderRect.size = combatantOverworld.encounterCollisionSize
+		encounterColliderShape.position = combatantOverworld.encounterCollisionCenter
+		encounterColliderOffset = combatantOverworld.encounterCollisionCenter
+	
 	position = get_point_around_home() # throw out position and load from random point near home
 	#position = enemyData.position
 	disableMovement = enemyData.disableMovement
 	navAgent.navigation_layers = combatant.get_nav_layer()
 	navAgent.radius = (max(combatant.get_max_size().x, combatant.get_max_size().y) / 2) - 1
 	SignalBus.player_run_toggled.connect(_player_running_changed)
-	update_chase_mode(SignalBus.lastPlayerRunVal)
+	update_chase_mode(SignalBus.lastPlayerRunVal or enemyData.runningChase)
 	update_speed()
 	if patrolling:
 		get_next_patrol_target()
@@ -62,6 +80,7 @@ func _process(delta):
 			enemySprite.flip_h = false
 		if vel.x > 0:
 			enemySprite.flip_h = true
+			encounterColliderShape.position.x = -1 * encounterColliderOffset.x
 		if vel.length() > 0:
 			enemySprite.play('walk')
 		else:
@@ -105,7 +124,7 @@ func stop_chasing_player():
 	get_next_patrol_target()
 
 func update_chase_mode(playerRunning: bool) -> void:
-	runningChaseMode = playerRunning
+	runningChaseMode = playerRunning # comment this out to disable running chase mode entirely
 	var rangeCircle: CircleShape2D = chaseRangeShape.shape as CircleShape2D
 	rangeCircle.radius = (chaseRange if not runningChaseMode else runningChaseRange) + \
 			(max(combatant.get_max_size().x, combatant.get_max_size().y) / 2)
