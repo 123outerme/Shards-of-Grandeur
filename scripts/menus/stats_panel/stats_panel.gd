@@ -106,6 +106,7 @@ func toggle():
 		close_panel()
 
 func close_panel():
+	close_minion_stats_auto_alloc()
 	visible = false
 	equipmentPanel.itemDetailsPanel.visible = false
 	moveListPanel.moveDetailsPanel.visible = false
@@ -224,6 +225,7 @@ func load_stats_panel(fromToggle: bool = false):
 	changingCombatant = false
 
 func restore_previous_stats_panel():
+	close_minion_stats_auto_alloc()
 	stats = savedStats
 	minion = null
 	curHp = savedCurHp
@@ -234,6 +236,14 @@ func restore_previous_stats_panel():
 	if isTabbedView:
 		tabbedViewContainer.current_tab = TabbedViewTab.MINIONS
 	restore_previous_focus()
+
+func close_minion_stats_auto_alloc() -> void:
+	# if the player changed the minion to auto-allocate its stat points and then backed out before saving stat allocs:
+	if minion != null and minion.should_auto_alloc_stat_pts() and minion.stats.statPts > 0:
+		var statAllocStrategy: StatAllocationStrategy = minion.get_stat_allocation_strategy()
+		# if there is a stat allocation strategy (safety test): auto-allocate stat points
+		if statAllocStrategy != null:
+			statAllocStrategy.allocate_stats(minion.stats)
 
 func update_stats_tab_icon():
 	if isTabbedView:
