@@ -40,6 +40,15 @@ To build Shards of Grandeur for yourself, you need to have [Godot Engine](https:
 
 Each platform binary will be built to an appropriate subdirectory (i.e. `windows` for Windows, etc.)
 
+### Create Release `.zip` Files
+To create `.zip` files automatically for the release of a build of Shards of Grandeur, follow these steps on a Linux device:  
+
+1. Ensure the version number is configured in the Godot Project Settings as desired. Follow the above instructions to build the release in Godot.
+2. Ensure the `zip` archive command line tool suite is installed. `zip` and `unzip` are the only commands from this suite the script leverages.
+3. Open a terminal to the root project directory.
+4. Execute `./release_zip.sh`.
+5. Provide a version string to be inserted in the filename, in the format `X-Y-Z`, where `X.Y.Z` is the version number of the game build.
+6. The script will process creating `.zip` files for the Windows, Linux, and Mac builds of the game, in the root of the `release` directory. The android release is copied to the `release` directory as well, as a standalone file.
 
 ## LICENSE INFORMATION
 The code is licensed under GPL 3.0, as found in the repository's root `LICENSE` file.   
