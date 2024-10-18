@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://dne3o6uco70hd"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_452wu"]
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="2_sywhq"]
+[ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="2_ybvvj"]
+
+[sub_resource type="Resource" id="Resource_54wir"]
+script = ExtResource("1_452wu")
+path = "nomad_camp/nomad_camp_hut1"
+overworldTheme = ExtResource("2_ybvvj")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("2_sywhq")
+locationName = "Nomad Camp"
+maps = Array[ExtResource("1_452wu")]([SubResource("Resource_54wir")])

@@ -221,7 +221,7 @@ size = Vector2(56, 87)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_octrj")
-metadata/_edit_horizontal_guides_ = [637.0, -170.0, -184.0, -148.0, -96.0, -168.0, 198.0, 192.0]
+metadata/_edit_horizontal_guides_ = [637.0, -170.0, -184.0, -148.0, -168.0, 198.0, 192.0]
 metadata/_edit_vertical_guides_ = [264.0, 216.0, 232.0, 375.0, 308.0, -84.0, -131.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
@@ -389,20 +389,20 @@ mapPos = Vector2(-8, 4)
 [node name="WarpArea" parent="NomadShopWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_0515n")
 
-[node name="Hut1WarpZone" parent="." instance=ExtResource("8_sta7v")]
+[node name="BigHutWarpZone" parent="." instance=ExtResource("8_sta7v")]
 position = Vector2(-128, -110)
+mapName = "nomad_camp_big_hut"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="Hut1WarpZone" index="0"]
+[node name="WarpArea" parent="BigHutWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_0515n")
 
-[node name="Hut2WarpZone" parent="." instance=ExtResource("8_sta7v")]
+[node name="Hut1WarpZone" parent="." instance=ExtResource("8_sta7v")]
 position = Vector2(96, -62)
+mapName = "nomad_camp_hut1"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="Hut2WarpZone" index="0"]
+[node name="WarpArea" parent="Hut1WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_0515n")
 
 [node name="AwakenCutsceneTrigger" parent="." instance=ExtResource("10_aoyhc")]
@@ -489,8 +489,8 @@ position = Vector2(-10, 0)
 [editable path="TilemapRoot/NomadKid"]
 [editable path="ElderHouseWarpZone"]
 [editable path="NomadShopWarpZone"]
+[editable path="BigHutWarpZone"]
 [editable path="Hut1WarpZone"]
-[editable path="Hut2WarpZone"]
 [editable path="NorthWarpZone"]
 [editable path="SouthWarpZone"]
 [editable path="EastWarpZone"]

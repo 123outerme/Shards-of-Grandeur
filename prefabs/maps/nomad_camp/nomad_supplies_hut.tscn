@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://cndc855sqjd1c" path="res://gamedata/shops/nomad_camp/nomad_merchant.tres" id="7_3pkm6"]
 [ext_resource type="SpriteFrames" uid="uid://dy4lgvh7w7kux" path="res://graphics/animations/a_nomad2.tres" id="8_ic7t3"]
 
-[sub_resource type="Resource" id="Resource_j54pr"]
+[sub_resource type="Resource" id="Resource_0km35"]
 script = ExtResource("4_dns23")
 saveName = "npc"
 spriteState = "default"
@@ -66,7 +66,7 @@ tile_set = ExtResource("2_d1ogj")
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
 use_parent_material = true
-tile_map_data = PackedByteArray("AAABAP3/BgADAAoAAAD3//f/FgABAAAAAAD//wIAGAABAAIAAAD//wMAGAADAAAAAAD//wQAGAADAAAAAAD//wUAGAADAAAAAAD//wYAGAADAAAAAAD//wcAGAADAAAAAAAAAAcAGAAAAAEAAAAAAAYAGAAAAAEAAAAAAAUAGAAAAAEAAAAAAAQAGAAAAAEAAAAAAAMAGAAAAAEAAAAAAAIAGAAEAAEAAAD+/wIAGAADAAEAAAD+/wMAGAACAAEAAAD+/wQAGAACAAEAAAD+/wUAGAACAAEAAAD+/wYAGAACAAEAAAD+/wcAGAACAAEAAAD+/wgAGAACAAEAAAD//wgAGAADAAAAAAAAAAgAGAAAAAEAAAAAAAkAGAAAAAEAAAAAAAoAGAAAAAEAAAD//wsAGAADAAAAAAD//woAGAADAAAAAAD//wkAGAADAAAAAAD+/wkAGAACAAEAAAD+/woAGAACAAEAAAD+/wsAGAACAAEAAAAAAAsAGAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAABAP3/BgADAAoAAAD3//f/FgABAAAAAAD//wIAGAABAAIAAAD//wMABwABAAEAAAD//wQABwABAAEAAAD//wUAGAADAAAAAAD//wYABwABAAEAAAD//wcABwABAAEAAAAAAAcAGAAAAAEAAAAAAAYAGAAAAAEAAAAAAAUAGAAAAAEAAAAAAAQAGAAAAAEAAAAAAAMAGAAAAAEAAAAAAAIAGAAEAAEAAAD+/wIAGAADAAEAAAD+/wMAGAACAAEAAAD+/wQAGAACAAEAAAD+/wUAGAACAAEAAAD+/wYAGAACAAEAAAD+/wcAGAACAAEAAAD+/wgAGAACAAEAAAD//wgABwABAAEAAAAAAAgAGAAAAAEAAAAAAAkAGAAAAAEAAAAAAAoAGAAAAAEAAAD//wsABwABAAEAAAD//woAGAADAAAAAAD//wkABwABAAEAAAD+/wkAGAACAAEAAAD+/woAGAACAAEAAAD+/wsAGAACAAEAAAAAAAsAGAAAAAEAAAA=")
 tile_set = ExtResource("2_d1ogj")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -96,7 +96,7 @@ tile_set = ExtResource("2_d1ogj")
 position = Vector2(-25, -62)
 displayName = "Merchant"
 saveName = "nomad_merchant"
-data = SubResource("Resource_j54pr")
+data = SubResource("Resource_0km35")
 dialogueEntries = Array[ExtResource("5_ek1s1")]([ExtResource("6_gipeg")])
 npcShop = ExtResource("7_3pkm6")
 
@@ -117,7 +117,7 @@ visible = false
 [node name="WarpZone" parent="." instance=ExtResource("3_ggifg")]
 position = Vector2(-8.5, 18)
 mapName = "nomad_camp"
-mapPos = Vector2(-112, 60)
+mapPos = Vector2(-112, 70)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

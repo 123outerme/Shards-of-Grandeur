@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dv3hqx6w7swgi"]
+[gd_scene load_steps=31 format=4 uid="uid://dv3hqx6w7swgi"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_cpk56"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_igmcl"]
@@ -8,9 +8,8 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_xksqv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_5eepf"]
 [ext_resource type="Resource" uid="uid://xr0uecdpmu4w" path="res://gamedata/cutscenes/grandstone/player_house_home.tres" id="5_7m0d5"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="5_foeso"]
 [ext_resource type="Texture2D" uid="uid://doiqcamfkfg4w" path="res://graphics/ui/talk_indicator_think.png" id="5_rdebt"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="7_a64pa"]
+[ext_resource type="Resource" uid="uid://crmyundkntuy3" path="res://gamedata/dialogue/reusable/bed_nap.tres" id="6_rbrwy"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="8_aps1l"]
 [ext_resource type="Resource" uid="uid://e8os0ml3cmli" path="res://gamedata/dialogue/interactables/ground_items/grandstone/player_house_tp_stone.tres" id="9_7hc5o"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="9_c3the"]
@@ -21,7 +20,7 @@
 [ext_resource type="Resource" uid="uid://ij767am021wb" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/phouse_bookcase.tres" id="14_l80ng"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="19_w4rjf"]
 
-[sub_resource type="Resource" id="Resource_v6fyp"]
+[sub_resource type="Resource" id="Resource_fm41s"]
 script = ExtResource("4_xksqv")
 saveName = "npc"
 spriteState = "default"
@@ -34,25 +33,15 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
-
-[sub_resource type="Resource" id="Resource_db5tm"]
-script = ExtResource("5_foeso")
-lines = Array[String](["I think... I'll just take a nap."])
-animation = ""
-choices = Array[ExtResource("7_a64pa")]([])
-
-[sub_resource type="Resource" id="Resource_d5x3t"]
-script = ExtResource("5_5eepf")
-entryId = ""
-items = Array[ExtResource("5_foeso")]([SubResource("Resource_db5tm")])
-closesDialogue = false
-fullHealsPlayer = true
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmo4u"]
 animations = [{
@@ -148,8 +137,8 @@ tile_set = ExtResource("2_igmcl")
 [node name="InvisibleBed" parent="TilemapRoot" instance=ExtResource("3_u6vbk")]
 position = Vector2(72, -103)
 displayName = "@"
-data = SubResource("Resource_v6fyp")
-dialogueEntries = Array[ExtResource("5_5eepf")]([SubResource("Resource_d5x3t")])
+data = SubResource("Resource_fm41s")
+dialogueEntries = Array[ExtResource("5_5eepf")]([ExtResource("6_rbrwy")])
 
 [node name="NPCSprite" parent="TilemapRoot/InvisibleBed" index="0"]
 sprite_frames = SubResource("SpriteFrames_tmo4u")
