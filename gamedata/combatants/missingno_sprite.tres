@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://dxsdq0nmvpyri"]
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=5 format=3 uid="uid://dxsdq0nmvpyri"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_overworld.gd" id="1_ip71k"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_rsfhx"]
 [ext_resource type="SpriteFrames" uid="uid://dw17j7qk03mcs" path="res://graphics/animations/a_missingno.tres" id="2_qlnff"]
+
+[sub_resource type="Resource" id="Resource_6pbjf"]
+script = ExtResource("1_ip71k")
+encounterCollisionSize = Vector2(16, 16)
+encounterCollisionCenter = Vector2(0, 0)
+chaseRange = 48.0
+runningChaseRange = 96.0
+maxSpeed = 40.0
+runningMaxSpeed = 80.0
 
 [resource]
 script = ExtResource("1_rsfhx")
 spriteFrames = ExtResource("2_qlnff")
+combatantOverworld = SubResource("Resource_6pbjf")
 maxSize = Vector2(16, 16)
 idleSize = Vector2(16, 16)
 centerPosition = Vector2(8, 7)

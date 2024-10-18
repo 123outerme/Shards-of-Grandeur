@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=4 uid="uid://lma6iu1hy74f"]
+[gd_scene load_steps=53 format=4 uid="uid://lma6iu1hy74f"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_octrj"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_5iptf"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_btjtl"]
+[ext_resource type="Texture2D" uid="uid://c186t5piuy5bj" path="res://graphics/structures/desert_structures.png" id="4_fso7v"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_x1r6i"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="5_b34g3"]
 [ext_resource type="SpriteFrames" uid="uid://gto0an6o0lxk" path="res://graphics/animations/a_nomad1.tres" id="6_al45b"]
@@ -29,7 +30,11 @@
 [ext_resource type="Resource" uid="uid://bi86w03kwxch2" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_demo.tres" id="21_qqmeu"]
 [ext_resource type="Resource" uid="uid://cvnh5aii3b3y8" path="res://gamedata/cutscenes/nomad_camp/camp_return_elder.tres" id="23_mvglk"]
 
-[sub_resource type="Resource" id="Resource_51bal"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nex3d"]
+atlas = ExtResource("4_fso7v")
+region = Rect2(80, 112, 16, 16)
+
+[sub_resource type="Resource" id="Resource_scprr"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -52,7 +57,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_tq0hr"]
+[sub_resource type="Resource" id="Resource_1430k"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -75,7 +80,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ahmo8"]
+[sub_resource type="Resource" id="Resource_7ikem"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -98,7 +103,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ou61j"]
+[sub_resource type="Resource" id="Resource_rwq1u"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -246,12 +251,13 @@ tile_set = ExtResource("2_5iptf")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_btjtl")]
 position = Vector2(202, 217)
+disguiseSprite = SubResource("AtlasTexture_nex3d")
 
 [node name="Nomad1" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_51bal")
+data = SubResource("Resource_scprr")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3"), ExtResource("10_fbn57")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -274,7 +280,7 @@ visible = false
 position = Vector2(573, -173)
 collision_layer = 0
 displayName = "Elder"
-data = SubResource("Resource_tq0hr")
+data = SubResource("Resource_1430k")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -295,7 +301,7 @@ position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
 loadFlipH = true
-data = SubResource("Resource_ahmo8")
+data = SubResource("Resource_7ikem")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v"), ExtResource("13_5qoy4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
@@ -317,7 +323,7 @@ visible = false
 position = Vector2(-124, 217)
 displayName = "Kid"
 saveName = "nomad_kid"
-data = SubResource("Resource_ou61j")
+data = SubResource("Resource_rwq1u")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("16_h0640")])
 
 [node name="NPCSprite" parent="TilemapRoot/NomadKid" index="0"]

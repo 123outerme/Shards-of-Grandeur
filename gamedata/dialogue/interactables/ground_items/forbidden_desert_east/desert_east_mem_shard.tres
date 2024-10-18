@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bdh54brp7yvos"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8vcdh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_hkdnp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tjd84"]
+
+[sub_resource type="Resource" id="Resource_tynnk"]
+script = ExtResource("1_8vcdh")
+lines = Array[String](["A Shard, with memories embedded...", "I see... the Radiant Cave, in the middle of a grassy expanse...", "This doesn't look like Hilltop Forest... was this how the desert used to look?"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_tjd84")]([])
+
+[resource]
+script = ExtResource("2_hkdnp")
+entryId = ""
+items = Array[ExtResource("1_8vcdh")]([SubResource("Resource_tynnk")])
+closesDialogue = false
+fullHealsPlayer = false

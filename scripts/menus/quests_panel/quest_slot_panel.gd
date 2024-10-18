@@ -36,6 +36,22 @@ func load_quest_slot_panel():
 		pinButton.focus_neighbor_right = pinButton.get_path_to(detailsButton)
 	loaded = true
 
+func connect_focus_to_above_panel(abovePanel: QuestSlotPanel) -> void:
+	detailsButton.focus_neighbor_top = detailsButton.get_path_to(abovePanel.detailsButton)
+	abovePanel.detailsButton.focus_neighbor_bottom = abovePanel.detailsButton.get_path_to(detailsButton)
+	
+	if turnInButton.visible:
+		if abovePanel.turnInButton.visible:
+			turnInButton.focus_neighbor_top = detailsButton.get_path_to(abovePanel.turnInButton)
+			abovePanel.turnInButton.focus_neighbor_bottom = abovePanel.turnInButton.get_path_to(turnInButton)
+		else:
+			turnInButton.focus_neighbor_top = turnInButton.get_path_to(abovePanel.detailsButton)
+	elif abovePanel.turnInButton.visible:
+		abovePanel.turnInButton.focus_neighbor_bottom = abovePanel.turnInButton.get_path_to(detailsButton)
+	
+	pinButton.focus_neighbor_top = pinButton.get_path_to(abovePanel.pinButton)
+	abovePanel.pinButton.focus_neighbor_bottom = abovePanel.pinButton.get_path_to(pinButton)
+
 func _on_pin_button_toggled(button_pressed: bool):
 	questTracker.pinned = button_pressed
 	if loaded:

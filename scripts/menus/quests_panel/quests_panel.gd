@@ -138,6 +138,7 @@ func load_quests_panel(fromToggle: bool = false):
 	
 		var firstPanel: QuestSlotPanel = null
 		var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
+		var lastPanel: QuestSlotPanel = null
 		for questTracker in PlayerResources.questInventory.get_sorted_trackers():
 			var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
 			if selectedFilter == QuestTracker.Status.ALL or selectedFilter == trackerStatus \
@@ -150,6 +151,9 @@ func load_quests_panel(fromToggle: bool = false):
 				vboxViewport.add_child(instantiatedPanel)
 				if firstPanel == null:
 					firstPanel = instantiatedPanel
+				if lastPanel != null:
+					instantiatedPanel.connect_focus_to_above_panel.call_deferred(lastPanel)
+				lastPanel = instantiatedPanel
 				if turnInTargetName in questTracker.get_current_step().turnInNames and fromToggle:
 					instantiatedPanel.turnInButton.call_deferred('grab_focus')
 				backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.detailsButton) # last panel keeps the focus neighbor of the back button
