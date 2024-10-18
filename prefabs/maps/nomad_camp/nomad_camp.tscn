@@ -1,13 +1,16 @@
-[gd_scene load_steps=53 format=4 uid="uid://lma6iu1hy74f"]
+[gd_scene load_steps=57 format=4 uid="uid://lma6iu1hy74f"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_octrj"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_5iptf"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_btjtl"]
+[ext_resource type="Resource" uid="uid://d35sm85u2u8tu" path="res://gamedata/dialogue/interactables/ground_items/nomad_camp/nomad_camp_pearl.tres" id="4_a8d6m"]
 [ext_resource type="Texture2D" uid="uid://c186t5piuy5bj" path="res://graphics/structures/desert_structures.png" id="4_fso7v"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_x1r6i"]
+[ext_resource type="Resource" uid="uid://cylyev1ny8klx" path="res://gamedata/items/key_items/reset_pearl.tres" id="5_86ihi"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="5_b34g3"]
 [ext_resource type="SpriteFrames" uid="uid://gto0an6o0lxk" path="res://graphics/animations/a_nomad1.tres" id="6_al45b"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="6_kxilb"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="6_l5e3k"]
 [ext_resource type="Resource" uid="uid://btkpgo8r4sxar" path="res://gamedata/dialogue/nomad_camp/nomad1/player_awake.tres" id="7_cc8jb"]
 [ext_resource type="Resource" uid="uid://d38sxpfrfyo18" path="res://gamedata/dialogue/nomad_camp/nomad1/nomad1_elder_east.tres" id="8_h6cop"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="8_sta7v"]
@@ -30,11 +33,20 @@
 [ext_resource type="Resource" uid="uid://bi86w03kwxch2" path="res://gamedata/cutscenes/nomad_camp/camp_block_north_demo.tres" id="21_qqmeu"]
 [ext_resource type="Resource" uid="uid://cvnh5aii3b3y8" path="res://gamedata/cutscenes/nomad_camp/camp_return_elder.tres" id="23_mvglk"]
 
+[sub_resource type="Resource" id="Resource_h2ikp"]
+script = ExtResource("6_l5e3k")
+item = ExtResource("5_86ihi")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("4_a8d6m")
+savedItemIdx = 0
+savedTextIdx = 0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nex3d"]
 atlas = ExtResource("4_fso7v")
-region = Rect2(80, 112, 16, 16)
+region = Rect2(48, 128, 16, 16)
 
-[sub_resource type="Resource" id="Resource_scprr"]
+[sub_resource type="Resource" id="Resource_x8it5"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -57,7 +69,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1430k"]
+[sub_resource type="Resource" id="Resource_s7xhr"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -80,7 +92,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_7ikem"]
+[sub_resource type="Resource" id="Resource_jh5qi"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -103,7 +115,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_rwq1u"]
+[sub_resource type="Resource" id="Resource_pqyjf"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -250,14 +262,16 @@ use_parent_material = true
 tile_set = ExtResource("2_5iptf")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_btjtl")]
-position = Vector2(202, 217)
+position = Vector2(200, 217)
+pickedUpItem = SubResource("Resource_h2ikp")
 disguiseSprite = SubResource("AtlasTexture_nex3d")
+saveName = "nomad_camp_pearl"
 
 [node name="Nomad1" parent="TilemapRoot" instance=ExtResource("4_x1r6i")]
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_scprr")
+data = SubResource("Resource_x8it5")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3"), ExtResource("10_fbn57")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -280,7 +294,7 @@ visible = false
 position = Vector2(573, -173)
 collision_layer = 0
 displayName = "Elder"
-data = SubResource("Resource_1430k")
+data = SubResource("Resource_s7xhr")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -301,7 +315,7 @@ position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
 loadFlipH = true
-data = SubResource("Resource_7ikem")
+data = SubResource("Resource_jh5qi")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v"), ExtResource("13_5qoy4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
@@ -323,7 +337,7 @@ visible = false
 position = Vector2(-124, 217)
 displayName = "Kid"
 saveName = "nomad_kid"
-data = SubResource("Resource_rwq1u")
+data = SubResource("Resource_pqyjf")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("16_h0640")])
 
 [node name="NPCSprite" parent="TilemapRoot/NomadKid" index="0"]

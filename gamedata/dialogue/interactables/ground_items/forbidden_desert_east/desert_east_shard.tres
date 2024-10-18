@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bsx7ntf2hd1gc"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0uute"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_o0uf5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_whauu"]
+
+[sub_resource type="Resource" id="Resource_qyquc"]
+script = ExtResource("1_0uute")
+lines = Array[String](["There's a Shard here by the rubble..."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_whauu")]([])
+
+[resource]
+script = ExtResource("2_o0uf5")
+entryId = ""
+items = Array[ExtResource("1_0uute")]([SubResource("Resource_qyquc")])
+closesDialogue = false
+fullHealsPlayer = false
