@@ -1,5 +1,5 @@
 # Music Credits
-Here is where I will credit the artist who created each individual track used in the final game.  
+Here is where I will credit the artist who created each individual track used in the final game. Each music file is Copyright of the author listed below. 
 
 ## Base Directory
 - `battletheme_uvutudx_demo.mp3`: By Ian Groat.

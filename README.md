@@ -30,11 +30,11 @@ First, I highly recommend reading [the official Godot tutorial](https://docs.god
 
 To build Shards of Grandeur for yourself, you need to have [Godot Engine](https://godotengine.org/) version 4.3 installed.  
 
-1. Clone this repository to your local drive, somewhere for ease of use.
+1. Clone this repository to your local computer somewhere.
 2. Launch Godot. Click "Import" in the Project List, and select where you saved the repository.
 3. Once the project is imported, open it.
 4. Select `Project > Export...` in the toolbar.
-5. If you aren't exporting for Android, skip this step. If you are, [follow the official Godot tutorial](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html) to prepare your Android build environment.
+5. If you aren't exporting for Android, skip this step. Otherwise, [follow the official Godot tutorial](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html) to prepare your Android build environment.
 6. Select a platform to export for, or click the Export All button at the bottom.
 7. Once the export is finished, you will find the build output in the `release/` directory of the project.
 
