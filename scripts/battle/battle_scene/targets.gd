@@ -154,7 +154,8 @@ func connect_targetable_combatants_to_each_other(allCombatantNodes: Array[Combat
 				break
 		combatantsDict['Center'].set_focus_left_combatant_node_neighbor(targetNode)
 
-func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null):
+# returns true if at least one target is selected
+func update_targets_listing(button_pressed: bool = false, combatantNode: CombatantNode = null) -> bool:
 	var names: Array[String] = []
 	for cNode in battleUI.battleController.get_all_combatant_nodes():
 		if combatantNode != null:
@@ -168,6 +169,7 @@ func update_targets_listing(button_pressed: bool = false, combatantNode: Combata
 		
 	if len(names) == 0:
 		targetsListing.text = '[center]No Targets Selected[/center]'
+		return false
 	else:
 		var listing: String = ''
 		for i in range(len(names)):
@@ -179,6 +181,7 @@ func update_targets_listing(button_pressed: bool = false, combatantNode: Combata
 				if i == len(names) - 2: # if this is the second-to-last item, append "and" to the string for the last
 					listing += 'and '
 		targetsListing.text = '[center]' + listing + '[/center]'
+		return true
 	
 func update_confirm_btn():
 	var confirmDisabled: bool = true
@@ -201,8 +204,12 @@ func reset_targets(confirming: bool = false):
 				# after submit in surge menu, that menu will update all buttons to be enabled but invisible
 
 func _on_combatant_selected(button_pressed: bool, combatantNode: CombatantNode):
-	update_targets_listing(button_pressed, combatantNode)
+	var atLeastOne: bool = update_targets_listing(button_pressed, combatantNode)
 	update_confirm_btn()
+	# if "deselecting" the last combatant: actually confirm with this combatant instead
+	if not atLeastOne:
+		combatantNode.selectCombatantBtn.button_pressed = true
+		_on_confirm_button_pressed()
 
 func _on_confirm_button_pressed():
 	var targetPositions: Array[String] = []

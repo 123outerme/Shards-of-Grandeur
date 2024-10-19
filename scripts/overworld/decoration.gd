@@ -3,7 +3,7 @@ class_name Decoration
 
 @export var storyRequirements: StoryRequirements = null
 
-@onready var collision: StaticBody2D = get_node('Collision')
+@onready var collision: StaticBody2D = get_node_or_null('Collision')
 
 var collisionLayer = 1
 var collisionMask = 1
@@ -15,15 +15,19 @@ func _ready():
 	_story_reqs_updated()
 
 func _story_reqs_updated():
+	if Engine.is_editor_hint():
+		return
+	
 	if storyRequirements == null or storyRequirements.is_valid():
 		visible = true
-		collision.collision_layer = collisionLayer
-		collision.collision_mask = collisionMask
-		load_decoration()
 	else:
 		visible = false
-		collision.collision_layer = 0
-		collision.collision_mask = 0
+	load_decoration()
+
+func update_collision() -> void:
+	if collision != null:
+		collision.collision_layer = collisionLayer if visible else 0
+		collision.collision_mask = collisionMask if visible else 0
 
 func load_decoration():
 	pass

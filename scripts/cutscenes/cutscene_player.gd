@@ -125,6 +125,7 @@ func handle_heal_player():
 
 func handle_start_shard_learn_tutorial():
 	awaitingPlayer = true
+	PlayerFinder.player.animatedBgPanel.visible = true
 	PlayerFinder.player.inventoryPanel.start_learn_shard_tutorial()
 	PlayerFinder.player.inventoryPanel.learn_shard_tutorial_finished.connect(_learn_shard_tutorial_finished)
 

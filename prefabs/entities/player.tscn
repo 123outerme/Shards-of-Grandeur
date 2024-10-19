@@ -147,6 +147,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 1
 theme = ExtResource("4_f4mx3")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[center]Cutscene: Paused[/center]"
 fit_content = true
@@ -240,6 +241,7 @@ position = Vector2(-640, -360)
 [connection signal="run_toggled" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_run_toggled"]
 [connection signal="stats_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_stats_pressed"]
 [connection signal="back_pressed" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_back_pressed"]
+[connection signal="inventory_reopened" from="UI/InventoryPanelNode" to="." method="_on_inventory_panel_node_inventory_reopened"]
 [connection signal="open_stats" from="UI/InventoryPanelNode" to="UI/StatsPanelNode" method="_on_inventory_panel_node_open_stats"]
 [connection signal="act_changed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_act_changed"]
 [connection signal="back_pressed" from="UI/QuestsPanelNode" to="." method="_on_quests_panel_node_back_pressed"]

@@ -302,6 +302,11 @@ func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: boo
 				eventText.destroy.call_deferred()
 		playingEventTexts = []
 		playedEventTexts = 0
+	
+	if animateTween != null and animateTween.is_valid():
+		animateTween.kill()
+		global_position = returnToPos
+		_on_combatant_tween_returned()
 
 func get_animation_fps(animationName: String) -> float:
 	return animatedSprite.sprite_frames.get_animation_speed(animationName)

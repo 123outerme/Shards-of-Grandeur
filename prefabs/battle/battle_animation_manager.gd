@@ -43,6 +43,7 @@ const originalCombatantZIndices: Dictionary = {
 
 var waitingForSignals: Array[AnimationType] = []
 var totalWaitingForSignals: Array[AnimationType] = []
+var cancellingAnimation: bool = false
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
 	return [playerCombatantNode, minionCombatantNode, enemy1CombatantNode, enemy2CombatantNode, enemy3CombatantNode]
@@ -198,6 +199,10 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if len(waitingForSignals) > 0:
 		# await for when the final animation has completed
 		await animation_waiting_complete
+		if cancellingAnimation:
+			cancellingAnimation = false
+			return
+		
 		if tweenToCallbackFunc != Callable():
 			user.tween_to_target_finished.disconnect(tweenToCallbackFunc)
 	
@@ -217,6 +222,9 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	
 	if len(totalWaitingForSignals) > 0:
 		await animation_waiting_complete
+		if cancellingAnimation:
+			cancellingAnimation = false
+			return
 	
 	# if a tween was started, return the combatant now (and un-hide while we're at it)
 	if tweenBackCallbackFunc != Callable():
@@ -360,6 +368,9 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	
 	if len(totalWaitingForSignals) > 0:
 		await animation_waiting_complete
+		if cancellingAnimation:
+			cancellingAnimation = false
+			return
 	
 	if tweenBackCallbackFunc != Callable():
 		user.tween_back_finished.disconnect(tweenBackCallbackFunc)
@@ -463,6 +474,18 @@ func set_combatant_between_shade(combatantNode: CombatantNode) -> void:
 func reset_all_combatants_shade_z_indices() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		set_combatant_between_shade(combatantNode)
+
+func cancel_animation():
+	cancellingAnimation = true
+	waitingForSignals = []
+	totalWaitingForSignals = []
+	animation_waiting_complete.emit()
+	playerCombatantNode.stop_animation(true, true, true, true)
+	minionCombatantNode.stop_animation(true, true, true, true)
+	enemy1CombatantNode.stop_animation(true, true, true, true)
+	enemy2CombatantNode.stop_animation(true, true, true, true)
+	battlefieldShade.lift_battlefield_shade()
+	reset_all_combatants_shade_z_indices()
 
 func _on_combatant_animation_unit_complete(type: BattleAnimationManager.AnimationType, includeTotal: bool = true) -> void:
 	if type in waitingForSignals:

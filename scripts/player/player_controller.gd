@@ -722,7 +722,7 @@ func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutsc
 func get_collider() -> CollisionShape2D: # for use before full player initialization in MapLoader
 	return get_node('ColliderShape') as CollisionShape2D
 
-func menu_closed():
+func menu_closed() -> void:
 	if not inventoryPanel.visible and not questsPanel.visible and \
 			not statsPanel.visible and not pausePanel.visible:
 		animatedBgPanel.visible = false
@@ -779,6 +779,10 @@ func _on_inventory_panel_node_back_pressed():
 		textBox.refocus_choice(pickedChoice)
 		if pickedChoice != null and pickedChoice.opensShop:
 			pickedChoice = null
+
+func _on_inventory_panel_node_inventory_reopened() -> void:
+	animatedBgPanel.visible = true
+	SceneLoader.pause_autonomous_movers()
 
 func _on_quests_panel_node_back_pressed():
 	menu_closed()

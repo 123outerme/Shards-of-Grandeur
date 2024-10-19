@@ -3,6 +3,7 @@ class_name InventoryMenu
 
 signal item_used(slot: InventorySlot)
 signal open_stats(combatant: Combatant)
+signal inventory_reopened
 signal back_pressed
 signal item_use_panel_closed
 signal learn_shard_tutorial_finished
@@ -102,8 +103,6 @@ func toggle():
 func cleanup_inventory_panel_state() -> void:
 	itemDetailsPanel.visible = false
 	itemUsePanel.visible = false
-	if shardLearnPanel.visible:
-		shardLearnPanel.credit_back_shard()
 	shardLearnPanel.visible = false
 	equipPanel.visible = false
 	statResetPanel.visible = false
@@ -525,6 +524,7 @@ func _on_equip_panel_stats_button_pressed(combatant: Combatant):
 
 func _on_stats_panel_node_back_pressed():
 	if viewingStatsFromPanel != '':
+		inventory_reopened.emit()
 		visible = true
 		if viewingStatsFromPanel == 'equip':
 			equipPanel.restore_focus('stats')

@@ -36,6 +36,7 @@ func load_item_use_panel():
 				itemUseText = 'You learned ' + learnedMove.moveName + ' from ' + combatant.disp_name() + ', absorbing its Shard in the process. ' + learnedMove.moveLearnedText
 				moveLearnAnimController.move = learnedMove
 				moveLearnAnimController.shard = shard
+				moveLearnAnimController.playAnimAfterLoad = true
 				moveLearnAnimController.visible = true
 				moveLearnAnimController.load_move_learn_animation()
 		else:
@@ -59,5 +60,6 @@ func _on_ok_button_pressed():
 	ok_pressed.emit()
 	learnedMove = null
 	moveLearnAnimController.visible = false
+	moveLearnAnimController.playAnimAfterLoad = false
 	moveLearnAnimController.clean_up_animation()
 	visible = false

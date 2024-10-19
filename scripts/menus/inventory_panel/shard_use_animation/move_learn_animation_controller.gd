@@ -236,11 +236,7 @@ func play_item_animation(userNode: CombatantNode) -> void:
 	battleAnimManager.play_turn_animation(userNode, command, [])
 
 func clean_up_animation() -> void:
-	battleAnimManager.playerCombatantNode.stop_animation(true, true, true, true)
-	battleAnimManager.minionCombatantNode.stop_animation(true, true, true, true)
-	battleAnimManager.enemy1CombatantNode.stop_animation(true, true, true, true)
-	battleAnimManager.enemy2CombatantNode.stop_animation(true, true, true, true)
-	battleAnimManager.battlefieldShade.lift_battlefield_shade()
+	battleAnimManager.cancel_animation()
 
 func _on_battle_animation_manager_combatant_animation_start() -> void:
 	combatant_started_anim.emit()
