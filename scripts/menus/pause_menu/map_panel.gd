@@ -45,17 +45,28 @@ func _unhandled_input(event):
 			_on_back_button_pressed()
 			get_viewport().set_input_as_handled()
 
-func load_map_panel() -> void:
+func load_map_panel(initial: bool = true) -> void:
 	visible = true
 	build_map_locations()
-	var playerLocation: MapPanelLocation = get_current_location()
-	var markers: Array[Node] = markersControl.get_children()
-	for marker: Node in markers:
-		var mapMarker: MapMarker = marker as MapMarker
-		if mapMarker.location == playerLocation.locations[0]:
-			mapMarker.mark_player()
-		else:
-			mapMarker.hide_marker()
+	_location_button_pressed(selectedLocation)
+	if initial:
+		initial_focus()
+		filter = MapLocationsFilter.ALL
+		update_filter(filter)
+
+func initial_focus() -> void:
+	allButton.grab_focus()
+
+func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
+	match filterSelected:
+		MapLocationsFilter.ALL:
+			allButton.grab_focus()
+		MapLocationsFilter.LOCATIONS:
+			locationsButton.grab_focus()
+		MapLocationsFilter.QUESTS:
+			questsButton.grab_focus()
+		_: # default
+			initial_focus()
 
 func build_map_locations() -> void:
 	var locationOptions: Array[MapPanelLocation] = []
@@ -64,11 +75,15 @@ func build_map_locations() -> void:
 	if filter == MapLocationsFilter.ALL or filter == MapLocationsFilter.QUESTS:
 		locationOptions.append_array(build_quests_options())
 	
+	for child: Node in buttonsHboxContainer.get_children():
+		child.queue_free()
+	
 	var lastButton: Button = null
 	for option: MapPanelLocation in locationOptions:
 		var instantiatedButton: Button = sfxButtonScene.instantiate()
 		instantiatedButton.text = option.buttonText
 		instantiatedButton.pressed.connect(_location_button_pressed.bind(option))
+		instantiatedButton.custom_minimum_size = Vector2(0, 40)
 		buttonsHboxContainer.add_child(instantiatedButton)
 		_connect_location_button_focus.call_deferred(instantiatedButton, lastButton)
 		lastButton = instantiatedButton
@@ -96,6 +111,22 @@ func get_current_location() -> MapPanelLocation:
 		return MapPanelLocation.new([worldLocation.mapLocation], TextUtils.substitute_playername('@'))
 	return MapPanelLocation.new([], TextUtils.substitute_playername('@')) # this is a problem if this returns!
 
+func update_filter(newFilter: MapLocationsFilter) -> void:
+	filter = newFilter
+	load_map_panel(false)
+	restore_filter_button_focus(newFilter)
+	if allButton.button_pressed and newFilter != MapLocationsFilter.ALL:
+		allButton.button_pressed = false
+	if locationsButton.button_pressed and newFilter != MapLocationsFilter.LOCATIONS:
+		locationsButton.button_pressed = false
+	if questsButton.button_pressed and newFilter != MapLocationsFilter.QUESTS:
+		questsButton.button_pressed = false
+
+func deselect_filter(deselectedFilter: MapLocationsFilter) -> void:
+	if not allButton.button_pressed and not locationsButton.button_pressed and not questsButton.button_pressed:
+		update_filter(MapLocationsFilter.ALL)
+		allButton.button_pressed = true
+
 func _on_back_button_pressed() -> void:
 	visible = false
 	back_pressed.emit()
@@ -120,10 +151,30 @@ func _location_button_pressed(location: MapPanelLocation) -> void:
 		var mapMarker: MapMarker = marker as MapMarker
 		if mapMarker.location == playerLocation.locations[0]:
 			mapMarker.mark_player()
-		elif mapMarker.location in location.locations:
+		elif selectedLocation != null and mapMarker.location in selectedLocation.locations:
 			if location.type == 'location':
 				mapMarker.mark_location()
 			elif location.type == 'quest':
 				mapMarker.mark_quest()
 			else:
 				mapMarker.mark_default()
+		else:
+			mapMarker.hide_marker()
+
+func _on_all_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		update_filter(MapLocationsFilter.ALL)
+	else:
+		deselect_filter(MapLocationsFilter.ALL)
+
+func _on_locations_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		update_filter(MapLocationsFilter.LOCATIONS)
+	else:
+		deselect_filter(MapLocationsFilter.LOCATIONS)
+
+func _on_quests_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		update_filter(MapLocationsFilter.QUESTS)
+	else:
+		deselect_filter(MapLocationsFilter.QUESTS)
