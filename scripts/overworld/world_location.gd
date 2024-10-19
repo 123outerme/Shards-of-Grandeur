@@ -13,6 +13,7 @@ enum MapLocation {
 	FORBIDDEN_DESERT_SOUTH = 8, ## Forbidden Desert, south of Nomad Camp
 	NOMAD_CAMP = 9, ## Nomad Camp
 	FORBIDDEN_DESERT_EAST = 10, ## Forbidden Desert, east of Nomad Camp
+	MAX_LOCATIONS = 11, ## Do not select as a location; for iterating through all locations. Update this every time the MapLocations enum becomes larger
 }
 
 @export var locationName: String = ''

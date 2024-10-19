@@ -96,6 +96,7 @@ func load_map(mapName: String):
 	# if this act has a specific map for this act, load it
 	var newMapEntry = get_map_entry_for_map_location(newWorldLocation)
 	if newMapEntry != null:
+		PlayerResources.set_map_location_visited(newWorldLocation.mapLocation)
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
 		if newMapEntry.overworldTheme != SceneLoader.audioHandler.get_cur_music():
@@ -112,6 +113,7 @@ func load_map(mapName: String):
 		SceneLoader.curMapEntry = mapEntry
 	if mapScene == null:
 		printerr('Map ', mapName, ' could not be found!')
+		# TODO: maybe a better way to handle this would be to restore the old map location and "undo" the warp
 		get_tree().quit(1)
 		return
 	SaveHandler.save_data()
