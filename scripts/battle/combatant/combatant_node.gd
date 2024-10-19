@@ -33,6 +33,7 @@ class ChosenMove:
 @export var spriteFacesRight: bool = false
 @export var battlePosition: String = ''
 @export var unlockSurgeRequirements: StoryRequirements = null
+@export var shardSummoned: bool = false
 
 @export_category("CombatantNode - Movement")
 @export var allyTeamMarker: Marker2D
@@ -74,6 +75,7 @@ var initialEventTextContainerPos: Vector2
 @onready var orbDisplay: OrbDisplay = get_node('HPTag/OrbDisplay')
 @onready var spriteContainer: Node2D = get_node('SpriteContainer')
 @onready var animatedSprite: AnimatedSprite2D = get_node('SpriteContainer/AnimatedSprite')
+@onready var shardSummonAnimSprite: AnimatedSprite2D = get_node('SpriteContainer/ShardSummonAnimSprite')
 @onready var selectCombatantBtn: SFXNinePatchButton = get_node('SelectCombatantBtn')
 @onready var statusSprite: Sprite2D = get_node('HPTag/LvText/HPProgressBar/StatusSpriteControl/StatusSprite')
 @onready var behindParticleContainer: Node2D = get_node('SpriteContainer/BehindParticleContainer')
@@ -113,6 +115,12 @@ func load_combatant_node():
 		feetOffset.y += 8
 		animatedSprite.offset = feetOffset
 		play_animation('battle_idle')
+		if shardSummoned:
+			animatedSprite.visible = false
+		else:
+			animatedSprite.visible = true
+		shardSummonAnimSprite.visible = false
+		
 		update_select_btn(false)
 		weakenTargetHp.visible = false
 		hpProgressBar.max_value = combatant.stats.maxHp
@@ -413,8 +421,18 @@ func play_particles(preset: ParticlePreset, timingDelay: float = 0):
 			hitParticles.preset = preset
 			hitParticles.set_make_particles(true)
 		'shard':
+			shardSummonAnimSprite.visible = true
+			shardSummonAnimSprite.frame = 0
+			await get_tree().create_timer(0.5).timeout # show the shard for 1/4 of a sec before starting the animation
+			shardSummonAnimSprite.play()
+			await get_tree().create_timer(6 / 8.0).timeout # 6 frames into the animation (or 6/8 of a sec)
 			shardParticles.preset = preset
 			shardParticles.set_make_particles(true)
+			SceneLoader.audioHandler.play_sfx(preset.sfx)
+			await get_tree().create_timer(3 / 8.0).timeout # +3 frames into the animation (or 9/8 secs total)
+			animatedSprite.visible = true
+			shardSummoned = false
+			return
 	SceneLoader.audioHandler.play_sfx(preset.sfx)
 
 func play_move_sprite(moveAnimSprite: MoveAnimSprite):
@@ -849,3 +867,6 @@ func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
 	if a.weight > b.weight:
 		return true
 	return false
+
+func _on_shard_summon_anim_sprite_animation_finished() -> void:
+	shardSummonAnimSprite.visible = false

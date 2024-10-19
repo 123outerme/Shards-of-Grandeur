@@ -80,7 +80,8 @@ func load_into_battle():
 				enemyCombatant1.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant1.combatant.stats.moves = staticEncounter.combatant1Moves.duplicate()
-		
+			enemyCombatant1.shardSummoned = staticEncounter.combatant1ShardSummoned
+			
 			if staticEncounter.combatant2 != null:
 				enemyCombatant2.combatant = staticEncounter.combatant2.copy().initialize()
 				enemyCombatant2.combatant.stats.equippedArmor = staticEncounter.combatant2Armor
@@ -95,6 +96,7 @@ func load_into_battle():
 					enemyCombatant2.combatant.assign_moves_nonplayer()
 				else:
 					enemyCombatant2.combatant.stats.moves = staticEncounter.combatant2Moves.duplicate()
+				enemyCombatant2.shardSummoned = staticEncounter.combatant2ShardSummoned
 			
 			if staticEncounter.combatant3 != null:
 				enemyCombatant3.combatant = staticEncounter.combatant3.copy().initialize()
@@ -109,6 +111,7 @@ func load_into_battle():
 					enemyCombatant3.combatant.assign_moves_nonplayer()
 				else:
 					enemyCombatant3.combatant.stats.moves = staticEncounter.combatant3Moves.duplicate()
+				enemyCombatant3.shardSummoned = staticEncounter.combatant3ShardSummoned
 			
 			if staticEncounter.autoAlly != null:
 				hasStaticMinion = true
@@ -124,6 +127,7 @@ func load_into_battle():
 					minionCombatant.combatant.assign_moves_nonplayer()
 				else:
 					minionCombatant.combatant.stats.moves = staticEncounter.autoAllyMoves.duplicate() 
+				minionCombatant.shardSummoned = staticEncounter.autoAllyShardSummoned
 		else:
 			var randomEncounter: RandomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter
 			# load enemy 1
@@ -241,6 +245,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 	clean_up_minion_combatant()
+	minionCombatant.shardSummoned = true
 	minionCombatant.load_combatant_node()
 	#minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # just in case
 	var preset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")

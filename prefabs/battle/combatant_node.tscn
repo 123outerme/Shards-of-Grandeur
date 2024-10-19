@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=22 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="2_a8f3n"]
 [ext_resource type="PackedScene" uid="uid://bmlhhy2yvh2bq" path="res://prefabs/ui/sfx_nine_patch_button.tscn" id="3_0urjt"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
+[ext_resource type="SpriteFrames" uid="uid://mek3yddf26xy" path="res://graphics/ui/a_shard_summon_anim.tres" id="3_wdco2"]
 [ext_resource type="Resource" uid="uid://blj5s6jgtbvbk" path="res://gamedata/moves/particles_surge.tres" id="8_a3k0w"]
 [ext_resource type="Material" uid="uid://bcqvkeuoqt43w" path="res://graphics/particles/hit/hit_particle_process_mat.tres" id="10_nbsj4"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
@@ -107,6 +108,10 @@ anchors_preset = 0
 offset_top = -13.0
 offset_bottom = -13.0
 scale = Vector2(0.25, 0.25)
+
+[node name="ShardSummonAnimSprite" type="AnimatedSprite2D" parent="SpriteContainer"]
+visible = false
+sprite_frames = ExtResource("3_wdco2")
 
 [node name="HPTag" type="Panel" parent="."]
 z_index = 1
@@ -234,6 +239,7 @@ gizmo_extents = 2.0
 
 [connection signal="toggled" from="SelectCombatantBtn" to="." method="_on_select_combatant_btn_toggled"]
 [connection signal="animation_finished" from="SpriteContainer/AnimatedSprite" to="." method="_on_animated_sprite_animation_finished"]
+[connection signal="animation_finished" from="SpriteContainer/ShardSummonAnimSprite" to="." method="_on_shard_summon_anim_sprite_animation_finished"]
 
 [editable path="SpriteContainer/FrontParticleContainer/HitParticleEmitter"]
 [editable path="HPTag/OrbDisplay"]

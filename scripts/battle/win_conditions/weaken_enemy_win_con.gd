@@ -22,7 +22,6 @@ func get_target_combatant(combatants: Array[CombatantNode]) -> CombatantNode:
 	for combatant in combatants:
 		if combatant.battlePosition == enemyPosition:
 			return combatant
-			break
 	return null
 
 func get_result(combatants: Array[CombatantNode], battleState: BattleState) -> TurnResult:

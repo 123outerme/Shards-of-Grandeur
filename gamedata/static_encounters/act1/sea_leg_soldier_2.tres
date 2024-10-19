@@ -1,32 +1,38 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=8 format=3 uid="uid://d2jjcpbdlqb6n"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://d2jjcpbdlqb6n"]
 
 [ext_resource type="Resource" uid="uid://bts5rrwo77k8t" path="res://gamedata/combatants/solius/solius.tres" id="1_g4miw"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="2_505t2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="3_kr2mi"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="3_l3rop"]
 [ext_resource type="Resource" uid="uid://dbn5mhjawwmv0" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier.tres" id="4_7mc7t"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="5_sm5x4"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="6_83cux"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="7_67hx1"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="8_qq2it"]
 
 [resource]
 script = ExtResource("7_67hx1")
 combatant1Level = 9
-combatant1Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant1Moves = Array[ExtResource("3_kr2mi")]([])
+combatant1ShardSummoned = false
 combatant2 = ExtResource("5_sm5x4")
 combatant2Level = 9
-combatant2Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant2Moves = Array[ExtResource("3_kr2mi")]([])
+combatant2ShardSummoned = true
 combatant3 = ExtResource("6_83cux")
 combatant3Level = 9
-combatant3Moves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+combatant3Moves = Array[ExtResource("3_kr2mi")]([])
+combatant3ShardSummoned = true
 autoAlly = ExtResource("1_g4miw")
 autoAllyLevel = 9
 autoAllyArmor = ExtResource("2_505t2")
 autoAllyWeapon = ExtResource("3_l3rop")
-autoAllyMoves = Array[Resource("res://scripts/battle/combatant/move.gd")]([])
+autoAllyMoves = Array[ExtResource("3_kr2mi")]([])
+autoAllyShardSummoned = false
 specialBattleId = "sea_leg_soldier_2"
 bossBattle = false
 canEscape = false
-rewards = Array[Resource("res://scripts/reward/reward.gd")]([])
+rewards = Array[ExtResource("8_qq2it")]([])
 useStaticRewards = false
 combatant1 = ExtResource("4_7mc7t")
 specialRules = 0
