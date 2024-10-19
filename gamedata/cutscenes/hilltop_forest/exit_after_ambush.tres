@@ -58,6 +58,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_7w6p4"]
@@ -75,6 +77,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_sbmmw"]
@@ -92,6 +96,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = true
 
 [sub_resource type="Resource" id="Resource_nlgh4"]
@@ -120,6 +126,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_5vwbe"]
@@ -137,6 +145,8 @@ endHoldCamera = false
 endFade = 1
 endFadeLength = 0.5
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_e34lg"]
@@ -154,6 +164,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_hw1na"]
@@ -180,6 +192,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_wy764"]
@@ -197,6 +211,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_iyu0f"]
@@ -211,6 +227,7 @@ prereqSpecialBattles = Array[String](["hilltop_ambusher"])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["exit_hilltop_after_ambush"])
@@ -218,6 +235,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_ufge2")
@@ -228,3 +246,4 @@ unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String](["TilemapRoot/DrHudson", "TilemapRoot/Spelunker", "TilemapRoot/HorseCart"])
 tempDisabledAfter = false
+notes = ""
