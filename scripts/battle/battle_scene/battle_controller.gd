@@ -10,6 +10,8 @@ const MIN_LV_THREE_ENEMIES = 10
 # above this level, the chance to spawn 3 enemies is not modified
 const MAX_LV_THREE_ENEMIES = 20
 
+const shardParticlePreset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")
+
 @export var state: BattleState = BattleState.new()
 @export var globalMarker: Marker2D
 
@@ -217,6 +219,8 @@ func load_into_battle():
 	
 	for node in get_all_combatant_nodes():
 		node.load_combatant_node()
+		if node.shardSummoned:
+			node.play_particles(shardParticlePreset)
 		if PlayerResources.playerInfo.encounter.winCon != null and PlayerResources.playerInfo.encounter.winCon is WeakenEnemyWinCon:
 			var weakenWinCon: WeakenEnemyWinCon = PlayerResources.playerInfo.encounter.winCon as WeakenEnemyWinCon
 			if weakenWinCon.enemyPosition == node.battlePosition:
@@ -248,8 +252,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.shardSummoned = true
 	minionCombatant.load_combatant_node()
 	#minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # just in case
-	var preset: ParticlePreset = preload("res://gamedata/moves/particles_shard.tres")
-	minionCombatant.play_particles(preset)
+	minionCombatant.play_particles(shardParticlePreset)
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
 	return battleAnimationManager.get_all_combatant_nodes()
