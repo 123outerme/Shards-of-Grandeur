@@ -64,16 +64,25 @@ alignment = 1
 [node name="AllButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("2_usos2")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../LocationsButton")
 text = "All"
 
 [node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("2_usos2")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath("../AllButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../QuestsButton")
 text = "Locations"
 
 [node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("2_usos2")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath("../LocationsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
 text = "Quests"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]

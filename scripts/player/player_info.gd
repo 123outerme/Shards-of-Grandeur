@@ -33,6 +33,7 @@ class_name PlayerInfo
 @export var interactableDialogueIdx: int = 0
 @export var interactableName: String = ''
 @export var placesVisited: Array[String] = []
+@export var mapLocationsVisited: Array[WorldLocation.MapLocation] = []
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
 @export var puzzlesSolved: Array[String] = []
@@ -68,6 +69,7 @@ func _init(
 	i_interactableDialogueIdx = 0,
 	i_interactableName = '',
 	i_placesVisited: Array[String] = [],
+	i_mapLocationsVisited: Array[WorldLocation.MapLocation] = [],
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
 	i_codexEntriesSeen: Array[String] = [],
@@ -101,6 +103,7 @@ func _init(
 	interactableDialogueIdx = i_interactableDialogueIdx
 	interactableName = i_interactableName
 	placesVisited = i_placesVisited
+	mapLocationsVisited = i_mapLocationsVisited
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
 	codexEntriesSeen = i_codexEntriesSeen
@@ -139,6 +142,13 @@ func has_visited_place(placeName: String) -> bool:
 func set_place_visited(placeName: String):
 	if not has_visited_place(placeName):
 		placesVisited.append(placeName)
+
+func has_visited_map_location(location: WorldLocation.MapLocation) -> bool:
+	return location in mapLocationsVisited
+
+func set_map_location_visited(location: WorldLocation.MapLocation) -> void:
+	if not has_visited_map_location(location):
+		mapLocationsVisited.append(location)
 
 func has_defeated_enemy(saveName: String) -> bool:
 	return saveName in enemiesDefeated
