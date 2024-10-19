@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=36 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_nd8f1"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
 [ext_resource type="AudioStream" uid="uid://bpvsiiko743cd" path="res://audio/music/deathsound.mp3" id="15_7udvk"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="16_f0dtb"]
+[ext_resource type="PackedScene" uid="uid://bc2kbh31hfy6" path="res://prefabs/ui/rich_text_label_scroller.tscn" id="16_keyhh"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
@@ -549,21 +550,24 @@ layout_mode = 2
 script = ExtResource("9_ul6ls")
 battleUI = NodePath("../../../..")
 
+[node name="RichTextLabelScroller" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("16_keyhh")]
+layout_mode = 1
+offset_right = 2.0
+offset_bottom = -74.0
+label = NodePath("../TextBoxText")
+scrollLinesApprox = 3.0
+bailoutFocusControl = NodePath("../OkButton")
+
 [node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 0.696
-offset_bottom = 0.095993
-focus_neighbor_left = NodePath("../OkButton")
-focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
-focus_neighbor_right = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
-focus_neighbor_bottom = NodePath("../OkButton")
-focus_mode = 2
+offset_right = -50.0
+offset_bottom = 0.17601
 bbcode_enabled = true
 text = "Combatant Name Here Charged With Move Name Here, gaining 10 [img=32x32]res://graphics/ui/orb_filled.png[/img].
 Combatant Name Here dealt 10,000 super-effective Lightning damage to self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here, afflicting Overwhelming Interception on self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage!
-Combatant Name Here boosted self +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed, and Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed.
-"
+Combatant Name Here boosted self +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed, and Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed."
 
 [node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(80, 50)
@@ -580,7 +584,7 @@ offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../TextBoxText")
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "OK"
@@ -936,6 +940,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="orb_count_change" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/OrbDisplay" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_orb_display_orb_count_change"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_back_button_pressed"]
+[connection signal="visibility_changed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/RichTextLabelScroller" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_rich_text_label_scroller_visibility_changed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/QuestsOpenButton" to="BattleCam/UIPanels" method="_on_quests_open_button_pressed"]

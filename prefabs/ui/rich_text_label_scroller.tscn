@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bc2kbh31hfy6"]
+
+[ext_resource type="Script" path="res://scripts/menus/rich_text_label_scroller.gd" id="1_01ix2"]
+[ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="2_0jb7t"]
+[ext_resource type="Texture2D" uid="uid://dijg107qm1cji" path="res://graphics/ui/scroll_up_arrow.png" id="3_y4gey"]
+[ext_resource type="Texture2D" uid="uid://dqc4nrcpfimuw" path="res://graphics/ui/scroll_up_arrow_pressed.png" id="4_ceal1"]
+[ext_resource type="Texture2D" uid="uid://r3ovug5wefcn" path="res://graphics/ui/scroll_down_arrow.png" id="4_yfgse"]
+[ext_resource type="Texture2D" uid="uid://cqtucckx42wun" path="res://graphics/ui/scroll_up_arrow_disabled.png" id="5_1qmi5"]
+[ext_resource type="Texture2D" uid="uid://xjehrqail4i0" path="res://graphics/ui/scroll_down_arrow_pressed.png" id="5_2ttdg"]
+[ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="6_6vyro"]
+[ext_resource type="Texture2D" uid="uid://drbm0feky35v5" path="res://graphics/ui/scroll_down_arrow_disabled.png" id="6_uhevl"]
+
+[node name="RichTextLabelScroller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_01ix2")
+
+[node name="ScrollUpButton" parent="." instance=ExtResource("2_0jb7t")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_right = -32.0
+offset_bottom = 16.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ScrollDownButton")
+texture_normal = ExtResource("3_y4gey")
+texture_pressed = ExtResource("4_ceal1")
+texture_disabled = ExtResource("5_1qmi5")
+texture_focused = ExtResource("6_6vyro")
+
+[node name="ScrollDownButton" parent="." instance=ExtResource("2_0jb7t")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ScrollUpButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+texture_normal = ExtResource("4_yfgse")
+texture_pressed = ExtResource("5_2ttdg")
+texture_disabled = ExtResource("6_uhevl")
+texture_focused = ExtResource("6_6vyro")
+
+[connection signal="pressed" from="ScrollUpButton" to="." method="_on_scroll_up_button_pressed"]
+[connection signal="pressed" from="ScrollDownButton" to="." method="_on_scroll_down_button_pressed"]

@@ -9,11 +9,13 @@ var animFinished: bool = false
 var ignoreOkPressed: bool = false
 
 @onready var textBoxText: RichTextLabel = get_node("TextBoxText")
+@onready var richTextScroller: RichTextLabelScroller = get_node('RichTextLabelScroller')
 @onready var okBtn: Button = get_node("OkButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	textBoxText.text = '' # clear editor testing text
+	_on_rich_text_label_scroller_visibility_changed.call_deferred()
 
 func initial_focus():
 	okBtn.grab_focus()
@@ -74,3 +76,15 @@ func _on_battle_animation_manager_combatant_animation_complete() -> void:
 	ignoreOkPressed = false
 	if okPressed:
 		_on_ok_button_pressed(true)
+
+func _on_rich_text_label_scroller_visibility_changed() -> void:
+	if richTextScroller == null:
+		return # prevent this from being called before this _ready() function is called
+	
+	if richTextScroller.visible:
+		richTextScroller.connect_scroll_up_top_neighbor(battleUI.battlePanels.flowOfBattle.fobButton)
+		richTextScroller.connect_scroll_down_bottom_neighbor(okBtn)
+		richTextScroller.connect_scroll_down_left_neighbor(okBtn)
+	else:
+		okBtn.focus_neighbor_top = okBtn.get_path_to(battleUI.battlePanels.flowOfBattle.fobButton)
+		okBtn.focus_neighbor_right = '.'
