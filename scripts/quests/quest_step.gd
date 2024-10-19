@@ -38,6 +38,9 @@ static func type_to_string(t: Type) -> String:
 ## reward to grant the player on completion. Auto-turned in steps will not announce rewards to the player, so generally avoid defining rewards for those steps
 @export var reward: Reward
 
+## the location for use displaying in the Map screen
+@export var locations: Array[WorldLocation.MapLocation] = []
+
 @export_category("Quest Step - Completion")
 
 @export var type: Type = Type.TALK
