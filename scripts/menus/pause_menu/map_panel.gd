@@ -10,13 +10,16 @@ enum MapLocationsFilter {
 class MapPanelLocation:
 	var locations: Array[WorldLocation.MapLocation] = []
 	var buttonText: String = ''
+	var type: String = 'location'
 	
 	func _init(
 		i_locations: Array[WorldLocation.MapLocation] = [],
 		i_buttonText: String = '',
+		i_type = 'location',
 	):
 		locations = i_locations
 		buttonText = i_buttonText
+		type = i_type
 
 signal back_pressed
 
@@ -25,6 +28,8 @@ const sfxButtonScene = preload('res://prefabs/ui/sfx_button.tscn')
 @export var filter: MapLocationsFilter = MapLocationsFilter.ALL
 
 var selectedLocation: MapPanelLocation = null
+
+@onready var markersControl: Control = get_node('MapSpritesControl/MarkersControl')
 
 @onready var allButton: Button = get_node('LocationsControl/HBoxContainer/AllButton')
 @onready var locationsButton: Button = get_node('LocationsControl/HBoxContainer/LocationsButton')
@@ -43,7 +48,14 @@ func _unhandled_input(event):
 func load_map_panel() -> void:
 	visible = true
 	build_map_locations()
-	pass # TODO
+	var playerLocation: MapPanelLocation = get_current_location()
+	var markers: Array[Node] = markersControl.get_children()
+	for marker: Node in markers:
+		var mapMarker: MapMarker = marker as MapMarker
+		if mapMarker.location == playerLocation.locations[0]:
+			mapMarker.mark_player()
+		else:
+			mapMarker.hide_marker()
 
 func build_map_locations() -> void:
 	var locationOptions: Array[MapPanelLocation] = []
@@ -75,7 +87,7 @@ func build_quests_options() -> Array[MapPanelLocation]:
 		if status != QuestTracker.Status.COMPLETED and status != QuestTracker.Status.FAILED:
 			var step: QuestStep = questTracker.get_current_step()
 			if step != null:
-				options.append(MapPanelLocation.new(step.locations, questTracker.quest.questName))
+				options.append(MapPanelLocation.new(step.locations, questTracker.quest.questName, 'quest'))
 	return options
 
 func get_current_location() -> MapPanelLocation:
@@ -102,4 +114,16 @@ func _connect_location_button_focus(button: Button, lastButton: Button) -> void:
 
 func _location_button_pressed(location: MapPanelLocation) -> void:
 	selectedLocation = location
-	pass # TODO drop pin(s) on all selected locations
+	var playerLocation: MapPanelLocation = get_current_location()
+	var markers: Array[Node] = markersControl.get_children()
+	for marker: Node in markers:
+		var mapMarker: MapMarker = marker as MapMarker
+		if mapMarker.location == playerLocation.locations[0]:
+			mapMarker.mark_player()
+		elif mapMarker.location in location.locations:
+			if location.type == 'location':
+				mapMarker.mark_location()
+			elif location.type == 'quest':
+				mapMarker.mark_quest()
+			else:
+				mapMarker.mark_default()

@@ -96,7 +96,7 @@ func load_map(mapName: String):
 	# if this act has a specific map for this act, load it
 	var newMapEntry = get_map_entry_for_map_location(newWorldLocation)
 	if newMapEntry != null:
-		PlayerResources.set_map_location_visited(newWorldLocation.mapLocation)
+		PlayerResources.playerInfo.set_map_location_visited(newWorldLocation.mapLocation)
 		if newMapEntry.isRecoverLocation:
 			PlayerResources.playerInfo.recoverMap = mapName
 		if newMapEntry.overworldTheme != SceneLoader.audioHandler.get_cur_music():
