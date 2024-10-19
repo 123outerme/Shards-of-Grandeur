@@ -47,7 +47,7 @@ func _physics_process(delta):
 		if vel.length() > max_speed * delta:
 			vel = vel.normalized() * max_speed * delta
 		NPC.position += vel
-		if vel.x < max_speed * 0.1 * delta:
+		if vel.x < -max_speed * 0.1 * delta:
 			var flip: bool = NPC.facesRight # if right-facing, flip when moving left
 			if NPC.walkBackwards:
 				flip = not flip # if walking backwards and would flip, don't
