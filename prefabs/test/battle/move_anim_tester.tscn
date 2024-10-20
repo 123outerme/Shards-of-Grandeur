@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
 [ext_resource type="Resource" uid="uid://bjh2nwqxbbis3" path="res://gamedata/moves/desert_sun_beam/desert_sun_beam.tres" id="2_e1edq"]
+[ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="3_5w1mf"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="3_w7bj6"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
 move = ExtResource("2_e1edq")
-targetCombatant = ExtResource("3_w7bj6")
-moveCombatantsIfAlone = true
+targetCombatant = ExtResource("3_5w1mf")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
 anchors_preset = 8

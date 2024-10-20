@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Node2D
 class_name MoveSprite
 
 signal frame_complete(frame: int)
@@ -9,7 +9,6 @@ signal move_sprite_complete(sprite: MoveSprite)
 		return _anim
 	set(a):
 		_anim = a
-		load_animation()
 var _anim: MoveAnimSprite = null
 @export var staticSprite: Texture2D = null
 
@@ -25,9 +24,12 @@ var moveFrame: int = 0
 var frameTimer: float = 0
 var startPos: Vector2 = Vector2()
 var targetPos: Vector2 = Vector2()
+var lastPivotPos: Vector2 = Vector2.ZERO
 
 @onready var particleEmitter: Particles = get_node('ParticleEmitter')
-@onready var staticSpriteNode: Sprite2D = get_node('StaticSprite')
+@onready var spritePivot: Node2D = get_node('SpritePivot')
+@onready var animatedSpriteNode: AnimatedSprite2D = get_node('SpritePivot/AnimatedSprite')
+@onready var staticSpriteNode: Sprite2D = get_node('SpritePivot/StaticSprite')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +40,9 @@ func _ready():
 func _process(delta):
 	if playing:
 		visible = true
+		spritePivot.position = anim.frames[moveFrame].get_sprite_pivot(frameTimer, anim.frames[moveFrame].spritePivot, lastPivotPos)
+		if not user.leftSide:
+			spritePivot.position.x *= -1
 		global_position = anim.frames[moveFrame].get_sprite_position(frameTimer, targetPos, startPos)
 		modulate.a = anim.frames[moveFrame].get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
 		if anim.frames[moveFrame].trackRotationTarget:
@@ -51,10 +56,11 @@ func load_animation():
 	moveFrame = 0
 	frameTimer = 0
 	startOpacity = modulate.a
-	centered = anim.centerSprite
+	animatedSpriteNode.centered = anim.centerSprite
+	lastPivotPos = spritePivot.position
 	if anim != null:
-		sprite_frames = anim.spriteFrames
-	flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
+		animatedSpriteNode.sprite_frames = anim.spriteFrames
+	animatedSpriteNode.flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():
 	if anim == null:
@@ -72,9 +78,9 @@ func load_frame():
 	startOpacity = modulate.a
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	if sprFrame.animation == '#stop':
-		stop()
+		animatedSpriteNode.stop()
 	elif sprFrame.animation != '':
-		play(sprFrame.animation)
+		animatedSpriteNode.play(sprFrame.animation)
 	var offsetPos: Vector2 = sprFrame.position
 	if not user.leftSide:
 		offsetPos.x *= -1
@@ -172,6 +178,9 @@ func next_frame():
 		destroy()
 		return
 	frameTimer = 0
+	lastPivotPos = spritePivot.position
+	if not user.leftSide:
+		lastPivotPos.x *= -1 # account for the pivot being flipped for right-side combatants
 	load_frame()
 
 func reset_animation():

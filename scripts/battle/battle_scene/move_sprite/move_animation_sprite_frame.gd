@@ -19,28 +19,65 @@ enum MoveSpriteOffset {
 }
 
 @export_group('')
+
+## editor use only; documents what's happening in this frame
 @export_multiline var annotation: String = ''
+
+## SpriteFrames animation name to play; `#stop` to stop playing animations, and `default` for blank frame
 @export var animation: String = ''
+
+## duration in seconds
 @export var duration: float = 1
+
+## speed of sprite movement; sets a maximum duration based on the difference in sprite positions (safe to ignore completely in reasonable use cases)
 @export var speed: float = 1
+
+## opacity of the sprite/particles
 @export var opacity: float = 1
 
+## pivot point of the sprite, for rotation; shifts the sprite this much as well. MoveSprite does not remember previous pivots from previous frames
+@export var spritePivot: Vector2 = Vector2.ZERO
+
 @export_group('Position')
+
+## which entity/marked position this position offset is relative to
 @export var relativeTo: MoveSpriteTarget = MoveSpriteTarget.CURRENT_POSITION
+
+## the offset from the `relativeTo` to move the sprite to over the course of the frame
 @export var position: Vector2
+
+## Offsets based on target entity's size
 @export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
+
+## describes the x position of the sprite over the duration of the frame
 @export var xCurve: Curve = Curve.new()
+
+## describes the y position of the sprite over the duration of the frame
 @export var yCurve: Curve = Curve.new()
 
 @export_group('Rotation')
+
+## if true, will rotate the sprite
 @export var rotate: bool = false
+
+## target entity/marked position to face towards
 @export var rotateToFace: MoveSpriteTarget = MoveSpriteTarget.TARGET
+
+## position offsetted from the `rotateToFace` target to face towards
 @export var rotateToFacePosition: Vector2
+
+## Offset based on the target entity's size
 @export_flags('In Front', 'Behind', 'Above', 'Below') var rotateToFaceOffset: int = MoveSpriteOffset.NONE
+
+## If true, will constantly update the rotation to track the target position as the frame progresses
 @export var trackRotationTarget: bool = false
 
 @export_group('')
+
+## particles to play on this frame
 @export var particles: ParticlePreset = null
+
+## sfx to play on this frame
 @export var sfx: AudioStream = null
 
 func _init(
@@ -56,6 +93,7 @@ func _init(
 	i_rotate = false,
 	i_rotateToFace = MoveSpriteTarget.TARGET,
 	i_rotateToFacePos = Vector2(),
+	i_spritePivot = Vector2.ZERO,
 	i_rotateToFaceOffset = MoveSpriteOffset.NONE,
 	i_trackRotationTarget = false,
 	i_particles = null,
@@ -74,6 +112,7 @@ func _init(
 	rotateToFace = i_rotateToFace
 	rotateToFacePosition = i_rotateToFacePos
 	rotateToFaceOffset = i_rotateToFaceOffset
+	spritePivot = i_spritePivot
 	trackRotationTarget = i_trackRotationTarget
 	particles = i_particles
 	sfx = i_sfx
@@ -108,3 +147,8 @@ func get_sprite_position(time: float, targetPos: Vector2, startPos: Vector2) -> 
 func get_sprite_opacity(currentOpacity: float, time: float, targetPos: Vector2, startPos: Vector2) -> float:
 	var diff = targetPos - startPos
 	return (opacity - currentOpacity) * get_percent_complete(time, diff) + currentOpacity
+
+func get_sprite_pivot(time: float, targetPos: Vector2, startPos: Vector2) -> Vector2:
+	startPos.x *= -1 # because we're flipping x here to make the data inputting make more sense, we have to account for a startPos with a flipped x
+	var diff = targetPos - startPos
+	return Vector2((startPos.x + (diff.x * (time / duration))) * -1, startPos.y + (diff.y * (time / duration)))

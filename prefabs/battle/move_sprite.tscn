@@ -3,13 +3,17 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_sprite.gd" id="1_hya4s"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="2_suavx"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_a0xv4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5kan5"]
 
-[node name="MoveSprite" type="AnimatedSprite2D"]
-z_index = 2
-sprite_frames = SubResource("SpriteFrames_a0xv4")
+[node name="MoveSprite" type="Node2D"]
+z_index = 3
 script = ExtResource("1_hya4s")
 
 [node name="ParticleEmitter" parent="." instance=ExtResource("2_suavx")]
 
-[node name="StaticSprite" type="Sprite2D" parent="."]
+[node name="SpritePivot" type="Node2D" parent="."]
+
+[node name="StaticSprite" type="Sprite2D" parent="SpritePivot"]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="SpritePivot"]
+sprite_frames = SubResource("SpriteFrames_5kan5")
