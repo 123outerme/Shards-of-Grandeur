@@ -113,7 +113,7 @@ func _init(
 	i_framerate = 60,
 	i_windowSize = Vector2i(1280, 720),
 	i_fullscreen = false,
-	i_experimental = true,
+	i_experimental = false,
 ):
 	inputMap = i_inputMap.duplicate()
 	musicVolume = i_musicVolume
