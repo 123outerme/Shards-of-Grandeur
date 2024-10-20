@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfxdils72sliv"]
+[gd_scene load_steps=11 format=3 uid="uid://cfxdils72sliv"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_rbpfk"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_g45t3"]
 [ext_resource type="PackedScene" uid="uid://cx1nv23dkg60x" path="res://prefabs/ui/map/map_marker.tscn" id="4_w0vni"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="5_pcbcm"]
-[ext_resource type="ButtonGroup" uid="uid://748n60re052m" path="res://prefabs/ui/map/map_filter_button_group.tres" id="6_vmp5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6vr2"]
 bg_color = Color(0, 0, 0, 0)
@@ -15,6 +14,15 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_av313"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dmiuy"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nostg"]
+allow_unpress = true
 
 [node name="MapPanel" type="Control"]
 layout_mode = 3
@@ -30,9 +38,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -236.5
+offset_left = -576.0
 offset_top = 19.0
-offset_right = 236.5
+offset_right = 576.0
 offset_bottom = 69.0
 grow_horizontal = 2
 theme = ExtResource("2_rbpfk")
@@ -184,7 +192,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../LocationsButton")
 toggle_mode = true
 button_pressed = true
-button_group = ExtResource("6_vmp5r")
+button_group = SubResource("ButtonGroup_av313")
 text = "All"
 
 [node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -194,7 +202,7 @@ focus_neighbor_left = NodePath("../AllButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../QuestsButton")
 toggle_mode = true
-button_group = ExtResource("6_vmp5r")
+button_group = SubResource("ButtonGroup_dmiuy")
 text = "Locations"
 
 [node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -204,7 +212,7 @@ focus_neighbor_left = NodePath("../LocationsButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 toggle_mode = true
-button_group = ExtResource("6_vmp5r")
+button_group = SubResource("ButtonGroup_nostg")
 text = "Quests"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]
@@ -250,4 +258,5 @@ text = "Back"
 [connection signal="toggled" from="LocationsControl/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
 [connection signal="toggled" from="LocationsControl/HBoxContainer/LocationsButton" to="." method="_on_locations_button_toggled"]
 [connection signal="toggled" from="LocationsControl/HBoxContainer/QuestsButton" to="." method="_on_quests_button_toggled"]
+[connection signal="visibility_changed" from="LocationsControl/ScrollContainer" to="LocationsControl/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

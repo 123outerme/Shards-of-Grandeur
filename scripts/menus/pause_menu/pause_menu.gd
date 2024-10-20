@@ -51,6 +51,7 @@ func initial_focus() -> void:
 func _on_resume_button_pressed():
 	isPaused = false
 	visible = false
+	mapPanel.visible = false
 	codexMenu.visible = false
 	if settingsMenu.visible:
 		settingsMenu.cancel_changes()

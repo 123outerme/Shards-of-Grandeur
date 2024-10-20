@@ -21,5 +21,11 @@ func mark_location() -> void:
 func mark_quest() -> void:
 	pinSprite.play('quest')
 
+func mark_player_location() -> void:
+	pinSprite.play('player_location')
+
+func mark_player_quest() -> void:
+	pinSprite.play('player_quest')
+
 func mark_default() -> void:
 	mark_location()

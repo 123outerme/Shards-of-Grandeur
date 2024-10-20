@@ -28,6 +28,9 @@ const sfxButtonScene = preload('res://prefabs/ui/sfx_button.tscn')
 @export var filter: MapLocationsFilter = MapLocationsFilter.ALL
 
 var selectedLocation: MapPanelLocation = null
+var noneLocationOption: MapPanelLocation = MapPanelLocation.new([], 'None', '')
+
+@onready var mapPanelLabel: RichTextLabel = get_node('MapPanelLabel')
 
 @onready var markersControl: Control = get_node('MapSpritesControl/MarkersControl')
 
@@ -48,11 +51,12 @@ func _unhandled_input(event):
 func load_map_panel(initial: bool = true) -> void:
 	visible = true
 	build_map_locations()
-	_location_button_pressed(selectedLocation)
 	if initial:
+		selectedLocation = null
 		initial_focus()
 		filter = MapLocationsFilter.ALL
 		update_filter(filter)
+	update_selected_location(selectedLocation)
 
 func initial_focus() -> void:
 	allButton.grab_focus()
@@ -69,7 +73,7 @@ func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
 			initial_focus()
 
 func build_map_locations() -> void:
-	var locationOptions: Array[MapPanelLocation] = []
+	var locationOptions: Array[MapPanelLocation] = [noneLocationOption]
 	if filter == MapLocationsFilter.ALL or filter == MapLocationsFilter.LOCATIONS:
 		locationOptions.append_array(build_locations_options())
 	if filter == MapLocationsFilter.ALL or filter == MapLocationsFilter.QUESTS:
@@ -82,7 +86,7 @@ func build_map_locations() -> void:
 	for option: MapPanelLocation in locationOptions:
 		var instantiatedButton: Button = sfxButtonScene.instantiate()
 		instantiatedButton.text = option.buttonText
-		instantiatedButton.pressed.connect(_location_button_pressed.bind(option))
+		instantiatedButton.pressed.connect(update_selected_location.bind(option))
 		instantiatedButton.custom_minimum_size = Vector2(0, 40)
 		buttonsHboxContainer.add_child(instantiatedButton)
 		_connect_location_button_focus.call_deferred(instantiatedButton, lastButton)
@@ -143,21 +147,36 @@ func _connect_location_button_focus(button: Button, lastButton: Button) -> void:
 	
 	button.focus_neighbor_bottom = button.get_path_to(backButton)
 
-func _location_button_pressed(location: MapPanelLocation) -> void:
+func update_selected_location(location: MapPanelLocation) -> void:
 	selectedLocation = location
+	if location == noneLocationOption:
+		selectedLocation = null
+	if selectedLocation == null:
+		mapPanelLabel.text = '[center]Map[/center]'
+	else:
+		mapPanelLabel.text = '[center]Map - ' + location.buttonText + '[/center]'
 	var playerLocation: MapPanelLocation = get_current_location()
 	var markers: Array[Node] = markersControl.get_children()
 	for marker: Node in markers:
 		var mapMarker: MapMarker = marker as MapMarker
+		var markPlayer: bool = false
 		if mapMarker.location == playerLocation.locations[0]:
-			mapMarker.mark_player()
-		elif selectedLocation != null and mapMarker.location in selectedLocation.locations:
+			markPlayer = true
+		if selectedLocation != null and mapMarker.location in selectedLocation.locations:
 			if location.type == 'location':
-				mapMarker.mark_location()
+				if markPlayer:
+					mapMarker.mark_player_location()
+				else:
+					mapMarker.mark_location()
 			elif location.type == 'quest':
-				mapMarker.mark_quest()
+				if markPlayer:
+					mapMarker.mark_player_quest()
+				else:
+					mapMarker.mark_quest()
 			else:
 				mapMarker.mark_default()
+		elif markPlayer:
+			mapMarker.mark_player()
 		else:
 			mapMarker.hide_marker()
 
