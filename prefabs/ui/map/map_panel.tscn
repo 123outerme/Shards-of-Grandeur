@@ -1,11 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfxdils72sliv"]
+[gd_scene load_steps=21 format=3 uid="uid://cfxdils72sliv"]
 
 [ext_resource type="Script" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_rbpfk"]
-[ext_resource type="Texture2D" uid="uid://bu12vd58t1elq" path="res://graphics/ui/world_map.png" id="3_5k6r7"]
+[ext_resource type="Texture2D" uid="uid://eol8rfksbw3j" path="res://graphics/ui/map/world_map.png" id="3_ajkb5"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_g45t3"]
 [ext_resource type="PackedScene" uid="uid://cx1nv23dkg60x" path="res://prefabs/ui/map/map_marker.tscn" id="4_w0vni"]
+[ext_resource type="PackedScene" uid="uid://mssyfvag61k" path="res://prefabs/ui/map/map_cloud_layer.tscn" id="5_0xsm1"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="5_pcbcm"]
+[ext_resource type="Texture2D" uid="uid://bwgmyq2t44sv8" path="res://graphics/ui/map/world_map_hilltop_clouds.png" id="6_r08rx"]
+[ext_resource type="Texture2D" uid="uid://dfxwbr8uk1c8s" path="res://graphics/ui/map/world_map_standstill_clouds.png" id="6_wxfme"]
+[ext_resource type="Texture2D" uid="uid://d3ljqswdy48gy" path="res://graphics/ui/map/world_map_mushroom_grotto_clouds.png" id="7_sbt08"]
+[ext_resource type="Texture2D" uid="uid://dhnjdwo16k56s" path="res://graphics/ui/map/world_map_leavenport_clouds.png" id="8_k3b6f"]
+[ext_resource type="Texture2D" uid="uid://durebm0wji4k3" path="res://graphics/ui/map/world_map_sea_leg_east_clouds.png" id="9_g8ukx"]
+[ext_resource type="Texture2D" uid="uid://dqo7ac6ci1p5i" path="res://graphics/ui/map/world_map_sea_leg_south_clouds.png" id="10_x2kn6"]
+[ext_resource type="Texture2D" uid="uid://bj1lll1qixi77" path="res://graphics/ui/map/world_map_forbidden_desert_south_clouds.png" id="11_wwqaa"]
+[ext_resource type="Texture2D" uid="uid://jle7w0ssttlb" path="res://graphics/ui/map/world_map_nomad_camp_clouds.png" id="12_robpo"]
+[ext_resource type="Texture2D" uid="uid://cecep8lgdhney" path="res://graphics/ui/map/world_map_forbidden_desert_east_clouds.png" id="13_1j61r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6vr2"]
 bg_color = Color(0, 0, 0, 0)
@@ -15,13 +25,13 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_av313"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_cgq07"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_dmiuy"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_xdxu8"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_nostg"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_llayp"]
 allow_unpress = true
 
 [node name="MapPanel" type="Control"]
@@ -74,8 +84,61 @@ offset_bottom = -336.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
-texture = ExtResource("3_5k6r7")
+texture = ExtResource("3_ajkb5")
 stretch_mode = 2
+
+[node name="CloudsControl" type="Control" parent="MapSpritesControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StandstillClouds" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("6_wxfme")
+location = 20
+
+[node name="HilltopCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("6_r08rx")
+location = 21
+
+[node name="MushroomGrottoCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("7_sbt08")
+location = 22
+
+[node name="LeavenportCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("8_k3b6f")
+location = 30
+
+[node name="SeaLegEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("9_g8ukx")
+location = 31
+
+[node name="SeaLegSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("10_x2kn6")
+location = 32
+
+[node name="DesertSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("11_wwqaa")
+location = 41
+
+[node name="NomadCampCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("12_robpo")
+location = 40
+
+[node name="DesertEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("13_1j61r")
+location = 42
 
 [node name="MarkersControl" type="Control" parent="MapSpritesControl"]
 layout_mode = 1
@@ -192,7 +255,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../LocationsButton")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_av313")
+button_group = SubResource("ButtonGroup_cgq07")
 text = "All"
 
 [node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -202,7 +265,7 @@ focus_neighbor_left = NodePath("../AllButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../QuestsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_dmiuy")
+button_group = SubResource("ButtonGroup_xdxu8")
 text = "Locations"
 
 [node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -212,7 +275,7 @@ focus_neighbor_left = NodePath("../LocationsButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_nostg")
+button_group = SubResource("ButtonGroup_llayp")
 text = "Quests"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]

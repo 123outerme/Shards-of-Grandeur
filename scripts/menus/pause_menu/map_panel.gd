@@ -33,6 +33,7 @@ var noneLocationOption: MapPanelLocation = MapPanelLocation.new([], 'None', '')
 @onready var mapPanelLabel: RichTextLabel = get_node('MapPanelLabel')
 
 @onready var markersControl: Control = get_node('MapSpritesControl/MarkersControl')
+@onready var cloudsControl: Control = get_node('MapSpritesControl/CloudsControl')
 
 @onready var allButton: Button = get_node('LocationsControl/HBoxContainer/AllButton')
 @onready var locationsButton: Button = get_node('LocationsControl/HBoxContainer/LocationsButton')
@@ -49,7 +50,7 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 
 func load_map_panel(initial: bool = true) -> void:
-	visible = true
+	update_cloud_layers()
 	build_map_locations()
 	if initial:
 		selectedLocation = null
@@ -57,6 +58,7 @@ func load_map_panel(initial: bool = true) -> void:
 		filter = MapLocationsFilter.ALL
 		update_filter(filter)
 	update_selected_location(selectedLocation)
+	visible = true
 
 func initial_focus() -> void:
 	allButton.grab_focus()
@@ -71,6 +73,13 @@ func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
 			questsButton.grab_focus()
 		_: # default
 			initial_focus()
+
+func update_cloud_layers() -> void:
+	var children: Array[Node] = cloudsControl.get_children()
+	for child: Node in children:
+		if child is MapCloudLayerTextureRect:
+			var cloudLayer: MapCloudLayerTextureRect = child as MapCloudLayerTextureRect
+			cloudLayer.visible = not PlayerResources.playerInfo.has_visited_map_location(cloudLayer.location)
 
 func build_map_locations() -> void:
 	var locationOptions: Array[MapPanelLocation] = [noneLocationOption]
@@ -94,9 +103,11 @@ func build_map_locations() -> void:
 
 func build_locations_options() -> Array[MapPanelLocation]:
 	var options: Array[MapPanelLocation] = []
-	for location: WorldLocation.MapLocation in range(WorldLocation.MapLocation.MAX_LOCATIONS):
-		if PlayerResources.playerInfo.has_visited_map_location(location):
-			options.append(MapPanelLocation.new([location], WorldLocation.map_location_to_string(location)))
+	var markers: Array[Node] = markersControl.get_children()
+	for marker: Node in markers:
+		var mapMarker: MapMarker = marker as MapMarker
+		if PlayerResources.playerInfo.has_visited_map_location(mapMarker.location):
+			options.append(MapPanelLocation.new([mapMarker.location], WorldLocation.map_location_to_string(mapMarker.location)))
 	return options
 
 func build_quests_options() -> Array[MapPanelLocation]:
