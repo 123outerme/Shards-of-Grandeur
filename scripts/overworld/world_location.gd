@@ -3,17 +3,16 @@ class_name WorldLocation
 
 enum MapLocation {
 	UNKNOWN = 0, ## Unknown location (not shown on map)
-	GRANDSTONE = 1, ## Grandstone
-	STANDSTILL = 2, ## Standstill
-	HILLTOP_FOREST = 3, ## Hilltop Forest
-	LEAVENPORT = 4, ## Leavenport
-	MUSHROOM_GROTTO = 5, ## Mushroom Grotto
-	SEA_LEG_SWAMP_EAST = 6, ## Sea Leg Swamp, east of Leavenport
-	SEA_LEG_SWAMP_SOUTH = 7, ## Sea Leg Swamp, south of Leavenport
-	FORBIDDEN_DESERT_SOUTH = 8, ## Forbidden Desert, south of Nomad Camp
-	NOMAD_CAMP = 9, ## Nomad Camp
-	FORBIDDEN_DESERT_EAST = 10, ## Forbidden Desert, east of Nomad Camp
-	MAX_LOCATIONS = 11, ## Do not select as a location; for iterating through all locations. Update this every time the MapLocations enum becomes larger
+	GRANDSTONE = 10, ## Grandstone
+	STANDSTILL = 20, ## Standstill
+	HILLTOP_FOREST = 21, ## Hilltop Forest
+	MUSHROOM_GROTTO = 22, ## Mushroom Grotto
+	LEAVENPORT = 30, ## Leavenport
+	SEA_LEG_SWAMP_EAST = 31, ## Sea Leg Swamp, east of Leavenport
+	SEA_LEG_SWAMP_SOUTH = 32, ## Sea Leg Swamp, south of Leavenport
+	NOMAD_CAMP = 40, ## Nomad Camp
+	FORBIDDEN_DESERT_SOUTH = 41, ## Forbidden Desert, south of Nomad Camp
+	FORBIDDEN_DESERT_EAST = 42, ## Forbidden Desert, east of Nomad Camp
 }
 
 @export var locationName: String = ''
