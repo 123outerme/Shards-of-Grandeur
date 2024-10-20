@@ -598,7 +598,10 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + \
 						String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + moveElString + 'damage!'
 		if type == Type.MOVE and moveEffect.lifesteal > 0 and commandResult.lifestealHeal > 0:
-			resultsText += '\n' + user.disp_name() + ' stole ' + String.num(commandResult.lifestealHeal) + ' HP from the targets!'
+			resultsText += '\n' + user.disp_name() + ' stole ' + String.num(commandResult.lifestealHeal) + ' HP from the target'
+			if len(targets) != 1:
+				resultsText += 's'
+			resultsText += '!'
 		
 		if type == Type.MOVE and ( \
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \

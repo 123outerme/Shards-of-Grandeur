@@ -5,6 +5,7 @@ extends BattleController
 @export var playerLv: int = 1
 @export var playerCommand: BattleCommand = null
 @export var currentPlayerHp: int = -1
+@export var playerStatAllocStrat: StatAllocationStrategy = null
 @export var playerStatus: StatusEffect = null
 @export var minionCommand: BattleCommand = null
 @export var minionStatus: StatusEffect = null
@@ -34,6 +35,8 @@ func _ready():
 		if combatant != null:
 			if combatantLvs[idx] > combatant.stats.level:
 				combatant.level_up_nonplayer(combatantLvs[idx])
+			if combatant == _playerCombatant and playerStatAllocStrat != null:
+				playerStatAllocStrat.allocate_stats(combatant.stats)
 			if len(combatant.stats.moves) == 0:
 				combatant.assign_moves_nonplayer()
 			for move: Move in combatant.stats.moves:

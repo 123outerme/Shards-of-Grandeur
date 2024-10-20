@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=37 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_nd8f1"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/custom_win_text_panel.gd" id="20_qmlyh"]
 [ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="20_tmnh1"]
 [ext_resource type="Texture2D" uid="uid://copnjmfswsin0" path="res://graphics/ui/touch_ui_icons/pause_icon.png" id="21_4ekjo"]
+[ext_resource type="Theme" uid="uid://cdkeyupyiaurh" path="res://themes/battle_survive_counter_theme.tres" id="21_q7jdm"]
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="21_r3cu2"]
 [ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="27_4cava"]
 
@@ -682,7 +683,7 @@ grow_vertical = 0
 text = "OK"
 
 [node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
-z_index = 4
+z_index = 5
 position = Vector2(0, -8)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("10_7n25e")
@@ -703,7 +704,7 @@ grow_horizontal = 2
 custom_minimum_size = Vector2(210, 44)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("19_soy02")
+theme = ExtResource("21_q7jdm")
 
 [node name="SurviveCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/SurviveCounterPanel"]
 layout_mode = 1

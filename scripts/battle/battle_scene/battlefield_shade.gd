@@ -4,8 +4,6 @@ class_name BattlefieldShade
 signal shade_faded_down
 signal shade_faded_up
 
-@export var battleController: Node2D
-
 var battlefieldShadeTween: Tween = null
 var battlefieldShadeAnim: BattlefieldShadeAnim = null
 
