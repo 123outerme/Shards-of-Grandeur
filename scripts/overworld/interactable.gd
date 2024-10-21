@@ -46,9 +46,9 @@ func play_animation(animName: String):
 	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
 
 func select_choice(choice: DialogueChoice):
-	if PlayerFinder.player.interactableDialogueIdx > 0:
+	if PlayerFinder.player.interactableDialogueIndex > 0:
 		# find the dialogue entry being read by the player currently
-		var dialogueEntry: DialogueEntry = PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].dialogueEntry
+		var dialogueEntry: DialogueEntry = PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIndex].dialogueEntry
 		if dialogueEntry != null and saveName != '' and dialogueEntry.entryId != '':
 			# if the entry is found, the saveName of this interactable is defined, and so is the dialogue entry ID: set this dialogue seen
 			print(dialogueEntry.entryId, ': dialogue seen being set for ', saveName, '')
@@ -75,8 +75,8 @@ func select_choice(choice: DialogueChoice):
 			var prevLen: int = len(PlayerFinder.player.interactableDialogues)
 			PlayerFinder.player.interactableDialogues.erase(parentDialogueEntry)
 			# if the dialogue entry was erased and it was before our current index, update the index of the current dialogue!
-			if prevLen != len(PlayerFinder.player.interactableDialogues) and parentIdx <= PlayerFinder.player.interactableDialogueIdx:
-				PlayerFinder.player.interactableDialogueIdx -= 1
+			if prevLen != len(PlayerFinder.player.interactableDialogues) and parentIdx <= PlayerFinder.player.interactableDialogueIndex:
+				PlayerFinder.player.interactableDialogueIndex -= 1
 			leadsTo = parentDialogueEntry
 	
 	if leadsTo == null and choice.randomDialogues != null and len(choice.randomDialogues) > 0:
@@ -104,9 +104,9 @@ func select_choice(choice: DialogueChoice):
 					break
 					
 			if index != -1: # reuse entry if it exists to support going back in the dialogue tree
-				PlayerFinder.player.interactableDialogueIdx = index
-				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].savedItemIdx = 0
-				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIdx].savedTextIdx = 0
+				PlayerFinder.player.interactableDialogueIndex = index
+				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIndex].savedItemIdx = 0
+				PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIndex].savedTextIdx = 0
 				PlayerFinder.player.put_interactable_text(false, true)
 			else:
 				index = mini(PlayerFinder.player.interactableDialogueIndex + 1, len(PlayerFinder.player.interactableDialogues))
