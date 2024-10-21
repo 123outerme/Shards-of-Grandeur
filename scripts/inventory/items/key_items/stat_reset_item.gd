@@ -34,6 +34,8 @@ func _init(
 		i_effectText)
 
 func use(target: Combatant):
+	if target.should_auto_alloc_stat_pts():
+		target.minionStatAllocMode = Combatant.MinionStatAllocationMode.MANUAL
 	target.reset_all_evolutions_stat_totals()
 
 func get_use_message(target: Combatant) -> String:

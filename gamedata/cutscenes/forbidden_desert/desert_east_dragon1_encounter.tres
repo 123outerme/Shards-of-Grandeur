@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=62 format=3 uid="uid://csdxsrxjaby7w"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=64 format=3 uid="uid://csdxsrxjaby7w"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_55v27"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_5l7i6"]
@@ -430,18 +430,42 @@ actorTreePath = "TilemapRoot/Dragon"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_l0pkm"]
+script = ExtResource("6_25dng")
+speaker = "Dragon"
+texts = Array[String](["WROOAAAAAARRRR!!"])
+
 [sub_resource type="Resource" id="Resource_p7igu"]
 script = ExtResource("1_55v27")
-frameLength = 1.0
-annotation = "Make the dragon land (stand) and slight pause"
+frameLength = 0.1
+annotation = "Make the dragon land (stand) and roar again"
 actorTweens = Array[ExtResource("5_nvpns")]([])
 actorAnims = Array[ExtResource("3_q6b2v")]([SubResource("Resource_b8avw")])
+actorAnimSets = Array[ExtResource("2_sc802")]([])
+actorFaceTargets = Array[ExtResource("4_5qd1i")]([])
+dialogues = Array[ExtResource("6_25dng")]([SubResource("Resource_l0pkm")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_llvq5"]
+script = ExtResource("1_55v27")
+frameLength = 1.0
+annotation = "Slight pause after second roar"
+actorTweens = Array[ExtResource("5_nvpns")]([])
+actorAnims = Array[ExtResource("3_q6b2v")]([])
 actorAnimSets = Array[ExtResource("2_sc802")]([])
 actorFaceTargets = Array[ExtResource("4_5qd1i")]([])
 dialogues = Array[ExtResource("6_25dng")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = true
+endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -630,7 +654,7 @@ invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("2_5l7i6")
-cutsceneFrames = Array[ExtResource("1_55v27")]([SubResource("Resource_efd3g"), SubResource("Resource_usgbb"), SubResource("Resource_ysujd"), SubResource("Resource_c7lmv"), SubResource("Resource_qkabw"), SubResource("Resource_nbk2w"), SubResource("Resource_v0mpl"), SubResource("Resource_o6yuq"), SubResource("Resource_8d43v"), SubResource("Resource_nypkp"), SubResource("Resource_7lbki"), SubResource("Resource_spxck"), SubResource("Resource_j3d1v"), SubResource("Resource_o68ec"), SubResource("Resource_8y7y0"), SubResource("Resource_diomd"), SubResource("Resource_p7igu"), SubResource("Resource_bdc4a"), SubResource("Resource_hv17k"), SubResource("Resource_3ujis"), SubResource("Resource_smfe4"), SubResource("Resource_pjf5a"), SubResource("Resource_2dfov")])
+cutsceneFrames = Array[ExtResource("1_55v27")]([SubResource("Resource_efd3g"), SubResource("Resource_usgbb"), SubResource("Resource_ysujd"), SubResource("Resource_c7lmv"), SubResource("Resource_qkabw"), SubResource("Resource_nbk2w"), SubResource("Resource_v0mpl"), SubResource("Resource_o6yuq"), SubResource("Resource_8d43v"), SubResource("Resource_nypkp"), SubResource("Resource_7lbki"), SubResource("Resource_spxck"), SubResource("Resource_j3d1v"), SubResource("Resource_o68ec"), SubResource("Resource_8y7y0"), SubResource("Resource_diomd"), SubResource("Resource_p7igu"), SubResource("Resource_llvq5"), SubResource("Resource_bdc4a"), SubResource("Resource_hv17k"), SubResource("Resource_3ujis"), SubResource("Resource_smfe4"), SubResource("Resource_pjf5a"), SubResource("Resource_2dfov")])
 saveName = "dragon1_encounter"
 storyRequirements = SubResource("Resource_yimmg")
 unlockCameraHoldAfter = true

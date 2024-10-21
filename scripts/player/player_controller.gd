@@ -64,6 +64,9 @@ var sprite_modulate: Color:
 		if sprite != null:
 			sprite.self_modulate = c
 
+func _ready() -> void:
+	PlayerResources.act_changed.connect(_on_act_changed)
+
 func _unhandled_input(event):
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
@@ -359,8 +362,7 @@ func advance_dialogue(canStart: bool = true):
 			if PlayerResources.playerInfo.encounter != null:
 				start_battle()
 			if actChanged:
-				pause_movement()
-				cam.play_new_act_animation(_new_act_callback)
+				play_act_changed_animation()
 		else:
 			textBox.hide_textbox() # is this necessary??
 			set_talk_npc(null, true) # is this necessary??
@@ -719,6 +721,11 @@ func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutsc
 	inCutscene = false
 	cam.connect_to_fade_in(_fade_in_force_unlock_cutscene.bind(cutscene.saveName))
 
+func play_act_changed_animation() -> void:
+	if actChanged:
+		pause_movement()
+		cam.play_new_act_animation(_new_act_callback)
+
 func get_collider() -> CollisionShape2D: # for use before full player initialization in MapLoader
 	return get_node('ColliderShape') as CollisionShape2D
 
@@ -956,3 +963,6 @@ func _on_overworld_touch_controls_console_pressed() -> void:
 	overworldConsole.show()
 	overworldTouchControls.set_all_visible(false)
 	SceneLoader.pause_autonomous_movers()
+
+func _on_act_changed() -> void:
+	actChanged = true

@@ -9,7 +9,8 @@ var collisionLayer = 1
 var collisionMask = 1
 
 func _ready():
-	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+	if not Engine.is_editor_hint():
+		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 	collisionLayer = collision.collision_layer
 	collisionMask = collision.collision_mask
 	_story_reqs_updated()

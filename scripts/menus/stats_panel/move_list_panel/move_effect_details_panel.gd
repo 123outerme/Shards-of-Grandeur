@@ -69,7 +69,7 @@ func load_move_effect_details_panel():
 		movePower.text = str(moveEffect.power * -1) + ' Heal Power'
 	
 	if moveEffect.lifesteal > 0 and moveEffect.power != 0:
-		movePower.text += '(' + String.num(roundi(moveEffect.lifesteal * 100)) + '% Lifesteal)'
+		movePower.text += ' (' + String.num(roundi(moveEffect.lifesteal * 100)) + '% Lifesteal)'
 	
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'

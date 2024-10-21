@@ -376,8 +376,11 @@ func complete_cutscene():
 	if cutscene.staticEncounter != null:
 		PlayerResources.playerInfo.encounter = cutscene.staticEncounter
 		PlayerFinder.player.start_battle()
+	
 	cutscene = null
 	cutscene_completed.emit()
+	if PlayerFinder.player.actChanged:
+		PlayerFinder.player.play_act_changed_animation.call_deferred()
 	for tween in tweens:
 		if tween != null and tween.is_valid():
 			tween.kill()

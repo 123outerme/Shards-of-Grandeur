@@ -162,6 +162,7 @@ func turn_in_cur_step(tracker: QuestTracker, isAutoUpdate: bool = false) -> int:
 	
 	if allDone and tracker.quest.advanceActActerComplete:
 		currentAct += 1 # advance act after quest completion
+		PlayerResources.act_changed.emit()
 	
 	if not isAutoUpdate:
 		PlayerResources.story_requirements_updated.emit()

@@ -419,8 +419,13 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 		if not moveEffect.statusEffect.overwritesOtherStatuses or target.statusEffect.potency > moveEffect.statusEffect.potency:
 			return false
 	
+	var statusEffectivenessMultiplier: float = 1
+	if user != target:
+		statusEffectivenessMultiplier = target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type)
+	var statusChance: float = moveEffect.statusChance * statusEffectivenessMultiplier
+	
 	# status chance = 100%: auto-pass
-	if moveEffect.statusChance == 1:
+	if statusChance == 1:
 		return true
 	
 	var userStatChanges = StatChanges.new()
@@ -435,13 +440,9 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	if target.statusEffect != null and target.statusEffect.is_stat_altering():
 		targetStats = target.statusEffect.apply_stat_change(targetStats)
 	
-	var statusEffectivenessMultiplier: float = 1
-	if user != target:
-		statusEffectivenessMultiplier = target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type)
-	
 	var randomNum: float = randomNums[targetIdx] if targetIdx >= 0 else selfRandomNum
 	
-	return randomNum <= (moveEffect.statusChance * statusEffectivenessMultiplier) + \
+	return randomNum <= statusChance + \
 			0.3 * (userStats.affinity - targetStats.affinity) / (userStats.affinity + targetStats.affinity)
 
 func get_command_results(user: Combatant) -> String:
