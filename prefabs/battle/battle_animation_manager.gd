@@ -461,7 +461,7 @@ func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay
 
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition] + 3
+	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition] + 4
 
 ## Combatant will always be below shade
 func set_combatant_below_shade(combatantNode: CombatantNode) -> void:

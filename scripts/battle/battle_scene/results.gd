@@ -25,6 +25,7 @@ func show_text(newText: String):
 	ignoreOkPressed = false
 
 func _on_ok_button_pressed(queued: bool = false) -> void:
+	#print('ignore OK: ', ignoreOkPressed, ' / anim finished: ', animFinished, ' / queue press: ', okPressed)
 	if ignoreOkPressed:
 		return
 	
