@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://dwuxspmojcpu5"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_e70mi"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_rkmqc"]
+
+[sub_resource type="Resource" id="Resource_20bon"]
+script = ExtResource("2_rkmqc")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String](["nomad_camp"])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+
+[resource]
+script = ExtResource("1_e70mi")
+id = "nomad_camp"
+title = "Nomad Camp"
+storyRequirements = Array[ExtResource("2_rkmqc")]([SubResource("Resource_20bon")])
+description = "The Nomad Camp is a makeshift village in the middle of the Forbidden Desert, which the Nomads live in currently. They migrate from town to town, in search of whatever resources they can scavenge from fallen civilizations,"
+sortOrder = 0
