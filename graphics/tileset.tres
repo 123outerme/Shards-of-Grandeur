@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=56 format=3 uid="uid://ccf5vxiigjqru"]
+[gd_resource type="TileSet" load_steps=58 format=3 uid="uid://ccf5vxiigjqru"]
 
 [ext_resource type="Texture2D" uid="uid://cw74wj0lme24k" path="res://graphics/terrain/grass.png" id="1_twi3w"]
 [ext_resource type="Texture2D" uid="uid://bbrbj4xgtnrrm" path="res://graphics/structures/trees.png" id="2_u6f08"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://tx234mjs4iq" path="res://graphics/terrain/sandy_desert.png" id="18_bq82c"]
 [ext_resource type="Texture2D" uid="uid://dd8klvum3g52q" path="res://graphics/terrain/burned_wasteland.png" id="19_kfmk3"]
 [ext_resource type="Texture2D" uid="uid://c186t5piuy5bj" path="res://graphics/structures/desert_structures.png" id="20_gc2g3"]
+[ext_resource type="Texture2D" uid="uid://b2vt2a055fd2o" path="res://graphics/structures/roadblocks.png" id="21_lf37y"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_67n43"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1558,6 +1559,26 @@ texture = ExtResource("20_gc2g3")
 4:3/0/z_index = -1
 4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -8, 6, -4, 6, 8, 0.6875, 8, -4, 8, 0, -8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a281n"]
+texture = ExtResource("21_lf37y")
+3:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+3:4/0 = 0
+2:2/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+0:0/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+1:5/0 = 0
+0:5/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgjr5"]
 texture = ExtResource("5_k7gup")
 0:0/0 = 0
@@ -2255,3 +2276,4 @@ sources/22 = SubResource("TileSetAtlasSource_xey58")
 sources/24 = SubResource("TileSetAtlasSource_0cdi5")
 sources/25 = SubResource("TileSetAtlasSource_4vkuw")
 sources/26 = SubResource("TileSetAtlasSource_44y33")
+sources/27 = SubResource("TileSetAtlasSource_a281n")
