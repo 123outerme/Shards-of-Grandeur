@@ -6,6 +6,7 @@ signal tooltip_panel_ok_pressed
 
 @export var moveEffect: MoveEffect = null
 @export var isSurgeEffect: bool = false
+@export var tooltipPanel: TooltipPanel
 
 @onready var detailsTitleLabel: RichTextLabel = get_node('DetailsTitle')
 @onready var moveTargets: RichTextLabel = get_node("BaseEffectPanel/MoveTargets")
@@ -27,8 +28,6 @@ signal tooltip_panel_ok_pressed
 
 @onready var surgePanel: Panel = get_node('SurgePanel')
 @onready var surgeVBox: VBoxContainer = get_node('SurgePanel/VBoxContainer')
-
-@onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
 
 var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
@@ -130,9 +129,7 @@ func _on_status_help_button_pressed():
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
 	tooltip_panel_opened.emit()
-	tooltipPanel.z_index = 1
 
 func _on_tooltip_panel_ok_pressed():
 	helpButtonPressed.grab_focus()
 	tooltip_panel_ok_pressed.emit()
-	tooltipPanel.z_index = -1

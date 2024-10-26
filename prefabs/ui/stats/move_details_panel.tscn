@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0s2dmndrj7t7"]
+[gd_scene load_steps=8 format=3 uid="uid://b0s2dmndrj7t7"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_fmbi4"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_details_panel.gd" id="2_kuf31"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_yyfev"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_nhktq"]
 [ext_resource type="PackedScene" uid="uid://c6tae2tdspbmf" path="res://prefabs/ui/stats/move_effect_details_panel.tscn" id="6_1bvf3"]
+[ext_resource type="PackedScene" uid="uid://cxs31up6d6dxj" path="res://prefabs/ui/tooltip_panel.tscn" id="7_m8be5"]
 
 [node name="MoveDetailsPanel" type="Control"]
 z_index = 1
@@ -44,24 +45,14 @@ grow_horizontal = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
+[node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel") instance=ExtResource("6_1bvf3")]
 layout_mode = 2
+tooltipPanel = NodePath("../../../TooltipPanel")
 
-[node name="TooltipPanel" parent="Panel/HBoxContainer/ChargeEffectDetailsPanel" index="3"]
-offset_left = -96.0
-offset_top = -257.0
-offset_right = 644.0
-offset_bottom = 153.0
-
-[node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" instance=ExtResource("6_1bvf3")]
+[node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel") instance=ExtResource("6_1bvf3")]
 layout_mode = 2
 isSurgeEffect = true
-
-[node name="TooltipPanel" parent="Panel/HBoxContainer/SurgeEffectDetailsPanel" index="3"]
-offset_left = -644.0
-offset_top = -247.0
-offset_right = 96.0
-offset_bottom = 143.0
+tooltipPanel = NodePath("../../../TooltipPanel")
 
 [node name="MoveName" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
@@ -136,6 +127,10 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
+
+[node name="TooltipPanel" parent="." instance=ExtResource("7_m8be5")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
 

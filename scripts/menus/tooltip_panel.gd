@@ -24,10 +24,12 @@ func initial_focus():
 
 func load_tooltip_panel():
 	visible = true
+	z_index = 1
 	initial_focus()
 	titleLabel.text = '[center]' + title + '[/center]'
 	detailsLabel.text = '[center]' + details + '[/center]'
 
 func _on_ok_button_pressed():
 	visible = false
+	z_index = 0
 	ok_pressed.emit()
