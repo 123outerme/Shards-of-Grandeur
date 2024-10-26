@@ -60,6 +60,7 @@ func _init(
 	i_prefElement4 = Move.Element.NONE,
 ):
 	pool = i_pool
+	signatureMoves = i_signatureMoves
 	preferredMove1Role = i_prefRole1
 	preferredMove1DmgType = i_prefType1
 	preferredMove1Element = i_prefElement1

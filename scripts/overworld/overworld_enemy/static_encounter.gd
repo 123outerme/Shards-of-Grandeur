@@ -101,7 +101,7 @@ func _init(
 	autoAllyArmor = i_autoAllyArmor
 	autoAllyWeapon = i_autoAllyWeapon
 	autoAllyMoves = i_autoAllyMoves
-	autoAllyShardSummoned = autoAllyShardSummoned
+	autoAllyShardSummoned = i_autoAllyShardSummoned
 	
 	specialBattleId = i_specialBattleId
 	canEscape = i_canEscape

@@ -241,6 +241,7 @@ func start_cutscene(newCutscene: Cutscene):
 		for npc in get_tree().get_nodes_in_group("NPC"):
 			npc.talkAlertSprite.visible = false
 	cutscene = newCutscene
+	cutscene.reset_internals()
 	timer = 0
 	skipCutsceneFrameIndex = -1
 	cutscene.calc_total_time()
