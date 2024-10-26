@@ -156,7 +156,12 @@ func save_data(save_path) -> int:
 	data.spriteState = spriteState
 	data.animation = npcSprite.animation
 	data.flipH = flip_h
-	data.position = position
+	if NavAgent.returnToFollowerHome:
+		data.animation = get_stand_animation()
+		data.position = data.followerHomePosition # make the NPC automatically jump to the follower home if trying to go back there now
+	else:
+		data.animation = npcSprite.animation
+		data.position = position
 	data.combatMode = combatMode
 	data.selectedTarget = NavAgent.selectedTarget
 	data.loops = NavAgent.loops
