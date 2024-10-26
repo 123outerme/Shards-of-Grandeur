@@ -14,6 +14,7 @@ signal orb_count_change(change: int)
 @export var readOnly: bool = true
 @export_range(0, Combatant.MAX_ORBS - 1) var minOrbs: int = 0
 @export_range(1, Combatant.MAX_ORBS) var maxOrbs: int = Combatant.MAX_ORBS
+@export_range(1, Combatant.MAX_ORBS) var softMaxOrbs: int = Combatant.MAX_ORBS
 @export var modifySfx: AudioStream = null
 @export var atBoundSfx: AudioStream = null
 @export var particlesMode: OrbParticlesMode = OrbParticlesMode.OFF
@@ -69,6 +70,7 @@ func update_orb_display():
 	for idx in range(len(orbUnits)):
 		var unit: OrbUnitDisplay = orbUnits[idx] as OrbUnitDisplay
 		unit.filledOrb = idx < currentOrbs if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx <= currentOrbs
+		unit.cannotSpend = (idx >= softMaxOrbs if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx > softMaxOrbs) and not readOnly
 		unit.readOnly = readOnly \
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) < minOrbs - 1 \
 				or (idx if alignment != BoxContainer.ALIGNMENT_END else len(orbUnits) - idx - 1) >= maxOrbs
@@ -135,7 +137,7 @@ func _orb_hovered(index: int) -> void:
 	lastOrbHovered = index
 
 func _input(event) -> void:
-	if event is InputEventMouseMotion:
+	if focused and event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and lastOrbHovered != lastOrbClicked and lastOrbHovered != -1:
 			_orb_clicked(lastOrbHovered)
 

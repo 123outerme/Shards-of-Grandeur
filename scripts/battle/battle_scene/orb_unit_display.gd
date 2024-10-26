@@ -8,7 +8,10 @@ signal being_hovered(index: int)
 @export var filledOrbSprite: Texture2D = null
 @export var unfilledHoverOrbSprite: Texture2D = null
 @export var filledHoverOrbSprite: Texture2D = null
+@export var cannotSpendOrbSprite: Texture2D = null
+@export var cannotSpendHoverOrbSprite: Texture2D = null
 @export var filledOrb: bool = false
+@export var cannotSpend: bool = false
 @export var readOnly: bool = true
 
 @export var gainParticlePreset: ParticlePreset = null
@@ -30,7 +33,13 @@ func load_orb_unit_display() -> void:
 	else:
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		#focus_mode = Control.FOCUS_CLICK
-	sprite.texture = filledOrbSprite if filledOrb else unfilledOrbSprite
+	if filledOrb:
+		if cannotSpend and not readOnly:
+			sprite.texture = cannotSpendOrbSprite
+		else:
+			sprite.texture = filledOrbSprite
+	else:
+		sprite.texture = unfilledOrbSprite
 
 func _on_gui_input(event) -> void:
 	if not readOnly:
@@ -40,7 +49,13 @@ func _on_gui_input(event) -> void:
 
 func _on_mouse_entered() -> void:
 	if not readOnly:
-		sprite.texture = filledHoverOrbSprite if filledOrb else unfilledHoverOrbSprite
+		if filledOrb:
+			if cannotSpend and not readOnly:
+				sprite.texture = cannotSpendHoverOrbSprite
+			else:
+				sprite.texture = filledHoverOrbSprite
+		else:
+			sprite.texture = unfilledHoverOrbSprite
 		being_hovered.emit(index)
 
 func _on_mouse_exited() -> void:

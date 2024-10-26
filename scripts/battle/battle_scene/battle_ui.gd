@@ -76,6 +76,8 @@ func apply_menu_state():
 		# connect these first so the flow of battle button takes precedence
 		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(surge.orbControl)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(surge.orbControl)
+	else:
+		surge.orbControl.focused = false
 
 	results.visible = menuState == BattleState.Menu.RESULTS \
 			or menuState == BattleState.Menu.PRE_BATTLE or menuState == BattleState.Menu.PRE_ROUND \

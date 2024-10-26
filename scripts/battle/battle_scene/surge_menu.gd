@@ -23,7 +23,7 @@ func initial_focus():
 func load_surge():
 	orbControl.minOrbs = max(0, battleUI.commandingCombatant.combatant.command.move.surgeEffect.orbChange * -1)
 	orbControl.maxOrbs = 10
-	#orbControl.maxOrbs = min(10, battleUI.commandingCombatant.combatant.orbs)
+	orbControl.softMaxOrbs = min(10, battleUI.commandingCombatant.combatant.orbs)
 	orbControl.update_orb_count(orbControl.minOrbs, false, false)
 	_on_orb_display_orb_count_change(orbControl.minOrbs)
 	initial_focus()
