@@ -29,6 +29,7 @@ var encounterColliderOffset: Vector2 = Vector2.ZERO
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
 @onready var chaseRangeShape: CollisionShape2D = get_node("ChaseRange/ChaseRangeShape")
 @onready var encounterColliderShape: CollisionShape2D = get_node('EnemyEncounterCollider/EncounterColliderShape')
+@onready var collisionShape: CollisionShape2D = get_node('CollisionShape')
 
 # NOTE: for saving data, the complete filepath comes from the EnemySpawner itself to preserve spawner state
 # so all that needs to be used for save/load functionality is the save_path coming through
@@ -44,8 +45,11 @@ func _ready():
 		if not overrideRanges:
 			chaseRange = combatantOverworld.chaseRange
 			runningChaseRange = combatantOverworld.runningChaseRange
-		var colliderRect: RectangleShape2D = encounterColliderShape.shape as RectangleShape2D
-		colliderRect.size = combatantOverworld.encounterCollisionSize
+		var colliderRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
+		colliderRect.size = combatantOverworld.encounterCollisionSize - Vector2(1, 1) # 1 px smaller than encounter collider
+		collisionShape.position = combatantOverworld.encounterCollisionCenter
+		var encounterColliderRect: RectangleShape2D = encounterColliderShape.shape as RectangleShape2D
+		encounterColliderRect.size = combatantOverworld.encounterCollisionSize
 		encounterColliderShape.position = combatantOverworld.encounterCollisionCenter
 		encounterColliderOffset = combatantOverworld.encounterCollisionCenter
 	
@@ -81,6 +85,7 @@ func _process(delta):
 		if vel.x > 0:
 			enemySprite.flip_h = true
 			encounterColliderShape.position.x = -1 * encounterColliderOffset.x
+			collisionShape.position.x = -1 * encounterColliderOffset.x
 		if vel.length() > 0:
 			enemySprite.play('walk')
 		else:
