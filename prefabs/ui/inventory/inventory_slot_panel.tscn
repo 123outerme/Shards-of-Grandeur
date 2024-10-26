@@ -109,7 +109,7 @@ theme_override_font_sizes/bold_font_size = 12
 text = "456,789"
 fit_content = true
 
-[node name="CenterEqiuppedTo" type="VBoxContainer" parent="."]
+[node name="CenterEquippedTo" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -123,7 +123,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="EquippedTo" type="RichTextLabel" parent="CenterEqiuppedTo"]
+[node name="EquippedTo" type="RichTextLabel" parent="CenterEquippedTo"]
 layout_mode = 2
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
@@ -133,6 +133,29 @@ theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
 text = "[right]Equipped to:
 Combatant_Name_Here[/right]"
+fit_content = true
+
+[node name="CenterBuySellNotes" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -349.0
+offset_right = -194.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="BuySellNotes" type="RichTextLabel" parent="CenterBuySellNotes"]
+layout_mode = 2
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[center]Not available for purchase yet...[/center]"
 fit_content = true
 
 [node name="CenterButtons" type="VBoxContainer" parent="."]

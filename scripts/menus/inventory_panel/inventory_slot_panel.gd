@@ -19,9 +19,11 @@ var onscreen: bool = false
 @onready var itemName: RichTextLabel = get_node("CenterItemName/ItemName")
 @onready var itemType: RichTextLabel = get_node("CenterItemType/ItemType")
 @onready var itemCount: RichTextLabel = get_node("CenterItemCount/ItemCount")
-@onready var equippedTo: RichTextLabel = get_node("CenterEqiuppedTo/EquippedTo")
+@onready var equippedTo: RichTextLabel = get_node("CenterEquippedTo/EquippedTo")
 @onready var centerItemCost: VBoxContainer = get_node("CenterItemCost")
 @onready var itemCost: RichTextLabel = get_node("CenterItemCost/ItemCost")
+@onready var centerBuySellNotes: VBoxContainer = get_node('CenterBuySellNotes')
+@onready var buySellNotes: RichTextLabel = get_node('CenterBuySellNotes/BuySellNotes')
 @onready var useButton: Button = get_node("CenterButtons/HBoxContainer/UseButton")
 @onready var equipButton: Button = get_node("CenterButtons/HBoxContainer/EquipButton")
 @onready var trashButton: Button = get_node("CenterButtons/HBoxContainer/TrashButton")
@@ -68,6 +70,23 @@ func load_inventory_slot_panel():
 	
 	sellButton.visible = isShopItem and isPlayerItem
 	sellButton.disabled = isEquipped or not canOtherPartyHold or inventorySlot.item.cost < 0
+	
+	centerBuySellNotes.visible = (buyButton.disabled or sellButton.disabled) and (buyButton.visible or sellButton.visible)
+	if centerBuySellNotes.visible:
+		if buyButton.visible and buyDisabled:
+			buySellNotes.text = '[center]Not available for purchase yet...[/center]'
+		elif not canOtherPartyHold and (buyButton.visible or sellButton.visible):
+			if buyButton.visible:
+				buySellNotes.text = "[center]You can't hold any more![/center]"
+			else:
+				buySellNotes.text = "[center]Shop can't hold any more![/center]"
+		elif buyButton.visible and inventorySlot.item.cost > PlayerResources.playerInfo.gold:
+			buySellNotes.text = '[center]Not enough gold...[/center]'
+		# not needed: currently equipped to text will tell the player enough
+		#elif sellButton.visible and isEquipped:
+		#	buySellNotes.text = '[center]Currently equipped...[/center]'
+		else:
+			buySellNotes.text = ''
 	
 	# then, if it's not onscreen, wait until it enters the screen to load it
 	if not onscreen:
