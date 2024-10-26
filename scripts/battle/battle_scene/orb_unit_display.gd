@@ -15,6 +15,7 @@ signal being_hovered(index: int)
 @export var readOnly: bool = true
 
 @export var gainParticlePreset: ParticlePreset = null
+@export var gainCannotSpendParticlePreset: ParticlePreset = null
 @export var spendParticlePreset: ParticlePreset = null
 
 var index: int = 0
@@ -62,7 +63,7 @@ func _on_mouse_exited() -> void:
 	load_orb_unit_display()
 
 func play_gain_particles() -> void:
-	particleEmitter.preset = gainParticlePreset
+	particleEmitter.preset = gainCannotSpendParticlePreset if cannotSpend else gainParticlePreset
 	particleEmitter.set_make_particles(true)
 	
 func play_spend_particles(duration: float, particleCount: int, mirror: bool) -> void:

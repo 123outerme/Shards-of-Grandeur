@@ -62,9 +62,11 @@ func apply_menu_state():
 	if moves.visible:
 		battleController.state.moveEffectType = Move.MoveEffectType.CHARGE if menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE
 		moves.load_moves()
+		battlePanels.flowOfBattle.connect_fob_focus_button_to(moves.get_node('Move2InfoButton'))
+		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(moves.get_node('Move1InfoButton'))
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(moves.get_node('MoveButton2'))
 		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(moves.get_node('MoveButton1'))
-	
+
 	targets.visible = menuState == BattleState.Menu.PICK_TARGETS
 	if targets.visible:
 		targets.referringMenu = prevMenu

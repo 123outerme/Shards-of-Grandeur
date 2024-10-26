@@ -2,6 +2,7 @@ extends Control
 class_name MovesMenu
 
 @export var battleUI: BattleUI
+@export var moveDetailsPanel: MoveDetailsPanel
 
 @onready var backButton: Button = get_node("BackButton")
 
@@ -25,6 +26,7 @@ func load_moves():
 	var setFocus: bool = false
 	for i in range(4): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
+		var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
 		if i < len(battleUI.commandingCombatant.combatant.stats.moves) and battleUI.commandingCombatant.combatant.stats.moves[i] != null: # if this move slot exists
 			var moveEffect: MoveEffect = battleUI.commandingCombatant.combatant.stats.moves[i].\
 					get_effect_of_type(Move.MoveEffectType.CHARGE if battleUI.menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE)
@@ -39,7 +41,18 @@ func load_moves():
 		else: # if the move slot doesn't exist
 			moveBtn.text = '-----'
 			moveBtn.disabled = true
-			
+		if moveBtn.disabled:
+			moveInfoBtn.visible = false
+		''' do we need to do this? or is it OK as is
+		var moveBtnFocusNeighbor: String = moveBtn.get_path_to(moveInfoBtn)
+		if moveBtn.disabled:
+			moveInfoBtn.visible = false
+			moveBtnFocusNeighbor = '.'
+		if i % 2 == 0:
+			moveBtn.focus_neighbor_left = moveBtnFocusNeighbor
+		else:
+			moveBtn.focus_neighbor_right = moveBtnFocusNeighbor
+		#'''
 	if not setFocus:
 		backButton.grab_focus()
 
@@ -66,5 +79,22 @@ func _on_move_button_3_pressed():
 func _on_move_button_4_pressed():
 	move_click(3)
 
+func _on_move_info_button_pressed(idx: int) -> void:
+	if len(battleUI.commandingCombatant.combatant.stats.moves) > idx:
+		moveDetailsPanel.move = battleUI.commandingCombatant.combatant.stats.moves[idx]
+		moveDetailsPanel.load_move_details_panel()
+
 func _on_back_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.ALL_COMMANDS)
+
+func _on_move_details_panel_back_pressed() -> void:
+	for i in range(4):
+		if battleUI.commandingCombatant.combatant.stats.moves[i] == moveDetailsPanel.move:
+			var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
+			if moveInfoBtn != null and moveInfoBtn.visible:
+				moveInfoBtn.grab_focus()
+			else:
+				var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
+				moveBtn.grab_focus()
+			return
+	backButton.grab_focus()

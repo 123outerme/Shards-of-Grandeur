@@ -77,3 +77,13 @@ func connect_help_buttons():
 func _on_back_button_pressed():
 	visible = false
 	back_pressed.emit()
+
+func _on_tooltip_panel_ok_pressed() -> void:
+	if chargeEffectDetails.helpButtonPressed != null:
+		chargeEffectDetails.helpButtonPressed.grab_focus()
+	elif surgeEffectDetails.helpButtonPressed:
+		surgeEffectDetails.helpButtonPressed.grab_focus()
+	else:
+		backButton.grab_focus()
+	chargeEffectDetails.helpButtonPressed = null
+	surgeEffectDetails.helpButtonPressed = null

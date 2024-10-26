@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c4ir6fh3a3alo"]
+[gd_scene load_steps=39 format=3 uid="uid://c4ir6fh3a3alo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_controller.gd" id="1_b2bd7"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_nd8f1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="10_ypcoj"]
 [ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="11_05pqh"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/surge_menu.gd" id="11_scq4g"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="12_3bihb"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="12_flx7k"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="12_ip5fm"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
@@ -36,6 +37,7 @@
 [ext_resource type="Theme" uid="uid://cdkeyupyiaurh" path="res://themes/battle_survive_counter_theme.tres" id="21_q7jdm"]
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="21_r3cu2"]
 [ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="27_4cava"]
+[ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="37_iyd3l"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("globalMarker") groups=["Persist", "Scenes"]]
 script = ExtResource("1_b2bd7")
@@ -246,11 +248,11 @@ theme_override_font_sizes/font_size = 20
 text = "Back to
 Player Command"
 
-[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
-visible = false
+[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI", "moveDetailsPanel")]
 layout_mode = 2
 script = ExtResource("9_fgnxg")
 battleUI = NodePath("../../../..")
+moveDetailsPanel = NodePath("../../../../UIPanels/MoveDetailsPanel")
 
 [node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
 custom_minimum_size = Vector2(360, 50)
@@ -333,6 +335,47 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
+
+[node name="Move1InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 214.0
+offset_top = 42.0
+offset_right = 234.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_3bihb")
+icon_alignment = 1
+
+[node name="Move2InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 1006.0
+offset_top = 42.0
+offset_right = 1026.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_3bihb")
+icon_alignment = 1
+
+[node name="Move3InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 214.0
+offset_top = 102.0
+offset_right = 234.0
+offset_bottom = 122.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_3bihb")
+icon_alignment = 1
+
+[node name="Move4InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
+custom_minimum_size = Vector2(16, 16)
+offset_left = 1006.0
+offset_top = 102.0
+offset_right = 1026.0
+offset_bottom = 122.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_3bihb")
+icon_alignment = 1
 
 [node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
 visible = false
@@ -900,12 +943,20 @@ offset_top = -360.0
 offset_right = -640.0
 offset_bottom = -360.0
 
+[node name="MoveDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("37_iyd3l")]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
 [node name="TurnExecutor" type="Node" parent="." node_paths=PackedStringArray("battleController", "battleUI")]
 script = ExtResource("15_2cnm6")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
 [node name="Shade" type="ColorRect" parent="."]
+visible = false
 z_index = 10
 custom_minimum_size = Vector2(320, 240)
 anchors_preset = 8
@@ -936,6 +987,10 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton3" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_3_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton4" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_4_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move1InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [0]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move2InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [1]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move3InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [2]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move4InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [3]]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
 [connection signal="orb_count_change" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/OrbDisplay" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_orb_display_orb_count_change"]
@@ -957,3 +1012,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="back_pressed" from="BattleCam/UIPanels/StatsPanelNode" to="BattleCam" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
 [connection signal="back_pressed" from="BattleCam/UIPanels/ItemDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_item_details_panel_back_pressed"]
+[connection signal="back_pressed" from="BattleCam/UIPanels/MoveDetailsPanel" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_details_panel_back_pressed"]
