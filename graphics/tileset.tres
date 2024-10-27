@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=58 format=3 uid="uid://ccf5vxiigjqru"]
+[gd_resource type="TileSet" load_steps=60 format=3 uid="uid://ccf5vxiigjqru"]
 
 [ext_resource type="Texture2D" uid="uid://cw74wj0lme24k" path="res://graphics/terrain/grass.png" id="1_twi3w"]
 [ext_resource type="Texture2D" uid="uid://bbrbj4xgtnrrm" path="res://graphics/structures/trees.png" id="2_u6f08"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dd8klvum3g52q" path="res://graphics/terrain/burned_wasteland.png" id="19_kfmk3"]
 [ext_resource type="Texture2D" uid="uid://c186t5piuy5bj" path="res://graphics/structures/desert_structures.png" id="20_gc2g3"]
 [ext_resource type="Texture2D" uid="uid://b2vt2a055fd2o" path="res://graphics/structures/roadblocks.png" id="21_lf37y"]
+[ext_resource type="Texture2D" uid="uid://g2ulyay35y7m" path="res://graphics/terrain/animated_terrain.png" id="22_frd6k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_67n43"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -439,6 +440,7 @@ texture = ExtResource("9_j75jb")
 3:1/0/terrains_peering_bit/bottom_left_corner = 3
 3:1/0/terrains_peering_bit/top_left_corner = 3
 3:1/0/terrains_peering_bit/top_right_corner = 3
+3:0/animation_columns = 1
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:0/0 = 0
@@ -1594,6 +1596,45 @@ texture = ExtResource("21_lf37y")
 0:5/0 = 0
 0:5/0/z_index = -1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wewx"]
+texture = ExtResource("22_frd6k")
+0:0/next_alternative_id = 2
+0:0/animation_columns = 4
+0:0/animation_frame_0/duration = 0.5
+0:0/animation_frame_1/duration = 0.5
+0:0/animation_frame_2/duration = 0.5
+0:0/animation_frame_3/duration = 0.5
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/1 = 1
+0:1/next_alternative_id = 2
+0:1/animation_columns = 4
+0:1/animation_frame_0/duration = 0.5
+0:1/animation_frame_1/duration = 0.5
+0:1/animation_frame_2/duration = 0.5
+0:1/animation_frame_3/duration = 0.5
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/1 = 1
+0:2/next_alternative_id = 2
+0:2/animation_columns = 4
+0:2/animation_frame_0/duration = 0.5
+0:2/animation_frame_1/duration = 0.5
+0:2/animation_frame_2/duration = 0.5
+0:2/animation_frame_3/duration = 0.5
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/1 = 1
+0:3/next_alternative_id = 2
+0:3/animation_columns = 4
+0:3/animation_frame_0/duration = 0.5
+0:3/animation_frame_1/duration = 0.5
+0:3/animation_frame_2/duration = 0.5
+0:3/animation_frame_3/duration = 0.5
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/1 = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgjr5"]
 texture = ExtResource("5_k7gup")
 0:0/0 = 0
@@ -2292,3 +2333,4 @@ sources/24 = SubResource("TileSetAtlasSource_0cdi5")
 sources/25 = SubResource("TileSetAtlasSource_4vkuw")
 sources/26 = SubResource("TileSetAtlasSource_44y33")
 sources/27 = SubResource("TileSetAtlasSource_a281n")
+sources/28 = SubResource("TileSetAtlasSource_2wewx")
