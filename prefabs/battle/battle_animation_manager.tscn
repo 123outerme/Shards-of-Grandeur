@@ -18,7 +18,7 @@ gizmo_extents = 5.0
 metadata/_edit_lock_ = true
 
 [node name="EnemyTeamMarker" type="Marker2D" parent="."]
-position = Vector2(9, -20)
+position = Vector2(9, -22)
 gizmo_extents = 5.0
 metadata/_edit_lock_ = true
 
@@ -61,7 +61,7 @@ position = Vector2(4, 16)
 
 [node name="EnemyCombatant1" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 2
-position = Vector2(36, -20)
+position = Vector2(36, -22)
 battlePosition = "Center"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -79,7 +79,7 @@ position = Vector2(16, 0)
 
 [node name="EnemyCombatant2" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 1
-position = Vector2(52, -51)
+position = Vector2(52, -53)
 battlePosition = "Top"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")
@@ -97,7 +97,7 @@ position = Vector2(0, 16)
 
 [node name="EnemyCombatant3" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 3
-position = Vector2(58, 9)
+position = Vector2(58, 7)
 battlePosition = "Bottom"
 allyTeamMarker = NodePath("../EnemyTeamMarker")
 enemyTeamMarker = NodePath("../PlayerTeamMarker")

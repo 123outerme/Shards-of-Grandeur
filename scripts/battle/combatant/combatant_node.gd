@@ -68,6 +68,7 @@ var initialEventTextContainerPos: Vector2
 
 @onready var eventTextContainer: Control = get_node('SpriteContainer/EventTextContainer')
 @onready var hpTag: Panel = get_node('HPTag')
+@onready var nameText: RichTextLabel = get_node('HPTag/NameText')
 @onready var lvText: RichTextLabel = get_node('HPTag/LvText')
 @onready var hpText: RichTextLabel = get_node('HPTag/LvText/HPText')
 @onready var hpProgressBar: TextureProgressBar = get_node('HPTag/LvText/HPProgressBar')
@@ -177,6 +178,7 @@ func update_hp_tag():
 			return
 	
 	hpTag.visible = not disableHpTag
+	nameText.text = '[center]' + combatant.disp_name() + '[/center]'
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
