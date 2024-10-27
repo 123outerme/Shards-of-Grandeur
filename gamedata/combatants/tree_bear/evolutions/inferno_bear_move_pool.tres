@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=5 format=3 uid="uid://by2fe5sgba7e3"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_sdt3s"]
+[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="2_77ntk"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_hp1nd"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_i603n"]
+
+[resource]
+script = ExtResource("2_i603n")
+pool = Array[ExtResource("1_sdt3s")]([ExtResource("2_hp1nd"), ExtResource("2_77ntk")])
+signatureMoves = Array[ExtResource("1_sdt3s")]([])
+preferredMove1Role = 0
+preferredMove1DmgType = -1
+preferredMove1Element = 2
+preferredMove2Role = 0
+preferredMove2DmgType = -1
+preferredMove2Element = 2
+preferredMove3Role = 0
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0

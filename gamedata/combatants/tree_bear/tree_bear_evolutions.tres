@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Evolutions" load_steps=2 format=3 uid="uid://cgr5vbkjlpdt4"]
+[gd_resource type="Resource" script_class="Evolutions" load_steps=4 format=3 uid="uid://cgr5vbkjlpdt4"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="1_jx35x"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/evolutions.gd" id="1_tqspq"]
+[ext_resource type="Resource" uid="uid://1vsxdl2n7c4p" path="res://gamedata/combatants/tree_bear/evolutions/evolution_inferno_bear.tres" id="2_7k6nj"]
 
 [resource]
 script = ExtResource("1_tqspq")
-evolutionList = Array[Resource("res://scripts/battle/combatant/evolution.gd")]([])
+evolutionList = Array[ExtResource("1_jx35x")]([ExtResource("2_7k6nj")])
