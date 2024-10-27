@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://xgwynsla8o42"]
+
+[ext_resource type="Texture2D" uid="uid://dklqlv1k2dt1" path="res://graphics/items/weapons/kindling.png" id="1_45etb"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_lym5k"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_4p8is"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_b1024"]
+
+[sub_resource type="Resource" id="Resource_5rykk"]
+script = ExtResource("2_4p8is")
+element = 2
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_kspps"]
+script = ExtResource("3_b1024")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 4
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_4p8is")]([SubResource("Resource_5rykk")])
+
+[resource]
+script = ExtResource("1_lym5k")
+statChanges = SubResource("Resource_kspps")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_45etb")
+itemName = "Kindling"
+itemType = 2
+itemDescription = "This burning pile of sticks is perfect for getting a fire started. The embers burning from it seem a little too lively, like they're ready to burn a whole forest..."
+cost = 10
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 0
