@@ -9,11 +9,19 @@ class_name RichTextLabelScroller
 @onready var scrollDownBtn: TextureButton = get_node('ScrollDownButton')
 
 func _process(delta: float) -> void:
-	if label != null and label.scroll_active and label.get_visible_line_count() < label.get_line_count():
-		if not visible:
-			visible = true
-			update_scroll_buttons()
-	elif visible:
+	var enabled: bool = true
+	if label != null and label.scroll_active:
+		var labelScrollbar: VScrollBar = label.get_v_scroll_bar()
+		if labelScrollbar != null and labelScrollbar.visible and labelScrollbar.max_value != labelScrollbar.min_value:
+			if not visible:
+				visible = true
+				update_scroll_buttons()
+		else:
+			enabled = false
+	else:
+		enabled = false
+	
+	if not enabled and visible:
 		if scrollUpBtn.has_focus() or scrollDownBtn.has_focus():
 			if bailoutFocusControl != null:
 				bailoutFocusControl.grab_focus()
@@ -22,7 +30,7 @@ func _process(delta: float) -> void:
 		visible = false
 
 func update_scroll_buttons() -> void:
-	if label != null and label.scroll_active and label.get_visible_line_count() < label.get_line_count():
+	if label != null and label.scroll_active:
 		var vScrollBar: VScrollBar = label.get_v_scroll_bar()
 		if vScrollBar != null:
 			scrollUpBtn.disabled = vScrollBar.value == vScrollBar.min_value
