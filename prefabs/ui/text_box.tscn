@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx00oa0dadpvj"]
+[gd_scene load_steps=13 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
 [ext_resource type="AudioStream" uid="uid://djrhngjsps35t" path="res://audio/sfx/text_scrolling_mellow_low_note.mp3" id="2_oy0ha"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c0iwfmkk4vr4b" path="res://audio/sfx/dialogueskip_wiggle_f.mp3" id="4_fyq5h"]
 [ext_resource type="StyleBox" uid="uid://dq64op7nmd3n2" path="res://themes/text_box_panel.tres" id="4_p0x7t"]
 [ext_resource type="Theme" uid="uid://dgitjg5ag10ai" path="res://themes/dialogue_text_box_button_hbox.tres" id="8_5rr3o"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="8_k5l4x"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="9_ck181"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2p22"]
@@ -33,6 +34,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_qnltp")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_s2p22")
@@ -78,17 +81,26 @@ Line two
 Line three"
 scroll_active = false
 
+[node name="BoxContainerScroller" parent="Panel" node_paths=PackedStringArray("scrollContainer") instance=ExtResource("8_k5l4x")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = -57.0
+offset_bottom = -12.0
+grow_vertical = 0
+scrollContainer = NodePath("../ScrollBetterFollow")
+scrollPx = 360
+
 [node name="ScrollBetterFollow" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
-clip_contents = false
 custom_minimum_size = Vector2(0, 57)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
+offset_left = 48.0
 offset_top = -57.0
-offset_right = -25.0
+offset_right = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 follow_focus = true
@@ -97,7 +109,7 @@ script = ExtResource("9_ck181")
 boxContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollBetterFollow"]
-custom_minimum_size = Vector2(1250, 45)
+custom_minimum_size = Vector2(1204, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("8_5rr3o")

@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 		if labelScrollbar != null and labelScrollbar.visible and labelScrollbar.max_value != labelScrollbar.min_value:
 			if not visible:
 				visible = true
-				update_scroll_buttons()
+			update_scroll_buttons()
 		else:
 			enabled = false
 	else:

@@ -23,6 +23,7 @@ static var buttonScene: PackedScene = preload('res://prefabs/ui/sfx_button.tscn'
 @onready var SpeakerText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerText")
 @onready var ReadySprite: Sprite2D = get_node("Panel/ReadySprite")
 @onready var buttonContainer: HBoxContainer = get_node('Panel/ScrollBetterFollow/HBoxContainer')
+@onready var boxContainerScroller: BoxContainerScroller = get_node('Panel/BoxContainerScroller')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -92,6 +93,8 @@ func add_choices():
 	
 	delete_choices()
 	var buttonIdx: int = 0
+	var lastButton: Button = null
+	var maxBtnHeight: float = 40
 	for idx in range(len(dialogueItem.choices)):
 		var isValid: bool = dialogueItem.choices[idx].is_valid()
 		if dialogueItem.choices[idx].leadsTo != null:
@@ -121,18 +124,37 @@ func add_choices():
 			buttonContainer.add_child(button)
 			button.text = TextUtils.substitute_playername(choice.choiceBtn)
 			button.custom_minimum_size = choice.buttonDims
+			button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			if choice.buttonDims.y > maxBtnHeight:
+				maxBtnHeight = choice.buttonDims.y
 			button.visible = true
 			button.pressed.connect(_select_choice.bind(buttonIdx))
 			if buttonIdx == 0:
 				button.call_deferred('grab_focus')
+			if boxContainerScroller.bailoutFocusControl == null:
+				boxContainerScroller.bailoutFocusControl = button
+				boxContainerScroller.connect_scroll_left_right_neighbor(button)
+			if lastButton != null:
+				button.focus_neighbor_left = button.get_path_to(lastButton)
+				lastButton.focus_neighbor_right = lastButton.get_path_to(button)
+			lastButton = button
 			buttonIdx += 1
 		else:
 			if buttonIdx == 0:
 				refocus_choice(null) # focus the first button that is being shown
-		
+	
+	if lastButton != null:
+		boxContainerScroller.connect_scroll_right_left_neighbor(lastButton)
+	# focus loops back around
+	boxContainerScroller.connect_scroll_right_right_neighbor(boxContainerScroller.scrollLeftBtn)
+	boxContainerScroller.connect_scroll_left_left_neighbor(boxContainerScroller.scrollRightBtn)
+	
+	buttonContainer.custom_minimum_size.y = max(48, maxBtnHeight + 8)
+	
 	PlayerFinder.player.makingChoice = buttonIdx > 0
 
 func delete_choices():
+	boxContainerScroller.bailoutFocusControl = null
 	PlayerFinder.player.makingChoice = false
 	for node in buttonContainer.get_children():
 		node.queue_free()

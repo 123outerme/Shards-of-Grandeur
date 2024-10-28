@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://bdaddlnr5cve"]
+
+[ext_resource type="Script" path="res://scripts/menus/box_container_scroller.gd" id="1_h5acj"]
+[ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="2_mthu5"]
+[ext_resource type="Texture2D" uid="uid://dijg107qm1cji" path="res://graphics/ui/scroll_up_arrow.png" id="3_c2qk3"]
+[ext_resource type="Texture2D" uid="uid://dqc4nrcpfimuw" path="res://graphics/ui/scroll_up_arrow_pressed.png" id="4_tugdi"]
+[ext_resource type="Texture2D" uid="uid://cqtucckx42wun" path="res://graphics/ui/scroll_up_arrow_disabled.png" id="5_t1ghe"]
+[ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="6_1wic5"]
+[ext_resource type="Texture2D" uid="uid://r3ovug5wefcn" path="res://graphics/ui/scroll_down_arrow.png" id="7_2ffrw"]
+[ext_resource type="Texture2D" uid="uid://xjehrqail4i0" path="res://graphics/ui/scroll_down_arrow_pressed.png" id="8_cead4"]
+[ext_resource type="Texture2D" uid="uid://drbm0feky35v5" path="res://graphics/ui/scroll_down_arrow_disabled.png" id="9_cpcrg"]
+[ext_resource type="Texture2D" uid="uid://7705i57omimy" path="res://graphics/ui/scroll_left_arrow.png" id="10_dbe3v"]
+[ext_resource type="Texture2D" uid="uid://bc7jl6a762km6" path="res://graphics/ui/scroll_left_arrow_pressed.png" id="11_idv8f"]
+[ext_resource type="Texture2D" uid="uid://bfx5t7l57oesq" path="res://graphics/ui/scroll_left_arrow_disabled.png" id="12_j7veb"]
+[ext_resource type="Texture2D" uid="uid://dx4w8ru5ueauj" path="res://graphics/ui/scroll_right_arrow.png" id="13_owafi"]
+[ext_resource type="Texture2D" uid="uid://bbjklqf0kut16" path="res://graphics/ui/scroll_right_arrow_pressed.png" id="14_bn2yp"]
+[ext_resource type="Texture2D" uid="uid://bpsx2sebvbufn" path="res://graphics/ui/scroll_right_arrow_disabled.png" id="15_mqyqq"]
+
+[node name="BoxContainerScroller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_h5acj")
+
+[node name="ScrollUpButton" parent="." instance=ExtResource("2_mthu5")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_right = -32.0
+offset_bottom = 16.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+texture_normal = ExtResource("3_c2qk3")
+texture_pressed = ExtResource("4_tugdi")
+texture_disabled = ExtResource("5_t1ghe")
+texture_focused = ExtResource("6_1wic5")
+
+[node name="ScrollDownButton" parent="." instance=ExtResource("2_mthu5")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+texture_normal = ExtResource("7_2ffrw")
+texture_pressed = ExtResource("8_cead4")
+texture_disabled = ExtResource("9_cpcrg")
+texture_focused = ExtResource("6_1wic5")
+
+[node name="ScrollLeftButton" parent="." instance=ExtResource("2_mthu5")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -32.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+texture_normal = ExtResource("10_dbe3v")
+texture_pressed = ExtResource("11_idv8f")
+texture_disabled = ExtResource("12_j7veb")
+texture_focused = ExtResource("6_1wic5")
+
+[node name="ScrollRightButton" parent="." instance=ExtResource("2_mthu5")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+texture_normal = ExtResource("13_owafi")
+texture_pressed = ExtResource("14_bn2yp")
+texture_disabled = ExtResource("15_mqyqq")
+texture_focused = ExtResource("6_1wic5")
+
+[connection signal="pressed" from="ScrollUpButton" to="." method="_on_scroll_up_button_pressed"]
+[connection signal="pressed" from="ScrollDownButton" to="." method="_on_scroll_down_button_pressed"]
+[connection signal="pressed" from="ScrollLeftButton" to="." method="_on_scroll_up_button_pressed"]
+[connection signal="pressed" from="ScrollRightButton" to="." method="_on_scroll_down_button_pressed"]
