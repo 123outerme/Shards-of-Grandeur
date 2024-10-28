@@ -39,6 +39,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_vgn2d"]
@@ -56,6 +58,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_4ymml"]
@@ -79,6 +83,8 @@ endHoldCamera = false
 endFade = 1
 endFadeLength = 0.5
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_18ai2"]
@@ -96,6 +102,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_xjit7"]
@@ -122,6 +130,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_07ip4"]
@@ -139,6 +149,8 @@ endHoldCamera = false
 endFade = 2
 endFadeLength = 0.5
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ohtox"]
@@ -156,6 +168,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_7ewx0"]
@@ -182,6 +196,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_l0kiu"]
@@ -208,6 +224,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_c2ghu"]
@@ -225,6 +243,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_1ml4k"]
@@ -239,6 +259,7 @@ prereqSpecialBattles = Array[String](["hilltop_ambusher"])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["after_ambush"])
@@ -246,6 +267,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_d00tx")
@@ -256,3 +278,4 @@ unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String](["TilemapRoot/ChainLegionSoldier"])
 tempDisabledAfter = false
+notes = ""
