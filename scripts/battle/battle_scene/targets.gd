@@ -36,7 +36,10 @@ func load_targets():
 			printerr('Cannot find move effect for ', battleUI.commandingCombatant.combatant.command.move.moveName)
 		commandText.text += move.moveName
 		targets = moveEffect.targets
-		var effectTexts: Array[String] = moveEffect.get_short_description(battleUI.commandingCombatant.combatant.command.move.element)
+		var effectTexts: Array[String] = moveEffect.get_short_description(
+			battleUI.commandingCombatant.combatant.command.move.category,
+			battleUI.commandingCombatant.combatant.command.move.element
+		)
 		effectDesc.text = '[center]'
 		for text in effectTexts:
 			effectDesc.text += TextUtils.rich_text_substitute(text, Vector2i(32, 32)) + '\n'

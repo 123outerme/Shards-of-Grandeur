@@ -43,7 +43,10 @@ func _on_orb_display_orb_count_change(change: int):
 		confirmButton.disabled = true
 	else:
 		confirmButton.disabled = false
-	var effectTexts: Array[String] = battleUI.commandingCombatant.combatant.command.move.surgeEffect.apply_surge_changes(change).get_short_description(battleUI.commandingCombatant.combatant.command.move.element)
+	var effectTexts: Array[String] = battleUI.commandingCombatant.combatant.command.move.surgeEffect.apply_surge_changes(change).get_short_description(
+		battleUI.commandingCombatant.combatant.command.move.category,
+		battleUI.commandingCombatant.combatant.command.move.element
+	)
 	surgeChangesText.text = '[center]'
 	for text in effectTexts:
 		surgeChangesText.text += TextUtils.rich_text_substitute(text, Vector2i(32, 32)) + '\n'

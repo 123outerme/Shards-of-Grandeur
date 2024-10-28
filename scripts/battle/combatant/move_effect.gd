@@ -83,7 +83,7 @@ func _init(
 	statusChance = i_statusChance
 	surgeChanges = i_surgeChanges
 
-func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Array[String]:
+func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYSICAL, moveElement: Move.Element = Move.Element.NONE) -> Array[String]:
 	var effects: Array[String] = []
 	
 	if orbChange > 0:
@@ -93,7 +93,7 @@ func get_short_description(moveElement: Move.Element = Move.Element.NONE) -> Arr
 		var powerString: String = String.num(power)
 		if moveElement != Move.Element.NONE:
 			powerString += ' ' + Move.element_to_string(moveElement)
-		powerString += ' Power'
+		powerString += ' ' + Move.dmg_category_to_string(dmgCategory) + ' Power'
 		effects.append(powerString)
 	elif power < 0:
 		effects.append(String.num(power * -1) + ' Heal Power')
