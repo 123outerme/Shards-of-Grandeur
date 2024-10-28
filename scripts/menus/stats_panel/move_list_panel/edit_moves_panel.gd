@@ -5,8 +5,8 @@ signal replace_move(slot: int, newMove: Move)
 signal back_pressed
 
 enum MenuState {
-	SELECTING_MOVEPOOL_MOVE = 0,
-	SELECTING_NEW_SLOT = 1
+	SELECTING_MOVEPOOL_MOVE = 0, ## deciding which move to replace
+	SELECTING_NEW_SLOT = 1 ## deciding which slot to put the move selected
 }
 
 @export var moves: Array[Move] = []
@@ -91,13 +91,16 @@ func update_menu_state(grabFocus: bool = true):
 	moveListPanel.show_move_list_item_replace_btns(state == MenuState.SELECTING_NEW_SLOT)
 	movePoolPanel.show_select_buttons(state == MenuState.SELECTING_MOVEPOOL_MOVE, selectedMove, grabFocus)
 	
-	if state == MenuState.SELECTING_NEW_SLOT:
-		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.replaceButton)
-	elif moveListPanel.lastMovePanel != null:
-		backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.reorderButton)
-	
-	if moveListPanel.lastMovePanel != null:
-		moveListPanel.lastMovePanel.set_buttons_bottom_neighbor.call_deferred(moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton))
+	if state == MenuState.SELECTING_MOVEPOOL_MOVE:
+		if moveListPanel.lastMovePanel != null:
+			backButton.focus_neighbor_top = backButton.get_path_to(moveListPanel.lastMovePanel.reorderButton)
+			moveListPanel.lastMovePanel.set_buttons_bottom_neighbor.call_deferred(moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton))
+		else:
+			backButton.focus_neighbor_top = '.'
+	else:
+		var fourthItemPanel: MoveListItemPanel = moveListPanel.get_move_list_item(3)
+		backButton.focus_neighbor_top = backButton.get_path_to(fourthItemPanel.replaceButton)
+		fourthItemPanel.set_buttons_bottom_neighbor.call_deferred(fourthItemPanel.detailsButton.get_path_to(backButton))
 	
 	if movePoolPanel.firstMovePanel != null:
 		if state == MenuState.SELECTING_MOVEPOOL_MOVE:

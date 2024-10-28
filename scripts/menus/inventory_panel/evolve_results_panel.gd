@@ -9,6 +9,7 @@ class_name EvolveResultsPanel
 @export var combatantLosingEvolving: Combatant = null
 
 @onready var combatantSprite: AnimatedSprite2D = get_node('Panel/CombatantSpriteControl/CombatantSprite')
+@onready var evolveChangesText: RichTextLabel = get_node('Panel/EvolveChangesText')
 
 func load_evolve_results_panel():
 	var prevEvolutionStats: Stats = combatant.get_evolution_stats(prevEvolution)
@@ -30,29 +31,38 @@ func load_evolve_results_panel():
 	
 	# if stats were changed, tell the player
 	if switchEvolutionFlags != 0:
-		details += ' This form has grown since it has last seen battle:'
+		var pronounSingularCap: String = 'It'
+		var pronounSingular: String = 'it'
+		var pronounPossesive: String = 'its'
+		if combatant.save_name() == 'player':
+			pronounSingularCap = 'You'
+			pronounSingular = 'you'
+			pronounPossesive = 'your'
+		
+		evolveChangesText.text = '[center]This form has changed since it last saw battle:'
 		var changesStrings: Array[String] = []
 		if switchEvolutionFlags & 1 == 1: # 0b00001
 			if (switchEvolutionFlags >> 4) & 1 == 1: # 0b10000
-				changesStrings.append('It auto-allocated some Stat Points!')
+				changesStrings.append(pronounSingularCap + ' auto-allocated some Stat Points!')
 			else:
-				changesStrings.append('It may have Stat Points to allocate!')
+				changesStrings.append(pronounSingularCap + ' may have Stat Points to allocate!')
 		if (switchEvolutionFlags >> 1) & 1 == 1: # 0b00010
-			changesStrings.append('It has different moves in this form.')
+			changesStrings.append(pronounSingularCap + ' has different moves in this form.')
 		if (switchEvolutionFlags >> 2) & 1 == 1: # 0b00100
-			var forgotStr: String = 'It forgot how to use some moves'
+			var forgotStr: String = pronounSingularCap + ' forgot how to use some moves'
 			if (switchEvolutionFlags >> 3) & 1 == 1: # 0b01000
-				forgotStr += ', so it completely changed up its moveset!'
+				forgotStr += ', so ' + pronounSingular + ' completely changed up ' + pronounPossesive + ' moveset!'
 			else:
 				forgotStr += '.'
 			changesStrings.append(forgotStr)
 		for change in changesStrings:
-			details += '\n' + change
+			evolveChangesText.text += '\n' + change
+		evolveChangesText.text += '[/center]'
 	
 	combatantSprite.sprite_frames = combatant.get_sprite_frames()
-	if combatant.get_idle_size().x <= 16 and combatant.get_idle_size().y <= 16:
+	if combatant.get_idle_size().y <= 32:
 		combatantSprite.scale = Vector2(3, 3)
-	elif combatant.get_idle_size().x < 48 and combatant.get_idle_size().y < 48:
+	elif combatant.get_idle_size().y < 48:
 		combatantSprite.scale = Vector2(2, 2)
 	else:
 		combatantSprite.scale = Vector2(2, 2)

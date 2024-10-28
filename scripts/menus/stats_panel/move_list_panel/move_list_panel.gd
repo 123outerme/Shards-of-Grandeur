@@ -15,7 +15,8 @@ signal edit_moves_reorder_clicked(move: Move, index: int)
 @export var newMoveIndicator: Texture2D = null
 
 var previousControl: Control = null
-var lastMovePanel: MoveListItemPanel = null
+var firstMovePanel: MoveListItemPanel = null # first filled move slot's panel (if any)
+var lastMovePanel: MoveListItemPanel = null # last filled move slot's panel (if any)
 
 @onready var editMovesButton: Button = get_node("EditMovesButton")
 @onready var moveDetailsPanel: MoveDetailsPanel = get_node("MoveDetailsPanel")
@@ -26,6 +27,7 @@ func _ready():
 	
 func load_move_list_panel():
 	lastMovePanel = null
+	firstMovePanel = null
 	for i in range(4):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if lastMovePanel == null:
@@ -38,6 +40,8 @@ func load_move_list_panel():
 			itemPanel.showNewMoveIndicator = levelUp and level == moves[i].requiredLv
 			if moves[i] != null:
 				lastMovePanel = itemPanel
+				if firstMovePanel == null:
+					firstMovePanel = itemPanel
 		else:
 			itemPanel.move = null
 		itemPanel.load_move_list_item_panel()

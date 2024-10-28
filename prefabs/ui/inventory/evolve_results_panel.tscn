@@ -32,10 +32,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 200.0
-offset_top = -226.0
-offset_right = -200.0
-offset_bottom = 225.0
+offset_left = 100.0
+offset_top = -251.0
+offset_right = -100.0
+offset_bottom = 249.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_hrvd2")
@@ -49,7 +49,7 @@ offset_bottom = 12.0
 grow_horizontal = 2
 theme = ExtResource("3_u040c")
 bbcode_enabled = true
-text = "[center]Tooltip Title Goes Here[/center]"
+text = "[center]Combatant Name Goes Here Evolved Into Combatant Name Goes Here![/center]"
 fit_content = true
 
 [node name="TooltipDetails" type="RichTextLabel" parent="Panel"]
@@ -59,7 +59,28 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -269.0
+offset_top = -272.0
+offset_right = -10.0
+offset_bottom = -191.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]By Equipping the Item Name Goes Here Volume I, Combatant Name Goes Here has become Combatant Name Goes Here! Combatant Name Goes Here unequipped the Item Name Goes Here Volume I, and reverted back to Combatant Name Goes Here.[/center]"
+
+[node name="EvolveChangesText" type="RichTextLabel" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -191.0
 offset_right = -10.0
 offset_bottom = -61.0
 grow_horizontal = 2
@@ -70,12 +91,20 @@ theme_override_font_sizes/mono_font_size = 20
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
-text = "[center]Tooltip description text goes here. There should be plenty of space.However, there doesn't need to be too much describing happening here. Hopefully.
+text = "[center]This form has changed since it last saw battle:
+Line 1
+Line 2
 Line 3
-Line 4
-Line 5
-Line 6
-Line 7[/center]"
+Line 4[/center]"
+
+[node name="Line2D" type="Line2D" parent="Panel/EvolveChangesText"]
+z_index = -1
+position = Vector2(-10, 24)
+points = PackedVector2Array(245, 0, 840, 0)
+width = 2.0
+default_color = Color(0.564706, 0.576471, 0.6, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="OkButton" parent="Panel" instance=ExtResource("4_3t0y0")]
 custom_minimum_size = Vector2(80, 40)
@@ -104,9 +133,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -48.0
-offset_top = 78.0
+offset_top = 116.0
 offset_right = 48.0
-offset_bottom = 174.0
+offset_bottom = 212.0
 grow_horizontal = 2
 
 [node name="CombatantSprite" type="AnimatedSprite2D" parent="Panel/CombatantSpriteControl"]

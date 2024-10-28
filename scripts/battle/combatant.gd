@@ -232,7 +232,7 @@ func get_evolution() -> Evolution:
 # returns 0b00000 if no lv/move changes were made
 # adds 0b00001 if lv changed
 # adds 0b00010 if movepool changed
-# adds 0b00100 if assigned moves changed
+# adds 0b00100 if some moves were found invalid (empty slots or not in the movepool)
 # adds 0b01000 if ALL moves were found invalid
 # adds 0b10000 if stat pts were automatically assigned
 func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: bool = false, overrideStatAllocStrat: StatAllocationStrategy = null) -> int:
@@ -279,8 +279,9 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 			statAllocStrat.allocate_stats(stats)
 			returnCode += 0b10000
 	
-	# copy over moves, equipment
-	stats.moves = evolutionStats[prevIdx].moves
+	# copy over moves
+	#stats.moves = evolutionStats[prevIdx].moves
+	# copy over equipment
 	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
 	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
 	# if the movepool changed: alert the player
@@ -651,7 +652,8 @@ func assign_moves_nonplayer():
 
 # returns the number of null moves after validation but before any re-assignment
 func validate_moves() -> int:
-	var emptySlots: int = 0
+	var emptySlots: int = 4 - len(stats.moves) # each move slot that isn't represented in the array counts as empty
+	
 	for moveIdx in range(len(stats.moves)):
 		var move: Move = stats.moves[moveIdx]
 		if move != null and not move in stats.movepool.pool:
