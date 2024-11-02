@@ -9,6 +9,9 @@ class_name MapEntry
 @export var isRecoverLocation: bool = false
 @export var recoverPosition: Vector2 = Vector2()
 
+static func get_battle_map_scene_path(mapName: String) -> String:
+	return 'res://prefabs/battle/battle_maps/' + mapName + '.tscn'
+
 func _init(
 	i_path = '',
 	i_requirements = null,
@@ -30,4 +33,4 @@ func get_map_path() -> String:
 	return 'res://prefabs/maps/' + path + '.tscn'
 
 func get_battle_map_path() -> String:
-	return 'res://prefabs/battle/battle_maps/' + battleMapName + '.tscn'
+	return MapEntry.get_battle_map_scene_path(battleMapName)

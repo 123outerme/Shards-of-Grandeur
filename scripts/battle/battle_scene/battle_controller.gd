@@ -56,10 +56,10 @@ func load_into_battle():
 			if mapEntry.requirements == null or mapEntry.requirements.is_valid():
 				SceneLoader.curMapEntry = mapEntry
 				break
+	battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
 	if PlayerResources.playerInfo.encounter != null:
 		if PlayerResources.playerInfo.encounter.battleMapPath != '':
-			battleMapPath = PlayerResources.playerInfo.encounter.battleMapPath
-	battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
+			battleMapPath = MapEntry.get_battle_map_scene_path(PlayerResources.playerInfo.encounter.battleMapPath)
 	var battleMap = load(battleMapPath)
 	tilemap = battleMap.instantiate()
 	tilemapParent.add_child(tilemap)

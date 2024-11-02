@@ -10,6 +10,7 @@ signal stats_saved
 @export var statChanges: StatChanges = null
 @export var levelUp: bool = false
 @export var newLvs: int = 0
+@export var showExp: bool = true
 
 var statsCopy: Stats = null
 var modified: bool = false
@@ -95,9 +96,12 @@ func load_statline_panel(recopyStats: bool = false):
 	hpProgressBar.tint_progress = Combatant.get_hp_bar_color(hp, statsCopy.maxHp)
 	
 	# since player and minions share level, show player exp progress to level up, always
-	expText.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.combatant.stats.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level))
-	expProgressBar.max_value = Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level)
-	expProgressBar.value = PlayerResources.playerInfo.combatant.stats.experience
+	if showExp:
+		expText.text = TextUtils.num_to_comma_string(PlayerResources.playerInfo.combatant.stats.experience) + ' / ' + TextUtils.num_to_comma_string(Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level))
+		expProgressBar.max_value = Stats.get_required_exp(PlayerResources.playerInfo.combatant.stats.level)
+		expProgressBar.value = PlayerResources.playerInfo.combatant.stats.experience
+	expText.visible = showExp
+	expProgressBar.visible = showExp
 	
 	physAtkText.text = TextUtils.num_to_comma_string(statsCopy.physAttack)
 	magicAtkText.text = TextUtils.num_to_comma_string(statsCopy.magicAttack)

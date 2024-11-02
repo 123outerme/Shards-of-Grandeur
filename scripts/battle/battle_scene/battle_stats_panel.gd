@@ -34,6 +34,7 @@ func load_battle_stats_panel():
 	statLinePanel.battleStats = true
 	statLinePanel.curHp = combatant.currentHp
 	statLinePanel.statChanges = combatant.statChanges
+	statLinePanel.showExp = battlePosition == 'You' or battlePosition == 'Ally'
 	statLinePanel.load_statline_panel()
 	if combatant.statusEffect != null:
 		statusSprite.texture = combatant.statusEffect.get_icon()
