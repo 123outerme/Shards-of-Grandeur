@@ -602,7 +602,7 @@ func assign_moves_nonplayer():
 				else:
 					## AOE damage is preferred, but if not, take single-target instead
 					if preferredRoles[idx] == MoveEffect.Role.AOE_DAMAGE and move.has_effect_with_role(MoveEffect.Role.SINGLE_TARGET_DAMAGE):
-						score += 2
+						score += 8
 				
 				if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
 					score += 4
