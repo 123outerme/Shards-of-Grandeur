@@ -1,6 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dyvrr32ymne4d"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dyvrr32ymne4d"]
 
 [ext_resource type="Texture2D" uid="uid://tspjo8auuor7" path="res://graphics/moves/fire/draconic_seal_burn.png" id="1_7jkxf"]
+[ext_resource type="Texture2D" uid="uid://bue782uuf6jqg" path="res://graphics/moves/fire/draconic_seal_burn_up.png" id="2_cge62"]
+[ext_resource type="Texture2D" uid="uid://qg1ki62fprmk" path="res://graphics/moves/fire/draconic_seal_shoot.png" id="3_1erpd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apfv1"]
 atlas = ExtResource("1_7jkxf")
@@ -17,6 +19,78 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8hen"]
 atlas = ExtResource("1_7jkxf")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5lis"]
+atlas = ExtResource("2_cge62")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oeh6"]
+atlas = ExtResource("2_cge62")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fku41"]
+atlas = ExtResource("2_cge62")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbksl"]
+atlas = ExtResource("2_cge62")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl22l"]
+atlas = ExtResource("2_cge62")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h75jr"]
+atlas = ExtResource("2_cge62")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epvg1"]
+atlas = ExtResource("2_cge62")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piau5"]
+atlas = ExtResource("2_cge62")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e04v8"]
+atlas = ExtResource("2_cge62")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wu3f"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvvnl"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3l0m"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a8oe"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfx8t"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dnro"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3veb"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm1o1"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aovyf"]
+atlas = ExtResource("3_1erpd")
+region = Rect2(256, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -43,5 +117,72 @@ animations = [{
 }],
 "loop": true,
 "name": &"draconic_seal_burn",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5lis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oeh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fku41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbksl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl22l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h75jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epvg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piau5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e04v8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"draconic_seal_burn_up",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wu3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvvnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3l0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a8oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfx8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dnro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3veb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm1o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aovyf")
+}],
+"loop": false,
+"name": &"draconic_seal_shoot",
 "speed": 6.0
 }]

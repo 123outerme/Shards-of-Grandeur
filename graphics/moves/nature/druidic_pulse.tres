@@ -1,0 +1,95 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://b0aqlke0ih64a"]
+
+[ext_resource type="Texture2D" uid="uid://dokkie8bkw6u1" path="res://graphics/moves/nature/druidic_pulse/druidic_pulse_bird.png" id="1_75ms0"]
+[ext_resource type="Texture2D" uid="uid://cny2vq8kgeche" path="res://graphics/moves/nature/druidic_pulse/druidic_pulse_gather.png" id="1_aq0hd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lug61"]
+atlas = ExtResource("1_75ms0")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5k1i"]
+atlas = ExtResource("1_75ms0")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0mr7"]
+atlas = ExtResource("1_75ms0")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uikb1"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cygq"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv0qb"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v5rq"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncnba"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(64, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufjvd"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(80, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8od87"]
+atlas = ExtResource("1_aq0hd")
+region = Rect2(96, 0, 16, 20)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lug61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5k1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0mr7")
+}],
+"loop": true,
+"name": &"druidic_pulse_bird",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uikb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cygq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv0qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v5rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncnba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufjvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8od87")
+}],
+"loop": false,
+"name": &"druidic_pulse_gather",
+"speed": 6.0
+}]

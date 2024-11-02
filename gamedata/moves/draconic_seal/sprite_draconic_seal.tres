@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://cqv8i5otdvkdh"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=17 format=3 uid="uid://cqv8i5otdvkdh"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_gnbhh"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="2_2j8ph"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_rws0l"]
 [ext_resource type="Resource" uid="uid://dj1ujlm2ro66d" path="res://gamedata/moves/draconic_seal/particles_draconic_seal.tres" id="2_sjsdp"]
 [ext_resource type="SpriteFrames" uid="uid://dyvrr32ymne4d" path="res://graphics/moves/fire/a_draconic_seal.tres" id="3_fevl8"]
+[ext_resource type="AudioStream" uid="uid://1bnigsf5of4m" path="res://audio/sfx/moves/fire/flamewind.mp3" id="4_7kimb"]
 
 [sub_resource type="Curve" id="Curve_8rem0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -15,15 +17,15 @@ point_count = 1
 
 [sub_resource type="Resource" id="Resource_yasi6"]
 script = ExtResource("1_gnbhh")
-annotation = "set up on top of target at 0 opacity"
+annotation = "set up in front of user"
 animation = "default"
 duration = 0.1
 speed = 1.0
-opacity = 0.0
+opacity = 1.0
 spritePivot = Vector2(0, 0)
-relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
+relativeTo = 2
+position = Vector2(8, 0)
+offset = 1
 xCurve = SubResource("Curve_8rem0")
 yCurve = SubResource("Curve_vdt2r")
 rotate = false
@@ -32,9 +34,54 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 
+[sub_resource type="Curve" id="Curve_3666g"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gm03i"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ka5cj"]
+script = ExtResource("1_gnbhh")
+annotation = "shoot seal at target"
+animation = "draconic_seal_shoot"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_3666g")
+yCurve = SubResource("Curve_gm03i")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_2j8ph")
+
+[sub_resource type="Resource" id="Resource_1lbjp"]
+script = ExtResource("1_gnbhh")
+annotation = "finish the seal shoot animation (the seal stops spinning on top of the opponent)"
+animation = ""
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
 [sub_resource type="Resource" id="Resource_p1gpq"]
 script = ExtResource("1_gnbhh")
-annotation = "fade in to burn target"
+annotation = "burn target"
 animation = "draconic_seal_burn"
 duration = 0.5
 speed = 1.0
@@ -49,10 +96,11 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 particles = ExtResource("2_sjsdp")
+sfx = ExtResource("4_7kimb")
 
 [sub_resource type="Resource" id="Resource_em5ts"]
 script = ExtResource("1_gnbhh")
-annotation = "let the animation loop for 1.5s"
+annotation = "let the animation loop for 1.5s, play particles"
 animation = ""
 duration = 1.5
 speed = 1.0
@@ -70,28 +118,11 @@ particles = ExtResource("2_sjsdp")
 
 [sub_resource type="Resource" id="Resource_ux1ne"]
 script = ExtResource("1_gnbhh")
-annotation = "let the animation fade out over 1s"
-animation = ""
-duration = 0.75
+annotation = "burn up the seal"
+animation = "draconic_seal_burn_up"
+duration = 1.25
 speed = 1.0
-opacity = 0.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-
-[sub_resource type="Resource" id="Resource_3h2mn"]
-script = ExtResource("1_gnbhh")
-annotation = "stop the animation"
-animation = "#stop"
-duration = 0.1
-speed = 1.0
-opacity = 0.0
+opacity = 1.0
 spritePivot = Vector2(0, 0)
 relativeTo = 5
 position = Vector2(0, 0)
@@ -107,7 +138,7 @@ script = ExtResource("2_rws0l")
 spriteFrames = ExtResource("3_fevl8")
 centerSprite = true
 maxSize = Vector2(32, 32)
-frames = Array[ExtResource("1_gnbhh")]([SubResource("Resource_yasi6"), SubResource("Resource_p1gpq"), SubResource("Resource_em5ts"), SubResource("Resource_ux1ne"), SubResource("Resource_3h2mn")])
+frames = Array[ExtResource("1_gnbhh")]([SubResource("Resource_yasi6"), SubResource("Resource_ka5cj"), SubResource("Resource_1lbjp"), SubResource("Resource_p1gpq"), SubResource("Resource_em5ts"), SubResource("Resource_ux1ne")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true
