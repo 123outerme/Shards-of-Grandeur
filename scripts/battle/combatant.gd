@@ -301,7 +301,7 @@ func validate_all_evolutions_stat_totals():
 	for index in evolutionStats:
 		var eStats: Stats = evolutionStats[index]
 		if not eStats.is_stat_total_valid():
-			print('WARN: ', save_name(), ' evolution ', index, "'s stat total was invalid. Resetting.")
+			#print('WARN: ', save_name(), ' evolution ', index, "'s stat total was invalid. Resetting.")
 			eStats.reset_stat_points()
 
 func reset_all_evolutions_stat_totals():

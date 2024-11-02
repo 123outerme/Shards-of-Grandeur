@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://87x3xe5ra5ua"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_hy0kv"]
-[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_hfjb0"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_wwksw"]
+[ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="3_an15q"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="3_vftdq"]
-[ext_resource type="Resource" uid="uid://djpdjv3jnd7ud" path="res://gamedata/moves/marlin_spike/marlin_spike.tres" id="4_5dhe1"]
+[ext_resource type="Resource" uid="uid://bmjbl4ej5sd3t" path="res://gamedata/moves/freeze_ray/freeze_ray.tres" id="4_j74su"]
 
 [resource]
 script = ExtResource("2_wwksw")
-pool = Array[ExtResource("1_hy0kv")]([ExtResource("2_hfjb0"), ExtResource("3_vftdq"), ExtResource("4_5dhe1")])
+pool = Array[ExtResource("1_hy0kv")]([ExtResource("3_vftdq"), ExtResource("3_an15q"), ExtResource("4_j74su")])
 signatureMoves = Array[ExtResource("1_hy0kv")]([])
 preferredMove1Role = 2
 preferredMove1DmgType = 2
 preferredMove1Element = 1
-preferredMove2Role = 0
+preferredMove2Role = 1
 preferredMove2DmgType = -1
 preferredMove2Element = 0
 preferredMove3Role = 3
