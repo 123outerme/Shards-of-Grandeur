@@ -38,10 +38,10 @@ func load_moves():
 			if not setFocus:
 				moveBtn.grab_focus()
 				setFocus = true
+			moveInfoBtn.visible = true
 		else: # if the move slot doesn't exist
 			moveBtn.text = '-----'
 			moveBtn.disabled = true
-		if moveBtn.disabled:
 			moveInfoBtn.visible = false
 		''' do we need to do this? or is it OK as is
 		var moveBtnFocusNeighbor: String = moveBtn.get_path_to(moveInfoBtn)
