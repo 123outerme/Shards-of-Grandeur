@@ -503,7 +503,12 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 ## combatant sets its own command object based on its AI
 func get_command(combatantNodes: Array[CombatantNode], battleState: BattleState) -> void:
 	var ai: CombatantAi = combatant.get_ai()
-	combatant.command = ai.get_command_for_turn(self, combatantNodes, battleState)
+	
+	if ai != null:
+		combatant.command = ai.get_command_for_turn(self, combatantNodes, battleState)
+	else:
+		printerr('Error: combatant ', combatant.disp_name(), '(', combatant.save_name(),') did not have a defined AI')
+		combatant.command = BattleCommand.new()
 	
 	'''
 	if combatant.command == null and is_alive():

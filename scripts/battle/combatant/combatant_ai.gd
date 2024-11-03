@@ -44,21 +44,33 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 		for effectType: Move.MoveEffectType in [Move.MoveEffectType.CHARGE, Move.MoveEffectType.SURGE]:
 			var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 			var targets: Array[CombatantNode] = user.get_targetable_combatant_nodes(allCombatantNodes, moveEffect.targets)
+			if len(targets) == 0:
+				continue
 			var orbs: int = moveEffect.orbChange
 			if effectType == Move.MoveEffectType.SURGE and could_combatant_surge(user.combatant, moveEffect):
 				orbs = get_orbs_amount(user.combatant, moveEffect)
 			var moveWeight: float = 1 if len(targets) > 0 else -1
+			var highestWeightedTarget: CombatantNode = null
 			for target: CombatantNode in targets:
-				moveWeight *= get_move_effect_on_target_weight(user, move, effectType, orbs, target, battleState)
-			
+				var targetWeight: float = get_move_effect_on_target_weight(user, move, effectType, orbs, target, targets, battleState)
+				if BattleCommand.is_command_multi_target(moveEffect.targets):
+					moveWeight *= targetWeight
+				else:
+					if highestWeightedTarget == null or moveWeight < targetWeight:
+						moveWeight = targetWeight
+						highestWeightedTarget = target
+				print('> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' weight against ', target.battlePosition, ' == ', targetWeight)
 			if effectType == Move.MoveEffectType.CHARGE and moveEffect.orbChange == highestOrbCharge:
 				moveWeight *= 1.05 # 5% bonus to charge moves that charge the most orbs
-			
+			print('>> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' overall weight == ', moveWeight)
 			if moveWeight >= 0 and moveWeight > highestWeight:
 				highestWeight = moveWeight
 				var targetStrings: Array[String] = []
-				for target: CombatantNode in targets:
-					targetStrings.append(target.battlePosition)
+				if BattleCommand.is_command_multi_target(moveEffect.targets):
+					for target: CombatantNode in targets:
+						targetStrings.append(target.battlePosition)
+				elif highestWeightedTarget != null:
+					targetStrings.append(highestWeightedTarget.battlePosition)
 				battleCommand = BattleCommand.new(
 					BattleCommand.Type.MOVE,
 					move,
@@ -74,20 +86,21 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 	return battleCommand
 
 # TODO can I replace Variant with Combatant/CombatantNode?
-func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState) -> float:
+func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
 	for layer: CombatantAiLayer in layers:
 		var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
-		
 		var layerWeight: float = 1
 		if could_combatant_surge(user.combatant, moveEffect):
-			layerWeight = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, battleState)
-			if layerWeight < 0:
-				layerWeight = 0
+			layerWeight = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+			if layerWeight >= 0:
+				layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
 		else:
 			layerWeight = 0
-		layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
-		weight *= layerWeight
+		if layerWeight < 0:
+			weight = -1
+		else:
+			weight *= layerWeight
 	return weight
 
 ## get the weighting for the move effect based on its staleness amount

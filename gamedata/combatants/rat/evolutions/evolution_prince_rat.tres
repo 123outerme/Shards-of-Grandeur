@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Evolution" load_steps=11 format=3 uid="uid://c2y3l5soc6iwg"]
+[gd_resource type="Resource" script_class="Evolution" load_steps=12 format=3 uid="uid://c2y3l5soc6iwg"]
 
 [ext_resource type="Resource" uid="uid://b1t5puusdxlu7" path="res://gamedata/items/armor/king_rat_crown.tres" id="1_7nryn"]
 [ext_resource type="Resource" uid="uid://nhheg7m8eybk" path="res://gamedata/combatants/rat/evolutions/prince_rat_effectiveness.tres" id="1_113kg"]
+[ext_resource type="Resource" uid="uid://byt3ergd8mpux" path="res://gamedata/combatants/rat/evolutions/prince_rat_ai.tres" id="1_aup8c"]
 [ext_resource type="Resource" uid="uid://dnmtgkt3aloei" path="res://gamedata/combatants/rat/evolutions/prince_rat_sprite.tres" id="1_xugma"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="2_ih3uk"]
 [ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="4_axfg2"]
@@ -35,6 +36,7 @@ requiredArmor = ExtResource("1_7nryn")
 stats = SubResource("Resource_ufyx1")
 statAllocationStrategy = ExtResource("5_70qs6")
 moveEffectiveness = ExtResource("1_113kg")
+ai = ExtResource("1_aup8c")
 aiType = 1
 aggroType = 1
 strategy = 1

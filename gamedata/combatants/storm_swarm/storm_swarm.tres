@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://b14w15l2gg5oc"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://b14w15l2gg5oc"]
 
 [ext_resource type="Resource" uid="uid://1q8kcxf52trs" path="res://gamedata/combatants/storm_swarm/storm_swarm_rewards.tres" id="1_ho4yf"]
 [ext_resource type="Resource" uid="uid://blvh1d27lxlkh" path="res://gamedata/combatants/storm_swarm/storm_swarm_evolutions.tres" id="1_qpqep"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_v2lrt"]
+[ext_resource type="Resource" uid="uid://cof34o7g6xd2n" path="res://gamedata/combatants/storm_swarm/storm_swarm_ai.tres" id="1_w1wb3"]
 [ext_resource type="Resource" uid="uid://b7m1k3n2stdsy" path="res://gamedata/combatants/storm_swarm/storm_swarm_sprite.tres" id="2_dv5i7"]
 [ext_resource type="Resource" uid="uid://cwmibkq3l8yfy" path="res://gamedata/combatants/storm_swarm/storm_swarm_effectiveness.tres" id="2_w055f"]
 [ext_resource type="Resource" uid="uid://qlmui81cuji5" path="res://gamedata/combatants/storm_swarm/storm_swarm_movepool.tres" id="3_8nsbr"]
@@ -42,6 +43,7 @@ orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
+ai = ExtResource("1_w1wb3")
 aiType = 3
 damageAggroType = 3
 strategy = 0

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
+[ext_resource type="Resource" uid="uid://d3jmd4016285p" path="res://gamedata/combatants/king_rat/king_rat_ai.tres" id="1_gje2b"]
 [ext_resource type="Resource" uid="uid://6oywd1qvwyby" path="res://gamedata/combatants/king_rat/king_rat_rewards.tres" id="1_rqv3k"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_are3w"]
 [ext_resource type="Resource" uid="uid://do8nq1ve3c3nx" path="res://gamedata/combatants/king_rat/king_rat_movepool.tres" id="3_r1tc3"]
@@ -42,6 +43,7 @@ orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
+ai = ExtResource("1_gje2b")
 aiType = 1
 damageAggroType = 0
 strategy = 1

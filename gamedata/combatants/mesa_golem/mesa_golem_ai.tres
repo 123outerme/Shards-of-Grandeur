@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=13 format=3 uid="uid://brejv3xt1u3v1"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_7mbah"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_psdcy"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_sp5al"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="3_32mjd"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/debuff_layer.gd" id="3_tyquj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="4_sm5ab"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="5_yys6w"]
+
+[sub_resource type="Resource" id="Resource_kycbf"]
+script = ExtResource("3_32mjd")
+aggroStrategy = 1
+weight = 0.2
+subLayers = Array[ExtResource("1_7mbah")]([])
+
+[sub_resource type="Resource" id="Resource_bd1m0"]
+script = ExtResource("2_psdcy")
+healLayer = false
+weight = 0.7
+subLayers = Array[ExtResource("1_7mbah")]([SubResource("Resource_kycbf")])
+
+[sub_resource type="Resource" id="Resource_v2xhe"]
+script = ExtResource("3_tyquj")
+debuffStrategy = 1
+weight = 0.5
+subLayers = Array[ExtResource("1_7mbah")]([])
+
+[sub_resource type="Resource" id="Resource_o3h7b"]
+script = ExtResource("4_sm5ab")
+weight = 0.25
+subLayers = Array[ExtResource("1_7mbah")]([])
+
+[sub_resource type="Resource" id="Resource_ke20q"]
+script = ExtResource("5_yys6w")
+signatureWeight = 1.25
+weight = 0.3
+subLayers = Array[ExtResource("1_7mbah")]([])
+
+[resource]
+script = ExtResource("2_sp5al")
+layers = Array[ExtResource("1_7mbah")]([SubResource("Resource_bd1m0"), SubResource("Resource_v2xhe"), SubResource("Resource_o3h7b"), SubResource("Resource_ke20q")])
+orbSpendStrategy = 0
+stalenessTolerance = 1.3
+lastMovesEffect = 0
+timesUsedLastMove = 0

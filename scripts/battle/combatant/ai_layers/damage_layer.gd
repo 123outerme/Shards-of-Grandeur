@@ -5,8 +5,9 @@ class_name CombatantAiDamageLayer
 @export var healLayer: bool = false
 
 ## the more damage a move will do against this target, the higher its weight is
-func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState) -> float:
-	if super.weight_move_effect_on_target(user, move, effectType, orbs, target, battleState) < 0:
+func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
+	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+	if baseWeight < 0:
 		return -1
 	
 	var moveWeight: float = 1
@@ -28,6 +29,8 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	var highestOtherMoveDmg: int = 0
 	var highestOtherMove: Move = null
 	for otherMove: Move in user.combatant.stats.moves:
+		if otherMove == move:
+			continue
 		var otherMoveEffect: MoveEffect = otherMove.get_effect_of_type(effectType)
 		if effectType == Move.MoveEffectType.SURGE:
 			otherMoveEffect = otherMoveEffect.apply_surge_changes(orbs)
@@ -45,9 +48,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		moveWeight *= abs(calcdDamage / highestOtherMoveDmg)
 	else:
 		moveWeight *= 1.25 # no other moves did any damage
+	#print('DEBUG damage layer: ', calcdDamage, ' / ', highestOtherMoveDmg, ' / ', moveWeight)
 	
 	# if not heal layer and targeting an ally, or is heal layer and targeting an enemy; inverse weighting (higher is now worse)
-	if (user.role == target.role) != healLayer:
+	if (user.role == target.role) != healLayer and moveWeight > 0:
 		moveWeight = 1 / moveWeight
 	
-	return moveWeight
+	return baseWeight * moveWeight

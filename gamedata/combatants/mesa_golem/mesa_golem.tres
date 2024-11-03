@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://cra0rgrw4ujhn"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://cra0rgrw4ujhn"]
 
 [ext_resource type="Resource" uid="uid://bgm4lg8udrmj8" path="res://gamedata/combatants/mesa_golem/mesa_golem_rewards.tres" id="1_23fkn"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ajlnk"]
+[ext_resource type="Resource" uid="uid://brejv3xt1u3v1" path="res://gamedata/combatants/mesa_golem/mesa_golem_ai.tres" id="1_mj52d"]
 [ext_resource type="Resource" uid="uid://bks7xyr33of7f" path="res://gamedata/combatants/mesa_golem/mesa_golem_evolutions.tres" id="2_q1n3p"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="3_2771q"]
 [ext_resource type="Resource" uid="uid://cr46jmmynlwk1" path="res://gamedata/combatants/mesa_golem/mesa_golem_effectiveness.tres" id="3_tx8lv"]
@@ -42,6 +43,7 @@ orbs = 0
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
+ai = ExtResource("1_mj52d")
 aiType = 1
 damageAggroType = 0
 strategy = 0
