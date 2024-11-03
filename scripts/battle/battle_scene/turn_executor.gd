@@ -21,7 +21,7 @@ func start_simulation():
 	for combatantNode in allCombatantNodes:
 		if combatantNode.is_alive():
 			if combatantNode.role == CombatantNode.Role.ENEMY:
-				combatantNode.get_command(allCombatantNodes)
+				combatantNode.get_command(allCombatantNodes, battleController.state)
 			combatants.append(combatantNode.combatant)
 			combatantNode.combatant.command.get_targets_from_combatant_nodes(allCombatantNodes)
 			# apply before-round effects

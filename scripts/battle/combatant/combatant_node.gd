@@ -500,7 +500,12 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 				targetableList.append(combatantNode)
 	return targetableList
 
-func get_command(combatantNodes: Array[CombatantNode]):
+## combatant sets its own command object based on its AI
+func get_command(combatantNodes: Array[CombatantNode], battleState: BattleState) -> void:
+	var ai: CombatantAi = combatant.get_ai()
+	combatant.command = ai.get_command_for_turn(self, combatantNodes, battleState)
+	
+	'''
 	if combatant.command == null and is_alive():
 		var chosenMove: ChosenMove = ai_pick_move(combatantNodes)
 		if chosenMove.effectType == Move.MoveEffectType.BOTH:
@@ -529,6 +534,7 @@ func get_command(combatantNodes: Array[CombatantNode]):
 		combatant.command = BattleCommand.new(BattleCommand.Type.MOVE, chosenMove.move, chosenMove.effectType, orbChange, null, targetPositions)
 	elif not is_alive():
 		combatant.command = null
+	'''
 
 func ai_pick_move(combatantNodes: Array[CombatantNode]) -> ChosenMove:
 	var candidateMoves = ai_get_move_effect_weights(combatantNodes)

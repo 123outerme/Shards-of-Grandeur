@@ -12,6 +12,7 @@ class_name Evolution
 @export var stats: Stats = Stats.new()
 @export var statAllocationStrategy: StatAllocationStrategy = null
 @export var moveEffectiveness: MoveEffectiveness = null
+@export var ai: CombatantAi = null
 @export var aiType: Combatant.AiType = Combatant.AiType.NONE
 @export var aggroType: Combatant.AggroType = Combatant.AggroType.LOWEST_HP
 @export var strategy: Combatant.ResourceStrategy = Combatant.ResourceStrategy.GREEDY
@@ -24,6 +25,7 @@ func _init(
 	i_stats = Stats.new(),
 	i_statAllocStrat: StatAllocationStrategy = null,
 	i_moveEffectiveness = null,
+	i_ai: CombatantAi = null,
 	i_aiType = Combatant.AiType.NONE,
 	i_aggroType = Combatant.AggroType.LOWEST_HP,
 	i_strategy = Combatant.ResourceStrategy.GREEDY,
@@ -35,6 +37,7 @@ func _init(
 	stats = i_stats
 	statAllocationStrategy = i_statAllocStrat
 	moveEffectiveness = i_moveEffectiveness
+	ai = i_ai
 	aiType = i_aiType
 	aggroType = i_aggroType
 	strategy = i_strategy

@@ -91,6 +91,8 @@ const MAX_ORBS = 10
 
 @export_category("Combatant - Encounter")
 
+@export var ai: CombatantAi = null
+
 ## AI "combat role" type
 @export var aiType: AiType = AiType.NONE
 
@@ -148,6 +150,7 @@ func _init(
 	i_statusEffect = null,
 	i_sprite = null,
 	i_friendship = 0,
+	i_ai: CombatantAi = null,
 	i_aiType = AiType.NONE,
 	i_damageAggroType = AggroType.LOWEST_HP,
 	i_overrideWeight = 0.35,
@@ -172,6 +175,7 @@ func _init(
 	statChanges = i_statChanges
 	statusEffect = i_statusEffect
 	sprite = i_sprite
+	ai = i_ai
 	aiType = i_aiType
 	damageAggroType = i_damageAggroType
 	friendship = i_friendship
@@ -315,6 +319,12 @@ func get_sprite_frames() -> SpriteFrames:
 	if evolution != null:
 		return evolution.combatantSprite.spriteFrames
 	return sprite.spriteFrames
+
+func get_ai() -> CombatantAi:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.ai
+	return ai
 
 func get_ai_type() -> AiType:
 	var evolution: Evolution = get_evolution()
@@ -718,6 +728,7 @@ func save_from_object(c: Combatant):
 	else:
 		statusEffect = null
 	sprite = c.sprite
+	ai = c.ai
 	aiType = c.aiType
 	damageAggroType = c.damageAggroType
 	strategy = c.strategy

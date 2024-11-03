@@ -235,6 +235,26 @@ func get_element_multiplier(e: Move.Element) -> float:
 	
 	return 1.0
 
+func get_attack_percent_boost_for_category(c: Move.DmgCategory) -> float:
+	match c:
+		Move.DmgCategory.PHYSICAL:
+			return physAttackMultiplier
+		Move.DmgCategory.MAGIC:
+			return magicAttackMultiplier
+		Move.DmgCategory.AFFINITY:
+			return affinityMultiplier
+	return 1
+
+func get_attack_pt_boost_for_category(c: Move.DmgCategory) -> int:
+	match c:
+		Move.DmgCategory.PHYSICAL:
+			return physAttackIncrease
+		Move.DmgCategory.MAGIC:
+			return magicAttackIncrease
+		Move.DmgCategory.AFFINITY:
+			return affinityIncrease
+	return 0
+
 func sum_weighted_elemental_multipliers(positiveWeight: float = 1.0, negativeWeight: float = 1.0) -> float:
 	var sum: float = 0
 	for mult: ElementMultiplier in elementMultipliers:
