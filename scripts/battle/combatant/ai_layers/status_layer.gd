@@ -16,18 +16,20 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		moveEffect = moveEffect.apply_surge_changes(orbs)
 	
 	if moveEffect.statusEffect == null or moveEffect.statusEffect.potency == StatusEffect.Potency.NONE:
-		return 0
+		return 1
 	
 	if moveEffect.selfGetsStatus:
 		target = user
 	
 	if not moveEffect.statusEffect.overwritesOtherStatuses and target.combatant.statusEffect != null:
-			return 0
+			return 1
 	
-	if moveEffect.statusEffect.potency == StatusEffect.Potency.STRONG:
+	if moveEffect.statusEffect.potency == StatusEffect.Potency.WEAK:
 		moveWeight += 0.15
-	if moveEffect.statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
+	if moveEffect.statusEffect.potency == StatusEffect.Potency.STRONG:
 		moveWeight += 0.3
+	if moveEffect.statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
+		moveWeight += 0.45
 	
 	moveWeight *= min(1, moveEffect.statusChance) / AVERAGE_STATUS_CHANCE
 	

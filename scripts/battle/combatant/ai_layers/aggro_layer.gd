@@ -16,6 +16,9 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if baseWeight < 0:
 		return -1
 	
+	if len(targets) == 1:
+		return 1
+	
 	var targetScore: float = 1
 	var otherScore: float = 1
 	match aggroStrategy:

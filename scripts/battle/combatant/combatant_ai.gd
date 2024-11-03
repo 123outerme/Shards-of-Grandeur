@@ -88,11 +88,13 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 # TODO can I replace Variant with Combatant/CombatantNode?
 func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
-	for layer: CombatantAiLayer in layers:
+	for idx in range(len(layers)):
+		var layer: CombatantAiLayer = layers[idx]
 		var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 		var layerWeight: float = 1
 		if could_combatant_surge(user.combatant, moveEffect):
 			layerWeight = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+			print('DEBUG: layer ', idx, ' (', layer.get_script().get_global_name(), ') weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType) , ': ', layerWeight)
 			if layerWeight >= 0:
 				layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
 		else:

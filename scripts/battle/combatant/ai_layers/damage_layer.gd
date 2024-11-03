@@ -44,14 +44,16 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 			highestOtherMove = otherMove
 			highestOtherMoveDmg = otherDmg
 	
-	if highestOtherMoveDmg > 0:
-		moveWeight *= abs(calcdDamage / highestOtherMoveDmg)
-	else:
-		moveWeight *= 1.25 # no other moves did any damage
+	if abs(calcdDamage) > 0:
+		if highestOtherMoveDmg > 0:
+			moveWeight *= abs(calcdDamage / highestOtherMoveDmg)
+		else:
+			moveWeight *= 1.25 # no other moves did any damage
+		# if not heal layer and targeting an ally, or is heal layer and targeting an enemy; inverse weighting (higher is now worse)
+		if (user.role == target.role) != healLayer and moveWeight > 0:
+			moveWeight = 1 / moveWeight
+	elif int(calcdDamage) == 0:
+		moveWeight = 1
 	#print('DEBUG damage layer: ', calcdDamage, ' / ', highestOtherMoveDmg, ' / ', moveWeight)
-	
-	# if not heal layer and targeting an ally, or is heal layer and targeting an enemy; inverse weighting (higher is now worse)
-	if (user.role == target.role) != healLayer and moveWeight > 0:
-		moveWeight = 1 / moveWeight
 	
 	return baseWeight * moveWeight

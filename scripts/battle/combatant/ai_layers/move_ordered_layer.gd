@@ -29,8 +29,8 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		return 1
 	
 	if move == moveList[moveIdx]:
-		return baseWeight * 1.5
-	return baseWeight * 0.5
+		return baseWeight * 1.4
+	return baseWeight * 0.6
 
 func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 	if move == moveList[moveIdx]:
