@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiMoveOrderedLayer
+class_name MoveOrderedCombatantAiLayer
 
 ## the list of specific moves to attempt to use in sequence
 @export var moveList: Array[Move] = []

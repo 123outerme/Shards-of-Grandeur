@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiSignatureLayer
+class_name SignatureCombatantAiLayer
 
 ## the multiplier for weighting to use when the move is a signature move
 @export var signatureWeight: float = 1.25

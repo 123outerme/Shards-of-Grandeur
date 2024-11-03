@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiRandomLayer
+class_name RandomCombatantAiLayer
 
 # TODO: maybe it's ok to make `target` a type of combatant?
 ## the weight is effectively random in the range [0.5, 1.5]

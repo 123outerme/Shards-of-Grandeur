@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiDamageLayer
+class_name DamageCombatantAiLayer
 
 ## if true, flips the logic to actually weight healing instead of damage
 @export var healLayer: bool = false

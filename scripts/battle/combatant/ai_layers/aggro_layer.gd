@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiAggroLayer
+class_name AggroCombatantAiLayer
 
 enum AggroStrategy {
 	HIGHEST_HP = 0, ## the higher the current HP, the stronger the targeting

@@ -1,5 +1,5 @@
 extends CombatantAiLayer
-class_name CombatantAiRoleOrderedLayer
+class_name RoleOrderedCombatantAiLayer
 
 ## the list of specific move roles to attempt to use in sequence
 @export var roleList: Array[MoveEffect.Role] = []

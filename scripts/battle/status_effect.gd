@@ -122,6 +122,11 @@ func affects_turn_order_calc() -> bool:
 		return true
 	return false
 
+func is_positive_status() -> bool:
+	if type in [Type.REFLECT, Type.INTERCEPTION, Type.MANIA, Type.ENDURE]:
+		return true
+	return false
+
 func copy() -> StatusEffect:
 	return StatusEffect.new(
 		type,
