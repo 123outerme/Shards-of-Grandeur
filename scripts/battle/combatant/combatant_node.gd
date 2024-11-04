@@ -51,6 +51,7 @@ const eventTextScene = preload('res://prefabs/battle/combatant_event_text.tscn')
 var loaded: bool = false
 var disableHpTag: bool = false
 var tmpAllCombatantNodes: Array[CombatantNode] = []
+var overrideAi: CombatantAi = null
 var animateTween: Tween = null
 var hpDrainTween: Tween = null
 var fadeOutTween: Tween = null
@@ -503,6 +504,8 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 ## combatant sets its own command object based on its AI
 func get_command(combatantNodes: Array[CombatantNode], battleState: BattleState) -> void:
 	var ai: CombatantAi = combatant.get_ai()
+	if overrideAi != null:
+		ai = overrideAi
 	
 	if ai != null:
 		combatant.command = ai.get_command_for_turn(self, combatantNodes, battleState)

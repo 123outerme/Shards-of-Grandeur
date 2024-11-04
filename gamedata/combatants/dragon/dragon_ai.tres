@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://dpdygiw5b5e47"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=19 format=3 uid="uid://dpdygiw5b5e47"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_uqil7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_giol1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="4_uoodx"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/debuff_layer.gd" id="5_7oigs"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="5_65rfu"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="7_t8ylo"]
 
 [sub_resource type="Resource" id="Resource_0vmwm"]
 script = ExtResource("3_6crw8")
@@ -39,6 +40,12 @@ script = ExtResource("4_p1srp")
 weight = 0.3
 subLayers = Array[ExtResource("1_uqil7")]([])
 
+[sub_resource type="Resource" id="Resource_pahih"]
+script = ExtResource("7_t8ylo")
+mostOrbsWeight = 1.15
+weight = 0.35
+subLayers = Array[ExtResource("1_uqil7")]([])
+
 [sub_resource type="Resource" id="Resource_j42n2"]
 script = ExtResource("4_mblox")
 weight = 0.2
@@ -52,7 +59,7 @@ subLayers = Array[ExtResource("1_uqil7")]([])
 
 [resource]
 script = ExtResource("2_mkar3")
-layers = Array[ExtResource("1_uqil7")]([SubResource("Resource_2uhwf"), SubResource("Resource_d8m4b"), SubResource("Resource_1cwo3"), SubResource("Resource_uk37p"), SubResource("Resource_j42n2"), SubResource("Resource_adp1x")])
+layers = Array[ExtResource("1_uqil7")]([SubResource("Resource_2uhwf"), SubResource("Resource_d8m4b"), SubResource("Resource_1cwo3"), SubResource("Resource_uk37p"), SubResource("Resource_pahih"), SubResource("Resource_j42n2"), SubResource("Resource_adp1x")])
 orbSpendStrategy = 1
 stalenessTolerance = 1.3
 lastMovesEffect = 0

@@ -24,6 +24,9 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var subLayersWeight: float = 1
 	for layer: CombatantAiLayer in subLayers:
+		if layer == null:
+			continue
+		
 		var subLayerWeight: float = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
 		if subLayerWeight < 0:
 			subLayersWeight = -1

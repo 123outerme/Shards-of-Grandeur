@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=15 format=3 uid="uid://ctft1ky8xul8"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://ctft1ky8xul8"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_n2ea8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_0x6bo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="4_m2fex"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="5_5lk83"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="5_lodf5"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="6_6dii8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="6_c5qx4"]
 
 [sub_resource type="Resource" id="Resource_w5ljm"]
@@ -32,6 +33,12 @@ script = ExtResource("5_5lk83")
 weight = 0.3
 subLayers = Array[ExtResource("1_n2ea8")]([])
 
+[sub_resource type="Resource" id="Resource_hdvvj"]
+script = ExtResource("6_6dii8")
+mostOrbsWeight = 1.15
+weight = 0.25
+subLayers = Array[ExtResource("1_n2ea8")]([])
+
 [sub_resource type="Resource" id="Resource_dc6rt"]
 script = ExtResource("5_lodf5")
 weight = 0.25
@@ -45,7 +52,7 @@ subLayers = Array[ExtResource("1_n2ea8")]([])
 
 [resource]
 script = ExtResource("2_0x6bo")
-layers = Array[ExtResource("1_n2ea8")]([SubResource("Resource_w5ljm"), SubResource("Resource_hyk8o"), SubResource("Resource_1lvv6"), SubResource("Resource_4r3rf"), SubResource("Resource_dc6rt"), SubResource("Resource_ly1ro")])
+layers = Array[ExtResource("1_n2ea8")]([SubResource("Resource_w5ljm"), SubResource("Resource_hyk8o"), SubResource("Resource_1lvv6"), SubResource("Resource_4r3rf"), SubResource("Resource_hdvvj"), SubResource("Resource_dc6rt"), SubResource("Resource_ly1ro")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.3
 lastMovesEffect = 0

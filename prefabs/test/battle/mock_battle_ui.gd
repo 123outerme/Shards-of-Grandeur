@@ -1,6 +1,7 @@
 extends BattleUI
 
 class MockResults extends Results:
+	var resultsLines: Array[String] = []
 	func _init():
 		pass
 	
@@ -9,6 +10,7 @@ class MockResults extends Results:
 	
 	func show_text(text: String):
 		print('Results screen shows text:\n', text)
+		resultsLines.append(text)
 
 static func state_to_string(state: BattleState.Menu) -> String:
 	match state:

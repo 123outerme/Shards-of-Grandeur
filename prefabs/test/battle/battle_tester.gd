@@ -1,4 +1,5 @@
 extends BattleController
+class_name BattleTester
 
 @export var encounter: StaticEncounter = null
 @export var _playerCombatant: Combatant
@@ -16,11 +17,11 @@ extends BattleController
 @export var enemy3Command: BattleCommand = null
 @export var enemy3Status: StatusEffect = null
 
-@onready var battleAnimManager: BattleAnimationManager = get_node('BattleAnimationManager')
 @onready var nextButton: Button = get_node('SfxButton')
 
 func _ready():
 	battleUI = get_node('MockBattleUI')
+	battleAnimationManager = get_node('BattleAnimationManager')
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
@@ -50,15 +51,15 @@ func _ready():
 			combatant.command = combatantCommands[idx]
 			combatant.statusEffect = combatantStatuses[idx]
 			combatant = combatant.copy()
-		battleAnimManager.get_all_combatant_nodes()[idx].combatant = combatant
-		battleAnimManager.get_all_combatant_nodes()[idx].load_combatant_node()
-	var battleState = BattleState.new()
-	battleState.menu = BattleState.Menu.PRE_ROUND
+		get_all_combatant_nodes()[idx].combatant = combatant
+		get_all_combatant_nodes()[idx].load_combatant_node()
+	state = BattleState.new()
+	state.menu = BattleState.Menu.PRE_ROUND
 	battleUI.menuState = BattleState.Menu.PRE_ROUND
 	# get command for each combatant, if that combatant is alive and hasn't made a command, get one
-	for combatantNode: CombatantNode in battleAnimManager.get_all_combatant_nodes():
+	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.is_alive():
-			combatantNode.get_command(battleAnimManager.get_all_combatant_nodes())
+			combatantNode.get_command(get_all_combatant_nodes(), state)
 	
 	state.calcdStateIndex = 0
 	turnExecutor.start_simulation()
@@ -83,7 +84,7 @@ func _ready():
 	nextButton.visible = false
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
-	return battleAnimManager.get_all_combatant_nodes()
+	return battleAnimationManager.get_all_combatant_nodes()
 
 func _on_battle_animation_manager_combatant_animation_start() -> void:
 	nextButton.disabled = true

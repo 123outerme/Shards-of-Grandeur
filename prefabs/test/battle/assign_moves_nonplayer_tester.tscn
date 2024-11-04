@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://blk40yi70o8bl"]
+
+[ext_resource type="Script" path="res://prefabs/test/battle/assign_moves_nonplayer_tester.gd" id="1_g7mbr"]
+[ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="2_25xsq"]
+
+[node name="AssignMovesNonplayerTester" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g7mbr")
+combatant = ExtResource("2_25xsq")
+level = 10

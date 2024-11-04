@@ -59,10 +59,10 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 					if highestWeightedTarget == null or moveWeight < targetWeight:
 						moveWeight = targetWeight
 						highestWeightedTarget = target
-				print('> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' weight against ', target.battlePosition, ' == ', targetWeight)
+				#print('> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' weight against ', target.battlePosition, ' == ', targetWeight)
 			if effectType == Move.MoveEffectType.CHARGE and moveEffect.orbChange == highestOrbCharge:
 				moveWeight *= 1.05 # 5% bonus to charge moves that charge the most orbs
-			print('>> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' overall weight == ', moveWeight)
+			#print('>> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' overall weight == ', moveWeight)
 			if moveWeight >= 0 and moveWeight > highestWeight:
 				highestWeight = moveWeight
 				var targetStrings: Array[String] = []
@@ -90,11 +90,14 @@ func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectTyp
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
 	for idx in range(len(layers)):
 		var layer: CombatantAiLayer = layers[idx]
+		if layer == null:
+			continue
+		
 		var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 		var layerWeight: float = 1
 		if could_combatant_surge(user.combatant, moveEffect):
 			layerWeight = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
-			print('DEBUG: layer ', idx, ' (', layer.get_script().get_global_name(), ') weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType) , ': ', layerWeight)
+			#print('DEBUG: layer ', idx, ' (', layer.get_script().get_global_name(), ') weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType) , ': ', layerWeight)
 			if layerWeight >= 0:
 				layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
 		else:
