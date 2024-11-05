@@ -161,7 +161,7 @@ func update_turn_text() -> bool:
 			if combatantNode.combatant == combatant:
 				userNode = combatantNode
 			
-		if userNode != null and combatant.command.commandResult != null:
+		if userNode != null and combatant != null and combatant.command.commandResult != null:
 			battleController.battleAnimationManager.play_turn_animation(userNode, combatant.command, battleController.state.statusEffDamagedCombatants)
 	
 	battleUI.results.show_text(text)

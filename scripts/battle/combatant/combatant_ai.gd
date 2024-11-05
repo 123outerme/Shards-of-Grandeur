@@ -88,6 +88,11 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 # TODO can I replace Variant with Combatant/CombatantNode?
 func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
+	print('DEBUG staleness weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' = ', weight)
+	if lastMove != null:
+		print('DEBUG last move was ', lastMove.moveName, ' / ', Move.move_effect_type_to_string(lastMovesEffect), ', times = ', timesUsedLastMove)
+	else:
+		print('DEBUG last move was null')
 	for idx in range(len(layers)):
 		var layer: CombatantAiLayer = layers[idx]
 		if layer == null:
@@ -121,7 +126,7 @@ func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 		timesUsedLastMove += 1
 	else:
 		lastMove = move
-		effectType = lastMovesEffect
+		lastMovesEffect = effectType
 		timesUsedLastMove = 1
 	
 	for layer: CombatantAiLayer in layers:

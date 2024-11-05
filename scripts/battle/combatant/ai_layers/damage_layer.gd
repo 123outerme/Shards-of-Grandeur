@@ -28,6 +28,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var highestOtherMoveDmg: int = 0
 	var highestOtherMove: Move = null
+	#var highestOtherLifesteal: float = 0
 	for otherMove: Move in user.combatant.stats.moves:
 		if otherMove == move:
 			continue
@@ -43,10 +44,13 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		if highestOtherMove == null or otherDmg > highestOtherMoveDmg:
 			highestOtherMove = otherMove
 			highestOtherMoveDmg = otherDmg
+			#highestOtherLifesteal = otherMoveEffect.lifesteal
 	
 	if abs(calcdDamage) > 0:
 		if highestOtherMoveDmg > 0:
 			moveWeight *= abs(calcdDamage / highestOtherMoveDmg)
+			if moveEffect.lifesteal > 0:
+				moveWeight *= 1 + moveEffect.lifesteal
 		else:
 			moveWeight *= 1.25 # no other moves did any damage
 		# if not heal layer and targeting an ally, or is heal layer and targeting an enemy; inverse weighting (higher is now worse)
