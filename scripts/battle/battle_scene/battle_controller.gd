@@ -72,6 +72,10 @@ func load_into_battle():
 		minionCombatant.combatant = null
 		if PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
+			if staticEncounter.combatant1Ai != null:
+				enemyCombatant1.overrideAi = staticEncounter.combatant1Ai.copy()
+			else:
+				enemyCombatant1.overrideAi = null
 			enemyCombatant1.combatant = staticEncounter.combatant1.copy().initialize()
 			enemyCombatant1.combatant.stats.equippedArmor = staticEncounter.combatant1Armor
 			enemyCombatant1.combatant.stats.equippedWeapon = staticEncounter.combatant1Weapon
@@ -88,6 +92,10 @@ func load_into_battle():
 			enemyCombatant1.shardSummoned = staticEncounter.combatant1ShardSummoned
 			
 			if staticEncounter.combatant2 != null:
+				if staticEncounter.combatant2Ai != null:
+					enemyCombatant2.overrideAi = staticEncounter.combatant2Ai.copy()
+				else:
+					enemyCombatant2.overrideAi = null
 				enemyCombatant2.combatant = staticEncounter.combatant2.copy().initialize()
 				enemyCombatant2.combatant.stats.equippedArmor = staticEncounter.combatant2Armor
 				enemyCombatant2.combatant.stats.equippedWeapon = staticEncounter.combatant2Weapon
@@ -104,6 +112,10 @@ func load_into_battle():
 				enemyCombatant2.shardSummoned = staticEncounter.combatant2ShardSummoned
 			
 			if staticEncounter.combatant3 != null:
+				if staticEncounter.combatant3Ai != null:
+					enemyCombatant3.overrideAi = staticEncounter.combatant3Ai.copy()
+				else:
+					enemyCombatant3.overrideAi = null
 				enemyCombatant3.combatant = staticEncounter.combatant3.copy().initialize()
 				enemyCombatant3.combatant.stats.equippedArmor = staticEncounter.combatant3Armor
 				enemyCombatant3.combatant.stats.equippedWeapon = staticEncounter.combatant3Weapon
@@ -203,9 +215,12 @@ func load_into_battle():
 		playerCombatant.combatant = state.playerCombatant
 		minionCombatant.combatant = state.minionCombatant
 		enemyCombatant1.combatant = state.enemyCombatant1
+		enemyCombatant1.overrideAi = state.enemyAiOverride1
 		enemyCombatant2.combatant = state.enemyCombatant2
+		enemyCombatant2.overrideAi = state.enemyAiOverride2
 		enemyCombatant3.combatant = state.enemyCombatant3
-	
+		enemyCombatant3.overrideAi = state.enemyAiOverride3
+
 	playerCombatant.leftSide = true
 	playerCombatant.role = CombatantNode.Role.ALLY
 	
@@ -271,6 +286,9 @@ func save_data(save_path):
 		state.enemyCombatant1 = enemyCombatant1.combatant
 		state.enemyCombatant2 = enemyCombatant2.combatant
 		state.enemyCombatant3 = enemyCombatant3.combatant
+		state.enemyAiOverride1 = enemyCombatant1.overrideAi
+		state.enemyAiOverride2 = enemyCombatant2.overrideAi
+		state.enemyAiOverride3 = enemyCombatant3.overrideAi
 		state.commandingMinion = battleUI.commandingMinion
 		state.fobButtonEnabled = battlePanels.flowOfBattle.get_fob_button_enabled()
 		state.battleMapPath = battleMapPath

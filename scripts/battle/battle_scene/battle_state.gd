@@ -23,6 +23,9 @@ enum Menu {
 @export var enemyCombatant1: Combatant = null
 @export var enemyCombatant2: Combatant = null
 @export var enemyCombatant3: Combatant = null
+@export var enemyAiOverride1: CombatantAi = null
+@export var enemyAiOverride2: CombatantAi = null
+@export var enemyAiOverride3: CombatantAi = null
 
 @export_category("BattleData - Menu State")
 @export var menu: Menu = Menu.SUMMON
@@ -56,6 +59,9 @@ func _init(
 	i_enemyCombatant1 = null,
 	i_enemyCombatant2 = null,
 	i_enemyCombatant3 = null,
+	i_enemyAiOverride1: CombatantAi = null,
+	i_enemyAiOverride2: CombatantAi = null,
+	i_enemyAiOverride3: CombatantAi = null,
 	i_menu = Menu.SUMMON,
 	i_prevMenu = Menu.SUMMON,
 	i_cmdMinion = false,
@@ -79,6 +85,9 @@ func _init(
 	enemyCombatant1 = i_enemyCombatant1
 	enemyCombatant2 = i_enemyCombatant2
 	enemyCombatant3 = i_enemyCombatant3
+	enemyAiOverride1 = i_enemyAiOverride1
+	enemyAiOverride2 = i_enemyAiOverride2
+	enemyAiOverride3 = i_enemyAiOverride3
 	menu = i_menu
 	prevMenu = i_prevMenu
 	commandingMinion = i_cmdMinion

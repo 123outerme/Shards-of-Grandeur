@@ -8,6 +8,14 @@ enum DebuffStrategy {
 
 @export var debuffStrategy: DebuffStrategy = DebuffStrategy.DEBUFF_STRONGEST
 
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_debuffStrategy: DebuffStrategy = DebuffStrategy.DEBUFF_STRONGEST,
+) -> void:
+	super(i_weight, i_subLayers)
+	debuffStrategy = i_debuffStrategy
+
 ## the stronger the debuff is based on the debuff strategy, the higher the weight
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
@@ -107,3 +115,6 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 	# weight = new stat total / old stat total
 	selfWeight = selfStats.get_stat_total_including_dmg_boosts(selfHighestElementBoost) / selfCurrentStats.get_stat_total_including_dmg_boosts(selfCurrentElementBoost)
 	return selfWeight
+
+func copy(copyStorage: bool = false) -> DebuffCombatantAiLayer:
+	return DebuffCombatantAiLayer.new(weight, copy_sublayers(copyStorage), debuffStrategy)

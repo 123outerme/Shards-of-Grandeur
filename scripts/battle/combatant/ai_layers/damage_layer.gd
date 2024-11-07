@@ -4,6 +4,14 @@ class_name DamageCombatantAiLayer
 ## if true, flips the logic to actually weight healing instead of damage
 @export var healLayer: bool = false
 
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_healLayer: bool = false,
+) -> void:
+	super(i_weight, i_subLayers)
+	healLayer = i_healLayer
+
 ## the more damage a move will do against this target, the higher its weight is
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
@@ -61,3 +69,6 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	#print('DEBUG damage layer: ', calcdDamage, ' / ', highestOtherMoveDmg, ' / ', moveWeight)
 	
 	return baseWeight * moveWeight
+
+func copy(copyStorage: bool = false) -> DamageCombatantAiLayer:
+	return DamageCombatantAiLayer.new(weight, copy_sublayers(copyStorage), healLayer)

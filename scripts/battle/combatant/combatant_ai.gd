@@ -22,11 +22,15 @@ enum OrbSpendStrategy {
 
 func _init(
 	i_layers: Array[CombatantAiLayer] = [],
+	i_orbSpendStrategy: OrbSpendStrategy = OrbSpendStrategy.GREEDY,
+	i_stalenessTolerance: float = 1.4,
 	i_lastMove: Move = null,
 	i_lastMovesEffect: Move.MoveEffectType = Move.MoveEffectType.NONE,
 	i_timesUsedLastMove: int = 0,
 ) -> void:
 	layers = i_layers
+	orbSpendStrategy = i_orbSpendStrategy
+	stalenessTolerance = i_stalenessTolerance
 	lastMove = i_lastMove
 	lastMovesEffect = i_lastMovesEffect
 	timesUsedLastMove = i_timesUsedLastMove
@@ -178,8 +182,20 @@ func get_orbs_amount(combatant: Combatant, effect: MoveEffect) -> int:
 			return min(Combatant.MAX_ORBS, max(effect.orbChange, floori(combatant.orbs * spendRatio)))
 	return effect.orbChange
 
-func copy() -> CombatantAi:
+func copy(copyLastMove: bool = false) -> CombatantAi:
+	var newLayers: Array[CombatantAiLayer] = []
+	for layer: CombatantAiLayer in layers:
+		newLayers.append(layer.copy())
+	
 	var newAi: CombatantAi = CombatantAi.new(
-		layers.duplicate(false),
+		newLayers,
+		orbSpendStrategy,
+		stalenessTolerance
 	)
+	
+	if copyLastMove:
+		newAi.lastMove = lastMove
+		newAi.lastMovesEffect = lastMovesEffect
+		newAi.timesUsedLastMove = timesUsedLastMove
+	
 	return newAi

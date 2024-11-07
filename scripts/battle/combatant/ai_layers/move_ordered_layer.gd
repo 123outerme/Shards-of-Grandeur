@@ -11,10 +11,11 @@ class_name MoveOrderedCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
 	i_moveList: Array[Move] = [],
 	i_moveIdx: int = 0,
 ) -> void:
-	super(weight)
+	super(weight, subLayers)
 	moveList = i_moveList.duplicate(false)
 	moveIdx = i_moveIdx
 
@@ -37,3 +38,11 @@ func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 		moveIdx += 1
 		if loop:
 			moveIdx = moveIdx % len(moveList)
+
+func copy(copyStorage: bool = false) -> MoveOrderedCombatantAiLayer:
+	var layer: MoveOrderedCombatantAiLayer = MoveOrderedCombatantAiLayer.new(weight, copy_sublayers(copyStorage), moveList)
+	
+	if copyStorage:
+		layer.moveIdx = moveIdx
+	
+	return layer

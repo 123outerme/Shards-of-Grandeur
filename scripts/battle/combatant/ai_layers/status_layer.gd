@@ -38,3 +38,6 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		moveWeight = 1 / moveWeight
 	
 	return baseWeight * moveWeight
+
+func copy(copyStorage: bool = false)  -> StatusCombatantAiLayer:
+	return StatusCombatantAiLayer.new(weight, copy_sublayers(copyStorage))

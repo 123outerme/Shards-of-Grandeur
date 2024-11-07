@@ -9,6 +9,14 @@ enum BuffStrategy {
 
 @export var buffStrategy: BuffStrategy = BuffStrategy.BUFF_STRONGEST
 
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_buffStrategy: BuffStrategy = BuffStrategy.BUFF_STRONGEST,
+) -> void:
+	super(i_weight, i_subLayers)
+	buffStrategy = i_buffStrategy
+
 ## the stronger the buff is based on the buff strategy, the higher the weight
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
@@ -111,3 +119,6 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 	# weight = new stat total / old stat total
 	selfWeight = selfStats.get_stat_total_including_dmg_boosts(selfHighestElementBoost) / selfCurrentStats.get_stat_total_including_dmg_boosts(selfCurrentElementBoost)
 	return selfWeight
+
+func copy(copyStorage: bool = false) -> BuffCombatantAiLayer:
+	return BuffCombatantAiLayer.new(weight, copy_sublayers(copyStorage), buffStrategy)

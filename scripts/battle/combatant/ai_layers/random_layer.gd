@@ -7,3 +7,6 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if baseWeight < 0:
 		return -1
 	return baseWeight * randf_range(0.5, 1.5)
+
+func copy(copyStorage: bool = false) -> RandomCombatantAiLayer:
+	return RandomCombatantAiLayer.new(weight, copy_sublayers(copyStorage))

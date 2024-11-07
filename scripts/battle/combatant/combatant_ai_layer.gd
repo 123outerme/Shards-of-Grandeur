@@ -37,3 +37,12 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 
 func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 	pass # NOTE subclasses that care about what move was used should implement this method
+
+func copy(copyStorage: bool = false) -> CombatantAiLayer:
+	return CombatantAiLayer.new(weight, copy_sublayers(copyStorage))
+
+func copy_sublayers(copyStorage: bool = false) -> Array[CombatantAiLayer]:
+	var newLayers: Array[CombatantAiLayer] = []
+	for layer: CombatantAiLayer in subLayers:
+		newLayers.append(layer.copy(copyStorage))
+	return newLayers

@@ -9,6 +9,18 @@ class_name RoleOrderedCombatantAiLayer
 
 @export_storage var roleIdx: int = 0
 
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_roleList: Array[MoveEffect.Role] = [],
+	i_loop: bool = true,
+	i_roleIdx: int = 0,
+) -> void:
+	super(i_weight, i_subLayers)
+	roleList = i_roleList.duplicate(false)
+	loop = i_loop
+	roleIdx = i_roleIdx
+
 ## returns 1.5 if the move is the next move in the order, otherwise 0.5
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
@@ -29,3 +41,11 @@ func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 		roleIdx += 1
 		if loop:
 			roleIdx = roleIdx % len(roleList)
+
+func copy(copyStorage: bool = false) -> RoleOrderedCombatantAiLayer:
+	var layer: RoleOrderedCombatantAiLayer = RoleOrderedCombatantAiLayer.new(weight, copy_sublayers(copyStorage), roleList, loop)
+	
+	if copyStorage:
+		layer.roleIdx = roleIdx
+	
+	return layer

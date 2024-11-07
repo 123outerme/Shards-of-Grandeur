@@ -10,6 +10,14 @@ enum AggroStrategy {
 
 @export var aggroStrategy: AggroStrategy = AggroStrategy.HIGHEST_HP
 
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_aggroStrategy: AggroStrategy = AggroStrategy.HIGHEST_HP,
+) -> void:
+	super(i_weight, i_subLayers)
+	aggroStrategy = i_aggroStrategy
+
 ## weights the move based on what strategy this layer uses for prioritizing targets
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
@@ -53,3 +61,6 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if aggroStrategy == AggroStrategy.LOWEST_HP:
 		return baseWeight * (otherScore / targetScore)
 	return baseWeight * (targetScore / otherScore)
+
+func copy(copyStorage: bool = false) -> AggroCombatantAiLayer:
+	return AggroCombatantAiLayer.new(weight, copy_sublayers(copyStorage), aggroStrategy)

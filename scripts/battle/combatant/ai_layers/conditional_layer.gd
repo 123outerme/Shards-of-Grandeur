@@ -34,7 +34,30 @@ enum ConditionalType {
 ##  float value to set the parameters of the conditional check. Meaning and units dependent on the selected condition
 @export var conditionalNum2: float = 0
 
-var conditionMetOnce: bool = false
+@export_storage var conditionMetOnce: bool = false
+
+func _init(
+	i_weight: float = 1.0,
+	i_subLayers: Array[CombatantAiLayer] = [],
+	i_notMetWeight: float = 0,
+	i_metWeight: float = 1,
+	i_condition: ConditionalType = ConditionalType.NONE,
+	i_inverse: bool = false,
+	i_sticky: bool = false,
+	i_conditionalNum1: float = 0,
+	i_conditionalNum2: float = 0,
+	i_conditionMetOnce: bool = false,
+) -> void:
+	super(i_weight, i_subLayers)
+	notMetWeight = i_notMetWeight
+	metWeight = i_metWeight
+	condition = i_condition
+	inverse = i_inverse
+	sticky = i_sticky
+	conditionalNum1 = i_conditionalNum1
+	conditionalNum2 = i_conditionalNum2
+	conditionMetOnce = i_conditionMetOnce
+	
 
 ## the final weight is modified based on if a preset condition is currently met (or met at least once before, if "sticky")
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
@@ -73,3 +96,21 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		conditionMet = true
 	
 	return baseWeight * (metWeight if conditionMet else notMetWeight)
+
+func copy(copyStorage: bool = false) -> ConditionalCombatantAiLayer:
+	var layer: ConditionalCombatantAiLayer = ConditionalCombatantAiLayer.new(
+		weight,
+		copy_sublayers(copyStorage),
+		notMetWeight,
+		metWeight,
+		condition,
+		inverse,
+		sticky,
+		conditionalNum1,
+		conditionalNum2,
+	)
+	
+	if copyStorage:
+		layer.conditionMetOnce = conditionMetOnce
+	
+	return layer
