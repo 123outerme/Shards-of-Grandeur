@@ -258,7 +258,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 				setup_status(user, user, moveEffect, 0)
 				commandResult.selfAfflictedStatus = true
 		
-		if moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or not (moveEffect.statusEffect != null and not (true in commandResult.afflictedStatuses))):
+		if moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or not (moveEffect.statusEffect != null and not (commandResult.selfAfflictedStatus or (true in commandResult.afflictedStatuses)))):
 			# if targets allies, fail to stack stats if status was not applied, otherwise stack
 			if moveEffect.selfStatChanges != null:
 				user.statChanges.stack(moveEffect.selfStatChanges)

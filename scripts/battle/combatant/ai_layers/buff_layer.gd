@@ -45,6 +45,15 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 	# if there are target stat changes: stack them
 	if moveEffect.targetStatChanges != null:
 		statChanges.stack(moveEffect.targetStatChanges)
+	if user == target and moveEffect.selfStatChanges != null:
+		var canSelfStack: bool = true
+		if not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
+			# if the status can't overwrite other statuses, and another status is already present on whoever will receive it: the boost isn't happening
+			if not moveEffect.statusEffect.overwritesOtherStatuses and \
+					((moveEffect.selfGetsStatus and user.combatant.statusEffect != null) or target.combatant.statusEffect != null):
+				canSelfStack = false
+		if canSelfStack:
+			statChanges.stack(moveEffect.selfStatChanges)
 	# calculate current stats, see how this move would impact current stats
 	var currentTargetStats: Stats = target.combatant.stats
 	var currentHighestElementBoost: float = 1.0
@@ -72,7 +81,14 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 	var selfStatChanges: StatChanges = StatChanges.new()
 	# if move has self stat changes: stack them
 	if moveEffect.selfStatChanges != null:
-		selfStatChanges.stack(moveEffect.selfStatChanges)
+		var canSelfStack: bool = true
+		if not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
+			# if the status can't overwrite other statuses, and another status is already present on whoever will receive it: the boost isn't happening
+			if not moveEffect.statusEffect.overwritesOtherStatuses and \
+					((moveEffect.selfGetsStatus and user.combatant.statusEffect != null) or target.combatant.statusEffect != null):
+				canSelfStack = false
+		if canSelfStack:
+			selfStatChanges.stack(moveEffect.selfStatChanges)
 	if user == target and moveEffect.targetStatChanges != null:
 		selfStatChanges.stack(moveEffect.targetStatChanges)
 	# build currently applied user stats/element boosts first

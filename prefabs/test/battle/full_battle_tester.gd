@@ -36,6 +36,7 @@ func _ready():
 	for idx in range(len(combatants)):
 		var combatant: Combatant = combatants[idx]
 		if combatant != null:
+			combatant = combatant.copy()
 			if combatantLvs[idx] > combatant.stats.level:
 				combatant.level_up_nonplayer(combatantLvs[idx])
 			if combatant == _playerCombatant:
@@ -53,7 +54,6 @@ func _ready():
 				combatant.statChanges = StatChanges.new()
 			#combatant.command = combatantCommands[idx]
 			combatant.statusEffect = combatantStatuses[idx]
-			combatant = combatant.copy()
 		if idx == 0:
 			print('DEBUG: player is idx ', idx)
 			get_all_combatant_nodes()[idx].overrideAi = playerAi

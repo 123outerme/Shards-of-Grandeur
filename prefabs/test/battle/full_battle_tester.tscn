@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dgqo8vipb17e8"]
+[gd_scene load_steps=63 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
@@ -43,6 +43,7 @@
 [ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="30_1bgbv"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_etk0a"]
 [ext_resource type="Script" path="res://prefabs/test/mock_audio_handler.gd" id="35_0y1m3"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
 
 [sub_resource type="Resource" id="Resource_tiqmo"]
 script = ExtResource("4_bfd7i")
@@ -82,7 +83,7 @@ subLayers = Array[ExtResource("2_plygy")]([])
 script = ExtResource("8_ewn23")
 layers = Array[ExtResource("2_plygy")]([SubResource("Resource_tfvys"), SubResource("Resource_yr6r6"), SubResource("Resource_bhxpi"), SubResource("Resource_jehht"), SubResource("Resource_4sjat")])
 orbSpendStrategy = 0
-stalenessTolerance = 1.3
+stalenessTolerance = 1.4
 lastMovesEffect = 0
 timesUsedLastMove = 0
 
@@ -207,6 +208,13 @@ weight = 0.35
 script = ExtResource("17_nsk2h")
 categories = Array[ExtResource("16_vlt6a")]([SubResource("Resource_rtfcg"), SubResource("Resource_wru7h")])
 
+[sub_resource type="Resource" id="Resource_6iopj"]
+script = ExtResource("38_84ulj")
+type = 8
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
 [node name="FullBattleTester" type="Node2D"]
 script = ExtResource("1_cwe7c")
 playerAi = SubResource("Resource_q6qyh")
@@ -214,6 +222,7 @@ encounter = SubResource("Resource_14f7a")
 _playerCombatant = SubResource("Resource_7loi3")
 playerLv = 16
 playerStatAllocStrat = SubResource("Resource_mniaa")
+playerStatus = SubResource("Resource_6iopj")
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("22_3prau")]
 

@@ -14,7 +14,7 @@ enum OrbSpendStrategy {
 @export var orbSpendStrategy: OrbSpendStrategy = OrbSpendStrategy.GREEDY
 
 ## Parameter in range [0, 1.5] used to increase/decrease staleness falloff: 1.5 = no initial falloff for the second move in a row, and 1 = heavy initial falloff. Use 0 for no staleness penalty
-@export_range(0, 1.5) var stalenessTolerance: float = 1.3
+@export_range(0, 1.5) var stalenessTolerance: float = 1.4
 
 @export_storage var lastMove: Move = null
 @export_storage var lastMovesEffect: Move.MoveEffectType = Move.MoveEffectType.NONE
