@@ -72,16 +72,16 @@ func load_into_battle():
 		minionCombatant.combatant = null
 		if PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
-			if staticEncounter.combatant1Ai != null:
-				enemyCombatant1.overrideAi = staticEncounter.combatant1Ai.copy()
-			else:
-				enemyCombatant1.overrideAi = null
 			enemyCombatant1.combatant = staticEncounter.combatant1.copy().initialize()
 			enemyCombatant1.combatant.stats.equippedArmor = staticEncounter.combatant1Armor
 			enemyCombatant1.combatant.stats.equippedWeapon = staticEncounter.combatant1Weapon
 			# stats start out in base form, this will evolve the combatant
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
+			if staticEncounter.combatant1Ai != null:
+				enemyCombatant1.battleAi = staticEncounter.combatant1Ai.copy()
+			else:
+				enemyCombatant1.battleAi = staticEncounter.combatant1.get_ai().copy()
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(staticEncounter.combatant1Level, staticEncounter.combatant1StatAllocStrat)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
@@ -92,16 +92,16 @@ func load_into_battle():
 			enemyCombatant1.shardSummoned = staticEncounter.combatant1ShardSummoned
 			
 			if staticEncounter.combatant2 != null:
-				if staticEncounter.combatant2Ai != null:
-					enemyCombatant2.overrideAi = staticEncounter.combatant2Ai.copy()
-				else:
-					enemyCombatant2.overrideAi = null
 				enemyCombatant2.combatant = staticEncounter.combatant2.copy().initialize()
 				enemyCombatant2.combatant.stats.equippedArmor = staticEncounter.combatant2Armor
 				enemyCombatant2.combatant.stats.equippedWeapon = staticEncounter.combatant2Weapon
 				# stats start out in base form, this will evolve the combatant
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
+				if staticEncounter.combatant2Ai != null:
+					enemyCombatant2.battleAi = staticEncounter.combatant2Ai.copy()
+				else:
+					enemyCombatant2.battleAi = staticEncounter.combatant2.get_ai().copy()
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(staticEncounter.combatant2Level, staticEncounter.combatant2StatAllocStrat)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
@@ -112,15 +112,15 @@ func load_into_battle():
 				enemyCombatant2.shardSummoned = staticEncounter.combatant2ShardSummoned
 			
 			if staticEncounter.combatant3 != null:
-				if staticEncounter.combatant3Ai != null:
-					enemyCombatant3.overrideAi = staticEncounter.combatant3Ai.copy()
-				else:
-					enemyCombatant3.overrideAi = null
 				enemyCombatant3.combatant = staticEncounter.combatant3.copy().initialize()
 				enemyCombatant3.combatant.stats.equippedArmor = staticEncounter.combatant3Armor
 				enemyCombatant3.combatant.stats.equippedWeapon = staticEncounter.combatant3Weapon
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
+				if staticEncounter.combatant3Ai != null:
+					enemyCombatant3.battleAi = staticEncounter.combatant3Ai.copy()
+				else:
+					enemyCombatant3.battleAi = staticEncounter.combatant3.get_ai().copy()
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.level_up_nonplayer(staticEncounter.combatant3Level, staticEncounter.combatant3StatAllocStrat)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
@@ -158,6 +158,7 @@ func load_into_battle():
 				enemyCombatant1.combatant.pick_equipment()
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
+			enemyCombatant1.battleAi = enemyCombatant1.combatant.get_ai().copy()
 			enemyCombatant1.initialCombatantLv = enemyCombatant1.combatant.stats.level
 			enemyCombatant1.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), randomEncounter.combatant1StatAllocStrat)
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
@@ -180,6 +181,7 @@ func load_into_battle():
 					enemyCombatant2.combatant.pick_equipment()
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
+				enemyCombatant2.battleAi = enemyCombatant2.combatant.get_ai().copy()
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
 				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
@@ -204,6 +206,7 @@ func load_into_battle():
 					enemyCombatant3.combatant.pick_equipment()
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
+				enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
 				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
@@ -215,11 +218,17 @@ func load_into_battle():
 		playerCombatant.combatant = state.playerCombatant
 		minionCombatant.combatant = state.minionCombatant
 		enemyCombatant1.combatant = state.enemyCombatant1
-		enemyCombatant1.overrideAi = state.enemyAiOverride1
+		enemyCombatant1.battleAi = state.enemyAi1
+		if enemyCombatant1.battleAi == null and enemyCombatant1.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+			enemyCombatant1.battleAi = enemyCombatant1.combatant.get_ai().copy()
 		enemyCombatant2.combatant = state.enemyCombatant2
-		enemyCombatant2.overrideAi = state.enemyAiOverride2
+		enemyCombatant2.battleAi = state.enemyAi2
+		if enemyCombatant2.battleAi == null and enemyCombatant2.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+			enemyCombatant2.battleAi = enemyCombatant2.combatant.get_ai().copy()
 		enemyCombatant3.combatant = state.enemyCombatant3
-		enemyCombatant3.overrideAi = state.enemyAiOverride3
+		enemyCombatant3.battleAi = state.enemyAi3
+		if enemyCombatant3.battleAi == null and enemyCombatant3.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+			enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
 
 	playerCombatant.leftSide = true
 	playerCombatant.role = CombatantNode.Role.ALLY
@@ -286,9 +295,9 @@ func save_data(save_path):
 		state.enemyCombatant1 = enemyCombatant1.combatant
 		state.enemyCombatant2 = enemyCombatant2.combatant
 		state.enemyCombatant3 = enemyCombatant3.combatant
-		state.enemyAiOverride1 = enemyCombatant1.overrideAi
-		state.enemyAiOverride2 = enemyCombatant2.overrideAi
-		state.enemyAiOverride3 = enemyCombatant3.overrideAi
+		state.enemyAi1 = enemyCombatant1.battleAi
+		state.enemyAi2 = enemyCombatant2.battleAi
+		state.enemyAi3 = enemyCombatant3.battleAi
 		state.commandingMinion = battleUI.commandingMinion
 		state.fobButtonEnabled = battlePanels.flowOfBattle.get_fob_button_enabled()
 		state.battleMapPath = battleMapPath

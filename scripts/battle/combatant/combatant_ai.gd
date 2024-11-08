@@ -92,11 +92,13 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 # TODO can I replace Variant with Combatant/CombatantNode?
 func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
+	''' debug printing staleness
 	print('DEBUG staleness weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' = ', weight)
 	if lastMove != null:
 		print('DEBUG last move was ', lastMove.moveName, ' / ', Move.move_effect_type_to_string(lastMovesEffect), ', times = ', timesUsedLastMove)
 	else:
 		print('DEBUG last move was null')
+	#'''
 	for idx in range(len(layers)):
 		var layer: CombatantAiLayer = layers[idx]
 		if layer == null:
@@ -182,10 +184,10 @@ func get_orbs_amount(combatant: Combatant, effect: MoveEffect) -> int:
 			return min(Combatant.MAX_ORBS, max(effect.orbChange, floori(combatant.orbs * spendRatio)))
 	return effect.orbChange
 
-func copy(copyLastMove: bool = false) -> CombatantAi:
+func copy(copyStorage: bool = false) -> CombatantAi:
 	var newLayers: Array[CombatantAiLayer] = []
 	for layer: CombatantAiLayer in layers:
-		newLayers.append(layer.copy())
+		newLayers.append(layer.copy(copyStorage))
 	
 	var newAi: CombatantAi = CombatantAi.new(
 		newLayers,
@@ -193,7 +195,7 @@ func copy(copyLastMove: bool = false) -> CombatantAi:
 		stalenessTolerance
 	)
 	
-	if copyLastMove:
+	if copyStorage:
 		newAi.lastMove = lastMove
 		newAi.lastMovesEffect = lastMovesEffect
 		newAi.timesUsedLastMove = timesUsedLastMove
