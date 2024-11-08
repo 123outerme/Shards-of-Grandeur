@@ -213,7 +213,7 @@ func copy() -> MoveEffect:
 		statusEffect,
 		selfGetsStatus,
 		statusChance,
-		rune.copy(),
+		rune.copy() if rune != null else null,
 		surgeChanges
 	)
 	return newEffect

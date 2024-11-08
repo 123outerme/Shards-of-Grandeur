@@ -480,6 +480,7 @@ func play_triggered_rune_animations() -> void:
 					if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
 						var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
 						eventTexts.append(CombatantEventText.build_damage_text(combatantNode.combatant.triggeredRunesDmg[runeIdx], superEffective))
+						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
 					if rune.statChanges != null and rune.statChanges.has_stat_changes():
 						eventTexts.append(CombatantEventText.build_stat_changes_texts(rune.statChanges))
 					if combatantNode.combatant.triggeredRunesStatus[runeIdx]:

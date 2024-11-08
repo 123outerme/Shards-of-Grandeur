@@ -33,7 +33,19 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 	return combatant.statChanges != prevStatChanges
 
 func copy(copyStorage: bool = false) -> BoostRune:
-	var rune: BoostRune = BoostRune.new(orbChange, category, element, power, lifesteal, statChanges.duplicate(), statusEffect.duplicate(), surgeChanges.duplicate(), caster if copyStorage else null, runeSpriteAnim, triggerAnim)
+	var rune: BoostRune = BoostRune.new(
+		orbChange,
+		category,
+		element,
+		power,
+		lifesteal,
+		statChanges.duplicate() if statChanges != null else null,
+		statusEffect.duplicate() if statusEffect != null else null,
+		surgeChanges.duplicate() if surgeChanges != null else null,
+		caster if copyStorage else null,
+		runeSpriteAnim,
+		triggerAnim,
+	)
 	
 	if copyStorage:
 		rune.prevStatChanges = prevStatChanges

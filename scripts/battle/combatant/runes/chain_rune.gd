@@ -30,7 +30,19 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 	return runeTriggered
 
 func copy(copyStorage: bool = false) -> ChainRune:
-	var rune: ChainRune = ChainRune.new(orbChange, category, element, power, lifesteal, statChanges.duplicate(), statusEffect.duplicate(), surgeChanges.duplicate(), caster if copyStorage else null, runeSpriteAnim, triggerAnim)
+	var rune: ChainRune = ChainRune.new(
+		orbChange,
+		category,
+		element,
+		power,
+		lifesteal,
+		statChanges.duplicate() if statChanges != null else null,
+		statusEffect.duplicate() if statusEffect != null else null,
+		surgeChanges.duplicate() if surgeChanges != null else null,
+		caster if copyStorage else null,
+		runeSpriteAnim,
+		triggerAnim,
+	)
 	
 	if copyStorage:
 		rune.runeTriggered = runeTriggered

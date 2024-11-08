@@ -247,6 +247,7 @@ func update_rune_sprites() -> void:
 		if hasSprite:
 			continue
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
+		spriteNode.z_index -= 1
 		spriteNode.linkedResource = rune
 		spriteNode.looping = true
 		spriteNode.user = self

@@ -92,4 +92,16 @@ func apply_surge_changes(additionalOrbs: int) -> Rune:
 	return rune
 
 func copy(copyStorage: bool = false) -> Rune:
-	return Rune.new(orbChange, category, element, power, lifesteal, statChanges.duplicate(), statusEffect.duplicate(), surgeChanges.duplicate(), caster if copyStorage else null, runeSpriteAnim, triggerAnim)
+	return Rune.new(
+		orbChange,
+		category,
+		element,
+		power,
+		lifesteal,
+		statChanges.duplicate() if statChanges != null else null,
+		statusEffect.duplicate() if statusEffect != null else null,
+		surgeChanges.duplicate() if surgeChanges != null else null,
+		caster if copyStorage else null,
+		runeSpriteAnim,
+		triggerAnim,
+	)

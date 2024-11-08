@@ -38,7 +38,20 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 	return combatant.statusEffect != currentStatus and combatant.statusEffect != null and combatant.statusEffect.potency >= minPotency
 
 func copy(copyStorage: bool = false) -> StatusRune:
-	var rune: StatusRune = StatusRune.new(orbChange, category, element, power, lifesteal, statChanges.duplicate(), statusEffect.duplicate(), surgeChanges.duplicate(), caster if copyStorage else null, runeSpriteAnim, triggerAnim, minPotency)
+	var rune: StatusRune = StatusRune.new(
+		orbChange,
+		category,
+		element,
+		power,
+		lifesteal,
+		statChanges.duplicate() if statChanges != null else null,
+		statusEffect.duplicate() if statusEffect != null else null,
+		surgeChanges.duplicate() if surgeChanges != null else null,
+		caster if copyStorage else null,
+		runeSpriteAnim,
+		triggerAnim,
+		minPotency,
+	)
 	
 	if copyStorage:
 		rune.currentStatus = currentStatus

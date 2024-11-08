@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
 [ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="14_6ipym"]
+[ext_resource type="Resource" uid="uid://txaiwb7tiyda" path="res://gamedata/moves/dehydration_curse/dehydration_curse.tres" id="14_ho40c"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="18_u0ttj"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
@@ -25,7 +26,6 @@
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
-[ext_resource type="Resource" uid="uid://eq5onf8hmiau" path="res://gamedata/moves/venom_strike/venom_strike.tres" id="43_7r665"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="44_j7j6h"]
 
@@ -83,7 +83,7 @@ battleMapPath = ""
 [sub_resource type="Resource" id="Resource_snunq"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("43_7r665")
+move = ExtResource("14_ho40c")
 moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Center"])
