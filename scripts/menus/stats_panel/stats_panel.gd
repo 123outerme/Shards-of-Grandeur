@@ -203,6 +203,8 @@ func load_stats_panel(fromToggle: bool = false):
 		if isTabbedView:
 			var tabBar: TabBar = tabbedViewContainer.get_tab_bar()
 			moveListPanel.firstMovePanel.set_buttons_top_neighbor(moveListPanel.firstMovePanel.detailsButton.get_path_to(tabBar))
+			if not moveListPanel.editMovesButton.visible:
+				moveListPanel.lastMovePanel.set_buttons_bottom_neighbor(moveListPanel.lastMovePanel.detailsButton.get_path_to(get_back_button()))
 		else:
 			moveListPanel.firstMovePanel.set_buttons_top_neighbor('')
 	else:
