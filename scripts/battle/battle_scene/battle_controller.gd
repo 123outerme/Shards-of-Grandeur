@@ -219,15 +219,15 @@ func load_into_battle():
 		minionCombatant.combatant = state.minionCombatant
 		enemyCombatant1.combatant = state.enemyCombatant1
 		enemyCombatant1.battleAi = state.enemyAi1
-		if enemyCombatant1.battleAi == null and enemyCombatant1.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+		if enemyCombatant1.battleAi == null and enemyCombatant1.combatant != null and enemyCombatant1.combatant.get_ai() != null: # failsafe: copy AI from the combatant
 			enemyCombatant1.battleAi = enemyCombatant1.combatant.get_ai().copy()
 		enemyCombatant2.combatant = state.enemyCombatant2
 		enemyCombatant2.battleAi = state.enemyAi2
-		if enemyCombatant2.battleAi == null and enemyCombatant2.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+		if enemyCombatant2.battleAi == null and enemyCombatant2.combatant != null and enemyCombatant2.combatant.get_ai() != null: # failsafe: copy AI from the combatant
 			enemyCombatant2.battleAi = enemyCombatant2.combatant.get_ai().copy()
 		enemyCombatant3.combatant = state.enemyCombatant3
 		enemyCombatant3.battleAi = state.enemyAi3
-		if enemyCombatant3.battleAi == null and enemyCombatant3.combatant.get_ai() != null: # failsafe: copy AI from the combatant
+		if enemyCombatant3.battleAi == null and enemyCombatant3.combatant != null and enemyCombatant3.combatant.get_ai() != null: # failsafe: copy AI from the combatant
 			enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
 
 	playerCombatant.leftSide = true
