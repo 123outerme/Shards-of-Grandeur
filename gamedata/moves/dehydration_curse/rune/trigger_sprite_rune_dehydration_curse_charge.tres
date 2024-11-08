@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://deq4mt22y5vel"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_hcv2p"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mbhg7"]
+[ext_resource type="SpriteFrames" uid="uid://bck2i6f7x3xh1" path="res://graphics/moves/water/a_dehydration_curse.tres" id="3_y8yx2"]
+
+[sub_resource type="Curve" id="Curve_xhen1"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_otrvn"]
+min_value = -0.5
+max_value = 1.5
+_data = [Vector2(0, -0.5), 0.0, 2.8, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_pc7vr"]
+script = ExtResource("1_hcv2p")
+annotation = "move to combatant's top-center"
+animation = "dehydration_curse_rune"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -6)
+offset = 4
+xCurve = SubResource("Curve_xhen1")
+yCurve = SubResource("Curve_otrvn")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_n3k0y"]
+script = ExtResource("1_hcv2p")
+annotation = "play trigger animation"
+animation = "dehydration_curse_rune_trigger"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("2_mbhg7")
+spriteFrames = ExtResource("3_y8yx2")
+centerSprite = true
+maxSize = Vector2(16, 48)
+frames = Array[ExtResource("1_hcv2p")]([SubResource("Resource_pc7vr"), SubResource("Resource_n3k0y")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true

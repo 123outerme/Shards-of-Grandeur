@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://byb2678day0jv"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://byb2678day0jv"]
 
 [ext_resource type="Resource" uid="uid://e6iuo48rie2x" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_rewards.tres" id="1_4upca"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_8863y"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dtmft36iyyr0m" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_effectiveness.tres" id="2_morv0"]
 [ext_resource type="Resource" uid="uid://dqf3nex544mko" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_evolutions.tres" id="2_s46wc"]
 [ext_resource type="Resource" uid="uid://g88mq0jtiava" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_stat_alloc_strategy.tres" id="5_ej11w"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_ytsrm"]
 [ext_resource type="Resource" uid="uid://dhwvrn6ocsvik" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_equipment.tres" id="6_funi2"]
 [ext_resource type="Resource" uid="uid://87x3xe5ra5ua" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_movepool.tres" id="6_n7p7w"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="6_wv2iq"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_ytsrm")]([])
+triggeredRunes = Array[ExtResource("5_ytsrm")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

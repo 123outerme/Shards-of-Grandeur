@@ -4,6 +4,9 @@ class_name MoveSprite
 signal frame_complete(frame: int)
 signal move_sprite_complete(sprite: MoveSprite)
 
+## optional resource for identifying the sprite's "source" in an array (for Runes mostly)
+@export var linkedResource: Resource = null
+
 @export var anim: MoveAnimSprite:
 	get:
 		return _anim
@@ -11,6 +14,8 @@ signal move_sprite_complete(sprite: MoveSprite)
 		_anim = a
 var _anim: MoveAnimSprite = null
 @export var staticSprite: Texture2D = null
+
+@export var looping: bool = false
 
 @export var globalMarker: Marker2D
 @export var userTeam: Marker2D
@@ -175,18 +180,28 @@ func next_frame():
 	frame_complete.emit(moveFrame)
 	moveFrame += 1
 	if moveFrame >= len(anim.frames):
-		destroy()
-		return
+		if not looping:
+			destroy()
+			return
+		else:
+			if len(anim.frames) > 0:
+				reset_animation(false)
+				load_frame()
+				move_sprite_complete.emit(self)
+			else:
+				destroy()
+			return
 	frameTimer = 0
 	lastPivotPos = spritePivot.position
 	if not user.leftSide:
 		lastPivotPos.x *= -1 # account for the pivot being flipped for right-side combatants
 	load_frame()
 
-func reset_animation():
+func reset_animation(stop: bool = true):
 	frameTimer = 0
 	moveFrame = 0
-	playing = false
+	lastPivotPos = spritePivot.position
+	playing = not stop
 
 func destroy():
 	playing = false

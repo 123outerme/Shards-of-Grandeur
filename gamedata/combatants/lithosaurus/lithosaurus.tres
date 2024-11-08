@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://dm3g1qy72w0lg"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://dm3g1qy72w0lg"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_f6ol8"]
 [ext_resource type="Resource" uid="uid://bttd5rydjd5ru" path="res://gamedata/combatants/lithosaurus/lithosaurus_rewards.tres" id="1_t4fbu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://b5t3tbqhxci0h" path="res://gamedata/combatants/lithosaurus/lithosaurus_evolutions.tres" id="2_l01vg"]
 [ext_resource type="Resource" uid="uid://ggnxtbhne72i" path="res://gamedata/combatants/lithosaurus/lithosaurus_effectiveness.tres" id="3_2b6wo"]
 [ext_resource type="Resource" uid="uid://bpjthejxdw7lf" path="res://gamedata/combatants/lithosaurus/lithosaurus_sprite.tres" id="5_a87gi"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_imhdx"]
 [ext_resource type="Resource" uid="uid://s38jp5ynkbwh" path="res://gamedata/combatants/lithosaurus/lithosaurus_stat_alloc_strat.tres" id="6_dweem"]
 [ext_resource type="Resource" uid="uid://cwr684jwgernf" path="res://gamedata/combatants/lithosaurus/lithosaurus_movepool.tres" id="7_bdkr8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_brrnm"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_imhdx")]([])
+triggeredRunes = Array[ExtResource("5_imhdx")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

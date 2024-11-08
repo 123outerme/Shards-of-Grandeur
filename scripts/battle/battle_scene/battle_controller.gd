@@ -303,7 +303,7 @@ func save_data(save_path):
 		state.battleMapPath = battleMapPath
 		if state.battleMusic == null:
 			state.battleMusic = SceneLoader.audioHandler.get_cur_music()
-		state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
+		update_state_turn_list()
 		state.save_data(save_path, state)
 
 func load_data(save_path):
@@ -317,6 +317,9 @@ func load_data(save_path):
 		if not battleLoaded:
 			battleLoaded = true
 			SceneLoader.audioHandler.play_music(state.battleMusic, -1)
+
+func update_state_turn_list() -> void:
+	state.turnList = turnExecutor.turnQueue.combatants.duplicate(false)
 
 func update_combatant_focus_neighbors():
 	if enemyCombatant3.is_alive():

@@ -38,26 +38,45 @@ func start_simulation():
 func play_turn():
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
 	var combatant: Combatant = turnQueue.peek_next()
+	battleController.update_state_turn_list()
 	if combatant != null: # apply before-damage-calc status
+		if combatant.command == null:
+			combatant.command = BattleCommand.new() # just in case something goes horribly wrong, pass the turn
+			printerr('TurnExecutor play_turn() error: combatant had no command on its turn: ', combatant.disp_name())
+		
 		battleController.state.statusEffDamagedCombatants = []
 		combatant.command.get_targets_from_combatant_nodes(allCombatantNodes) # make sure to get all commands before applying statuses
+		
 		# apply status effect effects Before Dmg Calc
 		if combatant.statusEffect != null:
 			battleController.state.statusEffDamagedCombatants.append_array(
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 			)
+		# Before Damage Calc: `otherCombatants` is the current turn combatant
+		for cNode: CombatantNode in allCombatantNodes:
+			if cNode.combatant == null:
+				continue
+			cNode.combatant.update_runes([combatant], battleController.state, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 		# apply equipment boosts Before Dmg Calc
 		#if combatant.stats.equippedArmor != null:
 		#	combatant.stats.equippedArmor.apply_effects(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 		#if combatant.stats.equippedWeapon != null:
 		#	combatant.stats.equippedWeapon.apply_effects(combatant, BattleCommand.ApplyTiming.BEFORE_DMG_CALC)
 		# Execute the command: attack, use item, attempt to flee, etc.
-		escaping = combatant.command.execute_command(combatant, allCombatantNodes) # perform all necessary calculations
+		escaping = combatant.command.execute_command(combatant, allCombatantNodes, battleController.state) # perform all necessary calculations
+		
 		# apply after-damage-calc status
 		if combatant.statusEffect != null:
 			battleController.state.statusEffDamagedCombatants.append_array(
 				combatant.statusEffect.apply_status(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 			)
+		
+		# After Damage Calc: rune's `otherCombatants` is the current turn combatant
+		for cNode: CombatantNode in allCombatantNodes:
+			if cNode.combatant == null:
+				continue
+			cNode.combatant.update_runes([combatant], battleController.state, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+		
 		# apply equipment boosts After Dmg Calc
 		#if combatant.stats.equippedArmor != null:
 		#	combatant.stats.equippedArmor.apply_effects(combatant, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
@@ -69,6 +88,10 @@ func play_turn():
 				battleController.state.statusEffDamagedCombatants.append_array(
 					defender.statusEffect.apply_status(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 				)
+			
+			defender.update_runes([combatant], battleController.state, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
+			# for each defender (above): update runes in the After Receiving Damage timing. `otherCombatants` array is the attacker
+	 		
 			# if a move was used: get the move effect
 			if combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move != null:
 				var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
@@ -164,6 +187,12 @@ func update_turn_text() -> bool:
 		if userNode != null and combatant != null and combatant.command.commandResult != null:
 			battleController.battleAnimationManager.play_turn_animation(userNode, combatant.command, battleController.state.statusEffDamagedCombatants)
 	
+	var runesTriggered: bool = false
+	for combatantNode: CombatantNode in allCombatantNodes:
+		var runesText: String = get_triggered_runes_text(combatantNode.combatant)
+		if runesText != '':
+			text += '\n' + runesText
+	
 	battleUI.results.show_text(text)
 	return text != ''
 
@@ -210,6 +239,7 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				var procdEquipment: Array[Item] = []
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''
+				var runeText: String = get_triggered_runes_text(combatantNode.combatant)
 				if combatantNode.combatant.stats.equippedWeapon != null:
 					equippedWeaponText = combatantNode.combatant.stats.equippedWeapon.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
 					if equippedWeaponText != '':
@@ -218,10 +248,13 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 					equippedArmorText = combatantNode.combatant.stats.equippedArmor.get_apply_text(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_BATTLE)
 					if equippedArmorText != '':
 						procdEquipment.append(combatantNode.combatant.stats.equippedArmor)
-				if equippedWeaponText != '' or equippedArmorText != '':
+				
+				if equippedWeaponText != '' or equippedArmorText != '' or runeText != '':
+					if (equippedWeaponText != '' or equippedArmorText != '') and runeText != '':
+						runeText = '\n' + runeText
 					if equippedWeaponText != '' and equippedArmorText != '':
 						equippedWeaponText += ' '
-					battleController.state.calcdStateStrings.append(equippedWeaponText + equippedArmorText)
+					battleController.state.calcdStateStrings.append(equippedWeaponText + equippedArmorText + runeText)
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
 					battleController.state.calcdStateEquipmentProcd.append(procdEquipment)
 			
@@ -238,6 +271,7 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				
 				var equippedWeaponText: String = ''
 				var equippedArmorText: String = ''
+				var runeText: String = get_triggered_runes_text(combatantNode.combatant)
 				var procdEquipment: Array[Item] = []
 				
 				if combatantNode.combatant.stats.equippedWeapon != null:
@@ -254,6 +288,10 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 					if statusEffectString != '':
 						statusEffectString += ' '
 					statusEffectString += equippedWeaponText + equippedArmorText
+				if statusEffectString != '' or runeText != '':
+					if statusEffectString != '':
+						statusEffectString += '\n'
+					statusEffectString += runeText
 				if statusEffectString != '':
 					battleController.state.calcdStateStrings.append(statusEffectString)
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
@@ -264,6 +302,18 @@ func advance_precalcd_text() -> bool:
 	battleController.state.calcdStateIndex += 1
 	update_turn_text()
 	return battleController.state.calcdStateIndex >= len(battleController.state.calcdStateStrings)
+
+func get_triggered_runes_text(combatant: Combatant) -> String:
+	if combatant == null:
+		return ''
+	
+	var runeText: String = ''
+	var runeCount: int = len(combatant.triggeredRunes)
+	if len(combatant.runes) == 0 and runeCount == 1:
+		runeText = combatant.disp_name() + "'s " + combatant.triggeredRunes[0].get_rune_type() + " was triggered!"
+	elif runeCount > 0:
+		runeText = TextUtils.num_to_comma_string(runeCount) + 'of ' + combatant.disp_name() + "'s Runes were triggered!"
+	return runeText
 
 func find_combatant_node_by_combatant(cNodes: Array[CombatantNode], c: Combatant) -> CombatantNode:
 	for node in cNodes:

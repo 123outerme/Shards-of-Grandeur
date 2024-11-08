@@ -185,7 +185,7 @@ func set_targets(newTargets: Array[String]):
 	if selfRandomNum == -1:
 		selfRandomNum = randf()
 
-func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> bool:
+func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], battleState: BattleState) -> bool:
 	commandResult = CommandResult.new()
 	var moveEffect: MoveEffect = null
 	if move != null:
@@ -278,6 +278,13 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode]) -> b
 	
 	if type == Type.MOVE and moveEffect != null:
 		user.add_orbs(orbChange) # add/subtract orbs from using move
+		
+	if type == Type.MOVE and moveEffect != null and moveEffect.rune != null:
+		# after everything else in the command has processed, set up runes
+		for target: Combatant in targets:
+			var newRune: Rune = moveEffect.rune.copy()
+			newRune.init_rune_state(target, [user], battleState)
+			target.runes.append(newRune)
 	
 	return false
 
@@ -497,6 +504,7 @@ func get_command_results(user: Combatant) -> String:
 		for i in range(len(interceptingTargets)):
 			interceptingTargetDamages.append(0) # initialize intercepting target damage values
 		
+		# print damages dealt, statuses afflicted on targets
 		for i in range(len(targets)):
 			var target: Combatant = targets[i]
 			var targetName = target.disp_name()
@@ -584,6 +592,8 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += 'and '
 			else:
 				resultsText += '!'
+		
+		# print damages dealt to intercepting targets
 		for interceptingIdx in range(len(interceptingTargets)):
 			if commandResult.damageOnInterceptingTargets[interceptingIdx] > 0:
 				var moveElString: String = ' '
@@ -604,6 +614,7 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += 's'
 			resultsText += '!'
 		
+		# print stat changes on user, targets
 		if type == Type.MOVE and ( \
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
 					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \
@@ -642,6 +653,23 @@ func get_command_results(user: Combatant) -> String:
 				if hasOneTarget: # only show if one target was validly affected
 					resultsText += targetStatChangesText
 			resultsText += '.'
+		# print rune having been applied
+		if type == Type.MOVE:
+			if moveEffect != null and moveEffect.rune != null:
+				resultsText += '\n'
+				for i in range(len(targets)):
+					var target: Combatant = targets[i]
+					resultsText += target.disp_name()
+					if i < len(targets) - 2:
+						resultsText += ', '
+					elif i < len(targets) - 1:
+						resultsText += ' and '
+				if len(targets) == 1:
+					resultsText += ' was'
+				else:
+					resultsText += ' were'
+				resultsText += ' enchanted with a ' + moveEffect.rune.get_rune_type() + '!'
+				
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)
 		if preventEscapingIdx < 0:

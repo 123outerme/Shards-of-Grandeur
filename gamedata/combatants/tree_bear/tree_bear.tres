@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://ta4xvquq2dev"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://ta4xvquq2dev"]
 
 [ext_resource type="Resource" uid="uid://bfdxdq68lovd" path="res://gamedata/combatants/tree_bear/tree_bear_rewards.tres" id="1_14jae"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_c0qja"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_p3p6n"]
 [ext_resource type="Resource" uid="uid://cklm6fg7frkqq" path="res://gamedata/combatants/tree_bear/tree_bear_stat_growth.tres" id="4_iv7qh"]
 [ext_resource type="Resource" uid="uid://m0gb68fd256q" path="res://gamedata/combatants/tree_bear/tree_bear_sprite.tres" id="5_itqsk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_ncooe"]
 [ext_resource type="Resource" uid="uid://baicjoy0o2qpe" path="res://gamedata/combatants/tree_bear/tree_bear_stat_alloc_strategy.tres" id="6_bq1w6"]
 [ext_resource type="Resource" uid="uid://s0w201cc85nl" path="res://gamedata/combatants/tree_bear/tree_bear_movepool.tres" id="7_47w4f"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_biagw"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_ncooe")]([])
+triggeredRunes = Array[ExtResource("5_ncooe")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

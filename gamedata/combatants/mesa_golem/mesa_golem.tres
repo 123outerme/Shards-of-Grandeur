@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://cra0rgrw4ujhn"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://cra0rgrw4ujhn"]
 
 [ext_resource type="Resource" uid="uid://bgm4lg8udrmj8" path="res://gamedata/combatants/mesa_golem/mesa_golem_rewards.tres" id="1_23fkn"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_ajlnk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cr46jmmynlwk1" path="res://gamedata/combatants/mesa_golem/mesa_golem_effectiveness.tres" id="3_tx8lv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="4_mj7s3"]
 [ext_resource type="Resource" uid="uid://chvcmkt0av0mi" path="res://gamedata/combatants/mesa_golem/mesa_golem_sprite.tres" id="5_k3h38"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_loebq"]
 [ext_resource type="Resource" uid="uid://ccgd0l4y3xiy8" path="res://gamedata/combatants/mesa_golem/mesa_golem_stat_alloc_strat.tres" id="6_xyywp"]
 [ext_resource type="Resource" uid="uid://81npyd53qy3y" path="res://gamedata/combatants/mesa_golem/mesa_golem_movepool.tres" id="7_16gue"]
 [ext_resource type="Resource" uid="uid://dq0lhhdxn5k61" path="res://gamedata/combatants/mesa_golem/mesa_golem_stat_growth.tres" id="10_klxfy"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_loebq")]([])
+triggeredRunes = Array[ExtResource("5_loebq")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

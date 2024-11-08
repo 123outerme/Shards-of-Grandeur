@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://206otuqdhqhy"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://206otuqdhqhy"]
 
 [ext_resource type="Resource" uid="uid://ctft1ky8xul8" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_ai.tres" id="1_fev66"]
 [ext_resource type="Resource" uid="uid://dcyu6uq6q0njf" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_rewards.tres" id="1_kei3j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bilggiq54xkd0" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_effectiveness.tres" id="2_5qh4w"]
 [ext_resource type="Resource" uid="uid://7a6u4wil5ui3" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_movepool.tres" id="3_t3he7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_bgkxo"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_86j8m"]
 [ext_resource type="Resource" uid="uid://cxrjjb4ssvyxa" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_sprite.tres" id="5_eljv2"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_u7i80"]
 [ext_resource type="Resource" uid="uid://nd6a5jt4dgf7" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion_stat_growth.tres" id="6_7ygry"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_86j8m")]([])
+triggeredRunes = Array[ExtResource("5_86j8m")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

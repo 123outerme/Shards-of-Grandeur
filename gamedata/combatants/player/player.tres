@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=13 format=3 uid="uid://bcx60u36qshvn"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bcx60u36qshvn"]
 
 [ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="1_8y7ho"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_t36dj"]
 [ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="2_sgssq"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_8pi6r"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="3_hdq5j"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="3_ichbu"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="4_5v7g1"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="4_aasog"]
@@ -55,6 +56,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("3_hdq5j")]([])
+triggeredRunes = Array[ExtResource("3_hdq5j")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

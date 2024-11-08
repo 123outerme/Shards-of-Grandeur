@@ -59,6 +59,8 @@ var returnToPos: Vector2 = Vector2()
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
 var playingMoveSprites: Array[MoveSprite] = []
+var playingRuneSprites: Array[MoveSprite] = []
+var playingRuneSpriteIdx: int = -1
 var playedEventTexts: int = 0
 var playingEventTexts: Array[CombatantEventText] = []
 var useItemSprite: Texture2D = null
@@ -202,6 +204,7 @@ func update_hp_tag():
 	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		#orbDisplay.visible = true
 	update_orb_display()
+	update_rune_sprites()
 	#else:
 		#orbDisplay.visible = false
 	if combatant.statusEffect != null:
@@ -228,6 +231,37 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
 	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
+
+func update_rune_sprites() -> void:
+	var currentlyPlayingSprite: MoveSprite = \
+		playingRuneSprites[playingRuneSpriteIdx] if \
+			playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites) else \
+			null
+	playingRuneSpriteIdx = -1
+	playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
+	for rune: Rune in combatant.runes:
+		var hasSprite: bool = false
+		for runeSprite: MoveSprite in playingRuneSprites:
+			if runeSprite.linkedResource == rune:
+				hasSprite = true
+		if hasSprite:
+			continue
+		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
+		spriteNode.linkedResource = rune
+		spriteNode.looping = true
+		spriteNode.user = self
+		spriteNode.anim = rune.runeSpriteAnim
+		spriteNode.target = self
+		spriteNode.globalMarker = globalMarker
+		spriteNode.userTeam = allyTeamMarker
+		spriteNode.enemyTeam = enemyTeamMarker
+		spriteNode.move_sprite_complete.connect(_rune_sprite_complete)
+		add_child(spriteNode)
+		playingRuneSprites.append(spriteNode)
+		if playingRuneSpriteIdx == -1:
+			playingRuneSpriteIdx = len(playingMoveSprites) - 1
+	if playingRuneSpriteIdx == -1 and currentlyPlayingSprite != null:
+		playingRuneSpriteIdx = playingMoveSprites.find(currentlyPlayingSprite)
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -553,6 +587,15 @@ func _move_sprite_complete(sprite: MoveSprite):
 		playingMoveSprites = []
 		move_sprites_finished.emit()
 
+func _rune_sprite_complete(sprite: MoveSprite):
+	sprite.playing = false
+	playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
+	if playingRuneSprites[playingRuneSpriteIdx] != null:
+		playingRuneSprites[playingRuneSpriteIdx].playing = true
+
+func _rune_sprite_triggered_complete(sprite: MoveSprite):
+	playingRuneSprites.erase(sprite)
+
 func _event_text_completed(eventText: CombatantEventText):
 	playedEventTexts -= 1 # a number and an array are both kept track of, in case some texts are freed at this time the erase may not work but the count will
 	playingEventTexts.erase(eventText)
@@ -567,3 +610,6 @@ func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
 
 func _on_shard_summon_anim_sprite_animation_finished() -> void:
 	shardSummonAnimSprite.visible = false
+
+func _filter_out_null(val) -> bool:
+	return val != null

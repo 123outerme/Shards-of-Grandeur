@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dgqo8vipb17e8"]
+[gd_scene load_steps=64 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
@@ -32,6 +32,7 @@
 [ext_resource type="Resource" uid="uid://bx6u2bgxrbymu" path="res://gamedata/items/weapon/tome_vol_1.tres" id="22_ge00y"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="22_o4y65"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="23_h4pwx"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="23_jq1m7"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="23_l1bd4"]
 [ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="24_606y3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="24_n2rm1"]
@@ -44,48 +45,6 @@
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_etk0a"]
 [ext_resource type="Script" path="res://prefabs/test/mock_audio_handler.gd" id="35_0y1m3"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
-
-[sub_resource type="Resource" id="Resource_tiqmo"]
-script = ExtResource("4_bfd7i")
-aggroStrategy = 1
-weight = 0.35
-subLayers = Array[ExtResource("2_plygy")]([])
-
-[sub_resource type="Resource" id="Resource_tfvys"]
-script = ExtResource("3_31tq3")
-healLayer = false
-weight = 0.65
-subLayers = Array[ExtResource("2_plygy")]([SubResource("Resource_tiqmo")])
-
-[sub_resource type="Resource" id="Resource_yr6r6"]
-script = ExtResource("5_7lkbn")
-buffStrategy = 2
-weight = 0.5
-subLayers = Array[ExtResource("2_plygy")]([])
-
-[sub_resource type="Resource" id="Resource_bhxpi"]
-script = ExtResource("6_gnrs8")
-weight = 0.35
-subLayers = Array[ExtResource("2_plygy")]([])
-
-[sub_resource type="Resource" id="Resource_jehht"]
-script = ExtResource("7_4r4cj")
-mostOrbsWeight = 1.15
-weight = 0.4
-subLayers = Array[ExtResource("2_plygy")]([])
-
-[sub_resource type="Resource" id="Resource_4sjat"]
-script = ExtResource("7_l5pdx")
-weight = 0.3
-subLayers = Array[ExtResource("2_plygy")]([])
-
-[sub_resource type="Resource" id="Resource_q6qyh"]
-script = ExtResource("8_ewn23")
-layers = Array[ExtResource("2_plygy")]([SubResource("Resource_tfvys"), SubResource("Resource_yr6r6"), SubResource("Resource_bhxpi"), SubResource("Resource_jehht"), SubResource("Resource_4sjat")])
-orbSpendStrategy = 0
-stalenessTolerance = 1.4
-lastMovesEffect = 0
-timesUsedLastMove = 0
 
 [sub_resource type="Resource" id="Resource_lxlw8"]
 script = ExtResource("9_eqdy2")
@@ -184,6 +143,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("23_jq1m7")]([])
+triggeredRunes = Array[ExtResource("23_jq1m7")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -193,6 +156,48 @@ strategy = 0
 aiOverrideWeight = 0.0
 moveEffectiveness = ExtResource("18_nxyit")
 downed = false
+
+[sub_resource type="Resource" id="Resource_tiqmo"]
+script = ExtResource("4_bfd7i")
+aggroStrategy = 1
+weight = 0.35
+subLayers = Array[ExtResource("2_plygy")]([])
+
+[sub_resource type="Resource" id="Resource_tfvys"]
+script = ExtResource("3_31tq3")
+healLayer = false
+weight = 0.65
+subLayers = Array[ExtResource("2_plygy")]([SubResource("Resource_tiqmo")])
+
+[sub_resource type="Resource" id="Resource_yr6r6"]
+script = ExtResource("5_7lkbn")
+buffStrategy = 2
+weight = 0.5
+subLayers = Array[ExtResource("2_plygy")]([])
+
+[sub_resource type="Resource" id="Resource_bhxpi"]
+script = ExtResource("6_gnrs8")
+weight = 0.35
+subLayers = Array[ExtResource("2_plygy")]([])
+
+[sub_resource type="Resource" id="Resource_jehht"]
+script = ExtResource("7_4r4cj")
+mostOrbsWeight = 1.15
+weight = 0.4
+subLayers = Array[ExtResource("2_plygy")]([])
+
+[sub_resource type="Resource" id="Resource_4sjat"]
+script = ExtResource("7_l5pdx")
+weight = 0.3
+subLayers = Array[ExtResource("2_plygy")]([])
+
+[sub_resource type="Resource" id="Resource_q6qyh"]
+script = ExtResource("8_ewn23")
+layers = Array[ExtResource("2_plygy")]([SubResource("Resource_tfvys"), SubResource("Resource_yr6r6"), SubResource("Resource_bhxpi"), SubResource("Resource_jehht"), SubResource("Resource_4sjat")])
+orbSpendStrategy = 0
+stalenessTolerance = 1.4
+lastMovesEffect = 0
+timesUsedLastMove = 0
 
 [sub_resource type="Resource" id="Resource_rtfcg"]
 script = ExtResource("16_vlt6a")
@@ -217,10 +222,10 @@ turnsLeft = 3
 
 [node name="FullBattleTester" type="Node2D"]
 script = ExtResource("1_cwe7c")
-playerAi = SubResource("Resource_q6qyh")
 encounter = SubResource("Resource_14f7a")
 _playerCombatant = SubResource("Resource_7loi3")
 playerLv = 16
+playerAi = SubResource("Resource_q6qyh")
 playerStatAllocStrat = SubResource("Resource_mniaa")
 playerStatus = SubResource("Resource_6iopj")
 

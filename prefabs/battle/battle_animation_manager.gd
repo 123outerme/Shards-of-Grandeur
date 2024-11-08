@@ -10,6 +10,9 @@ signal combatant_animation_complete
 ## just one portion of the animation is complete for this turn
 signal combatant_animation_unit_complete(type: AnimationType)
 
+## just one rune's animation has completed
+signal rune_animation_complete
+
 ## signals that all animation types we were waiting for are completed. Different than turn_animation_complete, as we may string multiple of these together before calling this turn done.
 signal animation_waiting_complete
 
@@ -382,6 +385,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if shadeCallbackFunc != Callable():
 		battlefieldShade.shade_faded_up.disconnect(shadeCallbackFunc)
 
+	await play_triggered_rune_animations()
+	
 	# post-move animations?
 	
 	#if command.type == BattleCommand.Type.USE_ITEM and slot.item.itemType == Item.ItemType.HEALING:
@@ -433,11 +438,13 @@ func play_intermediate_round_animations(state: BattleState):
 					.timeout.connect(_on_combatant_animation_unit_complete.bind(AnimationType.EVENT_TEXT))
 				totalWaitingForSignals.append(AnimationType.EVENT_TEXT)
 			
+			combatant_animation_start.emit()
 			if len(totalWaitingForSignals) > 0:
 				# start/complete events are only emitted if the subject is found and animations are playing
-				combatant_animation_start.emit()
 				await animation_waiting_complete
-				combatant_animation_complete.emit()
+
+			await play_triggered_rune_animations()
+			combatant_animation_complete.emit()
 
 func skip_intermediate_animations(state: BattleState, menuState: BattleState.Menu):
 	# if the current state is pre-battle:
@@ -454,6 +461,43 @@ func skip_intermediate_animations(state: BattleState, menuState: BattleState.Men
 				totalWaitingForSignals = []
 				animation_waiting_complete.emit()
 	# otherwise, if not pre-battle then don't cancel the active animations, continue as normal
+
+func play_triggered_rune_animations() -> void:
+	if SettingsHandler.gameSettings.battleAnims:
+		for combatantNode: CombatantNode in get_all_combatant_nodes():
+			var removingRuneSprites: Array[MoveSprite] = []
+			for runeSprite: MoveSprite in combatantNode.playingRuneSprites:
+				var rune: Rune = runeSprite.linkedResource as Rune
+				var runeIdx: int = combatantNode.combatant.triggeredRunes.find(rune)
+				if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
+					removingRuneSprites.append(runeSprite)
+					runeSprite.looping = false
+					runeSprite.anim = rune.triggerAnim
+					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
+					runeSprite.play_sprite_animation()
+					await rune_animation_complete
+					var eventTexts: Array[String] = []
+					if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
+						var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+						eventTexts.append(CombatantEventText.build_damage_text(combatantNode.combatant.triggeredRunesDmg[runeIdx], superEffective))
+					if rune.statChanges != null and rune.statChanges.has_stat_changes():
+						eventTexts.append(CombatantEventText.build_stat_changes_texts(rune.statChanges))
+					if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
+						eventTexts.append(CombatantEventText.build_status_get_text(rune.statusEffect))
+					
+					var textDelayAccum: float = 0
+					var playedEventTexts: bool = false
+					if not disableEventTexts:
+						for textIdx: int in range(len(eventTexts)):
+							if textIdx > 0:
+								textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
+							combatantNode.play_event_text(eventTexts[textIdx], textDelayAccum)
+							playedEventTexts = true
+					
+					if playedEventTexts:
+						get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+							.timeout.connect(_on_rune_trigger_animation_complete)
+						await rune_animation_complete
 
 func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay: float = 0, center: bool = true) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
@@ -494,3 +538,6 @@ func _on_combatant_animation_unit_complete(type: BattleAnimationManager.Animatio
 		totalWaitingForSignals.erase(type)
 	if len(waitingForSignals) == 0 and (not includeTotal or len(totalWaitingForSignals) == 0):
 		animation_waiting_complete.emit()
+
+func _on_rune_trigger_animation_complete(arg: Variant = null) -> void:
+	rune_animation_complete.emit()

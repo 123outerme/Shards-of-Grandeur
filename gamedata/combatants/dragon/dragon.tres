@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://dfd6upveebcdv"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://dfd6upveebcdv"]
 
 [ext_resource type="Resource" uid="uid://mj8m21sd3moj" path="res://gamedata/combatants/dragon/dragon_evolutions.tres" id="1_8y2wj"]
 [ext_resource type="Resource" uid="uid://dpdygiw5b5e47" path="res://gamedata/combatants/dragon/dragon_ai.tres" id="1_37hhi"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://blpifx5qrqya5" path="res://gamedata/combatants/dragon/dragon_effectiveness.tres" id="3_ws8o1"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="3_yi5y7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="4_8rdpt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_ng8k0"]
 [ext_resource type="Resource" uid="uid://bn2mx500twghp" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy.tres" id="6_hfde2"]
 [ext_resource type="Resource" uid="uid://djd8jqk4tr3ll" path="res://gamedata/combatants/dragon/dragon_stat_growth.tres" id="6_smgtq"]
 [ext_resource type="Resource" uid="uid://c15i72ewcdht3" path="res://gamedata/combatants/dragon/dragon_equipment.tres" id="11_ppunh"]
@@ -40,6 +41,8 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_ng8k0")]([])
+triggeredRunes = Array[ExtResource("5_ng8k0")]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""

@@ -80,6 +80,16 @@ const MAX_ORBS = 10
 ## the currently applied status effect in a battle
 @export_storage var statusEffect: StatusEffect = null
 
+## the currently applied Runes in a battle
+@export_storage var runes: Array[Rune] = []
+
+## the runes that have been currently triggered this battle step
+@export_storage var triggeredRunes: Array[Rune] = []
+
+@export_storage var triggeredRunesDmg: Array[int] = []
+
+@export_storage var triggeredRunesStatus: Array[bool] = []
+
 ## how much Attunement the minion has
 @export_storage var friendship: float = 0
 
@@ -149,6 +159,10 @@ func _init(
 	i_statChanges = StatChanges.new(),
 	i_statusEffect = null,
 	i_sprite = null,
+	i_runes: Array[Rune] = [],
+	i_triggeredRunes: Array[Rune] = [],
+	i_triggeredRunesDmg: Array[int] = [],
+	i_triggeredRunesStatus: Array[bool] = [],
 	i_friendship = 0,
 	i_ai: CombatantAi = null,
 	i_aiType = AiType.NONE,
@@ -178,6 +192,10 @@ func _init(
 	ai = i_ai
 	aiType = i_aiType
 	damageAggroType = i_damageAggroType
+	runes = i_runes
+	triggeredRunes = i_triggeredRunes
+	triggeredRunesDmg = i_triggeredRunesDmg
+	triggeredRunesStatus = i_triggeredRunesStatus
 	friendship = i_friendship
 	aiOverrideWeight = i_overrideWeight
 	moveEffectiveness = i_moveEffectiveness
@@ -430,6 +448,68 @@ func get_starting_orbs() -> int:
 		bonusOrbs += stats.equippedArmor.bonusOrbs
 	
 	return max(0, min(Combatant.MAX_ORBS, bonusOrbs)) # bounded [0, max]
+
+func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, timing: BattleCommand.ApplyTiming) -> void:
+	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND or \
+			timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC or \
+			timing == BattleCommand.ApplyTiming.AFTER_ROUND or \
+			timing == BattleCommand.ApplyTiming.AFTER_POST_ROUND:
+		# reset the list of triggered runes when appropriate
+		triggeredRunes = []
+		triggeredRunesDmg = []
+		triggeredRunesStatus = []
+	
+	var runesToCheck: bool = len(runes) > 0
+	while runesToCheck:
+		var runeWasTriggered: bool = false
+		for runeIdx: int in range(len(runes)):
+			var rune: Rune = runes[runeIdx]
+			var triggers: bool = rune.does_rune_trigger(self, otherCombatants, battleState, timing)
+			if triggers and not triggeredRunes.has(rune):
+				apply_rune_effect(rune)
+				runeWasTriggered = true
+		for rune: Rune in triggeredRunes:
+			runes.erase(rune) # erase triggered runes outside of the loop that's looping on `runes`
+		
+		if not runeWasTriggered or len(runes) == 0:
+			runesToCheck = false
+
+func apply_rune_effect(rune: Rune) -> void:
+	if rune == null:
+		return
+	
+	triggeredRunes.append(rune)
+	
+	rune.caster.add_orbs(rune.orbChange)
+	
+	var attackerStats: Stats = rune.caster.statChanges.apply(rune.caster.stats)
+	var defenderStats: Stats = statChanges.apply(stats)
+	
+	var atkStat: float = attackerStats.get_stat_for_dmg_category(rune.category)
+	var resStat: float = defenderStats.resistance
+	
+	var elementalMultiplier: float = rune.caster.statChanges.get_element_multiplier(rune.element) * \
+			get_element_effectiveness_multiplier(rune.element)
+	
+	var damage: int = BattleCommand.damage_formula(rune.power, atkStat, resStat, attackerStats.level, stats.level, elementalMultiplier)
+	
+	if damage > 0:
+		if rune.caster.currentHp > 0: # if rune caster is still alive:
+			var hpHealed: int = max(1, roundi(rune.lifesteal * damage))
+			rune.caster.currentHp = min(rune.caster.stats.maxHp, max(0, rune.caster.currentHp + hpHealed))
+	if currentHp > 0: # if this combatant is still alive:
+		currentHp = min(stats.maxHp, max(0, currentHp - damage))
+	triggeredRunesDmg.append(damage)
+	
+	if rune.statChanges != null:
+		statChanges.stack(rune.statChanges)
+	
+	var appliedStatus: bool = false
+	if rune.statusEffect != null:
+		if statusEffect == null or rune.statusEffect.overwritesOtherStatuses:
+			statusEffect = rune.statusEffect.copy()
+			appliedStatus = true
+	triggeredRunesStatus.append(appliedStatus)
 
 func could_combatant_surge(effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
@@ -731,6 +811,15 @@ func save_from_object(c: Combatant):
 	ai = c.ai
 	aiType = c.aiType
 	damageAggroType = c.damageAggroType
+	
+	runes = []
+	for rune: Rune in c.runes:
+		runes.append(rune.copy())
+	
+	triggeredRunes = []
+	for rune: Rune in c.triggeredRunes:
+		triggeredRunes.append(rune.copy())
+	
 	strategy = c.strategy
 	friendship = c.friendship
 	aiOverrideWeight = c.aiOverrideWeight

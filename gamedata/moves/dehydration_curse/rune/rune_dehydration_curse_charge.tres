@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TimedRune" load_steps=4 format=3 uid="uid://bqy2nr0tnlr0u"]
+
+[ext_resource type="Resource" uid="uid://bbhpsfvhk3tnf" path="res://gamedata/moves/dehydration_curse/rune/sprite_rune_dehydration_curse_charge.tres" id="1_1wik2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="2_5wpgn"]
+[ext_resource type="Resource" uid="uid://deq4mt22y5vel" path="res://gamedata/moves/dehydration_curse/rune/trigger_sprite_rune_dehydration_curse_charge.tres" id="3_u5ewf"]
+
+[resource]
+script = ExtResource("2_5wpgn")
+afterTurns = 2
+turnCounter = 0
+orbChange = 0
+category = 1
+element = 1
+power = 40
+lifesteal = 0.25
+runeSpriteAnim = ExtResource("1_1wik2")
+triggerAnim = ExtResource("3_u5ewf")

@@ -39,6 +39,9 @@ enum Role {
 ## Base percentage chance to apply status. 0% is auto-fail, 100% is auto-pass
 @export var statusChance: float = 0.0
 
+## the Rune to set up when the move hits
+@export var rune: Rune = null
+
 ## how the surge effect changes when an additional orb is added
 @export var surgeChanges: SurgeChanges = null
 
@@ -69,6 +72,7 @@ func _init(
 	i_statusEffect = null,
 	i_selfGetsStatus = false,
 	i_statusChance = 0.0,
+	i_rune: Rune = null,
 	i_surgeChanges = null,
 ):
 	role = i_role
@@ -81,6 +85,7 @@ func _init(
 	statusEffect = i_statusEffect
 	selfGetsStatus = i_selfGetsStatus
 	statusChance = i_statusChance
+	rune = i_rune
 	surgeChanges = i_surgeChanges
 
 func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYSICAL, moveElement: Move.Element = Move.Element.NONE) -> Array[String]:
@@ -191,6 +196,9 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 			newEffect.statusEffect.potency = surgeChanges.get_potency_for_additional_orbs_spent(additionalOrbs)
 		newEffect.statusEffect.turnsLeft += surgeChanges.get_additional_status_turns(additionalOrbs)
 	
+	if newEffect.rune != null:
+		newEffect.rune = newEffect.rune.apply_surge_changes(additionalOrbs)
+	
 	return newEffect
 	
 func copy() -> MoveEffect:
@@ -205,6 +213,7 @@ func copy() -> MoveEffect:
 		statusEffect,
 		selfGetsStatus,
 		statusChance,
+		rune.copy(),
 		surgeChanges
 	)
 	return newEffect

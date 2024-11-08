@@ -1,6 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://bck2i6f7x3xh1"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://bck2i6f7x3xh1"]
 
 [ext_resource type="Texture2D" uid="uid://c8pfvv68s5c67" path="res://graphics/moves/water/dehydration_curse/dehydration_curse.png" id="1_4cvya"]
+[ext_resource type="Texture2D" uid="uid://c4fu61crg28qg" path="res://graphics/moves/water/dehydration_curse/dehydration_curse_rune.png" id="2_h43nd"]
+[ext_resource type="Texture2D" uid="uid://du8lxlvefsxuc" path="res://graphics/moves/water/dehydration_curse/dehydration_curse_rune_trigger.png" id="3_ju8ej"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mi5bs"]
 atlas = ExtResource("1_4cvya")
@@ -54,6 +56,42 @@ region = Rect2(176, 0, 16, 48)
 atlas = ExtResource("1_4cvya")
 region = Rect2(192, 0, 16, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_np4a8"]
+atlas = ExtResource("2_h43nd")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgqoj"]
+atlas = ExtResource("2_h43nd")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ddum"]
+atlas = ExtResource("2_h43nd")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl8uo"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guehf"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idgjb"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ravpa"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyavt"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xouv4"]
+atlas = ExtResource("3_ju8ej")
+region = Rect2(80, 0, 16, 48)
+
 [resource]
 animations = [{
 "frames": [{
@@ -106,5 +144,42 @@ animations = [{
 }],
 "loop": false,
 "name": &"dehydration_curse",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np4a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgqoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ddum")
+}],
+"loop": true,
+"name": &"dehydration_curse_rune",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl8uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idgjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ravpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyavt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xouv4")
+}],
+"loop": false,
+"name": &"dehydration_curse_rune_trigger",
 "speed": 6.0
 }]
