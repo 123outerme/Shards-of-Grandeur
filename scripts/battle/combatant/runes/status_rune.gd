@@ -32,7 +32,10 @@ func get_rune_type() -> String:
 	return 'Status Rune'
 
 func get_rune_trigger_description() -> String:
-	return 'When Status is Afflicted'
+	return 'When ' + StatusEffect.potency_to_string(minPotency) + ' Status is Afflicted'
+
+func get_rune_tooltip() -> String:
+	return "This Rune's effect triggers when the enchanted combatant gets afflicted with a " + StatusEffect.potency_to_string(minPotency) + ' Status Effect, or stronger.'
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
 	return combatant.statusEffect != currentStatus and combatant.statusEffect != null and combatant.statusEffect.potency >= minPotency
@@ -44,7 +47,7 @@ func copy(copyStorage: bool = false) -> StatusRune:
 		element,
 		power,
 		lifesteal,
-		statChanges.duplicate() if statChanges != null else null,
+		statChanges.copy() if statChanges != null else null,
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,

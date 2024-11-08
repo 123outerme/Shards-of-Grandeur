@@ -799,7 +799,7 @@ func save_from_object(c: Combatant):
 	currentHp = c.currentHp
 	
 	if c.statChanges != null:
-		statChanges = c.statChanges.duplicate(true)
+		statChanges = c.statChanges.copy()
 	else:
 		statChanges = null
 		

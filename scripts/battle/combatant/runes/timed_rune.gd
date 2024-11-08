@@ -29,7 +29,10 @@ func get_rune_type() -> String:
 	return 'Timed Rune'
 
 func get_rune_trigger_description() -> String:
-	return 'After ' + String.num(afterTurns) + ' Turns'
+	return 'After ' + String.num(afterTurns - turnCounter) + ' Turns'
+
+func get_rune_tooltip() -> String:
+	return "This Rune's effect triggers after " + String.num(afterTurns) + ' have passed.'
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
 	if timing == BattleCommand.ApplyTiming.AFTER_POST_ROUND:
@@ -43,7 +46,7 @@ func copy(copyStorage: bool = false) -> TimedRune:
 		element,
 		power,
 		lifesteal,
-		statChanges.duplicate() if statChanges != null else null,
+		statChanges.copy() if statChanges != null else null,
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,

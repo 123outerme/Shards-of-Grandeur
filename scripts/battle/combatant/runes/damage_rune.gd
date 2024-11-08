@@ -37,14 +37,39 @@ func get_rune_trigger_description() -> String:
 	else:
 		return 'When Recieving Healing'
 
+func get_rune_tooltip() -> String:
+	if not isHealRune:
+		return "This Rune's effect is triggered when the enchanted combatant takes damage from any source."
+	else:
+		return "This Rune's effect is triggered when the enchanted combatant is healed from any source."
+
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
 	var triggered = false
+	
+	# catches easy cases such as post-round damage, other runes triggering
 	if previousHp != -1:
 		if not isHealRune:
 			triggered = combatant.currentHp < previousHp
 		else:
 			triggered = combatant.currentHp > previousHp
 	previousHp = combatant.currentHp
+	
+	# if the easy case didn't succeed and we're recieving damage:
+	if not triggered and timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG and len(otherCombatants) > 0:
+		var user: Combatant = otherCombatants[0] if len(otherCombatants) > 0 else null
+		# if the user has a command that already completed:
+		if user != null and user.command != null and user.command.commandResult != null:
+			var targetIdx: int = user.command.targets.find(combatant)
+			# if this combatant was a target, the rune is triggered if this command dealt damage
+			if targetIdx != -1:
+				var dmgDealt: int = user.command.commandResult.damagesDealt[targetIdx]
+				triggered = (dmgDealt > 0 and not isHealRune) or (dmgDealt < 0 and isHealRune)
+			else:
+				var interceptingIdx: int = user.command.interceptingTargets.find(combatant)
+				# if this combatant intercepted, the rune is triggered if this command dealt damage
+				if interceptingIdx != -1:
+					var dmgDealt: int = user.command.commandResult.damageOnInterceptingTargets[interceptingIdx]
+					triggered = (dmgDealt > 0 and not isHealRune) or (dmgDealt < 0 and isHealRune)
 	return triggered
 
 func copy(copyStorage: bool = false) -> DamageRune:
@@ -54,7 +79,7 @@ func copy(copyStorage: bool = false) -> DamageRune:
 		element,
 		power,
 		lifesteal,
-		statChanges.duplicate() if statChanges != null else null,
+		statChanges.copy() if statChanges != null else null,
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,

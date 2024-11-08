@@ -622,7 +622,7 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += '\n' + user.disp_name() + ' boosted '
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and \
 					((userIdx > -1 and commandResult.wasBoosted[userIdx]) or commandResult.wasBoosted):
-				var selfStatChanges = moveEffect.selfStatChanges.duplicate(true)
+				var selfStatChanges = moveEffect.selfStatChanges.copy()
 				if moveEffect.targetStatChanges != null and userIdx > -1 and commandResult.wasBoosted[userIdx]:
 					selfStatChanges.stack(moveEffect.targetStatChanges)
 				var multipliers: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()

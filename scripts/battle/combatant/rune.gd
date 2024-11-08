@@ -70,6 +70,9 @@ func get_rune_type() -> String:
 func get_rune_trigger_description() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses
 
+func get_rune_tooltip() -> String:
+	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses
+
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
 	return false # implement in subclasses
 
@@ -98,7 +101,7 @@ func copy(copyStorage: bool = false) -> Rune:
 		element,
 		power,
 		lifesteal,
-		statChanges.duplicate() if statChanges != null else null,
+		statChanges.copy() if statChanges != null else null,
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,

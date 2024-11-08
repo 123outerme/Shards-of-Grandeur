@@ -87,7 +87,7 @@ func stack(changes: StatChanges):
 				elementMultipliers.append(newMult)
 
 func subtract(changes: StatChanges) -> StatChanges:
-	var newChanges = self.duplicate(true)
+	var newChanges: StatChanges = copy()
 	if changes != null:
 		newChanges.physAttackIncrease -= changes.physAttackIncrease
 		newChanges.magicAttackIncrease -= changes.magicAttackIncrease
@@ -332,3 +332,8 @@ func get_multipliers_text() -> Array[StatMultiplierText]:
 	texts.append_array(get_element_multiplier_texts())
 
 	return texts
+
+func copy() -> StatChanges:
+	var newChanges: StatChanges = StatChanges.new()
+	newChanges.stack(self)
+	return newChanges

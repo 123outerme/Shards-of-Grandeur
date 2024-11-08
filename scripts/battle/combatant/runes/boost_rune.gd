@@ -21,7 +21,7 @@ func _init(
 	prevStatChanges = i_prevStatChanges
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
-	prevStatChanges = combatant.statChanges
+	prevStatChanges = combatant.statChanges.copy()
 
 func get_rune_type() -> String:
 	return 'Boost Rune'
@@ -29,8 +29,18 @@ func get_rune_type() -> String:
 func get_rune_trigger_description() -> String:
 	return 'When Stat Boosts Are Applied'
 
+func get_rune_tooltip() -> String:
+	return "This Rune's effect triggers when the enchanted combatant's Stat Boosts change."
+
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
-	return combatant.statChanges != prevStatChanges
+	if prevStatChanges != null or combatant.statChanges != null:
+		return true
+
+	if not prevStatChanges.equals(combatant.statChanges):
+		return true
+	
+	prevStatChanges = combatant.statChanges.copy()
+	return false
 
 func copy(copyStorage: bool = false) -> BoostRune:
 	var rune: BoostRune = BoostRune.new(
@@ -39,7 +49,7 @@ func copy(copyStorage: bool = false) -> BoostRune:
 		element,
 		power,
 		lifesteal,
-		statChanges.duplicate() if statChanges != null else null,
+		statChanges.copy() if statChanges != null else null,
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,

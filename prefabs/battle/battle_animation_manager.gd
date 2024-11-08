@@ -293,7 +293,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					# if the defender is also the user and there are self-boosts
 					if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 						if statChanges != null:
-							statChanges = statChanges.duplicate()
+							statChanges = statChanges.copy()
 							statChanges.stack(moveEffect.selfStatChanges)
 						else:
 							statChanges = moveEffect.selfStatChanges
