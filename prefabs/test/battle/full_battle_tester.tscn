@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dgqo8vipb17e8"]
+[gd_scene load_steps=65 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
@@ -45,6 +45,7 @@
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_etk0a"]
 [ext_resource type="Script" path="res://prefabs/test/mock_audio_handler.gd" id="35_0y1m3"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
+[ext_resource type="Resource" uid="uid://bqy2nr0tnlr0u" path="res://gamedata/moves/dehydration_curse/rune/rune_dehydration_curse_charge.tres" id="40_y7j4x"]
 
 [sub_resource type="Resource" id="Resource_lxlw8"]
 script = ExtResource("9_eqdy2")
@@ -228,6 +229,8 @@ playerLv = 16
 playerAi = SubResource("Resource_q6qyh")
 playerStatAllocStrat = SubResource("Resource_mniaa")
 playerStatus = SubResource("Resource_6iopj")
+enemy1Runes = Array[ExtResource("23_jq1m7")]([ExtResource("40_y7j4x")])
+enemy1RuneCasterPositions = Array[String](["You"])
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("22_3prau")]
 

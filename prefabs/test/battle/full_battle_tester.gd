@@ -26,6 +26,7 @@ func _ready():
 	if not DirAccess.dir_exists_absolute(TEST_DIR + subdir):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR + subdir)
 	
+	state = BattleState.new()
 	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
 	#var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
@@ -61,7 +62,6 @@ func _ready():
 				combatant.statChanges = StatChanges.new()
 			#combatant.command = combatantCommands[idx]
 			combatant.statusEffect = combatantStatuses[idx]
-			combatant.runes = combatantRunes[idx]
 			if combatantAis[idx] == null:
 				combatantAis[idx] = combatant.get_ai()
 		if combatantAis[idx] != null:
@@ -70,15 +70,20 @@ func _ready():
 		get_all_combatant_nodes()[idx].load_combatant_node()
 	
 	for idx: int in range(len(get_all_combatant_nodes())):
-		if get_all_combatant_nodes()[idx].combatant != null:
+		var combatantNode: CombatantNode = get_all_combatant_nodes()[idx]
+		if combatantNode.combatant != null:
+			combatantNode.combatant.runes = []
 			for runeIdx: int in range(len(combatantRuneCasters[idx])):
 				var caster: Combatant = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
 						caster = cNode.combatant
-				get_all_combatant_nodes()[idx].combatant.runes[runeIdx].caster = caster
-	
-	state = BattleState.new()
+				var rune: Rune = combatantRunes[idx][runeIdx]
+				if rune != null:
+					rune.init_rune_state(combatantNode.combatant, [caster], state)
+					combatantNode.combatant.runes.append(rune)
+					combatantNode.combatant.runes[runeIdx].caster = caster
+			combatantNode.update_hp_tag()
 	state.menu = BattleState.Menu.PRE_ROUND
 	battleUI.menuState = BattleState.Menu.PRE_ROUND
 	

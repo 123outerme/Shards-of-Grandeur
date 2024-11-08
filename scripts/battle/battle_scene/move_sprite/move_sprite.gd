@@ -203,8 +203,9 @@ func reset_animation(stop: bool = true):
 	lastPivotPos = spritePivot.position
 	playing = not stop
 
-func destroy():
+func destroy(emitSignal: bool = true):
 	playing = false
 	visible = false
-	move_sprite_complete.emit(self)
+	if emitSignal:
+		move_sprite_complete.emit(self)
 	queue_free()

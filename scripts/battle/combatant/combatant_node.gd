@@ -589,13 +589,15 @@ func _move_sprite_complete(sprite: MoveSprite):
 		move_sprites_finished.emit()
 
 func _rune_sprite_complete(sprite: MoveSprite):
+	if sprite == null:
+		playingRuneSprites = playingMoveSprites.filter(_filter_out_null)
+		return
 	sprite.playing = false
 	playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
 	if playingRuneSprites[playingRuneSpriteIdx] != null:
 		playingRuneSprites[playingRuneSpriteIdx].playing = true
-
-func _rune_sprite_triggered_complete(sprite: MoveSprite):
-	playingRuneSprites.erase(sprite)
+	if not sprite.looping:
+		sprite.destroy(false)
 
 func _event_text_completed(eventText: CombatantEventText):
 	playedEventTexts -= 1 # a number and an array are both kept track of, in case some texts are freed at this time the erase may not work but the count will

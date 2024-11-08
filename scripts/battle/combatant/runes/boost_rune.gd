@@ -21,6 +21,7 @@ func _init(
 	prevStatChanges = i_prevStatChanges
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
+	super.init_rune_state(combatant, otherCombatants, state)
 	prevStatChanges = combatant.statChanges.copy()
 
 func get_rune_type() -> String:

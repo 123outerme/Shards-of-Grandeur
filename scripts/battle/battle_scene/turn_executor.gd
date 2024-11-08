@@ -33,6 +33,7 @@ func start_simulation():
 				combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
 			if combatantNode.combatant.stats.equippedArmor != null:
 				combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.BEFORE_ROUND)
+			combatantNode.combatant.update_runes([], battleController.state, BattleCommand.ApplyTiming.BEFORE_ROUND)
 	turnQueue = TurnQueue.new(combatants)
 
 func play_turn():
@@ -123,6 +124,7 @@ func play_turn():
 					combatantNode.combatant.stats.equippedWeapon.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
 				if combatantNode.combatant.stats.equippedArmor != null:
 					combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
+				combatantNode.combatant.update_runes([], battleController.state, BattleCommand.ApplyTiming.AFTER_ROUND)
 		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
 	
 func update_turn_text() -> bool:
@@ -178,6 +180,11 @@ func update_turn_text() -> bool:
 								var afterDmgText: String = defender.stats.equippedArmor.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 								if afterDmgText != '':
 									text += ' ' + afterDmgText
+			var runesTriggered: bool = false
+			for combatantNode: CombatantNode in allCombatantNodes:
+				var runesText: String = get_triggered_runes_text(combatantNode.combatant)
+				if runesText != '':
+					text += '\n' + runesText
 
 		var userNode: CombatantNode = null
 		for combatantNode: CombatantNode in allCombatantNodes:
@@ -186,12 +193,6 @@ func update_turn_text() -> bool:
 			
 		if userNode != null and combatant != null and combatant.command.commandResult != null:
 			battleController.battleAnimationManager.play_turn_animation(userNode, combatant.command, battleController.state.statusEffDamagedCombatants)
-	
-	var runesTriggered: bool = false
-	for combatantNode: CombatantNode in allCombatantNodes:
-		var runesText: String = get_triggered_runes_text(combatantNode.combatant)
-		if runesText != '':
-			text += '\n' + runesText
 	
 	battleUI.results.show_text(text)
 	return text != ''
@@ -313,6 +314,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		runeText = combatant.disp_name() + "'s " + combatant.triggeredRunes[0].get_rune_type() + " was triggered!"
 	elif runeCount > 0:
 		runeText = TextUtils.num_to_comma_string(runeCount) + 'of ' + combatant.disp_name() + "'s Runes were triggered!"
+	
 	return runeText
 
 func find_combatant_node_by_combatant(cNodes: Array[CombatantNode], c: Combatant) -> CombatantNode:

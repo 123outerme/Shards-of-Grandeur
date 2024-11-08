@@ -62,7 +62,10 @@ func _init(
 	triggerAnim = i_triggerAnim
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
-	pass # implement in subclasses if necessary
+	if len(otherCombatants) > 0:
+		caster = otherCombatants[0]
+	else:
+		printerr('Rune init_rune_state() error: caster not provided')
 
 func get_rune_type() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses

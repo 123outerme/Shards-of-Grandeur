@@ -70,7 +70,6 @@ func _ready():
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
 			combatant.statusEffect = combatantStatuses[idx]
-			combatant.runes = combatantRunes[idx]
 			if combatantAis[idx] == null:
 				combatantAis[idx] = combatant.get_ai()
 		if combatantAis[idx] != null:
@@ -79,13 +78,19 @@ func _ready():
 		get_all_combatant_nodes()[idx].load_combatant_node()
 	
 	for idx: int in range(len(get_all_combatant_nodes())):
-		if get_all_combatant_nodes()[idx].combatant != null:
+		var combatantNode: CombatantNode = get_all_combatant_nodes()[idx]
+		if combatantNode.combatant != null:
+			combatantNode.combatant.runes = []
 			for runeIdx: int in range(len(combatantRuneCasters[idx])):
+				var rune: Rune = combatantRunes[idx][runeIdx]
+				if rune != null:
+					rune.init_rune_state(combatantNode.combatant, [], state)
+					combatantNode.runes.append(rune)
 				var caster: Combatant = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
 						caster = cNode.combatant
-				get_all_combatant_nodes()[idx].combatant.runes[runeIdx].caster = caster
+				combatantNode.combatant.runes[runeIdx].caster = caster
 	
 	state = BattleState.new()
 	state.menu = BattleState.Menu.PRE_ROUND

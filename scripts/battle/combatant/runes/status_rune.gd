@@ -26,6 +26,7 @@ func _init(
 	currentStatus = i_currentStatus
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
+	super.init_rune_state(combatant, otherCombatants, state)
 	currentStatus = combatant.statusEffect
 
 func get_rune_type() -> String:

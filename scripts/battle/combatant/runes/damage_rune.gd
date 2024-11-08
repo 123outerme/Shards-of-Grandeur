@@ -25,6 +25,7 @@ func _init(
 	previousHp = i_previousHp
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
+	super.init_rune_state(combatant, otherCombatants, state)
 	if previousHp == -1:
 		previousHp = combatant.currentHp
 
