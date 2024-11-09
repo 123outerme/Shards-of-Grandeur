@@ -376,16 +376,16 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		
 		if appliedStatus != null:
 			if appliedStatus.type != StatusEffect.Type.NONE:
-				resultsTexts.append('was afflicted with ' + appliedStatus.status_effect_to_string())
+				resultsTexts.append('afflicting with ' + appliedStatus.status_effect_to_string())
 			else:
-				resultsTexts.append('was cured of ' + StatusEffect.potency_to_string(appliedStatus.potency) + ' Status')
+				resultsTexts.append('curing of ' + StatusEffect.potency_to_string(appliedStatus.potency) + ' Status')
 		
 		for textIdx: int in range(len(resultsTexts)):
 			runeText += resultsTexts[textIdx]
 			if textIdx < len(resultsTexts) - 2:
 				runeText += ', '
 			elif textIdx < len(resultsTexts) - 1:
-				runeText += ' and '
+				runeText += ', and '
 		
 		runeText += '!'
 		
@@ -415,7 +415,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				if textIdx < len(casterTexts) - 2:
 					runeText += ', '
 				elif textIdx < len(casterTexts) - 1:
-					runeText += ' and '
+					runeText += ', and '
 			runeText += '!'
 	
 	return runeText

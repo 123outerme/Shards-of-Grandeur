@@ -647,7 +647,7 @@ func get_command_results(user: Combatant) -> String:
 					if targetIdx < len(targets) - 1 and len(targets) > 2:
 						targetStatChangesText += ', '
 					if targetIdx == len(targets) - 2:
-						targetStatChangesText += ' and '
+						targetStatChangesText += ', and '
 				var multipliers: Array[StatMultiplierText] = moveEffect.targetStatChanges.get_multipliers_text()
 				targetStatChangesText += ' ' + StatMultiplierText.multiplier_text_list_to_string(multipliers)
 				if hasOneTarget: # only show if one target was validly affected
@@ -663,7 +663,7 @@ func get_command_results(user: Combatant) -> String:
 					if i < len(targets) - 2:
 						resultsText += ', '
 					elif i < len(targets) - 1:
-						resultsText += ' and '
+						resultsText += ', and '
 				if len(targets) == 1:
 					resultsText += ' was'
 				else:

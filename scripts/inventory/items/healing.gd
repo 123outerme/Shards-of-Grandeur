@@ -61,7 +61,7 @@ func get_effect_text(inBattle: bool = true) -> String:
 			if idx < len(effectMsgs) - 2:
 				effectText += ', '
 			else:
-				effectText += ' and '
+				effectText += ', and '
 		else:
 			effectText += '.'
 	

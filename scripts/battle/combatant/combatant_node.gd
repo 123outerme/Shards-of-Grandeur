@@ -603,9 +603,12 @@ func _rune_sprite_complete(sprite: MoveSprite):
 		playingRuneSpriteIdx = playingRuneSprites.find(prevSprite)
 		return
 	sprite.playing = false
-	playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
-	if playingRuneSprites[playingRuneSpriteIdx] != null:
-		playingRuneSprites[playingRuneSpriteIdx].playing = true
+	if len(playingRuneSprites) == 0:
+		playingRuneSpriteIdx = -1
+	else:
+		playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
+		if playingRuneSprites[playingRuneSpriteIdx] != null:
+			playingRuneSprites[playingRuneSpriteIdx].playing = true
 	if not sprite.looping:
 		sprite.destroy(false)
 

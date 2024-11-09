@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=54 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_4cfte"]
@@ -18,11 +18,15 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="18_u0ttj"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="19_tn0g6"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="20_6fk7h"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/runes/chain_rune.gd" id="20_a13hu"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="20_jje8i"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="21_2t7gl"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="21_6efxx"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
 [ext_resource type="Resource" uid="uid://txe6nx7c22oy" path="res://gamedata/moves/draconic_seal/draconic_seal.tres" id="23_qu1ff"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="23_wf1pp"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/exhaustion.gd" id="24_2pcht"]
 [ext_resource type="Resource" uid="uid://cq4jjoj6ancn0" path="res://gamedata/moves/shade_blast/shade_blast.tres" id="24_56mgk"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
@@ -115,6 +119,29 @@ weight = 0.1
 script = ExtResource("21_6efxx")
 categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubResource("Resource_wm2w7"), SubResource("Resource_pl5yt"), SubResource("Resource_1i7gf")])
 
+[sub_resource type="Resource" id="Resource_pippo"]
+script = ExtResource("21_2t7gl")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.1
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("20_6fk7h")]([])
+
+[sub_resource type="Resource" id="Resource_5id1n"]
+script = ExtResource("20_a13hu")
+orbChange = 0
+category = 0
+element = 0
+power = 0
+lifesteal = 0.0
+statChanges = SubResource("Resource_pippo")
+
 [sub_resource type="Resource" id="Resource_pxoct"]
 script = ExtResource("20_a13hu")
 orbChange = 1
@@ -122,6 +149,24 @@ category = 0
 element = 0
 power = 0
 lifesteal = 0.0
+
+[sub_resource type="Resource" id="Resource_mgsiu"]
+script = ExtResource("24_2pcht")
+type = 1
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_6toto"]
+script = ExtResource("23_wf1pp")
+isHealRune = false
+previousHp = -1
+orbChange = 0
+category = 0
+element = 0
+power = 0
+lifesteal = 0.0
+statusEffect = SubResource("Resource_mgsiu")
 
 [sub_resource type="Resource" id="Resource_cbcj4"]
 script = ExtResource("44_j7j6h")
@@ -174,8 +219,8 @@ _playerCombatant = ExtResource("28_yubvn")
 playerLv = 16
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
-playerRunes = Array[ExtResource("18_u0ttj")]([ExtResource("19_tn0g6"), SubResource("Resource_pxoct")])
-playerRuneCasterPositions = Array[String](["Center", "Center"])
+playerRunes = Array[ExtResource("18_u0ttj")]([SubResource("Resource_5id1n"), ExtResource("19_tn0g6"), SubResource("Resource_pxoct"), SubResource("Resource_6toto")])
+playerRuneCasterPositions = Array[String](["Center", "Center", "Center", "Center"])
 minionCommand = SubResource("Resource_el0wh")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy2Command = SubResource("Resource_2nv1k")

@@ -45,7 +45,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	moveWeight *= min(1, statusChance) / AVERAGE_STATUS_CHANCE
 	
 	# if it's a positive status effect and the target is an enemy, or vice versa:
-	if (user.role != target.role) == moveEffect.statusEffect.is_positive_status():
+	if (user.role != target.role) == statusEffect.is_positive_status():
 		moveWeight = 1 / moveWeight
 	
 	return baseWeight * moveWeight
