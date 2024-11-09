@@ -126,10 +126,14 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 		effects.append(statusString)
 	
 	if rune != null:
-		effects.append('+ ' + rune.get_rune_type())
+		if orbChange >= 0:
+			effects.append('+ ' + rune.get_rune_type())
+		else:
+			effects.append('+ Surged' + rune.get_rune_type())
 	
 	return effects
 
+'''
 func get_changes_description(spendingOrbs: int) -> Array[String]:
 	var changedSurgeEff: MoveEffect = apply_surge_changes(spendingOrbs)
 	var effects: Array[String] = []
@@ -170,6 +174,7 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 		effects.append('+ Surged ' + changedSurgeEff.rune.get_rune_type())
 	
 	return effects
+'''
 
 func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	if surgeChanges == null:

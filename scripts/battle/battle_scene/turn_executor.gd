@@ -181,7 +181,6 @@ func update_turn_text() -> bool:
 								var afterDmgText: String = defender.stats.equippedArmor.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 								if afterDmgText != '':
 									text += ' ' + afterDmgText
-			var runesTriggered: bool = false
 			for combatantNode: CombatantNode in allCombatantNodes:
 				var runesText: String = get_triggered_runes_text(combatantNode.combatant)
 				if runesText != '':
@@ -325,12 +324,25 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 			runeText = TextUtils.num_to_comma_string(runeCount) + ' of ' + combatant.disp_name() + "'s Runes were triggered"
 		
 		var accumulatedDmg: int = 0
+		var accumulatedLifesteals: Dictionary = {}
 		var accumulatedStatChanges: StatChanges = StatChanges.new()
 		var appliedStatus: StatusEffect = null
 		var accumulatedOrbs: int = 0
 		for idx: int in range(len(combatant.triggeredRunes)):
 			var rune: Rune = combatant.triggeredRunes[idx]
 			accumulatedDmg += combatant.triggeredRunesDmg[idx]
+			var lifesteal: int = max(1, roundi(max(0, rune.lifesteal) * combatant.triggeredRunesDmg[idx]))
+			var casterNode: CombatantNode = null
+			for cNode: CombatantNode in battleController.get_all_combatant_nodes():
+				if cNode.combatant == rune.caster:
+					casterNode = cNode
+					break
+			if casterNode != null:
+				if accumulatedLifesteals.has(casterNode.battlePosition):
+					accumulatedLifesteals[casterNode.battlePosition] += lifesteal
+				else:
+					accumulatedLifesteals[casterNode.battlePosition] = lifesteal
+			
 			if rune.statChanges != null:
 				accumulatedStatChanges.stack(rune.statChanges)
 			if combatant.triggeredRunesStatus[idx] and rune.statusEffect != null:
@@ -377,6 +389,26 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				runeText += ' and '
 		
 		runeText += '!'
+		
+		if accumulatedLifesteals.size() > 0:
+			var lifestealTexts: Array[String] = []
+			for battlePosition: String in accumulatedLifesteals.keys():
+				var casterNode: CombatantNode = null
+				for cNode: CombatantNode in battleController.get_all_combatant_nodes():
+					if cNode.battlePosition == battlePosition:
+						casterNode = cNode
+						break
+				if casterNode != null:
+					lifestealTexts.append(casterNode.combatant.disp_name() + ' stole ' + TextUtils.num_to_comma_string(accumulatedLifesteals[battlePosition]) + ' HP')
+			
+			if len(lifestealTexts) > 0:
+				for textIdx: int in range(len(lifestealTexts)):
+					runeText += lifestealTexts[textIdx]
+					if textIdx < len(lifestealTexts) - 2:
+						runeText += ', '
+					elif textIdx < len(lifestealTexts) - 1:
+						runeText += ' and '
+				runeText += '!'
 	
 	return runeText
 

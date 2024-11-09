@@ -268,7 +268,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 				commandResult.selfBoosted = true
 				
 		if moveEffect != null and moveEffect.lifesteal > 0 and totalInflictedDamage > 0:
-			var hpHealed: int = max(1, roundi(moveEffect.lifesteal * totalInflictedDamage))
+			var hpHealed: int = max(1, roundi(max(0, moveEffect.lifesteal) * totalInflictedDamage))
 			commandResult.lifestealHeal = hpHealed
 			user.currentHp = max(0, min(user.stats.maxHp, user.currentHp + hpHealed))
 
