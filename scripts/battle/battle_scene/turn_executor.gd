@@ -338,6 +338,44 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 			accumulatedOrbs = max(0, min(Combatant.MAX_ORBS, accumulatedOrbs + rune.orbChange))
 		
 		# TODO print results of runes being triggered
+		runeText += ', '
+		var resultsTexts: Array[String] = []
+		if accumulatedDmg != 0:
+			var dmgText: String = ''
+			if accumulatedDmg > 0:
+				dmgText += 'dealing'
+			else:
+				dmgText += 'healing'
+			dmgText += ' ' + TextUtils.num_to_comma_string(accumulatedDmg) + ' '
+			if accumulatedDmg > 0:
+				dmgText += 'damage'
+			else:
+				dmgText += 'HP'
+			resultsTexts.append(dmgText)
+		
+		if accumulatedOrbs > 0:
+			resultsTexts.append('gaining ' + String.num(accumulatedOrbs) + ' $orb')
+		elif accumulatedOrbs < 0:
+			resultsTexts.append('losing ' + String.num(accumulatedOrbs) + ' $orb')
+		
+		if accumulatedStatChanges.has_stat_changes():
+			var statChangeTexts: Array[StatMultiplierText] = accumulatedStatChanges.get_stat_multiplier_texts()
+			var statChangeText: String = 'boosting by ' + StatMultiplierText.multiplier_text_list_to_string(statChangeTexts)
+			resultsTexts.append(statChangeText)
+		
+		if appliedStatus != null:
+			if appliedStatus.type != StatusEffect.Type.NONE:
+				resultsTexts.append('was afflicted with ' + appliedStatus.status_effect_to_string())
+			else:
+				resultsTexts.append('was cured of ' + StatusEffect.potency_to_string(appliedStatus.potency) + ' Status')
+		
+		for textIdx: int in range(len(resultsTexts)):
+			runeText += resultsTexts[textIdx]
+			if textIdx < len(resultsTexts) - 2:
+				runeText += ', '
+			elif textIdx < len(resultsTexts) - 1:
+				runeText += ' and '
+		
 		runeText += '!'
 	
 	return runeText

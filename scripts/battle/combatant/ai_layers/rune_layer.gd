@@ -29,8 +29,8 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var finalSetWeight: float = setWeight * get_rune_weight_on_target(user, moveEffect.rune, target, targets, battleState)
 	
-	if moveEffect.rune != null:
-		print('DEBUG:: move effect rune is not null for ', move.moveName)
+	#if moveEffect.rune != null:
+	#	print('DEBUG:: move effect rune is not null for ', move.moveName)
 	
 	var finalTriggerWeight: float = triggerWeight
 	
@@ -44,7 +44,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		if not (rune in targetRunesTriggered):
 			finalTriggerWeight *= get_rune_weight_on_target(user, rune, user, targets, battleState)
 	
-	print('DEBUG::: final rune weights ', finalSetWeight, ' / ', finalTriggerWeight, ' / for move ', move.moveName)
+	#print('DEBUG::: final rune weights ', finalSetWeight, ' / ', finalTriggerWeight, ' / for move ', move.moveName)
 	
 	return baseWeight * finalSetWeight * finalTriggerWeight
 
@@ -102,7 +102,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 				statusWeight = 1.0 / statusWeight
 			runeWeight *= statusWeight
 	
-	print('rune weights: ', powerRatio, ' / ', 1 + (orbDiff * .05), ' / ', rune.lifesteal, ' / ', statChangeWeight, ' / ', statusWeight, ' / final: ', runeWeight)
+	#print('rune weights: ', powerRatio, ' / ', 1 + (orbDiff * .05), ' / ', rune.lifesteal, ' / ', statChangeWeight, ' / ', statusWeight, ' / final: ', runeWeight)
 	
 	return runeWeight
 
