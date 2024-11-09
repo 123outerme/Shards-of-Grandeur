@@ -65,6 +65,7 @@ var playedEventTexts: int = 0
 var playingEventTexts: Array[CombatantEventText] = []
 var useItemSprite: Texture2D = null
 var isBeingStatusAfflicted: bool = false
+var targetOfMoveAnimation: bool = false
 var initialAssistMarkerPos: Vector2
 var initialAttackMarkerPos: Vector2
 var initialEventTextContainerPos: Vector2
@@ -232,7 +233,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
 
-func update_rune_sprites() -> void:
+func update_rune_sprites(createNew: bool = true) -> void:
 	var currentlyPlayingSprite: MoveSprite = \
 		playingRuneSprites[playingRuneSpriteIdx] if \
 			playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites) else \
@@ -244,7 +245,7 @@ func update_rune_sprites() -> void:
 		for runeSprite: MoveSprite in playingRuneSprites:
 			if runeSprite.linkedResource == rune:
 				hasSprite = true
-		if hasSprite:
+		if hasSprite or not createNew:
 			continue
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
 		spriteNode.z_index -= 1
@@ -260,9 +261,13 @@ func update_rune_sprites() -> void:
 		add_child(spriteNode)
 		playingRuneSprites.append(spriteNode)
 		if playingRuneSpriteIdx == -1:
-			playingRuneSpriteIdx = len(playingMoveSprites) - 1
+			playingRuneSpriteIdx = len(playingRuneSprites) - 1
 	if playingRuneSpriteIdx == -1 and currentlyPlayingSprite != null:
-		playingRuneSpriteIdx = playingMoveSprites.find(currentlyPlayingSprite)
+		playingRuneSpriteIdx = playingRuneSprites.find(currentlyPlayingSprite)
+	
+	if playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites):
+		playingRuneSprites[playingRuneSpriteIdx].visible = not targetOfMoveAnimation
+		playingRuneSprites[playingRuneSpriteIdx].playing = not targetOfMoveAnimation
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -590,7 +595,9 @@ func _move_sprite_complete(sprite: MoveSprite):
 
 func _rune_sprite_complete(sprite: MoveSprite):
 	if sprite == null:
-		playingRuneSprites = playingMoveSprites.filter(_filter_out_null)
+		var prevSprite: MoveSprite = playingRuneSprites[playingRuneSpriteIdx]
+		playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
+		playingRuneSpriteIdx = playingRuneSprites.find(prevSprite)
 		return
 	sprite.playing = false
 	playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)

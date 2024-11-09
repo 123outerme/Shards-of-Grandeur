@@ -530,18 +530,25 @@ func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
 	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition] + 4
+	combatantNode.targetOfMoveAnimation = true
+	combatantNode.update_rune_sprites(false)
 
 ## Combatant will always be below shade
 func set_combatant_below_shade(combatantNode: CombatantNode) -> void:
 	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition]
+	combatantNode.targetOfMoveAnimation = false
+	combatantNode.update_rune_sprites(false)
 
 ## Default combatant z-index. Sets combatant above the shade if the shade is at its "normal" height, if shade is raised then the combatant will be below
 func set_combatant_between_shade(combatantNode: CombatantNode) -> void:
 	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition]
+	combatantNode.targetOfMoveAnimation = false
+	combatantNode.update_rune_sprites(false)
 
 func reset_all_combatants_shade_z_indices() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		set_combatant_between_shade(combatantNode)
+		combatantNode.update_rune_sprites(false)
 
 func cancel_animation():
 	cancellingAnimation = true
