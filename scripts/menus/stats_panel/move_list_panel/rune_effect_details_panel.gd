@@ -1,14 +1,21 @@
 extends Panel
 class_name RuneEffectDetailsPanel
 
+signal loaded_panel
 signal tooltip_panel_opened
 signal status_button_onscreen_update(isOnscreen: bool)
+signal rune_help_button_onscreen_update(isOnscreen: bool)
 
 @export var rune: Rune = null
 @export var isSurgeEffect: bool = false
 @export var tooltipPanel: TooltipPanel
+@export var casterPosition: String = ''
 
 @onready var detailsTitleLabel: RichTextLabel = get_node('DetailsTitle')
+
+@onready var runeHelpButton: Button = get_node('DetailsTitle/RuneHelpSection/RuneHelpButton')
+
+@onready var triggerConditionsLabel: RichTextLabel = get_node('BaseEffectPanel/TriggerConditionsRow/TriggerConditions')
 @onready var runePowerLabel: RichTextLabel = get_node("BaseEffectPanel/RunePower")
 @onready var runeCategoryElementLabel: RichTextLabel = get_node("BaseEffectPanel/RuneCategoryElement")
 
@@ -24,12 +31,19 @@ signal status_button_onscreen_update(isOnscreen: bool)
 @onready var surgePanel: Panel = get_node('SurgePanel')
 @onready var surgeVBox: VBoxContainer = get_node('SurgePanel/VBoxContainer')
 
+@onready var casterRow: HBoxContainer = get_node('CasterRow')
+@onready var casterNameLabel: RichTextLabel = get_node('CasterRow/CasterName')
+
 var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
 var helpButtonPressed: Button = null
 
-const MAX_CHARGE_HEIGHT = 218
-const MAX_SURGE_HEIGHT = 467
+var runeHelpButtonOnscreen: bool = false
+var statusHelpButtonOnscreen: bool = false
+
+const MAX_CHARGE_HEIGHT = 262
+const MAX_SURGE_HEIGHT = 511
+const MAX_BATTLE_HEIGHT = 300
 
 func load_rune_effect_details() -> void:
 	if rune == null:
@@ -45,9 +59,10 @@ func load_rune_effect_details() -> void:
 	elif rune.orbChange < 0:
 		orbText = ' / -' + str(absi(rune.orbChange)) + ' $orb'
 	
-	
 	detailsTitleLabel.text = TextUtils.rich_text_substitute(titleText + orbText, Vector2i(32, 32))
-
+	
+	triggerConditionsLabel.text = '[center]' + rune.get_rune_trigger_description() + '[/center]'
+	
 	if rune.power >= 0:
 		runePowerLabel.text = str(rune.power) + ' Power'
 	else:
@@ -98,19 +113,50 @@ func load_rune_effect_details() -> void:
 	else:
 		surgePanel.visible = false
 		size.y = MAX_CHARGE_HEIGHT
+	if casterPosition != '' and rune.caster != null:
+		size.y = MAX_BATTLE_HEIGHT
+		surgePanel.visible = false
+		casterNameLabel.text = '[center]' + rune.caster.disp_name() + ' (' + casterPosition + ')[/center]'
+		casterRow.visible = true
+	else:
+		casterRow.visible = false
+	loaded_panel.emit()
+
+func get_bottom_most_button() -> Button:
+	if statusEffectRow.visible:
+		return statusHelpButton
+	return runeHelpButton
 
 func _on_status_help_button_pressed():
 	if rune.statusEffect == null:
 		return
 	helpButtonPressed = statusHelpButton
+	tooltipPanel.title = rune.statusEffect.get_status_type_string()
+	tooltipPanel.details = rune.statusEffect.get_status_effect_tooltip()
+	tooltipPanel.load_tooltip_panel()
 	tooltip_panel_opened.emit()
-
 
 func _on_status_button_onscreen_notifier_screen_entered() -> void:
 	if statusEffectRow.visible:
+		statusHelpButtonOnscreen = true
 		status_button_onscreen_update.emit(true)
-
 
 func _on_status_button_onscreen_notifier_screen_exited() -> void:
 	if statusEffectRow.visible:
+		statusHelpButtonOnscreen = false
 		status_button_onscreen_update.emit(false)
+
+func _on_rune_help_button_pressed() -> void:
+	helpButtonPressed = runeHelpButton
+	tooltipPanel.title = rune.get_rune_type()
+	tooltipPanel.details = rune.get_rune_tooltip()
+	tooltipPanel.load_tooltip_panel()
+	tooltip_panel_opened.emit()
+
+func _on_rune_help_button_onscreen_notifier_screen_entered() -> void:
+	runeHelpButtonOnscreen = true
+	rune_help_button_onscreen_update.emit(true)
+
+func _on_rune_help_button_onscreen_notifier_screen_exited() -> void:
+	runeHelpButtonOnscreen = false
+	rune_help_button_onscreen_update.emit(false)

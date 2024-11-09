@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2mulpmm5i311"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_0ka1m"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_runes_panel.gd" id="1_vgyid"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_7sb26"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_tcd5r"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="5_py0uo"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="6_0lylc"]
+[ext_resource type="PackedScene" uid="uid://cxs31up6d6dxj" path="res://prefabs/ui/tooltip_panel.tscn" id="7_tehdi"]
+
+[node name="BattleRunesPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0ka1m")
+script = ExtResource("1_vgyid")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 115.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -585.0
+offset_top = 17.0
+offset_right = 571.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme = ExtResource("3_7sb26")
+bbcode_enabled = true
+text = "[center]Runes Enchanted on Combatant Name Goes Here[/center]"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+custom_minimum_size = Vector2(0, 310)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 86.0
+offset_right = -40.0
+offset_bottom = 396.0
+grow_horizontal = 2
+follow_focus = true
+script = ExtResource("3_tcd5r")
+boxContainer = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BoxContainerScroller" parent="Panel" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("5_py0uo")]
+layout_mode = 1
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 40.0
+offset_top = 86.0
+offset_right = -40.0
+offset_bottom = 452.0
+grow_vertical = 1
+scrollContainer = NodePath("../ScrollContainer")
+scrollPx = 400
+bailoutFocusControl = NodePath("../BackButton")
+
+[node name="BackButton" parent="Panel" instance=ExtResource("6_0lylc")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 408.0
+offset_right = 40.0
+offset_bottom = 458.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
+
+[node name="TooltipPanel" parent="." instance=ExtResource("7_tehdi")]
+visible = false
+layout_mode = 1
+
+[connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Panel/BoxContainerScroller" to="." method="_on_box_container_scroller_visibility_changed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="ok_pressed" from="TooltipPanel" to="." method="_on_tooltip_panel_ok_pressed"]

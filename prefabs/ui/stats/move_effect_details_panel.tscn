@@ -41,6 +41,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 548.0
 grow_vertical = 2
+follow_focus = true
 script = ExtResource("2_rs13u")
 boxContainer = NodePath("VBoxContainer")
 
@@ -286,6 +287,7 @@ scrollContainer = NodePath("../ScrollContainer")
 
 [connection signal="visibility_changed" from="ScrollContainer" to="ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[connection signal="rune_help_button_onscreen_update" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_rune_help_button_onscreen_update"]
 [connection signal="status_button_onscreen_update" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_status_button_onscreen_update"]
 [connection signal="tooltip_panel_opened" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_tooltip_panel_opened"]
 [connection signal="visibility_changed" from="BoxContainerScroller" to="." method="_on_box_container_scroller_visibility_changed"]

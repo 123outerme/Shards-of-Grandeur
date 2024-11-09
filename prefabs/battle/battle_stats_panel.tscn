@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcegueepscj4j"]
+[gd_scene load_steps=14 format=3 uid="uid://bcegueepscj4j"]
 
 [ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://themes/nested_ui/popup_ui.tres" id="1_vrx5q"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_stats_panel.gd" id="2_n0f8k"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="7_pcqma"]
 [ext_resource type="PackedScene" uid="uid://cxs31up6d6dxj" path="res://prefabs/ui/tooltip_panel.tscn" id="8_ipv3d"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="12_nophx"]
+[ext_resource type="PackedScene" uid="uid://c2mulpmm5i311" path="res://prefabs/battle/battle_runes_panel.tscn" id="12_qe6f0"]
 
 [node name="BattleStatsPanel" type="Panel" groups=["BattleStatsPanel"]]
 offset_right = 1180.0
@@ -70,6 +71,21 @@ layout_mode = 2
 icon = ExtResource("6_kiy60")
 icon_alignment = 1
 expand_icon = true
+
+[node name="RunesButton" parent="." instance=ExtResource("5_2baye")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 295.0
+offset_top = -228.0
+offset_right = 373.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Runes"
 
 [node name="OrbDisplay" parent="." instance=ExtResource("7_pcqma")]
 layout_mode = 1
@@ -178,11 +194,17 @@ offset_top = 0.105011
 offset_right = -0.0800171
 offset_bottom = -0.105042
 
+[node name="BattleRunesPanel" parent="." instance=ExtResource("12_qe6f0")]
+visible = false
+layout_mode = 1
+
 [node name="TooltipPanel" parent="." instance=ExtResource("8_ipv3d")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="HBoxContainer/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[connection signal="pressed" from="RunesButton" to="." method="_on_runes_button_pressed"]
+[connection signal="back_pressed" from="BattleRunesPanel" to="." method="_on_battle_runes_panel_back_pressed"]
 [connection signal="ok_pressed" from="TooltipPanel" to="." method="_on_tooltip_panel_ok_pressed"]
 
 [editable path="EquipmentPanel"]

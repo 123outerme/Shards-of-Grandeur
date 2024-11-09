@@ -141,6 +141,7 @@ func load_move_effect_details_panel():
 	runeEffectDetailsPanel.rune = moveEffect.rune
 	runeEffectDetailsPanel.isSurgeEffect = isSurgeEffect
 	runeEffectDetailsPanel.tooltipPanel = tooltipPanel
+	runeEffectDetailsPanel.casterPosition = ''
 	runeEffectDetailsPanel.load_rune_effect_details()
 	
 	if runeEffectDetailsPanel.statusEffectRow.visible:
@@ -159,13 +160,14 @@ func _on_status_help_button_pressed():
 	tooltip_panel_opened.emit()
 
 func _on_rune_effect_details_panel_tooltip_panel_opened() -> void:
-	if runeEffectDetailsPanel.rune == null or runeEffectDetailsPanel.rune.statusEffect == null:
+	if runeEffectDetailsPanel.rune == null:
 		return
 	
-	helpButtonPressed = runeEffectDetailsPanel.statusHelpButton
-	tooltipPanel.title = runeEffectDetailsPanel.rune.statusEffect.get_status_type_string()
-	tooltipPanel.details = runeEffectDetailsPanel.rune.statusEffect.get_status_effect_tooltip()
-	tooltipPanel.load_tooltip_panel()
+	if runeEffectDetailsPanel.helpButtonPressed == runeEffectDetailsPanel.statusHelpButton:
+		if runeEffectDetailsPanel.rune.statusEffect == null:
+			return
+	
+	helpButtonPressed = runeEffectDetailsPanel.helpButtonPressed
 	tooltip_panel_opened.emit()
 
 func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: bool) -> void:
@@ -173,7 +175,10 @@ func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: boo
 		boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
 		boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.statusHelpButton)
 	else:
-		if statusEffectRow.visible:
+		if runeEffectDetailsPanel.runeHelpButtonOnscreen:
+			boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.runeHelpButton)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.runeHelpButton)
+		elif statusEffectRow.visible:
 			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
 			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
 		else:
@@ -183,3 +188,18 @@ func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: boo
 func _on_box_container_scroller_visibility_changed() -> void:
 	custom_minimum_size.x = SCROLLING_WIDTH if boxContainerScroller.visible else NO_SCROLLING_WIDTH
 	size.x = custom_minimum_size.x
+
+func _on_rune_effect_details_panel_rune_help_button_onscreen_update(isOnscreen: bool) -> void:
+	if isOnscreen:
+		boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.runeHelpButton)
+		boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.runeHelpButton)
+	else:
+		if runeEffectDetailsPanel.statusHelpButtonOnscreen:
+			boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.statusHelpButton)
+		elif statusEffectRow.visible:
+			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+		else:
+			boxContainerScroller.connect_scroll_down_top_neighbor(boxContainerScroller.scrollUpBtn)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)

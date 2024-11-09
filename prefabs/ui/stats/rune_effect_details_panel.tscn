@@ -15,12 +15,12 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="RuneEffectDetailsPanel" type="Panel"]
-custom_minimum_size = Vector2(540, 218)
+custom_minimum_size = Vector2(540, 262)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -740.0
-offset_bottom = -253.0
+offset_bottom = -209.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -39,25 +39,94 @@ grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("3_nki3r")
 bbcode_enabled = true
-text = "[center]Damage Rune  / +10 [img=32x32]res://graphics/ui/orb_filled.png[/img][/center]"
+text = "[center]Damage Rune / +10 [img=32x32]res://graphics/ui/orb_filled.png[/img][/center]"
 fit_content = true
+
+[node name="RuneHelpSection" type="Control" parent="DetailsTitle"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -16.0
+offset_right = -7.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="RuneHelpButton" parent="DetailsTitle/RuneHelpSection" instance=ExtResource("5_dsy2o")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+icon = ExtResource("6_krxx4")
+expand_icon = true
+
+[node name="RuneHelpButtonOnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="DetailsTitle/RuneHelpSection"]
+rect = Rect2(0, 0, 32, 32)
 
 [node name="BaseEffectPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 38.0
-offset_bottom = 218.0
+offset_bottom = 262.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("4_vffvg")
 
+[node name="TriggerConditionsRow" type="HBoxContainer" parent="BaseEffectPanel"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 0
+offset_top = 2.0
+offset_right = 524.0
+offset_bottom = 50.0
+alignment = 1
+
+[node name="TriggerLabel" type="RichTextLabel" parent="BaseEffectPanel/TriggerConditionsRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Triggers:"
+
+[node name="TriggerConditions" type="RichTextLabel" parent="BaseEffectPanel/TriggerConditionsRow"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center]When Overwhelming Status is Afflicted[/center]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BaseEffectPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="RunePower" type="RichTextLabel" parent="BaseEffectPanel"]
 layout_mode = 1
 offset_left = 2.0
-offset_top = 2.0
+offset_top = 50.0
 offset_right = 302.0
-offset_bottom = 28.0
+offset_bottom = 76.0
 mouse_filter = 1
 text = "100 Power (100% Lifesteal)"
 fit_content = true
@@ -68,9 +137,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -230.0
-offset_top = 2.0
+offset_top = 50.0
 offset_right = -2.0
-offset_bottom = 28.0
+offset_bottom = 76.0
 grow_horizontal = 0
 mouse_filter = 1
 bbcode_enabled = true
@@ -81,8 +150,8 @@ fit_content = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 41.0
-offset_bottom = 177.0
+offset_top = 86.0
+offset_bottom = 222.0
 grow_horizontal = 2
 theme_override_constants/separation = 2
 
@@ -183,12 +252,11 @@ expand_icon = true
 rect = Rect2(0, 12, 32, 32)
 
 [node name="SurgePanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 216.0
-offset_bottom = 467.0
+offset_top = 260.0
+offset_bottom = 511.0
 grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")
@@ -222,6 +290,39 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
+[node name="CasterRow" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="CasterLabel" type="RichTextLabel" parent="CasterRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Casted By:"
+
+[node name="CasterName" type="RichTextLabel" parent="CasterRow"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center]Combatant Name Goes Here (Center)[/center]"
+
+[connection signal="pressed" from="DetailsTitle/RuneHelpSection/RuneHelpButton" to="." method="_on_rune_help_button_pressed"]
+[connection signal="screen_entered" from="DetailsTitle/RuneHelpSection/RuneHelpButtonOnscreenNotifier" to="." method="_on_rune_help_button_onscreen_notifier_screen_entered"]
+[connection signal="screen_exited" from="DetailsTitle/RuneHelpSection/RuneHelpButtonOnscreenNotifier" to="." method="_on_rune_help_button_onscreen_notifier_screen_exited"]
 [connection signal="pressed" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
 [connection signal="screen_entered" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_entered"]
 [connection signal="screen_exited" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_exited"]

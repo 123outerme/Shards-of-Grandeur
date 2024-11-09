@@ -8,7 +8,7 @@ func get_rune_type() -> String:
 	return 'Chain Rune'
 
 func get_rune_tooltip() -> String:
-	return "This Rune's effect is triggered when another Rune has been triggered."
+	return "This Rune's effect is triggered when another Rune that's placed on the enchanted combatant gets triggered."
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return len(combatant.triggeredRunes) > 0

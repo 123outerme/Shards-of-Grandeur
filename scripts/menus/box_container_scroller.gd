@@ -1,6 +1,8 @@
 extends Control
 class_name BoxContainerScroller
 
+signal scroll_buttons_updated
+
 @export var scrollContainer: ScrollContainer
 @export var scrollPx: int = 60
 @export var bailoutFocusControl: Control
@@ -54,6 +56,7 @@ func update_scroll_buttons(isVertical: bool) -> void:
 			if hScrollBar != null:
 				scrollLeftBtn.disabled = hScrollBar.value == hScrollBar.min_value
 				scrollRightBtn.disabled = hScrollBar.value == hScrollBar.max_value - scrollContainer.size.x
+		scroll_buttons_updated.emit()
 
 func connect_scroll_up_top_neighbor(control: Control) -> void:
 	if control != null:

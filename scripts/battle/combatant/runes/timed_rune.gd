@@ -32,7 +32,7 @@ func get_rune_trigger_description() -> String:
 	return 'After ' + String.num(afterTurns - turnCounter) + ' Turns'
 
 func get_rune_tooltip() -> String:
-	return "This Rune's effect triggers after " + String.num(afterTurns) + ' have passed.'
+	return "This Rune's effect triggers after a set number of turns have passed."
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND and firstCheck:

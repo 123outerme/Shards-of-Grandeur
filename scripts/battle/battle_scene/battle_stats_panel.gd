@@ -3,16 +3,20 @@ class_name BattleStatsPanel
 
 @export var combatant: Combatant = null
 @export var battlePosition: String = ''
+@export var combatantNode: CombatantNode
+@export var allCombatantNodes: Array[CombatantNode]
 
 @onready var combatantName: RichTextLabel = get_node("CombatantName")
 @onready var statusSprite: Sprite2D = get_node('HBoxContainer/StatusIconControl/StatusSprite')
 @onready var statusEffectText: RichTextLabel = get_node("HBoxContainer/StatusEffect")
 @onready var statusHelpButton: Button = get_node('HBoxContainer/StatusHelpButton')
+@onready var runesButton: Button = get_node('RunesButton')
 @onready var orbDisplay: OrbDisplay = get_node('OrbDisplay')
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
 @onready var elementEffectivenessText: RichTextLabel = get_node('ElementEffectivenessPanel/ElementEffectivenessText')
 @onready var elementDmgMultText: RichTextLabel = get_node('ElementDmgMultPanel/ElementDmgMultText')
 @onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
+@onready var battleRunesPanel: BattleRunesPanel = get_node('BattleRunesPanel')
 @onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +24,7 @@ func _ready():
 	load_battle_stats_panel()
 
 func load_battle_stats_panel():
-	if combatant == null:
+	if combatant == null or combatantNode == null:
 		visible = false
 		return
 	
@@ -45,6 +49,8 @@ func load_battle_stats_panel():
 		statusSprite.visible = false
 		statusEffectText.text = ''
 		statusHelpButton.visible = false
+	
+	runesButton.visible = len(combatant.runes) > 0
 	
 	equipmentPanel.weapon = combatant.stats.equippedWeapon
 	equipmentPanel.armor = combatant.stats.equippedArmor
@@ -96,3 +102,12 @@ func _on_status_help_button_pressed():
 
 func _on_tooltip_panel_ok_pressed():
 	statusHelpButton.grab_focus()
+
+func _on_runes_button_pressed() -> void:
+	battleRunesPanel.combatantNode = combatantNode
+	battleRunesPanel.allCombatantNodes = allCombatantNodes
+	battleRunesPanel.load_battle_runes_panel()
+	battleRunesPanel.initial_focus()
+
+func _on_battle_runes_panel_back_pressed() -> void:
+	runesButton.grab_focus()

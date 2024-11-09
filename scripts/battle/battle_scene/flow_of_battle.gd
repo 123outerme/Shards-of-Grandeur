@@ -58,6 +58,8 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 				var instantiatedPanel: BattleStatsPanel = battleStatsPanelScene.instantiate()
 				instantiatedPanel.combatant = combatantNode.combatant
 				instantiatedPanel.battlePosition = combatantNode.battlePosition
+				instantiatedPanel.combatantNode = combatantNode
+				instantiatedPanel.allCombatantNodes = battleController.get_all_combatant_nodes()
 				fobTabs.call_deferred('add_child', instantiatedPanel)
 				call_deferred('_set_battle_stats_item_details_panel_pos', instantiatedPanel)
 	else:
@@ -69,6 +71,8 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
 	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -320)
+	panel.battleRunesPanel.set_deferred('size', Vector2(1280, 718))
+	panel.battleRunesPanel.position = Vector2(-52, -155)
 	# NOTE: these coordinates are magic numbers to make the item details panel centered.
 	# we can't center it in the Equipment Panel because that would affect the centering elsewhere
 	# needs to be called deferred so the equipment panel can be @onready 'd, same for the item details panel
