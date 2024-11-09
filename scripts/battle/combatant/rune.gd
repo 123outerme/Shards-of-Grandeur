@@ -76,7 +76,7 @@ func get_rune_trigger_description() -> String:
 func get_rune_tooltip() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return false # implement in subclasses
 
 func apply_surge_changes(additionalOrbs: int) -> Rune:

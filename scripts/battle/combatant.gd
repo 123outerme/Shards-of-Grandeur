@@ -460,11 +460,12 @@ func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, t
 		triggeredRunesStatus = []
 	
 	var runesToCheck: bool = len(runes) > 0
+	var firstCheck: bool = true
 	while runesToCheck:
 		var runeWasTriggered: bool = false
 		for runeIdx: int in range(len(runes)):
 			var rune: Rune = runes[runeIdx]
-			var triggers: bool = rune.does_rune_trigger(self, otherCombatants, battleState, timing)
+			var triggers: bool = rune.does_rune_trigger(self, otherCombatants, battleState, timing, firstCheck)
 			if triggers and not triggeredRunes.has(rune):
 				apply_rune_effect(rune)
 				runeWasTriggered = true
@@ -473,6 +474,7 @@ func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, t
 		
 		if not runeWasTriggered or len(runes) == 0:
 			runesToCheck = false
+		firstCheck = false
 
 func apply_rune_effect(rune: Rune) -> void:
 	if rune == null:

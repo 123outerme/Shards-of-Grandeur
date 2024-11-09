@@ -33,7 +33,7 @@ func get_rune_trigger_description() -> String:
 func get_rune_tooltip() -> String:
 	return "This Rune's effect triggers when the enchanted combatant's Stat Boosts change."
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	if prevStatChanges != null or combatant.statChanges != null:
 		return true
 

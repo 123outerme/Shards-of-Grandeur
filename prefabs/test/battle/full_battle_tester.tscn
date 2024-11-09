@@ -1,6 +1,7 @@
 [gd_scene load_steps=65 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
+[ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_8cyda"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="3_31tq3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="4_bfd7i"]
@@ -11,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="7_l5pdx"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="8_ewn23"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="9_eqdy2"]
-[ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="9_onhdh"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="10_821vc"]
 [ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="10_13824"]
 [ext_resource type="Resource" uid="uid://cjom7udtbr5dg" path="res://gamedata/items/weapon/frozen_spear.tres" id="12_rhle2"]
@@ -45,7 +45,7 @@
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_etk0a"]
 [ext_resource type="Script" path="res://prefabs/test/mock_audio_handler.gd" id="35_0y1m3"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
-[ext_resource type="Resource" uid="uid://bqy2nr0tnlr0u" path="res://gamedata/moves/dehydration_curse/rune/rune_dehydration_curse_charge.tres" id="40_y7j4x"]
+[ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="40_yvth1"]
 
 [sub_resource type="Resource" id="Resource_lxlw8"]
 script = ExtResource("9_eqdy2")
@@ -79,7 +79,7 @@ combatant2ShardSummoned = false
 combatant3Level = 1
 combatant3Moves = Array[ExtResource("4_s3me8")]([])
 combatant3ShardSummoned = false
-autoAlly = ExtResource("9_onhdh")
+autoAlly = ExtResource("2_8cyda")
 autoAllyLevel = 16
 autoAllyArmor = ExtResource("10_13824")
 autoAllyWeapon = ExtResource("12_rhle2")
@@ -229,7 +229,7 @@ playerLv = 16
 playerAi = SubResource("Resource_q6qyh")
 playerStatAllocStrat = SubResource("Resource_mniaa")
 playerStatus = SubResource("Resource_6iopj")
-enemy1Runes = Array[ExtResource("23_jq1m7")]([ExtResource("40_y7j4x")])
+enemy1Runes = Array[ExtResource("23_jq1m7")]([ExtResource("40_yvth1")])
 enemy1RuneCasterPositions = Array[String](["You"])
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("22_3prau")]

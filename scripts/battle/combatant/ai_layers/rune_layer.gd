@@ -29,18 +29,35 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var finalSetWeight: float = setWeight * get_rune_weight_on_target(user, moveEffect.rune, target, targets, battleState)
 	
-	return baseWeight
+	if moveEffect.rune != null:
+		print('DEBUG:: move effect rune is not null for ', move.moveName)
+	
+	var finalTriggerWeight: float = triggerWeight
+	
+	var targetRunesTriggered: Array[Rune] = CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes)
+	var userRunesTriggered: Array[Rune] = targetRunesTriggered if user == target else CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes)
+	
+	for rune: Rune in targetRunesTriggered:
+		finalTriggerWeight *= get_rune_weight_on_target(user, rune, target, targets, battleState)
+	
+	for rune: Rune in userRunesTriggered:
+		if not (rune in targetRunesTriggered):
+			finalTriggerWeight *= get_rune_weight_on_target(user, rune, user, targets, battleState)
+	
+	print('DEBUG::: final rune weights ', finalSetWeight, ' / ', finalTriggerWeight, ' / for move ', move.moveName)
+	
+	return baseWeight * finalSetWeight * finalTriggerWeight
 
 func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
 	if rune == null:
-		return 0
+		return 1
 	
 	var runeWeight: float = 1
 	
 	var caster: Combatant = rune.caster if rune.caster != null else user.combatant
 	
-	var orbDiff: int = max(0, min(rune.orbChange + caster.orbs)) - caster.orbs
-	runeWeight *= orbDiff * 1.05 # +5% weight for each orb that will actually be gained
+	var orbDiff: int = max(0, min(Combatant.MAX_ORBS, rune.orbChange + caster.orbs)) - caster.orbs
+	runeWeight *= 1 + (orbDiff * .05) # +5% weight for each orb that will actually be gained
 
 	var powerRatio: float = rune.power / 100.0
 	if target.role == CombatantNode.Role.ALLY:
@@ -49,6 +66,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 	runeWeight *= 1 + powerRatio
 	runeWeight *= 1 + rune.lifesteal
 	
+	var statChangeWeight: float = 1
 	if rune.statChanges != null:
 		var targetStats: Stats = target.combatant.statChanges.apply(target.combatant.stats)
 		var highestElementMultiplier: float = 1.0
@@ -62,22 +80,29 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 		for elMultiplier: ElementMultiplier in stackedStatChanges.elementMultipliers:
 			highestStackedElementMultiplier = max(elMultiplier.multiplier, highestStackedElementMultiplier)
 		
-		var statChangeWeight: float = targetStats.get_stat_total_including_dmg_boosts(highestElementMultiplier) / stackedTargetStats.get_stat_total_including_dmg_boosts(highestStackedElementMultiplier)
+		statChangeWeight = targetStats.get_stat_total_including_dmg_boosts(highestElementMultiplier) / stackedTargetStats.get_stat_total_including_dmg_boosts(highestStackedElementMultiplier)
 		if target.role == CombatantNode.Role.ALLY:
 			statChangeWeight = 1.0 / statChangeWeight
 		runeWeight *= statChangeWeight
 	
+	
+	var statusWeight: float = 1
 	if rune.statusEffect != null:
 		var willApplyStatus: bool = false
 		if target.combatant.statusEffect == null or rune.statusEffect.overwritesOtherStatuses:
 			willApplyStatus = true
 		if willApplyStatus:
 			if rune.statusEffect.potency == StatusEffect.Potency.WEAK:
-				runeWeight *= 1.15
+				statusWeight += 0.15
 			if rune.statusEffect.potency == StatusEffect.Potency.STRONG:
-				runeWeight *= 1.3
+				statusWeight += 0.3
 			if rune.statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
-				runeWeight *= 1.45
+				statusWeight += 0.45
+			if (user.role != target.role) == rune.statusEffect.is_positive_status():
+				statusWeight = 1.0 / statusWeight
+			runeWeight *= statusWeight
+	
+	print('rune weights: ', powerRatio, ' / ', 1 + (orbDiff * .05), ' / ', rune.lifesteal, ' / ', statChangeWeight, ' / ', statusWeight, ' / final: ', runeWeight)
 	
 	return runeWeight
 

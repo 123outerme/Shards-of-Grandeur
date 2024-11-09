@@ -44,7 +44,7 @@ func get_rune_tooltip() -> String:
 	else:
 		return "This Rune's effect is triggered when the enchanted combatant is healed from any source."
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	var triggered = false
 	
 	# catches easy cases such as post-round damage, other runes triggering

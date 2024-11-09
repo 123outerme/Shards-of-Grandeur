@@ -28,10 +28,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if effectType == Move.MoveEffectType.SURGE:
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
-	var targetWeight: float = _calc_target_weight(user, move, effectType, orbs, target)
+	var targetWeight: float = _calc_target_weight(user, move, effectType, orbs, target, battleState)
 	var selfWeight: float = 1.0
 	if user != target: # only if user is not the target (since we've already calc'd with target boosts)
-		selfWeight = _calc_self_weight(user, move, effectType, orbs, target)
+		selfWeight = _calc_self_weight(user, move, effectType, orbs, target, battleState)
 	moveWeight *= selfWeight * targetWeight
 	
 	if user.role != target.role:
@@ -39,7 +39,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	return baseWeight * moveWeight
 
-func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode) -> float:
+func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState) -> float:
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
@@ -66,6 +66,9 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 		currentTargetStats = target.combatant.statChanges.apply(currentTargetStats)
 		for elementBoost: ElementMultiplier in user.combatant.statChanges.elementMultipliers:
 			currentHighestElementBoost = max(currentHighestElementBoost, elementBoost.multiplier)
+	# stack boosts from any runes that this move could trigger
+	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+		statChanges.stack(rune.statChanges)
 	# apply directly to stats (includes current stat changes)
 	var targetStats: Stats = statChanges.apply(target.combatant.stats)
 	# calculate highest element boost after this move
@@ -76,7 +79,7 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 	tWeight = currentTargetStats.get_stat_total_including_dmg_boosts(currentHighestElementBoost) / targetStats.get_stat_total_including_dmg_boosts(highestElementBoost)
 	return tWeight
 
-func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode) -> float:
+func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState) -> float:
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
@@ -105,6 +108,9 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 		# get the highest current element boost
 		for elementBoost: ElementMultiplier in user.combatant.statChanges.elementMultipliers:
 			selfCurrentElementBoost = max(selfCurrentElementBoost, elementBoost.multiplier)
+	# stack boosts from any runes that this move could trigger
+	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes):
+		selfStatChanges.stack(rune.statChanges)
 	# get the highest boost after applying this move's boosts
 	var selfHighestElementBoost: float = 1.0
 	# calc highest element boost on self

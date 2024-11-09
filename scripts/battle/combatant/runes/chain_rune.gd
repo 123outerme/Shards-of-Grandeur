@@ -10,7 +10,7 @@ func get_rune_type() -> String:
 func get_rune_tooltip() -> String:
 	return "This Rune's effect is triggered when another Rune has been triggered."
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return len(combatant.triggeredRunes) > 0
 
 func copy(copyStorage: bool = false) -> ChainRune:

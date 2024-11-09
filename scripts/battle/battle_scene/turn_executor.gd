@@ -74,7 +74,7 @@ func play_turn():
 		
 		# After Damage Calc: rune's `otherCombatants` is the current turn combatant
 		for cNode: CombatantNode in allCombatantNodes:
-			if cNode.combatant == null:
+			if cNode.combatant == null or cNode.combatant == combatant: # updating attacker below the after-receiving damage step
 				continue
 			cNode.combatant.update_runes([combatant], battleController.state, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		
@@ -110,6 +110,7 @@ func play_turn():
 						if applied:
 							equipmentProcd.append(defender.stats.equippedArmor)
 					combatant.command.commandResult.equipmentProcd[targetIdx] = equipmentProcd
+		combatant.update_runes([], battleController.state, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		
 		update_turn_text()
 	else:
@@ -310,10 +311,34 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 	
 	var runeText: String = ''
 	var runeCount: int = len(combatant.triggeredRunes)
-	if len(combatant.runes) == 0 and runeCount == 1:
-		runeText = combatant.disp_name() + "'s " + combatant.triggeredRunes[0].get_rune_type() + " was triggered!"
-	elif runeCount > 0:
-		runeText = TextUtils.num_to_comma_string(runeCount) + 'of ' + combatant.disp_name() + "'s Runes were triggered!"
+	
+	'''
+	if runeCount > 0 and true: # debug
+		for rune: Rune in combatant.triggeredRunes:
+			print('> DEBUG: ', rune.get_rune_type(), ' triggered!')
+	'''
+	
+	if runeCount > 0:
+		if runeCount == 1:
+			runeText = combatant.disp_name() + "'s " + combatant.triggeredRunes[0].get_rune_type() + " was triggered"
+		else:
+			runeText = TextUtils.num_to_comma_string(runeCount) + ' of ' + combatant.disp_name() + "'s Runes were triggered"
+		
+		var accumulatedDmg: int = 0
+		var accumulatedStatChanges: StatChanges = StatChanges.new()
+		var appliedStatus: StatusEffect = null
+		var accumulatedOrbs: int = 0
+		for idx: int in range(len(combatant.triggeredRunes)):
+			var rune: Rune = combatant.triggeredRunes[idx]
+			accumulatedDmg += combatant.triggeredRunesDmg[idx]
+			if rune.statChanges != null:
+				accumulatedStatChanges.stack(rune.statChanges)
+			if combatant.triggeredRunesStatus[idx] and rune.statusEffect != null:
+				appliedStatus = rune.statusEffect
+			accumulatedOrbs = max(0, min(Combatant.MAX_ORBS, accumulatedOrbs + rune.orbChange))
+		
+		# TODO print results of runes being triggered
+		runeText += '!'
 	
 	return runeText
 

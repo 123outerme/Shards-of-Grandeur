@@ -38,7 +38,7 @@ func get_rune_trigger_description() -> String:
 func get_rune_tooltip() -> String:
 	return "This Rune's effect triggers when the enchanted combatant gets afflicted with a " + StatusEffect.potency_to_string(minPotency) + ' Status Effect, or stronger.'
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return combatant.statusEffect != currentStatus and combatant.statusEffect != null and combatant.statusEffect.potency >= minPotency
 
 func copy(copyStorage: bool = false) -> StatusRune:

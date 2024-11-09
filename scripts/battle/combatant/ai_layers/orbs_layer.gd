@@ -28,10 +28,15 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	for otherMove: Move in user.combatant.stats.moves:
 		highestOtherOrbsGained = max(move.chargeEffect.orbChange, highestOtherOrbsGained)
 	
+	var orbsWeight: float = 1
 	if orbsGained >= highestOtherOrbsGained:
-		return baseWeight * mostOrbsWeight
+		orbsWeight *= mostOrbsWeight
 	
-	return baseWeight
+	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+		if rune.caster == user.combatant:
+			orbsWeight *= 1 + (0.05 * rune.orbChange)
+	
+	return baseWeight * orbsWeight
 
 func copy(copyStorage: bool = false) -> OrbsCombatantAiLayer:
 	return OrbsCombatantAiLayer.new(weight, copy_sublayers(copyStorage), mostOrbsWeight)

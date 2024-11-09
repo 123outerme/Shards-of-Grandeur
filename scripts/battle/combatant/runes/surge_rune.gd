@@ -10,7 +10,7 @@ func get_rune_trigger_description() -> String:
 func get_rune_tooltip() -> String:
 	return "This Rune's effect triggers after the enchanted combatant uses a Surge move."
 
-func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming) -> bool:
+func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		if len(state.turnList) > 0 and state.turnList[0] == combatant and combatant.command != null:
 			return combatant.command.moveEffectType == Move.MoveEffectType.SURGE

@@ -15,23 +15,34 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if effectType == Move.MoveEffectType.SURGE:
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
-	if moveEffect.statusEffect == null or moveEffect.statusEffect.potency == StatusEffect.Potency.NONE:
+	var statusEffect: StatusEffect = moveEffect.statusEffect
+	var selfGetsStatus: bool = moveEffect.selfGetsStatus
+	var statusChance: float = min(1, max(0, moveEffect.statusChance))
+	
+	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+		if rune.statusEffect != null and (statusEffect == null or rune.statusEffect.overwritesOtherStatuses):
+			statusEffect = rune.statusEffect
+			selfGetsStatus = false
+			statusChance = 1.0
+	
+	
+	if statusEffect == null or statusEffect.potency == StatusEffect.Potency.NONE:
 		return 1
 	
-	if moveEffect.selfGetsStatus:
+	if selfGetsStatus:
 		target = user
 	
-	if not moveEffect.statusEffect.overwritesOtherStatuses and target.combatant.statusEffect != null:
+	if not statusEffect.overwritesOtherStatuses and target.combatant.statusEffect != null:
 			return 1
 	
-	if moveEffect.statusEffect.potency == StatusEffect.Potency.WEAK:
+	if statusEffect.potency == StatusEffect.Potency.WEAK:
 		moveWeight += 0.15
-	if moveEffect.statusEffect.potency == StatusEffect.Potency.STRONG:
+	if statusEffect.potency == StatusEffect.Potency.STRONG:
 		moveWeight += 0.3
-	if moveEffect.statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
+	if statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
 		moveWeight += 0.45
 	
-	moveWeight *= min(1, moveEffect.statusChance) / AVERAGE_STATUS_CHANCE
+	moveWeight *= min(1, statusChance) / AVERAGE_STATUS_CHANCE
 	
 	# if it's a positive status effect and the target is an enemy, or vice versa:
 	if (user.role != target.role) == moveEffect.statusEffect.is_positive_status():
