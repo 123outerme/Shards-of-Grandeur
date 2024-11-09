@@ -21,7 +21,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	var moveWeight: float = 1
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
-		moveEffect = moveEffect.apply_surge_changes(orbs)
+		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	var targetElementEffectiveness: float = target.combatant.get_element_effectiveness_multiplier(move.element)
 	var percentElementBoost: float = user.combatant.statChanges.get_element_multiplier(move.element)
@@ -42,7 +42,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 			continue
 		var otherMoveEffect: MoveEffect = otherMove.get_effect_of_type(effectType)
 		if effectType == Move.MoveEffectType.SURGE:
-			otherMoveEffect = otherMoveEffect.apply_surge_changes(orbs)
+			otherMoveEffect = otherMoveEffect.apply_surge_changes(absi(orbs))
 		var otherAttackStat: float = userBoostedStats.get_stat_for_dmg_category(otherMove.category)
 		var otherTargetElEff: float = target.combatant.get_element_effectiveness_multiplier(otherMove.element)
 		var otherElementBoost: float = user.combatant.statChanges.get_element_multiplier(otherMove.element)

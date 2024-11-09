@@ -97,7 +97,7 @@ func play_turn():
 			if combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move != null:
 				var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
 				if combatant.command.moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
-					moveEffect = moveEffect.apply_surge_changes(combatant.command.orbChange * -1)
+					moveEffect = moveEffect.apply_surge_changes(absi(combatant.command.orbChange))
 				# if the move dealt direct (non-redirected) damage to the defender, then apply After Recieving Damage timing equipment effects
 				if moveEffect.power > 0:
 					var equipmentProcd: Array[Item] = []
@@ -169,7 +169,7 @@ func update_turn_text() -> bool:
 					if combatant.command.type == BattleCommand.Type.MOVE and combatant.command.move != null:
 						var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
 						if combatant.command.moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
-							moveEffect = moveEffect.apply_surge_changes(combatant.command.orbChange * -1)
+							moveEffect = moveEffect.apply_surge_changes(absi(combatant.command.orbChange))
 						# if the move dealt damage to the defender, then show the After Recieving Dmg equipment effects
 						if moveEffect.power > 0:
 							if defender.stats.equippedWeapon != null:

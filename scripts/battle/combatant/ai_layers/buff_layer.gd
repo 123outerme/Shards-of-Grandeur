@@ -27,7 +27,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
-		moveEffect = moveEffect.apply_surge_changes(orbs)
+		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	if buffStrategy == BuffStrategy.BUFF_SELF_ONLY:
 		moveWeight = _calc_self_weight(user, move, effectType, orbs, target)
@@ -46,10 +46,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode) -> float:
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
-		moveEffect = moveEffect.apply_surge_changes(orbs)
+		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	var statChanges: StatChanges = StatChanges.new()
-	var weight: float = 1.0
+	var tWeight: float = 1.0
 	# if there are target stat changes: stack them
 	if moveEffect.targetStatChanges != null:
 		statChanges.stack(moveEffect.targetStatChanges)
@@ -77,13 +77,13 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 	for elementBoost: ElementMultiplier in statChanges.elementMultipliers:
 		highestElementBoost = max(highestElementBoost, elementBoost.multiplier)
 	# weight = new stat total / old stat total
-	weight = targetStats.get_stat_total_including_dmg_boosts(highestElementBoost) / currentTargetStats.get_stat_total_including_dmg_boosts(currentHighestElementBoost)
-	return weight
+	tWeight = targetStats.get_stat_total_including_dmg_boosts(highestElementBoost) / currentTargetStats.get_stat_total_including_dmg_boosts(currentHighestElementBoost)
+	return tWeight
 
 func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode) -> float:
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
-		moveEffect = moveEffect.apply_surge_changes(orbs)
+		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	var selfWeight: float = 1.0
 	var selfStatChanges: StatChanges = StatChanges.new()

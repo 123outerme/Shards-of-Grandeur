@@ -13,7 +13,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
 	if effectType == Move.MoveEffectType.SURGE:
-		moveEffect = moveEffect.apply_surge_changes(orbs)
+		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	if moveEffect.statusEffect == null or moveEffect.statusEffect.potency == StatusEffect.Potency.NONE:
 		return 1

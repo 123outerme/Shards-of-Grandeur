@@ -191,7 +191,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
 		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
-			moveEffect = moveEffect.apply_surge_changes(orbChange * -1)
+			moveEffect = moveEffect.apply_surge_changes(absi(orbChange))
 	
 	get_targets_from_combatant_nodes(combatantNodes)
 	
@@ -463,7 +463,7 @@ func get_command_results(user: Combatant) -> String:
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
 		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
-			moveEffect = moveEffect.apply_surge_changes(orbChange * -1)
+			moveEffect = moveEffect.apply_surge_changes(absi(orbChange))
 	
 	if type == Type.MOVE:
 		actionTargets = moveEffect.targets

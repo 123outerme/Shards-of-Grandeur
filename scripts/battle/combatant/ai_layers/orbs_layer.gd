@@ -22,6 +22,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		return baseWeight
 	
 	var orbsGained: int = move.chargeEffect.orbChange
+	
 	var highestOtherOrbsGained: int = 0
 	
 	for otherMove: Move in user.combatant.stats.moves:
