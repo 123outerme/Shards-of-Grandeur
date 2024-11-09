@@ -64,7 +64,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 		powerRatio *= -1
 	
 	runeWeight *= 1 + powerRatio
-	runeWeight *= 1 + rune.lifesteal
+	runeWeight *= 1 + max(0, rune.lifesteal)
 	
 	var statChangeWeight: float = 1
 	if rune.statChanges != null:

@@ -62,6 +62,13 @@ func connect_scroll_up_top_neighbor(control: Control) -> void:
 	else:
 		scrollUpBtn.focus_neighbor_top = ''
 
+func connect_scroll_up_bottom_neighbor(control: Control) -> void:
+	if control != null:
+		scrollUpBtn.focus_neighbor_bottom = scrollUpBtn.get_path_to(control)
+		control.focus_neighbor_top = control.get_path_to(scrollUpBtn)
+	else:
+		scrollUpBtn.focus_neighbor_bottom = ''
+
 func connect_scroll_up_left_neighbor(control: Control) -> void:
 	if control != null:
 		scrollUpBtn.focus_neighbor_left = scrollUpBtn.get_path_to(control)
@@ -75,6 +82,13 @@ func connect_scroll_up_right_neighbor(control: Control) -> void:
 		control.focus_neighbor_left = control.get_path_to(scrollUpBtn)
 	else:
 		scrollUpBtn.focus_neighbor_right = ''
+
+func connect_scroll_down_top_neighbor(control: Control) -> void:
+	if control != null:
+		scrollDownBtn.focus_neighbor_top = scrollDownBtn.get_path_to(control)
+		control.focus_neighbor_bottom = control.get_path_to(scrollDownBtn)
+	else:
+		scrollDownBtn.focus_neighbor_top = ''
 
 func connect_scroll_down_bottom_neighbor(control: Control) -> void:
 	if control != null:

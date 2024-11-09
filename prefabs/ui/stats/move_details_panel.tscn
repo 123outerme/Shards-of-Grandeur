@@ -45,14 +45,18 @@ grow_horizontal = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel") instance=ExtResource("6_1bvf3")]
+[node name="ChargeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel", "bailoutFocusControl", "scrollerBottomFocusNeighbor") instance=ExtResource("6_1bvf3")]
 layout_mode = 2
 tooltipPanel = NodePath("../../../TooltipPanel")
+bailoutFocusControl = NodePath("../../BackButton")
+scrollerBottomFocusNeighbor = NodePath("../../BackButton")
 
-[node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel") instance=ExtResource("6_1bvf3")]
+[node name="SurgeEffectDetailsPanel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("tooltipPanel", "bailoutFocusControl", "scrollerBottomFocusNeighbor") instance=ExtResource("6_1bvf3")]
 layout_mode = 2
 isSurgeEffect = true
 tooltipPanel = NodePath("../../../TooltipPanel")
+bailoutFocusControl = NodePath("../../BackButton")
+scrollerBottomFocusNeighbor = NodePath("../../BackButton")
 
 [node name="MoveName" type="RichTextLabel" parent="Panel"]
 layout_mode = 1

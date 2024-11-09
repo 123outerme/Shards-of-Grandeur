@@ -497,7 +497,7 @@ func apply_rune_effect(rune: Rune) -> void:
 	
 	if damage > 0:
 		if rune.caster.currentHp > 0: # if rune caster is still alive:
-			var hpHealed: int = max(1, roundi(rune.lifesteal * damage))
+			var hpHealed: int = max(1, roundi(max(0, rune.lifesteal) * damage))
 			rune.caster.currentHp = min(rune.caster.stats.maxHp, max(0, rune.caster.currentHp + hpHealed))
 	if currentHp > 0: # if this combatant is still alive:
 		currentHp = min(stats.maxHp, max(0, currentHp - damage))

@@ -6,40 +6,48 @@ signal tooltip_panel_opened
 @export var moveEffect: MoveEffect = null
 @export var isSurgeEffect: bool = false
 @export var tooltipPanel: TooltipPanel
+@export var bailoutFocusControl: Control
+@export var scrollerBottomFocusNeighbor: Control
 
-@onready var detailsTitleLabel: RichTextLabel = get_node('DetailsTitle')
-@onready var moveTargets: RichTextLabel = get_node("BaseEffectPanel/MoveTargets")
-@onready var movePower: RichTextLabel = get_node("BaseEffectPanel/MovePower")
-@onready var moveRole: RichTextLabel = get_node("BaseEffectPanel/MoveRole")
+@onready var detailsTitleLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/DetailsTitle')
+@onready var moveTargets: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveTargets")
+@onready var movePower: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MovePower")
+@onready var moveRole: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveRole")
 
-@onready var userBoostsRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/UserBoostsRow')
-@onready var userStatChanges: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/UserBoostsRow/UserStatChanges")
+@onready var userBoostsRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow')
+@onready var userStatChanges: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow/UserStatChanges")
 
-@onready var targetBoostsRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/TargetBoostsRow')
-@onready var targetStatChanges: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/TargetBoostsRow/TargetStatChanges")
+@onready var targetBoostsRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow')
+@onready var targetStatChanges: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow/TargetStatChanges")
 
-@onready var statusEffectRow: HBoxContainer = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow')
-@onready var statusLabel: RichTextLabel = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusLabel')
-@onready var moveStatusEffect: RichTextLabel = get_node("BaseEffectPanel/VBoxContainer/StatusEffectRow/MoveStatusEffect")
-@onready var moveStatusIcon: Sprite2D = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl/StatusEffectIcon')
-@onready var statusHelpButton: Button = get_node('BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton')
+@onready var statusEffectRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow')
+@onready var statusLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusLabel')
+@onready var moveStatusEffect: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/MoveStatusEffect")
+@onready var moveStatusIcon: Sprite2D = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl/StatusEffectIcon')
+@onready var statusHelpButton: Button = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton')
 # the statusHelpButton is fetched to to connect focus to the back button in the parent panel
 
-@onready var surgePanel: Panel = get_node('SurgePanel')
-@onready var surgeVBox: VBoxContainer = get_node('SurgePanel/VBoxContainer')
+@onready var surgePanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel')
+@onready var surgeVBox: VBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer')
+
+@onready var runeEffectDetailsPanel: RuneEffectDetailsPanel = get_node('ScrollContainer/VBoxContainer/RuneEffectDetailsPanel')
+
+@onready var boxContainerScroller: BoxContainerScroller = get_node('BoxContainerScroller')
+
+const SCROLLING_WIDTH: int = 588
+const NO_SCROLLING_WIDTH: int = 540
 
 var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
 var helpButtonPressed: Button = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 func load_move_effect_details_panel():
 	if moveEffect == null:
 		visible = false
 		return
+	
+	boxContainerScroller.bailoutFocusControl = bailoutFocusControl
+	boxContainerScroller.connect_scroll_down_bottom_neighbor(scrollerBottomFocusNeighbor)
 	
 	for node in get_tree().get_nodes_in_group('SurgeChangesRow'):
 		node.queue_free()
@@ -67,7 +75,7 @@ func load_move_effect_details_panel():
 		movePower.text = str(moveEffect.power * -1) + ' Heal Power'
 	
 	if moveEffect.lifesteal > 0 and moveEffect.power != 0:
-		movePower.text += ' (' + String.num(roundi(moveEffect.lifesteal * 100)) + '% Lifesteal)'
+		movePower.text += ' (' + String.num(roundi(max(0, moveEffect.lifesteal) * 100)) + '% Lifesteal)'
 	
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
@@ -106,8 +114,18 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text += ')[/center]'
 		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
 		statusEffectRow.visible = true
+		if moveEffect.rune != null:
+			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+		else:
+			statusHelpButton.focus_neighbor_bottom = '.'
+			statusHelpButton.focus_neighbor_top = '.'
 	else:
 		statusEffectRow.visible = false
+		statusHelpButton.focus_neighbor_bottom = '.'
+		statusHelpButton.focus_neighbor_top = '.'
+		boxContainerScroller.connect_scroll_down_top_neighbor(boxContainerScroller.scrollUpBtn)
+		boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null:
 		var changes: Array[SurgeChanges.SurgeChangeDescRow] = moveEffect.surgeChanges.get_description()
@@ -119,6 +137,17 @@ func load_move_effect_details_panel():
 		surgePanel.visible = true
 	else:
 		surgePanel.visible = false
+	
+	runeEffectDetailsPanel.rune = moveEffect.rune
+	runeEffectDetailsPanel.isSurgeEffect = isSurgeEffect
+	runeEffectDetailsPanel.tooltipPanel = tooltipPanel
+	runeEffectDetailsPanel.load_rune_effect_details()
+	
+	if runeEffectDetailsPanel.statusEffectRow.visible:
+		if statusEffectRow.visible:
+			statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.statusHelpButton)
+			runeEffectDetailsPanel.statusHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(statusHelpButton)
+		runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = runeEffectDetailsPanel.statusHelpButton.get_path_to(scrollerBottomFocusNeighbor)
 
 func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:
@@ -128,3 +157,29 @@ func _on_status_help_button_pressed():
 	tooltipPanel.details = moveEffect.statusEffect.get_status_effect_tooltip()
 	tooltipPanel.load_tooltip_panel()
 	tooltip_panel_opened.emit()
+
+func _on_rune_effect_details_panel_tooltip_panel_opened() -> void:
+	if runeEffectDetailsPanel.rune == null or runeEffectDetailsPanel.rune.statusEffect == null:
+		return
+	
+	helpButtonPressed = runeEffectDetailsPanel.statusHelpButton
+	tooltipPanel.title = runeEffectDetailsPanel.rune.statusEffect.get_status_type_string()
+	tooltipPanel.details = runeEffectDetailsPanel.rune.statusEffect.get_status_effect_tooltip()
+	tooltipPanel.load_tooltip_panel()
+	tooltip_panel_opened.emit()
+
+func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: bool) -> void:
+	if isOnscreen:
+		boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
+		boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.statusHelpButton)
+	else:
+		if statusEffectRow.visible:
+			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+		else:
+			boxContainerScroller.connect_scroll_down_top_neighbor(boxContainerScroller.scrollUpBtn)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)
+
+func _on_box_container_scroller_visibility_changed() -> void:
+	custom_minimum_size.x = SCROLLING_WIDTH if boxContainerScroller.visible else NO_SCROLLING_WIDTH
+	size.x = custom_minimum_size.x

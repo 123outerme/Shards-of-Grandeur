@@ -1,12 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6tae2tdspbmf"]
+[gd_scene load_steps=13 format=3 uid="uid://c6tae2tdspbmf"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_bw5gx"]
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/move_effect_details_panel.gd" id="2_dfdal"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="2_rs13u"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="2_swaov"]
 [ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_up556"]
 [ext_resource type="Theme" uid="uid://cjypv7oeiqc6u" path="res://themes/nested_ui/move_effect_base_details_panel.tres" id="4_r1gdv"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_1e3o1"]
 [ext_resource type="PackedScene" uid="uid://ggkc0ii1kpmh" path="res://prefabs/ui/stats/surge_changes_row.tscn" id="5_sdofm"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="6_3l4s7"]
+[ext_resource type="PackedScene" uid="uid://cw4len8u1w6uj" path="res://prefabs/ui/stats/rune_effect_details_panel.tscn" id="8_tp4km"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_at6hw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fayj4"]
 bg_color = Color(0.145098, 0.231373, 0.368627, 1)
@@ -15,44 +20,64 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="MoveEffectDetailsPanel" type="Panel"]
-custom_minimum_size = Vector2(540, 550)
+custom_minimum_size = Vector2(588, 550)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -740.0
+offset_right = -692.0
 offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("1_bw5gx")
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_at6hw")
 script = ExtResource("2_dfdal")
 
-[node name="DetailsTitle" type="RichTextLabel" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." node_paths=PackedStringArray("boxContainer")]
+custom_minimum_size = Vector2(540, 550)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 548.0
+grow_vertical = 2
+script = ExtResource("2_rs13u")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(540, 550)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(540, 550)
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_bw5gx")
+
+[node name="DetailsTitle" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 2.0
-offset_bottom = 36.0
+offset_bottom = 38.0
 grow_horizontal = 2
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("3_up556")
 bbcode_enabled = true
 text = "[center]Charge Effect (+10 [img=32x32]res://graphics/ui/orb_filled.png[/img] Min.)[/center]"
 fit_content = true
 
-[node name="BaseEffectPanel" type="Panel" parent="."]
+[node name="BaseEffectPanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 38.0
 offset_bottom = 301.0
 grow_horizontal = 2
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("4_r1gdv")
 
-[node name="MoveTargets" type="RichTextLabel" parent="BaseEffectPanel"]
+[node name="MoveTargets" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -61,22 +86,22 @@ offset_left = -270.0
 offset_right = 270.0
 offset_bottom = 26.0
 grow_horizontal = 2
-mouse_filter = 2
+mouse_filter = 1
 bbcode_enabled = true
 text = "[center]Targets All Combatants (Except Self)[/center]"
 fit_content = true
 
-[node name="MovePower" type="RichTextLabel" parent="BaseEffectPanel"]
+[node name="MovePower" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 23.0
 offset_right = 324.0
 offset_bottom = 49.0
-mouse_filter = 2
+mouse_filter = 1
 text = "100 Power (100% Lifesteal)"
 fit_content = true
 
-[node name="MoveRole" type="RichTextLabel" parent="BaseEffectPanel"]
+[node name="MoveRole" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -86,12 +111,12 @@ offset_top = 23.0
 offset_right = -24.0
 offset_bottom = 49.0
 grow_horizontal = 0
-mouse_filter = 2
+mouse_filter = 1
 bbcode_enabled = true
 text = "[right]Single Target[/right]"
 fit_content = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BaseEffectPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -102,21 +127,21 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 2
 
-[node name="UserBoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+[node name="UserBoostsRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 78)
 layout_mode = 2
 alignment = 1
 
-[node name="UserBoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/UserBoostsRow"]
+[node name="UserBoostsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 text = "Self Boosts:"
 
-[node name="UserStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/UserBoostsRow"]
+[node name="UserStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow"]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 18
 theme_override_font_sizes/italics_font_size = 18
 theme_override_font_sizes/mono_font_size = 18
@@ -125,21 +150,21 @@ theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
-[node name="TargetBoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+[node name="TargetBoostsRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 78)
 layout_mode = 2
 alignment = 1
 
-[node name="UserBoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
+[node name="UserBoostsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 text = "Target Boosts:"
 
-[node name="TargetStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
+[node name="TargetStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 18
 theme_override_font_sizes/italics_font_size = 18
 theme_override_font_sizes/mono_font_size = 18
@@ -148,21 +173,21 @@ theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
-[node name="StatusEffectRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+[node name="StatusEffectRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 alignment = 1
 
-[node name="StatusLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+[node name="StatusLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 text = "Status (Target):"
 
-[node name="MoveStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+[node name="MoveStatusEffect" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(310, 0)
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 18
 theme_override_font_sizes/italics_font_size = 18
 theme_override_font_sizes/mono_font_size = 18
@@ -171,11 +196,11 @@ theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "[center]Overwhelming Exhaustion (Guaranteed, Replaces)[/center]"
 
-[node name="StatusEffectIconGroup" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+[node name="StatusEffectIconGroup" type="Control" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="StatusEffectIconControl" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup"]
+[node name="StatusEffectIconControl" type="Control" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
@@ -190,15 +215,15 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StatusEffectIcon" type="Sprite2D" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl"]
+[node name="StatusEffectIcon" type="Sprite2D" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl"]
 position = Vector2(16, 16)
 scale = Vector2(2, 2)
 
-[node name="StatusHelpSection" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+[node name="StatusHelpSection" type="Control" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="StatusHelpButton" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection" instance=ExtResource("5_1e3o1")]
+[node name="StatusHelpButton" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection" instance=ExtResource("5_1e3o1")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,17 +243,17 @@ focus_neighbor_bottom = NodePath(".")
 icon = ExtResource("6_3l4s7")
 expand_icon = true
 
-[node name="SurgePanel" type="Panel" parent="."]
+[node name="SurgePanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 299.0
 offset_bottom = 550.0
 grow_horizontal = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SurgePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,24 +262,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
 
-[node name="SurgeChangesRow" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+[node name="SurgeChangesRow" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="SurgeChangesRow2" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+[node name="SurgeChangesRow2" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="SurgeChangesRow3" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+[node name="SurgeChangesRow3" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="SurgeChangesRow4" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+[node name="SurgeChangesRow4" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="SurgeChangesRow5" parent="SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
+[node name="SurgeChangesRow5" parent="ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer" instance=ExtResource("5_sdofm")]
 layout_mode = 2
-mouse_filter = 2
 
-[connection signal="pressed" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[node name="RuneEffectDetailsPanel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("8_tp4km")]
+layout_mode = 2
+
+[node name="BoxContainerScroller" parent="." node_paths=PackedStringArray("scrollContainer") instance=ExtResource("2_swaov")]
+layout_mode = 1
+scrollContainer = NodePath("../ScrollContainer")
+
+[connection signal="visibility_changed" from="ScrollContainer" to="ScrollContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[connection signal="status_button_onscreen_update" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_status_button_onscreen_update"]
+[connection signal="tooltip_panel_opened" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_tooltip_panel_opened"]
+[connection signal="visibility_changed" from="BoxContainerScroller" to="." method="_on_box_container_scroller_visibility_changed"]

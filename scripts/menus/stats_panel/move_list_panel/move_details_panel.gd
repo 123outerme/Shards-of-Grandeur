@@ -50,19 +50,20 @@ func load_move_details_panel():
 	surgeEffectDetails.load_move_effect_details_panel()
 	
 	connect_help_buttons()
+	connect_scrollers()
 
 func connect_help_buttons():
 	backButton.focus_neighbor_top = '.'
 	backButton.focus_neighbor_left = '.'
 	backButton.focus_neighbor_right = '.'
 	
-	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null:
+	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null and move.surgeEffect.rune == null:
 		backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_bottom = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 		backButton.focus_neighbor_right = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 	
-	if move.chargeEffect.statusEffect != null:
+	if move.chargeEffect.statusEffect != null and move.chargeEffect.rune == null:
 		backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.statusHelpButton)
 		chargeEffectDetails.statusHelpButton.focus_neighbor_bottom = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
 		if surgeEffectDetails.visible:
@@ -72,7 +73,18 @@ func connect_help_buttons():
 				surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(chargeEffectDetails.statusHelpButton)
 			else:
 				chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
-			
+
+func connect_scrollers():
+	if chargeEffectDetails.visible and chargeEffectDetails.moveEffect.rune != null:
+		chargeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
+	if surgeEffectDetails.visible and surgeEffectDetails.moveEffect.rune != null:
+		surgeEffectDetails.boxContainerScroller.connect_scroll_down_left_neighbor(backButton)
+		# if both have runes, the scroll bars will show up
+		if chargeEffectDetails.moveEffect.rune != null:
+			chargeEffectDetails.boxContainerScroller.connect_scroll_down_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollDownBtn)
+			chargeEffectDetails.boxContainerScroller.connect_scroll_up_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollUpBtn)
+		else:
+			surgeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
 
 func _on_back_button_pressed():
 	visible = false

@@ -1,0 +1,227 @@
+[gd_scene load_steps=9 format=3 uid="uid://cw4len8u1w6uj"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_l738a"]
+[ext_resource type="Script" path="res://scripts/menus/stats_panel/move_list_panel/rune_effect_details_panel.gd" id="2_4ondi"]
+[ext_resource type="Theme" uid="uid://d2qqyhri84552" path="res://themes/nested_ui/larger_text_panel_theme.tres" id="3_nki3r"]
+[ext_resource type="Theme" uid="uid://cjypv7oeiqc6u" path="res://themes/nested_ui/move_effect_base_details_panel.tres" id="4_vffvg"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_dsy2o"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="6_krxx4"]
+[ext_resource type="PackedScene" uid="uid://ggkc0ii1kpmh" path="res://prefabs/ui/stats/surge_changes_row.tscn" id="7_gmi4a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fayj4"]
+bg_color = Color(0.145098, 0.231373, 0.368627, 1)
+border_width_top = 1
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="RuneEffectDetailsPanel" type="Panel"]
+custom_minimum_size = Vector2(540, 218)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -740.0
+offset_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("1_l738a")
+script = ExtResource("2_4ondi")
+
+[node name="DetailsTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 36.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("3_nki3r")
+bbcode_enabled = true
+text = "[center]Damage Rune  / +10 [img=32x32]res://graphics/ui/orb_filled.png[/img][/center]"
+fit_content = true
+
+[node name="BaseEffectPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 38.0
+offset_bottom = 218.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("4_vffvg")
+
+[node name="RunePower" type="RichTextLabel" parent="BaseEffectPanel"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 302.0
+offset_bottom = 28.0
+mouse_filter = 1
+text = "100 Power (100% Lifesteal)"
+fit_content = true
+
+[node name="RuneCategoryElement" type="RichTextLabel" parent="BaseEffectPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 28.0
+grow_horizontal = 0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[right]Lightning / Physical[/right]"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseEffectPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 41.0
+offset_bottom = 177.0
+grow_horizontal = 2
+theme_override_constants/separation = 2
+
+[node name="BoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+alignment = 1
+
+[node name="BoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/BoostsRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Target Boosts:"
+
+[node name="BoostsStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/BoostsRow"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
+
+[node name="StatusEffectRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+alignment = 1
+
+[node name="StatusLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "Status:"
+
+[node name="RuneStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[center]Overwhelming Exhaustion (Guaranteed, Replaces)[/center]"
+
+[node name="StatusEffectIconGroup" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="StatusEffectIconControl" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusEffectIcon" type="Sprite2D" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusEffectIconGroup/StatusEffectIconControl"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+
+[node name="StatusHelpSection" type="Control" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="StatusHelpButton" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection" instance=ExtResource("5_dsy2o")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+icon = ExtResource("6_krxx4")
+expand_icon = true
+
+[node name="StatusButtonOnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection"]
+rect = Rect2(0, 12, 32, 32)
+
+[node name="SurgePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 216.0
+offset_bottom = 467.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SurgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="SurgeChangesRow" parent="SurgePanel/VBoxContainer" instance=ExtResource("7_gmi4a")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SurgeChangesRow2" parent="SurgePanel/VBoxContainer" instance=ExtResource("7_gmi4a")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SurgeChangesRow3" parent="SurgePanel/VBoxContainer" instance=ExtResource("7_gmi4a")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SurgeChangesRow4" parent="SurgePanel/VBoxContainer" instance=ExtResource("7_gmi4a")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SurgeChangesRow5" parent="SurgePanel/VBoxContainer" instance=ExtResource("7_gmi4a")]
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[connection signal="screen_entered" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_entered"]
+[connection signal="screen_exited" from="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_exited"]

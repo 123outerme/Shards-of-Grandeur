@@ -484,8 +484,8 @@ func play_triggered_rune_animations() -> void:
 						eventTexts.append(CombatantEventText.build_damage_text(runeDmg, superEffective))
 						eventTargets.append(combatantNode)
 						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
-						if rune.lifesteal != 0:
-							var lifestealDmg: float = max(1, runeDmg * rune.lifesteal) * -1
+						if rune.lifesteal > 0:
+							var lifestealDmg: float = max(1, runeDmg * max(0, rune.lifesteal)) * -1
 							var casterNode: CombatantNode = null
 							for cNode: CombatantNode in get_all_combatant_nodes():
 								if cNode.combatant == rune.caster:
