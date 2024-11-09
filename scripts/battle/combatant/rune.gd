@@ -62,7 +62,7 @@ func _init(
 	triggerAnim = i_triggerAnim
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
-	if len(otherCombatants) > 0:
+	if len(otherCombatants) > 0 and otherCombatants[0] != null:
 		caster = otherCombatants[0]
 	else:
 		printerr('Rune init_rune_state() error: caster not provided')

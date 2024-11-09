@@ -84,13 +84,12 @@ func _ready():
 			for runeIdx: int in range(len(combatantRuneCasters[idx])):
 				var rune: Rune = combatantRunes[idx][runeIdx]
 				if rune != null:
-					rune.init_rune_state(combatantNode.combatant, [], state)
-					combatantNode.runes.append(rune)
-				var caster: Combatant = null
-				for cNode: CombatantNode in get_all_combatant_nodes():
-					if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
-						caster = cNode.combatant
-				combatantNode.combatant.runes[runeIdx].caster = caster
+					var caster: Combatant = null
+					for cNode: CombatantNode in get_all_combatant_nodes():
+						if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
+							caster = cNode.combatant
+					rune.init_rune_state(combatantNode.combatant, [caster], state)
+					combatantNode.combatant.runes.append(rune)
 	
 	state = BattleState.new()
 	state.menu = BattleState.Menu.PRE_ROUND

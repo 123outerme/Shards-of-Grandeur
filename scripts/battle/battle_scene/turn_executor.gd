@@ -327,7 +327,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		var accumulatedLifesteals: Dictionary = {}
 		var accumulatedStatChanges: StatChanges = StatChanges.new()
 		var appliedStatus: StatusEffect = null
-		var accumulatedOrbs: int = 0
+		var accumulatedOrbs: Dictionary = {}
 		for idx: int in range(len(combatant.triggeredRunes)):
 			var rune: Rune = combatant.triggeredRunes[idx]
 			accumulatedDmg += combatant.triggeredRunesDmg[idx]
@@ -347,7 +347,11 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				accumulatedStatChanges.stack(rune.statChanges)
 			if combatant.triggeredRunesStatus[idx] and rune.statusEffect != null:
 				appliedStatus = rune.statusEffect
-			accumulatedOrbs = max(0, min(Combatant.MAX_ORBS, accumulatedOrbs + rune.orbChange))
+			if casterNode != null:
+				if accumulatedOrbs.has(casterNode.battlePosition):
+					accumulatedOrbs[casterNode.battlePosition] += rune.orbChange
+				else:
+					accumulatedOrbs[casterNode.battlePosition] = rune.orbChange 
 		
 		# TODO print results of runes being triggered
 		runeText += ', '
@@ -364,11 +368,6 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 			else:
 				dmgText += 'HP'
 			resultsTexts.append(dmgText)
-		
-		if accumulatedOrbs > 0:
-			resultsTexts.append('gaining ' + String.num(accumulatedOrbs) + ' $orb')
-		elif accumulatedOrbs < 0:
-			resultsTexts.append('losing ' + String.num(accumulatedOrbs) + ' $orb')
 		
 		if accumulatedStatChanges.has_stat_changes():
 			var statChangeTexts: Array[StatMultiplierText] = accumulatedStatChanges.get_stat_multiplier_texts()
@@ -390,25 +389,34 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		
 		runeText += '!'
 		
-		if accumulatedLifesteals.size() > 0:
-			var lifestealTexts: Array[String] = []
-			for battlePosition: String in accumulatedLifesteals.keys():
-				var casterNode: CombatantNode = null
-				for cNode: CombatantNode in battleController.get_all_combatant_nodes():
-					if cNode.battlePosition == battlePosition:
-						casterNode = cNode
-						break
-				if casterNode != null:
-					lifestealTexts.append(casterNode.combatant.disp_name() + ' stole ' + TextUtils.num_to_comma_string(accumulatedLifesteals[battlePosition]) + ' HP')
+		var casterTexts: Array[String] = []
+		for cNode: CombatantNode in battleController.get_all_combatant_nodes():
+			var casterText: String = ''
+			if accumulatedLifesteals.has(cNode.battlePosition):
+				casterText += cNode.combatant.disp_name() + ' stole ' + TextUtils.num_to_comma_string(accumulatedLifesteals[cNode.battlePosition]) + ' HP'
 			
-			if len(lifestealTexts) > 0:
-				for textIdx: int in range(len(lifestealTexts)):
-					runeText += lifestealTexts[textIdx]
-					if textIdx < len(lifestealTexts) - 2:
-						runeText += ', '
-					elif textIdx < len(lifestealTexts) - 1:
-						runeText += ' and '
-				runeText += '!'
+			if accumulatedOrbs.has(cNode.battlePosition) and accumulatedOrbs[cNode.battlePosition] != 0:
+				if casterText != '':
+					casterText += ' and'
+				else:
+					casterText += cNode.combatant.disp_name()
+				if accumulatedOrbs[cNode.battlePosition] > 0:
+					casterText += ' gained'
+				else:
+					casterText += ' lost'
+				casterText += ' ' + String.num(min(Combatant.MAX_ORBS, absi(accumulatedOrbs[cNode.battlePosition]))) + ' $orb'
+			if casterText != '':
+				casterTexts.append(casterText)
+			
+		if len(casterTexts) > 0:
+			runeText += ' '
+			for textIdx: int in range(len(casterTexts)):
+				runeText += casterTexts[textIdx]
+				if textIdx < len(casterTexts) - 2:
+					runeText += ', '
+				elif textIdx < len(casterTexts) - 1:
+					runeText += ' and '
+			runeText += '!'
 	
 	return runeText
 

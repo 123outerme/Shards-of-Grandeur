@@ -234,6 +234,9 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
 
 func update_rune_sprites(createNew: bool = true) -> void:
+	if combatant == null or not is_alive():
+		return
+	
 	var currentlyPlayingSprite: MoveSprite = \
 		playingRuneSprites[playingRuneSpriteIdx] if \
 			playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites) else \

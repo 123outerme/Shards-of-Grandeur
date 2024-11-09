@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=46 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_4cfte"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="18_u0ttj"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="19_tn0g6"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/chain_rune.gd" id="20_a13hu"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="20_jje8i"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="21_6efxx"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
@@ -114,6 +115,14 @@ weight = 0.1
 script = ExtResource("21_6efxx")
 categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubResource("Resource_wm2w7"), SubResource("Resource_pl5yt"), SubResource("Resource_1i7gf")])
 
+[sub_resource type="Resource" id="Resource_pxoct"]
+script = ExtResource("20_a13hu")
+orbChange = 1
+category = 0
+element = 0
+power = 0
+lifesteal = 0.0
+
 [sub_resource type="Resource" id="Resource_cbcj4"]
 script = ExtResource("44_j7j6h")
 item = ExtResource("43_1s0me")
@@ -165,8 +174,8 @@ _playerCombatant = ExtResource("28_yubvn")
 playerLv = 16
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
-playerRunes = Array[ExtResource("18_u0ttj")]([ExtResource("19_tn0g6")])
-playerRuneCasterPositions = Array[String](["Center"])
+playerRunes = Array[ExtResource("18_u0ttj")]([ExtResource("19_tn0g6"), SubResource("Resource_pxoct")])
+playerRuneCasterPositions = Array[String](["Center", "Center"])
 minionCommand = SubResource("Resource_el0wh")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy2Command = SubResource("Resource_2nv1k")
@@ -174,7 +183,6 @@ enemy3Command = SubResource("Resource_hmp4c")
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("43_cxami")]
-disableEventTexts = null
 
 [node name="EnemyCombatant1" parent="BattleAnimationManager" index="5"]
 role = 1
