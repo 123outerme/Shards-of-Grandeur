@@ -499,6 +499,9 @@ func play_triggered_rune_animations() -> void:
 		combatantNode.update_rune_sprites(false, true)
 		var removingRuneSprites: Array[MoveSprite] = []
 		for runeSprite: MoveSprite in combatantNode.playingRuneSprites:
+			if runeSprite == null or runeSprite.linkedResource == null:
+				continue
+			
 			var rune: Rune = runeSprite.linkedResource as Rune
 			var runeIdx: int = combatantNode.combatant.triggeredRunes.find(rune)
 			if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
@@ -513,7 +516,8 @@ func play_triggered_rune_animations() -> void:
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.combatant == rune.caster:
 						casterNode = cNode
-						casterNode.update_hp_tag() # caster may not be related to the rest of the animation so it should update anyways
+						casterNode.change_current_orbs(rune.orbChange) # update caster's orbs immediately after rune trigger animation completes
+						#casterNode.update_hp_tag()
 				var eventTexts: Array[String] = []
 				var eventTextUpdates: Array[Callable] = []
 				var eventTargets: Array[CombatantNode] = []

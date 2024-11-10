@@ -67,6 +67,7 @@ func _ready():
 		if combatantAis[idx] != null:
 			get_all_combatant_nodes()[idx].battleAi = combatantAis[idx].copy()
 		get_all_combatant_nodes()[idx].combatant = combatant
+		get_all_combatant_nodes()[idx].update_current_tag_stats(true)
 		get_all_combatant_nodes()[idx].load_combatant_node()
 	
 	for idx: int in range(len(get_all_combatant_nodes())):
@@ -82,6 +83,7 @@ func _ready():
 							caster = cNode.combatant
 					rune.init_rune_state(combatantNode.combatant, [caster], state)
 					combatantNode.combatant.runes.append(rune)
+			combatantNode.update_rune_sprites(true)
 			combatantNode.update_hp_tag()
 	state.menu = BattleState.Menu.PRE_ROUND
 	battleUI.menuState = BattleState.Menu.PRE_ROUND

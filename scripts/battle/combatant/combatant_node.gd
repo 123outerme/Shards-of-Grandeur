@@ -179,6 +179,13 @@ func get_behind_particle_scale() -> float:
 	return 1.5 + round(max(0, max(combatant.get_idle_size().x, combatant.get_idle_size().y) - 16) / 16) / 4
 
 func change_current_hp(hpChange: int) -> void:
+	if hpChange < 0 and curStatus != null and curStatus is Endure:
+		var curEndure: Endure = curStatus as Endure
+		var lowestHp: int = max(1, min(curEndure.lowestHp, roundi(combatant.stats.maxHp * curEndure.get_min_hp_percent())))
+		#print('HP change: ', hpChange, ' / lowest HP calcd: ', lowestHp, ' / curEndure lowest: ', curEndure.lowestHp, ' / min HP from status: ', roundi(combatant.stats.maxHp * curEndure.get_min_hp_percent()))
+		if curHp + hpChange < lowestHp:
+			hpChange = lowestHp - curHp
+		
 	curHp = min(combatant.stats.maxHp, max(0, curHp + hpChange))
 	update_hp_tag()
 
@@ -283,7 +290,7 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 		for runeSprite: MoveSprite in playingRuneSprites:
 			if runeSprite.linkedResource == rune:
 				hasSprite = true
-		if hasSprite or (not createNew and not (createTriggered and rune in combatant.triggeredRunes)):
+		if hasSprite or not (createNew or (createTriggered and rune in combatant.triggeredRunes)):
 			continue
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
 		spriteNode.z_index -= 1
@@ -295,25 +302,28 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 		spriteNode.globalMarker = globalMarker
 		spriteNode.userTeam = allyTeamMarker
 		spriteNode.enemyTeam = enemyTeamMarker
-		if createTriggered and rune in combatant.triggeredRunes and not playCreatedTriggeredRunes:
-			spriteNode.halt = true
+		spriteNode.halt = true
+		#if createTriggered and rune in combatant.triggeredRunes and not playCreatedTriggeredRunes:
+			#spriteNode.halt = true
 		spriteNode.move_sprite_complete.connect(_rune_sprite_complete)
 		add_child(spriteNode)
 		playingRuneSprites.append(spriteNode)
+		#print('Add rune sprite => ' , len(playingRuneSprites))
 		if playingRuneSpriteIdx == -1:
 			playingRuneSpriteIdx = len(playingRuneSprites) - 1
 	if playingRuneSpriteIdx == -1 and currentlyPlayingSprite != null:
 		playingRuneSpriteIdx = playingRuneSprites.find(currentlyPlayingSprite)
 	
 	if playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites):
-		if targetOfMoveAnimation or (createTriggered and playingRuneSprites[playingRuneSpriteIdx].rune in combatant.triggeredRunes and not playCreatedTriggeredRunes):
+		if targetOfMoveAnimation or (createTriggered and playingRuneSprites[playingRuneSpriteIdx].linkedResource in combatant.triggeredRunes and not playCreatedTriggeredRunes):
+			playingRuneSprites[playingRuneSpriteIdx].halt = true
 			playingRuneSprites[playingRuneSpriteIdx].reset_animation(true)
 			playingRuneSprites[playingRuneSpriteIdx].visible = false
 		else:
+			playingRuneSprites[playingRuneSpriteIdx].halt = false
 			if not playingRuneSprites[playingRuneSpriteIdx].playing:
 				playingRuneSprites[playingRuneSpriteIdx].play_sprite_animation()
 			playingRuneSprites[playingRuneSpriteIdx].visible = true
-			playingRuneSprites[playingRuneSpriteIdx].playing = true
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -653,6 +663,7 @@ func _rune_sprite_complete(sprite: MoveSprite):
 	else:
 		playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
 		if playingRuneSprites[playingRuneSpriteIdx] != null:
+			playingRuneSprites[playingRuneSpriteIdx].halt = false
 			playingRuneSprites[playingRuneSpriteIdx].playing = true
 	if not sprite.looping:
 		sprite.destroy(false)

@@ -38,10 +38,13 @@ func apply_status(combatant, allCombatants: Array, timing: BattleCommand.ApplyTi
 		# this will be either a certain percentage of its max HP, or
 		# the lowest HP it has been at (i.e. if it gets the status while its HP is lower than this percentage)
 		# the `lowestHp` value gets set to the current HP of the combatant when the combatant gets afflicted with the status, not including current damage calc (if taking dmg)
-		combatant.currentHp = max(combatant.currentHp, min(lowestHp, roundi(combatant.stats.maxHp * MIN_PERCENT_HP_DICT[potency])), 1)
-		
+		combatant.currentHp = max(combatant.currentHp, min(lowestHp, roundi(combatant.stats.maxHp * get_min_hp_percent())), 1)
+	
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
+
+func get_min_hp_percent() -> float:
+	return MIN_PERCENT_HP_DICT[potency]
 
 func get_status_effect_str(combatant, allCombatants: Array, timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and endured:
