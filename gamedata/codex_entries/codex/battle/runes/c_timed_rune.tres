@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://bavuphsd4wuhc"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_rsrbu"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_thagn"]
+
+[resource]
+script = ExtResource("1_rsrbu")
+id = "timed_rune"
+title = "Timed Rune"
+storyRequirements = Array[ExtResource("2_thagn")]([])
+description = "A Timed Rune is a Rune that is triggered when a specific number of turns have passed after it was enchanted to a Combatant. Different Timed Runes can trigger after a different number of turns."
+sortOrder = 0

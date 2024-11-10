@@ -572,10 +572,6 @@ func play_triggered_rune_animations() -> void:
 				var runeSpriteIdx: int = combatantNode.playingRuneSprites.find(runeSprite)
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()
-			''' # TODO is this necessary?
-			for cNode: CombatantNode in get_all_combatant_nodes():
-				cNode.update_current_tag_stats()
-			'''
 
 func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:

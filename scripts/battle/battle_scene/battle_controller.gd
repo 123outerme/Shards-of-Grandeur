@@ -403,6 +403,10 @@ func end_battle():
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
 	PlayerResources.playerInfo.combatant.battleStorageStatus = null
+	PlayerResources.playerInfo.combatant.runes = []
+	PlayerResources.playerInfo.combatant.triggeredRunes = []
+	PlayerResources.playerInfo.combatant.triggeredRunesDmg = []
+	PlayerResources.playerInfo.combatant.triggeredRunesStatus = []
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
 			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
@@ -428,6 +432,10 @@ func clean_up_minion_combatant() -> void:
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
+		minionCombatant.combatant.runes = []
+		minionCombatant.combatant.triggeredRunes = []
+		minionCombatant.combatant.triggeredRunesDmg = []
+		minionCombatant.combatant.triggeredRunesStatus = []
 		minionCombatant.combatant.battleStorageStatus = null
 
 func _fade_in_finish() -> void:

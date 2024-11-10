@@ -859,6 +859,8 @@ func update_battle_storage() -> void:
 	battleStorageOrbs = orbs
 	battleStorageStatus = statusEffect
 	triggeredRunes = []
+	triggeredRunesDmg = []
+	triggeredRunesStatus = []
 
 func _desc_order(a, b) -> bool:
 	return a > b

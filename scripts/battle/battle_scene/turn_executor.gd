@@ -221,7 +221,7 @@ func finish_turn() -> WinCon.TurnResult:
 	
 	for cNode: CombatantNode in battleController.get_all_combatant_nodes():
 		if cNode.is_alive():
-			cNode.update_current_tag_stats() # after the turn is over, update the battle storage variables
+			cNode.update_current_tag_stats(true) # after the turn is over, update the battle storage variables
 	
 	result = check_battle_end_conditions()
 	if result == WinCon.TurnResult.NOTHING:
