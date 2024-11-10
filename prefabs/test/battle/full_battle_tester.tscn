@@ -157,6 +157,8 @@ strategy = 0
 aiOverrideWeight = 0.0
 moveEffectiveness = ExtResource("18_nxyit")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
 
 [sub_resource type="Resource" id="Resource_tiqmo"]
 script = ExtResource("4_bfd7i")
@@ -233,7 +235,6 @@ enemy1Runes = Array[ExtResource("23_jq1m7")]([ExtResource("40_yvth1")])
 enemy1RuneCasterPositions = Array[String](["You"])
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("22_3prau")]
-disableEventTexts = false
 
 [node name="EnemyCombatant1" parent="BattleAnimationManager" index="5"]
 role = 1

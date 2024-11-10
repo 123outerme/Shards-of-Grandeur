@@ -69,6 +69,7 @@ func load_into_battle():
 	if newBattle: # new battle
 		playerCombatant.combatant = PlayerResources.playerInfo.combatant.copy()
 		playerCombatant.combatant.orbs = playerCombatant.combatant.get_starting_orbs()
+		playerCombatant.combatant.update_battle_storage()
 		minionCombatant.combatant = null
 		if PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
@@ -213,6 +214,11 @@ func load_into_battle():
 				enemyCombatant3.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant3.combatant = null
+		enemyCombatant1.combatant.update_battle_storage()
+		if enemyCombatant2.combatant != null:
+			enemyCombatant2.combatant.update_battle_storage()
+		if enemyCombatant3.combatant != null:
+			enemyCombatant3.combatant.update_battle_storage()
 			#enemyCombatant3.leftSide = false # what was this doing????
 	else: # loaded a battle already in progress
 		playerCombatant.combatant = state.playerCombatant
@@ -276,6 +282,7 @@ func summon_minion(minionName: String, shard: Item = null):
 	minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 	minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
 	clean_up_minion_combatant()
+	minionCombatant.combatant.update_battle_storage()
 	minionCombatant.shardSummoned = true
 	minionCombatant.load_combatant_node()
 	#minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # just in case
@@ -395,6 +402,7 @@ func end_battle():
 	battleEnded = true
 	PlayerResources.playerInfo.combatant.statChanges.reset()
 	PlayerResources.playerInfo.combatant.statusEffect = null # clear status after battle (?)
+	PlayerResources.playerInfo.combatant.battleStorageStatus = null
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
 			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
@@ -402,6 +410,9 @@ func end_battle():
 			if combatantNode.combatant.get_evolution() != null:
 				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.get_evolution_save_name())
 	clean_up_minion_combatant()
+	if minionCombatant.combatant != null:
+		minionCombatant.combatant.orbs = 0
+		minionCombatant.combatant.update_battle_storage()
 	if minionCombatant.combatant != null:
 		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed)
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -413,9 +424,11 @@ func clean_up_minion_combatant() -> void:
 		#if not minionCombatant.combatant.downed and state.usedShard != null: # credit back used shard if the minion wasn't downed
 			#PlayerResources.inventory.add_item(state.usedShard)
 		minionCombatant.combatant.currentHp = minionCombatant.combatant.stats.maxHp # reset to max HP for next time minion will be summoned
+		minionCombatant.combatant.battleStorageHp = minionCombatant.combatant.stats.maxHp
 		minionCombatant.combatant.downed = false # clear downed if it was downed
 		minionCombatant.combatant.statChanges.reset()
 		minionCombatant.combatant.statusEffect = null # clear status after battle (?)
+		minionCombatant.combatant.battleStorageStatus = null
 
 func _fade_in_finish() -> void:
 	shadeTween = null

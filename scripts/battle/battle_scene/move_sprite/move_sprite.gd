@@ -30,6 +30,7 @@ var frameTimer: float = 0
 var startPos: Vector2 = Vector2()
 var targetPos: Vector2 = Vector2()
 var lastPivotPos: Vector2 = Vector2.ZERO
+var halt: bool = false # set to true on construction if we want to instantiate this move sprite but not immediately start it
 
 @onready var particleEmitter: Particles = get_node('ParticleEmitter')
 @onready var spritePivot: Node2D = get_node('SpritePivot')
@@ -74,7 +75,7 @@ func play_sprite_animation():
 	load_animation()
 	staticSpriteNode.texture = staticSprite
 	if len(anim.frames) > 0:
-		playing = true
+		playing = not halt
 		visible = false
 		load_frame()
 

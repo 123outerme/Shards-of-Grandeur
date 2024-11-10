@@ -38,6 +38,7 @@ func start_simulation():
 
 func play_turn():
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()
+	
 	var combatant: Combatant = turnQueue.peek_next()
 	battleController.update_state_turn_list()
 	if combatant != null: # apply before-damage-calc status
@@ -201,6 +202,11 @@ func finish_turn() -> WinCon.TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
 	if lastCombatant != null:
 		lastCombatant.command = null # remove the command from the previous turn's combatant
+	
+	for cNode: CombatantNode in battleController.get_all_combatant_nodes():
+		if cNode.is_alive():
+			cNode.update_current_tag_stats() # after the turn is over, update the battle storage variables
+	
 	result = check_battle_end_conditions()
 	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn

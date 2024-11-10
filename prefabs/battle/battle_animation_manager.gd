@@ -118,7 +118,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		shade = moveAnimation.surgeBattlefieldShade
 		var surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
 		user.play_particles(surgeParticles)
-		user.update_orb_display()
+	
+	user.change_current_orbs(command.orbChange)
 	
 	# play animation sprite if not none or battle idle
 	if moveAnimation.combatantAnimation != '' and moveAnimation.combatantAnimation != 'battle_idle' and SettingsHandler.gameSettings.battleAnims:
@@ -246,6 +247,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var dealtDmg: int = 0
 		var dmgWasSuperEffective: bool = false
 		var eventTexts: Array[String] = []
+		var eventTextUpdates: Array[Callable] = []
 		var targetIdx: int = command.targets.find(defender.combatant)
 		var moveEffect: MoveEffect = null
 		if command.type == BattleCommand.Type.MOVE:
@@ -273,8 +275,11 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		# event texts start here: damage
 		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
-		if defender == user and command.commandResult.lifestealHeal > 0:
-			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
+			eventTextUpdates.append(defender.change_current_hp.bind(dealtDmg * -1))
+		if defender == user:
+			if command.commandResult.lifestealHeal > 0:
+				eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
+				eventTextUpdates.append(defender.change_current_hp.bind(command.commandResult.lifestealHeal))
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			var statusEffect: StatusEffect = defender.combatant.statusEffect
@@ -283,6 +288,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				if healing.statusStrengthHeal != StatusEffect.Potency.NONE:
 					statusEffect = StatusEffect.new(StatusEffect.Type.NONE, healing.statusStrengthHeal, true)
 			eventTexts.append(CombatantEventText.build_status_get_text(statusEffect))
+			eventTextUpdates.append(defender.change_current_status.bind(statusEffect))
 		# stat changes text here
 		if targetIdx > -1 and (command.commandResult.wasBoosted[targetIdx] or len(command.commandResult.equipmentProcd[targetIdx]) > 0):
 			var statChanges: StatChanges = null
@@ -314,47 +320,65 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					var healing: Healing = command.slot.item as Healing
 					statChanges = healing.statChanges
 			if statChanges != null and statChanges.has_stat_changes():
-				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+				var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(statChanges)
+				eventTexts.append_array(statChangesTexts)
+				for statChangeIdx: int in range(len(statChangesTexts)):
+					eventTextUpdates.append(Callable())
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-				defender.play_event_text(eventTexts[textIdx], textDelayAccum)
+				defender.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+		else:
+			for update: Callable in eventTextUpdates:
+				if update != Callable():
+					update.call()
 		if textDelayAccum > longestTextDelay:
 			longestTextDelay = textDelayAccum
 		defender.isBeingStatusAfflicted = false
 	
 	# if the user wasn't a defender, we still need to update (HP tag, hit particles, event texts)
 	if not user in defenders:
-		user.update_hp_tag()
 		var eventTexts: Array[String] = []
+		var eventTextUpdates: Array[Callable] = []
 		# start event texts: damage
 		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
 			user.play_particles(BattleCommand.get_hit_particles(), 0)
 			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
+			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.selfRecoilDmg * -1))
 		if command.commandResult.lifestealHeal > 0:
 			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
+			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.lifestealHeal))
 		# status effect text + stat changes text
 		if command.type == BattleCommand.Type.MOVE:
 			var moveEffect: MoveEffect = command.move.chargeEffect
 			if command.moveEffectType == Move.MoveEffectType.SURGE:
 				moveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange))
+				eventTextUpdates.append(user.change_current_orbs.bind(command.orbChange))
 			if moveEffect.selfGetsStatus and command.commandResult.selfAfflictedStatus:
 				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
+				eventTextUpdates.append(user.change_current_status.bind(user.combatant.statusEffect))
 			# if the command type is a move: calculate the stat changes of the move, use that for texts
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
-				eventTexts.append_array(CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges))
+				var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges)
+				eventTexts.append_array(statChangesTexts)
+				for changeTextIdx: int in range(len(statChangesTexts)):
+					eventTextUpdates.append(Callable())
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-				user.play_event_text(eventTexts[textIdx], textDelayAccum)
+				user.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+		else:
+			for update: Callable in eventTextUpdates:
+				if update != Callable():
+					update.call()
 		if textDelayAccum > longestTextDelay:
 			longestTextDelay = textDelayAccum
 		user.isBeingStatusAfflicted = false
@@ -403,6 +427,7 @@ func play_intermediate_round_animations(state: BattleState):
 	
 	if state.calcdStateIndex < len(state.calcdStateStrings):
 		var eventTexts: Array[String] = []
+		var eventTextUpdates: Array[Callable] = []
 		var subjectNode: CombatantNode = null
 		for cNode: CombatantNode in get_all_combatant_nodes():
 			if cNode.combatant == state.calcdStateCombatants[state.calcdStateIndex]:
@@ -412,7 +437,7 @@ func play_intermediate_round_animations(state: BattleState):
 			if subjectNode.combatant in state.statusEffDamagedCombatants:
 				subjectNode.play_particles(BattleCommand.get_hit_particles())
 				eventTexts.append(CombatantEventText.build_damage_text(state.calcdStateDamage[state.calcdStateIndex]))
-				subjectNode.update_hp_tag()
+				eventTextUpdates.append(subjectNode.change_current_hp.bind(-1 * state.calcdStateDamage[state.calcdStateIndex]))
 			var procdEquipment: Array[Item] = state.calcdStateEquipmentProcd[state.calcdStateIndex]
 			if procdEquipment != null:
 				for equipment: Item in procdEquipment:
@@ -422,7 +447,10 @@ func play_intermediate_round_animations(state: BattleState):
 					elif equipment.itemType == Item.Type.ARMOR:
 						statChanges = (equipment as Armor).statChanges
 					if statChanges != null and statChanges.has_stat_changes():
-						eventTexts.append_array(CombatantEventText.build_stat_changes_texts(statChanges))
+						var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(statChanges)
+						eventTexts.append_array(statChangesTexts)
+						for changeTextIdx: int in range(len(statChangesTexts)):
+							eventTextUpdates.append(Callable())
 					# TODO: play equipment proc'd animation for this equipment
 			var textDelayAccum: float = 0
 			var playedEventTexts: bool = false
@@ -430,8 +458,12 @@ func play_intermediate_round_animations(state: BattleState):
 				for textIdx: int in range(len(eventTexts)):
 					if textIdx > 0:
 						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-					subjectNode.play_event_text(eventTexts[textIdx], textDelayAccum)
+					subjectNode.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 					playedEventTexts = true
+			else:
+				for update: Callable in eventTextUpdates:
+					if update != Callable():
+						update.call()
 			
 			if playedEventTexts:
 				get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
@@ -464,70 +496,86 @@ func skip_intermediate_animations(state: BattleState, menuState: BattleState.Men
 
 func play_triggered_rune_animations() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
+		combatantNode.update_rune_sprites(false, true)
 		var removingRuneSprites: Array[MoveSprite] = []
 		for runeSprite: MoveSprite in combatantNode.playingRuneSprites:
 			var rune: Rune = runeSprite.linkedResource as Rune
 			var runeIdx: int = combatantNode.combatant.triggeredRunes.find(rune)
 			if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
 				removingRuneSprites.append(runeSprite)
-				if SettingsHandler.gameSettings.battleAnims:
-					runeSprite.looping = false
-					runeSprite.anim = rune.triggerAnim
-					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
-					runeSprite.play_sprite_animation()
+				runeSprite.looping = false
+				runeSprite.anim = rune.triggerAnim
+				runeSprite.halt = false # in case it was halted, un-halt it now
+				runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
+				runeSprite.play_sprite_animation()
+				await rune_animation_complete
+				var casterNode: CombatantNode = null
+				for cNode: CombatantNode in get_all_combatant_nodes():
+					if cNode.combatant == rune.caster:
+						casterNode = cNode
+						casterNode.update_hp_tag() # caster may not be related to the rest of the animation so it should update anyways
+				var eventTexts: Array[String] = []
+				var eventTextUpdates: Array[Callable] = []
+				var eventTargets: Array[CombatantNode] = []
+				if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
+					var runeDmg: int = combatantNode.combatant.triggeredRunesDmg[runeIdx]
+					var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+					eventTexts.append(CombatantEventText.build_damage_text(runeDmg, superEffective))
+					eventTextUpdates.append(combatantNode.change_current_hp.bind(runeDmg * -1))
+					eventTargets.append(combatantNode)
+					combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
+					if rune.lifesteal > 0:
+						var lifestealHeal: float = max(1, roundi(runeDmg * max(0, rune.lifesteal)))
+						if casterNode != null:
+							eventTexts.append(CombatantEventText.build_damage_text(lifestealHeal * -1, false))
+							#print('rune lifesteal heal: ', lifestealHeal, ' / and text: "', eventTexts[len(eventTexts) - 1], '"')
+							eventTextUpdates.append(casterNode.change_current_hp.bind(lifestealHeal))
+							eventTargets.append(casterNode)
+				
+				if rune.statChanges != null and rune.statChanges.has_stat_changes():
+					var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(rune.statChanges)
+					eventTexts.append_array(statChangesTexts)
+					for changeTextIdx: int in range(len(statChangesTexts)):
+						eventTextUpdates.append(Callable())
+						eventTargets.append(combatantNode)
+				if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
+					eventTexts.append(CombatantEventText.build_status_get_text(rune.statusEffect))
+					eventTextUpdates.append(combatantNode.change_current_status.bind(rune.statusEffect))
+					eventTargets.append(combatantNode)
+				
+				var textDelayAccum: float = 0
+				var playedEventTextsCount: int = 0
+				if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
+					for textIdx: int in range(len(eventTexts)):
+						var cNode: CombatantNode = eventTargets[textIdx]
+						if cNode != null:
+							if playedEventTextsCount > 0:
+								textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
+							cNode.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
+							playedEventTextsCount += 1
+				else:
+					for update: Callable in eventTextUpdates:
+						if update != Callable():
+							update.call()
+				
+				if playedEventTextsCount > 0 and SettingsHandler.gameSettings.battleAnims:
+					get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+						.timeout.connect(_on_rune_trigger_animation_complete)
 					await rune_animation_complete
-					var casterNode: CombatantNode = null
-					for cNode: CombatantNode in get_all_combatant_nodes():
-						if cNode.combatant == rune.caster:
-							casterNode = cNode
-							casterNode.update_hp_tag() # caster may not be related to the rest of the animation so it should update anyways
-					var eventTexts: Array[String] = []
-					var eventTargets: Array[CombatantNode] = []
-					if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
-						var runeDmg: int = combatantNode.combatant.triggeredRunesDmg[runeIdx]
-						var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
-						eventTexts.append(CombatantEventText.build_damage_text(runeDmg, superEffective))
-						eventTargets.append(combatantNode)
-						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
-						if rune.lifesteal > 0:
-							var lifestealDmg: float = max(1, roundi(runeDmg * max(0, rune.lifesteal))) * -1
-							
-							if casterNode != null:
-								eventTexts.append(CombatantEventText.build_damage_text(lifestealDmg, false))
-								eventTargets.append(casterNode)
-								
-					if rune.statChanges != null and rune.statChanges.has_stat_changes():
-						eventTexts.append(CombatantEventText.build_stat_changes_texts(rune.statChanges))
-						eventTargets.append(combatantNode)
-					if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
-						eventTexts.append(CombatantEventText.build_status_get_text(rune.statusEffect))
-						eventTargets.append(combatantNode)
-					
-					var textDelayAccum: float = 0
-					var playedEventTextsCount: int = 0
-					if not disableEventTexts:
-						for textIdx: int in range(len(eventTexts)):
-							var cNode: CombatantNode = eventTargets[textIdx]
-							if cNode != null:
-								if playedEventTextsCount > 0:
-									textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-								cNode.play_event_text(eventTexts[textIdx], textDelayAccum)
-								playedEventTextsCount += 1
-					
-					if playedEventTextsCount > 0 and SettingsHandler.gameSettings.battleAnims:
-						get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
-							.timeout.connect(_on_rune_trigger_animation_complete)
-						await rune_animation_complete
 		if not SettingsHandler.gameSettings.battleAnims:
 			for runeSprite: MoveSprite in removingRuneSprites:
 				runeSprite.looping = false
 				var runeSpriteIdx: int = combatantNode.playingRuneSprites.find(runeSprite)
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()
+			''' # TODO is this necessary?
+			for cNode: CombatantNode in get_all_combatant_nodes():
+				cNode.update_current_tag_stats()
+			'''
 
-func play_combatant_event_text(combatantNode: CombatantNode, text: String, delay: float = 0, center: bool = true) -> void:
+func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
-		combatantNode.play_event_text(text, delay, center)
+		combatantNode.play_event_text(text, callable, delay, center)
 
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
@@ -572,5 +620,5 @@ func _on_combatant_animation_unit_complete(type: BattleAnimationManager.Animatio
 	if len(waitingForSignals) == 0 and (not includeTotal or len(totalWaitingForSignals) == 0):
 		animation_waiting_complete.emit()
 
-func _on_rune_trigger_animation_complete(arg: Variant = null) -> void:
+func _on_rune_trigger_animation_complete(_arg: Variant = null) -> void:
 	rune_animation_complete.emit()

@@ -134,6 +134,11 @@ const MAX_ORBS = 10
 ## if true, this combatant cannot fight in the battle anymore
 @export_storage var downed: bool = false
 
+## these three are used for animating turn animations; they represent the state of the combatant before a command is issued
+@export_storage var battleStorageHp: int = -1
+@export_storage var battleStorageOrbs: int = -1
+@export_storage var battleStorageStatus: StatusEffect = null
+
 static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres')
 
 static func load_combatant_resource(saveName: String) -> Combatant:
@@ -209,6 +214,12 @@ func initialize() -> Combatant:
 	if currentHp == -1:
 		stats.maxHp = stats.statGrowth.initialMaxHp
 		currentHp = stats.maxHp # load max HP if combatant was loaded from resource
+	if battleStorageHp == -1:
+		battleStorageHp = currentHp
+	if battleStorageOrbs == -1:
+		battleStorageOrbs = orbs
+	if battleStorageStatus == null:
+		battleStorageStatus = statusEffect
 	version = GameSettings.get_game_version()
 	return self
 
@@ -451,10 +462,9 @@ func get_starting_orbs() -> int:
 
 func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, timing: BattleCommand.ApplyTiming) -> void:
 	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND or \
-			timing == BattleCommand.ApplyTiming.BEFORE_DMG_CALC or \
 			timing == BattleCommand.ApplyTiming.AFTER_ROUND or \
 			timing == BattleCommand.ApplyTiming.AFTER_POST_ROUND:
-		# reset the list of triggered runes when appropriate
+		# reset the list of triggered runes when appropriate (before each turn is handled by `update_battle_state()`)
 		triggeredRunes = []
 		triggeredRunesDmg = []
 		triggeredRunesStatus = []
@@ -839,6 +849,16 @@ func save_from_object(c: Combatant):
 		command = null
 	
 	downed = c.downed
+	
+	battleStorageHp = c.battleStorageHp
+	battleStorageOrbs = c.battleStorageOrbs
+	battleStorageStatus = c.battleStorageStatus
+
+func update_battle_storage() -> void:
+	battleStorageHp = currentHp
+	battleStorageOrbs = orbs
+	battleStorageStatus = statusEffect
+	triggeredRunes = []
 
 func _desc_order(a, b) -> bool:
 	return a > b

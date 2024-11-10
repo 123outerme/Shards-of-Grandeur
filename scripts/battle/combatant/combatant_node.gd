@@ -48,7 +48,12 @@ const statusWeights: Dictionary = {
 const ANIMATE_MOVE_SPEED = 90
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 const eventTextScene = preload('res://prefabs/battle/combatant_event_text.tscn')
+
 var loaded: bool = false
+var curHp: int = -1
+var curOrbs: int = 0
+var curStatus: StatusEffect = null
+
 var disableHpTag: bool = false
 var tmpAllCombatantNodes: Array[CombatantNode] = []
 var battleAi: CombatantAi = null
@@ -106,6 +111,9 @@ func load_combatant_node():
 		visible = false
 	else:
 		visible = true
+		curHp = combatant.battleStorageHp
+		curOrbs = combatant.battleStorageOrbs
+		curStatus = combatant.battleStorageStatus
 		if combatant.statChanges == null:
 			combatant.statChanges = StatChanges.new()
 		animatedSprite.sprite_frames = combatant.get_sprite_frames()
@@ -170,6 +178,28 @@ func get_behind_particle_scale() -> float:
 	# scale of particles behind combatant: 1.5*, plus 0.25 for every 16 px larger
 	return 1.5 + round(max(0, max(combatant.get_idle_size().x, combatant.get_idle_size().y) - 16) / 16) / 4
 
+func change_current_hp(hpChange: int) -> void:
+	curHp = min(combatant.stats.maxHp, max(0, curHp + hpChange))
+	update_hp_tag()
+
+func change_current_orbs(orbChange: int) -> void:
+	curOrbs = min(Combatant.MAX_ORBS, max(0, curOrbs + orbChange))
+	update_hp_tag()
+
+func change_current_status(newStatus: StatusEffect) -> void:
+	curStatus = newStatus
+	update_hp_tag()
+
+func update_current_tag_stats(updateBattleStorage: bool = true) -> void:
+	if combatant == null:
+		return
+	if updateBattleStorage:
+		combatant.update_battle_storage()
+	curHp = combatant.battleStorageHp
+	curOrbs = combatant.battleStorageOrbs
+	curStatus = combatant.battleStorageStatus
+	update_hp_tag()
+
 func update_hp_tag():
 	if not is_alive():
 		if visible and fadeOutTween == null:
@@ -185,15 +215,15 @@ func update_hp_tag():
 	nameText.text = '[center]' + combatant.disp_name() + '[/center]'
 	lvText.text = 'Lv ' + String.num(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
-	hpText.text = TextUtils.num_to_comma_string(combatant.currentHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
+	hpText.text = TextUtils.num_to_comma_string(curHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
 	#hpText.size.x = len(hpText.text) * 13 - 10 # magic number
 	hpProgressBar.max_value = combatant.stats.maxHp
-	if hpProgressBar.value != combatant.currentHp:
+	if hpProgressBar.value != curHp:
 		if hpDrainTween != null and hpDrainTween.is_valid():
 			hpDrainTween.kill()
 		hpDrainTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-		hpDrainTween.parallel().tween_property(hpProgressBar, 'value', combatant.currentHp, 1)
-		hpDrainTween.parallel().tween_property(hpProgressBar, 'tint_progress', Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp), 1)
+		hpDrainTween.parallel().tween_property(hpProgressBar, 'value', curHp, 1)
+		hpDrainTween.parallel().tween_property(hpProgressBar, 'tint_progress', Combatant.get_hp_bar_color(curHp, combatant.stats.maxHp), 1)
 		hpDrainTween.finished.connect(_on_hp_drain_tween_finished)
 	
 	#hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
@@ -208,8 +238,8 @@ func update_hp_tag():
 	update_rune_sprites()
 	#else:
 		#orbDisplay.visible = false
-	if combatant.statusEffect != null:
-		statusSprite.texture = combatant.statusEffect.get_icon()
+	if curStatus != null:
+		statusSprite.texture = curStatus.get_icon()
 	else:
 		statusSprite.texture = null
 
@@ -218,7 +248,7 @@ func set_weaken_target_hp_display(targetPercent: float) -> void:
 	weakenTargetHp.size.x = 156 * targetPercent
 
 func update_orb_display():
-	orbDisplay.update_orb_count(combatant.orbs, false, loaded)
+	orbDisplay.update_orb_count(curOrbs, false, loaded)
 
 func update_select_btn(showing: bool, disable: bool = false):
 	if not is_alive():
@@ -233,7 +263,7 @@ func update_select_btn(showing: bool, disable: bool = false):
 	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
 	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
 
-func update_rune_sprites(createNew: bool = true) -> void:
+func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, playCreatedTriggeredRunes: bool = false) -> void:
 	if combatant == null or not is_alive():
 		return
 	
@@ -243,12 +273,17 @@ func update_rune_sprites(createNew: bool = true) -> void:
 			null
 	playingRuneSpriteIdx = -1
 	playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
-	for rune: Rune in combatant.runes:
+	var runes: Array[Rune] = []
+	runes.append_array(combatant.runes)
+	if createTriggered:
+		runes.append_array(combatant.triggeredRunes)
+	
+	for rune: Rune in runes:
 		var hasSprite: bool = false
 		for runeSprite: MoveSprite in playingRuneSprites:
 			if runeSprite.linkedResource == rune:
 				hasSprite = true
-		if hasSprite or not createNew:
+		if hasSprite or (not createNew and not (createTriggered and rune in combatant.triggeredRunes)):
 			continue
 		var spriteNode: MoveSprite = moveSpriteScene.instantiate()
 		spriteNode.z_index -= 1
@@ -260,6 +295,8 @@ func update_rune_sprites(createNew: bool = true) -> void:
 		spriteNode.globalMarker = globalMarker
 		spriteNode.userTeam = allyTeamMarker
 		spriteNode.enemyTeam = enemyTeamMarker
+		if createTriggered and rune in combatant.triggeredRunes and not playCreatedTriggeredRunes:
+			spriteNode.halt = true
 		spriteNode.move_sprite_complete.connect(_rune_sprite_complete)
 		add_child(spriteNode)
 		playingRuneSprites.append(spriteNode)
@@ -269,12 +306,12 @@ func update_rune_sprites(createNew: bool = true) -> void:
 		playingRuneSpriteIdx = playingRuneSprites.find(currentlyPlayingSprite)
 	
 	if playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites):
-		if targetOfMoveAnimation:
+		if targetOfMoveAnimation or (createTriggered and playingRuneSprites[playingRuneSpriteIdx].rune in combatant.triggeredRunes and not playCreatedTriggeredRunes):
 			playingRuneSprites[playingRuneSpriteIdx].reset_animation(true)
 			playingRuneSprites[playingRuneSpriteIdx].visible = false
 		else:
-			if not playingMoveSprites[playingRuneSpriteIdx].playing:
-				playingMoveSprites[playingRuneSpriteIdx].play_sprite_animation()
+			if not playingRuneSprites[playingRuneSpriteIdx].playing:
+				playingRuneSprites[playingRuneSpriteIdx].play_sprite_animation()
 			playingRuneSprites[playingRuneSpriteIdx].visible = true
 			playingRuneSprites[playingRuneSpriteIdx].playing = true
 
@@ -359,6 +396,8 @@ func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: boo
 		for eventText: CombatantEventText in playingEventTexts:
 			if eventText != null:
 				eventText.visible = false
+				if not eventText.callableCalled and eventText.eventCallable != Callable():
+					eventText.eventCallable.call()
 				eventText.destroy.call_deferred()
 		playingEventTexts = []
 		playedEventTexts = 0
@@ -522,12 +561,12 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		playingMoveSprites.append(spriteNode)
 		add_child(spriteNode)
 
-func play_event_text(text: String, delay: float = 0, center: bool = true) -> void:
+func play_event_text(text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	var instantiatedText: CombatantEventText = eventTextScene.instantiate()
 	playedEventTexts += 1
 	instantiatedText.event_text_completed.connect(_event_text_completed.bind(instantiatedText))
 	playingEventTexts.append(instantiatedText)
-	instantiatedText.load_event_text(text, delay, center)
+	instantiatedText.load_event_text(text, callable, delay, center)
 	eventTextContainer.add_child(instantiatedText)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:

@@ -14,6 +14,9 @@ static var SECS_UNTIL_FADE_OUT: float = 1
 
 var eventTextTween: Tween = null
 
+var eventCallable: Callable = Callable()
+var callableCalled: bool = false
+
 static func build_damage_text(damage: int, superEffective: bool = false) -> String:
 	var isHealing: bool = false
 	var prefix: String = '-'
@@ -49,20 +52,25 @@ static func build_stat_changes_texts(statChanges: StatChanges) -> Array[String]:
 		retValTexts.append(multText.print_multiplier())
 	return retValTexts
 
-func load_event_text(eventText: String, delay: float = 0, center: bool = true) -> void:
+func load_event_text(eventText: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	if eventText == '':
+		callableCalled = true
 		event_text_completed.emit()
 		queue_free()
 		return
 	
+	eventCallable = callable
 	if center:
 		text = '[center]' + eventText + '[/center]'
 	else:
 		text = eventText
 	modulate = Color(1, 1, 1, 0)
 	eventTextTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	# fade in quickly
+	# fade in quickly and call the provided callable at the same time
 	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,1), CombatantEventText.FADE_IN_SECS).set_delay(delay)
+	eventTextTween.set_parallel()
+	eventTextTween.tween_callback(_call_event_callable)
+	eventTextTween.set_parallel(false)
 	# then, slide upwards, and at the same time, prepare to fade out partway through the slide upwards
 	eventTextTween.tween_property(self, 'position', Vector2(0, -36), CombatantEventText.SCROLL_UP_SECS).as_relative()
 	eventTextTween.set_parallel()
@@ -79,3 +87,8 @@ func _event_text_completed() -> void:
 		eventTextTween = null
 	event_text_completed.emit()
 	queue_free()
+
+func _call_event_callable() -> void:
+	if eventCallable != Callable():
+		eventCallable.call()
+	callableCalled = true
