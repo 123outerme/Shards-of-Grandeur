@@ -160,11 +160,19 @@ func update_turn_text() -> bool:
 			for interceptor in combatant.command.interceptingTargets:
 				if not interceptor in defenders:
 					defenders.append(interceptor)
+			var combatantHadBerserk: bool = false
 			if combatant.statusEffect != null:
-				text += ' ' + combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+				combatantHadBerserk = combatant.statusEffect.type == StatusEffect.Type.BERSERK
+				if not text.ends_with(' '):
+					text += ' '
+				text += combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+			var defenderHadReflect: bool = false
 			for defender in defenders:
 				if not defender == combatant and defender.statusEffect != null:
-					text += ' ' + defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
+					defenderHadReflect = defenderHadReflect or defender.statusEffect.type == StatusEffect.Type.REFLECT
+					if not text.ends_with(' '):
+						text += ' '
+					text += defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 				# if the defender did not intercept the attack (was directed at this defender):
 				if defender in combatant.command.targets:
 					# if a move was used: get the move effect
@@ -177,11 +185,19 @@ func update_turn_text() -> bool:
 							if defender.stats.equippedWeapon != null:
 								var afterDmgText: String = defender.stats.equippedWeapon.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 								if afterDmgText != '':
-									text += ' ' + afterDmgText
+									if not text.ends_with(' '):
+										text += ' '
+									text += afterDmgText
 							if defender.stats.equippedArmor != null:
 								var afterDmgText: String = defender.stats.equippedArmor.get_apply_text(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 								if afterDmgText != '':
-									text += ' ' + afterDmgText
+									if not text.ends_with(' '):
+										text += ' '
+									text += afterDmgText
+			if combatant.command.commandResult.selfRecoilDmg != 0 and not combatantHadBerserk and combatant.battleStorageStatus != null and combatant.battleStorageStatus.type == StatusEffect.Type.BERSERK:
+				if not text.ends_with(' '):
+					text += ' '
+				text += combatant.disp_name() + ' took ' + TextUtils.num_to_comma_string(combatant.command.commandResult.selfRecoilDmg) + ' total recoil damage!'
 			for combatantNode: CombatantNode in allCombatantNodes:
 				var runesText: String = get_triggered_runes_text(combatantNode.combatant)
 				if runesText != '':
@@ -377,7 +393,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		
 		if accumulatedStatChanges.has_stat_changes():
 			var statChangeTexts: Array[StatMultiplierText] = accumulatedStatChanges.get_stat_multiplier_texts()
-			var statChangeText: String = 'boosting by ' + StatMultiplierText.multiplier_text_list_to_string(statChangeTexts)
+			var statChangeText: String = 'boosting ' + StatMultiplierText.multiplier_text_list_to_string(statChangeTexts)
 			resultsTexts.append(statChangeText)
 		
 		if appliedStatus != null:
