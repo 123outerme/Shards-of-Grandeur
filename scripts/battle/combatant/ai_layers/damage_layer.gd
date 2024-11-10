@@ -48,16 +48,14 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
 		moveTriggersRuneIdxs.append(target.combatant.runes.find(rune))
 	
-	if len(runeDmgs) > 0:
-		print('Damages for runes ', runeDmgs, ' / and idxs we can trigger: ', moveTriggersRuneIdxs, ' / with move ', move.moveName)
+	#if len(runeDmgs) > 0:
+	#	print('Damages for runes ', runeDmgs, ' / and idxs we can trigger: ', moveTriggersRuneIdxs, ' / with move ', move.moveName)
 	
 	for idx: int in range(len(runeDmgs)):
 		if healLayer:
 			runeDmgs[idx] *= -1
 		if idx in moveTriggersRuneIdxs:
 			calcdDamage += runeDmgs[idx]
-	
-	
 	
 	var highestOtherMoveDmg: int = 0
 	var highestOtherMove: Move = null
@@ -89,7 +87,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		
 		for idx in range(len(target.combatant.runes)):
 			if idx in otherMoveTriggersRuneIdxs:
-				otherDmg += runeDmgs[idx]
+				if not healLayer:
+					otherDmg += runeDmgs[idx]
+				else:
+					otherDmg -= runeDmgs[idx]
 		
 		if highestOtherMove == null or otherDmg > highestOtherMoveDmg:
 			highestOtherMove = otherMove
