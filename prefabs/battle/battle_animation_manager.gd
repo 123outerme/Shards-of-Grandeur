@@ -476,6 +476,11 @@ func play_triggered_rune_animations() -> void:
 					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 					runeSprite.play_sprite_animation()
 					await rune_animation_complete
+					var casterNode: CombatantNode = null
+					for cNode: CombatantNode in get_all_combatant_nodes():
+						if cNode.combatant == rune.caster:
+							casterNode = cNode
+							casterNode.update_hp_tag() # caster may not be related to the rest of the animation so it should update anyways
 					var eventTexts: Array[String] = []
 					var eventTargets: Array[CombatantNode] = []
 					if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
@@ -486,14 +491,11 @@ func play_triggered_rune_animations() -> void:
 						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
 						if rune.lifesteal > 0:
 							var lifestealDmg: float = max(1, roundi(runeDmg * max(0, rune.lifesteal))) * -1
-							var casterNode: CombatantNode = null
-							for cNode: CombatantNode in get_all_combatant_nodes():
-								if cNode.combatant == rune.caster:
-									casterNode = cNode
-									break
+							
 							if casterNode != null:
 								eventTexts.append(CombatantEventText.build_damage_text(lifestealDmg, false))
 								eventTargets.append(casterNode)
+								
 					if rune.statChanges != null and rune.statChanges.has_stat_changes():
 						eventTexts.append(CombatantEventText.build_stat_changes_texts(rune.statChanges))
 						eventTargets.append(combatantNode)
