@@ -88,9 +88,9 @@ func _ready():
 					var caster: Combatant = null
 					for cNode: CombatantNode in get_all_combatant_nodes():
 						if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
-							caster = cNode.combatant
-					rune.init_rune_state(combatantNode.combatant, [caster], state)
-					combatantNode.combatant.runes.append(rune)
+							rune.init_rune_state(combatantNode.combatant, [cNode.combatant], state)
+							combatantNode.combatant.runes.append(rune)
+							break
 			combatantNode.update_rune_sprites(true)
 			#print(len(combatantNode.combatant.runes), ' runes were placed on ', combatantNode.combatant.disp_name(), ' / ', combatantNode.battlePosition)
 	
