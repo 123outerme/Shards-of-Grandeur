@@ -269,8 +269,14 @@ func update_rune_sprites(createNew: bool = true) -> void:
 		playingRuneSpriteIdx = playingRuneSprites.find(currentlyPlayingSprite)
 	
 	if playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites):
-		playingRuneSprites[playingRuneSpriteIdx].visible = not targetOfMoveAnimation
-		playingRuneSprites[playingRuneSpriteIdx].playing = not targetOfMoveAnimation
+		if targetOfMoveAnimation:
+			playingRuneSprites[playingRuneSpriteIdx].reset_animation(true)
+			playingRuneSprites[playingRuneSpriteIdx].visible = false
+		else:
+			if not playingMoveSprites[playingRuneSpriteIdx].playing:
+				playingMoveSprites[playingRuneSpriteIdx].play_sprite_animation()
+			playingRuneSprites[playingRuneSpriteIdx].visible = true
+			playingRuneSprites[playingRuneSpriteIdx].playing = true
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()

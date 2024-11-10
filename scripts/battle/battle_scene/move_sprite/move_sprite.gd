@@ -202,6 +202,9 @@ func reset_animation(stop: bool = true):
 	moveFrame = 0
 	lastPivotPos = spritePivot.position
 	playing = not stop
+	if stop:
+		animatedSpriteNode.play('default')
+		position = Vector2.ZERO
 
 func destroy(emitSignal: bool = true):
 	playing = false
