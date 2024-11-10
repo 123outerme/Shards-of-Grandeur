@@ -110,11 +110,14 @@ func load_rune_effect_details() -> void:
 			surgeVBox.add_child(row)
 		surgePanel.visible = true
 		size.y = MAX_SURGE_HEIGHT
+		custom_minimum_size.y = MAX_SURGE_HEIGHT
 	else:
 		surgePanel.visible = false
 		size.y = MAX_CHARGE_HEIGHT
+		custom_minimum_size.y = MAX_CHARGE_HEIGHT
 	if casterPosition != '' and rune.caster != null:
 		size.y = MAX_BATTLE_HEIGHT
+		custom_minimum_size.y = MAX_BATTLE_HEIGHT
 		surgePanel.visible = false
 		casterNameLabel.text = '[center]' + rune.caster.disp_name() + ' (' + casterPosition + ')[/center]'
 		casterRow.visible = true
