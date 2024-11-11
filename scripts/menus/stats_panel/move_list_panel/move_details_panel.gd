@@ -50,20 +50,34 @@ func load_move_details_panel():
 	surgeEffectDetails.load_move_effect_details_panel()
 	
 	connect_help_buttons()
-	connect_scrollers()
+	connect_scrollers.call_deferred()
 
 func connect_help_buttons():
 	backButton.focus_neighbor_top = '.'
 	backButton.focus_neighbor_left = '.'
 	backButton.focus_neighbor_right = '.'
 	
-	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null and (move.surgeEffect.rune == null or not Combatant.are_runes_allowed()):
+	if move.surgeEffect.rune != null:
+		if surgeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
+			backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+			surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(backButton)
+		else:
+			backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+			surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_bottom = surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(backButton)
+	elif surgeEffectDetails.visible and move.surgeEffect.statusEffect != null:
 		backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_bottom = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 		backButton.focus_neighbor_right = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 	
-	if move.chargeEffect.statusEffect != null and (move.chargeEffect.rune == null or not Combatant.are_runes_allowed()):
+	if move.chargeEffect.rune != null:
+		if chargeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
+			backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+			chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(backButton)
+		else:
+			backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+			chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_bottom = chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(backButton)
+	elif move.chargeEffect.statusEffect != null:
 		backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.statusHelpButton)
 		chargeEffectDetails.statusHelpButton.focus_neighbor_bottom = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
 		if surgeEffectDetails.visible:
@@ -75,15 +89,38 @@ func connect_help_buttons():
 				chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
 
 func connect_scrollers():
-	if chargeEffectDetails.visible and chargeEffectDetails.moveEffect.rune != null and not Combatant.are_runes_allowed():
-		chargeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
-	if surgeEffectDetails.visible and surgeEffectDetails.moveEffect.rune != null and Combatant.are_runes_allowed():
+	#if chargeEffectDetails.visible and chargeEffectDetails.moveEffect.rune != null and not Combatant.are_runes_allowed() and chargeEffectDetails.boxContainerScroller.visible:
+	#	chargeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
+	if surgeEffectDetails.visible and surgeEffectDetails.moveEffect.rune != null and Combatant.are_runes_allowed() and surgeEffectDetails.boxContainerScroller.visible:
 		surgeEffectDetails.boxContainerScroller.connect_scroll_down_left_neighbor(backButton)
 		# if both have runes, the scroll bars will show up
 		if chargeEffectDetails.moveEffect.rune != null:
-			chargeEffectDetails.boxContainerScroller.connect_scroll_down_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollDownBtn)
-			chargeEffectDetails.boxContainerScroller.connect_scroll_up_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollUpBtn)
+			chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_right = chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+			surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_left = surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+			if chargeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
+				if surgeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
+					# both status help buttons are visible
+					chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_right = chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+					surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_left = surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+				else:
+					# only charge status help button is visible
+					chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_right = chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+					surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_left = surgeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+			elif surgeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
+				# only surge status help button is visible
+				chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.focus_neighbor_right = chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton)
+				surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.focus_neighbor_left = surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton.get_path_to(chargeEffectDetails.runeEffectDetailsPanel.runeHelpButton)
+				
+			#if chargeEffectDetails.boxContainerScroller.visible:
+			#	chargeEffectDetails.boxContainerScroller.connect_scroll_down_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollDownBtn)
+			#	chargeEffectDetails.boxContainerScroller.connect_scroll_up_right_neighbor(surgeEffectDetails.boxContainerScroller.scrollUpBtn)
+		#else:
+		if move.surgeEffect.statusEffect != null: # tab everything else up 1 if using the "both have runes" logic -- for now, charge effect panel cannot scroll at all!
+			surgeEffectDetails.boxContainerScroller.connect_scroll_up_left_neighbor(surgeEffectDetails.statusHelpButton)
 		else:
+			surgeEffectDetails.boxContainerScroller.connect_scroll_up_left_neighbor(surgeEffectDetails.boxContainerScroller.scrollUpBtn)
+		# if the charge effect has no help buttons for the focus to need to navigate to: make the back button's top neighbor the scroll down button
+		if move.chargeEffect.rune == null and move.chargeEffect.statusEffect == null:
 			surgeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
 
 func _on_back_button_pressed():

@@ -124,8 +124,11 @@ func load_move_effect_details_panel():
 		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
 		statusEffectRow.visible = true
 		if moveEffect.rune != null and Combatant.are_runes_allowed():
-			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
-			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+			# a move eff details panel with rune details only needs to scroll if it's surge effect
+			if isSurgeEffect:
+				boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
+				boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+			# the else logic that should go here is already handled below after the rune details panel is loaded...
 		else:
 			statusHelpButton.focus_neighbor_bottom = '.'
 			statusHelpButton.focus_neighbor_top = '.'
@@ -191,6 +194,9 @@ func _on_rune_effect_details_panel_tooltip_panel_opened() -> void:
 	tooltip_panel_opened.emit()
 
 func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: bool) -> void:
+	if not isSurgeEffect:
+		return # charge effects cannot scroll currently; not bailing out will mess up the focus logic farther up the scene tree by overwriting what's already being set in the parent...
+	
 	if isOnscreen:
 		boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
 		boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.statusHelpButton)
@@ -210,6 +216,9 @@ func _on_box_container_scroller_visibility_changed() -> void:
 	size.x = custom_minimum_size.x
 
 func _on_rune_effect_details_panel_rune_help_button_onscreen_update(isOnscreen: bool) -> void:
+	if not isSurgeEffect:
+		return # charge effects cannot scroll currently; not bailing out will mess up the focus logic farther up the scene tree by overwriting what's already being set in the parent...
+	
 	if isOnscreen:
 		boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.runeHelpButton)
 		boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.runeHelpButton)
