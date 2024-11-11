@@ -504,6 +504,14 @@ func play_triggered_rune_animations() -> void:
 			
 			var rune: Rune = runeSprite.linkedResource as Rune
 			var runeIdx: int = combatantNode.combatant.triggeredRunes.find(rune)
+			# maps combatant node battle position => array of texts/updates to display
+			var combatantTexts: Dictionary = {}
+			var combatantTextUpdates: Dictionary = {}
+			if not combatantTexts.has(combatantNode.battlePosition):
+				combatantTexts[combatantNode.battlePosition] = []
+			if not combatantTextUpdates.has(combatantNode.battlePosition):
+				combatantTextUpdates[combatantNode.battlePosition] = []
+			# end setting text arrays for the enchanted combatant in the dictionary
 			if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
 				removingRuneSprites.append(runeSprite)
 				runeSprite.looping = false
@@ -518,53 +526,66 @@ func play_triggered_rune_animations() -> void:
 					if cNode.combatant == rune.caster:
 						casterNode = cNode
 						casterNode.change_current_orbs(rune.orbChange) # update caster's orbs immediately after rune trigger animation completes
+						if not combatantTexts.has(casterNode.battlePosition):
+							combatantTexts[casterNode.battlePosition] = []
+						if not combatantTextUpdates.has(casterNode.battlePosition):
+							combatantTextUpdates[casterNode.battlePosition] = []
 						#casterNode.update_hp_tag()
-				var eventTexts: Array[String] = []
 				var eventTextUpdates: Array[Callable] = []
-				var eventTargets: Array[CombatantNode] = []
 				if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
 					var runeDmg: int = combatantNode.combatant.triggeredRunesDmg[runeIdx]
 					var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
-					eventTexts.append(CombatantEventText.build_damage_text(runeDmg, superEffective))
-					eventTextUpdates.append(combatantNode.change_current_hp.bind(runeDmg * -1))
-					eventTargets.append(combatantNode)
+					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_damage_text(runeDmg, superEffective))
+					var hpUpdateCallable: Callable = combatantNode.change_current_hp.bind(runeDmg * -1)
+					combatantTextUpdates[combatantNode.battlePosition].append(hpUpdateCallable)
+					eventTextUpdates.append(hpUpdateCallable)
 					combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
 					if rune.lifesteal > 0:
 						var lifestealHeal: float = max(1, roundi(runeDmg * max(0, rune.lifesteal)))
 						if casterNode != null:
-							eventTexts.append(CombatantEventText.build_damage_text(lifestealHeal * -1, false))
+							combatantTexts[casterNode.battlePosition].append(CombatantEventText.build_damage_text(lifestealHeal * -1, false))
 							#print('rune lifesteal heal: ', lifestealHeal, ' / and text: "', eventTexts[len(eventTexts) - 1], '"')
-							eventTextUpdates.append(casterNode.change_current_hp.bind(lifestealHeal))
-							eventTargets.append(casterNode)
+							var casterHealCallable: Callable = casterNode.change_current_hp.bind(lifestealHeal)
+							combatantTextUpdates[casterNode.battlePosition].append(casterHealCallable)
+							eventTextUpdates.append(casterHealCallable)
 				
 				if rune.statChanges != null and rune.statChanges.has_stat_changes():
 					var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(rune.statChanges)
-					eventTexts.append_array(statChangesTexts)
+					combatantTexts[combatantNode.battlePosition].append_array(statChangesTexts)
 					for changeTextIdx: int in range(len(statChangesTexts)):
+						combatantTextUpdates[combatantNode.battlePosition].append(Callable())
 						eventTextUpdates.append(Callable())
-						eventTargets.append(combatantNode)
 				if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
-					eventTexts.append(CombatantEventText.build_status_get_text(rune.statusEffect))
-					eventTextUpdates.append(combatantNode.change_current_status.bind(rune.statusEffect))
-					eventTargets.append(combatantNode)
+					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_status_get_text(rune.statusEffect))
+					var statusCallable: Callable = combatantNode.change_current_status.bind(rune.statusEffect)
+					combatantTextUpdates[combatantNode.battlePosition].append(statusCallable)
+					eventTextUpdates.append(statusCallable)
 				
-				var textDelayAccum: float = 0
 				var playedEventTextsCount: int = 0
+				var maxTextDelay: float = 0
 				if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
-					for textIdx: int in range(len(eventTexts)):
-						var cNode: CombatantNode = eventTargets[textIdx]
-						if cNode != null:
-							if playedEventTextsCount > 0:
-								textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-							cNode.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
-							playedEventTextsCount += 1
+					for cNode: CombatantNode in get_all_combatant_nodes():
+						if cNode != null and cNode.is_alive() and combatantTexts.has(cNode.battlePosition):
+							var playedNodeTextsCount: int = 0
+							var textDelayAccum: float = 0
+							for textIdx: int in range(len(combatantTexts[cNode.battlePosition])):
+								if playedNodeTextsCount > 0:
+									textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
+								cNode.play_event_text(
+									combatantTexts[cNode.battlePosition][textIdx],
+									combatantTextUpdates[cNode.battlePosition][textIdx],
+									textDelayAccum
+								)
+								playedNodeTextsCount += 1
+								playedEventTextsCount += 1
+							maxTextDelay = max(maxTextDelay, textDelayAccum)
 				else:
 					for update: Callable in eventTextUpdates:
 						if update != Callable():
 							update.call()
 				
 				if playedEventTextsCount > 0 and SettingsHandler.gameSettings.battleAnims:
-					get_tree().create_timer(textDelayAccum + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+					get_tree().create_timer(maxTextDelay + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
 						.timeout.connect(_on_rune_trigger_animation_complete)
 					await rune_animation_complete
 		if not SettingsHandler.gameSettings.battleAnims:
