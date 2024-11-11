@@ -12,7 +12,7 @@ func _ready():
 	PlayerResources.questInventory.currentAct = 1
 	PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
 	SettingsHandler.gameSettings = GameSettings.new()
-	SettingsHandler.gameSettings.battleAnims = false
+	SettingsHandler.gameSettings.battleAnims = useBattleAnims
 	nextButton.visible = false
 	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):

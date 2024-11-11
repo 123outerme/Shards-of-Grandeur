@@ -507,11 +507,12 @@ func play_triggered_rune_animations() -> void:
 			if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
 				removingRuneSprites.append(runeSprite)
 				runeSprite.looping = false
-				runeSprite.anim = rune.triggerAnim
 				runeSprite.halt = false # in case it was halted, un-halt it now
-				runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
-				runeSprite.play_sprite_animation()
-				await rune_animation_complete
+				if SettingsHandler.gameSettings.battleAnims:
+					runeSprite.anim = rune.triggerAnim
+					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
+					runeSprite.play_sprite_animation()
+					await rune_animation_complete
 				var casterNode: CombatantNode = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.combatant == rune.caster:
@@ -568,7 +569,8 @@ func play_triggered_rune_animations() -> void:
 					await rune_animation_complete
 		if not SettingsHandler.gameSettings.battleAnims:
 			for runeSprite: MoveSprite in removingRuneSprites:
-				runeSprite.looping = false
+				if runeSprite == null:
+					continue
 				var runeSpriteIdx: int = combatantNode.playingRuneSprites.find(runeSprite)
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()

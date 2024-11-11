@@ -1,6 +1,8 @@
 extends BattleController
 class_name BattleTester
 
+@export var useBattleAnims: bool = true
+
 @export var encounter: StaticEncounter = null
 @export var _playerCombatant: Combatant
 @export var playerLv: int = 1
@@ -36,6 +38,8 @@ func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
+	SettingsHandler.gameSettings = GameSettings.new()
+	SettingsHandler.gameSettings.battleAnims = useBattleAnims
 	nextButton.grab_focus()
 	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
