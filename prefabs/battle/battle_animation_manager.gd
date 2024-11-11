@@ -509,7 +509,7 @@ func play_triggered_rune_animations() -> void:
 				runeSprite.looping = false
 				runeSprite.halt = false # in case it was halted, un-halt it now
 				if SettingsHandler.gameSettings.battleAnims:
-					runeSprite.anim = rune.triggerAnim
+					runeSprite.anim = rune.get_trigger_anim_sprite()
 					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 					runeSprite.play_sprite_animation()
 					await rune_animation_complete

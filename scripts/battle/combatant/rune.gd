@@ -76,6 +76,12 @@ func get_rune_trigger_description() -> String:
 func get_rune_tooltip() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses
 
+func get_rune_anim_sprite() -> MoveAnimSprite:
+	return runeSpriteAnim
+
+func get_trigger_anim_sprite() -> MoveAnimSprite:
+	return triggerAnim
+
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return false # implement in subclasses
 
