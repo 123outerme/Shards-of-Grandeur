@@ -46,7 +46,7 @@ const MAX_SURGE_HEIGHT = 491
 const MAX_BATTLE_HEIGHT = 276
 
 func load_rune_effect_details() -> void:
-	if rune == null:
+	if rune == null or not Combatant.are_runes_allowed():
 		visible = false
 		return
 	visible = true

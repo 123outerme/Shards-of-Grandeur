@@ -57,13 +57,13 @@ func connect_help_buttons():
 	backButton.focus_neighbor_left = '.'
 	backButton.focus_neighbor_right = '.'
 	
-	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null and move.surgeEffect.rune == null:
+	if surgeEffectDetails.visible and move.surgeEffect.statusEffect != null and (move.surgeEffect.rune == null or not Combatant.are_runes_allowed()):
 		backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_bottom = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 		backButton.focus_neighbor_right = backButton.get_path_to(surgeEffectDetails.statusHelpButton)
 		surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(backButton)
 	
-	if move.chargeEffect.statusEffect != null and move.chargeEffect.rune == null:
+	if move.chargeEffect.statusEffect != null and (move.chargeEffect.rune == null or not Combatant.are_runes_allowed()):
 		backButton.focus_neighbor_top = backButton.get_path_to(chargeEffectDetails.statusHelpButton)
 		chargeEffectDetails.statusHelpButton.focus_neighbor_bottom = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
 		if surgeEffectDetails.visible:
@@ -75,9 +75,9 @@ func connect_help_buttons():
 				chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(backButton)
 
 func connect_scrollers():
-	if chargeEffectDetails.visible and chargeEffectDetails.moveEffect.rune != null:
+	if chargeEffectDetails.visible and chargeEffectDetails.moveEffect.rune != null and not Combatant.are_runes_allowed():
 		chargeEffectDetails.boxContainerScroller.connect_scroll_down_bottom_neighbor(backButton)
-	if surgeEffectDetails.visible and surgeEffectDetails.moveEffect.rune != null:
+	if surgeEffectDetails.visible and surgeEffectDetails.moveEffect.rune != null and Combatant.are_runes_allowed():
 		surgeEffectDetails.boxContainerScroller.connect_scroll_down_left_neighbor(backButton)
 		# if both have runes, the scroll bars will show up
 		if chargeEffectDetails.moveEffect.rune != null:

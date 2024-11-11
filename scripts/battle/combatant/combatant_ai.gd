@@ -142,7 +142,7 @@ func could_combatant_surge(combatant: Combatant, effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
 		return true # no cost required to charge orbs
 	
-	if Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid():
+	if not Combatant.are_surge_moves_allowed():
 		return false # AI can't use surge moves yet
 	
 	return effect.orbChange * -1 <= combatant.orbs

@@ -61,7 +61,7 @@ func load_move_effect_details_panel():
 	for node in get_tree().get_nodes_in_group('SurgeChangesRow'):
 		node.queue_free()
 	
-	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+	if Combatant.are_surge_moves_allowed():
 		var titleText: String = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
 		if moveEffect.orbChange > 0:
 			titleText += '+'
@@ -123,7 +123,7 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text += ')[/center]'
 		moveStatusIcon.texture = moveEffect.statusEffect.get_icon()
 		statusEffectRow.visible = true
-		if moveEffect.rune != null:
+		if moveEffect.rune != null and Combatant.are_runes_allowed():
 			boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
 			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
 		else:
@@ -151,23 +151,24 @@ func load_move_effect_details_panel():
 		moveEffPanel.custom_minimum_size.y = CHARGE_HEIGHT
 		moveEffPanel.size.y = CHARGE_HEIGHT
 	
-	runeEffectDetailsPanel.rune = moveEffect.rune
+	if moveEffect.rune != null and Combatant.are_runes_allowed():
+		runeRow.visible = true
+		runeDetailsLabel.text = '[center]' + moveEffect.rune.get_rune_type() + ' (See Below)[/center]'
+		runeEffectDetailsPanel.rune = moveEffect.rune
+	else:
+		runeRow.visible = false
+		runeEffectDetailsPanel.rune = null
+	
 	runeEffectDetailsPanel.isSurgeEffect = isSurgeEffect
 	runeEffectDetailsPanel.tooltipPanel = tooltipPanel
 	runeEffectDetailsPanel.casterPosition = ''
 	runeEffectDetailsPanel.load_rune_effect_details()
 	
-	if runeEffectDetailsPanel.statusEffectRow.visible:
+	if runeRow.visible and runeEffectDetailsPanel.statusEffectRow.visible:
 		if statusEffectRow.visible:
 			statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.statusHelpButton)
 			runeEffectDetailsPanel.statusHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(statusHelpButton)
 		runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = runeEffectDetailsPanel.statusHelpButton.get_path_to(scrollerBottomFocusNeighbor)
-	
-	if moveEffect.rune != null:
-		runeRow.visible = true
-		runeDetailsLabel.text = '[center]' + moveEffect.rune.get_rune_type() + ' (See Below)[/center]'
-	else:
-		runeRow.visible = false
 
 func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:

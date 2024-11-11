@@ -27,7 +27,9 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if effectType == Move.MoveEffectType.SURGE:
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
-	var finalSetWeight: float = setWeight * get_rune_weight_on_target(user, moveEffect.rune, target, targets, battleState)
+	var finalSetWeight: float = 1.0
+	if Combatant.are_runes_allowed():
+		finalSetWeight = setWeight * get_rune_weight_on_target(user, moveEffect.rune, target, targets, battleState)
 	
 	#if moveEffect.rune != null:
 	#	print('DEBUG:: move effect rune is not null for ', move.moveName)

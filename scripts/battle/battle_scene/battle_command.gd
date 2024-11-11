@@ -279,7 +279,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 	if type == Type.MOVE and moveEffect != null:
 		user.add_orbs(orbChange) # add/subtract orbs from using move
 		
-	if type == Type.MOVE and moveEffect != null and moveEffect.rune != null:
+	if type == Type.MOVE and moveEffect != null and moveEffect.rune != null and Combatant.are_runes_allowed():
 		# after everything else in the command has processed, set up runes
 		for target: Combatant in targets:
 			var newRune: Rune = moveEffect.rune.copy()
@@ -469,7 +469,7 @@ func get_command_results(user: Combatant) -> String:
 		actionTargets = moveEffect.targets
 		# "User (Charged/Surged with)/(used) Move"
 		var moveEffTypeString: String = 'used ' # if surge hasn't been unlocked yet, just say used
-		if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+		if Combatant.are_surge_moves_allowed():
 			# if surge HAS been unlocked, specify which
 			moveEffTypeString = Move.move_effect_type_to_string(moveEffectType) + 'd with '
 		
@@ -655,7 +655,7 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += '.'
 		# print rune having been applied
 		if type == Type.MOVE:
-			if moveEffect != null and moveEffect.rune != null:
+			if moveEffect != null and moveEffect.rune != null and Combatant.are_runes_allowed():
 				resultsText += '\n'
 				for i in range(len(targets)):
 					var target: Combatant = targets[i]

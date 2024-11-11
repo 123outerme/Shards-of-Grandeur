@@ -139,7 +139,8 @@ const MAX_ORBS = 10
 @export_storage var battleStorageOrbs: int = -1
 @export_storage var battleStorageStatus: StatusEffect = null
 
-static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres')
+static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirements/surge_move_reqs.tres') as StoryRequirements
+static var runeReqs: StoryRequirements = load('res://gamedata/story_requirements/rune_reqs.tres') as StoryRequirements
 
 static func load_combatant_resource(saveName: String) -> Combatant:
 	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
@@ -153,6 +154,12 @@ static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:
 	if hpRatio >= 0.35:
 		return HP_BAR_COLORS.warn
 	return HP_BAR_COLORS.low
+
+static func are_surge_moves_allowed() -> bool:
+	return useSurgeReqs != null and useSurgeReqs.is_valid() # if null, something went wrong that should be noticed...
+
+static func are_runes_allowed() -> bool:
+	return runeReqs == null or runeReqs.is_valid() # if null, I may have decided not to restrict runes by story requirements
 
 func _init(
 	i_nickname = '',
@@ -527,7 +534,7 @@ func could_combatant_surge(effect: MoveEffect) -> bool:
 	if effect.orbChange >= 0:
 		return true # no cost required to charge orbs
 	
-	if Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid():
+	if Combatant.are_surge_moves_allowed():
 		return false # AI can't use surge moves yet
 	
 	return effect.orbChange * -1 <= orbs

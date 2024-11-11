@@ -242,9 +242,9 @@ func update_hp_tag():
 	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		#orbDisplay.visible = true
 	update_orb_display()
-	update_rune_sprites()
 	#else:
 		#orbDisplay.visible = false
+	update_rune_sprites()
 	if curStatus != null:
 		statusSprite.texture = curStatus.get_icon()
 	else:

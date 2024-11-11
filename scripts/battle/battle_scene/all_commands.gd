@@ -20,7 +20,7 @@ func _ready():
 		var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
 		escapeButton.disabled = not staticEncounter.canEscape
 	inventoryBtn.disabled = PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.NO_ITEMS)
-	surgeMovesBtn.disabled = Combatant.useSurgeReqs != null and not Combatant.useSurgeReqs.is_valid()
+	surgeMovesBtn.disabled = not Combatant.are_surge_moves_allowed()
 	if surgeMovesBtn.disabled:
 		chargeMovesBtn.text = 'Moves'
 		surgeMovesBtn.text = '???'
@@ -39,7 +39,7 @@ func load_all_commands():
 	commandLabel.text = '[center]Command ' + commandingCombatant.combatant.disp_name() + '[/center]'
 	initial_focus()
 	# if Surge moves have been unlocked, update whether the surge icon appears next to the button
-	if Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid():
+	if Combatant.are_surge_moves_allowed():
 		var canSurgeAMove: bool = false
 		for move: Move in commandingCombatant.combatant.stats.moves:
 			if commandingCombatant.combatant.orbs >= (move.surgeEffect.orbChange * -1):
