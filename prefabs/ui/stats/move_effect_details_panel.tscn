@@ -48,6 +48,7 @@ boxContainer = NodePath("VBoxContainer")
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 custom_minimum_size = Vector2(540, 550)
 layout_mode = 2
+theme_override_constants/separation = 7
 
 [node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(540, 550)
@@ -129,71 +130,86 @@ grow_vertical = 0
 theme_override_constants/separation = 2
 
 [node name="UserBoostsRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 78)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 alignment = 1
 
 [node name="UserBoostsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 text = "Self Boosts:"
 
 [node name="UserStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/bold_italics_font_size = 18
-theme_override_font_sizes/italics_font_size = 18
-theme_override_font_sizes/mono_font_size = 18
-theme_override_font_sizes/normal_font_size = 18
-theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
 [node name="TargetBoostsRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 78)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 alignment = 1
 
-[node name="UserBoostsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
-custom_minimum_size = Vector2(140, 0)
+[node name="TargetBoostsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 text = "Target Boosts:"
 
 [node name="TargetStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/bold_italics_font_size = 18
-theme_override_font_sizes/italics_font_size = 18
-theme_override_font_sizes/mono_font_size = 18
-theme_override_font_sizes/normal_font_size = 18
-theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
 [node name="StatusEffectRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 alignment = 1
 
 [node name="StatusLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 text = "Status (Target):"
 
 [node name="MoveStatusEffect" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(310, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/bold_italics_font_size = 18
-theme_override_font_sizes/italics_font_size = 18
-theme_override_font_sizes/mono_font_size = 18
-theme_override_font_sizes/normal_font_size = 18
-theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Overwhelming Exhaustion (Guaranteed, Replaces)[/center]"
 
@@ -244,6 +260,34 @@ focus_neighbor_bottom = NodePath(".")
 icon = ExtResource("6_3l4s7")
 expand_icon = true
 
+[node name="RuneRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+alignment = 1
+
+[node name="RuneLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
+text = "Rune (Target):"
+
+[node name="RuneDetails" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center]Damage Rune (See Below)[/center]"
+
 [node name="SurgePanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 10
@@ -284,6 +328,7 @@ layout_mode = 2
 [node name="BoxContainerScroller" parent="." node_paths=PackedStringArray("scrollContainer") instance=ExtResource("2_swaov")]
 layout_mode = 1
 scrollContainer = NodePath("../ScrollContainer")
+scrollPx = 180
 
 [connection signal="visibility_changed" from="ScrollContainer" to="ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]

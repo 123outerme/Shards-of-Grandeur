@@ -41,9 +41,9 @@ var helpButtonPressed: Button = null
 var runeHelpButtonOnscreen: bool = false
 var statusHelpButtonOnscreen: bool = false
 
-const MAX_CHARGE_HEIGHT = 262
-const MAX_SURGE_HEIGHT = 511
-const MAX_BATTLE_HEIGHT = 300
+const MAX_CHARGE_HEIGHT = 242
+const MAX_SURGE_HEIGHT = 491
+const MAX_BATTLE_HEIGHT = 276
 
 func load_rune_effect_details() -> void:
 	if rune == null:

@@ -10,6 +10,9 @@ signal tooltip_panel_opened
 @export var scrollerBottomFocusNeighbor: Control
 
 @onready var detailsTitleLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/DetailsTitle')
+
+@onready var moveEffPanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel')
+
 @onready var moveTargets: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveTargets")
 @onready var movePower: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MovePower")
 @onready var moveRole: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveRole")
@@ -27,6 +30,9 @@ signal tooltip_panel_opened
 @onready var statusHelpButton: Button = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton')
 # the statusHelpButton is fetched to to connect focus to the back button in the parent panel
 
+@onready var runeRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow')
+@onready var runeDetailsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow/RuneDetails')
+
 @onready var surgePanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel')
 @onready var surgeVBox: VBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer')
 
@@ -36,6 +42,9 @@ signal tooltip_panel_opened
 
 const SCROLLING_WIDTH: int = 588
 const NO_SCROLLING_WIDTH: int = 540
+
+const CHARGE_HEIGHT: int = 301
+const SURGE_HEIGHT: int = 550
 
 var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
@@ -135,8 +144,12 @@ func load_move_effect_details_panel():
 			row.changeDetails = change.description
 			surgeVBox.add_child(row)
 		surgePanel.visible = true
+		moveEffPanel.custom_minimum_size.y = SURGE_HEIGHT
+		moveEffPanel.size.y = SURGE_HEIGHT
 	else:
 		surgePanel.visible = false
+		moveEffPanel.custom_minimum_size.y = CHARGE_HEIGHT
+		moveEffPanel.size.y = CHARGE_HEIGHT
 	
 	runeEffectDetailsPanel.rune = moveEffect.rune
 	runeEffectDetailsPanel.isSurgeEffect = isSurgeEffect
@@ -149,6 +162,12 @@ func load_move_effect_details_panel():
 			statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.statusHelpButton)
 			runeEffectDetailsPanel.statusHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(statusHelpButton)
 		runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = runeEffectDetailsPanel.statusHelpButton.get_path_to(scrollerBottomFocusNeighbor)
+	
+	if moveEffect.rune != null:
+		runeRow.visible = true
+		runeDetailsLabel.text = '[center]' + moveEffect.rune.get_rune_type() + ' (See Below)[/center]'
+	else:
+		runeRow.visible = false
 
 func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:

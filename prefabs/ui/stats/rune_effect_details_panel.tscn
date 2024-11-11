@@ -15,12 +15,12 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="RuneEffectDetailsPanel" type="Panel"]
-custom_minimum_size = Vector2(540, 262)
+custom_minimum_size = Vector2(540, 242)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -740.0
-offset_bottom = -209.0
+offset_bottom = -229.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -85,7 +85,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 38.0
-offset_bottom = 262.0
+offset_bottom = 242.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("4_vffvg")
@@ -115,11 +115,6 @@ theme_override_font_sizes/normal_font_size = 18
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "[center]When Overwhelming Status is Afflicted[/center]"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BaseEffectPanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="RunePower" type="RichTextLabel" parent="BaseEffectPanel"]
 layout_mode = 1
@@ -156,48 +151,58 @@ grow_horizontal = 2
 theme_override_constants/separation = 2
 
 [node name="BoostsRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 78)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 alignment = 1
 
 [node name="BoostsLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/BoostsRow"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 text = "Target Boosts:"
 
 [node name="BoostsStatChanges" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/BoostsRow"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/bold_italics_font_size = 18
-theme_override_font_sizes/italics_font_size = 18
-theme_override_font_sizes/mono_font_size = 18
-theme_override_font_sizes/normal_font_size = 18
-theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
 [node name="StatusEffectRow" type="HBoxContainer" parent="BaseEffectPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 alignment = 1
 
 [node name="StatusLabel" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 text = "Status:"
 
 [node name="RuneStatusEffect" type="RichTextLabel" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow"]
-custom_minimum_size = Vector2(310, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/bold_italics_font_size = 18
-theme_override_font_sizes/italics_font_size = 18
-theme_override_font_sizes/mono_font_size = 18
-theme_override_font_sizes/normal_font_size = 18
-theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 15
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/mono_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Overwhelming Exhaustion (Guaranteed, Replaces)[/center]"
 
@@ -249,14 +254,14 @@ icon = ExtResource("6_krxx4")
 expand_icon = true
 
 [node name="StatusButtonOnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection"]
-rect = Rect2(0, 12, 32, 32)
+rect = Rect2(0, 6, 32, 32)
 
 [node name="SurgePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 260.0
-offset_bottom = 511.0
+offset_top = 240.0
+offset_bottom = 491.0
 grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")
