@@ -386,6 +386,8 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				dmgText += 'healing'
 			dmgText += ' ' + TextUtils.num_to_comma_string(accumulatedDmg) + ' '
 			if accumulatedDmg > 0:
+				if runeCount == 1 and combatant.triggeredRunes[0].element != Move.Element.NONE:
+					dmgText += Move.element_to_string(combatant.triggeredRunes[0].element) + ' '
 				dmgText += 'damage'
 			else:
 				dmgText += 'HP'
