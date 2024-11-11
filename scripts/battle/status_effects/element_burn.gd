@@ -30,6 +30,14 @@ const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 ## setting in a MoveEffect is useless; it's always overwritten
 @export var attackerLv: int = 1
 
+## used for determining if a Damage Rune should trigger on the AFTER_ROUND step of status checking
+@export_storage var damageTriggered: bool = false
+# further information: Without this check, if a Rune(s) applies this Status Effect,
+# and deals damage not matching the element of an applied Elemental Damage Rune,
+# this Rune would trigger when the Status Effect never actually dealt damage
+# > i.e. if Fear is put on a combatant and Lightning Damage dealt from a previous Rune(s) triggering,
+# > during the AFTER_ROUND step, if this combatant has a Dark Damage Rune, that would then trigger mistakenly
+
 func _init(
 	i_potency = Potency.NONE,
 	i_overwrites = false,
@@ -38,12 +46,14 @@ func _init(
 	i_power: float = 0,
 	i_attackerStat: float = 0,
 	i_attackerLv: int = 1,
+	i_damageTriggered: bool = false,
 ):
 	super(Type.ELEMENT_BURN, i_potency, i_overwrites, i_turnsLeft)
 	element = i_element
 	power = i_power
 	attackerStat = i_attackerStat
 	attackerLv = i_attackerLv
+	damageTriggered = i_damageTriggered
 
 func get_burn_damage(combatant: Combatant) -> int:
 	var targetStatChanges = StatChanges.new()
@@ -57,9 +67,13 @@ func get_burn_damage(combatant: Combatant) -> int:
 
 func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> Array[Combatant]:
 	var dealtDmgCombatants: Array[Combatant] = []
+	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:
+		damageTriggered = false
+	
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
 		combatant.currentHp = max(combatant.currentHp - get_burn_damage(combatant), 0)
 		dealtDmgCombatants = [combatant]
+		damageTriggered = true
 	dealtDmgCombatants.append_array(super.apply_status(combatant, allCombatants, timing))
 	return dealtDmgCombatants
 	

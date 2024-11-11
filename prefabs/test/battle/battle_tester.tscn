@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=60 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="2_4cfte"]
@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
 [ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="14_6ipym"]
-[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="14_fgmwr"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/berserk.gd" id="18_1p0e1"]
+[ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="14_cx6rg"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="18_m4wbc"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="18_u0ttj"]
 [ext_resource type="Script" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
@@ -31,6 +31,7 @@
 [ext_resource type="Resource" uid="uid://deq4mt22y5vel" path="res://gamedata/moves/dehydration_curse/rune/trigger_sprite_rune_dehydration_curse_charge.tres" id="24_32rj5"]
 [ext_resource type="Resource" uid="uid://cq4jjoj6ancn0" path="res://gamedata/moves/shade_blast/shade_blast.tres" id="24_56mgk"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="30_s82nx"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
@@ -90,7 +91,7 @@ battleMapPath = ""
 [sub_resource type="Resource" id="Resource_snunq"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("14_fgmwr")
+move = ExtResource("14_cx6rg")
 moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Center"])
@@ -121,14 +122,6 @@ weight = 0.1
 script = ExtResource("21_6efxx")
 categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubResource("Resource_wm2w7"), SubResource("Resource_pl5yt"), SubResource("Resource_1i7gf")])
 
-[sub_resource type="Resource" id="Resource_35kgf"]
-script = ExtResource("18_1p0e1")
-lastAdjustedDmg = 0
-type = 3
-potency = 3
-overwritesOtherStatuses = false
-turnsLeft = 3
-
 [sub_resource type="Resource" id="Resource_pippo"]
 script = ExtResource("21_2t7gl")
 physAttackIncrease = 0
@@ -154,15 +147,29 @@ statChanges = SubResource("Resource_pippo")
 runeSpriteAnim = ExtResource("20_0bsbr")
 triggerAnim = ExtResource("24_32rj5")
 
+[sub_resource type="Resource" id="Resource_odujs"]
+script = ExtResource("18_m4wbc")
+element = 2
+power = 5.0
+attackerStat = 10.0
+attackerLv = 10
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 3
+
 [sub_resource type="Resource" id="Resource_sswve"]
 script = ExtResource("23_wf1pp")
+triggerElement = 1
 isHealRune = false
 previousHp = -1
 orbChange = 0
 category = 1
-element = 1
-power = 100
+element = 3
+power = 30
 lifesteal = 0.25
+statusEffect = SubResource("Resource_odujs")
 runeSpriteAnim = ExtResource("20_0bsbr")
 triggerAnim = ExtResource("24_32rj5")
 
@@ -185,6 +192,7 @@ turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_6toto"]
 script = ExtResource("23_wf1pp")
+triggerElement = 3
 isHealRune = false
 previousHp = -1
 orbChange = 10
@@ -221,6 +229,13 @@ targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.0])
 selfRandomNum = -1.0
 
+[sub_resource type="Resource" id="Resource_dwp6q"]
+script = ExtResource("30_s82nx")
+type = 8
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
 [sub_resource type="Resource" id="Resource_2nv1k"]
 script = ExtResource("9_jd22b")
 type = 1
@@ -247,11 +262,11 @@ _playerCombatant = ExtResource("28_yubvn")
 playerLv = 16
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
-playerStatus = SubResource("Resource_35kgf")
 playerRunes = Array[ExtResource("18_u0ttj")]([SubResource("Resource_5id1n"), SubResource("Resource_sswve"), SubResource("Resource_pxoct"), SubResource("Resource_6toto")])
-playerRuneCasterPositions = Array[String](["CenterX", "Center", "CenterX", "CenterX"])
+playerRuneCasterPositions = Array[String](["CenterX", "Center", "CenterX", "Center"])
 minionCommand = SubResource("Resource_el0wh")
 enemy1Command = SubResource("Resource_mx2w5")
+enemy1Status = SubResource("Resource_dwp6q")
 enemy2Command = SubResource("Resource_2nv1k")
 enemy3Command = SubResource("Resource_hmp4c")
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
