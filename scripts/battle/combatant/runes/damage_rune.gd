@@ -90,6 +90,13 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 			if elementBurn.element == triggerElement and elementBurn.damageTriggered:
 				matchesElementTrigger = true
 	
+	if not matchesElementTrigger and len(combatant.triggeredRunes) > 0:
+		for triggeredRune: Rune in combatant.triggeredRunes:
+			if ((triggeredRune.power > 0 and not isHealRune) or (triggeredRune.power < 0 and isHealRune)):
+				triggered = true
+				if triggeredRune.element == triggerElement:
+					matchesElementTrigger = true
+	
 	# if the easy case didn't succeed and we're recieving damage:
 	if not (triggered and matchesElementTrigger) and timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG and len(otherCombatants) > 0:
 		var user: Combatant = otherCombatants[0] if len(otherCombatants) > 0 else null
