@@ -54,10 +54,13 @@ func load_rune_effect_details() -> void:
 	var titleText: String = '[center]' + rune.get_rune_type()
 	
 	var orbText: String = ''
-	if rune.orbChange > 0:
-		orbText = ' / +' + str(rune.orbChange) + ' $orb'
-	elif rune.orbChange < 0:
-		orbText = ' / -' + str(absi(rune.orbChange)) + ' $orb'
+	if rune.orbChange != 0:
+		orbText = ' ('
+		if rune.orbChange > 0:
+			orbText += '+'
+		else:
+			orbText += '-' 
+		orbText += str(absi(rune.orbChange)) + ' $orb)'
 	
 	detailsTitleLabel.text = TextUtils.rich_text_substitute(titleText + orbText, Vector2i(32, 32))
 	
