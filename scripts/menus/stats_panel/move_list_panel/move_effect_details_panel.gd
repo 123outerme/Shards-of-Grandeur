@@ -156,7 +156,7 @@ func load_move_effect_details_panel():
 	
 	if moveEffect.rune != null and Combatant.are_runes_allowed():
 		runeRow.visible = true
-		runeDetailsLabel.text = '[center]' + moveEffect.rune.get_rune_type() + ' (See Below)[/center]'
+		runeDetailsLabel.text = '[center]' + moveEffect.rune.get_rune_type() + ' (Details Below)[/center]'
 		runeEffectDetailsPanel.rune = moveEffect.rune
 	else:
 		runeRow.visible = false
