@@ -6,6 +6,7 @@ class_name BattleTester
 @export var encounter: StaticEncounter = null
 @export var _playerCombatant: Combatant
 @export var playerLv: int = 1
+@export_range(0, Combatant.MAX_ORBS) var playerOrbs: int = 0
 @export var playerAi: CombatantAi = null
 @export var playerCommand: BattleCommand = null
 @export var currentPlayerHp: int = -1
@@ -13,18 +14,22 @@ class_name BattleTester
 @export var playerStatus: StatusEffect = null
 @export var playerRunes: Array[Rune] = []
 @export var playerRuneCasterPositions: Array[String] = []
+@export_range(0, Combatant.MAX_ORBS) var minionOrbs: int = 0
 @export var minionCommand: BattleCommand = null
 @export var minionStatus: StatusEffect = null
 @export var minionRunes: Array[Rune] = []
 @export var minionRuneCasterPositions: Array[String] = []
+@export_range(0, Combatant.MAX_ORBS) var enemy1Orbs: int = 0
 @export var enemy1Command: BattleCommand = null
 @export var enemy1Status: StatusEffect = null
 @export var enemy1Runes: Array[Rune] = []
 @export var enemy1RuneCasterPositions: Array[String] = []
+@export_range(0, Combatant.MAX_ORBS) var enemy2Orbs: int = 0
 @export var enemy2Command: BattleCommand = null
 @export var enemy2Status: StatusEffect = null
 @export var enemy2Runes: Array[Rune] = []
 @export var enemy2RuneCasterPositions: Array[String] = []
+@export_range(0, Combatant.MAX_ORBS) var enemy3Orbs: int = 0
 @export var enemy3Command: BattleCommand = null
 @export var enemy3Status: StatusEffect = null
 @export var enemy3Runes: Array[Rune] = []
@@ -38,11 +43,15 @@ func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
+	# enable the battle text to show whether a move was charged or surged 
+	PlayerResources.questInventory.currentAct = 1
+	PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
 	SettingsHandler.gameSettings = GameSettings.new()
 	SettingsHandler.gameSettings.battleAnims = useBattleAnims
 	nextButton.grab_focus()
 	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
+	var combatantOrbs: Array[int] = [playerOrbs, minionOrbs, enemy1Orbs, enemy2Orbs, enemy3Orbs]
 	var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
 	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
 	var combatantAis: Array[CombatantAi] = [playerAi, null, null, null, null]
@@ -73,6 +82,7 @@ func _ready():
 				combatant.currentHp = currentHps[idx]
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
+			combatant.orbs = combatantOrbs[idx]
 			combatant.statusEffect = combatantStatuses[idx]
 			if combatantAis[idx] == null:
 				combatantAis[idx] = combatant.get_ai()

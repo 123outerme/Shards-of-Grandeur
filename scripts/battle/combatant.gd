@@ -513,7 +513,7 @@ func apply_rune_effect(rune: Rune) -> void:
 	var damage: int = BattleCommand.damage_formula(rune.power, atkStat, resStat, attackerStats.level, stats.level, elementalMultiplier)
 	
 	if damage > 0:
-		if rune.caster.currentHp > 0: # if rune caster is still alive:
+		if rune.caster.currentHp > 0 and rune.lifesteal > 0: # if caster is still alive and this rune has lifesteal:
 			var hpHealed: int = max(1, roundi(max(0, rune.lifesteal) * damage))
 			rune.caster.currentHp = min(rune.caster.stats.maxHp, max(0, rune.caster.currentHp + hpHealed))
 	if currentHp > 0: # if this combatant is still alive:

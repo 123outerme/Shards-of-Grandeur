@@ -29,6 +29,7 @@ func _ready():
 	state = BattleState.new()
 	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
+	var combatantOrbs: Array[int] = [playerOrbs, minionOrbs, enemy1Orbs, enemy2Orbs, enemy3Orbs]
 	#var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
 	var combatantAis: Array[CombatantAi] = [playerAi, null, null, null, null]
 	if encounter is StaticEncounter:
@@ -61,6 +62,7 @@ func _ready():
 			if combatant.statChanges == null:
 				combatant.statChanges = StatChanges.new()
 			#combatant.command = combatantCommands[idx]
+			combatant.orbs = combatantOrbs[idx]
 			combatant.statusEffect = combatantStatuses[idx]
 			if combatantAis[idx] == null:
 				combatantAis[idx] = combatant.get_ai()

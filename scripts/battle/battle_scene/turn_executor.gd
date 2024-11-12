@@ -353,7 +353,9 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		for idx: int in range(len(combatant.triggeredRunes)):
 			var rune: Rune = combatant.triggeredRunes[idx]
 			accumulatedDmg += combatant.triggeredRunesDmg[idx]
-			var lifesteal: int = max(1, roundi(max(0, rune.lifesteal) * combatant.triggeredRunesDmg[idx]))
+			var lifesteal: int = 0
+			if rune.lifesteal > 0:
+				lifesteal = max(1, roundi(max(0, rune.lifesteal) * combatant.triggeredRunesDmg[idx]))
 			var casterNode: CombatantNode = null
 			for cNode: CombatantNode in battleController.get_all_combatant_nodes():
 				if cNode.combatant == rune.caster:
@@ -416,7 +418,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 		var casterTexts: Array[String] = []
 		for cNode: CombatantNode in battleController.get_all_combatant_nodes():
 			var casterText: String = ''
-			if accumulatedLifesteals.has(cNode.battlePosition):
+			if accumulatedLifesteals.has(cNode.battlePosition) and accumulatedLifesteals[cNode.battlePosition] > 0:
 				casterText += cNode.combatant.disp_name() + ' stole ' + TextUtils.num_to_comma_string(accumulatedLifesteals[cNode.battlePosition]) + ' HP'
 			
 			if accumulatedOrbs.has(cNode.battlePosition) and accumulatedOrbs[cNode.battlePosition] != 0:
