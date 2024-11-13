@@ -34,14 +34,10 @@ func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], st
 		previousHp = combatant.currentHp
 
 func get_rune_type() -> String:
-	var runeTypeStr: String = ''
-	if triggerElement != Move.Element.NONE:
-		runeTypeStr += Move.element_to_string(triggerElement) + ' '
 	if not isHealRune:
-		runeTypeStr += 'Damage'
+		return 'Damage Rune'
 	else:
-		runeTypeStr += 'Heal'
-	return runeTypeStr + ' Rune'
+		return 'Heal Rune'
 
 func get_rune_trigger_description() -> String:
 	var runeDescString: String = 'When '

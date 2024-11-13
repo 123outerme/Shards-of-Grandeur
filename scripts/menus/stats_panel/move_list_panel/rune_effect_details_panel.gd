@@ -55,7 +55,7 @@ func load_rune_effect_details() -> void:
 	
 	var orbText: String = ''
 	if rune.orbChange != 0:
-		orbText = ' ('
+		orbText = ' (Caster '
 		if rune.orbChange > 0:
 			orbText += '+'
 		else:

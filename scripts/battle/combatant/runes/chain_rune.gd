@@ -1,11 +1,11 @@
 extends Rune
 class_name ChainRune
 
-func get_rune_trigger_description() -> String:
-	return 'When Another Rune Triggers'
-
 func get_rune_type() -> String:
 	return 'Chain Rune'
+
+func get_rune_trigger_description() -> String:
+	return 'When Another Rune Triggers'
 
 func get_rune_tooltip() -> String:
 	return "This Rune's effect is triggered when another Rune that's placed on the enchanted combatant gets triggered."

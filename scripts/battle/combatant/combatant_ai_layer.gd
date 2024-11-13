@@ -31,7 +31,9 @@ static func will_move_effect_trigger_rune(user: CombatantNode, move: Move, effec
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	if rune is DamageRune:
-		return (not rune.isHealRune and moveEffect.power > 0) or (rune.isHealRune and moveEffect.power < 0)
+		var dealsDamageOrHeal: bool = (not rune.isHealRune and moveEffect.power > 0) or (rune.isHealRune and moveEffect.power < 0)
+		var matchesElementTrigger: bool = rune.element == Move.Element.NONE or move.element == rune.element
+		return dealsDamageOrHeal and matchesElementTrigger
 	
 	if rune is BoostRune:
 		if moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
@@ -40,9 +42,14 @@ static func will_move_effect_trigger_rune(user: CombatantNode, move: Move, effec
 			return true
 	
 	if rune is StatusRune:
-		if moveEffect.statusEffect != null and not (moveEffect.selfGetsStatus and user != target):
-			if target.combatant.statusEffect == null or moveEffect.statusEffect.overwritesOtherStatuses:
-				return true
+		var getsStatus: bool = false
+		var matchesPotencyTrigger: bool = false
+		if moveEffect.statusEffect != null:
+			if not (moveEffect.selfGetsStatus and user != target) and \
+					(target.combatant.statusEffect == null or moveEffect.statusEffect.overwritesOtherStatuses):
+				getsStatus = true
+			matchesPotencyTrigger = moveEffect.statusEffect >= rune.minPotency
+		return getsStatus and matchesPotencyTrigger
 	
 	if rune is SurgeRune and user == target:
 		return effectType == Move.MoveEffectType.SURGE
