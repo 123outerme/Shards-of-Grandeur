@@ -39,6 +39,15 @@ func get_rune_type() -> String:
 	else:
 		return 'Heal Rune'
 
+func get_long_rune_type() -> String:
+	if triggerElement == Move.Element.NONE:
+		return get_rune_type()
+	
+	if not isHealRune:
+		return Move.element_to_string(triggerElement) + ' Damage Rune'
+	else:
+		return Move.element_to_string(triggerElement) + ' Heal Rune'
+
 func get_rune_trigger_description() -> String:
 	var runeDescString: String = 'When '
 	if not isHealRune:

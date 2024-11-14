@@ -668,7 +668,7 @@ func get_command_results(user: Combatant) -> String:
 					resultsText += ' was'
 				else:
 					resultsText += ' were'
-				resultsText += ' enchanted with a ' + moveEffect.rune.get_rune_type() + '!'
+				resultsText += ' enchanted with a ' + moveEffect.rune.get_long_rune_type() + '!'
 				
 	if type == Type.ESCAPE:
 		var preventEscapingIdx: int = which_target_prevents_escape(user)

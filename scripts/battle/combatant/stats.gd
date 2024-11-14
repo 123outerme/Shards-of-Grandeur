@@ -2,12 +2,13 @@ extends Resource
 class_name Stats
 
 enum Category {
-	PHYS_ATK = 0,
-	MAGIC_ATK = 1,
-	RESISTANCE = 2,
-	AFFINITY = 3,
-	SPEED = 4,
-	HP = 5,
+	NONE = -1, ## not to be used except for BoostRune
+	PHYS_ATK = 0, ## Physical Attack
+	MAGIC_ATK = 1, ## Magic Attack
+	RESISTANCE = 2, ## Resistance
+	AFFINITY = 3, ## Affinity
+	SPEED = 4, ## Speed
+	HP = 5, ## not to be used except for StatGrowth 
 }
 
 @export_category("Stats - Name")
@@ -33,6 +34,25 @@ enum Category {
 @export_category("Stats - Moves")
 @export var moves: Array[Move] = []
 @export var movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move])
+
+static func category_to_string(c: Category) -> String:
+	match c:
+		Category.NONE:
+			return 'None'
+		Category.PHYS_ATK:
+			return 'Physical Attack'
+		Category.MAGIC_ATK:
+			return 'Magic Attack'
+		Category.AFFINITY:
+			return 'Affinity'
+		Category.RESISTANCE:
+			return 'Resistance'
+		Category.SPEED:
+			return 'Speed'
+		Category.HP:
+			return 'HP'
+	
+	return 'ERROR'
 
 func _init(
 	i_displayName = 'Entity',

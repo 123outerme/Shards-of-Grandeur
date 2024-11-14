@@ -1,8 +1,8 @@
 class_name StatMultiplierText
 
 var statName: String
-var increase: int
-var multiplier: float
+var increase: int = 0
+var multiplier: float = 1.0
 
 static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplierText]) -> String:
 	var multipliersStr = ''
@@ -37,3 +37,10 @@ func print_multiplier(useStatName: bool = true) -> String:
 			multiplierText += ', '
 		multiplierText += multDiffSign + TextUtils.num_to_comma_string(roundi(multiplierDiff)) + '%'
 	return multiplierText
+
+func has_changes() -> bool:
+	return increase != 0 or multiplier != 1.0
+
+func equals(other: StatMultiplierText) -> bool:
+	return statName == other.statName and increase == other.increase and multiplier == other.multiplier
+	

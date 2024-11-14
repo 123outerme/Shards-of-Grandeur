@@ -32,6 +32,12 @@ func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], st
 func get_rune_type() -> String:
 	return 'Status Rune'
 
+func get_long_rune_type() -> String:
+	if minPotency != StatusEffect.Potency.NONE:
+		return StatusEffect.potency_to_string(minPotency) + ' Status Rune'
+	else:
+		return get_rune_type()
+
 func get_rune_trigger_description() -> String:
 	return 'When ' + StatusEffect.potency_to_string(minPotency) + ' Status is Afflicted'
 

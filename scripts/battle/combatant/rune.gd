@@ -67,8 +67,13 @@ func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], st
 	else:
 		printerr('Rune init_rune_state() error: caster not provided')
 
+## generic Rune type text. For communicating the general trigger conditions for the Rune, but nothing specific to the instance of the Rune.
 func get_rune_type() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses
+
+## more detailed rune type text. Used for communicating the specific trigger conditions of the Rune
+func get_long_rune_type() -> String:
+	return get_rune_type()
 
 func get_rune_trigger_description() -> String:
 	return 'ERROR DEFAULT RUNE' # implement in ALL subclasses

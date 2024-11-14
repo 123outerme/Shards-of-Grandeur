@@ -282,6 +282,20 @@ func has_stat_changes() -> bool:
 			or affinityMultiplier != 1.0 \
 			or speedMultiplier != 1.0
 
+func get_multiplier_for_stat_category(category: Stats.Category) -> StatMultiplierText:
+	match category:
+		Stats.Category.PHYS_ATK:
+			return get_phys_atk_multiplier()
+		Stats.Category.MAGIC_ATK:
+			return get_magic_atk_multiplier()
+		Stats.Category.AFFINITY:
+			return get_affinity_multiplier()
+		Stats.Category.RESISTANCE:
+			return get_resistance_multiplier()
+		Stats.Category.SPEED:
+			return get_speed_multiplier()
+	return null
+
 func get_phys_atk_multiplier() -> StatMultiplierText:
 	return StatMultiplierText.new('Phys Atk', physAttackIncrease, physAttackMultiplier)
 	
