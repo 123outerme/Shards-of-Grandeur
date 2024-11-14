@@ -10,6 +10,14 @@ class_name StoryRequirements
 ## 0 == Prologue. -1 == no max
 @export var maxAct: int = -1
 
+@export_category("Stats")
+
+## minimum stats required (only stat categories and level are checked in this object). null == no min stat requirements
+@export var minStats: Stats = null
+
+## maximum stats allowed. null for no max, -1 for a stat category or level == no max for that category
+@export var maxStats: Stats = null
+
 @export_category("Prerequisites")
 
 ## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
@@ -66,8 +74,10 @@ class_name StoryRequirements
 @export var invalidFromHavingFollowers: Array[String] = []
 
 func _init(
-	i_minAct = 0,
-	i_maxAct = -1,
+	i_minAct: int = 0,
+	i_maxAct: int = -1,
+	i_minStats: Stats = null,
+	i_maxStats: Stats = null,
 	i_prereqQuests: Array[String] = [],
 	i_prereqCutscenes: Array[String] = [],
 	i_prereqDialogues: Array[String] = [],
@@ -88,6 +98,8 @@ func _init(
 ):
 	minAct = i_minAct
 	maxAct = i_maxAct
+	minStats = i_minStats
+	maxStats = i_maxStats
 	prereqQuests = i_prereqQuests
 	prereqCutscenes = i_prereqCutscenes
 	prereqDialogues = i_prereqDialogues
@@ -112,7 +124,25 @@ func is_valid() -> bool:
 	
 	if PlayerResources.questInventory.currentAct < minAct or (maxAct >= 0 and PlayerResources.questInventory.currentAct > maxAct):
 		return false
-		
+	
+	if minStats != null:
+		if PlayerResources.playerInfo.stats.level < minStats.level or \
+				PlayerResources.playerInfo.stats.physAttack < minStats.physAttack or \
+				PlayerResources.playerInfo.stats.magicAttack < minStats.magicAttack or \
+				PlayerResources.playerInfo.stats.affinity < minStats.affinity or \
+				PlayerResources.playerInfo.stats.resistance < minStats.resistance or \
+				PlayerResources.playerInfo.stats.speed < minStats.speed:
+			return false
+	
+	if maxStats != null:
+		if (PlayerResources.playerInfo.stats.level > maxStats.level and maxStats.level >= 0) or \
+				(PlayerResources.playerInfo.stats.physAttack > maxStats.physAttack and maxStats.physAttack >= 0) or \
+				(PlayerResources.playerInfo.stats.magicAttack > maxStats.magicAttack and maxStats.magicAttack >= 0) or \
+				(PlayerResources.playerInfo.stats.affinity > maxStats.affinity and maxStats.affinity >= 0) or \
+				(PlayerResources.playerInfo.stats.resistance > maxStats.resistance and maxStats.resistance >= 0) or \
+				(PlayerResources.playerInfo.stats.speed > maxStats.speed and maxStats.speed >= 0):
+			return false
+	
 	if not PlayerResources.questInventory.has_completed_prereqs(prereqQuests):
 		return false
 	
