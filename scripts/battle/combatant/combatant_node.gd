@@ -137,8 +137,8 @@ func load_combatant_node():
 		update_select_btn(false)
 		weakenTargetHp.visible = false
 		hpProgressBar.max_value = combatant.stats.maxHp
-		hpProgressBar.value = combatant.currentHp
-		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(combatant.currentHp, combatant.stats.maxHp)
+		hpProgressBar.value = curHp
+		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(curHp, combatant.stats.maxHp)
 		update_hp_tag()
 		
 		behindParticleContainer.scale.x = get_behind_particle_scale()

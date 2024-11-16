@@ -119,6 +119,9 @@ func load_inventory_slot_panel():
 			combatant = PlayerResources.minions.get_minion(minionName)
 		if combatant != null:
 			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
+	else:
+		if inventorySlot.item is TeleportStone and not inventorySlot.item.can_be_used_now():
+			equippedTo.text = "[right]Can't use this now...[/right]"
 	
 	if inventorySlot.item.cost >= 0:
 		itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)

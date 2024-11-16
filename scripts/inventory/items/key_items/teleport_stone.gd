@@ -1,9 +1,13 @@
 extends KeyItem
 class_name TeleportStone
 
+## StoryRequirements objects that designate which story instances Teleport Stones cannot be used
 const DISABLE_IF_VALID_REQUIREMENTS: Array[StoryRequirements] = [
 	preload('res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres')
 ]
+
+## List of map save name strings that the player should not be able to use Teleport Stones while in
+const DISABLE_IF_ON_MAP_LIST: Array[String] = []
 
 @export var targetMap: String = ''
 @export var targetPos: Vector2 = Vector2()
@@ -50,6 +54,10 @@ func use(_target: Combatant):
 func can_be_used_now() -> bool:
 	for requirement: StoryRequirements in DISABLE_IF_VALID_REQUIREMENTS:
 		if requirement.is_valid():
+			return false
+	
+	for mapName: String in DISABLE_IF_ON_MAP_LIST:
+		if PlayerResources.playerInfo.map == mapName:
 			return false
 	
 	return PlayerResources.playerInfo.map != targetMap
