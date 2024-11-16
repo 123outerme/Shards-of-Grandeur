@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cnnhicfwvefgo"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_py2ps"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_d1icf"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ee36r"]
+
+[sub_resource type="Resource" id="Resource_kxsv0"]
+script = ExtResource("1_py2ps")
+lines = Array[String](["Half-Captain Restaurants"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ee36r")]([])
+
+[resource]
+script = ExtResource("2_d1icf")
+entryId = ""
+items = Array[ExtResource("1_py2ps")]([SubResource("Resource_kxsv0")])
+closesDialogue = false
+fullHealsPlayer = false

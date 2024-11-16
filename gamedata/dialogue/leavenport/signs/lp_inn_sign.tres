@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dgypg875xfivf"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_buoys"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mf1yq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xn5au"]
+
+[sub_resource type="Resource" id="Resource_rijj4"]
+script = ExtResource("1_buoys")
+lines = Array[String](["Leavenport Inn"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_mf1yq")]([])
+
+[resource]
+script = ExtResource("2_xn5au")
+entryId = ""
+items = Array[ExtResource("1_buoys")]([SubResource("Resource_rijj4")])
+closesDialogue = false
+fullHealsPlayer = false

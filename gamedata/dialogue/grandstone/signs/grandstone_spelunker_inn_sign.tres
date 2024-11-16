@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dep11whc5sn7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ogjxb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uui0u"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jawf5"]
+
+[sub_resource type="Resource" id="Resource_6ai56"]
+script = ExtResource("1_ogjxb")
+lines = Array[String](["The Spelunker's Inn"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_uui0u")]([])
+
+[resource]
+script = ExtResource("3_jawf5")
+entryId = ""
+items = Array[ExtResource("1_ogjxb")]([SubResource("Resource_6ai56")])
+closesDialogue = false
+fullHealsPlayer = false

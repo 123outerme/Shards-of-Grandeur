@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://dufgei1vjio8v"]
+[gd_scene load_steps=98 format=4 uid="uid://dufgei1vjio8v"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wdq4m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jrrc0"]
@@ -33,16 +33,25 @@
 [ext_resource type="Resource" uid="uid://cyeljpv4xilvt" path="res://gamedata/cutscenes/grandstone/arrive_from_desert.tres" id="31_nf6fx"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="32_brvnb"]
 [ext_resource type="Texture2D" uid="uid://1yyio0gg7npp" path="res://graphics/ui/talk_indicator_stone.png" id="32_vi0yj"]
+[ext_resource type="Resource" uid="uid://b20coff1og2c2" path="res://gamedata/dialogue/grandstone/signs/grandstone_armory_sign.tres" id="32_xaokn"]
 [ext_resource type="Resource" uid="uid://b0psjlb08mk3x" path="res://gamedata/ground_items/gs_ground_tunic.tres" id="33_lwphn"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="33_nsgxi"]
+[ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="33_smh06"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="34_05s4o"]
 [ext_resource type="Resource" uid="uid://dxxrvljo2bccx" path="res://gamedata/cutscenes/grandstone/standstill_exit_block.tres" id="34_ply2i"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="34_vwwaf"]
+[ext_resource type="Resource" uid="uid://dep11whc5sn7" path="res://gamedata/dialogue/grandstone/signs/grandstone_spelunker_inn_sign.tres" id="35_3pe1s"]
 [ext_resource type="Resource" uid="uid://cvduxlgs0dgv8" path="res://gamedata/cutscenes/grandstone/standstill_exit_demo_block.tres" id="35_duul4"]
+[ext_resource type="SpriteFrames" uid="uid://bgr5nld0n0q8t" path="res://graphics/animations/a_inn_sign.tres" id="36_iwmxu"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="37_5s8nd"]
+[ext_resource type="Resource" uid="uid://do8qja1l883kh" path="res://gamedata/dialogue/grandstone/signs/grandstone_bazaar_sign.tres" id="37_yo4bk"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="38_6k1bd"]
+[ext_resource type="SpriteFrames" uid="uid://csuydxu2lq351" path="res://graphics/animations/a_general_store_sign.tres" id="38_b585m"]
+[ext_resource type="Resource" uid="uid://cnnhicfwvefgo" path="res://gamedata/dialogue/grandstone/signs/half_captain_restaurant_sign.tres" id="39_4nyj7"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="39_54hds"]
+[ext_resource type="SpriteFrames" uid="uid://67qlhveu7u5x" path="res://graphics/animations/a_restaurant_sign.tres" id="40_h72sm"]
 
-[sub_resource type="Resource" id="Resource_jme45"]
+[sub_resource type="Resource" id="Resource_agvne"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -65,7 +74,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_y7dsc"]
+[sub_resource type="Resource" id="Resource_64x7o"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -88,7 +97,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_7ibvf"]
+[sub_resource type="Resource" id="Resource_3oy8v"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -117,7 +126,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g55jj"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_b15b1"]
+[sub_resource type="Resource" id="Resource_7pn74"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -146,7 +155,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_pxfrm"]
+[sub_resource type="Resource" id="Resource_8fbhj"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -169,7 +178,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_2dqi8"]
+[sub_resource type="Resource" id="Resource_7loiy"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -192,7 +201,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ghpaa"]
+[sub_resource type="Resource" id="Resource_r7j0u"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -215,7 +224,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_hs2qm"]
+[sub_resource type="Resource" id="Resource_pv6q6"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -238,7 +247,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_jptlj"]
+[sub_resource type="Resource" id="Resource_v3vrt"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -261,7 +270,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_7djhm"]
+[sub_resource type="Resource" id="Resource_kf143"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -284,7 +293,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_7g5cl"]
+[sub_resource type="Resource" id="Resource_oli3n"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -307,7 +316,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_v5x8t"]
+[sub_resource type="Resource" id="Resource_dlmp6"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -330,7 +339,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_4qt16"]
+[sub_resource type="Resource" id="Resource_yggx3"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -386,6 +395,122 @@ size = Vector2(15, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vts0p"]
 size = Vector2(24, 18)
 
+[sub_resource type="Resource" id="Resource_b1xwo"]
+script = ExtResource("4_fcgwp")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-268, 171)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xknhe"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa621"]
+size = Vector2(24, 14)
+
+[sub_resource type="Resource" id="Resource_q5iba"]
+script = ExtResource("4_fcgwp")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-60, 107)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mm0xx"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7svc"]
+size = Vector2(24, 14)
+
+[sub_resource type="Resource" id="Resource_xgyos"]
+script = ExtResource("4_fcgwp")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-268, -53)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqltb"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3i3y"]
+size = Vector2(24, 14)
+
+[sub_resource type="Resource" id="Resource_amv8r"]
+script = ExtResource("4_fcgwp")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(204, 59)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dthck"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcjj5"]
+size = Vector2(24, 14)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj52d"]
 size = Vector2(20, 140)
 
@@ -440,7 +565,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_w31oi"]
+[sub_resource type="Resource" id="Resource_x2cva"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -506,7 +631,7 @@ tile_set = ExtResource("2_jrrc0")
 position = Vector2(-64, 149)
 displayName = "Dr. Ildran"
 saveName = "dr_ildran_gs_cracking"
-data = SubResource("Resource_jme45")
+data = SubResource("Resource_agvne")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("6_j4i73"), ExtResource("7_o7qmq"), ExtResource("6_3u0vs")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrIldran" index="0"]
@@ -528,7 +653,7 @@ visible = false
 [node name="Lady1" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-66, -79)
 displayName = "Lady"
-data = SubResource("Resource_y7dsc")
+data = SubResource("Resource_64x7o")
 
 [node name="NPCSprite" parent="TilemapRoot/Lady1" index="0"]
 sprite_frames = ExtResource("7_ebdae")
@@ -559,7 +684,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("10_4lf1j")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_7ibvf")
+data = SubResource("Resource_3oy8v")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("11_utksi")])
 facesPlayer = false
 
@@ -603,7 +728,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("10_4lf1j")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_b15b1")
+data = SubResource("Resource_7pn74")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("11_utksi")])
 facesPlayer = false
 
@@ -639,7 +764,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(232, -200)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_gs_cracking"
-data = SubResource("Resource_pxfrm")
+data = SubResource("Resource_8fbhj")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("12_47v3w"), ExtResource("13_ypyr2")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -668,7 +793,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(212, -193)
 displayName = "Spelunker"
 loadFlipH = true
-data = SubResource("Resource_2dqi8")
+data = SubResource("Resource_7loiy")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("15_ylwuh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -693,7 +818,7 @@ visible = false
 [node name="Spelunker2" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(44, -68)
 displayName = "Spelunker"
-data = SubResource("Resource_ghpaa")
+data = SubResource("Resource_r7j0u")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("28_nakb6")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker2" index="0"]
@@ -714,7 +839,7 @@ visible = false
 position = Vector2(-10, 100)
 displayName = "Spelunker"
 loadFlipH = true
-data = SubResource("Resource_hs2qm")
+data = SubResource("Resource_pv6q6")
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker3" index="0"]
 sprite_frames = ExtResource("19_7tyxf")
@@ -735,7 +860,7 @@ visible = false
 position = Vector2(-40, -81)
 displayName = "Man"
 saveName = "grandstone_market_man"
-data = SubResource("Resource_jptlj")
+data = SubResource("Resource_v3vrt")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("17_by2x0")])
 npcShop = ExtResource("18_u3gpj")
 
@@ -760,7 +885,7 @@ visible = false
 position = Vector2(20, -64)
 displayName = "Man"
 saveName = "gs_man2_cracking"
-data = SubResource("Resource_7djhm")
+data = SubResource("Resource_kf143")
 
 [node name="NPCSprite" parent="TilemapRoot/Man2" index="0"]
 sprite_frames = ExtResource("24_0q0i4")
@@ -780,7 +905,7 @@ visible = false
 position = Vector2(-185, -208)
 displayName = "Man"
 saveName = "gs_man3_cracking"
-data = SubResource("Resource_7g5cl")
+data = SubResource("Resource_oli3n")
 
 [node name="NPCSprite" parent="TilemapRoot/Man3" index="0"]
 sprite_frames = ExtResource("27_34wjr")
@@ -802,7 +927,7 @@ position = Vector2(114, -48)
 displayName = "Actor"
 saveName = "gs_actor_cracking"
 loadFlipH = true
-data = SubResource("Resource_v5x8t")
+data = SubResource("Resource_dlmp6")
 
 [node name="NPCSprite" parent="TilemapRoot/Actor" index="0"]
 sprite_frames = ExtResource("25_7nhdq")
@@ -822,7 +947,7 @@ visible = false
 [node name="EtchingStone" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(192, -50)
 displayName = "Etching Stone"
-data = SubResource("Resource_4qt16")
+data = SubResource("Resource_yggx3")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("30_0ausr")])
 facesPlayer = false
 
@@ -848,6 +973,141 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/EtchingStone" index="4"]
 visible = false
+
+[node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
+position = Vector2(-268, 171)
+displayName = "Sign"
+data = SubResource("Resource_b1xwo")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("32_xaokn")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/ArmorySign" index="0"]
+sprite_frames = ExtResource("33_smh06")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/ArmorySign/NPCSprite" index="0"]
+texture = ExtResource("34_05s4o")
+
+[node name="ColliderShape" parent="TilemapRoot/ArmorySign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_xknhe")
+
+[node name="NavAgent" parent="TilemapRoot/ArmorySign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/ArmorySign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/ArmorySign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_oa621")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/ArmorySign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/ArmorySign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
+position = Vector2(-60, 107)
+displayName = "Sign"
+data = SubResource("Resource_q5iba")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("35_3pe1s")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/InnSign" index="0"]
+sprite_frames = ExtResource("36_iwmxu")
+
+[node name="TalkAlertSprite" parent="TilemapRoot/InnSign/NPCSprite" index="0"]
+texture = ExtResource("34_05s4o")
+
+[node name="ColliderShape" parent="TilemapRoot/InnSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_mm0xx")
+
+[node name="NavAgent" parent="TilemapRoot/InnSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/InnSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/InnSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_r7svc")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/InnSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/InnSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="BazaarSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
+position = Vector2(-268, -53)
+displayName = "Sign"
+data = SubResource("Resource_xgyos")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("37_yo4bk")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/BazaarSign" index="0"]
+sprite_frames = ExtResource("38_b585m")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/BazaarSign/NPCSprite" index="0"]
+texture = ExtResource("34_05s4o")
+
+[node name="ColliderShape" parent="TilemapRoot/BazaarSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_kqltb")
+
+[node name="NavAgent" parent="TilemapRoot/BazaarSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/BazaarSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/BazaarSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_i3i3y")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/BazaarSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/BazaarSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
+position = Vector2(204, 59)
+displayName = "Sign"
+data = SubResource("Resource_amv8r")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("39_4nyj7")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/RestaurantSign" index="0"]
+sprite_frames = ExtResource("40_h72sm")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/RestaurantSign/NPCSprite" index="0"]
+texture = ExtResource("34_05s4o")
+
+[node name="ColliderShape" parent="TilemapRoot/RestaurantSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_dthck")
+
+[node name="NavAgent" parent="TilemapRoot/RestaurantSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/RestaurantSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/RestaurantSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_jcjj5")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/RestaurantSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/RestaurantSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="GroundItemTunic" parent="TilemapRoot" instance=ExtResource("32_brvnb")]
 position = Vector2(392, 185)
@@ -994,10 +1254,10 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-64, 164)
 facingLeft = true
-data = SubResource("Resource_w31oi")
+data = SubResource("Resource_x2cva")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.678133
+frame_progress = 0.305195
 flip_h = true
 
 [node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
@@ -1018,6 +1278,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [editable path="TilemapRoot/Man3"]
 [editable path="TilemapRoot/Actor"]
 [editable path="TilemapRoot/EtchingStone"]
+[editable path="TilemapRoot/ArmorySign"]
+[editable path="TilemapRoot/InnSign"]
+[editable path="TilemapRoot/BazaarSign"]
+[editable path="TilemapRoot/RestaurantSign"]
 [editable path="StandstillCutsceneTrigger"]
 [editable path="DesertArrivalTrigger"]
 [editable path="WarpStandstill"]

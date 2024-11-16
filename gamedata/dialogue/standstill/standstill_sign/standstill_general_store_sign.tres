@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dtt34f0s8607w"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_rmkgb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_34t73"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_t1onw"]
+
+[sub_resource type="Resource" id="Resource_pyc6a"]
+script = ExtResource("1_rmkgb")
+lines = Array[String](["Standstill General Store"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_t1onw")]([])
+
+[resource]
+script = ExtResource("2_34t73")
+entryId = ""
+items = Array[ExtResource("1_rmkgb")]([SubResource("Resource_pyc6a")])
+closesDialogue = false
+fullHealsPlayer = false

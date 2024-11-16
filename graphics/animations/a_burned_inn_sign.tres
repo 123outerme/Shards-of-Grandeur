@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bvdn8v51w71g"]
+
+[ext_resource type="Texture2D" uid="uid://dcjo0kik5p4mc" path="res://graphics/structures/shop_signs.png" id="1_5gg8r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1iix"]
+atlas = ExtResource("1_5gg8r")
+region = Rect2(48, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1iix")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]

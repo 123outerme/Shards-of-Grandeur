@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://0bhmevnqm1m1"]
+[gd_scene load_steps=53 format=4 uid="uid://0bhmevnqm1m1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_r7bn8"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7r2vx"]
@@ -14,6 +14,12 @@
 [ext_resource type="Resource" uid="uid://dn2k5t18luj5d" path="res://gamedata/dialogue/lance/lance_after_apprenticeship.tres" id="18_5mp8f"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="19_6w4i4"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_move_point.gd" id="20_jnk87"]
+[ext_resource type="Resource" uid="uid://dtt34f0s8607w" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_general_store_sign.tres" id="20_llh8f"]
+[ext_resource type="SpriteFrames" uid="uid://csuydxu2lq351" path="res://graphics/animations/a_general_store_sign.tres" id="21_b5qr6"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="22_kuk7x"]
+[ext_resource type="Resource" uid="uid://cb8c43nbn53ao" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_armory_sign.tres" id="23_asm6w"]
+[ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="24_07wwl"]
+[ext_resource type="SpriteFrames" uid="uid://bvdn8v51w71g" path="res://graphics/animations/a_burned_inn_sign.tres" id="26_eeyyr"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="27_pcq27"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="32_0tmyx"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="33_wf2cg"]
@@ -33,7 +39,7 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_j5e4q"]
+[sub_resource type="Resource" id="Resource_frlik"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -49,12 +55,12 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
 
 [sub_resource type="Resource" id="Resource_bn3e8"]
 script = ExtResource("20_jnk87")
@@ -169,7 +175,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_shh0h"]
+[sub_resource type="Resource" id="Resource_yda20"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -185,12 +191,87 @@ afterMoveWaitAccum = 0.0
 followerHomePosition = Vector2(0, 0)
 followingPlayer = false
 followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
+
+[sub_resource type="Resource" id="Resource_ppmw3"]
+script = ExtResource("4_7u8a6")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-19, 62)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gijs0"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
+size = Vector2(24, 14)
+
+[sub_resource type="Resource" id="Resource_cutyu"]
+script = ExtResource("4_7u8a6")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(147, -146)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_gak0h"]
+script = ExtResource("4_7u8a6")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-93, -114)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_r7bn8")
@@ -253,7 +334,7 @@ shape = SubResource("RectangleShape2D_epj4x")
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_j5e4q")
+data = SubResource("Resource_frlik")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("16_680io"), ExtResource("17_62tta"), ExtResource("18_5mp8f")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -400,7 +481,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_shh0h")
+data = SubResource("Resource_yda20")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
@@ -410,6 +491,108 @@ flip_h = true
 [node name="MockShade" parent="ToolCutsceneVisualizer/MockPlayer" index="5"]
 offset_left = 116.0
 offset_right = 1396.0
+
+[node name="GeneralStoreSign" parent="." instance=ExtResource("3_ai1ib")]
+position = Vector2(-19, 62)
+displayName = "Sign"
+data = SubResource("Resource_ppmw3")
+dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="GeneralStoreSign" index="0"]
+sprite_frames = ExtResource("21_b5qr6")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="GeneralStoreSign/NPCSprite" index="0"]
+texture = ExtResource("22_kuk7x")
+
+[node name="ColliderShape" parent="GeneralStoreSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_gijs0")
+
+[node name="NavAgent" parent="GeneralStoreSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="GeneralStoreSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="GeneralStoreSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_7q2nc")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="GeneralStoreSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="GeneralStoreSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="ArmorySign" parent="." instance=ExtResource("3_ai1ib")]
+position = Vector2(147, -146)
+displayName = "Sign"
+data = SubResource("Resource_cutyu")
+dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="ArmorySign" index="0"]
+sprite_frames = ExtResource("24_07wwl")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="ArmorySign/NPCSprite" index="0"]
+texture = ExtResource("22_kuk7x")
+
+[node name="ColliderShape" parent="ArmorySign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_gijs0")
+
+[node name="NavAgent" parent="ArmorySign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="ArmorySign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="ArmorySign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_7q2nc")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="ArmorySign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="ArmorySign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="InnSign" parent="." instance=ExtResource("3_ai1ib")]
+position = Vector2(-93, -114)
+displayName = "Sign"
+data = SubResource("Resource_gak0h")
+dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="InnSign" index="0"]
+sprite_frames = ExtResource("26_eeyyr")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="InnSign/NPCSprite" index="0"]
+texture = ExtResource("22_kuk7x")
+
+[node name="ColliderShape" parent="InnSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_gijs0")
+
+[node name="NavAgent" parent="InnSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="InnSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="InnSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_7q2nc")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="InnSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="InnSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [editable path="TilemapRoot/Signpost"]
 [editable path="TilemapRoot/Signpost/AnimatedDecoration"]
@@ -427,3 +610,6 @@ offset_right = 1396.0
 [editable path="CameraHoldZone2"]
 [editable path="ToolCutsceneVisualizer"]
 [editable path="ToolCutsceneVisualizer/MockPlayer"]
+[editable path="GeneralStoreSign"]
+[editable path="ArmorySign"]
+[editable path="InnSign"]

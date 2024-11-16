@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bhrabhqrrnkvh"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_dsn3s"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jagpb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_xoipn"]
+
+[sub_resource type="Resource" id="Resource_iyxei"]
+script = ExtResource("1_dsn3s")
+lines = Array[String](["- Leavenport's Restaurant -
+Only the finest meals served here!"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_xoipn")]([])
+
+[resource]
+script = ExtResource("2_jagpb")
+entryId = ""
+items = Array[ExtResource("1_dsn3s")]([SubResource("Resource_iyxei")])
+closesDialogue = false
+fullHealsPlayer = false

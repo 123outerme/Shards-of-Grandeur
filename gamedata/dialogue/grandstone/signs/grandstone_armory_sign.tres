@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b20coff1og2c2"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3np14"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_810g2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_t6bun"]
+
+[sub_resource type="Resource" id="Resource_0iqhd"]
+script = ExtResource("1_3np14")
+lines = Array[String](["Grandstone Armory"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_810g2")]([])
+
+[resource]
+script = ExtResource("2_t6bun")
+entryId = ""
+items = Array[ExtResource("1_3np14")]([SubResource("Resource_0iqhd")])
+closesDialogue = false
+fullHealsPlayer = false

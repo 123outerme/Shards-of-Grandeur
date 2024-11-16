@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bjc7dbpete72l"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bjc7dbpete72l"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_6ltrj"]
 [ext_resource type="Resource" uid="uid://d3jmd4016285p" path="res://gamedata/combatants/king_rat/king_rat_ai.tres" id="1_gje2b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dhueb42q6bhpr" path="res://gamedata/combatants/king_rat/king_rat_effectiveness.tres" id="5_0tjmh"]
 [ext_resource type="Resource" uid="uid://da16cxtiets3n" path="res://gamedata/combatants/king_rat/king_rat_sprite.tres" id="5_bh7jy"]
 [ext_resource type="Resource" uid="uid://d0ba12f3r7gli" path="res://gamedata/combatants/king_rat/king_rat_stat_growth.tres" id="5_c85vg"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_twh5p"]
 [ext_resource type="Resource" uid="uid://nuu6ht4qwovf" path="res://gamedata/combatants/king_rat/king_rat_stat_alloc_strategy.tres" id="6_0da0h"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_v65wx"]
 [ext_resource type="Resource" uid="uid://b723l70u677bb" path="res://gamedata/combatants/king_rat/king_rat_equipment.tres" id="12_tfavx"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_twh5p")]([])
+triggeredRunes = Array[ExtResource("5_twh5p")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("12_tfavx")
 dropTable = ExtResource("1_rqv3k")
 statAllocationStrategy = ExtResource("6_0da0h")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1

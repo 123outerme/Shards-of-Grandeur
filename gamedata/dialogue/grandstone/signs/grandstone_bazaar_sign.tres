@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://do8qja1l883kh"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cr3sg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_njn8l"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_oudki"]
+
+[sub_resource type="Resource" id="Resource_8q7i2"]
+script = ExtResource("1_cr3sg")
+lines = Array[String](["Grandstone Bazaar"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_njn8l")]([])
+
+[resource]
+script = ExtResource("2_oudki")
+entryId = ""
+items = Array[ExtResource("1_cr3sg")]([SubResource("Resource_8q7i2")])
+closesDialogue = false
+fullHealsPlayer = false
