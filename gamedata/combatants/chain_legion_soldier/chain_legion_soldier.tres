@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://dbn5mhjawwmv0"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://dbn5mhjawwmv0"]
 
 [ext_resource type="Resource" uid="uid://3mp3gw6leuv1" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_ai.tres" id="1_0eyij"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_r4g5i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_dfvsc"]
 [ext_resource type="Resource" uid="uid://cqyalxxp2huxe" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_move_effectiveness.tres" id="3_7yndk"]
 [ext_resource type="Resource" uid="uid://ddtarppaxmlwu" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_sprite.tres" id="5_6rldk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_fk1hk"]
 [ext_resource type="Resource" uid="uid://dq1r1nlas024y" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_movepool.tres" id="6_rd7gx"]
 [ext_resource type="Resource" uid="uid://cj2514570miiv" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_alloc_strategy.tres" id="6_uki13"]
 [ext_resource type="Resource" uid="uid://d15ic1np56op5" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_growth.tres" id="7_riqim"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_fk1hk")]([])
+triggeredRunes = Array[ExtResource("5_fk1hk")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("9_766rk")
 dropTable = ExtResource("1_ujrus")
 statAllocationStrategy = ExtResource("6_uki13")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
