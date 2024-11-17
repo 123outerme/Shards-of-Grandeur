@@ -36,6 +36,8 @@ func create_reports():
 	
 	reports['combatants/levels.csv'] = create_report_for_all_combatants_lvs(100)
 	
+	reports['combatants/stat_growths.csv'] = create_report_for_all_combatants_stat_growth()
+	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR)
 		
@@ -216,6 +218,33 @@ func csv_combatant_all_lvs_report_helper(combatant: Combatant, maxLv: int = 100)
 		reportContents += String.num(combatant.stats.physAttack) + ',' + String.num(combatant.stats.magicAttack) + ','
 		reportContents += String.num(combatant.stats.affinity) + ',' + String.num(combatant.stats.resistance) + ','
 		reportContents += String.num(combatant.stats.speed) + '\n'
+	return reportContents
+
+# special CSV query for reporting (one random instance of a) combatant's stats at all levels
+func create_report_for_all_combatants_stat_growth() -> String:
+	var combatantsPath = 'res://gamedata/combatants/'
+	var combatantDirs: PackedStringArray = DirAccess.get_directories_at(combatantsPath)
+	var reportContents: String = 'Stat Growths for All Combatants\n\n'
+	reportContents += 'Combatant,Initial Max HP,Max HP,Phys Attack,Magic Attack,Affinity,Resistance,Speed\n'
+	
+	for dir: String in combatantDirs:
+		var combatant: Combatant = Combatant.load_combatant_resource(dir)
+		if combatant != null:
+			reportContents += combatant.save_name() + ','
+			reportContents += csv_combatant_all_stat_growths_helper(combatant)
+			if combatant.evolutions != null:
+				for evolution: Evolution in combatant.evolutions.evolutionList:
+					combatant = Combatant.load_combatant_resource(dir)
+					combatant.switch_evolution(evolution, null)
+					reportContents += evolution.evolutionSaveName + ' (evo ' + combatant.save_name() + '),'
+					reportContents += csv_combatant_all_stat_growths_helper(combatant)
+	return reportContents
+
+func csv_combatant_all_stat_growths_helper(combatant: Combatant) -> String:
+	var reportContents: String = String.num(combatant.stats.statGrowth.initialMaxHp) + ',' + String.num(combatant.stats.statGrowth.hpGrowth) + ','
+	reportContents += String.num(combatant.stats.statGrowth.physAtkGrowth) + ',' + String.num(combatant.stats.statGrowth.magicAtkGrowth) + ','
+	reportContents += String.num(combatant.stats.statGrowth.affinityGrowth) + ',' + String.num(combatant.stats.statGrowth.resistanceGrowth) + ','
+	reportContents += String.num(combatant.stats.statGrowth.speedGrowth) + '\n'
 	return reportContents
 
 # CSV move queries
