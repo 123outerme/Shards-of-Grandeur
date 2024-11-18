@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://bdvm6hhl3bsdx"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_f4t7q"]
+[ext_resource type="Resource" uid="uid://brys8qd70gym5" path="res://gamedata/combatants/fire_witch/fire_witch_overworld.tres" id="1_y85ji"]
+[ext_resource type="SpriteFrames" uid="uid://4uw2muj8r5cr" path="res://graphics/animations/a_fire_witch.tres" id="3_r1his"]
+
+[resource]
+script = ExtResource("1_f4t7q")
+spriteFrames = ExtResource("3_r1his")
+combatantOverworld = ExtResource("1_y85ji")
+maxSize = Vector2(32, 16)
+idleSize = Vector2(16, 16)
+centerPosition = Vector2(16, 8)
+feetPosition = Vector2(16, 15)
+spriteFacesRight = true
+navigationLayer = 1
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 3
+attackPhysArrivalFrame = 2
+attackAffinityImpactFrame = 3
+attackMagicImpactFrame = 5
+attackPhysImpactFrame = 3

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://balk51aug61vr"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_en3hj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_hbuad"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_smjrk"]
+[ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance/battle_trance.tres" id="3_t44lb"]
+[ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="4_8en1h"]
+[ext_resource type="Resource" uid="uid://cq4jjoj6ancn0" path="res://gamedata/moves/shade_blast/shade_blast.tres" id="5_5tjuw"]
+[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="6_vl3ta"]
+[ext_resource type="Resource" uid="uid://bjh2nwqxbbis3" path="res://gamedata/moves/desert_sun_beam/desert_sun_beam.tres" id="7_pf0gi"]
+
+[resource]
+script = ExtResource("2_hbuad")
+pool = Array[ExtResource("1_en3hj")]([ExtResource("2_smjrk"), ExtResource("3_t44lb"), ExtResource("4_8en1h"), ExtResource("5_5tjuw"), ExtResource("6_vl3ta"), ExtResource("7_pf0gi")])
+signatureMoves = Array[ExtResource("1_en3hj")]([ExtResource("6_vl3ta")])
+preferredMove1Role = 2
+preferredMove1DmgType = 1
+preferredMove1Element = 2
+preferredMove2Role = 1
+preferredMove2DmgType = 1
+preferredMove2Element = 2
+preferredMove3Role = 3
+preferredMove3DmgType = 1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0
