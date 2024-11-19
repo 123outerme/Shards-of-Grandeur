@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://bwg8cky4fu6ri"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://bwg8cky4fu6ri"]
 
 [ext_resource type="Resource" uid="uid://datbbw37rvy37" path="res://gamedata/combatants/mystic_fox/mystic_fox_ai.tres" id="1_ohgbu"]
 [ext_resource type="Resource" uid="uid://dh6e75rip05dq" path="res://gamedata/combatants/mystic_fox/mystic_fox_rewards.tres" id="1_vcg6j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://ulvg6wh7jn7" path="res://gamedata/combatants/mystic_fox/mystic_fox_effectiveness.tres" id="3_6ykc4"]
 [ext_resource type="Resource" uid="uid://datrt56lguyo0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_growth.tres" id="3_fq3j1"]
 [ext_resource type="Resource" uid="uid://4nsqpm33jl17" path="res://gamedata/combatants/mystic_fox/mystic_fox_sprite.tres" id="5_5co32"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_hi2w7"]
 [ext_resource type="Resource" uid="uid://dv17w1o2t2cb0" path="res://gamedata/combatants/mystic_fox/mystic_fox_stat_alloc_strategy.tres" id="6_drorv"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_i54sw"]
 [ext_resource type="Resource" uid="uid://dqfilgeyd3ody" path="res://gamedata/combatants/mystic_fox/mystic_fox_equipment.tres" id="10_1pflv"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_hi2w7")]([])
+triggeredRunes = Array[ExtResource("5_hi2w7")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("10_1pflv")
 dropTable = ExtResource("1_vcg6j")
 statAllocationStrategy = ExtResource("6_drorv")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
