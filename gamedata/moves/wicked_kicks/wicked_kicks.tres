@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Move" load_steps=8 format=3 uid="uid://dtp6uuushgodj"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_a67we"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_s10ad"]
+[ext_resource type="Resource" uid="uid://dat3hw7isptbt" path="res://gamedata/moves/wicked_kicks/anim_wicked_kicks.tres" id="2_k0han"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="3_hpj8l"]
+
+[sub_resource type="Resource" id="Resource_wtma5"]
+script = ExtResource("1_a67we")
+role = 1
+orbChange = 0
+power = 60
+lifesteal = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_c543x"]
+script = ExtResource("3_hpj8l")
+powerPerOrb = 5
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_uoqyo"]
+script = ExtResource("1_a67we")
+role = 1
+orbChange = -3
+power = 70
+lifesteal = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_c543x")
+
+[resource]
+script = ExtResource("1_s10ad")
+moveName = "Wicked Kicks"
+requiredLv = 19
+category = 0
+element = 7
+chargeEffect = SubResource("Resource_wtma5")
+surgeEffect = SubResource("Resource_uoqyo")
+description = "Deliver devastating leg strikes directly to the opponent's face."
+moveLearnedText = "Feeling strength well up in your legs, you pushing off with both feet. High in the air, you perform two aerial kicks in rapid succession."
+moveAnimation = ExtResource("2_k0han")

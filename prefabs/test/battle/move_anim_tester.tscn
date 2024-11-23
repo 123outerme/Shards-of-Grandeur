@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://dtf1txvaxx3vc" path="res://gamedata/moves/druidic_pulse/druidic_pulse.tres" id="2_igopb"]
-[ext_resource type="Resource" uid="uid://byb2678day0jv" path="res://gamedata/combatants/sea_wyrm/sea_wyrm.tres" id="3_bl4jc"]
+[ext_resource type="Resource" uid="uid://dtp6uuushgodj" path="res://gamedata/moves/wicked_kicks/wicked_kicks.tres" id="2_23ppa"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
+[ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="3_mxoxp"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_igopb")
-targetCombatant = ExtResource("3_bl4jc")
+move = ExtResource("2_23ppa")
+targetCombatant = ExtResource("3_mxoxp")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
 anchors_preset = 8

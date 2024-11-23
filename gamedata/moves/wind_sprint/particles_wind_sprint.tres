@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://vuhjkvvsnvo8"]
+
+[ext_resource type="Texture2D" uid="uid://cepjbsf6jpl6d" path="res://graphics/particles/wind/wind_1.png" id="1_42r2y"]
+[ext_resource type="Texture2D" uid="uid://dgwsdmeiqrv1q" path="res://graphics/particles/wind/wind_2.png" id="2_civ7c"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind/wind_3.png" id="3_w6gnu"]
+[ext_resource type="Texture2D" uid="uid://cwi43lo4vqxog" path="res://graphics/particles/wind/wind_4.png" id="4_7ao21"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_7f8r5"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="7_yvc1q"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ndww"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+orbit_velocity_min = -0.75
+orbit_velocity_max = -0.75
+radial_velocity_min = 30.0
+radial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -30.0
+radial_accel_max = -30.0
+tangential_accel_min = 0.599998
+tangential_accel_max = 0.699998
+attractor_interaction_enabled = false
+
+[resource]
+script = ExtResource("6_7f8r5")
+emitter = "behind"
+count = 3
+lifetime = 0.5
+duration = 0.5
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_5ndww")
+particleTextures = Array[Texture2D]([ExtResource("1_42r2y"), ExtResource("2_civ7c"), ExtResource("3_w6gnu"), ExtResource("4_7ao21")])
+sfx = ExtResource("7_yvc1q")

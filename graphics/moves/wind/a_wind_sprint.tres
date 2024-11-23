@@ -1,0 +1,88 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://yrk3h48y38r8"]
+
+[ext_resource type="Texture2D" uid="uid://b5gu8sgcucl6w" path="res://graphics/moves/wind/wind_sprint/wind_sprint_impact.png" id="1_u8jyt"]
+[ext_resource type="Texture2D" uid="uid://6euofoofja7r" path="res://graphics/moves/wind/wind_sprint/wind_sprint_wind.png" id="2_3k1y0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frl7a"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkpa2"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urfuh"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpu0s"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvbe"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3e4a"]
+atlas = ExtResource("1_u8jyt")
+region = Rect2(80, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35tr5"]
+atlas = ExtResource("2_3k1y0")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyln5"]
+atlas = ExtResource("2_3k1y0")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo6au"]
+atlas = ExtResource("2_3k1y0")
+region = Rect2(32, 0, 16, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frl7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkpa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urfuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpu0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khvbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3e4a")
+}],
+"loop": false,
+"name": &"wind_sprint_impact",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35tr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyln5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo6au")
+}],
+"loop": true,
+"name": &"wind_sprint_wind",
+"speed": 6.0
+}]

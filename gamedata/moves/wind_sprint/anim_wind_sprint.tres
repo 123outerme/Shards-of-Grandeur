@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://csvfxjhwbhmm0"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_8pek2"]
+[ext_resource type="Resource" uid="uid://cghenkm5t1qy5" path="res://gamedata/moves/wind_sprint/sprite_wind_sprint_wind.tres" id="2_5767d"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="3_dukuq"]
+[ext_resource type="Resource" uid="uid://bd5hit8k1kfa5" path="res://gamedata/moves/wind_sprint/sprite_wind_sprint_impact.tres" id="3_ouaj5"]
+
+[resource]
+script = ExtResource("3_dukuq")
+combatantAnimation = "attack_phys"
+makesContact = true
+chargeMoveSprites = Array[ExtResource("1_8pek2")]([ExtResource("2_5767d"), ExtResource("3_ouaj5")])
+surgeMoveSprites = Array[ExtResource("1_8pek2")]([ExtResource("2_5767d"), ExtResource("3_ouaj5")])

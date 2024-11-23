@@ -105,6 +105,14 @@ func load_frame():
 		if not user.leftSide: # particles are designed & saved as they would play on an enemy (right side)
 			presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
 			presetCopy.processMaterial.emission_shape_offset.x *= -1 # invert emission shape X offset direction
+			# flip orbit (tangential) velocity to correspond with flipped sprite
+			var orbitVelMin: float = presetCopy.processMaterial.orbit_velocity_min
+			presetCopy.processMaterial.orbit_velocity_min = -1 * presetCopy.processMaterial.orbit_velocity_max
+			presetCopy.processMaterial.orbit_velocity_max = -1 * orbitVelMin
+			# flip tangential acceleration to correspond with flipped sprite
+			var tangentialAccelMin: float = presetCopy.processMaterial.tangential_accel_min
+			presetCopy.processMaterial.tangential_accel_min = -1 * presetCopy.processMaterial.tangential_accel_max
+			presetCopy.processMaterial.tangential_accel_max = -1 * tangentialAccelMin
 		particleEmitter.preset = presetCopy
 		particleEmitter.set_make_particles(true)
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1

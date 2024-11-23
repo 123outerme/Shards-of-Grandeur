@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://drht45tyb3e2l"]
+
+[ext_resource type="Resource" uid="uid://kdrc5k1wuddo" path="res://gamedata/combatants/savage_horse/savage_horse_overworld.tres" id="1_5n0c3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_o21ec"]
+[ext_resource type="SpriteFrames" uid="uid://cqcc74stseudk" path="res://graphics/animations/a_savage_horse.tres" id="3_mt36u"]
+
+[resource]
+script = ExtResource("1_o21ec")
+spriteFrames = ExtResource("3_mt36u")
+combatantOverworld = ExtResource("1_5n0c3")
+maxSize = Vector2(32, 32)
+idleSize = Vector2(32, 30)
+centerPosition = Vector2(16, 16)
+feetPosition = Vector2(16, 31)
+spriteFacesRight = true
+navigationLayer = 2
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 3
+attackAffinityImpactFrame = 5
+attackMagicImpactFrame = 3
+attackPhysImpactFrame = 9

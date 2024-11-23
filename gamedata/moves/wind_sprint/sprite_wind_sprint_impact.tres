@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://bd5hit8k1kfa5"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_hkljq"]
+[ext_resource type="Resource" uid="uid://vuhjkvvsnvo8" path="res://gamedata/moves/wind_sprint/particles_wind_sprint.tres" id="2_lk711"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_v05pa"]
+[ext_resource type="SpriteFrames" uid="uid://yrk3h48y38r8" path="res://graphics/moves/wind/a_wind_sprint.tres" id="3_ja1wq"]
+
+[sub_resource type="Curve" id="Curve_kgmx8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_jm0cj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_uu0iw"]
+script = ExtResource("1_hkljq")
+annotation = "set up position at target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_kgmx8")
+yCurve = SubResource("Curve_jm0cj")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_ays57"]
+script = ExtResource("1_hkljq")
+annotation = "play impact"
+animation = "wind_sprint_impact"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_lk711")
+
+[resource]
+script = ExtResource("2_v05pa")
+spriteFrames = ExtResource("3_ja1wq")
+centerSprite = true
+maxSize = Vector2(16, 48)
+frames = Array[ExtResource("1_hkljq")]([SubResource("Resource_uu0iw"), SubResource("Resource_ays57")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

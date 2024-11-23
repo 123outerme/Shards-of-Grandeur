@@ -1,0 +1,61 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c0nb5gnu5ymkp"]
+
+[ext_resource type="Texture2D" uid="uid://g11tsavlnv3l" path="res://graphics/moves/dark/wicked_kicks/wicked_kicks.png" id="1_wm6fi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mes3"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7k4a"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjgic"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckf0e"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2rpi"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ryel"]
+atlas = ExtResource("1_wm6fi")
+region = Rect2(160, 0, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mes3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7k4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjgic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckf0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2rpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ryel")
+}],
+"loop": false,
+"name": &"wicked_kicks",
+"speed": 6.0
+}]

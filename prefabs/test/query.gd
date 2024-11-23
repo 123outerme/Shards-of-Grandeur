@@ -101,6 +101,8 @@ func create_report_for_all_combatants_series(columns: Array[String], queries: Ar
 			var prevEvolution: Evolution = null
 			if combatant.evolutions != null:
 				for evolution: Evolution in combatant.evolutions.evolutionList:
+					combatant.stats.equippedWeapon = evolution.requiredWeapon
+					combatant.stats.equippedArmor = evolution.requiredArmor
 					combatant.switch_evolution(evolution, prevEvolution)
 					reportContents += evolution.evolutionSaveName + ' (evo ' + combatant.save_name() + '),'
 					for query in queries:
@@ -203,11 +205,15 @@ func create_report_for_all_combatants_lvs(maxLv: int = 100) -> String:
 			reportContents += combatant.save_name() + '\n'
 			reportContents += csv_combatant_all_lvs_report_helper(combatant, maxLv) + '\n'
 			if combatant.evolutions != null:
+				var prevEvolution: Evolution = null
 				for evolution: Evolution in combatant.evolutions.evolutionList:
 					combatant = Combatant.load_combatant_resource(dir)
-					combatant.switch_evolution(evolution, null)
+					combatant.stats.equippedWeapon = evolution.requiredWeapon
+					combatant.stats.equippedArmor = evolution.requiredArmor
+					combatant.switch_evolution(evolution, prevEvolution)
 					reportContents += evolution.evolutionSaveName + ' (evo ' + combatant.save_name() + ')\n'
 					reportContents += csv_combatant_all_lvs_report_helper(combatant, maxLv) + '\n'
+					prevEvolution = evolution
 	return reportContents
 
 func csv_combatant_all_lvs_report_helper(combatant: Combatant, maxLv: int = 100) -> String:
@@ -233,11 +239,15 @@ func create_report_for_all_combatants_stat_growth() -> String:
 			reportContents += combatant.save_name() + ','
 			reportContents += csv_combatant_all_stat_growths_helper(combatant)
 			if combatant.evolutions != null:
+				var prevEvolution: Evolution = null
 				for evolution: Evolution in combatant.evolutions.evolutionList:
 					combatant = Combatant.load_combatant_resource(dir)
-					combatant.switch_evolution(evolution, null)
+					combatant.stats.equippedWeapon = evolution.requiredWeapon
+					combatant.stats.equippedArmor = evolution.requiredArmor
+					combatant.switch_evolution(evolution, prevEvolution)
 					reportContents += evolution.evolutionSaveName + ' (evo ' + combatant.save_name() + '),'
 					reportContents += csv_combatant_all_stat_growths_helper(combatant)
+					prevEvolution = evolution
 	return reportContents
 
 func csv_combatant_all_stat_growths_helper(combatant: Combatant) -> String:

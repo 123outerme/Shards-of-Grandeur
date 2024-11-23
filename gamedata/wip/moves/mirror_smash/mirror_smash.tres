@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://bejc8a70uu4hn"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_t6u36"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_wf814"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/jinx.gd" id="2_n0q7s"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_0v15q"]
+
+[sub_resource type="Resource" id="Resource_ohrti"]
+script = ExtResource("2_n0q7s")
+type = 6
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_83sie"]
+script = ExtResource("1_wf814")
+role = 1
+orbChange = 1
+power = 45
+lifesteal = 0.0
+targets = 5
+statusEffect = SubResource("Resource_ohrti")
+selfGetsStatus = false
+statusChance = 0.6
+
+[sub_resource type="Resource" id="Resource_6jwb0"]
+script = ExtResource("2_n0q7s")
+type = 6
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_lqsbn"]
+script = ExtResource("4_0v15q")
+powerPerOrb = 5
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 6
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.05
+
+[sub_resource type="Resource" id="Resource_5gy2a"]
+script = ExtResource("1_wf814")
+role = 1
+orbChange = -2
+power = 55
+lifesteal = 0.0
+targets = 5
+statusEffect = SubResource("Resource_6jwb0")
+selfGetsStatus = false
+statusChance = 0.65
+surgeChanges = SubResource("Resource_lqsbn")
+
+[resource]
+script = ExtResource("1_t6u36")
+moveName = "Mirror Smash"
+requiredLv = 1
+category = 0
+element = 7
+chargeEffect = SubResource("Resource_83sie")
+surgeEffect = SubResource("Resource_5gy2a")
+description = "Destroy a mirror and send its fragments at the opponent! Bad luck may ensue..."
+moveLearnedText = ""

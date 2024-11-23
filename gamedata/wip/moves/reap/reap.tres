@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=5 format=3 uid="uid://cm5canpfva53p"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_3a80f"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_sqloq"]
+
+[sub_resource type="Resource" id="Resource_kxm0d"]
+script = ExtResource("1_3a80f")
+role = 1
+orbChange = 0
+power = 0
+lifesteal = 0.0
+targets = 1
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_413yd"]
+script = ExtResource("1_3a80f")
+role = 1
+orbChange = 0
+power = 0
+lifesteal = 0.0
+targets = 1
+selfGetsStatus = false
+statusChance = 0.0
+
+[resource]
+script = ExtResource("1_sqloq")
+moveName = "Reap"
+requiredLv = 1
+category = 0
+element = 6
+chargeEffect = SubResource("Resource_kxm0d")
+surgeEffect = SubResource("Resource_413yd")
+description = "Collect the fruits of planted labor with one fell swoop."
+moveLearnedText = ""
