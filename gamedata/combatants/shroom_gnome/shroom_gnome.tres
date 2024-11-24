@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://dlvou480hinjf"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://dlvou480hinjf"]
 
 [ext_resource type="Resource" uid="uid://bot66oub5eciv" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_rewards.tres" id="1_0y103"]
 [ext_resource type="Resource" uid="uid://cbkyinxw6ykli" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_ai.tres" id="1_3u60w"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bapoydifpmefj" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_growth.tres" id="3_pxbev"]
 [ext_resource type="Resource" uid="uid://1v0bjo7wtbgq" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_evolutions.tres" id="4_rf5ax"]
 [ext_resource type="Resource" uid="uid://cplxv255kicip" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_effectiveness.tres" id="5_bmxru"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_fyi82"]
 [ext_resource type="Resource" uid="uid://choamg7fqp3xo" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_sprite.tres" id="5_msbff"]
 [ext_resource type="Resource" uid="uid://cnr1ewj2v6xf0" path="res://gamedata/combatants/shroom_gnome/shroom_gnome_stat_alloc_strategy.tres" id="6_ocfub"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_vo7xr"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_fyi82")]([])
+triggeredRunes = Array[ExtResource("5_fyi82")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("12_q5a5h")
 dropTable = ExtResource("1_0y103")
 statAllocationStrategy = ExtResource("6_ocfub")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1

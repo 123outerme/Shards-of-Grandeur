@@ -14,6 +14,8 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String](["king_rat"])
 prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -21,6 +23,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_k7ytn")
@@ -28,4 +31,4 @@ id = "king_rat"
 title = "King Rat"
 storyRequirements = Array[ExtResource("2_a28lk")]([SubResource("Resource_mehpv")])
 description = "The King Rat is the leader of all Giant Rats. He is a lot larger and tougher than your regular Rat. His weakness lies in the Stars above, but he cannot be made to Bleed easily."
-childrenEntries = Array[ExtResource("1_k7ytn")]([])
+sortOrder = 0

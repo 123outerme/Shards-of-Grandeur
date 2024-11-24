@@ -14,6 +14,8 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String](["mystic_scorpion"])
 prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -21,6 +23,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
 
 [resource]
 script = ExtResource("1_kmrk0")
@@ -28,4 +31,4 @@ id = "mystic_scorpion"
 title = "Mystic Scorpion"
 storyRequirements = Array[ExtResource("2_whawt")]([SubResource("Resource_qbahx")])
 description = "The Mystic Scorpion is a familiar fit for the more malicious sorcerer. This carapaced crawler has a knotted tail, twisted around to shiny, magical points."
-childrenEntries = Array[ExtResource("1_kmrk0")]([])
+sortOrder = 0
