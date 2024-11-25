@@ -1,9 +1,16 @@
 extends Area2D
 class_name CameraHoldZone
 
+## if true, will freeze camera movement in the X-direction (good for horizontal warp zones)
 @export var holdX: bool = true
+
+## if true, will freeze camera movement in the Y-direction (good for vertical warp zones)
 @export var holdY: bool = true
+
+## if true, will not hold the camera when the player enters
 @export var disabled: bool = false
+
+## if true, will set the player's camera to the `PlayerWarpCamPos` marker on entering the zone, otherwise will hold on the camera's last position before entering
 @export var usePlayerWarpCamMarker: bool = false
 
 @onready var playerWarpCamPos: Marker2D = get_node('PlayerWarpCamPos')

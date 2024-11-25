@@ -46,7 +46,7 @@ savedTextIdx = 0
 atlas = ExtResource("4_fso7v")
 region = Rect2(48, 128, 16, 16)
 
-[sub_resource type="Resource" id="Resource_1svkw"]
+[sub_resource type="Resource" id="Resource_p710d"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -69,7 +69,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_m5248"]
+[sub_resource type="Resource" id="Resource_vf0fg"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -92,7 +92,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_828wa"]
+[sub_resource type="Resource" id="Resource_stnnn"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -115,7 +115,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_fykt0"]
+[sub_resource type="Resource" id="Resource_gqx57"]
 script = ExtResource("5_b34g3")
 saveName = "npc"
 spriteState = "default"
@@ -221,7 +221,7 @@ size = Vector2(56, 87)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_octrj")
-metadata/_edit_horizontal_guides_ = [637.0, -170.0, -184.0, -148.0, -168.0, 198.0, 192.0, 330.0]
+metadata/_edit_horizontal_guides_ = [637.0, -170.0, -184.0, -148.0, -168.0, 198.0, 192.0, 330.0, -475.0]
 metadata/_edit_vertical_guides_ = [264.0, 216.0, 232.0, 375.0, 308.0, -84.0, -131.0, 88.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
@@ -271,7 +271,7 @@ saveName = "nomad_camp_pearl"
 position = Vector2(36, 312)
 displayName = "Nomad"
 saveName = "nomad1"
-data = SubResource("Resource_1svkw")
+data = SubResource("Resource_p710d")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("7_cc8jb"), ExtResource("8_h6cop"), ExtResource("9_qdse3"), ExtResource("10_fbn57")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad1" index="0"]
@@ -294,7 +294,7 @@ visible = false
 position = Vector2(573, -173)
 collision_layer = 0
 displayName = "Elder"
-data = SubResource("Resource_m5248")
+data = SubResource("Resource_vf0fg")
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("9_1ydyl")
@@ -315,7 +315,7 @@ position = Vector2(216, -211)
 displayName = "Nomad"
 saveName = "nomad3"
 loadFlipH = true
-data = SubResource("Resource_828wa")
+data = SubResource("Resource_stnnn")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("9_m812v"), ExtResource("13_5qoy4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad3" index="0"]
@@ -337,7 +337,7 @@ visible = false
 position = Vector2(-124, 217)
 displayName = "Kid"
 saveName = "nomad_kid"
-data = SubResource("Resource_fykt0")
+data = SubResource("Resource_gqx57")
 dialogueEntries = Array[ExtResource("6_kxilb")]([ExtResource("16_h0640")])
 
 [node name="NPCSprite" parent="TilemapRoot/NomadKid" index="0"]
@@ -414,7 +414,9 @@ cutscenes = Array[ExtResource("10_s7muu")]([ExtResource("11_7ifcc")])
 
 [node name="NorthWarpZone" parent="." instance=ExtResource("8_sta7v")]
 position = Vector2(0, -499)
-warpEnabled = false
+mapName = "forbidden_desert_north"
+mapPos = Vector2(-96, 748)
+useHorizontalOffset = true
 
 [node name="WarpArea" parent="NorthWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_3map0")

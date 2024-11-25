@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://dkj0nn505ikid"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_x5sg0"]
+[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battletheme_uvutudx_demo.mp3" id="2_8h22d"]
+[ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="2_q4vxc"]
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="2_r84jc"]
+[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/newbattlethemev2.mp3" id="3_tljnc"]
+
+[sub_resource type="Resource" id="Resource_at8q2"]
+script = ExtResource("1_x5sg0")
+path = "forbidden_desert/forbidden_desert_north"
+overworldTheme = ExtResource("2_q4vxc")
+battleMapName = "desert_battle_map"
+battleMusic = Array[AudioStream]([ExtResource("2_8h22d"), ExtResource("3_tljnc")])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("2_r84jc")
+locationName = "Forbidden Desert"
+maps = Array[ExtResource("1_x5sg0")]([SubResource("Resource_at8q2")])
+mapLocation = 0

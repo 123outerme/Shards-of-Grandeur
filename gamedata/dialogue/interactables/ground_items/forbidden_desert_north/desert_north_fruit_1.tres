@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://xbdj66rplp28"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_huolp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_phdsc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_yb1y5"]
+
+[sub_resource type="Resource" id="Resource_ixuxf"]
+script = ExtResource("1_huolp")
+lines = Array[String](["These fruits... they prove there's still life in this desert. It's not a wasteland yet."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_yb1y5")]([])
+
+[resource]
+script = ExtResource("2_phdsc")
+entryId = ""
+items = Array[ExtResource("1_huolp")]([SubResource("Resource_ixuxf")])
+closesDialogue = false
+fullHealsPlayer = false

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://c8ekdfjhespe"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nji1p"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_74cur"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1087l"]
+
+[sub_resource type="Resource" id="Resource_ec73s"]
+script = ExtResource("1_nji1p")
+lines = Array[String](["I'm surprised the water in here isn't boiled, considering it's sitting directly in the sun."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_1087l")]([])
+
+[resource]
+script = ExtResource("2_74cur")
+entryId = ""
+items = Array[ExtResource("1_nji1p")]([SubResource("Resource_ec73s")])
+closesDialogue = false
+fullHealsPlayer = false
