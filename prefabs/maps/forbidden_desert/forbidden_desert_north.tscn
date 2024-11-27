@@ -1,4 +1,4 @@
-[gd_scene load_steps=195 format=4 uid="uid://qxj11axffa4k"]
+[gd_scene load_steps=257 format=4 uid="uid://qxj11axffa4k"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_3dey3"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7i8qa"]
@@ -12,9 +12,11 @@
 [ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="6_iuhyv"]
 [ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="7_s4oi3"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="7_t1f3e"]
+[ext_resource type="Resource" uid="uid://b0e5gkm18p7hp" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_north/desert_north_memshard_1.tres" id="8_l66jp"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="8_lrdtt"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="9_kl2sm"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="9_pp601"]
+[ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard_1.tres" id="9_yd6na"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="10_km610"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="11_s30fn"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="13_hp34i"]
@@ -31,6 +33,15 @@ item = ExtResource("6_iuhyv")
 wasPickedUp = false
 speaker = ""
 dialogueEntry = ExtResource("5_h7ad5")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_p67gy"]
+script = ExtResource("7_t1f3e")
+item = ExtResource("9_yd6na")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("8_l66jp")
 savedItemIdx = 0
 savedTextIdx = 0
 
@@ -757,71 +768,324 @@ battleMapPath = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fjqu"]
 size = Vector2(392, 220)
 
+[sub_resource type="Resource" id="Resource_org5d"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_15"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_4grth"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_hrp5r"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_pwjg7"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_drogc"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_nnvp4"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_7j14n"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.1
+
+[sub_resource type="Resource" id="Resource_c33b0"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
+
 [sub_resource type="Resource" id="Resource_wooaf"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 17
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_4grth"), SubResource("Resource_hrp5r"), SubResource("Resource_pwjg7")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_drogc"), SubResource("Resource_nnvp4"), SubResource("Resource_7j14n"), SubResource("Resource_c33b0")])
+combatant1 = ExtResource("15_7omgt")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k217t"]
+size = Vector2(335, 226)
+
+[sub_resource type="Resource" id="Resource_368jm"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_16"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_u6pag"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_re6l2"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_x082p"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.1
+
+[sub_resource type="Resource" id="Resource_ldcfh"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_elafr"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_qu5lq"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_iqvdl"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.1
+
+[sub_resource type="Resource" id="Resource_u6604"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
 
 [sub_resource type="Resource" id="Resource_cumwg"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_u6pag"), SubResource("Resource_re6l2"), SubResource("Resource_x082p"), SubResource("Resource_ldcfh")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_elafr"), SubResource("Resource_qu5lq"), SubResource("Resource_iqvdl"), SubResource("Resource_u6604")])
+combatant1 = ExtResource("14_s2s4g")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01u0f"]
+size = Vector2(267, 247)
+
+[sub_resource type="Resource" id="Resource_12d6e"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_17"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_1gw6q"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("16_0i17k")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_b76k6"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_036q4"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.15
+
+[sub_resource type="Resource" id="Resource_xlrsy"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_ehvvw"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_oud45"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_c3ber"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.15
+
+[sub_resource type="Resource" id="Resource_uiikq"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
 
 [sub_resource type="Resource" id="Resource_egya4"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 17
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_1gw6q"), SubResource("Resource_b76k6"), SubResource("Resource_036q4"), SubResource("Resource_xlrsy")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_ehvvw"), SubResource("Resource_oud45"), SubResource("Resource_c3ber"), SubResource("Resource_uiikq")])
+combatant1 = ExtResource("16_0i17k")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4phjk"]
+size = Vector2(301, 251)
+
+[sub_resource type="Resource" id="Resource_5etpv"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_18"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_xth6n"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_smfwp"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("16_0i17k")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_xi2xd"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_idrlv"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_ro6jt"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("16_0i17k")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_hffr2"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
 
 [sub_resource type="Resource" id="Resource_i3jc2"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 17
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_xth6n"), SubResource("Resource_smfwp"), SubResource("Resource_xi2xd")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_idrlv"), SubResource("Resource_ro6jt"), SubResource("Resource_hffr2")])
+combatant1 = ExtResource("15_7omgt")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iokxs"]
+size = Vector2(279, 245)
+
+[sub_resource type="Resource" id="Resource_aetsi"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_19"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_ecofa"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_43vw4"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_tjslh"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_d3e4h"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("15_7omgt")
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_nohhm"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("16_0i17k")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_txj07"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
 
 [sub_resource type="Resource" id="Resource_pt3la"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 17
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_ecofa"), SubResource("Resource_43vw4"), SubResource("Resource_tjslh")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_d3e4h"), SubResource("Resource_nohhm"), SubResource("Resource_txj07")])
+combatant1 = ExtResource("14_s2s4g")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd8ad"]
+size = Vector2(302, 271)
+
+[sub_resource type="Resource" id="Resource_fciab"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_20"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_a38pj"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("9_kl2sm")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_cbpyb"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_86yon"]
+script = ExtResource("8_lrdtt")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_5elic"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("9_kl2sm")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_i0x15"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("14_s2s4g")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_q8y7c"]
+script = ExtResource("8_lrdtt")
+weight = 0.3
 
 [sub_resource type="Resource" id="Resource_ukf6a"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_a38pj"), SubResource("Resource_cbpyb"), SubResource("Resource_86yon")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_5elic"), SubResource("Resource_i0x15"), SubResource("Resource_q8y7c")])
+combatant1 = ExtResource("9_kl2sm")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ddph"]
+size = Vector2(316, 243)
 
 [sub_resource type="Resource" id="Resource_6gjs0"]
 script = ExtResource("6_i7xkr")
@@ -872,16 +1136,44 @@ battleMapPath = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3h8d"]
 size = Vector2(205, 196)
 
+[sub_resource type="Resource" id="Resource_rjgxb"]
+script = ExtResource("6_i7xkr")
+spawnerId = "desert_north_22"
+disabled = false
+spawnedLastEncounter = false
+
+[sub_resource type="Resource" id="Resource_v32bs"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_0bi32"]
+script = ExtResource("8_lrdtt")
+weight = 0.15
+
+[sub_resource type="Resource" id="Resource_if0uy"]
+script = ExtResource("8_lrdtt")
+combatant = ExtResource("17_mw1lr")
+weight = 0.75
+
+[sub_resource type="Resource" id="Resource_5cvh4"]
+script = ExtResource("8_lrdtt")
+weight = 0.25
+
 [sub_resource type="Resource" id="Resource_p1oac"]
 script = ExtResource("9_pp601")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
-combatant2Options = Array[ExtResource("8_lrdtt")]([])
-combatant3Options = Array[ExtResource("8_lrdtt")]([])
+combatant2Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_v32bs"), SubResource("Resource_0bi32")])
+combatant3Options = Array[ExtResource("8_lrdtt")]([SubResource("Resource_if0uy"), SubResource("Resource_5cvh4")])
+combatant1 = ExtResource("17_mw1lr")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2uav"]
+size = Vector2(258, 188)
 
 [sub_resource type="Resource" id="Resource_4jpjd"]
 script = ExtResource("6_i7xkr")
@@ -1042,6 +1334,8 @@ saveName = "desert_north_water_1"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_0enei")]
 position = Vector2(-836, -1510)
+pickedUpItem = SubResource("Resource_p67gy")
+saveName = "desert_north_memshard_1"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_0enei")]
 position = Vector2(-629, -434)
@@ -1226,36 +1520,66 @@ shape = SubResource("RectangleShape2D_1fjqu")
 
 [node name="EnemySpawner15" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(813, -137)
+spawnerData = SubResource("Resource_org5d")
 enemyEncounter = SubResource("Resource_wooaf")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner15/SpawnArea" index="0"]
+position = Vector2(-7.5, -9)
+shape = SubResource("RectangleShape2D_k217t")
+
 [node name="EnemySpawner16" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(560, -284)
+spawnerData = SubResource("Resource_368jm")
 enemyEncounter = SubResource("Resource_cumwg")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner16/SpawnArea" index="0"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_01u0f")
+
 [node name="EnemySpawner17" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(544, -658)
+spawnerData = SubResource("Resource_12d6e")
 enemyEncounter = SubResource("Resource_egya4")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner17/SpawnArea" index="0"]
+position = Vector2(1.5, -3.5)
+shape = SubResource("RectangleShape2D_4phjk")
+
 [node name="EnemySpawner18" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(-687, -693)
+spawnerData = SubResource("Resource_5etpv")
 enemyEncounter = SubResource("Resource_i3jc2")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner18/SpawnArea" index="0"]
+position = Vector2(1.5, -15.5)
+shape = SubResource("RectangleShape2D_iokxs")
+
 [node name="EnemySpawner19" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(-874, -636)
+spawnerData = SubResource("Resource_aetsi")
 enemyEncounter = SubResource("Resource_pt3la")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner19/SpawnArea" index="0"]
+position = Vector2(-3, -1.5)
+shape = SubResource("RectangleShape2D_vd8ad")
+
 [node name="EnemySpawner20" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
-position = Vector2(-1019, -498)
+position = Vector2(-1046, -467)
+spawnerData = SubResource("Resource_fciab")
 enemyEncounter = SubResource("Resource_ukf6a")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner20/SpawnArea" index="0"]
+position = Vector2(-3, 4.5)
+shape = SubResource("RectangleShape2D_1ddph")
+
 [node name="EnemySpawner21" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
-position = Vector2(-1161, -348)
+position = Vector2(-1171, -323)
 spawnerData = SubResource("Resource_6gjs0")
 enemyEncounter = SubResource("Resource_ekiwm")
 tilemap = NodePath("../TilemapRoot")
@@ -1266,8 +1590,13 @@ shape = SubResource("RectangleShape2D_n3h8d")
 
 [node name="EnemySpawner22" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(-1123, -152)
+spawnerData = SubResource("Resource_rjgxb")
 enemyEncounter = SubResource("Resource_p1oac")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner22/SpawnArea" index="0"]
+position = Vector2(8, -1)
+shape = SubResource("RectangleShape2D_c2uav")
 
 [node name="EnemySpawner23" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("5_tmvrr")]
 position = Vector2(-407, 406)
@@ -1323,7 +1652,14 @@ shape = SubResource("RectangleShape2D_c63bi")
 [editable path="EnemySpawner12"]
 [editable path="EnemySpawner13"]
 [editable path="EnemySpawner14"]
+[editable path="EnemySpawner15"]
+[editable path="EnemySpawner16"]
+[editable path="EnemySpawner17"]
+[editable path="EnemySpawner18"]
+[editable path="EnemySpawner19"]
+[editable path="EnemySpawner20"]
 [editable path="EnemySpawner21"]
+[editable path="EnemySpawner22"]
 [editable path="EnemySpawner23"]
 [editable path="EnemySpawner24"]
 [editable path="CameraHoldZone"]
