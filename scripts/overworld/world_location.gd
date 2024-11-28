@@ -4,6 +4,7 @@ class_name WorldLocation
 enum MapLocation {
 	UNKNOWN = 0, ## Unknown location (not shown on map)
 	GRANDSTONE = 10, ## Grandstone
+	GRANDSTONE_FOREST = 11, ## Grandstone Forest
 	STANDSTILL = 20, ## Standstill
 	HILLTOP_FOREST = 21, ## Hilltop Forest
 	MUSHROOM_GROTTO = 22, ## Mushroom Grotto
@@ -26,6 +27,8 @@ static func map_location_to_string(location: MapLocation) -> String:
 			return 'Unknown'
 		MapLocation.GRANDSTONE:
 			return 'Grandstone'
+		MapLocation.GRANDSTONE_FOREST:
+			return 'Grandstone Forest'
 		MapLocation.STANDSTILL:
 			return 'Standstill'
 		MapLocation.HILLTOP_FOREST:
@@ -34,13 +37,9 @@ static func map_location_to_string(location: MapLocation) -> String:
 			return 'Leavenport'
 		MapLocation.MUSHROOM_GROTTO:
 			return 'Mushroom Grotto'
-		MapLocation.SEA_LEG_SWAMP_EAST:
+		MapLocation.SEA_LEG_SWAMP_EAST, MapLocation.SEA_LEG_SWAMP_SOUTH:
 			return 'Sea Leg Swamp'
-		MapLocation.SEA_LEG_SWAMP_SOUTH:
-			return 'Sea Leg Swamp'
-		MapLocation.FORBIDDEN_DESERT_SOUTH:
-			return 'Forbidden Desert'
-		MapLocation.FORBIDDEN_DESERT_EAST:
+		MapLocation.FORBIDDEN_DESERT_SOUTH, MapLocation.FORBIDDEN_DESERT_EAST:
 			return 'Forbidden Desert'
 		MapLocation.NOMAD_CAMP:
 			return 'Nomad Camp'

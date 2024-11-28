@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b75lwxta5dg8u"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3ed05"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_moe2j"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_yfa5l"]
+
+[sub_resource type="Resource" id="Resource_4uper"]
+script = ExtResource("1_3ed05")
+lines = Array[String](["<=== To the Quarry
+To Grandstone ===>"])
+animation = "stand"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_moe2j")]([])
+
+[resource]
+script = ExtResource("2_yfa5l")
+entryId = ""
+items = Array[ExtResource("1_3ed05")]([SubResource("Resource_4uper")])
+closesDialogue = false
+fullHealsPlayer = false

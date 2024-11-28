@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://bvaim48k61ors"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://bvaim48k61ors"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_1fcs0"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_y4qov"]
+[ext_resource type="Resource" uid="uid://b101o7kvw7n3f" path="res://gamedata/items/armor/shady_cloak.tres" id="3_3lhk6"]
+
+[sub_resource type="Resource" id="Resource_2okbj"]
+script = ExtResource("2_y4qov")
+armor = ExtResource("3_3lhk6")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_ot5js"]
+script = ExtResource("2_y4qov")
+weight = 0.65
 
 [resource]
 script = ExtResource("1_1fcs0")
-weightedEquipment = Array[ExtResource("2_y4qov")]([])
+weightedEquipment = Array[ExtResource("2_y4qov")]([SubResource("Resource_2okbj"), SubResource("Resource_ot5js")])
