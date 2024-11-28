@@ -1,4 +1,4 @@
-[gd_scene load_steps=287 format=4 uid="uid://qxj11axffa4k"]
+[gd_scene load_steps=290 format=4 uid="uid://qxj11axffa4k"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_3dey3"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7i8qa"]
@@ -34,6 +34,7 @@
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="17_mw1lr"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="18_etsbx"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="21_exyyq"]
+[ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="35_pf670"]
 
 [sub_resource type="Resource" id="Resource_1l10y"]
 script = ExtResource("7_0qtls")
@@ -1481,6 +1482,12 @@ size = Vector2(102, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c63bi"]
 size = Vector2(115, 75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ery5e"]
+size = Vector2(150, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic52g"]
+size = Vector2(249, 20)
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_3dey3")
 metadata/_edit_horizontal_guides_ = [748.0, -1624.0]
@@ -1927,6 +1934,19 @@ holdX = false
 position = Vector2(-6.5, -27.5)
 shape = SubResource("RectangleShape2D_c63bi")
 
+[node name="EnemyDeaggroZone" parent="." instance=ExtResource("35_pf670")]
+position = Vector2(-96, 646)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone" index="0"]
+shape = SubResource("RectangleShape2D_ery5e")
+
+[node name="EnemyDeaggroZone2" parent="." instance=ExtResource("35_pf670")]
+position = Vector2(-537, -1402)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone2" index="0"]
+position = Vector2(22.5, 0)
+shape = SubResource("RectangleShape2D_ic52g")
+
 [editable path="TilemapRoot/PuzzleDecoration"]
 [editable path="TilemapRoot/PuzzleDecoration/AnimatedDecoration"]
 [editable path="NomadCampWarpZone"]
@@ -1958,3 +1978,5 @@ shape = SubResource("RectangleShape2D_c63bi")
 [editable path="EnemySpawner24"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
+[editable path="EnemyDeaggroZone"]
+[editable path="EnemyDeaggroZone2"]
