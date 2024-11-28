@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://crjvuwqi43lts"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_s68x2"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0cn7c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_nopg2"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_4ej8w"]
+[ext_resource type="Resource" uid="uid://b26xnxh1rnhut" path="res://gamedata/dialogue/interactables/puzzles/desert_key_puzzle/desert_key_puzzle_solveno.tres" id="3_4hrii"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_6oq87"]
+[ext_resource type="Resource" uid="uid://c5a1cl6yopaya" path="res://gamedata/dialogue/interactables/puzzles/desert_key_puzzle/desert_key_puzzle_solveyes.tres" id="5_0uiv8"]
+
+[sub_resource type="Resource" id="Resource_3nssy"]
+script = ExtResource("2_0cn7c")
+choiceBtn = "No"
+leadsTo = ExtResource("3_4hrii")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_4ej8w")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_83tpc"]
+script = ExtResource("4_6oq87")
+acceptsSolve = true
+choiceBtn = "Yes"
+leadsTo = ExtResource("5_0uiv8")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_4ej8w")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_vns43"]
+script = ExtResource("1_s68x2")
+lines = Array[String](["This is the chest, should I put the key in?"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0cn7c")]([SubResource("Resource_3nssy"), SubResource("Resource_83tpc")])
+
+[resource]
+script = ExtResource("2_nopg2")
+entryId = ""
+items = Array[ExtResource("1_s68x2")]([SubResource("Resource_vns43")])
+closesDialogue = false
+fullHealsPlayer = false

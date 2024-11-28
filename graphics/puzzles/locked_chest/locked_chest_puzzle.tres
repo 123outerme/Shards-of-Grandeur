@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bhverp10m4tc7"]
+
+[ext_resource type="Texture2D" uid="uid://sdywne4t50sb" path="res://graphics/puzzles/locked_chest/locked_chest_puzzle.png" id="1_scf15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxjts"]
+atlas = ExtResource("1_scf15")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msb4s"]
+atlas = ExtResource("1_scf15")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc5fc"]
+atlas = ExtResource("1_scf15")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yubpy"]
+atlas = ExtResource("1_scf15")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gftrm"]
+atlas = ExtResource("1_scf15")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20gwp"]
+atlas = ExtResource("1_scf15")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxjts")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msb4s")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc5fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yubpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gftrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20gwp")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 6.0
+}]

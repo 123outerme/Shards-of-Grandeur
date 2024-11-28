@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b26xnxh1rnhut"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7d3sm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e68xd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_vhsdh"]
+
+[sub_resource type="Resource" id="Resource_4vcnu"]
+script = ExtResource("1_7d3sm")
+lines = Array[String](["I don't think I'll try the key after all."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_e68xd")]([])
+
+[resource]
+script = ExtResource("2_vhsdh")
+entryId = ""
+items = Array[ExtResource("1_7d3sm")]([SubResource("Resource_4vcnu")])
+closesDialogue = true
+fullHealsPlayer = false

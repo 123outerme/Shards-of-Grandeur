@@ -19,7 +19,8 @@ func show_interact_sprite(showSprite: bool = true):
 		interactSprite.stop()
 
 func play_animation(animName: String):
-	animatedDecoration.play_animation(animName)
+	if animName != '':
+		animatedDecoration.play_animation(animName)
 
 func interact(args: Array = []):
 	if interactAnim != '':

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://cm7kxa4glqohs"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_5m68p"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_eejfx"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rnvat"]
+
+[sub_resource type="Resource" id="Resource_w2ty3"]
+script = ExtResource("2_eejfx")
+name = "Unlock the Box"
+description = "I should keep my eyes peeled for a way to unlock the chest..."
+locations = Array[int]([43])
+type = 5
+count = 1
+objectiveName = "desert_key_chest"
+turnInNames = Array[String]([])
+displayObjName = "Chest"
+displayTurnInName = "Chest"
+customStatusStr = "Unlock the Chest!"
+turnInDialogue = Array[ExtResource("3_rnvat")]([])
+inProgressDialogue = Array[ExtResource("3_rnvat")]([])
+
+[resource]
+script = ExtResource("1_5m68p")
+questName = "A Dusty Box"
+description = "I found this strange locked chest in the desert, north of the Nomad Camp. There must be a key around for it!"
+steps = Array[ExtResource("2_eejfx")]([SubResource("Resource_w2ty3")])
+isMainQuest = false
+advanceActActerComplete = false

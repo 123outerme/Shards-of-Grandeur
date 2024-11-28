@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://r0aw57c04owu"]
+
+[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_y5ys4"]
+[ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="2_l72o7"]
+[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="2_w07fb"]
+
+[sub_resource type="Resource" id="Resource_yyevm"]
+script = ExtResource("1_y5ys4")
+path = "forbidden_desert/forbidden_desert_north_hut"
+overworldTheme = ExtResource("2_l72o7")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+
+[resource]
+script = ExtResource("2_w07fb")
+locationName = "Forbidden Desert"
+maps = Array[ExtResource("1_y5ys4")]([SubResource("Resource_yyevm")])
+mapLocation = 43
