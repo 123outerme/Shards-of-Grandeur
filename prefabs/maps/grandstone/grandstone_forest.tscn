@@ -24,7 +24,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="14_vy2lx"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="17_35igi"]
 
-[sub_resource type="Resource" id="Resource_itrfx"]
+[sub_resource type="Resource" id="Resource_kf1ce"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -53,7 +53,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_m6so7"]
+[sub_resource type="Resource" id="Resource_5eqoo"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -82,7 +82,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_nve6q"]
+[sub_resource type="Resource" id="Resource_bu0gt"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -319,7 +319,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_itrfx")
+data = SubResource("Resource_kf1ce")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -361,7 +361,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("11_85ta7")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_m6so7")
+data = SubResource("Resource_5eqoo")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -397,7 +397,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_nve6q")
+data = SubResource("Resource_bu0gt")
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
 sprite_frames = ExtResource("14_vy2lx")
