@@ -332,6 +332,10 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 				defender.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+			if len(eventTexts) < len(eventTextUpdates):
+				for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
+					if eventTextUpdates[eventTextUpdateIdx] != Callable():
+						eventTextUpdates[eventTextUpdateIdx].call()
 		else:
 			for update: Callable in eventTextUpdates:
 				if update != Callable():
@@ -375,6 +379,10 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 				user.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
+			if len(eventTexts) < len(eventTextUpdates):
+				for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
+					if eventTextUpdates[eventTextUpdateIdx] != Callable():
+						eventTextUpdates[eventTextUpdateIdx].call()
 		else:
 			for update: Callable in eventTextUpdates:
 				if update != Callable():
@@ -460,6 +468,10 @@ func play_intermediate_round_animations(state: BattleState):
 						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
 					subjectNode.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
 					playedEventTexts = true
+				if len(eventTexts) < len(eventTextUpdates):
+					for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
+						if eventTextUpdates[eventTextUpdateIdx] != Callable():
+							eventTextUpdates[eventTextUpdateIdx].call()
 			else:
 				for update: Callable in eventTextUpdates:
 					if update != Callable():
@@ -579,6 +591,10 @@ func play_triggered_rune_animations() -> void:
 								playedNodeTextsCount += 1
 								playedEventTextsCount += 1
 							maxTextDelay = max(maxTextDelay, textDelayAccum)
+							if len(combatantTexts) < len(combatantTextUpdates):
+								for eventTextUpdateIdx: int in range(len(combatantTexts), len(combatantTextUpdates[cNode.battlePosition])):
+									if combatantTextUpdates[cNode.battlePosition][eventTextUpdateIdx] != Callable():
+										combatantTextUpdates[cNode.battlePosition][eventTextUpdateIdx].call()
 				else:
 					for update: Callable in eventTextUpdates:
 						if update != Callable():
@@ -599,6 +615,8 @@ func play_triggered_rune_animations() -> void:
 func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 		combatantNode.play_event_text(text, callable, delay, center)
+	elif callable != Callable():
+		callable.call()
 
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:

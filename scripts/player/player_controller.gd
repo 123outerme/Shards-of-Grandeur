@@ -625,6 +625,11 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 				if interactableDialogue.dialogueEntry.givesItem:
 					PlayerResources.inventory.add_item(interactableDialogue.dialogueEntry.givesItem)
 					cam.show_alert('Got Item:\n' + interactableDialogue.dialogueEntry.givesItem.itemName, interactableDialogue.dialogueEntry.givesItem.itemSprite)
+				if interactableDialogue.dialogueEntry.startsQuest != null:
+					if PlayerResources.questInventory.can_start_quest(interactableDialogue.dialogueEntry.startsQuest):
+						var accepted: bool = PlayerResources.questInventory.accept_quest(interactableDialogue.dialogueEntry.startsQuest)
+						if accepted:
+							cam.show_alert('Started Quest:\n' + interactableDialogue.dialogueEntry.startsQuest.questName)
 				if interactableDialogue.dialogueEntry.fullHealsPlayer:
 					PlayerResources.playerInfo.combatant.currentHp = PlayerResources.playerInfo.combatant.stats.maxHp
 					cam.show_alert('Fully Healed!')

@@ -22,6 +22,7 @@ var encounteredPlayer: bool = false
 var waitUntilNavReady: bool = false
 var runningChaseMode: bool = false
 var lastPlayerChaseUpdateTime: float = 0
+var facesRight: bool = false
 
 var encounterColliderOffset: Vector2 = Vector2.ZERO
 
@@ -42,6 +43,8 @@ func _ready():
 	if combatant.get_evolution() != null:
 		combatant.switch_evolution(evolution, null)
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
+	facesRight = combatant.get_sprite_obj().spriteFacesRight
+	enemySprite.flip_h = facesRight
 	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
 	if combatantOverworld != null:
 		if not overrideSpeeds:
@@ -86,9 +89,9 @@ func _process(delta):
 			vel = vel.normalized() * navAgent.max_speed * delta
 		position += vel
 		if vel.x < 0:
-			enemySprite.flip_h = false
+			enemySprite.flip_h = facesRight
 		if vel.x > 0:
-			enemySprite.flip_h = true
+			enemySprite.flip_h = not facesRight
 			encounterColliderShape.position.x = -1 * encounterColliderOffset.x
 			collisionShape.position.x = -1 * encounterColliderOffset.x
 		if vel.length() > 0:

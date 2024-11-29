@@ -8,6 +8,7 @@ var prevMenuControlFobBtnNeighbor: NodePath = ''
 
 @onready var fobButton: Button = get_node("ToggleFobButton")
 @onready var fobTabs: TabContainer = get_node("TabContainer")
+@onready var fobShade: ColorRect = get_node('ColorRect')
 
 var leftOfFobControl: Control = null
 
@@ -51,6 +52,7 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		fobButton.focus_neighbor_left = '.'
 	
 	fobTabs.visible = button_pressed
+	fobShade.visible = button_pressed
 	if button_pressed:
 		for node in battleController.get_all_combatant_nodes():
 			var combatantNode: CombatantNode = node as CombatantNode

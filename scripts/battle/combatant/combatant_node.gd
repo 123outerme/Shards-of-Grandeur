@@ -198,6 +198,7 @@ func change_current_status(newStatus: StatusEffect) -> void:
 	update_hp_tag()
 
 func update_current_tag_stats(updateBattleStorage: bool = true) -> void:
+	# updates the battle storage and/or HP tag with the current battle storage
 	if combatant == null:
 		return
 	if updateBattleStorage:

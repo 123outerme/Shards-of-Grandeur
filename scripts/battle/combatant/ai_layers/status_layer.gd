@@ -33,7 +33,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		target = user
 	
 	if not statusEffect.overwritesOtherStatuses and target.combatant.statusEffect != null:
-			return 1
+		return 0.6 # it CAN status, but not this target, so don't prefer it
 	
 	if statusEffect.potency == StatusEffect.Potency.WEAK:
 		moveWeight += 0.15

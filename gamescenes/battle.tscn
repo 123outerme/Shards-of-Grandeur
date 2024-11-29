@@ -791,6 +791,7 @@ text = "[center]Turn 9999[/center]"
 fit_content = true
 
 [node name="PanelsButtons" type="HBoxContainer" parent="BattleCam/UIPanels"]
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -840,6 +841,21 @@ mouse_filter = 1
 theme = ExtResource("5_3llq4")
 script = ExtResource("14_wt520")
 battleController = NodePath("../../..")
+
+[node name="ColorRect" type="ColorRect" parent="BattleCam/UIPanels/FlowOfBattle"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.431373)
 
 [node name="ToggleFobButton" parent="BattleCam/UIPanels/FlowOfBattle" instance=ExtResource("8_oisw1")]
 layout_mode = 2
@@ -910,6 +926,7 @@ scroll_active = false
 
 [node name="AnimatedBgPanel" parent="BattleCam/UIPanels" instance=ExtResource("27_4cava")]
 visible = false
+z_index = 1
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
@@ -917,6 +934,7 @@ offset_bottom = 360.0
 
 [node name="SummonMinionPanel" parent="BattleCam/UIPanels" instance=ExtResource("20_gbnnj")]
 visible = false
+z_index = 1
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
@@ -924,24 +942,29 @@ offset_bottom = 360.0
 
 [node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("10_4t0i5")]
 visible = false
+z_index = 1
 position = Vector2(-640, -360)
 inBattle = true
 
 [node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("11_05pqh")]
 visible = false
+z_index = 1
 position = Vector2(-640, -360)
 
 [node name="StatsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("17_tq7tc")]
 visible = false
+z_index = 1
 position = Vector2(-640, -360)
 readOnly = true
 
 [node name="PauseMenu" parent="BattleCam/UIPanels" instance=ExtResource("18_h5paw")]
 visible = false
+z_index = 1
 position = Vector2(-640, -360)
 
 [node name="ItemDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("16_m8w6j")]
 visible = false
+z_index = 1
 offset_left = -640.0
 offset_top = -360.0
 offset_right = -640.0

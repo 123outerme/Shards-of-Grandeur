@@ -54,7 +54,7 @@ static func build_stat_changes_texts(statChanges: StatChanges) -> Array[String]:
 
 func load_event_text(eventText: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
 	if eventText == '':
-		callableCalled = true
+		_call_event_callable()
 		event_text_completed.emit()
 		queue_free()
 		return
@@ -82,6 +82,8 @@ func destroy() -> void:
 	_event_text_completed()
 
 func _event_text_completed() -> void:
+	if not callableCalled:
+		_call_event_callable()
 	if eventTextTween != null:
 		eventTextTween.kill()
 		eventTextTween = null
