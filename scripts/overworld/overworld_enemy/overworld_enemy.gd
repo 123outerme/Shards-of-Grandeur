@@ -179,7 +179,7 @@ func _on_nav_agent_target_reached():
 	get_next_patrol_target()
 
 func _on_encounter_collider_area_entered(area):
-	if area.name == "PlayerEventCollider" and spawner != null:
+	if area.name == "PlayerBattleCollider" and spawner != null:
 		if not PlayerFinder.player.inCutscene:
 			# start battle encounter
 			spawner.spawnerData.spawnedLastEncounter = true

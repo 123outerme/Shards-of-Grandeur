@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://prefabs/test/overworld/overworld_enemy_tester.gd" id="1_0slco"]
 [ext_resource type="PackedScene" uid="uid://cqvhw1vxc0cw" path="res://prefabs/entities/overworld_enemy.tscn" id="2_s020o"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="3_0shd1"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_5msn5"]
-[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_wl8oa"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/overworld_enemy_data.gd" id="3_xrcmv"]
 [ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="4_egdec"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_t2rvi"]
@@ -23,7 +23,7 @@ battleMapPath = ""
 
 [sub_resource type="Resource" id="Resource_kqnda"]
 script = ExtResource("3_xrcmv")
-combatant = ExtResource("3_wl8oa")
+combatant = ExtResource("3_0shd1")
 position = Vector2(0, 0)
 disableMovement = true
 encounter = SubResource("Resource_hfhwl")

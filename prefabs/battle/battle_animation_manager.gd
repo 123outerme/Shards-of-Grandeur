@@ -295,14 +295,15 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			if command.type == BattleCommand.Type.MOVE:
 				if command.commandResult.wasBoosted[targetIdx]:
 					# if the command type is a move: calculate the stat changes of the move
-					statChanges = moveEffect.targetStatChanges
+					if moveEffect.targetStatChanges != null:
+						statChanges = moveEffect.targetStatChanges.copy()
 					# if the defender is also the user and there are self-boosts
 					if defender == user and moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 						if statChanges != null:
 							statChanges = statChanges.copy()
 							statChanges.stack(moveEffect.selfStatChanges)
-						else:
-							statChanges = moveEffect.selfStatChanges
+						elif moveEffect.selfStatChanges != null:
+							statChanges = moveEffect.selfStatChanges.copy()
 				if len(command.commandResult.equipmentProcd[targetIdx]) > 0:
 					if statChanges == null:
 						statChanges = StatChanges.new()
@@ -318,7 +319,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				# if the command type is an item (healing item): get the stat changes of the item
 				if command.slot.item.itemType == Item.Type.HEALING:
 					var healing: Healing = command.slot.item as Healing
-					statChanges = healing.statChanges
+					statChanges = healing.statChanges.copy()
 			if statChanges != null and statChanges.has_stat_changes():
 				var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(statChanges)
 				eventTexts.append_array(statChangesTexts)
@@ -455,6 +456,7 @@ func play_intermediate_round_animations(state: BattleState):
 					elif equipment.itemType == Item.Type.ARMOR:
 						statChanges = (equipment as Armor).statChanges
 					if statChanges != null and statChanges.has_stat_changes():
+						statChanges = statChanges.copy()
 						var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(statChanges)
 						eventTexts.append_array(statChangesTexts)
 						for changeTextIdx: int in range(len(statChangesTexts)):
