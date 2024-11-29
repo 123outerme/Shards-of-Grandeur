@@ -37,8 +37,9 @@ var encounterColliderOffset: Vector2 = Vector2.ZERO
 
 func _ready():
 	combatant = enemyData.combatant
-	combatant.stats.equippedArmor = enemyData.encounter.combatant1Armor
-	combatant.stats.equippedWeapon = enemyData.encounter.combatant1Weapon
+	if enemyData.encounter != null:
+		combatant.stats.equippedArmor = enemyData.encounter.combatant1Armor
+		combatant.stats.equippedWeapon = enemyData.encounter.combatant1Weapon
 	var evolution: Evolution = combatant.get_evolution()
 	if combatant.get_evolution() != null:
 		combatant.switch_evolution(evolution, null)

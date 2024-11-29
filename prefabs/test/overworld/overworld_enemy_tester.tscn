@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://0b1740qcj3wq"]
+
+[ext_resource type="Script" path="res://prefabs/test/overworld/overworld_enemy_tester.gd" id="1_0slco"]
+[ext_resource type="PackedScene" uid="uid://cqvhw1vxc0cw" path="res://prefabs/entities/overworld_enemy.tscn" id="2_s020o"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_5msn5"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_wl8oa"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/overworld_enemy_data.gd" id="3_xrcmv"]
+[ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="4_egdec"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_t2rvi"]
+[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="7_lsvak"]
+
+[sub_resource type="Resource" id="Resource_hfhwl"]
+script = ExtResource("4_t2rvi")
+combatantsMinLevel = 1
+combatantsMaxLevel = 1
+combatantsLvToPlayerLvRatio = 1.0
+combatant2Options = Array[ExtResource("3_5msn5")]([])
+combatant3Options = Array[ExtResource("3_5msn5")]([])
+combatant1Weapon = ExtResource("4_egdec")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""
+
+[sub_resource type="Resource" id="Resource_kqnda"]
+script = ExtResource("3_xrcmv")
+combatant = ExtResource("3_wl8oa")
+position = Vector2(0, 0)
+disableMovement = true
+encounter = SubResource("Resource_hfhwl")
+runningChase = false
+
+[node name="OverworldEnemyTester" type="Node2D"]
+script = ExtResource("1_0slco")
+
+[node name="OverworldEnemy" parent="." instance=ExtResource("2_s020o")]
+enemyData = SubResource("Resource_kqnda")
+
+[node name="EncounterColliderShape" parent="OverworldEnemy/EnemyEncounterCollider" index="0"]
+debug_color = Color(1, 0, 0, 0.42)
+
+[node name="CollisionShape" parent="OverworldEnemy" index="4"]
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="TestCamera" parent="." instance=ExtResource("7_lsvak")]
+
+[node name="ReloadButton" type="Button" parent="."]
+offset_left = 53.0
+offset_top = 69.0
+offset_right = 130.0
+offset_bottom = 98.0
+scale = Vector2(0.5, 0.5)
+text = "Reload"
+
+[node name="WalkStandToggle" type="Button" parent="."]
+offset_left = -84.0
+offset_top = 70.0
+offset_right = -17.0
+offset_bottom = 99.0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+text = "Walk"
+
+[connection signal="pressed" from="ReloadButton" to="." method="_on_reload_button_pressed"]
+[connection signal="toggled" from="WalkStandToggle" to="." method="_on_walk_stand_toggle_toggled"]
+
+[editable path="OverworldEnemy"]
