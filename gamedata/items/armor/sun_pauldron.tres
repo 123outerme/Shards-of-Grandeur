@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://65j2ox48bus3"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_6obmp"]
+[ext_resource type="Texture2D" uid="uid://cj4ipxlhct117" path="res://graphics/items/armor/sun_pauldron.png" id="1_lwh0s"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_w5hep"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_i5vck"]
+
+[sub_resource type="Resource" id="Resource_bpwv2"]
+script = ExtResource("2_w5hep")
+element = 2
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_t8g83"]
+script = ExtResource("3_i5vck")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 4
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_w5hep")]([SubResource("Resource_bpwv2")])
+
+[resource]
+script = ExtResource("1_6obmp")
+statChanges = SubResource("Resource_t8g83")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_lwh0s")
+itemName = "Sun Pauldron"
+itemType = 3
+itemDescription = "This shoulder guard has etchings in the center, what is clearly a symbol of the Sun. When placing it on one shoulder, it starts to cover you in warmth."
+cost = 45
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

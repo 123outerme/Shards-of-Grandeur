@@ -1,4 +1,4 @@
-[gd_scene load_steps=290 format=4 uid="uid://qxj11axffa4k"]
+[gd_scene load_steps=293 format=4 uid="uid://qxj11axffa4k"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_3dey3"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7i8qa"]
@@ -27,7 +27,9 @@
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="10_km610"]
 [ext_resource type="Resource" uid="uid://crjvuwqi43lts" path="res://gamedata/dialogue/interactables/puzzles/desert_key_puzzle/desert_key_puzzle1.tres" id="11_4ecwx"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="11_s30fn"]
+[ext_resource type="Resource" uid="uid://tx5cvnoxksox" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_north/desert_north_sun_pauldron.tres" id="13_gltdd"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="13_hp34i"]
+[ext_resource type="Resource" uid="uid://65j2ox48bus3" path="res://gamedata/items/armor/sun_pauldron.tres" id="14_dvhe7"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="14_s2s4g"]
 [ext_resource type="Resource" uid="uid://206otuqdhqhy" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion.tres" id="15_7omgt"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="16_0i17k"]
@@ -76,6 +78,15 @@ size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ja2"]
 size = Vector2(18, 12)
+
+[sub_resource type="Resource" id="Resource_6xwwo"]
+script = ExtResource("7_t1f3e")
+item = ExtResource("14_dvhe7")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("13_gltdd")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_onbkb"]
 script = ExtResource("7_t1f3e")
@@ -1551,6 +1562,8 @@ shape = SubResource("RectangleShape2D_g6ja2")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_0enei")]
 position = Vector2(-935, 119)
+pickedUpItem = SubResource("Resource_6xwwo")
+saveName = "desert_north_sun_pauldron"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_0enei")]
 position = Vector2(224, -82)

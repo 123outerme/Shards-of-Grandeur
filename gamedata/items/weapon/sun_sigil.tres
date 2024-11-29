@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://bq7iwdicsmx2j"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_ajh5a"]
+[ext_resource type="Texture2D" uid="uid://4t313265wqd8" path="res://graphics/items/weapons/sun_sigil.png" id="1_s580r"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_gojku"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_ms4hf"]
+
+[sub_resource type="Resource" id="Resource_bu187"]
+script = ExtResource("3_gojku")
+element = 2
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_022jh"]
+script = ExtResource("4_ms4hf")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 3
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_gojku")]([SubResource("Resource_bu187")])
+
+[resource]
+script = ExtResource("1_ajh5a")
+statChanges = SubResource("Resource_022jh")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_s580r")
+itemName = "Sun Sigil"
+itemType = 2
+itemDescription = "This small token is stamped with an emblem, of what must certainly be the Sun. Holding it embues you with a sense of warmth."
+cost = 45
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
