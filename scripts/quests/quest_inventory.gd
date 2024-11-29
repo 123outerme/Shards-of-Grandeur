@@ -99,7 +99,7 @@ func auto_update_quests(recursiveCall: bool = false):
 		var step: QuestStep = tracker.get_current_step()
 		if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or tracker.get_step_status(step) == QuestTracker.Status.FAILED:
 			continue # skip this quest if already completed or failed
-		if step.type == QuestStep.Type.COLLECT_ITEM:
+		if step.type == QuestStep.Type.COLLECT_ITEM or step.type == QuestStep.Type.ACQUIRE_ITEM:
 			var count: int = 0
 			for slot in PlayerResources.inventory.inventorySlots:
 				if slot.item.itemName == step.objectiveName:

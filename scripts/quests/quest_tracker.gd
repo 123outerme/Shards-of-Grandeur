@@ -106,6 +106,8 @@ func get_step_status_str(step: QuestStep, getProgress: bool = false) -> String:
 			st += 'Talk to'
 		if step.type == QuestStep.Type.COLLECT_ITEM:
 			st += 'Collect'
+		if step.type == QuestStep.Type.ACQUIRE_ITEM:
+			st += 'Acquire'
 		if step.type == QuestStep.Type.DEFEAT:
 			st += 'Defeat'
 		if step.type == QuestStep.Type.STATIC_ENCOUNTER:

@@ -2,13 +2,14 @@ extends Resource
 class_name QuestStep
 
 enum Type {
-	TALK = 0,
-	COLLECT_ITEM = 1,
-	DEFEAT = 2,
-	CUTSCENE = 3,
-	STATIC_ENCOUNTER = 4,
-	SOLVE_PUZZLE = 5,
-	ALL = -1,
+	TALK = 0, ## talk to an NPC and get to a specific dialogue entry
+	COLLECT_ITEM = 1, ## collect `X` number of items and give them to the turn-in NPC
+	DEFEAT = 2, ## defeat `X` number of enemies
+	CUTSCENE = 3, ## see the specified cutscene
+	STATIC_ENCOUNTER = 4, ## achieve victory in the specified static encounter
+	SOLVE_PUZZLE = 5, ##  solve the specified puzzle
+	ACQUIRE_ITEM = 6, ## acquire `X` number of items, NOT giving them to the turn-in NPC
+	ALL = -1, ## use only for filtering
 }
 
 static func type_to_string(t: Type) -> String:
@@ -17,6 +18,8 @@ static func type_to_string(t: Type) -> String:
 			return 'Talk'
 		Type.COLLECT_ITEM:
 			return 'Collect'
+		Type.ACQUIRE_ITEM:
+			return 'Acquire'
 		Type.DEFEAT:
 			return 'Defeat'
 		Type.STATIC_ENCOUNTER:
