@@ -1,11 +1,58 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=3 format=3 uid="uid://dht7gs2vngcqn"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://dht7gs2vngcqn"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_gkxyl"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_7cqr3"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_sqxsd"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="3_a5gj2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/debuff_layer.gd" id="4_y8asu"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="5_htxfj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="6_1kj65"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="6_em1cm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="7_a3f64"]
+
+[sub_resource type="Resource" id="Resource_xqgm0"]
+script = ExtResource("3_a5gj2")
+aggroStrategy = 0
+weight = 0.35
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_shs3g"]
+script = ExtResource("2_sqxsd")
+healLayer = false
+weight = 0.7
+subLayers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_xqgm0")])
+
+[sub_resource type="Resource" id="Resource_41i4h"]
+script = ExtResource("4_y8asu")
+debuffStrategy = 1
+weight = 0.6
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_r8ldm"]
+script = ExtResource("5_htxfj")
+buffStrategy = 2
+weight = 0.35
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_ggu4i"]
+script = ExtResource("6_em1cm")
+weight = 0.4
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_mshbu"]
+script = ExtResource("6_1kj65")
+weight = 0.2
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_08odm"]
+script = ExtResource("7_a3f64")
+signatureWeight = 1.25
+weight = 0.3
+subLayers = Array[ExtResource("1_gkxyl")]([])
 
 [resource]
 script = ExtResource("2_7cqr3")
-layers = Array[ExtResource("1_gkxyl")]([])
+layers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_shs3g"), SubResource("Resource_41i4h"), SubResource("Resource_r8ldm"), SubResource("Resource_ggu4i"), SubResource("Resource_mshbu"), SubResource("Resource_08odm")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.4
 lastMovesEffect = 0
