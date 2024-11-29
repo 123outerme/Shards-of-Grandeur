@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://46enf3g55g1q"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://46enf3g55g1q"]
 
 [ext_resource type="Resource" uid="uid://bgbosfhun35y8" path="res://gamedata/combatants/etreus/etreus_ai.tres" id="1_15lgi"]
 [ext_resource type="Resource" uid="uid://v2ahalvrgass" path="res://gamedata/combatants/etreus/etreus_rewards.tres" id="1_471x8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bht2dey5uaip7" path="res://gamedata/combatants/etreus/etreus_sprite.tres" id="2_jubff"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="2_mexbd"]
 [ext_resource type="Resource" uid="uid://oth4vp1x7roh" path="res://gamedata/combatants/etreus/etreus_stat_growth.tres" id="3_1rgm2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_4t6s2"]
 [ext_resource type="Resource" uid="uid://43loov7vgt6s" path="res://gamedata/combatants/etreus/etreus_stat_alloc_strategy.tres" id="6_x5imm"]
 [ext_resource type="Resource" uid="uid://bo3ot8xbews4i" path="res://gamedata/combatants/etreus/etreus_equipment.tres" id="7_2oqi4"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_yjpek"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_4t6s2")]([])
+triggeredRunes = Array[ExtResource("5_4t6s2")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("7_2oqi4")
 dropTable = ExtResource("1_471x8")
 statAllocationStrategy = ExtResource("6_x5imm")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1

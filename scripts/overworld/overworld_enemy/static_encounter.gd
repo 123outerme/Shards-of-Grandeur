@@ -2,8 +2,6 @@ extends EnemyEncounter
 class_name StaticEncounter
 
 @export var combatant1Level: int = 1
-@export var combatant1Armor: Armor = null
-@export var combatant1Weapon: Weapon = null
 @export var combatant1Moves: Array[Move] = []
 @export var combatant1Ai: CombatantAi = null
 @export var combatant1ShardSummoned: bool = false
@@ -39,13 +37,13 @@ class_name StaticEncounter
 
 func _init(
 	i_combatant1 = null,
+	i_combatant1Weapon: Weapon = null,
+	i_combatant1Armor: Armor = null,
 	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
 	i_specialRules = SpecialRules.NONE,
 	i_winCon = null,
 	i_customWinText = '',
 	i_combatant1Lv = 1,
-	i_combatant1Armor = null,
-	i_combatant1Weapon = null,
 	i_combatant1Moves: Array[Move] = [],
 	i_combatant1Ai: CombatantAi = null,
 	i_combatant1ShardSummoned = false,
@@ -78,7 +76,7 @@ func _init(
 	i_useRewards = false,
 	i_battleMusic = null,
 ):
-	super(i_combatant1, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
+	super(i_combatant1, i_combatant1Weapon, i_combatant1Armor, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
 	combatant1Level = i_combatant1Lv
 	combatant1Armor = i_combatant1Armor
 	combatant1Weapon = i_combatant1Weapon

@@ -775,8 +775,6 @@ func validate_moves() -> int:
 
 func pick_equipment():
 	if weightedEquipment == null:
-		stats.equippedWeapon = null
-		stats.equippedArmor = null
 		return
 	
 	var choice: int = WeightedThing.pick_item(weightedEquipment.weightedEquipment)

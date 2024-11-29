@@ -9,6 +9,8 @@ enum SpecialRules {
 }
 
 @export var combatant1: Combatant = null
+@export var combatant1Weapon: Weapon = null
+@export var combatant1Armor: Armor = null
 @export var combatant1StatAllocStrat: StatAllocationStrategy = null
 @export_flags('No Items:1', 'No Summons:2', 'Restand On Defeat:4') var specialRules: int = SpecialRules.NONE
 @export var winCon: WinCon = null
@@ -17,6 +19,8 @@ enum SpecialRules {
 
 func _init(
 	i_combatant1: Combatant = null,
+	i_combatant1Weapon: Weapon = null,
+	i_combatant1Armor: Armor = null,
 	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
 	i_specialRules: int = SpecialRules.NONE,
 	i_winCon: WinCon = null,

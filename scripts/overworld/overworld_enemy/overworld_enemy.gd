@@ -36,6 +36,11 @@ var encounterColliderOffset: Vector2 = Vector2.ZERO
 
 func _ready():
 	combatant = enemyData.combatant
+	combatant.stats.equippedArmor = enemyData.encounter.combatant1Armor
+	combatant.stats.equippedWeapon = enemyData.encounter.combatant1Weapon
+	var evolution: Evolution = combatant.get_evolution()
+	if combatant.get_evolution() != null:
+		combatant.switch_evolution(evolution, null)
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
 	if combatantOverworld != null:

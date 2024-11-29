@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://cvjfaxi8fvxu3"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://cvjfaxi8fvxu3"]
 
 [ext_resource type="Resource" uid="uid://3mp3gw6leuv1" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_ai.tres" id="1_34euw"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="1_i6s6x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://biterlld0ykxp" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/2/chain_legion_soldier_3_evolutions.tres" id="2_5o1pe"]
 [ext_resource type="Resource" uid="uid://cqyalxxp2huxe" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_move_effectiveness.tres" id="3_1jxav"]
 [ext_resource type="Resource" uid="uid://dkkji03qnavh" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_equipment.tres" id="3_pgela"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_m631n"]
 [ext_resource type="Resource" uid="uid://d108lbm0236r" path="res://gamedata/combatants/chain_legion_soldier/visual_variants/1/chain_legion_soldier_2_sprite.tres" id="5_o2jev"]
 [ext_resource type="Resource" uid="uid://cj2514570miiv" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_stat_alloc_strategy.tres" id="6_8npba"]
 [ext_resource type="Resource" uid="uid://dq1r1nlas024y" path="res://gamedata/combatants/chain_legion_soldier/chain_legion_soldier_movepool.tres" id="6_w2j4m"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_m631n")]([])
+triggeredRunes = Array[ExtResource("5_m631n")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("3_pgela")
 dropTable = ExtResource("1_tq445")
 statAllocationStrategy = ExtResource("6_8npba")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1

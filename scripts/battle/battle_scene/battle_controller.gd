@@ -157,6 +157,11 @@ func load_into_battle():
 					enemyCombatant1.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
 			else:
 				enemyCombatant1.combatant.pick_equipment()
+			# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
+			if randomEncounter.combatant1Armor != null:
+				enemyCombatant1.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
+			if randomEncounter.combatant1Weapon != null:
+				enemyCombatant1.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.battleAi = enemyCombatant1.combatant.get_ai().copy()

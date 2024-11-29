@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Combatant" load_steps=14 format=3 uid="uid://b14w15l2gg5oc"]
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://b14w15l2gg5oc"]
 
 [ext_resource type="Resource" uid="uid://1q8kcxf52trs" path="res://gamedata/combatants/storm_swarm/storm_swarm_rewards.tres" id="1_ho4yf"]
 [ext_resource type="Resource" uid="uid://blvh1d27lxlkh" path="res://gamedata/combatants/storm_swarm/storm_swarm_evolutions.tres" id="1_qpqep"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://qlmui81cuji5" path="res://gamedata/combatants/storm_swarm/storm_swarm_movepool.tres" id="3_8nsbr"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="3_umtkk"]
 [ext_resource type="Resource" uid="uid://q6grlgkjvwp7" path="res://gamedata/combatants/storm_swarm/storm_swarm_stat_growth.tres" id="4_g6fdu"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_uq8nb"]
 [ext_resource type="Resource" uid="uid://b7ucdjou8e6wg" path="res://gamedata/combatants/storm_swarm/storm_swarm_stat_alloc_strategy.tres" id="6_qgjj6"]
 [ext_resource type="Resource" uid="uid://c36tyo1kj36jw" path="res://gamedata/combatants/storm_swarm/storm_swarm_equipment.tres" id="8_qjipm"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_tjidu"]
@@ -40,6 +41,10 @@ evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
+runes = Array[ExtResource("5_uq8nb")]([])
+triggeredRunes = Array[ExtResource("5_uq8nb")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
@@ -53,3 +58,5 @@ weightedEquipment = ExtResource("8_qjipm")
 dropTable = ExtResource("1_ho4yf")
 statAllocationStrategy = ExtResource("6_qgjj6")
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
