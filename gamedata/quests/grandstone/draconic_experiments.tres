@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://jk5ewwx2efh"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_oi6oo"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_u3dfj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qie4i"]
+
+[sub_resource type="Resource" id="Resource_8q5t2"]
+script = ExtResource("2_u3dfj")
+name = "Standstill's Flames"
+description = ""
+locations = Array[int]([20])
+type = 3
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Help Standstill!"
+turnInDialogue = Array[ExtResource("3_qie4i")]([])
+inProgressDialogue = Array[ExtResource("3_qie4i")]([])
+
+[sub_resource type="Resource" id="Resource_6uslj"]
+script = ExtResource("2_u3dfj")
+name = "The Dragon Shard"
+description = ""
+locations = Array[int]([10])
+type = 1
+count = 1
+objectiveName = "Dragon Shard"
+turnInNames = Array[String](["dr_ildran_gs_cracking"])
+displayObjName = "Dragon Shard"
+displayTurnInName = "Dr. Ildran"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_qie4i")]([])
+inProgressDialogue = Array[ExtResource("3_qie4i")]([])
+
+[sub_resource type="Resource" id="Resource_01hlp"]
+script = ExtResource("2_u3dfj")
+name = "???"
+description = "???"
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "???"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_qie4i")]([])
+inProgressDialogue = Array[ExtResource("3_qie4i")]([])
+
+[resource]
+script = ExtResource("1_oi6oo")
+questName = "Draconic Experiments"
+description = ""
+steps = Array[ExtResource("2_u3dfj")]([SubResource("Resource_8q5t2"), SubResource("Resource_6uslj"), SubResource("Resource_01hlp")])
+isMainQuest = false
+advanceActActerComplete = false

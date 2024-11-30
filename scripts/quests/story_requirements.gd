@@ -47,6 +47,8 @@ class_name StoryRequirements
 ## specified by "<follower ID>"
 @export var prereqHavingFollowers: Array[String] = []
 
+@export var prereqHasItems: Array[InventorySlot] = []
+
 @export_category("Invalidations")
 
 ## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
@@ -73,6 +75,8 @@ class_name StoryRequirements
 ## specified by "<follower ID>"
 @export var invalidFromHavingFollowers: Array[String] = []
 
+@export var invalidFromHavingItems: Array[InventorySlot] = []
+
 func _init(
 	i_minAct: int = 0,
 	i_maxAct: int = -1,
@@ -87,6 +91,7 @@ func _init(
 	i_prereqPuzzles: Array[String] = [],
 	i_prereqEvos: Array[String] = [],
 	i_prereqFollowers: Array[String] = [],
+	i_prereqItems: Array[InventorySlot] = [],
 	i_invalidCompletedQuests: Array[String] = [],
 	i_invalidFailedQuests: Array[String] = [],
 	i_invalidCutscenes: Array[String] = [],
@@ -95,6 +100,7 @@ func _init(
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
 	i_invalidFollowers: Array[String] = [],
+	i_invalidItems: Array[InventorySlot] = [],
 ):
 	minAct = i_minAct
 	maxAct = i_maxAct
@@ -109,6 +115,7 @@ func _init(
 	prereqPuzzles = i_prereqPuzzles
 	prereqDiscoveredEvolutions = i_prereqEvos
 	prereqHavingFollowers = i_prereqFollowers
+	prereqHasItems = i_prereqItems
 	invalidAfterCompletingQuests = i_invalidCompletedQuests
 	invalidAfterFailingQuests = i_invalidFailedQuests
 	invalidAfterCutscenes = i_invalidCutscenes
@@ -117,6 +124,7 @@ func _init(
 	invalidAfterSpecialBattles = i_invalidBattles
 	invalidAfterSolvingPuzzles = i_invalidPuzzles
 	invalidFromHavingFollowers = i_invalidFollowers
+	invalidFromHavingItems = i_invalidItems
 
 func is_valid() -> bool:
 	if Engine.is_editor_hint():
@@ -180,6 +188,14 @@ func is_valid() -> bool:
 		if not PlayerResources.playerInfo.has_active_follower(followerId):
 			return false
 	
+	for inventorySlot: InventorySlot in prereqHasItems:
+		var slot: InventorySlot = PlayerResources.inventory.get_slot_for_item(inventorySlot.item)
+		if slot != null:
+			if slot.count < inventorySlot.count:
+				return false
+		else:
+			return false
+	
 	if PlayerResources.questInventory.has_reached_status_for_one_quest_of(invalidAfterCompletingQuests, QuestTracker.Status.COMPLETED):
 		return false
 		
@@ -211,5 +227,11 @@ func is_valid() -> bool:
 	for followerId: String in invalidFromHavingFollowers:
 		if PlayerResources.playerInfo.has_active_follower(followerId):
 			return false
+	
+	for inventorySlot: InventorySlot in invalidFromHavingItems:
+		var slot: InventorySlot = PlayerResources.inventory.get_slot_for_item(inventorySlot.item)
+		if slot != null:
+			if slot.count >= inventorySlot.count:
+				return false
 	
 	return true

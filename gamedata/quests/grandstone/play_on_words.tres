@@ -1,21 +1,21 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dceket8ss1r7r"]
 
-[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ualhr"]
-[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_cbrf7"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_h17nn"]
-[ext_resource type="Resource" uid="uid://msmyi5xhncg2" path="res://gamedata/items/key_items/play_script.tres" id="2_tte2o"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_nk1hr"]
-[ext_resource type="Resource" uid="uid://n4g1jdtyh5nq" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_turnin_script.tres" id="5_f88yb"]
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_74xbr"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_5g5s1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_b21p0"]
+[ext_resource type="Resource" uid="uid://msmyi5xhncg2" path="res://gamedata/items/key_items/play_script.tres" id="4_v28gr"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="5_wqrm2"]
+[ext_resource type="Resource" uid="uid://n4g1jdtyh5nq" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_turnin_script.tres" id="6_mnh7d"]
 
 [sub_resource type="Resource" id="Resource_tnbv4"]
-script = ExtResource("2_h17nn")
+script = ExtResource("5_wqrm2")
 experience = 15
 gold = 0
-item = ExtResource("2_tte2o")
+item = ExtResource("4_v28gr")
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_4g32n"]
-script = ExtResource("2_cbrf7")
+script = ExtResource("2_5g5s1")
 name = "Retrieve the Book"
 description = "The Librarian in the Grandstone Repository will probably have the book, right?"
 reward = SubResource("Resource_tnbv4")
@@ -27,11 +27,11 @@ turnInNames = Array[String](["grandstone_librarian"])
 displayObjName = "Librarian"
 displayTurnInName = "Librarian"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_nk1hr")]([])
-inProgressDialogue = Array[ExtResource("3_nk1hr")]([])
+turnInDialogue = Array[ExtResource("3_b21p0")]([])
+inProgressDialogue = Array[ExtResource("3_b21p0")]([])
 
 [sub_resource type="Resource" id="Resource_hwgy6"]
-script = ExtResource("2_cbrf7")
+script = ExtResource("2_5g5s1")
 name = "Play On"
 description = "The actor will be glad to have the copy of \"My Father, The Insect\" in his hands!"
 locations = Array[int]([10])
@@ -42,13 +42,13 @@ turnInNames = Array[String](["grandstone_actor"])
 displayObjName = "Play Script"
 displayTurnInName = "Actor"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_nk1hr")]([ExtResource("5_f88yb")])
-inProgressDialogue = Array[ExtResource("3_nk1hr")]([])
+turnInDialogue = Array[ExtResource("3_b21p0")]([ExtResource("6_mnh7d")])
+inProgressDialogue = Array[ExtResource("3_b21p0")]([])
 
 [resource]
-script = ExtResource("1_ualhr")
+script = ExtResource("1_74xbr")
 questName = "A Play On Words"
 description = "An actor practicing in the Grandstone Theater has asked for you to retrieve a copy of the play \"My Father, The Insect\" from the Repository."
-steps = Array[ExtResource("2_cbrf7")]([SubResource("Resource_4g32n"), SubResource("Resource_hwgy6")])
+steps = Array[ExtResource("2_5g5s1")]([SubResource("Resource_4g32n"), SubResource("Resource_hwgy6")])
 isMainQuest = false
 advanceActActerComplete = false

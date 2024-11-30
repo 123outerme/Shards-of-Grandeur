@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://ckraj6ipdwjd0"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_17d41"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_1g8ex"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_dgcc4"]
+[ext_resource type="Resource" uid="uid://jk5ewwx2efh" path="res://gamedata/quests/grandstone/draconic_experiments.tres" id="4_o8ed2"]
+
+[sub_resource type="Resource" id="Resource_qecte"]
+script = ExtResource("1_17d41")
+lines = Array[String](["Yes, I got a Dragon Shard from it, but the creature itself still got away from me in the end.", "It's out there now, flying around somewhere."])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_dgcc4")]([])
+
+[sub_resource type="Resource" id="Resource_30lqs"]
+script = ExtResource("1_17d41")
+lines = Array[String](["Well, once you come back from Standstill, you should give me that Shard, and we'll run some experiments."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_dgcc4")]([])
+
+[resource]
+script = ExtResource("2_1g8ex")
+entryId = ""
+items = Array[ExtResource("1_17d41")]([SubResource("Resource_qecte"), SubResource("Resource_30lqs")])
+startsQuest = ExtResource("4_o8ed2")
+closesDialogue = false
+fullHealsPlayer = false

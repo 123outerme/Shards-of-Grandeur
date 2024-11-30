@@ -68,6 +68,7 @@ func load_data(saveFolder: String = 'save'):
 			#return
 	var saveFileLocation: String = get_save_file_location('save')
 	create_save_subdirs(saveFileLocation)
+	SaveMigrationTools.migrate_save_contents('save')
 	fetch_saved_scripts()
 	for script_path in saved_scripts:
 		var scr = get_node_or_null(NodePath(script_path))

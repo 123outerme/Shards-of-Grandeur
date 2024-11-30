@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="SaveStringMigrationTool" load_steps=14 format=3 uid="uid://bckfwtixchlys"]
+
+[ext_resource type="Script" path="res://scripts/player/save_migration/save_string_migration_tool.gd" id="1_0gabj"]
+[ext_resource type="Script" path="res://scripts/player/save_migration/migration_string.gd" id="2_txwuu"]
+
+[sub_resource type="Resource" id="Resource_ss8aj"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["fortiy_elixir.tres"])
+newString = "fortifying_elixir.tres"
+
+[sub_resource type="Resource" id="Resource_448lh"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["gamedata/quests/epilogue_main_quest.tres"])
+newString = "gamedata/quests/main_quests/prologue_main_quest.tres"
+
+[sub_resource type="Resource" id="Resource_u1fpe"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["gamedata/quests/act1_main_quest.tres"])
+newString = "gamedata/quests/main_quests/act1_main_quest.tres"
+
+[sub_resource type="Resource" id="Resource_m5nnv"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["gamedata/quests/act1_main_quest_end.tres"])
+newString = "gamedata/quests/main_quests/act1_main_quest_end.tres"
+
+[sub_resource type="Resource" id="Resource_ogku4"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["gamedata/quests/act2_main_quest.tres"])
+newString = "gamedata/quests/main_quests/act2_main_quest.tres"
+
+[sub_resource type="Resource" id="Resource_aegtl"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/fisherman_quest.tres"])
+newString = "quests/leavenport/fisherman_quest.tres"
+
+[sub_resource type="Resource" id="Resource_hrnvg"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/play_on_words.tres"])
+newString = "quests/grandstone/play_on_words.tres"
+
+[sub_resource type="Resource" id="Resource_gj23r"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/king_rat_quest.tres"])
+newString = "quests/grandstone/king_rat_quest.tres"
+
+[sub_resource type="Resource" id="Resource_ixsmu"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/hay_is_for_horses.tres"])
+newString = "quests/standstill/hay_is_for_horses.tres"
+
+[sub_resource type="Resource" id="Resource_2xecg"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/lance_apprentice_quest.tres"])
+newString = "quests/standstill/lance_apprentice_quest.tres"
+
+[sub_resource type="Resource" id="Resource_dpp3n"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["quests/shroom_zone.tres"])
+newString = "quests/mushroom_grotto/shroom_zone.tres"
+
+[resource]
+script = ExtResource("1_0gabj")
+strings = Array[ExtResource("2_txwuu")]([SubResource("Resource_ss8aj"), SubResource("Resource_448lh"), SubResource("Resource_u1fpe"), SubResource("Resource_m5nnv"), SubResource("Resource_ogku4"), SubResource("Resource_aegtl"), SubResource("Resource_hrnvg"), SubResource("Resource_gj23r"), SubResource("Resource_ixsmu"), SubResource("Resource_2xecg"), SubResource("Resource_dpp3n")])
