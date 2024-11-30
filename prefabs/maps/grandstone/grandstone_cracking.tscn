@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://dufgei1vjio8v"]
+[gd_scene load_steps=104 format=4 uid="uid://dufgei1vjio8v"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wdq4m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jrrc0"]
@@ -36,6 +36,7 @@
 [ext_resource type="Resource" uid="uid://mq0vwbee38al" path="res://gamedata/dialogue/grandstone/etching_stone/etching_stone.tres" id="30_0ausr"]
 [ext_resource type="Texture2D" uid="uid://dxwcnvkyu1r35" path="res://graphics/structures/etching_stone.png" id="31_50wod"]
 [ext_resource type="Resource" uid="uid://cyeljpv4xilvt" path="res://gamedata/cutscenes/grandstone/arrive_from_desert.tres" id="31_nf6fx"]
+[ext_resource type="Resource" uid="uid://bfk5b7roakodc" path="res://gamedata/dialogue/grandstone/man3/man3_act2_house.tres" id="32_116im"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="32_brvnb"]
 [ext_resource type="Texture2D" uid="uid://1yyio0gg7npp" path="res://graphics/ui/talk_indicator_stone.png" id="32_vi0yj"]
 [ext_resource type="Resource" uid="uid://b20coff1og2c2" path="res://gamedata/dialogue/grandstone/signs/grandstone_armory_sign.tres" id="32_xaokn"]
@@ -916,6 +917,7 @@ position = Vector2(-185, -208)
 displayName = "Man"
 saveName = "gs_man3_cracking"
 data = SubResource("Resource_hww52")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("32_116im")])
 
 [node name="NPCSprite" parent="TilemapRoot/Man3" index="0"]
 sprite_frames = ExtResource("27_34wjr")

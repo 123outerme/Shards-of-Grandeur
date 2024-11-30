@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=46 format=3 uid="uid://qg0pf3h6l4kv"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=53 format=3 uid="uid://qg0pf3h6l4kv"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qka7m"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_2uv64"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_njggs"]
 [ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="7_s26md"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="8_2fy3x"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_r4x7n"]
 
 [sub_resource type="Resource" id="Resource_08gth"]
 script = ExtResource("1_qka7m")
@@ -342,6 +343,16 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_kqh0g"]
+script = ExtResource("7_s26md")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_2h0bi"]
+script = ExtResource("8_2fy3x")
+movementCurve = SubResource("Resource_kqh0g")
+finalPos = Vector2(448, 602)
+relative = false
+
 [sub_resource type="Resource" id="Resource_gp7cx"]
 script = ExtResource("6_njggs")
 speaker = "Elder"
@@ -350,12 +361,89 @@ texts = Array[String](["And... I see a person, a witch...", "I can't quite make 
 [sub_resource type="Resource" id="Resource_pw5ib"]
 script = ExtResource("1_qka7m")
 frameLength = 0.1
-annotation = "The elder describes that he sees a face but can't make it out"
+annotation = "The elder describes that he sees a face but can't make it out; camera moves to witch section"
 actorTweens = Array[ExtResource("5_nldep")]([])
 actorAnims = Array[ExtResource("3_8po81")]([])
 actorAnimSets = Array[ExtResource("2_2uv64")]([])
 actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
 dialogues = Array[ExtResource("6_njggs")]([SubResource("Resource_gp7cx")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_2h0bi")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_bh1le"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "fade in over the witch"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xg5iy"]
+script = ExtResource("1_qka7m")
+frameLength = 0.5
+annotation = "Wait for the fade in to complete; wait for dialogue to complete"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6hjpq"]
+script = ExtResource("1_qka7m")
+frameLength = 0.1
+annotation = "Fade out the camera"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 1
+endFadeLength = 0.75
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rcmcm"]
+script = ExtResource("1_qka7m")
+frameLength = 0.75
+annotation = "Wait for camera fade out to complete"
+actorTweens = Array[ExtResource("5_nldep")]([])
+actorAnims = Array[ExtResource("3_8po81")]([])
+actorAnimSets = Array[ExtResource("2_2uv64")]([])
+actorFaceTargets = Array[ExtResource("4_d6g8i")]([])
+dialogues = Array[ExtResource("6_njggs")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = true
@@ -447,6 +535,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_r4x7n")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -455,10 +544,11 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_r4x7n")]([])
 
 [resource]
 script = ExtResource("2_blbay")
-cutsceneFrames = Array[ExtResource("1_qka7m")]([SubResource("Resource_08gth"), SubResource("Resource_w8f7w"), SubResource("Resource_345na"), SubResource("Resource_el6is"), SubResource("Resource_nsw24"), SubResource("Resource_33ixn"), SubResource("Resource_oyiyp"), SubResource("Resource_bgxfa"), SubResource("Resource_ga5nl"), SubResource("Resource_6hegg"), SubResource("Resource_1hq67"), SubResource("Resource_og243"), SubResource("Resource_oi104"), SubResource("Resource_jnl18"), SubResource("Resource_pw5ib"), SubResource("Resource_x8ajh"), SubResource("Resource_46p2v"), SubResource("Resource_cdal4")])
+cutsceneFrames = Array[ExtResource("1_qka7m")]([SubResource("Resource_08gth"), SubResource("Resource_w8f7w"), SubResource("Resource_345na"), SubResource("Resource_el6is"), SubResource("Resource_nsw24"), SubResource("Resource_33ixn"), SubResource("Resource_oyiyp"), SubResource("Resource_bgxfa"), SubResource("Resource_ga5nl"), SubResource("Resource_6hegg"), SubResource("Resource_1hq67"), SubResource("Resource_og243"), SubResource("Resource_oi104"), SubResource("Resource_jnl18"), SubResource("Resource_pw5ib"), SubResource("Resource_bh1le"), SubResource("Resource_xg5iy"), SubResource("Resource_6hjpq"), SubResource("Resource_rcmcm"), SubResource("Resource_x8ajh"), SubResource("Resource_46p2v"), SubResource("Resource_cdal4")])
 saveName = "standstill_vision"
 storyRequirements = SubResource("Resource_ldja2")
 unlockCameraHoldAfter = true

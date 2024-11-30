@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bfk5b7roakodc"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ag34f"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_27sdw"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_3deq5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_py74i"]
+
+[sub_resource type="Resource" id="Resource_cih5t"]
+script = ExtResource("1_ag34f")
+lines = Array[String](["I'm glad my house isn't seeing any cracks, but now I'm getting paranoid..."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_27sdw")]([])
+
+[resource]
+script = ExtResource("4_py74i")
+entryId = ""
+items = Array[ExtResource("1_ag34f")]([SubResource("Resource_cih5t")])
+ordStoryRequirements = Array[ExtResource("3_3deq5")]([])
+closesDialogue = false
+fullHealsPlayer = false
