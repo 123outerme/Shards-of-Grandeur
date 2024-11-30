@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://cygtle5or0jen"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ikp08"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_sfjqe"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_x74nf"]
+[ext_resource type="Resource" uid="uid://bo2meh4xjfu18" path="res://gamedata/quests/grandstone/fetch_some_marble.tres" id="4_kkebx"]
+
+[resource]
+script = ExtResource("3_x74nf")
+entryId = "accept_marble_quest"
+items = Array[ExtResource("1_ikp08")]([])
+ordStoryRequirements = Array[ExtResource("2_sfjqe")]([])
+startsQuest = ExtResource("4_kkebx")
+closesDialogue = false
+fullHealsPlayer = false

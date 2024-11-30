@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://b7o3hh1uadhx7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ah0dm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_flkux"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xqvkw"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_qfyw3"]
+[ext_resource type="Resource" uid="uid://bqurjv2c86ul1" path="res://gamedata/dialogue/grandstone/man2/man2_act2_watching_king_rat_incomplete.tres" id="3_vtas6"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_g0o7n"]
+[ext_resource type="Resource" uid="uid://crcdyvwnxlbqm" path="res://gamedata/dialogue/grandstone/man2/man2_act2_watching_king_rat_complete.tres" id="7_r4ify"]
+
+[sub_resource type="Resource" id="Resource_exe0w"]
+script = ExtResource("2_flkux")
+choiceBtn = "It'll Be Fine."
+leadsTo = ExtResource("3_vtas6")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qfyw3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_3ujwp"]
+script = ExtResource("2_flkux")
+choiceBtn = "It'll Be Fine."
+leadsTo = ExtResource("7_r4ify")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qfyw3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_l7egf"]
+script = ExtResource("1_ah0dm")
+lines = Array[String](["Our... our buildings are crumbling?! Oh boy, this isn't good..."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_flkux")]([SubResource("Resource_exe0w"), SubResource("Resource_3ujwp")])
+
+[resource]
+script = ExtResource("2_xqvkw")
+entryId = ""
+items = Array[ExtResource("1_ah0dm")]([SubResource("Resource_l7egf")])
+ordStoryRequirements = Array[ExtResource("6_g0o7n")]([])
+closesDialogue = false
+fullHealsPlayer = false

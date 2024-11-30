@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://bo2meh4xjfu18"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_5suln"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_ve0nv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_au5un"]
+[ext_resource type="Resource" uid="uid://bklb4p7x65o4" path="res://gamedata/dialogue/spelunker/grandstone/spelunker1_marble_quest_inprogress.tres" id="4_bedto"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="4_h06uu"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="5_3kvq5"]
+[ext_resource type="Resource" uid="uid://djvq80elv2beg" path="res://gamedata/dialogue/spelunker/grandstone/spelunker1_marble_quest_turnin.tres" id="7_r16s0"]
+
+[sub_resource type="Resource" id="Resource_7h48y"]
+script = ExtResource("5_3kvq5")
+experience = 50
+gold = 8
+item = ExtResource("4_h06uu")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_s8yrc"]
+script = ExtResource("2_ve0nv")
+name = "The Marble Pile"
+description = "Where have I seen a stack of marble before? That's where I'll check."
+reward = SubResource("Resource_7h48y")
+locations = Array[int]([10])
+type = 1
+count = 1
+objectiveName = "Marble Chunk"
+turnInNames = Array[String](["spelunker1_gs_cracking"])
+displayObjName = "Marble Chunk"
+displayTurnInName = "Spelunker"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_au5un")]([ExtResource("7_r16s0")])
+inProgressDialogue = Array[ExtResource("3_au5un")]([ExtResource("4_bedto")])
+
+[resource]
+script = ExtResource("1_5suln")
+questName = "Fetch Some Marble"
+description = "The spelunker you saved needs your help again: just get him some marble!"
+steps = Array[ExtResource("2_ve0nv")]([SubResource("Resource_s8yrc")])
+isMainQuest = false
+advanceActActerComplete = false

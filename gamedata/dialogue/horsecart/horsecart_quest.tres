@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dyuc0isblmygm"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dyuc0isblmygm"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2te42"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_3ixxv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_vw8sb"]
 [ext_resource type="Resource" uid="uid://dakn7l24oxwu2" path="res://gamedata/quests/standstill/hay_is_for_horses.tres" id="3_p31dd"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_evant"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_tbyaf"]
 
 [sub_resource type="Resource" id="Resource_vx2ia"]
 script = ExtResource("1_2te42")
@@ -30,6 +31,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_tbyaf")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -38,12 +40,14 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_tbyaf")]([])
 
 [resource]
 script = ExtResource("1_3ixxv")
 entryId = "4"
 items = Array[ExtResource("1_2te42")]([SubResource("Resource_vx2ia")])
 storyRequirements = SubResource("Resource_xcwcl")
+ordStoryRequirements = Array[ExtResource("4_evant")]([])
 startsQuest = ExtResource("3_p31dd")
 closesDialogue = false
 fullHealsPlayer = false

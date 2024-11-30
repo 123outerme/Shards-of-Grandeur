@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bqurjv2c86ul1"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_oocm6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_p2j6x"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_40bd0"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sy1n0"]
+[ext_resource type="Resource" uid="uid://dinpxaw11uskv" path="res://gamedata/dialogue/grandstone/man2/man2_act2_report_king_rat_incomplete.tres" id="4_dvia5"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_knrhr"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_hgktb"]
+
+[sub_resource type="Resource" id="Resource_y050x"]
+script = ExtResource("2_p2j6x")
+choiceBtn = "It'll Be Okay."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_40bd0")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_0tdex"]
+script = ExtResource("5_hgktb")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_knrhr")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_knrhr")]([])
+
+[sub_resource type="Resource" id="Resource_sex4a"]
+script = ExtResource("2_p2j6x")
+choiceBtn = "No More King Rat."
+storyRequirements = SubResource("Resource_0tdex")
+leadsTo = ExtResource("4_dvia5")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_40bd0")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_dhokw"]
+script = ExtResource("1_oocm6")
+lines = Array[String](["Between the Chain Legion, the King Rat invasion, and now this...! We're in big trouble."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_p2j6x")]([SubResource("Resource_y050x"), SubResource("Resource_sex4a")])
+
+[sub_resource type="Resource" id="Resource_k2aqd"]
+script = ExtResource("5_hgktb")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_knrhr")]([])
+invalidAfterCompletingQuests = Array[String](["Voice of the Rats#A Monster Duel"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["gs_man2_cracking#act2_report_king_rat"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_knrhr")]([])
+
+[resource]
+script = ExtResource("3_sy1n0")
+entryId = ""
+items = Array[ExtResource("1_oocm6")]([SubResource("Resource_dhokw")])
+storyRequirements = SubResource("Resource_k2aqd")
+ordStoryRequirements = Array[ExtResource("5_hgktb")]([])
+closesDialogue = false
+fullHealsPlayer = false

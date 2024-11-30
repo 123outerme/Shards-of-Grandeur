@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://days4pcokghja"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_reocm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_wgcs7"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_o1ptt"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_nts1a"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="6_auavx"]
+
+[sub_resource type="Resource" id="Resource_jgo02"]
+script = ExtResource("3_o1ptt")
+element = 5
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_i1a4g"]
+script = ExtResource("4_nts1a")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.2
+speedMultiplier = 0.8
+elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_jgo02")])
+
+[sub_resource type="Resource" id="Resource_jtlm6"]
+script = ExtResource("1_reocm")
+role = 3
+orbChange = 1
+power = 0
+lifesteal = 0.0
+targets = 3
+targetStatChanges = SubResource("Resource_i1a4g")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_x34ub"]
+script = ExtResource("3_o1ptt")
+element = 5
+multiplier = 1.02
+
+[sub_resource type="Resource" id="Resource_4xdbd"]
+script = ExtResource("4_nts1a")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.05
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_x34ub")])
+
+[sub_resource type="Resource" id="Resource_xkmvu"]
+script = ExtResource("6_auavx")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_4xdbd")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_8xe22"]
+script = ExtResource("3_o1ptt")
+element = 5
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_dv6sf"]
+script = ExtResource("4_nts1a")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.25
+speedMultiplier = 0.75
+elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_8xe22")])
+
+[sub_resource type="Resource" id="Resource_f0qp3"]
+script = ExtResource("1_reocm")
+role = 3
+orbChange = -2
+power = 0
+lifesteal = 0.0
+targets = 3
+targetStatChanges = SubResource("Resource_dv6sf")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_xkmvu")
+
+[resource]
+script = ExtResource("1_wgcs7")
+moveName = "Lithification"
+requiredLv = 1
+category = 1
+element = 5
+chargeEffect = SubResource("Resource_jtlm6")
+surgeEffect = SubResource("Resource_f0qp3")
+description = "Turn an ally to stone! They'll be slower, but their skin becomes tougher!"
+moveLearnedText = "Your hand clenches... and you find it's difficult to unclench! Your legs become heavy as rocks, but your shoulders feel sturdy!"

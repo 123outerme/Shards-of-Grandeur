@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://dufgei1vjio8v"]
+[gd_scene load_steps=103 format=4 uid="uid://dufgei1vjio8v"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wdq4m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jrrc0"]
@@ -14,20 +14,24 @@
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="10_4lf1j"]
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://gamedata/dialogue/horsecart/horsecart_1.tres" id="11_utksi"]
 [ext_resource type="SpriteFrames" uid="uid://bm8mui0vb3lff" path="res://graphics/animations/a_horse_cart_marble.tres" id="11_wtvo4"]
-[ext_resource type="Resource" uid="uid://rnp84aie4vfo" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_grandstone_see_ildran.tres" id="12_47v3w"]
-[ext_resource type="Resource" uid="uid://dkpu7gxsxa46y" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_grandstone_part_ways.tres" id="13_ypyr2"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="14_7cyyj"]
 [ext_resource type="Resource" uid="uid://ctknt16r3oh1t" path="res://gamedata/dialogue/reusable/horse_neigh.tres" id="15_80jyh"]
-[ext_resource type="Resource" uid="uid://dwtxvkfh5me7r" path="res://gamedata/dialogue/spelunker/spelunker_thanks.tres" id="15_ylwuh"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="16_34o7p"]
-[ext_resource type="Resource" uid="uid://bim8x8bo61eqq" path="res://gamedata/dialogue/grandstone/man1/man1_shop.tres" id="17_by2x0"]
+[ext_resource type="Resource" uid="uid://crndq6yd2086b" path="res://gamedata/dialogue/grandstone/marble_horse_cart/get_marble_chunk.tres" id="16_tujav"]
+[ext_resource type="Resource" uid="uid://dpn66b0wtf6w5" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_act2_catch_up.tres" id="17_7p3cm"]
+[ext_resource type="Resource" uid="uid://cce6ywxlo27eb" path="res://gamedata/dialogue/spelunker/grandstone/spelunker1_fixing_cracks.tres" id="17_xidf6"]
+[ext_resource type="Resource" uid="uid://bguiekjeos456" path="res://gamedata/dialogue/grandstone/spelunker2/fixing_crack.tres" id="18_s6gjl"]
 [ext_resource type="Resource" uid="uid://bxp1j8jmguo" path="res://gamedata/shops/grandstone/grandstone_market.tres" id="18_u3gpj"]
+[ext_resource type="Resource" uid="uid://yww318baqcv8" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_act2_cracking.tres" id="18_x1lty"]
 [ext_resource type="SpriteFrames" uid="uid://cffr3xt3xkxc0" path="res://graphics/animations/a_spelunker3.tres" id="19_7tyxf"]
+[ext_resource type="Resource" uid="uid://jn3jv5hje6yb" path="res://gamedata/dialogue/grandstone/spelunker3/fixing_cracks.tres" id="19_g0ecj"]
+[ext_resource type="Resource" uid="uid://bc37udlubnu0c" path="res://gamedata/dialogue/spelunker/grandstone/spelunker1_marble_quest_completed.tres" id="19_j8h7v"]
 [ext_resource type="SpriteFrames" uid="uid://bof5d0mnj8tjb" path="res://graphics/animations/a_man1.tres" id="19_sqe3i"]
+[ext_resource type="Resource" uid="uid://b8ua85g5bnlik" path="res://gamedata/dialogue/grandstone/man1/man1_shop_act2.tres" id="22_vkcwy"]
 [ext_resource type="SpriteFrames" uid="uid://bpsxfanmg5rls" path="res://graphics/animations/a_man2.tres" id="24_0q0i4"]
 [ext_resource type="SpriteFrames" uid="uid://ckcip1jhigfy0" path="res://graphics/animations/a_grandstone_actor.tres" id="25_7nhdq"]
+[ext_resource type="Resource" uid="uid://b7o3hh1uadhx7" path="res://gamedata/dialogue/grandstone/man2/man2_watching_cracks.tres" id="25_xn6yh"]
 [ext_resource type="SpriteFrames" uid="uid://dv638wkosxliu" path="res://graphics/animations/a_man3.tres" id="27_34wjr"]
-[ext_resource type="Resource" uid="uid://c1yyxo1fyib5q" path="res://gamedata/dialogue/grandstone/spelunker2/quarry_block_explain.tres" id="28_nakb6"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="29_ilc0h"]
 [ext_resource type="Resource" uid="uid://mq0vwbee38al" path="res://gamedata/dialogue/grandstone/etching_stone/etching_stone.tres" id="30_0ausr"]
 [ext_resource type="Texture2D" uid="uid://dxwcnvkyu1r35" path="res://graphics/structures/etching_stone.png" id="31_50wod"]
@@ -52,7 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="39_54hds"]
 [ext_resource type="SpriteFrames" uid="uid://67qlhveu7u5x" path="res://graphics/animations/a_restaurant_sign.tres" id="40_h72sm"]
 
-[sub_resource type="Resource" id="Resource_8kudr"]
+[sub_resource type="Resource" id="Resource_34nwi"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -75,7 +79,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_3j30d"]
+[sub_resource type="Resource" id="Resource_ou74s"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -98,7 +102,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_rprao"]
+[sub_resource type="Resource" id="Resource_5hcyj"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -127,7 +131,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g55jj"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_d3dyc"]
+[sub_resource type="Resource" id="Resource_6ra7q"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -156,7 +160,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_x7h0l"]
+[sub_resource type="Resource" id="Resource_swomd"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -179,7 +183,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_kb6d4"]
+[sub_resource type="Resource" id="Resource_3s2qm"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -202,7 +206,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_sdm6i"]
+[sub_resource type="Resource" id="Resource_qaf61"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -225,7 +229,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_76b0j"]
+[sub_resource type="Resource" id="Resource_5v3ui"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -248,7 +252,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_2hryh"]
+[sub_resource type="Resource" id="Resource_rbn31"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -271,7 +275,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_8dskc"]
+[sub_resource type="Resource" id="Resource_gthlu"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -294,7 +298,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_kor33"]
+[sub_resource type="Resource" id="Resource_hww52"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -317,7 +321,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_sqqh6"]
+[sub_resource type="Resource" id="Resource_fapkf"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -340,7 +344,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_xofyb"]
+[sub_resource type="Resource" id="Resource_jtb6o"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -396,7 +400,7 @@ size = Vector2(15, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vts0p"]
 size = Vector2(24, 18)
 
-[sub_resource type="Resource" id="Resource_pryo5"]
+[sub_resource type="Resource" id="Resource_iumvl"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -425,7 +429,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oa621"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_dhpah"]
+[sub_resource type="Resource" id="Resource_qat1s"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -454,7 +458,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7svc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_w2jlk"]
+[sub_resource type="Resource" id="Resource_306bh"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -483,7 +487,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3i3y"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_g0our"]
+[sub_resource type="Resource" id="Resource_iv47w"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -566,7 +570,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_w1ubx"]
+[sub_resource type="Resource" id="Resource_aqdib"]
 script = ExtResource("4_fcgwp")
 saveName = "npc"
 spriteState = "default"
@@ -634,7 +638,7 @@ tile_set = ExtResource("2_jrrc0")
 position = Vector2(-64, 149)
 displayName = "Dr. Ildran"
 saveName = "dr_ildran_gs_cracking"
-data = SubResource("Resource_8kudr")
+data = SubResource("Resource_34nwi")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("6_j4i73"), ExtResource("7_o7qmq"), ExtResource("6_3u0vs")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrIldran" index="0"]
@@ -656,7 +660,7 @@ visible = false
 [node name="Lady1" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-66, -79)
 displayName = "Lady"
-data = SubResource("Resource_3j30d")
+data = SubResource("Resource_ou74s")
 
 [node name="NPCSprite" parent="TilemapRoot/Lady1" index="0"]
 sprite_frames = ExtResource("7_ebdae")
@@ -687,7 +691,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("10_4lf1j")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_rprao")
+data = SubResource("Resource_5hcyj")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("11_utksi")])
 facesPlayer = false
 
@@ -731,8 +735,8 @@ stateSpritesDict = {
 "shards_cart": ExtResource("10_4lf1j")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_d3dyc")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("15_80jyh")])
+data = SubResource("Resource_6ra7q")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("15_80jyh"), ExtResource("16_tujav")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/HorseMarble" index="0"]
@@ -767,8 +771,8 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(232, -200)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_gs_cracking"
-data = SubResource("Resource_x7h0l")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("12_47v3w"), ExtResource("13_ypyr2")])
+data = SubResource("Resource_swomd")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("17_7p3cm"), ExtResource("18_x1lty")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
 sprite_frames = ExtResource("14_7cyyj")
@@ -795,9 +799,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="Spelunker" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(212, -193)
 displayName = "Spelunker"
+saveName = "spelunker1_gs_cracking"
 loadFlipH = true
-data = SubResource("Resource_kb6d4")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("15_ylwuh")])
+data = SubResource("Resource_3s2qm")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("17_xidf6"), ExtResource("19_j8h7v")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
 sprite_frames = ExtResource("16_34o7p")
@@ -821,8 +826,8 @@ visible = false
 [node name="Spelunker2" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(44, -68)
 displayName = "Spelunker"
-data = SubResource("Resource_sdm6i")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("28_nakb6")])
+data = SubResource("Resource_qaf61")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("18_s6gjl")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker2" index="0"]
 sprite_frames = ExtResource("29_ilc0h")
@@ -842,7 +847,8 @@ visible = false
 position = Vector2(-10, 100)
 displayName = "Spelunker"
 loadFlipH = true
-data = SubResource("Resource_76b0j")
+data = SubResource("Resource_5v3ui")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("19_g0ecj")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker3" index="0"]
 sprite_frames = ExtResource("19_7tyxf")
@@ -863,8 +869,8 @@ visible = false
 position = Vector2(-40, -81)
 displayName = "Man"
 saveName = "grandstone_market_man"
-data = SubResource("Resource_2hryh")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("17_by2x0")])
+data = SubResource("Resource_rbn31")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("22_vkcwy")])
 npcShop = ExtResource("18_u3gpj")
 
 [node name="NPCSprite" parent="TilemapRoot/Man1" index="0"]
@@ -888,7 +894,8 @@ visible = false
 position = Vector2(20, -64)
 displayName = "Man"
 saveName = "gs_man2_cracking"
-data = SubResource("Resource_8dskc")
+data = SubResource("Resource_gthlu")
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("25_xn6yh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Man2" index="0"]
 sprite_frames = ExtResource("24_0q0i4")
@@ -908,7 +915,7 @@ visible = false
 position = Vector2(-185, -208)
 displayName = "Man"
 saveName = "gs_man3_cracking"
-data = SubResource("Resource_kor33")
+data = SubResource("Resource_hww52")
 
 [node name="NPCSprite" parent="TilemapRoot/Man3" index="0"]
 sprite_frames = ExtResource("27_34wjr")
@@ -930,7 +937,7 @@ position = Vector2(114, -48)
 displayName = "Actor"
 saveName = "gs_actor_cracking"
 loadFlipH = true
-data = SubResource("Resource_sqqh6")
+data = SubResource("Resource_fapkf")
 
 [node name="NPCSprite" parent="TilemapRoot/Actor" index="0"]
 sprite_frames = ExtResource("25_7nhdq")
@@ -950,7 +957,7 @@ visible = false
 [node name="EtchingStone" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(192, -50)
 displayName = "Etching Stone"
-data = SubResource("Resource_xofyb")
+data = SubResource("Resource_jtb6o")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("30_0ausr")])
 facesPlayer = false
 
@@ -980,7 +987,7 @@ visible = false
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-268, 171)
 displayName = "Sign"
-data = SubResource("Resource_pryo5")
+data = SubResource("Resource_iumvl")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("32_xaokn")])
 facesPlayer = false
 
@@ -1014,7 +1021,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-60, 107)
 displayName = "Sign"
-data = SubResource("Resource_dhpah")
+data = SubResource("Resource_qat1s")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("35_3pe1s")])
 facesPlayer = false
 
@@ -1048,7 +1055,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BazaarSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(-268, -53)
 displayName = "Sign"
-data = SubResource("Resource_w2jlk")
+data = SubResource("Resource_306bh")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("37_yo4bk")])
 facesPlayer = false
 
@@ -1082,7 +1089,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("3_7kbbx")]
 position = Vector2(204, 59)
 displayName = "Sign"
-data = SubResource("Resource_g0our")
+data = SubResource("Resource_iv47w")
 dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("39_4nyj7")])
 facesPlayer = false
 
@@ -1260,7 +1267,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-64, 164)
 facingLeft = true
-data = SubResource("Resource_w1ubx")
+data = SubResource("Resource_aqdib")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.639819

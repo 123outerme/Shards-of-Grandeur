@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=44 format=3 uid="uid://cyeljpv4xilvt"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=45 format=3 uid="uid://cyeljpv4xilvt"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_nu4lt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_7oqok"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_tgirw"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_kncbf"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_goa3h"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_her54"]
 
 [sub_resource type="Resource" id="Resource_nri4b"]
 script = ExtResource("2_t1cep")
@@ -157,12 +158,12 @@ animation = "talk"
 [sub_resource type="Resource" id="Resource_nalcc"]
 script = ExtResource("6_3r0eo")
 speaker = "Dr. Ildran"
-texts = Array[String](["When you and Solius didn't return, I was worried sick. But now you're back!"])
+texts = Array[String](["When Solius sent us word of the Cave, and neither of you returned, I was worried sick. But now you're back!"])
 
 [sub_resource type="Resource" id="Resource_lp1m5"]
 script = ExtResource("1_nu4lt")
 frameLength = 0.1
-annotation = "the player stops walking, Dr. Ildran says he was worred"
+annotation = "the player stops walking, Dr. Ildran says he was worried"
 actorTweens = Array[ExtResource("5_x1rc0")]([])
 actorAnims = Array[ExtResource("3_4431w")]([ExtResource("9_goa3h"), SubResource("Resource_wolx3")])
 actorAnimSets = Array[ExtResource("2_t1cep")]([])
@@ -406,6 +407,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_her54")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["grandstone_arrive_from_desert"])
@@ -414,6 +416,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_her54")]([])
 
 [resource]
 script = ExtResource("2_7oqok")

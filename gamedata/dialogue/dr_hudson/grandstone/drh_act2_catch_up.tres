@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://dpn66b0wtf6w5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6i4a0"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_rct73"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_36xm4"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_rxror"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_t6dpq"]
+
+[sub_resource type="Resource" id="Resource_5kc15"]
+script = ExtResource("2_rct73")
+choiceBtn = "Yes."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_36xm4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_v6xjm"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["Welcome back @. Did you hear the situation from Dr. Ildran?"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([SubResource("Resource_5kc15")])
+
+[sub_resource type="Resource" id="Resource_lgmrq"]
+script = ExtResource("2_rct73")
+choiceBtn = "No."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_36xm4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_54khb"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["So now you know. All of the Spelunkers and Dr. Ildran are hard at work making repairs to the buildings.", "We haven't figured out why the decay of these buildings has accelerated, but I'm studying the cracks as we're fixing them.", "Did you secure the cave?"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([SubResource("Resource_lgmrq")])
+
+[sub_resource type="Resource" id="Resource_kkd0x"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["No. Solius and I failed to secure the Radiant Cave, and he stayed behind in Leavenport to slow down the Chain Legion.", "Now, Standstill's going to be attacked, and we're short on hands to do anything about this."])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([])
+
+[sub_resource type="Resource" id="Resource_1qwvj"]
+script = ExtResource("2_rct73")
+choiceBtn = "Really?"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_36xm4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_jcuh8"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["That's troubling to hear. I'd love to send off for Leavenport and go help him, but I'm sure he's OK."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([SubResource("Resource_1qwvj")])
+
+[sub_resource type="Resource" id="Resource_tbasa"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["Of course! You said you left him in Leavenport, right?", "Leavenport may not be our ally when it comes to searching for the Cave, but they won't let the Chain Legion run amok."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([])
+
+[sub_resource type="Resource" id="Resource_wu5fc"]
+script = ExtResource("1_6i4a0")
+lines = Array[String](["I just hope you're right.", "In any case, I'm going to Standstill to protect them from the attack."])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_rct73")]([])
+
+[resource]
+script = ExtResource("5_t6dpq")
+entryId = "act2_catch_up"
+items = Array[ExtResource("1_6i4a0")]([SubResource("Resource_v6xjm"), SubResource("Resource_54khb"), SubResource("Resource_kkd0x"), SubResource("Resource_jcuh8"), SubResource("Resource_tbasa"), SubResource("Resource_wu5fc")])
+ordStoryRequirements = Array[ExtResource("4_rxror")]([])
+closesDialogue = false
+fullHealsPlayer = false

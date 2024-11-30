@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://crndq6yd2086b"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_ub7lc"]
+[ext_resource type="Resource" uid="uid://cjp5x422txe8q" path="res://gamedata/items/key_items/marble_chunk.tres" id="1_usck3"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_bbjy7"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="3_d5t1r"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_iydn5"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_gjlva"]
+
+[sub_resource type="Resource" id="Resource_4yj1b"]
+script = ExtResource("1_ub7lc")
+lines = Array[String](["Neigh!
+(Please take this marble off my back! It's pretty heavy.)"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("3_d5t1r")]([])
+
+[sub_resource type="Resource" id="Resource_ynn3g"]
+script = ExtResource("2_bbjy7")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["spelunker1_gs_cracking#accept_marble_quest"])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_gjlva")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["horse_marble_gs#get_marble_chunk"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_gjlva")]([])
+
+[resource]
+script = ExtResource("3_iydn5")
+entryId = "get_marble_chunk"
+items = Array[ExtResource("1_ub7lc")]([SubResource("Resource_4yj1b")])
+storyRequirements = SubResource("Resource_ynn3g")
+ordStoryRequirements = Array[ExtResource("2_bbjy7")]([])
+givesItem = ExtResource("1_usck3")
+closesDialogue = false
+fullHealsPlayer = false

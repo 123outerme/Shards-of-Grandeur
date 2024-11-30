@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://3a2vkbddq6lv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://3a2vkbddq6lv"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_l0o25"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ch1ob"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xe0jh"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_05eun"]
 [ext_resource type="Resource" uid="uid://c0cedgck2fvkh" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_standstill_turnin.tres" id="3_hd832"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_5pdav"]
 
 [sub_resource type="Resource" id="Resource_bryqd"]
 script = ExtResource("1_l0o25")
@@ -41,5 +42,6 @@ choices = Array[ExtResource("2_ch1ob")]([SubResource("Resource_ehu4i")])
 script = ExtResource("2_xe0jh")
 entryId = "rescue_standstill"
 items = Array[ExtResource("1_l0o25")]([SubResource("Resource_bryqd"), SubResource("Resource_ien2d")])
+ordStoryRequirements = Array[ExtResource("5_5pdav")]([])
 closesDialogue = false
 fullHealsPlayer = false

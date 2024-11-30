@@ -6,8 +6,11 @@ class_name DialogueEntry
 
 @export var items: Array[DialogueItem] = []
 
-## requirements to see this dialogue
+## requirements to see this dialogue (OR'd with all of the below `ordStoryRequirements`)
 @export var storyRequirements: StoryRequirements = null
+
+## additional story requirements to see this dialogue (OR'd with each other and the above `storyRequirements`)
+@export var ordStoryRequirements: Array[StoryRequirements] = []
 
 ## after this dialogue is over, starts the provided quest. If this quest can't be started, this dialogue won't be played
 @export var startsQuest: Quest = null
@@ -47,8 +50,12 @@ func _init(
 	startsStaticEncounter = i_staticEncounter
 
 func can_use_dialogue() -> bool:
-	if storyRequirements != null and not storyRequirements.is_valid():
-		return false
+	var requirements: Array[StoryRequirements] = [storyRequirements]
+	requirements.append_array(ordStoryRequirements)
+	
+	for req: StoryRequirements in requirements:
+		if req != null and not req.is_valid():
+			return false
 	
 	if startsQuest != null and not PlayerResources.questInventory.can_start_quest(startsQuest):
 		return false
