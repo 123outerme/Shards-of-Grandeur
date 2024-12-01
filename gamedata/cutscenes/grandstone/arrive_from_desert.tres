@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=45 format=3 uid="uid://cyeljpv4xilvt"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=47 format=3 uid="uid://cyeljpv4xilvt"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_nu4lt"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_7oqok"]
@@ -394,6 +394,31 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_cy5df"]
+script = ExtResource("3_4431w")
+actorTreePath = "TilemapRoot/DrIldran"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_bmkdy"]
+script = ExtResource("1_nu4lt")
+frameLength = 0.1
+annotation = "stop Dr. Ildran talking"
+actorTweens = Array[ExtResource("5_x1rc0")]([])
+actorAnims = Array[ExtResource("3_4431w")]([SubResource("Resource_cy5df")])
+actorAnimSets = Array[ExtResource("2_t1cep")]([])
+actorFaceTargets = Array[ExtResource("4_degwe")]([])
+dialogues = Array[ExtResource("6_3r0eo")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
 [sub_resource type="Resource" id="Resource_4gri1"]
 script = ExtResource("3_5ajem")
 minAct = 2
@@ -420,7 +445,7 @@ invalidFromHavingItems = Array[ExtResource("11_her54")]([])
 
 [resource]
 script = ExtResource("2_7oqok")
-cutsceneFrames = Array[ExtResource("1_nu4lt")]([SubResource("Resource_gwm4i"), SubResource("Resource_wlrx0"), SubResource("Resource_bjc4s"), SubResource("Resource_ohbgw"), SubResource("Resource_cv2v2"), SubResource("Resource_lp1m5"), SubResource("Resource_dbwd3"), SubResource("Resource_nmkey"), SubResource("Resource_ukn1s"), SubResource("Resource_owc5b"), SubResource("Resource_o45nv"), SubResource("Resource_oeuj8"), SubResource("Resource_br10f"), SubResource("Resource_3p57x"), SubResource("Resource_vjfy4")])
+cutsceneFrames = Array[ExtResource("1_nu4lt")]([SubResource("Resource_gwm4i"), SubResource("Resource_wlrx0"), SubResource("Resource_bjc4s"), SubResource("Resource_ohbgw"), SubResource("Resource_cv2v2"), SubResource("Resource_lp1m5"), SubResource("Resource_dbwd3"), SubResource("Resource_nmkey"), SubResource("Resource_ukn1s"), SubResource("Resource_owc5b"), SubResource("Resource_o45nv"), SubResource("Resource_oeuj8"), SubResource("Resource_br10f"), SubResource("Resource_3p57x"), SubResource("Resource_vjfy4"), SubResource("Resource_bmkdy")])
 saveName = "grandstone_arrive_from_desert"
 storyRequirements = SubResource("Resource_4gri1")
 unlockCameraHoldAfter = true

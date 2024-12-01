@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://crqjbksl25fej"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://crqjbksl25fej"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_6yf2w"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fheir"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_fwpld"]
 [ext_resource type="Resource" uid="uid://brqx2ej3flo72" path="res://gamedata/dialogue/lance/lance_apprentice_no.tres" id="3_li2gi"]
 [ext_resource type="Resource" uid="uid://dv2hjafiad5x2" path="res://gamedata/dialogue/lance/lance_apprentice_accept.tres" id="3_nbedg"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="8_66tu2"]
 
 [sub_resource type="Resource" id="Resource_0u8b6"]
 script = ExtResource("1_6yf2w")
@@ -73,6 +74,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_66tu2")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -81,11 +83,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_66tu2")]([])
 
 [resource]
 script = ExtResource("1_kh2jp")
 entryId = "intro"
 items = Array[ExtResource("1_fheir")]([SubResource("Resource_hloo1"), SubResource("Resource_a65p4")])
 storyRequirements = SubResource("Resource_e7c0w")
+ordStoryRequirements = Array[ExtResource("2_6bmab")]([])
 closesDialogue = false
 fullHealsPlayer = false

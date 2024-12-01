@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://ckraj6ipdwjd0"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://ckraj6ipdwjd0"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_17d41"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_1g8ex"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_dgcc4"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_dvfew"]
 [ext_resource type="Resource" uid="uid://jk5ewwx2efh" path="res://gamedata/quests/grandstone/draconic_experiments.tres" id="4_o8ed2"]
 
 [sub_resource type="Resource" id="Resource_qecte"]
@@ -29,6 +30,7 @@ choices = Array[ExtResource("2_dgcc4")]([])
 script = ExtResource("2_1g8ex")
 entryId = ""
 items = Array[ExtResource("1_17d41")]([SubResource("Resource_qecte"), SubResource("Resource_30lqs")])
+ordStoryRequirements = Array[ExtResource("3_dvfew")]([])
 startsQuest = ExtResource("4_o8ed2")
 closesDialogue = false
 fullHealsPlayer = false

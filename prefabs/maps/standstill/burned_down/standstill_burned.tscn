@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://0bhmevnqm1m1"]
+[gd_scene load_steps=54 format=4 uid="uid://0bhmevnqm1m1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_r7bn8"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7r2vx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="6_6ui0f"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="14_ouev7"]
 [ext_resource type="Resource" uid="uid://crqjbksl25fej" path="res://gamedata/dialogue/lance/lance_intro.tres" id="16_680io"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="16_ekvi1"]
 [ext_resource type="Resource" uid="uid://e4m48vmk6ybn" path="res://gamedata/dialogue/lance/lance_1.tres" id="17_62tta"]
 [ext_resource type="Resource" uid="uid://dn2k5t18luj5d" path="res://gamedata/dialogue/lance/lance_after_apprenticeship.tres" id="18_5mp8f"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="19_6w4i4"]
@@ -39,7 +40,7 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_t4mb3"]
+[sub_resource type="Resource" id="Resource_tmdef"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -102,7 +103,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
-prereqHasItems = null
+prereqHasItems = Array[ExtResource("16_ekvi1")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -111,7 +112,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = null
+invalidFromHavingItems = Array[ExtResource("16_ekvi1")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yoil"]
 size = Vector2(8, 53)
@@ -129,7 +130,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
-prereqHasItems = null
+prereqHasItems = Array[ExtResource("16_ekvi1")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -138,7 +139,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = null
+invalidFromHavingItems = Array[ExtResource("16_ekvi1")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkf8o"]
 size = Vector2(8, 71)
@@ -179,7 +180,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_tbtp7"]
+[sub_resource type="Resource" id="Resource_yibrh"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -202,7 +203,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_srqcm"]
+[sub_resource type="Resource" id="Resource_urx4v"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -231,7 +232,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_nsxji"]
+[sub_resource type="Resource" id="Resource_qncig"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -254,7 +255,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_2cojf"]
+[sub_resource type="Resource" id="Resource_wnbrx"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -339,7 +340,7 @@ shape = SubResource("RectangleShape2D_epj4x")
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_t4mb3")
+data = SubResource("Resource_tmdef")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("16_680io"), ExtResource("17_62tta"), ExtResource("18_5mp8f")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -486,7 +487,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_tbtp7")
+data = SubResource("Resource_yibrh")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
@@ -500,7 +501,7 @@ offset_right = 1396.0
 [node name="GeneralStoreSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-data = SubResource("Resource_srqcm")
+data = SubResource("Resource_urx4v")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
 facesPlayer = false
 
@@ -534,7 +535,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(147, -146)
 displayName = "Sign"
-data = SubResource("Resource_nsxji")
+data = SubResource("Resource_qncig")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
 facesPlayer = false
 
@@ -568,7 +569,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-data = SubResource("Resource_2cojf")
+data = SubResource("Resource_wnbrx")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
 facesPlayer = false
 
