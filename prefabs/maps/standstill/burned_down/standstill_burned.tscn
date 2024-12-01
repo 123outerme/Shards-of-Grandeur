@@ -40,7 +40,7 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_tmdef"]
+[sub_resource type="Resource" id="Resource_l4f83"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -180,7 +180,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_yibrh"]
+[sub_resource type="Resource" id="Resource_jeyaj"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -203,7 +203,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_urx4v"]
+[sub_resource type="Resource" id="Resource_vgt16"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -232,7 +232,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_qncig"]
+[sub_resource type="Resource" id="Resource_vxucy"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -255,7 +255,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_wnbrx"]
+[sub_resource type="Resource" id="Resource_fugre"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -340,7 +340,7 @@ shape = SubResource("RectangleShape2D_epj4x")
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-data = SubResource("Resource_tmdef")
+data = SubResource("Resource_l4f83")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("16_680io"), ExtResource("17_62tta"), ExtResource("18_5mp8f")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -487,7 +487,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_yibrh")
+data = SubResource("Resource_jeyaj")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
@@ -501,7 +501,7 @@ offset_right = 1396.0
 [node name="GeneralStoreSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-data = SubResource("Resource_urx4v")
+data = SubResource("Resource_vgt16")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
 facesPlayer = false
 
@@ -535,7 +535,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(147, -146)
 displayName = "Sign"
-data = SubResource("Resource_qncig")
+data = SubResource("Resource_vxucy")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
 facesPlayer = false
 
@@ -569,7 +569,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-data = SubResource("Resource_wnbrx")
+data = SubResource("Resource_fugre")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
 facesPlayer = false
 

@@ -46,6 +46,7 @@ func _ready():
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	facesRight = combatant.get_sprite_obj().spriteFacesRight
 	enemySprite.flip_h = facesRight
+	enemySprite.play('stand')
 	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
 	if combatantOverworld != null:
 		if not overrideSpeeds:

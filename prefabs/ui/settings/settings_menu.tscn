@@ -11,11 +11,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj8xg"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_5o0vq"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_aau4o"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_g1t7t"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_edhax"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_lx2yr"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_84hvi"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -93,14 +93,14 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_5o0vq")
+button_group = SubResource("ButtonGroup_aau4o")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_g1t7t")
+button_group = SubResource("ButtonGroup_edhax")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
@@ -108,7 +108,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_lx2yr")
+button_group = SubResource("ButtonGroup_84hvi")
 text = "Audio"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]
@@ -117,7 +117,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 398.0
-offset_top = 112.0
+offset_top = 108.0
 offset_right = -40.0
 offset_bottom = -8.0
 grow_horizontal = 2
@@ -161,6 +161,7 @@ offset_bottom = -719.132
 
 [node name="ControlsSection" parent="Panel/SubsectionPanel" node_paths=PackedStringArray("sectionToggleButton") instance=ExtResource("6_pggia")]
 layout_mode = 1
+offset_top = 3.0
 sectionToggleButton = NodePath("../../VBoxContainer/ControlsButton")
 
 [node name="AudioSection" parent="Panel/SubsectionPanel" instance=ExtResource("7_51o1i")]

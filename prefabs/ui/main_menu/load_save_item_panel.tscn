@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dshs45wq2wig1"]
 
-[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_vbmf1"]
+[ext_resource type="Theme" uid="uid://cfl65uf0l6522" path="res://themes/save_item_panel_theme.tres" id="1_iiuvf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/load_save_item_panel.gd" id="2_daeut"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_mtma6"]
 
@@ -11,7 +11,7 @@ anchor_right = 1.0
 offset_right = -160.0
 offset_bottom = 88.0
 grow_horizontal = 2
-theme = ExtResource("1_vbmf1")
+theme = ExtResource("1_iiuvf")
 script = ExtResource("2_daeut")
 
 [node name="SaveSlotLabel" type="RichTextLabel" parent="."]
@@ -57,6 +57,11 @@ offset_left = 4.0
 offset_top = -26.0
 offset_right = 624.0
 grow_vertical = 0
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
 text = "Your House in Grandstone (in Battle) - 9999h 59m 59s"
 
 [node name="ButtonHBoxContainer" type="HBoxContainer" parent="."]

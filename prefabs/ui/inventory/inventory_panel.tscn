@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=16 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_emweo"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="4_7ietu"]
-[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="5_msabb"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_ay1wk"]
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="7_n4b6m"]
 [ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_t7wq8"]
@@ -130,7 +129,7 @@ offset_top = 80.0
 offset_right = 350.0
 offset_bottom = 120.0
 grow_horizontal = 2
-theme = ExtResource("5_msabb")
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="AllButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
