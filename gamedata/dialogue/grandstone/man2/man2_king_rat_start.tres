@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c5obqqohklvkh"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c5obqqohklvkh"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_pk47n"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ptqsj"]
 [ext_resource type="Resource" uid="uid://ckfyu02qpcubt" path="res://gamedata/quests/grandstone/king_rat_quest.tres" id="2_dq1wa"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_y0rjb"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_j3udb"]
 
 [sub_resource type="Resource" id="Resource_dxdp8"]
 script = ExtResource("1_pk47n")
@@ -19,6 +20,7 @@ choices = Array[ExtResource("2_y0rjb")]([])
 script = ExtResource("1_ptqsj")
 entryId = "king_rat_start"
 items = Array[ExtResource("1_pk47n")]([SubResource("Resource_dxdp8")])
+ordStoryRequirements = Array[ExtResource("3_j3udb")]([])
 startsQuest = ExtResource("2_dq1wa")
 closesDialogue = true
 fullHealsPlayer = false

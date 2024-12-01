@@ -1,20 +1,49 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://gbj5cdm688uh"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://gbj5cdm688uh"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1mmch"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_eg2fr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_x4eet"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_272wg"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_q6u3m"]
 
 [sub_resource type="Resource" id="Resource_1f4ht"]
 script = ExtResource("1_1mmch")
 lines = Array[String](["\"Ack... my pride, and my body... both shattered... why did I not trust you, father...?\""])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_x4eet")]([])
+
+[sub_resource type="Resource" id="Resource_6mq8n"]
+script = ExtResource("3_272wg")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["gs_actor_cracking#play_script_quest_start"])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_q6u3m")]([])
+invalidAfterCompletingQuests = Array[String](["A Play On Words#Retrieve the Book"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_q6u3m")]([])
 
 [sub_resource type="Resource" id="Resource_djnh2"]
 script = ExtResource("3_272wg")
 minAct = 0
-maxAct = 5
+maxAct = -1
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
@@ -23,6 +52,8 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_q6u3m")]([])
 invalidAfterCompletingQuests = Array[String](["A Play On Words#Retrieve the Book"])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -30,11 +61,14 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_q6u3m")]([])
 
 [resource]
 script = ExtResource("1_eg2fr")
 entryId = ""
 items = Array[ExtResource("1_1mmch")]([SubResource("Resource_1f4ht")])
 storyRequirements = SubResource("Resource_djnh2")
+ordStoryRequirements = Array[ExtResource("3_272wg")]([SubResource("Resource_6mq8n")])
 closesDialogue = true
 fullHealsPlayer = false

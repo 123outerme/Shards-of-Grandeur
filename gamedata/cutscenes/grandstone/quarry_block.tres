@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://67f45roiioow"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://67f45roiioow"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_12ho4"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="1_cpis4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="6_0ws0p"]
 [ext_resource type="Resource" uid="uid://k6f4y1hp2ekl" path="res://gamedata/cutscenes/reused/playersprite_right.tres" id="7_7qwp4"]
 [ext_resource type="Resource" uid="uid://dgkkrra8rcm82" path="res://gamedata/cutscenes/reused/player_facingRight.tres" id="8_yxprb"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="14_cn8xr"]
 
 [sub_resource type="Resource" id="Resource_bcq1u"]
 script = ExtResource("1_cpis4")
@@ -108,6 +109,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("14_cn8xr")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -116,6 +118,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("14_cn8xr")]([])
 
 [resource]
 script = ExtResource("1_lyp3r")

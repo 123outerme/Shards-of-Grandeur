@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cuebj3f0pe37n"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3erjb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4va1j"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_41fvw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_c7b36"]
+
+[sub_resource type="Resource" id="Resource_sscj8"]
+script = ExtResource("1_3erjb")
+lines = Array[String](["This is horrible...! How dare the villain that is Entropy encroach on my domain?", "Nay, I mustn't let these cracks win. The show must go on!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_4va1j")]([])
+
+[resource]
+script = ExtResource("4_c7b36")
+entryId = ""
+items = Array[ExtResource("1_3erjb")]([SubResource("Resource_sscj8")])
+ordStoryRequirements = Array[ExtResource("3_41fvw")]([])
+closesDialogue = false
+fullHealsPlayer = false

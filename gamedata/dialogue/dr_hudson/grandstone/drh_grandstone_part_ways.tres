@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dkpu7gxsxa46y"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://dkpu7gxsxa46y"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_m4m02"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_t5utl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cdu4ndlvdfihu" path="res://gamedata/dialogue/dr_hudson/grandstone/drh_grandstone_saved_q.tres" id="2_ec853"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_u3uc2"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_6nwhr"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_e7jky"]
 
 [sub_resource type="Resource" id="Resource_4gt5s"]
 script = ExtResource("1_t5utl")
@@ -51,6 +52,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_e7jky")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -59,11 +61,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_e7jky")]([])
 
 [resource]
 script = ExtResource("1_xt7kc")
 entryId = ""
 items = Array[ExtResource("1_m4m02")]([SubResource("Resource_hl2h5")])
 storyRequirements = SubResource("Resource_ich1s")
+ordStoryRequirements = Array[ExtResource("2_u3uc2")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://dsm8qcyr0dxg8"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://dsm8qcyr0dxg8"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_cxmpg"]
 [ext_resource type="Resource" uid="uid://72gmvkna34rg" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_no.tres" id="1_j4hh1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_11g8g"]
 [ext_resource type="Resource" uid="uid://dx6o7007uuouv" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_script_yes.tres" id="3_t0svk"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_it6ud"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="8_q2ysw"]
 
 [sub_resource type="Resource" id="Resource_rjfmh"]
 script = ExtResource("1_oyhry")
@@ -34,12 +35,16 @@ isDeclineChoice = false
 script = ExtResource("1_cxmpg")
 lines = Array[String](["Oh... shoot, what was I supposed to say after \"Either friend or foe can emerge from the shadows\"?", "Say, could you run to the Repository and see if they have a copy of \"My Father, The Insect\"? They have so many books there, they must have that classic!"])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_oyhry")]([SubResource("Resource_rjfmh"), SubResource("Resource_qg7no")])
 
 [sub_resource type="Resource" id="Resource_pm3v8"]
 script = ExtResource("3_11g8g")
 minAct = 0
-maxAct = 5
+maxAct = -1
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -48,18 +53,23 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_q2ysw")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
+invalidAfterDialogues = Array[String](["grandstone_actor#play_script_quest_start", "gs_actor_cracking#play_script_quest_start"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_q2ysw")]([])
 
 [resource]
 script = ExtResource("1_ycqrj")
 entryId = ""
 items = Array[ExtResource("1_cxmpg")]([SubResource("Resource_nlfcp")])
 storyRequirements = SubResource("Resource_pm3v8")
+ordStoryRequirements = Array[ExtResource("3_11g8g")]([])
 closesDialogue = false
 fullHealsPlayer = false

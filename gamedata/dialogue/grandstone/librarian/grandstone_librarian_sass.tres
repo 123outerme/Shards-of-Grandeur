@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://epxva4agnpl6"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://epxva4agnpl6"]
 
 [ext_resource type="Resource" uid="uid://depru66ql671w" path="res://gamedata/dialogue/grandstone/librarian/grandstone_librarian_has_script.tres" id="1_jymbl"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_dnry1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_1msl6"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_yor8d"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_u75v5"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_8ci23"]
 
 [sub_resource type="Resource" id="Resource_pmn3h"]
 script = ExtResource("2_dnry1")
@@ -28,10 +29,34 @@ animateActorTreePath = ""
 animateActorIsPlayer = false
 choices = Array[ExtResource("2_dnry1")]([SubResource("Resource_pmn3h")])
 
+[sub_resource type="Resource" id="Resource_p84ud"]
+script = ExtResource("5_u75v5")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["gs_actor_cracking#play_script_quest_start"])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_8ci23")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["grandstone_librarian#gs_librarian_has_script"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_8ci23")]([])
+
 [sub_resource type="Resource" id="Resource_0070a"]
 script = ExtResource("5_u75v5")
 minAct = 0
-maxAct = 5
+maxAct = -1
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
@@ -41,6 +66,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_8ci23")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -49,11 +75,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_8ci23")]([])
 
 [resource]
 script = ExtResource("4_1msl6")
 entryId = "gs_librarian_sass"
 items = Array[ExtResource("3_w1s02")]([SubResource("Resource_eejiw")])
 storyRequirements = SubResource("Resource_0070a")
+ordStoryRequirements = Array[ExtResource("5_u75v5")]([SubResource("Resource_p84ud")])
 closesDialogue = false
 fullHealsPlayer = false

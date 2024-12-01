@@ -360,9 +360,9 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		# status effect text + stat changes text
 		if command.type == BattleCommand.Type.MOVE:
 			var moveEffect: MoveEffect = command.move.chargeEffect
-			if command.moveEffectType == Move.MoveEffectType.SURGE:
-				moveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange))
-				eventTextUpdates.append(user.change_current_orbs.bind(command.orbChange))
+			#if command.moveEffectType == Move.MoveEffectType.SURGE:
+			#	moveEffect = command.move.surgeEffect.apply_surge_changes(absi(command.orbChange))
+			#	eventTextUpdates.append(user.change_current_orbs.bind(command.orbChange))
 			if moveEffect.selfGetsStatus and command.commandResult.selfAfflictedStatus:
 				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
 				eventTextUpdates.append(user.change_current_status.bind(user.combatant.statusEffect))

@@ -52,10 +52,15 @@ func _init(
 func can_use_dialogue() -> bool:
 	var requirements: Array[StoryRequirements] = [storyRequirements]
 	requirements.append_array(ordStoryRequirements)
+	requirements = requirements.filter(func(req): return req != null)
 	
+	var isOneReqValid: bool = len(requirements) == 0 
 	for req: StoryRequirements in requirements:
-		if req != null and not req.is_valid():
-			return false
+		if req != null and req.is_valid():
+			isOneReqValid = true
+			break
+	if not isOneReqValid:
+		return false
 	
 	if startsQuest != null and not PlayerResources.questInventory.can_start_quest(startsQuest):
 		return false

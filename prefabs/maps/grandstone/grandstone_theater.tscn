@@ -11,7 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ckcip1jhigfy0" path="res://graphics/animations/a_grandstone_actor.tres" id="5_tcx73"]
 [ext_resource type="Resource" uid="uid://dsm8qcyr0dxg8" path="res://gamedata/dialogue/grandstone/grandstone_actor/gs_actor_start_script_quest.tres" id="6_3vq6q"]
 
-[sub_resource type="Resource" id="Resource_y23h8"]
+[sub_resource type="Resource" id="Resource_jepct"]
 script = ExtResource("4_q86qs")
 saveName = "npc"
 spriteState = "default"
@@ -24,12 +24,15 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -91,7 +94,7 @@ tile_set = ExtResource("2_qkxx4")
 position = Vector2(27, -104)
 displayName = "Actor"
 saveName = "grandstone_actor"
-data = SubResource("Resource_y23h8")
+data = SubResource("Resource_jepct")
 dialogueEntries = Array[ExtResource("5_377g4")]([ExtResource("5_1br4r"), ExtResource("5_plaxe"), ExtResource("6_3vq6q")])
 
 [node name="NPCSprite" parent="TilemapRoot/GrandstoneActor" index="0"]
