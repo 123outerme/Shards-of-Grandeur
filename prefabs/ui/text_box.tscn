@@ -121,4 +121,5 @@ position = Vector2(1260, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("4_13uxh")
 
+[connection signal="visibility_changed" from="Panel/BoxContainerScroller" to="." method="_on_box_container_scroller_visibility_changed"]
 [connection signal="visibility_changed" from="Panel/ScrollBetterFollow" to="Panel/ScrollBetterFollow" method="_on_visibility_changed"]

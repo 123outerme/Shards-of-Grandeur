@@ -11,6 +11,9 @@ var lastChoiceFocused: Button = null
 var choicesDialogueItemIdxs: Array[int] = []
 # the item at index `idx` will be the dialogueItem corresponding to the button
 
+var firstChoiceButton: Button = null
+var lastChoiceButton: Button = null
+
 var chars_per_sec: float = 40
 var text_visible_chars_partial: float = 0
 
@@ -93,7 +96,6 @@ func add_choices():
 	
 	delete_choices()
 	var buttonIdx: int = 0
-	var lastButton: Button = null
 	var maxBtnHeight: float = 40
 	for idx in range(len(dialogueItem.choices)):
 		var isValid: bool = dialogueItem.choices[idx].is_valid()
@@ -131,27 +133,28 @@ func add_choices():
 			button.pressed.connect(_select_choice.bind(buttonIdx))
 			if buttonIdx == 0:
 				button.call_deferred('grab_focus')
-			if boxContainerScroller.bailoutFocusControl == null:
+			if firstChoiceButton == null:
+				firstChoiceButton = button
 				boxContainerScroller.bailoutFocusControl = button
-				boxContainerScroller.connect_scroll_left_right_neighbor(button)
-			if lastButton != null:
-				button.focus_neighbor_left = button.get_path_to(lastButton)
-				lastButton.focus_neighbor_right = lastButton.get_path_to(button)
-			lastButton = button
+				# left-scroll button's right neighbor set to the first button (if any) in the visibility changed signal callback below
+			if lastChoiceButton != null:
+				button.focus_neighbor_left = button.get_path_to(lastChoiceButton)
+				lastChoiceButton.focus_neighbor_right = lastChoiceButton.get_path_to(button)
+			lastChoiceButton = button
 			buttonIdx += 1
 		else:
 			if buttonIdx == 0:
 				refocus_choice(null) # focus the first button that is being shown
-	
-	if lastButton != null:
-		boxContainerScroller.connect_scroll_right_left_neighbor(lastButton)
+	# right-scroll button's left neighbor set to the last button (if any) in the visibility changed signal callback below
 	# focus loops back around
 	boxContainerScroller.connect_scroll_right_right_neighbor(boxContainerScroller.scrollLeftBtn)
 	boxContainerScroller.connect_scroll_left_left_neighbor(boxContainerScroller.scrollRightBtn)
+	boxContainerScroller.visible = false # set to not visible by default; if it needs to, it will update its own visibility the next process frame, then call the visibility changed signal callback below
 	
 	buttonContainer.custom_minimum_size.y = max(48, maxBtnHeight + 8)
 	
 	PlayerFinder.player.makingChoice = buttonIdx > 0
+	
 
 func delete_choices():
 	boxContainerScroller.bailoutFocusControl = null
@@ -162,6 +165,8 @@ func delete_choices():
 		#button.visible = false
 	choicesDialogueItemIdxs = []
 	lastChoiceFocused = null
+	firstChoiceButton = null
+	lastChoiceButton = null
 
 func refocus_choice(choice: DialogueChoice = null):
 	if lastChoiceFocused:
@@ -221,3 +226,13 @@ func _select_choice(idx: int):
 	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
 	PlayerFinder.player.select_choice(dialogueItem.choices[choicesDialogueItemIdxs[idx]])
 	lastChoiceFocused = null
+
+func _on_box_container_scroller_visibility_changed() -> void:
+	if boxContainerScroller.visible:
+		if firstChoiceButton != null and lastChoiceButton != null:
+			boxContainerScroller.connect_scroll_left_right_neighbor(firstChoiceButton)
+			boxContainerScroller.connect_scroll_right_left_neighbor(lastChoiceButton)
+	else:
+		if firstChoiceButton != null and lastChoiceButton != null:
+			firstChoiceButton.focus_neighbor_left = '.'
+			lastChoiceButton.focus_neighbor_right = '.'
