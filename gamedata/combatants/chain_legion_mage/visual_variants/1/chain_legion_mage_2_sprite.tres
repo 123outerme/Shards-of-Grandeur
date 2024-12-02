@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://ci0jqqnw42jwp"]
+
+[ext_resource type="Resource" uid="uid://cefcd6oulu2y1" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage_overworld.tres" id="1_0aype"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="2_uqabs"]
+[ext_resource type="SpriteFrames" uid="uid://ca2c2mm4yjn7m" path="res://graphics/animations/a_chain_legion_mage_2.tres" id="3_o1f8g"]
+
+[resource]
+script = ExtResource("2_uqabs")
+spriteFrames = ExtResource("3_o1f8g")
+combatantOverworld = ExtResource("1_0aype")
+maxSize = Vector2(32, 16)
+idleSize = Vector2(16, 16)
+centerPosition = Vector2(16, 8)
+feetPosition = Vector2(16, 15)
+spriteFacesRight = true
+navigationLayer = 1
+attackAffinityArrivalFrame = 3
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 2
+attackAffinityImpactFrame = 4
+attackMagicImpactFrame = 3
+attackPhysImpactFrame = 3

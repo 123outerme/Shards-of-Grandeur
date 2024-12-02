@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=8 format=3 uid="uid://bdcn8ibrvb8v3"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_47j5i"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_08hj2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_84evn"]
+[ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="3_frffx"]
+[ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="4_iu0jh"]
+[ext_resource type="Resource" uid="uid://c3gi5b7ajoi3t" path="res://gamedata/moves/hydro_barrier/hydro_barrier.tres" id="5_qhwa3"]
+[ext_resource type="Resource" uid="uid://bmjbl4ej5sd3t" path="res://gamedata/moves/freeze_ray/freeze_ray.tres" id="6_o7y8t"]
+
+[resource]
+script = ExtResource("2_84evn")
+pool = Array[ExtResource("1_47j5i")]([ExtResource("2_08hj2"), ExtResource("3_frffx"), ExtResource("4_iu0jh"), ExtResource("5_qhwa3"), ExtResource("6_o7y8t")])
+signatureMoves = Array[ExtResource("1_47j5i")]([])
+preferredMove1Role = 2
+preferredMove1DmgType = 1
+preferredMove1Element = 0
+preferredMove2Role = 1
+preferredMove2DmgType = 1
+preferredMove2Element = 0
+preferredMove3Role = 3
+preferredMove3DmgType = 1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0

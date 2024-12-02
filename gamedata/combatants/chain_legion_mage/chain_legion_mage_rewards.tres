@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=13 format=3 uid="uid://b2l0ebxmc5dyd"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_6700n"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_6vocn"]
+[ext_resource type="Resource" uid="uid://buymmcis3ydyb" path="res://gamedata/items/shard/savage_horse_shard.tres" id="3_stc1y"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_tsjfp"]
+[ext_resource type="Resource" uid="uid://cpksk45s0oxgy" path="res://gamedata/items/shard/mystic_fox_shard.tres" id="5_04uvr"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="6_motdp"]
+
+[sub_resource type="Resource" id="Resource_g1s4s"]
+script = ExtResource("3_tsjfp")
+experience = 60
+gold = 10
+item = ExtResource("3_stc1y")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_701kr"]
+script = ExtResource("2_6vocn")
+reward = SubResource("Resource_g1s4s")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_prbxo"]
+script = ExtResource("3_tsjfp")
+experience = 60
+gold = 10
+item = ExtResource("5_04uvr")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_4veyj"]
+script = ExtResource("2_6vocn")
+reward = SubResource("Resource_prbxo")
+weight = 0.25
+
+[sub_resource type="Resource" id="Resource_ysou8"]
+script = ExtResource("3_tsjfp")
+experience = 60
+gold = 10
+item = ExtResource("6_motdp")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_2he4j"]
+script = ExtResource("2_6vocn")
+reward = SubResource("Resource_ysou8")
+weight = 0.25
+
+[resource]
+script = ExtResource("1_6700n")
+weightedRewards = Array[ExtResource("2_6vocn")]([SubResource("Resource_701kr"), SubResource("Resource_4veyj"), SubResource("Resource_2he4j")])
