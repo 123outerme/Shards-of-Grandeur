@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://d0kf7biblnn8h"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://d0kf7biblnn8h"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2yccg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_wge4o"]
 [ext_resource type="Resource" uid="uid://0mdoxu22shce" path="res://gamedata/cutscenes/leavenport/solius_to_cave_path.tres" id="2_3kapu"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jlv8q"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_vs0va"]
 
 [sub_resource type="Resource" id="Resource_quuki"]
 script = ExtResource("1_2yccg")
@@ -19,6 +20,7 @@ choices = Array[ExtResource("2_jlv8q")]([])
 script = ExtResource("1_wge4o")
 entryId = ""
 items = Array[ExtResource("1_2yccg")]([SubResource("Resource_quuki")])
+ordStoryRequirements = Array[ExtResource("3_vs0va")]([])
 startsCutscene = ExtResource("2_3kapu")
 closesDialogue = false
 fullHealsPlayer = true

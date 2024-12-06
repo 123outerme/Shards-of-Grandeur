@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dgjuv25wgvitl"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dgjuv25wgvitl"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mau64"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_6s360"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qk5dq"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_grn0n"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_furve"]
 
 [sub_resource type="Resource" id="Resource_sta5u"]
 script = ExtResource("1_mau64")
@@ -28,6 +29,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_furve")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["hilltop_cave_gone"])
@@ -36,11 +38,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_furve")]([])
 
 [resource]
 script = ExtResource("2_6s360")
 entryId = ""
 items = Array[ExtResource("1_mau64")]([SubResource("Resource_sta5u")])
 storyRequirements = SubResource("Resource_ikh44")
+ordStoryRequirements = Array[ExtResource("3_grn0n")]([])
 closesDialogue = false
 fullHealsPlayer = false

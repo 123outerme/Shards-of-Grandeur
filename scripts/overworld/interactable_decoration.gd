@@ -8,6 +8,7 @@ class_name InteractableDecoration
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
 	show_interact_sprite(false)
 

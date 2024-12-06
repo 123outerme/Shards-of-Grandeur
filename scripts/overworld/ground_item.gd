@@ -7,9 +7,6 @@ class_name GroundItem
 ## the texture the GroundItem will appear as. If null, uses the texture of the Item
 @export var disguiseSprite: Texture = null
 
-## if one of these requirements passes (or if there are no requirements), the item will appear
-@export var storyRequirements: Array[StoryRequirements] = []
-
 ## if true, the item will be invisible on the ground (except for particles)
 @export var invisible: bool = false
 

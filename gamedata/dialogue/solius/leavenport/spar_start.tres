@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b1bkqjv81rd8d"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b1bkqjv81rd8d"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_34do8"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mcvmd"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_avmt0"]
 [ext_resource type="Resource" uid="uid://dqy41ewbyu3fe" path="res://gamedata/static_encounters/act1/solius_spar.tres" id="2_emjhs"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_4mcup"]
 
 [sub_resource type="Resource" id="Resource_2gqid"]
 script = ExtResource("1_mcvmd")
@@ -19,6 +20,7 @@ choices = Array[ExtResource("2_avmt0")]([])
 script = ExtResource("1_34do8")
 entryId = ""
 items = Array[ExtResource("1_mcvmd")]([SubResource("Resource_2gqid")])
+ordStoryRequirements = Array[ExtResource("3_4mcup")]([])
 closesDialogue = false
 fullHealsPlayer = false
 startsStaticEncounter = ExtResource("2_emjhs")

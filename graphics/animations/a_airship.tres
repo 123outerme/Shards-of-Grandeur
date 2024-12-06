@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dhsuhevt6uhfc"]
+
+[ext_resource type="Texture2D" uid="uid://4eaj1l0fpnvy" path="res://graphics/structures/airship.png" id="1_55bht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc3ok"]
+atlas = ExtResource("1_55bht")
+region = Rect2(0, 0, 96, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc3ok")
+}],
+"loop": true,
+"name": &"landed",
+"speed": 5.0
+}]

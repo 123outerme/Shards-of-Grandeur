@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=7 format=3 uid="uid://cca87i3r10xde"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_8i2cy"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_medq5"]
+[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battletheme_uvutudx_demo.mp3" id="2_qbkvy"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_77mod"]
+[ext_resource type="Resource" uid="uid://rvbo782goi0h" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage.tres" id="3_xiqna"]
+[ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="4_ya0ub"]
+
+[resource]
+script = ExtResource("3_77mod")
+combatant1Level = 19
+combatant1Moves = Array[ExtResource("1_8i2cy")]([])
+combatant1ShardSummoned = false
+combatant2 = ExtResource("4_ya0ub")
+combatant2Level = 17
+combatant2Moves = Array[ExtResource("1_8i2cy")]([])
+combatant2ShardSummoned = true
+combatant3Level = 1
+combatant3Moves = Array[ExtResource("1_8i2cy")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_8i2cy")]([])
+autoAllyShardSummoned = false
+specialBattleId = "standstill_cl_mage_1"
+bossBattle = false
+canEscape = true
+rewards = Array[ExtResource("2_medq5")]([])
+useStaticRewards = false
+battleMusic = ExtResource("2_qbkvy")
+combatant1 = ExtResource("3_xiqna")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""

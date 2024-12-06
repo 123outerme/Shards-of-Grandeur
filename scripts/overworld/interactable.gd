@@ -13,6 +13,13 @@ class_name Interactable
 ## sfx to play when the player interacts with this Interactable
 @export var interactSfx: AudioStream = null
 
+## story requirements that dictate if this interactable should be visible or not
+@export var storyRequirements: Array[StoryRequirements] = []
+
+func _ready() -> void:
+	PlayerResources.story_requirements_updated.connect(_story_requirements_updated)
+	_story_requirements_updated()
+
 func interact(_args: Array = []):
 	var interactableDialogue: InteractableDialogue = null
 	if len(_args) > 0:
@@ -118,3 +125,16 @@ func select_choice(choice: DialogueChoice):
 
 func finished_dialogue():
 	pass
+
+func destroy_interactable():
+	exit_player_range()
+	queue_free()
+
+func _story_requirements_updated():
+	var storyReqsPassed: bool = len(storyRequirements) == 0
+	for req: StoryRequirements in storyRequirements:
+		if req.is_valid():
+			storyReqsPassed = true
+			break
+	if not storyReqsPassed:
+		destroy_interactable()

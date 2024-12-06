@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d37h8d1mf18js"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://d37h8d1mf18js"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_3at4t"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_5iq37"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c0d35rbjmaqit" path="res://gamedata/dialogue/solius/leavenport/spar_turnin_holdon.tres" id="1_uqoth"]
 [ext_resource type="Resource" uid="uid://d0kf7biblnn8h" path="res://gamedata/dialogue/solius/leavenport/see_cave_path.tres" id="3_6rm1m"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_yi1hm"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_x83su"]
 
 [sub_resource type="Resource" id="Resource_q0k0t"]
 script = ExtResource("1_3at4t")
@@ -43,5 +44,6 @@ choices = Array[ExtResource("1_3at4t")]([SubResource("Resource_q0k0t"), SubResou
 script = ExtResource("1_5iq37")
 entryId = ""
 items = Array[ExtResource("1_7dxr2")]([SubResource("Resource_wm1au")])
+ordStoryRequirements = Array[ExtResource("6_x83su")]([])
 closesDialogue = false
 fullHealsPlayer = false

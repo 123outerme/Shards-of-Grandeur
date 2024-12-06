@@ -28,7 +28,7 @@
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="23_kq2oq"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="24_7wtt2"]
 
-[sub_resource type="Resource" id="Resource_6d4lq"]
+[sub_resource type="Resource" id="Resource_0em0x"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -57,7 +57,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_ftclk"]
+[sub_resource type="Resource" id="Resource_1ty3e"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -86,7 +86,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_tstdk"]
+[sub_resource type="Resource" id="Resource_qqye7"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -501,7 +501,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_6d4lq")
+data = SubResource("Resource_0em0x")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -543,7 +543,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("11_85ta7")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_ftclk")
+data = SubResource("Resource_1ty3e")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -579,7 +579,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_tstdk")
+data = SubResource("Resource_qqye7")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("13_diivh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]

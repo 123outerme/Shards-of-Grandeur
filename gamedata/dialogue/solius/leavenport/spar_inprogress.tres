@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://birvqvo77y5ec"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://birvqvo77y5ec"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2m52h"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_q6s3t"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_u4r6i"]
 [ext_resource type="Resource" uid="uid://b1bkqjv81rd8d" path="res://gamedata/dialogue/solius/leavenport/spar_start.tres" id="2_e3e1m"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_c3t78"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_gy0hk"]
 
 [sub_resource type="Resource" id="Resource_ifmq3"]
 script = ExtResource("1_u4r6i")
@@ -41,5 +42,6 @@ choices = Array[ExtResource("1_u4r6i")]([SubResource("Resource_ifmq3"), SubResou
 script = ExtResource("1_q6s3t")
 entryId = ""
 items = Array[ExtResource("1_2m52h")]([SubResource("Resource_h54bs")])
+ordStoryRequirements = Array[ExtResource("5_gy0hk")]([])
 closesDialogue = false
 fullHealsPlayer = false

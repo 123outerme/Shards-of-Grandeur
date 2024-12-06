@@ -17,6 +17,7 @@ var playingSolvingAnim: bool = false
 var queuedAnim: String = ''
 
 func _ready():
+	super._ready()
 	show_interact_sprite(false)
 	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 	animatedDecoration.animSprite.sprite_frames = puzzle.puzzleSpriteFrames
@@ -71,6 +72,7 @@ func _on_area_exited(area):
 		exit_player_range()
 		show_interact_sprite(false)
 
+# puzzle's story requirements have changed; not to be confused with its Interactable requirements (to be visible)
 func _story_reqs_updated(playSolving: bool = true):
 	var updatedSolved = puzzle.is_solved()
 	if updatedSolved:

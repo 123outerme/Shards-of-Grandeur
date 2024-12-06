@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://c6vfqmrm3umkt"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c6vfqmrm3umkt"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tw1ro"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0ks34"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xejs5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_8gntn"]
 
 [sub_resource type="Resource" id="Resource_0p0xs"]
 script = ExtResource("1_tw1ro")
@@ -18,5 +19,6 @@ choices = Array[ExtResource("2_0ks34")]([])
 script = ExtResource("2_xejs5")
 entryId = ""
 items = Array[ExtResource("1_tw1ro")]([SubResource("Resource_0p0xs")])
+ordStoryRequirements = Array[ExtResource("3_8gntn")]([])
 closesDialogue = false
 fullHealsPlayer = false
