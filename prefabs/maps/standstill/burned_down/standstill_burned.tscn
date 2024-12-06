@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://0bhmevnqm1m1"]
+[gd_scene load_steps=72 format=4 uid="uid://0bhmevnqm1m1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_r7bn8"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7r2vx"]
@@ -21,7 +21,6 @@
 [ext_resource type="SpriteFrames" uid="uid://bh1pu4prubmup" path="res://graphics/animations/a_chain_legion_mage_1.tres" id="19_s3yhh"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_move_point.gd" id="20_jnk87"]
 [ext_resource type="Resource" uid="uid://dtt34f0s8607w" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_general_store_sign.tres" id="20_llh8f"]
-[ext_resource type="Resource" uid="uid://xad4e07xrc5c" path="res://gamedata/dialogue/standstill_shopkeep/shopkeep_1.tres" id="20_qui7r"]
 [ext_resource type="Resource" uid="uid://dr1nw8qnrwgvn" path="res://gamedata/shops/standstill/standstill_general_store.tres" id="21_3jfxa"]
 [ext_resource type="SpriteFrames" uid="uid://csuydxu2lq351" path="res://graphics/animations/a_general_store_sign.tres" id="21_b5qr6"]
 [ext_resource type="SpriteFrames" uid="uid://o2o4l8s3bgc5" path="res://graphics/animations/a_lady2.tres" id="22_0t5ck"]
@@ -49,7 +48,7 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_w70hb"]
+[sub_resource type="Resource" id="Resource_mxnhs"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "burned"
@@ -102,7 +101,7 @@ size = Vector2(8, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecl20"]
 size = Vector2(84, 17)
 
-[sub_resource type="Resource" id="Resource_3d8ws"]
+[sub_resource type="Resource" id="Resource_k4sov"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -125,7 +124,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_j16dd"]
+[sub_resource type="Resource" id="Resource_u8xvs"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -148,7 +147,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_h81na"]
+[sub_resource type="Resource" id="Resource_tvfrg"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -171,7 +170,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_55iwg"]
+[sub_resource type="Resource" id="Resource_ui8v8"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -194,7 +193,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_6joat"]
+[sub_resource type="Resource" id="Resource_bugii"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -217,7 +216,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_hohsx"]
+[sub_resource type="Resource" id="Resource_abclb"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -338,7 +337,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_2lx4e"]
+[sub_resource type="Resource" id="Resource_ajt58"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -361,7 +360,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_86m44"]
+[sub_resource type="Resource" id="Resource_bc8o4"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -390,7 +389,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_gwqqj"]
+[sub_resource type="Resource" id="Resource_s2wt5"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -413,7 +412,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_oh0ex"]
+[sub_resource type="Resource" id="Resource_0uwdo"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -507,7 +506,7 @@ stateSpritesDict = {
 "burned": ExtResource("8_c8jjp"),
 "default": ExtResource("19_6w4i4")
 }
-data = SubResource("Resource_w70hb")
+data = SubResource("Resource_mxnhs")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("16_680io"), ExtResource("17_62tta"), ExtResource("18_5mp8f")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -566,7 +565,7 @@ displayName = "FIRE_WITCH"
 saveName = "fire_witch_standstill"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_3d8ws")
+data = SubResource("Resource_k4sov")
 
 [node name="NPCSprite" parent="TilemapRoot/FireWitch" index="0"]
 sprite_frames = ExtResource("18_i1gh5")
@@ -588,7 +587,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage1"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_j16dd")
+data = SubResource("Resource_u8xvs")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage1" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -610,7 +609,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage2"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_h81na")
+data = SubResource("Resource_tvfrg")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage2" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -632,7 +631,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage3"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_55iwg")
+data = SubResource("Resource_ui8v8")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage3" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -654,7 +653,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage4"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_6joat")
+data = SubResource("Resource_bugii")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage4" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -674,8 +673,7 @@ visible = false
 position = Vector2(-40, 66)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep"
-data = SubResource("Resource_hohsx")
-dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_qui7r")])
+data = SubResource("Resource_abclb")
 npcShop = ExtResource("21_3jfxa")
 
 [node name="NPCSprite" parent="TilemapRoot/GeneralStoreShopkeep" index="0"]
@@ -819,7 +817,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_2lx4e")
+data = SubResource("Resource_ajt58")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
@@ -833,7 +831,7 @@ offset_right = 1396.0
 [node name="GeneralStoreSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-data = SubResource("Resource_86m44")
+data = SubResource("Resource_bc8o4")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
 facesPlayer = false
 
@@ -867,7 +865,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(147, -146)
 displayName = "Sign"
-data = SubResource("Resource_gwqqj")
+data = SubResource("Resource_s2wt5")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
 facesPlayer = false
 
@@ -901,7 +899,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-data = SubResource("Resource_oh0ex")
+data = SubResource("Resource_0uwdo")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
 facesPlayer = false
 

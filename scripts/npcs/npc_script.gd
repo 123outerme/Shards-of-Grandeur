@@ -141,8 +141,7 @@ func _ready():
 		if not allowedToSpawn:
 			queue_free()
 
-		if loadFlipH:
-			flip_h = not flip_h
+		flip_h = loadFlipH
 		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 
 func fetch_player():
