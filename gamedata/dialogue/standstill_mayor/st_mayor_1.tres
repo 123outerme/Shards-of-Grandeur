@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://doauivevhpmof"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://doauivevhpmof"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_tn25i"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_unurg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cdxuj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_1mj33"]
 
 [sub_resource type="Resource" id="Resource_sy76h"]
 script = ExtResource("1_unurg")
@@ -18,5 +19,6 @@ choices = Array[ExtResource("2_cdxuj")]([])
 script = ExtResource("1_tn25i")
 entryId = ""
 items = Array[ExtResource("1_unurg")]([SubResource("Resource_sy76h")])
+ordStoryRequirements = Array[ExtResource("3_1mj33")]([])
 closesDialogue = false
 fullHealsPlayer = false

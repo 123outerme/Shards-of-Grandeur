@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bv0xdd1t2gie7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bv0xdd1t2gie7"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_6ag4p"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gd7ha"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t2r8a"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_jhgt1"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_i2bft"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_dpij8"]
 
 [sub_resource type="Resource" id="Resource_bemet"]
 script = ExtResource("1_gd7ha")
@@ -20,6 +21,10 @@ isDeclineChoice = true
 script = ExtResource("1_t2r8a")
 lines = Array[String](["Lance is cutting it too close, that slacker... He needs to show me he's learned enough to be considered a master.", "If he can't keep the furnace hot, then he can't make a butter knife, let alone a blade strong enough to keep the monsters out of the town.", "I just hope he'll rise to the occasion and show me he means business."])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_gd7ha")]([SubResource("Resource_bemet")])
 
 [sub_resource type="Resource" id="Resource_k4lb2"]
@@ -34,6 +39,8 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_dpij8")]([])
 invalidAfterCompletingQuests = Array[String](["Apprenticeship"])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -41,11 +48,14 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_dpij8")]([])
 
 [resource]
 script = ExtResource("1_6ag4p")
 entryId = ""
 items = Array[ExtResource("1_t2r8a")]([SubResource("Resource_6ynpx")])
 storyRequirements = SubResource("Resource_k4lb2")
+ordStoryRequirements = Array[ExtResource("2_jhgt1")]([])
 closesDialogue = false
 fullHealsPlayer = false

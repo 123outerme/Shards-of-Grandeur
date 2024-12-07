@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://do80x2jnb0txk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://do80x2jnb0txk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_85x51"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p8lp3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://codhhy4vkequv" path="res://gamedata/dialogue/alessia/alessia_about_lance_good.tres" id="3_dhagt"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_x0fp8"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_pitiy"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="9_w6bge"]
 
 [sub_resource type="Resource" id="Resource_ksx8v"]
 script = ExtResource("1_p8lp3")
@@ -22,6 +23,8 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_13ysc"]
 script = ExtResource("2_e6tgt")
 opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
 choiceBtn = "Shop"
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_x0fp8")]([])
@@ -56,6 +59,10 @@ isDeclineChoice = false
 script = ExtResource("1_tsnek")
 lines = Array[String](["What can I do for you, @?"])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_p8lp3")]([SubResource("Resource_ksx8v"), SubResource("Resource_13ysc"), SubResource("Resource_ne0k0"), SubResource("Resource_k2t4t")])
 
 [sub_resource type="Resource" id="Resource_rc6xt"]
@@ -70,6 +77,8 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("9_w6bge")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -77,11 +86,14 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("9_w6bge")]([])
 
 [resource]
 script = ExtResource("1_85x51")
 entryId = "alessia_1"
 items = Array[ExtResource("1_tsnek")]([SubResource("Resource_al8nf")])
 storyRequirements = SubResource("Resource_rc6xt")
+ordStoryRequirements = Array[ExtResource("4_pitiy")]([])
 closesDialogue = false
 fullHealsPlayer = false

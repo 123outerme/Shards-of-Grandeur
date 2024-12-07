@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://0bhmevnqm1m1"]
+[gd_scene load_steps=71 format=4 uid="uid://0bhmevnqm1m1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_r7bn8"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7r2vx"]
@@ -31,7 +31,6 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="27_pcq27"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="32_0tmyx"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="33_wf2cg"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="35_dpvfe"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="40_4mb0r"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="41_dgj7o"]
 
@@ -48,7 +47,7 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_mxnhs"]
+[sub_resource type="Resource" id="Resource_o3myh"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "burned"
@@ -101,7 +100,7 @@ size = Vector2(8, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecl20"]
 size = Vector2(84, 17)
 
-[sub_resource type="Resource" id="Resource_k4sov"]
+[sub_resource type="Resource" id="Resource_xa6lp"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -124,7 +123,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_u8xvs"]
+[sub_resource type="Resource" id="Resource_72b4a"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -147,7 +146,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_tvfrg"]
+[sub_resource type="Resource" id="Resource_cjdvh"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -170,7 +169,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ui8v8"]
+[sub_resource type="Resource" id="Resource_tt6kx"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -193,7 +192,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_bugii"]
+[sub_resource type="Resource" id="Resource_112fa"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -216,7 +215,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_abclb"]
+[sub_resource type="Resource" id="Resource_w2pdi"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -337,7 +336,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_ajt58"]
+[sub_resource type="Resource" id="Resource_nqpij"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -360,7 +359,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_bc8o4"]
+[sub_resource type="Resource" id="Resource_74tdk"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -389,7 +388,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_s2wt5"]
+[sub_resource type="Resource" id="Resource_du6gb"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -412,7 +411,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_0uwdo"]
+[sub_resource type="Resource" id="Resource_0grj1"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -506,7 +505,7 @@ stateSpritesDict = {
 "burned": ExtResource("8_c8jjp"),
 "default": ExtResource("19_6w4i4")
 }
-data = SubResource("Resource_mxnhs")
+data = SubResource("Resource_o3myh")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("16_680io"), ExtResource("17_62tta"), ExtResource("18_5mp8f")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -565,7 +564,7 @@ displayName = "FIRE_WITCH"
 saveName = "fire_witch_standstill"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_k4sov")
+data = SubResource("Resource_xa6lp")
 
 [node name="NPCSprite" parent="TilemapRoot/FireWitch" index="0"]
 sprite_frames = ExtResource("18_i1gh5")
@@ -587,7 +586,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage1"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_u8xvs")
+data = SubResource("Resource_72b4a")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage1" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -609,7 +608,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage2"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_tvfrg")
+data = SubResource("Resource_cjdvh")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage2" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -631,7 +630,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage3"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_ui8v8")
+data = SubResource("Resource_tt6kx")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage3" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -653,7 +652,7 @@ displayName = "Mage"
 saveName = "standstill_chain_legion_mage4"
 loadFlipH = true
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_bugii")
+data = SubResource("Resource_112fa")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage4" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -673,7 +672,7 @@ visible = false
 position = Vector2(-40, 66)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep"
-data = SubResource("Resource_abclb")
+data = SubResource("Resource_w2pdi")
 npcShop = ExtResource("21_3jfxa")
 
 [node name="NPCSprite" parent="TilemapRoot/GeneralStoreShopkeep" index="0"]
@@ -817,7 +816,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-566, 120)
 facingLeft = true
-data = SubResource("Resource_ajt58")
+data = SubResource("Resource_nqpij")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"
@@ -831,7 +830,7 @@ offset_right = 1396.0
 [node name="GeneralStoreSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-data = SubResource("Resource_bc8o4")
+data = SubResource("Resource_74tdk")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
 facesPlayer = false
 
@@ -865,7 +864,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(147, -146)
 displayName = "Sign"
-data = SubResource("Resource_s2wt5")
+data = SubResource("Resource_du6gb")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
 facesPlayer = false
 
@@ -899,7 +898,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="." instance=ExtResource("3_ai1ib")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-data = SubResource("Resource_0uwdo")
+data = SubResource("Resource_0grj1")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
 facesPlayer = false
 
@@ -929,8 +928,6 @@ visible = false
 
 [node name="MoveTriggerShape" parent="InnSign/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
-
-[node name="TestCamera" parent="." instance=ExtResource("35_dpvfe")]
 
 [editable path="TilemapRoot/Signpost"]
 [editable path="TilemapRoot/Signpost/AnimatedDecoration"]

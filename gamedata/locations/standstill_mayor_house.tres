@@ -1,8 +1,19 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://utdi2p8kxqyd"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://utdi2p8kxqyd"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_8d3t7"]
 [ext_resource type="AudioStream" uid="uid://cfuuyombto64k" path="res://audio/music/overworld/standstill.mp3" id="1_vslq7"]
 [ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_yxacv"]
+[ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="2_nkt4w"]
+
+[sub_resource type="Resource" id="Resource_vsxqu"]
+script = ExtResource("1_8d3t7")
+path = "standstill/burned_down/standstill_inn_burned"
+requirements = ExtResource("2_nkt4w")
+overworldTheme = ExtResource("1_vslq7")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mjovm"]
 script = ExtResource("1_8d3t7")
@@ -16,5 +27,5 @@ recoverPosition = Vector2(0, 0)
 [resource]
 script = ExtResource("1_yxacv")
 locationName = "Standstill"
-maps = Array[ExtResource("1_8d3t7")]([SubResource("Resource_mjovm")])
+maps = Array[ExtResource("1_8d3t7")]([SubResource("Resource_vsxqu"), SubResource("Resource_mjovm")])
 mapLocation = 20

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://d3wbqlm1g5sul"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d3wbqlm1g5sul"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7h8g6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nba2t"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_qftwu"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e4ij4"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_pfw8b"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_chqp2"]
 
 [sub_resource type="Resource" id="Resource_23lff"]
 script = ExtResource("1_qftwu")
@@ -20,6 +21,10 @@ isDeclineChoice = false
 script = ExtResource("1_nba2t")
 lines = Array[String](["Well met, adventurer! Who might you be?"])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_qftwu")]([SubResource("Resource_23lff")])
 
 [sub_resource type="Resource" id="Resource_l17u6"]
@@ -34,6 +39,8 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_chqp2")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -41,11 +48,14 @@ invalidAfterDialogues = Array[String](["alessia_foundry#intro"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_chqp2")]([])
 
 [resource]
 script = ExtResource("1_7h8g6")
 entryId = "intro"
 items = Array[ExtResource("1_nba2t")]([SubResource("Resource_r86uj")])
 storyRequirements = SubResource("Resource_l17u6")
+ordStoryRequirements = Array[ExtResource("3_pfw8b")]([])
 closesDialogue = false
 fullHealsPlayer = false
