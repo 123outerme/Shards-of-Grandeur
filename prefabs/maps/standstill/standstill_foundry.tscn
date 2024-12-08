@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dri3rvriur56q"]
+[gd_scene load_steps=18 format=4 uid="uid://dri3rvriur56q"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajqdu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vrdj1"]
@@ -9,9 +9,12 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_kv26y"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="7_1u1ei"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nmnw1"]
+[ext_resource type="Resource" uid="uid://cb8c43nbn53ao" path="res://gamedata/dialogue/standstill/standstill_sign/alessias_forge_sign.tres" id="10_d0n67"]
 [ext_resource type="Resource" uid="uid://d3kk3dviteboh" path="res://gamedata/shops/standstill/alessia_foundry.tres" id="10_dq3hc"]
+[ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="11_xswnu"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="12_umsi8"]
 
-[sub_resource type="Resource" id="Resource_e1hio"]
+[sub_resource type="Resource" id="Resource_vs0x6"]
 script = ExtResource("7_1u1ei")
 saveName = "npc"
 spriteState = "default"
@@ -34,6 +37,35 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
+[sub_resource type="Resource" id="Resource_lppxf"]
+script = ExtResource("7_1u1ei")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-68, 16)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k51s5"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt1g0"]
+size = Vector2(24, 14)
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_ajqdu")
 
@@ -54,7 +86,7 @@ tile_set = ExtResource("2_vrdj1")
 z_index = -10
 y_sort_enabled = true
 use_parent_material = true
-tile_map_data = PackedByteArray("AAADAPn/BgAEAAIAAAADAPj/BgACAAIAAAD7//j/BgACAAIAAAD//wAABgABAAAAAAD+/wAABgAAAAEABAAAAAAABgAAAAAAAwABAAAABgAAAAEAAAD9/wAABgACAAEAAAD8/wAABgACAAEAAAD7/wAABgAAAAEAAAACAAAABgAAAAEAAAADAAAABgAAAAEAAAAEAAAABgACAAEAAAD6/wAABgAAAAEAAAAOAPz/CQAAAAAAAAAEAPr/CgAAAAAAAAADAPr/CgAAAAAAAAADAP//CwAAAAEAAADw//D/AQAAAAEAAADy//H/AQACAAEAAADz//P/AQABAAEAAADz//T/AQACAAEAAAD0//H/AQABAAEAAAD0//P/AQACAAEAAAD0//T/AQAAAAEAAAD1//D/AQABAAEAAAD1//T/AQAAAAEAAAD2//P/AQABAAEAAAD3//D/AQAAAAEAAAD5//P/AQACAAEAAAD6//D/AQACAAEAAAD6//T/AQAAAAEAAAD7//L/AQABAAEAAAD7//T/AQAAAAEAAAD8//D/AQACAAEAAAD8//P/AQACAAEAAAD9//D/AQACAAEAAAD9//H/AQAAAAEAAAD///H/AQAAAAEAAAAAAPD/AQAAAAEAAAAAAPH/AQAAAAEAAAAAAPL/AQAAAAEAAAABAPD/AQACAAEAAAABAPT/AQACAAEAAAACAPD/AQAAAAEAAAACAPP/AQABAAEAAAADAPD/AQAAAAEAAAADAPH/AQAAAAEAAAADAPL/AQACAAEAAAADAPP/AQAAAAEAAAADAPT/AQAAAAEAAAAEAPD/AQACAAEAAAAEAPH/AQACAAEAAAAFAPD/AQABAAEAAAAFAPL/AQACAAEAAAAFAPP/AQAAAAEAAAAGAPD/AQACAAEAAAAGAPH/AQACAAEAAAAGAPL/AQACAAEAAAAGAPT/AQACAAEAAAAHAPH/AQABAAEAAAAIAPL/AQAAAAEAAAAIAPT/AQABAAEAAAAKAPH/AQAAAAEAAAAMAPH/AQAAAAEAAAANAPD/AQAAAAEAAAAOAPD/AQACAAEAAAAPAPD/AQAAAAEAAAANAPL/AQABAAEAAAALAPP/AQABAAEAAAALAPL/AQACAAEAAAAJAPD/AQABAAEAAAAKAPD/AQAAAAEAAADx//H/AQACAAEAAADz//H/AQABAAEAAAD0//D/AQACAAEAAAD2//H/AQACAAEAAAD5//H/AQABAAEAAAABAPH/AQACAAEAAADy//D/AQAAAAEAAADz//D/AQABAAEAAAD2//D/AQACAAEAAAD4//H/AQACAAEAAAD6//H/AQAAAAEAAAD9//L/AQAAAAEAAADx//L/AQABAAEAAADz//L/AQACAAEAAADw//P/AQACAAEAAADw//H/AQACAAEAAADw//T/AQAAAAEAAADx//P/AQACAAEAAADy//T/AQAAAAEAAAD3//L/AQAAAAEAAAD1//H/AQACAAEAAAD4//P/AQAAAAEAAAD5//T/AQAAAAEAAAD8//L/AQACAAEAAAD+//P/AQACAAEAAAD///L/AQACAAEAAAD///P/AQABAAEAAAD8//n/BgADAAAAAAD8//r/BgADAAAAAAD8//v/BgADAAAAAAD8//z/BgADAAAAAAD8//3/BgAHAAAAAAD8//7/BgADAAAAAAD8////BgADAAAAAAD6//v/CwAAAAAAAAD7//r/CwAAAAEAAAD6//n/BgADAAIAAAD6//j/BgACAAIAAAD6//7/CwAAAAAAAAD6////CwAAAAEAAAABAPn/CgACAAAAAAD///z/CgAAAAEAAAAAAPz/CgABAAEAAAABAPz/CgABAAEAAAACAPz/CgABAAEAAAADAPz/CgABAAEAAAAEAPz/CgACAAEAAAD///n/CwABAAAAAAAAAPn/CQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAADAPn/BgAEAAIAAAADAPj/BgACAAIAAAD7//j/BgACAAIAAAD//wAABgABAAAAAAD+/wAABgAAAAEABAAAAAAABgAAAAAAAwABAAAABgAAAAEAAAD9/wAABgACAAEAAAD8/wAABgACAAEAAwD7/wAABgAAAAEAAAACAAAABgAAAAEAAAADAAAABgAAAAEAAAAEAAAABgACAAEAAAD6/wAABgAAAAEAAAAOAPz/CQAAAAAAAAAEAPr/CgAAAAAAAAADAPr/CgAAAAAAAAADAP//CwAAAAEAAADw//D/AQAAAAEAAADy//H/AQACAAEAAADz//P/AQABAAEAAADz//T/AQACAAEAAAD0//H/AQABAAEAAAD0//P/AQACAAEAAAD0//T/AQAAAAEAAAD1//D/AQABAAEAAAD1//T/AQAAAAEAAAD2//P/AQABAAEAAAD3//D/AQAAAAEAAAD5//P/AQACAAEAAAD6//D/AQACAAEAAAD6//T/AQAAAAEAAAD7//L/AQABAAEAAAD7//T/AQAAAAEAAAD8//D/AQACAAEAAAD8//P/AQACAAEAAAD9//D/AQACAAEAAAD9//H/AQAAAAEAAAD///H/AQAAAAEAAAAAAPD/AQAAAAEAAAAAAPH/AQAAAAEAAAAAAPL/AQAAAAEAAAABAPD/AQACAAEAAAABAPT/AQACAAEAAAACAPD/AQAAAAEAAAACAPP/AQABAAEAAAADAPD/AQAAAAEAAAADAPH/AQAAAAEAAAADAPL/AQACAAEAAAADAPP/AQAAAAEAAAADAPT/AQAAAAEAAAAEAPD/AQACAAEAAAAEAPH/AQACAAEAAAAFAPD/AQABAAEAAAAFAPL/AQACAAEAAAAFAPP/AQAAAAEAAAAGAPD/AQACAAEAAAAGAPH/AQACAAEAAAAGAPL/AQACAAEAAAAGAPT/AQACAAEAAAAHAPH/AQABAAEAAAAIAPL/AQAAAAEAAAAIAPT/AQABAAEAAAAKAPH/AQAAAAEAAAAMAPH/AQAAAAEAAAANAPD/AQAAAAEAAAAOAPD/AQACAAEAAAAPAPD/AQAAAAEAAAANAPL/AQABAAEAAAALAPP/AQABAAEAAAALAPL/AQACAAEAAAAJAPD/AQABAAEAAAAKAPD/AQAAAAEAAADx//H/AQACAAEAAADz//H/AQABAAEAAAD0//D/AQACAAEAAAD2//H/AQACAAEAAAD5//H/AQABAAEAAAABAPH/AQACAAEAAADy//D/AQAAAAEAAADz//D/AQABAAEAAAD2//D/AQACAAEAAAD4//H/AQACAAEAAAD6//H/AQAAAAEAAAD9//L/AQAAAAEAAADx//L/AQABAAEAAADz//L/AQACAAEAAADw//P/AQACAAEAAADw//H/AQACAAEAAADw//T/AQAAAAEAAADx//P/AQACAAEAAADy//T/AQAAAAEAAAD3//L/AQAAAAEAAAD1//H/AQACAAEAAAD4//P/AQAAAAEAAAD5//T/AQAAAAEAAAD8//L/AQACAAEAAAD+//P/AQACAAEAAAD///L/AQACAAEAAAD///P/AQABAAEAAAD8//n/BgADAAAAAAD8//r/BgADAAAAAAD8//v/BgADAAAAAAD8//z/BgADAAAAAAD8//3/BgAHAAAAAAD8//7/BgADAAAAAAD8////BgADAAAAAAD6//v/CwAAAAAAAAD7//r/CwAAAAEAAAD6//n/BgADAAIAAAD6//j/BgACAAIAAAD6//7/CwAAAAAAAAD6////CwAAAAEAAAABAPn/CgACAAAAAAD///z/CgAAAAEAAAAAAPz/CgABAAEAAAABAPz/CgABAAEAAAACAPz/CgABAAEAAAADAPz/CgABAAEAAAAEAPz/CgACAAEAAAD///n/CwABAAAAAAAAAPn/CQAAAAAAAAA=")
 tile_set = ExtResource("2_vrdj1")
 
 [node name="Foreground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -77,7 +109,7 @@ tile_set = ExtResource("2_vrdj1")
 position = Vector2(26, -76)
 displayName = "Alessia"
 saveName = "alessia_foundry"
-data = SubResource("Resource_e1hio")
+data = SubResource("Resource_vs0x6")
 dialogueEntries = Array[ExtResource("5_kv26y")]([ExtResource("4_73wvo"), ExtResource("5_72q0a")])
 npcShop = ExtResource("10_dq3hc")
 
@@ -101,9 +133,44 @@ visible = false
 [node name="MoveTriggerShape" parent="TilemapRoot/Alessia/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_jifgm")]
+position = Vector2(-68, 16)
+displayName = "Sign"
+data = SubResource("Resource_lppxf")
+dialogueEntries = Array[ExtResource("5_kv26y")]([ExtResource("10_d0n67")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/ArmorySign" index="0"]
+sprite_frames = ExtResource("11_xswnu")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/ArmorySign/NPCSprite" index="0"]
+texture = ExtResource("12_umsi8")
+
+[node name="ColliderShape" parent="TilemapRoot/ArmorySign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_k51s5")
+
+[node name="NavAgent" parent="TilemapRoot/ArmorySign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/ArmorySign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/ArmorySign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_lt1g0")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/ArmorySign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/ArmorySign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="WarpZone" parent="." instance=ExtResource("9_nmnw1")]
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(168, -140)
 
 [editable path="TilemapRoot/Alessia"]
+[editable path="TilemapRoot/ArmorySign"]

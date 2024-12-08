@@ -43,7 +43,7 @@ func _process(delta):
 			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
 				for item in lastFrame.dialogues:
-					queue_text(item, frame)
+					queue_text(item.get_cutscene_dialogue(), frame)
 				lastFrame.set_text_was_triggered()
 				
 			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:

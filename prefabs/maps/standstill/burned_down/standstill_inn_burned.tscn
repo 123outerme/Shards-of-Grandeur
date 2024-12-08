@@ -1,13 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://dfhflar7ju422"]
+[gd_scene load_steps=15 format=4 uid="uid://dfhflar7ju422"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_gr87n"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vp210"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_utxks"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_gkxec"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_q8xju"]
+[ext_resource type="Resource" uid="uid://3ombe3v0e8gu" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_inn_sign.tres" id="7_33vry"]
+[ext_resource type="SpriteFrames" uid="uid://bvdn8v51w71g" path="res://graphics/animations/a_burned_inn_sign.tres" id="8_phwci"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="9_cdyjq"]
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="9_yhdre"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="15_886wd"]
 
-[sub_resource type="Resource" id="Resource_x6mwt"]
+[sub_resource type="Resource" id="Resource_u641a"]
 script = ExtResource("4_gkxec")
 saveName = "npc"
 spriteState = "default"
@@ -29,6 +33,35 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_ywu8c"]
+script = ExtResource("4_gkxec")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-48, 16)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vf1b"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j35fg"]
+size = Vector2(24, 14)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_gr87n")
@@ -74,7 +107,7 @@ tile_set = ExtResource("2_vp210")
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-data = SubResource("Resource_x6mwt")
+data = SubResource("Resource_u641a")
 
 [node name="NPCSprite" parent="TilemapRoot/Innkeeper" index="0"]
 sprite_frames = ExtResource("9_yhdre")
@@ -97,10 +130,45 @@ visible = false
 [node name="MoveTriggerShape" parent="TilemapRoot/Innkeeper/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_utxks")]
+position = Vector2(-48, 16)
+displayName = "Sign"
+data = SubResource("Resource_ywu8c")
+dialogueEntries = Array[ExtResource("5_q8xju")]([ExtResource("7_33vry")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/InnSign" index="0"]
+sprite_frames = ExtResource("8_phwci")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/InnSign/NPCSprite" index="0"]
+texture = ExtResource("9_cdyjq")
+
+[node name="ColliderShape" parent="TilemapRoot/InnSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_1vf1b")
+
+[node name="NavAgent" parent="TilemapRoot/InnSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/InnSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/InnSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_j35fg")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/InnSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/InnSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="WarpZone" parent="." instance=ExtResource("15_886wd")]
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(-72, -108)
 
 [editable path="TilemapRoot/Innkeeper"]
+[editable path="TilemapRoot/InnSign"]
 [editable path="WarpZone"]

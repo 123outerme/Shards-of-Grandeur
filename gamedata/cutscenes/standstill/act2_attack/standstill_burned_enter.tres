@@ -1,0 +1,235 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=30 format=3 uid="uid://cldxgmtsil24s"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_x2p2s"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_qxaiv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_0pfcc"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_kdjh2"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_og8lp"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_ke7b7"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_j5qtm"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="8_ru21p"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_d0swg"]
+[ext_resource type="Resource" uid="uid://cca87i3r10xde" path="res://gamedata/static_encounters/act2/standstill_cl_mage_1.tres" id="11_1i7kf"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="11_65kgn"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="12_b67gk"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="13_i1js0"]
+
+[sub_resource type="Resource" id="Resource_2bar6"]
+script = ExtResource("8_ru21p")
+speaker = "Dr. Hudson"
+texts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land.", "Alessia is quite the master blacksmith, with the attitude to match.", "You might also want to visit the general store to stock up on healing Potions while we're here.", "Prepare well, because there are reports of monsters between here and the Cave."])
+
+[sub_resource type="Resource" id="Resource_3qyhe"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "start player's internal dialogue"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("4_kdjh2")])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([SubResource("Resource_2bar6")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_e6rbe"]
+script = ExtResource("7_j5qtm")
+value = Vector2(-310, 116)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ligm2"]
+script = ExtResource("1_x2p2s")
+frameLength = 4.5
+annotation = "Walk the player into town some"
+actorTweens = Array[ExtResource("6_ke7b7")]([SubResource("Resource_e6rbe")])
+actorAnims = Array[ExtResource("3_0pfcc")]([])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_jqanc"]
+script = ExtResource("3_0pfcc")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_h8ghp"]
+script = ExtResource("8_ru21p")
+speaker = "Legion Mage"
+texts = Array[String](["Hey, it's that Grandstone adventurer!"])
+
+[sub_resource type="Resource" id="Resource_n534g"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "Stop the player walking and have the first mage call out"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("9_d0swg"), SubResource("Resource_jqanc")])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([SubResource("Resource_h8ghp")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vdd2h"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mhohf"]
+script = ExtResource("3_0pfcc")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_e5ssa"]
+script = ExtResource("7_j5qtm")
+value = Vector2(-208, 116)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_s8md0"]
+script = ExtResource("1_x2p2s")
+frameLength = 2.0
+annotation = "Walk the player closer"
+actorTweens = Array[ExtResource("6_ke7b7")]([SubResource("Resource_e5ssa")])
+actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("4_kdjh2"), SubResource("Resource_mhohf")])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_yimy4"]
+script = ExtResource("3_0pfcc")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_6uro8"]
+script = ExtResource("8_ru21p")
+speaker = "Legion Mage"
+texts = Array[String](["I've heard about you! We were hoping you got lost in the desert.", "This is fine by me, now I get the reward put on your head!"])
+
+[sub_resource type="Resource" id="Resource_n7gd6"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "Stop the player walking and have the mage finish his though"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("9_d0swg"), SubResource("Resource_yimy4")])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([SubResource("Resource_6uro8")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_q7q8a"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "Wait for text box to be closed"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wvqjc"]
+script = ExtResource("13_i1js0")
+minAct = 2
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("12_b67gk")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_burned_enter"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("12_b67gk")]([])
+
+[resource]
+script = ExtResource("11_65kgn")
+cutsceneFrames = Array[ExtResource("1_x2p2s")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_vdd2h"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_q7q8a")])
+saveName = "standstill_burned_enter"
+storyRequirements = SubResource("Resource_wvqjc")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+staticEncounter = ExtResource("11_1i7kf")
+tempDisabledAfter = false
+notes = ""

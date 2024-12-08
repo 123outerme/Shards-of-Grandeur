@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://dk34fxbbodqua"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dk34fxbbodqua"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_suf47"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_7evvs"]
@@ -45,15 +45,30 @@ inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 [sub_resource type="Resource" id="Resource_1x80q"]
 script = ExtResource("2_7evvs")
 name = "Standstill Ablaze"
-description = ""
+description = "A town on fire... It's a tragedy."
 locations = Array[int]([20])
 type = 3
 count = 1
-objectiveName = "---"
+objectiveName = "standstill_burned_enter"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
-customStatusStr = "???"
+customStatusStr = "Get to Standstill!"
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+
+[sub_resource type="Resource" id="Resource_dwyfj"]
+script = ExtResource("2_7evvs")
+name = "Might and Magic"
+description = ""
+locations = Array[int]([])
+type = 4
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_jht3b")]([])
 inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
@@ -61,6 +76,6 @@ inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 script = ExtResource("1_suf47")
 questName = "Flames of Combat"
 description = "The Elder Nomad warned you that Standstill will soon face a devastating blaze. Will this Radiant War consume all in the flames, or is there some way to put out the fire for good?"
-steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q")])
+steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q"), SubResource("Resource_dwyfj")])
 isMainQuest = true
 advanceActActerComplete = true

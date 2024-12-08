@@ -1,8 +1,43 @@
-[gd_scene load_steps=4 format=4 uid="uid://b866lu5bvp4me"]
+[gd_scene load_steps=13 format=4 uid="uid://b866lu5bvp4me"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_nhvxr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wx4mw"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_eb214"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_xnh12"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_sh1sd"]
+[ext_resource type="Resource" uid="uid://dtt34f0s8607w" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_general_store_sign.tres" id="6_ah7y1"]
+[ext_resource type="SpriteFrames" uid="uid://csuydxu2lq351" path="res://graphics/animations/a_general_store_sign.tres" id="7_af5fv"]
+[ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="8_gxx44"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_3q4c2"]
+
+[sub_resource type="Resource" id="Resource_m1m7v"]
+script = ExtResource("4_xnh12")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(64, 16)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0a4w"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl7mi"]
+size = Vector2(24, 14)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_nhvxr")
@@ -44,7 +79,43 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_wx4mw")
 
+[node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_eb214")]
+position = Vector2(64, 16)
+displayName = "Sign"
+data = SubResource("Resource_m1m7v")
+dialogueEntries = Array[ExtResource("5_sh1sd")]([ExtResource("6_ah7y1")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/GeneralStoreSign" index="0"]
+sprite_frames = ExtResource("7_af5fv")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/GeneralStoreSign/NPCSprite" index="0"]
+texture = ExtResource("8_gxx44")
+
+[node name="ColliderShape" parent="TilemapRoot/GeneralStoreSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_c0a4w")
+
+[node name="NavAgent" parent="TilemapRoot/GeneralStoreSign" index="2"]
+disableMovement = true
+
+[node name="TalkArea" parent="TilemapRoot/GeneralStoreSign" index="3"]
+position = Vector2(0, 5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/GeneralStoreSign/TalkArea" index="0"]
+shape = SubResource("RectangleShape2D_fl7mi")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/GeneralStoreSign" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/GeneralStoreSign/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="WarpZone" parent="." instance=ExtResource("9_3q4c2")]
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(-40, 72)
+
+[editable path="TilemapRoot/GeneralStoreSign"]
