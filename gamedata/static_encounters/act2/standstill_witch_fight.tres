@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=6 format=3 uid="uid://cv227rllqigpd"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_0tmcb"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_c7gnd"]
+[ext_resource type="Resource" uid="uid://lbxkaadm56ej" path="res://gamedata/combatants/fire_witch/fire_witch.tres" id="3_h4nso"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_7w53h"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="5_ejoc7"]
+
+[resource]
+script = ExtResource("5_ejoc7")
+combatant1Level = 23
+combatant1Moves = Array[ExtResource("1_0tmcb")]([])
+combatant1ShardSummoned = false
+combatant2Level = 1
+combatant2Moves = Array[ExtResource("1_0tmcb")]([])
+combatant2ShardSummoned = false
+combatant3Level = 1
+combatant3Moves = Array[ExtResource("1_0tmcb")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_0tmcb")]([])
+autoAllyShardSummoned = false
+specialBattleId = "standstill_witch_fight"
+bossBattle = true
+canEscape = false
+rewards = Array[ExtResource("4_7w53h")]([])
+useStaticRewards = false
+battleMusic = ExtResource("2_c7gnd")
+combatant1 = ExtResource("3_h4nso")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""

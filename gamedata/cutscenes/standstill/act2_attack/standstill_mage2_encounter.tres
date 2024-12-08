@@ -1,0 +1,224 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=30 format=3 uid="uid://5varsd2v0hb4"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ikhri"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_b72xs"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_xl6mk"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_fvn3s"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_mf3i0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_o7dlu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_c7w65"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_bjnsi"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_e0fq5"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_genfd"]
+[ext_resource type="Resource" uid="uid://dqjoxj1v0bf2w" path="res://gamedata/static_encounters/act2/standstill_cl_mage_2.tres" id="11_q30w1"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="12_myx7r"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="13_12k1j"]
+
+[sub_resource type="Resource" id="Resource_ii8xu"]
+script = ExtResource("3_fvn3s")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_the1y"]
+script = ExtResource("4_o7dlu")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/ChainLegionMage2"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_uf356"]
+script = ExtResource("4_o7dlu")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+
+[sub_resource type="Resource" id="Resource_p7po1"]
+script = ExtResource("6_bjnsi")
+speaker = "Chain Legion Mage"
+texts = Array[String](["Hey, you!"])
+
+[sub_resource type="Resource" id="Resource_h4gkg"]
+script = ExtResource("1_ikhri")
+frameLength = 0.1
+annotation = "The player is stopped by the mage, they face each other"
+actorTweens = Array[ExtResource("5_c7w65")]([])
+actorAnims = Array[ExtResource("3_fvn3s")]([ExtResource("4_mf3i0"), SubResource("Resource_ii8xu")])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([SubResource("Resource_the1y"), SubResource("Resource_uf356")])
+dialogues = Array[ExtResource("6_bjnsi")]([SubResource("Resource_p7po1")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_2c4xx"]
+script = ExtResource("1_ikhri")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_c7w65")]([])
+actorAnims = Array[ExtResource("3_fvn3s")]([])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([])
+dialogues = Array[ExtResource("6_bjnsi")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5brqc"]
+script = ExtResource("3_fvn3s")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_is4gm"]
+script = ExtResource("7_e0fq5")
+value = Vector2(-48, -2)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_mhn6g"]
+script = ExtResource("1_ikhri")
+frameLength = 2.5
+annotation = "Walk the player towards the mage, who stops talk anim"
+actorTweens = Array[ExtResource("5_c7w65")]([SubResource("Resource_is4gm")])
+actorAnims = Array[ExtResource("3_fvn3s")]([ExtResource("7_genfd"), SubResource("Resource_5brqc")])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([])
+dialogues = Array[ExtResource("6_bjnsi")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_hxuq5"]
+script = ExtResource("3_fvn3s")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_gymek"]
+script = ExtResource("6_bjnsi")
+speaker = "Chain Legion Mage"
+texts = Array[String](["You and your purple robe... You think you're better than me, don't you?!", "I am a real mage, all you can do are magic tricks. I'll show you!"])
+
+[sub_resource type="Resource" id="Resource_xuuxx"]
+script = ExtResource("1_ikhri")
+frameLength = 0.1
+annotation = "the mage speaks again"
+actorTweens = Array[ExtResource("5_c7w65")]([])
+actorAnims = Array[ExtResource("3_fvn3s")]([ExtResource("4_mf3i0"), SubResource("Resource_hxuq5")])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([])
+dialogues = Array[ExtResource("6_bjnsi")]([SubResource("Resource_gymek")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_d0pj4"]
+script = ExtResource("1_ikhri")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_c7w65")]([])
+actorAnims = Array[ExtResource("3_fvn3s")]([])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([])
+dialogues = Array[ExtResource("6_bjnsi")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_fcq7k"]
+script = ExtResource("3_fvn3s")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_xdscp"]
+script = ExtResource("1_ikhri")
+frameLength = 0.1
+annotation = "The mage stops talking animation"
+actorTweens = Array[ExtResource("5_c7w65")]([])
+actorAnims = Array[ExtResource("3_fvn3s")]([SubResource("Resource_fcq7k")])
+actorAnimSets = Array[ExtResource("2_b72xs")]([])
+actorFaceTargets = Array[ExtResource("4_o7dlu")]([])
+dialogues = Array[ExtResource("6_bjnsi")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xlf4k"]
+script = ExtResource("13_12k1j")
+minAct = 2
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("12_myx7r")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["standstill_cl_mage_2"])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("12_myx7r")]([])
+
+[resource]
+script = ExtResource("2_xl6mk")
+cutsceneFrames = Array[ExtResource("1_ikhri")]([SubResource("Resource_h4gkg"), SubResource("Resource_2c4xx"), SubResource("Resource_mhn6g"), SubResource("Resource_xuuxx"), SubResource("Resource_d0pj4"), SubResource("Resource_xdscp")])
+saveName = "standstill_mage2_encounter"
+storyRequirements = SubResource("Resource_xlf4k")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+staticEncounter = ExtResource("11_q30w1")
+tempDisabledAfter = false
+notes = ""

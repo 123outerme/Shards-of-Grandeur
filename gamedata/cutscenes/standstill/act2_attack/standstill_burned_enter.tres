@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=30 format=3 uid="uid://cldxgmtsil24s"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://cldxgmtsil24s"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_x2p2s"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_qxaiv"]
@@ -16,8 +16,8 @@
 
 [sub_resource type="Resource" id="Resource_2bar6"]
 script = ExtResource("8_ru21p")
-speaker = "Dr. Hudson"
-texts = Array[String](["It looks as if we're finally arriving at Standstill. This town has promised us food and shelter while our expedition is in the area.", "Although Standstill is a small town, its foundry still attracts a fair amount of attention from visitors around the land.", "Alessia is quite the master blacksmith, with the attitude to match.", "You might also want to visit the general store to stock up on healing Potions while we're here.", "Prepare well, because there are reports of monsters between here and the Cave."])
+speaker = "@"
+texts = Array[String](["Oh no... I'm already too late.", "It's just like the vision, all burned down..."])
 
 [sub_resource type="Resource" id="Resource_3qyhe"]
 script = ExtResource("1_x2p2s")
@@ -74,7 +74,7 @@ animation = "talk"
 
 [sub_resource type="Resource" id="Resource_h8ghp"]
 script = ExtResource("8_ru21p")
-speaker = "Legion Mage"
+speaker = "Chain Legion Mage"
 texts = Array[String](["Hey, it's that Grandstone adventurer!"])
 
 [sub_resource type="Resource" id="Resource_n534g"]
@@ -157,13 +157,13 @@ animation = "talk"
 
 [sub_resource type="Resource" id="Resource_6uro8"]
 script = ExtResource("8_ru21p")
-speaker = "Legion Mage"
+speaker = "Chain Legion Mage"
 texts = Array[String](["I've heard about you! We were hoping you got lost in the desert.", "This is fine by me, now I get the reward put on your head!"])
 
 [sub_resource type="Resource" id="Resource_n7gd6"]
 script = ExtResource("1_x2p2s")
 frameLength = 0.1
-annotation = "Stop the player walking and have the mage finish his though"
+annotation = "Stop the player walking and have the mage finish his thought"
 actorTweens = Array[ExtResource("6_ke7b7")]([])
 actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("9_d0swg"), SubResource("Resource_yimy4")])
 actorAnimSets = Array[ExtResource("2_qxaiv")]([])
@@ -185,6 +185,31 @@ frameLength = 0.1
 annotation = "Wait for text box to be closed"
 actorTweens = Array[ExtResource("6_ke7b7")]([])
 actorAnims = Array[ExtResource("3_0pfcc")]([])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_k8rph"]
+script = ExtResource("3_0pfcc")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_oy4lv"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "the mage stops talk anim"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([SubResource("Resource_k8rph")])
 actorAnimSets = Array[ExtResource("2_qxaiv")]([])
 actorFaceTargets = Array[ExtResource("5_og8lp")]([])
 dialogues = Array[ExtResource("8_ru21p")]([])
@@ -224,7 +249,7 @@ invalidFromHavingItems = Array[ExtResource("12_b67gk")]([])
 
 [resource]
 script = ExtResource("11_65kgn")
-cutsceneFrames = Array[ExtResource("1_x2p2s")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_vdd2h"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_q7q8a")])
+cutsceneFrames = Array[ExtResource("1_x2p2s")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_vdd2h"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_q7q8a"), SubResource("Resource_oy4lv")])
 saveName = "standstill_burned_enter"
 storyRequirements = SubResource("Resource_wvqjc")
 unlockCameraHoldAfter = true
