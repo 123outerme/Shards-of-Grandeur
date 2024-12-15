@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=7 format=3 uid="uid://cv227rllqigpd"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_84kf5"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_fcxaj"]
+[ext_resource type="Resource" uid="uid://lbxkaadm56ej" path="res://gamedata/combatants/helia/helia.tres" id="3_j7n4n"]
+[ext_resource type="Resource" uid="uid://bhfn4nt0wjgul" path="res://gamedata/items/armor/helia_robes.tres" id="4_2ioso"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_j2fns"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="5_bflsm"]
+
+[resource]
+script = ExtResource("5_bflsm")
+combatant1Level = 23
+combatant1Moves = Array[ExtResource("1_84kf5")]([])
+combatant1ShardSummoned = false
+combatant2Level = 1
+combatant2Moves = Array[ExtResource("1_84kf5")]([])
+combatant2ShardSummoned = false
+combatant3Level = 1
+combatant3Moves = Array[ExtResource("1_84kf5")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_84kf5")]([])
+autoAllyShardSummoned = false
+specialBattleId = "standstill_helia_fight"
+bossBattle = true
+canEscape = false
+rewards = Array[ExtResource("4_j2fns")]([])
+useStaticRewards = false
+battleMusic = ExtResource("2_fcxaj")
+combatant1 = ExtResource("3_j7n4n")
+combatant1Armor = ExtResource("4_2ioso")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""

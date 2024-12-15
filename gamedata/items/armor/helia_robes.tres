@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=7 format=3 uid="uid://bhfn4nt0wjgul"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_dr6mj"]
+[ext_resource type="Texture2D" uid="uid://o7rqwgujex02" path="res://graphics/items/armor/helia_robes.png" id="1_tricp"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_gorby"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_d75fu"]
+
+[sub_resource type="Resource" id="Resource_42pjx"]
+script = ExtResource("3_gorby")
+element = 2
+multiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_3q6rb"]
+script = ExtResource("4_d75fu")
+physAttackIncrease = 0
+magicAttackIncrease = 5
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_gorby")]([SubResource("Resource_42pjx")])
+
+[resource]
+script = ExtResource("1_dr6mj")
+statChanges = SubResource("Resource_3q6rb")
+timing = 0
+bonusOrbs = 2
+itemSprite = ExtResource("1_tricp")
+itemName = "Helia's Robes"
+itemType = 0
+itemDescription = "Helia's set of black robes with a blue flame pattern on it. It's caked with a covering of ash."
+cost = -1
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

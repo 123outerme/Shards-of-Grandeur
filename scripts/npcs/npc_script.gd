@@ -515,9 +515,12 @@ func face_player():
 		face_horiz(player.position.x - position.x)
 
 func set_sprite_state(state: String):
-	spriteState = state
-	if stateSpritesDict[spriteState] != null:
-		npcSprite.sprite_frames = stateSpritesDict[spriteState]
+	if stateSpritesDict.has(state):
+		if stateSpritesDict[state] != null:
+			npcSprite.sprite_frames = stateSpritesDict[state]
+		spriteState = state
+	else:
+		printerr('NPC sprite state error: NPC at ', get_path(), ' (save name ', saveName, ') does not have sprite state "', state, '"')
 
 func play_animation(animation: String):
 	if animation != '':

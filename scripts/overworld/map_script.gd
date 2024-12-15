@@ -63,6 +63,7 @@ func _assign_two_layer_tiles():
 			TileDef.new('Midground', 22, Vector2i(3,1)), # ruined_castle.png, 1st house right
 			TileDef.new('Midground', 22, Vector2i(4,1)), # ruined_castle.png, 2nd house left
 			TileDef.new('Midground', 22, Vector2i(5,1)), # ruined_castle.png, 2nd house right
+			TileDef.new('Midground', 29, Vector2i(0,3)), # animated_decals.png, large fire bottom
 		]
 		var topTiles: Array[TileDef] = [
 			TileDef.new('Foreground', 1, Vector2i(0,0)), # trees.png, 1st tree top
@@ -94,6 +95,7 @@ func _assign_two_layer_tiles():
 			TileDef.new('Foreground', 22, Vector2i(3,0)), # ruined_castle.png, 1st house right roof
 			TileDef.new('Foreground', 22, Vector2i(4,0)), # ruined_castle.png, 2nd house left roof
 			TileDef.new('Foreground', 22, Vector2i(5,0)), # ruined_castle.png, 2nd house right roof
+			TileDef.new('Foreground', 29, Vector2i(0,2)), # animated_decals.png, large fire top
 		]
 		var deltas: Array[Vector2i] = [
 			Vector2i(0, -1), # shift trees.png, 1st tree top up 1 from tree bottom position
@@ -125,6 +127,7 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1), # shift ruined_castle.png, 1st house right roof up 1
 			Vector2i(0, -1), # shift ruined_castle.png, 2nd house left roof up 1
 			Vector2i(0, -1), # shift ruined_castle.png, 2nd house right roof up 1
+			Vector2i(0, -1), # shift animated_decals.png, large fire top up 1
 		]
 		
 		for idx in len(bottomTiles):

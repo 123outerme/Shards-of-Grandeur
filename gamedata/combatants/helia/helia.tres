@@ -1,23 +1,23 @@
 [gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://lbxkaadm56ej"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="1_2d8lo"]
-[ext_resource type="Resource" uid="uid://bkplhsrdj7we2" path="res://gamedata/combatants/helia/helia_ai.tres" id="1_65aqn"]
-[ext_resource type="Resource" uid="uid://c3fn3npejblao" path="res://gamedata/combatants/helia/helia_evolutions.tres" id="1_yxwxw"]
-[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_cndpx"]
-[ext_resource type="Resource" uid="uid://cffvrdd55f7jm" path="res://gamedata/combatants/helia/helia_rewards.tres" id="2_ne2ds"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="3_qi3gu"]
-[ext_resource type="Resource" uid="uid://bu0qnfep7wbds" path="res://gamedata/combatants/helia/helia_effectiveness.tres" id="4_8ixgm"]
-[ext_resource type="Resource" uid="uid://bdvm6hhl3bsdx" path="res://gamedata/combatants/helia/helia_sprite.tres" id="4_k4n5r"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="4_tkvrk"]
-[ext_resource type="Resource" uid="uid://balk51aug61vr" path="res://gamedata/combatants/helia/helia_movepool.tres" id="5_ruwxa"]
-[ext_resource type="Resource" uid="uid://bvs7a1caveao5" path="res://gamedata/combatants/helia/helia_stat_alloc_strat.tres" id="8_88eh3"]
-[ext_resource type="Resource" uid="uid://r1cr6br6kpoh" path="res://gamedata/combatants/helia/helia_stat_growth.tres" id="8_vepbo"]
-[ext_resource type="Resource" uid="uid://bpm6r1yxph0yc" path="res://gamedata/combatants/helia/helia_equipment.tres" id="13_22685"]
+[ext_resource type="Resource" uid="uid://bkplhsrdj7we2" path="res://gamedata/combatants/helia/helia_ai.tres" id="1_fvgg0"]
+[ext_resource type="Resource" uid="uid://cffvrdd55f7jm" path="res://gamedata/combatants/helia/helia_rewards.tres" id="2_bkv3y"]
+[ext_resource type="Resource" uid="uid://c3fn3npejblao" path="res://gamedata/combatants/helia/helia_evolutions.tres" id="3_f5cs8"]
+[ext_resource type="Resource" uid="uid://bu0qnfep7wbds" path="res://gamedata/combatants/helia/helia_effectiveness.tres" id="4_ytjl1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="5_m3gps"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="6_dns7m"]
+[ext_resource type="Resource" uid="uid://bdvm6hhl3bsdx" path="res://gamedata/combatants/helia/helia_sprite.tres" id="7_43gh8"]
+[ext_resource type="Resource" uid="uid://bvs7a1caveao5" path="res://gamedata/combatants/helia/helia_stat_alloc_strat.tres" id="8_xy6qf"]
+[ext_resource type="Resource" uid="uid://balk51aug61vr" path="res://gamedata/combatants/helia/helia_movepool.tres" id="9_80adr"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="10_iwo8k"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="11_xrwyr"]
+[ext_resource type="Resource" uid="uid://r1cr6br6kpoh" path="res://gamedata/combatants/helia/helia_stat_growth.tres" id="12_7rkva"]
+[ext_resource type="Resource" uid="uid://bpm6r1yxph0yc" path="res://gamedata/combatants/helia/helia_equipment.tres" id="13_v4qho"]
 
 [sub_resource type="Resource" id="Resource_mfey5"]
-script = ExtResource("4_tkvrk")
-displayName = "FIRE_WITCH"
-saveName = "fire_witch"
+script = ExtResource("11_xrwyr")
+displayName = "Helia"
+saveName = "helia"
 level = 1
 experience = 0
 maxHp = 50
@@ -27,36 +27,36 @@ resistance = 1
 affinity = 1
 speed = 1
 statPts = 0
-statGrowth = ExtResource("8_vepbo")
-moves = Array[ExtResource("3_qi3gu")]([])
-movepool = ExtResource("5_ruwxa")
+statGrowth = ExtResource("12_7rkva")
+moves = Array[ExtResource("10_iwo8k")]([])
+movepool = ExtResource("9_80adr")
 
 [resource]
-script = ExtResource("2_cndpx")
-sprite = ExtResource("4_k4n5r")
+script = ExtResource("6_dns7m")
+sprite = ExtResource("7_43gh8")
 nickname = ""
 stats = SubResource("Resource_mfey5")
-evolutions = ExtResource("1_yxwxw")
+evolutions = ExtResource("3_f5cs8")
 evolutionStats = {}
 minionStatAllocMode = -1
 currentHp = -1
 orbs = 0
-runes = Array[ExtResource("1_2d8lo")]([])
-triggeredRunes = Array[ExtResource("1_2d8lo")]([])
+runes = Array[ExtResource("5_m3gps")]([])
+triggeredRunes = Array[ExtResource("5_m3gps")]([])
 triggeredRunesDmg = Array[int]([])
 triggeredRunesStatus = Array[bool]([])
 friendship = 0.0
 maxFriendship = 30.0
 version = ""
-ai = ExtResource("1_65aqn")
+ai = ExtResource("1_fvgg0")
 aiType = 1
 damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.25
-moveEffectiveness = ExtResource("4_8ixgm")
-weightedEquipment = ExtResource("13_22685")
-dropTable = ExtResource("2_ne2ds")
-statAllocationStrategy = ExtResource("8_88eh3")
+moveEffectiveness = ExtResource("4_ytjl1")
+weightedEquipment = ExtResource("13_v4qho")
+dropTable = ExtResource("2_bkv3y")
+statAllocationStrategy = ExtResource("8_xy6qf")
 downed = false
 battleStorageHp = -1
 battleStorageOrbs = -1
