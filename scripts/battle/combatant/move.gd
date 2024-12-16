@@ -130,16 +130,16 @@ func has_effect_with_role(role: MoveEffect.Role) -> bool:
 	return chargeEffect.role == role or surgeEffect.role == role
 
 func effects_with_role(role: MoveEffect.Role) -> MoveEffectType:
-	var chargeHeals: bool = chargeEffect.role == role
-	var surgeHeals: bool = surgeEffect.role == role
+	var chargeHasEffect: bool = chargeEffect.role == role
+	var surgeHasEffect: bool = surgeEffect.role == role
 	
-	if chargeHeals and surgeHeals:
+	if chargeHasEffect and surgeHasEffect:
 		return MoveEffectType.BOTH
 	
-	if chargeHeals:
+	if chargeHasEffect:
 		return MoveEffectType.CHARGE
 	
-	if surgeHeals:
+	if surgeHasEffect:
 		return MoveEffectType.SURGE
 	
 	return MoveEffectType.NONE

@@ -78,11 +78,11 @@ func load_item_count_choose_panel() -> void:
 			if inventoryCount > 0:
 				invCountString = '[right]Shop has ' + TextUtils.num_to_comma_string(inventoryCount) + 'x ' + item.itemName + '.[/right]'
 				inventoryCountLabel.visible = true
-				maxValue = min(inventoryCount, item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost))
+				maxValue = min(inventoryCount, item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost as float))
 			else:
 				inventoryCountLabel.visible = false
 				otherInvCountString = '[center]'
-				maxValue = min(item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost))
+				maxValue = min(item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost as float))
 			otherInvCountString += 'You have ' + TextUtils.num_to_comma_string(otherInventoryCount) + 'x ' + item.itemName
 			otherInventoryCountLabel.visible = true
 			if item.maxCount > 0:
@@ -160,7 +160,7 @@ func _on_virtual_keyboard_backspace_pressed() -> void:
 		countChooseControl.value = 0
 		countChooseControl.allCountTextSelected = false
 	else:
-		var newVal: int = floori(countChooseControl.value / 10)
+		var newVal: int = floori(countChooseControl.value / 10.0)
 		if newVal == 0:
 			countChooseControl.lineEdit.text = ''
 			countChooseControl.value = 0

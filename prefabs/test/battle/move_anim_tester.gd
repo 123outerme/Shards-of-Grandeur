@@ -64,9 +64,9 @@ func _on_surge_charge_toggle_toggled(toggled_on: bool) -> void:
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 
 func _on_move_learn_anim_control_combatant_finished_anim() -> void:
-		button.disabled = false
-		surgeChargeToggle.disabled = false
-		swapButton.disabled = false
+	button.disabled = false
+	surgeChargeToggle.disabled = false
+	swapButton.disabled = false
 
 func _on_move_learn_anim_control_combatant_started_anim() -> void:
 	pass # Replace with function body.

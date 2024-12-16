@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DamageRune" load_steps=4 format=3 uid="uid://1v533tc2abqm"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="1_8p7e3"]
+[ext_resource type="Resource" uid="uid://bq2u7u3bm6k5u" path="res://gamedata/moves/burning_rune/rune/sprite_rune_burning_rune_charge.tres" id="1_olbx3"]
+[ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/burning_rune/rune/trigger_sprite_rune_burning_rune_charge.tres" id="3_72dov"]
+
+[resource]
+script = ExtResource("1_8p7e3")
+triggerElement = 2
+isHealRune = false
+previousHp = -1
+orbChange = 0
+category = 1
+element = 2
+power = 70
+lifesteal = 0.0
+runeSpriteAnim = ExtResource("1_olbx3")
+triggerAnim = ExtResource("3_72dov")

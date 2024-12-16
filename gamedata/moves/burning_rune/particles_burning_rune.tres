@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://cu5shd1po03c0"]
+
+[ext_resource type="Texture2D" uid="uid://d1s0muneaqbmp" path="res://graphics/particles/fire/fire_1.png" id="1_7hkj6"]
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_ajfml"]
+[ext_resource type="Texture2D" uid="uid://dt1jful8dnkk7" path="res://graphics/particles/fire/fire_2.png" id="2_dwxkf"]
+[ext_resource type="Texture2D" uid="uid://ctxvjxobc6rlo" path="res://graphics/particles/fire/fire_3.png" id="3_f3ggg"]
+[ext_resource type="Texture2D" uid="uid://o88o6okxdgq3" path="res://graphics/particles/fire/fire_4.png" id="4_kqtn4"]
+[ext_resource type="Material" uid="uid://krjngho5bn77" path="res://gamedata/moves/burning_rune/burning_rune_particle_process_mat.tres" id="5_ene1r"]
+
+[resource]
+script = ExtResource("1_ajfml")
+emitter = "behind"
+count = 5
+lifetime = 0.5
+duration = 1.0
+staggered = false
+processMaterial = ExtResource("5_ene1r")
+particleTextures = Array[Texture2D]([ExtResource("1_7hkj6"), ExtResource("2_dwxkf"), ExtResource("3_f3ggg"), ExtResource("4_kqtn4")])

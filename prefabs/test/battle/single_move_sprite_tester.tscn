@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=6 format=3 uid="uid://bk5gphn7ma6ij"]
 
-[ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://c4mkngg5jwoxd" path="res://gamedata/moves/burning_rune/burning_rune.tres" id="2_b1mss"]
-[ext_resource type="Resource" uid="uid://lbxkaadm56ej" path="res://gamedata/combatants/helia/helia.tres" id="3_5vqab"]
-[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
+[ext_resource type="Script" path="res://prefabs/test/battle/single_move_sprite_tester.gd" id="1_sjw45"]
+[ext_resource type="Resource" uid="uid://lbxkaadm56ej" path="res://gamedata/combatants/helia/helia.tres" id="2_ltq3s"]
+[ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/burning_rune/rune/trigger_sprite_rune_burning_rune_charge.tres" id="2_w7kp0"]
+[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="2_y6kky"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="3_casjv"]
 
-[node name="MoveAnimTester" type="Node2D"]
-script = ExtResource("1_ukfe0")
-move = ExtResource("2_b1mss")
-targetCombatant = ExtResource("3_5vqab")
+[node name="SingleMoveSpriteTester" type="Node2D"]
+script = ExtResource("1_sjw45")
+moveAnimSprite = ExtResource("2_w7kp0")
+targetCombatant = ExtResource("2_ltq3s")
 
-[node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
+[node name="MoveLearnAnimControl" parent="." instance=ExtResource("2_y6kky")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,7 +52,9 @@ position = Vector2(751, 244)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Button" type="Button" parent="."]
+[node name="AudioHandler" parent="." instance=ExtResource("3_casjv")]
+
+[node name="PlayButton" type="Button" parent="."]
 offset_left = -26.0
 offset_top = 48.0
 offset_right = 26.0
@@ -64,24 +66,12 @@ offset_left = 74.0
 offset_top = 48.0
 offset_right = 132.0
 offset_bottom = 79.0
+toggle_mode = true
 text = "Swap"
 
-[node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
-
-[node name="SurgeChargeToggle" type="Button" parent="."]
-custom_minimum_size = Vector2(81, 0)
-offset_left = -141.0
-offset_top = 48.0
-offset_right = -60.0
-offset_bottom = 77.0
-toggle_mode = true
-text = "Charge"
-
-[connection signal="combatant_finished_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_finished_anim"]
-[connection signal="combatant_started_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_started_anim"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
-[connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
+[connection signal="toggled" from="SwapButton" to="." method="_on_swap_button_toggled"]
 
 [editable path="MoveLearnAnimControl"]
 [editable path="MoveLearnAnimControl/BattlefieldBorder/BattleAnimationManager"]

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DamageRune" load_steps=8 format=3 uid="uid://6pfosvmeuier"]
+
+[ext_resource type="Resource" uid="uid://bq2u7u3bm6k5u" path="res://gamedata/moves/burning_rune/rune/sprite_rune_burning_rune_charge.tres" id="1_4q0r4"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="1_l5lyl"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="2_hudun"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="3_nwqfi"]
+[ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/burning_rune/rune/trigger_sprite_rune_burning_rune_charge.tres" id="5_yqwdh"]
+
+[sub_resource type="Resource" id="Resource_5s37y"]
+script = ExtResource("2_hudun")
+element = 2
+power = 75.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+
+[sub_resource type="Resource" id="Resource_gpngq"]
+script = ExtResource("3_nwqfi")
+powerPerOrb = 2
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 6
+overwhelmingThresholdOrbs = 8
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[resource]
+script = ExtResource("1_l5lyl")
+triggerElement = 2
+isHealRune = false
+previousHp = -1
+orbChange = 0
+category = 1
+element = 2
+power = 75
+lifesteal = 0.0
+statusEffect = SubResource("Resource_5s37y")
+surgeChanges = SubResource("Resource_gpngq")
+runeSpriteAnim = ExtResource("1_4q0r4")
+triggerAnim = ExtResource("5_yqwdh")

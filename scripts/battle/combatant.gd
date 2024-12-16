@@ -696,31 +696,41 @@ func assign_moves_nonplayer():
 	# for each move slot, use the preferred role to find the highest lv move that includes that role
 	# MoveEffect.Role.OTHER means no preference, so a slot with that preference skips this phase and goes onto the next
 	# NOTE: loop through twice; one to allocate approximately the most preferred move to the slot; then to backfill the "best"/highest lv move after all good moves have been already picked
-	for scoreToBeat: int in [7, -1]:
+	var assignedSignatureMove: bool = false 
+	for scoreToBeat: int in [31, -1]:
 		for idx: int in range(len(preferredRoles)):
-			var bestMove: Move = stats.moves[idx]
-			# first time, score to beat is 7: has to be of the specified role (most specific of the filters)
-			# second time, score to beat is 0: min score is 1 because of requiredLv testing logic
+			var bestMove: Move = stats.moves[idx] # check against the previously assigned move (if any)
+			# first time, score to beat is 31: has to be of the specified role (most specific of the filters)
+			# second time, score to beat is -1: min score of a non-null move going into a null slot is 1 
 			var bestScore: int = max(bestScores[idx], scoreToBeat)
 			for move: Move in stats.movepool.pool:
 				if move.requiredLv > stats.level:
 					continue
 				var score: int = 0
+				# most important for the desired move role to match
 				if move.has_effect_with_role(preferredRoles[idx]) and preferredRoles[idx] != MoveEffect.Role.OTHER:
-					score += 16 # most specific criteria: most important
+					score += 64
+					if move.effects_with_role(preferredRoles[idx]) == Move.MoveEffectType.BOTH:
+						score += 8 # if both moves have the preferred role, bonus to score
+						# more important than signature move, element, and level
+						# but less important than dmg category
 				else:
-					## AOE damage is preferred, but if not, take single-target instead
+					# AOE damage is preferred, but if not available, take single-target instead
 					if preferredRoles[idx] == MoveEffect.Role.AOE_DAMAGE and move.has_effect_with_role(MoveEffect.Role.SINGLE_TARGET_DAMAGE):
-						score += 8
-				
-				if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
-					score += 4
+						score += 32 #* move.count_effects_with_role(preferredRoles[idx])
 				
 				if move.category == preferredTypes[idx] and preferredTypes[idx] != Move.DmgCategory.ANY:
-					score += 2
+					score += 16 # pretty important for the move damage category to match
+				
+				# if no signature move has been selected: prefer a signature move that we haven't already selected
+				if not assignedSignatureMove and move in stats.movepool.signatureMoves and not move in stats.moves:
+					score += 4 # more important than element and level for a signature move to be assigned
+				
+				if move.element == preferredElements[idx] and preferredElements[idx] != Move.Element.NONE:
+					score += 2 # not as important for the move element to match what's preferred
 				
 				if bestMove == null or bestMove.requiredLv < move.requiredLv:
-					score += 1 # least specific criteria: least important
+					score += 1 # least specific criteria: least important for the move to be higher lv
 				
 				#print(move.moveName, ' for slot ', idx, ' scored ', score, '. Prior to check best move is ', 'null' if bestMove == null else bestMove.moveName, ' (score ', bestScore, ')')
 				if (score > bestScore \
@@ -733,6 +743,8 @@ func assign_moves_nonplayer():
 				#print(stats.displayName + ' move ', idx, ' is now ', bestMove.moveName, ' (score ', bestScore, ')')
 				stats.moves[idx] = bestMove
 				bestScores[idx] = bestScore
+				if bestMove in stats.movepool.signatureMoves:
+					assignedSignatureMove = true
 		
 	stats.moves = stats.moves.filter(_filter_null) # remove null entries because they aren't needed
 	# NOTE: check if having null entries breaks anything (specifically move picking) or not

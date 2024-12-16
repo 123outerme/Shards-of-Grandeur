@@ -86,6 +86,7 @@ func load_data(save_path):
 		if playerInfo.combatant.get_sprite_frames() != null:
 			player.set_sprite_frames(playerInfo.combatant.get_sprite_frames())
 		player.facingLeft = playerInfo.flipH
+		player.sprite.flip_h = playerInfo.flipH
 		player.interactableDialogueIndex = playerInfo.interactableDialogueIdx
 		player.restore_interactable_dialogue.call_deferred(playerInfo.interactableDialogues)
 		player.running = playerInfo.running

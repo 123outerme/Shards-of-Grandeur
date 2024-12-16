@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://8fqjtvte2666"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_32qeh"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_2x1n1"]
+[ext_resource type="SpriteFrames" uid="uid://caifmll7j6t8p" path="res://graphics/moves/fire/a_burning_rune.tres" id="3_kfobr"]
+[ext_resource type="Resource" uid="uid://d1jnd7phew4rb" path="res://gamedata/moves/burning_rune/particles_burning_rune_move.tres" id="3_tq3ob"]
+[ext_resource type="AudioStream" uid="uid://1bnigsf5of4m" path="res://audio/sfx/moves/fire/flamewind.mp3" id="3_uiv3t"]
+
+[sub_resource type="Curve" id="Curve_ra4rx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_6yb25"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_3flhu"]
+script = ExtResource("1_32qeh")
+annotation = "set up position near target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(-32, 0)
+offset = 1
+xCurve = SubResource("Curve_ra4rx")
+yCurve = SubResource("Curve_6yb25")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_sw1sa"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_61lsm"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_1rh6g"]
+script = ExtResource("1_32qeh")
+annotation = "send fire at target"
+animation = "burning_rune_move"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_sw1sa")
+yCurve = SubResource("Curve_61lsm")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("3_uiv3t")
+
+[sub_resource type="Resource" id="Resource_1qwmh"]
+script = ExtResource("1_32qeh")
+annotation = "play the remainer of the move anim, sfx"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_tq3ob")
+
+[resource]
+script = ExtResource("2_2x1n1")
+spriteFrames = ExtResource("3_kfobr")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_32qeh")]([SubResource("Resource_3flhu"), SubResource("Resource_1rh6g"), SubResource("Resource_1qwmh")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

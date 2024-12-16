@@ -8,6 +8,7 @@ enum Role {
 	BUFF = 3, ## Buff
 	DEBUFF = 4, ## Debuff
 	HEAL = 5, ## Healing
+	SETUP = 6, ## Setup
 }
 ## move role (for use in auto-learning moves)
 @export var role: Role = Role.OTHER
@@ -59,6 +60,8 @@ static func role_to_string(r: Role) -> String:
 			return 'Debuff'
 		Role.HEAL:
 			return 'Heal'
+		Role.SETUP:
+			return 'Setup'
 	return 'UNKOWN'
 
 func _init(

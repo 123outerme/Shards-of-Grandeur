@@ -8,8 +8,8 @@ var textureY: int = 48
 
 func _ready() -> void:
 	shardsTexture.position = Vector2.ZERO
-	textureX = roundi(shardsTexture.texture.get_size().x) * shardsTexture.scale.x
-	textureY = roundi(shardsTexture.texture.get_size().y) * shardsTexture.scale.y
+	textureX = roundi((shardsTexture.texture.get_size().x) * shardsTexture.scale.x)
+	textureY = roundi((shardsTexture.texture.get_size().y) * shardsTexture.scale.y)
 	SettingsHandler.settings_changed.connect(_settings_changed)
 
 func _process(delta: float) -> void:

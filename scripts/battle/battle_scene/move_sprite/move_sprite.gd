@@ -46,17 +46,26 @@ func _ready():
 func _process(delta):
 	if playing:
 		visible = true
-		spritePivot.position = anim.frames[moveFrame].get_sprite_pivot(frameTimer, anim.frames[moveFrame].spritePivot, lastPivotPos)
+		# first, increase the timer by the frame delta
+		frameTimer += delta
+		var frame: MoveAnimSpriteFrame = anim.frames[moveFrame]
+		var finishTime = frame.get_real_duration(targetPos - startPos)
+		# check if we are over the current frame's duration
+		if frameTimer > finishTime:
+			# if over: snap this animation to the tail end of the current frame (F1)
+			finish_current_frame()
+			# then advance to F2 and process F2 for the amount of time over F1's total duration
+			# i.e. if F1 duration is 0.5 seconds and frameTimer was 0.55s going into this, process F2 for 0.05s
+			next_frame()
+			if not playing: # if the animation's now over, don't continue
+				return
+		spritePivot.position = frame.get_sprite_pivot(frame.duration, frame.spritePivot, lastPivotPos)
 		if not user.leftSide:
 			spritePivot.position.x *= -1
-		global_position = anim.frames[moveFrame].get_sprite_position(frameTimer, targetPos, startPos)
-		modulate.a = anim.frames[moveFrame].get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
-		if anim.frames[moveFrame].trackRotationTarget:
-			calc_rotation(anim.frames[moveFrame])
-		frameTimer += delta
-		var finishTime = anim.frames[moveFrame].get_real_duration(targetPos - startPos)
-		if frameTimer > finishTime:
-			next_frame()
+		global_position = frame.get_sprite_position(frame.duration, targetPos, startPos)
+		modulate.a = frame.get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
+		if frame.trackRotationTarget:
+			calc_rotation(frame)
 
 func load_animation():
 	moveFrame = 0
@@ -185,6 +194,16 @@ func calc_rotation(sprFrame: MoveAnimSpriteFrame):
 		else:
 			rotation = 0
 
+func finish_current_frame() -> void:
+	var frame: MoveAnimSpriteFrame = anim.frames[moveFrame]
+	spritePivot.position = frame.get_sprite_pivot(frame.duration, frame.spritePivot, lastPivotPos)
+	if not user.leftSide:
+		spritePivot.position.x *= -1
+	global_position = frame.get_sprite_position(frame.duration, targetPos, startPos)
+	modulate.a = frame.get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
+	if frame.trackRotationTarget:
+		calc_rotation(frame)
+
 func next_frame():
 	frame_complete.emit(moveFrame)
 	moveFrame += 1
@@ -200,7 +219,8 @@ func next_frame():
 			else:
 				destroy()
 			return
-	frameTimer = 0
+	# continue with some leftover duration (if any)
+	frameTimer = max(0, frameTimer - anim.frames[moveFrame - 1].duration)
 	lastPivotPos = spritePivot.position
 	if not user.leftSide:
 		lastPivotPos.x *= -1 # account for the pivot being flipped for right-side combatants

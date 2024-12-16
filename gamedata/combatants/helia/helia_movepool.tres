@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://balk51aug61vr"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=10 format=3 uid="uid://balk51aug61vr"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_seh8i"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_cg60f"]
@@ -7,16 +7,17 @@
 [ext_resource type="Resource" uid="uid://cq4jjoj6ancn0" path="res://gamedata/moves/shade_blast/shade_blast.tres" id="5_4k3bg"]
 [ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="6_8421p"]
 [ext_resource type="Resource" uid="uid://bjh2nwqxbbis3" path="res://gamedata/moves/desert_sun_beam/desert_sun_beam.tres" id="7_7jqem"]
+[ext_resource type="Resource" uid="uid://c4mkngg5jwoxd" path="res://gamedata/moves/burning_rune/burning_rune.tres" id="8_2seff"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="8_ptnwh"]
 
 [resource]
 script = ExtResource("8_ptnwh")
-pool = Array[ExtResource("1_seh8i")]([ExtResource("2_cg60f"), ExtResource("3_y4lir"), ExtResource("4_85yd0"), ExtResource("5_4k3bg"), ExtResource("6_8421p"), ExtResource("7_7jqem")])
-signatureMoves = Array[ExtResource("1_seh8i")]([ExtResource("6_8421p")])
+pool = Array[ExtResource("1_seh8i")]([ExtResource("2_cg60f"), ExtResource("3_y4lir"), ExtResource("4_85yd0"), ExtResource("5_4k3bg"), ExtResource("6_8421p"), ExtResource("7_7jqem"), ExtResource("8_2seff")])
+signatureMoves = Array[ExtResource("1_seh8i")]([ExtResource("8_2seff")])
 preferredMove1Role = 2
 preferredMove1DmgType = 1
 preferredMove1Element = 2
-preferredMove2Role = 1
+preferredMove2Role = 6
 preferredMove2DmgType = 1
 preferredMove2Element = 2
 preferredMove3Role = 3

@@ -60,8 +60,8 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	if speaker == '':
 		newSpeaker = SpeakerText.text != ''
 		SpeakerText.text = ''
-	elif SpeakerText.text != TextUtils.substitute_playername(speaker) + ":":
-		SpeakerText.text = TextUtils.substitute_playername(speaker) + ":"
+	elif SpeakerText.text != TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":":
+		SpeakerText.text = TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":"
 		newSpeaker = true
 	delete_choices()
 	visible = true
@@ -74,11 +74,11 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	
 func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: String = ''):
-	TextBoxText.text = TextUtils.substitute_playername(text)
+	TextBoxText.text = TextUtils.rich_text_substitute(text, Vector2i(32, 32))
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
-	if overrideSpeaker != '' and SpeakerText.text != TextUtils.substitute_playername(overrideSpeaker) + ":":
-		SpeakerText.text = TextUtils.substitute_playername(overrideSpeaker) + ":"
+	if overrideSpeaker != '' and SpeakerText.text != TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":":
+		SpeakerText.text = TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":"
 		SpeakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
 	ReadySprite.visible = false
@@ -228,6 +228,9 @@ func _select_choice(idx: int):
 	lastChoiceFocused = null
 
 func _on_box_container_scroller_visibility_changed() -> void:
+	if boxContainerScroller == null: # prevent errors if this is triggered before _ready()
+		return
+	
 	if boxContainerScroller.visible:
 		if firstChoiceButton != null and lastChoiceButton != null:
 			boxContainerScroller.connect_scroll_left_right_neighbor(firstChoiceButton)
