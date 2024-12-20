@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://dgoi727ofryrw"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://dgoi727ofryrw"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kgbxx"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_23qv1"]
@@ -142,6 +142,12 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_wpw03"]
+script = ExtResource("3_bx577")
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+animation = "talk"
+
 [sub_resource type="Resource" id="Resource_36p1w"]
 script = ExtResource("5_gc3vs")
 actorTreePath = "TilemapRoot/ChainLegionMage3"
@@ -160,7 +166,7 @@ script = ExtResource("1_kgbxx")
 frameLength = 0.1
 annotation = "The mage faces the player and speaks again"
 actorTweens = Array[ExtResource("6_ubgn6")]([])
-actorAnims = Array[ExtResource("3_bx577")]([])
+actorAnims = Array[ExtResource("3_bx577")]([SubResource("Resource_wpw03")])
 actorAnimSets = Array[ExtResource("2_23qv1")]([])
 actorFaceTargets = Array[ExtResource("5_gc3vs")]([SubResource("Resource_36p1w")])
 dialogues = Array[ExtResource("7_na5nw")]([SubResource("Resource_xooex")])
@@ -193,6 +199,12 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_olhtu"]
+script = ExtResource("3_bx577")
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+animation = "stand"
+
 [sub_resource type="Resource" id="Resource_qdnlo"]
 script = ExtResource("9_ryd0e")
 value = Vector2(0, 83)
@@ -207,7 +219,7 @@ script = ExtResource("1_kgbxx")
 frameLength = 1.0
 annotation = "the player walks over to the mage"
 actorTweens = Array[ExtResource("6_ubgn6")]([SubResource("Resource_qdnlo")])
-actorAnims = Array[ExtResource("3_bx577")]([ExtResource("8_6jtd6")])
+actorAnims = Array[ExtResource("3_bx577")]([ExtResource("8_6jtd6"), SubResource("Resource_olhtu")])
 actorAnimSets = Array[ExtResource("2_23qv1")]([])
 actorFaceTargets = Array[ExtResource("5_gc3vs")]([])
 dialogues = Array[ExtResource("7_na5nw")]([])
@@ -224,7 +236,7 @@ endStartsShardLearnTutorial = false
 [sub_resource type="Resource" id="Resource_5jgqm"]
 script = ExtResource("7_na5nw")
 speaker = "@"
-texts = Array[String](["You're not burning one more thing, now that I'm here."])
+texts = Array[String](["You're not burning one more thing, now that I'm here!"])
 
 [sub_resource type="Resource" id="Resource_4dsb4"]
 script = ExtResource("1_kgbxx")
