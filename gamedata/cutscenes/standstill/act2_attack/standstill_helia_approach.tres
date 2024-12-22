@@ -1,12 +1,441 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=4 format=3 uid="uid://4sw6mcioimcl"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=52 format=3 uid="uid://4sw6mcioimcl"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_4blb1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_6se67"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_7xq35"]
 [ext_resource type="Resource" uid="uid://cv227rllqigpd" path="res://gamedata/static_encounters/act2/standstill_helia_fight.tres" id="3_lh807"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_xcymc"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_mpctq"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_em3ei"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_gpf1h"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="7_tamwb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="7_yik3w"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_fs3ju"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_dfoib"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="10_h0v3s"]
+
+[sub_resource type="Resource" id="Resource_7iwi2"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_aum5o"]
+script = ExtResource("6_gpf1h")
+speaker = "???"
+texts = Array[String](["This backwards little town is looking a lot better now, don't you think?"])
+
+[sub_resource type="Resource" id="Resource_fuehc"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Set up the camera to hold. Have Helia start talking"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_7iwi2"), ExtResource("10_h0v3s")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_aum5o")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_q37lc"]
+script = ExtResource("7_yik3w")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_uw158"]
+script = ExtResource("7_tamwb")
+movementCurve = SubResource("Resource_q37lc")
+finalPos = Vector2(194, -92)
+relative = false
+
+[sub_resource type="Resource" id="Resource_pntbu"]
+script = ExtResource("1_4blb1")
+frameLength = 1.0
+annotation = "move the camera to center over the battlefield, then wait for the textbox to be cleared"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_uw158")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_e4mhe"]
+script = ExtResource("6_gpf1h")
+speaker = "Lance"
+texts = Array[String](["@... Alessia's down, and I can't hold two of them off by myself...", "Why, witch... why would you do this?!"])
+
+[sub_resource type="Resource" id="Resource_fnq1y"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Have Lance talk"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_e4mhe")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_witsw"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_xf82q"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_f2ge5"]
+script = ExtResource("9_dfoib")
+value = Vector2(166, -92)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_egeq7"]
+script = ExtResource("1_4blb1")
+frameLength = 1.5
+annotation = "The player approaches"
+actorTweens = Array[ExtResource("5_em3ei")]([SubResource("Resource_f2ge5")])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_witsw"), SubResource("Resource_xf82q"), ExtResource("8_fs3ju")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_w814t"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([ExtResource("10_h0v3s")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_m7rnu"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_cll0w"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_3wghs"]
+script = ExtResource("6_gpf1h")
+speaker = "???"
+texts = Array[String](["The Chain Legion needed to run some field tests for our newest creation.", "And you... you must be @? Etreus has warned me about you. See what I've brought today!"])
+
+[sub_resource type="Resource" id="Resource_mv7jk"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Helia talks, acknowledges the player"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_m7rnu"), SubResource("Resource_cll0w")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_3wghs")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_irdsk"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "wait for the text box to close"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_c4ol4"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_3oa3b"]
+script = ExtResource("7_yik3w")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_fxhsy"]
+script = ExtResource("7_tamwb")
+movementCurve = SubResource("Resource_3oa3b")
+finalPos = Vector2(306, -52)
+relative = false
+
+[sub_resource type="Resource" id="Resource_wykjl"]
+script = ExtResource("1_4blb1")
+frameLength = 1.75
+annotation = "the camera pans over to the airship"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_c4ol4")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_fxhsy")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_8ytuw"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_5j1x5"]
+script = ExtResource("6_gpf1h")
+speaker = "???"
+texts = Array[String](["The world's first ever flying machine. Pretty cool, huh?", "It soars among the clouds, bringing soldiers to battle in a moment's notice."])
+
+[sub_resource type="Resource" id="Resource_14vgt"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Helia speaks"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_8ytuw")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_5j1x5")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_inm2o"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_3t2ir"]
+script = ExtResource("6_gpf1h")
+speaker = "???"
+texts = Array[String](["And, for the record, the name's Helia."])
+
+[sub_resource type="Resource" id="Resource_fxsll"]
+script = ExtResource("6_gpf1h")
+speaker = "Helia"
+texts = Array[String](["With our tests complete, Grandstone will soon be our next target.", "We'll finish this Radiant War quite swiftly!"])
+
+[sub_resource type="Resource" id="Resource_jqyh0"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "Helia finally introduces herself"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_3t2ir"), SubResource("Resource_fxsll")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rcgla"]
+script = ExtResource("7_yik3w")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_s46fb"]
+script = ExtResource("7_tamwb")
+movementCurve = SubResource("Resource_rcgla")
+finalPos = Vector2(166, -92)
+relative = false
+
+[sub_resource type="Resource" id="Resource_kdikr"]
+script = ExtResource("1_4blb1")
+frameLength = 1.75
+annotation = "move the camera over to the player"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+cameraMovement = SubResource("Resource_s46fb")
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xu5df"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_w84mr"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_eiowe"]
+script = ExtResource("9_dfoib")
+value = Vector2(222, -104)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_u0jtx"]
+script = ExtResource("6_gpf1h")
+speaker = "@"
+texts = Array[String](["..."])
+
+[sub_resource type="Resource" id="Resource_4n54w"]
+script = ExtResource("1_4blb1")
+frameLength = 1.5
+annotation = "Helia stops talking, the player walks up to her"
+actorTweens = Array[ExtResource("5_em3ei")]([SubResource("Resource_eiowe")])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_w84mr"), ExtResource("8_fs3ju")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_u0jtx")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5vs6q"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "player stands, wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([ExtResource("10_h0v3s")])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("2_6se67")
-cutsceneFrames = Array[ExtResource("1_4blb1")]([])
+cutsceneFrames = Array[ExtResource("1_4blb1")]([SubResource("Resource_fuehc"), SubResource("Resource_pntbu"), SubResource("Resource_fnq1y"), SubResource("Resource_egeq7"), SubResource("Resource_w814t"), SubResource("Resource_mv7jk"), SubResource("Resource_irdsk"), SubResource("Resource_wykjl"), SubResource("Resource_14vgt"), SubResource("Resource_inm2o"), SubResource("Resource_jqyh0"), SubResource("Resource_kdikr"), SubResource("Resource_xu5df"), SubResource("Resource_4n54w"), SubResource("Resource_5vs6q")])
 saveName = "standstill_helia_approach"
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])

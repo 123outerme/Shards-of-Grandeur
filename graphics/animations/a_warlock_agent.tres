@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c17h32c34ksly"]
+
+[ext_resource type="Texture2D" uid="uid://b0oy0nq75sjui" path="res://graphics/characters/warlock_agent/warlock_agent_stand.png" id="1_bfaj0"]
+[ext_resource type="Texture2D" uid="uid://cglnkvn5lv8hx" path="res://graphics/characters/warlock_agent/warlock_agent_talk.png" id="2_n25t4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmwvc"]
+atlas = ExtResource("1_bfaj0")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlfwj"]
+atlas = ExtResource("2_n25t4")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4e0y"]
+atlas = ExtResource("2_n25t4")
+region = Rect2(32, 0, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmwvc")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlfwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4e0y")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]

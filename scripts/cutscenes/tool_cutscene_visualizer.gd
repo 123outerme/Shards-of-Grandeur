@@ -111,11 +111,12 @@ func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 	print(item.speaker + ' will say: ')
 	for text in item.texts:
 		print(text)
-	if frame.endTextBoxPauses:
+	shownTextNotPaused = true
+	if frame == null:
+		printerr('ToolCutsceneVisualizer queue_text() error: frame == null (was there no pausing frame created for the frame after this dialog?)')
+	elif frame.endTextBoxPauses:
 		call_deferred('pause_cutscene')
 		shownTextNotPaused = false
-	else:
-		shownTextNotPaused = true
 
 func handle_fade_out():
 	fadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
