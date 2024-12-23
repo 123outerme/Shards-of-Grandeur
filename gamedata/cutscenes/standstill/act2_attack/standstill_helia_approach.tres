@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=52 format=3 uid="uid://4sw6mcioimcl"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=56 format=3 uid="uid://4sw6mcioimcl"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_4blb1"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_6se67"]
@@ -375,17 +375,51 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_ofm0e"]
+script = ExtResource("1_4blb1")
+frameLength = 0.1
+annotation = "... somehow player walking already starts? (in cutscene visualizer) but nobody moves yet. so wait another frame for text box to be closed"
+actorTweens = Array[ExtResource("5_em3ei")]([])
+actorAnims = Array[ExtResource("3_xcymc")]([])
+actorAnimSets = Array[ExtResource("2_7xq35")]([])
+actorFaceTargets = Array[ExtResource("4_mpctq")]([])
+dialogues = Array[ExtResource("6_gpf1h")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
 [sub_resource type="Resource" id="Resource_w84mr"]
 script = ExtResource("3_xcymc")
 actorTreePath = "TilemapRoot/Helia"
 isPlayer = false
 animation = "stand"
 
+[sub_resource type="Resource" id="Resource_wcsir"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+animation = "walk"
+
 [sub_resource type="Resource" id="Resource_eiowe"]
 script = ExtResource("9_dfoib")
 value = Vector2(222, -104)
 actorTreePath = ""
 isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_b1hau"]
+script = ExtResource("9_dfoib")
+value = Vector2(230, -117)
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
 propertyName = "position"
 easeType = 2
 transitionType = 0
@@ -398,9 +432,9 @@ texts = Array[String](["..."])
 [sub_resource type="Resource" id="Resource_4n54w"]
 script = ExtResource("1_4blb1")
 frameLength = 1.5
-annotation = "Helia stops talking, the player walks up to her"
-actorTweens = Array[ExtResource("5_em3ei")]([SubResource("Resource_eiowe")])
-actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_w84mr"), ExtResource("8_fs3ju")])
+annotation = "Helia stops talking, the player walks up to her, and a mage walks up to you"
+actorTweens = Array[ExtResource("5_em3ei")]([SubResource("Resource_eiowe"), SubResource("Resource_b1hau")])
+actorAnims = Array[ExtResource("3_xcymc")]([SubResource("Resource_w84mr"), ExtResource("8_fs3ju"), SubResource("Resource_wcsir")])
 actorAnimSets = Array[ExtResource("2_7xq35")]([])
 actorFaceTargets = Array[ExtResource("4_mpctq")]([])
 dialogues = Array[ExtResource("6_gpf1h")]([SubResource("Resource_u0jtx")])
@@ -414,12 +448,18 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_16jqb"]
+script = ExtResource("3_xcymc")
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+animation = "stand"
+
 [sub_resource type="Resource" id="Resource_5vs6q"]
 script = ExtResource("1_4blb1")
 frameLength = 0.1
-annotation = "player stands, wait for the text box to be closed"
+annotation = "player stands, wait for the text box to be closed. mage faces player again"
 actorTweens = Array[ExtResource("5_em3ei")]([])
-actorAnims = Array[ExtResource("3_xcymc")]([ExtResource("10_h0v3s")])
+actorAnims = Array[ExtResource("3_xcymc")]([ExtResource("10_h0v3s"), SubResource("Resource_16jqb")])
 actorAnimSets = Array[ExtResource("2_7xq35")]([])
 actorFaceTargets = Array[ExtResource("4_mpctq")]([])
 dialogues = Array[ExtResource("6_gpf1h")]([])
@@ -435,7 +475,7 @@ endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("2_6se67")
-cutsceneFrames = Array[ExtResource("1_4blb1")]([SubResource("Resource_fuehc"), SubResource("Resource_pntbu"), SubResource("Resource_fnq1y"), SubResource("Resource_egeq7"), SubResource("Resource_w814t"), SubResource("Resource_mv7jk"), SubResource("Resource_irdsk"), SubResource("Resource_wykjl"), SubResource("Resource_14vgt"), SubResource("Resource_inm2o"), SubResource("Resource_jqyh0"), SubResource("Resource_kdikr"), SubResource("Resource_xu5df"), SubResource("Resource_4n54w"), SubResource("Resource_5vs6q")])
+cutsceneFrames = Array[ExtResource("1_4blb1")]([SubResource("Resource_fuehc"), SubResource("Resource_pntbu"), SubResource("Resource_fnq1y"), SubResource("Resource_egeq7"), SubResource("Resource_w814t"), SubResource("Resource_mv7jk"), SubResource("Resource_irdsk"), SubResource("Resource_wykjl"), SubResource("Resource_14vgt"), SubResource("Resource_inm2o"), SubResource("Resource_jqyh0"), SubResource("Resource_kdikr"), SubResource("Resource_xu5df"), SubResource("Resource_ofm0e"), SubResource("Resource_4n54w"), SubResource("Resource_5vs6q")])
 saveName = "standstill_helia_approach"
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
