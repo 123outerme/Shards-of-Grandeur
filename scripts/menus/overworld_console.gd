@@ -28,6 +28,7 @@ const HELP_COMMAND_LIST: Array[String] = [
 	'cutscene <set|clear> <cutscene ID>: Sets or clears the specified cutscene\'s seen status',
 	'dialogue <set|clear> <NPC ID>#<dialogue ID>: Sets or clears the specified NPC\'s dialogue\'s status',
 	'specialbattle <set|clear> <static encounter ID>: Sets or clears the specified static encounter\'s completed status',
+	'setact <X>: Sets the current story Act to the specified number',
 	'grounditem <set|clear> <GroundItem ID>: Sets or clears the specified GroundItem\'s picked-up status',
 	'tp <map name>: Teleports to the specified map',
 	'extp <x> <y> <mapname>: Teleports to the specified position and the specified map',
@@ -167,6 +168,13 @@ func parse_command(command: String):
 			var npcSaveName: String = dialogueId.split('#')[0]
 			var dialogue: String = dialogueId.split('#')[1]
 			dialogue_update(npcSaveName, dialogue, pieces[1] == 'clear')
+		return
+	if cmdLower.begins_with('setact '):
+		var pieces: PackedStringArray = command.split(' ')
+		if len(pieces) != 2 or not pieces[1].is_valid_int():
+			print_to_console('Syntax error. Command is: setact <X>')
+			return
+		PlayerResources.questInventory.currentAct = pieces[1].to_int()
 		return
 	if cmdLower.begins_with('specialbattle '):
 		# "specialbattle set encounter_id" or "specialbattle clear encounter_id"

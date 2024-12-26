@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=7 format=3 uid="uid://cv227rllqigpd"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=9 format=3 uid="uid://cv227rllqigpd"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_84kf5"]
 [ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_fcxaj"]
@@ -6,16 +6,20 @@
 [ext_resource type="Resource" uid="uid://bhfn4nt0wjgul" path="res://gamedata/items/armor/helia_robes.tres" id="4_2ioso"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_j2fns"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="5_bflsm"]
+[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="5_v2rss"]
+[ext_resource type="Resource" uid="uid://rvbo782goi0h" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage.tres" id="6_f8fnr"]
 
 [resource]
 script = ExtResource("5_bflsm")
 combatant1Level = 23
 combatant1Moves = Array[ExtResource("1_84kf5")]([])
 combatant1ShardSummoned = false
-combatant2Level = 1
+combatant2 = ExtResource("5_v2rss")
+combatant2Level = 22
 combatant2Moves = Array[ExtResource("1_84kf5")]([])
 combatant2ShardSummoned = false
-combatant3Level = 1
+combatant3 = ExtResource("6_f8fnr")
+combatant3Level = 22
 combatant3Moves = Array[ExtResource("1_84kf5")]([])
 combatant3ShardSummoned = false
 autoAllyLevel = 1
