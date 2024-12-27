@@ -15,7 +15,6 @@ signal console_closed
 const HELP_COMMAND_LIST: Array[String] = [
 	'help: Prints this message.',
 	'exit / quit / q: Exits the console and returns to the game',
-	'echo: The console responds with an "Echo!"',
 	'clear: Clear the console output',
 	'giveitem <item name>: Gives the player 1x the specified item (not case sensitive)',
 	'giveitems <count> <item name>: Gives the player the specified amount of the specified item (not case sensitive)',
@@ -35,7 +34,8 @@ const HELP_COMMAND_LIST: Array[String] = [
 	'position <x> <y>: Moves the player to the specified position',
 	'noclip <true|false>: enable/disable noclip',
 	'logs [logfile]: show the Godot logs in a panel',
-	'listlogs: prints the list of log files in the user://logs directory'
+	'listlogs: prints the list of log files in the user://logs directory',
+	'experimental <true|false>: enable/disable experimental features'
 ]
 
 const MAX_CONSOLE_LINES = 50
@@ -77,9 +77,6 @@ func parse_command(command: String):
 		return
 	if cmdLower == 'exit' || cmdLower == 'quit' || cmdLower == 'q':
 		hide_overworld_console()
-		return
-	if cmdLower == 'echo':
-		print_to_console('Echo!')
 		return
 	if cmdLower == 'help':
 		print_help()
@@ -175,6 +172,7 @@ func parse_command(command: String):
 			print_to_console('Syntax error. Command is: setact <X>')
 			return
 		PlayerResources.questInventory.currentAct = pieces[1].to_int()
+		print_to_console('Story Act set to ' + pieces[1] + '.')
 		return
 	if cmdLower.begins_with('specialbattle '):
 		# "specialbattle set encounter_id" or "specialbattle clear encounter_id"
@@ -233,6 +231,7 @@ func parse_command(command: String):
 		var args: PackedStringArray = command.split(' ')
 		if len(args) == 2 and (args[1].to_lower() == 'true' or args[1].to_lower() == 'false'):
 			set_noclip(args[1].to_lower() == 'true')
+			print_to_console('Noclip was set ' + args[1].to_lower() + '.')
 		else:
 			print_to_console('Syntax error: true or false argument required. Command is: noclip <true|false>.')
 		return
@@ -247,6 +246,14 @@ func parse_command(command: String):
 		return
 	if cmdLower == 'listlogs':
 		list_log_files()
+		return
+	if cmdLower.begins_with('experimental '):
+		var args: PackedStringArray = command.split(' ')
+		if len(args) != 2 or (args[1].to_lower() != 'true' and args[1].to_lower() != 'false'):
+			print_to_console('Syntax error: true or false argument required. Command is: experimental <true|false>.')
+			return
+		SettingsHandler.gameSettings.enableExperimentalFeatures = args[1].to_lower() == 'true'
+		print_to_console('Experimental features were set ' + args[1].to_lower() + '.')
 		return
 	# if none of the above match, the command is not recognized.
 	print_to_console('Command not recognized.')

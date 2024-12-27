@@ -789,7 +789,7 @@ func _on_inventory_panel_node_back_pressed():
 	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not pausePanel.visible:
 		textBox.refocus_choice(pickedChoice)
-		if pickedChoice != null and pickedChoice.opensShop:
+		if pickedChoice != null and pickedChoice is NPCDialogueChoice and pickedChoice.opensShop:
 			pickedChoice = null
 
 func _on_inventory_panel_node_inventory_reopened() -> void:
@@ -925,7 +925,8 @@ func _on_overworld_console_console_closed():
 	overworldTouchControls.set_all_visible()
 
 func _on_overworld_touch_controls_run_toggled():
-	running = not running
+	if SceneLoader.curMapEntry.isRecoverLocation or SettingsHandler.gameSettings.enableExperimentalFeatures:
+		running = not running
 
 func _on_overworld_touch_controls_pause_pressed():
 	if inCutscene:
