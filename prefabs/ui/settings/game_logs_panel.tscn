@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyjyqhebj5ril"]
+
+[ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://themes/nested_ui/popup_ui.tres" id="1_85sxg"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_1w8vo"]
+[ext_resource type="Script" path="res://scripts/menus/settings_menu/game_logs_panel.gd" id="2_ojutl"]
+
+[node name="LogsPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_85sxg")
+script = ExtResource("2_ojutl")
+
+[node name="LogsOutput" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+text = "Godot logs will all be printed here."
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[node name="BackButton" parent="." instance=ExtResource("2_1w8vo")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -52.0
+offset_right = 40.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

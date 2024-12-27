@@ -9,10 +9,13 @@ signal back_pressed
 @onready var generalButton: Button = get_node('Panel/VBoxContainer/GeneralButton')
 @onready var controlsButton: Button = get_node('Panel/VBoxContainer/ControlsButton')
 @onready var audioButton: Button = get_node('Panel/VBoxContainer/AudioButton')
+@onready var gameLogsButton: Button = get_node('Panel/VBoxContainer/GameLogsButton')
 
 @onready var generalSection: GeneralSection = get_node('Panel/SubsectionPanel/GeneralSection')
 @onready var controlsSection: ControlsSection = get_node('Panel/SubsectionPanel/ControlsSection')
 @onready var audioSection: AudioSection = get_node('Panel/SubsectionPanel/AudioSection')
+
+@onready var gameLogsPanel: GameLogsPanel = get_node('LogsPanel')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -85,3 +88,9 @@ func _on_audio_button_toggled(toggled_on):
 		controlsButton.button_pressed = false
 		set_button_right_neighbors(audioSection.musicVolumeSlider)
 	audioSection.toggle_section(toggled_on)
+
+func _on_game_logs_button_pressed() -> void:
+	gameLogsPanel.show_game_logs()
+
+func _on_logs_panel_back_pressed() -> void:
+	gameLogsButton.grab_focus()

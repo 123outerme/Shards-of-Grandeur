@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg2nx11vaphtq"]
+[gd_scene load_steps=14 format=3 uid="uid://dg2nx11vaphtq"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_yxgeh"]
 [ext_resource type="Script" path="res://scripts/menus/settings_menu/settings_menu.gd" id="2_qauny"]
@@ -8,14 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://cd7nav8wrqxc1" path="res://prefabs/ui/settings/settings_controls_section.tscn" id="6_pggia"]
 [ext_resource type="PackedScene" uid="uid://cmh0663np3wdv" path="res://prefabs/ui/settings/settings_audio_section.tscn" id="7_51o1i"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_ov783"]
+[ext_resource type="PackedScene" uid="uid://cyjyqhebj5ril" path="res://prefabs/ui/settings/game_logs_panel.tscn" id="9_rp4sj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj8xg"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_aau4o"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_7hm87"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_edhax"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_2o2k3"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_84hvi"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_03u87"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -93,23 +94,29 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_aau4o")
+button_group = SubResource("ButtonGroup_7hm87")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_edhax")
+button_group = SubResource("ButtonGroup_2o2k3")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../GameLogsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_84hvi")
+button_group = SubResource("ButtonGroup_03u87")
 text = "Audio"
+
+[node name="GameLogsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../BackButton")
+text = "Game Logs"
 
 [node name="SubsectionPanel" type="Panel" parent="Panel"]
 layout_mode = 1
@@ -168,9 +175,16 @@ sectionToggleButton = NodePath("../../VBoxContainer/ControlsButton")
 visible = false
 layout_mode = 1
 
+[node name="LogsPanel" parent="." instance=ExtResource("9_rp4sj")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+
 [connection signal="pressed" from="Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="Panel/VBoxContainer/GeneralButton" to="." method="_on_general_button_toggled"]
 [connection signal="toggled" from="Panel/VBoxContainer/ControlsButton" to="." method="_on_controls_button_toggled"]
 [connection signal="toggled" from="Panel/VBoxContainer/AudioButton" to="." method="_on_audio_button_toggled"]
+[connection signal="pressed" from="Panel/VBoxContainer/GameLogsButton" to="." method="_on_game_logs_button_pressed"]
+[connection signal="back_pressed" from="LogsPanel" to="." method="_on_logs_panel_back_pressed"]
 
 [editable path="Panel/SubsectionPanel/GeneralSection"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7ltlhbnu5jgp"]
+[gd_scene load_steps=6 format=3 uid="uid://b7ltlhbnu5jgp"]
 
 [ext_resource type="Script" path="res://scripts/menus/overworld_console.gd" id="1_sjx0r"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_1uf0e"]
-[ext_resource type="Theme" uid="uid://crkw145md0nk" path="res://themes/nested_ui/popup_ui.tres" id="3_0gpkx"]
-[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_plndv"]
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="5_dpx6y"]
+[ext_resource type="PackedScene" uid="uid://cyjyqhebj5ril" path="res://prefabs/ui/settings/game_logs_panel.tscn" id="5_ejn82"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="6_a4c22"]
 
 [node name="OverworldConsole" type="Node2D"]
@@ -95,47 +94,13 @@ offset_bottom = -392.0
 theme = ExtResource("6_a4c22")
 closeOnEnterPress = false
 
-[node name="LogsPanel" type="Panel" parent="Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_0gpkx")
-
-[node name="LogsOutput" type="RichTextLabel" parent="Panel/LogsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 9.0
-offset_right = -8.0
-offset_bottom = -52.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-text = "Godot logs will all be printed here."
-selection_enabled = true
-drag_and_drop_selection_enabled = false
-
-[node name="BackButton" parent="Panel/LogsPanel" instance=ExtResource("4_plndv")]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -52.0
-offset_right = 40.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Back"
+[node name="LogsPanel" parent="Panel" instance=ExtResource("5_ejn82")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="gui_input" from="Panel/LineEdit" to="." method="_on_line_edit_gui_input"]
 [connection signal="text_submitted" from="Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]
@@ -143,4 +108,4 @@ text = "Back"
 [connection signal="enter_pressed" from="Panel/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
 [connection signal="key_pressed" from="Panel/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
 [connection signal="keyboard_hidden" from="Panel/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
-[connection signal="pressed" from="Panel/LogsPanel/BackButton" to="." method="_on_logs_back_button_pressed"]
+[connection signal="back_pressed" from="Panel/LogsPanel" to="." method="_on_logs_back_button_pressed"]

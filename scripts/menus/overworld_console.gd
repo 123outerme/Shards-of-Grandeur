@@ -8,8 +8,7 @@ signal console_closed
 
 @onready var virtualKeyboard: VirtualKeyboard = get_node('Panel/VirtualKeyboard')
 
-@onready var logsPanel: Panel = get_node('Panel/LogsPanel')
-@onready var logsOutput: RichTextLabel = get_node('Panel/LogsPanel/LogsOutput')
+@onready var logsPanel: GameLogsPanel = get_node('Panel/LogsPanel')
 @onready var backButton: Button = get_node('Panel/LogsPanel/BackButton')
 
 const HELP_COMMAND_LIST: Array[String] = [
@@ -466,12 +465,8 @@ func set_noclip(enable: bool):
 		print_to_console('Noclip disabled.')
 
 func show_game_logs(logFile: String = 'godot.log'):
-	var file: FileAccess = FileAccess.open('user://logs/' + logFile, FileAccess.READ)
-	if file != null:
-		logsOutput.text = file.get_as_text()
-		file.close()
-		logsPanel.visible = true
-		backButton.grab_focus()
+	var success: bool = logsPanel.show_game_logs(logFile)
+	if success:
 		print_to_console('Game logs were opened.')
 	else:
 		print_to_console('Game logs could not be opened. FileAccess error code: ' + String.num(FileAccess.get_open_error()))
@@ -508,8 +503,6 @@ func history_down():
 		commandHistoryIdx = 0
 
 func _on_logs_back_button_pressed() -> void:
-	logsOutput.text = ''
-	logsPanel.visible = false
 	lineEdit.grab_focus()
 
 func _settings_changed():
