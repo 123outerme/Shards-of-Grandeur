@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://bwull0p8tcq0s"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bwull0p8tcq0s"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_hwt74"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_s3sdv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4hv3p"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_nvvvm"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_thiiu"]
 
 [sub_resource type="Resource" id="Resource_y0gka"]
 script = ExtResource("1_hwt74")
@@ -17,7 +18,7 @@ isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_w1m01"]
 script = ExtResource("2_s3sdv")
-lines = Array[String](["Alright! Make sure you're prepared, then get going. The Chain Legion will stop at nothing to take the Cave's Shards for themselves.", "You've proven you're ready, and you'll need it to fight them, so I think I should tell you about Surge Moves.", "Surge Moves are a counterpart to the more standard Charge Moves you've been using. They exchange the Orbs you've collected in Battle for extra oomph!", "You can only Surge a move when you can spend the required Orbs.", "For your journey, we can part with some of our Shards upstairs in the Repository. You should also brush up on Surge Moves there before you go!"])
+lines = Array[String](["Alright! Make sure you're prepared, then get going. The Chain Legion will stop at nothing to take the Cave's Shards for themselves.", "You've proven you're ready, and you'll need it to fight them, so I think I should tell you about $highlight{Surge Moves}color$.", "Surge Moves are a counterpart to the more standard $highlight{Charge Moves}color$ you've been using. They exchange the $orb $highlight{Orbs}color$ you've collected in Battle for extra oomph!", "You can only Surge a move $highlight{when you can spend the required Orbs}color$.", "For your journey, we can part with some of our Shards upstairs in the Repository. You should also brush up on Surge Moves there before you go!"])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -29,5 +30,6 @@ choices = Array[ExtResource("1_hwt74")]([SubResource("Resource_y0gka")])
 script = ExtResource("3_4hv3p")
 entryId = "surge"
 items = Array[ExtResource("2_s3sdv")]([SubResource("Resource_w1m01")])
+ordStoryRequirements = Array[ExtResource("4_thiiu")]([])
 closesDialogue = true
 fullHealsPlayer = false

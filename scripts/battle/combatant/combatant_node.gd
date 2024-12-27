@@ -14,17 +14,6 @@ enum Role {
 	ENEMY = 1
 }
 
-class ChosenMove:
-	var move: Move = null
-	var effectType: Move.MoveEffectType = Move.MoveEffectType.NONE
-	var weight: float = 0
-	
-	func _init(i_move = null, i_effectType = Move.MoveEffectType.NONE, i_weight = 0.0):
-		move = i_move
-		effectType = i_effectType
-		weight = i_weight
-
-
 @export_category("CombatantNode - Details")
 @export var combatant: Combatant = null
 @export var initialCombatantLv: int = 1
@@ -675,11 +664,6 @@ func _event_text_completed(eventText: CombatantEventText):
 	if playedEventTexts == 0:
 		playingEventTexts = []
 		#event_texts_finished.emit()
-
-func _sort_chosen_moves_by_weight(a: ChosenMove, b: ChosenMove) -> bool:
-	if a.weight > b.weight:
-		return true
-	return false
 
 func _on_shard_summon_anim_sprite_animation_finished() -> void:
 	shardSummonAnimSprite.visible = false

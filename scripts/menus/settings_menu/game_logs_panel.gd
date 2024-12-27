@@ -14,6 +14,7 @@ func show_game_logs(logFile: String = 'godot.log') -> bool:
 		visible = true
 		backButton.grab_focus()
 		return true
+	printerr('Show game logs panel, logs open error: ', error_string(FileAccess.get_open_error()))
 	return false
 
 func _on_back_button_pressed() -> void:
