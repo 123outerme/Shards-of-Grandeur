@@ -37,11 +37,12 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			update_battle_ui_with_results()
 		if not animFinished:
 			battleUI.battleController.battleAnimationManager.skip_intermediate_animations(battleUI.battleController.state, battleUI.menuState)
-		if battleUI.battleController.turnExecutor.advance_precalcd_text(): # if was final
-			battleUI.advance_intermediate_state(result)
+		var finalPrecalcdText: bool = battleUI.battleController.turnExecutor.advance_precalcd_text() # if was final
 		# update the combatant stats to battle storage vars
 		for combatantNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
 			combatantNode.update_current_tag_stats(true)
+		if finalPrecalcdText:
+			battleUI.advance_intermediate_state(result)
 		return # don't fall-through and potentially run the results code below
 	
 	if animFinished:

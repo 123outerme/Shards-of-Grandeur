@@ -150,7 +150,7 @@ func update_turn_text() -> bool:
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
 		
 		battleController.battleAnimationManager.play_intermediate_round_animations(battleController.state)
-	if battleUI.menuState == BattleState.Menu.RESULTS:
+	elif battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
 		var defenders: Array[Combatant] = []
 		if combatant != null:
@@ -212,7 +212,7 @@ func update_turn_text() -> bool:
 			battleController.battleAnimationManager.play_turn_animation(userNode, combatant.command, battleController.state.statusEffDamagedCombatants)
 	
 	battleUI.results.show_text(text)
-	return text != ''
+	return text != '' and text != null
 
 func finish_turn() -> WinCon.TurnResult:
 	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
@@ -225,8 +225,8 @@ func finish_turn() -> WinCon.TurnResult:
 	result = check_battle_end_conditions()
 	return result
 
-func try_start_next_turn(result: WinCon.TurnResult) -> bool:
-	if result == WinCon.TurnResult.NOTHING:
+func try_start_next_turn(turnResult: WinCon.TurnResult) -> bool:
+	if turnResult == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
 		return true
 	return false
