@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="3_31tq3"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="4_bfd7i"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_s3me8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="5_7lkbn"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="6_gnrs8"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="7_4r4cj"]
@@ -47,6 +46,154 @@
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
 [ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="40_yvth1"]
 
+[sub_resource type="GDScript" id="GDScript_1uyr5"]
+script/source = "extends Resource
+class_name Move
+
+enum DmgCategory {
+	PHYSICAL = 0, ## Physical
+	MAGIC = 1, ## Magic
+	AFFINITY = 2, ## Affinity
+	ANY = -1, ## only for use in movepool.gd Preferences
+}
+
+enum Element {
+	NONE = 0, ## No element
+	WATER = 1, ## Water
+	FIRE = 2, ## Fire
+	LIGHTNING = 3, ## Lightning
+	WIND = 4, ## Wind
+	EARTH = 5, ## Earth
+	NATURE = 6, ## Nature
+	DARK = 7, ## Dark
+	ASTRAL = 8 ## Astral
+}
+const NUM_ELEMENTS = 8
+
+enum MoveEffectType {
+	NONE = 0, ## For use in move-selecting AI only
+	CHARGE = 1, ## Charge
+	SURGE = 2, ## Surge
+	BOTH = 3, ## For use in move-selecting AI only
+}
+
+@export var moveName: String = ''
+@export var requiredLv: int = 1
+@export var category: DmgCategory = DmgCategory.PHYSICAL
+@export var element: Element = Element.NONE
+@export var chargeEffect: MoveEffect = null
+@export var surgeEffect: MoveEffect = null
+@export_multiline var description: String = ''
+@export_multiline var moveLearnedText: String = ''
+@export var moveAnimation: MoveAnimation = null
+
+static func dmg_category_to_string(c: DmgCategory) -> String:
+	match c:
+		DmgCategory.PHYSICAL:
+			return 'Physical'
+		DmgCategory.MAGIC:
+			return 'Magic'
+		DmgCategory.AFFINITY:
+			return 'Affinity'
+	return 'UNKNOWN'
+
+static func element_to_string(e: Element) -> String:
+	match e:
+		Element.NONE:
+			return 'None'
+		Element.WATER:
+			return 'Water'
+		Element.FIRE:
+			return 'Fire'
+		Element.LIGHTNING:
+			return 'Lightning'
+		Element.WIND:
+			return 'Wind'
+		Element.EARTH:
+			return 'Earth'
+		Element.NATURE:
+			return 'Nature'
+		Element.DARK:
+			return 'Dark'
+		Element.ASTRAL:
+			return 'Astral'
+	return 'UNKNOWN'
+
+static func move_effect_type_to_string(t: MoveEffectType) -> String:
+	match t:
+		MoveEffectType.NONE:
+			return 'None'
+		MoveEffectType.CHARGE:
+			return 'Charge'
+		MoveEffectType.SURGE:
+			return 'Surge'
+		MoveEffectType.BOTH:
+			return 'Both'
+	return 'UNKNOWN'
+
+func _init(
+	i_moveName = '',
+	i_requiredLv = 1,
+	i_category = DmgCategory.PHYSICAL,
+	i_element = Element.NONE,
+	i_chargeEffect = null,
+	i_surgeEffect = null,
+	i_description = '',
+	i_moveLearnedText = '',
+	
+):
+	moveName = i_moveName
+	requiredLv = i_requiredLv
+	category = i_category
+	element = i_element
+	chargeEffect = i_chargeEffect
+	surgeEffect = i_surgeEffect
+	description = i_description
+	moveLearnedText = i_moveLearnedText
+
+func get_effect_of_type(t: MoveEffectType) -> MoveEffect:
+	if t == MoveEffectType.CHARGE:
+		return chargeEffect
+	
+	if t == MoveEffectType.SURGE:
+		return surgeEffect
+	
+	return null
+
+func effects_with_status() -> MoveEffectType:
+	var chargeStatus: bool = chargeEffect.statusEffect != null
+	var surgeStatus: bool = surgeEffect.statusEffect != null
+	
+	if chargeStatus and surgeStatus:
+		return MoveEffectType.BOTH
+	
+	if chargeStatus:
+		return MoveEffectType.CHARGE
+	
+	if surgeStatus:
+		return MoveEffectType.SURGE
+	
+	return MoveEffectType.NONE
+
+func has_effect_with_role(role: MoveEffect.Role) -> bool:
+	return chargeEffect.role == role or surgeEffect.role == role
+
+func effects_with_role(role: MoveEffect.Role) -> MoveEffectType:
+	var chargeHasEffect: bool = chargeEffect.role == role
+	var surgeHasEffect: bool = surgeEffect.role == role
+	
+	if chargeHasEffect and surgeHasEffect:
+		return MoveEffectType.BOTH
+	
+	if chargeHasEffect:
+		return MoveEffectType.CHARGE
+	
+	if surgeHasEffect:
+		return MoveEffectType.SURGE
+	
+	return MoveEffectType.NONE
+"
+
 [sub_resource type="Resource" id="Resource_lxlw8"]
 script = ExtResource("9_eqdy2")
 experience = 100
@@ -71,19 +218,19 @@ escapeText = "You escaped successfully!"
 [sub_resource type="Resource" id="Resource_14f7a"]
 script = ExtResource("10_821vc")
 combatant1Level = 24
-combatant1Moves = Array[ExtResource("4_s3me8")]([])
+combatant1Moves = Array[SubResource("GDScript_1uyr5")]([])
 combatant1ShardSummoned = false
 combatant2Level = 1
-combatant2Moves = Array[ExtResource("4_s3me8")]([])
+combatant2Moves = Array[SubResource("GDScript_1uyr5")]([])
 combatant2ShardSummoned = false
 combatant3Level = 1
-combatant3Moves = Array[ExtResource("4_s3me8")]([])
+combatant3Moves = Array[SubResource("GDScript_1uyr5")]([])
 combatant3ShardSummoned = false
 autoAlly = ExtResource("2_8cyda")
 autoAllyLevel = 16
 autoAllyArmor = ExtResource("10_13824")
 autoAllyWeapon = ExtResource("12_rhle2")
-autoAllyMoves = Array[ExtResource("4_s3me8")]([])
+autoAllyMoves = Array[SubResource("GDScript_1uyr5")]([])
 autoAllyShardSummoned = false
 specialBattleId = "dragon1"
 bossBattle = true
@@ -100,8 +247,8 @@ battleMapPath = ""
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
 script = ExtResource("23_h4pwx")
-pool = Array[ExtResource("4_s3me8")]([ExtResource("21_dnn8x"), ExtResource("22_o4y65")])
-signatureMoves = Array[ExtResource("4_s3me8")]([])
+pool = Array[SubResource("GDScript_1uyr5")]([ExtResource("21_dnn8x"), ExtResource("22_o4y65")])
+signatureMoves = Array[SubResource("GDScript_1uyr5")]([])
 preferredMove1Role = 0
 preferredMove1DmgType = -1
 preferredMove1Element = 0
@@ -131,7 +278,7 @@ statPts = 0
 statGrowth = ExtResource("25_lyeej")
 equippedWeapon = ExtResource("22_ge00y")
 equippedArmor = ExtResource("21_lhelt")
-moves = Array[ExtResource("4_s3me8")]([ExtResource("24_606y3"), ExtResource("30_1bgbv"), ExtResource("31_etk0a"), ExtResource("26_yy50f")])
+moves = Array[SubResource("GDScript_1uyr5")]([ExtResource("24_606y3"), ExtResource("30_1bgbv"), ExtResource("31_etk0a"), ExtResource("26_yy50f")])
 movepool = SubResource("Resource_5jl4o")
 
 [sub_resource type="Resource" id="Resource_7loi3"]

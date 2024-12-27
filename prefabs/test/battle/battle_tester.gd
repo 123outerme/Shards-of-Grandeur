@@ -134,7 +134,8 @@ func _ready():
 		turnExecutor.play_turn()
 	while turnExecutor.turnQueue.peek_next() != null:
 		await nextButton.pressed
-		turnExecutor.finish_turn()
+		var result: WinCon.TurnResult = turnExecutor.finish_turn()
+		turnExecutor.try_start_next_turn(result)
 	
 	reset_intermediate_state_strs()
 	turnExecutor.update_turn_text()

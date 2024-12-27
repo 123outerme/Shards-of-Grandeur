@@ -223,9 +223,13 @@ func finish_turn() -> WinCon.TurnResult:
 		cNode.update_current_tag_stats(true) # after the turn is over, update the battle storage variables
 	
 	result = check_battle_end_conditions()
+	return result
+
+func try_start_next_turn(result: WinCon.TurnResult) -> bool:
 	if result == WinCon.TurnResult.NOTHING:
 		play_turn() # go to the next turn
-	return result
+		return true
+	return false
 
 func is_on_last_turn() -> bool:
 	# if length of the queue is 1, this is the last turn. If it's 0, the round is over, but this should still return true technically

@@ -58,11 +58,12 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			await get_tree().process_frame
 			
 			result = battleUI.battleController.turnExecutor.finish_turn()
-			
 			okBtn.disabled = false
 			update_battle_ui_with_results()
 			if result != WinCon.TurnResult.NOTHING:
 				battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
+			else:
+				battleUI.battleController.turnExecutor.try_start_next_turn(result)
 	else:
 		okPressed = true
 		okBtn.disabled = true

@@ -107,7 +107,8 @@ func _ready():
 			battleUI.menuState = BattleState.Menu.RESULTS
 			turnExecutor.play_turn()
 		while turnExecutor.turnQueue.peek_next() != null:
-			turnExecutor.finish_turn()
+			result = turnExecutor.finish_turn()
+			turnExecutor.try_start_next_turn(result)
 		
 		reset_intermediate_state_strs()
 		turnExecutor.update_turn_text()
