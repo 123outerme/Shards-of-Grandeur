@@ -1,0 +1,1258 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=124 format=3 uid="uid://76bkyvv3yqid"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_se7wf"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_4gicn"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_iiniu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_thpml"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="3_u2753"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_kg844"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_tv8wl"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_h6h1e"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_43wi2"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_vx6mq"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_0qdnw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_float.gd" id="9_ggc05"]
+
+[sub_resource type="Resource" id="Resource_d8n6l"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_y30lf"]
+script = ExtResource("6_43wi2")
+speaker = "Helia"
+texts = Array[String](["...", "Well, I got what I came here for. Everybody on the ship!"])
+
+[sub_resource type="Resource" id="Resource_w2n1t"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Helia talks"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_d8n6l")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_y30lf")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_gihus"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ggw4v"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_3pie0"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_d5jw1"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_ystdq"]
+script = ExtResource("7_vx6mq")
+value = Vector2(32, -82)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_xuxml"]
+script = ExtResource("7_vx6mq")
+value = Vector2(36, -66)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_od7t7"]
+script = ExtResource("7_vx6mq")
+value = Vector2(40, -50)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_bmskf"]
+script = ExtResource("6_43wi2")
+speaker = "Helia"
+texts = Array[String](["We'll report our success directly to The General."])
+
+[sub_resource type="Resource" id="Resource_4dexv"]
+script = ExtResource("1_se7wf")
+frameLength = 0.25
+annotation = "move offscreen Chain Legion Mages closer to the screen boundaries. Helia starts talking when this frame ends"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_ystdq"), SubResource("Resource_xuxml"), SubResource("Resource_od7t7")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_ggw4v"), SubResource("Resource_3pie0"), SubResource("Resource_d5jw1")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_bmskf")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_hkynd"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_65nnp"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_2dki0"]
+script = ExtResource("7_vx6mq")
+value = Vector2(317, -47)
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_t12ar"]
+script = ExtResource("7_vx6mq")
+value = Vector2(284, -86)
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_jgumh"]
+script = ExtResource("7_vx6mq")
+value = Vector2(184, -72)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_o3p6p"]
+script = ExtResource("7_vx6mq")
+value = Vector2(188, -56)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_pijdi"]
+script = ExtResource("7_vx6mq")
+value = Vector2(192, -40)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ghhua"]
+script = ExtResource("1_se7wf")
+frameLength = 2.0
+annotation = "All of the Chain Legion Mages and Helia move towards the ship. Helia continues talking while they load up"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_2dki0"), SubResource("Resource_t12ar"), SubResource("Resource_jgumh"), SubResource("Resource_o3p6p"), SubResource("Resource_pijdi")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_hkynd"), SubResource("Resource_65nnp")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_tttj1"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_waaqr"]
+script = ExtResource("4_kg844")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+targetTreePath = "TilemapRoot/ChainLegionMage1"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_lktac"]
+script = ExtResource("7_vx6mq")
+value = Vector2(292, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_5fn6u"]
+script = ExtResource("7_vx6mq")
+value = Vector2(232, -40)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_bgloj"]
+script = ExtResource("7_vx6mq")
+value = Vector2(252, -35)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_nqenp"]
+script = ExtResource("7_vx6mq")
+value = Vector2(272, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_iya4y"]
+script = ExtResource("1_se7wf")
+frameLength = 1.5
+annotation = "Helia stops next to the airship and faces the Mages, the Mages move to load up onto the airship"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_lktac"), SubResource("Resource_5fn6u"), SubResource("Resource_bgloj"), SubResource("Resource_nqenp")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_tttj1")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([SubResource("Resource_waaqr")])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_drs02"]
+script = ExtResource("7_vx6mq")
+value = Vector2(367, -34)
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vj35x"]
+script = ExtResource("7_vx6mq")
+value = Vector2(292, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_yrdy1"]
+script = ExtResource("7_vx6mq")
+value = Vector2(312, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_oof3a"]
+script = ExtResource("7_vx6mq")
+value = Vector2(332, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_t33af"]
+script = ExtResource("1_se7wf")
+frameLength = 1.5
+annotation = "The 4th mage walks to the airship door, the other mages get in line"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_drs02"), SubResource("Resource_vj35x"), SubResource("Resource_yrdy1"), SubResource("Resource_oof3a")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_eqao6"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_tnoc8"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionMage4"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_n6jjl"]
+script = ExtResource("7_vx6mq")
+value = Vector2(312, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_5u4xn"]
+script = ExtResource("7_vx6mq")
+value = Vector2(332, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_t4slf"]
+script = ExtResource("7_vx6mq")
+value = Vector2(352, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_jjfvq"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The 4th mage disappears, all other mages shuffle in"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_tnoc8"), SubResource("Resource_n6jjl"), SubResource("Resource_5u4xn"), SubResource("Resource_t4slf")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_eqao6")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xbynl"]
+script = ExtResource("7_vx6mq")
+value = Vector2(327, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_lqx8u"]
+script = ExtResource("7_vx6mq")
+value = Vector2(347, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_kp7ud"]
+script = ExtResource("7_vx6mq")
+value = Vector2(367, -34)
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_5nefg"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The 3rd mage moves towards the door, the others shuffle in"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_xbynl"), SubResource("Resource_lqx8u"), SubResource("Resource_kp7ud")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_d7g6n"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_bpb66"]
+script = ExtResource("7_vx6mq")
+value = Vector2(347, -30)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_373y2"]
+script = ExtResource("7_vx6mq")
+value = Vector2(367, -34)
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_i0skh"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionMage3"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_7i7j1"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The 3rd mage disappears, all others shuffle in"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_bpb66"), SubResource("Resource_373y2"), SubResource("Resource_i0skh")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_d7g6n")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_jtqdm"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_agr5y"]
+script = ExtResource("7_vx6mq")
+value = Vector2(367, -34)
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_knbxl"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionMage1"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_3whsd"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The 1st mage disappears, the 2nd shuffles in"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_agr5y"), SubResource("Resource_knbxl")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_jtqdm")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qlywi"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_ykldn"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/ChainLegionMage2"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_q7sap"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The 2nd mage disappears"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_ykldn")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_qlywi")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mwdmn"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_4d12m"]
+script = ExtResource("6_43wi2")
+speaker = "Helia"
+texts = Array[String](["Just remember, Lance and @, we're now one short ride away from ending this war."])
+
+[sub_resource type="Resource" id="Resource_hxv47"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Helia speaks again"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_mwdmn")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_4d12m")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_yq5wq"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for text box to be closed (from Helia's talking as they're loading up)"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_b7arp"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_d536u"]
+script = ExtResource("7_vx6mq")
+value = Vector2(320, -30)
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_pevr2"]
+script = ExtResource("1_se7wf")
+frameLength = 0.33
+annotation = "Helia moves towards the airship"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_d536u")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_b7arp")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_35swc"]
+script = ExtResource("7_vx6mq")
+value = Vector2(367, -34)
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_wc5qn"]
+script = ExtResource("1_se7wf")
+frameLength = 1.0
+annotation = "Helia moves to the airship door"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_35swc")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vgp0a"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_rwvxl"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_dcrql"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "Helia enters the airship"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_rwvxl")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_vgp0a")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_tglyx"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+animation = "takeoff_left"
+
+[sub_resource type="Resource" id="Resource_8iadk"]
+script = ExtResource("7_vx6mq")
+value = Vector2(294, -54)
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "position"
+easeType = 0
+transitionType = 1
+
+[sub_resource type="Resource" id="Resource_uafp3"]
+script = ExtResource("9_ggc05")
+value = 1.0
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "z_index"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_hmn6m"]
+script = ExtResource("1_se7wf")
+frameLength = 0.833
+annotation = "The airship takes off"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_8iadk"), SubResource("Resource_uafp3")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_tglyx")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_binil"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+animation = "flying_left"
+
+[sub_resource type="Resource" id="Resource_t7mub"]
+script = ExtResource("7_vx6mq")
+value = Vector2(180, -70)
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_63gt8"]
+script = ExtResource("1_se7wf")
+frameLength = 1.0
+annotation = "The airship flies almost straight left for a short period"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_t7mub")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_binil")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_v6w2r"]
+script = ExtResource("7_vx6mq")
+value = Vector2(156, -94)
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_pqvxq"]
+script = ExtResource("1_se7wf")
+frameLength = 0.5
+annotation = "The airship flies diagonally up-left to prepare to turn around"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_v6w2r")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_k3hsf"]
+script = ExtResource("7_vx6mq")
+value = Vector2(132, -112)
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "position"
+easeType = 1
+transitionType = 1
+
+[sub_resource type="Resource" id="Resource_v637s"]
+script = ExtResource("1_se7wf")
+frameLength = 0.75
+annotation = "The airship heads mostly straight upwards"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_k3hsf")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1t7tv"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+animation = "flying_right"
+
+[sub_resource type="Resource" id="Resource_fntwa"]
+script = ExtResource("7_vx6mq")
+value = Vector2(450, -160)
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "position"
+easeType = 0
+transitionType = 1
+
+[sub_resource type="Resource" id="Resource_wqqgt"]
+script = ExtResource("1_se7wf")
+frameLength = 4.0
+annotation = "The airship turns around and heads right and slightly up"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_fntwa")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_1t7tv")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xfmwx"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_gk05l"]
+script = ExtResource("7_vx6mq")
+value = Vector2(400, -34)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_6xlq5"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/Airship"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ikib7"]
+script = ExtResource("1_se7wf")
+frameLength = 0.25
+annotation = "The Warlock Agent approaches the edge of the camera. Disable the airship"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_gk05l"), SubResource("Resource_6xlq5")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_xfmwx")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wjsbo"]
+script = ExtResource("7_vx6mq")
+value = Vector2(298, -70)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_ftk81"]
+script = ExtResource("1_se7wf")
+frameLength = 2.5
+annotation = "The disguised Warlock Agent walks onscreen"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_wjsbo")])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_sk64f"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_ro3yr"]
+script = ExtResource("6_43wi2")
+speaker = "Chain Legion Mage"
+texts = Array[String](["blah blah blah TODO later"])
+
+[sub_resource type="Resource" id="Resource_h213s"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The disguised Warlock Agent stops and speaks"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sk64f")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_ro3yr")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1ob2u"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pu3vg"]
+script = ExtResource("6_43wi2")
+speaker = "Lance"
+texts = Array[String](["grr AGNERY TODO later"])
+
+[sub_resource type="Resource" id="Resource_3jqeq"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Lance angrily replies"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_pu3vg")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_isa6k"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_8dxnv"]
+script = ExtResource("7_vx6mq")
+value = Vector2(198, -84)
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_vbhh8"]
+script = ExtResource("1_se7wf")
+frameLength = 0.75
+annotation = "Lance steps forward in anger"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_8dxnv")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_isa6k")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ntj3k"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_6md3f"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Lance stands and keeps speaking, wait until text box is closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_ntj3k")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_sxo24"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_yel0g"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_ixn2t"]
+script = ExtResource("6_43wi2")
+speaker = "Chain Legion Mage"
+texts = Array[String](["Oh my bad bro I'm not evil fr TODO later"])
+
+[sub_resource type="Resource" id="Resource_rwsuj"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Lance stops speaking, the Warlock hand replies"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sxo24"), SubResource("Resource_yel0g")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_ixn2t")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1hbwc"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qxwkm"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "reveal_disguise"
+
+[sub_resource type="Resource" id="Resource_tbt34"]
+script = ExtResource("1_se7wf")
+frameLength = 1.45
+annotation = "The Warlock Agent reveals his identity (1.5s or 9 frames of the 6 FPS anim)"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_qxwkm")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_qhtkm"]
+script = ExtResource("2_4gicn")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+spriteState = "default"
+
+[sub_resource type="Resource" id="Resource_47q55"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_2261a"]
+script = ExtResource("6_43wi2")
+speaker = "???"
+texts = Array[String](["I am not a Chain Legion grunt, actually.", "I'm an Agent of the Warlock, and I've been tracking Helia's movements for a while."])
+
+[sub_resource type="Resource" id="Resource_5hho1"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["Blah blah blah TODO later"])
+
+[sub_resource type="Resource" id="Resource_c376j"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Change the Warlock Agent's anim set to his undisguised self, he speaks"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_47q55")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([SubResource("Resource_qhtkm")])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_2261a"), SubResource("Resource_5hho1")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_pvlxs"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_c02c5"]
+script = ExtResource("4_tv8wl")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["standstill_helia_fight"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_u2753")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_u2753")]([])
+
+[resource]
+script = ExtResource("2_iiniu")
+cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs")])
+saveName = "standstill_defeated_helia"
+storyRequirements = SubResource("Resource_c02c5")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""

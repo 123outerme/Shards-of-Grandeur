@@ -1,3 +1,4 @@
+@tool
 extends Interactable
 class_name InteractableDecoration
 
@@ -6,11 +7,20 @@ class_name InteractableDecoration
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
+var invisible: bool:
+	set(i):
+		visible = not i
+		if animatedDecoration != null:
+			animatedDecoration.invisible = i
+	get:
+		return not visible
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
-	animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
-	show_interact_sprite(false)
+	if not Engine.is_editor_hint():
+		super._ready()
+		animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
+		show_interact_sprite(false)
 
 func show_interact_sprite(showSprite: bool = true):
 	interactSprite.visible = showSprite

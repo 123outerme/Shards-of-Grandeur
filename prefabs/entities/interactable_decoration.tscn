@@ -8,6 +8,7 @@
 size = Vector2(17, 17)
 
 [node name="InteractableDecoration" type="Area2D" groups=["Interactable"]]
+z_index = -10
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_cxfgm")
@@ -16,6 +17,7 @@ script = ExtResource("1_cxfgm")
 shape = SubResource("RectangleShape2D_mfdqs")
 
 [node name="AnimatedDecoration" parent="." instance=ExtResource("1_o5wg0")]
+z_index = 0
 
 [node name="InteractSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TeleportStone" load_steps=3 format=3 uid="uid://bcpi8vp4styc2"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/key_items/teleport_stone.gd" id="1_3puhs"]
+[ext_resource type="Texture2D" uid="uid://dw6uvul6j4st2" path="res://graphics/items/key_items/giant_steppes_teleport_stone.png" id="1_b3yrr"]
+
+[resource]
+script = ExtResource("1_3puhs")
+targetMap = "giant_steppes"
+targetPos = Vector2(0, 0)
+keyItemType = 1
+useMessage = "The stone opens a swirling portal, bringing you back to Giant Steppes..."
+effectText = "Teleports you to Giant Steppes!"
+itemSprite = ExtResource("1_b3yrr")
+itemName = "Giant Steppes Teleport Stone"
+itemType = 4
+itemDescription = "This enchanted stone can open a portal to Giant Steppes at a moment's notice. Once done, it becomes inert and returns to being an ordinary rock."
+cost = 50
+maxCount = 3
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 0
