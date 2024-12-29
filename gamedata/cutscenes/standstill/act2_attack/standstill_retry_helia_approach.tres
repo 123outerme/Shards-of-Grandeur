@@ -1,0 +1,186 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=26 format=3 uid="uid://cgf4hwpp1xom0"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ye4tj"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_w0wwn"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_wcthu"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_jis3c"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="3_tpf8b"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_kyk5q"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_movsr"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_vm6k4"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_ew30y"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_g80x3"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_uy03a"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_0ow4y"]
+[ext_resource type="Resource" uid="uid://cv227rllqigpd" path="res://gamedata/static_encounters/act2/standstill_helia_fight.tres" id="11_udxjf"]
+
+[sub_resource type="Resource" id="Resource_tpksn"]
+script = ExtResource("6_uy03a")
+value = Vector2(166, -92)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_i61td"]
+script = ExtResource("1_ye4tj")
+frameLength = 1.5
+annotation = "The player approaches"
+actorTweens = Array[ExtResource("5_ew30y")]([SubResource("Resource_tpksn")])
+actorAnims = Array[ExtResource("3_jis3c")]([ExtResource("4_kyk5q")])
+actorAnimSets = Array[ExtResource("2_wcthu")]([])
+actorFaceTargets = Array[ExtResource("4_vm6k4")]([])
+dialogues = Array[ExtResource("6_g80x3")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_t3xdy"]
+script = ExtResource("3_jis3c")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_k74jl"]
+script = ExtResource("6_g80x3")
+speaker = "Helia"
+texts = Array[String](["We can try this as much as you like, @.", "I'm going to finish burning this place down, and you won't stop me!"])
+
+[sub_resource type="Resource" id="Resource_payqt"]
+script = ExtResource("1_ye4tj")
+frameLength = 0.1
+annotation = "the player stands, Helia taunts the player"
+actorTweens = Array[ExtResource("5_ew30y")]([])
+actorAnims = Array[ExtResource("3_jis3c")]([ExtResource("9_0ow4y"), SubResource("Resource_t3xdy")])
+actorAnimSets = Array[ExtResource("2_wcthu")]([])
+actorFaceTargets = Array[ExtResource("4_vm6k4")]([])
+dialogues = Array[ExtResource("6_g80x3")]([SubResource("Resource_k74jl")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5p465"]
+script = ExtResource("1_ye4tj")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_ew30y")]([])
+actorAnims = Array[ExtResource("3_jis3c")]([])
+actorAnimSets = Array[ExtResource("2_wcthu")]([])
+actorFaceTargets = Array[ExtResource("4_vm6k4")]([])
+dialogues = Array[ExtResource("6_g80x3")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_uggxh"]
+script = ExtResource("3_jis3c")
+actorTreePath = "TilemapRoot/Helia"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_0pqb2"]
+script = ExtResource("6_uy03a")
+value = Vector2(222, -104)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_4dug3"]
+script = ExtResource("6_g80x3")
+speaker = "@"
+texts = Array[String](["We'll just see about that."])
+
+[sub_resource type="Resource" id="Resource_btffj"]
+script = ExtResource("1_ye4tj")
+frameLength = 1.5
+annotation = "The player walks up to Helia again, and speaks at the end of the frame"
+actorTweens = Array[ExtResource("5_ew30y")]([SubResource("Resource_0pqb2")])
+actorAnims = Array[ExtResource("3_jis3c")]([ExtResource("4_kyk5q"), SubResource("Resource_uggxh")])
+actorAnimSets = Array[ExtResource("2_wcthu")]([])
+actorFaceTargets = Array[ExtResource("4_vm6k4")]([])
+dialogues = Array[ExtResource("6_g80x3")]([SubResource("Resource_4dug3")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ch3sq"]
+script = ExtResource("1_ye4tj")
+frameLength = 0.1
+annotation = "the player stands, wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_ew30y")]([])
+actorAnims = Array[ExtResource("3_jis3c")]([ExtResource("9_0ow4y")])
+actorAnimSets = Array[ExtResource("2_wcthu")]([])
+actorFaceTargets = Array[ExtResource("4_vm6k4")]([])
+dialogues = Array[ExtResource("6_g80x3")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_8dsrg"]
+script = ExtResource("4_movsr")
+minAct = 2
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["standstill_helia_approach"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_tpf8b")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["standstill_helia_fight"])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_tpf8b")]([])
+
+[resource]
+script = ExtResource("2_w0wwn")
+cutsceneFrames = Array[ExtResource("1_ye4tj")]([SubResource("Resource_i61td"), SubResource("Resource_payqt"), SubResource("Resource_5p465"), SubResource("Resource_btffj"), SubResource("Resource_ch3sq")])
+saveName = "standstill_retry_helia_approach"
+storyRequirements = SubResource("Resource_8dsrg")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+staticEncounter = ExtResource("11_udxjf")
+tempDisabledAfter = false
+notes = ""
