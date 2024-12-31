@@ -309,6 +309,10 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 						statChanges = StatChanges.new()
 					var equipmentArr: Array[Item] = command.commandResult.equipmentProcd[targetIdx]
 					for equipment: Item in equipmentArr:
+						if equipment == null:
+							printerr('BattleAnimation ERROR: equipment procd was null for target IDX ', targetIdx, ', position = ' , defender.battlePosition, ' ', defender.combatant.disp_name())
+							continue
+						
 						if equipment.itemType == Item.Type.WEAPON:
 							statChanges.stack((equipment as Weapon).statChanges)
 							# TODO: play weapon proc animation
@@ -450,6 +454,9 @@ func play_intermediate_round_animations(state: BattleState):
 			var procdEquipment: Array[Item] = state.calcdStateEquipmentProcd[state.calcdStateIndex]
 			if procdEquipment != null:
 				for equipment: Item in procdEquipment:
+					if equipment == null:
+						printerr('BattleAnimation ERROR: equipment procd in intermediate round state was null for subject ', subjectNode.battlePosition, ' ', subjectNode.combatant.disp_name())
+						continue
 					var statChanges: StatChanges = null
 					if equipment.itemType == Item.Type.WEAPON:
 						statChanges = (equipment as Weapon).statChanges

@@ -109,7 +109,7 @@ func play_turn():
 					if defender.stats.equippedWeapon != null:
 						var applied: bool = defender.stats.equippedWeapon.apply_effects(defender, BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG)
 						if applied:
-							equipmentProcd.append(defender.stats.equippedArmor)
+							equipmentProcd.append(defender.stats.equippedWeapon)
 					combatant.command.commandResult.equipmentProcd[targetIdx] = equipmentProcd
 		combatant.update_runes([], battleController.state, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 		

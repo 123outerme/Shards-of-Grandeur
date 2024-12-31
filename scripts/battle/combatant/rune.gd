@@ -99,6 +99,9 @@ func apply_surge_changes(additionalOrbs: int) -> Rune:
 	rune.lifesteal += surgeChanges.lifestealPerOrb * additionalOrbs
 	var finalStatChanges: StatChanges = surgeChanges.targetStatChangesPerOrb.duplicate(true) if surgeChanges.targetStatChangesPerOrb != null else StatChanges.new()
 	finalStatChanges.times(additionalOrbs)
+	
+	if rune.statChanges == null:
+		rune.statChanges = StatChanges.new()
 	rune.statChanges = rune.statChanges.stack(finalStatChanges)
 	
 	if rune.statusEffect != null:
