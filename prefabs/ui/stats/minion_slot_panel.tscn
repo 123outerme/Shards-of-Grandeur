@@ -14,6 +14,7 @@
 
 [node name="MinionSlotPanel" type="Panel" groups=["MinionSlotPanel"]]
 custom_minimum_size = Vector2(548, 100)
+mouse_filter = 1
 theme = ExtResource("1_nhnmf")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sjlhe")
 script = ExtResource("1_mfddu")
@@ -28,6 +29,7 @@ offset_top = -48.0
 offset_right = 96.0
 offset_bottom = 48.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MinionSprite" type="AnimatedSprite2D" parent="SpriteControl"]
 position = Vector2(48, 48)
@@ -44,6 +46,7 @@ offset_top = -22.0
 offset_right = 306.0
 offset_bottom = 24.0
 grow_vertical = 2
+mouse_filter = 1
 text = "Minion Name Goes Here"
 fit_content = true
 
@@ -68,6 +71,7 @@ alignment = 1
 [node name="ChangedIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(16, 32)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="ChangedIndicatorSprite" type="Sprite2D" parent="HBoxContainer/VBoxContainer3/ChangedIndicatorControl"]
 position = Vector2(8, 16)
@@ -81,6 +85,7 @@ alignment = 1
 [node name="MoveIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(16, 32)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer2/MoveIndicatorControl"]
 position = Vector2(8, 16)
@@ -94,6 +99,7 @@ alignment = 1
 [node name="StatPtIndicatorControl" type="Control" parent="HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(16, 32)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer/StatPtIndicatorControl"]
 position = Vector2(8, 16)

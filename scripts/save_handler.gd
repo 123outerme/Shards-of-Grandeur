@@ -47,7 +47,7 @@ func save_data(saveFolder: String = 'save') -> bool:
 				printerr('SaveHandler save_data error on ', script_path, ': error ', err)
 				return false
 		else:
-			printerr('WARNING: No save_data script for ', script_path)
+			printerr('WARNING: No save_data function for ', script_path)
 	if not (battle_node_path in saved_scripts) and FileAccess.file_exists(saveFileLocation + battle_file):
 		var err = DirAccess.remove_absolute(saveFileLocation + battle_file)
 		if err != 0:

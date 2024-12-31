@@ -15,6 +15,7 @@
 custom_minimum_size = Vector2(1120, 76)
 offset_right = 1120.0
 offset_bottom = 76.0
+mouse_filter = 1
 theme = ExtResource("1_o51tf")
 script = ExtResource("2_6ihcm")
 
@@ -40,13 +41,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
 offset_left = 59.0
-offset_right = 432.0
+offset_right = 439.0
 grow_vertical = 2
 alignment = 1
 
 [node name="QuestName" type="RichTextLabel" parent="CenterQuestName"]
 clip_contents = false
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("4_l4ou6")
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
@@ -59,17 +61,18 @@ fit_content = true
 [node name="QuestStepName" type="RichTextLabel" parent="CenterQuestName"]
 clip_contents = false
 layout_mode = 2
+mouse_filter = 1
 text = "Quest Step Name Goes Here"
 fit_content = true
 
 [node name="CenterProgress" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.384
-anchor_right = 0.384
+anchor_left = 0.406
+anchor_right = 0.406
 anchor_bottom = 1.0
-offset_left = -1.08002
-offset_right = 408.92
+offset_left = 0.279968
+offset_right = 384.28
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -77,6 +80,7 @@ alignment = 1
 [node name="QuestProgress" type="RichTextLabel" parent="CenterProgress"]
 clip_contents = false
 layout_mode = 2
+mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 16
 theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16

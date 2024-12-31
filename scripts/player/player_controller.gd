@@ -698,14 +698,14 @@ func update_interact_touch_ui():
 		for inter: Interactable in interactables:
 			if inter == null:
 				continue
-			if inter.has_dialogue():
+			if inter.has_dialogue() and inter.is_visible_in_tree():
 				oneHasDialogue = true
 				break
 		if not oneHasDialogue:
 			for npc: NPCScript in talkNPCcandidates:
 				if npc == null:
 					continue
-				if len(npc.data.dialogueItems) > 0:
+				if len(npc.data.dialogueItems) > 0 and npc.is_visible_in_tree():
 					oneHasDialogue = true
 					break
 		

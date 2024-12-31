@@ -120,7 +120,9 @@ func load_inventory_slot_panel():
 		if combatant != null:
 			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
 	else:
-		if inventorySlot.item is TeleportStone and not inventorySlot.item.can_be_used_now():
+		# if this item can't be used right now, and it's not a shop item or there's no other reason we can't buy it:
+		if not inventorySlot.item.can_be_used_now() and \
+			not (isShopItem and centerBuySellNotes.visible):
 			equippedTo.text = "[right]Can't use this now...[/right]"
 	
 	if inventorySlot.item.cost >= 0:
