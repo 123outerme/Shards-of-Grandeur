@@ -358,6 +358,7 @@ func set_level(lv: int):
 func give_exp(xp: int):
 	var lvDiff: int = PlayerResources.playerInfo.combatant.stats.add_exp(xp)
 	if lvDiff > 0:
+		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level)
 		print_to_console('Added ' + String.num(xp) + ' Exp and leveled up ' + String.num(lvDiff) + ' level(s)!')
 	else:
 		print_to_console('Added ' + String.num(xp) + ' Exp.')

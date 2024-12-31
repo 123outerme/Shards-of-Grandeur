@@ -110,7 +110,7 @@ func equip_pressed(combatant: Combatant):
 		evolveResultsPanel.newEvolution = newEvolution
 		evolveResultsPanel.prevEvolution = prevEvolution
 		evolveResultsPanel.equipment = inventorySlot.item
-		var flags = combatant.switch_evolution(newEvolution, prevEvolution, combatant != PlayerResources.playerInfo.combatant)
+		var flags: int = combatant.switch_evolution(newEvolution, prevEvolution, combatant != PlayerResources.playerInfo.combatant)
 		evolveResultsPanel.switchEvolutionFlags = flags
 		evolveResultsPanel.combatantLosingEvolving = combatantLosingEvolving
 		evolveResultsPanel.load_evolve_results_panel()

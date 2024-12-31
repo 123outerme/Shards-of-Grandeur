@@ -28,7 +28,7 @@ func _ready():
 func load_move_list_panel():
 	lastMovePanel = null
 	firstMovePanel = null
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if lastMovePanel == null:
 			itemPanel.set_buttons_top_neighbor('.')
@@ -52,20 +52,20 @@ func load_move_list_panel():
 	editMovesButton.icon = newMoveIndicator if showNewMoveIndicator else null
 
 func connect_details_pressed(function: Callable):
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if not itemPanel.details_pressed.is_connected(function):
 			itemPanel.details_pressed.connect(function)
 
 func disconnect_details_pressed(function: Callable):
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if itemPanel.details_pressed.is_connected(function):
 			itemPanel.details_pressed.disconnect(function)
 
 func show_move_list_item_details_btns(showing: bool = true):
 	var lastPanel: MoveListItemPanel = null
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.showDetailsButton = showing
 		itemPanel.load_move_list_item_panel()
@@ -78,7 +78,7 @@ func show_move_list_item_details_btns(showing: bool = true):
 
 func show_move_list_item_replace_btns(showing: bool = false):
 	var lastPanel: MoveListItemPanel = null
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.editShowReplace = showing
 		itemPanel.load_move_list_item_panel()
@@ -91,7 +91,7 @@ func show_move_list_item_replace_btns(showing: bool = false):
 
 func show_move_list_item_reorder_btns(showing: bool = false):
 	var lastPanel: MoveListItemPanel = null
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		itemPanel.editShowReorder = showing
 		itemPanel.load_move_list_item_panel()
@@ -106,7 +106,7 @@ func get_move_list_item(index: int) -> MoveListItemPanel:
 	return get_node("VBoxContainer/MoveListItemPanel" + String.num(index + 1))
 
 func get_index_of_move(move: Move) -> int:
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if itemPanel.move == move:
 			return i
@@ -126,7 +126,7 @@ func _on_edit_moves_button_pressed():
 func _on_move_list_item_panel_replace_pressed(move, slot):
 	'''
 	var button: Button = null
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		var itemPanel: MoveListItemPanel = get_move_list_item(i)
 		if itemPanel.move == move:
 			button = itemPanel.detailsButton

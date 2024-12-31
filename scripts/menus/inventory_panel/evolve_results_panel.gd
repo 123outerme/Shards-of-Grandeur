@@ -10,6 +10,7 @@ class_name EvolveResultsPanel
 
 @onready var combatantSprite: AnimatedSprite2D = get_node('Panel/CombatantSpriteControl/CombatantSprite')
 @onready var evolveChangesText: RichTextLabel = get_node('Panel/EvolveChangesText')
+@onready var evolveChangesUnderline: Line2D = get_node('Panel/EvolveChangesText/Line2D')
 
 func load_evolve_results_panel():
 	var prevEvolutionStats: Stats = combatant.get_evolution_stats(prevEvolution)
@@ -34,10 +35,12 @@ func load_evolve_results_panel():
 		var pronounSingularCap: String = 'It'
 		var pronounSingular: String = 'it'
 		var pronounPossesive: String = 'its'
+		var toHaveConjugation: String = 'has'
 		if combatant.save_name() == 'player':
 			pronounSingularCap = 'You'
 			pronounSingular = 'you'
 			pronounPossesive = 'your'
+			toHaveConjugation = 'have'
 		
 		evolveChangesText.text = '[center]This form has changed since it last saw battle:'
 		var changesStrings: Array[String] = []
@@ -47,7 +50,7 @@ func load_evolve_results_panel():
 			else:
 				changesStrings.append(pronounSingularCap + ' may have Stat Points to allocate!')
 		if (switchEvolutionFlags >> 1) & 1 == 1: # 0b00010
-			changesStrings.append(pronounSingularCap + ' has different moves in this form.')
+			changesStrings.append(pronounSingularCap + ' now ' + toHaveConjugation + ' different moves in this form.')
 		if (switchEvolutionFlags >> 2) & 1 == 1: # 0b00100
 			var forgotStr: String = pronounSingularCap + ' forgot how to use some moves'
 			if (switchEvolutionFlags >> 3) & 1 == 1: # 0b01000
@@ -58,6 +61,10 @@ func load_evolve_results_panel():
 		for change in changesStrings:
 			evolveChangesText.text += '\n' + change
 		evolveChangesText.text += '[/center]'
+		evolveChangesUnderline.visible = true
+	else:
+		evolveChangesText.text = ''
+		evolveChangesUnderline.visible = false
 	
 	combatantSprite.sprite_frames = combatant.get_sprite_frames()
 	if combatant.get_idle_size().y <= 32:

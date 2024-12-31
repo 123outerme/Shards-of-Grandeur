@@ -219,6 +219,8 @@ func load_into_battle():
 				enemyCombatant3.combatant.assign_moves_nonplayer()
 			else:
 				enemyCombatant3.combatant = null
+		if minionCombatant.combatant != null:
+			minionCombatant.combatant.update_battle_storage()
 		enemyCombatant1.combatant.update_battle_storage()
 		if enemyCombatant2.combatant != null:
 			enemyCombatant2.combatant.update_battle_storage()

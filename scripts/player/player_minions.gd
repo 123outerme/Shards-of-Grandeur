@@ -77,7 +77,7 @@ func level_up_minion(minion: Combatant, newLevel: int, newMinion: bool = false):
 			else:
 				minion.get_stat_allocation_strategy().allocate_stats(minion.stats)
 	
-	if (levelDiff > 0 or newMinion) and len(minion.stats.moves) < 4:
+	if (levelDiff > 0 or newMinion) and len(minion.stats.moves) < Stats.MAX_MOVES:
 		minion.assign_moves_nonplayer()
 
 func level_up_minions(newLevel: int):

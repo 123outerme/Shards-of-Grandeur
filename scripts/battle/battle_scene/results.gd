@@ -22,6 +22,7 @@ func initial_focus():
 
 func show_text(newText: String):
 	textBoxText.text = TextUtils.rich_text_substitute(newText, Vector2i(32, 32))
+	textBoxText.scroll_to_line(0)
 	ignoreOkPressed = false
 
 func _on_ok_button_pressed(queued: bool = false) -> void:

@@ -16,7 +16,7 @@ func _unhandled_input(event):
 		_on_back_button_pressed.call_deferred()
 
 func initial_focus():
-	for i in range(4): # for all 4 buttons
+	for i in range(Stats.MAX_MOVES): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
 		if moveBtn.text != '-----':
 			moveBtn.grab_focus()
@@ -24,7 +24,7 @@ func initial_focus():
 
 func load_moves():
 	var setFocus: bool = false
-	for i in range(4): # for all 4 buttons
+	for i in range(Stats.MAX_MOVES): # for all 4 buttons
 		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
 		var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
 		if i < len(battleUI.commandingCombatant.combatant.stats.moves) and battleUI.commandingCombatant.combatant.stats.moves[i] != null: # if this move slot exists
@@ -88,7 +88,7 @@ func _on_back_button_pressed():
 	battleUI.set_menu_state(BattleState.Menu.ALL_COMMANDS)
 
 func _on_move_details_panel_back_pressed() -> void:
-	for i in range(4):
+	for i in range(Stats.MAX_MOVES):
 		if battleUI.commandingCombatant.combatant.stats.moves[i] == moveDetailsPanel.move:
 			var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
 			if moveInfoBtn != null and moveInfoBtn.visible:

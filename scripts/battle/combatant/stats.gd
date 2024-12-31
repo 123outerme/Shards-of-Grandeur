@@ -11,6 +11,8 @@ enum Category {
 	HP = 5, ## not to be used except for StatGrowth 
 }
 
+const MAX_MOVES: int = 4
+
 @export_category("Stats - Name")
 @export var displayName: String = 'Entity'
 @export var saveName: String = 'uninstantiated_entity'
@@ -179,10 +181,10 @@ func unequip_item(item: Item):
 
 func add_move_to_pool(move: Move):
 	movepool.pool.append(move)
-	if len(moves) < 4:
+	if len(moves) < Stats.MAX_MOVES:
 		moves.append(move)
 	else:
-		for i in range(4):
+		for i in range(Stats.MAX_MOVES):
 			if moves[i] == null:
 				moves[i] = move
 				break

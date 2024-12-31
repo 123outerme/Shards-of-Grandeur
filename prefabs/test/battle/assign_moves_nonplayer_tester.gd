@@ -10,7 +10,7 @@ func _ready() -> void:
 	testCombatant = combatant.copy()
 	testCombatant.stats.set_level(level)
 	testCombatant.assign_moves_nonplayer()
-	for moveIdx: int in range(4):
+	for moveIdx: int in range(Stats.MAX_MOVES):
 		var printStr: String = 'Move ' + String.num(moveIdx) + ' set to: '
 		if moveIdx >= len(testCombatant.stats.moves) or testCombatant.stats.moves[moveIdx] == null:
 			printStr += 'Empty'

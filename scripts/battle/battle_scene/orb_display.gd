@@ -89,7 +89,7 @@ func get_orb_unit_at_count(orbCount: int) -> OrbUnitDisplay:
 	return orbUnits[orbIdx]
 
 func update_orb_count(orbs: int, playSfx: bool = true, playParticles: bool = true) -> void:
-	var setOrbs = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
+	var setOrbs: int = max(minOrbs, min(orbs, maxOrbs)) # bound orbs between min & max
 	if setOrbs != currentOrbs:
 		orb_count_change.emit(setOrbs)
 		if playSfx and SceneLoader.audioHandler != null and Time.get_unix_time_from_system() - lastSfxTriggered > ORB_SFX_INTERVAL:

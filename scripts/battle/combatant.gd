@@ -332,7 +332,7 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 	if prevNullMoves != nullMoves:
 		returnCode += 0b00100
 	# if all set moves were invalidated alert the user
-	if nullMoves == 4:
+	if nullMoves == Stats.MAX_MOVES:
 		returnCode += 0b01000
 	return returnCode
 
@@ -773,7 +773,7 @@ func assign_moves_nonplayer():
 
 # returns the number of null moves after validation but before any re-assignment
 func validate_moves() -> int:
-	var emptySlots: int = 4 - len(stats.moves) # each move slot that isn't represented in the array counts as empty
+	var emptySlots: int = Stats.MAX_MOVES - len(stats.moves) # each move slot that isn't represented in the array counts as empty
 	
 	for moveIdx in range(len(stats.moves)):
 		var move: Move = stats.moves[moveIdx]
@@ -781,7 +781,7 @@ func validate_moves() -> int:
 			stats.moves[moveIdx] = null
 		if stats.moves[moveIdx] == null:
 			emptySlots += 1
-	if emptySlots == 4:
+	if emptySlots == Stats.MAX_MOVES:
 		assign_moves_nonplayer()
 	return emptySlots
 
