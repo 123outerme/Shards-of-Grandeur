@@ -103,7 +103,7 @@ func select_choice(choice: DialogueChoice):
 	
 	if choice is PuzzleDialogueChoice:
 		var puzzleChoice: PuzzleDialogueChoice = choice as PuzzleDialogueChoice
-		if puzzleChoice.acceptsSolve and PlayerResources.playerInfo.has_solved_puzzle(puzzleChoice.id) and puzzleChoice.leadsToIfSolveFails != null:
+		if puzzleChoice.acceptsSolve and puzzleChoice.puzzle != null and PlayerResources.playerInfo.has_solved_puzzle(puzzleChoice.puzzle.id) and puzzleChoice.leadsToIfSolveFails != null:
 			leadsTo = puzzleChoice.leadsToIfSolveFails
 	
 	if leadsTo != null:
