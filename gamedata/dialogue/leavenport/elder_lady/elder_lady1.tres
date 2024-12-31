@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dtwqyxa8yw6ar"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dtwqyxa8yw6ar"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8kxrd"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_ofrg6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0f2wc"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ws5r7"]
 [ext_resource type="Resource" uid="uid://75s3tiikg2dh" path="res://gamedata/dialogue/leavenport/elder_lady/elder_lady_floating_rocks.tres" id="4_ahh6u"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_m4qjx"]
 
 [sub_resource type="Resource" id="Resource_1yfm7"]
 script = ExtResource("2_0f2wc")
@@ -41,5 +42,6 @@ choices = Array[ExtResource("2_0f2wc")]([SubResource("Resource_1yfm7"), SubResou
 script = ExtResource("1_ofrg6")
 entryId = ""
 items = Array[ExtResource("1_8kxrd")]([SubResource("Resource_faqxj")])
+ordStoryRequirements = Array[ExtResource("5_m4qjx")]([])
 closesDialogue = false
 fullHealsPlayer = false

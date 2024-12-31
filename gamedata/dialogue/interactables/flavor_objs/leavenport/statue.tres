@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bmrmnggtkpau3"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bmrmnggtkpau3"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_b7up4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fwxal"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_bulap"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_umr4l"]
 
 [sub_resource type="Resource" id="Resource_uq33h"]
 script = ExtResource("1_fwxal")
 lines = Array[String](["This is a strange stone statue, that looks to be in the image of a person. What was this made for?"])
 animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_bulap")]([])
 
 [resource]
 script = ExtResource("1_b7up4")
 entryId = ""
 items = Array[ExtResource("1_fwxal")]([SubResource("Resource_uq33h")])
+ordStoryRequirements = Array[ExtResource("3_umr4l")]([])
 closesDialogue = false
 fullHealsPlayer = false

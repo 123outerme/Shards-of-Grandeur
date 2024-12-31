@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://g8s3vr1fy43n"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://g8s3vr1fy43n"]
 
 [ext_resource type="Resource" uid="uid://cvagngsvbmij3" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman_q1_inquiry_no.tres" id="1_udqkj"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hiplf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="4_whcov"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_b8nte"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_l3g1i"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="8_3u186"]
 
 [sub_resource type="Resource" id="Resource_8ebaf"]
 script = ExtResource("2_hiplf")
@@ -53,6 +54,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_3u186")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -61,11 +63,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_3u186")]([])
 
 [resource]
 script = ExtResource("5_b8nte")
 entryId = ""
 items = Array[ExtResource("4_whcov")]([SubResource("Resource_r0s6k")])
 storyRequirements = SubResource("Resource_68uqv")
+ordStoryRequirements = Array[ExtResource("6_l3g1i")]([])
 closesDialogue = false
 fullHealsPlayer = false

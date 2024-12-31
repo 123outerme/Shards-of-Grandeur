@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bv0teve4rw4tk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bv0teve4rw4tk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_faalg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jfh8j"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_pcbsx"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_8kr8b"]
 
 [sub_resource type="Resource" id="Resource_oggvg"]
 script = ExtResource("1_faalg")
 lines = Array[String](["It is a simple piece of pottery, but for how old it looks, the fact it's still whole is impressive."])
 animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_pcbsx")]([])
 
 [resource]
 script = ExtResource("2_jfh8j")
 entryId = ""
 items = Array[ExtResource("1_faalg")]([SubResource("Resource_oggvg")])
+ordStoryRequirements = Array[ExtResource("3_8kr8b")]([])
 closesDialogue = false
 fullHealsPlayer = false

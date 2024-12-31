@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://csb54kuorfycb"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://csb54kuorfycb"]
 
 [ext_resource type="Resource" uid="uid://bbln2k0uw6puh" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_turnin_no.tres" id="1_ooij8"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_83m1m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="4_028xn"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_k3r03"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_ekyog"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_l6j64"]
 
 [sub_resource type="Resource" id="Resource_abyp2"]
 script = ExtResource("2_83m1m")
@@ -43,5 +44,6 @@ choices = Array[ExtResource("2_83m1m")]([SubResource("Resource_abyp2"), SubResou
 script = ExtResource("5_ekyog")
 entryId = ""
 items = Array[ExtResource("4_028xn")]([SubResource("Resource_soti3")])
+ordStoryRequirements = Array[ExtResource("6_l6j64")]([])
 closesDialogue = false
 fullHealsPlayer = false

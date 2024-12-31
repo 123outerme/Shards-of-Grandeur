@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://beg8gy0jt3gtj"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=17 format=3 uid="uid://beg8gy0jt3gtj"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_swjlq"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_ye5ti"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_n2gfd"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_b7ocu"]
 [ext_resource type="Resource" uid="uid://44sy4wk3ngx3" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_gift.tres" id="4_xshmh"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_ta75d"]
 
 [sub_resource type="Resource" id="Resource_co4cg"]
 script = ExtResource("1_swjlq")
@@ -71,6 +72,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_ta75d")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -79,6 +81,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_ta75d")]([])
 
 [sub_resource type="Resource" id="Resource_i26ru"]
 script = ExtResource("1_swjlq")
@@ -114,6 +117,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_ta75d")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["leavenport_takeover"])
@@ -122,11 +126,13 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_ta75d")]([])
 
 [resource]
 script = ExtResource("3_n2gfd")
 entryId = "lp_pm_intro"
 items = Array[ExtResource("2_ye5ti")]([SubResource("Resource_84smw"), SubResource("Resource_djbng"), SubResource("Resource_cbwby")])
 storyRequirements = SubResource("Resource_75cvf")
+ordStoryRequirements = Array[ExtResource("4_b7ocu")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=21 format=3 uid="uid://8pf1vr5htkgf"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=22 format=3 uid="uid://8pf1vr5htkgf"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_k4yud"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_r1rn3"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://d0np1lfjlqnta" path="res://gamedata/dialogue/leavenport/curator/curator_boat_sculpture.tres" id="6_dvj1m"]
 [ext_resource type="Resource" uid="uid://b0scnljcayc05" path="res://gamedata/dialogue/leavenport/curator/curator_pottery.tres" id="7_kr5u1"]
 [ext_resource type="Resource" uid="uid://bxxuo371yw5wg" path="res://gamedata/dialogue/leavenport/curator/curator_statue.tres" id="8_gqtk8"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="11_px04x"]
 
 [sub_resource type="Resource" id="Resource_oa55x"]
 script = ExtResource("1_r1rn3")
@@ -103,11 +104,16 @@ isDeclineChoice = false
 script = ExtResource("1_k4yud")
 lines = Array[String](["This is the Leavenport Museum, a place to witness our history in this town.", "If you would like to know about any of the pieces on display, feel free to ask."])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_r1rn3")]([SubResource("Resource_oa55x"), SubResource("Resource_crbi6"), SubResource("Resource_1tctn"), SubResource("Resource_k80mn"), SubResource("Resource_njjyr"), SubResource("Resource_xif2k"), SubResource("Resource_fcql0"), SubResource("Resource_xaypf")])
 
 [resource]
 script = ExtResource("1_wyupn")
 entryId = "curator1"
 items = Array[ExtResource("1_k4yud")]([SubResource("Resource_fu0ne")])
+ordStoryRequirements = Array[ExtResource("11_px04x")]([])
 closesDialogue = false
 fullHealsPlayer = false

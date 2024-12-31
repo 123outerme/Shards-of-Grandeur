@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://61srcxkpdnld"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://61srcxkpdnld"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1b386"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_5w1es"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_emwmu"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_qtucp"]
 
 [sub_resource type="Resource" id="Resource_fsbb0"]
 script = ExtResource("1_1b386")
 lines = Array[String](["This is a bronze sculpture of a boat. The craftsmanship is impressive, it's textured like wood and everything!"])
 animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_emwmu")]([])
 
 [resource]
 script = ExtResource("2_5w1es")
 entryId = ""
 items = Array[ExtResource("1_1b386")]([SubResource("Resource_fsbb0")])
+ordStoryRequirements = Array[ExtResource("3_qtucp")]([])
 closesDialogue = false
 fullHealsPlayer = false

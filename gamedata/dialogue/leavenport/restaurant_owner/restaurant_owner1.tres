@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://cavschyk5vxg2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://cavschyk5vxg2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3uxcm"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_5tgvs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_bja2j"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_j7i12"]
 [ext_resource type="Resource" uid="uid://bf050uvxxgcqh" path="res://gamedata/dialogue/leavenport/restaurant_owner/fishermans_usual.tres" id="3_piwbi"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_7chek"]
 
 [sub_resource type="Resource" id="Resource_muqwh"]
 script = ExtResource("1_5tgvs")
@@ -21,6 +22,8 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_1hnul"]
 script = ExtResource("2_5n0ms")
 opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
 choiceBtn = "I'll Have..."
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_bja2j")]([])
@@ -41,6 +44,8 @@ prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_7chek")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -48,6 +53,8 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_7chek")]([])
 
 [sub_resource type="Resource" id="Resource_8rmat"]
 script = ExtResource("1_5tgvs")
@@ -75,5 +82,6 @@ choices = Array[ExtResource("1_5tgvs")]([SubResource("Resource_muqwh"), SubResou
 script = ExtResource("1_8ukjo")
 entryId = ""
 items = Array[ExtResource("1_3uxcm")]([SubResource("Resource_q0y6r")])
+ordStoryRequirements = Array[ExtResource("3_j7i12")]([])
 closesDialogue = false
 fullHealsPlayer = false

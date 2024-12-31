@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bhunxb16tlfpt"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bhunxb16tlfpt"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_dxmgn"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_uc6t6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_chuwa"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_svsvr"]
 
 [sub_resource type="Resource" id="Resource_2b0ic"]
 script = ExtResource("1_uc6t6")
 lines = Array[String](["This painting depicts a steaming hot Leavenport meal. It looks delicious!"])
 animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_chuwa")]([])
 
 [resource]
 script = ExtResource("1_dxmgn")
 entryId = ""
 items = Array[ExtResource("1_uc6t6")]([SubResource("Resource_2b0ic")])
+ordStoryRequirements = Array[ExtResource("3_svsvr")]([])
 closesDialogue = false
 fullHealsPlayer = false

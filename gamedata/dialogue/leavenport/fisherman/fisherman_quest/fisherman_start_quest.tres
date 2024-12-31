@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cb3se537hajxd"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cb3se537hajxd"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_kavjk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_yklbw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3rucg"]
 [ext_resource type="Resource" uid="uid://bpvf2xv1p41ii" path="res://gamedata/quests/leavenport/fisherman_quest.tres" id="2_t6wym"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_oap2k"]
 
 [sub_resource type="Resource" id="Resource_q882p"]
 script = ExtResource("1_yklbw")
@@ -19,6 +20,7 @@ choices = Array[ExtResource("2_3rucg")]([])
 script = ExtResource("1_kavjk")
 entryId = "lp_fisherman_start_quest"
 items = Array[ExtResource("1_yklbw")]([SubResource("Resource_q882p")])
+ordStoryRequirements = Array[ExtResource("3_oap2k")]([])
 startsQuest = ExtResource("2_t6wym")
 closesDialogue = false
 fullHealsPlayer = false
