@@ -1,17 +1,18 @@
-[gd_scene load_steps=77 format=4 uid="uid://juq8847hl56c"]
+[gd_scene load_steps=79 format=4 uid="uid://juq8847hl56c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_ajihy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_x0la4"]
-[ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/puzzle_decoration.tscn" id="3_0pcqa"]
+[ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/simple_puzzle_decoration.tscn" id="3_0pcqa"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_8xw1n"]
 [ext_resource type="Resource" uid="uid://d2rf0phv1ika" path="res://gamedata/items/key_items/shroom_bag_empty.tres" id="4_1qimc"]
 [ext_resource type="SpriteFrames" uid="uid://8kkhb0pqbyxu" path="res://graphics/puzzles/a_shroom_bag_puzzle.tres" id="4_5lwai"]
-[ext_resource type="Script" path="res://scripts/overworld/puzzles/item_use_puzzle.gd" id="4_7ol7v"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_ibmro"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_q8bhu"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="6_ybkn2"]
 [ext_resource type="Resource" uid="uid://botcupn1ufya1" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_noprereqs.tres" id="7_6wp14"]
 [ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="7_u3ss7"]
 [ext_resource type="Resource" uid="uid://dtpatqhw4hmfi" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle1.tres" id="7_wqnk3"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/simple_puzzle.gd" id="7_xbbtm"]
 [ext_resource type="Resource" uid="uid://msrja6h8nj2y" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_solved.tres" id="9_ej3x3"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="11_jehcq"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="12_glhvx"]
@@ -29,18 +30,17 @@
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="24_4qonj"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="25_dnjs2"]
 
-[sub_resource type="Resource" id="Resource_16kas"]
-script = ExtResource("4_7ol7v")
+[sub_resource type="Resource" id="Resource_c6dpn"]
+script = ExtResource("6_ybkn2")
 item = ExtResource("4_1qimc")
 requiredCount = 1
+consumeItem = true
+
+[sub_resource type="Resource" id="Resource_ifj00"]
+script = ExtResource("7_xbbtm")
+puzzleMechanic = SubResource("Resource_c6dpn")
 id = "fill_shroom_bag"
 prereqStoryRequirements = Array[ExtResource("4_q8bhu")]([])
-puzzleSpriteFrames = ExtResource("4_5lwai")
-unsolvedAnimation = "default"
-solvingAnimation = "place_bag"
-solvedAnimation = "default"
-disableCollisionOnSolve = false
-updateAnimOnSolve = false
 
 [sub_resource type="Resource" id="Resource_4ffr4"]
 script = ExtResource("7_u3ss7")
@@ -158,6 +158,7 @@ combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_dys7r"
 combatant1 = ExtResource("13_yxvax")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sbu"]
 size = Vector2(214, 175)
@@ -201,6 +202,7 @@ combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_47bet"
 combatant1 = ExtResource("16_5uw6k")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8m7g"]
 size = Vector2(184, 115)
@@ -249,6 +251,7 @@ combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_ja647"
 combatant1 = ExtResource("14_pr2nn")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o26et"]
 size = Vector2(159, 165)
@@ -297,6 +300,7 @@ combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_o2x08"
 combatant1 = ExtResource("13_yxvax")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u11xh"]
 size = Vector2(177, 186)
@@ -350,11 +354,17 @@ tile_set = ExtResource("2_x0la4")
 
 [node name="PuzzleDecoration" parent="TilemapRoot" instance=ExtResource("3_0pcqa")]
 position = Vector2(-504, 56)
-puzzle = SubResource("Resource_16kas")
+puzzle = SubResource("Resource_ifj00")
 failedPrereqsDialogue = SubResource("Resource_4ffr4")
 solvedDialogue = SubResource("Resource_3omei")
+solvingAnimation = "place_bag"
+solvedAnimation = "default"
+updateAnimOnSolve = false
 saveName = "shroom_bag"
 dialogue = SubResource("Resource_5vjg3")
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/PuzzleDecoration/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("4_5lwai")
 
 [node name="CollisionShape2D" parent="TilemapRoot/PuzzleDecoration/AnimatedDecoration/Collision" index="0"]
 position = Vector2(-0.5, 3)

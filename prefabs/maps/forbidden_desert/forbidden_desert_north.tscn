@@ -1,19 +1,17 @@
-[gd_scene load_steps=293 format=4 uid="uid://qxj11axffa4k"]
+[gd_scene load_steps=290 format=4 uid="uid://qxj11axffa4k"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_3dey3"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7i8qa"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_0enei"]
-[ext_resource type="Resource" uid="uid://bsycqorj77ysv" path="res://gamedata/items/key_items/ornate_key.tres" id="4_fbjjm"]
-[ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/puzzle_decoration.tscn" id="4_hlpqg"]
+[ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/simple_puzzle_decoration.tscn" id="4_hlpqg"]
+[ext_resource type="Resource" uid="uid://dng8o33m8mafg" path="res://gamedata/puzzles/forbidden_desert/desert_locked_chest_puzzle.tres" id="4_olg2q"]
 [ext_resource type="Resource" uid="uid://c8ekdfjhespe" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_north/desert_north_water_1.tres" id="5_h7ad5"]
 [ext_resource type="Resource" uid="uid://xbdj66rplp28" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_north/desert_north_fruit_1.tres" id="5_iuiwb"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_pph11"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="5_tmvrr"]
 [ext_resource type="SpriteFrames" uid="uid://bhverp10m4tc7" path="res://graphics/puzzles/locked_chest/locked_chest_puzzle.tres" id="6_30xgb"]
 [ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="6_g6mwi"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="6_i7xkr"]
 [ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="6_iuhyv"]
-[ext_resource type="Script" path="res://scripts/overworld/puzzles/item_use_puzzle.gd" id="7_0qtls"]
 [ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="7_s4oi3"]
 [ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="7_t1f3e"]
 [ext_resource type="Resource" uid="uid://b0e5gkm18p7hp" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_north/desert_north_memshard_1.tres" id="8_l66jp"]
@@ -37,20 +35,6 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="18_etsbx"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="21_exyyq"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="35_pf670"]
-
-[sub_resource type="Resource" id="Resource_1l10y"]
-script = ExtResource("7_0qtls")
-item = ExtResource("4_fbjjm")
-requiredCount = 1
-consumeItem = true
-id = "desert_key_chest"
-prereqStoryRequirements = Array[ExtResource("5_pph11")]([])
-puzzleSpriteFrames = ExtResource("6_30xgb")
-unsolvedAnimation = "default"
-solvingAnimation = "opening"
-solvedAnimation = "open"
-disableCollisionOnSolve = true
-updateAnimOnSolve = true
 
 [sub_resource type="Resource" id="Resource_6yhkc"]
 script = ExtResource("9_hl64a")
@@ -1540,22 +1524,25 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_7i8qa")
 
-[node name="PuzzleDecoration" parent="TilemapRoot" instance=ExtResource("4_hlpqg")]
+[node name="ChestPuzzleDecoration" parent="TilemapRoot" instance=ExtResource("4_hlpqg")]
 position = Vector2(1302, -77)
-puzzle = SubResource("Resource_1l10y")
+puzzle = ExtResource("4_olg2q")
 failedPrereqsDialogue = SubResource("Resource_6yhkc")
 solvedDialogue = SubResource("Resource_kfyrv")
+solvingAnimation = "opening"
+solvedAnimation = "open"
+disableCollisionOnSolve = true
 saveName = "desert_key_chest"
 dialogue = SubResource("Resource_8kih7")
 
-[node name="AnimatedSprite2D" parent="TilemapRoot/PuzzleDecoration/AnimatedDecoration" index="0"]
+[node name="AnimatedSprite2D" parent="TilemapRoot/ChestPuzzleDecoration/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("6_30xgb")
 
-[node name="CollisionShape2D" parent="TilemapRoot/PuzzleDecoration/AnimatedDecoration/Collision" index="0"]
+[node name="CollisionShape2D" parent="TilemapRoot/ChestPuzzleDecoration/AnimatedDecoration/Collision" index="0"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_6tyha")
 
-[node name="CollisionShape2D" parent="TilemapRoot/PuzzleDecoration" index="1"]
+[node name="CollisionShape2D" parent="TilemapRoot/ChestPuzzleDecoration" index="1"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_g6ja2")
 
@@ -1960,8 +1947,8 @@ position = Vector2(-537, -1402)
 position = Vector2(22.5, 0)
 shape = SubResource("RectangleShape2D_ic52g")
 
-[editable path="TilemapRoot/PuzzleDecoration"]
-[editable path="TilemapRoot/PuzzleDecoration/AnimatedDecoration"]
+[editable path="TilemapRoot/ChestPuzzleDecoration"]
+[editable path="TilemapRoot/ChestPuzzleDecoration/AnimatedDecoration"]
 [editable path="NomadCampWarpZone"]
 [editable path="GrandstoneForestWarpZone"]
 [editable path="HutWarpZone"]

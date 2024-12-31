@@ -1,13 +1,28 @@
 extends Interactable
-class_name PuzzleDecoration
+class_name SimplePuzzleDecoration
 
-@export var puzzle: Puzzle = null
+@export var puzzle: SimplePuzzle = null
 
 ## the dialogue to show when the player doesn't have the prerequisite story requirements. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var failedPrereqsDialogue: InteractableDialogue = null
 
 ## the dialogue to show when the player has already solved this puzzle. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var solvedDialogue: InteractableDialogue = null
+
+## the animation from the loaded SpriteFrames to use when the puzzle is/remains unsolved
+@export var unsolvedAnimation: String = 'default'
+
+## the animation from the loaded SpriteFrames to use when the puzzle was just solved (transition animation)
+@export var solvingAnimation: String = ''
+
+## the animation from the loaded SpriteFrames to use when the puzzle is/remains solved
+@export var solvedAnimation: String = ''
+
+## if true, the collision is disabled as soon as the puzzle is solved
+@export var disableCollisionOnSolve: bool = false
+
+## if true, the animation is updated to `solvedAnimation` immediately after finishing the `solvingAnimation`. By setting to false, you must manually update the animation to `solved` later in the solving dialogue sequence, if required
+@export var updateAnimOnSolve: bool = true
 
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
@@ -19,9 +34,8 @@ var queuedAnim: String = ''
 func _ready():
 	super._ready()
 	show_interact_sprite(false)
-	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
-	animatedDecoration.animSprite.sprite_frames = puzzle.puzzleSpriteFrames
-	_story_reqs_updated(false)
+	PlayerResources.story_requirements_updated.connect(_puzzle_reqs_updated)
+	_puzzle_reqs_updated(false)
 
 func show_interact_sprite(showSprite: bool = true):
 	interactSprite.visible = showSprite
@@ -73,22 +87,22 @@ func _on_area_exited(area):
 		show_interact_sprite(false)
 
 # puzzle's story requirements have changed; not to be confused with its Interactable requirements (to be visible)
-func _story_reqs_updated(playSolving: bool = true):
+func _puzzle_reqs_updated(playSolving: bool = true):
 	var updatedSolved = puzzle.is_solved()
 	if updatedSolved:
 		show_interact_sprite(false)
 		if playSolving and not solved:
-			animatedDecoration.play_animation(puzzle.solvingAnimation)
+			animatedDecoration.play_animation(solvingAnimation)
 			playingSolvingAnim = true
 			animatedDecoration.anim_finished.connect(_solving_anim_finished)
-			if puzzle.updateAnimOnSolve:
+			if updateAnimOnSolve:
 				animatedDecoration.anim_finished.connect(play_solved_anim)
 		else:
 			play_solved_anim()
-		if puzzle.disableCollisionOnSolve:
+		if disableCollisionOnSolve:
 			animatedDecoration.collision.collision_layer = 0
 	else:
-		animatedDecoration.play_animation(puzzle.unsolvedAnimation)
+		animatedDecoration.play_animation(unsolvedAnimation)
 		animatedDecoration.collision.collision_layer = 0b01
 	solved = updatedSolved
 
@@ -99,4 +113,4 @@ func _solving_anim_finished():
 	queuedAnim = ''
 
 func play_solved_anim():
-	animatedDecoration.play_animation(puzzle.solvedAnimation)
+	animatedDecoration.play_animation(solvedAnimation)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SimplePuzzle" load_steps=6 format=3 uid="uid://c58esh1jnqgt"]
+
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="1_gteyg"]
+[ext_resource type="Resource" uid="uid://d2rf0phv1ika" path="res://gamedata/items/key_items/shroom_bag_empty.tres" id="2_6ifl3"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="3_0mwos"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/simple_puzzle.gd" id="4_xtp47"]
+
+[sub_resource type="Resource" id="Resource_c6dpn"]
+script = ExtResource("3_0mwos")
+item = ExtResource("2_6ifl3")
+requiredCount = 1
+consumeItem = true
+
+[resource]
+script = ExtResource("4_xtp47")
+puzzleMechanic = SubResource("Resource_c6dpn")
+id = "fill_shroom_bag"
+prereqStoryRequirements = Array[ExtResource("1_gteyg")]([])

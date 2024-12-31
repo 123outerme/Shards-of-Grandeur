@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c5a1cl6yopaya"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://c5a1cl6yopaya"]
 
 [ext_resource type="Resource" uid="uid://bq7iwdicsmx2j" path="res://gamedata/items/weapon/sun_sigil.tres" id="1_a6l8c"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_j5kyq"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nhu6a"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_p1h4d"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_hlcnl"]
 
 [sub_resource type="Resource" id="Resource_u1jnm"]
 script = ExtResource("1_j5kyq")
@@ -29,6 +30,7 @@ choices = Array[ExtResource("2_nhu6a")]([])
 script = ExtResource("2_p1h4d")
 entryId = ""
 items = Array[ExtResource("1_j5kyq")]([SubResource("Resource_u1jnm"), SubResource("Resource_qmhgn")])
+ordStoryRequirements = Array[ExtResource("4_hlcnl")]([])
 givesItem = ExtResource("1_a6l8c")
 closesDialogue = true
 fullHealsPlayer = false

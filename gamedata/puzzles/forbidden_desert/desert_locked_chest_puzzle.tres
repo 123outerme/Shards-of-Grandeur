@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SimplePuzzle" load_steps=6 format=3 uid="uid://dng8o33m8mafg"]
+
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="1_ixm4q"]
+[ext_resource type="Resource" uid="uid://bsycqorj77ysv" path="res://gamedata/items/key_items/ornate_key.tres" id="2_3kna1"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="3_bbjld"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/simple_puzzle.gd" id="4_cco2e"]
+
+[sub_resource type="Resource" id="Resource_xudvp"]
+script = ExtResource("3_bbjld")
+item = ExtResource("2_3kna1")
+requiredCount = 1
+consumeItem = true
+
+[resource]
+script = ExtResource("4_cco2e")
+puzzleMechanic = SubResource("Resource_xudvp")
+id = "desert_key_chest"
+prereqStoryRequirements = Array[ExtResource("1_ixm4q")]([])

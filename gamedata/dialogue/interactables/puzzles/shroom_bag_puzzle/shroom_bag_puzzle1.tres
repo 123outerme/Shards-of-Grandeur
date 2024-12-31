@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dtpatqhw4hmfi"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://dtpatqhw4hmfi"]
 
 [ext_resource type="Resource" uid="uid://dt0cqp1f5pn53" path="res://gamedata/dialogue/interactables/puzzles/shroom_bag_puzzle/shroom_bag_puzzle_noplace.tres" id="1_cybfr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sxmm1"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_wdwgr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="5_mnpyc"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="6_augbt"]
+[ext_resource type="Resource" uid="uid://c58esh1jnqgt" path="res://gamedata/puzzles/mushroom_grotto/shroom_bag_puzzle.tres" id="6_koa6p"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_i52a6"]
 
 [sub_resource type="Resource" id="Resource_slaxe"]
 script = ExtResource("2_sxmm1")
@@ -21,7 +23,10 @@ isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_k55f7"]
 script = ExtResource("4_wdwgr")
+puzzle = ExtResource("6_koa6p")
+puzzleStateIndex = 0
 acceptsSolve = true
+setsState = ""
 choiceBtn = "Yes"
 leadsTo = ExtResource("3_shp3p")
 returnsToParentId = ""
@@ -45,5 +50,6 @@ choices = Array[ExtResource("2_sxmm1")]([SubResource("Resource_slaxe"), SubResou
 script = ExtResource("6_augbt")
 entryId = ""
 items = Array[ExtResource("5_mnpyc")]([SubResource("Resource_0lko5")])
+ordStoryRequirements = Array[ExtResource("7_i52a6")]([])
 closesDialogue = false
 fullHealsPlayer = false

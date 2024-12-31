@@ -101,6 +101,11 @@ func select_choice(choice: DialogueChoice):
 	if leadsTo == null:
 		leadsTo = choice.leadsTo
 	
+	if choice is PuzzleDialogueChoice:
+		var puzzleChoice: PuzzleDialogueChoice = choice as PuzzleDialogueChoice
+		if puzzleChoice.acceptsSolve and PlayerResources.playerInfo.has_solved_puzzle(puzzleChoice.id) and puzzleChoice.leadsToIfSolveFails != null:
+			leadsTo = puzzleChoice.leadsToIfSolveFails
+	
 	if leadsTo != null:
 		if leadsTo.can_use_dialogue():
 			var index: int = -1
@@ -129,6 +134,7 @@ func finished_dialogue():
 func destroy_interactable():
 	exit_player_range()
 	queue_free()
+	visible = false
 
 func _story_requirements_updated():
 	var storyReqsPassed: bool = len(storyRequirements) == 0

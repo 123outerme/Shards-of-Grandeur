@@ -108,6 +108,21 @@ func add_choices():
 			for randomDialogue: WeightedDialogueEntry in dialogueItem.choices[idx].randomDialogues:
 				aDialogueOptionIsValid = aDialogueOptionIsValid or randomDialogue.dialogueEntry.can_use_dialogue()
 			isValid = isValid and aDialogueOptionIsValid
+		
+		# if a puzzle dialogue choice: check puzzle dialogue options for option validity
+		if dialogueItem.choices[idx] is PuzzleDialogueChoice:
+			var puzzleChoice: PuzzleDialogueChoice = dialogueItem.choices[idx] as PuzzleDialogueChoice
+			# if a state puzzle, check state puzzle related options for validity
+			if puzzleChoice.puzzle != null and puzzleChoice.puzzle is StatePuzzle:
+				var statePuzzle: StatePuzzle = puzzleChoice.puzzle as StatePuzzle
+				var currentStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(statePuzzle.id)
+				# if the state is supposed to transition, this option is invalid if the transition cannot occur
+				if puzzleChoice.setsState != '':
+					isValid = isValid and \
+						puzzleChoice.puzzleStateIndex >= 0 and \
+						puzzleChoice.puzzleStateIndex < len(currentStates) and \
+						statePuzzle.can_state_transition(puzzleChoice.setsState, currentStates[puzzleChoice.puzzleStateIndex], puzzleChoice.puzzleStateIndex)
+		
 		# choice is valid if it and the dialogue options it can lead to have valid StoryRequirements
 		
 		if isValid:

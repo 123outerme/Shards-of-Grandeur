@@ -407,26 +407,7 @@ func select_choice(choice: DialogueChoice):
 			PlayerResources.playerInfo.set_dialogue_seen(talkNPC.saveName, entry.entryId)
 			PlayerResources.questInventory.progress_quest(talkNPC.saveName + '#' + entry.entryId, QuestStep.Type.TALK)
 	
-	if choice is NPCDialogueChoice:
-		var npcChoice: NPCDialogueChoice = choice as NPCDialogueChoice
-		if npcChoice.addsFollowerId != '':
-			PlayerResources.set_follower_active(npcChoice.addsFollowerId)
-		if npcChoice.removesFollowerId != '':
-			PlayerResources.remove_follower(npcChoice.removesFollowerId)
-		
-		if npcChoice.opensShop:
-			makingChoice = true # leave choice buttons up for now
-			pickedChoice = choice
-			_on_shop_button_pressed()
-			return
-		
-	if choice.repeatsItem:
-		talkNPC.repeat_dialogue_item()
-		var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
-		var dialogueText: String = talkNPC.get_cur_dialogue_string()
-		textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
-		return
-	
+	# find out which dialogue entry we're going to next
 	var leadsTo: DialogueEntry = null
 	if choice.returnsToParentId != '':
 		var parentIdx: int = -1
@@ -459,6 +440,41 @@ func select_choice(choice: DialogueChoice):
 	
 	if leadsTo == null:
 		leadsTo = choice.leadsTo
+	
+	# if the choice is an NPCDialogueChoice: parse these options
+	if choice is NPCDialogueChoice:
+		var npcChoice: NPCDialogueChoice = choice as NPCDialogueChoice
+		if npcChoice.addsFollowerId != '':
+			PlayerResources.set_follower_active(npcChoice.addsFollowerId)
+		if npcChoice.removesFollowerId != '':
+			PlayerResources.remove_follower(npcChoice.removesFollowerId)
+		
+		if npcChoice.opensShop:
+			makingChoice = true # leave choice buttons up for now
+			pickedChoice = choice
+			_on_shop_button_pressed()
+			return
+	elif choice is PuzzleDialogueChoice:
+		# if the choice is a PuzzleDialogueChoice: engage with the puzzle mechanics
+		var puzzleChoice: PuzzleDialogueChoice = choice as PuzzleDialogueChoice
+		if puzzleChoice.puzzle != null:
+			if puzzleChoice.puzzle is StatePuzzle:
+				var statePuzzle: StatePuzzle = puzzleChoice.puzzle as StatePuzzle
+				if puzzleChoice.setsState != '':
+					var currentStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(statePuzzle.id)
+					statePuzzle.transition_state(puzzleChoice.setsState, puzzleChoice.puzzleStateIndex, currentStates[puzzleChoice.puzzleStateIndex])
+			if puzzleChoice.acceptsSolve:
+				var solved: bool = puzzleChoice.puzzle.solve()
+				# if the puzzle was not solved: play the alternate dialogue reserved for solve failure instead of whatever dialogue was going to be played instead
+				if not solved and puzzleChoice.leadsToIfSolveFails != null:
+					leadsTo = puzzleChoice.leadsToIfSolveFails
+	
+	if choice.repeatsItem:
+		talkNPC.repeat_dialogue_item()
+		var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
+		var dialogueText: String = talkNPC.get_cur_dialogue_string()
+		textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
+		return
 	
 	if leadsTo != null:
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(leadsTo)

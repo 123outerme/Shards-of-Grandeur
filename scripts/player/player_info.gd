@@ -37,6 +37,7 @@ class_name PlayerInfo
 @export var cutscenesPlayed: Array[String] = []
 @export var dialoguesSeen: Dictionary = {}
 @export var puzzlesSolved: Array[String] = []
+@export var puzzleStates: Dictionary = {}
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
 @export var activeFollowers: Array[String] = []
@@ -72,6 +73,8 @@ func _init(
 	i_mapLocationsVisited: Array[WorldLocation.MapLocation] = [],
 	i_cutscenesPlayed: Array[String] = [],
 	i_dialoguesSeen: Dictionary = {},
+	i_puzzlesSolved: Array[String] = [],
+	i_puzzleStates: Dictionary = {},
 	i_codexEntriesSeen: Array[String] = [],
 	i_cutscenesTempDisabled: Array[String] = [],
 	i_running = false,
@@ -106,6 +109,8 @@ func _init(
 	mapLocationsVisited = i_mapLocationsVisited
 	cutscenesPlayed = i_cutscenesPlayed
 	dialoguesSeen = i_dialoguesSeen
+	puzzlesSolved = i_puzzlesSolved
+	puzzleStates = i_puzzleStates
 	codexEntriesSeen = i_codexEntriesSeen
 	cutscenesTempDisabled = i_cutscenesTempDisabled
 	running = i_running
@@ -142,6 +147,7 @@ func has_visited_place(placeName: String) -> bool:
 func set_place_visited(placeName: String):
 	if not has_visited_place(placeName):
 		placesVisited.append(placeName)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_visited_map_location(location: WorldLocation.MapLocation) -> bool:
 	return location in mapLocationsVisited
@@ -149,6 +155,7 @@ func has_visited_map_location(location: WorldLocation.MapLocation) -> bool:
 func set_map_location_visited(location: WorldLocation.MapLocation) -> void:
 	if not has_visited_map_location(location):
 		mapLocationsVisited.append(location)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_defeated_enemy(saveName: String) -> bool:
 	return saveName in enemiesDefeated
@@ -156,6 +163,7 @@ func has_defeated_enemy(saveName: String) -> bool:
 func set_enemy_defeated(saveName: String):
 	if not has_defeated_enemy(saveName):
 		enemiesDefeated.append(saveName)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_completed_special_battle(battleId: String) -> bool:
 	return battleId in completedSpecialBattles
@@ -163,6 +171,7 @@ func has_completed_special_battle(battleId: String) -> bool:
 func set_special_battle_completed(battleId: String):
 	if not has_completed_special_battle(battleId):
 		completedSpecialBattles.append(battleId)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_solved_puzzle(puzzleId: String) -> bool:
 	return puzzleId in puzzlesSolved
@@ -170,6 +179,52 @@ func has_solved_puzzle(puzzleId: String) -> bool:
 func set_puzzle_solved(puzzleId: String):
 	if not has_solved_puzzle(puzzleId):
 		puzzlesSolved.append(puzzleId)
+		#PlayerResources.story_requirements_updated.emit() # TEST this can be enabled. I think it can't based on simple_puzzle_decoration.gd logic
+
+func has_puzzle_states(puzzleId: String) -> bool:
+	return puzzleStates.has(puzzleId)
+
+func set_puzzle_states(puzzleId: String, states: Array[String]):
+	var shouldSet: bool = false
+	if not puzzleStates.has(puzzleId) or (len(states) != len(puzzleStates[puzzleId])):
+		shouldSet = true
+	if not shouldSet:
+		for i in range(len(states)):
+			if states[i] != puzzleStates[puzzleId][i]:
+				shouldSet = true
+				break
+	if shouldSet:
+		puzzleStates[puzzleId] = states.duplicate(false)
+		PlayerResources.story_requirements_updated.emit()
+
+func set_puzzle_state_at_index(puzzleId: String, index: int, state: String, defaultStates: Array[String] = [], defaultState: String = 'default'):
+	if index < 0:
+		return
+	# if the puzzle ID is not present in the states array, first setup the default states
+	if not has_puzzle_states(puzzleId):
+		puzzleStates[puzzleId] = defaultStates.duplicate(false)
+	var states: Array[String] = puzzleStates[puzzleId]
+	if index < len(states):
+		if states[index] != state:
+			states[index] = state
+			PlayerResources.story_requirements_updated.emit()
+	else:
+		# if the index is out of bounds of the array, add new elements until the index is in bounds
+		var prevLen: int = len(states)
+		for i in range(prevLen, index):
+			# for this new index, if there is a defaultStates value for this index: use it
+			if i < len(defaultStates):
+				states.append(defaultStates[i])
+			else:
+				# otherwise, append the "default" state
+				states.append(defaultState)
+		states.append(state)
+		PlayerResources.story_requirements_updated.emit()
+
+func get_puzzle_states(puzzleId: String) -> Array[String]:
+	if puzzleStates.has(puzzleId):
+		return puzzleStates[puzzleId].duplicate(false)
+	return []
 
 ## fullEvoSaveName intented to be: <combatant save name>#<evolution save name>
 func has_found_evolution(fullEvoSaveName: String) -> bool:
@@ -178,6 +233,7 @@ func has_found_evolution(fullEvoSaveName: String) -> bool:
 func mark_evolution_found(fullEvoSaveName: String) -> void:
 	if not has_found_evolution(fullEvoSaveName):
 		evolutionsFound.append(fullEvoSaveName)
+		PlayerResources.story_requirements_updated.emit()
 
 func has_seen_codex_entry(entryName: String) -> bool:
 	return entryName in codexEntriesSeen
