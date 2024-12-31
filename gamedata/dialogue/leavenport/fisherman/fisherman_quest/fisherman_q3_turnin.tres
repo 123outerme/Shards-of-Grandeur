@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://u5snfjsxdskw"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_quju2"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_4jofm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0456c"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_f6rw8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jhweo"]
+
+[sub_resource type="Resource" id="Resource_7161q"]
+script = ExtResource("2_0456c")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_f6rw8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_12y6l"]
+script = ExtResource("2_0456c")
+choiceBtn = "Will Do."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_f6rw8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Angry Angler#Sea Monster!"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_iqppp"]
+script = ExtResource("1_quju2")
+lines = Array[String](["Wow, you chased it off! Thanks for saving me.", "It swam upstream though... I think we should tell someone about this.", "Go speak to the Skipper in the boathouse here, and see what he thinks."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0456c")]([SubResource("Resource_7161q"), SubResource("Resource_12y6l")])
+
+[resource]
+script = ExtResource("3_jhweo")
+entryId = ""
+items = Array[ExtResource("1_quju2")]([SubResource("Resource_iqppp")])
+ordStoryRequirements = Array[ExtResource("2_4jofm")]([])
+closesDialogue = true
+fullHealsPlayer = false

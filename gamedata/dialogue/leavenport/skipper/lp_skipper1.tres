@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=18 format=3 uid="uid://danfrkuhowl8k"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=19 format=3 uid="uid://danfrkuhowl8k"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_an67t"]
 [ext_resource type="Resource" uid="uid://degvt1e84u2hf" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_whats_boathouse.tres" id="2_d0fn4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://kiwaeu7fllpl" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_2.tres" id="6_kglhw"]
 [ext_resource type="Resource" uid="uid://lmjp4usobbhv" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_3.tres" id="7_02qqd"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="8_hemmw"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="9_7tw7j"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="9_8jgaa"]
 
 [sub_resource type="Resource" id="Resource_dil3q"]
@@ -81,5 +82,6 @@ choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResou
 script = ExtResource("9_8jgaa")
 entryId = "lp_skipper1"
 items = Array[ExtResource("8_hemmw")]([SubResource("Resource_sblfs")])
+ordStoryRequirements = Array[ExtResource("9_7tw7j")]([])
 closesDialogue = false
 fullHealsPlayer = false

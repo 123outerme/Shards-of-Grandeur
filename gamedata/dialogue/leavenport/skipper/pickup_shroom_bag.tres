@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://csrl08jw25vjk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://csrl08jw25vjk"]
 
 [ext_resource type="Resource" uid="uid://d2rf0phv1ika" path="res://gamedata/items/key_items/shroom_bag_empty.tres" id="1_npylh"]
 [ext_resource type="Resource" uid="uid://dh8gdbr64sotd" path="res://gamedata/dialogue/leavenport/skipper/start_shroom_bag_quest.tres" id="2_5xurw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="4_i315o"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_3ttcj"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_t1eun"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_l0rpd"]
 
 [sub_resource type="Resource" id="Resource_b6tll"]
 script = ExtResource("3_gd2b2")
@@ -32,6 +33,7 @@ choices = Array[ExtResource("3_gd2b2")]([SubResource("Resource_b6tll")])
 script = ExtResource("5_3ttcj")
 entryId = "start_shroom_quest"
 items = Array[ExtResource("4_i315o")]([SubResource("Resource_rx8gd")])
+ordStoryRequirements = Array[ExtResource("6_l0rpd")]([])
 givesItem = ExtResource("1_npylh")
 closesDialogue = false
 fullHealsPlayer = false

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://c7gg8i8gdkh02"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_wdsln"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_5lqta"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7s4jh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_i1hlb"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_utmgu"]
+
+[sub_resource type="Resource" id="Resource_db8yu"]
+script = ExtResource("2_7s4jh")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_utmgu")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_mjpob"]
+script = ExtResource("2_7s4jh")
+choiceBtn = "Aye Aye!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_utmgu")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Angry Angler#See A Storied Sailor"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_jsm55"]
+script = ExtResource("1_wdsln")
+lines = Array[String](["There's the spirit, landlubber! We'll have to get started right away. First thing I'll need is some lumber to build the hull.", "Let's have you fetch lumber then... talk to the Prime Minister about that, we can't just chop down any old tree!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_7s4jh")]([SubResource("Resource_db8yu"), SubResource("Resource_mjpob")])
+
+[resource]
+script = ExtResource("3_i1hlb")
+entryId = ""
+items = Array[ExtResource("1_wdsln")]([SubResource("Resource_jsm55")])
+ordStoryRequirements = Array[ExtResource("2_5lqta")]([])
+closesDialogue = true
+fullHealsPlayer = false

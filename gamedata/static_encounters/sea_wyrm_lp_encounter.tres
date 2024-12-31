@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://depesu5ppvavf"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_72wr2"]
+[ext_resource type="Resource" uid="uid://byb2678day0jv" path="res://gamedata/combatants/sea_wyrm/sea_wyrm.tres" id="2_42gwd"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_qp5v5"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_vnb3s"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_4rjxk"]
+[ext_resource type="Resource" uid="uid://diemk80we7jgs" path="res://gamedata/items/weapon/iridescent_scale.tres" id="3_6xboj"]
+[ext_resource type="Resource" uid="uid://c31ss53jogjb8" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_stat_alloc_strategy_boss.tres" id="3_e6fml"]
+[ext_resource type="Resource" uid="uid://c1n4n6k8i31nx" path="res://gamedata/items/shard/sea_wyrm_shard.tres" id="6_1gdvh"]
+
+[sub_resource type="Resource" id="Resource_38bt1"]
+script = ExtResource("2_vnb3s")
+experience = 110
+gold = 15
+item = ExtResource("6_1gdvh")
+fullyAttuneCombatantSaveName = ""
+
+[resource]
+script = ExtResource("3_4rjxk")
+combatant1Level = 10
+combatant1Moves = Array[ExtResource("1_72wr2")]([])
+combatant1ShardSummoned = false
+combatant2Level = 1
+combatant2Moves = Array[ExtResource("1_72wr2")]([])
+combatant2ShardSummoned = false
+combatant3Level = 1
+combatant3Moves = Array[ExtResource("1_72wr2")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_72wr2")]([])
+autoAllyShardSummoned = false
+specialBattleId = "sea_wyrm_lp_attack"
+bossBattle = false
+canEscape = true
+rewards = Array[ExtResource("2_vnb3s")]([SubResource("Resource_38bt1")])
+useStaticRewards = true
+battleMusic = ExtResource("2_qp5v5")
+combatant1 = ExtResource("2_42gwd")
+combatant1Weapon = ExtResource("3_6xboj")
+combatant1StatAllocStrat = ExtResource("3_e6fml")
+specialRules = 0
+customWinText = ""
+battleMapPath = "leavenport_dock_battle_map"

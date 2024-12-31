@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=16 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=30 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
@@ -9,6 +9,9 @@
 [ext_resource type="Resource" uid="uid://csb54kuorfycb" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_turnin.tres" id="5_fygax"]
 [ext_resource type="Resource" uid="uid://bh147d2v2tt7k" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q2_inprogress.tres" id="6_oav0c"]
 [ext_resource type="Resource" uid="uid://cvkp2ya2jkjlk" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q2_turnin.tres" id="7_k0tkb"]
+[ext_resource type="Resource" uid="uid://bb8f7ye35k0q6" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_inprogress.tres" id="9_58nk2"]
+[ext_resource type="Resource" uid="uid://u5snfjsxdskw" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_turnin.tres" id="11_b2a7p"]
+[ext_resource type="Resource" uid="uid://dcr7qq13h87da" path="res://gamedata/items/armor/fishscale_armor.tres" id="12_jx2pa"]
 
 [sub_resource type="Resource" id="Resource_b8suq"]
 script = ExtResource("2_r4tho")
@@ -63,16 +66,158 @@ fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_nv2nx"]
 script = ExtResource("2_q0b41")
-name = "???"
-description = "The Fisherman has hooked something, but it wasn't what he was expecting..."
+name = "Sea Monster!"
+description = "The Fisherman has hooked something, but it wasn't what he was expecting...!"
 reward = SubResource("Resource_2f23j")
 locations = Array[int]([30])
 type = 4
 count = 1
-objectiveName = "---"
+objectiveName = "sea_wyrm_lp_attack"
 turnInNames = Array[String](["lp_fisherman"])
-displayObjName = "???"
+displayObjName = "Sea Wyrm"
 displayTurnInName = "Fisherman"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("11_b2a7p")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("9_58nk2")])
+
+[sub_resource type="Resource" id="Resource_avkco"]
+script = ExtResource("2_r4tho")
+experience = 45
+gold = 5
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_h2qts"]
+script = ExtResource("2_q0b41")
+name = "See A Storied Sailor"
+description = "The Skipper in the boathouse would know what that Sea Wyrm was. Ask him!"
+reward = SubResource("Resource_avkco")
+locations = Array[int]([30])
+type = 0
+count = 1
+objectiveName = "leavenport_skipper#"
+turnInNames = Array[String](["leavenport_skipper"])
+displayObjName = "Skipper"
+displayTurnInName = "Skipper"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_rggcb"]
+script = ExtResource("2_q0b41")
+name = "Renewable Wood"
+description = "The Prime Minister of Leavenport should be able to help you source some wood for the boat you're making. Speak with her!"
+locations = Array[int]([30])
+type = 0
+count = 1
+objectiveName = "leavenport_pm#"
+turnInNames = Array[String](["leavenport_pm"])
+displayObjName = "Prime Minister"
+displayTurnInName = "Prime Minister"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_u5hjw"]
+script = ExtResource("2_q0b41")
+name = "Plant These Seeds"
+description = "The Prime Minister said these magic seeds can sprout a tree in an instant? I don't know..."
+locations = Array[int]([30])
+type = 5
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Plant The Seeds!"
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_uyt85"]
+script = ExtResource("2_q0b41")
+name = "Lumber Delivery"
+description = "Return to the Skipper with the lumber you've collected!"
+locations = Array[int]([30])
+type = 1
+count = 1
+objectiveName = "Seaworthy Lumber"
+turnInNames = Array[String](["leavenport_skipper"])
+displayObjName = "Seaworthy Lumber"
+displayTurnInName = "Skipper"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_eqheg"]
+script = ExtResource("2_r4tho")
+experience = 70
+gold = 15
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_5tfpr"]
+script = ExtResource("2_q0b41")
+name = "Waterproofing"
+description = "The boat needs a waterproof coating. This can be created from a Blob's goop!"
+reward = SubResource("Resource_eqheg")
+locations = Array[int]([31, 32])
+type = 2
+count = 3
+objectiveName = "blob"
+turnInNames = Array[String](["leavenport_skipper"])
+displayObjName = "Blob"
+displayTurnInName = "Skipper"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_j1whn"]
+script = ExtResource("2_q0b41")
+name = "Put Out To Sea"
+description = "Now that the boat is built, shove off the dock and sail away!"
+locations = Array[int]([30])
+type = 3
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Embark on the Boat!"
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_56dlt"]
+script = ExtResource("2_q0b41")
+name = "Danger on the Leaven River"
+description = "More Sea Wyrms are attacking! Clear them out to free the boat and escape!"
+locations = Array[int]([])
+type = 2
+count = 2
+objectiveName = "sea_wyrm"
+turnInNames = Array[String]([])
+displayObjName = "Sea Wyrm"
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_lvoiw"]
+script = ExtResource("2_r4tho")
+experience = 150
+gold = 30
+item = ExtResource("12_jx2pa")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_0iikj"]
+script = ExtResource("2_q0b41")
+name = "Sea Wyrms in Retreat"
+description = "Land, sweet land! Return to the Prime Minister and report your findings."
+reward = SubResource("Resource_lvoiw")
+locations = Array[int]([30])
+type = 0
+count = 1
+objectiveName = "leavenport_pm#"
+turnInNames = Array[String](["leavenport_pm"])
+displayObjName = "Prime Minister"
+displayTurnInName = "Prime Minister"
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([])
 inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
@@ -81,6 +226,6 @@ inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 script = ExtResource("1_mhsm3")
 questName = "Angry Angler"
 description = "The fisherman is upset -- the fish aren't biting! Figure out what's scaring all the fish off, and bring them back."
-steps = Array[ExtResource("2_q0b41")]([SubResource("Resource_t3xbb"), SubResource("Resource_j447a"), SubResource("Resource_nv2nx")])
+steps = Array[ExtResource("2_q0b41")]([SubResource("Resource_t3xbb"), SubResource("Resource_j447a"), SubResource("Resource_nv2nx"), SubResource("Resource_h2qts"), SubResource("Resource_rggcb"), SubResource("Resource_u5hjw"), SubResource("Resource_uyt85"), SubResource("Resource_5tfpr"), SubResource("Resource_j1whn"), SubResource("Resource_56dlt"), SubResource("Resource_0iikj")])
 isMainQuest = false
-advanceActActerComplete = false
+advanceActAfterComplete = false

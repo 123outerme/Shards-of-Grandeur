@@ -11,6 +11,7 @@ enum MapLocation {
 	LEAVENPORT = 30, ## Leavenport
 	SEA_LEG_SWAMP_EAST = 31, ## Sea Leg Swamp, east of Leavenport
 	SEA_LEG_SWAMP_SOUTH = 32, ## Sea Leg Swamp, south of Leavenport
+	LEAVEN_RIVER = 35, ## on the Leaven River, north of Leavenport
 	NOMAD_CAMP = 40, ## Nomad Camp
 	FORBIDDEN_DESERT_SOUTH = 41, ## Forbidden Desert, south of Nomad Camp
 	FORBIDDEN_DESERT_EAST = 42, ## Forbidden Desert, east of Nomad Camp
@@ -39,6 +40,8 @@ static func map_location_to_string(location: MapLocation) -> String:
 			return 'Mushroom Grotto'
 		MapLocation.SEA_LEG_SWAMP_EAST, MapLocation.SEA_LEG_SWAMP_SOUTH:
 			return 'Sea Leg Swamp'
+		MapLocation.LEAVEN_RIVER:
+			return 'Leaven River'
 		MapLocation.FORBIDDEN_DESERT_SOUTH, MapLocation.FORBIDDEN_DESERT_EAST:
 			return 'Forbidden Desert'
 		MapLocation.NOMAD_CAMP:

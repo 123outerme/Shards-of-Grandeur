@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cvkp2ya2jkjlk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://cvkp2ya2jkjlk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_1edr5"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7r41u"]
@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_4vo26"]
 script = ExtResource("1_1edr5")
-choiceBtn = "OK."
+choiceBtn = "Wait..."
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_3h7iq")]([])
 repeatsItem = false
@@ -16,15 +16,25 @@ buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = true
 
+[sub_resource type="Resource" id="Resource_b1f0s"]
+script = ExtResource("1_1edr5")
+choiceBtn = "I'll Beat It!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3h7iq")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Angry Angler#Lunch on the Water"
+isDeclineChoice = false
+
 [sub_resource type="Resource" id="Resource_s53fk"]
 script = ExtResource("1_7r41u")
-lines = Array[String](["Thanks, but I'm a little busy with this knot at the moment, come back when there's more to this quest..."])
+lines = Array[String](["Thanks, but... uh... didn't you notice something more... important than my lunch?", "A GIANT SEA MONSTER IS ATTACKING! DO SOMETHING!"])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("1_1edr5")]([SubResource("Resource_4vo26")])
+choices = Array[ExtResource("1_1edr5")]([SubResource("Resource_4vo26"), SubResource("Resource_b1f0s")])
 
 [resource]
 script = ExtResource("1_x1bmp")

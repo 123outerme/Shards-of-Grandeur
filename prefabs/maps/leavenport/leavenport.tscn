@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=91 format=4 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="6_aasvf"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="6_jui48"]
 [ext_resource type="Resource" uid="uid://dsvutcget2q5u" path="res://gamedata/dialogue/solius/leavenport/find_cave.tres" id="7_2c63l"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_dmgij"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="7_lofl8"]
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="7_x5og7"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
@@ -44,6 +45,11 @@
 [ext_resource type="Resource" uid="uid://cpdkluglde3uh" path="res://gamedata/cutscenes/leavenport/south_precave_turnaround.tres" id="26_638c0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="29_ac2al"]
 [ext_resource type="Resource" uid="uid://v8f4ty25ydau" path="res://gamedata/cutscenes/leavenport/east_postspar_turnaround.tres" id="32_5iosg"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="35_akwmh"]
+[ext_resource type="Resource" uid="uid://b43rwlnaf3rcu" path="res://gamedata/items/key_items/fishermans_usual.tres" id="36_2ax8b"]
+[ext_resource type="SpriteFrames" uid="uid://dolrr71gh2nvo" path="res://graphics/animations/a_sea_wyrm.tres" id="36_2qyno"]
+[ext_resource type="Resource" uid="uid://by4t6gmk3d1pg" path="res://gamedata/dialogue/leavenport/sea_wyrm/lp_sea_wyrm_attack.tres" id="36_eqxmc"]
+[ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="37_7p5dm"]
 [ext_resource type="Resource" uid="uid://ducs4iipc6fx6" path="res://gamedata/cutscenes/leavenport/solius_disband_lp.tres" id="37_b24o1"]
 [ext_resource type="Resource" uid="uid://dcgrjbl2yg0yl" path="res://gamedata/cutscenes/leavenport/leavenport_takeover.tres" id="37_nlfdj"]
 
@@ -60,6 +66,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["etreus_appears"])
@@ -68,6 +75,7 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="Resource" id="Resource_48sfc"]
 script = ExtResource("6_3up7i")
@@ -82,6 +90,7 @@ prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -90,8 +99,9 @@ invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_twqfu"]
+[sub_resource type="Resource" id="Resource_mtgkc"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -114,7 +124,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_tp7cx"]
+[sub_resource type="Resource" id="Resource_kcy55"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -137,7 +147,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_oh32a"]
+[sub_resource type="Resource" id="Resource_okuy7"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -160,7 +170,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_iy7gf"]
+[sub_resource type="Resource" id="Resource_6k8q4"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -183,7 +193,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_lmclx"]
+[sub_resource type="Resource" id="Resource_pm3om"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -230,7 +240,7 @@ position = Vector2(996, 108)
 relativeToCurrentPos = false
 pauseSecs = 0.0
 
-[sub_resource type="Resource" id="Resource_o2g0y"]
+[sub_resource type="Resource" id="Resource_j7xkh"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -253,7 +263,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_k3xw6"]
+[sub_resource type="Resource" id="Resource_1y46m"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -282,7 +292,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nydhf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_vg0f0"]
+[sub_resource type="Resource" id="Resource_xfio1"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -319,6 +329,42 @@ speaker = ""
 dialogueEntry = ExtResource("13_q8qvf")
 savedItemIdx = 0
 savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_tnd1n"]
+script = ExtResource("37_7p5dm")
+speaker = "Sea Wyrm"
+dialogueEntry = ExtResource("36_eqxmc")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_wh0ig"]
+script = ExtResource("7_dmgij")
+item = ExtResource("36_2ax8b")
+count = 1
+
+[sub_resource type="Resource" id="Resource_apipf"]
+script = ExtResource("6_3up7i")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([SubResource("Resource_wh0ig")])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["sea_wyrm_lp_attack"])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho4gv"]
 size = Vector2(8, 1)
@@ -380,7 +426,7 @@ size = Vector2(128, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftvu4"]
 size = Vector2(128, 55)
 
-[sub_resource type="Resource" id="Resource_ju6xk"]
+[sub_resource type="Resource" id="Resource_vo50q"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -558,7 +604,7 @@ displayName = "Solius"
 saveName = "solius_leavenport"
 followerId = "solius"
 orSpawnRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_1n4ns"), SubResource("Resource_48sfc")])
-data = SubResource("Resource_twqfu")
+data = SubResource("Resource_mtgkc")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("7_2c63l"), ExtResource("9_x0eeb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -585,7 +631,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_tp7cx")
+data = SubResource("Resource_kcy55")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -603,7 +649,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_oh32a")
+data = SubResource("Resource_okuy7")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -622,7 +668,7 @@ visible = false
 position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
-data = SubResource("Resource_iy7gf")
+data = SubResource("Resource_6k8q4")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Fisherman" index="0"]
@@ -642,7 +688,7 @@ visible = false
 position = Vector2(996, 108)
 displayName = "Gentleman"
 saveName = "lp_elder"
-data = SubResource("Resource_lmclx")
+data = SubResource("Resource_pm3om")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TilemapRoot/Elder" index="0"]
@@ -667,7 +713,7 @@ visible = false
 position = Vector2(397, 315)
 displayName = "Lady"
 saveName = "lp_elder_lady"
-data = SubResource("Resource_o2g0y")
+data = SubResource("Resource_j7xkh")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TilemapRoot/ElderLady" index="0"]
@@ -686,12 +732,13 @@ visible = false
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(765, 286)
 displayName = "Sign"
-data = SubResource("Resource_k3xw6")
+data = SubResource("Resource_1y46m")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_i5v2d")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/InnSign" index="0"]
 sprite_frames = ExtResource("22_3c0l2")
+animation = &"stand"
 
 [node name="TalkAlertSprite" parent="TilemapRoot/InnSign/NPCSprite" index="0"]
 texture = ExtResource("23_wyakb")
@@ -719,7 +766,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(995, 446)
 displayName = "Sign"
-data = SubResource("Resource_vg0f0")
+data = SubResource("Resource_xfio1")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("24_jrwa5")])
 facesPlayer = false
 
@@ -755,6 +802,29 @@ position = Vector2(219, -141)
 pickedUpItem = SubResource("Resource_c70i6")
 particleTextures = Array[Texture2D]([ExtResource("15_llrp6"), ExtResource("16_0ng0y"), ExtResource("17_a2b6x"), ExtResource("18_liw0c")])
 saveName = "leavenport_outside_1"
+
+[node name="SeaWyrm" parent="TilemapRoot" instance=ExtResource("35_akwmh")]
+position = Vector2(623, -89)
+interactAnim = "battle_idle"
+saveName = "lp_sea_wyrm"
+dialogue = SubResource("Resource_tnd1n")
+storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_apipf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/SeaWyrm" index="0"]
+position = Vector2(1.5, 10.25)
+
+[node name="AnimatedDecoration" parent="TilemapRoot/SeaWyrm" index="1"]
+animName = "battle_idle"
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/SeaWyrm/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("36_2qyno")
+animation = &"battle_idle"
+
+[node name="CollisionShape2D" parent="TilemapRoot/SeaWyrm/AnimatedDecoration/Collision" index="0"]
+position = Vector2(1.5, 7.5)
+
+[node name="InteractSprite" parent="TilemapRoot/SeaWyrm" index="2"]
+position = Vector2(0, -25)
 
 [node name="RestaurantWarpZone" parent="." instance=ExtResource("5_2lmvq")]
 position = Vector2(1015.5, 434)
@@ -932,7 +1002,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(78, 206)
-data = SubResource("Resource_ju6xk")
+data = SubResource("Resource_vo50q")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.307282
@@ -960,6 +1030,8 @@ disabled = true
 [editable path="TilemapRoot/ElderLady"]
 [editable path="TilemapRoot/InnSign"]
 [editable path="TilemapRoot/RestaurantSign"]
+[editable path="TilemapRoot/SeaWyrm"]
+[editable path="TilemapRoot/SeaWyrm/AnimatedDecoration"]
 [editable path="RestaurantWarpZone"]
 [editable path="CreationShopWarpZone"]
 [editable path="DestructionShopWarpZone"]

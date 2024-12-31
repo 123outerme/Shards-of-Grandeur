@@ -15,7 +15,7 @@ class_name Quest
 @export var isMainQuest: bool = false
 
 ## if true, increments the act number after the last step is completed
-@export var advanceActActerComplete: bool = false
+@export var advanceActAfterComplete: bool = false
 
 func _init(
 	i_name = '',
@@ -30,4 +30,4 @@ func _init(
 	steps = i_steps
 	storyRequirements = i_storyRequirements
 	isMainQuest = i_mainQuest
-	advanceActActerComplete = i_advanceAct
+	advanceActAfterComplete = i_advanceAct

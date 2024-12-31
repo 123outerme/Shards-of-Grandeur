@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://danfrkuhowl8k" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper1.tres" id="5_fdnmb"]
 [ext_resource type="SpriteFrames" uid="uid://vjnpidcqa4jj" path="res://graphics/animations/a_skipper.tres" id="5_hu66c"]
 
-[sub_resource type="Resource" id="Resource_0nan1"]
+[sub_resource type="Resource" id="Resource_ycqht"]
 script = ExtResource("4_jjv6j")
 saveName = "npc"
 spriteState = "default"
@@ -22,12 +22,15 @@ loops = 0
 disableMovement = false
 previousDisableMove = false
 afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
 version = ""
 dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-hasShop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtxje"]
 size = Vector2(32, 28)
@@ -94,7 +97,7 @@ tile_set = ExtResource("2_jnb7w")
 position = Vector2(-42, -50)
 displayName = "Skipper"
 saveName = "leavenport_skipper"
-data = SubResource("Resource_0nan1")
+data = SubResource("Resource_ycqht")
 dialogueEntries = Array[ExtResource("4_hcru3")]([ExtResource("5_fdnmb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Skipper" index="0"]
