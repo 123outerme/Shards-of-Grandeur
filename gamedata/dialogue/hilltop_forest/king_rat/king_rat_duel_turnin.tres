@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://ccrbr8doigjee"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://ccrbr8doigjee"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_c5hrw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_eg0hv"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_f8rqk"]
 [ext_resource type="Resource" uid="uid://d4i1gxw8smm2q" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_duel_turnin_holdon.tres" id="1_ij0ba"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_wdpbs"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_0v0ay"]
 
 [sub_resource type="Resource" id="Resource_s8yns"]
 script = ExtResource("1_eg0hv")
@@ -41,5 +42,6 @@ choices = Array[ExtResource("1_eg0hv")]([SubResource("Resource_s8yns"), SubResou
 script = ExtResource("1_c5hrw")
 entryId = ""
 items = Array[ExtResource("1_f8rqk")]([SubResource("Resource_xldyv")])
+ordStoryRequirements = Array[ExtResource("5_0v0ay")]([])
 closesDialogue = false
 fullHealsPlayer = false

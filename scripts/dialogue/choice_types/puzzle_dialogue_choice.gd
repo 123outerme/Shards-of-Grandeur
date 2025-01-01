@@ -1,9 +1,10 @@
 extends DialogueChoice
 class_name PuzzleDialogueChoice
 
-## the puzzle ID this dialogue choice operates on
+## the puzzle this dialogue choice operates on
 @export var puzzle: Puzzle = null
 
+## the PuzzleState state index to modify (not necessary to be set when using StatePuzzleDecorations, unless `acceptsSolve` is also set)
 @export var puzzleStateIndex: int = 0
 
 ## If true, selecting this option agrees to complete the puzzle (in case items would be used, etc.)

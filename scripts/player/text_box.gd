@@ -117,10 +117,10 @@ func add_choices():
 				var statePuzzle: StatePuzzle = puzzleChoice.puzzle as StatePuzzle
 				var currentStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(statePuzzle.id)
 				# if the state is supposed to transition, this option is invalid if the transition cannot occur
-				if puzzleChoice.setsState != '':
-					isValid = isValid and \
+				if puzzleChoice.setsState != '' and \
 						puzzleChoice.puzzleStateIndex >= 0 and \
-						puzzleChoice.puzzleStateIndex < len(currentStates) and \
+						puzzleChoice.puzzleStateIndex < len(currentStates):
+					isValid = isValid and \
 						statePuzzle.can_state_transition(puzzleChoice.setsState, currentStates[puzzleChoice.puzzleStateIndex], puzzleChoice.puzzleStateIndex)
 		
 		# choice is valid if it and the dialogue options it can lead to have valid StoryRequirements

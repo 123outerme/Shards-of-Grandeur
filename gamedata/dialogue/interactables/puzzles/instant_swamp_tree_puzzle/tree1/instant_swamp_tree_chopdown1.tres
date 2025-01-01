@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bposvmpo1awbd"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_o4oym"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_q6ho8"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_3gq1f"]
+[ext_resource type="Resource" uid="uid://b5pikqww0vmxv" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/instant_swamp_tree_done.tres" id="4_eoqpn"]
+[ext_resource type="Resource" uid="uid://bjfipvsfuw504" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/instant_swamp_tree_next.tres" id="5_mbnns"]
+[ext_resource type="Resource" uid="uid://c54bjmvw5qoa5" path="res://gamedata/puzzles/leavenport/instant_swamp_trees_puzzle.tres" id="6_0bhtq"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="7_7gdgq"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_1h0x1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="9_2dp2n"]
+
+[sub_resource type="Resource" id="Resource_v3nlh"]
+script = ExtResource("2_q6ho8")
+choiceBtn = "No."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3gq1f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_vidb0"]
+script = ExtResource("7_7gdgq")
+puzzle = ExtResource("6_0bhtq")
+puzzleStateIndex = 0
+acceptsSolve = true
+setsState = "chopped_down"
+leadsToIfSolveFails = ExtResource("5_mbnns")
+choiceBtn = "Yes."
+leadsTo = ExtResource("4_eoqpn")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3gq1f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_cu8e7"]
+script = ExtResource("1_o4oym")
+lines = Array[String](["Should I cut this tree down for some seaworthy lumber?"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_q6ho8")]([SubResource("Resource_v3nlh"), SubResource("Resource_vidb0")])
+
+[resource]
+script = ExtResource("9_2dp2n")
+entryId = ""
+items = Array[ExtResource("1_o4oym")]([SubResource("Resource_cu8e7")])
+ordStoryRequirements = Array[ExtResource("8_1h0x1")]([])
+closesDialogue = false
+fullHealsPlayer = false

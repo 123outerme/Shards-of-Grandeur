@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://c7yin6damtnyk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://c7yin6damtnyk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mq075"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_d5kqt"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sgoqa"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_vvn1m"]
 [ext_resource type="Resource" uid="uid://blthpbq5m437i" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_quest_vision_q.tres" id="4_icfhh"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_c5uig"]
 
 [sub_resource type="Resource" id="Resource_6s151"]
 script = ExtResource("1_mq075")
@@ -81,5 +82,6 @@ choices = Array[ExtResource("2_sgoqa")]([SubResource("Resource_ne6hf"), SubResou
 script = ExtResource("2_d5kqt")
 entryId = "rescued_answers"
 items = Array[ExtResource("1_mq075")]([SubResource("Resource_6s151"), SubResource("Resource_y2tds"), SubResource("Resource_ik4t3"), SubResource("Resource_5rnsi"), SubResource("Resource_ol3k5")])
+ordStoryRequirements = Array[ExtResource("5_c5uig")]([])
 closesDialogue = false
 fullHealsPlayer = false

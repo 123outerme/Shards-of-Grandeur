@@ -26,5 +26,5 @@ func can_solve() -> bool:
 func solve() -> bool:
 	var solved: bool = puzzleMechanic.solve()
 	if solved:
-		super.solve()
-	return solved
+		return super.solve()
+	return false

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://8yp1eyxmaho7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_s78yc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_eqwui"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_obspa"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_vfy6c"]
+
+[sub_resource type="Resource" id="Resource_lca4y"]
+script = ExtResource("1_s78yc")
+lines = Array[String](["...", "Wow, that grew up FAST! That really was \"instant\"."])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_eqwui")]([])
+
+[resource]
+script = ExtResource("3_vfy6c")
+entryId = ""
+items = Array[ExtResource("1_s78yc")]([SubResource("Resource_lca4y")])
+ordStoryRequirements = Array[ExtResource("2_obspa")]([])
+closesDialogue = false
+fullHealsPlayer = false

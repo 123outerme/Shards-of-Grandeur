@@ -24,13 +24,17 @@ func add_slot(slot: InventorySlot) -> bool:
 				# combine stacks of this item, capping at max count for this item
 				existingSlot.count = min(existingSlot.item.maxCount, existingSlot.count + slot.count)
 				add_shard_minion_entry(existingSlot.item)
-				PlayerResources.questInventory.auto_update_quests()
+				var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
+				if not updatedQuests:
+					PlayerResources.story_requirements_updated.emit()
 				return true
 	# if not found, add the slot as a new one
 	if not found:
 		inventorySlots.append(slot)
 		add_shard_minion_entry(slot.item)
-		PlayerResources.questInventory.auto_update_quests()
+		var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
+		if not updatedQuests:
+			PlayerResources.story_requirements_updated.emit()
 		return true
 	return false
 
@@ -48,13 +52,17 @@ func add_item(item: Item, count: int = 1) -> bool:
 					return true # if negative (infinite-size shop slot), don't do anything
 				slot.count += count
 				add_shard_minion_entry(item)
-				PlayerResources.questInventory.auto_update_quests()
+				var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
+				if not updatedQuests:
+					PlayerResources.story_requirements_updated.emit()
 				return true
 	# if not found, add a new slot
 	if not found:
 		inventorySlots.append(InventorySlot.new(item, count))
 		add_shard_minion_entry(item)
-		PlayerResources.questInventory.auto_update_quests()
+		var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
+		if not updatedQuests:
+			PlayerResources.story_requirements_updated.emit()
 		return true
 	return false
 
@@ -160,7 +168,9 @@ func trash_item(inventorySlot: InventorySlot, count: int = 1) -> bool:
 			inventorySlots.erase(inventorySlot)
 		lastInSlot = true
 	if isPlayerInventory:
-		PlayerResources.questInventory.auto_update_quests()
+		var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
+		if not updatedQuests:
+			PlayerResources.story_requirements_updated.emit()
 	return lastInSlot
 
 func trash_items_by_name(itemName: String, count: int = 1):

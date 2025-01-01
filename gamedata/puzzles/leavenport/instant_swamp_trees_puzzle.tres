@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="StatePuzzle" load_steps=9 format=3 uid="uid://c54bjmvw5qoa5"]
+
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="1_0yi2h"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/state_puzzle.gd" id="2_a4bpf"]
+[ext_resource type="Resource" uid="uid://bpk0g2nm184vi" path="res://gamedata/items/key_items/swamp_tree_seeds.tres" id="3_e38co"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="4_no5rd"]
+[ext_resource type="Script" path="res://scripts/overworld/puzzles/puzzle_mechanics/noop_puzzle_mechanic.gd" id="5_ccsy5"]
+
+[sub_resource type="Resource" id="Resource_6ru7w"]
+script = ExtResource("4_no5rd")
+item = ExtResource("3_e38co")
+requiredCount = 1
+consumeItem = true
+
+[sub_resource type="Resource" id="Resource_yf78u"]
+script = ExtResource("5_ccsy5")
+
+[sub_resource type="Resource" id="Resource_uewnd"]
+script = ExtResource("5_ccsy5")
+
+[resource]
+script = ExtResource("2_a4bpf")
+defaultStates = Array[String](["default", "default", "default"])
+solvedStates = Array[String](["chopped_down", "chopped_down", "chopped_down"])
+stateTransitionPuzzleMechanics = {
+"default>planted": SubResource("Resource_yf78u"),
+"planted>chopped_down": SubResource("Resource_uewnd")
+}
+solvePuzzleMechanic = SubResource("Resource_6ru7w")
+id = "instant_swamp_trees_lumber"
+prereqStoryRequirements = Array[ExtResource("1_0yi2h")]([])

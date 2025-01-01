@@ -19,11 +19,15 @@ var invisible: bool:
 @onready var animSprite: AnimatedSprite2D = get_node('AnimatedSprite2D')
 @onready var staticBody: StaticBody2D = get_node('Collision')
 
+var currentAnim: String = ''
+
 func _ready():
 	super._ready()
 
 func load_decoration():
-	play_animation(animName)
+	if currentAnim == '':
+		currentAnim = animName
+	play_animation(currentAnim)
 
 func update_collision():
 	if staticBody != null:
@@ -31,6 +35,7 @@ func update_collision():
 		staticBody.collision_mask = visibleCollisionMask if visible else 0
 
 func play_animation(animation: String):
+	currentAnim = animation
 	animSprite.play(animation)
 
 func _on_animated_sprite_2d_animation_finished():

@@ -30,7 +30,6 @@ class_name StatePuzzleDecoration
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
-var solved: bool = false
 var playingTransitionAnim: bool = false
 var queuedAnim: String = ''
 var currentState: String = ''
@@ -47,8 +46,6 @@ func _ready():
 	
 	super._ready()
 	show_interact_sprite(false)
-	if visible: # if the puzzle is to be displayed onscreen (passes Interactable story requirements)
-		puzzle.set_default_states() # apply default states if the player save is missing it
 	PlayerResources.story_requirements_updated.connect(_puzzle_reqs_updated)
 	_puzzle_reqs_updated(false)
 
@@ -56,6 +53,7 @@ func get_decoration_state() -> String:
 	if puzzle == null:
 		return ''
 	
+	puzzle.fix_empty_puzzle_states()
 	var puzzleStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzle.id)
 	if puzzleStateIndex < len(puzzleStates):
 		return puzzleStates[puzzleStateIndex]
@@ -75,11 +73,10 @@ func show_interact_sprite(showSprite: bool = true):
 func select_choice(choice: DialogueChoice):
 	if choice is PuzzleDialogueChoice:
 		var puzzleChoice: PuzzleDialogueChoice = choice as PuzzleDialogueChoice
-		if puzzleChoice.puzzleId == puzzle.id and puzzleChoice.puzzleStateIndex == puzzleStateIndex:
-			if puzzleChoice.setsState != currentState and puzzleChoice.setsState != '':
-				puzzle.transition_state(puzzleChoice.setsState, puzzleStateIndex, currentState)
-			if puzzleChoice.acceptsSolve:
-				puzzle.solve()
+		if puzzleChoice.setsState != currentState and puzzleChoice.setsState != '':
+			puzzle.transition_state(puzzleChoice.setsState, puzzleStateIndex, currentState)
+		if puzzleChoice.acceptsSolve:
+			puzzle.solve()
 	super.select_choice(choice)
 
 func interact(_args: Array = []):
@@ -88,7 +85,8 @@ func interact(_args: Array = []):
 		args.append(failedPrereqsDialogue)
 	else:
 		var state: String = get_decoration_state()
-		args.append(stateDialogues[state] as InteractableDialogue)
+		if stateDialogues.has(state):
+			args.append(stateDialogues[state] as InteractableDialogue)
 	
 	super.interact(args)
 
@@ -97,8 +95,10 @@ func has_dialogue() -> bool:
 		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue()
 	else:
 		var state: String = get_decoration_state()
-		var dialogue: InteractableDialogue = stateDialogues[state]
-		return dialogue != null and dialogue.can_use_dialogue()
+		if stateDialogues.has(state):
+			var stateDialogue: InteractableDialogue = stateDialogues[state] as InteractableDialogue
+			return stateDialogue != null and stateDialogue.can_use_dialogue()
+		return false
 	#return super.has_dialogue()
 
 func play_animation(animName: String):
@@ -127,9 +127,10 @@ func _puzzle_reqs_updated(playTransition: bool = true):
 		var animation: String = stateAnimations[state]
 		if playTransition and stateTransitionAnimations.has(currentState + '>' + state):
 			animation = stateTransitionAnimations[currentState + '>' + state]
-		animatedDecoration.anim_finished.connect(_transition_anim_finished)
-		if updateAnimOnTransitionAnimEnd:
-			animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(stateAnimations[state]))
+		if not animatedDecoration.anim_finished.is_connected(_transition_anim_finished):
+			animatedDecoration.anim_finished.connect(_transition_anim_finished)
+		if updateAnimOnTransitionAnimEnd and not animatedDecoration.anim_finished.is_connected(play_current_state_animation):
+			animatedDecoration.anim_finished.connect(play_current_state_animation)
 		animatedDecoration.play_animation(animation)
 		if state in disableCollisionInStates:
 			animatedDecoration.collision.collision_layer = 0
@@ -138,7 +139,13 @@ func _puzzle_reqs_updated(playTransition: bool = true):
 	currentState = state
 
 func _transition_anim_finished():
+	animatedDecoration.anim_finished.disconnect(_transition_anim_finished)
 	playingTransitionAnim = false
 	if queuedAnim != '':
 		play_animation(queuedAnim)
 	queuedAnim = ''
+
+func play_current_state_animation():
+	if animatedDecoration.anim_finished.is_connected(play_current_state_animation):
+		animatedDecoration.anim_finished.disconnect(play_current_state_animation)
+	animatedDecoration.play_animation(stateAnimations[get_decoration_state()])

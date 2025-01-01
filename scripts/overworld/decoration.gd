@@ -19,6 +19,7 @@ func _story_reqs_updated():
 	if Engine.is_editor_hint():
 		return
 	
+	var pastVisible: bool = visible
 	if storyRequirements == null or storyRequirements.is_valid():
 		visible = true
 	else:

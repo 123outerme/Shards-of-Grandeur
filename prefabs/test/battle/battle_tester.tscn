@@ -1,18 +1,17 @@
-[gd_scene load_steps=62 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=59 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="2_sffs8"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="2_sul0p"]
 [ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="3_f7fe8"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_y7nw7"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_egeqm"]
 [ext_resource type="Resource" uid="uid://c48ja8pjniutk" path="res://gamedata/items/weapon/tangleroot_band.tres" id="5_unsrs"]
 [ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="6_e5p5n"]
 [ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="7_crqrj"]
 [ext_resource type="Resource" uid="uid://dqg27upoc4fmw" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy_boss.tres" id="8_sq3y3"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="9_wpvco"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
-[ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="14_6ipym"]
 [ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="14_cx6rg"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="18_m4wbc"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
@@ -38,23 +37,10 @@
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="44_j7j6h"]
 
-[sub_resource type="Resource" id="Resource_lxlw8"]
-script = ExtResource("3_y7nw7")
-experience = 100
-gold = 20
-fullyAttuneCombatantSaveName = ""
-
-[sub_resource type="Resource" id="Resource_aui8p"]
-script = ExtResource("3_y7nw7")
-experience = 130
-gold = 30
-item = ExtResource("14_6ipym")
-fullyAttuneCombatantSaveName = ""
-
 [sub_resource type="Resource" id="Resource_8ehk7"]
 script = ExtResource("13_5buqe")
 minTurns = 8
-staticTotalDefeatRewards = Array[ExtResource("3_y7nw7")]([SubResource("Resource_aui8p")])
+staticTotalDefeatRewards = Array[ExtResource("9_wpvco")]([])
 winText = "You survived the battle!"
 loseText = "You were defeated..."
 escapeText = "You escaped successfully!"
@@ -79,7 +65,7 @@ autoAllyShardSummoned = false
 specialBattleId = "dragon1"
 bossBattle = true
 canEscape = false
-rewards = Array[ExtResource("3_y7nw7")]([SubResource("Resource_lxlw8")])
+rewards = Array[ExtResource("9_wpvco")]([])
 useStaticRewards = true
 battleMusic = ExtResource("6_e5p5n")
 combatant1 = ExtResource("7_crqrj")

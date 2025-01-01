@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://cish3x6medlvn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://cish3x6medlvn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_6mlj3"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_g7x5e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cu87gjsm75bjn" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_shards_holdon.tres" id="3_i2t6g"]
 [ext_resource type="Resource" uid="uid://qs0whrbdveo0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_shards_no.tres" id="3_os3pw"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_kr1mi"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_rpv6e"]
 
 [sub_resource type="Resource" id="Resource_1gl06"]
 script = ExtResource("1_6mlj3")
@@ -55,5 +56,6 @@ choices = Array[ExtResource("1_6mlj3")]([SubResource("Resource_1gl06"), SubResou
 script = ExtResource("1_k678k")
 entryId = ""
 items = Array[ExtResource("1_g7x5e")]([SubResource("Resource_71f7e")])
+ordStoryRequirements = Array[ExtResource("7_rpv6e")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -93,7 +93,7 @@ func accept_quest(q: Quest) -> bool:
 	auto_update_quests()
 	return true
 
-func auto_update_quests(recursiveCall: bool = false):
+func auto_update_quests(recursiveCall: bool = false) -> bool:
 	var emitChanges: bool = false
 	for tracker in quests:
 		var step: QuestStep = tracker.get_current_step()
@@ -119,6 +119,7 @@ func auto_update_quests(recursiveCall: bool = false):
 		if not recursiveCall:
 			auto_update_quests(true)
 			PlayerResources.story_requirements_updated.emit()
+	return emitChanges
 
 func set_quest_progress(target: String, type: QuestStep.Type, progress: int = 0):
 	for tracker in get_cur_trackers_for_target(target):

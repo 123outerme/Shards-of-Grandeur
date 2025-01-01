@@ -40,6 +40,7 @@ func enter_player_range():
 	PlayerFinder.player.update_interact_touch_ui()
 
 func exit_player_range():
+	print_stack()
 	if PlayerFinder.player == null:
 		return
 	var idx: int = PlayerFinder.player.interactables.find(self)
@@ -53,20 +54,30 @@ func play_animation(animName: String):
 	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
 
 func select_choice(choice: DialogueChoice):
-	if PlayerFinder.player.interactableDialogueIndex > 0:
+	var curInteractableDialogue: InteractableDialogue = null
+	var dialogueEntry: DialogueEntry = null
+	if PlayerFinder.player.interactableDialogueIndex >= 0:
 		# find the dialogue entry being read by the player currently
-		var dialogueEntry: DialogueEntry = PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIndex].dialogueEntry
+		curInteractableDialogue = PlayerFinder.player.interactableDialogues[PlayerFinder.player.interactableDialogueIndex]
+		if curInteractableDialogue != null:
+			dialogueEntry = curInteractableDialogue.dialogueEntry
 		if dialogueEntry != null and saveName != '' and dialogueEntry.entryId != '':
 			# if the entry is found, the saveName of this interactable is defined, and so is the dialogue entry ID: set this dialogue seen
 			print(dialogueEntry.entryId, ': dialogue seen being set for ', saveName, '')
 			PlayerResources.playerInfo.set_dialogue_seen(saveName, dialogueEntry.entryId)
 			PlayerResources.questInventory.progress_quest(saveName + '#' + dialogueEntry.entryId, QuestStep.Type.TALK)
 		elif dialogueEntry == null:
-			print('dialogue entry not found for ', saveName, ' choice ', choice.choiceBtp)
-		# TODO: test this
+			print('dialogue entry not found for ', saveName, ' choice ', choice.choiceBtn)
 	if choice.repeatsItem:
 		PlayerFinder.player.put_interactable_text(false, false)
 		return
+	if dialogueEntry == null and dialogue != null:
+		curInteractableDialogue = dialogue
+		dialogueEntry = dialogue.dialogueEntry # LAST RESORT: use the set dialogueEntry
+		print("Interactable WARNING: could not find player's current dialogue, had to substitute dialogue entry from this InteractableDialogue")
+	
+	if curInteractableDialogue == null:
+		printerr('Interactable ERROR: could not find the current dialogue for this choice')
 	
 	var leadsTo: DialogueEntry = null
 	if choice.returnsToParentId != '':
@@ -103,7 +114,9 @@ func select_choice(choice: DialogueChoice):
 	
 	if choice is PuzzleDialogueChoice:
 		var puzzleChoice: PuzzleDialogueChoice = choice as PuzzleDialogueChoice
-		if puzzleChoice.acceptsSolve and puzzleChoice.puzzle != null and PlayerResources.playerInfo.has_solved_puzzle(puzzleChoice.puzzle.id) and puzzleChoice.leadsToIfSolveFails != null:
+		if puzzleChoice.acceptsSolve and puzzleChoice.puzzle != null \
+				and not PlayerResources.playerInfo.has_solved_puzzle(puzzleChoice.puzzle.id) \
+				and puzzleChoice.leadsToIfSolveFails != null:
 			leadsTo = puzzleChoice.leadsToIfSolveFails
 	
 	if leadsTo != null:
@@ -124,9 +137,11 @@ func select_choice(choice: DialogueChoice):
 				index = mini(PlayerFinder.player.interactableDialogueIndex + 1, len(PlayerFinder.player.interactableDialogues))
 				var newInterDialogue: InteractableDialogue = InteractableDialogue.new()
 				newInterDialogue.dialogueEntry = leadsTo
-				newInterDialogue.speaker = dialogue.speaker
+				newInterDialogue.speaker = curInteractableDialogue.speaker
 				PlayerFinder.player.interactableDialogues.insert(index, newInterDialogue)
 				PlayerFinder.player.put_interactable_text(true)
+	else:
+		PlayerFinder.player.put_interactable_text(true) # TODO does this do what I want???
 
 func finished_dialogue():
 	pass

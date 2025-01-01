@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=113 format=4 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -52,6 +52,16 @@
 [ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="37_7p5dm"]
 [ext_resource type="Resource" uid="uid://ducs4iipc6fx6" path="res://gamedata/cutscenes/leavenport/solius_disband_lp.tres" id="37_b24o1"]
 [ext_resource type="Resource" uid="uid://dcgrjbl2yg0yl" path="res://gamedata/cutscenes/leavenport/leavenport_takeover.tres" id="37_nlfdj"]
+[ext_resource type="PackedScene" uid="uid://dtd7cphrp2han" path="res://prefabs/entities/state_puzzle_decoration.tscn" id="40_l33hb"]
+[ext_resource type="Resource" uid="uid://c54bjmvw5qoa5" path="res://gamedata/puzzles/leavenport/instant_swamp_trees_puzzle.tres" id="41_e3pln"]
+[ext_resource type="SpriteFrames" uid="uid://lbc4qsjcjia6" path="res://graphics/puzzles/swamp_tree_seeds/a_swamp_tree_seeds_puzzle.tres" id="41_p1wwd"]
+[ext_resource type="Resource" uid="uid://c10j3f5e0c3yp" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree1/instant_swamp_tree_plant1.tres" id="42_jgtcv"]
+[ext_resource type="Resource" uid="uid://bpk0g2nm184vi" path="res://gamedata/items/key_items/swamp_tree_seeds.tres" id="42_mmvdo"]
+[ext_resource type="Resource" uid="uid://bposvmpo1awbd" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree1/instant_swamp_tree_chopdown1.tres" id="43_p1b1i"]
+[ext_resource type="Resource" uid="uid://378rqbhghgej" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree3/instant_swamp_tree_chopdown3.tres" id="43_qcuah"]
+[ext_resource type="Resource" uid="uid://k73kv0124p6p" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree2/instant_swamp_tree_plant2.tres" id="46_0wcjt"]
+[ext_resource type="Resource" uid="uid://blkc8xc5843l" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree2/instant_swamp_tree_chopdown2.tres" id="46_d68ry"]
+[ext_resource type="Resource" uid="uid://5p1l0dn7nlb3" path="res://gamedata/dialogue/interactables/puzzles/instant_swamp_tree_puzzle/tree3/instant_swamp_tree_plant3.tres" id="48_0tq40"]
 
 [sub_resource type="Resource" id="Resource_1n4ns"]
 script = ExtResource("6_3up7i")
@@ -101,7 +111,7 @@ invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_mtgkc"]
+[sub_resource type="Resource" id="Resource_vm2j4"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -124,7 +134,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_kcy55"]
+[sub_resource type="Resource" id="Resource_bkiln"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -147,7 +157,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_okuy7"]
+[sub_resource type="Resource" id="Resource_rcan5"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -170,7 +180,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_6k8q4"]
+[sub_resource type="Resource" id="Resource_4jodr"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -193,7 +203,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_pm3om"]
+[sub_resource type="Resource" id="Resource_6dbqp"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -240,7 +250,7 @@ position = Vector2(996, 108)
 relativeToCurrentPos = false
 pauseSecs = 0.0
 
-[sub_resource type="Resource" id="Resource_j7xkh"]
+[sub_resource type="Resource" id="Resource_cyvtd"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -263,7 +273,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1y46m"]
+[sub_resource type="Resource" id="Resource_gkpow"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -292,7 +302,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nydhf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_xfio1"]
+[sub_resource type="Resource" id="Resource_r0o7b"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -366,6 +376,89 @@ invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fykup"]
+size = Vector2(29, 37.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a26h0"]
+size = Vector2(27, 31)
+
+[sub_resource type="Resource" id="Resource_vky3a"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("42_jgtcv")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_ic76d"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("43_p1b1i")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_iknwj"]
+script = ExtResource("7_dmgij")
+item = ExtResource("42_mmvdo")
+count = 1
+
+[sub_resource type="Resource" id="Resource_3shsi"]
+script = ExtResource("6_3up7i")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([SubResource("Resource_iknwj")])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxp0"]
+size = Vector2(16, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22uvd"]
+size = Vector2(17, 15)
+
+[sub_resource type="Resource" id="Resource_gmjq2"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("46_0wcjt")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_0b1cn"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("46_d68ry")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_m6qt2"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("48_0tq40")
+savedItemIdx = 0
+savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_5jg1k"]
+script = ExtResource("37_7p5dm")
+speaker = "@"
+dialogueEntry = ExtResource("43_qcuah")
+savedItemIdx = 0
+savedTextIdx = 0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho4gv"]
 size = Vector2(8, 1)
 
@@ -426,7 +519,7 @@ size = Vector2(128, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftvu4"]
 size = Vector2(128, 55)
 
-[sub_resource type="Resource" id="Resource_vo50q"]
+[sub_resource type="Resource" id="Resource_b07a5"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -465,7 +558,7 @@ tile_set = ExtResource("2_6a431")
 
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
-tile_map_data = PackedByteArray("AAAoAB8AEwABAAgAAAApAB8AEwAEAAcAAAApACAAEwAAAAcAAAApACEAEwAAAAcAAAApACIAEwAAAAcAAAApACMAEwAAAAgAAAAqACMAEwABAAgAAAArACMAEwAEAAcAAAArACQAEwAAAAcAAAArACUAEwAAAAgAAAAsACUAEwABAAgAAAAtACUAEwAEAAcAAAAtACYAEwAAAAcAAAAtACcAEwAAAAcAAAAtACgAEwAAAAcAAAAtACkAEwAAAAcAAAAtACoAEwAAAAcAAAAtACsAEwAAAAcAAAAtACwAEwAAAAgAAAAuACwAEwAEAAcAAAAuAC0AEwAAAAcAAAAuAC4AEwAAAAcAAAAuAC8AEwAAAAcAAAAuADAAEwAAAAcAAAAuADEAEwAAAAcAAAAuADIAEwAAAAcAAAAuADMAEwAAAAcAAAAuADQAEwAAAAgAAAAvADQAEwAEAAcAAAAvADUAEwAAAAcAAAAvADYAEwAAAAcAAAAvADcAEwAAAAcAAAAvADgAEwAAAAcAAAAvADkAEwAAAAcAAAAvADoAEwAAAAcAAAAvADsAEwAAAAcAAAAvADwAEwAAAAcAAAAvAD0AEwAAAAcAAAAvAD4AEwAAAAcAAAAvAD8AEwAAAAcAAAAvAEAAEwAAAAcAAAAvAEEAEwAAAAcAAAAvAEIAEwAAAAcAAAAvAEMAEwAAAAcAAAAvAEQAEwAAAAcAAAAvAEUAEwAAAAcAAAAvAEYAEwAAAAcAAAAvAEcAEwAAAAcAAAAvAEgAEwAAAAcAAAAvAEkAEwAAAAcAAAAvAEoAEwAAAAcAAAAvAEsAEwAAAAcAAAA3ADMAEwADAAcAAAA3ADQAEwACAAcAAAA3ADUAEwACAAcAAAA3ADYAEwACAAcAAAA3ADcAEwACAAcAAAA3ADgAEwACAAcAAAA3ADkAEwACAAcAAAA3ADoAEwACAAcAAAA3ADsAEwACAAcAAAA3ADwAEwACAAcAAAA3AD0AEwACAAcAAAA3AD4AEwACAAcAAAA3AD8AEwACAAcAAAA3AEAAEwACAAcAAAA3AEEAEwACAAcAAAA3AEIAEwACAAcAAAA3AEMAEwACAAcAAAA3AEQAEwACAAcAAAA3AEUAEwACAAcAAAA3AEYAEwACAAcAAAA3AEcAEwACAAcAAAA3AEgAEwACAAcAAAA3AEkAEwACAAcAAAA3AEoAEwACAAcAAAA3AEsAEwACAAcAAAA4ACsAEwADAAcAAAA4ACwAEwACAAcAAAA4AC0AEwACAAcAAAA4AC4AEwACAAcAAAA4AC8AEwACAAcAAAA4ADAAEwACAAcAAAA4ADEAEwACAAcAAAA4ADIAEwACAAcAAAA4ADMAEwACAAgAAAA5ACYAEwADAAcAAAA5ACcAEwACAAcAAAA5ACgAEwACAAcAAAA5ACkAEwACAAcAAAA5ACoAEwACAAcAAAA5ACsAEwACAAgAAAA6ACYAEwABAAgAAAA7ACUAEwADAAcAAAA7ACYAEwACAAgAAAA8AB8AEwACAAcAAAA8ACAAEwADAAgAAAA8ACQAEwADAAcAAAA8ACUAEwACAAgAAAA9ACAAEwABAAYAAAA9ACMAEwADAAcAAAA9ACQAEwACAAgAAAA+ACAAEwABAAYAAAA+ACMAEwABAAgAAAA/ACAAEwABAAYAAAA/ACMAEwABAAgAAABAACAAEwACAAYAAABAACEAEwADAAgAAABAACIAEwADAAcAAABAACMAEwACAAgAAABBACEAEwACAAYAAABBACIAEwACAAgAAAAdABsAEwAAAAgAAAAeABsAEwABAAgAAAAfABsAEwABAAgAAAAgABsAEwAEAAcAAAAgABwAEwAAAAcAAAAgAB0AEwAAAAgAAAAhAB0AEwABAAgAAAAiAB0AEwABAAgAAAAjAB0AEwAEAAcAAAAjAB4AEwAAAAcAAAAjAB8AEwAAAAgAAAAkAB8AEwABAAgAAAAlAB8AEwABAAgAAAA8ABkAEwADAAcAAAA8ABoAEwACAAcAAAA8ABsAEwACAAcAAAA8ABwAEwACAAcAAAA9ABgAEwADAAcAAAA9ABkAEwACAAgAAAA+ABcAEwADAAcAAAA+ABgAEwACAAgAAAA/ABcAEwABAAgAAABAABcAEwABAAgAAABBABUAEwADAAcAAABBABYAEwACAAcAAABBABcAEwACAAgAAABCABQAEwADAAcAAABCABUAEwACAAgAAABDABMAEwADAAcAAABDABQAEwACAAgAAABEABMAEwABAAgAAABFABMAEwABAAgAAABGABMAEwABAAgAAABHABMAEwABAAgAAQBIABMAEwABAAgAAABJABMAEwABAAgAAABKABMAEwABAAgAAABLABMAEwABAAgAAABMABMAEwABAAgAAABNABMAEwABAAgAAABOABMAEwABAAgAAABPABMAEwABAAgAAABQABMAEwABAAgAAABRABMAEwABAAgAAAA7ABAAEwADAAgAAAA8ABAAEwABAAYAAAA9ABAAEwABAAYAAAA+ABAAEwABAAYAAAA/ABAAEwABAAYAAABAABAAEwABAAYAAABBABAAEwABAAYAAABCABAAEwABAAYAAABDABAAEwABAAYAAABEABAAEwABAAYAAABFABAAEwABAAYAAABGABAAEwABAAYAAQBHABAAEwABAAYAAABIABAAEwABAAYAAABJABAAEwABAAYAAABKABAAEwABAAYAAABLABAAEwABAAYAAABMABAAEwABAAYAAABNABAAEwABAAYAAABOABAAEwABAAYAAABPABAAEwABAAYAAABQABAAEwABAAYAAABRABAAEwABAAYAAAA5ANr/EwACAAcAAAA5ANv/EwACAAcAAAA5ANz/EwACAAcAAAA5AN3/EwADAAgAAAA6AN3/EwACAAYAAAA6AN7/EwACAAcAAAA6AN//EwACAAcAAAA6AOD/EwACAAcAAAA6AOH/EwADAAgAAAA7AOH/EwACAAYAAAA7AOL/EwACAAcAAAA7AOP/EwADAAgAAAA7AAAAEwADAAcAAAA7AAEAEwACAAcAAAA7AAIAEwACAAcAAAA7AAMAEwACAAcAAAA7AAQAEwACAAcAAAA7AAUAEwADAAgAAAA7AAgAEwADAAcAAAA7AAkAEwACAAcAAAA7AAoAEwACAAcAAAA7AAsAEwACAAcAAAA7AAwAEwACAAcAAAA7AA0AEwACAAcAAAA8AOP/EwACAAYAAAA8AOT/EwACAAcAAAA8AOX/EwADAAgAAAA8AP3/EwADAAcAAAA8AP7/EwACAAcAAAA8AP//EwACAAcAAAA8AAAAEwACAAgAAAA8AAUAEwACAAYAAAA8AAYAEwACAAcAAAA8AAcAEwACAAcAAAA8AAgAEwACAAgAAAA9AOX/EwACAAYAAAA9AOb/EwACAAcAAAA9AOf/EwACAAcAAAA9AOj/EwADAAgAAAA9APz/EwADAAcAAAA9AP3/EwACAAgAAAA+AOj/EwACAAYAAAA+AOn/EwACAAcAAAA+AOr/EwADAAgAAAA+APv/EwADAAcAAAA+APz/EwACAAgAAAA/AOr/EwACAAYAAAA/AOv/EwACAAcAAAA/AOz/EwACAAcAAAA/AO3/EwACAAcAAAA/AO7/EwADAAgAAAA/APr/EwADAAcAAAA/APv/EwACAAgAAABAAO7/EwACAAYAAABAAO//EwACAAcAAABAAPD/EwACAAcAAABAAPH/EwACAAcAAABAAPL/EwACAAcAAABAAPP/EwADAAgAAABAAPn/EwADAAcAAABAAPr/EwACAAgAAABBAPP/EwACAAYAAABBAPT/EwACAAcAAABBAPX/EwACAAcAAABBAPb/EwACAAcAAABBAPf/EwACAAcAAABBAPj/EwACAAcAAABBAPn/EwACAAgAAAAKAOT/EAAAAAEAAAAKAOX/EAAAAAEAAAAKAOb/EAAAAAIAAAALAOb/EAAEAAEAAAALAOf/EAAAAAIAAAAMAOf/EAAEAAEAAAAMAOj/EAAAAAIAAAANAOj/EAAEAAEAAAANAOn/EAAAAAIAAAAOAOn/EAAEAAEAAAAOAOr/EAAAAAIAAAAPAOr/EAAEAAEAAAAPAOv/EAAAAAEAAAAPAOz/EAAAAAIAAAAQAOz/EAAEAAEAAAAQAO3/EAAAAAEAAAAQAO7/EAAAAAIAAAARAO7/EAAEAAEAAAARAO//EAAAAAEAAAARAPD/EAAAAAIAAAASAPD/EAAEAAEAAAASAPH/EAAAAAIAAAATAPH/EAAEAAEAAAATAPL/EAAAAAEAAAATAPP/EAAAAAIAAAAUAPP/EAAEAAEAAAAUAPT/EAAAAAEAAAAUAPX/EAAAAAIAAAAVAPX/EAAEAAEAAAAVAPb/EAAAAAEAAAAVAPf/EAAAAAEAAAAVAPj/EAAAAAIAAAAWAPj/EwAEAAcAAAAWAPn/EwAAAAgAAAAXAPn/EwAEAAcAAAAXAPr/EwAAAAgAAAAYAPr/EwAEAAcAAAAYAPv/EwAAAAcAAAAYAPz/EwAAAAcAAAAYAP3/EwAAAAcAAAAYAP7/EwAAAAcAAAAYAP//EwAAAAcAAAAYAAAAEwAAAAcAAAAYAAEAEwAAAAcAAAAYAAIAEwAAAAcAAAAYAAMAEwAAAAcAAAAYAAQAEwAAAAcAAAAYAAUAEwAAAAcAAAAYAAYAEwAAAAcAAAAYAAcAEwAAAAcAAAAYAAgAEwAAAAcAAAAYAAkAEwAAAAcAAAAYAAoAEwAAAAcAAAAYAAsAEwAAAAcAAAAYAAwAEwAAAAcAAAAYAA0AEwAAAAcAAAAYAA4AEwAAAAcAAAAYAA8AEwAAAAcAAAAYABAAEwAAAAgAAAAZABAAEwAEAAcAAAAZABEAEwAAAAgAAAAaABEAEwAEAAcAAAAaABIAEwAAAAcAAAAaABMAEwAAAAgAAAAbABMAEwABAAgAAAAcABMAEwABAAgAAAAdABMAEwAEAAcAAAAdABQAEwAAAAgAAAAdABgAEwAAAAYAAAAeABQAEwAEAAcAAAAeABUAEwAAAAcAAAAeABYAEwAAAAcAAAAeABcAEwAAAAcAAAAeABgAEwAEAAgAAAAcAAYAEwADAAcAAAAcAAcAEwACAAcAAAAcAAgAEwACAAcAAAAcAAkAEwACAAcAAAAcAAoAEwACAAcAAAAcAAsAEwACAAcAAAAcAAwAEwADAAgAAAAdAAIAEwADAAcAAAAdAAMAEwACAAcAAAAdAAQAEwACAAcAAAAdAAUAEwACAAcAAAAdAAYAEwACAAgAAAAdAAwAEwACAAYAAAAdAA0AEwADAAgAAAAeAAIAEwAEAAcAAAAeAAMAEwAAAAgAAAAeAA0AEwABAAYAAAAfAAMAEwABAAgAAAAgAAMAEwAEAAcAAAAgAAQAEwAAAAgAAAAhAAQAEwABAAgAAAAhAA0AEwABAAYAAAAiAAQAEwABAAgAAAAiAA0AEwABAAYAAAAjAAQAEwAEAAcAAAAjAAUAEwAAAAgAAAAjAA0AEwABAAYAAAAkAAUAEwABAAgAAAAkAAwAEwAAAAYAAAAkAA0AEwAEAAgAAAAlAAUAEwABAAgAAAAlAAsAEwAAAAYAAAAlAAwAEwAEAAgAAAAmAAUAEwAEAAcAAAAmAAYAEwAAAAcAAAAmAAcAEwAAAAcAAAAmAAgAEwAAAAcAAAAmAAkAEwAAAAcAAAAmAAoAEwAAAAcAAAAmAAsAEwAEAAgAAAArAAQAEwADAAcAAAArAAUAEwACAAcAAAArAAYAEwACAAcAAAArAAcAEwACAAcAAAArAAgAEwACAAcAAAArAAkAEwACAAcAAAArAAoAEwACAAcAAAArAAsAEwADAAgAAAAsAAMAEwADAAcAAAAsAAQAEwACAAgAAAAsAAsAEwABAAYAAAAtAAMAEwABAAgAAAAtAAsAEwABAAYAAAAuAAsAEwABAAYAAAAvAAsAEwACAAYAAAAvAAwAEwADAAgAAAAwAAMAEwABAAgAAAAwAAwAEwABAAYAAAAxAAMAEwABAAgAAAAxAAwAEwABAAYAAAAyAAMAEwABAAgAAAAzAAMAEwABAAgAAAA0AAMAEwAEAAcAAAA0AAQAEwAAAAgAAAA0AAsAEwAAAAYAAAA0AAwAEwAEAAgAAAA1AAQAEwAEAAcAAAA1AAUAEwAAAAcAAAA1AAYAEwAAAAcAAAA1AAcAEwAAAAcAAAA1AAgAEwAAAAcAAAA1AAkAEwAAAAcAAAA1AAoAEwAAAAcAAAA1AAsAEwAEAAgAAAApAA8AEwADAAcAAAApABAAEwACAAcAAAApABEAEwACAAcAAAApABIAEwACAAcAAAApABMAEwACAAcAAAApABQAEwACAAcAAAApABUAEwADAAgAAAAqAA4AEwADAAcAAAAqAA8AEwACAAgAAAAqABUAEwABAAYAAAArAA4AEwABAAgAAAArABUAEwABAAYAAAAsAA4AEwABAAgAAAAsABUAEwACAAYAAAAsABYAEwADAAgAAAAtAA4AEwABAAgAAAAuAA4AEwABAAgAAAAvAA4AEwABAAgAAAAvABcAEwABAAYAAAAwAA4AEwABAAgAAAAwABcAEwABAAYAAAAxAA4AEwAEAAcAAAAxAA8AEwAAAAgAAAAxABYAEwAAAAYAAAAxABcAEwAEAAgAAAAyABYAEwAEAAgAAAAQAPb/AwAEAAgAAAAQAPX/AwAEAAcAAAA=")
+tile_map_data = PackedByteArray("AAAoAB8AEwABAAgAAAApAB8AEwAEAAcAAAApACAAEwAAAAcAAAApACEAEwAAAAcAAAApACIAEwAAAAcAAAApACMAEwAAAAgAAAAqACMAEwABAAgAAAArACMAEwAEAAcAAAArACQAEwAAAAcAAAArACUAEwAAAAgAAAAsACUAEwABAAgAAAAtACUAEwAEAAcAAAAtACYAEwAAAAcAAAAtACcAEwAAAAcAAAAtACgAEwAAAAcAAAAtACkAEwAAAAcAAAAtACoAEwAAAAcAAAAtACsAEwAAAAcAAAAtACwAEwAAAAgAAAAuACwAEwAEAAcAAAAuAC0AEwAAAAcAAAAuAC4AEwAAAAcAAAAuAC8AEwAAAAcAAAAuADAAEwAAAAcAAAAuADEAEwAAAAcAAAAuADIAEwAAAAcAAAAuADMAEwAAAAcAAAAuADQAEwAAAAgAAAAvADQAEwAEAAcAAAAvADUAEwAAAAcAAAAvADYAEwAAAAcAAAAvADcAEwAAAAcAAAAvADgAEwAAAAcAAAAvADkAEwAAAAcAAAAvADoAEwAAAAcAAAAvADsAEwAAAAcAAAAvADwAEwAAAAcAAAAvAD0AEwAAAAcAAAAvAD4AEwAAAAcAAAAvAD8AEwAAAAcAAAAvAEAAEwAAAAcAAAAvAEEAEwAAAAcAAAAvAEIAEwAAAAcAAAAvAEMAEwAAAAcAAAAvAEQAEwAAAAcAAAAvAEUAEwAAAAcAAAAvAEYAEwAAAAcAAAAvAEcAEwAAAAcAAAAvAEgAEwAAAAcAAAAvAEkAEwAAAAcAAAAvAEoAEwAAAAcAAAAvAEsAEwAAAAcAAAA3ADMAEwADAAcAAAA3ADQAEwACAAcAAAA3ADUAEwACAAcAAAA3ADYAEwACAAcAAAA3ADcAEwACAAcAAAA3ADgAEwACAAcAAAA3ADkAEwACAAcAAAA3ADoAEwACAAcAAAA3ADsAEwACAAcAAAA3ADwAEwACAAcAAAA3AD0AEwACAAcAAAA3AD4AEwACAAcAAAA3AD8AEwACAAcAAAA3AEAAEwACAAcAAAA3AEEAEwACAAcAAAA3AEIAEwACAAcAAAA3AEMAEwACAAcAAAA3AEQAEwACAAcAAAA3AEUAEwACAAcAAAA3AEYAEwACAAcAAAA3AEcAEwACAAcAAAA3AEgAEwACAAcAAAA3AEkAEwACAAcAAAA3AEoAEwACAAcAAAA3AEsAEwACAAcAAAA4ACsAEwADAAcAAAA4ACwAEwACAAcAAAA4AC0AEwACAAcAAAA4AC4AEwACAAcAAAA4AC8AEwACAAcAAAA4ADAAEwACAAcAAAA4ADEAEwACAAcAAAA4ADIAEwACAAcAAAA4ADMAEwACAAgAAAA5ACYAEwADAAcAAAA5ACcAEwACAAcAAAA5ACgAEwACAAcAAAA5ACkAEwACAAcAAAA5ACoAEwACAAcAAAA5ACsAEwACAAgAAAA6ACYAEwABAAgAAAA7ACUAEwADAAcAAAA7ACYAEwACAAgAAAA8AB8AEwACAAcAAAA8ACAAEwADAAgAAAA8ACQAEwADAAcAAAA8ACUAEwACAAgAAAA9ACAAEwABAAYAAAA9ACMAEwADAAcAAAA9ACQAEwACAAgAAAA+ACAAEwABAAYAAAA+ACMAEwABAAgAAAA/ACAAEwABAAYAAAA/ACMAEwABAAgAAABAACAAEwACAAYAAABAACEAEwADAAgAAABAACIAEwADAAcAAABAACMAEwACAAgAAABBACEAEwACAAYAAABBACIAEwACAAgAAAAdABsAEwAAAAgAAAAeABsAEwABAAgAAAAfABsAEwABAAgAAAAgABsAEwAEAAcAAAAgABwAEwAAAAcAAAAgAB0AEwAAAAgAAAAhAB0AEwABAAgAAAAiAB0AEwABAAgAAAAjAB0AEwAEAAcAAAAjAB4AEwAAAAcAAAAjAB8AEwAAAAgAAAAkAB8AEwABAAgAAAAlAB8AEwABAAgAAAA8ABkAEwADAAcAAAA8ABoAEwACAAcAAAA8ABsAEwACAAcAAAA8ABwAEwACAAcAAAA9ABgAEwADAAcAAAA9ABkAEwACAAgAAAA+ABcAEwADAAcAAAA+ABgAEwACAAgAAAA/ABcAEwABAAgAAABAABcAEwABAAgAAABBABUAEwADAAcAAABBABYAEwACAAcAAABBABcAEwACAAgAAABCABQAEwADAAcAAABCABUAEwACAAgAAABDABMAEwADAAcAAABDABQAEwACAAgAAABEABMAEwABAAgAAABFABMAEwABAAgAAABGABMAEwABAAgAAABHABMAEwABAAgAAQBIABMAEwABAAgAAABJABMAEwABAAgAAABKABMAEwABAAgAAABLABMAEwABAAgAAABMABMAEwABAAgAAABNABMAEwABAAgAAABOABMAEwABAAgAAABPABMAEwABAAgAAABQABMAEwABAAgAAABRABMAEwABAAgAAAA7ABAAEwADAAgAAAA8ABAAEwABAAYAAAA9ABAAEwABAAYAAAA+ABAAEwABAAYAAAA/ABAAEwABAAYAAABAABAAEwABAAYAAABBABAAEwABAAYAAABCABAAEwABAAYAAABDABAAEwABAAYAAABEABAAEwABAAYAAABFABAAEwABAAYAAABGABAAEwABAAYAAQBHABAAEwABAAYAAABIABAAEwABAAYAAABJABAAEwABAAYAAABKABAAEwABAAYAAABLABAAEwABAAYAAABMABAAEwABAAYAAABNABAAEwABAAYAAABOABAAEwABAAYAAABPABAAEwABAAYAAABQABAAEwABAAYAAABRABAAEwABAAYAAAA5ANr/EwACAAcAAAA5ANv/EwACAAcAAAA5ANz/EwACAAcAAAA5AN3/EwADAAgAAAA6AN3/EwACAAYAAAA6AN7/EwACAAcAAAA6AN//EwACAAcAAAA6AOD/EwACAAcAAAA6AOH/EwADAAgAAAA7AOH/EwACAAYAAAA7AOL/EwACAAcAAAA7AOP/EwADAAgAAAA7AAAAEwADAAcAAAA7AAEAEwACAAcAAAA7AAIAEwACAAcAAAA7AAMAEwACAAcAAAA7AAQAEwACAAcAAAA7AAUAEwADAAgAAAA7AAgAEwADAAcAAAA7AAkAEwACAAcAAAA7AAoAEwACAAcAAAA7AAsAEwACAAcAAAA7AAwAEwACAAcAAAA7AA0AEwACAAcAAAA8AOP/EwACAAYAAAA8AOT/EwACAAcAAAA8AOX/EwADAAgAAAA8AP3/EwADAAcAAAA8AP7/EwACAAcAAAA8AP//EwACAAcAAAA8AAAAEwACAAgAAAA8AAUAEwACAAYAAAA8AAYAEwACAAcAAAA8AAcAEwACAAcAAAA8AAgAEwACAAgAAAA9AOX/EwACAAYAAAA9AOb/EwACAAcAAAA9AOf/EwACAAcAAAA9AOj/EwADAAgAAAA9APz/EwADAAcAAAA9AP3/EwACAAgAAAA+AOj/EwACAAYAAAA+AOn/EwACAAcAAAA+AOr/EwADAAgAAAA+APv/EwADAAcAAAA+APz/EwACAAgAAAA/AOr/EwACAAYAAAA/AOv/EwACAAcAAAA/AOz/EwACAAcAAAA/AO3/EwACAAcAAAA/AO7/EwADAAgAAAA/APr/EwADAAcAAAA/APv/EwACAAgAAABAAO7/EwACAAYAAABAAO//EwACAAcAAABAAPD/EwACAAcAAABAAPH/EwACAAcAAABAAPL/EwACAAcAAABAAPP/EwADAAgAAABAAPn/EwADAAcAAABAAPr/EwACAAgAAABBAPP/EwACAAYAAABBAPT/EwACAAcAAABBAPX/EwACAAcAAABBAPb/EwACAAcAAABBAPf/EwACAAcAAABBAPj/EwACAAcAAABBAPn/EwACAAgAAAAKAOT/EAAAAAEAAAAKAOX/EAAAAAEAAAAKAOb/EAAAAAIAAAALAOb/EAAEAAEAAAALAOf/EAAAAAIAAAAMAOf/EAAEAAEAAAAMAOj/EAAAAAIAAAANAOj/EAAEAAEAAAANAOn/EAAAAAIAAAAOAOn/EAAEAAEAAAAOAOr/EAAAAAIAAAAPAOr/EAAEAAEAAAAPAOv/EAAAAAEAAAAPAOz/EAAAAAIAAAAQAOz/EAAEAAEAAAAQAO3/EAAAAAEAAAAQAO7/EAAAAAIAAAARAO7/EAAEAAEAAAARAO//EAAAAAEAAAARAPD/EAAAAAIAAAASAPD/EAAEAAEAAAASAPH/EAAAAAIAAAATAPH/EAAEAAEAAAATAPL/EAAAAAEAAAATAPP/EAAAAAIAAAAUAPP/EAAEAAEAAAAUAPT/EAAAAAEAAAAUAPX/EAAAAAIAAAAVAPX/EAAEAAEAAAAVAPb/EAAAAAEAAAAVAPf/EAAAAAEAAAAVAPj/EAAAAAIAAAAWAPj/EwAEAAcAAAAWAPn/EwAAAAgAAAAXAPn/EwAEAAcAAAAXAPr/EwAAAAgAAAAYAPr/EwAEAAcAAAAYAPv/EwAAAAcAAAAYAPz/EwAAAAcAAAAYAP3/EwAAAAcAAAAYAP7/EwAAAAcAAAAYAP//EwAAAAcAAAAYAAAAEwAAAAcAAAAYAAEAEwAAAAcAAAAYAAIAEwAAAAcAAAAYAAMAEwAAAAcAAAAYAAQAEwAAAAcAAAAYAAUAEwAAAAcAAAAYAAYAEwAAAAcAAAAYAAcAEwAAAAcAAAAYAAgAEwAAAAcAAAAYAAkAEwAAAAcAAAAYAAoAEwAAAAcAAAAYAAsAEwAAAAcAAAAYAAwAEwAAAAcAAAAYAA0AEwAAAAcAAAAYAA4AEwAAAAcAAAAYAA8AEwAAAAcAAAAYABAAEwAAAAgAAAAZABAAEwAEAAcAAAAZABEAEwAAAAgAAAAaABEAEwAEAAcAAAAaABIAEwAAAAcAAAAaABMAEwAAAAgAAAAbABMAEwABAAgAAAAcABMAEwABAAgAAAAdABMAEwAEAAcAAAAdABQAEwAAAAgAAAAdABgAEwAAAAYAAAAeABQAEwAEAAcAAAAeABUAEwAAAAcAAAAeABYAEwAAAAcAAAAeABcAEwAAAAcAAAAeABgAEwAEAAgAAAAcAAYAEwADAAcAAAAcAAcAEwACAAcAAAAcAAgAEwACAAcAAAAcAAkAEwACAAcAAAAcAAoAEwACAAcAAAAcAAsAEwACAAcAAAAcAAwAEwADAAgAAAAdAAIAEwADAAcAAAAdAAMAEwACAAcAAAAdAAQAEwACAAcAAAAdAAUAEwACAAcAAAAdAAYAEwACAAgAAAAdAAwAEwACAAYAAAAdAA0AEwADAAgAAAAeAAIAEwAEAAcAAAAeAAMAEwAAAAgAAAAeAA0AEwABAAYAAAAfAAMAEwABAAgAAAAgAAMAEwAEAAcAAAAgAAQAEwAAAAgAAAAhAAQAEwABAAgAAAAhAA0AEwABAAYAAAAiAAQAEwABAAgAAAAiAA0AEwABAAYAAAAjAAQAEwAEAAcAAAAjAAUAEwAAAAgAAAAjAA0AEwABAAYAAAAkAAUAEwABAAgAAAAkAAwAEwAAAAYAAAAkAA0AEwAEAAgAAAAlAAUAEwABAAgAAAAlAAsAEwAAAAYAAAAlAAwAEwAEAAgAAAAmAAUAEwAEAAcAAAAmAAYAEwAAAAcAAAAmAAcAEwAAAAcAAAAmAAgAEwAAAAcAAAAmAAkAEwAAAAcAAAAmAAoAEwAAAAcAAAAmAAsAEwAEAAgAAAArAAQAEwADAAcAAAArAAUAEwACAAcAAAArAAYAEwACAAcAAAArAAcAEwACAAcAAAArAAgAEwACAAcAAAArAAkAEwACAAcAAAArAAoAEwACAAcAAAArAAsAEwADAAgAAAAsAAMAEwADAAcAAAAsAAQAEwACAAgAAAAsAAsAEwABAAYAAAAtAAMAEwABAAgAAAAtAAsAEwABAAYAAAAuAAsAEwABAAYAAAAvAAsAEwACAAYAAAAvAAwAEwADAAgAAAAwAAMAEwABAAgAAAAwAAwAEwABAAYAAAAxAAMAEwABAAgAAAAxAAwAEwABAAYAAAAyAAMAEwABAAgAAAAzAAMAEwABAAgAAAA0AAMAEwAEAAcAAAA0AAQAEwAAAAgAAAA0AAsAEwAAAAYAAAA0AAwAEwAEAAgAAAA1AAQAEwAEAAcAAAA1AAUAEwAAAAcAAAA1AAYAEwAAAAcAAAA1AAcAEwAAAAcAAAA1AAgAEwAAAAcAAAA1AAkAEwAAAAcAAAA1AAoAEwAAAAcAAAA1AAsAEwAEAAgAAAApAA8AEwADAAcAAAApABAAEwACAAcAAAApABEAEwACAAcAAAApABIAEwACAAcAAAApABMAEwACAAcAAAApABQAEwACAAcAAAApABUAEwADAAgAAAAqAA4AEwADAAcAAAAqAA8AEwACAAgAAAAqABUAEwABAAYAAAArAA4AEwABAAgAAAArABUAEwABAAYAAAAsAA4AEwABAAgAAAAsABUAEwACAAYAAAAsABYAEwADAAgAAAAtAA4AEwABAAgAAAAuAA4AEwABAAgAAAAvAA4AEwABAAgAAAAvABcAEwABAAYAAAAwAA4AEwABAAgAAAAwABcAEwABAAYAAAAxAA4AEwAEAAcAAAAxAA8AEwAAAAgAAAAxABYAEwAAAAYAAAAxABcAEwAEAAgAAAAyABYAEwAEAAgAAAAQAPb/AwAEAAgAAAAQAPX/AwAEAAcAAAASAPz/EwAEAAAAAAAPAPn/EwAEAAAAAAAOAP3/EwAEAAAAAAA=")
 tile_set = ExtResource("2_6a431")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -604,7 +697,7 @@ displayName = "Solius"
 saveName = "solius_leavenport"
 followerId = "solius"
 orSpawnRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_1n4ns"), SubResource("Resource_48sfc")])
-data = SubResource("Resource_mtgkc")
+data = SubResource("Resource_vm2j4")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("7_2c63l"), ExtResource("9_x0eeb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -631,7 +724,7 @@ visible = false
 [node name="ChainLegionSoldier3" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_kcy55")
+data = SubResource("Resource_bkiln")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -649,7 +742,7 @@ visible = false
 [node name="ChainLegionSoldier4" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
 spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_okuy7")
+data = SubResource("Resource_rcan5")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -668,7 +761,7 @@ visible = false
 position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
-data = SubResource("Resource_6k8q4")
+data = SubResource("Resource_4jodr")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Fisherman" index="0"]
@@ -688,7 +781,7 @@ visible = false
 position = Vector2(996, 108)
 displayName = "Gentleman"
 saveName = "lp_elder"
-data = SubResource("Resource_pm3om")
+data = SubResource("Resource_6dbqp")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TilemapRoot/Elder" index="0"]
@@ -713,7 +806,7 @@ visible = false
 position = Vector2(397, 315)
 displayName = "Lady"
 saveName = "lp_elder_lady"
-data = SubResource("Resource_j7xkh")
+data = SubResource("Resource_cyvtd")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TilemapRoot/ElderLady" index="0"]
@@ -732,7 +825,7 @@ visible = false
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(765, 286)
 displayName = "Sign"
-data = SubResource("Resource_1y46m")
+data = SubResource("Resource_gkpow")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_i5v2d")])
 facesPlayer = false
 
@@ -766,7 +859,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(995, 446)
 displayName = "Sign"
-data = SubResource("Resource_xfio1")
+data = SubResource("Resource_r0o7b")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("24_jrwa5")])
 facesPlayer = false
 
@@ -812,6 +905,7 @@ storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_apipf")
 
 [node name="CollisionShape2D" parent="TilemapRoot/SeaWyrm" index="0"]
 position = Vector2(1.5, 10.25)
+shape = SubResource("RectangleShape2D_fykup")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/SeaWyrm" index="1"]
 animName = "battle_idle"
@@ -822,9 +916,117 @@ animation = &"battle_idle"
 
 [node name="CollisionShape2D" parent="TilemapRoot/SeaWyrm/AnimatedDecoration/Collision" index="0"]
 position = Vector2(1.5, 7.5)
+shape = SubResource("RectangleShape2D_a26h0")
 
 [node name="InteractSprite" parent="TilemapRoot/SeaWyrm" index="2"]
 position = Vector2(0, -25)
+
+[node name="InstantTreePuzzleDecoration1" parent="TilemapRoot" instance=ExtResource("40_l33hb")]
+position = Vector2(296, -65)
+puzzle = ExtResource("41_e3pln")
+stateAnimations = {
+"chopped_down": "invisible",
+"default": "invisible",
+"planted": "grown"
+}
+stateTransitionAnimations = {
+"default>planted": "grow",
+"planted>chopped_down": "chop_down"
+}
+stateDialogues = {
+"default": SubResource("Resource_vky3a"),
+"planted": SubResource("Resource_ic76d")
+}
+disableCollisionInStates = Array[String](["chopped_down"])
+saveName = "lp_instant_tree_1"
+storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_3shsi")])
+
+[node name="AnimatedDecoration" parent="TilemapRoot/InstantTreePuzzleDecoration1" index="0"]
+animName = "invisible"
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/InstantTreePuzzleDecoration1/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("41_p1wwd")
+animation = &"invisible"
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration1/AnimatedDecoration/Collision" index="0"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_8gxp0")
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration1" index="1"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_22uvd")
+
+[node name="InstantTreePuzzleDecoration2" parent="TilemapRoot" instance=ExtResource("40_l33hb")]
+position = Vector2(248, -113)
+puzzle = ExtResource("41_e3pln")
+puzzleStateIndex = 1
+stateAnimations = {
+"chopped_down": "invisible",
+"default": "invisible",
+"planted": "grown"
+}
+stateTransitionAnimations = {
+"default>planted": "grow",
+"planted>chopped_down": "chop_down"
+}
+stateDialogues = {
+"default": SubResource("Resource_gmjq2"),
+"planted": SubResource("Resource_0b1cn")
+}
+disableCollisionInStates = Array[String](["chopped_down"])
+saveName = "lp_instant_tree_2"
+storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_3shsi")])
+
+[node name="AnimatedDecoration" parent="TilemapRoot/InstantTreePuzzleDecoration2" index="0"]
+animName = "invisible"
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/InstantTreePuzzleDecoration2/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("41_p1wwd")
+animation = &"invisible"
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration2/AnimatedDecoration/Collision" index="0"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_8gxp0")
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration2" index="1"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_22uvd")
+
+[node name="InstantTreePuzzleDecoration3" parent="TilemapRoot" instance=ExtResource("40_l33hb")]
+position = Vector2(232, -49)
+puzzle = ExtResource("41_e3pln")
+puzzleStateIndex = 2
+stateAnimations = {
+"chopped_down": "invisible",
+"default": "invisible",
+"planted": "grown"
+}
+stateTransitionAnimations = {
+"default>planted": "grow",
+"planted>chopped_down": "chop_down"
+}
+stateDialogues = {
+"default": SubResource("Resource_m6qt2"),
+"planted": SubResource("Resource_5jg1k")
+}
+disableCollisionInStates = Array[String](["chopped_down"])
+saveName = "lp_instant_tree_3"
+storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_3shsi")])
+
+[node name="AnimatedDecoration" parent="TilemapRoot/InstantTreePuzzleDecoration3" index="0"]
+animName = "invisible"
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/InstantTreePuzzleDecoration3/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("41_p1wwd")
+animation = &"invisible"
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration3/AnimatedDecoration/Collision" index="0"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_8gxp0")
+
+[node name="CollisionShape2D" parent="TilemapRoot/InstantTreePuzzleDecoration3" index="1"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_22uvd")
 
 [node name="RestaurantWarpZone" parent="." instance=ExtResource("5_2lmvq")]
 position = Vector2(1015.5, 434)
@@ -1002,7 +1204,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(78, 206)
-data = SubResource("Resource_vo50q")
+data = SubResource("Resource_b07a5")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.307282
@@ -1032,6 +1234,12 @@ disabled = true
 [editable path="TilemapRoot/RestaurantSign"]
 [editable path="TilemapRoot/SeaWyrm"]
 [editable path="TilemapRoot/SeaWyrm/AnimatedDecoration"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration1"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration1/AnimatedDecoration"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration2"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration2/AnimatedDecoration"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration3"]
+[editable path="TilemapRoot/InstantTreePuzzleDecoration3/AnimatedDecoration"]
 [editable path="RestaurantWarpZone"]
 [editable path="CreationShopWarpZone"]
 [editable path="DestructionShopWarpZone"]

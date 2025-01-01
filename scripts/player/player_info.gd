@@ -186,7 +186,7 @@ func has_puzzle_states(puzzleId: String) -> bool:
 
 func set_puzzle_states(puzzleId: String, states: Array[String]):
 	var shouldSet: bool = false
-	if not puzzleStates.has(puzzleId) or (len(states) != len(puzzleStates[puzzleId])):
+	if not has_puzzle_states(puzzleId) or (len(states) != len(puzzleStates[puzzleId])):
 		shouldSet = true
 	if not shouldSet:
 		for i in range(len(states)):

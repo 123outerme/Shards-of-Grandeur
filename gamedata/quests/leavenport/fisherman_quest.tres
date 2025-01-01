@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=30 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=31 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://bb8f7ye35k0q6" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_inprogress.tres" id="9_58nk2"]
 [ext_resource type="Resource" uid="uid://u5snfjsxdskw" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_turnin.tres" id="11_b2a7p"]
 [ext_resource type="Resource" uid="uid://dcr7qq13h87da" path="res://gamedata/items/armor/fishscale_armor.tres" id="12_jx2pa"]
+[ext_resource type="Resource" uid="uid://drsqe0bxfl6mn" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_inprogress.tres" id="12_ka3ia"]
+[ext_resource type="Resource" uid="uid://c7gg8i8gdkh02" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_turnin.tres" id="13_yxqli"]
 
 [sub_resource type="Resource" id="Resource_b8suq"]
 script = ExtResource("2_r4tho")
@@ -94,13 +96,13 @@ reward = SubResource("Resource_avkco")
 locations = Array[int]([30])
 type = 0
 count = 1
-objectiveName = "leavenport_skipper#"
+objectiveName = "leavenport_skipper#skipper_angry_angler_buildboat"
 turnInNames = Array[String](["leavenport_skipper"])
 displayObjName = "Skipper"
 displayTurnInName = "Skipper"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_ua7ar")]([])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("13_yxqli")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("12_ka3ia")])
 
 [sub_resource type="Resource" id="Resource_rggcb"]
 script = ExtResource("2_q0b41")
@@ -117,28 +119,13 @@ customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([])
 inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
-[sub_resource type="Resource" id="Resource_u5hjw"]
-script = ExtResource("2_q0b41")
-name = "Plant These Seeds"
-description = "The Prime Minister said these magic seeds can sprout a tree in an instant? I don't know..."
-locations = Array[int]([30])
-type = 5
-count = 1
-objectiveName = ""
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
-customStatusStr = "Plant The Seeds!"
-turnInDialogue = Array[ExtResource("3_ua7ar")]([])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
-
 [sub_resource type="Resource" id="Resource_uyt85"]
 script = ExtResource("2_q0b41")
-name = "Lumber Delivery"
-description = "Return to the Skipper with the lumber you've collected!"
+name = "Seeds to Lumber"
+description = "The Prime Minister's seeds can grow in an instant. Bring the harvested lumber to the Skipper!"
 locations = Array[int]([30])
 type = 1
-count = 1
+count = 3
 objectiveName = "Seaworthy Lumber"
 turnInNames = Array[String](["leavenport_skipper"])
 displayObjName = "Seaworthy Lumber"
@@ -226,6 +213,6 @@ inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 script = ExtResource("1_mhsm3")
 questName = "Angry Angler"
 description = "The fisherman is upset -- the fish aren't biting! Figure out what's scaring all the fish off, and bring them back."
-steps = Array[ExtResource("2_q0b41")]([SubResource("Resource_t3xbb"), SubResource("Resource_j447a"), SubResource("Resource_nv2nx"), SubResource("Resource_h2qts"), SubResource("Resource_rggcb"), SubResource("Resource_u5hjw"), SubResource("Resource_uyt85"), SubResource("Resource_5tfpr"), SubResource("Resource_j1whn"), SubResource("Resource_56dlt"), SubResource("Resource_0iikj")])
+steps = Array[ExtResource("2_q0b41")]([SubResource("Resource_t3xbb"), SubResource("Resource_j447a"), SubResource("Resource_nv2nx"), SubResource("Resource_h2qts"), SubResource("Resource_rggcb"), SubResource("Resource_uyt85"), SubResource("Resource_5tfpr"), SubResource("Resource_j1whn"), SubResource("Resource_56dlt"), SubResource("Resource_0iikj")])
 isMainQuest = false
 advanceActAfterComplete = false

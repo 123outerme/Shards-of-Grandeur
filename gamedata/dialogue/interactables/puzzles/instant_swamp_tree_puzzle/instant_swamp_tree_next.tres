@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://bjfipvsfuw504"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_sclwm"]
+[ext_resource type="Resource" uid="uid://cmnv6vk18u3pa" path="res://gamedata/items/key_items/seaworthy_lumber.tres" id="1_vvlfr"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sh6pn"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_xyf2h"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qkyax"]
+
+[sub_resource type="Resource" id="Resource_uhbcu"]
+script = ExtResource("1_sclwm")
+lines = Array[String](["That's mighty fine lumber, but I still don't have enough. Onto the next tree!"])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sh6pn")]([])
+
+[resource]
+script = ExtResource("3_qkyax")
+entryId = ""
+items = Array[ExtResource("1_sclwm")]([SubResource("Resource_uhbcu")])
+ordStoryRequirements = Array[ExtResource("2_xyf2h")]([])
+givesItem = ExtResource("1_vvlfr")
+closesDialogue = false
+fullHealsPlayer = false
