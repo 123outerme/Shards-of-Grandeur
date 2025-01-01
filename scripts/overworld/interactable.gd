@@ -40,7 +40,6 @@ func enter_player_range():
 	PlayerFinder.player.update_interact_touch_ui()
 
 func exit_player_range():
-	print_stack()
 	if PlayerFinder.player == null:
 		return
 	var idx: int = PlayerFinder.player.interactables.find(self)

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://duvl4c2ufujnr"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_avpde"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ij6wx"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jrwe5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_o3l34"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pgwr3"]
+
+[sub_resource type="Resource" id="Resource_hfo0q"]
+script = ExtResource("2_jrwe5")
+choiceBtn = "Aye Aye!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_pgwr3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_cfqwt"]
+script = ExtResource("1_avpde")
+lines = Array[String](["Outstanding, that'll definitely do! While I'm constructing the hull, we'll need a waterproof sealant.", "Best we can do on such short notice is the sludge from a humble Blob. If you defeat 3 of them, we should have enough.", "Up to the challenge, landlubber?"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_jrwe5")]([SubResource("Resource_hfo0q")])
+
+[resource]
+script = ExtResource("3_o3l34")
+entryId = ""
+items = Array[ExtResource("1_avpde")]([SubResource("Resource_cfqwt")])
+ordStoryRequirements = Array[ExtResource("2_ij6wx")]([])
+closesDialogue = true
+fullHealsPlayer = false

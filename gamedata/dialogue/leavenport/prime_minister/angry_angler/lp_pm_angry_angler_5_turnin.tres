@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dvape6emtj3ls"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6m6ul"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f60ie"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_q3xpr"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jkml8"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_tu4ma"]
+[ext_resource type="Resource" uid="uid://m7je353h6ume" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_seeds.tres" id="4_8qgw8"]
+
+[sub_resource type="Resource" id="Resource_ort4i"]
+script = ExtResource("2_f60ie")
+choiceBtn = "Hold On..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_tu4ma")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_oohoi"]
+script = ExtResource("2_f60ie")
+choiceBtn = "Okay!"
+leadsTo = ExtResource("4_8qgw8")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_tu4ma")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Angry Angler#Renewable Wood"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_l0y4d"]
+script = ExtResource("1_6m6ul")
+lines = Array[String](["Here, take these seeds and plant them on the other side of the river bank.", "There's a few distinct holes in the ground where this should do!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_f60ie")]([SubResource("Resource_ort4i"), SubResource("Resource_oohoi")])
+
+[resource]
+script = ExtResource("3_jkml8")
+entryId = ""
+items = Array[ExtResource("1_6m6ul")]([SubResource("Resource_l0y4d")])
+ordStoryRequirements = Array[ExtResource("2_q3xpr")]([])
+closesDialogue = true
+fullHealsPlayer = false

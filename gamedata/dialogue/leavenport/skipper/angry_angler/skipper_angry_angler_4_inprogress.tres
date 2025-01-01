@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://drsqe0bxfl6mn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://drsqe0bxfl6mn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fqptf"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_8slcs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_pthw8"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_6ff64"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_15aru"]
-[ext_resource type="Resource" uid="uid://ba0ipf1awxhwc" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_buildboat.tres" id="4_cmw43"]
+[ext_resource type="Resource" uid="uid://c7gg8i8gdkh02" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_turnin.tres" id="3_blbck"]
 
 [sub_resource type="Resource" id="Resource_7wdyp"]
 script = ExtResource("1_fqptf")
@@ -27,26 +27,16 @@ animateActorTreePath = ""
 animateActorIsPlayer = false
 choices = Array[ExtResource("2_pthw8")]([])
 
-[sub_resource type="Resource" id="Resource_5g0n1"]
+[sub_resource type="Resource" id="Resource_38tj3"]
 script = ExtResource("2_pthw8")
-choiceBtn = "Wait..."
+choiceBtn = "Let's Sail!"
+leadsTo = ExtResource("3_blbck")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_15aru")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = true
-
-[sub_resource type="Resource" id="Resource_38tj3"]
-script = ExtResource("2_pthw8")
-choiceBtn = "Let's Sail!"
-leadsTo = ExtResource("4_cmw43")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_15aru")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_570u1"]
 script = ExtResource("1_fqptf")
@@ -56,12 +46,12 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_pthw8")]([SubResource("Resource_5g0n1"), SubResource("Resource_38tj3")])
+choices = Array[ExtResource("2_pthw8")]([SubResource("Resource_38tj3")])
 
 [resource]
 script = ExtResource("3_6ff64")
 entryId = "skipper_angry_angler_buildboat"
 items = Array[ExtResource("1_fqptf")]([SubResource("Resource_7wdyp"), SubResource("Resource_4di5o"), SubResource("Resource_570u1")])
 ordStoryRequirements = Array[ExtResource("2_8slcs")]([])
-closesDialogue = true
+closesDialogue = false
 fullHealsPlayer = false

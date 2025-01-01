@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://hw7nbx3e6ju4"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_pnkgq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uqxws"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_wjn4g"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_bvi82"]
+
+[sub_resource type="Resource" id="Resource_1ch7o"]
+script = ExtResource("1_pnkgq")
+lines = Array[String](["I'm hard at work crafting the hull for our fine ship, trust me.", "You haven't come up with the sludge necessary for the waterproofing, have ya? It's only 3 Blobs you need!", "Go get it done, and report back to me as soon as you've finished."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_uqxws")]([])
+
+[resource]
+script = ExtResource("3_bvi82")
+entryId = ""
+items = Array[ExtResource("1_pnkgq")]([SubResource("Resource_1ch7o")])
+ordStoryRequirements = Array[ExtResource("2_wjn4g")]([])
+closesDialogue = false
+fullHealsPlayer = false

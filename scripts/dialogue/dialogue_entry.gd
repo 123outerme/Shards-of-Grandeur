@@ -21,7 +21,7 @@ class_name DialogueEntry
 ## after this dialogue is over, gives the provided item
 @export var givesItem: Item = null
 
-## if true, after this dialogue is over, all queued dialogues get dropped and the text box closes
+## if true, after this dialogue as last dialogue is over, all queued dialogues get dropped and the text box closes. `leadsTo` in DialogueChoice ignores this flag; dialogue tree choices do not get interrupted by this flag
 @export var closesDialogue: bool = false
 
 ## if true, after this dialogue is over, fully heals the player

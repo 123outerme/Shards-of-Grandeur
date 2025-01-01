@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://du7sf8ugk1qfd"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_18ygx"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_agwjt"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_aymh1"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_mpv4c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_whyx0"]
+
+[sub_resource type="Resource" id="Resource_fms5u"]
+script = ExtResource("2_agwjt")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_mpv4c")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_rucrk"]
+script = ExtResource("1_18ygx")
+lines = Array[String](["Oh, fit as a fiddle, we are! I'll quickly slather this goop on, so meet me on the docks and we'll get ready to launch this ship on her maiden voyage."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_agwjt")]([SubResource("Resource_fms5u")])
+
+[resource]
+script = ExtResource("3_whyx0")
+entryId = ""
+items = Array[ExtResource("1_18ygx")]([SubResource("Resource_rucrk")])
+ordStoryRequirements = Array[ExtResource("2_aymh1")]([])
+closesDialogue = true
+fullHealsPlayer = false
