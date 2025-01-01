@@ -41,6 +41,9 @@ class_name StoryRequirements
 ## specified by "<puzzle ID>"
 @export var prereqPuzzles: Array[String] = []
 
+## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
+@export var prereqPuzzleStates: Dictionary = {}
+
 ## specified by "<base combatant save name>#<evolution save name>"
 @export var prereqDiscoveredEvolutions: Array[String] = []
 
@@ -72,6 +75,9 @@ class_name StoryRequirements
 ## specified by "<puzzle ID>"
 @export var invalidAfterSolvingPuzzles: Array[String] = []
 
+## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
+@export var invalidFromPuzzleStates: Dictionary = {}
+
 ## specified by "<follower ID>"
 @export var invalidFromHavingFollowers: Array[String] = []
 
@@ -89,6 +95,7 @@ func _init(
 	i_prereqBattles: Array[String] = [],
 	i_prereqDefeatedEnemies: Array[String] = [],
 	i_prereqPuzzles: Array[String] = [],
+	i_prereqPuzzleStates: Dictionary = {},
 	i_prereqEvos: Array[String] = [],
 	i_prereqFollowers: Array[String] = [],
 	i_prereqItems: Array[InventorySlot] = [],
@@ -99,6 +106,7 @@ func _init(
 	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
+	i_invalidPuzzleStates: Dictionary = {},
 	i_invalidFollowers: Array[String] = [],
 	i_invalidItems: Array[InventorySlot] = [],
 ):
@@ -113,6 +121,7 @@ func _init(
 	prereqSpecialBattles = i_prereqBattles
 	prereqDefeatedEnemies = i_prereqDefeatedEnemies
 	prereqPuzzles = i_prereqPuzzles
+	prereqPuzzleStates = i_prereqPuzzleStates
 	prereqDiscoveredEvolutions = i_prereqEvos
 	prereqHavingFollowers = i_prereqFollowers
 	prereqHasItems = i_prereqItems
@@ -123,6 +132,7 @@ func _init(
 	invalidAfterVistingPlaces = i_invalidPlacesVisited
 	invalidAfterSpecialBattles = i_invalidBattles
 	invalidAfterSolvingPuzzles = i_invalidPuzzles
+	invalidFromPuzzleStates = i_invalidPuzzleStates
 	invalidFromHavingFollowers = i_invalidFollowers
 	invalidFromHavingItems = i_invalidItems
 
@@ -180,6 +190,17 @@ func is_valid() -> bool:
 		if not PlayerResources.playerInfo.has_solved_puzzle(puzzle):
 			return false
 	
+	for puzzleId: String in prereqPuzzleStates.keys():
+		if not PlayerResources.playerInfo.has_puzzle_states(puzzleId):
+			return false
+		var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
+		var prereqStates: Array[String] = prereqPuzzleStates[puzzleId] as Array[String]
+		# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
+		for i: int in range(len(prereqStates)):
+			# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
+			if prereqStates[i] != '' and (i >= len(curStates) or curStates[i] != prereqStates[i]):
+				return false
+	
 	for fullEvoSaveName: String in prereqDiscoveredEvolutions:
 		if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
 			return false
@@ -223,6 +244,20 @@ func is_valid() -> bool:
 	for puzzle: String in invalidAfterSolvingPuzzles:
 		if PlayerResources.playerInfo.has_solved_puzzle(puzzle):
 			return false
+	
+	for puzzleId: String in invalidFromPuzzleStates.keys():
+		if PlayerResources.playerInfo.has_puzzle_states(puzzleId):
+			var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
+			var invalidStates: Array[String] = invalidFromPuzzleStates[puzzleId] as Array[String]
+			# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
+			var matches: bool = true
+			for i: int in range(len(invalidStates)):
+				# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
+				if invalidStates[i] != '' and (i >= len(curStates) or curStates[i] != invalidStates[i]):
+					matches = false
+					break
+			if matches:
+				return false
 	
 	for followerId: String in invalidFromHavingFollowers:
 		if PlayerResources.playerInfo.has_active_follower(followerId):

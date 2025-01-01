@@ -109,11 +109,7 @@ func load_combatant_node():
 		if combatant.get_sprite_frames() == null:
 			animatedSprite.sprite_frames = load("res://graphics/animations/a_missingno.tres") # prevent crashing
 		spriteFacesRight = combatant.get_faces_right()
-		var feetOffset: Vector2 = -1 * combatant.get_feet_pos()
-		animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
-		if animatedSprite.flip_h:
-			# mirror x position if sprite is flipped
-			feetOffset.x = (combatant.get_max_size().x + feetOffset.x) * -1
+		var feetOffset: Vector2 = get_feet_pos_translation()
 		feetOffset.y += 8
 		animatedSprite.offset = feetOffset
 		play_animation('battle_idle')
@@ -158,6 +154,14 @@ func load_combatant_node():
 		eventTextContainer.position.y -= (combatant.get_idle_size().y - 16) / 2
 	
 	loaded = true
+
+func get_feet_pos_translation() -> Vector2:
+	var feetOffset: Vector2 = -1 * combatant.get_feet_pos()
+	animatedSprite.flip_h = (leftSide and not spriteFacesRight) or (not leftSide and spriteFacesRight)
+	if animatedSprite.flip_h:
+		# mirror x position if sprite is flipped
+		feetOffset.x = (combatant.get_max_size().x + feetOffset.x) * -1
+	return feetOffset
 
 func get_in_front_particle_scale() -> float:
 		# scale of particles in front of combatant: 1*, plus 0.25 for every 16 px larger

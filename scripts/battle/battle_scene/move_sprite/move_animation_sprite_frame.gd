@@ -46,7 +46,7 @@ enum MoveSpriteOffset {
 ## the offset from the `relativeTo` to move the sprite to over the course of the frame
 @export var position: Vector2
 
-## Offsets based on target entity's size
+## Offsets based on target entity's size. If all bits are set, will play at the VISUAL center of the target sprite, not the configured CombatantSprite center
 @export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
 
 ## describes the x position of the sprite over the duration of the frame

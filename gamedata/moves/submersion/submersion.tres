@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="Move" load_steps=16 format=3 uid="uid://cv4ar7wqpmcs6"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_4bkf2"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_qan4b"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_ai604"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="3_6yuug"]
+[ext_resource type="Resource" uid="uid://dnl7ygrewad8r" path="res://gamedata/moves/submersion/anim_submersion.tres" id="4_c68ix"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_5k05u"]
+
+[sub_resource type="Resource" id="Resource_r26k2"]
+script = ExtResource("2_ai604")
+element = 1
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_ptdt6"]
+script = ExtResource("3_6yuug")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.2
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ai604")]([SubResource("Resource_r26k2")])
+
+[sub_resource type="Resource" id="Resource_f6gr0"]
+script = ExtResource("1_qan4b")
+role = 3
+orbChange = 1
+power = 0
+lifesteal = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_ptdt6")
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_mgspo"]
+script = ExtResource("2_ai604")
+element = 1
+multiplier = 1.02
+
+[sub_resource type="Resource" id="Resource_tx832"]
+script = ExtResource("3_6yuug")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.02
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ai604")]([SubResource("Resource_mgspo")])
+
+[sub_resource type="Resource" id="Resource_okrgs"]
+script = ExtResource("5_5k05u")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_tx832")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_pxb6f"]
+script = ExtResource("2_ai604")
+element = 1
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_2etae"]
+script = ExtResource("3_6yuug")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.25
+resistanceMultiplier = 1.25
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ai604")]([SubResource("Resource_pxb6f")])
+
+[sub_resource type="Resource" id="Resource_oayli"]
+script = ExtResource("1_qan4b")
+role = 3
+orbChange = -3
+power = 0
+lifesteal = 0.0
+targets = 3
+targetStatChanges = SubResource("Resource_2etae")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_okrgs")
+
+[resource]
+script = ExtResource("1_4bkf2")
+moveName = "Submersion"
+requiredLv = 6
+category = 2
+element = 1
+chargeEffect = SubResource("Resource_f6gr0")
+surgeEffect = SubResource("Resource_oayli")
+description = "Become immersed in water, gaining resilience to attack and status alike."
+moveLearnedText = "Suddenly, a sphere of water encapsulates you! You start to struggle, before quickly realizing that you CAN breathe in this water. It's providing you energy!"
+moveAnimation = ExtResource("4_c68ix")

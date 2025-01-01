@@ -142,6 +142,7 @@ func get_last_defined_target() -> MoveAnimSpriteFrame.MoveSpriteTarget:
 
 func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, posOffset: int) -> Vector2:
 	var pos = Vector2()
+	var cNode: CombatantNode = user
 	match spriteTarget:
 			MoveAnimSpriteFrame.MoveSpriteTarget.GLOBAL:
 				pos = globalMarker.global_position
@@ -151,11 +152,11 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 				pos = enemyTeam.global_position
 			MoveAnimSpriteFrame.MoveSpriteTarget.TARGET:
 				pos = target.global_position
+				cNode = target
 			MoveAnimSpriteFrame.MoveSpriteTarget.USER:
 				pos = user.spriteContainer.global_position
 			MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 				pos = startPos
-	var cNode: CombatantNode = target if spriteTarget == MoveAnimSpriteFrame.MoveSpriteTarget.TARGET else user
 	# scale particles to the user's scale
 	particleEmitter.scale.x = user.get_in_front_particle_scale()
 	# OR, commented out: scale particles to the scale of the reference point of this animation (usually user)
@@ -168,14 +169,17 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()
-		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
-			pos.x += round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
-		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
-			pos.x -= round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
-		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
-			pos.y -= round(0.5 * centerPos.y)
-		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
-			pos.y += round(0.5 * centerPos.y)
+		if posOffset == 0b1111: # if all offset bits are set: play at visual center of sprite instead of the "interaction center"
+			pos.y += cNode.get_feet_pos_translation().y / 2.0 + 8 # undo the feet position translation to place the sprite at visual center
+		else:
+			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
+				pos.x += round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
+			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
+				pos.x -= round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
+			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
+				pos.y -= round(0.5 * centerPos.y)
+			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
+				pos.y += round(0.5 * centerPos.y)
 	return pos
 
 func calc_rotation(sprFrame: MoveAnimSpriteFrame):
