@@ -10,7 +10,8 @@ enum MoveSpriteTarget {
 	CURRENT_POSITION = 5,
 }
 
-enum MoveSpriteOffset {
+## actual set value is 2^offset, these values are used for bit-shifting to test which flags are set
+enum MoveSpriteOffset { 
 	NONE = 0,
 	IN_FRONT = 1,
 	BEHIND = 2,

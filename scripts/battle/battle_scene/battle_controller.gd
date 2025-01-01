@@ -43,6 +43,15 @@ var battleMapsDir: String = 'res://prefabs/battle/battle_maps/'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	shade.visible = true
+	playerCombatant.leftSide = true
+	playerCombatant.role = CombatantNode.Role.ALLY
+	
+	minionCombatant.leftSide = true
+	minionCombatant.role = CombatantNode.Role.ALLY
+	
+	enemyCombatant1.role = CombatantNode.Role.ENEMY
+	enemyCombatant2.role = CombatantNode.Role.ENEMY
+	enemyCombatant3.role = CombatantNode.Role.ENEMY
 	battleLoaded = false
 	if PlayerResources.battleSaveFolder != '':
 		SaveHandler.load_data(PlayerResources.battleSaveFolder)
@@ -242,16 +251,17 @@ func load_into_battle():
 		enemyCombatant3.battleAi = state.enemyAi3
 		if enemyCombatant3.battleAi == null and enemyCombatant3.combatant != null and enemyCombatant3.combatant.get_ai() != null: # failsafe: copy AI from the combatant
 			enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
-
-	playerCombatant.leftSide = true
-	playerCombatant.role = CombatantNode.Role.ALLY
-	
-	minionCombatant.leftSide = true
-	minionCombatant.role = CombatantNode.Role.ALLY
-	
-	enemyCombatant1.role = CombatantNode.Role.ENEMY
-	enemyCombatant2.role = CombatantNode.Role.ENEMY
-	enemyCombatant3.role = CombatantNode.Role.ENEMY
+		# update escape/win state (in case we're loading in BATTLE_COMPLETE)
+		if state.playerEscaped:
+			battleUI.escapes = true
+			battleUI.battleComplete.playerEscapes = true
+			battleUI.playerWins = false
+			battleUI.battleComplete.playerWins = false
+		else:
+			battleUI.escapes = false
+			battleUI.battleComplete.playerEscapes = false
+			battleUI.playerWins =  PlayerResources.playerInfo.encounter.get_win_con_result(get_all_combatant_nodes(), state) == WinCon.TurnResult.PLAYER_WIN
+			battleUI.battleComplete.playerWins = battleUI.playerWins
 	
 	battleUI.commandingMinion = state.commandingMinion
 	battleUI.prevMenu = state.prevMenu
@@ -317,6 +327,7 @@ func save_data(save_path):
 		state.battleMapPath = battleMapPath
 		if state.battleMusic == null:
 			state.battleMusic = SceneLoader.audioHandler.get_cur_music()
+		state.playerEscaped = battleUI.escapes
 		update_state_turn_list()
 		state.save_data(save_path, state)
 

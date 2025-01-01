@@ -1,8 +1,8 @@
 extends Resource
 class_name PlayerMinions
 
-const minion_reqs: Dictionary = {
-	'king_rat': preload('res://gamedata/story_requirements/minions/king_rat_reqs.tres') as StoryRequirements
+var minion_reqs: Dictionary = {
+	'king_rat': load('res://gamedata/story_requirements/minions/king_rat_reqs.tres') as StoryRequirements
 }
 
 @export var minionList: Array[String] = []
@@ -156,7 +156,10 @@ func _load_data_each_minion(save_path):
 		var passesReqs: bool = true
 		if minion_reqs.has(minionName):
 			var reqs: StoryRequirements = minion_reqs.get(minionName) as StoryRequirements
-			passesReqs = reqs.is_valid()
+			if reqs != null:
+				passesReqs = reqs.is_valid()
+			else:
+				printerr('Minion load WARNING: story requirements for ', minionName, ' were null')
 		
 		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres') and passesReqs:
 			minion = ResourceLoader.load(save_path + minions_dir + minionName + '.tres', '', ResourceLoader.CACHE_MODE_IGNORE) as Combatant

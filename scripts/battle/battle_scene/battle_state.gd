@@ -42,6 +42,7 @@ enum Menu {
 @export var calcdStateIndex: int = 0
 @export var battleMapPath: String = ''
 @export var battleMusic: AudioStream = null
+@export var playerEscaped: bool = false
 
 @export_category("BattleData - Turns")
 @export var turnNumber: int = 1
@@ -69,6 +70,7 @@ func _init(
 	i_fobBtnEnabled = true,
 	i_battleMapPath = '',
 	i_battleMusic = null,
+	i_playerEscaped = false,
 	i_turnNumber = 1,
 	i_turnList: Array[Combatant] = [],
 	i_rewards: Array[Reward] = [],
@@ -95,6 +97,7 @@ func _init(
 	fobButtonEnabled = i_fobBtnEnabled
 	battleMapPath = i_battleMapPath
 	battleMusic = i_battleMusic
+	playerEscaped = i_playerEscaped
 	turnNumber = i_turnNumber
 	turnList = i_turnList
 	rewards = i_rewards

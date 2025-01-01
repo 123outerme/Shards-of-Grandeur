@@ -49,10 +49,14 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 	if animFinished:
 		okPressed = false
 		okBtn.disabled = false
+		#print('OK Button enabled results.gd:52')
+		#print_stack()
 		animFinished = false
 		
 		if battleUI.menuState == BattleState.Menu.RESULTS:
 			okBtn.disabled = true
+			#print('OK Button disabled results.gd:58')
+			#print_stack()
 			# update HP tags just to be safe, in case we missed any updates
 			battleUI.update_hp_tags() # TODO: I think this can be taken out?
 			
@@ -61,6 +65,8 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			
 			result = battleUI.battleController.turnExecutor.finish_turn()
 			okBtn.disabled = false
+			#print('OK Button enabled results.gd:68')
+			#print_stack()
 			update_battle_ui_with_results()
 			if result != WinCon.TurnResult.NOTHING:
 				battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
@@ -69,6 +75,8 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 	else:
 		okPressed = true
 		okBtn.disabled = true
+		#print('OK Button disabled results.gd:78')
+		#print_stack()
 
 func update_battle_ui_with_results():
 	if result != WinCon.TurnResult.NOTHING:
