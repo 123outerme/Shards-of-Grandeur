@@ -1152,6 +1152,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("31_fcrbo")]([])
@@ -1162,6 +1163,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("31_fcrbo")]([])
 
@@ -1225,7 +1227,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[node name="OverworldMap2" type="Node2D"]
+[node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_f3ods")
 metadata/_edit_vertical_guides_ = [1092.0, -1264.0]
 metadata/_edit_horizontal_guides_ = [-1219.0]

@@ -1,9 +1,21 @@
-[gd_scene load_steps=9 format=4 uid="uid://rqbwt66g5dfo"]
+[gd_scene load_steps=13 format=4 uid="uid://rqbwt66g5dfo"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_0mavv"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_67j14"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_o7lx7"]
+[ext_resource type="Resource" uid="uid://n611423kw2qx" path="res://gamedata/dialogue/interactables/ground_items/grandstone/gs_cracking_lab_sorcery_elixir.tres" id="4_jl5vv"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="5_cjn4e"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="6_pcq21"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="10_go8je"]
+
+[sub_resource type="Resource" id="Resource_1uu0b"]
+script = ExtResource("6_pcq21")
+item = ExtResource("5_cjn4e")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("4_jl5vv")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -69,6 +81,8 @@ tile_set = ExtResource("2_67j14")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_o7lx7")]
 position = Vector2(-56, -113)
+pickedUpItem = SubResource("Resource_1uu0b")
+saveName = "gs_cracking_lab_sorcery_elixir"
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
