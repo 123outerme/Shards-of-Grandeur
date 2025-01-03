@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=177 format=3 uid="uid://76bkyvv3yqid"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=188 format=3 uid="uid://76bkyvv3yqid"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_se7wf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_4gicn"]
@@ -1234,7 +1234,7 @@ endStartsShardLearnTutorial = false
 [sub_resource type="Resource" id="Resource_vd4xd"]
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
-texts = Array[String](["Now that I have seen you in action, @... I have a formal summons from the top of Giant Steppes. You must visit at once.", "We want to offer you assistance in resisting the Chain Legion's goals and freeing the Radiant Cavern from their hands."])
+texts = Array[String](["Now that I have seen you in action, @... I have a formal summons from the top of Giant Steppes. You must visit at once.", "We want to offer you assistance in resisting the Chain Legion's goals and freeing the Radiant Cavern from their hands.", "You even held your own against her highly advanced $highlight{Runes}color$... with our guidance, you will become a great warrior."])
 
 [sub_resource type="Resource" id="Resource_1eh8m"]
 script = ExtResource("1_se7wf")
@@ -1323,17 +1323,158 @@ animation = "stand"
 [sub_resource type="Resource" id="Resource_pcu0k"]
 script = ExtResource("6_43wi2")
 speaker = "@"
-texts = Array[String](["Of course. I'll help you put an end to this war. Grandstone only wants to piece back together our own city."])
+texts = Array[String](["$highlight{Runes}color$? Were those the... floating balls of magic, suspended in the air?"])
 
 [sub_resource type="Resource" id="Resource_uti80"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
-annotation = "the warlock hand stops talking, the player responds"
+annotation = "the warlock hand stops talking, the player responds and asks for clarification on Runes"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_rkujn")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_pcu0k")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_e32nj"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_n3vbl"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_5d5ky"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String]([""])
+
+[sub_resource type="Resource" id="Resource_uu7wk"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The Warlock Agent explains Runes"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_n3vbl")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_5d5ky")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_dqf5w"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_v5bnc"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_sg06v"]
+script = ExtResource("6_43wi2")
+speaker = "@"
+texts = Array[String](["I can't believe there was a whole branch of magic dedicated to a delayed store of power, and Grandstone never knew...", ""])
+
+[sub_resource type="Resource" id="Resource_yi8ts"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "the player responds in disbelief"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_v5bnc")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_sg06v")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_uvxmi"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_x0fb0"]
+script = ExtResource("6_43wi2")
+speaker = "@"
+texts = Array[String](["If there's magic like that I've never heard of, then I'm going to need your aid to stop the Chain Legion. I only want Grandstone to be pieced back together.", "So... I accept your offer! Take me to Giant Steppes, I'm ready to leave."])
+
+[sub_resource type="Resource" id="Resource_i8dov"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The player accepts the Warlock's offer"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_x0fb0")])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -1854,7 +1995,7 @@ invalidFromHavingItems = Array[ExtResource("3_u2753")]([])
 
 [resource]
 script = ExtResource("2_iiniu")
-cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs"), SubResource("Resource_1eh8m"), SubResource("Resource_wx4xg"), SubResource("Resource_k52qr"), SubResource("Resource_uti80"), SubResource("Resource_emgy0"), SubResource("Resource_ijeol"), SubResource("Resource_7d66s"), SubResource("Resource_yhjno"), SubResource("Resource_o32va"), SubResource("Resource_6f55t"), SubResource("Resource_sqpug"), SubResource("Resource_7yol3"), SubResource("Resource_wfw3x"), SubResource("Resource_tj371"), SubResource("Resource_tg2u8"), SubResource("Resource_iqfpn"), SubResource("Resource_eutu7"), SubResource("Resource_u1c0o"), SubResource("Resource_dctbf"), SubResource("Resource_bt7tn"), SubResource("Resource_0kige"), SubResource("Resource_hpw6f")])
+cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs"), SubResource("Resource_1eh8m"), SubResource("Resource_wx4xg"), SubResource("Resource_k52qr"), SubResource("Resource_uti80"), SubResource("Resource_e32nj"), SubResource("Resource_uu7wk"), SubResource("Resource_dqf5w"), SubResource("Resource_yi8ts"), SubResource("Resource_uvxmi"), SubResource("Resource_i8dov"), SubResource("Resource_emgy0"), SubResource("Resource_ijeol"), SubResource("Resource_7d66s"), SubResource("Resource_yhjno"), SubResource("Resource_o32va"), SubResource("Resource_6f55t"), SubResource("Resource_sqpug"), SubResource("Resource_7yol3"), SubResource("Resource_wfw3x"), SubResource("Resource_tj371"), SubResource("Resource_tg2u8"), SubResource("Resource_iqfpn"), SubResource("Resource_eutu7"), SubResource("Resource_u1c0o"), SubResource("Resource_dctbf"), SubResource("Resource_bt7tn"), SubResource("Resource_0kige"), SubResource("Resource_hpw6f")])
 saveName = "standstill_defeated_helia"
 storyRequirements = SubResource("Resource_c02c5")
 unlockCameraHoldAfter = true
