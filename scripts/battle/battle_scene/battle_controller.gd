@@ -66,6 +66,8 @@ func load_into_battle():
 				SceneLoader.curMapEntry = mapEntry
 				break
 	battleMapPath = SceneLoader.curMapEntry.get_battle_map_path()
+	if state != null and state.battleMapPath != '':
+		battleMapPath = state.battleMapPath
 	if PlayerResources.playerInfo.encounter != null:
 		if PlayerResources.playerInfo.encounter.battleMapPath != '':
 			battleMapPath = MapEntry.get_battle_map_scene_path(PlayerResources.playerInfo.encounter.battleMapPath)
