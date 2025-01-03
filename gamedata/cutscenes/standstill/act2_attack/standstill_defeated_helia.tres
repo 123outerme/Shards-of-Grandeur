@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=124 format=3 uid="uid://76bkyvv3yqid"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=177 format=3 uid="uid://76bkyvv3yqid"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_se7wf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_4gicn"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_vx6mq"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_0qdnw"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_float.gd" id="9_ggc05"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="10_ttsli"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="11_85rds"]
+[ext_resource type="Resource" uid="uid://bcpi8vp4styc2" path="res://gamedata/items/key_items/giant_steppes_teleport_stone.tres" id="12_kfbis"]
 
 [sub_resource type="Resource" id="Resource_d8n6l"]
 script = ExtResource("3_thpml")
@@ -22,7 +25,7 @@ animation = "talk"
 [sub_resource type="Resource" id="Resource_y30lf"]
 script = ExtResource("6_43wi2")
 speaker = "Helia"
-texts = Array[String](["You've always been a thorn in our side, @. At every step!", "But with this new Airship, not even an army of adventurers like you would be able to stop us!", "So, in truth, I got what I came here for. Everybody on the ship!"])
+texts = Array[String](["You've always been a thorn in our side, @... at every step!", "But with this new Airship, not even an army of adventurers like you would be able to stop us.", "So, in truth, I got what I came here for. Everybody on the ship!"])
 
 [sub_resource type="Resource" id="Resource_w2n1t"]
 script = ExtResource("1_se7wf")
@@ -959,7 +962,7 @@ animation = "talk"
 [sub_resource type="Resource" id="Resource_ro3yr"]
 script = ExtResource("6_43wi2")
 speaker = "Chain Legion Mage"
-texts = Array[String](["blah blah blah TODO later"])
+texts = Array[String](["Well, that certainly was some fine work! Good show, indeed."])
 
 [sub_resource type="Resource" id="Resource_h213s"]
 script = ExtResource("1_se7wf")
@@ -999,17 +1002,23 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_cp1mi"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "stand"
+
 [sub_resource type="Resource" id="Resource_pu3vg"]
 script = ExtResource("6_43wi2")
 speaker = "Lance"
-texts = Array[String](["grr AGNERY TODO later"])
+texts = Array[String](["Now that your buddies have left you behind, you shouldn't be talking so tough. I'll knock some sense into you!"])
 
 [sub_resource type="Resource" id="Resource_3jqeq"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
 annotation = "Lance angrily replies"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
-actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_cp1mi")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_pu3vg")])
@@ -1097,12 +1106,12 @@ animation = "stand"
 [sub_resource type="Resource" id="Resource_ixn2t"]
 script = ExtResource("6_43wi2")
 speaker = "Chain Legion Mage"
-texts = Array[String](["Oh my bad bro I'm not evil fr TODO later"])
+texts = Array[String](["What are you on about...? Oh. I see.", "You misunderstand me, Lance. I am no Chain Legion villain!"])
 
 [sub_resource type="Resource" id="Resource_rwsuj"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
-annotation = "Lance stops speaking, the Warlock hand replies"
+annotation = "Lance stops speaking, the Warlock agent replies"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sxo24"), SubResource("Resource_yel0g")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -1177,12 +1186,12 @@ animation = "talk"
 [sub_resource type="Resource" id="Resource_2261a"]
 script = ExtResource("6_43wi2")
 speaker = "???"
-texts = Array[String](["I am not a Chain Legion grunt, actually.", "I'm an Agent of the Warlock, and I've been tracking Helia's movements for a while."])
+texts = Array[String](["I'm an Agent of the Warlocks, and I've been tracking Helia's movements for a while."])
 
 [sub_resource type="Resource" id="Resource_5hho1"]
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
-texts = Array[String](["Blah blah blah TODO later"])
+texts = Array[String](["Young Lance, I was congratulating @ for knocking Helia down a peg. My apologies.", "She is one of my kin, a Warlock. She used to live up on Giant Steppes, where we are all forbidden to leave.", "After she ran away, I was tasked with keeping a tab on her... It's devastating to watch our magic be used like this."])
 
 [sub_resource type="Resource" id="Resource_c376j"]
 script = ExtResource("1_se7wf")
@@ -1208,6 +1217,601 @@ script = ExtResource("1_se7wf")
 frameLength = 0.1
 annotation = "wait for text box to be closed"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_vd4xd"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["Now that I have seen you in action, @... I have a formal summons from the top of Giant Steppes. You must visit at once.", "We want to offer you assistance in resisting the Chain Legion's goals and freeing the Radiant Cavern from their hands."])
+
+[sub_resource type="Resource" id="Resource_1eh8m"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The Warlock Agent continues talking as he walks to the player"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_vd4xd")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_mtjnc"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_4n87m"]
+script = ExtResource("7_vx6mq")
+value = Vector2(270, -104)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_wx4xg"]
+script = ExtResource("1_se7wf")
+frameLength = 1.0
+annotation = "The Warlock Agent walks to the player"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_4n87m")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_mtjnc")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_am1wm"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_k52qr"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The Warlock Agent stands talking, wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_am1wm")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rkujn"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_pcu0k"]
+script = ExtResource("6_43wi2")
+speaker = "@"
+texts = Array[String](["Of course. I'll help you put an end to this war. Grandstone only wants to piece back together our own city."])
+
+[sub_resource type="Resource" id="Resource_uti80"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "the warlock hand stops talking, the player responds"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_rkujn")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_pcu0k")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6tiap"]
+script = ExtResource("7_vx6mq")
+value = Vector2(250, -104)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_emgy0"]
+script = ExtResource("1_se7wf")
+frameLength = 1.0
+annotation = "The player walks up to meet the Warlock Agent"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_6tiap")])
+actorAnims = Array[ExtResource("3_thpml")]([ExtResource("10_ttsli")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ijeol"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The player stands, wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([ExtResource("11_85rds")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_7d66s"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Really wait for text box to be closed this time"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xpdq8"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_g84aw"]
+script = ExtResource("4_kg844")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/Lance"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_4k60l"]
+script = ExtResource("6_43wi2")
+speaker = "Lance"
+texts = Array[String](["@, shouldn't you tell Dr. Ildran and Dr. Hudson about your new course before you leave?"])
+
+[sub_resource type="Resource" id="Resource_yhjno"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Lance pipes up, the player turns to him"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_xpdq8")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([SubResource("Resource_g84aw")])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_4k60l")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_o32va"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_5gf6q"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/Lance"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_dqbsc"]
+script = ExtResource("4_kg844")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/WarlockAgent"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_maujh"]
+script = ExtResource("6_43wi2")
+speaker = "@"
+texts = Array[String](["If Dr. Ildran knows my destination, what will that accomplish besides delaying the journey?", "And besides, if this partnership will end the Radiant War, then anyone in Grandstone would tell me to go."])
+
+[sub_resource type="Resource" id="Resource_6f55t"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Lance stands, the player turns back to the Warlock Hand and speaks"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_5gf6q")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([SubResource("Resource_dqbsc")])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_maujh")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_sqpug"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_rbnqw"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_rxaml"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["Either way will do, but none may accompany you to Giant Steppes. We are a secluded people, and do not often interact with outsiders.", "So if you're all ready, take this Teleport Stone and we will return to Giant Steppes at once."])
+
+[sub_resource type="Resource" id="Resource_7yol3"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The warlock agent speaks"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_rbnqw")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_rxaml")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_wfw3x"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_w4y1i"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_avy7q"]
+script = ExtResource("6_43wi2")
+speaker = "@"
+texts = Array[String](["I can't. Commander Etreus cast a spell on me that won't let any Teleport Stones summon their portals."])
+
+[sub_resource type="Resource" id="Resource_tj371"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "the player tells the Warlock Agent they can't teleport anymore"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_w4y1i")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_avy7q")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+givesItem = ExtResource("12_kfbis")
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_tg2u8"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_4boee"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_f6yh1"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "walkBackwards"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_74ihn"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["Very well, then. Take the long road to meet us.", "Go $highlight{East of the Hilltop Forest, across the bridge, and due North}color$. We will be awaiting your arrival."])
+
+[sub_resource type="Resource" id="Resource_iqfpn"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The Warlock Agent replies; enable backwards walking for his next movement"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_f6yh1")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_4boee")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_74ihn")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_eutu7"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_lb04a"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "walk"
+
+[sub_resource type="Resource" id="Resource_ycslu"]
+script = ExtResource("7_vx6mq")
+value = Vector2(285, -104)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_u1c0o"]
+script = ExtResource("1_se7wf")
+frameLength = 1.0
+annotation = "The Warlock Agent walks backwards"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_ycslu")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_lb04a")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_j568q"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_8cltu"]
+script = ExtResource("8_0qdnw")
+value = false
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "walkBackwards"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_kbv3w"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["Farewell, @. We will meet again soon, after you brave the Quiet Tundra.", "Sounds nice, really... a quiet tundra and all... but the cold will be harsh, and the wildlife dangerous.", "You can turn the tide of your Radiant War, @, I know it. We will make sure this comes to pass!"])
+
+[sub_resource type="Resource" id="Resource_dctbf"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "The Warlock Agent stands and speaks a goodbye"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_8cltu")])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_j568q")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_kbv3w")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_bt7tn"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_sl0xs"]
+script = ExtResource("3_thpml")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "teleport"
+
+[sub_resource type="Resource" id="Resource_0kige"]
+script = ExtResource("1_se7wf")
+frameLength = 2.2
+annotation = "With that the Warlock Agent teleports away (2.333 secs or 14 frames at 6 FPS)"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sl0xs")])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_6nhe6"]
+script = ExtResource("8_0qdnw")
+value = true
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_hpw6f"]
+script = ExtResource("1_se7wf")
+frameLength = 0.1
+annotation = "Hide the Warlock Agent"
+actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_6nhe6")])
 actorAnims = Array[ExtResource("3_thpml")]([])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
@@ -1250,7 +1854,7 @@ invalidFromHavingItems = Array[ExtResource("3_u2753")]([])
 
 [resource]
 script = ExtResource("2_iiniu")
-cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs")])
+cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs"), SubResource("Resource_1eh8m"), SubResource("Resource_wx4xg"), SubResource("Resource_k52qr"), SubResource("Resource_uti80"), SubResource("Resource_emgy0"), SubResource("Resource_ijeol"), SubResource("Resource_7d66s"), SubResource("Resource_yhjno"), SubResource("Resource_o32va"), SubResource("Resource_6f55t"), SubResource("Resource_sqpug"), SubResource("Resource_7yol3"), SubResource("Resource_wfw3x"), SubResource("Resource_tj371"), SubResource("Resource_tg2u8"), SubResource("Resource_iqfpn"), SubResource("Resource_eutu7"), SubResource("Resource_u1c0o"), SubResource("Resource_dctbf"), SubResource("Resource_bt7tn"), SubResource("Resource_0kige"), SubResource("Resource_hpw6f")])
 saveName = "standstill_defeated_helia"
 storyRequirements = SubResource("Resource_c02c5")
 unlockCameraHoldAfter = true
