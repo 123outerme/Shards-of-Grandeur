@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dnghhx8h5dgtw"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_io756"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rysse"]
+
+[sub_resource type="Resource" id="Resource_82t2o"]
+script = ExtResource("2_io756")
+name = "TBD"
+description = ""
+locations = Array[int]([])
+type = -1
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_rysse")]([])
+inProgressDialogue = Array[ExtResource("3_rysse")]([])
+
+[resource]
+script = ExtResource("1_ywcmt")
+questName = "Rebuild Standstill"
+description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_82t2o")])
+isMainQuest = false
+advanceActAfterComplete = false

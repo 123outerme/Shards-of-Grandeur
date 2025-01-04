@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=10 format=3 uid="uid://bj5oava6twfyq"]
+
+[ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_2hats"]
+[ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_7yktm"]
+[ext_resource type="Resource" uid="uid://cl71ahl7hjw1d" path="res://gamedata/items/armor/darksteel_helm.tres" id="3_nnjj6"]
+[ext_resource type="Resource" uid="uid://rct468lp6aej" path="res://gamedata/items/weapon/darksteel_sword.tres" id="4_jhgu5"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_2byhs"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_xtlge"]
+
+[sub_resource type="Resource" id="Resource_ovr6d"]
+script = ExtResource("2_7yktm")
+sinceVersion = "0.2.3"
+item = ExtResource("3_nnjj6")
+count = 1
+
+[sub_resource type="Resource" id="Resource_t0pwr"]
+script = ExtResource("6_xtlge")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Apprenticeship"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_2byhs")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_2byhs")]([])
+
+[sub_resource type="Resource" id="Resource_wwlcl"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_t0pwr")
+sinceVersion = "0.2.3"
+item = ExtResource("4_jhgu5")
+count = 1
+
+[resource]
+script = ExtResource("1_2hats")
+shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl")])

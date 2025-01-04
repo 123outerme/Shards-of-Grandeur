@@ -16,6 +16,9 @@ enum MapLocation {
 	FORBIDDEN_DESERT_SOUTH = 41, ## Forbidden Desert, south of Nomad Camp
 	FORBIDDEN_DESERT_EAST = 42, ## Forbidden Desert, east of Nomad Camp
 	FORBIDDEN_DESERT_NORTH = 43, ## Forbidden Desert, north of Nomad Camp
+	GIANT_STEPPES = 50, ## Giant Steppes
+	QUIET_TUNDRA = 51, ## Quiet Tundra
+	STEELSPIRE = 60, ## Steelspire
 }
 
 @export var locationName: String = ''

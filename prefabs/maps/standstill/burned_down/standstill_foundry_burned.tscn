@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dyya5ljxgcvlx"]
+[gd_scene load_steps=20 format=4 uid="uid://dyya5ljxgcvlx"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2ghcv"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_kph06"]
@@ -8,9 +8,14 @@
 [ext_resource type="Resource" uid="uid://cb8c43nbn53ao" path="res://gamedata/dialogue/standstill/standstill_sign/alessias_forge_sign.tres" id="6_iexth"]
 [ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="7_6f7de"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="8_7bh2q"]
+[ext_resource type="SpriteFrames" uid="uid://bwkavw4libfps" path="res://graphics/animations/a_alessia_burned_collapsed.tres" id="9_ls1j7"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="10_bjjly"]
+[ext_resource type="SpriteFrames" uid="uid://b0ldevl74c07y" path="res://graphics/animations/a_alessia_in_bed.tres" id="10_p0awk"]
+[ext_resource type="SpriteFrames" uid="uid://c6uukt3gc45t2" path="res://graphics/animations/a_lance_burned.tres" id="10_yywe0"]
+[ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="11_pb102"]
+[ext_resource type="Resource" uid="uid://bj5oava6twfyq" path="res://gamedata/shops/standstill/lance_foundry.tres" id="12_oygwg"]
 
-[sub_resource type="Resource" id="Resource_3iiky"]
+[sub_resource type="Resource" id="Resource_8c87u"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "default"
@@ -38,6 +43,52 @@ size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsmwf"]
 size = Vector2(24, 14)
+
+[sub_resource type="Resource" id="Resource_sr6te"]
+script = ExtResource("4_eo5tj")
+saveName = "npc"
+spriteState = "burned_collapsed"
+animation = "stand"
+position = Vector2(148, -127)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_lthbb"]
+script = ExtResource("4_eo5tj")
+saveName = "npc"
+spriteState = "burned"
+animation = "stand"
+position = Vector2(166, -117)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2ghcv")
@@ -82,7 +133,7 @@ tile_set = ExtResource("2_kph06")
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_55211")]
 position = Vector2(-68, 16)
 displayName = "Sign"
-data = SubResource("Resource_3iiky")
+data = SubResource("Resource_8c87u")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -113,9 +164,76 @@ visible = false
 [node name="MoveTriggerShape" parent="TilemapRoot/ArmorySign/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="Alessia" parent="TilemapRoot" instance=ExtResource("3_55211")]
+position = Vector2(-88, -22)
+displayName = "Alessia"
+saveName = "alessia_standstill_foundry_burned"
+spriteState = "in_bed"
+stateSpritesDict = {
+"burned_collapsed": ExtResource("9_ls1j7"),
+"default": null,
+"in_bed": ExtResource("10_p0awk")
+}
+data = SubResource("Resource_sr6te")
+
+[node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
+position = Vector2(0, -6)
+sprite_frames = ExtResource("10_p0awk")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Alessia" index="1"]
+position = Vector2(0, 3.5)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="TalkArea" parent="TilemapRoot/Alessia" index="3"]
+position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Alessia/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/Alessia" index="4"]
+visible = false
+
+[node name="Lance" parent="TilemapRoot" instance=ExtResource("3_55211")]
+position = Vector2(-40, -44)
+displayName = "Lance"
+saveName = "lance_standstill_foundry_burned"
+spriteState = "burned"
+stateSpritesDict = {
+"burned": ExtResource("10_yywe0"),
+"default": ExtResource("11_pb102")
+}
+data = SubResource("Resource_lthbb")
+npcShop = ExtResource("12_oygwg")
+
+[node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
+sprite_frames = ExtResource("10_yywe0")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Lance" index="1"]
+position = Vector2(0, 3.5)
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="NavAgent" parent="TilemapRoot/Lance" index="2"]
+waitsForMoveTrigger = false
+
+[node name="TalkArea" parent="TilemapRoot/Lance" index="3"]
+position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Lance/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/Lance" index="4"]
+visible = false
+
+[node name="MoveTriggerShape" parent="TilemapRoot/Lance/MoveTrigger" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [node name="WarpZone" parent="." instance=ExtResource("10_bjjly")]
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(168, -140)
 
 [editable path="TilemapRoot/ArmorySign"]
+[editable path="TilemapRoot/Alessia"]
+[editable path="TilemapRoot/Lance"]

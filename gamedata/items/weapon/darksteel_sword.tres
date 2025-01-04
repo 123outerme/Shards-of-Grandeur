@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://rct468lp6aej"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_7og6f"]
+[ext_resource type="Texture2D" uid="uid://dh7udngah2xke" path="res://graphics/items/weapons/darksteel_sword.png" id="1_kssma"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_iybji"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_473a8"]
+
+[sub_resource type="Resource" id="Resource_d8vjn"]
+script = ExtResource("3_iybji")
+element = 7
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_5m1pj"]
+script = ExtResource("4_473a8")
+physAttackIncrease = 2
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 1
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_iybji")]([SubResource("Resource_d8vjn")])
+
+[resource]
+script = ExtResource("1_7og6f")
+statChanges = SubResource("Resource_5m1pj")
+timing = 1
+bonusOrbs = 1
+itemSprite = ExtResource("1_kssma")
+itemName = "Darksteel Sword"
+itemType = 2
+itemDescription = "This curved sword is made out of a special metal and a rigorous smithing process. The blacksmith pounds at the metal furiously in order to infuse Darkness into the helm."
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

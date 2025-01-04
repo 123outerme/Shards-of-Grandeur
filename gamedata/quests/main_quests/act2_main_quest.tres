@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dk34fxbbodqua"]
+[gd_resource type="Resource" script_class="Quest" load_steps=12 format=3 uid="uid://dk34fxbbodqua"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_suf47"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_7evvs"]
@@ -64,7 +64,7 @@ description = "A group of Chain Legion Mages have descended on Standstill! Repel
 locations = Array[int]([20])
 type = 3
 count = 1
-objectiveName = ""
+objectiveName = "standstill_defeated_helia"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
@@ -72,10 +72,32 @@ customStatusStr = "Repel the Attackers!"
 turnInDialogue = Array[ExtResource("3_jht3b")]([])
 inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
+[sub_resource type="Resource" id="Resource_858ry"]
+script = ExtResource("4_npd1k")
+experience = 150
+gold = 20
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_rfapv"]
+script = ExtResource("2_7evvs")
+name = "They Must Go On"
+description = "Lance wants to speak to you inside the Standstill Armory."
+reward = SubResource("Resource_858ry")
+locations = Array[int]([20])
+type = 0
+count = 1
+objectiveName = "lance_standstill_foundry_burned#"
+turnInNames = Array[String](["lance_standstill_foundry_burned"])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+
 [resource]
 script = ExtResource("1_suf47")
 questName = "Flames of Combat"
 description = "The Elder Nomad warned you that Standstill will soon face a devastating blaze. Will this Radiant War consume all in the flames, or is there some way to put out the fire for good?"
-steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q"), SubResource("Resource_dwyfj")])
+steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q"), SubResource("Resource_dwyfj"), SubResource("Resource_rfapv")])
 isMainQuest = true
-advanceActAfterComplete = true
+advanceActAfterComplete = false

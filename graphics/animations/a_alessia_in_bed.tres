@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b0ldevl74c07y"]
+
+[ext_resource type="Texture2D" uid="uid://ccrua4nbwjd47" path="res://graphics/characters/alessia/alessia_burned_in_bed.png" id="1_3s4tc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uioj"]
+atlas = ExtResource("1_3s4tc")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uioj")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uioj")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uioj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
