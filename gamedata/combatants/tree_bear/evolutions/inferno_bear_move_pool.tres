@@ -1,23 +1,27 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=5 format=3 uid="uid://by2fe5sgba7e3"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://by2fe5sgba7e3"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_sdt3s"]
 [ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="2_77ntk"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_hp1nd"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_i603n"]
+[ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain/stamina_drain.tres" id="3_yfcar"]
+[ext_resource type="Resource" uid="uid://dqrx2sqrlujkj" path="res://gamedata/moves/enrage/enrage.tres" id="4_farnh"]
+[ext_resource type="Resource" uid="uid://c4mkngg5jwoxd" path="res://gamedata/moves/searing_rune/searing_rune.tres" id="6_dqbe5"]
+[ext_resource type="Resource" uid="uid://owxtyn0bem0" path="res://gamedata/moves/burning_heart/burning_heart.tres" id="6_u3cjb"]
 
 [resource]
 script = ExtResource("2_i603n")
-pool = Array[ExtResource("1_sdt3s")]([ExtResource("2_hp1nd"), ExtResource("2_77ntk")])
+pool = Array[ExtResource("1_sdt3s")]([ExtResource("2_hp1nd"), ExtResource("3_yfcar"), ExtResource("4_farnh"), ExtResource("2_77ntk"), ExtResource("6_u3cjb"), ExtResource("6_dqbe5")])
 signatureMoves = Array[ExtResource("1_sdt3s")]([])
-preferredMove1Role = 0
+preferredMove1Role = 1
 preferredMove1DmgType = -1
 preferredMove1Element = 2
-preferredMove2Role = 0
+preferredMove2Role = 5
 preferredMove2DmgType = -1
 preferredMove2Element = 2
-preferredMove3Role = 0
+preferredMove3Role = 6
 preferredMove3DmgType = -1
 preferredMove3Element = 0
-preferredMove4Role = 0
+preferredMove4Role = 4
 preferredMove4DmgType = -1
 preferredMove4Element = 0

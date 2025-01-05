@@ -8,6 +8,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 @export var playSurge: bool = false
 @export var item: Item = null
 @export var targetCombatant: Combatant = null
+@export var evolution: Evolution = null
 @export var moveCombatantsIfAlone: bool = false
 
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
@@ -24,6 +25,7 @@ func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	moveLearnAnimController.customTarget = targetCombatant
+	moveLearnAnimController.customTargetEvolution = evolution
 	moveLearnAnimController.move = move
 	moveLearnAnimController.moveCombatantsIfAlone = moveCombatantsIfAlone
 	moveLearnAnimController.useItem = item

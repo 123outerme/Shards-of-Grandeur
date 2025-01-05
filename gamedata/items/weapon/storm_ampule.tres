@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=9 format=3 uid="uid://baxahxj1rxfy1"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="1_emo7l"]
+[ext_resource type="Texture2D" uid="uid://c4tiih5t76wnx" path="res://graphics/items/weapons/storm_ampule.png" id="1_pgaw8"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_212gv"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_ndlmj"]
+
+[sub_resource type="Resource" id="Resource_co362"]
+script = ExtResource("3_212gv")
+element = 4
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_vq4ov"]
+script = ExtResource("3_212gv")
+element = 1
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_iap4j"]
+script = ExtResource("3_212gv")
+element = 3
+multiplier = 1.15
+
+[sub_resource type="Resource" id="Resource_x5v8n"]
+script = ExtResource("4_ndlmj")
+physAttackIncrease = 0
+magicAttackIncrease = 3
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_212gv")]([SubResource("Resource_co362"), SubResource("Resource_vq4ov"), SubResource("Resource_iap4j")])
+
+[resource]
+script = ExtResource("1_emo7l")
+statChanges = SubResource("Resource_x5v8n")
+timing = 0
+bonusOrbs = 2
+itemSprite = ExtResource("1_pgaw8")
+itemName = "Storm Ampule"
+itemType = 2
+itemDescription = "A curious glass container, with a miniature thunderstorm sealed  inside with Magic. When you hold the glass, you can hear the wind howl, the rain pour, and the crackle of thunder."
+cost = 40
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

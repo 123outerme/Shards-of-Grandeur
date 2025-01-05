@@ -44,7 +44,7 @@ class_name StoryRequirements
 ## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
 @export var prereqPuzzleStates: Dictionary = {}
 
-## specified by "<base combatant save name>#<evolution save name>"
+## specified by "<base combatant save name>#<evolution save name>". If only one entry and blank, will be treated as "have any evolutions been discovered?"
 @export var prereqDiscoveredEvolutions: Array[String] = []
 
 ## specified by "<follower ID>"
@@ -201,9 +201,13 @@ func is_valid() -> bool:
 			if prereqStates[i] != '' and (i >= len(curStates) or curStates[i] != prereqStates[i]):
 				return false
 	
-	for fullEvoSaveName: String in prereqDiscoveredEvolutions:
-		if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
+	if len(prereqDiscoveredEvolutions) == 1 and prereqDiscoveredEvolutions[0] == '':
+		if len(PlayerResources.playerInfo.evolutionsFound) == 0:
 			return false
+	else:
+		for fullEvoSaveName: String in prereqDiscoveredEvolutions:
+			if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
+				return false
 	
 	for followerId: String in prereqHavingFollowers:
 		if not PlayerResources.playerInfo.has_active_follower(followerId):

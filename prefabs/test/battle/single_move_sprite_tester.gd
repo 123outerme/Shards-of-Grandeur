@@ -2,6 +2,7 @@ extends Node2D
 
 @export var moveAnimSprite: MoveAnimSprite = null
 @export var targetCombatant: Combatant = null
+@export var evolution: Evolution = null
 
 var targetCombatantNode: CombatantNode = null
 var userCombatantNode: CombatantNode = null
@@ -18,6 +19,7 @@ func _ready() -> void:
 	tempMove = Move.new('Temp Move', 1, Move.DmgCategory.PHYSICAL, Move.Element.NONE, tempEffect, tempEffect)
 	moveLearnAnimController.move = tempMove
 	moveLearnAnimController.customTarget = targetCombatant
+	moveLearnAnimController.customTargetEvolution = evolution
 	moveLearnAnimController.playAnimAfterLoad = false
 	moveLearnAnimController.load_move_learn_animation()
 	userCombatantNode = moveLearnAnimController.battleAnimManager.playerCombatantNode

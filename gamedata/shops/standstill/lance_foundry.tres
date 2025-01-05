@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=10 format=3 uid="uid://bj5oava6twfyq"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=24 format=3 uid="uid://bj5oava6twfyq"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_2hats"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_7yktm"]
@@ -6,6 +6,10 @@
 [ext_resource type="Resource" uid="uid://rct468lp6aej" path="res://gamedata/items/weapon/darksteel_sword.tres" id="4_jhgu5"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_2byhs"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_xtlge"]
+[ext_resource type="Resource" uid="uid://cee5cmqs38if0" path="res://gamedata/items/weapon/thunder_mace.tres" id="7_cv4yy"]
+[ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="8_3ltlq"]
+[ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="9_qcymx"]
+[ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="10_am35s"]
 
 [sub_resource type="Resource" id="Resource_ovr6d"]
 script = ExtResource("2_7yktm")
@@ -46,6 +50,126 @@ sinceVersion = "0.2.3"
 item = ExtResource("4_jhgu5")
 count = 1
 
+[sub_resource type="Resource" id="Resource_ul4tl"]
+script = ExtResource("2_7yktm")
+sinceVersion = "0.2.3"
+item = ExtResource("7_cv4yy")
+count = 1
+
+[sub_resource type="Resource" id="Resource_n066u"]
+script = ExtResource("5_2byhs")
+item = ExtResource("8_3ltlq")
+count = 1
+
+[sub_resource type="Resource" id="Resource_dogr3"]
+script = ExtResource("6_xtlge")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_2byhs")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_2byhs")]([SubResource("Resource_n066u")])
+
+[sub_resource type="Resource" id="Resource_xyfhi"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_dogr3")
+sinceVersion = "0.2.3"
+item = ExtResource("8_3ltlq")
+count = 1
+
+[sub_resource type="Resource" id="Resource_qebuo"]
+script = ExtResource("5_2byhs")
+item = ExtResource("9_qcymx")
+count = 1
+
+[sub_resource type="Resource" id="Resource_0kkgy"]
+script = ExtResource("6_xtlge")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_2byhs")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_2byhs")]([SubResource("Resource_qebuo")])
+
+[sub_resource type="Resource" id="Resource_u4gnw"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_0kkgy")
+sinceVersion = "0.2.3"
+item = ExtResource("9_qcymx")
+count = 1
+
+[sub_resource type="Resource" id="Resource_f4b0v"]
+script = ExtResource("5_2byhs")
+item = ExtResource("10_am35s")
+count = 1
+
+[sub_resource type="Resource" id="Resource_c6ksc"]
+script = ExtResource("6_xtlge")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_2byhs")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_2byhs")]([SubResource("Resource_f4b0v")])
+
+[sub_resource type="Resource" id="Resource_tiwki"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_c6ksc")
+sinceVersion = ""
+item = ExtResource("10_am35s")
+count = 1
+
 [resource]
 script = ExtResource("1_2hats")
-shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl")])
+shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl"), SubResource("Resource_ul4tl"), SubResource("Resource_xyfhi"), SubResource("Resource_u4gnw"), SubResource("Resource_tiwki")])

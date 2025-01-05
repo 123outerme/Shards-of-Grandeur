@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dli2rm0qn6p1h"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mptw7"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_82dgt"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_gwxgc"]
+[ext_resource type="Resource" uid="uid://b44gd5x8y3guv" path="res://gamedata/dialogue/lance/lance_foundry_turnin_mainquest.tres" id="3_jflhq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_wtio2"]
+[ext_resource type="Resource" uid="uid://dnghhx8h5dgtw" path="res://gamedata/quests/standstill/rebuild_standstill.tres" id="4_em02s"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_u3swf"]
+
+[sub_resource type="Resource" id="Resource_26jgs"]
+script = ExtResource("2_82dgt")
+choiceBtn = "I Will."
+leadsTo = ExtResource("3_jflhq")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_u3swf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_bm1w5"]
+script = ExtResource("1_mptw7")
+lines = Array[String](["Thank you, @. First thing I need, is <TODO>.", "But, there's no point in rebuilding if they can just fly back over on their Airship and do it again. Defeat the Chain Legion, too... for us."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_82dgt")]([SubResource("Resource_26jgs")])
+
+[resource]
+script = ExtResource("3_wtio2")
+entryId = ""
+items = Array[ExtResource("1_mptw7")]([SubResource("Resource_bm1w5")])
+ordStoryRequirements = Array[ExtResource("2_gwxgc")]([])
+startsQuest = ExtResource("4_em02s")
+closesDialogue = false
+fullHealsPlayer = false

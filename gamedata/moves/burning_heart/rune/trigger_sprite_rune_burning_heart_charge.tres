@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://b2bgowbjm3h46"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0pdi0"]
+[ext_resource type="Resource" uid="uid://cu5shd1po03c0" path="res://gamedata/moves/searing_rune/particles_searing_rune.tres" id="2_q7hqa"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_w7l77"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="3_bdy8t"]
+[ext_resource type="SpriteFrames" uid="uid://btc6ppix8u7w5" path="res://graphics/moves/fire/a_burning_heart.tres" id="3_m6ql6"]
+
+[sub_resource type="Curve" id="Curve_nqpc5"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_im6w0"]
+min_value = -0.5
+max_value = 1.5
+_data = [Vector2(0, -0.5), 0.0, 2.8, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_kii1l"]
+script = ExtResource("1_0pdi0")
+annotation = "move to combatant's visual center"
+animation = "rune"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 15
+xCurve = SubResource("Curve_nqpc5")
+yCurve = SubResource("Curve_im6w0")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_3s1qq"]
+script = ExtResource("1_0pdi0")
+annotation = "play trigger animation"
+animation = "rune_trigger"
+duration = 1.8
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_q7hqa")
+sfx = ExtResource("3_bdy8t")
+
+[resource]
+script = ExtResource("2_w7l77")
+spriteFrames = ExtResource("3_m6ql6")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_0pdi0")]([SubResource("Resource_kii1l"), SubResource("Resource_3s1qq")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

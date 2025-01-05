@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://1oh18gfee81t"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_6eim3"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_dpg56"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_lf6f7"]
+[ext_resource type="SpriteFrames" uid="uid://btc6ppix8u7w5" path="res://graphics/moves/fire/a_burning_heart.tres" id="3_qihn3"]
+
+[sub_resource type="Curve" id="Curve_iy0dy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_8hptp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_87yqc"]
+script = ExtResource("1_6eim3")
+annotation = "set up position over target, visual center"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 15
+xCurve = SubResource("Curve_iy0dy")
+yCurve = SubResource("Curve_8hptp")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_gk4o1"]
+script = ExtResource("1_6eim3")
+annotation = "play animation (16 frames at 7FPS, plus a blank frame at the end)"
+animation = "burning_heart"
+duration = 2.3
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_dpg56")
+
+[resource]
+script = ExtResource("2_lf6f7")
+spriteFrames = ExtResource("3_qihn3")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_6eim3")]([SubResource("Resource_87yqc"), SubResource("Resource_gk4o1")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

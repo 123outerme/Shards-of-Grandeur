@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://bkplhsrdj7we2"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=19 format=3 uid="uid://bkplhsrdj7we2"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_vvce4"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_60rx2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="5_cstly"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="6_laxqu"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="7_0u38p"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/rune_layer.gd" id="7_l00id"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="8_t3ruf"]
 
 [sub_resource type="Resource" id="Resource_6q63p"]
@@ -39,6 +40,13 @@ mostOrbsWeight = 1.15
 weight = 0.3
 subLayers = Array[ExtResource("1_vvce4")]([])
 
+[sub_resource type="Resource" id="Resource_38rpt"]
+script = ExtResource("7_l00id")
+triggerWeight = 1.25
+setWeight = 1.15
+weight = 0.5
+subLayers = Array[ExtResource("1_vvce4")]([])
+
 [sub_resource type="Resource" id="Resource_ohypy"]
 script = ExtResource("7_0u38p")
 weight = 0.25
@@ -47,12 +55,12 @@ subLayers = Array[ExtResource("1_vvce4")]([])
 [sub_resource type="Resource" id="Resource_i4nkh"]
 script = ExtResource("8_t3ruf")
 signatureWeight = 1.25
-weight = 0.3
+weight = 0.35
 subLayers = Array[ExtResource("1_vvce4")]([])
 
 [resource]
 script = ExtResource("2_60rx2")
-layers = Array[ExtResource("1_vvce4")]([SubResource("Resource_day2h"), SubResource("Resource_chbg8"), SubResource("Resource_7tdbh"), SubResource("Resource_q0i6p"), SubResource("Resource_ohypy"), SubResource("Resource_i4nkh")])
+layers = Array[ExtResource("1_vvce4")]([SubResource("Resource_day2h"), SubResource("Resource_chbg8"), SubResource("Resource_7tdbh"), SubResource("Resource_q0i6p"), SubResource("Resource_38rpt"), SubResource("Resource_ohypy"), SubResource("Resource_i4nkh")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.4
 lastMovesEffect = 0

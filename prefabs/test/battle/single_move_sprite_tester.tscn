@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk5gphn7ma6ij"]
+[gd_scene load_steps=7 format=3 uid="uid://bk5gphn7ma6ij"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/single_move_sprite_tester.gd" id="1_sjw45"]
-[ext_resource type="Resource" uid="uid://lbxkaadm56ej" path="res://gamedata/combatants/helia/helia.tres" id="2_ltq3s"]
-[ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/burning_rune/rune/trigger_sprite_rune_burning_rune_charge.tres" id="2_w7kp0"]
+[ext_resource type="Resource" uid="uid://ct5mgs5qt8lsa" path="res://gamedata/moves/burning_heart/rune/sprite_rune_burning_heart_charge.tres" id="2_u3205"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="2_y6kky"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_3xa8h"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="3_casjv"]
+[ext_resource type="Resource" uid="uid://1vsxdl2n7c4p" path="res://gamedata/combatants/tree_bear/evolutions/evolution_inferno_bear.tres" id="4_8kt1b"]
 
 [node name="SingleMoveSpriteTester" type="Node2D"]
 script = ExtResource("1_sjw45")
-moveAnimSprite = ExtResource("2_w7kp0")
-targetCombatant = ExtResource("2_ltq3s")
+moveAnimSprite = ExtResource("2_u3205")
+targetCombatant = ExtResource("3_3xa8h")
+evolution = ExtResource("4_8kt1b")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("2_y6kky")]
 anchors_preset = 8

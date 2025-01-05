@@ -1,13 +1,61 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dnapsfibsv6gg"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://dnapsfibsv6gg"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_jtxqq"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_or5fk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_x2d6y"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jn8mf"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rjn8u"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_p6qnr"]
+[ext_resource type="Resource" uid="uid://b1ec5f1whe7jr" path="res://gamedata/dialogue/lance/lance_foundry_lateaccept_rebuild.tres" id="5_rswfu"]
+
+[sub_resource type="Resource" id="Resource_myiep"]
+script = ExtResource("2_x2d6y")
+choiceBtn = "Never Mind."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jn8mf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_eyqkp"]
+script = ExtResource("4_p6qnr")
+opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
+choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jn8mf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_qqsy5"]
+script = ExtResource("2_x2d6y")
+choiceBtn = "I'll Help Rebuild."
+leadsTo = ExtResource("5_rswfu")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jn8mf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_sq56p"]
+script = ExtResource("1_jtxqq")
+lines = Array[String](["Well, @, what do you need?"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_x2d6y")]([SubResource("Resource_myiep"), SubResource("Resource_eyqkp"), SubResource("Resource_qqsy5")])
 
 [resource]
 script = ExtResource("3_rjn8u")
 entryId = ""
-items = Array[ExtResource("1_jtxqq")]([])
+items = Array[ExtResource("1_jtxqq")]([SubResource("Resource_sq56p")])
 ordStoryRequirements = Array[ExtResource("2_or5fk")]([])
 closesDialogue = false
 fullHealsPlayer = false

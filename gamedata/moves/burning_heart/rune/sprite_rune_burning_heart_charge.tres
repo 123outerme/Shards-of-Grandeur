@@ -1,0 +1,150 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=19 format=3 uid="uid://ct5mgs5qt8lsa"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_lnl5y"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_1y1qo"]
+[ext_resource type="SpriteFrames" uid="uid://btc6ppix8u7w5" path="res://graphics/moves/fire/a_burning_heart.tres" id="3_xmnoq"]
+
+[sub_resource type="Curve" id="Curve_2je6x"]
+_data = [Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_823kv"]
+_data = [Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_r2sox"]
+script = ExtResource("1_lnl5y")
+annotation = "set up position top-front of combatant while faded out"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -12)
+offset = 5
+xCurve = SubResource("Curve_2je6x")
+yCurve = SubResource("Curve_823kv")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_w0h4d"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tqc0a"]
+_data = [Vector2(0, 0), 0.0, 3.41, 0, 1, Vector2(0.293255, 1), 0.0, 0.0, 0, 0, Vector2(0.703812, 0.0201381), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.30825, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_ohj67"]
+script = ExtResource("1_lnl5y")
+annotation = "move to center while fading in"
+animation = "rune"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -14)
+offset = 4
+xCurve = SubResource("Curve_w0h4d")
+yCurve = SubResource("Curve_tqc0a")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_53dpr"]
+_data = [Vector2(0, 0), 0.0, 1.33333, 0, 1, Vector2(0.75, 1), 0.212873, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_asb3m"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_7r7tb"]
+script = ExtResource("1_lnl5y")
+annotation = "move to behind"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -12)
+offset = 6
+xCurve = SubResource("Curve_53dpr")
+yCurve = SubResource("Curve_asb3m")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_0pmtw"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p3ntg"]
+_data = [Vector2(0, 0), 0.0, 3.12844, 0, 1, Vector2(0.319648, 1), 0.0, 0.0, 0, 0, Vector2(0.671554, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.04464, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_6htiy"]
+script = ExtResource("1_lnl5y")
+annotation = "move from behind to center"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -14)
+offset = 4
+xCurve = SubResource("Curve_0pmtw")
+yCurve = SubResource("Curve_p3ntg")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_nbc2i"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_krnss"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_rex06"]
+script = ExtResource("1_lnl5y")
+annotation = "move to the front and slowly fade out"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -12)
+offset = 5
+xCurve = SubResource("Curve_nbc2i")
+yCurve = SubResource("Curve_krnss")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("2_1y1qo")
+spriteFrames = ExtResource("3_xmnoq")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_lnl5y")]([SubResource("Resource_r2sox"), SubResource("Resource_ohj67"), SubResource("Resource_7r7tb"), SubResource("Resource_6htiy"), SubResource("Resource_rex06")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

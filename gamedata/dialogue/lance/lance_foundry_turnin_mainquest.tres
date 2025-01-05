@@ -1,24 +1,61 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b44gd5x8y3guv"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://b44gd5x8y3guv"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_wa1uk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_h87rj"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_lt233"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_qhbsb"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_vuupd"]
+[ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_rbplu"]
+[ext_resource type="Resource" uid="uid://jp5tmrovxydh" path="res://gamedata/dialogue/lance/lance_foundry_after_turnin_mainquest.tres" id="4_sox10"]
+
+[sub_resource type="Resource" id="Resource_woaby"]
+script = ExtResource("2_h87rj")
+choiceBtn = "Not Ready..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_earyf"]
+script = ExtResource("2_h87rj")
+choiceBtn = "Take Care."
+leadsTo = ExtResource("4_sox10")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Flames of Combat#They Must Go On"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_5aev2"]
+script = ExtResource("4_rbplu")
+opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
+choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_k7i0c"]
 script = ExtResource("1_wa1uk")
-lines = Array[String]([""])
+lines = Array[String](["Thanks for saving us, @. Now let's get you ready to leave. I'll sell you anything we've have from the Armory, whatever you need."])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_h87rj")]([])
+choices = Array[ExtResource("2_h87rj")]([SubResource("Resource_woaby"), SubResource("Resource_earyf"), SubResource("Resource_5aev2")])
 
 [resource]
 script = ExtResource("3_vuupd")
 entryId = ""
 items = Array[ExtResource("1_wa1uk")]([SubResource("Resource_k7i0c")])
 ordStoryRequirements = Array[ExtResource("2_lt233")]([])
-closesDialogue = false
+closesDialogue = true
 fullHealsPlayer = false

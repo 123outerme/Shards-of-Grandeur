@@ -11,6 +11,7 @@ signal combatant_finished_anim
 @export_category('Custom Behavior Overrides')
 @export var disableHpTags: bool = true
 @export var customTarget: Combatant = null
+@export var customTargetEvolution: Evolution = null
 @export var playAnimAfterLoad: bool = true
 @export var delayAnimAfterLoad: bool = true
 @export var swapUsersAndTargets: bool = false
@@ -56,6 +57,10 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	var userSelfPos: Vector2 = battleAnimManager.globalMarker.global_position
 	
 	var targetCombatant: Combatant = customTarget if customTarget != null else shard.get_combatant()
+	if customTarget != null and customTargetEvolution != null:
+		targetCombatant.stats.equippedArmor = customTargetEvolution.requiredArmor
+		targetCombatant.stats.equippedWeapon = customTargetEvolution.requiredWeapon
+		targetCombatant.switch_evolution(customTargetEvolution, null)
 	
 	userNode.combatant = PlayerResources.playerInfo.combatant if not swapUsersAndTargets else targetCombatant.copy()
 	userNode.disableHpTag = disableHpTags
