@@ -480,7 +480,7 @@ func select_choice(choice: DialogueChoice):
 		var reused = talkNPC.add_dialogue_entry_in_dialogue(leadsTo)
 		# skip any remaining dialogue we might have here
 		talkNPC.data.dialogueItemIdx = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items) - 1
-		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].lines) - 1
+		talkNPC.data.dialogueLine = len(talkNPC.data.dialogueItems[talkNPC.data.dialogueIndex].items[talkNPC.data.dialogueItemIdx].get_lines()) - 1
 		if reused:
 			talkNPC.data.dialogueLine = 0
 			var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
@@ -620,7 +620,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 	if advance:
 		interactableDialogue.savedTextIdx += 1
 		# if this current DialogueItem is done: advance the item
-		if interactableDialogue.savedTextIdx >= len(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].lines):
+		if interactableDialogue.savedTextIdx >= len(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].get_lines()):
 			interactableDialogue.savedTextIdx = 0
 			interactableDialogue.savedItemIdx += 1
 			playDialogueItemAnim = true
@@ -692,7 +692,8 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 				return
 
 		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]
-		textBox.set_textbox_text(textBox.dialogueItem.lines[interactableDialogue.savedTextIdx], speaker if textBox.dialogueItem.speakerOverride == '' else textBox.dialogueItem.speakerOverride, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(textBox.dialogueItem.lines) - 1)
+		var dialogueLines: Array[String] = textBox.dialogueItem.get_lines()
+		textBox.set_textbox_text(dialogueLines[interactableDialogue.savedTextIdx], speaker if textBox.dialogueItem.speakerOverride == '' else textBox.dialogueItem.speakerOverride, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(dialogueLines) - 1)
 	else:
 		hasNextDialogue = false
 	

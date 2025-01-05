@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=12 format=3 uid="uid://dk34fxbbodqua"]
+[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://dk34fxbbodqua"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_suf47"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_7evvs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jht3b"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_npd1k"]
+[ext_resource type="Resource" uid="uid://b44gd5x8y3guv" path="res://gamedata/dialogue/lance/lance_foundry_turnin_mainquest.tres" id="5_f6sn4"]
+[ext_resource type="Resource" uid="uid://degh361r5dcj2" path="res://gamedata/dialogue/lance/lance_foundry_after_attack.tres" id="5_k0fgh"]
 
 [sub_resource type="Resource" id="Resource_vqv4w"]
 script = ExtResource("2_7evvs")
@@ -86,13 +88,13 @@ reward = SubResource("Resource_858ry")
 locations = Array[int]([20])
 type = 0
 count = 1
-objectiveName = "lance_standstill_foundry_burned#"
+objectiveName = "lance_standstill_foundry_burned#after_standstill_attack"
 turnInNames = Array[String](["lance_standstill_foundry_burned"])
-displayObjName = ""
-displayTurnInName = ""
+displayObjName = "Lance"
+displayTurnInName = "Lance"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_jht3b")]([])
-inProgressDialogue = Array[ExtResource("3_jht3b")]([])
+turnInDialogue = Array[ExtResource("3_jht3b")]([ExtResource("5_f6sn4")])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([ExtResource("5_k0fgh")])
 
 [resource]
 script = ExtResource("1_suf47")

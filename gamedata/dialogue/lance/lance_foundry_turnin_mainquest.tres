@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b44gd5x8y3guv"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_wa1uk"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_h87rj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_lt233"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_vuupd"]
+
+[sub_resource type="Resource" id="Resource_k7i0c"]
+script = ExtResource("1_wa1uk")
+lines = Array[String]([""])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_h87rj")]([])
+
+[resource]
+script = ExtResource("3_vuupd")
+entryId = ""
+items = Array[ExtResource("1_wa1uk")]([SubResource("Resource_k7i0c")])
+ordStoryRequirements = Array[ExtResource("2_lt233")]([])
+closesDialogue = false
+fullHealsPlayer = false

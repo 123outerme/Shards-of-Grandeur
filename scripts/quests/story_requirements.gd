@@ -54,7 +54,7 @@ class_name StoryRequirements
 
 @export_category("Invalidations")
 
-## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step
+## specified by "<Quest Name>" for completion of the whole quest, "<Quest Name>#<Step Name>" for completion of a specific step, or "<Quest Name>#" for just having the quest started
 @export var invalidAfterCompletingQuests: Array[String] = []
 
 ## specified by "<Quest Name>" for completion of the whole quest, or "<Quest Name>#<Step Name>" for a specific step

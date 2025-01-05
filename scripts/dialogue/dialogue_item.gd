@@ -36,3 +36,7 @@ func _init(
 	animateActorTreePath = i_animateActorTreePath
 	animateActorIsPlayer = i_animateActorIsPlayer
 	choices = i_choices
+
+
+func get_lines() -> Array[String]:
+	return lines

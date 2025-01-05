@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://c5265qbsd0wtj"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5ef3a"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_j8ti7"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_g6pat"]
+[ext_resource type="Resource" uid="uid://b81n4oeayu637" path="res://gamedata/story_requirements/main_story/act2/chain_legion_standstill_attack.tres" id="4_fspdu"]
+[ext_resource type="Script" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="4_piu2w"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_q8m3v"]
+
+[sub_resource type="Resource" id="Resource_b638f"]
+script = ExtResource("1_5ef3a")
+lines = Array[String](["You saved my shop... thank you! ", "Though, before I can reopen, I'll need some time to help with rebuilding the town."])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_j8ti7")]([])
+
+[sub_resource type="Resource" id="Resource_diyh0"]
+script = ExtResource("4_piu2w")
+alternativeDialogueItems = Array[ExtResource("1_5ef3a")]([SubResource("Resource_b638f")])
+alternativeStoryReqs = Array[ExtResource("3_g6pat")]([ExtResource("4_fspdu")])
+lines = Array[String](["You saved my shop... thank you! "])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_j8ti7")]([])
+
+[resource]
+script = ExtResource("4_q8m3v")
+entryId = ""
+items = Array[ExtResource("1_5ef3a")]([SubResource("Resource_diyh0")])
+ordStoryRequirements = Array[ExtResource("3_g6pat")]([])
+closesDialogue = false
+fullHealsPlayer = false

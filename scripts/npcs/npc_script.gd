@@ -332,7 +332,7 @@ func get_cur_dialogue_string() -> String:
 	
 	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 	
-	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines[data.dialogueLine]
+	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()[data.dialogueLine]
 
 func repeat_dialogue_item():
 	data.dialogueLine = 0
@@ -346,7 +346,7 @@ func advance_dialogue() -> bool:
 	
 	var hasDialogue: bool = true
 	data.dialogueLine += 1
-	if data.dialogueLine >= len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines): # if the last line of this dialogue item
+	if data.dialogueLine >= len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()): # if the last line of this dialogue item
 		data.dialogueItemIdx += 1
 		data.dialogueLine = 0
 		if data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items): # if the last entry of this item
@@ -442,7 +442,7 @@ func is_dialogue_item_last() -> bool:
 		return true
 	if data.dialogueIndex == len(data.dialogueItems) - 1 and \
 			data.dialogueItemIdx == len(data.dialogueItems[data.dialogueIndex].items) - 1 and \
-			data.dialogueLine == len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].lines) - 1:
+			data.dialogueLine == len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()) - 1:
 		return true
 	return false
 
