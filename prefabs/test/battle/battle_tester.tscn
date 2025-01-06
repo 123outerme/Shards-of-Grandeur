@@ -84,6 +84,7 @@ orbChange = -3
 targetPositions = Array[String](["Center"])
 randomNums = Array[float]([1.0])
 selfRandomNum = -1.0
+decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_3cd3y"]
 script = ExtResource("20_jje8i")
@@ -215,6 +216,7 @@ slot = SubResource("Resource_cbcj4")
 targetPositions = Array[String](["You"])
 randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
+decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_mx2w5"]
 script = ExtResource("9_jd22b")
@@ -222,9 +224,10 @@ type = 1
 move = ExtResource("23_qu1ff")
 moveEffectType = 1
 orbChange = 0
-targetPositions = Array[String](["Ally"])
+targetPositions = Array[String](["You"])
 randomNums = Array[float]([0.0])
 selfRandomNum = -1.0
+decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_dwp6q"]
 script = ExtResource("30_s82nx")
@@ -242,6 +245,7 @@ orbChange = 1
 targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
+decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_hmp4c"]
 script = ExtResource("9_jd22b")
@@ -251,6 +255,7 @@ orbChange = 0
 targetPositions = Array[String]([])
 randomNums = Array[float]([])
 selfRandomNum = -1.0
+decisionsRandomNum = -1.0
 
 [node name="BattleTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_7scea")
@@ -261,7 +266,7 @@ playerOrbs = 3
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
 playerRunes = Array[ExtResource("18_u0ttj")]([SubResource("Resource_5id1n"), SubResource("Resource_sswve"), SubResource("Resource_pxoct"), SubResource("Resource_6toto"), SubResource("Resource_20rui")])
-playerRuneCasterPositions = Array[String](["CenterX", "Center", "CenterX", "Center", "Center"])
+playerRuneCasterPositions = Array[String](["CenterX", "Center", "CenterX", "CenterX", "CenterX"])
 minionCommand = SubResource("Resource_el0wh")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy1Status = SubResource("Resource_dwp6q")

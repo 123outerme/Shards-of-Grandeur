@@ -10,3 +10,6 @@ func _init(i: Item = null, i_count = 1):
 
 func is_valid() -> bool:
 	return true
+
+func copy() -> InventorySlot:
+	return InventorySlot.new(item, count)

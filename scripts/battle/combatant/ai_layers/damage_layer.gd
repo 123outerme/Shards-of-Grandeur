@@ -1,6 +1,8 @@
 extends CombatantAiLayer
 class_name DamageCombatantAiLayer
 
+const NO_OTHER_DMG_MOVES_WEIGHT: float = 1.25
+
 ## if true, flips the logic to actually weight healing instead of damage
 @export var healLayer: bool = false
 
@@ -13,8 +15,8 @@ func _init(
 	healLayer = i_healLayer
 
 ## the more damage a move will do against this target, the higher its weight is
-func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
-	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
+	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
 	if baseWeight < 0:
 		return -1
 	
@@ -59,11 +61,11 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var highestOtherMoveDmg: int = 0
 	var highestOtherMove: Move = null
-	var otherOrbs: int = orbs
 	#var highestOtherLifesteal: float = 0
 	for otherMove: Move in user.combatant.stats.moves:
 		if otherMove == move:
 			continue
+		var otherOrbs: int = orbs
 		# if this surge move cannot be surged with the preferred number of orbs:
 		if effectType == Move.MoveEffectType.SURGE and otherMove.surgeEffect.orbChange < orbs:
 			# if the user can surge this move with more orbs, test with that
@@ -82,6 +84,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		var otherTargetElEff: float = target.combatant.get_element_effectiveness_multiplier(otherMove.element)
 		var otherElementBoost: float = user.combatant.statChanges.get_element_multiplier(otherMove.element)
 		var otherDmg: int = BattleCommand.damage_formula(otherMoveEffect.power, otherAttackStat, targetStats.resistance, user.combatant.stats.level, target.combatant.stats.level, otherTargetElEff * otherElementBoost)
+		#var otherTargets: Array = user.get_targetable_combatant_nodes(battleState)
 		if healLayer:
 			otherDmg *= -1
 		
@@ -97,20 +100,22 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 			highestOtherMoveDmg = otherDmg
 			#highestOtherLifesteal = otherMoveEffect.lifesteal
 	
-	if abs(calcdDamage) > 0:
+	if calcdDamage > 0:
 		if highestOtherMoveDmg > 0:
 			moveWeight *= abs(calcdDamage / highestOtherMoveDmg)
 			if moveEffect.lifesteal > 0:
 				moveWeight *= 1 + moveEffect.lifesteal
 		else:
-			moveWeight *= 1.25 # no other moves did any damage
+			moveWeight *= NO_OTHER_DMG_MOVES_WEIGHT # no other moves did any damage
 		# if not heal layer and targeting an ally, or is heal layer and targeting an enemy; inverse weighting (higher is now worse)
 		if (user.role == target.role) != healLayer and moveWeight > 0:
 			moveWeight = 1 / moveWeight
 	elif int(calcdDamage) == 0:
 		moveWeight = 1
-	
-	#print('DEBUG damage layer: ', calcdDamage, ' / ', highestOtherMoveDmg, ' / ', moveWeight)
+	if effectType == Move.MoveEffectType.SURGE:
+		# if surge move: provide a bonus to weight based on the amount of orbs spent
+		moveWeight *= 1 + (absi(orbs) * (1.0 / Combatant.MAX_ORBS))
+	#print('DEBUG damage layer: ', calcdDamage, ' / ', highestOtherMoveDmg, ' / ', moveWeight, ' / ', baseWeight, ' / ', orbs)
 	
 	return baseWeight * moveWeight
 

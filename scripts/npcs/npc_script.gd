@@ -209,11 +209,14 @@ func load_data(save_path):
 			inventory = Inventory.new()
 		if npcShop != null:
 			add_shop_items_to_inventory()
+			inventory.inventorySlots.sort_custom(_sort_shop_items)
 		invisible = not data.visible
 	else:
 		if npcShop != null and inventory == null:
 			inventory = Inventory.new()
 		add_shop_items_to_inventory()
+		if inventory != null and npcShop != null:
+			inventory.inventorySlots.sort_custom(_sort_shop_items)
 	if not data.followerHomeSet:
 		data.followerHomePosition = position
 		data.followerHomeSet = true
@@ -241,7 +244,20 @@ func add_shop_items_to_inventory():
 		var existingSlot: InventorySlot = inventory.get_slot_for_item(shopItemSlot.item)
 		# if there is no slot for this object: add it to the inventory
 		if existingSlot == null: #or shopItemSlot.should_add(data.version):
-			inventory.add_slot(shopItemSlot)
+			inventory.add_slot(shopItemSlot.copy())
+
+func _sort_shop_items(a: InventorySlot, b: InventorySlot) -> bool:
+	if npcShop == null:
+		return false
+	# return true if a should go before b, when a's index in the shop definition is before b's
+	var aIdx: int = -1
+	var bIdx: int = -1
+	for idx: int in range(len(npcShop.shopItemSlots)):
+		if a.item == npcShop.shopItemSlots[idx].item:
+			aIdx = idx
+		if b.item == npcShop.shopItemSlots[idx].item:
+			bIdx = idx
+	return aIdx < bIdx
 
 func _set_invisible(value: bool):
 	visible = not value
@@ -445,6 +461,11 @@ func is_dialogue_item_last() -> bool:
 			data.dialogueLine == len(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()) - 1:
 		return true
 	return false
+
+func is_dialogue_entry_last() -> bool:
+	if len(data.dialogueItems) == 0:
+		return true
+	return data.dialogueIndex == len(data.dialogueItems) - 1
 
 func fetch_quest_dialogue_info():
 	acceptableQuests = []

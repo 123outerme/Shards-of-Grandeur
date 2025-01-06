@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=58 format=3 uid="uid://bh1pu4prubmup"]
+[gd_resource type="SpriteFrames" load_steps=60 format=3 uid="uid://bh1pu4prubmup"]
 
 [ext_resource type="Texture2D" uid="uid://cyffwuvad6rc2" path="res://graphics/characters/chain_legion_mage/chain_legion_mage_1_stand.png" id="1_d5wjr"]
 [ext_resource type="Texture2D" uid="uid://cfs763ht2tcbb" path="res://graphics/characters/chain_legion_mage/chain_legion_mage_1_battle_idle.png" id="1_iulmb"]
@@ -163,6 +163,14 @@ region = Rect2(128, 0, 32, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivuyx"]
 atlas = ExtResource("1_iulmb")
 region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5gp0"]
+atlas = ExtResource("1_iulmb")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dbvo"]
+atlas = ExtResource("1_iulmb")
+region = Rect2(224, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umhv2"]
 atlas = ExtResource("1_d5wjr")
@@ -342,6 +350,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivuyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5gp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dbvo")
 }],
 "loop": true,
 "name": &"battle_idle",

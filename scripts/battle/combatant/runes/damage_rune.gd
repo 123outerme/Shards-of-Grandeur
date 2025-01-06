@@ -25,6 +25,7 @@ func _init(
 	i_previousHp: int = -1
 ):
 	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnim)
+	triggerElement = i_triggerElement
 	isHealRune = i_isHealRune
 	previousHp = i_previousHp
 

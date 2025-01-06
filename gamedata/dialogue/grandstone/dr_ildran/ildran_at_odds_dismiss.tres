@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://di1weg64ku1vu"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_swkcp"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_84acv"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ffxp3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fobgk"]
+
+[sub_resource type="Resource" id="Resource_acvd7"]
+script = ExtResource("1_swkcp")
+lines = Array[String](["Very well. We need your help with repairs, @!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_84acv")]([])
+
+[resource]
+script = ExtResource("3_fobgk")
+entryId = ""
+items = Array[ExtResource("1_swkcp")]([SubResource("Resource_acvd7")])
+ordStoryRequirements = Array[ExtResource("2_ffxp3")]([])
+closesDialogue = true
+fullHealsPlayer = false

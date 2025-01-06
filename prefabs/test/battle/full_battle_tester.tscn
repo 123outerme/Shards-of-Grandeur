@@ -1,21 +1,20 @@
-[gd_scene load_steps=50 format=3 uid="uid://dgqo8vipb17e8"]
+[gd_scene load_steps=48 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
-[ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_8cyda"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
+[ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="2_yques"]
+[ext_resource type="Resource" uid="uid://b101o7kvw7n3f" path="res://gamedata/items/armor/shady_cloak.tres" id="3_lyqws"]
+[ext_resource type="Resource" uid="uid://cnjto6nnsswit" path="res://gamedata/combatants/chain_legion_mage/visual_variants/1/chain_legion_mage_2.tres" id="3_r8t11"]
+[ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="4_eh7hq"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_nwagl"]
+[ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="5_5o7dv"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="5_k0g70"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="8_ewn23"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="9_u0r64"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="10_821vc"]
-[ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="10_13824"]
-[ext_resource type="Resource" uid="uid://cjom7udtbr5dg" path="res://gamedata/items/weapon/frozen_spear.tres" id="12_rhle2"]
-[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="13_lem6m"]
-[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="14_437fi"]
-[ext_resource type="Resource" uid="uid://dqg27upoc4fmw" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy_boss.tres" id="15_tihlj"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="16_vlt6a"]
 [ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="17_em4kh"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="17_nsk2h"]
-[ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="18_1dxcb"]
 [ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="18_nxyit"]
 [ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="19_f2kpt"]
 [ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="20_l4ilx"]
@@ -40,42 +39,33 @@
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
 [ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="40_yvth1"]
 
-[sub_resource type="Resource" id="Resource_8ehk7"]
-script = ExtResource("18_1dxcb")
-minTurns = 8
-staticTotalDefeatRewards = Array[ExtResource("9_u0r64")]([])
-winText = "You survived the battle!"
-loseText = "You were defeated..."
-escapeText = "You escaped successfully!"
-
-[sub_resource type="Resource" id="Resource_14f7a"]
+[sub_resource type="Resource" id="Resource_uap67"]
 script = ExtResource("10_821vc")
-combatant1Level = 24
+combatant1Level = 21
 combatant1Moves = Array[ExtResource("4_nwagl")]([])
 combatant1ShardSummoned = false
-combatant2Level = 1
+combatant2 = ExtResource("4_eh7hq")
+combatant2Level = 21
 combatant2Moves = Array[ExtResource("4_nwagl")]([])
 combatant2ShardSummoned = false
-combatant3Level = 1
+combatant3 = ExtResource("5_k0g70")
+combatant3Level = 20
 combatant3Moves = Array[ExtResource("4_nwagl")]([])
 combatant3ShardSummoned = false
-autoAlly = ExtResource("2_8cyda")
-autoAllyLevel = 16
-autoAllyArmor = ExtResource("10_13824")
-autoAllyWeapon = ExtResource("12_rhle2")
+autoAlly = ExtResource("2_yques")
+autoAllyLevel = 22
+autoAllyArmor = ExtResource("3_lyqws")
+autoAllyWeapon = ExtResource("5_5o7dv")
 autoAllyMoves = Array[ExtResource("4_nwagl")]([])
 autoAllyShardSummoned = false
-specialBattleId = "dragon1"
-bossBattle = true
+specialBattleId = "standstill_cl_mage_3"
+bossBattle = false
 canEscape = false
 rewards = Array[ExtResource("9_u0r64")]([])
-useStaticRewards = true
-battleMusic = ExtResource("13_lem6m")
-combatant1 = ExtResource("14_437fi")
-combatant1StatAllocStrat = ExtResource("15_tihlj")
+useStaticRewards = false
+combatant1 = ExtResource("3_r8t11")
 specialRules = 0
-winCon = SubResource("Resource_8ehk7")
-customWinText = "Wrauuughhhhh...!"
+customWinText = "\"I guess the party's over... I'll be cool for now.\""
 battleMapPath = ""
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
@@ -172,9 +162,9 @@ turnsLeft = 3
 [node name="FullBattleTester" type="Node2D"]
 script = ExtResource("1_cwe7c")
 useBattleAnims = false
-encounter = SubResource("Resource_14f7a")
+encounter = SubResource("Resource_uap67")
 _playerCombatant = SubResource("Resource_7loi3")
-playerLv = 16
+playerLv = 22
 playerAi = SubResource("Resource_q6qyh")
 playerStatAllocStrat = SubResource("Resource_mniaa")
 playerStatus = SubResource("Resource_6iopj")

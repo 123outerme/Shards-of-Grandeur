@@ -19,8 +19,8 @@ func _init(
 	aggroStrategy = i_aggroStrategy
 
 ## weights the move based on what strategy this layer uses for prioritizing targets
-func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
-	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
+	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
 	if baseWeight < 0:
 		return -1
 	
@@ -55,7 +55,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 				var highestElementBoost: float = 1.0
 				for elementBoost: ElementMultiplier in combatantNode.combatant.statChanges.elementMultipliers:
 					highestElementBoost = max(highestElementBoost, elementBoost.multiplier)
-				targetScore = otherStats.get_stat_total_including_dmg_boosts(highestElementBoost)
+				score = otherStats.get_stat_total_including_dmg_boosts(highestElementBoost)
 		otherScore = max(otherScore, score)
 	#print('DEBUG aggro layer: ', otherScore, ' / ', targetScore)
 	if aggroStrategy == AggroStrategy.LOWEST_HP:

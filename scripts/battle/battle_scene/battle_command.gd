@@ -41,6 +41,7 @@ enum ApplyTiming {
 @export var targetPositions: Array[String] = []
 @export var randomNums: Array[float] = []
 @export var selfRandomNum: float = -1
+@export var decisionsRandomNum: float = -1
 @export var commandResult: CommandResult = null
 
 var targets: Array[Combatant] = []
@@ -157,6 +158,7 @@ func _init(
 	i_targets: Array[String] = [],
 	i_randomNums: Array[float] = [],
 	i_selfRandomNum: float = -1,
+	i_decisionsRandomNum: float = -1,
 	i_commandResult: CommandResult = null
 ):
 	type = i_type
@@ -165,16 +167,18 @@ func _init(
 	orbChange = i_orbChange
 	slot = i_slot
 	targetPositions = i_targets
-	if i_randomNums == [] and len(targetPositions) > 0: # if random nums are unset and the target positions are set:
+	if len(i_randomNums) == 0 and len(targetPositions) > 0: # if random nums are unset and the target positions are set:
 		for target in targetPositions:
 			i_randomNums.append(randf()) # get a random number for each
 	elif len(i_randomNums) < len(targetPositions): # if some but not all random nums are set
 		for i in range(len(randomNums), len(targetPositions)):
-			randomNums.append(randomNums.back()) # append the last number to the end of the list of random nums
+			randomNums.append(randomNums.back()) # append random numbers to the end of the list of random nums to match the length of targets
 	randomNums = i_randomNums
 	selfRandomNum = i_selfRandomNum
 	if selfRandomNum == -1:
 		selfRandomNum = randf()
+	if decisionsRandomNum == -1:
+		decisionsRandomNum = randf()
 	commandResult = i_commandResult
 	
 func set_targets(newTargets: Array[String]):

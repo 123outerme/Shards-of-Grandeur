@@ -18,8 +18,8 @@ func _init(
 	setWeight = i_setWeight
 
 ## if the move will trigger a rune or set a rune, weight it based on the power of the rune(s) and if it's triggering or being cast
-func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
-	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
+	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
 	if baseWeight < 0:
 		return -1
 	
@@ -28,11 +28,11 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		moveEffect = moveEffect.apply_surge_changes(absi(orbs))
 	
 	var finalSetWeight: float = 1.0
-	if Combatant.are_runes_allowed():
+	if Combatant.are_runes_allowed() and moveEffect.rune != null:
 		finalSetWeight = setWeight * get_rune_weight_on_target(user, moveEffect.rune, target, targets, battleState)
 	
 	#if moveEffect.rune != null:
-	#	print('DEBUG:: move effect rune is not null for ', move.moveName)
+	#	print('DEBUG rune layer: move effect rune is not null for ', move.moveName)
 	
 	var finalTriggerWeight: float = triggerWeight
 	
@@ -46,7 +46,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		if not (rune in targetRunesTriggered):
 			finalTriggerWeight *= get_rune_weight_on_target(user, rune, user, targets, battleState)
 	
-	#print('DEBUG::: final rune weights ', finalSetWeight, ' / ', finalTriggerWeight, ' / for move ', move.moveName)
+	if len(targetRunesTriggered) == 0 and len(userRunesTriggered) == 0:
+		finalTriggerWeight = 1.0
+	
+	#print('DEBUG rune layer: final rune weights ', finalSetWeight, ' / ', finalTriggerWeight, ' / for move ', move.moveName)
 	
 	return baseWeight * finalSetWeight * finalTriggerWeight
 
@@ -62,7 +65,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 	runeWeight *= 1 + (orbDiff * .05) # +5% weight for each orb that will actually be gained
 
 	var powerRatio: float = rune.power / 100.0
-	if target.role == CombatantNode.Role.ALLY:
+	if target.role == user.role:
 		powerRatio *= -1
 	
 	runeWeight *= 1 + powerRatio
@@ -83,7 +86,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 			highestStackedElementMultiplier = max(elMultiplier.multiplier, highestStackedElementMultiplier)
 		
 		statChangeWeight = targetStats.get_stat_total_including_dmg_boosts(highestElementMultiplier) / stackedTargetStats.get_stat_total_including_dmg_boosts(highestStackedElementMultiplier)
-		if target.role == CombatantNode.Role.ALLY:
+		if target.role == user.role:
 			statChangeWeight = 1.0 / statChangeWeight
 		runeWeight *= statChangeWeight
 	
@@ -104,7 +107,7 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 				statusWeight = 1.0 / statusWeight
 			runeWeight *= statusWeight
 	
-	#print('rune weights: ', powerRatio, ' / ', 1 + (orbDiff * .05), ' / ', rune.lifesteal, ' / ', statChangeWeight, ' / ', statusWeight, ' / final: ', runeWeight)
+	#print('DEBUG rune layer, rune weights: ', powerRatio, ' / ', 1 + (orbDiff * .05), ' / ', rune.lifesteal, ' / ', statChangeWeight, ' / ', statusWeight, ' / final: ', runeWeight)
 	
 	return runeWeight
 

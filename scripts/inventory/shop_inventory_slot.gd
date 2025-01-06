@@ -24,3 +24,6 @@ func is_valid() -> bool:
 func should_add(saveVersion: String) -> bool:
 	# add if it's new to this version
 	return saveVersion == sinceVersion or GameSettings.get_version_differences_between(sinceVersion, saveVersion) != GameSettings.VersionDiffs.NONE
+
+func copy() -> InventorySlot:
+	return ShopInventorySlot.new(item, count, storyRequirements, buyableStoryReqs, sinceVersion)

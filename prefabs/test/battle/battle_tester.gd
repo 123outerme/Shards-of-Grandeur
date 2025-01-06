@@ -2,6 +2,8 @@ extends BattleController
 class_name BattleTester
 
 @export var useBattleAnims: bool = true
+@export var allowSurge: bool = true
+@export var allowRunes: bool = true
 
 @export var encounter: StaticEncounter = null
 @export var _playerCombatant: Combatant
@@ -43,9 +45,12 @@ func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
-	# enable the battle text to show whether a move was charged or surged 
-	PlayerResources.questInventory.currentAct = 1
-	PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
+	if allowSurge:
+		# enable the battle text to show whether a move was charged or surged 
+		PlayerResources.questInventory.currentAct = 1
+		PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
+	if allowRunes:
+		PlayerResources.playerInfo.set_cutscene_seen('standstill_helia_approach')
 	SettingsHandler.gameSettings = GameSettings.new()
 	SettingsHandler.gameSettings.battleAnims = useBattleAnims
 	nextButton.grab_focus()

@@ -8,9 +8,12 @@ func _ready():
 	SceneLoader.audioHandler = get_node('MockAudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
-	# enable the battle text to show whether a move was charged or surged 
-	PlayerResources.questInventory.currentAct = 1
-	PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
+	if allowSurge:
+		# enable the battle text to show whether a move was charged or surged 
+		PlayerResources.questInventory.currentAct = 1
+		PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
+	if allowRunes:
+		PlayerResources.playerInfo.set_cutscene_seen('standstill_helia_approach')
 	SettingsHandler.gameSettings = GameSettings.new()
 	SettingsHandler.gameSettings.battleAnims = useBattleAnims
 	nextButton.visible = false

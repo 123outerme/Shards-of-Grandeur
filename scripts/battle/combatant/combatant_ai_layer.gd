@@ -67,7 +67,7 @@ func _init(
 	subLayers = i_subLayers
 
 ## get the weight for a combination of move effect and target
-func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
+func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
 	if move == null or target == null:
 		return -1
 	var effect: MoveEffect = move.get_effect_of_type(effectType)
@@ -79,7 +79,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		if layer == null:
 			continue
 		
-		var subLayerWeight: float = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
+		var subLayerWeight: float = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
 		if subLayerWeight < 0:
 			subLayersWeight = -1
 		else:

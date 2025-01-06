@@ -217,7 +217,10 @@ func load_inventory_panel(rebuild: bool = true):
 		var previousPanel: InventorySlotPanel = null
 		var firstPanel: InventorySlotPanel = null
 		var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
-		var inventorySlots: Array[InventorySlot] = currentInventory.get_sorted_slots()
+		var inventorySlots: Array[InventorySlot] = currentInventory.inventorySlots
+		if showPlayerInventory:
+			inventorySlots = currentInventory.get_sorted_slots() # if player inventory, get sorted inventory
+		
 		var slotPanelIdx: int = 0
 		for slotIdx: int in range(len(inventorySlots)):
 			var slot: InventorySlot = inventorySlots[slotIdx]

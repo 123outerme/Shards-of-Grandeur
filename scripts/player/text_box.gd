@@ -90,8 +90,10 @@ func is_textbox_complete() -> bool:
 	return ReadySprite.visible or (len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0)
 
 func add_choices():
+	if dialogueItem == null:
+		return
 	var dialogueLines: Array[String] = dialogueItem.get_lines()
-	if dialogueItem == null or PlayerFinder.player.makingChoice \
+	if PlayerFinder.player.makingChoice \
 			or TextBoxText.text != TextUtils.substitute_playername(dialogueLines[len(dialogueLines) - 1]):
 		return
 	

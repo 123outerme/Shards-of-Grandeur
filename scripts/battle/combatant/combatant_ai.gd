@@ -56,7 +56,7 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 			var moveWeight: float = 1 if len(targets) > 0 else -1
 			var highestWeightedTarget: CombatantNode = null
 			for target: CombatantNode in targets:
-				var targetWeight: float = get_move_effect_on_target_weight(user, move, effectType, orbs, target, targets, battleState)
+				var targetWeight: float = get_move_effect_on_target_weight(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
 				if BattleCommand.is_command_multi_target(moveEffect.targets):
 					moveWeight *= targetWeight
 				else:
@@ -64,8 +64,6 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 						moveWeight = targetWeight
 						highestWeightedTarget = target
 				#print('> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' weight against ', target.battlePosition, ' == ', targetWeight)
-			if effectType == Move.MoveEffectType.CHARGE and moveEffect.orbChange == highestOrbCharge:
-				moveWeight *= 1.05 # 5% bonus to charge moves that charge the most orbs
 			#print('>> DEBUG: ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' overall weight == ', moveWeight)
 			if moveWeight >= 0 and moveWeight > highestWeight:
 				highestWeight = moveWeight
@@ -89,8 +87,7 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 	
 	return battleCommand
 
-# TODO can I replace Variant with Combatant/CombatantNode?
-func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState) -> float:
+func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
 	var weight: float = get_move_effect_staleness_weight(move, effectType)
 	''' debug printing staleness
 	print('DEBUG staleness weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType), ' = ', weight)
@@ -99,22 +96,23 @@ func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectTyp
 	else:
 		print('DEBUG last move was null')
 	#'''
+	var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
+	var randomNum: float = randf() # initialized with randf, [0, 1]
+	var surgeChance: float = get_spend_orbs_likelihood(user.combatant, moveEffect) # [0, 1]
+	if effectType == Move.MoveEffectType.SURGE and \
+			(surgeChance == 0 or surgeChance < randomNum): # fail if either there's 0 chance (in case randomNum == 0 == surgeChance), or the roll fails
+		return -1
+	
 	for idx in range(len(layers)):
 		var layer: CombatantAiLayer = layers[idx]
 		if layer == null:
 			continue
-		
-		var moveEffect: MoveEffect = move.get_effect_of_type(effectType)
-		var layerWeight: float = 1
-		if could_combatant_surge(user.combatant, moveEffect):
-			layerWeight = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState)
-			#print('DEBUG: layer ', idx, ' (', layer.get_script().get_global_name(), ') weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType) , ': ', layerWeight)
-			if layerWeight >= 0:
-				layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
-		else:
-			layerWeight = 0
+		var layerWeight: float = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
+		#print('DEBUG: layer ', idx, ' (', layer.get_script().get_global_name(), ') weight for ', move.moveName, ' / ', Move.move_effect_type_to_string(effectType) , ': ', layerWeight)
+		if layerWeight >= 0:
+			layerWeight = lerpf(1, layerWeight, layer.weight) # if the decision by that layer isn't weighted highly, it approaches a x1 multiplier
 		if layerWeight < 0:
-			weight = -1
+			return -1
 		else:
 			weight *= layerWeight
 	return weight
@@ -159,14 +157,14 @@ func get_spend_orbs_likelihood(combatant: Combatant, effect: MoveEffect) -> floa
 		OrbSpendStrategy.GREEDY:
 			spendChance = 1 if combatant.orbs >= spendingOrbs else 0 # if we have the orbs, do it
 		OrbSpendStrategy.BIG_SPENDER:
-			var orbsRatio: float = combatant.orbs / 6.0 # once combatant has 6+ orbs, they are GUARANTEED to start spending
+			var orbsRatio: float = combatant.orbs / 5.0 # once combatant has 5+ orbs, they are GUARANTEED to start spending
 			spendChance = (pow(orbsRatio, 2) + orbsRatio) / 2.0
 		OrbSpendStrategy.BIG_SAVER:
 			var orbsRatio: float = (combatant.orbs - spendingOrbs) / 2.0 # once combatant has 2+ more orbs than is required to surge, they are GUARANTEED to start spending
 			spendChance = (pow(orbsRatio, 2) + orbsRatio) / 2.0
 			#return combatant.orbs >= spendingOrbs + 2 or orbs == 10 # if we have 2 more orbs than required, or we have 10 orbs, then do it
-	if (combatant.currentHp as float) / combatant.stats.maxHp <= 0.33:
-		spendChance += 0.5 # 50% more likely to spend orbs when below 33% health
+	if (combatant.currentHp as float) / combatant.stats.maxHp <= 0.45:
+		spendChance += 0.5 # 50% more likely to spend orbs when below 45% health
 	
 	return min(1, max(0, spendChance))
 
@@ -179,9 +177,9 @@ func get_orbs_amount(combatant: Combatant, effect: MoveEffect) -> int:
 			return combatant.orbs * -1
 		OrbSpendStrategy.BIG_SAVER:
 			var spendRatio: float = 0.75
-			if (combatant.currentHp as float) / combatant.stats.maxHp <= 0.33:
+			if (combatant.currentHp as float) / combatant.stats.maxHp <= 0.45:
 				spendRatio = 1.0
-			return min(Combatant.MAX_ORBS, max(effect.orbChange, floori(combatant.orbs * spendRatio)))
+			return max(-1 * Combatant.MAX_ORBS, min(effect.orbChange, floori(combatant.orbs * spendRatio)))
 	return effect.orbChange
 
 func copy(copyStorage: bool = false) -> CombatantAi:
