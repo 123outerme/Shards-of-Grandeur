@@ -21,6 +21,7 @@ func _ready():
 		super._ready()
 		animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
 		show_interact_sprite(false)
+		SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_check_enable_interact_sprite)
 
 func show_interact_sprite(showSprite: bool = true):
 	interactSprite.visible = showSprite
@@ -40,10 +41,15 @@ func interact(args: Array = []):
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
-		show_interact_sprite()
+		if not PlayerFinder.player.inCutscene:
+			show_interact_sprite()
 		enter_player_range()
 
 func _on_area_exited(area):
 	if area.name == 'PlayerEventCollider' and self in PlayerFinder.player.interactables:
 		show_interact_sprite(false)
 		exit_player_range()
+
+func _check_enable_interact_sprite():
+	if self in PlayerFinder.player.interactables:
+		show_interact_sprite()

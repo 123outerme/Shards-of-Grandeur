@@ -39,8 +39,10 @@ func _physics_process(delta):
 		mockShade.position.y = -90 + holdCameraPos.y - position.y
 	if camShaking:
 		camShakingTime += delta
-		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
-		mockShade.position = Vector2(-160, -90) + CAM_SHAKING_POSITIONS[camShakingIdx]
+		camShakingTime += delta
+		var camShakingIdx: int = (floori(camShakingTime / 0.05) + 1) % len(CAM_SHAKING_POSITIONS)
+		var lastShakingIdx: int = (camShakingIdx - 1) % len(CAM_SHAKING_POSITIONS)
+		mockShade.position += CAM_SHAKING_POSITIONS[camShakingIdx] - CAM_SHAKING_POSITIONS[lastShakingIdx]
 
 func start_cam_shake():
 	camShaking = true

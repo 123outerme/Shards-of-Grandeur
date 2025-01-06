@@ -185,6 +185,16 @@ func _unhandled_input(event):
 		overworldTouchControls.set_all_visible(false)
 	
 func _physics_process(_delta):
+	# update camera (holdCamera, holdCamera+shaking)
+	if holdCameraX:
+		cam.position.x = holdingCameraAt.x - position.x + cam.storedShakingOffset.x
+		uiRoot.position.x = holdingCameraAt.x - position.x
+	if holdCameraY:
+		cam.position.y = holdingCameraAt.y - position.y + cam.storedShakingOffset.y
+		uiRoot.position.y = holdingCameraAt.y - position.y
+	#if (holdCameraX or holdCameraY) and cam.camShaking:
+		#cam.position += cam.get_cam_shaking_offset(delta)
+	
 	if (Input.is_action_pressed("game_decline") or running) and not (not SettingsHandler.gameSettings.enableExperimentalFeatures and SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapEntry.isRecoverLocation):
 		if speed != RUN_SPEED:
 			# play a step sound the next frame (for animation change when moving and switching run status)
@@ -233,12 +243,17 @@ func _physics_process(_delta):
 		cam.position += vel * _delta
 		
 func _process(delta):
+	'''
 	if holdCameraX:
-		cam.position.x = holdingCameraAt.x - position.x
+		cam.position.x = holdingCameraAt.x - position.x + cam.storedShakingOffset.x
 		uiRoot.position.x = holdingCameraAt.x - position.x
 	if holdCameraY:
-		cam.position.y = holdingCameraAt.y - position.y
+		cam.position.y = holdingCameraAt.y - position.y + cam.storedShakingOffset.y
 		uiRoot.position.y = holdingCameraAt.y - position.y
+	#if (holdCameraX or holdCameraY) and cam.camShaking:
+		#cam.position += cam.get_cam_shaking_offset(delta)
+		#uiRoot.position += cam.get_cam_shaking_offset() # UI doesn't get moved by camera shaking normally (cam handles all of it
+	'''
 	# placed here instead of _physics_process because graphics are updated in sync with _process
 	if velocity.length_squared() > 0:
 		stepSfxTimer += delta

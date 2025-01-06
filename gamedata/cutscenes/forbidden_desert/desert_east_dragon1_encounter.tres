@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=64 format=3 uid="uid://csdxsrxjaby7w"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=66 format=3 uid="uid://csdxsrxjaby7w"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_55v27"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_5l7i6"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="9_3nerq"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_3xjv0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="9_5j7cy"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="14_ko5dt"]
 
 [sub_resource type="Resource" id="Resource_1mi1f"]
 script = ExtResource("6_glhwf")
@@ -463,6 +464,25 @@ actorAnims = Array[ExtResource("3_q6b2v")]([])
 actorAnimSets = Array[ExtResource("2_sc802")]([])
 actorFaceTargets = Array[ExtResource("4_5qd1i")]([])
 dialogues = Array[ExtResource("6_25dng")]([])
+endTextBoxPauses = false
+shakeCamForDuration = true
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ioefv"]
+script = ExtResource("1_55v27")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_nvpns")]([])
+actorAnims = Array[ExtResource("3_q6b2v")]([])
+actorAnimSets = Array[ExtResource("2_sc802")]([])
+actorFaceTargets = Array[ExtResource("4_5qd1i")]([])
+dialogues = Array[ExtResource("6_25dng")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = true
@@ -641,8 +661,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("14_ko5dt")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["dragon1_encounter"])
@@ -650,11 +672,13 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("14_ko5dt")]([])
 
 [resource]
 script = ExtResource("2_5l7i6")
-cutsceneFrames = Array[ExtResource("1_55v27")]([SubResource("Resource_efd3g"), SubResource("Resource_usgbb"), SubResource("Resource_ysujd"), SubResource("Resource_c7lmv"), SubResource("Resource_qkabw"), SubResource("Resource_nbk2w"), SubResource("Resource_v0mpl"), SubResource("Resource_o6yuq"), SubResource("Resource_8d43v"), SubResource("Resource_nypkp"), SubResource("Resource_7lbki"), SubResource("Resource_spxck"), SubResource("Resource_j3d1v"), SubResource("Resource_o68ec"), SubResource("Resource_8y7y0"), SubResource("Resource_diomd"), SubResource("Resource_p7igu"), SubResource("Resource_llvq5"), SubResource("Resource_bdc4a"), SubResource("Resource_hv17k"), SubResource("Resource_3ujis"), SubResource("Resource_smfe4"), SubResource("Resource_pjf5a"), SubResource("Resource_2dfov")])
+cutsceneFrames = Array[ExtResource("1_55v27")]([SubResource("Resource_efd3g"), SubResource("Resource_usgbb"), SubResource("Resource_ysujd"), SubResource("Resource_c7lmv"), SubResource("Resource_qkabw"), SubResource("Resource_nbk2w"), SubResource("Resource_v0mpl"), SubResource("Resource_o6yuq"), SubResource("Resource_8d43v"), SubResource("Resource_nypkp"), SubResource("Resource_7lbki"), SubResource("Resource_spxck"), SubResource("Resource_j3d1v"), SubResource("Resource_o68ec"), SubResource("Resource_8y7y0"), SubResource("Resource_diomd"), SubResource("Resource_p7igu"), SubResource("Resource_llvq5"), SubResource("Resource_ioefv"), SubResource("Resource_bdc4a"), SubResource("Resource_hv17k"), SubResource("Resource_3ujis"), SubResource("Resource_smfe4"), SubResource("Resource_pjf5a"), SubResource("Resource_2dfov")])
 saveName = "dragon1_encounter"
 storyRequirements = SubResource("Resource_yimmg")
 unlockCameraHoldAfter = true

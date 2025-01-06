@@ -32,6 +32,7 @@ var fadeInTween: Tween = null
 var interruptTween: bool = false
 var camShaking: bool = false
 var camShakingTime: float = 0
+var storedShakingOffset: Vector2 = Vector2.ZERO
 var newActAnimPlaying: bool = false
 
 var registeredFadeInCallbacks: Array[Callable] = []
@@ -54,10 +55,15 @@ func _process(_delta):
 
 # camera movement is jittery in _process, so move in _physics_process
 func _physics_process(delta):
-	if not (player.holdCameraX or player.holdCameraY) and camShaking and SettingsHandler.gameSettings.screenShake:
+	if camShaking and SettingsHandler.gameSettings.screenShake:
+		storedShakingOffset = get_cam_shaking_offset(delta)
 		camShakingTime += delta
-		var camShakingIdx = floori(camShakingTime / 0.05) % len(CAM_SHAKING_POSITIONS)
-		position = CAM_SHAKING_POSITIONS[camShakingIdx]
+		if not (player.holdCameraX or player.holdCameraY):
+			position = storedShakingOffset
+
+func get_cam_shaking_offset(delta: float = 0.0) -> Vector2:
+	var camShakingIdx: int = floori((camShakingTime + delta) / 0.05) % len(CAM_SHAKING_POSITIONS)
+	return CAM_SHAKING_POSITIONS[camShakingIdx]
 
 func play_new_act_animation(callback: Callable):
 	fade_out(_new_act_fade_out.bind(callback))
@@ -150,12 +156,19 @@ func connect_to_fade_in(callback: Callable):
 		registeredFadeInCallbacks.append(callback)
 
 func start_cam_shake():
+	camShakingTime = 0
+	storedShakingOffset = Vector2.ZERO
 	camShaking = true
 	
 func stop_cam_shake():
 	camShaking = false
 	position = Vector2(0, 0)
+	if player.holdCameraX:
+		position.x = player.holdingCameraAt.x - player.position.x
+	if player.holdCameraY:
+		position.y = player.holdingCameraAt.y - player.position.y
 	camShakingTime = 0
+	storedShakingOffset = Vector2.ZERO
 
 func toggle_cutscene_paused_shade():
 	cutscenePaused = not cutscenePaused

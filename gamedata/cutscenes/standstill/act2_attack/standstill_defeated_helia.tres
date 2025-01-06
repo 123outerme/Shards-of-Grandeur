@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=201 format=3 uid="uid://76bkyvv3yqid"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=214 format=3 uid="uid://76bkyvv3yqid"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_se7wf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_4gicn"]
@@ -11,10 +11,14 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_43wi2"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_vx6mq"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_0qdnw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="8_nksqw"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="9_bbxlg"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_float.gd" id="9_ggc05"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="10_ttsli"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="11_85rds"]
+[ext_resource type="AudioStream" uid="uid://c3okt26v0e8er" path="res://audio/sfx/earthquake.mp3" id="11_u8t02"]
 [ext_resource type="Resource" uid="uid://bcpi8vp4styc2" path="res://gamedata/items/key_items/giant_steppes_teleport_stone.tres" id="12_kfbis"]
+[ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="15_24fm0"]
 
 [sub_resource type="Resource" id="Resource_d8n6l"]
 script = ExtResource("3_thpml")
@@ -118,7 +122,7 @@ texts = Array[String](["We'll report our success directly to The General."])
 [sub_resource type="Resource" id="Resource_4dexv"]
 script = ExtResource("1_se7wf")
 frameLength = 0.25
-annotation = "move offscreen Chain Legion Mages closer to the screen boundaries. Helia starts talking when this frame ends"
+annotation = "move offscreen Chain Legion Mages closer to the screen boundaries. Helia starts talking when this frame ends. Hold cam for next frame's camera movement"
 actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_ystdq"), SubResource("Resource_xuxml"), SubResource("Resource_od7t7")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_ggw4v"), SubResource("Resource_3pie0"), SubResource("Resource_d5jw1")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -126,7 +130,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_bmskf")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -191,10 +195,20 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_cgx5f"]
+script = ExtResource("8_nksqw")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_dq11b"]
+script = ExtResource("9_bbxlg")
+movementCurve = SubResource("Resource_cgx5f")
+finalPos = Vector2(292, -60)
+relative = false
+
 [sub_resource type="Resource" id="Resource_ghhua"]
 script = ExtResource("1_se7wf")
 frameLength = 2.0
-annotation = "All of the Chain Legion Mages and Helia move towards the ship. Helia continues talking while they load up"
+annotation = "All of the Chain Legion Mages and Helia move towards the ship while the camrea follows. Helia continues talking while they load up"
 actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_2dki0"), SubResource("Resource_t12ar"), SubResource("Resource_jgumh"), SubResource("Resource_o3p6p"), SubResource("Resource_pijdi")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_hkynd"), SubResource("Resource_65nnp")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -202,7 +216,8 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_dq11b")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -271,7 +286,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([SubResource("Resource_waaqr")]
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -326,7 +341,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -387,7 +402,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -433,7 +448,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -485,7 +500,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -528,7 +543,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -562,7 +577,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -592,7 +607,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_4d12m")])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -611,7 +626,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -645,7 +660,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -673,7 +688,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -707,7 +722,27 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_2t3cs"]
+script = ExtResource("1_se7wf")
+frameLength = 0.4
+annotation = "the camera shakes as the ship starts up (for enough time for the ~2.2s earthquake.mp3 SFX to play fully so it can \"loop\" one more time)"
+actorTweens = Array[ExtResource("5_h6h1e")]([])
+actorAnims = Array[ExtResource("3_thpml")]([])
+actorAnimSets = Array[ExtResource("2_4gicn")]([])
+actorFaceTargets = Array[ExtResource("4_kg844")]([])
+dialogues = Array[ExtResource("6_43wi2")]([])
+playSfx = ExtResource("11_u8t02")
+endTextBoxPauses = true
+shakeCamForDuration = true
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -739,10 +774,20 @@ propertyName = "z_index"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_a71d2"]
+script = ExtResource("8_nksqw")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_iaie6"]
+script = ExtResource("9_bbxlg")
+movementCurve = SubResource("Resource_a71d2")
+finalPos = Vector2(222, -104)
+relative = false
+
 [sub_resource type="Resource" id="Resource_hmn6m"]
 script = ExtResource("1_se7wf")
 frameLength = 0.833
-annotation = "The airship takes off"
+annotation = "The airship takes off as the camera pans back over the player"
 actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_8iadk"), SubResource("Resource_uafp3")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_tglyx")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -751,6 +796,7 @@ dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
+cameraMovement = SubResource("Resource_iaie6")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -810,6 +856,7 @@ actorAnims = Array[ExtResource("3_thpml")]([])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
+playSfx = ExtResource("11_u8t02")
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -967,7 +1014,7 @@ texts = Array[String](["Well, that certainly was some fine work! Good show, inde
 [sub_resource type="Resource" id="Resource_h213s"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
-annotation = "The disguised Warlock Agent stops and speaks"
+annotation = "The disguised Warlock Agent stops and speaks. Hold camrea for next frame cam movement"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sk64f")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -975,7 +1022,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_ro3yr")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -983,10 +1030,20 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_rf468"]
+script = ExtResource("8_nksqw")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_uogm8"]
+script = ExtResource("9_bbxlg")
+movementCurve = SubResource("Resource_rf468")
+finalPos = Vector2(261, -74)
+relative = false
+
 [sub_resource type="Resource" id="Resource_1ob2u"]
 script = ExtResource("1_se7wf")
-frameLength = 0.1
-annotation = "Wait for the text box to be closed"
+frameLength = 0.75
+annotation = "Wait for the text box to be closed as the camera pans over"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -994,7 +1051,8 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
+cameraMovement = SubResource("Resource_uogm8")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1024,7 +1082,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_pu3vg")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1058,7 +1116,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1083,7 +1141,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1119,7 +1177,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_ixn2t")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1138,7 +1196,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1163,7 +1221,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1204,7 +1262,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_2261a"), SubResource("Resource_5hho1")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1223,7 +1281,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1247,7 +1305,7 @@ actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_vd4xd")])
 endTextBoxPauses = true
 shakeCamForDuration = false
-endHoldCamera = false
+endHoldCamera = true
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1270,10 +1328,20 @@ propertyName = "position"
 easeType = 2
 transitionType = 0
 
+[sub_resource type="Resource" id="Resource_74fe5"]
+script = ExtResource("8_nksqw")
+linearInterp = true
+
+[sub_resource type="Resource" id="Resource_ki2ed"]
+script = ExtResource("9_bbxlg")
+movementCurve = SubResource("Resource_74fe5")
+finalPos = Vector2(222, -104)
+relative = false
+
 [sub_resource type="Resource" id="Resource_wx4xg"]
 script = ExtResource("1_se7wf")
 frameLength = 1.0
-annotation = "The Warlock Agent walks to the player"
+annotation = "The Warlock Agent walks to the player as the camera pans to the player"
 actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_4n87m")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_mtjnc")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -1282,6 +1350,7 @@ dialogues = Array[ExtResource("6_43wi2")]([])
 endTextBoxPauses = false
 shakeCamForDuration = false
 endHoldCamera = false
+cameraMovement = SubResource("Resource_ki2ed")
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
@@ -1929,6 +1998,7 @@ actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sl0xs")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
 dialogues = Array[ExtResource("6_43wi2")]([])
+playSfx = ExtResource("15_24fm0")
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -2171,7 +2241,7 @@ invalidFromHavingItems = Array[ExtResource("3_u2753")]([])
 
 [resource]
 script = ExtResource("2_iiniu")
-cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs"), SubResource("Resource_1eh8m"), SubResource("Resource_wx4xg"), SubResource("Resource_k52qr"), SubResource("Resource_uti80"), SubResource("Resource_e32nj"), SubResource("Resource_uu7wk"), SubResource("Resource_dqf5w"), SubResource("Resource_yi8ts"), SubResource("Resource_uvxmi"), SubResource("Resource_i8dov"), SubResource("Resource_emgy0"), SubResource("Resource_ijeol"), SubResource("Resource_7d66s"), SubResource("Resource_yhjno"), SubResource("Resource_o32va"), SubResource("Resource_6f55t"), SubResource("Resource_sqpug"), SubResource("Resource_7yol3"), SubResource("Resource_wfw3x"), SubResource("Resource_tj371"), SubResource("Resource_tg2u8"), SubResource("Resource_iqfpn"), SubResource("Resource_eutu7"), SubResource("Resource_u1c0o"), SubResource("Resource_dctbf"), SubResource("Resource_bt7tn"), SubResource("Resource_0kige"), SubResource("Resource_hpw6f"), SubResource("Resource_mgtxl"), SubResource("Resource_mp26v"), SubResource("Resource_bvd3b"), SubResource("Resource_0g51b"), SubResource("Resource_q8rl3"), SubResource("Resource_a50wq"), SubResource("Resource_rxelo")])
+cutsceneFrames = Array[ExtResource("1_se7wf")]([SubResource("Resource_w2n1t"), SubResource("Resource_gihus"), SubResource("Resource_4dexv"), SubResource("Resource_ghhua"), SubResource("Resource_iya4y"), SubResource("Resource_t33af"), SubResource("Resource_jjfvq"), SubResource("Resource_5nefg"), SubResource("Resource_7i7j1"), SubResource("Resource_3whsd"), SubResource("Resource_q7sap"), SubResource("Resource_hxv47"), SubResource("Resource_yq5wq"), SubResource("Resource_pevr2"), SubResource("Resource_wc5qn"), SubResource("Resource_dcrql"), SubResource("Resource_2t3cs"), SubResource("Resource_hmn6m"), SubResource("Resource_63gt8"), SubResource("Resource_pqvxq"), SubResource("Resource_v637s"), SubResource("Resource_wqqgt"), SubResource("Resource_ikib7"), SubResource("Resource_ftk81"), SubResource("Resource_h213s"), SubResource("Resource_1ob2u"), SubResource("Resource_3jqeq"), SubResource("Resource_vbhh8"), SubResource("Resource_6md3f"), SubResource("Resource_rwsuj"), SubResource("Resource_1hbwc"), SubResource("Resource_tbt34"), SubResource("Resource_c376j"), SubResource("Resource_pvlxs"), SubResource("Resource_1eh8m"), SubResource("Resource_wx4xg"), SubResource("Resource_k52qr"), SubResource("Resource_uti80"), SubResource("Resource_e32nj"), SubResource("Resource_uu7wk"), SubResource("Resource_dqf5w"), SubResource("Resource_yi8ts"), SubResource("Resource_uvxmi"), SubResource("Resource_i8dov"), SubResource("Resource_emgy0"), SubResource("Resource_ijeol"), SubResource("Resource_7d66s"), SubResource("Resource_yhjno"), SubResource("Resource_o32va"), SubResource("Resource_6f55t"), SubResource("Resource_sqpug"), SubResource("Resource_7yol3"), SubResource("Resource_wfw3x"), SubResource("Resource_tj371"), SubResource("Resource_tg2u8"), SubResource("Resource_iqfpn"), SubResource("Resource_eutu7"), SubResource("Resource_u1c0o"), SubResource("Resource_dctbf"), SubResource("Resource_bt7tn"), SubResource("Resource_0kige"), SubResource("Resource_hpw6f"), SubResource("Resource_mgtxl"), SubResource("Resource_mp26v"), SubResource("Resource_bvd3b"), SubResource("Resource_0g51b"), SubResource("Resource_q8rl3"), SubResource("Resource_a50wq"), SubResource("Resource_rxelo")])
 saveName = "standstill_defeated_helia"
 storyRequirements = SubResource("Resource_c02c5")
 unlockCameraHoldAfter = true

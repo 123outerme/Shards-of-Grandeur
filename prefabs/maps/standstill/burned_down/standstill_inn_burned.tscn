@@ -11,7 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="9_yhdre"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="15_886wd"]
 
-[sub_resource type="Resource" id="Resource_34qgo"]
+[sub_resource type="Resource" id="Resource_dtivl"]
 script = ExtResource("4_gkxec")
 saveName = "npc"
 spriteState = "default"
@@ -34,7 +34,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1i7ld"]
+[sub_resource type="Resource" id="Resource_xf7gt"]
 script = ExtResource("4_gkxec")
 saveName = "npc"
 spriteState = "default"
@@ -107,7 +107,7 @@ tile_set = ExtResource("2_vp210")
 position = Vector2(42, -27)
 displayName = "Innkeeper"
 saveName = "standstill_innkeeper"
-data = SubResource("Resource_34qgo")
+data = SubResource("Resource_dtivl")
 
 [node name="NPCSprite" parent="TilemapRoot/Innkeeper" index="0"]
 sprite_frames = ExtResource("9_yhdre")
@@ -133,7 +133,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_utxks")]
 position = Vector2(-48, 16)
 displayName = "Sign"
-data = SubResource("Resource_1i7ld")
+data = SubResource("Resource_xf7gt")
 dialogueEntries = Array[ExtResource("5_q8xju")]([ExtResource("7_33vry")])
 facesPlayer = false
 
