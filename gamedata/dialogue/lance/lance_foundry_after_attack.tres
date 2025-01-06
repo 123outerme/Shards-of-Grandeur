@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://degh361r5dcj2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=17 format=3 uid="uid://degh361r5dcj2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_m0ayl"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_188u8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="4_ewqli"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="6_67aai"]
 [ext_resource type="Resource" uid="uid://b44gd5x8y3guv" path="res://gamedata/dialogue/lance/lance_foundry_turnin_mainquest.tres" id="7_xx1ue"]
+[ext_resource type="Resource" uid="uid://dli2rm0qn6p1h" path="res://gamedata/dialogue/lance/lance_foundry_accept_rebuild.tres" id="8_5nr37"]
 
 [sub_resource type="Resource" id="Resource_epa70"]
 script = ExtResource("1_m0ayl")
@@ -70,6 +71,7 @@ choices = Array[ExtResource("2_p413y")]([])
 [sub_resource type="Resource" id="Resource_52x4p"]
 script = ExtResource("2_p413y")
 choiceBtn = "I Must Go."
+leadsTo = ExtResource("7_xx1ue")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("6_67aai")]([])
 repeatsItem = false
@@ -80,7 +82,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_b4cmp"]
 script = ExtResource("2_p413y")
 choiceBtn = "I'll Help."
-leadsTo = ExtResource("7_xx1ue")
+leadsTo = ExtResource("8_5nr37")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("6_67aai")]([])
 repeatsItem = false

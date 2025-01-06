@@ -117,7 +117,7 @@ func load_inventory_slot_panel():
 		var minionName = PlayerResources.minions.which_minion_equipped(inventorySlot.item)
 		if minionName != '':
 			combatant = PlayerResources.minions.get_minion(minionName)
-		if combatant != null:
+		if combatant != null and isPlayerItem:
 			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
 	else:
 		# if this item can't be used right now, and it's not a shop item or there's no other reason we can't buy it:

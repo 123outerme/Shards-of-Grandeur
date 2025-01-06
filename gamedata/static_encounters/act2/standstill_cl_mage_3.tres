@@ -2,24 +2,24 @@
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_ie3ah"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="2_3fbat"]
-[ext_resource type="Resource" uid="uid://cnjto6nnsswit" path="res://gamedata/combatants/chain_legion_mage/visual_variants/1/chain_legion_mage_2.tres" id="2_ernxk"]
+[ext_resource type="Resource" uid="uid://rvbo782goi0h" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage.tres" id="2_4whk0"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="3_kcpds"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_wd132"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="4_5tqv8"]
 
 [resource]
 script = ExtResource("3_wd132")
-combatant1Level = 20
+combatant1Level = 19
 combatant1Moves = Array[ExtResource("1_ie3ah")]([])
 combatant1ShardSummoned = false
 combatant2 = ExtResource("4_5tqv8")
-combatant2Level = 19
+combatant2Level = 18
 combatant2Moves = Array[ExtResource("1_ie3ah")]([])
-combatant2ShardSummoned = false
+combatant2ShardSummoned = true
 combatant3 = ExtResource("3_kcpds")
 combatant3Level = 18
 combatant3Moves = Array[ExtResource("1_ie3ah")]([])
-combatant3ShardSummoned = false
+combatant3ShardSummoned = true
 autoAllyLevel = 1
 autoAllyMoves = Array[ExtResource("1_ie3ah")]([])
 autoAllyShardSummoned = false
@@ -28,7 +28,7 @@ bossBattle = false
 canEscape = false
 rewards = Array[ExtResource("2_3fbat")]([])
 useStaticRewards = false
-combatant1 = ExtResource("2_ernxk")
+combatant1 = ExtResource("2_4whk0")
 specialRules = 0
 customWinText = "\"I guess the party's over... I'll be cool for now.\""
 battleMapPath = ""

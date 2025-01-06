@@ -44,12 +44,12 @@ func load_targets():
 		for text in effectTexts:
 			effectDesc.text += TextUtils.rich_text_substitute(text, Vector2i(32, 32)) + '\n'
 		effectDesc.text += '[/center]'
+	else:
+		moveEffect = null
 	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
 		commandText.text += battleUI.commandingCombatant.combatant.command.slot.item.itemName
 		targets = battleUI.commandingCombatant.combatant.command.slot.item.battleTargets
 		effectDesc.text = '[center]' + TextUtils.rich_text_substitute(battleUI.commandingCombatant.combatant.command.slot.item.get_effect_text(true), Vector2i(32, 32)) + '[/center]'
-	else:
-		moveEffect = null
 	
 	singleSelect = not BattleCommand.is_command_multi_target(targets)
 	commandText.text += '.[/center]'
