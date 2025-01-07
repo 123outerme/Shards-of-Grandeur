@@ -179,12 +179,12 @@ func _fade_music_callback(killMusic: bool):
 	fadingOutMusic = false
 	music_fade_completed.emit()
 
-func fade_in_new_music(stream: AudioStream, loops: int, ms: float):
+func fade_in_new_music(stream: AudioStream, loops: int, sec: float):
 	if fadingOutMusic:
 		await music_fade_completed
 	get_cur_music_player().stream = stream
 	get_cur_music_player().play()
-	fade_in_music(ms, loops)
+	fade_in_music(sec, loops)
 
 func _on_music_stream_player_1_finished():
 	if musicPlayingOnStream2:

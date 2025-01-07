@@ -37,6 +37,8 @@ func load_minion_slot_panel():
 		minionSprite.sprite_frames = load('res://graphics/animations/a_missingno.tres') # prevent crashing
 	if combatant.get_idle_size().x > 32 and combatant.get_idle_size().y > 32:
 		minionSprite.scale = Vector2.ONE
+	else:
+		minionSprite.scale = 2 * Vector2.ONE
 	minionSprite.play('battle_idle')
 	minionName.text = combatant.disp_name()
 	changedIndicator.visible = not readOnly and PlayerResources.minions.is_minion_marked_changed(combatant.save_name())

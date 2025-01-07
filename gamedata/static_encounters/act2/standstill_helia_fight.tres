@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://cv227rllqigpd"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=15 format=3 uid="uid://cv227rllqigpd"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_84kf5"]
 [ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/gateway_into_action.mp3" id="2_fcxaj"]
@@ -9,6 +9,28 @@
 [ext_resource type="Resource" uid="uid://rvbo782goi0h" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage.tres" id="6_f8fnr"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="6_jmxx1"]
 [ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="7_p782h"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="9_1jqxy"]
+[ext_resource type="Resource" uid="uid://ef0osjfeulwj" path="res://gamedata/items/shard/tree_bear_shard.tres" id="10_vmcvh"]
+
+[sub_resource type="Resource" id="Resource_6cjbc"]
+script = ExtResource("4_j2fns")
+experience = 160
+gold = 40
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_550jw"]
+script = ExtResource("4_j2fns")
+experience = 121
+gold = 20
+item = ExtResource("9_1jqxy")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_x6jga"]
+script = ExtResource("4_j2fns")
+experience = 101
+gold = 20
+item = ExtResource("10_vmcvh")
+fullyAttuneCombatantSaveName = ""
 
 [resource]
 script = ExtResource("5_bflsm")
@@ -30,8 +52,8 @@ autoAllyShardSummoned = false
 specialBattleId = "standstill_helia_fight"
 bossBattle = true
 canEscape = false
-rewards = Array[ExtResource("4_j2fns")]([])
-useStaticRewards = false
+rewards = Array[ExtResource("4_j2fns")]([SubResource("Resource_6cjbc"), SubResource("Resource_550jw"), SubResource("Resource_x6jga")])
+useStaticRewards = true
 battleMusic = ExtResource("2_fcxaj")
 combatant1 = ExtResource("3_j7n4n")
 combatant1Armor = ExtResource("4_2ioso")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://bibvmes5ynv17"]
+
+[ext_resource type="Script" path="res://scripts/menus/inventory_panel/evolution_list_item_panel.gd" id="1_51wio"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_fpll1"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="1_u85pr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ucfu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdt3p"]
+
+[node name="EvolutionListItemPanel" type="Panel" groups=["EvolutionListItemPanel"]]
+custom_minimum_size = Vector2(330, 64)
+offset_right = 330.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme = ExtResource("1_fpll1")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2ucfu")
+script = ExtResource("1_51wio")
+
+[node name="SpriteControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -32.0
+offset_right = 77.0
+offset_bottom = 32.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EvolutionSprite" type="AnimatedSprite2D" parent="SpriteControl"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rdt3p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="SelectButton" parent="HBoxContainer" instance=ExtResource("1_u85pr")]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+toggle_mode = true
+
+[node name="SelectLabel" type="RichTextLabel" parent="HBoxContainer/SelectButton"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Evolution Name Goes Here[/center]"
+fit_content = true
+
+[connection signal="toggled" from="HBoxContainer/SelectButton" to="." method="_on_select_button_toggled"]

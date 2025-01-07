@@ -121,9 +121,11 @@ func close_panel():
 	savedStats = null
 	minion = null
 	previousControl = null
-	# if the level up music is currently playing and this is in the overworld, cross-fade back into the overworld theme
+	# if the level up music is currently playing and this is in the overworld, fade the overworld theme back in after fading out the level up music
 	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
-		SceneLoader.audioHandler.cross_fade(SceneLoader.mapLoader.mapEntry.overworldTheme, -1)
+		SceneLoader.audioHandler.fade_out_music()
+		# fade_in_new_music will wait for the fadeout to complete before fading back in
+		SceneLoader.audioHandler.fade_in_new_music(SceneLoader.mapLoader.mapEntry.overworldTheme, -1, 0.5)
 	back_pressed.emit()
 
 func initial_focus():
@@ -199,6 +201,7 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.showNewMoveIndicator = levelUp and minion.stats.movepool.has_moves_at_level(minion.stats.level) \
 			if minion != null else false
 	moveListPanel.load_move_list_panel()
+	#print('stats ', stats, ' / ', minion.stats)
 	if moveListPanel.firstMovePanel != null:
 		if isTabbedView:
 			var tabBar: TabBar = tabbedViewContainer.get_tab_bar()

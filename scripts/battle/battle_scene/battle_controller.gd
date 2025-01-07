@@ -437,8 +437,8 @@ func end_battle():
 	if minionCombatant.combatant != null:
 		minionCombatant.combatant.orbs = 0
 		minionCombatant.combatant.update_battle_storage()
-	if minionCombatant.combatant != null:
 		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed)
+	SceneLoader.audioHandler.fade_out_music()
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)
 	shadeTween.finished.connect(_fade_out_finish)
@@ -464,7 +464,7 @@ func _fade_in_finish() -> void:
 func _fade_out_finish() -> void:
 	PlayerResources.playerInfo.encounter = null # clear encounter so other things can't trigger it
 	SaveHandler.save_data('save')
-	SceneLoader.audioHandler.fade_out_music()
-	await SceneLoader.audioHandler.music_fade_completed
+	if SceneLoader.audioHandler.fadingOutMusic:
+		await SceneLoader.audioHandler.music_fade_completed
 	tilemap.queue_free() # free tilemap first to avoid tilemap nav layer errors
 	SceneLoader.load_overworld('save')

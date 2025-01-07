@@ -119,8 +119,6 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
 		user.play_particles(surgeParticles)
 	
-	if command.type == BattleCommand.Type.USE_ITEM and command.orbChange != 0:
-		print_debug('command is use item and has non-zero orbs: ', command.orbChange , ' for using ', command.slot.item.itemName)
 	user.change_current_orbs(command.orbChange)
 	
 	# play animation sprite if not none or battle idle

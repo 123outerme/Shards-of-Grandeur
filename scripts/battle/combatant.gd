@@ -239,10 +239,10 @@ func save_name() -> String:
 	return stats.saveName
 
 func validate_evolution_stats():
-	if evolutions != null: 
+	if evolutions != null:
 		if evolutionStats.is_empty():
 			# first index is base form stats
-			print('creating evolution stats obj for ', stats.displayName)
+			#print('creating evolution stats obj for ', stats.displayName)
 			evolutionStats['_base'] = stats
 		for evolution: Evolution in evolutions.evolutionList:
 			if not evolutionStats.has(evolution.evolutionSaveName):

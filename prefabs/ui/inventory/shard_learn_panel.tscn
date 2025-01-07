@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmj1y0ptr5di5"]
+[gd_scene load_steps=9 format=3 uid="uid://dmj1y0ptr5di5"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7lyj1"]
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/shard_learn_panel.gd" id="2_v8r8a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="4_uqnbk"]
 [ext_resource type="PackedScene" uid="uid://caulhsqfxcmcu" path="res://prefabs/ui/stats/move_pool_panel.tscn" id="5_nxxmf"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="6_atxhp"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="6_lbx7y"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_st60c"]
 
 [node name="ShardLearnPanel" type="Control"]
@@ -36,10 +37,10 @@ offset_bottom = 680.0
 
 [node name="ShardSpriteControl" type="Control" parent="Panel"]
 anchors_preset = 0
-offset_left = 64.0
-offset_top = 20.0
-offset_right = 128.0
-offset_bottom = 84.0
+offset_left = 55.0
+offset_top = 9.0
+offset_right = 119.0
+offset_bottom = 73.0
 
 [node name="ShardSprite" type="Sprite2D" parent="Panel/ShardSpriteControl"]
 position = Vector2(32, 32)
@@ -52,14 +53,31 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -479.5
-offset_top = 24.0
+offset_top = 13.0
 offset_right = 479.5
-offset_bottom = 74.0
+offset_bottom = 63.0
 grow_horizontal = 2
 theme = ExtResource("4_uqnbk")
 bbcode_enabled = true
 text = "[center]Learn a Move From Combatant Name Here[/center]"
 fit_content = true
+
+[node name="EvolutionScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 73.0
+offset_right = -8.0
+offset_bottom = 145.0
+grow_horizontal = 2
+script = ExtResource("6_lbx7y")
+boxContainer = NodePath("EvolutionHboxContainer")
+
+[node name="EvolutionHboxContainer" type="HBoxContainer" parent="Panel/EvolutionScrollContainer"]
+layout_mode = 2
+alignment = 1
 
 [node name="MovePoolPanel" parent="Panel" instance=ExtResource("5_nxxmf")]
 layout_mode = 1
@@ -69,9 +87,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -290.0
-offset_top = -215.0
+offset_top = -174.0
 offset_right = 290.0
-offset_bottom = 215.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -83,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -52.0
-offset_right = 25.0
-offset_bottom = -18.0
+offset_left = -40.0
+offset_top = -58.0
+offset_right = 40.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
@@ -94,6 +112,7 @@ text = "Back"
 [node name="MoveDetailsPanel" parent="." instance=ExtResource("6_atxhp")]
 visible = false
 
+[connection signal="visibility_changed" from="Panel/EvolutionScrollContainer" to="Panel/EvolutionScrollContainer" method="_on_visibility_changed"]
 [connection signal="details_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_details_button_clicked"]
 [connection signal="learn_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_learn_button_clicked"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

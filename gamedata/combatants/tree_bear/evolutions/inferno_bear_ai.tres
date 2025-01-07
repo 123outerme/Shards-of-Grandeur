@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=19 format=3 uid="uid://dht7gs2vngcqn"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=21 format=3 uid="uid://dht7gs2vngcqn"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_gkxyl"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_7cqr3"]
@@ -22,6 +22,18 @@ script = ExtResource("2_sqxsd")
 healLayer = false
 weight = 0.7
 subLayers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_xqgm0")])
+
+[sub_resource type="Resource" id="Resource_n2m72"]
+script = ExtResource("3_a5gj2")
+aggroStrategy = 1
+weight = 0.35
+subLayers = Array[ExtResource("1_gkxyl")]([])
+
+[sub_resource type="Resource" id="Resource_7logr"]
+script = ExtResource("2_sqxsd")
+healLayer = true
+weight = 0.5
+subLayers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_n2m72")])
 
 [sub_resource type="Resource" id="Resource_41i4h"]
 script = ExtResource("4_y8asu")
@@ -60,7 +72,7 @@ subLayers = Array[ExtResource("1_gkxyl")]([])
 
 [resource]
 script = ExtResource("2_7cqr3")
-layers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_shs3g"), SubResource("Resource_41i4h"), SubResource("Resource_r8ldm"), SubResource("Resource_ggu4i"), SubResource("Resource_2ucft"), SubResource("Resource_mshbu"), SubResource("Resource_08odm")])
+layers = Array[ExtResource("1_gkxyl")]([SubResource("Resource_shs3g"), SubResource("Resource_7logr"), SubResource("Resource_41i4h"), SubResource("Resource_r8ldm"), SubResource("Resource_ggu4i"), SubResource("Resource_2ucft"), SubResource("Resource_mshbu"), SubResource("Resource_08odm")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.4
 lastMovesEffect = 0

@@ -12,6 +12,7 @@ signal minions_reordered
 @export var minion: Combatant = null
 @export var levelUp: bool = false
 
+var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 var loaded: bool = false
 var editingName: bool = false
 var firstMinionPanel: MinionSlotPanel = null
@@ -84,7 +85,6 @@ func load_minions_panel():
 			reorderButton.text = 'Cancel'
 		else:
 			reorderButton.text = 'Reorder'
-		var minionSlotPanel = load("res://prefabs/ui/stats/minion_slot_panel.tscn")
 		var lastPanel: MinionSlotPanel = null
 		for listed_minion in PlayerResources.minions.get_minion_list():
 			var instantiatedPanel: MinionSlotPanel = minionSlotPanel.instantiate()
