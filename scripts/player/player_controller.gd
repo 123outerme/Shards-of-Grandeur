@@ -799,6 +799,7 @@ func _on_shop_button_pressed():
 	inventoryPanel.showPlayerInventory = false
 	inventoryPanel.shopInventory = talkNPC.inventory
 	inventoryPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
 	animatedBgPanel.visible = true
 
 func _on_turn_in_button_pressed():
@@ -813,6 +814,7 @@ func _on_turn_in_button_pressed():
 	questsPanel.turnInTargetName = turnInTarget
 	get_viewport().gui_release_focus()
 	questsPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
 	animatedBgPanel.visible = true
 	disableMovement = true
 
@@ -889,6 +891,7 @@ func level_up(newLevels: int):
 	questsPanel.visible = false
 	statsPanel.visible = false # show stats panel for sure
 	statsPanel.toggle()
+	overworldTouchControls.set_all_visible(false)
 
 func _on_stats_panel_node_back_pressed():
 	if statsPanel.levelUp and questsPanel.visible:

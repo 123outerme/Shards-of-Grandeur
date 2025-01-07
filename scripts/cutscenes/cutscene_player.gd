@@ -80,7 +80,7 @@ func is_in_dialogue() -> bool:
 	return PlayerFinder.player.is_in_dialogue()
 
 func handle_camera_move(percentTime: float, frame: CutsceneFrame, lFrame: CutsceneFrame) -> void:
-	if frame != null and frame.cameraMovement != null and lFrame != null and lFrame.endHoldCamera and (PlayerFinder.player.holdCameraX and PlayerFinder.player.holdCameraY):
+	if frame != null and frame.cameraMovement != null and lFrame != null and lFrame.endHoldCamera and PlayerFinder.player != null and (PlayerFinder.player.holdCameraX and PlayerFinder.player.holdCameraY):
 		var camPosition: Vector2 = frame.cameraMovement.get_camera_position_at_time(percentTime, 1, lastFrameCameraPos, PlayerFinder.player.position)
 		PlayerFinder.player.holdingCameraAt = camPosition
 
@@ -443,8 +443,16 @@ func skip_cutscene_process():
 		if frame.removesFollowerId != '':
 			PlayerResources.remove_follower(frame.removesFollowerId)
 		await get_tree().process_frame
+	# fetching static encounter before end_cutscene() just in case complete_cutscene() is called from that, which sets cutscene as null
+	var staticEncounter: StaticEncounter = cutscene.staticEncounter
 	end_cutscene()
-	PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
+	# if there is a static encounter at the end of this cutscene, don't bother fading in, because the battle will start soon
+	if staticEncounter == null:
+		PlayerFinder.player.cam.call_deferred('fade_in', _fade_in_complete)
+	else:
+		PlayerResources.playerInfo.encounter = staticEncounter
+		PlayerFinder.player.start_battle()
+		#PlayerFinder.player._after_start_battle_fade_out()
 
 func _learn_shard_tutorial_finished():
 	awaitingPlayer = false
