@@ -100,7 +100,7 @@ func which_sfx_channel_playing(stream: AudioStream) -> int:
 			return idx
 	return -1
 
-func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
+func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxPlayerIdx: int = -1):
 	if stream == null:
 		return
 	
@@ -111,6 +111,7 @@ func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
 			idx = get_first_open_sfx_player_idx()
 	
 	if idx != -1:
+		sfxStreamPlayers[idx].pitch_scale = 1 if not varyPitch else randf_range(0.95, 1.05)
 		sfxStreamPlayers[idx].stream = stream
 		sfxLoops[idx] = loops
 		openSfxPlayers[idx] = false

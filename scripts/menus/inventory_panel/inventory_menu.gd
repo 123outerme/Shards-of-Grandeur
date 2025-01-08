@@ -42,6 +42,9 @@ var shopInventory: Inventory = null
 ## the stats object to equip equipment to if clicked in from the Stats menu
 @export var equipContextStats: Stats = null
 
+@export_category("InvnetoryPanel - SFX and Misc")
+@export var buySellSfx: AudioStream
+
 @onready var vboxViewport: VBoxContainer = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
@@ -642,3 +645,4 @@ func _on_item_count_choose_panel_panel_closed(count: int, backPressed: bool) -> 
 					lastSlotInteracted = null
 					# setting this makes restore_last_focus not find anything, defaulting to initial focus
 			restore_last_focus('trashButton')
+	SceneLoader.audioHandler.play_sfx(buySellSfx)

@@ -266,7 +266,7 @@ func _process(delta):
 				lastStepIdx = stepChoiceIdxs.pick_random() as int
 			else:
 				lastStepIdx = 0
-			SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx])
+			SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx], 0, true)
 			stepSfxTimer = 0
 	else:
 		# play a step sound the next time the player moves

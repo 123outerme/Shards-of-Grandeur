@@ -12,6 +12,9 @@ static var SCROLL_UP_SECS: float = 1.25
 static var FADE_OUT_SECS: float = 0.25
 static var SECS_UNTIL_FADE_OUT: float = 1
 
+var eventTextSfx: AudioStream = null
+var varyEventSfxPitch: bool = false
+
 var eventTextTween: Tween = null
 
 var eventCallable: Callable = Callable()
@@ -52,7 +55,7 @@ static func build_stat_changes_texts(statChanges: StatChanges) -> Array[String]:
 		retValTexts.append(multText.print_multiplier())
 	return retValTexts
 
-func load_event_text(eventText: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
+func load_event_text(eventText: String, callable: Callable = Callable(), delay: float = 0, center: bool = true, sfx: AudioStream = null, varySfxPitch: bool = false) -> void:
 	if eventText == '':
 		_call_event_callable()
 		event_text_completed.emit()
@@ -60,6 +63,8 @@ func load_event_text(eventText: String, callable: Callable = Callable(), delay: 
 		return
 	
 	eventCallable = callable
+	eventTextSfx = sfx
+	varyEventSfxPitch = varySfxPitch
 	if center:
 		text = '[center]' + eventText + '[/center]'
 	else:
@@ -74,10 +79,16 @@ func load_event_text(eventText: String, callable: Callable = Callable(), delay: 
 	# then, slide upwards, and at the same time, prepare to fade out partway through the slide upwards
 	eventTextTween.tween_property(self, 'position', Vector2(0, -36), CombatantEventText.SCROLL_UP_SECS).as_relative()
 	eventTextTween.set_parallel()
+	eventTextTween.tween_callback(play_text_sfx)
+	eventTextTween.set_parallel()
 	eventTextTween.tween_property(self, 'modulate', Color(1,1,1,0), CombatantEventText.FADE_OUT_SECS).set_delay(CombatantEventText.SECS_UNTIL_FADE_OUT)
 	# once finished, call the callback
 	eventTextTween.finished.connect(_event_text_completed)
-	
+
+func play_text_sfx():
+	if eventTextSfx != null:
+		SceneLoader.audioHandler.play_sfx(eventTextSfx, 0, varyEventSfxPitch)
+
 func destroy() -> void:
 	_event_text_completed()
 

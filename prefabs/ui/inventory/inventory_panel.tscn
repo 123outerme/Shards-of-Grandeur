@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://drjv6mqrkwq3n"]
+[gd_scene load_steps=17 format=3 uid="uid://drjv6mqrkwq3n"]
 
 [ext_resource type="Script" path="res://scripts/menus/inventory_panel/inventory_menu.gd" id="1_b8tdp"]
+[ext_resource type="AudioStream" uid="uid://cubjh3ww506wh" path="res://audio/sfx/ui/shop_buy_sell.mp3" id="2_m6b84"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_n8oq0"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_emweo"]
 [ext_resource type="Texture2D" uid="uid://b07b3t04115ub" path="res://graphics/items/gold_coin.png" id="4_7ietu"]
@@ -19,6 +20,7 @@
 
 [node name="InventoryPanelNode" type="Node2D"]
 script = ExtResource("1_b8tdp")
+buySellSfx = ExtResource("2_m6b84")
 
 [node name="InventoryPanel" type="Control" parent="."]
 layout_mode = 3

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=19 format=3 uid="uid://dab8dfaja5hsx"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_2v7ly"]
-[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_2ldgl"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_g0xn1"]
-[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_tq5cg"]
+[ext_resource type="AudioStream" uid="uid://dn4ntehqhdrrk" path="res://audio/sfx/moves/fire/fire_impact4.mp3" id="2_o7vjm"]
+[ext_resource type="AudioStream" uid="uid://blghm4op0g46y" path="res://audio/sfx/moves/fire/fire_impact1.mp3" id="3_1lbwy"]
 [ext_resource type="SpriteFrames" uid="uid://cy1ihxquyxqfv" path="res://graphics/moves/fire/a_fire.tres" id="3_gq0kd"]
 [ext_resource type="Resource" uid="uid://bh06d3djm71we" path="res://gamedata/moves/desert_sun_beam/particles_desert_sun_beam.tres" id="3_ow76m"]
 
@@ -50,7 +50,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
-sfx = ExtResource("2_2ldgl")
+sfx = ExtResource("2_o7vjm")
 
 [sub_resource type="Resource" id="Resource_3jl2s"]
 script = ExtResource("1_2v7ly")
@@ -95,7 +95,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = true
-sfx = ExtResource("2_tq5cg")
+sfx = ExtResource("3_1lbwy")
 
 [sub_resource type="Curve" id="Curve_cguat"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]

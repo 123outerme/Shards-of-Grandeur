@@ -565,12 +565,12 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		playingMoveSprites.append(spriteNode)
 		add_child(spriteNode)
 
-func play_event_text(text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
+func play_event_text(text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true, sfx: AudioStream = null, varySfxPitch: bool = false) -> void:
 	var instantiatedText: CombatantEventText = eventTextScene.instantiate()
 	playedEventTexts += 1
 	instantiatedText.event_text_completed.connect(_event_text_completed.bind(instantiatedText))
 	playingEventTexts.append(instantiatedText)
-	instantiatedText.load_event_text(text, callable, delay, center)
+	instantiatedText.load_event_text(text, callable, delay, center, sfx, varySfxPitch)
 	eventTextContainer.add_child(instantiatedText)
 
 func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], targets: BattleCommand.Targets) -> Array[CombatantNode]:

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_32qeh"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_2x1n1"]
+[ext_resource type="AudioStream" uid="uid://dn4ntehqhdrrk" path="res://audio/sfx/moves/fire/fire_impact4.mp3" id="2_wfpih"]
 [ext_resource type="SpriteFrames" uid="uid://caifmll7j6t8p" path="res://graphics/moves/fire/a_burning_rune.tres" id="3_kfobr"]
 [ext_resource type="Resource" uid="uid://d1jnd7phew4rb" path="res://gamedata/moves/searing_rune/particles_searing_rune_move.tres" id="3_tq3ob"]
-[ext_resource type="AudioStream" uid="uid://1bnigsf5of4m" path="res://audio/sfx/moves/fire/flamewind.mp3" id="3_uiv3t"]
 
 [sub_resource type="Curve" id="Curve_ra4rx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -59,7 +59,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
-sfx = ExtResource("3_uiv3t")
+sfx = ExtResource("2_wfpih")
 
 [sub_resource type="Resource" id="Resource_1qwmh"]
 script = ExtResource("1_32qeh")

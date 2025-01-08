@@ -34,6 +34,9 @@ const originalCombatantZIndices: Dictionary = {
 
 @export var disableEventTexts: bool = false
 
+@export_category('BattleAnimationManager - SFX and Misc')
+@export var statChangesTextSfx: AudioStream
+
 @onready var playerCombatantNode: CombatantNode = get_node('PlayerCombatant')
 @onready var minionCombatantNode: CombatantNode = get_node('MinionCombatant')
 @onready var enemy1CombatantNode: CombatantNode = get_node('EnemyCombatant1')
@@ -248,6 +251,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var dmgWasSuperEffective: bool = false
 		var eventTexts: Array[String] = []
 		var eventTextUpdates: Array[Callable] = []
+		var eventTextSfxs: Array[AudioStream] = []
+		var eventTextSfxVaryPitches: Array[bool] = []
 		var targetIdx: int = command.targets.find(defender.combatant)
 		var moveEffect: MoveEffect = null
 		if command.type == BattleCommand.Type.MOVE:
@@ -276,10 +281,14 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if dealtDmg != 0:
 			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
 			eventTextUpdates.append(defender.change_current_hp.bind(dealtDmg * -1))
+			eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 		if defender == user:
 			if command.commandResult.lifestealHeal > 0:
 				eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
 				eventTextUpdates.append(defender.change_current_hp.bind(command.commandResult.lifestealHeal))
+				eventTextSfxs.append(null)
+				eventTextSfxVaryPitches.append(false)
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			var statusEffect: StatusEffect = defender.combatant.statusEffect
@@ -289,6 +298,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					statusEffect = StatusEffect.new(StatusEffect.Type.NONE, healing.statusStrengthHeal, true)
 			eventTexts.append(CombatantEventText.build_status_get_text(statusEffect))
 			eventTextUpdates.append(defender.change_current_status.bind(statusEffect))
+			eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 		# stat changes text here
 		if targetIdx > -1 and (command.commandResult.wasBoosted[targetIdx] or len(command.commandResult.equipmentProcd[targetIdx]) > 0):
 			var statChanges: StatChanges = null
@@ -329,13 +340,15 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				eventTexts.append_array(statChangesTexts)
 				for statChangeIdx: int in range(len(statChangesTexts)):
 					eventTextUpdates.append(Callable())
+					eventTextSfxs.append(statChangesTextSfx)
+					eventTextSfxVaryPitches.append(true)
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-				defender.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
+				defender.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum, true, eventTextSfxs[textIdx], eventTextSfxVaryPitches[textIdx])
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
 			if len(eventTexts) < len(eventTextUpdates):
 				for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
@@ -353,14 +366,20 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if not user in defenders:
 		var eventTexts: Array[String] = []
 		var eventTextUpdates: Array[Callable] = []
+		var eventTextSfxs: Array[AudioStream] = []
+		var eventTextSfxVaryPitches: Array[bool] = []
 		# start event texts: damage
 		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
 			user.play_particles(BattleCommand.get_hit_particles(), 0)
 			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
 			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.selfRecoilDmg * -1))
+			eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 		if command.commandResult.lifestealHeal > 0:
 			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
 			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.lifestealHeal))
+			eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 		# status effect text + stat changes text
 		if command.type == BattleCommand.Type.MOVE:
 			var moveEffect: MoveEffect = command.move.chargeEffect
@@ -370,19 +389,23 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			if moveEffect.selfGetsStatus and command.commandResult.selfAfflictedStatus:
 				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
 				eventTextUpdates.append(user.change_current_status.bind(user.combatant.statusEffect))
+				eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 			# if the command type is a move: calculate the stat changes of the move, use that for texts
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges)
 				eventTexts.append_array(statChangesTexts)
 				for changeTextIdx: int in range(len(statChangesTexts)):
 					eventTextUpdates.append(Callable())
+					eventTextSfxs.append(statChangesTexts)
+					eventTextSfxVaryPitches.append(true)
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
 			for textIdx: int in range(len(eventTexts)):
 				if textIdx > 0:
 					textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-				user.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
+				user.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum, true, eventTextSfxs[textIdx], eventTextSfxVaryPitches[textIdx])
 			playedEventTexts = playedEventTexts or len(eventTexts) > 0
 			if len(eventTexts) < len(eventTextUpdates):
 				for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
@@ -621,9 +644,9 @@ func play_triggered_rune_animations() -> void:
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()
 
-func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true) -> void:
+func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true, sfx: AudioStream = null, varySfxPitch: bool = false) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
-		combatantNode.play_event_text(text, callable, delay, center)
+		combatantNode.play_event_text(text, callable, delay, center, sfx, varySfxPitch)
 	elif callable != Callable():
 		callable.call()
 

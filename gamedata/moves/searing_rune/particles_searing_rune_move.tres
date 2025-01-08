@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://d1jnd7phew4rb"]
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://d1jnd7phew4rb"]
 
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_hwt8w"]
 [ext_resource type="Texture2D" uid="uid://d1s0muneaqbmp" path="res://graphics/particles/fire/fire_1.png" id="1_v7rvn"]
 [ext_resource type="Texture2D" uid="uid://dt1jful8dnkk7" path="res://graphics/particles/fire/fire_2.png" id="2_h2eo5"]
 [ext_resource type="Texture2D" uid="uid://ctxvjxobc6rlo" path="res://graphics/particles/fire/fire_3.png" id="3_e3ejq"]
 [ext_resource type="Texture2D" uid="uid://o88o6okxdgq3" path="res://graphics/particles/fire/fire_4.png" id="4_yyq2f"]
+[ext_resource type="AudioStream" uid="uid://dwshfhxeh3st" path="res://audio/sfx/moves/fire/fire_impact3.mp3" id="6_mp257"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yb5jd"]
 lifetime_randomness = 0.2
@@ -27,3 +28,4 @@ duration = 0.6
 staggered = true
 processMaterial = SubResource("ParticleProcessMaterial_yb5jd")
 particleTextures = Array[Texture2D]([ExtResource("1_v7rvn"), ExtResource("2_h2eo5"), ExtResource("3_e3ejq"), ExtResource("4_yyq2f")])
+sfx = ExtResource("6_mp257")

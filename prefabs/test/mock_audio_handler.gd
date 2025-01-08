@@ -3,7 +3,7 @@ extends AudioHandler
 func play_music(stream: AudioStream, loops: int = 0):
 	pass
 
-func play_sfx(stream: AudioStream, loops: int = 0, sfxPlayerIdx: int = -1):
+func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxPlayerIdx: int = -1):
 	pass
 
 func fade_out_music(sec: float = 0.5):

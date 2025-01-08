@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk5magi8dnwgj"]
+[gd_scene load_steps=5 format=3 uid="uid://bk5magi8dnwgj"]
 
 [ext_resource type="Script" path="res://prefabs/battle/battle_animation_manager.gd" id="1_rvftt"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="1_tdlew"]
+[ext_resource type="AudioStream" uid="uid://3mr51u5ur61t" path="res://audio/sfx/ui/success_ping.mp3" id="2_r4w5w"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade.gd" id="2_xle2k"]
 
 [node name="BattleAnimationManager" type="Node2D"]
 script = ExtResource("1_rvftt")
+statChangesTextSfx = ExtResource("2_r4w5w")
 
 [node name="GlobalMarker" type="Marker2D" parent="."]
 position = Vector2(-5, -19)
