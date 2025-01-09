@@ -16,7 +16,7 @@
 [ext_resource type="Resource" uid="uid://bj5oava6twfyq" path="res://gamedata/shops/standstill/lance_foundry.tres" id="12_oygwg"]
 [ext_resource type="Resource" uid="uid://dnapsfibsv6gg" path="res://gamedata/dialogue/lance/lance_foundry_1.tres" id="13_ln4wi"]
 
-[sub_resource type="Resource" id="Resource_hvy2y"]
+[sub_resource type="Resource" id="Resource_7sri8"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "default"
@@ -45,7 +45,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsmwf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_44bmr"]
+[sub_resource type="Resource" id="Resource_7fffq"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
@@ -68,7 +68,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_j8kdx"]
+[sub_resource type="Resource" id="Resource_itvr0"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
@@ -134,7 +134,7 @@ tile_set = ExtResource("2_kph06")
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_55211")]
 position = Vector2(-68, 16)
 displayName = "Sign"
-data = SubResource("Resource_hvy2y")
+data = SubResource("Resource_7sri8")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -175,7 +175,7 @@ stateSpritesDict = {
 "default": null,
 "in_bed": ExtResource("10_p0awk")
 }
-data = SubResource("Resource_44bmr")
+data = SubResource("Resource_7fffq")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 position = Vector2(0, -6)
@@ -204,7 +204,7 @@ stateSpritesDict = {
 "burned": ExtResource("10_yywe0"),
 "default": ExtResource("11_pb102")
 }
-data = SubResource("Resource_j8kdx")
+data = SubResource("Resource_itvr0")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 

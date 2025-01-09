@@ -100,9 +100,10 @@ func which_sfx_channel_playing(stream: AudioStream) -> int:
 			return idx
 	return -1
 
-func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxPlayerIdx: int = -1):
+## plays the specified stream on the `sfx` audio bus. Returns the SFX stream player idx
+func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxPlayerIdx: int = -1) -> int:
 	if stream == null:
-		return
+		return -1
 	
 	var idx: int = sfxPlayerIdx
 	if sfxPlayerIdx == -1:
@@ -117,6 +118,7 @@ func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxP
 		openSfxPlayers[idx] = false
 		sfxStreamPlayers[idx].play()
 		lastSfxIdx = idx
+	return idx
 
 func stop_sfx(stream: AudioStream):
 	for idx in range(len(sfxStreamPlayers)):

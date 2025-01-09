@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://bwnakoj6c7o46"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=21 format=3 uid="uid://bwnakoj6c7o46"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_3a14r"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_81t65"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_snpvx"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_w182h"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_5o2b7"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_4qwe1"]
 
 [sub_resource type="Resource" id="Resource_vfx8k"]
 script = ExtResource("3_2uk7u")
@@ -32,6 +33,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_18ivr"]
@@ -58,6 +61,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_0wulb"]
@@ -75,6 +80,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_uq67w"]
@@ -101,6 +108,8 @@ endHoldCamera = false
 endFade = 0
 endFadeLength = 0.0
 healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_jr8x2"]
@@ -114,7 +123,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_4qwe1")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["hilltop_cave_gone"])
@@ -122,6 +134,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_4qwe1")]([])
 
 [resource]
 script = ExtResource("1_3a14r")
@@ -132,3 +147,4 @@ unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String]([])
 tempDisabledAfter = false
+notes = ""

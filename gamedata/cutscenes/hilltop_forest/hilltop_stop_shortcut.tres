@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://da65t70i2k816"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=19 format=3 uid="uid://da65t70i2k816"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_dmxdt"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_nnow1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_ouwoh"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_nk4o1"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_a6sg0"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_6uwut"]
 
 [sub_resource type="Resource" id="Resource_prift"]
 script = ExtResource("1_dmxdt")
@@ -94,8 +95,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_6uwut")]([])
 invalidAfterCompletingQuests = Array[String](["The Radiant War Begins#To Grandstone!"])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -103,7 +106,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_6uwut")]([])
 
 [resource]
 script = ExtResource("2_qbury")

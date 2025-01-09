@@ -72,7 +72,7 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 		SpeakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
-	
+
 func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: String = ''):
 	TextBoxText.text = TextUtils.rich_text_substitute(text, Vector2i(32, 32))
 	TextBoxText.visible_characters = 0
@@ -82,9 +82,9 @@ func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: Strin
 		SpeakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
 	ReadySprite.visible = false
-	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 	lastDialogueItem = lastItem
 	delete_choices()
+	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 
 func is_textbox_complete() -> bool:
 	return ReadySprite.visible or (len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0)

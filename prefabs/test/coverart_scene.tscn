@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://untpuomj0aup"]
+
+[ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="1_mu3yo"]
+[ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_4268r"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_243gd"]
+[ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="4_piauv"]
+[ext_resource type="SpriteFrames" uid="uid://ca2c2mm4yjn7m" path="res://graphics/animations/a_chain_legion_mage_2.tres" id="5_qk2ke"]
+[ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="6_b80a6"]
+[ext_resource type="SpriteFrames" uid="uid://mek3yddf26xy" path="res://graphics/ui/a_shard_summon_anim.tres" id="7_tut2x"]
+
+[node name="CoverartScene" type="Node2D"]
+metadata/_edit_vertical_guides_ = [640.0]
+
+[node name="AnimatedBgPanel" parent="." instance=ExtResource("1_mu3yo")]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+motionEnabled = false
+
+[node name="TitleText" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 220.0
+offset_top = 201.0
+offset_right = 1060.0
+offset_bottom = 284.0
+grow_horizontal = 2
+theme = ExtResource("3_243gd")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Shards of Grandeur[/center]"
+fit_content = true
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(8, 8)
+
+[node name="Heroes" type="Node2D" parent="Sprites"]
+position = Vector2(48, 44)
+
+[node name="Solius" type="AnimatedSprite2D" parent="Sprites/Heroes"]
+position = Vector2(-9, 0)
+sprite_frames = ExtResource("6_b80a6")
+animation = &"attack_phys"
+
+[node name="Player" type="AnimatedSprite2D" parent="Sprites/Heroes"]
+position = Vector2(9, 0)
+sprite_frames = ExtResource("2_4268r")
+animation = &"attack_magic"
+frame = 6
+
+[node name="Antagonists" type="Node2D" parent="Sprites"]
+position = Vector2(115, 44)
+
+[node name="ChainLegionSoldier" type="AnimatedSprite2D" parent="Sprites/Antagonists"]
+position = Vector2(9, 0)
+sprite_frames = ExtResource("4_piauv")
+animation = &"battle_idle"
+flip_h = true
+
+[node name="ChainLegionMage" type="AnimatedSprite2D" parent="Sprites/Antagonists"]
+position = Vector2(-5, 0)
+sprite_frames = ExtResource("5_qk2ke")
+animation = &"attack_magic"
+frame = 4
+flip_h = true
+
+[node name="Shard" type="AnimatedSprite2D" parent="Sprites"]
+position = Vector2(80, 44)
+sprite_frames = ExtResource("7_tut2x")

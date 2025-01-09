@@ -21,7 +21,8 @@ func _ready():
 		super._ready()
 		animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
 		show_interact_sprite(false)
-		SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_check_enable_interact_sprite)
+		if SceneLoader.cutscenePlayer != null:
+			SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_check_enable_interact_sprite)
 
 func show_interact_sprite(showSprite: bool = true):
 	interactSprite.visible = showSprite

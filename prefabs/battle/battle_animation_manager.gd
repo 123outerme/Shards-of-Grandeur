@@ -37,6 +37,9 @@ const originalCombatantZIndices: Dictionary = {
 @export_category('BattleAnimationManager - SFX and Misc')
 @export var statChangesTextSfx: AudioStream
 
+## if true, will slightly randomize the pitch of the `statChangesTextSfx` each time it's played
+@export var varyStatChangesPitch: bool = true
+
 @onready var playerCombatantNode: CombatantNode = get_node('PlayerCombatant')
 @onready var minionCombatantNode: CombatantNode = get_node('MinionCombatant')
 @onready var enemy1CombatantNode: CombatantNode = get_node('EnemyCombatant1')
@@ -341,7 +344,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				for statChangeIdx: int in range(len(statChangesTexts)):
 					eventTextUpdates.append(Callable())
 					eventTextSfxs.append(statChangesTextSfx)
-					eventTextSfxVaryPitches.append(true)
+					eventTextSfxVaryPitches.append(varyStatChangesPitch)
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:
@@ -398,7 +401,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				for changeTextIdx: int in range(len(statChangesTexts)):
 					eventTextUpdates.append(Callable())
 					eventTextSfxs.append(statChangesTexts)
-					eventTextSfxVaryPitches.append(true)
+					eventTextSfxVaryPitches.append(varyStatChangesPitch)
 		# END event texts
 		var textDelayAccum: float = 0
 		if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:

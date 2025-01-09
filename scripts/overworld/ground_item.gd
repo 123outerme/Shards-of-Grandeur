@@ -56,6 +56,8 @@ func show_pick_up_sprite(showSprite: bool = true):
 
 func interact(_args: Array = []):
 	if not PlayerResources.playerInfo.has_picked_up(saveName):
+		if interactSfx != null:
+			SceneLoader.audioHandler.play_sfx(interactSfx)
 		PlayerFinder.player.pick_up(self)
 
 func has_dialogue() -> bool:
