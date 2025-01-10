@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
-[ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="2_se8xm"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_ly120"]
 [ext_resource type="AudioStream" uid="uid://bj0i1vekyc0vn" path="res://audio/sfx/step1.ogg" id="3_pbxso"]
 [ext_resource type="Script" path="res://scripts/player/player_camera.gd" id="3_r2wma"]
 [ext_resource type="AudioStream" uid="uid://cm2q5q5k4y6aa" path="res://audio/sfx/step2.ogg" id="4_07s2b"]
@@ -33,7 +33,7 @@ size = Vector2(16, 9)
 z_index = -10
 motion_mode = 1
 script = ExtResource("1_nw80b")
-teleportSfx = ExtResource("2_se8xm")
+teleportSfx = ExtResource("2_ly120")
 stepSfx = Array[AudioStream]([ExtResource("3_pbxso"), ExtResource("4_07s2b"), ExtResource("5_7ceg2")])
 
 [node name="ColliderShape" type="CollisionShape2D" parent="."]

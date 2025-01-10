@@ -6,15 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://bdj47ikjlhe0d" path="res://graphics/particles/shard/shard_4.png" id="4_iow8w"]
 [ext_resource type="Material" uid="uid://bsfwc71v8vtkc" path="res://graphics/particles/shard/shard_particle_process_material.tres" id="5_bx8xm"]
 [ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_u06ea"]
-[ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="7_yqlxq"]
+[ext_resource type="AudioStream" uid="uid://dnn88uvf5s8j" path="res://audio/sfx/ui/stat_boost.mp3" id="7_gruyl"]
 
 [resource]
 script = ExtResource("6_u06ea")
 emitter = "surge"
 count = 5
-inFrontOfCombatant = false
 lifetime = 0.75
 duration = 0.675
+staggered = false
 processMaterial = ExtResource("5_bx8xm")
 particleTextures = Array[Texture2D]([ExtResource("1_nsahs"), ExtResource("2_bu4f5"), ExtResource("3_m0rlm"), ExtResource("4_iow8w")])
-sfx = ExtResource("7_yqlxq")
+sfx = ExtResource("7_gruyl")
