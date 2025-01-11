@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://dgxhujv1gwip"]
+
+[ext_resource type="Texture2D" uid="uid://c4vsj01ax212c" path="res://graphics/items/weapons/solius_sword.png" id="1_xuwyg"]
+[ext_resource type="Script" path="res://scripts/inventory/items/weapon.gd" id="2_avdpk"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_s7x0g"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_yjrmh"]
+
+[sub_resource type="Resource" id="Resource_nh6gt"]
+script = ExtResource("3_s7x0g")
+element = 2
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_uh0vr"]
+script = ExtResource("4_yjrmh")
+physAttackIncrease = 4
+magicAttackIncrease = 4
+affinityIncrease = 0
+resistanceIncrease = 2
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_s7x0g")]([SubResource("Resource_nh6gt")])
+
+[resource]
+script = ExtResource("2_avdpk")
+statChanges = SubResource("Resource_uh0vr")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_xuwyg")
+itemName = "Solius' Lost Sword"
+itemType = 2
+itemDescription = "Solius's sword. He went missing just outside of Leavenport when the Chain Legion fended us off, and all I found was this sword... Hope he's okay."
+cost = -1
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1

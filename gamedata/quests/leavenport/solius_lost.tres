@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://cx6pa7afrlvl5"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_wwn1h"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_n3075"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_404du"]
+
+[sub_resource type="Resource" id="Resource_6c35l"]
+script = ExtResource("2_n3075")
+name = "Pick Up On His Trail"
+description = "Start looking around for Solius. You should be able to find clues somewhere!"
+locations = Array[int]([0])
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_404du")]([])
+inProgressDialogue = Array[ExtResource("3_404du")]([])
+
+[resource]
+script = ExtResource("1_wwn1h")
+questName = "A Lost Comrade"
+description = "When I got back to Leavenport, Solius was gone... I hope he's okay. I'll track him down and rescue him, no matter what!"
+steps = Array[ExtResource("2_n3075")]([SubResource("Resource_6c35l")])
+isMainQuest = false
+advanceActAfterComplete = false

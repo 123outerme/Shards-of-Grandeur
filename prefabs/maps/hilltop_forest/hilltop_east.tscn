@@ -22,10 +22,10 @@
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="11_8wnil"]
 [ext_resource type="Resource" uid="uid://dpp2ku1ps3jkf" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_out.tres" id="11_teqmx"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="11_wq3si"]
+[ext_resource type="Resource" uid="uid://bkp6unp7ys28m" path="res://gamedata/story_requirements/main_story/act1/leavenport_takeover.tres" id="12_htufg"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="16_kldgj"]
 [ext_resource type="SpriteFrames" uid="uid://chwjmt00er1wn" path="res://graphics/structures/anim_floating_stone_column.tres" id="17_30gnw"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="25_r4bat"]
-[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="26_rf44k"]
 [ext_resource type="Resource" uid="uid://c71mhqpyp5au8" path="res://gamedata/cutscenes/hilltop_forest/ht_east_north_path_takeover_turnaround.tres" id="27_3l3fy"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="27_4rd7y"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="27_o82bg"]
@@ -60,7 +60,7 @@ dialogueEntry = ExtResource("9_n6psx")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_13x0t"]
+[sub_resource type="Resource" id="Resource_27pxv"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -83,7 +83,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_u0lex"]
+[sub_resource type="Resource" id="Resource_6i6pk"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -570,8 +570,8 @@ saveName = "ht_east_sword"
 [node name="ChainLegionSoldier1" parent="TilemapRoot" instance=ExtResource("25_r4bat")]
 position = Vector2(678, 659)
 loadFlipH = true
-spawnRequirements = ExtResource("26_rf44k")
-data = SubResource("Resource_13x0t")
+spawnRequirements = ExtResource("12_htufg")
+data = SubResource("Resource_27pxv")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("28_81cjf")
@@ -588,8 +588,8 @@ visible = false
 
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("25_r4bat")]
 position = Vector2(731, 663)
-spawnRequirements = ExtResource("26_rf44k")
-data = SubResource("Resource_u0lex")
+spawnRequirements = ExtResource("12_htufg")
+data = SubResource("Resource_6i6pk")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("29_mevpy")

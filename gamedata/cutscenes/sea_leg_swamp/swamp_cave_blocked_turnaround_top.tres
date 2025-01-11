@@ -1,0 +1,209 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://2coxri5jufoe"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_u4nx7"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_jpqbi"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_6olgk"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_e1u6q"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_25ksb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_glg2r"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_48cas"]
+[ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="8_f7gwb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_44cbt"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="9_aabxa"]
+[ext_resource type="Resource" uid="uid://dqaolsbi758q8" path="res://gamedata/story_requirements/locations/reqs_swamp_cave_blocked.tres" id="10_ixe18"]
+
+[sub_resource type="Resource" id="Resource_3k72u"]
+script = ExtResource("3_6olgk")
+actorTreePath = "TilemapRoot/Soldier4BlockCave"
+isPlayer = false
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_062tq"]
+script = ExtResource("7_48cas")
+speaker = "Chain Legion Soldier"
+texts = Array[String](["Huh??"])
+
+[sub_resource type="Resource" id="Resource_pxhah"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "The player stands, the soldier says something"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([ExtResource("4_e1u6q"), SubResource("Resource_3k72u")])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([])
+dialogues = Array[ExtResource("7_48cas")]([SubResource("Resource_062tq")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ypsft"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "Wait for the textbox to be closed"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([])
+dialogues = Array[ExtResource("7_48cas")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_t4fvc"]
+script = ExtResource("5_25ksb")
+actorTreePath = "TilemapRoot/Soldier4BlockCave"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+
+[sub_resource type="Resource" id="Resource_v6ko2"]
+script = ExtResource("9_44cbt")
+value = Vector2(290, -138)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_8ov43"]
+script = ExtResource("7_48cas")
+speaker = "Chain Legion Soldier"
+texts = Array[String](["Who goes there?!", "Answer me!"])
+
+[sub_resource type="Resource" id="Resource_djasb"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.45
+annotation = "The player darts off, the soldier turns around and keeps talking"
+actorTweens = Array[ExtResource("6_glg2r")]([SubResource("Resource_v6ko2")])
+actorAnims = Array[ExtResource("3_6olgk")]([ExtResource("8_f7gwb")])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([SubResource("Resource_t4fvc")])
+dialogues = Array[ExtResource("7_48cas")]([SubResource("Resource_8ov43")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_eaolg"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "The player stands, wait for the text box to be closed"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([ExtResource("4_e1u6q")])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([])
+dialogues = Array[ExtResource("7_48cas")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_hn4v7"]
+script = ExtResource("5_25ksb")
+actorTreePath = "TilemapRoot/Soldier4BlockCave"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(450, -94)
+targetIsPlayer = false
+
+[sub_resource type="Resource" id="Resource_j7jyc"]
+script = ExtResource("7_48cas")
+speaker = "Chain Legion Soldier"
+texts = Array[String](["This swamp is creeping me out...", "Doesn't help that I'm guarding a magical cave, with strange creatures pouring out of it all the time."])
+
+[sub_resource type="Resource" id="Resource_hhc2w"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "The soldier dismisses that he saw the player and turns back around"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([SubResource("Resource_hn4v7")])
+dialogues = Array[ExtResource("7_48cas")]([SubResource("Resource_j7jyc")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_xcjg3"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "Wait for text box to be closed"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([])
+dialogues = Array[ExtResource("7_48cas")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_0bjlt"]
+script = ExtResource("3_6olgk")
+actorTreePath = "TilemapRoot/Soldier4BlockCave"
+isPlayer = false
+animation = "stand"
+
+[sub_resource type="Resource" id="Resource_wwrur"]
+script = ExtResource("1_u4nx7")
+frameLength = 0.1
+annotation = "the soldier stands"
+actorTweens = Array[ExtResource("6_glg2r")]([])
+actorAnims = Array[ExtResource("3_6olgk")]([SubResource("Resource_0bjlt")])
+actorAnimSets = Array[ExtResource("2_jpqbi")]([])
+actorFaceTargets = Array[ExtResource("5_25ksb")]([])
+dialogues = Array[ExtResource("7_48cas")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("9_aabxa")
+cutsceneFrames = Array[ExtResource("1_u4nx7")]([SubResource("Resource_pxhah"), SubResource("Resource_ypsft"), SubResource("Resource_djasb"), SubResource("Resource_eaolg"), SubResource("Resource_hhc2w"), SubResource("Resource_xcjg3"), SubResource("Resource_wwrur")])
+saveName = ""
+storyRequirements = ExtResource("10_ixe18")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=4 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=113 format=4 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -45,6 +45,7 @@
 [ext_resource type="Resource" uid="uid://cpdkluglde3uh" path="res://gamedata/cutscenes/leavenport/south_precave_turnaround.tres" id="26_638c0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="29_ac2al"]
 [ext_resource type="Resource" uid="uid://v8f4ty25ydau" path="res://gamedata/cutscenes/leavenport/east_postspar_turnaround.tres" id="32_5iosg"]
+[ext_resource type="Resource" uid="uid://bqqcigoaqcxqa" path="res://gamedata/ground_items/lp_solius_lost_sword.tres" id="35_50o24"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="35_akwmh"]
 [ext_resource type="Resource" uid="uid://b43rwlnaf3rcu" path="res://gamedata/items/key_items/fishermans_usual.tres" id="36_2ax8b"]
 [ext_resource type="SpriteFrames" uid="uid://dolrr71gh2nvo" path="res://graphics/animations/a_sea_wyrm.tres" id="36_2qyno"]
@@ -342,6 +343,32 @@ speaker = ""
 dialogueEntry = ExtResource("13_q8qvf")
 savedItemIdx = 0
 savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_5qtwl"]
+script = ExtResource("6_3up7i")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="Resource" id="Resource_tnd1n"]
 script = ExtResource("37_7p5dm")
@@ -900,6 +927,8 @@ saveName = "leavenport_outside_1"
 
 [node name="SoliusSwordGroundItem" parent="TilemapRoot" instance=ExtResource("12_6xs76")]
 position = Vector2(1424, 563)
+pickedUpItem = ExtResource("35_50o24")
+storyRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_5qtwl")])
 
 [node name="SeaWyrm" parent="TilemapRoot" instance=ExtResource("35_akwmh")]
 position = Vector2(623, -89)
@@ -1213,7 +1242,7 @@ facingLeft = true
 data = SubResource("Resource_10830")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.765538
+frame_progress = 0.0640395
 flip_h = true
 
 [node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
