@@ -181,6 +181,8 @@ func load_stats_panel(fromToggle: bool = false):
 		levelUpAnimPlayer.play('level_up')
 		levelUpAnimPlayed = true
 		newLevelLabel.text = '[center]Level ' + String.num(stats.level) + '![/center]'
+	else:
+		levelUpPanel.visible = false
 	
 	var dispName: String = stats.displayName
 	if minion != null:
