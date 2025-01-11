@@ -1,0 +1,24 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://dn6ksqtqep5gx"]
+
+[ext_resource type="AudioStream" uid="uid://hjf5wq364qtu" path="res://audio/music/menus/main_theme_intro.mp3" id="1_eb540"]
+[ext_resource type="AudioStream" uid="uid://bfb8ig1npu1ls" path="res://audio/music/menus/main_theme_loop.mp3" id="2_0tk3i"]
+
+[resource]
+resource_local_to_scene = true
+clip_count = 2
+clip_0/name = &"intro"
+clip_0/stream = ExtResource("1_eb540")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"loop"
+clip_1/stream = ExtResource("2_0tk3i")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 3,
+"to_time": 1
+}
+}

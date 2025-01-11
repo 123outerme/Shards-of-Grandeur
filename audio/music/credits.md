@@ -2,10 +2,17 @@
 Here is where I will credit the artist who created each individual track used in the final game. Each music file is Copyright of the author listed below. 
 
 ## Base Directory
-- `battletheme_uvutudx_demo.mp3`: By Ian Groat.
-- `deathsound.mp3`: By Henry Guckes.
 - `gtl_main_theme.mp3`: By Ian Groat.
+
+## `battle` Subdirectory
+- `battletheme_uvutudx_demo.mp3`: By Ian Groat.
 - `newbattlethemev2.mp3`: By Henry Guckes.
+- `deathsound.mp3`: By Henry Guckes.
+
+## `menus` Subdirectory
+- `level_up.mp3`: By Henry Guckes.
+- `main_theme_intro.mp3`: By Henry Guckes.
+- `main_theme_loop.mp3`: By Henry Guckes.
 
 ## `overworld` Subdirectory
 - `leavenport.mp3`: By Austin Greenlee.

@@ -38,6 +38,8 @@ enum TabbedViewTab {
 ## when leveling up, plays this music
 @export var levelUpMusic: AudioStream = null
 
+@export var levelUpLoopMusic: AudioStream = null
+
 ## sfx to play when the tabs in the Tab View change
 @export var tabChangeSfx: AudioStream = null
 
@@ -45,6 +47,8 @@ enum TabbedViewTab {
 @export var unspentStatPtsIndicator: Texture2D = null
 @export var newMoveIndicator: Texture2D = null
 @export var minionChangedIndicator: Texture2D = null
+
+var levelUpAnimPlayed: bool = false
 
 var isTabbedView: bool = true
 
@@ -86,6 +90,10 @@ var minionsPanel: MinionsPanel = null
 @onready var tabbedViewBackButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
 @onready var tabbedViewMinionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 
+@onready var levelUpPanel: Panel = get_node('StatsPanel/Panel/LevelUpPanel')
+@onready var newLevelLabel: RichTextLabel = get_node('StatsPanel/Panel/LevelUpPanel/NewLevelLabel')
+@onready var levelUpAnimPlayer: AnimationPlayer = get_node('StatsPanel/Panel/LevelUpPanel/AnimationPlayer')
+
 @onready var editMovesPanel: EditMovesPanel = get_node("StatsPanel/Panel/EditMovesPanel")
 
 func _ready() -> void:
@@ -108,6 +116,7 @@ func toggle():
 func close_panel():
 	close_minion_stats_auto_alloc()
 	visible = false
+	levelUpAnimPlayed = false
 	equipmentPanel.itemDetailsPanel.visible = false
 	moveListPanel.moveDetailsPanel.visible = false
 	editMovesPanel.reset_menu_state(false)
@@ -122,7 +131,7 @@ func close_panel():
 	minion = null
 	previousControl = null
 	# if the level up music is currently playing and this is in the overworld, fade the overworld theme back in after fading out the level up music
-	if SceneLoader.audioHandler.is_music_already_playing(levelUpMusic) and PlayerFinder.player != null and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
+	if SceneLoader.audioHandler.is_music_already_playing(levelUpLoopMusic) and PlayerFinder.player != null and SceneLoader.mapLoader != null and SceneLoader.mapLoader.mapEntry != null:
 		SceneLoader.audioHandler.fade_out_music()
 		# fade_in_new_music will wait for the fadeout to complete before fading back in
 		SceneLoader.audioHandler.fade_in_new_music(SceneLoader.mapLoader.mapEntry.overworldTheme, -1, 0.5)
@@ -154,8 +163,8 @@ func load_stats_panel(fromToggle: bool = false):
 	if stats == null:
 		return
 	
-	singleViewPanel.visible = not isTabbedView
-	tabbedViewPanel.visible = isTabbedView
+	singleViewPanel.visible = not isTabbedView and not levelUp
+	tabbedViewPanel.visible = isTabbedView and not levelUp
 	if isTabbedView:
 		statlinePanel = tabbedViewStatlinePanel
 		moveListPanel = tabbedViewMoveListPanel
@@ -168,9 +177,10 @@ func load_stats_panel(fromToggle: bool = false):
 		minionsPanel = singleViewMinionsPanel
 	
 	
-	if fromToggle and levelUp and \
-			not SceneLoader.audioHandler.is_music_already_playing(levelUpMusic):
-		SceneLoader.audioHandler.play_music(levelUpMusic, -1)
+	if fromToggle and levelUp and not levelUpAnimPlayed:
+		levelUpAnimPlayer.play('level_up')
+		levelUpAnimPlayed = true
+		newLevelLabel.text = '[center]Level ' + String.num(stats.level) + '![/center]'
 	
 	var dispName: String = stats.displayName
 	if minion != null:
@@ -434,3 +444,21 @@ func _tab_selected(idx: int) -> void:
 
 func _settings_changed() -> void:
 	isTabbedView = SettingsHandler.gameSettings.tabbedViewStats
+
+func _level_up_anim_start():
+	SceneLoader.audioHandler.play_music(levelUpMusic)
+	SceneLoader.audioHandler.music_playback_complete.connect(_level_up_loop_music)
+	levelUpPanel.visible = true
+
+func _level_up_anim_panel_fade_in():
+	var view: Panel = tabbedViewPanel if isTabbedView else singleViewPanel
+	var levelUpTween: Tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	
+	view.visible = true
+	view.modulate = Color(1, 1, 1, 0)
+	levelUpTween.tween_property(view, 'modulate', Color(1, 1, 1, 1), 2.1)
+	levelUpTween.tween_callback(initial_focus)
+
+func _level_up_loop_music():
+	SceneLoader.audioHandler.play_music(levelUpLoopMusic, -1)
+	SceneLoader.audioHandler.music_playback_complete.disconnect(_level_up_loop_music)

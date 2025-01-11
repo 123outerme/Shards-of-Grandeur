@@ -1,6 +1,7 @@
 extends Control
 
 @export var mainMenuMusic: AudioStream
+@export var mainMenuLoopMusic: AudioStream
 @export var activateDebugModeSfx: AudioStream = null
 
 ## for some reason, this includes down-events and up-events even if checking event.pressed to be true...
@@ -44,7 +45,8 @@ func _ready():
 	resumeGameButton.visible = loadGamePanel.get_num_saves() != 0
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
-	SceneLoader.audioHandler.play_music(mainMenuMusic, -1)
+	SceneLoader.audioHandler.play_music(mainMenuMusic)
+	SceneLoader.audioHandler.music_playback_complete.connect(_music_playback_complete)
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 	_on_settings_changed()
 
@@ -191,3 +193,7 @@ func _on_debug_click_control_gui_input(event: InputEvent) -> void:
 		if debugCounter == DEBUG_CLICKS:
 			SceneLoader.debug = true
 			SceneLoader.audioHandler.play_sfx(activateDebugModeSfx)
+
+func _music_playback_complete():
+	SceneLoader.audioHandler.play_music(mainMenuLoopMusic, -1)
+	SceneLoader.audioHandler.music_playback_complete.disconnect(_music_playback_complete)

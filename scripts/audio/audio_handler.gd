@@ -1,5 +1,7 @@
 extends Node
 class_name AudioHandler
+
+signal music_playback_complete
 signal music_fade_completed
 
 const MUSIC_DB_HEAD_ROOM = 5
@@ -92,7 +94,7 @@ func get_cur_music() -> AudioStream:
 	return get_cur_music_player().stream
 
 func is_music_already_playing(stream: AudioStream):
-	return get_cur_music() == stream and get_cur_music_player().playing
+	return get_cur_music() == stream
 
 func which_sfx_channel_playing(stream: AudioStream) -> int:
 	for idx: int in range(len(sfxStreamPlayers)):
@@ -199,6 +201,7 @@ func _on_music_stream_player_1_finished():
 		musicStreamPlayer1.play()
 	else:
 		musicStreamPlayer1.stop()
+		music_playback_complete.emit()
 
 func _on_music_stream_player_2_finished():
 	if not musicPlayingOnStream2:
@@ -210,6 +213,7 @@ func _on_music_stream_player_2_finished():
 		musicStreamPlayer2.play()
 	else:
 		musicStreamPlayer2.stop()
+		music_playback_complete.emit()
 
 func _on_sfx_stream_player_finished(idx):
 	if sfxLoops[idx] > 0:

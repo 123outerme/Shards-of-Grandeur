@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=24 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
-[ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="2_qydtc"]
+[ext_resource type="AudioStream" uid="uid://c125xdli2pv2h" path="res://audio/music/menus/level_up.mp3" id="2_6ysuc"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_vg3x4"]
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="3_ao33y"]
 [ext_resource type="AudioStream" uid="uid://b24gjdohf73u2" path="res://audio/sfx/menu.ogg" id="3_iyrwx"]
@@ -24,13 +24,190 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hatjo"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8jpyk"]
+
+[sub_resource type="Animation" id="Animation_0wt4n"]
+resource_name = "level_up"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewLevelLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.03333, 6.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LevelUpLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LevelUpLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.46667, 6.56667),
+"transitions": PackedFloat32Array(1, 1.56917, 1),
+"update": 0,
+"values": [Vector2(440, 257), Vector2(440, 257), Vector2(440, 47)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewLevelLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.46667, 6.56667),
+"transitions": PackedFloat32Array(2.21914, 1.10957),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LevelUpLabel:theme_override_font_sizes/normal_font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.9, 5.06667, 5.23333, 5.4, 5.56667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [48, 42, 36, 32, 28, 24]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.46667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_level_up_anim_start"
+}, {
+"args": [],
+"method": &"_level_up_anim_panel_fade_in"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../StatsTitle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.46667, 6.56667),
+"transitions": PackedFloat32Array(1, 2.21914, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fdh2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewLevelLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LevelUpLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LevelUpLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(440, 47)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewLevelLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LevelUpLabel:theme_override_font_sizes/normal_font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../StatsTitle:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpada"]
+_data = {
+"RESET": SubResource("Animation_fdh2h"),
+"level_up": SubResource("Animation_0wt4n")
+}
+
 [node name="StatsPanelNode" type="Node2D"]
 script = ExtResource("1_gd13l")
-levelUpMusic = ExtResource("2_qydtc")
+levelUpMusic = ExtResource("2_6ysuc")
 tabChangeSfx = ExtResource("3_iyrwx")
 unspentStatPtsIndicator = ExtResource("3_ao33y")
 newMoveIndicator = ExtResource("4_sak5l")
 minionChangedIndicator = ExtResource("5_jrvq8")
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="StatsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -62,26 +239,6 @@ theme = ExtResource("4_77yq4")
 bbcode_enabled = true
 text = "[center]Combatant Name Here - Stats[/center]"
 fit_content = true
-
-[node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -75.0
-offset_top = 47.0
-offset_right = 75.0
-offset_bottom = 81.0
-grow_horizontal = 2
-theme_override_colors/font_outline_color = Color(0.0823529, 0.0862745, 0.294118, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "[center]Level Up![/center]"
 
 [node name="SinglePageView" type="Panel" parent="StatsPanel/Panel"]
 visible = false
@@ -215,6 +372,7 @@ offset_right = -1.0
 offset_bottom = -332.0
 
 [node name="TabbedView" type="Panel" parent="StatsPanel/Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -428,6 +586,61 @@ offset_left = -319.0
 offset_top = 293.0
 offset_right = 316.0
 offset_bottom = 59.0
+
+[node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 47.0
+offset_right = 200.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.0823529, 0.0862745, 0.294118, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[center]Level Up![/center]"
+
+[node name="LevelUpPanel" type="Panel" parent="StatsPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8jpyk")
+
+[node name="NewLevelLabel" type="RichTextLabel" parent="StatsPanel/Panel/LevelUpPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 358.0
+offset_right = 145.0
+offset_bottom = 404.0
+grow_horizontal = 2
+theme = ExtResource("4_77yq4")
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[center]Level 100![/center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StatsPanel/Panel/LevelUpPanel"]
+deterministic = true
+libraries = {
+"": SubResource("AnimationLibrary_qpada")
+}
 
 [node name="EditMovesPanel" parent="StatsPanel/Panel" instance=ExtResource("9_ue80h")]
 visible = false
