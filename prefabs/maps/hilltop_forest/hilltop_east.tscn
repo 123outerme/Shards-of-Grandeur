@@ -60,7 +60,7 @@ dialogueEntry = ExtResource("9_n6psx")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_wdqbc"]
+[sub_resource type="Resource" id="Resource_13x0t"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -83,7 +83,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ybx58"]
+[sub_resource type="Resource" id="Resource_u0lex"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -571,7 +571,7 @@ saveName = "ht_east_sword"
 position = Vector2(678, 659)
 loadFlipH = true
 spawnRequirements = ExtResource("26_rf44k")
-data = SubResource("Resource_wdqbc")
+data = SubResource("Resource_13x0t")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("28_81cjf")
@@ -589,7 +589,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("25_r4bat")]
 position = Vector2(731, 663)
 spawnRequirements = ExtResource("26_rf44k")
-data = SubResource("Resource_ybx58")
+data = SubResource("Resource_u0lex")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("29_mevpy")
@@ -776,7 +776,6 @@ shape = SubResource("RectangleShape2D_qpj27")
 position = Vector2(44, 8)
 
 [node name="CameraHoldZone5" parent="." instance=ExtResource("10_7hqow")]
-visible = false
 position = Vector2(1523, -164)
 holdY = false
 
@@ -806,7 +805,6 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_1npt8")
 
 [node name="BridgeOutCutsceneTrigger" parent="." instance=ExtResource("4_di4ud")]
-visible = false
 position = Vector2(1553, -177)
 cutscenes = Array[ExtResource("27_4rd7y")]([ExtResource("11_teqmx")])
 
