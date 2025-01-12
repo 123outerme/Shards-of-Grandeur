@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://drsqe0bxfl6mn"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://drsqe0bxfl6mn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fqptf"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_8slcs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_6ff64"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_15aru"]
 [ext_resource type="Resource" uid="uid://c7gg8i8gdkh02" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_turnin.tres" id="3_blbck"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_j140r"]
 
 [sub_resource type="Resource" id="Resource_7wdyp"]
 script = ExtResource("1_fqptf")
@@ -48,10 +49,37 @@ animateActorTreePath = ""
 animateActorIsPlayer = false
 choices = Array[ExtResource("2_pthw8")]([SubResource("Resource_38tj3")])
 
+[sub_resource type="Resource" id="Resource_7mjrp"]
+script = ExtResource("2_8slcs")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Angry Angler#Sea Monster!"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_j140r")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["leavenport_skipper#skipper_angry_angler_buildboat"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_j140r")]([])
+
 [resource]
 script = ExtResource("3_6ff64")
 entryId = "skipper_angry_angler_buildboat"
 items = Array[ExtResource("1_fqptf")]([SubResource("Resource_7wdyp"), SubResource("Resource_4di5o"), SubResource("Resource_570u1")])
+storyRequirements = SubResource("Resource_7mjrp")
 ordStoryRequirements = Array[ExtResource("2_8slcs")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cvyrvtw41y7du"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_gnben"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_8axfv"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qwi83"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3kai4"]
+
+[sub_resource type="Resource" id="Resource_oysqx"]
+script = ExtResource("1_gnben")
+lines = Array[String](["Arrrrrrgh, that's not fair... you've got it right there! Just hand the wood over, @!"])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_qwi83")]([])
+
+[resource]
+script = ExtResource("3_3kai4")
+entryId = ""
+items = Array[ExtResource("1_gnben")]([SubResource("Resource_oysqx")])
+ordStoryRequirements = Array[ExtResource("2_8axfv")]([])
+closesDialogue = true
+fullHealsPlayer = false

@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://pbeqbrc3bv7w"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://pbeqbrc3bv7w"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_8lsen"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0h7wg"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_ohxlo"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_2i6a6"]
+[ext_resource type="Resource" uid="uid://cvyrvtw41y7du" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_turnin_wait.tres" id="3_d5tpo"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_dwr02"]
 [ext_resource type="Resource" uid="uid://duvl4c2ufujnr" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_done.tres" id="4_ssqg6"]
 
 [sub_resource type="Resource" id="Resource_5u7s4"]
 script = ExtResource("2_0h7wg")
 choiceBtn = "Not Yet..."
+leadsTo = ExtResource("3_d5tpo")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_dwr02")]([])
 repeatsItem = false
@@ -43,5 +45,5 @@ script = ExtResource("3_2i6a6")
 entryId = ""
 items = Array[ExtResource("1_8lsen")]([SubResource("Resource_300sv")])
 ordStoryRequirements = Array[ExtResource("2_ohxlo")]([])
-closesDialogue = true
+closesDialogue = false
 fullHealsPlayer = false

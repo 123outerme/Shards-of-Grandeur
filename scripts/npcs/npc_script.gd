@@ -443,7 +443,7 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
 					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
 				if saveName in questTracker.get_prev_step().turnInNames \
-						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
+						or (len(questTracker.get_prev_step().turnInNames) == 0 and saveName in curStep.turnInNames):
 					dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:

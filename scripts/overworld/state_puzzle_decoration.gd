@@ -111,7 +111,10 @@ func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
 		# add this puzzle to the list of interactables for the player
 		enter_player_range()
-		show_interact_sprite()
+		var state: String = get_decoration_state()
+		# if invalid (using invalid-dialogue) or has a dialogue for the current state:
+		if not puzzle.passes_prereqs() or stateDialogues.has(state):
+			show_interact_sprite()
 
 func _on_area_exited(area):
 	if area.name == 'PlayerEventCollider' and self in PlayerFinder.player.interactables:

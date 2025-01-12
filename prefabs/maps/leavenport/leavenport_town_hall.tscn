@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://ds5u8lsvxlg2c"]
+[gd_scene load_steps=17 format=4 uid="uid://ds5u8lsvxlg2c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_knm7c"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vhfdw"]
@@ -8,9 +8,12 @@
 [ext_resource type="Resource" uid="uid://beg8gy0jt3gtj" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_intro.tres" id="5_l0lul"]
 [ext_resource type="Resource" uid="uid://4o02emahx2vv" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_takeover.tres" id="6_1lenj"]
 [ext_resource type="SpriteFrames" uid="uid://dba1h7kbm4kvt" path="res://graphics/animations/a_leavenport_pm.tres" id="6_3saiu"]
+[ext_resource type="Resource" uid="uid://hbk37tdq7vfe" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_inprogress.tres" id="6_gnje5"]
+[ext_resource type="Resource" uid="uid://bt6conmny3mmo" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_6_inprogress.tres" id="7_80f67"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_gvdlt"]
+[ext_resource type="Resource" uid="uid://dxjxdfgbsk6vg" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_post_takeover1.tres" id="8_us3ll"]
 
-[sub_resource type="Resource" id="Resource_kkt63"]
+[sub_resource type="Resource" id="Resource_cci5u"]
 script = ExtResource("4_v8nqt")
 saveName = "npc"
 spriteState = "default"
@@ -95,8 +98,8 @@ tile_set = ExtResource("2_vhfdw")
 position = Vector2(-52, -61)
 displayName = "Prime Minister"
 saveName = "leavenport_pm"
-data = SubResource("Resource_kkt63")
-dialogueEntries = Array[ExtResource("5_4w8ab")]([ExtResource("5_l0lul"), ExtResource("6_1lenj")])
+data = SubResource("Resource_cci5u")
+dialogueEntries = Array[ExtResource("5_4w8ab")]([ExtResource("6_gnje5"), ExtResource("7_80f67"), ExtResource("5_l0lul"), ExtResource("6_1lenj"), ExtResource("8_us3ll")])
 
 [node name="NPCSprite" parent="TilemapRoot/PrimeMinister" index="0"]
 sprite_frames = ExtResource("6_3saiu")

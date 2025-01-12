@@ -717,6 +717,8 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 		SceneLoader.unpause_autonomous_movers()
 		if interactable != null:
 			interactable.finished_dialogue()
+		if PlayerResources.playerInfo.encounter != null:
+			start_battle() # if this is the end of the interactable dialogue, start battle
 		interactableDialogue = null
 		interactableDialogues = []
 		interactableDialogueIndex = 0

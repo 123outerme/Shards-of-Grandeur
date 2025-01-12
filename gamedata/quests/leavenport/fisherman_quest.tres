@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=37 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=35 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
@@ -12,11 +12,8 @@
 [ext_resource type="Resource" uid="uid://bb8f7ye35k0q6" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_inprogress.tres" id="9_58nk2"]
 [ext_resource type="Resource" uid="uid://u5snfjsxdskw" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q3_turnin.tres" id="11_b2a7p"]
 [ext_resource type="Resource" uid="uid://dcr7qq13h87da" path="res://gamedata/items/armor/fishscale_armor.tres" id="12_jx2pa"]
-[ext_resource type="Resource" uid="uid://drsqe0bxfl6mn" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_inprogress.tres" id="12_ka3ia"]
 [ext_resource type="Resource" uid="uid://c7gg8i8gdkh02" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_turnin.tres" id="13_yxqli"]
-[ext_resource type="Resource" uid="uid://hbk37tdq7vfe" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_inprogress.tres" id="14_cy6xo"]
 [ext_resource type="Resource" uid="uid://dvape6emtj3ls" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_turnin.tres" id="15_31vsn"]
-[ext_resource type="Resource" uid="uid://cm0g3lwugf6vd" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_inprogress.tres" id="16_qlwj4"]
 [ext_resource type="Resource" uid="uid://pbeqbrc3bv7w" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_turnin.tres" id="17_7l4uy"]
 [ext_resource type="Resource" uid="uid://hw7nbx3e6ju4" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_inprogress.tres" id="18_nnjal"]
 [ext_resource type="Resource" uid="uid://du7sf8ugk1qfd" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_turnin.tres" id="19_ku84m"]
@@ -108,7 +105,7 @@ displayObjName = "Skipper"
 displayTurnInName = "Skipper"
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("13_yxqli")])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("12_ka3ia")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
 [sub_resource type="Resource" id="Resource_rggcb"]
 script = ExtResource("2_q0b41")
@@ -123,12 +120,19 @@ displayObjName = "Prime Minister"
 displayTurnInName = "Prime Minister"
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("15_31vsn")])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("14_cy6xo")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+
+[sub_resource type="Resource" id="Resource_lqe7x"]
+script = ExtResource("2_r4tho")
+experience = 80
+gold = 10
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_uyt85"]
 script = ExtResource("2_q0b41")
 name = "Seeds to Lumber"
 description = "The Prime Minister's seeds can grow in an instant. Bring the harvested lumber to the Skipper!"
+reward = SubResource("Resource_lqe7x")
 locations = Array[int]([30])
 type = 1
 count = 3
@@ -138,7 +142,7 @@ displayObjName = "Seaworthy Lumber"
 displayTurnInName = "Skipper"
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("17_7l4uy")])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("16_qlwj4")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
 [sub_resource type="Resource" id="Resource_eqheg"]
 script = ExtResource("2_r4tho")

@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://cvkp2ya2jkjlk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cvkp2ya2jkjlk"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_1edr5"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7r41u"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_x1bmp"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_3h7iq"]
+[ext_resource type="Resource" uid="uid://dphysxlqm1oyf" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q2_turnin_wait.tres" id="3_kesbb"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_3vklx"]
+[ext_resource type="Resource" uid="uid://uiens75oqijo" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q2_turnin_accept.tres" id="5_88ere"]
 
 [sub_resource type="Resource" id="Resource_4vo26"]
 script = ExtResource("1_1edr5")
 choiceBtn = "Wait..."
+leadsTo = ExtResource("3_kesbb")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_3h7iq")]([])
 repeatsItem = false
@@ -19,6 +22,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_b1f0s"]
 script = ExtResource("1_1edr5")
 choiceBtn = "I'll Beat It!"
+leadsTo = ExtResource("5_88ere")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_3h7iq")]([])
 repeatsItem = false
