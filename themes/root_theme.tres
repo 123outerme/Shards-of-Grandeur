@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dsowi08f2y6iv"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://dsowi08f2y6iv"]
 
 [ext_resource type="StyleBox" uid="uid://ca1vd7bc0xjqa" path="res://themes/bg_panel.tres" id="1_gpdvd"]
+[ext_resource type="Texture2D" uid="uid://beb1v37luy2p" path="res://graphics/ui/tab_container_scroll_icon_left.png" id="2_xanem"]
+[ext_resource type="Texture2D" uid="uid://blf4syvx0qxgt" path="res://graphics/ui/tab_container_scroll_icon_left_selected.png" id="3_kemj2"]
+[ext_resource type="Texture2D" uid="uid://dma1pinwh0fer" path="res://graphics/ui/tab_container_scroll_icon_right.png" id="4_32g7t"]
+[ext_resource type="Texture2D" uid="uid://b54gue13wvd88" path="res://graphics/ui/tab_container_scroll_icon_right_selected.png" id="5_pga1v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awdhg"]
 bg_color = Color(0.153809, 0.155411, 0.164062, 0.886275)
@@ -190,6 +194,10 @@ ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_orcfx")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_oad5w")
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+TabContainer/icons/decrement = ExtResource("2_xanem")
+TabContainer/icons/decrement_highlight = ExtResource("3_kemj2")
+TabContainer/icons/increment = ExtResource("4_32g7t")
+TabContainer/icons/increment_highlight = ExtResource("5_pga1v")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_oojqd")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_jvle5")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_1dbcj")
