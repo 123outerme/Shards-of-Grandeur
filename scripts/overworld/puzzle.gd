@@ -21,10 +21,7 @@ func _init(
 func passes_prereqs() -> bool:
 	if is_solved():
 		return true
-	var passes: bool = len(prereqStoryRequirements) == 0 # if no prereqs, then auto-passes
-	for requirement: StoryRequirements in prereqStoryRequirements:
-		passes = requirement.is_valid() or passes
-	return passes
+	return StoryRequirements.list_is_valid(prereqStoryRequirements)
 
 func is_solved() -> bool:
 	return PlayerResources.playerInfo.has_solved_puzzle(id)

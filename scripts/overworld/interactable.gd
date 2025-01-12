@@ -151,10 +151,6 @@ func destroy_interactable():
 	visible = false
 
 func _story_requirements_updated():
-	var storyReqsPassed: bool = len(storyRequirements) == 0
-	for req: StoryRequirements in storyRequirements:
-		if req.is_valid():
-			storyReqsPassed = true
-			break
+	var storyReqsPassed: bool = StoryRequirements.list_is_valid(storyRequirements)
 	if not storyReqsPassed:
 		destroy_interactable()

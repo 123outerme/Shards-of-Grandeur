@@ -15,9 +15,4 @@ func _init(
 	storyRequirements = i_storyReqs
 
 func is_valid() -> bool:
-	var isValid: bool = len(storyRequirements) == 0
-	for req: StoryRequirements in storyRequirements:
-		if req.is_valid():
-			isValid = true
-			break
-	return isValid
+	return StoryRequirements.list_is_valid(storyRequirements)

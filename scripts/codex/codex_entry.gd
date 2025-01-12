@@ -29,9 +29,4 @@ func _init(
 	sortOrder = i_sortOrder
 
 func is_valid():
-	var valid: bool = false
-	
-	for requirements in storyRequirements:
-		valid = valid or requirements.is_valid()
-	
-	return valid or len(storyRequirements) == 0
+	return StoryRequirements.list_is_valid(storyRequirements)

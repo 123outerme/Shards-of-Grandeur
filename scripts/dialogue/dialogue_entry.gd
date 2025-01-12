@@ -54,11 +54,7 @@ func can_use_dialogue() -> bool:
 	requirements.append_array(ordStoryRequirements)
 	requirements = requirements.filter(func(req): return req != null)
 	
-	var isOneReqValid: bool = len(requirements) == 0 
-	for req: StoryRequirements in requirements:
-		if req != null and req.is_valid():
-			isOneReqValid = true
-			break
+	var isOneReqValid: bool = StoryRequirements.list_is_valid(requirements)
 	if not isOneReqValid:
 		return false
 	

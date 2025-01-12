@@ -83,6 +83,16 @@ class_name StoryRequirements
 
 @export var invalidFromHavingItems: Array[InventorySlot] = []
 
+## For a list of story requirements, returns true if at least one provided requirement passes, false otherwise; ignores null elements
+static func list_is_valid(reqs: Array[StoryRequirements]) -> bool:
+	if reqs == null:
+		return true
+	
+	var valid: bool = len(reqs) == 0 # return true if empty; otherwise init to false
+	for req: StoryRequirements in reqs:
+		valid = valid or req.is_valid() # each StoryRequirements OR'd together
+	return valid
+
 func _init(
 	i_minAct: int = 0,
 	i_maxAct: int = -1,

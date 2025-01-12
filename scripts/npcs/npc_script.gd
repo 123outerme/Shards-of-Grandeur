@@ -132,12 +132,7 @@ func _ready():
 	if not Engine.is_editor_hint():
 		if spawnRequirements != null and not spawnRequirements.is_valid():
 			queue_free() # or alternatively set visible to false?
-		var allowedToSpawn: bool = orSpawnRequirements == null or len(orSpawnRequirements) == 0
-		if orSpawnRequirements != null:
-			for requirement: StoryRequirements in orSpawnRequirements:
-				if requirement == null or requirement.is_valid():
-					allowedToSpawn = true
-					break
+		var allowedToSpawn: bool = StoryRequirements.list_is_valid(orSpawnRequirements)
 		if not allowedToSpawn:
 			queue_free()
 

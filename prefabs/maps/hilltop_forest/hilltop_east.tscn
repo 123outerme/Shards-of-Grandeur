@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://bnvwcifufgons"]
+[gd_scene load_steps=111 format=4 uid="uid://bnvwcifufgons"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_1a6lo"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_316ec"]
@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://bkp6unp7ys28m" path="res://gamedata/story_requirements/main_story/act1/leavenport_takeover.tres" id="12_htufg"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="16_kldgj"]
 [ext_resource type="SpriteFrames" uid="uid://chwjmt00er1wn" path="res://graphics/structures/anim_floating_stone_column.tres" id="17_30gnw"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="23_0uey1"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="25_r4bat"]
 [ext_resource type="Resource" uid="uid://c71mhqpyp5au8" path="res://gamedata/cutscenes/hilltop_forest/ht_east_north_path_takeover_turnaround.tres" id="27_3l3fy"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="27_4rd7y"]
@@ -131,6 +132,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 5
 combatantsMaxLevel = 6
 combatantsLvToPlayerLvRatio = 0.85
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_socgq"), SubResource("Resource_cw408"), SubResource("Resource_ti7ur")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("5_ow7aj")
@@ -166,6 +168,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 5
 combatantsMaxLevel = 7
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_r1q5g"), SubResource("Resource_cibka"), SubResource("Resource_xka5j")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("5_ow7aj")
@@ -215,6 +218,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 5
 combatantsMaxLevel = 7
 combatantsLvToPlayerLvRatio = 0.9
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_7g4kw"), SubResource("Resource_jxgqf"), SubResource("Resource_q7ww0")])
 combatant3Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_cgf6u"), SubResource("Resource_ys3ic"), SubResource("Resource_qo0mx")])
 combatant1 = ExtResource("6_ut1n5")
@@ -250,6 +254,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 5
 combatantsMaxLevel = 6
 combatantsLvToPlayerLvRatio = 0.85
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_nhdan"), SubResource("Resource_g72jy"), SubResource("Resource_8dw7b")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("7_l2pl1")
@@ -285,6 +290,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 5
 combatantsMaxLevel = 7
 combatantsLvToPlayerLvRatio = 0.85
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_56acn"), SubResource("Resource_yqbdv"), SubResource("Resource_s2afg")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("8_lceu0")
@@ -315,6 +321,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 6
 combatantsMaxLevel = 8
 combatantsLvToPlayerLvRatio = 0.9
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_wvldt"), SubResource("Resource_gonid")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("8_lceu0")
@@ -355,6 +362,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 6
 combatantsMaxLevel = 7
 combatantsLvToPlayerLvRatio = 0.9
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_hb4tn"), SubResource("Resource_yfix4"), SubResource("Resource_a0w8x"), SubResource("Resource_23h2m")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("6_ut1n5")
@@ -395,6 +403,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 6
 combatantsMaxLevel = 7
 combatantsLvToPlayerLvRatio = 0.9
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_ki3eq"), SubResource("Resource_fltxc"), SubResource("Resource_e68ah"), SubResource("Resource_rrx3d")])
 combatant3Options = Array[ExtResource("11_wq3si")]([])
 combatant1 = ExtResource("7_l2pl1")
@@ -444,6 +453,7 @@ script = ExtResource("11_8wnil")
 combatantsMinLevel = 6
 combatantsMaxLevel = 8
 combatantsLvToPlayerLvRatio = 0.95
+levelStages = Array[ExtResource("23_0uey1")]([])
 combatant2Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_cg8nw"), SubResource("Resource_w5ovk"), SubResource("Resource_k84bj")])
 combatant3Options = Array[ExtResource("11_wq3si")]([SubResource("Resource_udu07"), SubResource("Resource_y08oc"), SubResource("Resource_jdh67")])
 combatant1 = ExtResource("5_ow7aj")
