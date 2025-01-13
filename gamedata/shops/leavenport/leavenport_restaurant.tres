@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=11 format=3 uid="uid://vlsqi7vf1gie"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=19 format=3 uid="uid://vlsqi7vf1gie"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_oyfwu"]
 [ext_resource type="Resource" uid="uid://bkre2g7wcak0v" path="res://gamedata/items/healing/leavenport_meal.tres" id="2_a3amd"]
@@ -6,6 +6,10 @@
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="4_d5pyw"]
 [ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="5_ohu6v"]
 [ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="6_mg52h"]
+[ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="7_veebi"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="8_m046c"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="9_v8ie0"]
+[ext_resource type="Resource" uid="uid://dg5eb4c64m3nj" path="res://gamedata/items/healing/mushroom.tres" id="10_umgxw"]
 
 [sub_resource type="Resource" id="Resource_pkev8"]
 script = ExtResource("3_aj1kb")
@@ -19,10 +23,76 @@ sinceVersion = "0.1.0"
 item = ExtResource("4_d5pyw")
 count = -1
 
+[sub_resource type="Resource" id="Resource_hcg6v"]
+script = ExtResource("9_v8ie0")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_m046c")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_m046c")]([])
+
+[sub_resource type="Resource" id="Resource_lc07l"]
+script = ExtResource("3_aj1kb")
+storyRequirements = SubResource("Resource_hcg6v")
+sinceVersion = "0.2.3"
+item = ExtResource("7_veebi")
+count = -1
+
 [sub_resource type="Resource" id="Resource_xmnto"]
 script = ExtResource("3_aj1kb")
 sinceVersion = "0.1.4"
 item = ExtResource("6_mg52h")
+count = -1
+
+[sub_resource type="Resource" id="Resource_txvhd"]
+script = ExtResource("9_v8ie0")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Shroom Zone"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_m046c")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_m046c")]([])
+
+[sub_resource type="Resource" id="Resource_8jsdl"]
+script = ExtResource("3_aj1kb")
+storyRequirements = SubResource("Resource_txvhd")
+sinceVersion = "0.2.3"
+item = ExtResource("10_umgxw")
 count = -1
 
 [sub_resource type="Resource" id="Resource_mhlv0"]
@@ -33,4 +103,4 @@ count = -1
 
 [resource]
 script = ExtResource("1_oyfwu")
-shopItemSlots = Array[ExtResource("3_aj1kb")]([SubResource("Resource_pkev8"), SubResource("Resource_2isjs"), SubResource("Resource_xmnto"), SubResource("Resource_mhlv0")])
+shopItemSlots = Array[ExtResource("3_aj1kb")]([SubResource("Resource_pkev8"), SubResource("Resource_2isjs"), SubResource("Resource_lc07l"), SubResource("Resource_xmnto"), SubResource("Resource_8jsdl"), SubResource("Resource_mhlv0")])
