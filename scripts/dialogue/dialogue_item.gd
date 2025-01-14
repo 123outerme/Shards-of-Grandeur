@@ -3,6 +3,8 @@ class_name DialogueItem
 
 @export_multiline var lines: Array[String]
 
+@export var minShowSecs: Array[float] = []
+
 ## for NPCs using this dialogue item, the actor will play this animation until all this item's text is advanced. For Interactables, will tell the interactable to play this animation once this item's text is shown.
 @export var animation: String = ''
 
@@ -22,6 +24,7 @@ class_name DialogueItem
 
 func _init(
 	i_lines: Array[String] = [],
+	i_minShowSecs: Array[float] = [],
 	i_animation = '',
 	i_speakerOverride = '',
 	i_actorAnimation = '',
@@ -30,6 +33,7 @@ func _init(
 	i_choices: Array[DialogueChoice] = [],
 ):
 	lines = i_lines
+	minShowSecs = i_minShowSecs
 	animation = i_animation
 	speakerOverride = i_speakerOverride
 	actorAnimation = i_actorAnimation
@@ -40,3 +44,9 @@ func _init(
 
 func get_lines() -> Array[String]:
 	return lines
+
+func get_min_show_secs(idx: int) -> float:
+	if idx >= len(minShowSecs) or idx < 0:
+		return 0
+	return minShowSecs[idx]
+	

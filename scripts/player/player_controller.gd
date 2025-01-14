@@ -703,10 +703,12 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					hasNextDialogue = false
 				else:
 					textBox.dialogueItem = null
+					textBox.dialogueItemIdx = -1
 					textBox.set_textbox_text('Your inventory is too full for this ' + pickedUpItem.item.itemName + '!', 'Inventory Full')
 				return
 
 		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]
+		textBox.dialogueItemIdx = interactableDialogue.savedTextIdx
 		var dialogueLines: Array[String] = textBox.dialogueItem.get_lines()
 		textBox.set_textbox_text(dialogueLines[interactableDialogue.savedTextIdx], speaker if textBox.dialogueItem.speakerOverride == '' else textBox.dialogueItem.speakerOverride, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(dialogueLines) - 1)
 	else:

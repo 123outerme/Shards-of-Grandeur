@@ -10,6 +10,8 @@ var lastDialogueItem: bool = false
 var lastChoiceFocused: Button = null
 var choicesDialogueItemIdxs: Array[int] = []
 # the item at index `idx` will be the dialogueItem corresponding to the button
+var startDialogueTimer: float = 0
+var dialogueItemIdx: int = -1
 
 var firstChoiceButton: Button = null
 var lastChoiceButton: Button = null
@@ -42,6 +44,9 @@ func _exit_tree():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if visible and dialogueItem != null:
+		startDialogueTimer += delta # if showing the text box, run the timer
+	
 	if SpeakerText.visible_characters < len(SpeakerText.text):
 		speaker_visible_chars_partial += speaker_chars_per_sec * delta
 		SpeakerText.visible_characters = min(round(speaker_visible_chars_partial), len(SpeakerText.text))
@@ -50,9 +55,10 @@ func _process(delta):
 			text_visible_chars_partial += chars_per_sec * delta
 			TextBoxText.visible_characters = min(round(text_visible_chars_partial), len(TextBoxText.text))
 		else:
-			add_choices()
-			ReadySprite.visible = true
 			SceneLoader.audioHandler.stop_sfx(textScrollSfx)
+			if is_textbox_complete():
+				add_choices()
+				ReadySprite.visible = true
 
 func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	advance_textbox(text, lastItem)
@@ -77,6 +83,7 @@ func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: Strin
 	TextBoxText.text = TextUtils.rich_text_substitute(text, Vector2i(32, 32))
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
+	startDialogueTimer = 0
 	if overrideSpeaker != '' and SpeakerText.text != TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":":
 		SpeakerText.text = TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":"
 		SpeakerText.visible_characters = 0
@@ -86,8 +93,16 @@ func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: Strin
 	delete_choices()
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 
+func is_all_text_shown() -> bool:
+	return SpeakerText.visible_characters == len(SpeakerText.text) and TextBoxText.visible_characters == len(TextBoxText.text)
+
 func is_textbox_complete() -> bool:
-	return ReadySprite.visible or (len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0)
+	var pastTime: bool = true # true if the dialogue item has spent its required time onscreen
+	if dialogueItem != null:
+		pastTime = startDialogueTimer >= dialogueItem.get_min_show_secs(dialogueItemIdx)
+	
+	return pastTime and (is_all_text_shown() or \
+			(len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0))
 
 func add_choices():
 	if dialogueItem == null:
@@ -214,14 +229,16 @@ func hide_textbox():
 	PlayerFinder.player.overworldTouchControls.set_in_dialogue(false)
 
 func show_text_instant():
-	SpeakerText.visible_characters = len(SpeakerText.text)
-	TextBoxText.visible_characters = len(TextBoxText.text)
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
-	var advanceIdx = 0
+	var advanceIdx: int = 0
 	if lastDialogueItem:
 		advanceIdx = 1
-	SceneLoader.audioHandler.play_sfx(advanceDialogueSfx[advanceIdx])
-	add_choices()
+	if not is_all_text_shown():
+		SceneLoader.audioHandler.play_sfx(advanceDialogueSfx[advanceIdx])
+	SpeakerText.visible_characters = len(SpeakerText.text)
+	TextBoxText.visible_characters = len(TextBoxText.text)
+	if is_textbox_complete():
+		add_choices()
 
 func select_decline_choice():
 	if not PlayerFinder.player.makingChoice or dialogueItem == null:

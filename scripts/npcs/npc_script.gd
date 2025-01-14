@@ -329,19 +329,23 @@ func get_cur_dialogue_item(updateTextBox: bool = true) -> DialogueItem:
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
 		if updateTextBox:
 			player.textBox.dialogueItem = null
+			player.textBox.dialogueItemIdx = -1
 		return null
 	
 	if updateTextBox:
 		player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+		player.textBox.dialogueItemIdx = data.dialogueItemIdx
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 
 func get_cur_dialogue_string() -> String:
 	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
 		player.textBox.dialogueItem = null
+		player.textBox.dialogueItemIdx = -1
 		return ''
 	
 	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
+	player.textBox.dialogueItemIdx = data.dialogueItemIdx
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()[data.dialogueLine]
 
