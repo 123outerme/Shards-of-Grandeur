@@ -1,10 +1,48 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://btsrtmbre6glh"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=11 format=3 uid="uid://btsrtmbre6glh"]
 
 [ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_11f1f"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="1_jxrqy"]
 [ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_tjcxk"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="2_c0bhp"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="2_s3fmo"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_6yopb"]
 [ext_resource type="AudioStream" uid="uid://c8r88hcpxxo48" path="res://audio/music/overworld/hilltop_forest.mp3" id="4_decfx"]
+
+[sub_resource type="Resource" id="Resource_gt883"]
+script = ExtResource("3_6yopb")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["standstill_defeated_helia"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("2_s3fmo")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("2_s3fmo")]([])
+
+[sub_resource type="Resource" id="Resource_fa2as"]
+script = ExtResource("1_tjcxk")
+path = "hilltop_forest/burned_down/hilltop_east_burned"
+requirements = SubResource("Resource_gt883")
+overworldTheme = ExtResource("4_decfx")
+battleMapName = "burned_forest_battle_map"
+battleMusic = Array[AudioStream]([ExtResource("2_c0bhp"), ExtResource("1_jxrqy")])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_7aylu"]
 script = ExtResource("1_tjcxk")
@@ -18,5 +56,5 @@ recoverPosition = Vector2(0, 0)
 [resource]
 script = ExtResource("1_11f1f")
 locationName = "Hilltop Forest"
-maps = Array[ExtResource("1_tjcxk")]([SubResource("Resource_7aylu")])
+maps = Array[ExtResource("1_tjcxk")]([SubResource("Resource_fa2as"), SubResource("Resource_7aylu")])
 mapLocation = 21
