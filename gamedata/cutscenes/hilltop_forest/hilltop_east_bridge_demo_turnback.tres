@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://bidfx3ehukpyo"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_l64dr"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_aexd6"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_sfu4m"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_lnfci"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_ok43m"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_2dwmr"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_ewtgv"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_t0kdm"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_wyw0p"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="10_rfviv"]
+
+[sub_resource type="Resource" id="Resource_ov6fi"]
+script = ExtResource("7_ewtgv")
+speaker = "@"
+texts = Array[String](["The bridge is restored... was it that Warlock who fixed it?", "This must be the way to Giant Steppes, then.", "First I'll have to cross the freezing Quiet Tundra..."])
+
+[sub_resource type="Resource" id="Resource_f2u4p"]
+script = ExtResource("7_ewtgv")
+speaker = "<Stephen>"
+texts = Array[String](["Thank you for playing the Shards of Grandeur demo!", "Feel free to explore around. There's more off the beaten path!"])
+
+[sub_resource type="Resource" id="Resource_oewpq"]
+script = ExtResource("1_l64dr")
+frameLength = 0.1
+annotation = "Play dialogue and start walking animation"
+actorTweens = Array[ExtResource("6_2dwmr")]([])
+actorAnims = Array[ExtResource("3_sfu4m")]([ExtResource("4_lnfci")])
+actorAnimSets = Array[ExtResource("2_aexd6")]([])
+actorFaceTargets = Array[ExtResource("5_ok43m")]([])
+dialogues = Array[ExtResource("7_ewtgv")]([SubResource("Resource_ov6fi"), SubResource("Resource_f2u4p")])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_id406"]
+script = ExtResource("8_t0kdm")
+value = Vector2(1506, -152)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_q3ee0"]
+script = ExtResource("1_l64dr")
+frameLength = 1.0
+annotation = "Walk player away from bridge"
+actorTweens = Array[ExtResource("6_2dwmr")]([SubResource("Resource_id406")])
+actorAnims = Array[ExtResource("3_sfu4m")]([])
+actorAnimSets = Array[ExtResource("2_aexd6")]([])
+actorFaceTargets = Array[ExtResource("5_ok43m")]([])
+dialogues = Array[ExtResource("7_ewtgv")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_1t2mm"]
+script = ExtResource("1_l64dr")
+frameLength = 0.1
+annotation = "Pause until player reads text box"
+actorTweens = Array[ExtResource("6_2dwmr")]([])
+actorAnims = Array[ExtResource("3_sfu4m")]([ExtResource("9_wyw0p")])
+actorAnimSets = Array[ExtResource("2_aexd6")]([])
+actorFaceTargets = Array[ExtResource("5_ok43m")]([])
+dialogues = Array[ExtResource("7_ewtgv")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[resource]
+script = ExtResource("10_rfviv")
+cutsceneFrames = Array[ExtResource("1_l64dr")]([SubResource("Resource_oewpq"), SubResource("Resource_q3ee0"), SubResource("Resource_1t2mm")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""

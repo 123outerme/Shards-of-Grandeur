@@ -1,23 +1,19 @@
-[gd_scene load_steps=111 format=4 uid="uid://bnvwcifufgons"]
+[gd_scene load_steps=108 format=4 uid="uid://bnvwcifufgons"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_1a6lo"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_316ec"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_480b4"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_xsjvu"]
-[ext_resource type="Resource" uid="uid://cymlyc24swpx0" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_potion.tres" id="4_1t5qv"]
+[ext_resource type="Resource" uid="uid://bnde6sbe81qve" path="res://gamedata/ground_items/hilltop_east/ht_east_potion.tres" id="4_6bc6p"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="4_di4ud"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_f7e3a"]
-[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_p055s"]
-[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="5_6h135"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="5_ow7aj"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="6_ut1n5"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="6_v6gsi"]
-[ext_resource type="Resource" uid="uid://cy1issl7bi7ba" path="res://gamedata/items/weapon/walking_staff.tres" id="6_w48to"]
-[ext_resource type="Resource" uid="uid://r3b3pmjv5kfp" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_staff.tres" id="7_jbwmt"]
+[ext_resource type="Resource" uid="uid://dw27llscjvtn2" path="res://gamedata/ground_items/hilltop_east/ht_east_walking_staff.tres" id="7_dcjmh"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="7_l2pl1"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="7_l3tuv"]
+[ext_resource type="Resource" uid="uid://ck8vsi13o5keu" path="res://gamedata/ground_items/hilltop_east/ht_east_standard_sword.tres" id="8_06hts"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="8_lceu0"]
-[ext_resource type="Resource" uid="uid://ybvqwgqe25cv" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_sword.tres" id="9_n6psx"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="10_7hqow"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="11_8wnil"]
 [ext_resource type="Resource" uid="uid://dpp2ku1ps3jkf" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_out.tres" id="11_teqmx"]
@@ -31,37 +27,10 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="27_4rd7y"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="27_o82bg"]
 [ext_resource type="SpriteFrames" uid="uid://ytkab3km2sof" path="res://graphics/animations/a_chain_legion_soldier_2.tres" id="28_81cjf"]
+[ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="29_alpu1"]
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="29_mevpy"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="31_dvgk7"]
 
-[sub_resource type="Resource" id="Resource_v7jof"]
-script = ExtResource("5_6h135")
-item = ExtResource("4_p055s")
-wasPickedUp = false
-speaker = ""
-dialogueEntry = ExtResource("4_1t5qv")
-savedItemIdx = 0
-savedTextIdx = 0
-
-[sub_resource type="Resource" id="Resource_ospg2"]
-script = ExtResource("5_6h135")
-item = ExtResource("6_w48to")
-wasPickedUp = false
-speaker = ""
-dialogueEntry = ExtResource("7_jbwmt")
-savedItemIdx = 0
-savedTextIdx = 0
-
-[sub_resource type="Resource" id="Resource_jk4k7"]
-script = ExtResource("5_6h135")
-item = ExtResource("7_l3tuv")
-wasPickedUp = false
-speaker = ""
-dialogueEntry = ExtResource("9_n6psx")
-savedItemIdx = 0
-savedTextIdx = 0
-
-[sub_resource type="Resource" id="Resource_ued7b"]
+[sub_resource type="Resource" id="Resource_hicvb"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -84,7 +53,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_bxdib"]
+[sub_resource type="Resource" id="Resource_nstld"]
 script = ExtResource("27_o82bg")
 saveName = "npc"
 spriteState = "default"
@@ -515,6 +484,18 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rlq4"]
+size = Vector2(20, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o7bd"]
+size = Vector2(166, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djfxg"]
+size = Vector2(121, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cre2"]
+size = Vector2(20, 146)
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_1a6lo")
 metadata/_edit_horizontal_guides_ = [1052.0, 1138.0, 1110.0, -212.0, -128.0]
@@ -564,24 +545,24 @@ tile_set = ExtResource("2_316ec")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_480b4")]
 position = Vector2(1720, 48)
-pickedUpItem = SubResource("Resource_v7jof")
+pickedUpItem = ExtResource("4_6bc6p")
 saveName = "ht_east_river"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_480b4")]
 position = Vector2(568, 200)
-pickedUpItem = SubResource("Resource_ospg2")
+pickedUpItem = ExtResource("7_dcjmh")
 saveName = "ht_east_stick"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_480b4")]
 position = Vector2(648, 1080)
-pickedUpItem = SubResource("Resource_jk4k7")
+pickedUpItem = ExtResource("8_06hts")
 saveName = "ht_east_sword"
 
 [node name="ChainLegionSoldier1" parent="TilemapRoot" instance=ExtResource("25_r4bat")]
 position = Vector2(678, 659)
 loadFlipH = true
 spawnRequirements = ExtResource("12_htufg")
-data = SubResource("Resource_ued7b")
+data = SubResource("Resource_hicvb")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("28_81cjf")
@@ -599,7 +580,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("25_r4bat")]
 position = Vector2(731, 663)
 spawnRequirements = ExtResource("12_htufg")
-data = SubResource("Resource_bxdib")
+data = SubResource("Resource_nstld")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("29_mevpy")
@@ -837,11 +818,39 @@ modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("31_dvgk7")]
-visible = false
-triggerOrNPC = NodePath("../TakeoverCutsceneTrigger")
-cutscene = ExtResource("27_3l3fy")
-rootNode = NodePath("..")
+[node name="EnemyDeaggroZone" parent="." instance=ExtResource("29_alpu1")]
+position = Vector2(1275, -93)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone" index="0"]
+position = Vector2(0, 38)
+shape = SubResource("RectangleShape2D_6rlq4")
+
+[node name="EnemyDeaggroZone2" parent="." instance=ExtResource("29_alpu1")]
+position = Vector2(935, 976)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone2" index="0"]
+position = Vector2(73, 0)
+shape = SubResource("RectangleShape2D_5o7bd")
+
+[node name="EnemyDeaggroZone3" parent="." instance=ExtResource("29_alpu1")]
+position = Vector2(600, 1081)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone3" index="0"]
+position = Vector2(50.5, 0)
+shape = SubResource("RectangleShape2D_djfxg")
+
+[node name="EnemyDeaggroZone4" parent="." instance=ExtResource("29_alpu1")]
+position = Vector2(86, -22)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone4" index="0"]
+position = Vector2(0, 63)
+shape = SubResource("RectangleShape2D_1cre2")
+
+[node name="EnemyDeaggroZone5" parent="." instance=ExtResource("29_alpu1")]
+position = Vector2(921, -283)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone5" index="0"]
+position = Vector2(55.5, 0)
 
 [editable path="TilemapRoot/ChainLegionSoldier1"]
 [editable path="TilemapRoot/ChainLegionSoldier2"]
@@ -866,3 +875,8 @@ rootNode = NodePath("..")
 [editable path="LeavenportWarpZone"]
 [editable path="TakeoverCutsceneTrigger"]
 [editable path="BridgeOutCutsceneTrigger"]
+[editable path="EnemyDeaggroZone"]
+[editable path="EnemyDeaggroZone2"]
+[editable path="EnemyDeaggroZone3"]
+[editable path="EnemyDeaggroZone4"]
+[editable path="EnemyDeaggroZone5"]

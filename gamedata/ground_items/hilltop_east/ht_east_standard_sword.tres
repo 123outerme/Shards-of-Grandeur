@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://ck8vsi13o5keu"]
+
+[ext_resource type="Resource" uid="uid://ybvqwgqe25cv" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_sword.tres" id="1_o0m8w"]
+[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="2_bkykp"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="3_ikhoi"]
+
+[resource]
+script = ExtResource("3_ikhoi")
+item = ExtResource("2_bkykp")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_o0m8w")
+savedItemIdx = 0
+savedTextIdx = 0

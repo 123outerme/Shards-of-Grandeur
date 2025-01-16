@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://dw27llscjvtn2"]
+
+[ext_resource type="Resource" uid="uid://r3b3pmjv5kfp" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_staff.tres" id="1_54pgt"]
+[ext_resource type="Resource" uid="uid://cy1issl7bi7ba" path="res://gamedata/items/weapon/walking_staff.tres" id="2_iwdir"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="3_hegq1"]
+
+[resource]
+script = ExtResource("3_hegq1")
+item = ExtResource("2_iwdir")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_54pgt")
+savedItemIdx = 0
+savedTextIdx = 0

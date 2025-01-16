@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://bnde6sbe81qve"]
+
+[ext_resource type="Resource" uid="uid://cymlyc24swpx0" path="res://gamedata/dialogue/interactables/ground_items/hilltop_east/hilltop_east_potion.tres" id="1_5rm6p"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="2_urqgj"]
+[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="3_0832q"]
+
+[resource]
+script = ExtResource("3_0832q")
+item = ExtResource("2_urqgj")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_5rm6p")
+savedItemIdx = 0
+savedTextIdx = 0
