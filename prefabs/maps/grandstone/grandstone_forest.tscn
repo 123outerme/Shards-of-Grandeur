@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://cx5vc8qdipqwt"]
+[gd_scene load_steps=101 format=4 uid="uid://cx5vc8qdipqwt"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5k41n"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_prja5"]
@@ -24,11 +24,12 @@
 [ext_resource type="Resource" uid="uid://c6vfqmrm3umkt" path="res://gamedata/dialogue/grandstone_forest/grandstone_forest_spelunker1.tres" id="13_diivh"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="14_vy2lx"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="17_35igi"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="21_77mmf"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="22_0oryc"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="23_kq2oq"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="24_7wtt2"]
 
-[sub_resource type="Resource" id="Resource_0em0x"]
+[sub_resource type="Resource" id="Resource_x5j6r"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -57,7 +58,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_1ty3e"]
+[sub_resource type="Resource" id="Resource_5fon1"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -86,7 +87,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_qqye7"]
+[sub_resource type="Resource" id="Resource_vn41b"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -175,6 +176,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_4gmrj"), SubResource("Resource_u5pjs"), SubResource("Resource_fnbj8")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_7aorw"), SubResource("Resource_pqwv8"), SubResource("Resource_1kuhh")])
 combatant1 = ExtResource("7_vjpd4")
@@ -224,6 +226,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_4kp6e"), SubResource("Resource_fl6s7"), SubResource("Resource_le563")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_y18bq"), SubResource("Resource_gdrqs"), SubResource("Resource_knupg")])
 combatant1 = ExtResource("17_35igi")
@@ -273,6 +276,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_wxw2h"), SubResource("Resource_2ce50"), SubResource("Resource_4stsc")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_bocj4"), SubResource("Resource_ad8of"), SubResource("Resource_0t8eg")])
 combatant1 = ExtResource("5_8xexo")
@@ -322,6 +326,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_u4gxb"), SubResource("Resource_4q6x1"), SubResource("Resource_qw4yo")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_vc0hu"), SubResource("Resource_ujp5t"), SubResource("Resource_hm4dg")])
 combatant1 = ExtResource("8_0bvno")
@@ -371,6 +376,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_i8bpg"), SubResource("Resource_tqxu7"), SubResource("Resource_87dc6")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_taijo"), SubResource("Resource_ae2wk"), SubResource("Resource_8wt0x")])
 combatant1 = ExtResource("17_35igi")
@@ -425,6 +431,7 @@ script = ExtResource("7_e8kg4")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_qe2v2"), SubResource("Resource_og2up"), SubResource("Resource_p4pc0")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_5116e"), SubResource("Resource_p1sdn"), SubResource("Resource_8t1s7"), SubResource("Resource_7f2r3")])
 combatant1 = ExtResource("8_0bvno")
@@ -501,7 +508,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_0em0x")
+data = SubResource("Resource_x5j6r")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -543,7 +550,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("11_85ta7")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_1ty3e")
+data = SubResource("Resource_5fon1")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -579,7 +586,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_qqye7")
+data = SubResource("Resource_vn41b")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("13_diivh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]

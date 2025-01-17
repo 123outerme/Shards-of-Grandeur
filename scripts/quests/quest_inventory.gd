@@ -160,7 +160,11 @@ func auto_turn_in_puzzle_steps(target: String) -> bool:
 
 func turn_in_cur_step(tracker: QuestTracker, isAutoUpdate: bool = false) -> int:
 	var curStep: QuestStep = tracker.get_current_step()
-	var newLvs: int = PlayerResources.accept_rewards([curStep.reward])
+	var newLvs: int = 0
+	if not isAutoUpdate:
+		newLvs = PlayerResources.accept_rewards([curStep.reward])
+	else:
+		SignalBus.give_overworld_rewards(curStep.reward, 'Quest Rewards')
 	var allDone: bool = tracker.turn_in_step()
 	if curStep.type == QuestStep.Type.COLLECT_ITEM:
 		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)

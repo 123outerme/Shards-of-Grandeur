@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dggomxl0fp2ep"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mygvg"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_1fcq1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kgem1"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_iivcl"]
+
+[sub_resource type="Resource" id="Resource_vwe0r"]
+script = ExtResource("1_mygvg")
+lines = Array[String](["This piece of wood is glowing, like it's ready to start a fire at any moment.", "I bet this is what set fire to these Tree-Bears to make them Inferno-Bears... Should I equip it to my Tree-Bear?"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_kgem1")]([])
+
+[resource]
+script = ExtResource("3_iivcl")
+entryId = ""
+items = Array[ExtResource("1_mygvg")]([SubResource("Resource_vwe0r")])
+ordStoryRequirements = Array[ExtResource("2_1fcq1")]([])
+closesDialogue = false
+fullHealsPlayer = false

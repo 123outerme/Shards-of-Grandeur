@@ -41,6 +41,7 @@ class_name PlayerInfo
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
 @export var activeFollowers: Array[String] = []
+@export var queuedRewards: Array[Reward] = []
 @export var running: bool = false
 
 var save_file = "playerinfo.tres"
@@ -77,6 +78,7 @@ func _init(
 	i_puzzleStates: Dictionary = {},
 	i_codexEntriesSeen: Array[String] = [],
 	i_cutscenesTempDisabled: Array[String] = [],
+	i_queuedRewards: Array[Reward] = [],
 	i_running = false,
 ):
 	map = i_map
@@ -113,6 +115,7 @@ func _init(
 	puzzleStates = i_puzzleStates
 	codexEntriesSeen = i_codexEntriesSeen
 	cutscenesTempDisabled = i_cutscenesTempDisabled
+	queuedRewards = i_queuedRewards
 	running = i_running
 
 func has_picked_up(uniqueId: String) -> bool:

@@ -1,6 +1,9 @@
 extends Resource
 class_name Reward
 
+const CUSTOM_WIN_SCALE = 1.0
+const CUSTOM_LOSE_SCALE = 0.7
+
 @export var experience: int
 @export var gold: int
 @export var item: Item
@@ -20,12 +23,12 @@ func copy() -> Reward:
 	copiedReward.fullyAttuneCombatantSaveName = fullyAttuneCombatantSaveName
 	return copiedReward
 
-func scale_reward_by_level(initialLv: int, currentLv: int) -> Reward:
+func scale_reward_by_level(initialLv: int, currentLv: int, customScale: float = 1.0) -> Reward:
 	var scaledReward: Reward = copy()
 	# c = current, i = initial
 	# scale factor = 1 + (0.004 * (c-i)^2) + (0.03 * (c-i))
 	var scaleFactor: float = 1.0 + (0.004 * pow(currentLv - initialLv, 2)) + (0.03 * (currentLv - initialLv))
-	scaledReward.experience = roundi(scaledReward.experience * scaleFactor)
-	scaledReward.gold = roundi(scaledReward.gold * scaleFactor)
+	scaledReward.experience = roundi(scaledReward.experience * scaleFactor * customScale)
+	scaledReward.gold = roundi(scaledReward.gold * scaleFactor * customScale)
 	# can't really scale the item reward!! or the full attunement!
 	return scaledReward

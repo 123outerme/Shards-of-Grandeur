@@ -103,83 +103,26 @@ func apply_menu_state():
 			menuState = BattleState.Menu.BATTLE_COMPLETE
 		battleComplete.playerWins = playerWins
 		battleComplete.playerEscapes = escapes
-		battleComplete.rewards = battleController.state.rewards
 		# connect these first so the flow of battle button takes precedence
 		battlePanels.connect_top_left_panel_buttons_bottom_neighbor(battleComplete.okBtn)
 		battlePanels.flowOfBattle.connect_fob_focus_button_to(battleComplete.okBtn)
-		if playerWins and len(battleComplete.rewards) == 0:
-			if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:
-				for reward in (PlayerResources.playerInfo.encounter as StaticEncounter).rewards:
-					battleComplete.rewards.append(reward)
-			else:
-				var randomEncounter: RandomEncounter = null
-				if PlayerResources.playerInfo.encounter is RandomEncounter:
-					randomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter 
-				# get enemy 1's rewards
-				var reward: Reward = null
-				if randomEncounter != null and randomEncounter.combatant1Rewards != null and len(randomEncounter.combatant1Rewards.weightedRewards) > 0:
-					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
-					if dropIdx > -1:
-						reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
-				elif battleController.enemyCombatant1.combatant.dropTable != null:
-					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.dropTable.weightedRewards)
-					if dropIdx > -1:
-						reward = battleController.enemyCombatant1.combatant.dropTable.weightedRewards[dropIdx].reward
-				if reward != null:
-					battleComplete.rewards.append( \
-							reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level) \
-						)
-				else:
-					battleComplete.rewards.append(null)
-				# if enemy 2 was present and defeated, get rewards
-				if battleController.enemyCombatant2.combatant != null:
-					reward = null
-					if randomEncounter != null and randomEncounter.combatant2Rewards != null and len(randomEncounter.combatant2Rewards.weightedRewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards.weightedRewards)
-						if dropIdx > -1:
-							reward = randomEncounter.combatant2Rewards.weightedRewards[dropIdx].reward
-					elif battleController.enemyCombatant2.combatant.dropTable != null:
-						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.dropTable.weightedRewards)
-						if dropIdx > -1:
-							reward = battleController.enemyCombatant2.combatant.dropTable.weightedRewards[dropIdx].reward
-					if reward != null:
-						battleComplete.rewards.append( \
-								reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level) \
-							)
-				# if enemy 3 was present and defeated, get rewards
-				if battleController.enemyCombatant3.combatant != null:
-					reward = null
-					if randomEncounter != null and randomEncounter.combatant3Rewards != null and len(randomEncounter.combatant3Rewards.weightedRewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards.weightedRewards)
-						if dropIdx > -1:
-							reward = randomEncounter.combatant3Rewards.weightedRewards[dropIdx].reward
-					elif battleController.enemyCombatant3.combatant.dropTable != null:
-						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.dropTable.weightedRewards)
-						if dropIdx > -1:
-							reward = battleController.enemyCombatant3.combatant.dropTable.weightedRewards[dropIdx].reward
-					if reward != null:
-						battleComplete.rewards.append( \
-								reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level) \
-							)
-			# if the win con is a Survive win con:
-			if PlayerResources.playerInfo.encounter.winCon != null and PlayerResources.playerInfo.encounter.winCon is SurviveWinCon:
-				var surviveWinCon: SurviveWinCon = PlayerResources.playerInfo.encounter.winCon as SurviveWinCon
-				# if static rewards for achieving a Total Defeat victory are defined: check that WinCon's results
-				if len(surviveWinCon.staticTotalDefeatRewards) > 0:
-					var totalDefeatWinCon: TotalDefeatWinCon = TotalDefeatWinCon.new()
-					var totalDefeatResult: WinCon.TurnResult = totalDefeatWinCon.get_result(battleController.get_all_combatant_nodes(), battleController.state)
-					# if the player achieved Total Defeat victory: use those static rewards instead
-					if totalDefeatResult == WinCon.TurnResult.PLAYER_WIN:
-						battleComplete.rewards = surviveWinCon.staticTotalDefeatRewards.duplicate(true)
-			# all rewards now obtained
-			for combatantNode in battleController.get_all_combatant_nodes():
-				if combatantNode.role == CombatantNode.Role.ENEMY and combatantNode.combatant != null:
-					PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
-			battleController.state.rewards = battleComplete.rewards
-			if PlayerResources.playerInfo.encounter is StaticEncounter:
-				var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
-				PlayerResources.playerInfo.set_special_battle_completed(staticEncounter.specialBattleId)
-		battleComplete.load_battle_over_menu()
+		
+		var rewards: Array[Reward] = build_rewards()
+		if len(rewards) > 0:
+			battleComplete.rewards = rewards
+			battleController.state.rewards = rewards
+		else:
+			battleComplete.rewards = battleController.state.rewards
+	
+		# all rewards now obtained
+		for combatantNode in battleController.get_all_combatant_nodes():
+			if combatantNode.combatant != null and not combatantNode.is_alive() and combatantNode.role == CombatantNode.Role.ENEMY:
+				PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
+		
+		if playerWins and PlayerResources.playerInfo.encounter is StaticEncounter:
+			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
+			PlayerResources.playerInfo.set_special_battle_completed(staticEncounter.specialBattleId)
+	battleComplete.load_battle_over_menu()
 	
 	if menuState == BattleState.Menu.LEVEL_UP:
 		open_stats(PlayerResources.playerInfo.combatant, true)
@@ -325,6 +268,89 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.isPlayer = combatant == PlayerResources.playerInfo.combatant or combatant == battleController.playerCombatant.combatant
 	statsPanel.toggle()
 	battlePanels.animatedBgPanel.visible = true
+
+func build_rewards() -> Array[Reward]:
+	var rewards: Array[Reward] = []
+	# if rewards have not been built yet: do this now
+	if len(battleController.state.rewards) == 0:
+		if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:
+			# if we have static rewards for this encounter:
+			if playerWins:
+				for reward in (PlayerResources.playerInfo.encounter as StaticEncounter).rewards:
+					rewards.append(reward)
+		else:
+			# otherwise, we probably have random encounter rewards
+			var randomEncounter: RandomEncounter = null
+			if PlayerResources.playerInfo.encounter is RandomEncounter:
+				randomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter 
+			# get enemy 1's rewards
+			var reward: Reward = null
+			# if enemy 1 was defeated:
+			if battleController.enemyCombatant1.combatant != null and not battleController.enemyCombatant1.is_alive():
+				# get its rewards: first, the random encounter's drop table if set for this combatant
+				if randomEncounter != null and randomEncounter.combatant1Rewards != null and len(randomEncounter.combatant1Rewards.weightedRewards) > 0:
+					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
+					if dropIdx > -1:
+						reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
+				elif battleController.enemyCombatant1.combatant.dropTable != null:
+					# second, the combatant's own drop table:
+					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.dropTable.weightedRewards)
+					if dropIdx > -1:
+						reward = battleController.enemyCombatant1.combatant.dropTable.weightedRewards[dropIdx].reward
+				if reward != null:
+					# if there was a reward, scale it up by the combatant's level
+					reward = reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+			# no matter what, at least one reward should be returned here, even if null:
+			rewards.append(reward)
+			reward = null
+			# if enemy 2 was present, get rewards (if defeated, otherwise null)
+			if battleController.enemyCombatant2.combatant != null:
+				if not battleController.enemyCombatant2.is_alive():
+					# first, if the encounter had a drop table set for this combatant, use that:
+					if randomEncounter != null and randomEncounter.combatant2Rewards != null and len(randomEncounter.combatant2Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards.weightedRewards)
+						if dropIdx > -1:
+							reward = randomEncounter.combatant2Rewards.weightedRewards[dropIdx].reward
+					elif battleController.enemyCombatant2.combatant.dropTable != null:
+						# second, if the combatant has its own drop table, use that
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.dropTable.weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant2.combatant.dropTable.weightedRewards[dropIdx].reward
+					if reward != null:
+						# if there was a reward, scale it up by the combatant's level
+						reward = reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
+				rewards.append(reward)
+			reward = null
+			# if enemy 3 was present, get rewards (if defeated, otherwise null)
+			if battleController.enemyCombatant3.combatant != null:
+				if not battleController.enemyCombatant3.is_alive():
+					# first, if the encounter had a drop table set for this combatant, use that:
+					if randomEncounter != null and randomEncounter.combatant3Rewards != null and len(randomEncounter.combatant3Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards.weightedRewards)
+						if dropIdx > -1:
+							reward = randomEncounter.combatant3Rewards.weightedRewards[dropIdx].reward
+					elif battleController.enemyCombatant3.combatant.dropTable != null:
+						# second, if the combatant has its own drop table, use that
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.dropTable.weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant3.combatant.dropTable.weightedRewards[dropIdx].reward
+					if reward != null:
+						# if there was a reward, scale it up by the combatant's level
+						reward = reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
+				rewards.append(reward)
+		# if the win con is a Survive win con:
+		if PlayerResources.playerInfo.encounter.winCon != null and PlayerResources.playerInfo.encounter.winCon is SurviveWinCon:
+			var surviveWinCon: SurviveWinCon = PlayerResources.playerInfo.encounter.winCon as SurviveWinCon
+			# if static rewards for achieving a Total Defeat victory are defined: check that WinCon's results
+			if len(surviveWinCon.staticTotalDefeatRewards) > 0:
+				var totalDefeatWinCon: TotalDefeatWinCon = TotalDefeatWinCon.new()
+				var totalDefeatResult: WinCon.TurnResult = totalDefeatWinCon.get_result(battleController.get_all_combatant_nodes(), battleController.state)
+				# if the player achieved Total Defeat victory: use those static rewards instead
+				if totalDefeatResult == WinCon.TurnResult.PLAYER_WIN:
+					rewards = surviveWinCon.staticTotalDefeatRewards.duplicate(true)
+	return rewards
 
 func _on_stats_panel_node_back_pressed():
 	battlePanels.animatedBgPanel.visible = checkingSummonStats

@@ -43,6 +43,7 @@ var walkBackwards: bool = false ## flips the walking direction to face backwards
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
 @onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
+@onready var overworldRewardPanel: OverworldRewardPanel = get_node('UI/OverworldRewardPanel')
 @onready var overworldConsole: OverworldConsole = get_node('UI/OverworldConsole')
 
 var talkNPC: NPCScript = null
@@ -66,13 +67,14 @@ var sprite_modulate: Color:
 
 func _ready() -> void:
 	PlayerResources.act_changed.connect(_on_act_changed)
+	SignalBus.overworld_rewards_given.connect(_overworld_rewards_given)
 
 func _unhandled_input(event):
 	if event.is_action_pressed('game_decline') and SettingsHandler.gameSettings.toggleRun \
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not overworldConsole.visible and not makingChoice \
-			and not cutscenePaused and not inCutscene \
+			and not statsPanel.visible and not overworldConsole.visible and not overworldRewardPanel.visible \
+			and not makingChoice and not cutscenePaused and not inCutscene \
 			and (SceneLoader.curMapEntry.isRecoverLocation or SettingsHandler.gameSettings.enableExperimentalFeatures) \
 			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) \
 			and not cam.fadedOrFadingOut:
@@ -96,7 +98,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		animatedBgPanel.visible = true
@@ -115,7 +117,7 @@ func _unhandled_input(event):
 			and (len(interactables) > 0 or len(talkNPCcandidates) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
-			not cutscenePaused and not startingBattle and \
+			not cutscenePaused and not startingBattle and not overworldRewardPanel.visible and \
 			# SceneLoader.curMapEntry.isRecoverLocation and \ # uncomment to make the player unable to toggle running while not in a recover location
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
 		if len(interactables) > 0 and not textBox.visible and (event.is_action_pressed("game_interact") or event is InputEventMouseButton):
@@ -138,7 +140,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -155,7 +157,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		animatedBgPanel.visible = true
@@ -172,7 +174,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed('game_console') and not pausePanel.isPaused and \
 			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
-			not cam.fadedOrFadingOut and \
+			not cam.fadedOrFadingOut and not overworldRewardPanel.visible and \
 			SceneLoader.debug:
 		overworldConsole.load_overworld_console()
 		SceneLoader.pause_autonomous_movers()
@@ -945,6 +947,27 @@ func _on_pause_menu_resume_game():
 		if textBox.visible:
 			textBox.refocus_choice(pickedChoice)
 	overworldTouchControls.set_all_visible()
+
+func _overworld_rewards_given(rewardsTitle: String = 'Rewards') -> void:
+	if not overworldRewardPanel.visible: # first, only handle if the panel isn't already open
+		# if in a cutscene, wait until the cutscene is fully completed before popping up the rewards
+		if inCutscene:
+			await SceneLoader.cutscenePlayer.cutscene_completed
+		# then, after the cutscene, if another signal emission call didn't handle this yet:
+		if not overworldRewardPanel.visible:
+			SceneLoader.pause_autonomous_movers()
+			overworldTouchControls.set_all_visible(false)
+			overworldRewardPanel.panelTitle = rewardsTitle
+			overworldRewardPanel.rewards = PlayerResources.playerInfo.queuedRewards
+			overworldRewardPanel.load_overworld_reward_panel()
+
+func _on_overworld_reward_panel_ok_button_pressed() -> void:
+	var gainedLvs: int = PlayerResources.accept_rewards(PlayerResources.playerInfo.queuedRewards)
+	if gainedLvs > 0:
+		level_up(gainedLvs)
+	else:
+		overworldTouchControls.set_all_visible()
+		SceneLoader.unpause_autonomous_movers()
 
 func _filter_out_null(value):
 	return value != null

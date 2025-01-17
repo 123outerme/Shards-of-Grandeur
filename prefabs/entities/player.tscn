@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=24 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -19,6 +19,7 @@
 [ext_resource type="StyleBox" uid="uid://cuxaypnts5fdn" path="res://themes/nested_ui/cutscene_pause_button_hover_bg.tres" id="11_f58rg"]
 [ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="14_vfyno"]
 [ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
+[ext_resource type="PackedScene" uid="uid://b5q43n8f33h02" path="res://prefabs/ui/overworld_reward_panel.tscn" id="20_nn2f0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
 size = Vector2(13.5, 4)
@@ -244,6 +245,13 @@ position = Vector2(-640, -360)
 visible = false
 position = Vector2(-640, -360)
 
+[node name="OverworldRewardPanel" parent="UI" instance=ExtResource("20_nn2f0")]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="console_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_console_pressed"]
@@ -265,3 +273,4 @@ position = Vector2(-640, -360)
 [connection signal="back_pressed" from="UI/StatsPanelNode" to="UI/InventoryPanelNode" method="_on_stats_panel_node_back_pressed"]
 [connection signal="resume_game" from="UI/PauseMenu" to="." method="_on_pause_menu_resume_game"]
 [connection signal="console_closed" from="UI/OverworldConsole" to="." method="_on_overworld_console_console_closed"]
+[connection signal="ok_button_pressed" from="UI/OverworldRewardPanel" to="." method="_on_overworld_reward_panel_ok_button_pressed"]

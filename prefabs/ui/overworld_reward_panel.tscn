@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5q43n8f33h02"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_qrcdn"]
+[ext_resource type="Script" path="res://scripts/menus/overworld_reward_panel.gd" id="2_hlma5"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_5agnr"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_5dib0"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="5_u05bf"]
+[ext_resource type="SpriteFrames" uid="uid://q3c3wj0ys5i" path="res://graphics/animations/a_attuned_shard.tres" id="6_1uhl7"]
+[ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="7_xaw1f"]
+
+[node name="OverworldRewardPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qrcdn")
+script = ExtResource("2_hlma5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 0
+offset_left = 190.0
+offset_top = 110.0
+offset_right = 1090.0
+offset_bottom = 610.0
+
+[node name="RewardPanelTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme = ExtResource("3_5agnr")
+bbcode_enabled = true
+text = "[center]Rewards[/center]"
+fit_content = true
+
+[node name="OkButton" parent="Panel" instance=ExtResource("4_5dib0")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -64.0
+offset_right = 17.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "OK"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -94.0
+offset_right = 445.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_u05bf")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FullAttuneLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(300, 84)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]You have become fully Attuned with Combatant Name Here![/center]"
+fit_content = true
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/FullAttuneLabel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/VBoxContainer/FullAttuneLabel/Control"]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("6_1uhl7")
+autoplay = "default"
+
+[node name="ItemDetailsPanel" parent="." instance=ExtResource("7_xaw1f")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]
+[connection signal="visibility_changed" from="Panel/VBoxContainer/ScrollContainer" to="Panel/VBoxContainer/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_item_details_panel_back_pressed"]

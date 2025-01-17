@@ -1,9 +1,11 @@
-[gd_scene load_steps=81 format=4 uid="uid://digivf1opqsj8"]
+[gd_scene load_steps=83 format=4 uid="uid://digivf1opqsj8"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wyxfu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_he5en"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_2a46p"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="3_re2p5"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_4cp5i"]
+[ext_resource type="Resource" uid="uid://c4xbbgvrpi0w3" path="res://gamedata/ground_items/hilltop_forest/hilltop_kindling.tres" id="4_ru7bg"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="5_ibrvy"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_1kwfo"]
 [ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="6_v21v5"]
@@ -57,8 +59,8 @@ weight = 0.25
 
 [sub_resource type="Resource" id="Resource_orq0a"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 20
-combatantsMaxLevel = 22
+combatantsMinLevel = 18
+combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_yhbaw"), SubResource("Resource_hajfl"), SubResource("Resource_wvspj")])
@@ -95,8 +97,8 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_1go41"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 20
-combatantsMaxLevel = 22
+combatantsMinLevel = 18
+combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_hxcp5"), SubResource("Resource_7ciow"), SubResource("Resource_11sg4")])
@@ -132,8 +134,8 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_63sl8"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 21
-combatantsMaxLevel = 22
+combatantsMinLevel = 19
+combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_82cqg"), SubResource("Resource_g5742"), SubResource("Resource_tw206")])
@@ -184,8 +186,8 @@ weight = 0.25
 
 [sub_resource type="Resource" id="Resource_q606b"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 21
-combatantsMaxLevel = 22
+combatantsMinLevel = 19
+combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_ck257"), SubResource("Resource_j2fyn"), SubResource("Resource_jd3u5")])
@@ -216,8 +218,8 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_nlobb"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 23
-combatantsMaxLevel = 24
+combatantsMinLevel = 20
+combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_voecf"), SubResource("Resource_v5l8j")])
@@ -252,8 +254,8 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_2lrkg"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 21
-combatantsMaxLevel = 23
+combatantsMinLevel = 19
+combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.85
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_2ywwn"), SubResource("Resource_efkrb"), SubResource("Resource_6sxme")])
@@ -288,8 +290,8 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_22qm5"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 21
-combatantsMaxLevel = 23
+combatantsMinLevel = 19
+combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_mpnil"), SubResource("Resource_36s6o"), SubResource("Resource_v2t7v")])
@@ -330,8 +332,8 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_tpoiq"]
 script = ExtResource("9_hyktm")
-combatantsMinLevel = 22
-combatantsMaxLevel = 23
+combatantsMinLevel = 19
+combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.9
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_jf5dt"), SubResource("Resource_8w5nj"), SubResource("Resource_8tnhf"), SubResource("Resource_75px5")])
@@ -384,7 +386,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_637dj"]
+[sub_resource type="Resource" id="Resource_d7n3q"]
 script = ExtResource("20_rpbw6")
 saveName = "npc"
 spriteState = "default"
@@ -447,6 +449,11 @@ tile_set = ExtResource("2_he5en")
 modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_he5en")
+
+[node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_2a46p")]
+position = Vector2(-832, 46)
+pickedUpItem = ExtResource("4_ru7bg")
+saveName = "hilltop_kindling"
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_re2p5")]
 position = Vector2(-659, 398)
@@ -595,7 +602,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_637dj")
+data = SubResource("Resource_d7n3q")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771
