@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=9 format=3 uid="uid://btx0feuxov4hr"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_tw5ec"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_7gaf4"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_jaldn"]
+[ext_resource type="Resource" uid="uid://d4be4a1rn3evb" path="res://gamedata/items/shard/fireclaw_shard.tres" id="3_oghh6"]
+
+[sub_resource type="Resource" id="Resource_haawg"]
+script = ExtResource("3_jaldn")
+experience = 45
+gold = 9
+item = ExtResource("3_oghh6")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_oayff"]
+script = ExtResource("2_7gaf4")
+reward = SubResource("Resource_haawg")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_s8sgp"]
+script = ExtResource("3_jaldn")
+experience = 45
+gold = 9
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_yhb5v"]
+script = ExtResource("2_7gaf4")
+reward = SubResource("Resource_s8sgp")
+weight = 0.15
+
+[resource]
+script = ExtResource("1_tw5ec")
+weightedRewards = Array[ExtResource("2_7gaf4")]([SubResource("Resource_oayff"), SubResource("Resource_yhb5v")])

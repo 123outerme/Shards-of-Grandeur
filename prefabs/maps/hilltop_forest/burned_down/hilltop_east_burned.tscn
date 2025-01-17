@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://d4i0j6b3bb4rt"]
+[gd_scene load_steps=115 format=4 uid="uid://d4i0j6b3bb4rt"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_frkjt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_y8mli"]
@@ -13,6 +13,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ytkab3km2sof" path="res://graphics/animations/a_chain_legion_soldier_2.tres" id="14_cved2"]
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="15_ypepm"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="16_opvs1"]
+[ext_resource type="Resource" uid="uid://no8jsodv2ba7" path="res://gamedata/combatants/fireclaw/fireclaw.tres" id="17_kgeto"]
 [ext_resource type="SpriteFrames" uid="uid://chwjmt00er1wn" path="res://graphics/structures/anim_floating_stone_column.tres" id="17_vfs48"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="18_gn0fh"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="19_17bg4"]
@@ -34,7 +35,7 @@
 [ext_resource type="Resource" uid="uid://bidfx3ehukpyo" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_demo_turnback.tres" id="32_4v2yw"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="34_bi7ge"]
 
-[sub_resource type="Resource" id="Resource_47hcj"]
+[sub_resource type="Resource" id="Resource_32vpm"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -57,7 +58,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_8cywo"]
+[sub_resource type="Resource" id="Resource_nhpqt"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -108,7 +109,7 @@ combatantsLvToPlayerLvRatio = 0.85
 levelStages = Array[ExtResource("23_x0rpw")]([])
 combatant2Options = Array[ExtResource("21_bd3a7")]([SubResource("Resource_socgq"), SubResource("Resource_cw408"), SubResource("Resource_ti7ur")])
 combatant3Options = Array[ExtResource("21_bd3a7")]([])
-combatant1 = ExtResource("20_blwto")
+combatant1 = ExtResource("17_kgeto")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
@@ -585,7 +586,7 @@ saveName = "ht_east_sword"
 position = Vector2(678, 659)
 loadFlipH = true
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_47hcj")
+data = SubResource("Resource_32vpm")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -603,7 +604,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(731, 663)
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_8cywo")
+data = SubResource("Resource_nhpqt")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")

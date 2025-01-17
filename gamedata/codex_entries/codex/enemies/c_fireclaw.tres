@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://3jcx03otbknf"]
+
+[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_byniu"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_8j8xr"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="3_67lti"]
+
+[sub_resource type="Resource" id="Resource_ia5gt"]
+script = ExtResource("2_8j8xr")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String](["fireclaw"])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_67lti")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_67lti")]([])
+
+[resource]
+script = ExtResource("1_byniu")
+id = "fireclaw"
+title = "Fireclaw"
+storyRequirements = Array[ExtResource("2_8j8xr")]([SubResource("Resource_ia5gt")])
+description = ""
+sortOrder = 0
