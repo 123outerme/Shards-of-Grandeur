@@ -1,6 +1,8 @@
 extends Control
 class_name RichTextLabelScroller
 
+signal text_label_scroll_changed
+
 @export var label: RichTextLabel
 @export var scrollLinesApprox: float = 1
 @export var bailoutFocusControl: Control
@@ -86,6 +88,7 @@ func _on_scroll_up_button_pressed() -> void:
 		 # seems to scroll exactly half, so multiply by 2
 		vScrollBar.value -= fontSize * label.scale.y * scrollLinesApprox * 2
 	update_scroll_buttons()
+	text_label_scroll_changed.emit()
 
 func _on_scroll_down_button_pressed() -> void:
 	var vScrollBar: VScrollBar = label.get_v_scroll_bar()
@@ -94,3 +97,4 @@ func _on_scroll_down_button_pressed() -> void:
 		 # seems to scroll exactly half, so multiply by 2
 		vScrollBar.value += fontSize * label.scale.y * scrollLinesApprox * 2
 	update_scroll_buttons()
+	text_label_scroll_changed.emit()

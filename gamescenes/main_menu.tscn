@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=25 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
@@ -18,6 +18,8 @@
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="13_ycmgk"]
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="14_amh01"]
 [ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="17_qsm70"]
+[ext_resource type="Script" path="res://scripts/menus/main_menu/credits_panel.gd" id="18_54oth"]
+[ext_resource type="PackedScene" uid="uid://bc2kbh31hfy6" path="res://prefabs/ui/rich_text_label_scroller.tscn" id="19_21m3e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e75oi"]
 
@@ -331,6 +333,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eqwdb")
+script = ExtResource("18_54oth")
 
 [node name="CreditsLabel" type="RichTextLabel" parent="Panel/CreditsPanel"]
 layout_mode = 1
@@ -349,19 +352,28 @@ bbcode_enabled = true
 text = "[center]Credits[/center]"
 fit_content = true
 
+[node name="RichTextLabelScroller" parent="Panel/CreditsPanel" node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("19_21m3e")]
+layout_mode = 1
+offset_left = 240.0
+offset_top = 121.0
+offset_right = -192.0
+offset_bottom = -71.0
+label = NodePath("../CreditsText")
+scrollLinesApprox = 2.0
+bailoutFocusControl = NodePath("../BackButton")
+
 [node name="CreditsText" type="RichTextLabel" parent="Panel/CreditsPanel"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = -240.0
-offset_right = -8.0
-offset_bottom = 301.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = 120.0
+offset_right = -240.0
+offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
@@ -371,14 +383,31 @@ bbcode_enabled = true
 text = "[center]Programming, Game Design, UI, Art, Story:
 Stephen Policelli
 
-SFX, Music:
-Ian Groat
-
 Music:
-Henry Guckes, Austin Greenlee
+Ian Groat
+Henry Guckes
+Austin Greenlee
+
+SFX:
+Ian Groat
+Anthousai
+C_Rogers
+DeqstersLab
+DustyWind
+EminYILDIRIM
+Iridiuss
+Kenneth_Cooney
+kyles
+_lucy
+neilsher
+plagasul
+Sabacky
+scarbelly25
+Public Domain Authors
 
 Temporary Demo Audio:
-Public Domain authors, iPhoenix, Ian Groat
+iPhoenix
+Ian Groat
 
 Bug Testing, Feedback:
 Everyone who played a Demo build!
@@ -398,6 +427,10 @@ offset_right = 40.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CreditsText")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
 [node name="DebugClickControl" type="Control" parent="Panel/CreditsPanel"]
@@ -407,10 +440,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -226.0
-offset_right = 152.0
-offset_bottom = -162.0
+offset_left = -631.0
+offset_top = 223.0
+offset_right = -503.0
+offset_bottom = 351.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -438,6 +471,9 @@ layout_mode = 1
 [connection signal="enter_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_enter_pressed"]
 [connection signal="key_pressed" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_key_pressed"]
 [connection signal="keyboard_hidden" from="Panel/PlayerNamePanel/VirtualKeyboard" to="." method="_on_virtual_keyboard_keyboard_hidden"]
+[connection signal="visibility_changed" from="Panel/CreditsPanel" to="Panel/CreditsPanel" method="_on_visibility_changed"]
+[connection signal="text_label_scroll_changed" from="Panel/CreditsPanel/RichTextLabelScroller" to="Panel/CreditsPanel" method="_on_rich_text_label_scroller_text_label_scroll_changed"]
+[connection signal="gui_input" from="Panel/CreditsPanel/CreditsText" to="Panel/CreditsPanel" method="_on_credits_text_gui_input"]
 [connection signal="pressed" from="Panel/CreditsPanel/BackButton" to="." method="_on_credits_back_button_pressed"]
 [connection signal="gui_input" from="Panel/CreditsPanel/DebugClickControl" to="." method="_on_debug_click_control_gui_input"]
 [connection signal="back_pressed" from="SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

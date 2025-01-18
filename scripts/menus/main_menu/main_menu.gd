@@ -30,8 +30,7 @@ var nameInputFocused: bool = false
 
 @onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
 
-@onready var creditsPanel: Panel = get_node('Panel/CreditsPanel')
-@onready var creditsBack: Button = get_node('Panel/CreditsPanel/BackButton')
+@onready var creditsPanel: CreditsPanel = get_node('Panel/CreditsPanel')
 
 @onready var versionLabel: RichTextLabel = get_node('Panel/MainMenuPage/VersionLabel')
 
@@ -161,7 +160,7 @@ func _on_settings_changed():
 func _on_credits_button_pressed():
 	mainMenuPage.visible = false
 	creditsPanel.visible = true
-	creditsBack.grab_focus()
+	creditsPanel.backButton.grab_focus()
 
 func _on_credits_back_button_pressed():
 	creditsPanel.visible = false
