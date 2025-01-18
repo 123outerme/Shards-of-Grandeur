@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="2_id0ea"]
+[ext_resource type="Resource" uid="uid://bme7msqml6t6u" path="res://gamedata/moves/flashfire_fist/flashfire_fist.tres" id="2_j7esu"]
+[ext_resource type="Resource" uid="uid://no8jsodv2ba7" path="res://gamedata/combatants/fireclaw/fireclaw.tres" id="3_4m1i1"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="3_yxmcv"]
-[ext_resource type="Resource" uid="uid://1vsxdl2n7c4p" path="res://gamedata/combatants/tree_bear/evolutions/inferno_bear/evolution_inferno_bear.tres" id="4_7shqk"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_id0ea")
-targetCombatant = ExtResource("3_yxmcv")
-evolution = ExtResource("4_7shqk")
+move = ExtResource("2_j7esu")
+targetCombatant = ExtResource("3_4m1i1")
 
 [node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
 anchors_preset = 8

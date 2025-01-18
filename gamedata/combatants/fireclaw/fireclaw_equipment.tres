@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://1fancsgkpyqc"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://1fancsgkpyqc"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_ovnfh"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_58af0"]
+[ext_resource type="Resource" uid="uid://bq7iwdicsmx2j" path="res://gamedata/items/weapon/sun_sigil.tres" id="3_d33hr"]
+
+[sub_resource type="Resource" id="Resource_bbv80"]
+script = ExtResource("2_58af0")
+weight = 0.6
+
+[sub_resource type="Resource" id="Resource_10xxm"]
+script = ExtResource("2_58af0")
+weapon = ExtResource("3_d33hr")
+weight = 0.4
 
 [resource]
 script = ExtResource("1_ovnfh")
-weightedEquipment = Array[ExtResource("2_58af0")]([])
+weightedEquipment = Array[ExtResource("2_58af0")]([SubResource("Resource_bbv80"), SubResource("Resource_10xxm")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://digivf1opqsj8"]
+[gd_scene load_steps=98 format=4 uid="uid://digivf1opqsj8"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wyxfu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_he5en"]
@@ -17,6 +17,8 @@
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="11_b45o6"]
 [ext_resource type="Resource" uid="uid://no8jsodv2ba7" path="res://gamedata/combatants/fireclaw/fireclaw.tres" id="14_jam01"]
 [ext_resource type="Resource" uid="uid://bwnakoj6c7o46" path="res://gamedata/cutscenes/hilltop_forest/hilltop_cave_gone.tres" id="14_pqkuw"]
+[ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="15_708u3"]
+[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="17_hua32"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="17_mtiaa"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="18_16skw"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="19_t6mci"]
@@ -83,7 +85,7 @@ spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_hxcp5"]
 script = ExtResource("6_1kwfo")
-combatant = ExtResource("7_ye5kr")
+combatant = ExtResource("14_jam01")
 weight = 0.55
 
 [sub_resource type="Resource" id="Resource_7ciow"]
@@ -96,6 +98,20 @@ weight = 0.25
 script = ExtResource("6_1kwfo")
 weight = 0.2
 
+[sub_resource type="Resource" id="Resource_q1m4l"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("14_jam01")
+weight = 0.45
+
+[sub_resource type="Resource" id="Resource_jijs8"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("7_ye5kr")
+weight = 0.3
+
+[sub_resource type="Resource" id="Resource_p4jdu"]
+script = ExtResource("6_1kwfo")
+weight = 0.25
+
 [sub_resource type="Resource" id="Resource_1go41"]
 script = ExtResource("9_hyktm")
 combatantsMinLevel = 18
@@ -103,7 +119,7 @@ combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_hxcp5"), SubResource("Resource_7ciow"), SubResource("Resource_11sg4")])
-combatant3Options = Array[ExtResource("6_1kwfo")]([])
+combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_q1m4l"), SubResource("Resource_jijs8"), SubResource("Resource_p4jdu")])
 combatant1 = ExtResource("14_jam01")
 specialRules = 0
 customWinText = ""
@@ -120,7 +136,7 @@ spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_82cqg"]
 script = ExtResource("6_1kwfo")
-combatant = ExtResource("7_ye5kr")
+combatant = ExtResource("14_jam01")
 weight = 0.55
 
 [sub_resource type="Resource" id="Resource_g5742"]
@@ -133,6 +149,21 @@ weight = 0.25
 script = ExtResource("6_1kwfo")
 weight = 0.2
 
+[sub_resource type="Resource" id="Resource_g82f6"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("5_ibrvy")
+weightedEquipment = ExtResource("8_q2le3")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_s3j5q"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("15_708u3")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_e4jka"]
+script = ExtResource("6_1kwfo")
+weight = 0.25
+
 [sub_resource type="Resource" id="Resource_63sl8"]
 script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
@@ -140,8 +171,8 @@ combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_82cqg"), SubResource("Resource_g5742"), SubResource("Resource_tw206")])
-combatant3Options = Array[ExtResource("6_1kwfo")]([])
-combatant1 = ExtResource("7_ye5kr")
+combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_g82f6"), SubResource("Resource_s3j5q"), SubResource("Resource_e4jka")])
+combatant1 = ExtResource("14_jam01")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
@@ -163,7 +194,7 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_j2fyn"]
 script = ExtResource("6_1kwfo")
-combatant = ExtResource("7_ye5kr")
+combatant = ExtResource("14_jam01")
 weight = 0.5
 
 [sub_resource type="Resource" id="Resource_jd3u5"]
@@ -178,7 +209,7 @@ weight = 0.4
 
 [sub_resource type="Resource" id="Resource_h517j"]
 script = ExtResource("6_1kwfo")
-combatant = ExtResource("7_ye5kr")
+combatant = ExtResource("14_jam01")
 weight = 0.35
 
 [sub_resource type="Resource" id="Resource_xjnlr"]
@@ -217,6 +248,20 @@ weight = 0.8
 script = ExtResource("6_1kwfo")
 weight = 0.2
 
+[sub_resource type="Resource" id="Resource_ow4wp"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("10_2xr35")
+weight = 0.55
+
+[sub_resource type="Resource" id="Resource_hk1lq"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("17_hua32")
+weight = 0.2
+
+[sub_resource type="Resource" id="Resource_yfic4"]
+script = ExtResource("6_1kwfo")
+weight = 0.25
+
 [sub_resource type="Resource" id="Resource_nlobb"]
 script = ExtResource("9_hyktm")
 combatantsMinLevel = 20
@@ -224,7 +269,7 @@ combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_voecf"), SubResource("Resource_v5l8j")])
-combatant3Options = Array[ExtResource("6_1kwfo")]([])
+combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_ow4wp"), SubResource("Resource_hk1lq"), SubResource("Resource_yfic4")])
 combatant1 = ExtResource("10_2xr35")
 specialRules = 0
 customWinText = ""
@@ -277,17 +322,31 @@ spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_mpnil"]
 script = ExtResource("6_1kwfo")
-combatant = ExtResource("10_2xr35")
+combatant = ExtResource("14_jam01")
 weight = 0.55
 
 [sub_resource type="Resource" id="Resource_36s6o"]
 script = ExtResource("6_1kwfo")
 combatant = ExtResource("5_ibrvy")
+weightedEquipment = ExtResource("8_q2le3")
 weight = 0.25
 
 [sub_resource type="Resource" id="Resource_v2t7v"]
 script = ExtResource("6_1kwfo")
 weight = 0.2
+
+[sub_resource type="Resource" id="Resource_cl51r"]
+script = ExtResource("6_1kwfo")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_hb62e"]
+script = ExtResource("6_1kwfo")
+combatant = ExtResource("14_jam01")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_30m4t"]
+script = ExtResource("6_1kwfo")
+weight = 0.25
 
 [sub_resource type="Resource" id="Resource_22qm5"]
 script = ExtResource("9_hyktm")
@@ -296,8 +355,8 @@ combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
 levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_mpnil"), SubResource("Resource_36s6o"), SubResource("Resource_v2t7v")])
-combatant3Options = Array[ExtResource("6_1kwfo")]([])
-combatant1 = ExtResource("10_2xr35")
+combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_cl51r"), SubResource("Resource_hb62e"), SubResource("Resource_30m4t")])
+combatant1 = ExtResource("14_jam01")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""

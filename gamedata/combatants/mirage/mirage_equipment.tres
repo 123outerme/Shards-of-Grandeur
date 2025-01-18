@@ -1,8 +1,25 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://i67trh53tp6i"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=8 format=3 uid="uid://i67trh53tp6i"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_xca2l"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_o65h7"]
+[ext_resource type="Resource" uid="uid://ue4yjsj74uc8" path="res://gamedata/items/armor/mage_robes.tres" id="3_12nnn"]
+[ext_resource type="Resource" uid="uid://2afnf1l2bwk5" path="res://gamedata/items/weapon/scorpion_wand.tres" id="4_ljtbo"]
+
+[sub_resource type="Resource" id="Resource_bs7ys"]
+script = ExtResource("2_o65h7")
+weight = 0.5
+
+[sub_resource type="Resource" id="Resource_6x7le"]
+script = ExtResource("2_o65h7")
+armor = ExtResource("3_12nnn")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_ooitb"]
+script = ExtResource("2_o65h7")
+weapon = ExtResource("4_ljtbo")
+armor = ExtResource("3_12nnn")
+weight = 0.1
 
 [resource]
 script = ExtResource("1_xca2l")
-weightedEquipment = Array[ExtResource("2_o65h7")]([])
+weightedEquipment = Array[ExtResource("2_o65h7")]([SubResource("Resource_bs7ys"), SubResource("Resource_6x7le"), SubResource("Resource_ooitb")])

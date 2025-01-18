@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://b4oinffwxk8wm"]
+
+[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_7dtvw"]
+[ext_resource type="Texture2D" uid="uid://d1s0muneaqbmp" path="res://graphics/particles/fire/fire_1.png" id="1_tlgyp"]
+[ext_resource type="Texture2D" uid="uid://dt1jful8dnkk7" path="res://graphics/particles/fire/fire_2.png" id="2_d6lbu"]
+[ext_resource type="Texture2D" uid="uid://ctxvjxobc6rlo" path="res://graphics/particles/fire/fire_3.png" id="3_dwoun"]
+[ext_resource type="Texture2D" uid="uid://o88o6okxdgq3" path="res://graphics/particles/fire/fire_4.png" id="4_anokj"]
+[ext_resource type="Material" uid="uid://ch5yhvbjbvc05" path="res://gamedata/moves/flashfire_fist/flashfire_fist_particles.tres" id="5_12sw3"]
+
+[resource]
+script = ExtResource("1_7dtvw")
+emitter = "front"
+count = 4
+lifetime = 0.5
+duration = 1.25
+staggered = false
+processMaterial = ExtResource("5_12sw3")
+particleTextures = Array[Texture2D]([ExtResource("1_tlgyp"), ExtResource("2_d6lbu"), ExtResource("3_dwoun"), ExtResource("4_anokj")])

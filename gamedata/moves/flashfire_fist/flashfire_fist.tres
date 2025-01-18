@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://bme7msqml6t6u"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_78erj"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_iw5cm"]
+[ext_resource type="Resource" uid="uid://d0sqsfifs2ppp" path="res://gamedata/moves/flashfire_fist/anim_flashfire_fist.tres" id="2_2wyyn"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/element_burn.gd" id="3_io351"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_a44t4"]
+
+[sub_resource type="Resource" id="Resource_plyjx"]
+script = ExtResource("1_78erj")
+role = 1
+orbChange = 1
+power = 55
+lifesteal = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+
+[sub_resource type="Resource" id="Resource_bv6dh"]
+script = ExtResource("3_io351")
+element = 2
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+
+[sub_resource type="Resource" id="Resource_f556e"]
+script = ExtResource("4_a44t4")
+powerPerOrb = 5
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 5
+overwhelmingThresholdOrbs = 7
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_5hi3r"]
+script = ExtResource("1_78erj")
+role = 1
+orbChange = -4
+power = 75
+lifesteal = 0.0
+targets = 5
+statusEffect = SubResource("Resource_bv6dh")
+selfGetsStatus = false
+statusChance = 0.0
+surgeChanges = SubResource("Resource_f556e")
+
+[resource]
+script = ExtResource("1_iw5cm")
+moveName = "Flashfire Fist"
+requiredLv = 16
+category = 0
+element = 2
+chargeEffect = SubResource("Resource_plyjx")
+surgeEffect = SubResource("Resource_5hi3r")
+description = ""
+moveLearnedText = ""
+moveAnimation = ExtResource("2_2wyyn")

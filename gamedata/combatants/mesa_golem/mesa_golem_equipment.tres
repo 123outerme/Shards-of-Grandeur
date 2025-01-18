@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://c5ynhupql3qpm"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://c5ynhupql3qpm"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_nebw0"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_aoen2"]
+[ext_resource type="Resource" uid="uid://dyb6sssuoh538" path="res://gamedata/items/armor/geode_amulet.tres" id="3_48ce0"]
+
+[sub_resource type="Resource" id="Resource_frm7o"]
+script = ExtResource("2_aoen2")
+weight = 0.65
+
+[sub_resource type="Resource" id="Resource_6fl6j"]
+script = ExtResource("2_aoen2")
+armor = ExtResource("3_48ce0")
+weight = 0.35
 
 [resource]
 script = ExtResource("1_nebw0")
-weightedEquipment = Array[ExtResource("2_aoen2")]([])
+weightedEquipment = Array[ExtResource("2_aoen2")]([SubResource("Resource_frm7o"), SubResource("Resource_6fl6j")])
