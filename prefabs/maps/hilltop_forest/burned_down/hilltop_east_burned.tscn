@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=4 uid="uid://d4i0j6b3bb4rt"]
+[gd_scene load_steps=119 format=4 uid="uid://d4i0j6b3bb4rt"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_frkjt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_y8mli"]
@@ -29,13 +29,14 @@
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="26_di7bi"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="27_jf1e8"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="28_2wo6l"]
+[ext_resource type="Resource" uid="uid://206otuqdhqhy" path="res://gamedata/combatants/mystic_scorpion/mystic_scorpion.tres" id="28_orhf0"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="29_tcqfy"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="30_6s5tj"]
 [ext_resource type="Resource" uid="uid://c71mhqpyp5au8" path="res://gamedata/cutscenes/hilltop_forest/ht_east_north_path_takeover_turnaround.tres" id="31_u23ph"]
 [ext_resource type="Resource" uid="uid://bidfx3ehukpyo" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_demo_turnback.tres" id="32_4v2yw"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="34_bi7ge"]
 
-[sub_resource type="Resource" id="Resource_t1nlc"]
+[sub_resource type="Resource" id="Resource_vpgkk"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -58,7 +59,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_sb7ca"]
+[sub_resource type="Resource" id="Resource_8ajoj"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -162,6 +163,7 @@ spawnedLastEncounter = false
 [sub_resource type="Resource" id="Resource_7g4kw"]
 script = ExtResource("21_bd3a7")
 combatant = ExtResource("25_buu21")
+weightedEquipment = ExtResource("25_pghj5")
 weight = 0.6
 
 [sub_resource type="Resource" id="Resource_jxgqf"]
@@ -175,12 +177,13 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_cgf6u"]
 script = ExtResource("21_bd3a7")
-combatant = ExtResource("20_blwto")
+combatant = ExtResource("17_kgeto")
 weight = 0.45
 
 [sub_resource type="Resource" id="Resource_ys3ic"]
 script = ExtResource("21_bd3a7")
 combatant = ExtResource("25_buu21")
+weightedEquipment = ExtResource("25_pghj5")
 weight = 0.25
 
 [sub_resource type="Resource" id="Resource_qo0mx"]
@@ -334,17 +337,32 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_yfix4"]
 script = ExtResource("21_bd3a7")
-combatant = ExtResource("20_blwto")
+combatant = ExtResource("17_kgeto")
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_a0w8x"]
 script = ExtResource("21_bd3a7")
 combatant = ExtResource("25_buu21")
+weightedEquipment = ExtResource("25_pghj5")
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_23h2m"]
 script = ExtResource("21_bd3a7")
 weight = 0.2
+
+[sub_resource type="Resource" id="Resource_ex5o0"]
+script = ExtResource("21_bd3a7")
+combatant = ExtResource("22_6qat3")
+weight = 0.4
+
+[sub_resource type="Resource" id="Resource_ine5i"]
+script = ExtResource("21_bd3a7")
+combatant = ExtResource("28_orhf0")
+weight = 0.35
+
+[sub_resource type="Resource" id="Resource_xmnu7"]
+script = ExtResource("21_bd3a7")
+weight = 0.25
 
 [sub_resource type="Resource" id="Resource_awvrg"]
 script = ExtResource("24_m7r08")
@@ -353,7 +371,7 @@ combatantsMaxLevel = 22
 combatantsLvToPlayerLvRatio = 0.9
 levelStages = Array[ExtResource("23_x0rpw")]([])
 combatant2Options = Array[ExtResource("21_bd3a7")]([SubResource("Resource_hb4tn"), SubResource("Resource_yfix4"), SubResource("Resource_a0w8x"), SubResource("Resource_23h2m")])
-combatant3Options = Array[ExtResource("21_bd3a7")]([])
+combatant3Options = Array[ExtResource("21_bd3a7")]([SubResource("Resource_ex5o0"), SubResource("Resource_ine5i"), SubResource("Resource_xmnu7")])
 combatant1 = ExtResource("22_6qat3")
 specialRules = 0
 customWinText = ""
@@ -586,7 +604,7 @@ saveName = "ht_east_sword"
 position = Vector2(678, 659)
 loadFlipH = true
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_t1nlc")
+data = SubResource("Resource_vpgkk")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -604,7 +622,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(731, 663)
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_sb7ca")
+data = SubResource("Resource_8ajoj")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")

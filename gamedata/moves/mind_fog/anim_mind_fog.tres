@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=7 format=3 uid="uid://ddgi8em0x0s8e"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_6ep42"]
+[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_03crl"]
+[ext_resource type="Resource" uid="uid://yndwxh0x23ii" path="res://gamedata/moves/mind_fog/sprite_mind_fog.tres" id="2_8l2ue"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="4_mrrmw"]
+
+[sub_resource type="Resource" id="Resource_13gt4"]
+script = ExtResource("4_mrrmw")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.219608, 0.254902, 0.415686, 0.34902)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+
+[sub_resource type="Resource" id="Resource_ge323"]
+script = ExtResource("4_mrrmw")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.219608, 0.254902, 0.415686, 0.490196)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+
+[resource]
+script = ExtResource("2_03crl")
+combatantAnimation = "attack_affinity"
+makesContact = false
+chargeMoveSprites = Array[ExtResource("1_6ep42")]([ExtResource("2_8l2ue")])
+surgeMoveSprites = Array[ExtResource("1_6ep42")]([ExtResource("2_8l2ue")])
+chargeBattlefieldShade = SubResource("Resource_13gt4")
+surgeBattlefieldShade = SubResource("Resource_ge323")

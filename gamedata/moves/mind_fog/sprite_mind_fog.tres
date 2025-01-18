@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://yndwxh0x23ii"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_fygqr"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_8h5nv"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_xsmxc"]
+[ext_resource type="SpriteFrames" uid="uid://dscopdkqw21qe" path="res://graphics/moves/wind/a_mind_fog.tres" id="3_2xn7p"]
+[ext_resource type="AudioStream" uid="uid://cqmn5dxrrdpwb" path="res://audio/sfx/ui/sparkly_impact.mp3" id="3_mcon5"]
+
+[sub_resource type="Curve" id="Curve_wjjxg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_58gya"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_dlvr4"]
+script = ExtResource("1_fygqr")
+annotation = "set up position at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_wjjxg")
+yCurve = SubResource("Curve_58gya")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_lb86x"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_21aci"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_dplxe"]
+script = ExtResource("1_fygqr")
+annotation = "send mind fog cloud at target's head"
+animation = "drift"
+duration = 1.6
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 16
+xCurve = SubResource("Curve_lb86x")
+yCurve = SubResource("Curve_21aci")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_xsmxc")
+
+[sub_resource type="Resource" id="Resource_od2uv"]
+script = ExtResource("1_fygqr")
+annotation = "envelop target's head"
+animation = "envelop"
+duration = 3.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("3_mcon5")
+
+[resource]
+script = ExtResource("2_8h5nv")
+spriteFrames = ExtResource("3_2xn7p")
+centerSprite = true
+maxSize = Vector2(24, 24)
+frames = Array[ExtResource("1_fygqr")]([SubResource("Resource_dlvr4"), SubResource("Resource_dplxe"), SubResource("Resource_od2uv")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true

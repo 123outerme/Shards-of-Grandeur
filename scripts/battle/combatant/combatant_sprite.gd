@@ -16,6 +16,9 @@ class_name CombatantSprite
 ## where the center of the feet are (position where the feet, if any, would be contacting ground)
 @export var feetPosition: Vector2 = Vector2(8, 16)
 
+## where the center of the head is (position where head-seeking moves would land)
+@export var headPosition: Vector2 = Vector2(8, 4)
+
 ## if true, the sprite was generated facing right
 @export var spriteFacesRight: bool = false
 
@@ -49,6 +52,7 @@ func _init(
 	i_idleSize = Vector2(16, 16),
 	i_centerPosition = Vector2(8, 8),
 	i_feetPosition = Vector2(8, 16),
+	i_headPosition = Vector2(8, 4),
 	i_facesRight = false,
 	i_navLayer = 1,
 	i_attackPhysImpactFrame = -1,

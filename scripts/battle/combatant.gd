@@ -416,6 +416,12 @@ func get_feet_pos() -> Vector2:
 		return evolution.combatantSprite.feetPosition
 	return sprite.feetPosition
 
+func get_head_pos() -> Vector2:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.combatantSprite.headPosition
+	return sprite.headPosition
+
 func get_faces_right() -> bool:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:

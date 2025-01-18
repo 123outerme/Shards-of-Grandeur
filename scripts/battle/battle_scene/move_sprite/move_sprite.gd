@@ -169,8 +169,18 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()
-		if posOffset == 0b1111: # if all offset bits are set: play at visual center of sprite instead of the "interaction center"
-			pos.y += cNode.get_feet_pos_translation().y / 2.0 + 8 # undo the feet position translation to place the sprite at visual center
+		var feetPosTranslation: Vector2 = cNode.get_feet_pos_translation()
+		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.HEAD - 1)) & 1 == 1: # if the head offset bit is set: play at the head
+			# remove the feet position translation to get top-left
+			pos += feetPosTranslation
+			pos.y += 8
+			# then go from top-left to the head pos
+			pos += cNode.combatant.get_head_pos()
+		elif posOffset == 0b01111: # if first four offset bits are set: play at visual center of sprite instead of the "interaction center"
+			# remove the feet position translation to get the top-left
+			pos += feetPosTranslation # translate away from the feet position to top-left
+			pos.y += 8 # add 8 just as the CombatantNode does (to display the HP tag starting at foot height)
+			pos += cNode.combatant.get_max_size() / 2  # go from top-left to visual center (half max-size)
 		else:
 			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.IN_FRONT - 1)) & 1 == 1:
 				pos.x += round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)

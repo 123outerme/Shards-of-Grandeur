@@ -20,7 +20,6 @@ func load_evolution_list_item_panel() -> void:
 		return
 	
 	var combatantSprite: CombatantSprite = null
-	var evolutionName: String = ''
 	if evolution != null:
 		combatantSprite = evolution.combatantSprite
 	else:

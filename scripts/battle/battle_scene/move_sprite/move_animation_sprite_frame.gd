@@ -16,7 +16,8 @@ enum MoveSpriteOffset {
 	IN_FRONT = 1,
 	BEHIND = 2,
 	ABOVE = 3,
-	BELOW = 4
+	BELOW = 4,
+	HEAD = 5,
 }
 
 @export_group('')
@@ -47,8 +48,8 @@ enum MoveSpriteOffset {
 ## the offset from the `relativeTo` to move the sprite to over the course of the frame
 @export var position: Vector2
 
-## Offsets based on target entity's size. If all bits are set, will play at the VISUAL center of the target sprite, not the configured CombatantSprite center
-@export_flags('In Front', 'Behind', 'Above', 'Below') var offset: int = MoveSpriteOffset.NONE
+## Offsets based on target entity's size. If the first four bits are set, will play at the VISUAL center of the target sprite, not the configured CombatantSprite center. If the 5th bit is set, all others are ignored.
+@export_flags('In Front', 'Behind', 'Above', 'Below', 'Head') var offset: int = MoveSpriteOffset.NONE
 
 ## describes the x position of the sprite over the duration of the frame
 @export var xCurve: Curve = Curve.new()
