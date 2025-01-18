@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=7 format=3 uid="uid://dhlll645as6lm"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://dhlll645as6lm"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_qpgmn"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_15ypx"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_v0ito"]
 [ext_resource type="Resource" uid="uid://bnrtajyq7xgiy" path="res://gamedata/moves/trailblaze/trailblaze.tres" id="3_h0j0n"]
-[ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="3_sc1ub"]
+[ext_resource type="Resource" uid="uid://bq2xpx64wah04" path="res://gamedata/moves/haymaker/haymaker.tres" id="3_q74en"]
+[ext_resource type="Resource" uid="uid://dt02u3l6jnqkq" path="res://gamedata/moves/final_stand/final_stand.tres" id="4_qtodn"]
 [ext_resource type="Resource" uid="uid://bme7msqml6t6u" path="res://gamedata/moves/flashfire_fist/flashfire_fist.tres" id="5_u0qkk"]
+[ext_resource type="Resource" uid="uid://ch4ub4fjauove" path="res://gamedata/moves/gale_force/gale_force.tres" id="5_ypqkf"]
 
 [resource]
 script = ExtResource("2_v0ito")
-pool = Array[ExtResource("1_qpgmn")]([ExtResource("2_15ypx"), ExtResource("3_sc1ub"), ExtResource("3_h0j0n"), ExtResource("5_u0qkk")])
+pool = Array[ExtResource("1_qpgmn")]([ExtResource("2_15ypx"), ExtResource("3_q74en"), ExtResource("4_qtodn"), ExtResource("5_ypqkf"), ExtResource("3_h0j0n"), ExtResource("5_u0qkk")])
 signatureMoves = Array[ExtResource("1_qpgmn")]([ExtResource("3_h0j0n"), ExtResource("5_u0qkk")])
 preferredMove1Role = 2
 preferredMove1DmgType = 0
