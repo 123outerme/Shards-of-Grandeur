@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://drklgaa6wf8np"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://drklgaa6wf8np"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_tj3ak"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1ff7o"]
@@ -16,16 +16,6 @@ buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = false
 
-[sub_resource type="Resource" id="Resource_gceir"]
-script = ExtResource("2_1ff7o")
-choiceBtn = ""
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_vy1h1")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = "A Lost Comrade#To The Town Hall"
-isDeclineChoice = false
-
 [sub_resource type="Resource" id="Resource_4l7an"]
 script = ExtResource("1_tj3ak")
 lines = Array[String](["My best guess is that Solius was captured by the Chain Legion and taken back to Steelspire.", "Or, it's possible, although unlikely, he escaped behind enemy lines and is hiding away from them.", "Either way, if you trace back to Steelspire, you very well may find him."])
@@ -35,12 +25,12 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_1ff7o")]([SubResource("Resource_sskbf"), SubResource("Resource_gceir")])
+choices = Array[ExtResource("2_1ff7o")]([SubResource("Resource_sskbf")])
 
 [resource]
 script = ExtResource("3_5ti0h")
 entryId = ""
 items = Array[ExtResource("1_tj3ak")]([SubResource("Resource_4l7an")])
 ordStoryRequirements = Array[ExtResource("2_7441h")]([])
-closesDialogue = true
+closesDialogue = false
 fullHealsPlayer = false
