@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=115 format=4 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -15,7 +15,6 @@
 [ext_resource type="SpriteFrames" uid="uid://duqplppdxtk4y" path="res://graphics/animations/a_solius.tres" id="7_x5og7"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="8_1vtdr"]
 [ext_resource type="Resource" uid="uid://c3gj8c3m11yyt" path="res://gamedata/cutscenes/leavenport/meet_solius.tres" id="9_8qf0q"]
-[ext_resource type="Resource" uid="uid://biernp4igihd4" path="res://gamedata/story_requirements/main_story/act1/etreus_fight1_done.tres" id="9_djdq1"]
 [ext_resource type="Resource" uid="uid://4jm8oh3eyfa4" path="res://gamedata/dialogue/solius/leavenport/follower_leavenport1.tres" id="9_x0eeb"]
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="11_jmbbv"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="12_6xs76"]
@@ -92,12 +91,12 @@ invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 [sub_resource type="Resource" id="Resource_48sfc"]
 script = ExtResource("6_3up7i")
 minAct = 0
-maxAct = 1
+maxAct = 2
 prereqQuests = Array[String]([])
-prereqCutscenes = Array[String](["etreus1_defeated"])
+prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
+prereqSpecialBattles = Array[String](["etreus_fight1"])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
 prereqPuzzleStates = {}
@@ -106,7 +105,7 @@ prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("7_dmgij")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
@@ -115,7 +114,7 @@ invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_4wobu"]
+[sub_resource type="Resource" id="Resource_g64k6"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -138,7 +137,33 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_8wgln"]
+[sub_resource type="Resource" id="Resource_o0dwe"]
+script = ExtResource("6_3up7i")
+minAct = 1
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["etreus_fight1"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
+
+[sub_resource type="Resource" id="Resource_m4aci"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -161,7 +186,33 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_jsveq"]
+[sub_resource type="Resource" id="Resource_chj7w"]
+script = ExtResource("6_3up7i")
+minAct = 1
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["etreus_fight1"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_dmgij")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
+
+[sub_resource type="Resource" id="Resource_baft6"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -184,7 +235,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_amoy0"]
+[sub_resource type="Resource" id="Resource_3cvll"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -207,7 +258,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_rmpj4"]
+[sub_resource type="Resource" id="Resource_i0gct"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -254,7 +305,7 @@ position = Vector2(996, 108)
 relativeToCurrentPos = false
 pauseSecs = 0.0
 
-[sub_resource type="Resource" id="Resource_i1uem"]
+[sub_resource type="Resource" id="Resource_kskkw"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -277,7 +328,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_amhqm"]
+[sub_resource type="Resource" id="Resource_5ltlt"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -306,7 +357,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nydhf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_1m8ns"]
+[sub_resource type="Resource" id="Resource_ed24k"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -349,7 +400,7 @@ script = ExtResource("6_3up7i")
 minAct = 2
 maxAct = -1
 prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
+prereqCutscenes = Array[String](["standstill_defeated_helia"])
 prereqDialogues = Array[String]([])
 prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
@@ -574,7 +625,7 @@ size = Vector2(128, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftvu4"]
 size = Vector2(128, 55)
 
-[sub_resource type="Resource" id="Resource_tfqgs"]
+[sub_resource type="Resource" id="Resource_02hru"]
 script = ExtResource("6_jui48")
 saveName = "npc"
 spriteState = "default"
@@ -752,7 +803,7 @@ displayName = "Solius"
 saveName = "solius_leavenport"
 followerId = "solius"
 orSpawnRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_1n4ns"), SubResource("Resource_48sfc")])
-data = SubResource("Resource_4wobu")
+data = SubResource("Resource_g64k6")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("7_2c63l"), ExtResource("9_x0eeb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -778,8 +829,8 @@ visible = false
 
 [node name="ChainLegionSoldier3" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1405, 522)
-spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_8wgln")
+spawnRequirements = SubResource("Resource_o0dwe")
+data = SubResource("Resource_m4aci")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -796,8 +847,8 @@ visible = false
 
 [node name="ChainLegionSoldier4" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(1386, 573)
-spawnRequirements = ExtResource("9_djdq1")
-data = SubResource("Resource_jsveq")
+spawnRequirements = SubResource("Resource_chj7w")
+data = SubResource("Resource_baft6")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -816,7 +867,7 @@ visible = false
 position = Vector2(625, -42)
 displayName = "Fisherman"
 saveName = "lp_fisherman"
-data = SubResource("Resource_amoy0")
+data = SubResource("Resource_3cvll")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("12_ccnp4")])
 
 [node name="NPCSprite" parent="TilemapRoot/Fisherman" index="0"]
@@ -836,7 +887,7 @@ visible = false
 position = Vector2(996, 108)
 displayName = "Gentleman"
 saveName = "lp_elder"
-data = SubResource("Resource_rmpj4")
+data = SubResource("Resource_i0gct")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TilemapRoot/Elder" index="0"]
@@ -861,7 +912,7 @@ visible = false
 position = Vector2(397, 315)
 displayName = "Lady"
 saveName = "lp_elder_lady"
-data = SubResource("Resource_i1uem")
+data = SubResource("Resource_kskkw")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TilemapRoot/ElderLady" index="0"]
@@ -880,7 +931,7 @@ visible = false
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(765, 286)
 displayName = "Sign"
-data = SubResource("Resource_amhqm")
+data = SubResource("Resource_5ltlt")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_i5v2d")])
 facesPlayer = false
 
@@ -914,7 +965,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("5_q2te8")]
 position = Vector2(995, 446)
 displayName = "Sign"
-data = SubResource("Resource_1m8ns")
+data = SubResource("Resource_ed24k")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("24_jrwa5")])
 facesPlayer = false
 
@@ -1266,7 +1317,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1270, 540)
 facingLeft = true
-data = SubResource("Resource_tfqgs")
+data = SubResource("Resource_02hru")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.0640395

@@ -86,7 +86,7 @@ invalidFromHavingItems = Array[ExtResource("17_mm255")]([])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ov4v"]
 size = Vector2(16, 5)
 
-[sub_resource type="Resource" id="Resource_fvmoo"]
+[sub_resource type="Resource" id="Resource_nkb21"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "default"
@@ -115,7 +115,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsmwf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_ev2ua"]
+[sub_resource type="Resource" id="Resource_ehtsm"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
@@ -138,7 +138,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_0368o"]
+[sub_resource type="Resource" id="Resource_okoxs"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
@@ -223,7 +223,7 @@ shape = SubResource("RectangleShape2D_3ov4v")
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_55211")]
 position = Vector2(-68, 16)
 displayName = "Sign"
-data = SubResource("Resource_fvmoo")
+data = SubResource("Resource_nkb21")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -264,7 +264,7 @@ stateSpritesDict = {
 "default": null,
 "in_bed": ExtResource("10_p0awk")
 }
-data = SubResource("Resource_ev2ua")
+data = SubResource("Resource_ehtsm")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 position = Vector2(0, -6)
@@ -293,7 +293,7 @@ stateSpritesDict = {
 "burned": ExtResource("10_yywe0"),
 "default": ExtResource("11_pb102")
 }
-data = SubResource("Resource_0368o")
+data = SubResource("Resource_okoxs")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 

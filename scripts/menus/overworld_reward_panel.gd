@@ -53,8 +53,8 @@ func load_overworld_reward_panel() -> void:
 	initial_focus()
 
 func connect_rewards_panels_focus(instantiatedPanel: RewardPanel, lastPanel: RewardPanel):
-	lastPanel.itemSpriteBtn.focus_neighbor_left = '.'
-	lastPanel.itemSpriteBtn.focus_neighbor_right = '.'
+	instantiatedPanel.itemSpriteBtn.focus_neighbor_left = '.'
+	instantiatedPanel.itemSpriteBtn.focus_neighbor_right = '.'
 	if lastPanel != null:
 		lastPanel.itemSpriteBtn.focus_neighbor_bottom = lastPanel.itemSpriteBtn.get_path_to(instantiatedPanel.itemSpriteBtn)
 		instantiatedPanel.itemSpriteBtn.focus_neighbor_top = instantiatedPanel.itemSpriteBtn.get_path_to(lastPanel.itemSpriteBtn)

@@ -11,7 +11,8 @@ func player_running(running: bool) -> void:
 	player_run_toggled.emit(running)
 
 func give_overworld_rewards(reward: Reward, rewardsTitle: String = 'Rewards') -> void:
-	PlayerResources.playerInfo.queuedRewards.append(reward)
-	await get_tree().process_frame # wait a frame,
-	# ... until all rewards given on this frame/update are processed
-	overworld_rewards_given.emit(rewardsTitle) # will still emit once-per reward, so listeners must
+	if reward != null:
+		PlayerResources.playerInfo.queuedRewards.append(reward)
+		await get_tree().process_frame # wait a frame,
+		# ... until all rewards given on this frame/update are processed
+		overworld_rewards_given.emit(rewardsTitle) # will still emit once-per reward, so listeners must

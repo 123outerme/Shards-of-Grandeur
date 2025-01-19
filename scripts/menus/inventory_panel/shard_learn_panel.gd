@@ -128,6 +128,8 @@ func _on_move_details_panel_back_pressed():
 		backButton.grab_focus()
 
 func _deferred_evo_list_item_panel_connect(evoItemPanel: EvolutionListItemPanel, lastPanel: EvolutionListItemPanel) -> void:
+	evoItemPanel.selectButton.button_pressed = evoItemPanel.evolution == evolution
+	
 	movePoolPanel.firstMovePanel.learnButton.focus_neighbor_top = movePoolPanel.firstMovePanel.learnButton.get_path_to(evoItemPanel.selectButton)
 	evoItemPanel.selectButton.focus_neighbor_bottom = evoItemPanel.selectButton.get_path_to(movePoolPanel.firstMovePanel.learnButton)
 	evoItemPanel.selectButton.focus_neighbor_right = '.'

@@ -164,8 +164,7 @@ func turn_in_cur_step(tracker: QuestTracker, isAutoUpdate: bool = false) -> int:
 	if not isAutoUpdate:
 		newLvs = PlayerResources.accept_rewards([curStep.reward])
 	else:
-		if curStep.reward != null:
-			SignalBus.give_overworld_rewards(curStep.reward, 'Quest Rewards')
+		SignalBus.give_overworld_rewards(curStep.reward, 'Quest Rewards')
 	var allDone: bool = tracker.turn_in_step()
 	if curStep.type == QuestStep.Type.COLLECT_ITEM:
 		PlayerResources.inventory.trash_items_by_name(curStep.objectiveName, curStep.count)

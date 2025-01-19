@@ -45,9 +45,10 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 				animFinished = true
 				okBtn.disabled = false
 		var finalPrecalcdText: bool = battleUI.battleController.turnExecutor.advance_precalcd_text() # if was final
-		# update the combatant stats to battle storage vars
-		for combatantNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
-			combatantNode.update_current_tag_stats(true)
+		# COMMENTED OUT update the combatant stats to battle storage vars
+		#for combatantNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
+			#combatantNode.update_current_tag_stats(updateFromStorage)
+		# COMMENTED OUT END: was causing bugs and didn't seem to be necessary
 		if finalPrecalcdText:
 			battleUI.advance_intermediate_state(result)
 		return # don't fall-through and potentially run the results code below

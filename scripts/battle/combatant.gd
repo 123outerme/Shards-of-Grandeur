@@ -485,6 +485,9 @@ func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, t
 	var runesToCheck: bool = len(runes) > 0
 	var firstCheck: bool = true
 	while runesToCheck:
+		if currentHp <= 0:
+			runesToCheck = false
+			break
 		var runeWasTriggered: bool = false
 		for runeIdx: int in range(len(runes)):
 			var rune: Rune = runes[runeIdx]
