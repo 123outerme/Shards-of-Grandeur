@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://cx5vc8qdipqwt"]
+[gd_scene load_steps=107 format=4 uid="uid://cx5vc8qdipqwt"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5k41n"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_prja5"]
@@ -28,8 +28,11 @@
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="22_0oryc"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="23_kq2oq"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="24_7wtt2"]
+[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="28_dptko"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="29_5824o"]
+[ext_resource type="Resource" uid="uid://bvlcefahm8fbf" path="res://gamedata/cutscenes/grandstone_forest/gs_forest_quarry_turnback_demo.tres" id="30_gxywi"]
 
-[sub_resource type="Resource" id="Resource_x5j6r"]
+[sub_resource type="Resource" id="Resource_p5aja"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -58,7 +61,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_5fon1"]
+[sub_resource type="Resource" id="Resource_d8t3d"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -87,7 +90,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_vn41b"]
+[sub_resource type="Resource" id="Resource_k1hvb"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -457,11 +460,20 @@ size = Vector2(102, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt5fe"]
 size = Vector2(115, 75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq58p"]
+size = Vector2(75, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fall"]
+size = Vector2(20, 111)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp6fh"]
 size = Vector2(132, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va3ah"]
 size = Vector2(132, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46o1m"]
+size = Vector2(20, 141)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_5k41n")
@@ -508,7 +520,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_x5j6r")
+data = SubResource("Resource_p5aja")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -550,7 +562,7 @@ stateSpritesDict = {
 "shards_cart": ExtResource("11_85ta7")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_5fon1")
+data = SubResource("Resource_d8t3d")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -586,7 +598,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_vn41b")
+data = SubResource("Resource_k1hvb")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("13_diivh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -716,6 +728,22 @@ holdX = false
 position = Vector2(-6.5, -27.5)
 shape = SubResource("RectangleShape2D_vt5fe")
 
+[node name="CameraHoldZone3" parent="." instance=ExtResource("11_xwxnj")]
+position = Vector2(-858, -256)
+holdY = false
+
+[node name="CollisionShape2D" parent="CameraHoldZone3" index="0"]
+position = Vector2(27.5, 16)
+shape = SubResource("RectangleShape2D_rq58p")
+
+[node name="QuarryCutsceneTrigger" parent="." instance=ExtResource("28_dptko")]
+position = Vector2(-773, -295)
+cutscenes = Array[ExtResource("29_5824o")]([ExtResource("30_gxywi")])
+
+[node name="CollisionShape2D" parent="QuarryCutsceneTrigger" index="0"]
+position = Vector2(0, 45.5)
+shape = SubResource("RectangleShape2D_5fall")
+
 [node name="EnemyDeaggroZone" parent="." instance=ExtResource("24_7wtt2")]
 position = Vector2(-304, -830)
 
@@ -727,6 +755,13 @@ position = Vector2(-10, 637)
 
 [node name="CollisionShape2D" parent="EnemyDeaggroZone2" index="0"]
 shape = SubResource("RectangleShape2D_va3ah")
+
+[node name="EnemyDeaggroZone3" parent="." instance=ExtResource("24_7wtt2")]
+position = Vector2(-574, -311)
+
+[node name="CollisionShape2D" parent="EnemyDeaggroZone3" index="0"]
+position = Vector2(0, 60.5)
+shape = SubResource("RectangleShape2D_46o1m")
 
 [editable path="TilemapRoot/Signpost"]
 [editable path="TilemapRoot/HorseMarble"]
@@ -742,5 +777,8 @@ shape = SubResource("RectangleShape2D_va3ah")
 [editable path="QuarryWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
+[editable path="CameraHoldZone3"]
+[editable path="QuarryCutsceneTrigger"]
 [editable path="EnemyDeaggroZone"]
 [editable path="EnemyDeaggroZone2"]
+[editable path="EnemyDeaggroZone3"]

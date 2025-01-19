@@ -1,10 +1,46 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://c2obob7w8r46f"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=14 format=3 uid="uid://c2obob7w8r46f"]
 
 [ext_resource type="Script" path="res://scripts/npcs/npc_shop.gd" id="1_cfe7n"]
 [ext_resource type="Resource" uid="uid://cc2ef1x6grvaj" path="res://gamedata/items/key_items/leavenport_teleport_stone.tres" id="2_0f2mr"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="3_6bbo8"]
 [ext_resource type="Script" path="res://scripts/inventory/shop_inventory_slot.gd" id="3_yok23"]
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_2mbw0"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_wv4g0"]
 [ext_resource type="Resource" uid="uid://cylyev1ny8klx" path="res://gamedata/items/key_items/reset_pearl.tres" id="5_3hces"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_xh4m2"]
+
+[sub_resource type="Resource" id="Resource_sq64o"]
+script = ExtResource("5_xh4m2")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_wv4g0")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_wv4g0")]([])
+
+[sub_resource type="Resource" id="Resource_lx22g"]
+script = ExtResource("3_yok23")
+storyRequirements = SubResource("Resource_sq64o")
+sinceVersion = "0.2.3"
+item = ExtResource("3_6bbo8")
+count = 1
 
 [sub_resource type="Resource" id="Resource_x3w1x"]
 script = ExtResource("3_yok23")
@@ -26,4 +62,4 @@ count = 3
 
 [resource]
 script = ExtResource("1_cfe7n")
-shopItemSlots = Array[ExtResource("3_yok23")]([SubResource("Resource_x3w1x"), SubResource("Resource_pymm8"), SubResource("Resource_wboy0")])
+shopItemSlots = Array[ExtResource("3_yok23")]([SubResource("Resource_lx22g"), SubResource("Resource_x3w1x"), SubResource("Resource_pymm8"), SubResource("Resource_wboy0")])

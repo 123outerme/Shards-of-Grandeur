@@ -6,9 +6,48 @@
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="4_wfwfe"]
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortifying_elixir.tres" id="5_uo1mo"]
 [ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="6_7a6lt"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="6_jyqe3"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_5yeg3"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="8_5cpyr"]
-[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="9_vuk4w"]
+
+[sub_resource type="Resource" id="Resource_hwf0y"]
+script = ExtResource("3_fy6e2")
+sinceVersion = "0.0.5"
+item = ExtResource("2_8jet5")
+count = 1
+
+[sub_resource type="Resource" id="Resource_tv18f"]
+script = ExtResource("8_5cpyr")
+minAct = 2
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_5yeg3")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_5yeg3")]([])
+
+[sub_resource type="Resource" id="Resource_mltd8"]
+script = ExtResource("3_fy6e2")
+storyRequirements = SubResource("Resource_tv18f")
+sinceVersion = "0.2.3"
+item = ExtResource("6_jyqe3")
+count = -1
 
 [sub_resource type="Resource" id="Resource_8r576"]
 script = ExtResource("8_5cpyr")
@@ -43,45 +82,6 @@ sinceVersion = "0.2.3"
 item = ExtResource("6_7a6lt")
 count = -1
 
-[sub_resource type="Resource" id="Resource_tv18f"]
-script = ExtResource("8_5cpyr")
-minAct = 2
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_5yeg3")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_5yeg3")]([])
-
-[sub_resource type="Resource" id="Resource_mltd8"]
-script = ExtResource("3_fy6e2")
-storyRequirements = SubResource("Resource_tv18f")
-sinceVersion = "0.2.3"
-item = ExtResource("9_vuk4w")
-count = -1
-
-[sub_resource type="Resource" id="Resource_hwf0y"]
-script = ExtResource("3_fy6e2")
-sinceVersion = "0.0.5"
-item = ExtResource("2_8jet5")
-count = 1
-
 [sub_resource type="Resource" id="Resource_gt54y"]
 script = ExtResource("3_fy6e2")
 sinceVersion = "0.0.5"
@@ -96,4 +96,4 @@ count = -1
 
 [resource]
 script = ExtResource("1_4nvqg")
-shopItemSlots = Array[ExtResource("3_fy6e2")]([SubResource("Resource_76fp8"), SubResource("Resource_mltd8"), SubResource("Resource_hwf0y"), SubResource("Resource_gt54y"), SubResource("Resource_7w7is")])
+shopItemSlots = Array[ExtResource("3_fy6e2")]([SubResource("Resource_hwf0y"), SubResource("Resource_mltd8"), SubResource("Resource_76fp8"), SubResource("Resource_gt54y"), SubResource("Resource_7w7is")])

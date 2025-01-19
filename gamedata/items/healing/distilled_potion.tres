@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://gsi2oasr2ndh"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/healing.gd" id="1_04cny"]
+[ext_resource type="Texture2D" uid="uid://fkhxg4u70qwe" path="res://graphics/items/healing/distilled_potion.png" id="1_lxr4b"]
+
+[resource]
+script = ExtResource("1_04cny")
+healBy = 400
+statusStrengthHeal = 0
+itemSprite = ExtResource("1_lxr4b")
+itemName = "Distilled Potion"
+itemType = 0
+itemDescription = "A Potion made with admirable craftsmanship, to help one get through tough times. Because these are so strong, they are quickly rising in popularity."
+cost = 15
+maxCount = 30
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3

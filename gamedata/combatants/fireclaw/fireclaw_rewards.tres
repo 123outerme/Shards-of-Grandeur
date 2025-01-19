@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CombatantRewards" load_steps=9 format=3 uid="uid://btx0feuxov4hr"]
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://btx0feuxov4hr"]
 
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_tw5ec"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_7gaf4"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_jaldn"]
 [ext_resource type="Resource" uid="uid://d4be4a1rn3evb" path="res://gamedata/items/shard/fireclaw_shard.tres" id="3_oghh6"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="5_xxyve"]
 
 [sub_resource type="Resource" id="Resource_haawg"]
 script = ExtResource("3_jaldn")
@@ -21,6 +22,7 @@ weight = 0.85
 script = ExtResource("3_jaldn")
 experience = 45
 gold = 9
+item = ExtResource("5_xxyve")
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_yhb5v"]

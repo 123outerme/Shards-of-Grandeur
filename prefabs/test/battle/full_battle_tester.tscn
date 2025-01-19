@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dgqo8vipb17e8"]
+[gd_scene load_steps=51 format=3 uid="uid://dgqo8vipb17e8"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/full_battle_tester.gd" id="1_cwe7c"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="2_plygy"]
@@ -35,9 +35,11 @@
 [ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance/battle_trance.tres" id="26_yy50f"]
 [ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="30_1bgbv"]
 [ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_etk0a"]
+[ext_resource type="Resource" uid="uid://bbhpsfvhk3tnf" path="res://gamedata/moves/dehydration_curse/rune/sprite_rune_dehydration_curse_charge.tres" id="32_xgqge"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="33_wyqeh"]
+[ext_resource type="Resource" uid="uid://deq4mt22y5vel" path="res://gamedata/moves/dehydration_curse/rune/trigger_sprite_rune_dehydration_curse_charge.tres" id="34_or6fd"]
 [ext_resource type="Script" path="res://prefabs/test/mock_audio_handler.gd" id="35_0y1m3"]
 [ext_resource type="Script" path="res://scripts/battle/status_effects/reflect.gd" id="38_84ulj"]
-[ext_resource type="Resource" uid="uid://d2o333em5nh4y" path="res://gamedata/moves/dehydration_curse/rune/dmg_rune_dehydration_curse_charge.tres" id="40_yvth1"]
 
 [sub_resource type="Resource" id="Resource_uap67"]
 script = ExtResource("10_821vc")
@@ -159,6 +161,19 @@ potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 3
 
+[sub_resource type="Resource" id="Resource_0rwdc"]
+script = ExtResource("33_wyqeh")
+triggerElement = 0
+isHealRune = false
+previousHp = -1
+orbChange = 0
+category = 1
+element = 1
+power = 40
+lifesteal = 0.25
+runeSpriteAnim = ExtResource("32_xgqge")
+triggerAnim = ExtResource("34_or6fd")
+
 [node name="FullBattleTester" type="Node2D"]
 script = ExtResource("1_cwe7c")
 useBattleAnims = false
@@ -168,7 +183,7 @@ playerLv = 22
 playerAi = SubResource("Resource_q6qyh")
 playerStatAllocStrat = SubResource("Resource_mniaa")
 playerStatus = SubResource("Resource_6iopj")
-enemy1Runes = Array[ExtResource("23_jq1m7")]([ExtResource("40_yvth1")])
+enemy1Runes = Array[ExtResource("23_jq1m7")]([SubResource("Resource_0rwdc")])
 enemy1RuneCasterPositions = Array[String](["You"])
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("22_3prau")]
