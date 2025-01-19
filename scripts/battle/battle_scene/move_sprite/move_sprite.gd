@@ -44,7 +44,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if playing:
+	if playing and anim != null:
 		visible = true
 		# first, increase the timer by the frame delta
 		frameTimer += delta

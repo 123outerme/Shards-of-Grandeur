@@ -132,7 +132,7 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 		if orbChange >= 0:
 			effects.append('+ ' + rune.get_rune_type())
 		else:
-			effects.append('+ Surged' + rune.get_rune_type())
+			effects.append('+ Surged ' + rune.get_rune_type())
 	
 	return effects
 

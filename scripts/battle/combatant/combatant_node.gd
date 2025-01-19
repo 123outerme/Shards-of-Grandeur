@@ -292,6 +292,8 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 		spriteNode.looping = true
 		spriteNode.user = self
 		spriteNode.anim = rune.get_rune_anim_sprite()
+		if spriteNode.anim == null:
+			printerr('ERROR in update_rune_sprites(): new rune sprite is null')
 		spriteNode.target = self
 		spriteNode.globalMarker = globalMarker
 		spriteNode.userTeam = allyTeamMarker

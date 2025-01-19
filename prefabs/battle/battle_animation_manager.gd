@@ -538,7 +538,7 @@ func play_intermediate_round_animations(state: BattleState):
 			await play_triggered_rune_animations()
 			combatant_animation_complete.emit()
 
-func skip_intermediate_animations(state: BattleState, menuState: BattleState.Menu):
+func skip_intermediate_animations(state: BattleState, menuState: BattleState.Menu) -> bool:
 	# if the current state is pre-battle:
 	if menuState == BattleState.Menu.PRE_BATTLE:
 		# cancel all active animations for the turn combatant
@@ -552,7 +552,9 @@ func skip_intermediate_animations(state: BattleState, menuState: BattleState.Men
 			if len(totalWaitingForSignals) > 0:
 				totalWaitingForSignals = []
 				animation_waiting_complete.emit()
+				return true
 	# otherwise, if not pre-battle then don't cancel the active animations, continue as normal
+	return false
 
 func play_triggered_rune_animations() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():

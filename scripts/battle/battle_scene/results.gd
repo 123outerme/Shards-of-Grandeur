@@ -37,7 +37,13 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 			result = PlayerResources.playerInfo.encounter.get_win_con_result(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
 			update_battle_ui_with_results()
 		if not animFinished:
-			battleUI.battleController.battleAnimationManager.skip_intermediate_animations(battleUI.battleController.state, battleUI.menuState)
+			var skipped: bool = battleUI.battleController.battleAnimationManager.skip_intermediate_animations(battleUI.battleController.state, battleUI.menuState)
+			if not skipped:
+				okBtn.disabled = true
+				await battleUI.battleController.battleAnimationManager.combatant_animation_complete
+				#ignoreOkPressed = false
+				animFinished = true
+				okBtn.disabled = false
 		var finalPrecalcdText: bool = battleUI.battleController.turnExecutor.advance_precalcd_text() # if was final
 		# update the combatant stats to battle storage vars
 		for combatantNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
