@@ -190,7 +190,7 @@ func load_into_battle():
 				var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
 				enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
 				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
-					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEqiupment)
+					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
 					if equipmentIdx > -1:
 						enemyCombatant2.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
 						enemyCombatant2.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
@@ -215,7 +215,7 @@ func load_into_battle():
 				var combatantOption: WeightedCombatant = randomEncounter.combatant3Options[eCombatant3Idx]
 				enemyCombatant3.combatant = combatantOption.combatant.copy().initialize()
 				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
-					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEqiupment)
+					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
 					if equipmentIdx > -1:
 						enemyCombatant3.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
 						enemyCombatant3.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon

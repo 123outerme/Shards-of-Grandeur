@@ -467,6 +467,8 @@ func play_intermediate_round_animations(state: BattleState):
 	if state.calcdStateIndex < len(state.calcdStateStrings):
 		var eventTexts: Array[String] = []
 		var eventTextUpdates: Array[Callable] = []
+		var eventTextSfxs: Array[AudioStream] = []
+		var eventTextSfxVaryPitches: Array[bool] = []
 		var subjectNode: CombatantNode = null
 		for cNode: CombatantNode in get_all_combatant_nodes():
 			if cNode.combatant == state.calcdStateCombatants[state.calcdStateIndex]:
@@ -477,6 +479,8 @@ func play_intermediate_round_animations(state: BattleState):
 				subjectNode.play_particles(BattleCommand.get_hit_particles())
 				eventTexts.append(CombatantEventText.build_damage_text(state.calcdStateDamage[state.calcdStateIndex]))
 				eventTextUpdates.append(subjectNode.change_current_hp.bind(-1 * state.calcdStateDamage[state.calcdStateIndex]))
+				eventTextSfxs.append(null)
+				eventTextSfxVaryPitches.append(false)
 			var procdEquipment: Array[Item] = state.calcdStateEquipmentProcd[state.calcdStateIndex]
 			if procdEquipment != null:
 				for equipment: Item in procdEquipment:
@@ -494,6 +498,8 @@ func play_intermediate_round_animations(state: BattleState):
 						eventTexts.append_array(statChangesTexts)
 						for changeTextIdx: int in range(len(statChangesTexts)):
 							eventTextUpdates.append(Callable())
+							eventTextSfxs.append(statChangesTextSfx)
+							eventTextSfxVaryPitches.append(varyStatChangesPitch)
 					# TODO: play equipment proc'd animation for this equipment
 			var textDelayAccum: float = 0
 			var playedEventTexts: bool = false
@@ -501,7 +507,14 @@ func play_intermediate_round_animations(state: BattleState):
 				for textIdx: int in range(len(eventTexts)):
 					if textIdx > 0:
 						textDelayAccum += CombatantEventText.SECS_UNTIL_FADE_OUT
-					subjectNode.play_event_text(eventTexts[textIdx], eventTextUpdates[textIdx], textDelayAccum)
+					subjectNode.play_event_text(
+						eventTexts[textIdx],
+						eventTextUpdates[textIdx],
+						textDelayAccum,
+						true,
+						eventTextSfxs[textIdx],
+						eventTextSfxVaryPitches[textIdx]
+					)
 					playedEventTexts = true
 				if len(eventTexts) < len(eventTextUpdates):
 					for eventTextUpdateIdx: int in range(len(eventTexts), len(eventTextUpdates)):
@@ -545,7 +558,11 @@ func play_triggered_rune_animations() -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		combatantNode.update_rune_sprites(false, true)
 		var removingRuneSprites: Array[MoveSprite] = []
-		for runeSprite: MoveSprite in combatantNode.playingRuneSprites:
+		# gather the list of triggered runes, sort them by the order in which they were actually triggered
+		var triggeredRuneSprites: Array[MoveSprite] = combatantNode.playingRuneSprites.duplicate(false)
+		triggeredRuneSprites.sort_custom(_sort_triggered_rune_sprites_by_trigger_order.bind(combatantNode))
+		# for each triggered rune:
+		for runeSprite: MoveSprite in triggeredRuneSprites:
 			if runeSprite == null or runeSprite.linkedResource == null:
 				continue
 			
@@ -554,10 +571,16 @@ func play_triggered_rune_animations() -> void:
 			# maps combatant node battle position => array of texts/updates to display
 			var combatantTexts: Dictionary = {}
 			var combatantTextUpdates: Dictionary = {}
+			var combatantTextSfxs: Dictionary = {}
+			var combatantTextSfxVaryPitches: Dictionary = {}
 			if not combatantTexts.has(combatantNode.battlePosition):
 				combatantTexts[combatantNode.battlePosition] = []
 			if not combatantTextUpdates.has(combatantNode.battlePosition):
 				combatantTextUpdates[combatantNode.battlePosition] = []
+			if not combatantTextSfxs.has(combatantNode.battlePosition):
+				combatantTextSfxs[combatantNode.battlePosition] = []
+			if not combatantTextSfxVaryPitches.has(combatantNode.battlePosition):
+				combatantTextSfxVaryPitches[combatantNode.battlePosition] = []
 			# end setting text arrays for the enchanted combatant in the dictionary
 			if not (rune in combatantNode.combatant.runes) and runeIdx != -1:
 				removingRuneSprites.append(runeSprite)
@@ -577,6 +600,10 @@ func play_triggered_rune_animations() -> void:
 							combatantTexts[casterNode.battlePosition] = []
 						if not combatantTextUpdates.has(casterNode.battlePosition):
 							combatantTextUpdates[casterNode.battlePosition] = []
+						if not combatantTextSfxs.has(casterNode.battlePosition):
+							combatantTextSfxs[casterNode.battlePosition] = []
+						if not combatantTextSfxVaryPitches.has(casterNode.battlePosition):
+							combatantTextSfxVaryPitches[casterNode.battlePosition] = []
 						#casterNode.update_hp_tag()
 				var eventTextUpdates: Array[Callable] = []
 				if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
@@ -586,7 +613,10 @@ func play_triggered_rune_animations() -> void:
 					var hpUpdateCallable: Callable = combatantNode.change_current_hp.bind(runeDmg * -1)
 					combatantTextUpdates[combatantNode.battlePosition].append(hpUpdateCallable)
 					eventTextUpdates.append(hpUpdateCallable)
-					combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
+					combatantTextSfxs[combatantNode.battlePosition].append(null)
+					combatantTextSfxVaryPitches[combatantNode.battlePosition].append(false)
+					if combatantNode.combatant.triggeredRunesDmg[runeIdx] > 0:
+						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
 					if rune.lifesteal > 0:
 						var lifestealHeal: float = max(1, roundi(runeDmg * max(0, rune.lifesteal)))
 						if casterNode != null:
@@ -595,6 +625,8 @@ func play_triggered_rune_animations() -> void:
 							var casterHealCallable: Callable = casterNode.change_current_hp.bind(lifestealHeal)
 							combatantTextUpdates[casterNode.battlePosition].append(casterHealCallable)
 							eventTextUpdates.append(casterHealCallable)
+							combatantTextSfxs[casterNode.battlePosition].append(null)
+							combatantTextSfxVaryPitches[casterNode.battlePosition].append(false)
 				
 				if rune.statChanges != null and rune.statChanges.has_stat_changes():
 					var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(rune.statChanges)
@@ -602,11 +634,15 @@ func play_triggered_rune_animations() -> void:
 					for changeTextIdx: int in range(len(statChangesTexts)):
 						combatantTextUpdates[combatantNode.battlePosition].append(Callable())
 						eventTextUpdates.append(Callable())
+					combatantTextSfxs[combatantNode.battlePosition].append(statChangesTextSfx)
+					combatantTextSfxVaryPitches[combatantNode.battlePosition].append(varyStatChangesPitch)
 				if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
 					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_status_get_text(rune.statusEffect))
 					var statusCallable: Callable = combatantNode.change_current_status.bind(rune.statusEffect)
 					combatantTextUpdates[combatantNode.battlePosition].append(statusCallable)
 					eventTextUpdates.append(statusCallable)
+					combatantTextSfxs[combatantNode.battlePosition].append(null)
+					combatantTextSfxVaryPitches[combatantNode.battlePosition].append(false)
 				
 				var playedEventTextsCount: int = 0
 				var maxTextDelay: float = 0
@@ -621,7 +657,10 @@ func play_triggered_rune_animations() -> void:
 								cNode.play_event_text(
 									combatantTexts[cNode.battlePosition][textIdx],
 									combatantTextUpdates[cNode.battlePosition][textIdx],
-									textDelayAccum
+									textDelayAccum,
+									true,
+									combatantTextSfxs[cNode.battlePosition][textIdx],
+									combatantTextSfxVaryPitches[cNode.battlePosition][textIdx]
 								)
 								playedNodeTextsCount += 1
 								playedEventTextsCount += 1
@@ -646,6 +685,13 @@ func play_triggered_rune_animations() -> void:
 				var runeSpriteIdx: int = combatantNode.playingRuneSprites.find(runeSprite)
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()
+
+func _sort_triggered_rune_sprites_by_trigger_order(a: MoveSprite, b: MoveSprite, combatantNode: CombatantNode) -> bool:
+	var aIdx: int = combatantNode.combatant.triggeredRunes.find(a.linkedResource)
+	var bIdx: int = combatantNode.combatant.triggeredRunes.find(b.linkedResource)
+	if aIdx == -1: # if A is somehow not a triggered rune:
+		return bIdx != -1 # b goes first, unless it is also not a triggered rune
+	return aIdx < bIdx # A goes first if it comes first in the triggered order
 
 func play_combatant_event_text(combatantNode: CombatantNode, text: String, callable: Callable = Callable(), delay: float = 0, center: bool = true, sfx: AudioStream = null, varySfxPitch: bool = false) -> void:
 	if not disableEventTexts and SettingsHandler.gameSettings.battleAnims:

@@ -37,7 +37,7 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 	return gainedLevels
 
 func copy_combatant_to_info(combatant: Combatant):
-	playerInfo.combatant.save_from_object(combatant.copy())
+	playerInfo.combatant.save_from_object(combatant)
 	playerInfo.combatant.stats.save_from_object(combatant.stats)
 
 func get_cur_act_save_str() -> String:

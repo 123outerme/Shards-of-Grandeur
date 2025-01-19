@@ -149,6 +149,8 @@ func update_turn_text() -> bool:
 		elif battleController.state.calcdStateIndex < len(battleController.state.calcdStateStrings):
 			text = battleController.state.calcdStateStrings[battleController.state.calcdStateIndex]
 		
+		battleUI.results.okBtn.disabled = true
+		battleController.battleAnimationManager.combatant_animation_complete.connect(_intermediate_round_anim_complete)
 		battleController.battleAnimationManager.play_intermediate_round_animations(battleController.state)
 	elif battleUI.menuState == BattleState.Menu.RESULTS:
 		var combatant: Combatant = turnQueue.peek_next()
@@ -361,7 +363,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				lifesteal = max(1, roundi(max(0, rune.lifesteal) * combatant.triggeredRunesDmg[idx]))
 			var casterNode: CombatantNode = null
 			for cNode: CombatantNode in battleController.get_all_combatant_nodes():
-				if cNode.combatant == rune.caster:
+				if cNode.combatant == rune.caster and cNode.combatant != null:
 					casterNode = cNode
 					break
 			if casterNode != null:
@@ -389,10 +391,10 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				dmgText += 'dealing'
 			else:
 				dmgText += 'healing'
-			dmgText += ' ' + TextUtils.num_to_comma_string(accumulatedDmg) + ' '
+			dmgText += ' ' + TextUtils.num_to_comma_string(absi(accumulatedDmg)) + ' '
+			if runeCount == 1 and combatant.triggeredRunes[0].element != Move.Element.NONE:
+				dmgText += Move.element_to_string(combatant.triggeredRunes[0].element) + ' '
 			if accumulatedDmg > 0:
-				if runeCount == 1 and combatant.triggeredRunes[0].element != Move.Element.NONE:
-					dmgText += Move.element_to_string(combatant.triggeredRunes[0].element) + ' '
 				dmgText += 'damage'
 			else:
 				dmgText += 'HP'
@@ -454,3 +456,8 @@ func find_combatant_node_by_combatant(cNodes: Array[CombatantNode], c: Combatant
 		if node.combatant == c:
 			return node
 	return null
+
+func _intermediate_round_anim_complete() -> void:
+	battleController.battleUI.results.okBtn.disabled = false
+	if battleController.battleAnimationManager.combatant_animation_complete.is_connected(_intermediate_round_anim_complete):
+		battleController.battleAnimationManager.combatant_animation_complete.disconnect(_intermediate_round_anim_complete)

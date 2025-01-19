@@ -1,34 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://dsml4k1gok4ql"]
+[gd_scene load_steps=4 format=4 uid="uid://dsml4k1gok4ql"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_hi7rh"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6h55o"]
-[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_dddt6"]
-[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_7bunr"]
-[ext_resource type="SpriteFrames" uid="uid://d1f4na8sjpoes" path="res://graphics/animations/a_standstill_mayor.tres" id="10_3afuy"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="11_83hx2"]
-
-[sub_resource type="Resource" id="Resource_6m4wm"]
-script = ExtResource("4_7bunr")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(38, -70)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_hi7rh")
@@ -70,29 +44,7 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_6h55o")
 
-[node name="Mayor" parent="TilemapRoot" instance=ExtResource("3_dddt6")]
-position = Vector2(38, -70)
-displayName = "Mayor"
-saveName = "standstill_mayor"
-data = SubResource("Resource_6m4wm")
-
-[node name="NPCSprite" parent="TilemapRoot/Mayor" index="0"]
-sprite_frames = ExtResource("10_3afuy")
-animation = &"stand"
-
-[node name="ColliderShape" parent="TilemapRoot/Mayor" index="1"]
-position = Vector2(0, 4.5)
-
-[node name="TalkAreaShape" parent="TilemapRoot/Mayor/TalkArea" index="0"]
-position = Vector2(0, 4)
-debug_color = Color(0, 0.6, 0.701961, 0)
-
-[node name="MoveTrigger" parent="TilemapRoot/Mayor" index="4"]
-visible = false
-
 [node name="WarpZone" parent="." instance=ExtResource("11_83hx2")]
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(72, -8)
-
-[editable path="TilemapRoot/Mayor"]

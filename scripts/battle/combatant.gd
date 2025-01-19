@@ -502,9 +502,15 @@ func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, t
 func apply_rune_effect(rune: Rune) -> void:
 	if rune == null:
 		return
-	
+
 	triggeredRunes.append(rune)
 	
+	if rune.caster == null:
+		printerr('HUGE ERROR in apply_rune_effect(): Rune does not have a caster')
+		triggeredRunesDmg.append(0)
+		triggeredRunesStatus.append(false)
+		return
+
 	rune.caster.add_orbs(rune.orbChange)
 	
 	var attackerStats: Stats = rune.caster.statChanges.apply(rune.caster.stats)
@@ -849,11 +855,11 @@ func save_from_object(c: Combatant):
 	
 	runes = []
 	for rune: Rune in c.runes:
-		runes.append(rune.copy())
+		runes.append(rune.copy(true))
 	
 	triggeredRunes = []
 	for rune: Rune in c.triggeredRunes:
-		triggeredRunes.append(rune.copy())
+		triggeredRunes.append(rune.copy(true))
 	
 	strategy = c.strategy
 	friendship = c.friendship

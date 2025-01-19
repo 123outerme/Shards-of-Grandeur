@@ -57,6 +57,8 @@ func _ready():
 	var combatants: Array[Combatant] = [_playerCombatant, encounter.autoAlly, encounter.combatant1, encounter.combatant2, encounter.combatant3]
 	var combatantLvs: Array[int] = [playerLv, encounter.autoAllyLevel, encounter.combatant1Level, encounter.combatant2Level, encounter.combatant3Level]
 	var combatantOrbs: Array[int] = [playerOrbs, minionOrbs, enemy1Orbs, enemy2Orbs, enemy3Orbs]
+	var combatantArmor: Array[Armor] = [null, encounter.autoAllyArmor, encounter.combatant1Armor, encounter.combatant2Armor, encounter.combatant3Armor]
+	var combatantWeapons: Array[Weapon] = [null, encounter.autoAllyWeapon, encounter.combatant1Weapon, encounter.combatant2Weapon, encounter.combatant3Weapon]
 	var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
 	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
 	var combatantAis: Array[CombatantAi] = [playerAi, null, null, null, null]
@@ -71,6 +73,8 @@ func _ready():
 		var combatant: Combatant = combatants[idx]
 		if combatant != null:
 			combatant = combatant.copy()
+			combatant.stats.equippedArmor = combatantArmor[idx]
+			combatant.stats.equippedWeapon = combatantWeapons[idx]
 			if combatant.get_evolution() != null:
 				combatant.switch_evolution(combatant.get_evolution(), null)
 			if combatantLvs[idx] > combatant.stats.level:

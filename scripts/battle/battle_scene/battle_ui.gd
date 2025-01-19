@@ -118,6 +118,8 @@ func apply_menu_state():
 		for combatantNode in battleController.get_all_combatant_nodes():
 			if combatantNode.combatant != null and not combatantNode.is_alive() and combatantNode.role == CombatantNode.Role.ENEMY:
 				PlayerResources.questInventory.progress_quest(combatantNode.combatant.save_name(), QuestStep.Type.DEFEAT)
+				if combatantNode.combatant.get_evolution() != null:
+					PlayerResources.questInventory.progress_quest(combatantNode.combatant.get_evolution_save_name(), QuestStep.Type.DEFEAT)
 		
 		if playerWins and PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
