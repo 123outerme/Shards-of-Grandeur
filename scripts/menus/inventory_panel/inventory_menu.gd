@@ -645,4 +645,5 @@ func _on_item_count_choose_panel_panel_closed(count: int, backPressed: bool) -> 
 					lastSlotInteracted = null
 					# setting this makes restore_last_focus not find anything, defaulting to initial focus
 			restore_last_focus('trashButton')
-	SceneLoader.audioHandler.play_sfx(buySellSfx)
+	if not backPressed:
+		SceneLoader.audioHandler.play_sfx(buySellSfx)

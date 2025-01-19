@@ -35,18 +35,13 @@ func load_overworld_reward_panel() -> void:
 	for reward: Reward in rewards:
 		var instantiatedPanel: RewardPanel = rewardPanelScene.instantiate()
 		instantiatedPanel.reward = reward
-		instantiatedPanel.load_reward_panel()
 		instantiatedPanel.show_item_details.connect(_show_item_details.bind(instantiatedPanel))
 		rewardsVboxContainer.add_child(instantiatedPanel)
-		lastPanel.itemSpriteBtn.focus_neighbor_left = '.'
-		lastPanel.itemSpriteBtn.focus_neighbor_right = '.'
-		if lastPanel != null:
-			lastPanel.itemSpriteBtn.focus_neighbor_bottom = lastPanel.itemSpriteBtn.get_path_to(instantiatedPanel.itemSpriteBtn)
-			instantiatedPanel.itemSpriteBtn.focus_neighbor_top = instantiatedPanel.itemSpriteBtn.get_path_to(lastPanel.itemSpriteBtn)
-		else:
-			instantiatedPanel.itemSpriteBtn.focus_neighbor_top = '.'
+		instantiatedPanel.load_reward_panel.call_deferred()
+		connect_rewards_panels_focus.call_deferred(instantiatedPanel, lastPanel)
 		lastPanel = instantiatedPanel
 	
+	await get_tree().process_frame # wait for the final panel to be loaded in
 	if lastPanel != null:
 		okBtn.focus_neighbor_top = okBtn.get_path_to(lastPanel.itemSpriteBtn)
 		okBtn.focus_neighbor_right = okBtn.get_path_to(lastPanel.itemSpriteBtn)
@@ -56,6 +51,15 @@ func load_overworld_reward_panel() -> void:
 		okBtn.focus_neighbor_top = '.'
 		okBtn.focus_neighbor_right = '.'
 	initial_focus()
+
+func connect_rewards_panels_focus(instantiatedPanel: RewardPanel, lastPanel: RewardPanel):
+	lastPanel.itemSpriteBtn.focus_neighbor_left = '.'
+	lastPanel.itemSpriteBtn.focus_neighbor_right = '.'
+	if lastPanel != null:
+		lastPanel.itemSpriteBtn.focus_neighbor_bottom = lastPanel.itemSpriteBtn.get_path_to(instantiatedPanel.itemSpriteBtn)
+		instantiatedPanel.itemSpriteBtn.focus_neighbor_top = instantiatedPanel.itemSpriteBtn.get_path_to(lastPanel.itemSpriteBtn)
+	else:
+		instantiatedPanel.itemSpriteBtn.focus_neighbor_top = '.'
 
 func _show_item_details(panel: RewardPanel, item: Item) -> void:
 	detailsPressedPanel = panel

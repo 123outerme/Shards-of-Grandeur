@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://cx6pa7afrlvl5"]
+
+[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_yroho"]
+[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_wseo8"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ffpf8"]
+[ext_resource type="Resource" uid="uid://b7p731r1pmdtd" path="res://gamedata/dialogue/leavenport/prime_minister/a_lost_comrade/lp_pm_lost_comrade_1_inprogress.tres" id="4_cjbay"]
+[ext_resource type="Resource" uid="uid://drklgaa6wf8np" path="res://gamedata/dialogue/leavenport/prime_minister/a_lost_comrade/lp_pm_lost_comrade_1_turnin.tres" id="4_yg7sr"]
+
+[sub_resource type="Resource" id="Resource_880a0"]
+script = ExtResource("2_wseo8")
+name = "To The Town Hall"
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "leavenport_pm#report_solius_missing"
+turnInNames = Array[String](["leavenport_pm"])
+displayObjName = "Prime Minister"
+displayTurnInName = "Prime Minister"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ffpf8")]([ExtResource("4_yg7sr")])
+inProgressDialogue = Array[ExtResource("3_ffpf8")]([ExtResource("4_cjbay")])
+
+[sub_resource type="Resource" id="Resource_6c35l"]
+script = ExtResource("2_wseo8")
+name = "Pick Up On His Trail"
+description = "Start looking around for Solius. You should be able to find clues somewhere!"
+locations = Array[int]([0])
+type = 3
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_ffpf8")]([])
+inProgressDialogue = Array[ExtResource("3_ffpf8")]([])
+
+[resource]
+script = ExtResource("1_yroho")
+questName = "A Lost Comrade"
+description = "When I got back to Leavenport, Solius was gone... I hope he's okay. I'll track him down and rescue him, no matter what!"
+steps = Array[ExtResource("2_wseo8")]([SubResource("Resource_880a0"), SubResource("Resource_6c35l")])
+isMainQuest = false
+advanceActAfterComplete = false

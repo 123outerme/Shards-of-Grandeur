@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveStringMigrationTool" load_steps=14 format=3 uid="uid://bckfwtixchlys"]
+[gd_resource type="Resource" script_class="SaveStringMigrationTool" load_steps=15 format=3 uid="uid://bckfwtixchlys"]
 
 [ext_resource type="Script" path="res://scripts/player/save_migration/save_string_migration_tool.gd" id="1_0gabj"]
 [ext_resource type="Script" path="res://scripts/player/save_migration/migration_string.gd" id="2_txwuu"]
@@ -58,6 +58,11 @@ script = ExtResource("2_txwuu")
 oldStrings = Array[String](["quests/shroom_zone.tres"])
 newString = "quests/mushroom_grotto/shroom_zone.tres"
 
+[sub_resource type="Resource" id="Resource_pdthp"]
+script = ExtResource("2_txwuu")
+oldStrings = Array[String](["res://gamedata/combatants/tree_bear/evolutions/inferno_bear_move_pool.tres"])
+newString = "res://gamedata/combatants/tree_bear/evolutions/inferno_bear/inferno_bear_move_pool.tres"
+
 [resource]
 script = ExtResource("1_0gabj")
-strings = Array[ExtResource("2_txwuu")]([SubResource("Resource_ss8aj"), SubResource("Resource_448lh"), SubResource("Resource_u1fpe"), SubResource("Resource_m5nnv"), SubResource("Resource_ogku4"), SubResource("Resource_aegtl"), SubResource("Resource_hrnvg"), SubResource("Resource_gj23r"), SubResource("Resource_ixsmu"), SubResource("Resource_2xecg"), SubResource("Resource_dpp3n")])
+strings = Array[ExtResource("2_txwuu")]([SubResource("Resource_ss8aj"), SubResource("Resource_448lh"), SubResource("Resource_u1fpe"), SubResource("Resource_m5nnv"), SubResource("Resource_ogku4"), SubResource("Resource_aegtl"), SubResource("Resource_hrnvg"), SubResource("Resource_gj23r"), SubResource("Resource_ixsmu"), SubResource("Resource_2xecg"), SubResource("Resource_dpp3n"), SubResource("Resource_pdthp")])

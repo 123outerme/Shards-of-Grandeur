@@ -161,7 +161,7 @@ func _load_data_each_minion(save_path):
 			else:
 				printerr('Minion load WARNING: story requirements for ', minionName, ' were null')
 		
-		if ResourceLoader.exists(save_path + minions_dir + minionName + '.tres') and passesReqs:
+		if passesReqs and ResourceLoader.exists(save_path + minions_dir + minionName + '.tres'):
 			minion = ResourceLoader.load(save_path + minions_dir + minionName + '.tres', '', ResourceLoader.CACHE_MODE_IGNORE) as Combatant
 			if minion == null: # or GameSettings.get_version_differences(minion.version) >= GameSettings.VersionDiffs.MINOR
 				print('minion ', minionName, ' failed load validation')

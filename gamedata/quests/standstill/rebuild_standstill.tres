@@ -1,8 +1,25 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_io756"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rysse"]
+[ext_resource type="Resource" uid="uid://pfwna56ulu25" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_1_inprogress.tres" id="4_cf535"]
+[ext_resource type="Resource" uid="uid://k6qpkj7w2kbj" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_1_turnin.tres" id="5_35u42"]
+
+[sub_resource type="Resource" id="Resource_yoc8b"]
+script = ExtResource("2_io756")
+name = "Bearing Charcoal"
+description = "This seems really familiar... Lance has tasked you with defeating some Inferno-Bears to thin the herd and provide charcoal for the rebuilding effort!"
+locations = Array[int]([])
+type = 2
+count = 3
+objectiveName = "inferno_bear"
+turnInNames = Array[String](["lance_standstill_foundry_burned"])
+displayObjName = "Inferno-Bear"
+displayTurnInName = "Lance"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("5_35u42")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("4_cf535")])
 
 [sub_resource type="Resource" id="Resource_82t2o"]
 script = ExtResource("2_io756")
@@ -23,6 +40,6 @@ inProgressDialogue = Array[ExtResource("3_rysse")]([])
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
-steps = Array[ExtResource("2_io756")]([SubResource("Resource_82t2o")])
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o")])
 isMainQuest = false
 advanceActAfterComplete = false

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://pfwna56ulu25"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_lkcjy"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_10e4k"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_vnkux"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_p3m3q"]
+
+[sub_resource type="Resource" id="Resource_gxmar"]
+script = ExtResource("1_lkcjy")
+lines = Array[String](["Once you defeat 3 Inferno-Bears, be sure to come back here with their charcoal. To build anything, I'll need to restart the furnace."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_10e4k")]([])
+
+[resource]
+script = ExtResource("3_p3m3q")
+entryId = ""
+items = Array[ExtResource("1_lkcjy")]([SubResource("Resource_gxmar")])
+ordStoryRequirements = Array[ExtResource("2_vnkux")]([])
+closesDialogue = false
+fullHealsPlayer = false

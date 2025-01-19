@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://b14m7rkjyoi5h"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://b14m7rkjyoi5h"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_bsrw1"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ajskf"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_gl441"]
 [ext_resource type="Resource" uid="uid://50ylfmea7s1f" path="res://gamedata/static_encounters/act1/dragon_fight1.tres" id="4_se4vu"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_0i37u"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_m515t"]
 
 [sub_resource type="Resource" id="Resource_u453b"]
 script = ExtResource("1_bsrw1")
 lines = Array[String](["Wraaaaaaugghhh!!"])
+minShowSecs = Array[float]([])
 animation = "battle_idle"
 speakerOverride = ""
 actorAnimation = ""
@@ -27,8 +29,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_m515t")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -36,13 +40,16 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["dragon1"])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_m515t")]([])
 
 [resource]
 script = ExtResource("3_gl441")
 entryId = ""
 items = Array[ExtResource("1_bsrw1")]([SubResource("Resource_u453b")])
 storyRequirements = SubResource("Resource_f6ufg")
+ordStoryRequirements = Array[ExtResource("5_0i37u")]([])
 closesDialogue = false
 fullHealsPlayer = false
 startsStaticEncounter = ExtResource("4_se4vu")

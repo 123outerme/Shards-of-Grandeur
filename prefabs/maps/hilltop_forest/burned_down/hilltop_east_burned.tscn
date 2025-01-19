@@ -37,7 +37,7 @@
 [ext_resource type="Resource" uid="uid://bidfx3ehukpyo" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_demo_turnback.tres" id="32_4v2yw"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="34_bi7ge"]
 
-[sub_resource type="Resource" id="Resource_ga1py"]
+[sub_resource type="Resource" id="Resource_mdqi4"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -60,7 +60,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_wbndi"]
+[sub_resource type="Resource" id="Resource_ao0me"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -679,7 +679,7 @@ saveName = "ht_east_sword"
 position = Vector2(678, 659)
 loadFlipH = true
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_ga1py")
+data = SubResource("Resource_mdqi4")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -697,7 +697,7 @@ visible = false
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(731, 663)
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_wbndi")
+data = SubResource("Resource_ao0me")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")
@@ -714,6 +714,7 @@ visible = false
 
 [node name="FloatingRockColumnDecoration10" parent="TilemapRoot" instance=ExtResource("16_opvs1")]
 position = Vector2(973, 980)
+storyRequirements = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FloatingRockColumnDecoration10" index="0"]
 sprite_frames = ExtResource("17_vfs48")

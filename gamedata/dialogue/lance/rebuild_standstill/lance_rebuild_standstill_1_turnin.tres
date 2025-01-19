@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://k6qpkj7w2kbj"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_fp7g2"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_4mns5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ufb40"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_73o7b"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jfpb1"]
+
+[sub_resource type="Resource" id="Resource_8wco3"]
+script = ExtResource("2_ufb40")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jfpb1")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_dxe4k"]
+script = ExtResource("1_fp7g2")
+lines = Array[String](["Great, thanks @. Now, the Inferno-Bear population is more under control, and we have some fuel for the furnace."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ufb40")]([SubResource("Resource_8wco3")])
+
+[resource]
+script = ExtResource("3_73o7b")
+entryId = ""
+items = Array[ExtResource("1_fp7g2")]([SubResource("Resource_dxe4k")])
+ordStoryRequirements = Array[ExtResource("2_4mns5")]([])
+closesDialogue = false
+fullHealsPlayer = false

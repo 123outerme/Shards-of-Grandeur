@@ -163,8 +163,17 @@ func load_stats_panel(fromToggle: bool = false):
 	if stats == null:
 		return
 	
-	singleViewPanel.visible = not isTabbedView and not levelUp
-	tabbedViewPanel.visible = isTabbedView and not levelUp
+	var playingLvUpAnim: bool = false
+	if fromToggle and levelUp and not levelUpAnimPlayed:
+		levelUpAnimPlayer.play('level_up')
+		levelUpAnimPlayed = true
+		newLevelLabel.text = '[center]Level ' + String.num(stats.level) + '![/center]'
+		playingLvUpAnim = true
+	else:
+		levelUpPanel.visible = false
+	
+	singleViewPanel.visible = not isTabbedView and not playingLvUpAnim
+	tabbedViewPanel.visible = isTabbedView and not playingLvUpAnim
 	if isTabbedView:
 		statlinePanel = tabbedViewStatlinePanel
 		moveListPanel = tabbedViewMoveListPanel
@@ -175,14 +184,6 @@ func load_stats_panel(fromToggle: bool = false):
 		moveListPanel = singleViewMoveListPanel
 		equipmentPanel = singleViewEquipmentPanel
 		minionsPanel = singleViewMinionsPanel
-	
-	
-	if fromToggle and levelUp and not levelUpAnimPlayed:
-		levelUpAnimPlayer.play('level_up')
-		levelUpAnimPlayed = true
-		newLevelLabel.text = '[center]Level ' + String.num(stats.level) + '![/center]'
-	else:
-		levelUpPanel.visible = false
 	
 	var dispName: String = stats.displayName
 	if minion != null:

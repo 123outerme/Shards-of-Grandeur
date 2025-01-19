@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=4 uid="uid://bcrxu04acy0or"]
+[gd_scene load_steps=241 format=4 uid="uid://bcrxu04acy0or"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_aweo5"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2v0rj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_ts6ro"]
 [ext_resource type="SpriteFrames" uid="uid://bcasoh23cl7vc" path="res://graphics/animations/a_nomad_elder.tres" id="5_tspdh"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_1p87e"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_43c8t"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="6_a3ysb"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="6_flo5u"]
 [ext_resource type="Resource" uid="uid://b405l6t0bpmhx" path="res://gamedata/dialogue/interactables/ground_items/forbidden_desert_east/desert_east_fruit.tres" id="7_bxud8"]
@@ -43,6 +44,7 @@
 [ext_resource type="Resource" uid="uid://bokbigb7xuvvh" path="res://gamedata/cutscenes/forbidden_desert/desert_east_cave_turnback.tres" id="31_beumq"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="32_ifu68"]
 [ext_resource type="Resource" uid="uid://cbuuri2nj43a" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_rescue_turnback.tres" id="33_1qv80"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="35_tpj76"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="38_nlfxk"]
 [ext_resource type="Resource" uid="uid://w0ndy7kvicc1" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_follower_turnback.tres" id="42_8d7ve"]
 
@@ -57,8 +59,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_43c8t")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["return_elder_nomad"])
@@ -66,9 +70,11 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
-[sub_resource type="Resource" id="Resource_vderw"]
+[sub_resource type="Resource" id="Resource_mno4d"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -91,7 +97,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_cgoku"]
+[sub_resource type="Resource" id="Resource_qrc6r"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -164,28 +170,6 @@ savedTextIdx = 0
 atlas = ExtResource("21_q0kss")
 region = Rect2(80, 0, 32, 160)
 
-[sub_resource type="Resource" id="Resource_otvho"]
-script = ExtResource("6_1p87e")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromHavingFollowers = Array[String]([])
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk250"]
 size = Vector2(28, 150)
 
@@ -228,11 +212,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 13
 combatantsMaxLevel = 15
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_rp467"), SubResource("Resource_74dd3"), SubResource("Resource_tfcrg")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_630bb"), SubResource("Resource_5hyax"), SubResource("Resource_ehurx")])
 combatant1 = ExtResource("15_28mfe")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fy23"]
 size = Vector2(185, 241)
@@ -281,11 +267,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_el1wc"), SubResource("Resource_l5ddk"), SubResource("Resource_vllab")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_jso4i"), SubResource("Resource_634s0"), SubResource("Resource_ufe4a"), SubResource("Resource_yot05")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11wvc"]
 size = Vector2(210, 199)
@@ -329,11 +317,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_700g5"), SubResource("Resource_db7mw"), SubResource("Resource_fqcav")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_ufyof"), SubResource("Resource_iq2nt"), SubResource("Resource_2ihbx")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qf5w"]
 size = Vector2(277, 206)
@@ -382,11 +372,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_x6pyj"), SubResource("Resource_sqm2a"), SubResource("Resource_d26v0")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_2jed1"), SubResource("Resource_c81ha"), SubResource("Resource_2ujam"), SubResource("Resource_ybrxf")])
 combatant1 = ExtResource("18_r5te7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuyhg"]
 size = Vector2(257, 183)
@@ -430,11 +422,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_156r6"), SubResource("Resource_vhw0e"), SubResource("Resource_q5cuc")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_gwbad"), SubResource("Resource_bdhbo"), SubResource("Resource_j7lj7")])
 combatant1 = ExtResource("18_wmoer")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvigc"]
 size = Vector2(245, 196)
@@ -478,11 +472,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_fjvac"), SubResource("Resource_nj3h0"), SubResource("Resource_ydrq0")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_kd1qe"), SubResource("Resource_px2ar"), SubResource("Resource_hsb8d")])
 combatant1 = ExtResource("18_r5te7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu33u"]
 size = Vector2(269, 176)
@@ -513,11 +509,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_i4rnp"), SubResource("Resource_gn3fu")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_t0p74")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0utjn"]
 size = Vector2(308, 195)
@@ -561,11 +559,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_hcbqk"), SubResource("Resource_csm3d"), SubResource("Resource_yk7n7")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_x5sdf"), SubResource("Resource_a6sov"), SubResource("Resource_6vkof")])
 combatant1 = ExtResource("15_28mfe")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7kdu"]
 size = Vector2(289, 194)
@@ -609,11 +609,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_66f0s"), SubResource("Resource_aaj3y"), SubResource("Resource_gjipu")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j7u0j"), SubResource("Resource_fgy6a"), SubResource("Resource_jagdf")])
 combatant1 = ExtResource("18_r5te7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vusc"]
 size = Vector2(311, 231)
@@ -657,11 +659,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_a08eu"), SubResource("Resource_y2kf1"), SubResource("Resource_4446t")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j8ekl"), SubResource("Resource_jden3"), SubResource("Resource_mfar0")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_873c3"]
 size = Vector2(253, 183)
@@ -703,11 +707,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_t3eps"), SubResource("Resource_h0fkc"), SubResource("Resource_rfq01")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_4krrs"), SubResource("Resource_xkft0"), SubResource("Resource_mapfr")])
 combatant1 = ExtResource("15_28mfe")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv46m"]
 size = Vector2(333, 225)
@@ -751,11 +757,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_1dwjo"), SubResource("Resource_c6cw7"), SubResource("Resource_4hmtm")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_l2ou2"), SubResource("Resource_vmjel"), SubResource("Resource_7n8dp")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nopg"]
 size = Vector2(319, 257)
@@ -799,11 +807,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_vc4y8"), SubResource("Resource_8his8"), SubResource("Resource_t25bo")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_m6i1w"), SubResource("Resource_bwnsh"), SubResource("Resource_kjdcw")])
 combatant1 = ExtResource("18_wmoer")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0k7"]
 size = Vector2(288, 190)
@@ -847,11 +857,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j0y1r"), SubResource("Resource_g7u44"), SubResource("Resource_4twol")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_g4l2v"), SubResource("Resource_p1wu6"), SubResource("Resource_h7edd")])
 combatant1 = ExtResource("18_r5te7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxx8x"]
 size = Vector2(278, 193)
@@ -905,11 +917,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_kphcn"), SubResource("Resource_06key"), SubResource("Resource_562do"), SubResource("Resource_lf0ra")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_rnaio"), SubResource("Resource_l76y4"), SubResource("Resource_a7b8r"), SubResource("Resource_fmagd")])
 combatant1 = ExtResource("18_r5te7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eijq4"]
 size = Vector2(279, 221)
@@ -958,11 +972,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_cvfc0"), SubResource("Resource_jeab6"), SubResource("Resource_nlt0f"), SubResource("Resource_eqjca")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_pdr8m"), SubResource("Resource_0at0r"), SubResource("Resource_6p1u8")])
 combatant1 = ExtResource("15_28mfe")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08q6b"]
 size = Vector2(299, 275)
@@ -1011,11 +1027,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 17
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_6ip3c"), SubResource("Resource_1xwua"), SubResource("Resource_k7xju"), SubResource("Resource_61cth")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_myitu"), SubResource("Resource_167gk"), SubResource("Resource_r1357")])
 combatant1 = ExtResource("15_28mfe")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eccyq"]
 size = Vector2(367, 272)
@@ -1059,11 +1077,13 @@ script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_faajt"), SubResource("Resource_jo4iw"), SubResource("Resource_1y0pc")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_ae7lg"), SubResource("Resource_mvbn4"), SubResource("Resource_g5nle")])
 combatant1 = ExtResource("17_hncb7")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icaq7"]
 size = Vector2(279, 182)
@@ -1230,7 +1250,7 @@ stateSpritesDict = {
 "default": ExtResource("5_tspdh")
 }
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_vderw")
+data = SubResource("Resource_mno4d")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("9_pfacr"), ExtResource("10_1ft2r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -1254,7 +1274,7 @@ displayName = "Dragon"
 saveName = "desert_east_dragon"
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_cgoku")
+data = SubResource("Resource_qrc6r")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -1301,6 +1321,7 @@ saveName = "desert_east_shard"
 [node name="AffinityAttack" parent="TilemapRoot" instance=ExtResource("32_ifu68")]
 visible = false
 position = Vector2(1077, -496)
+storyRequirements = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/AffinityAttack" index="0"]
 position = Vector2(15, 1)
@@ -1314,7 +1335,6 @@ collision_mask = 0
 [node name="SandWallDecoration" parent="TilemapRoot" instance=ExtResource("26_47ig5")]
 position = Vector2(1786, 99)
 texture = SubResource("AtlasTexture_qm4cm")
-storyRequirements = SubResource("Resource_otvho")
 
 [node name="CollisionShape2D" parent="TilemapRoot/SandWallDecoration/Collision" index="0"]
 position = Vector2(0, 3)

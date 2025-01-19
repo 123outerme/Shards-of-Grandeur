@@ -1,12 +1,12 @@
 extends Node2D
 class_name Decoration
 
-@export var storyRequirements: StoryRequirements = null
+@export var storyRequirements: Array[StoryRequirements] = []
 
 @onready var collision: StaticBody2D = get_node_or_null('Collision')
 
-var collisionLayer = 1
-var collisionMask = 1
+var collisionLayer: int = 1
+var collisionMask: int = 1
 
 func _ready():
 	if not Engine.is_editor_hint():
@@ -19,10 +19,8 @@ func _story_reqs_updated():
 	if Engine.is_editor_hint():
 		return
 	
-	if storyRequirements == null or storyRequirements.is_valid():
-		visible = true
-	else:
-		visible = false
+	visible = StoryRequirements.list_is_valid(storyRequirements)
+	update_collision()
 	load_decoration()
 
 func update_collision() -> void:

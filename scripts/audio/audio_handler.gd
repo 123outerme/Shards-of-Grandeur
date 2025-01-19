@@ -114,7 +114,7 @@ func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxP
 			idx = get_first_open_sfx_player_idx()
 	
 	if idx != -1:
-		sfxStreamPlayers[idx].pitch_scale = 1 if not varyPitch else randf_range(0.95, 1.05)
+		sfxStreamPlayers[idx].pitch_scale = 1.0 if not varyPitch else randf_range(0.95, 1.05)
 		sfxStreamPlayers[idx].stream = stream
 		sfxLoops[idx] = loops
 		openSfxPlayers[idx] = false

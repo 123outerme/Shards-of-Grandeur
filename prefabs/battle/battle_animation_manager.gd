@@ -393,14 +393,14 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 				eventTexts.append(CombatantEventText.build_status_get_text(user.combatant.statusEffect))
 				eventTextUpdates.append(user.change_current_status.bind(user.combatant.statusEffect))
 				eventTextSfxs.append(null)
-			eventTextSfxVaryPitches.append(false)
+				eventTextSfxVaryPitches.append(false)
 			# if the command type is a move: calculate the stat changes of the move, use that for texts
 			if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 				var statChangesTexts: Array[String] = CombatantEventText.build_stat_changes_texts(moveEffect.selfStatChanges)
 				eventTexts.append_array(statChangesTexts)
 				for changeTextIdx: int in range(len(statChangesTexts)):
 					eventTextUpdates.append(Callable())
-					eventTextSfxs.append(statChangesTexts)
+					eventTextSfxs.append(statChangesTextSfx)
 					eventTextSfxVaryPitches.append(varyStatChangesPitch)
 		# END event texts
 		var textDelayAccum: float = 0
