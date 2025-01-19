@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://btnde87dlhjhu"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="1_cl1aj"]
+[ext_resource type="Resource" uid="uid://7oy1q4khx3t6" path="res://gamedata/combatants/soot_spider/soot_spider_evolutions.tres" id="1_gi6wr"]
+[ext_resource type="Resource" uid="uid://bcl3bogbcbv66" path="res://gamedata/combatants/soot_spider/soot_spider_ai.tres" id="1_vpo5r"]
+[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_140bl"]
+[ext_resource type="Resource" uid="uid://dq1p1yk65mhrf" path="res://gamedata/combatants/soot_spider/soot_spider_rewards.tres" id="2_uxfnr"]
+[ext_resource type="Resource" uid="uid://bus041kuq2h88" path="res://gamedata/combatants/soot_spider/soot_spider_sprite.tres" id="4_8mk8l"]
+[ext_resource type="Resource" uid="uid://db6yratm5mqg7" path="res://gamedata/combatants/soot_spider/soot_spider_effectiveness.tres" id="4_smqyh"]
+[ext_resource type="Resource" uid="uid://evje3uso5cpy" path="res://gamedata/combatants/soot_spider/soot_spider_movepool.tres" id="5_a5t26"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="5_is6v1"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="6_bt64e"]
+[ext_resource type="Resource" uid="uid://cw8vv6tox5smp" path="res://gamedata/combatants/soot_spider/soot_spider_stat_growth.tres" id="7_om0vy"]
+[ext_resource type="Resource" uid="uid://c1pkwhq2m4kny" path="res://gamedata/combatants/soot_spider/soot_spider_stat_alloc_strategy.tres" id="8_do70v"]
+[ext_resource type="Resource" uid="uid://d8cew5vnmihc" path="res://gamedata/combatants/soot_spider/soot_spider_equipment.tres" id="13_bbwmo"]
+
+[sub_resource type="Resource" id="Resource_3tx3c"]
+script = ExtResource("6_bt64e")
+displayName = "Soot Spider"
+saveName = "soot_spider"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("7_om0vy")
+moves = Array[ExtResource("5_is6v1")]([])
+movepool = ExtResource("5_a5t26")
+
+[resource]
+script = ExtResource("2_140bl")
+sprite = ExtResource("4_8mk8l")
+nickname = ""
+stats = SubResource("Resource_3tx3c")
+evolutions = ExtResource("1_gi6wr")
+evolutionStats = {}
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("1_cl1aj")]([])
+triggeredRunes = Array[ExtResource("1_cl1aj")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+ai = ExtResource("1_vpo5r")
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("4_smqyh")
+weightedEquipment = ExtResource("13_bbwmo")
+dropTable = ExtResource("2_uxfnr")
+statAllocationStrategy = ExtResource("8_do70v")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1

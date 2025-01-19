@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=9 format=3 uid="uid://dq1p1yk65mhrf"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_7t3fp"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_35ly1"]
+[ext_resource type="Resource" uid="uid://d2hqb4tvfrgtu" path="res://gamedata/items/shard/soot_spider_shard.tres" id="3_ia168"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="3_y8opj"]
+
+[sub_resource type="Resource" id="Resource_5xb2a"]
+script = ExtResource("3_y8opj")
+experience = 42
+gold = 11
+item = ExtResource("3_ia168")
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_0uoqu"]
+script = ExtResource("2_35ly1")
+reward = SubResource("Resource_5xb2a")
+weight = 0.85
+
+[sub_resource type="Resource" id="Resource_saqmx"]
+script = ExtResource("3_y8opj")
+experience = 42
+gold = 11
+fullyAttuneCombatantSaveName = ""
+
+[sub_resource type="Resource" id="Resource_lsmjx"]
+script = ExtResource("2_35ly1")
+reward = SubResource("Resource_saqmx")
+weight = 0.15
+
+[resource]
+script = ExtResource("1_7t3fp")
+weightedRewards = Array[ExtResource("2_35ly1")]([SubResource("Resource_0uoqu"), SubResource("Resource_lsmjx")])

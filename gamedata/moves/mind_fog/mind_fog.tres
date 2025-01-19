@@ -1,20 +1,20 @@
 [gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://b66evvjheyyx8"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_agyls"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_q784g"]
-[ext_resource type="Script" path="res://scripts/battle/status_effects/confusion.gd" id="3_3mrwl"]
-[ext_resource type="Resource" uid="uid://ddgi8em0x0s8e" path="res://gamedata/moves/mind_fog/anim_mind_fog.tres" id="3_s52wp"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="4_3k10w"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move_effect.gd" id="1_54gv8"]
+[ext_resource type="Script" path="res://scripts/battle/status_effects/confusion.gd" id="2_o1wco"]
+[ext_resource type="Resource" uid="uid://ddgi8em0x0s8e" path="res://gamedata/moves/mind_fog/anim_mind_fog.tres" id="3_ask4r"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_yrdep"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/surge_changes.gd" id="5_2wxhx"]
 
 [sub_resource type="Resource" id="Resource_6pj4y"]
-script = ExtResource("3_3mrwl")
+script = ExtResource("2_o1wco")
 type = 5
 potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_lhie2"]
-script = ExtResource("1_agyls")
+script = ExtResource("1_54gv8")
 role = 1
 orbChange = 1
 power = 35
@@ -25,14 +25,14 @@ selfGetsStatus = false
 statusChance = 0.6
 
 [sub_resource type="Resource" id="Resource_8pwrl"]
-script = ExtResource("3_3mrwl")
+script = ExtResource("2_o1wco")
 type = 5
 potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 4
 
 [sub_resource type="Resource" id="Resource_ob64h"]
-script = ExtResource("4_3k10w")
+script = ExtResource("5_2wxhx")
 powerPerOrb = 2
 lifestealPerOrb = 0.0
 weakThresholdOrbs = 0
@@ -42,7 +42,7 @@ additionalStatusTurnsPerOrb = 0.0
 additionalStatusChancePerOrb = 0.05
 
 [sub_resource type="Resource" id="Resource_ji5yw"]
-script = ExtResource("1_agyls")
+script = ExtResource("1_54gv8")
 role = 2
 orbChange = -4
 power = 45
@@ -54,13 +54,13 @@ statusChance = 0.65
 surgeChanges = SubResource("Resource_ob64h")
 
 [resource]
-script = ExtResource("1_q784g")
+script = ExtResource("4_yrdep")
 moveName = "Mind Fog"
-requiredLv = 1
+requiredLv = 17
 category = 2
 element = 4
 chargeEffect = SubResource("Resource_lhie2")
 surgeEffect = SubResource("Resource_ji5yw")
 description = "Conjure a choking cloud of confusion over your opponent. Their mental processes, important for Magic, will be inhibited!"
 moveLearnedText = "The Shard melts into a thick gas. Blocking out your vision, it is impossible to tell where you are anymore. Just when you've forgotten there ever was an \"outside the fog\", it lifts."
-moveAnimation = ExtResource("3_s52wp")
+moveAnimation = ExtResource("3_ask4r")

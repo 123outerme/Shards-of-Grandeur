@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://d8cew5vnmihc"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_lknul"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_o8hop"]
+[ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="3_sfdbd"]
+
+[sub_resource type="Resource" id="Resource_qx2yf"]
+script = ExtResource("2_o8hop")
+weight = 0.7
+
+[sub_resource type="Resource" id="Resource_rgw8c"]
+script = ExtResource("2_o8hop")
+weapon = ExtResource("3_sfdbd")
+weight = 0.3
+
+[resource]
+script = ExtResource("1_lknul")
+weightedEquipment = Array[ExtResource("2_o8hop")]([SubResource("Resource_qx2yf"), SubResource("Resource_rgw8c")])

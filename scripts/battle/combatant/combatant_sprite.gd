@@ -26,23 +26,23 @@ class_name CombatantSprite
 @export_flags_2d_navigation var navigationLayer: int = 1
 
 @export_category('Arrival Frames')
-## the "arrival" frame for the "attack_affinity" animation of this combatant. Tweening towards a target combatant use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "arrival" frame for the "attack_affinity" animation of this combatant. Tweening towards a target combatant use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackAffinityArrivalFrame: int = -1
 
-## the "arrival" frame for the "attack_magic" animation of this combatant. Tweening towards a target combatant use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "arrival" frame for the "attack_magic" animation of this combatant. Tweening towards a target combatant use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackMagicArrivalFrame: int = -1
 
-## the "arrival" frame for the "attack_phys" animation of this combatant. Tweening towards a target combatant use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "arrival" frame for the "attack_phys" animation of this combatant. Tweening towards a target combatant use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackPhysArrivalFrame: int = -1
 
 @export_category('Impact Frames')
-## the "impact" frame for the "attack_affinity" animation of this combatant. Certain moves use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "impact" frame for the "attack_affinity" animation of this combatant. Certain moves use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackAffinityImpactFrame: int = -1
 
-## the "impact" frame for the "attack_magic" animation of this combatant. Certain moves use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "impact" frame for the "attack_magic" animation of this combatant. Certain moves use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackMagicImpactFrame: int = -1
 
-## the "impact" frame for the "attack_phys" animation of this combatant. Certain moves use this for timing purposes. <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
+## the "impact" frame for the "attack_phys" animation of this combatant. Certain moves use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackPhysImpactFrame: int = -1
 
 func _init(

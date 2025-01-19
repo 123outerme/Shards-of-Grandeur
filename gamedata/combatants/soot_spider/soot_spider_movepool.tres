@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://evje3uso5cpy"]
+
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="1_2fyfe"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_g670m"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="2_mo5ht"]
+[ext_resource type="Resource" uid="uid://dtco7uib2bx3l" path="res://gamedata/moves/impale/impale.tres" id="3_4s564"]
+[ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="4_2wbc7"]
+[ext_resource type="Resource" uid="uid://eq5onf8hmiau" path="res://gamedata/moves/venom_strike/venom_strike.tres" id="7_15m8k"]
+[ext_resource type="Resource" uid="uid://rhto0pq8rhcj" path="res://gamedata/moves/commune/commune.tres" id="7_hhunj"]
+[ext_resource type="Resource" uid="uid://b66evvjheyyx8" path="res://gamedata/moves/mind_fog/mind_fog.tres" id="8_vnvif"]
+
+[resource]
+script = ExtResource("2_mo5ht")
+pool = Array[ExtResource("1_2fyfe")]([ExtResource("2_g670m"), ExtResource("3_4s564"), ExtResource("4_2wbc7"), ExtResource("7_15m8k"), ExtResource("7_hhunj"), ExtResource("8_vnvif")])
+signatureMoves = Array[ExtResource("1_2fyfe")]([ExtResource("8_vnvif")])
+preferredMove1Role = 2
+preferredMove1DmgType = 2
+preferredMove1Element = 0
+preferredMove2Role = 1
+preferredMove2DmgType = -1
+preferredMove2Element = 0
+preferredMove3Role = 4
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 3
+preferredMove4DmgType = -1
+preferredMove4Element = 0
