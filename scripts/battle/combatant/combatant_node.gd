@@ -172,7 +172,6 @@ func get_behind_particle_scale() -> float:
 	return 1.5 + round(max(0, max(combatant.get_idle_size().x, combatant.get_idle_size().y) - 16) / 16) / 4
 
 func change_current_hp(hpChange: int) -> void:
-	print_stack()
 	if hpChange < 0 and curStatus != null and curStatus is Endure:
 		var curEndure: Endure = curStatus as Endure
 		var lowestHp: int = max(1, min(curEndure.lowestHp, roundi(combatant.stats.maxHp * curEndure.get_min_hp_percent())))

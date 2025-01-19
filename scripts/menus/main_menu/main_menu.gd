@@ -187,7 +187,7 @@ func _on_debug_click_control_gui_input(event: InputEvent) -> void:
 			doIncrement = true
 	
 	if doIncrement:
-		print('increment')
+		#print('increment')
 		debugCounter += 1
 		if debugCounter == DEBUG_CLICKS:
 			SceneLoader.debug = true

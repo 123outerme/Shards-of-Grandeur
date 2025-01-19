@@ -66,7 +66,7 @@ func select_choice(choice: DialogueChoice):
 			PlayerResources.playerInfo.set_dialogue_seen(saveName, dialogueEntry.entryId)
 			PlayerResources.questInventory.progress_quest(saveName + '#' + dialogueEntry.entryId, QuestStep.Type.TALK)
 		elif dialogueEntry == null:
-			print('dialogue entry not found for ', saveName, ' choice ', choice.choiceBtn)
+			print('Interactable WARNING: Dialogue entry not found for ', saveName, ' choice ', choice.choiceBtn)
 	if choice.repeatsItem:
 		PlayerFinder.player.put_interactable_text(false, false)
 		return
