@@ -7,15 +7,25 @@ class_name RuneCombatantAiLayer
 ## the multiplier for the rune effect weight of the rune that this move sets
 @export var setWeight: float = 1.15
 
+## the multiplier for how much heal power is worth
+@export var healPowerWeight: float = 0.7
+
+## the multiplier for how much damage power is worth
+@export var damagePowerWeight: float = 1.0
+
 func _init(
 	i_weight: float = 1.0,
 	i_subLayers: Array[CombatantAiLayer] = [],
 	i_triggerWeight: float = 1.25,
 	i_setWeight: float = 1.15,
+	i_healPowerWeight: float = 1.0,
+	i_damagePowerWeight: float = 1.15,
 ) -> void:
 	super(i_weight, i_subLayers)
 	triggerWeight = i_triggerWeight
 	setWeight = i_setWeight
+	healPowerWeight = i_healPowerWeight
+	damagePowerWeight = i_damagePowerWeight
 
 ## if the move will trigger a rune or set a rune, weight it based on the power of the rune(s) and if it's triggering or being cast
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
@@ -64,7 +74,13 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 	var orbDiff: int = max(0, min(Combatant.MAX_ORBS, rune.orbChange + caster.orbs)) - caster.orbs
 	runeWeight *= 1 + (orbDiff * .05) # +5% weight for each orb that will actually be gained
 
-	var powerRatio: float = rune.power / 100.0
+	var runePower: float = rune.power
+	if runePower > 0:
+		runePower *= damagePowerWeight
+	else:
+		runePower *= healPowerWeight
+
+	var powerRatio: float = runePower / 100.0
 	if target.role == user.role:
 		powerRatio *= -1
 	
@@ -112,4 +128,11 @@ func get_rune_weight_on_target(user: CombatantNode, rune: Rune, target: Combatan
 	return runeWeight
 
 func copy(copyStorage: bool = false)  -> RuneCombatantAiLayer:
-	return RuneCombatantAiLayer.new(weight, copy_sublayers(copyStorage))
+	return RuneCombatantAiLayer.new(
+		weight, 
+		copy_sublayers(copyStorage),
+		triggerWeight,
+		setWeight,
+		healPowerWeight,
+		damagePowerWeight,
+	)

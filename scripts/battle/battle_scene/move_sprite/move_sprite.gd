@@ -175,7 +175,10 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 			pos += feetPosTranslation
 			pos.y += 8
 			# then go from top-left to the head pos
-			pos += cNode.combatant.get_head_pos()
+			var headPos: Vector2 = cNode.combatant.get_head_pos()
+			if cNode.leftSide != cNode.combatant.get_faces_right():
+				headPos.x = cNode.combatant.get_max_size().x - headPos.x
+			pos += headPos
 		elif posOffset == 0b01111: # if first four offset bits are set: play at visual center of sprite instead of the "interaction center"
 			# remove the feet position translation to get the top-left
 			pos += feetPosTranslation # translate away from the feet position to top-left
