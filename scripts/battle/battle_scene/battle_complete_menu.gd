@@ -51,7 +51,7 @@ func load_battle_over_menu():
 	for panel in get_tree().get_nodes_in_group('RewardPanel'):
 		panel.queue_free() # destroy all previously loaded reward panels (if any)
 	
-	if playerWins:
+	if hasRewards or playerWins:
 		for reward in rewards:
 			var instantiatedPanel: RewardPanel = rewardPanel.instantiate()
 			instantiatedPanel.reward = reward
@@ -70,8 +70,7 @@ func _on_ok_button_pressed():
 	okBtn.disabled = true
 	PlayerResources.copy_combatant_to_info(battleUI.battleController.playerCombatant.combatant)
 	# copy player changes to PlayerResources
-	if playerWins:
-		gainedLevels = PlayerResources.accept_rewards(rewards)
+	gainedLevels = PlayerResources.accept_rewards(rewards)
 	
 	if PlayerResources.playerInfo.combatant.downed:
 		if (playerWins or playerEscapes) and gainedLevels == 0: # revive with 10% HP if you win or the minion escapes

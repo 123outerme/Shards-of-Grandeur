@@ -37,3 +37,17 @@ static func get_elapsed_time(secs: float) -> String:
 	secs = floori(secs) % 60
 	
 	return String.num(hours) + 'h ' + String.num(mins) + 'm ' + String.num(secs) + 's'
+
+static func string_arr_to_string(strings: Array[String], twoSeparator: String = ' and ', middleSeparator: String = ', ', finalSeparator: String = ', and ', prefix: String = '', suffix: String = '') -> String:
+	var finalString: String = ''
+	for idx: int in range(len(strings)):
+		finalString += prefix + strings[idx] + suffix
+		if idx < len(strings) - 1:
+			if idx < len(strings) - 2:
+				finalString += middleSeparator
+			elif len(strings) == 2:
+				finalString += twoSeparator
+			else:
+				finalString += finalSeparator
+	
+	return finalString

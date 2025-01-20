@@ -124,26 +124,26 @@ func _init(
 func get_battle_reward_item_count_modifier() -> float:
 	var modifier: float = 1.0
 	for item: BattleModifierItem in activeBattleModifierItems:
-		modifier += (1.0 - item.rewardItemCountModifier)
-	return modifier
+		modifier += (item.rewardItemCountModifier - 1.0)
+	return modifier if modifier > 0 else 0
 
 func get_battle_reward_exp_modifier() -> float:
 	var modifier: float = 1.0
 	for item: BattleModifierItem in activeBattleModifierItems:
-		modifier += (1.0 - item.rewardExpModifier)
-	return modifier
+		modifier += (item.rewardExpModifier - 1.0)
+	return modifier if modifier > 0 else 0
 
 func get_battle_reward_gold_modifier() -> float:
 	var modifier: float = 1.0
 	for item: BattleModifierItem in activeBattleModifierItems:
-		modifier += (1.0 - item.rewardGoldModifier)
-	return modifier
+		modifier += (item.rewardGoldModifier - 1.0)
+	return modifier if modifier > 0 else 0
 
 func get_battle_attunement_modifier() -> float:
 	var modifier: float = 1.0
 	for item: BattleModifierItem in activeBattleModifierItems:
-		modifier += (1.0 - item.rewardExpModifier)
-	return modifier
+		modifier += (item.rewardExpModifier - 1.0)
+	return modifier if modifier > 0 else 0
 
 func get_spawns_three_face_combatant() -> bool:
 	for item: BattleModifierItem in activeBattleModifierItems:

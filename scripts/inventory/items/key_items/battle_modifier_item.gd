@@ -66,7 +66,7 @@ func use(_target: Combatant):
 		PlayerResources.playerInfo.activeBattleModifierItems.append(self)
 
 func get_use_message(_target: Combatant) -> String:
-	var useMessage: String = 'In the next roaming encounter, the following items will be active:\n\n'
+	var useMessage: String = 'In the next roaming encounter, the following will be active:\n\n'
 	
 	var activeModifierItems: Array[BattleModifierItem] = PlayerResources.playerInfo.activeBattleModifierItems.duplicate(false)
 	if self not in activeModifierItems:
@@ -74,8 +74,83 @@ func get_use_message(_target: Combatant) -> String:
 	
 	for idx: int in range(len(activeModifierItems)):
 		var modifierItem: BattleModifierItem = activeModifierItems[idx]
-		useMessage += '* ' + modifierItem.itemName
+		useMessage += '* ' + modifierItem.itemName + ' (' + TextUtils.string_arr_to_string(modifierItem.get_effect_texts(true)) + ')'
 		if idx < len(activeModifierItems) - 1:
 			useMessage += '\n'
 	
 	return useMessage
+
+func get_effect_text(inBattle: bool = true) -> String:
+	var effectTexts: Array[String] = get_effect_texts()
+	return 'When used outside of Battle, the next Battle will have the following active:\n' \
+			+ TextUtils.string_arr_to_string(effectTexts) + '.'
+
+func get_effect_texts(short: bool = false) -> Array[String]:
+	var effectTexts: Array[String] = []
+	if rewardItemCountModifier != 1.0:
+		if rewardItemCountModifier <= 0:
+			if short:
+				effectTexts.append('No Items')
+			else:
+				effectTexts.append('No Items will drop')
+		else:
+			var modifierStr: String = String.num(roundi(rewardItemCountModifier * 100) - 100)
+			if rewardItemCountModifier > 1.0:
+				modifierStr = '+' + modifierStr
+			if short:
+				effectTexts.append(modifierStr + '% Items')
+			else:
+				effectTexts.append(modifierStr + '% Item drops')
+	
+	if rewardExpModifier != 1.0:
+		if rewardExpModifier <= 0:
+			if short:
+				effectTexts.append('No Exp')
+			else:
+				effectTexts.append('No Exp. will be gained')
+		else:
+			var modifierStr: String = String.num(roundi(rewardExpModifier * 100) - 100)
+			if rewardExpModifier > 1.0:
+				modifierStr = '+' + modifierStr
+			if short:
+				effectTexts.append(modifierStr + '% Exp')
+			else:
+				effectTexts.append(modifierStr + '% Exp. awarded')
+	
+	if rewardGoldModifier != 1.0:
+		if rewardGoldModifier <= 0:
+			if short:
+				effectTexts.append('No Gold')
+			else:
+				effectTexts.append('No Gold will be gained')
+		else:
+			var modifierStr: String = String.num(roundi(rewardGoldModifier * 100) - 100)
+			if rewardGoldModifier > 1.0:
+				modifierStr = '+' + modifierStr
+			if short:
+				effectTexts.append(modifierStr + '% Gold')
+			else:
+				effectTexts.append(modifierStr + '% Gold awarded')
+	
+	if attunementModifier != 1.0:
+		if attunementModifier <= 0:
+			if short:
+				effectTexts.append('No Minion Attunement')
+			else:
+				effectTexts.append('The summoned minion will not recieve Attunement')
+		else:
+			var modifierStr: String = String.num(roundi(attunementModifier * 100) - 100)
+			if attunementModifier > 1.0:
+				modifierStr = '+' + modifierStr
+			if short:
+				effectTexts.append(modifierStr + '% Attunement')
+			else:
+				effectTexts.append(modifierStr + '% Attunement for the summoned minion')
+	
+	if spawnsThreeOfFace:
+		if short:
+			effectTexts.append('Lures 3x the encountered creature')
+		else:
+			effectTexts.append('Lures 3 of the encountered creature to the battle')
+	
+	return effectTexts
