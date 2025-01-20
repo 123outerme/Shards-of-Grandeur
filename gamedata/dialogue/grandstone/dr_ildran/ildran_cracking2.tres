@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://c4qvv80a2fmoj"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vabwt"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7m6mh"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_7yhqv"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ay0li"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_w0vgj"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_mupk8"]
+
+[sub_resource type="Resource" id="Resource_unipa"]
+script = ExtResource("2_7m6mh")
+choiceBtn = "I'll End It."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_ay0li")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_ys61h"]
+script = ExtResource("1_vabwt")
+lines = Array[String](["You're going to Giant Steppes, @?", "How in the world did you ever get that idea in your head?", "... It's clear I can't stop you. Go on, then.", "If you think this will end the Radiant War, then go."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_7m6mh")]([SubResource("Resource_unipa")])
+
+[sub_resource type="Resource" id="Resource_srdp7"]
+script = ExtResource("2_7yhqv")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["standstill_helia_fight"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_mupk8")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_mupk8")]([])
+
+[resource]
+script = ExtResource("3_w0vgj")
+entryId = ""
+items = Array[ExtResource("1_vabwt")]([SubResource("Resource_ys61h")])
+storyRequirements = SubResource("Resource_srdp7")
+ordStoryRequirements = Array[ExtResource("2_7yhqv")]([])
+closesDialogue = false
+fullHealsPlayer = false

@@ -125,6 +125,8 @@ func affects_turn_order_calc() -> bool:
 func is_positive_status() -> bool:
 	if type in [Type.REFLECT, Type.INTERCEPTION, Type.MANIA, Type.ENDURE]:
 		return true
+	if type == Type.NONE and overwritesOtherStatuses: # if it's a cleanse
+		return true
 	return false
 
 func copy() -> StatusEffect:

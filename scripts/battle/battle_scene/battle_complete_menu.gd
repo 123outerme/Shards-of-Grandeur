@@ -27,22 +27,26 @@ func _ready():
 
 func load_battle_over_menu():
 	battleUI.update_hp_tags()
-	rewardsVBox.visible = playerWins
+	# there are rewards to claim if there is more than one reward, and it is not an array with only entry, and it's null
+	var hasRewards: bool = len(battleUI.battleController.state.rewards) > 0 and not (battleUI.battleController.state.rewards[0] == null and len(battleUI.battleController.state.rewards) == 1)
+	rewardsVBox.visible = hasRewards or playerWins
 	if playerWins and PlayerResources.playerInfo.encounter.customWinText != '':
 		battleUI.customWinText.customText = PlayerResources.playerInfo.encounter.customWinText
 		battleUI.customWinText.load_custom_win_text_panel()
 	if PlayerResources.playerInfo.encounter.winCon != null:
-		battleWinLabel.text = PlayerResources.playerInfo.encounter.winCon.get_win_text(battleUI.battleController.get_all_combatant_nodes())
+		battleWinLabel.text = PlayerResources.playerInfo.encounter.winCon.get_win_text(battleUI.battleController.get_all_combatant_nodes()) \
+				if playerWins else \
+				PlayerResources.playerInfo.encounter.winCon.get_lose_text(battleUI.battleController.get_all_combatant_nodes())
 		battleLoseLabel.text = '[center]' + PlayerResources.playerInfo.encounter.winCon.get_lose_text(battleUI.battleController.get_all_combatant_nodes()) + '[/center]'
 		battleEscapeLabel.text = '[center]' + PlayerResources.playerInfo.encounter.winCon.get_escape_text(battleUI.battleController.get_all_combatant_nodes()) + '[/center]'
 	else:
-		battleWinLabel.text = WinCon.DEFAULT_WIN_TEXT
+		battleWinLabel.text = WinCon.DEFAULT_WIN_TEXT if playerWins else WinCon.DEFAULT_LOSE_TEXT
 		battleLoseLabel.text = '[center]' + WinCon.DEFAULT_LOSE_TEXT + '[/center]'
 		battleEscapeLabel.text = '[center]' + WinCon.DEFAULT_ESCAPE_TEXT + '[/center]'
-	battleWinLabel.visible = playerWins
-	battleRewardsLabel.visible = playerWins
-	battleLoseLabel.visible = not playerWins and not playerEscapes
-	battleEscapeLabel.visible = not playerWins and playerEscapes
+	battleWinLabel.visible = hasRewards or playerWins
+	battleRewardsLabel.visible = hasRewards or playerWins
+	battleLoseLabel.visible = not (hasRewards or playerWins) and not playerEscapes
+	battleEscapeLabel.visible = not (hasRewards or playerWins) and playerEscapes
 	
 	for panel in get_tree().get_nodes_in_group('RewardPanel'):
 		panel.queue_free() # destroy all previously loaded reward panels (if any)

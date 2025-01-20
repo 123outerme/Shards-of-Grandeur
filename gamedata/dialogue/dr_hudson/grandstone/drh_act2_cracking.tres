@@ -20,6 +20,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_dn46e"]
 script = ExtResource("1_hjgud")
 lines = Array[String](["The situation here's seeming more grim every minute. I had no idea when we sent you off that it'd get this bad.", "Once you've come back from Standstill, let's you and I work on solving our other problems."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -47,7 +48,7 @@ invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["standstill_helia_fight"])
 invalidAfterSolvingPuzzles = Array[String]([])
 invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])

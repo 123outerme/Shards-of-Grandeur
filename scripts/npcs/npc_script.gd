@@ -227,7 +227,7 @@ func add_shop_items_to_inventory():
 	for idx in range(len(inventory.inventorySlots)):
 		var itemSlot: InventorySlot = inventory.inventorySlots[idx]
 		if itemSlot is ShopInventorySlot and not (npcShop.has_item_in_shop(itemSlot.item)):
-			removeSlots.append(itemSlot)
+			removeSlots.append(idx)
 			print('NPC ' + saveName + ' no longer carries ' + itemSlot.item.itemName + '. Removing')
 
 	# for each recorded index to remove, remove that slot

@@ -32,15 +32,28 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	if selfGetsStatus:
 		target = user
 	
-	if not statusEffect.overwritesOtherStatuses and target.combatant.statusEffect != null:
+	if target.combatant.statusEffect != null and not statusEffect.overwritesOtherStatuses:
 		return 0.6 # it CAN status, but not this target, so don't prefer it
 	
+	var potencyWeight: float = 0
 	if statusEffect.potency == StatusEffect.Potency.WEAK:
-		moveWeight += 0.15
+		potencyWeight = 0.15
+		moveWeight += potencyWeight
 	if statusEffect.potency == StatusEffect.Potency.STRONG:
-		moveWeight += 0.3
+		potencyWeight = 0.3
+		moveWeight += potencyWeight
 	if statusEffect.potency == StatusEffect.Potency.OVERWHELMING:
-		moveWeight += 0.45
+		potencyWeight = 0.45
+		moveWeight += potencyWeight
+	
+	if target.combatant.statusEffect != null and statusEffect.overwritesOtherStatuses:
+		if target.combatant.statusEffect.is_positive_status() != statusEffect.is_positive_status():
+			# if the statuses swap from bad to good or vice versa, then this will be a positive change
+			moveWeight += 0.1
+		else:
+			# if the statuses remain bad or remain good, then it depends on how much the potency changes
+			# decrease the weight by the same amount as was added by potency and then some, but reduced by how much more potent this status is compared to the existing status
+			moveWeight -= 0.2 + potencyWeight - (statusEffect.potency - target.combatant.statusEffect.potency) * 0.1
 	
 	moveWeight *= min(1, statusChance) / AVERAGE_STATUS_CHANCE
 	

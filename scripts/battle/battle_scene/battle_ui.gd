@@ -274,6 +274,8 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 
 func build_rewards() -> Array[Reward]:
 	var rewards: Array[Reward] = []
+	if escapes and not playerWins:
+		return [null]
 	# if rewards have not been built yet: do this now
 	if len(battleController.state.rewards) == 0:
 		if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:

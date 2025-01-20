@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://banuyyt87ru0y"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_04bcd"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ac78u"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_txdbh"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_h4jpg"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_r0md3"]
+
+[sub_resource type="Resource" id="Resource_ofc08"]
+script = ExtResource("2_ac78u")
+choiceBtn = "You Too."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_r0md3")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_6eqev"]
+script = ExtResource("1_04bcd")
+lines = Array[String](["I've heard you met a Warlock, and they've requested you come visit them at Giant Steppes!", "This is no small honor, @, and I'm very proud of you. You will represent Grandstone well, and learn a lot.", "Bring back something to help repair the city, though! We could use a miracle soon.", "Take care."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ac78u")]([SubResource("Resource_ofc08")])
+
+[resource]
+script = ExtResource("3_h4jpg")
+entryId = ""
+items = Array[ExtResource("1_04bcd")]([SubResource("Resource_6eqev")])
+ordStoryRequirements = Array[ExtResource("2_txdbh")]([])
+closesDialogue = false
+fullHealsPlayer = false
