@@ -23,6 +23,7 @@ class_name PlayerInfo
 @export var encounteredName: String
 @export var encounteredLevel: int = 1
 @export var encounter: EnemyEncounter = null
+@export var activeBattleModifierItems: Array[BattleModifierItem] = []
 @export var completedSpecialBattles: Array[String] = []
 @export var enemiesDefeated: Array[String] = []
 @export var evolutionsFound: Array[String] = []
@@ -63,6 +64,7 @@ func _init(
 	i_encounteredName = "",
 	i_encounteredLevel = 1,
 	i_encounter = null,
+	i_activeBattleModifierItems: Array[BattleModifierItem] = [],
 	i_completedSpecialBattles: Array[String] = [],
 	i_enemiesDefeated: Array[String] = [],
 	i_evolutionsFound: Array[String] = [],
@@ -100,6 +102,7 @@ func _init(
 	encounteredName = i_encounteredName
 	encounteredLevel = i_encounteredLevel
 	encounter = i_encounter
+	activeBattleModifierItems = i_activeBattleModifierItems
 	completedSpecialBattles = i_completedSpecialBattles
 	enemiesDefeated = i_enemiesDefeated
 	evolutionsFound = i_evolutionsFound
@@ -117,6 +120,36 @@ func _init(
 	cutscenesTempDisabled = i_cutscenesTempDisabled
 	queuedRewards = i_queuedRewards
 	running = i_running
+
+func get_battle_reward_item_count_modifier() -> float:
+	var modifier: float = 1.0
+	for item: BattleModifierItem in activeBattleModifierItems:
+		modifier += (1.0 - item.rewardItemCountModifier)
+	return modifier
+
+func get_battle_reward_exp_modifier() -> float:
+	var modifier: float = 1.0
+	for item: BattleModifierItem in activeBattleModifierItems:
+		modifier += (1.0 - item.rewardExpModifier)
+	return modifier
+
+func get_battle_reward_gold_modifier() -> float:
+	var modifier: float = 1.0
+	for item: BattleModifierItem in activeBattleModifierItems:
+		modifier += (1.0 - item.rewardGoldModifier)
+	return modifier
+
+func get_battle_attunement_modifier() -> float:
+	var modifier: float = 1.0
+	for item: BattleModifierItem in activeBattleModifierItems:
+		modifier += (1.0 - item.rewardExpModifier)
+	return modifier
+
+func get_spawns_three_face_combatant() -> bool:
+	for item: BattleModifierItem in activeBattleModifierItems:
+		if item.spawnsThreeOfFace:
+			return true
+	return false
 
 func has_picked_up(uniqueId: String) -> bool:
 	return pickedUpItems.has(uniqueId)

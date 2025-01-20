@@ -27,7 +27,9 @@ func accept_rewards(rewards: Array[Reward]) -> int:
 			continue # skip this reward if it's null
 		playerInfo.gold += reward.gold
 		gainedLevels += playerInfo.combatant.stats.add_exp(reward.experience)
-		inventory.add_item(reward.item)
+		if reward.item != null:
+			var tempSlot: InventorySlot = InventorySlot.new(reward.item, reward.itemCount)
+			inventory.add_slot(tempSlot)
 		if reward.fullyAttuneCombatantSaveName != '':
 			minions.fully_attune(reward.fullyAttuneCombatantSaveName)
 	if gainedLevels > 0:

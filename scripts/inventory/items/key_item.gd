@@ -6,6 +6,7 @@ enum KeyItemType {
 	TELEPORT_STONE = 1,
 	EXP_ITEM = 2,
 	STAT_RESET_ITEM = 3,
+	BATTLE_MODIFIER_ITEM = 4,
 }
 
 @export var keyItemType: KeyItemType = KeyItemType.STORY_ITEM
@@ -47,4 +48,6 @@ func get_as_key_item_type():
 			return self as ExpItem
 		KeyItemType.STAT_RESET_ITEM:
 			return self as StatResetItem
+		KeyItemType.BATTLE_MODIFIER_ITEM:
+			return self as BattleModifierItem
 	return self

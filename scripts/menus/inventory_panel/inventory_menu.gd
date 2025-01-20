@@ -53,6 +53,7 @@ var shopInventory: Inventory = null
 @onready var allFilterBtn: Button = get_node('InventoryPanel/Panel/HBoxContainer/AllButton')
 @onready var healingFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/HealingButton")
 @onready var shardFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ShardsButton")
+@onready var consumablesFilterBtn: Button = get_node('InventoryPanel/Panel/HBoxContainer/ConsumablesButton')
 @onready var weaponFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/WeaponsButton")
 @onready var armorFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ArmorButton")
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
@@ -129,7 +130,10 @@ func initial_focus():
 	backButton.grab_focus()
 
 func get_centermost_filter() -> Button:
-	# order: weapon -> shard -> armor -> healing -> key items
+	# order: consumables -> weapon -> shard -> armor -> healing -> key items
+	if not consumablesFilterBtn.disabled:
+		return consumablesFilterBtn
+	
 	if not weaponFilterBtn.disabled:
 		return weaponFilterBtn
 		
@@ -191,6 +195,10 @@ func load_inventory_panel(rebuild: bool = true):
 		shardFilterBtn.disabled = true
 		shardFilterBtn.focus_neighbor_top = shardFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
 		shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(backButton)
+		
+		consumablesFilterBtn.disabled = true
+		consumablesFilterBtn.focus_neighbor_top = consumablesFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
+		consumablesFilterBtn.focus_neighbor_bottom = consumablesFilterBtn.get_path_to(backButton)
 		
 		weaponFilterBtn.disabled = true
 		weaponFilterBtn.focus_neighbor_top = weaponFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
@@ -260,6 +268,8 @@ func load_inventory_panel(rebuild: bool = true):
 				healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING
 			if slot.item.itemType == Item.Type.SHARD:
 				shardFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.SHARD
+			if slot.item.itemType == Item.Type.CONSUMABLE:
+				consumablesFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.CONSUMABLE
 			if slot.item.itemType == Item.Type.WEAPON:
 				weaponFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.WEAPON
 			if slot.item.itemType == Item.Type.ARMOR:
@@ -270,6 +280,7 @@ func load_inventory_panel(rebuild: bool = true):
 			allFilterBtn.focus_neighbor_bottom = allFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+			consumablesFilterBtn.focus_neighbor_bottom = consumablesFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(firstPanel.get_leftmost_button())
@@ -285,7 +296,7 @@ func load_inventory_panel(rebuild: bool = true):
 			elif get_centermost_filter() != null:
 				backButton.focus_neighbor_bottom = backButton.get_path_to(get_centermost_filter())
 			else:
-				backButton.focus_neighbor_bottom = backButton.get_path_to(weaponFilterBtn)
+				backButton.focus_neighbor_bottom = backButton.get_path_to(consumablesFilterBtn)
 	else:
 		for panel: InventorySlotPanel in get_tree().get_nodes_in_group("InventorySlotPanel"):
 			panel.load_inventory_slot_panel()
@@ -367,6 +378,7 @@ func update_filter_buttons():
 	allFilterBtn.button_pressed = selectedFilter == Item.Type.ALL
 	healingFilterBtn.button_pressed = selectedFilter == Item.Type.HEALING
 	shardFilterBtn.button_pressed = selectedFilter == Item.Type.SHARD
+	consumablesFilterBtn.button_pressed = selectedFilter == Item.Type.CONSUMABLE
 	weaponFilterBtn.button_pressed = selectedFilter == Item.Type.WEAPON
 	armorFilterBtn.button_pressed = selectedFilter == Item.Type.ARMOR
 	keyItemFilterBtn.button_pressed = selectedFilter == Item.Type.KEY_ITEM
@@ -414,6 +426,15 @@ func _on_shards_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.SHARD)
 	elif selectedFilter == Item.Type.SHARD:
+		filter_by()
+
+
+func _on_consumables_button_toggled(button_pressed: bool) -> void:
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
+	if button_pressed:
+		filter_by(Item.Type.CONSUMABLE)
+	elif selectedFilter == Item.Type.CONSUMABLE:
 		filter_by()
 
 func _on_weapons_button_toggled(button_pressed):
@@ -514,7 +535,7 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 				
 				var shard: Shard = lastSlotInteracted.item as Shard
 				# add Attunement for minion whose shard you used
-				PlayerResources.minions.add_friendship(shard.combatantSaveName, true)
+				PlayerResources.minions.add_friendship(shard.combatantSaveName)
 				var last = PlayerResources.inventory.trash_item(lastSlotInteracted)
 				if last:
 					lastSlotInteracted = null

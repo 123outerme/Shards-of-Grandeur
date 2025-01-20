@@ -152,6 +152,12 @@ layout_mode = 2
 toggle_mode = true
 text = "Shards"
 
+[node name="ConsumablesButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Consumables"
+
 [node name="WeaponsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
@@ -277,6 +283,7 @@ offset_bottom = 720.0
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/HealingButton" to="." method="_on_healing_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ShardsButton" to="." method="_on_shards_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ConsumablesButton" to="." method="_on_consumables_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/WeaponsButton" to="." method="_on_weapons_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ArmorButton" to="." method="_on_armor_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/KeyItemsButton" to="." method="_on_key_items_button_toggled"]

@@ -44,7 +44,7 @@ func load_item_use_panel():
 			itemUseText = 'You attempted to use the ' + item.itemName + ', but it has no effect'
 			if item.itemType == Item.Type.HEALING:
 				itemUseText += ', because you are at full health already'
-			if item.itemType == Item.Type.KEY_ITEM:
+			if item is KeyItem:
 				if item.get_as_subclass() is StatResetItem:
 					itemUseText += ', because ' + target.disp_name() + ' has not allocated any Stat Points'
 			itemUseText += '.'

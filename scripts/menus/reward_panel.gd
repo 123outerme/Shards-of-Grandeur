@@ -21,7 +21,7 @@ func load_reward_panel() -> void:
 		if reward.item != null:
 			itemGroup.visible = true
 			itemSpriteBtn.texture_normal = reward.item.itemSprite
-			itemName.text = reward.item.itemName
+			itemName.text = reward.item.itemName + ' x' + TextUtils.num_to_comma_string(reward.itemCount)
 		else:
 			itemGroup.visible = false
 		noRewardsLabel.visible = false

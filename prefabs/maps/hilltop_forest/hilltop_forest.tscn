@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://b10taucwi1g7l"]
+[gd_scene load_steps=80 format=4 uid="uid://b10taucwi1g7l"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_shlrx"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wvq5a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_510j2"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="6_ox12w"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="7_etfvm"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="8_3gnjh"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="8_lsbd3"]
 [ext_resource type="Resource" uid="uid://bwnakoj6c7o46" path="res://gamedata/cutscenes/hilltop_forest/hilltop_cave_gone.tres" id="8_rlhlu"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="12_soiik"]
@@ -45,6 +46,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 3
 combatantsMaxLevel = 4
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_yhbaw"), SubResource("Resource_hajfl"), SubResource("Resource_wvspj")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
@@ -80,6 +82,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 3
 combatantsMaxLevel = 4
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_hxcp5"), SubResource("Resource_7ciow"), SubResource("Resource_11sg4")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("17_6exim")
@@ -115,6 +118,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 3
 combatantsMaxLevel = 5
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_82cqg"), SubResource("Resource_g5742"), SubResource("Resource_tw206")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("17_6exim")
@@ -150,6 +154,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 4
 combatantsMaxLevel = 5
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_ck257"), SubResource("Resource_j2fyn"), SubResource("Resource_jd3u5")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
@@ -180,6 +185,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 4
 combatantsMaxLevel = 6
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_voecf"), SubResource("Resource_v5l8j")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("7_etfvm")
@@ -215,6 +221,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 4
 combatantsMaxLevel = 5
 combatantsLvToPlayerLvRatio = 0.85
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_2ywwn"), SubResource("Resource_efkrb"), SubResource("Resource_6sxme")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("8_lsbd3")
@@ -250,6 +257,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 4
 combatantsMaxLevel = 6
 combatantsLvToPlayerLvRatio = 0.8
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_mpnil"), SubResource("Resource_36s6o"), SubResource("Resource_v2t7v")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("7_etfvm")
@@ -290,6 +298,7 @@ script = ExtResource("6_ox12w")
 combatantsMinLevel = 4
 combatantsMaxLevel = 6
 combatantsLvToPlayerLvRatio = 0.9
+levelStages = Array[ExtResource("8_3gnjh")]([])
 combatant2Options = Array[ExtResource("6_510j2")]([SubResource("Resource_jf5dt"), SubResource("Resource_8w5nj"), SubResource("Resource_8tnhf"), SubResource("Resource_75px5")])
 combatant3Options = Array[ExtResource("6_510j2")]([])
 combatant1 = ExtResource("16_8f7wp")
@@ -347,7 +356,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_skslv"]
+[sub_resource type="Resource" id="Resource_fn6ox"]
 script = ExtResource("4_fqdvm")
 saveName = "npc"
 spriteState = "default"
@@ -580,7 +589,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-440, -140)
 facingLeft = true
-data = SubResource("Resource_skslv")
+data = SubResource("Resource_fn6ox")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.644771

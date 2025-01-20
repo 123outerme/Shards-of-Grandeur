@@ -456,9 +456,11 @@ func get_mania_level() -> StatusEffect.Potency:
 func would_item_have_effect(item: Item) -> bool:
 	if item.itemType == Item.Type.HEALING:
 		return currentHp < stats.maxHp
-	if item.itemType == Item.Type.KEY_ITEM:
+	if item is KeyItem:
 		if item.get_as_subclass() is StatResetItem:
 			return stats.statPts < stats.get_total_gained_stat_points()
+		if item.get_as_subclass() is BattleModifierItem:
+			return item.can_be_used_now()
 	return true
 
 func add_orbs(num: int):

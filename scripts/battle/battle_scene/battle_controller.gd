@@ -181,55 +181,91 @@ func load_into_battle():
 			enemyCombatant1.combatant.orbs = enemyCombatant1.combatant.get_starting_orbs()
 			enemyCombatant1.combatant.assign_moves_nonplayer()
 			
-			var rngBeginnerNoEnemy: float = randf() - 0.5 + \
-					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
-			# if 4 < level < 8, give a 50% chance to have a second combatant + 10% per level up to 90% at lv 7, before team table calc
-			var eCombatant2Idx: int = WeightedThing.pick_item(randomEncounter.combatant2Options)
-			if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
-				# load enemy 2
-				var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
-				enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
-				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
-					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
+			enemyCombatant2.combatant = null
+			var combatant2StatAllocStrat: StatAllocationStrategy = null
+			if PlayerResources.playerInfo.get_spawns_three_face_combatant():
+				enemyCombatant2.combatant = randomEncounter.combatant1.copy().initialize()
+				combatant2StatAllocStrat = randomEncounter.combatant1StatAllocStrat 
+				if randomEncounter.combatant1Equipment != null:
+					var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 					if equipmentIdx > -1:
-						enemyCombatant2.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
-						enemyCombatant2.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+						enemyCombatant2.combatant.stats.equippedArmor = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].armor
+						enemyCombatant2.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
 				else:
 					enemyCombatant2.combatant.pick_equipment()
+				# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
+				if randomEncounter.combatant1Armor != null:
+					enemyCombatant2.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
+				if randomEncounter.combatant1Weapon != null:
+					enemyCombatant2.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
+			else:
+				var rngBeginnerNoEnemy: float = randf() - 0.5 + \
+						(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
+				# if 4 < level < 8, give a 50% chance to have a second combatant + 10% per level up to 90% at lv 7, before team table calc
+				var eCombatant2Idx: int = WeightedThing.pick_item(randomEncounter.combatant2Options)
+				if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
+					# load enemy 2
+					var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
+					enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
+					combatant2StatAllocStrat = combatantOption.statAllocationStrategy
+					if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
+						var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
+						if equipmentIdx > -1:
+							enemyCombatant2.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
+							enemyCombatant2.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+						else:
+							enemyCombatant2.combatant.pick_equipment()
+			if enemyCombatant2.combatant != null:
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
 				enemyCombatant2.battleAi = enemyCombatant2.combatant.get_ai().copy()
 				enemyCombatant2.initialCombatantLv = enemyCombatant2.combatant.stats.level
-				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
+				enemyCombatant2.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatant2StatAllocStrat)
 				enemyCombatant2.combatant.orbs = enemyCombatant2.combatant.get_starting_orbs()
 				enemyCombatant2.combatant.assign_moves_nonplayer()
-			else:
-				enemyCombatant2.combatant = null
 			
-			rngBeginnerNoEnemy = randf() - 0.5 + \
-					(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES) - MIN_LV_THREE_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
-			# if level < 10, give a 0% chance to have a third combatant + 10% per level after 1 up to 100% at lv 20, before team table calc
-			var eCombatant3Idx: int = WeightedThing.pick_item(randomEncounter.combatant3Options)
-			if eCombatant3Idx > -1 and randomEncounter.combatant3Options[eCombatant3Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
-				# load enemy 3
-				var combatantOption: WeightedCombatant = randomEncounter.combatant3Options[eCombatant3Idx]
-				enemyCombatant3.combatant = combatantOption.combatant.copy().initialize()
-				if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
-					var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
+			enemyCombatant3.combatant = null
+			var combatant3StatAllocStrat: StatAllocationStrategy = null
+			if PlayerResources.playerInfo.get_spawns_three_face_combatant():
+				enemyCombatant3.combatant = randomEncounter.combatant1.copy().initialize()
+				combatant3StatAllocStrat = randomEncounter.combatant1StatAllocStrat 
+				if randomEncounter.combatant1Equipment != null:
+					var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 					if equipmentIdx > -1:
-						enemyCombatant3.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
-						enemyCombatant3.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+						enemyCombatant3.combatant.stats.equippedArmor = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].armor
+						enemyCombatant3.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
 				else:
 					enemyCombatant3.combatant.pick_equipment()
+				# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
+				if randomEncounter.combatant1Armor != null:
+					enemyCombatant3.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
+				if randomEncounter.combatant1Weapon != null:
+					enemyCombatant3.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
+			else:
+				var rngBeginnerNoEnemy: float = randf() - 0.5 + \
+						(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES) - MIN_LV_THREE_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
+				# if level < 10, give a 0% chance to have a third combatant + 10% per level after 1 up to 100% at lv 20, before team table calc
+				var eCombatant3Idx: int = WeightedThing.pick_item(randomEncounter.combatant3Options)
+				if eCombatant3Idx > -1 and randomEncounter.combatant3Options[eCombatant3Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
+					# load enemy 3
+					var combatantOption: WeightedCombatant = randomEncounter.combatant3Options[eCombatant3Idx]
+					enemyCombatant3.combatant = combatantOption.combatant.copy().initialize()
+					combatant3StatAllocStrat = combatantOption.statAllocationStrategy
+					if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
+						var equipmentIdx: int = WeightedThing.pick_item(combatantOption.weightedEquipment.weightedEquipment)
+						if equipmentIdx > -1:
+							enemyCombatant3.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
+							enemyCombatant3.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+					else:
+						enemyCombatant3.combatant.pick_equipment()
+			if enemyCombatant3.combatant != null:
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
-				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatantOption.statAllocationStrategy)
+				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatant3StatAllocStrat)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()
-			else:
-				enemyCombatant3.combatant = null
 		if minionCombatant.combatant != null:
 			minionCombatant.combatant.update_battle_storage()
 		enemyCombatant1.combatant.update_battle_storage()
@@ -437,7 +473,9 @@ func end_battle():
 	if minionCombatant.combatant != null:
 		minionCombatant.combatant.orbs = 0
 		minionCombatant.combatant.update_battle_storage()
-		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed)
+		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed, PlayerResources.playerInfo.get_battle_attunement_modifier())
+	if PlayerResources.playerInfo.encounter is RandomEncounter:
+		PlayerResources.playerInfo.activeBattleModifierItems = []
 	SceneLoader.audioHandler.fade_out_music()
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 1), 0.5)

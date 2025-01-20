@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=4 uid="uid://bcrxu04acy0or"]
+[gd_scene load_steps=242 format=4 uid="uid://bcrxu04acy0or"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_aweo5"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2v0rj"]
@@ -74,7 +74,7 @@ invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
-[sub_resource type="Resource" id="Resource_4h61m"]
+[sub_resource type="Resource" id="Resource_j0cau"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -97,7 +97,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_erge5"]
+[sub_resource type="Resource" id="Resource_nam51"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -165,6 +165,32 @@ speaker = ""
 dialogueEntry = ExtResource("22_ays86")
 savedItemIdx = 0
 savedTextIdx = 0
+
+[sub_resource type="Resource" id="Resource_p2v4c"]
+script = ExtResource("6_1p87e")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_43c8t")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["dragon1_survive"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm4cm"]
 atlas = ExtResource("21_q0kss")
@@ -1250,7 +1276,7 @@ stateSpritesDict = {
 "default": ExtResource("5_tspdh")
 }
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_4h61m")
+data = SubResource("Resource_j0cau")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("9_pfacr"), ExtResource("10_1ft2r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -1274,7 +1300,7 @@ displayName = "Dragon"
 saveName = "desert_east_dragon"
 facesRight = false
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_erge5")
+data = SubResource("Resource_nam51")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -1321,6 +1347,7 @@ saveName = "desert_east_shard"
 [node name="AffinityAttack" parent="TilemapRoot" instance=ExtResource("32_ifu68")]
 visible = false
 position = Vector2(1077, -496)
+storyRequirements = Array[ExtResource("6_1p87e")]([SubResource("Resource_p2v4c")])
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/AffinityAttack" index="0"]
 position = Vector2(15, 1)

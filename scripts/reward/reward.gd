@@ -7,28 +7,42 @@ const CUSTOM_LOSE_SCALE = 0.7
 @export var experience: int
 @export var gold: int
 @export var item: Item
+@export var itemCount: int = 1
 @export var fullyAttuneCombatantSaveName: String = ''
 
-func _init(i_exp = 0, i_gold = 0, i_item = null, i_fullAttuneCombatant = ''):
+func _init(
+	i_exp: int = 0,
+	i_gold: int = 0,
+	i_item: Item = null,
+	i_itemCount: int = 1,
+	i_fullAttuneCombatant: String = ''
+):
 	experience = i_exp
 	gold = i_gold
 	item = i_item
+	itemCount = i_itemCount
 	fullyAttuneCombatantSaveName = i_fullAttuneCombatant
 
 func copy() -> Reward:
-	var copiedReward: Reward = Reward.new()
-	copiedReward.experience = experience
-	copiedReward.gold = gold
-	copiedReward.item = item
-	copiedReward.fullyAttuneCombatantSaveName = fullyAttuneCombatantSaveName
-	return copiedReward
+	return Reward.new(experience, gold, item, itemCount, fullyAttuneCombatantSaveName)
 
 func scale_reward_by_level(initialLv: int, currentLv: int, customScale: float = 1.0) -> Reward:
 	var scaledReward: Reward = copy()
 	# c = current, i = initial
-	# scale factor = 1 + (0.004 * (c-i)^2) + (0.03 * (c-i))
-	var scaleFactor: float = 1.0 + (0.004 * pow(currentLv - initialLv, 2)) + (0.03 * (currentLv - initialLv))
-	scaledReward.experience = roundi(scaledReward.experience * scaleFactor * customScale)
-	scaledReward.gold = roundi(scaledReward.gold * scaleFactor * customScale)
-	# can't really scale the item reward!! or the full attunement!
+	# exp scale factor = 1 + (0.004 * (c-i)^2) + (0.03 * (c-i))
+	var expScaleFactor: float = 1.0 + (0.004 * pow(currentLv - initialLv, 2)) + (0.03 * (currentLv - initialLv))
+	# gold scale factor = 1 + (0.02 * (c-i))
+	var goldScaleFactor: float = 1.0 + (0.02 * (currentLv - initialLv))
+	scaledReward.experience = roundi(scaledReward.experience * expScaleFactor * customScale)
+	scaledReward.gold = roundi(scaledReward.gold * goldScaleFactor * customScale)
+	# no scaling on the item reward or the full attunement!
+	return scaledReward
+
+func scale_reward_by_modifiers(expScale: float, goldScale: float, itemCountScale: float) -> Reward:
+	var scaledReward: Reward = copy()
+	
+	scaledReward.experience *= expScale
+	scaledReward.gold *= goldScale
+	scaledReward.itemCount = roundi(scaledReward.itemCount * itemCountScale)
+	
 	return scaledReward

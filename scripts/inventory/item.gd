@@ -7,6 +7,7 @@ enum Type {
 	WEAPON = 2,
 	ARMOR = 3,
 	KEY_ITEM = 4,
+	CONSUMABLE = 5,
 	ALL = -1,
 }
 

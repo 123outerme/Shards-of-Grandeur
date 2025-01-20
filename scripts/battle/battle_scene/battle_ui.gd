@@ -278,6 +278,10 @@ func build_rewards() -> Array[Reward]:
 		return [null]
 	# if rewards have not been built yet: do this now
 	if len(battleController.state.rewards) == 0:
+		var itemsModifier: float = PlayerResources.playerInfo.get_battle_reward_item_count_modifier()
+		var expModifier: float = PlayerResources.playerInfo.get_battle_reward_exp_modifier()
+		var goldModifier: float = PlayerResources.playerInfo.get_battle_reward_gold_modifier()
+		
 		if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).useStaticRewards:
 			# if we have static rewards for this encounter:
 			if playerWins:
@@ -304,7 +308,9 @@ func build_rewards() -> Array[Reward]:
 						reward = battleController.enemyCombatant1.combatant.dropTable.weightedRewards[dropIdx].reward
 				if reward != null:
 					# if there was a reward, scale it up by the combatant's level
-					reward = reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+					reward = reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
+						.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
+					
 			# no matter what, at least one reward should be returned here, even if null:
 			rewards.append(reward)
 			reward = null
@@ -323,7 +329,8 @@ func build_rewards() -> Array[Reward]:
 							reward = battleController.enemyCombatant2.combatant.dropTable.weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
-						reward = reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+						reward = reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
+							.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
 				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
 				rewards.append(reward)
 			reward = null
@@ -342,7 +349,8 @@ func build_rewards() -> Array[Reward]:
 							reward = battleController.enemyCombatant3.combatant.dropTable.weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
-						reward = reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE)
+						reward = reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
+						.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
 				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
 				rewards.append(reward)
 		# if the win con is a Survive win con:
@@ -354,7 +362,9 @@ func build_rewards() -> Array[Reward]:
 				var totalDefeatResult: WinCon.TurnResult = totalDefeatWinCon.get_result(battleController.get_all_combatant_nodes(), battleController.state)
 				# if the player achieved Total Defeat victory: use those static rewards instead
 				if totalDefeatResult == WinCon.TurnResult.PLAYER_WIN:
-					rewards = surviveWinCon.staticTotalDefeatRewards.duplicate(true)
+					rewards = []
+					for reward: Reward in surviveWinCon.staticTotalDefeatRewards:
+						rewards.append(reward.copy())
 	return rewards
 
 func _on_stats_panel_node_back_pressed():
