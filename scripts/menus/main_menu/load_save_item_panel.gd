@@ -13,6 +13,7 @@ var isCopyFrom: bool = false
 @onready var saveSlotLabel: RichTextLabel = get_node('SaveSlotLabel')
 @onready var playerSaveName: RichTextLabel = get_node('PlayerSaveNameLabel')
 @onready var saveTimeLabel: RichTextLabel = get_node('SaveTimeLabel')
+@onready var versionLabel: RichTextLabel = get_node('VersionLabel')
 
 @onready var saveButton: Button = get_node('ButtonHBoxContainer/SaveBtnControl/SaveButton')
 
@@ -44,9 +45,12 @@ func load_save_item_panel():
 			location += ' (in Battle)'
 		saveTimeLabel.text = location + ' - ' + TextUtils.get_elapsed_time(playerInfo.playtimeSecs)
 		saveTimeLabel.visible = true
+		versionLabel.text = '[right]v' + playerInfo.version + '[/right]'
+		versionLabel.visible = true
 	else:
 		playerSaveName.text = '[i]Empty[/i]'
 		saveTimeLabel.visible = false
+		versionLabel.visible = false
 	update_buttons_visibility()
 
 func update_buttons_visibility():
