@@ -31,6 +31,9 @@ var lastSfxIdx: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if SceneLoader.audioHandler == null:
+		SceneLoader.audioHandler = self
+	
 	for idx in range(len(sfxStreamPlayers)):
 		sfxLoops.append(0)
 		openSfxPlayers.append(true)

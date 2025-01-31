@@ -66,6 +66,8 @@ var sprite_modulate: Color:
 			sprite.self_modulate = c
 
 func _ready() -> void:
+	if PlayerFinder.player == null:
+		PlayerFinder.player = self
 	PlayerResources.act_changed.connect(_on_act_changed)
 	SignalBus.overworld_rewards_given.connect(_overworld_rewards_given)
 
