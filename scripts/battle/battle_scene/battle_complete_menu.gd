@@ -27,8 +27,14 @@ func _ready():
 
 func load_battle_over_menu():
 	battleUI.update_hp_tags()
-	# there are rewards to claim if there is more than one reward, and it is not an array with only entry, and it's null
-	var hasRewards: bool = len(battleUI.battleController.state.rewards) > 0 and not (battleUI.battleController.state.rewards[0] == null and len(battleUI.battleController.state.rewards) == 1)
+	
+	# there are rewards to claim if there is at least one non-null reward entry
+	var hasRewards: bool = false
+	for reward: Reward in battleUI.battleController.state.rewards:
+		if reward != null:
+			hasRewards = true
+			break
+	
 	rewardsVBox.visible = hasRewards or playerWins
 	if playerWins and PlayerResources.playerInfo.encounter.customWinText != '':
 		battleUI.customWinText.customText = PlayerResources.playerInfo.encounter.customWinText

@@ -45,6 +45,7 @@ var shopInventory: Inventory = null
 @export_category("InvnetoryPanel - SFX and Misc")
 @export var buySellSfx: AudioStream
 
+@onready var scrollContainer: ScrollContainer = get_node('InventoryPanel/Panel/ScrollContainer')
 @onready var vboxViewport: VBoxContainer = get_node("InventoryPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var inventoryTitle: RichTextLabel = get_node("InventoryPanel/Panel/InventoryTitle")
 @onready var goldCount: RichTextLabel = get_node("InventoryPanel/Panel/GoldCountGroup/GoldCount")
@@ -358,6 +359,8 @@ func view_item_details(slot: InventorySlot):
 	itemDetailsPanel.load_item_details()
 
 func filter_by(type: Item.Type = Item.Type.ALL):
+	if selectedFilter != type: # if changed, reset scrollbar
+		scrollContainer.scroll_vertical = 0
 	selectedFilter = type
 	load_inventory_panel()
 	

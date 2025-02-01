@@ -224,7 +224,7 @@ func copy() -> MoveEffect:
 		targets,
 		selfStatChanges.copy() if selfStatChanges != null else null,
 		targetStatChanges.copy() if targetStatChanges != null else null,
-		statusEffect,
+		statusEffect.copy() if statusEffect != null else null,
 		selfGetsStatus,
 		statusChance,
 		rune.copy() if rune != null else null,

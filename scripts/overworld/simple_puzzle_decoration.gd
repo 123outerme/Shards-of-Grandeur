@@ -111,6 +111,10 @@ func _solving_anim_finished():
 	if queuedAnim != '':
 		play_animation(queuedAnim)
 	queuedAnim = ''
+	if animatedDecoration.anim_finished.is_connected(_solving_anim_finished):
+		animatedDecoration.anim_finished.disconnect(_solving_anim_finished)
 
 func play_solved_anim():
 	animatedDecoration.play_animation(solvedAnimation)
+	if animatedDecoration.anim_finished.is_connected(play_solved_anim):
+		animatedDecoration.anim_finished.disconnect(play_solved_anim)

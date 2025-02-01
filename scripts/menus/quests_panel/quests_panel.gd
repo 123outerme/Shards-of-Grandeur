@@ -34,6 +34,7 @@ var lastInteractedTracker: QuestTracker = null
 @onready var notCompletedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/NotCompletedButton")
 @onready var failedButton: Button = get_node("QuestsPanel/Panel/HBoxContainer/FailedButton")
 
+@onready var scrollContainer: ScrollContainer = get_node('QuestsPanel/Panel/ScrollContainer')
 @onready var vboxViewport: VBoxContainer = get_node("QuestsPanel/Panel/ScrollContainer/VBoxContainer")
 @onready var backButton: Button = get_node("QuestsPanel/Panel/BackButton")
 @onready var questDetailsPanel: QuestDetailsPanel = get_node("QuestDetailsPanel")
@@ -202,6 +203,8 @@ func update_filter_buttons():
 	failedButton.button_pressed = selectedFilter == QuestTracker.Status.FAILED
 
 func filter_by(type: QuestTracker.Status = QuestTracker.Status.ALL):
+	if type != selectedFilter: # if changed, reset scroll
+		scrollContainer.scroll_vertical = 0
 	selectedFilter = type
 	load_quests_panel(true)
 
