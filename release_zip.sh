@@ -18,7 +18,29 @@ cleanup_temp_dir() {
     rmdir release/temp
 }
 
-read -p "Release version string? Format X-Y-Z for ver X.Y.Z: " version
+#read -p "Release version string? Format X-Y-Z for ver X.Y.Z: " version
+
+# read the version config from the project.godot file
+versioncfg=$(cat ./project.godot | grep "config/version=")
+
+# parse the config to get the version string: erase up to the first instance of ="
+version=${versioncfg#*=\"}
+# erase the last instance of " and anything afterwards
+version=${version%\"*}
+
+# then replace . with -
+version=$(echo $version | sed y/./-/)
+
+echo "Creating release archives for game version ${version}."
+read -p "Is this OK? [Y/n/(c)hange] " answer
+
+if [[ $answer == "c" || $answer == "change" || $answer == "C" || $answer == "Change" ]]; then
+	read -p "What's the new release version, then? (Format X-Y-Z for ver X.Y.Z): " version
+	echo "Creating release archives for game version ${version}, then."
+elif [[ $answer != "" && $answer != "y" && $answer != "Y" ]]; then	
+	echo "Bailing out of creating release."
+	exit 1
+fi
 
 cleanup_temp_dir
 prepare_temp_dir
