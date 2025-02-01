@@ -10,6 +10,8 @@ signal being_hovered(index: int)
 @export var filledHoverOrbSprite: Texture2D = null
 @export var cannotSpendOrbSprite: Texture2D = null
 @export var cannotSpendHoverOrbSprite: Texture2D = null
+@export var unfilledCannotSpendOrbSprite: Texture2D = null
+@export var unfilledCanSpendOrbSprite: Texture2D = null
 @export var filledOrb: bool = false
 @export var cannotSpend: bool = false
 @export var readOnly: bool = true
@@ -56,7 +58,11 @@ func _on_mouse_entered() -> void:
 			else:
 				sprite.texture = filledHoverOrbSprite
 		else:
-			sprite.texture = unfilledHoverOrbSprite
+			if cannotSpend:
+				sprite.texture = unfilledCannotSpendOrbSprite
+			else:
+				sprite.texture = unfilledCanSpendOrbSprite 
+			#sprite.texture = unfilledHoverOrbSprite
 		being_hovered.emit(index)
 
 func _on_mouse_exited() -> void:

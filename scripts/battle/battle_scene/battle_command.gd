@@ -635,7 +635,7 @@ func get_command_results(user: Combatant) -> String:
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
 					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \
 				) and (true in commandResult.wasBoosted or commandResult.selfBoosted):
-			var atLeastOneTargetBoosted: bool = false
+			var atLeastOneTargetBoosted: bool = moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted
 			for targetIdx in range(len(targets)):
 				if commandResult.wasBoosted[targetIdx]:
 					atLeastOneTargetBoosted = true

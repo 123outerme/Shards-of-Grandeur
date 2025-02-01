@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6xiq4jwsbj6t"]
+[gd_scene load_steps=14 format=3 uid="uid://c6xiq4jwsbj6t"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/orb_unit_display.gd" id="1_tdomy"]
 [ext_resource type="Texture2D" uid="uid://c68jy58mnua0l" path="res://graphics/ui/orb_empty.png" id="2_f6t5h"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://blrp1t3gyu213" path="res://graphics/particles/gain_orb_particle_preset.tres" id="6_w6xi4"]
 [ext_resource type="Resource" uid="uid://q1javnuhtryq" path="res://graphics/particles/spend_orbs_particle_preset.tres" id="7_815bc"]
 [ext_resource type="Texture2D" uid="uid://ccbo4k64hjxf3" path="res://graphics/ui/orb_cannot_spend_selected.png" id="7_ktgrr"]
+[ext_resource type="Texture2D" uid="uid://cmrsasjib24q8" path="res://graphics/ui/orb_unfilled_hovered_cannot_spend.png" id="8_ohbna"]
+[ext_resource type="Texture2D" uid="uid://bl756g1cy0nv7" path="res://graphics/ui/orb_unfilled_hovered_can_spend.png" id="9_hepww"]
 [ext_resource type="Resource" uid="uid://cp5e8imtth8nv" path="res://graphics/particles/gain_orb_cannot_spend_particle_preset.tres" id="9_xmggr"]
 
 [node name="OrbUnitDisplay" type="Control" groups=["OrbUnit"]]
@@ -29,6 +31,8 @@ unfilledHoverOrbSprite = ExtResource("4_dboso")
 filledHoverOrbSprite = ExtResource("5_2taw1")
 cannotSpendOrbSprite = ExtResource("6_6ndal")
 cannotSpendHoverOrbSprite = ExtResource("7_ktgrr")
+unfilledCannotSpendOrbSprite = ExtResource("8_ohbna")
+unfilledCanSpendOrbSprite = ExtResource("9_hepww")
 gainParticlePreset = ExtResource("6_w6xi4")
 gainCannotSpendParticlePreset = ExtResource("9_xmggr")
 spendParticlePreset = ExtResource("7_815bc")
