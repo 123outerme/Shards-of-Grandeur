@@ -66,7 +66,7 @@ func use(_target: Combatant):
 		PlayerResources.playerInfo.activeBattleModifierItems.append(self)
 
 func get_use_message(_target: Combatant) -> String:
-	var useMessage: String = 'In the next roaming encounter, the following will be active:\n\n'
+	var useMsg: String = 'In the next roaming encounter, the following will be active:\n\n'
 	
 	var activeModifierItems: Array[BattleModifierItem] = PlayerResources.playerInfo.activeBattleModifierItems.duplicate(false)
 	if self not in activeModifierItems:
@@ -74,11 +74,11 @@ func get_use_message(_target: Combatant) -> String:
 	
 	for idx: int in range(len(activeModifierItems)):
 		var modifierItem: BattleModifierItem = activeModifierItems[idx]
-		useMessage += '* ' + modifierItem.itemName + ' (' + TextUtils.string_arr_to_string(modifierItem.get_effect_texts(true)) + ')'
+		useMsg += '* ' + modifierItem.itemName + ' (' + TextUtils.string_arr_to_string(modifierItem.get_effect_texts(true)) + ')'
 		if idx < len(activeModifierItems) - 1:
-			useMessage += '\n'
+			useMsg += '\n'
 	
-	return useMessage
+	return useMsg
 
 func get_effect_text(inBattle: bool = true) -> String:
 	var effectTexts: Array[String] = get_effect_texts()

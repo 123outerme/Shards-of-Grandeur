@@ -14,7 +14,8 @@ signal ok_pressed
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('Panel/MoveLearnAnimControl')
 
 @onready var hpDisplay: Control = get_node('Panel/HpDisplay')
-@onready var hpLabel: RichTextLabel = get_node('Panel/HpDisplay/Hp')
+@onready var hpLabel: RichTextLabel = get_node('Panel/HpDisplay/HpProgressBar/Hp')
+@onready var hpNameLabel: RichTextLabel = get_node('Panel/HpDisplay/HpNameLabel')
 @onready var hpBar: TextureProgressBar = get_node('Panel/HpDisplay/HpProgressBar')
 
 @onready var okButton: Button = get_node('Panel/OkButton')
@@ -40,15 +41,19 @@ func load_item_use_panel():
 				if item is Healing:
 					hpBar.max_value = target.stats.maxHp
 					hpBar.value = target.currentHp
+					hpNameLabel.text = '[center]' + target.disp_name() + "'s HP:[/center]"
 					hpBar.tint_progress = Combatant.get_hp_bar_color(target.currentHp, target.stats.maxHp)
+					update_hp_numbers_label(target.currentHp, target.stats.maxHp)
 					hpDisplay.visible = true
 					
 					var healedHp: int = min(target.stats.maxHp, target.currentHp + item.healBy)
 					var hpDrainTween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+					# wait for 0.5 second before starting the tween (animate a property doing nothing)
+					hpDrainTween.tween_property(hpBar, 'rotation_degrees', 0, 0.5)
+					# then: animate the HP going up
+					hpDrainTween.tween_callback(update_hp_numbers_label.bind(healedHp, target.stats.maxHp))
 					hpDrainTween.parallel().tween_property(hpBar, 'value', healedHp, 1)
 					hpDrainTween.parallel().tween_property(hpBar, 'tint_progress', Combatant.get_hp_bar_color(healedHp, target.stats.maxHp), 1)
-					hpLabel.text = '[center]' + TextUtils.num_to_comma_string(healedHp) \
-							+ ' / ' + TextUtils.num_to_comma_string(target.stats.maxHp) + '[/center]'
 			else:
 				var shard: Shard = item as Shard
 				var combatant: Combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
@@ -82,3 +87,7 @@ func _on_ok_button_pressed():
 	moveLearnAnimController.playAnimAfterLoad = false
 	moveLearnAnimController.clean_up_animation()
 	visible = false
+
+func update_hp_numbers_label(hp: int, maxHp: int) -> void:
+	hpLabel.text = '[center]' + TextUtils.num_to_comma_string(hp) \
+		+ ' / ' + TextUtils.num_to_comma_string(maxHp) + '[/center]'

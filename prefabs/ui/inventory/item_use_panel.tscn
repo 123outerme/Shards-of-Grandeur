@@ -83,6 +83,7 @@ theme_override_font_sizes/bold_font_size = 24
 text = "The item was used, and these were the effects. For example, using a Potion would heal the user by some amount of HP. Just making sure the user knows that this is the effect! Flavor might also be appropriate here, especially for things like using Key Items."
 
 [node name="MoveLearnAnimControl" parent="Panel" instance=ExtResource("5_ccrll")]
+visible = false
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.657
@@ -100,15 +101,32 @@ anchor_left = 0.5
 anchor_top = 0.658
 anchor_right = 0.5
 anchor_bottom = 0.658
-offset_left = -117.0
-offset_top = -20.0
-offset_right = 118.0
+offset_left = -223.0
+offset_top = -45.0
+offset_right = 223.0
 offset_bottom = 20.0
 
+[node name="HpNameLabel" type="RichTextLabel" parent="Panel/HpDisplay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Combatant Name Goes Here's HP:[/center]"
+
 [node name="HpProgressBar" type="TextureProgressBar" parent="Panel/HpDisplay"]
-layout_mode = 0
-offset_right = 235.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.5
+offset_top = -40.0
+offset_right = 117.5
+grow_horizontal = 2
+grow_vertical = 0
 max_value = 5250.0
 value = 5250.0
 nine_patch_stretch = true
@@ -120,7 +138,7 @@ texture_under = ExtResource("7_nh8hf")
 texture_progress = ExtResource("8_dlqgn")
 tint_progress = Color(0, 0.870588, 0, 1)
 
-[node name="Hp" type="RichTextLabel" parent="Panel/HpDisplay"]
+[node name="Hp" type="RichTextLabel" parent="Panel/HpDisplay/HpProgressBar"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 4
