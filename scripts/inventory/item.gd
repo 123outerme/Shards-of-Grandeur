@@ -23,6 +23,8 @@ static func type_to_string(t: Type) -> String:
 			return "Armor"
 		Type.KEY_ITEM:
 			return "Key Item"
+		Type.CONSUMABLE:
+			return "Consumable"
 		Type.ALL:
 			return "All"
 	return "Unknown"
