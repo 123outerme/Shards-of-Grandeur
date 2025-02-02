@@ -104,8 +104,10 @@ func auto_update_quests(recursiveCall: bool = false) -> bool:
 	var emitChanges: bool = false
 	for tracker in quests:
 		var step: QuestStep = tracker.get_current_step()
-		if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or tracker.get_step_status(step) == QuestTracker.Status.FAILED:
-			continue # skip this quest if already completed or failed
+		if len(step.turnInNames) == 0 or \
+				tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or \
+				tracker.get_step_status(step) == QuestTracker.Status.FAILED:
+			continue # skip this quest if an NPC turns this in, or it's already completed or failed
 		if step.type == QuestStep.Type.COLLECT_ITEM or step.type == QuestStep.Type.ACQUIRE_ITEM:
 			var count: int = 0
 			for slot in PlayerResources.inventory.inventorySlots:
@@ -142,7 +144,8 @@ func auto_turn_in_cutscene_steps(target: String) -> bool:
 	var hasTurnedIn: bool = false
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE:
+				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE \
+				and len(tracker.get_current_step().turnInNames) == 0:
 			turn_in_cur_step(tracker, true)
 			hasTurnedIn = true
 	return hasTurnedIn

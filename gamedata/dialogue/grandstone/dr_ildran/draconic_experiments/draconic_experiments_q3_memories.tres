@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://26kwn6prvphi"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_q74pi"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_1y43o"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5bcwt"]
+[ext_resource type="Resource" uid="uid://ceuhhi3o66844" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q3_memories_no.tres" id="3_1eyiq"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_71g2v"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_b1gm6"]
+[ext_resource type="Resource" uid="uid://catag46y5cwyv" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q3_memories_yes.tres" id="5_6onjj"]
+
+[sub_resource type="Resource" id="Resource_cm421"]
+script = ExtResource("2_5bcwt")
+choiceBtn = "No Way."
+leadsTo = ExtResource("3_1eyiq")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_71g2v")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_nsogk"]
+script = ExtResource("2_5bcwt")
+choiceBtn = "Okay, Fine."
+leadsTo = ExtResource("5_6onjj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_71g2v")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Draconic Experiments#The Dragon Shard#"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_3bvcf"]
+script = ExtResource("1_q74pi")
+lines = Array[String](["There's an experiment I wish to run, @. The Dragon is a fire-breathing destroyer, so it cannot help us rebuild.", "However, I have theorized that each Shard stores some memory of the creature inside. I wish to test this!", "Hand over your Dragon Shard, and we may learn powerful secrets from it. I'm pretty sure it won't be consumed! "])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5bcwt")]([SubResource("Resource_cm421"), SubResource("Resource_nsogk")])
+
+[resource]
+script = ExtResource("3_b1gm6")
+entryId = ""
+items = Array[ExtResource("1_q74pi")]([SubResource("Resource_3bvcf")])
+ordStoryRequirements = Array[ExtResource("2_1y43o")]([])
+closesDialogue = false
+fullHealsPlayer = false

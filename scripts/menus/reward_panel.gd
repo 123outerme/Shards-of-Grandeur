@@ -15,8 +15,10 @@ signal show_item_details(item)
 
 func load_reward_panel() -> void:
 	if reward != null:
-		expLabel.text = '[right]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/right]'
 		goldGroup.visible = true
+		expLabel.visible = true
+		noRewardsLabel.visible = false
+		expLabel.text = '[right]' + TextUtils.num_to_comma_string(reward.experience) + ' Exp.[/right]'
 		goldLabel.text = TextUtils.num_to_comma_string(reward.gold)
 		if reward.item != null:
 			itemGroup.visible = true
@@ -24,7 +26,6 @@ func load_reward_panel() -> void:
 			itemName.text = reward.item.itemName + ' x' + TextUtils.num_to_comma_string(reward.itemCount)
 		else:
 			itemGroup.visible = false
-		noRewardsLabel.visible = false
 	else:
 		noRewardsLabel.visible = true
 		expLabel.visible = false

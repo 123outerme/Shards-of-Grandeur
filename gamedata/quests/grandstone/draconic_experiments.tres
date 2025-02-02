@@ -1,17 +1,22 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://jk5ewwx2efh"]
+[gd_resource type="Resource" script_class="Quest" load_steps=13 format=3 uid="uid://jk5ewwx2efh"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_oi6oo"]
 [ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_u3dfj"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qie4i"]
+[ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="4_ffvr7"]
+[ext_resource type="Resource" uid="uid://26kwn6prvphi" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q3_memories.tres" id="4_gogce"]
+[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="5_dxkxn"]
+[ext_resource type="Resource" uid="uid://catag46y5cwyv" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q3_memories_yes.tres" id="5_l3bj0"]
+[ext_resource type="Resource" uid="uid://b4opg4iqtapvk" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_expirements_q4_turnin.tres" id="7_lqpm5"]
 
 [sub_resource type="Resource" id="Resource_8q5t2"]
 script = ExtResource("2_u3dfj")
 name = "Standstill's Flames"
-description = ""
+description = "Standstill is burning... that's a little more important right now!"
 locations = Array[int]([20])
 type = 3
 count = 1
-objectiveName = ""
+objectiveName = "standstill_defeated_helia"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
@@ -22,7 +27,7 @@ inProgressDialogue = Array[ExtResource("3_qie4i")]([])
 [sub_resource type="Resource" id="Resource_6uslj"]
 script = ExtResource("2_u3dfj")
 name = "The Dragon Shard"
-description = ""
+description = "Hand over the Dragon Shard if you still have it, and trust Dr. Ildran won't use it up..."
 locations = Array[int]([10])
 type = 1
 count = 1
@@ -31,28 +36,37 @@ turnInNames = Array[String](["dr_ildran_gs_cracking"])
 displayObjName = "Dragon Shard"
 displayTurnInName = "Dr. Ildran"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_qie4i")]([])
+turnInDialogue = Array[ExtResource("3_qie4i")]([ExtResource("4_gogce")])
 inProgressDialogue = Array[ExtResource("3_qie4i")]([])
+
+[sub_resource type="Resource" id="Resource_pnj0h"]
+script = ExtResource("5_dxkxn")
+experience = 300
+gold = 0
+item = ExtResource("4_ffvr7")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_01hlp"]
 script = ExtResource("2_u3dfj")
-name = "???"
-description = "???"
+name = "A Dragon's Memories"
+description = "Dr. Ildran has somehow unlocked memories inside the Dragon Shard..."
+reward = SubResource("Resource_pnj0h")
 locations = Array[int]([])
-type = 0
+type = 3
 count = 1
-objectiveName = "???"
-turnInNames = Array[String]([])
+objectiveName = "draconic_experiment_memory"
+turnInNames = Array[String](["dr_ildran_gs_cracking"])
 displayObjName = ""
 displayTurnInName = ""
-customStatusStr = "???"
-turnInDialogue = Array[ExtResource("3_qie4i")]([])
-inProgressDialogue = Array[ExtResource("3_qie4i")]([])
+customStatusStr = "See Its Memories!"
+turnInDialogue = Array[ExtResource("3_qie4i")]([ExtResource("7_lqpm5")])
+inProgressDialogue = Array[ExtResource("3_qie4i")]([ExtResource("5_l3bj0")])
 
 [resource]
 script = ExtResource("1_oi6oo")
 questName = "Draconic Experiments"
-description = ""
+description = "Dr. Ildran wants to borrow... YES, borrow, your Dragon Shard. Help him perform some research with it!"
 steps = Array[ExtResource("2_u3dfj")]([SubResource("Resource_8q5t2"), SubResource("Resource_6uslj"), SubResource("Resource_01hlp")])
 isMainQuest = false
 advanceActAfterComplete = false

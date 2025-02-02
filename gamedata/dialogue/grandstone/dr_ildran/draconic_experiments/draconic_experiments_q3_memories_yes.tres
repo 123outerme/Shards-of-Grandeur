@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://catag46y5cwyv"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7d8vb"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_sb3qg"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tb1ac"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_dqxek"]
+[ext_resource type="Resource" uid="uid://butnpes74yiyd" path="res://gamedata/cutscenes/grandstone/draconic_experiment_memories.tres" id="4_r0f1c"]
+
+[sub_resource type="Resource" id="Resource_adkke"]
+script = ExtResource("1_7d8vb")
+lines = Array[String](["Thank you, @, you will be glad you trusted me. Here, put your hand on the Shard too, as I hold it out.", "I now have to focus on the Shard, searching for...", "Its memory...!"])
+minShowSecs = Array[float]([0.0, 1.0, 0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_tb1ac")]([])
+
+[resource]
+script = ExtResource("3_dqxek")
+entryId = ""
+items = Array[ExtResource("1_7d8vb")]([SubResource("Resource_adkke")])
+ordStoryRequirements = Array[ExtResource("2_sb3qg")]([])
+startsCutscene = ExtResource("4_r0f1c")
+closesDialogue = true
+fullHealsPlayer = false

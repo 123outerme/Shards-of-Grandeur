@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://ceuhhi3o66844"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_b2sb5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2pmci"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_8hj6r"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ofupq"]
+
+[sub_resource type="Resource" id="Resource_lk6q6"]
+script = ExtResource("1_b2sb5")
+lines = Array[String](["I have every right to command you to turn over the Shard for the good of Grandstone.", "I am restraining myself, so if you wish to change your mind, let know."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_2pmci")]([])
+
+[resource]
+script = ExtResource("3_ofupq")
+entryId = ""
+items = Array[ExtResource("1_b2sb5")]([SubResource("Resource_lk6q6")])
+ordStoryRequirements = Array[ExtResource("2_8hj6r")]([])
+closesDialogue = false
+fullHealsPlayer = false

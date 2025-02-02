@@ -450,7 +450,7 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 	for dialogue in dialogueEntries:
 		if dialogue != null and dialogue.can_use_dialogue() and not dialogue in dialogueItems:
 			dialogueItems.append(dialogue)
-	return dialogueItems
+	return dialogueItems.filter(_filter_out_null)
 
 func is_dialogue_item_last() -> bool:
 	if len(data.dialogueItems) == 0:
@@ -492,19 +492,27 @@ func update_dialogues_in_between():
 				if saveName in questTracker.get_prev_step().turnInNames \
 						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
 					for dialogue in curStep.inProgressDialogue:
+						if dialogue == null:
+							continue
 						if dialogue.can_use_dialogue():
 							add_dialogue_entry_in_dialogue(dialogue, false)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
 			for dialogue in s.turnInDialogue:
+				if dialogue == null:
+					continue
 				if dialogue.can_use_dialogue():
 					add_dialogue_entry_in_dialogue(dialogue, false)
 	# TODO test end
 	for dialogue in dialogueEntries:
+		if dialogue == null:
+			continue
 		if not dialogue in data.dialogueItems and dialogue.can_use_dialogue():
 			add_dialogue_entry_in_dialogue(dialogue, false)
 
 func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool = true) -> bool:
+	if dialogueEntry == null:
+		return false
 	if dialogueEntry.can_use_dialogue():
 		var index: int = data.dialogueItems.find(dialogueEntry, 0)
 		if index != -1: # reuse entry if it exists to support going back in the dialogue tree
@@ -609,3 +617,6 @@ func _story_reqs_updated():
 	var setFollower: bool = PlayerResources.playerInfo.has_active_follower(followerId)
 	if setFollower != data.followingPlayer and visible:
 		set_following_player(setFollower)
+
+func _filter_out_null(v) -> bool:
+	return v != null

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b4opg4iqtapvk"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_1yebm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4h5v6"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_8yatf"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_rgsqc"]
+[ext_resource type="Resource" uid="uid://bu15nyod54y6b" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_complete.tres" id="4_1kagw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_a6bli"]
+
+[sub_resource type="Resource" id="Resource_6wpuu"]
+script = ExtResource("2_4h5v6")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_rgsqc")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_37s8q"]
+script = ExtResource("2_4h5v6")
+choiceBtn = "Thanks."
+leadsTo = ExtResource("4_1kagw")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_rgsqc")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Draconic Experiments#A Dragon's Memories"
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_1kn7c"]
+script = ExtResource("1_1yebm")
+lines = Array[String](["That was well worth it, @. I think we got some valuable information from the Dragon.", "It didn't seem to use up the Shard, so here you go."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_4h5v6")]([SubResource("Resource_6wpuu"), SubResource("Resource_37s8q")])
+
+[resource]
+script = ExtResource("4_a6bli")
+entryId = ""
+items = Array[ExtResource("1_1yebm")]([SubResource("Resource_1kn7c")])
+ordStoryRequirements = Array[ExtResource("3_8yatf")]([])
+closesDialogue = false
+fullHealsPlayer = false

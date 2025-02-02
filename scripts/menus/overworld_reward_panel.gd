@@ -10,6 +10,8 @@ var rewardPanelScene = load('res://prefabs/ui/reward_panel.tscn')
 
 @onready var rewardPanelTitle: RichTextLabel = get_node('Panel/RewardPanelTitle')
 @onready var rewardsVboxContainer: VBoxContainer = get_node('Panel/VBoxContainer/ScrollContainer/VBoxContainer')
+
+@onready var fullAttuneLabel: RichTextLabel = get_node('Panel/VBoxContainer/FullAttuneLabel')
 @onready var okBtn: Button = get_node('Panel/OkButton')
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node('ItemDetailsPanel')
 
@@ -31,6 +33,7 @@ func load_overworld_reward_panel() -> void:
 	for child: Node in rewardsVboxContainer.get_children():
 		child.queue_free()
 	
+	var fullyAttunedCombatantNames: Array[String] = []
 	var lastPanel: RewardPanel = null
 	for reward: Reward in rewards:
 		var instantiatedPanel: RewardPanel = rewardPanelScene.instantiate()
@@ -40,6 +43,17 @@ func load_overworld_reward_panel() -> void:
 		instantiatedPanel.load_reward_panel.call_deferred()
 		connect_rewards_panels_focus.call_deferred(instantiatedPanel, lastPanel)
 		lastPanel = instantiatedPanel
+		if reward.fullyAttuneCombatantSaveName != '':
+			var combatant: Combatant = Combatant.load_combatant_resource(reward.fullyAttuneCombatantSaveName)
+			if combatant != null:
+				fullyAttunedCombatantNames.append(combatant.stats.displayName)
+	
+	if len(fullyAttunedCombatantNames) > 0:
+		fullAttuneLabel.text = '[center]You have become fully Attuned with ' \
+				+ TextUtils.string_arr_to_string(fullyAttunedCombatantNames) + '![/center]'
+		fullAttuneLabel.visible = true
+	else:
+		fullAttuneLabel.visible = false
 	
 	await get_tree().process_frame # wait for the final panel to be loaded in
 	if lastPanel != null:
