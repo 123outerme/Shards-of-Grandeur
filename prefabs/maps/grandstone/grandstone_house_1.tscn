@@ -1,8 +1,18 @@
-[gd_scene load_steps=7 format=4 uid="uid://cd350k0ybauc7"]
+[gd_scene load_steps=11 format=4 uid="uid://cd350k0ybauc7"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_26gac"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_738se"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="3_5k412"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_ejd25"]
+[ext_resource type="Resource" uid="uid://cv8rwiwboakb1" path="res://gamedata/dialogue/interactables/flavor_objs/grandstone/solius_house_bookcase.tres" id="4_3gig6"]
+[ext_resource type="Script" path="res://scripts/overworld/interactable_dialogue.gd" id="5_chs0e"]
+
+[sub_resource type="Resource" id="Resource_j1eb7"]
+script = ExtResource("5_chs0e")
+speaker = "@"
+dialogueEntry = ExtResource("4_3gig6")
+savedItemIdx = 0
+savedTextIdx = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -61,6 +71,14 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_738se")
 
+[node name="InteractableDecoration" parent="TilemapRoot" instance=ExtResource("3_5k412")]
+position = Vector2(-8, -136)
+saveName = "solius_bookcase"
+dialogue = SubResource("Resource_j1eb7")
+
+[node name="CollisionShape2D" parent="TilemapRoot/InteractableDecoration/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -76,3 +94,6 @@ navigation_layers = 4
 position = Vector2(-9, 18)
 mapName = "grandstone"
 mapPos = Vector2(72, 182)
+
+[editable path="TilemapRoot/InteractableDecoration"]
+[editable path="TilemapRoot/InteractableDecoration/AnimatedDecoration"]

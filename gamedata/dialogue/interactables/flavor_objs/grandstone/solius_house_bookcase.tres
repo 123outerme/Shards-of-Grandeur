@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cv8rwiwboakb1"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_w2d1s"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_b1mfc"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_gj243"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kxfc0"]
+
+[sub_resource type="Resource" id="Resource_piip1"]
+script = ExtResource("1_w2d1s")
+lines = Array[String](["Here's a book, \"Joining Might and Magic\". Seems to be about training both the body and the mind."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gj243")]([])
+
+[resource]
+script = ExtResource("3_kxfc0")
+entryId = ""
+items = Array[ExtResource("1_w2d1s")]([SubResource("Resource_piip1")])
+ordStoryRequirements = Array[ExtResource("2_b1mfc")]([])
+closesDialogue = false
+fullHealsPlayer = false

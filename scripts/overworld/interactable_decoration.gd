@@ -2,6 +2,7 @@
 extends Interactable
 class_name InteractableDecoration
 
+## if non-empty, plays the specified animation of the nested AnimatedDecoration's sprite when interacted with
 @export var interactAnim: String = ''
 
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
