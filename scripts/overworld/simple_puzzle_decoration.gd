@@ -24,6 +24,9 @@ class_name SimplePuzzleDecoration
 ## if true, the animation is updated to `solvedAnimation` immediately after finishing the `solvingAnimation`. By setting to false, you must manually update the animation to `solved` later in the solving dialogue sequence, if required
 @export var updateAnimOnSolve: bool = true
 
+## if true, the AnimatedDecoration nested in this object has its animation updates disabled (this object will handle it completely)
+@export var disableAnimatedDecorationUpdates: bool = true
+
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
@@ -33,6 +36,7 @@ var queuedAnim: String = ''
 
 func _ready():
 	super._ready()
+	animatedDecoration.disableAnimUpdateOnLoad = disableAnimatedDecorationUpdates
 	show_interact_sprite(false)
 	PlayerResources.story_requirements_updated.connect(_puzzle_reqs_updated)
 	_puzzle_reqs_updated(false)

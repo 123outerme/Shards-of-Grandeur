@@ -27,6 +27,9 @@ class_name StatePuzzleDecoration
 ## if true, the animation is updated to the current state's `stateAnimations` entry animation immediately after finishing the `stateTransitionAnimations` entry animation. By setting to false, you must manually update the animation later in the solving dialogue sequence, if required
 @export var updateAnimOnTransitionAnimEnd: bool = true
 
+## if true, the AnimatedDecoration nested in this object has its animation updates disabled (this object will handle it completely)
+@export var disableAnimatedDecorationUpdates: bool = true
+
 @onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
@@ -45,6 +48,7 @@ func _ready():
 		return
 	
 	super._ready()
+	animatedDecoration.disableAnimUpdateOnLoad = disableAnimatedDecorationUpdates
 	show_interact_sprite(false)
 	PlayerResources.story_requirements_updated.connect(_puzzle_reqs_updated)
 	_puzzle_reqs_updated(false)

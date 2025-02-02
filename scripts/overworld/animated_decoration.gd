@@ -21,10 +21,14 @@ var invisible: bool:
 
 var currentAnim: String = ''
 
+var disableAnimUpdateOnLoad: bool = false
+
 func _ready():
 	super._ready()
 
-func load_decoration():
+func load_decoration() -> void:
+	if disableAnimUpdateOnLoad:
+		return
 	if currentAnim == '':
 		currentAnim = animName
 	play_animation(currentAnim)
