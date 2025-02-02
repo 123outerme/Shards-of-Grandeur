@@ -3,6 +3,8 @@ class_name TestCamera
 
 const speed = 80
 
+var fullscreenTimeout: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if PlayerFinder.player != null:
@@ -12,6 +14,8 @@ func _ready():
 func _physics_process(delta):
 	var velocity: Vector2 = eight_dir_movement(Input.get_vector("move_left", "move_right", "move_up", "move_down")) * speed
 	position += velocity * delta
+	if fullscreenTimeout > 0:
+		fullscreenTimeout -= delta
 
 func eight_dir_movement(input: Vector2) -> Vector2:
 	var output: Vector2 = Vector2.ZERO
@@ -31,3 +35,12 @@ func eight_dir_movement(input: Vector2) -> Vector2:
 		output.y = -1
 	
 	return output.normalized()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if fullscreenTimeout <= 0 and event is InputEventKey and event.keycode == KEY_F11:
+		fullscreenTimeout = 1
+		SettingsHandler.gameSettings.fullscreen = not SettingsHandler.gameSettings.fullscreen
+		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
+	if event is InputEventKey and event.keycode == KEY_ESCAPE:
+		SettingsHandler.gameSettings.fullscreen = false
+		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
