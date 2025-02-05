@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cdhi2ngwtq42b"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_oxwlb"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jwbex"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_pc6aa"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rabpb"]
+
+[sub_resource type="Resource" id="Resource_0fxh4"]
+script = ExtResource("1_oxwlb")
+lines = Array[String](["Marvelous. You're sounding more like a mighty fine deckhand!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_jwbex")]([])
+
+[resource]
+script = ExtResource("3_rabpb")
+entryId = ""
+items = Array[ExtResource("1_oxwlb")]([SubResource("Resource_0fxh4")])
+ordStoryRequirements = Array[ExtResource("2_pc6aa")]([])
+closesDialogue = true
+fullHealsPlayer = false
