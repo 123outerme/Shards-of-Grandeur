@@ -31,7 +31,10 @@ func _unhandled_input(event):
 
 func initial_focus():
 	if movePoolPanel.firstMovePanel != null:
-		movePoolPanel.firstMovePanel.learnButton.grab_focus()
+		if movePoolPanel.firstMovePanel.learnButton.visible:
+			movePoolPanel.firstMovePanel.learnButton.grab_focus()
+		else:
+			movePoolPanel.firstMovePanel.detailsButton.grab_focus()
 	else:
 		backButton.grab_focus()
 
