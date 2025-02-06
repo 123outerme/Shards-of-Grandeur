@@ -42,6 +42,8 @@ func load_all_commands():
 	if Combatant.are_surge_moves_allowed():
 		var canSurgeAMove: bool = false
 		for move: Move in commandingCombatant.combatant.stats.moves:
+			if move == null:
+				continue
 			if commandingCombatant.combatant.orbs >= (move.surgeEffect.orbChange * -1):
 				canSurgeAMove = true
 				break

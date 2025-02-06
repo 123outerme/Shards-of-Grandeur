@@ -53,6 +53,31 @@ func load_moves():
 		else:
 			moveBtn.focus_neighbor_right = moveBtnFocusNeighbor
 		#'''
+	
+	var moveBtns: Array[BaseButton] = []
+	var moveInfoBtns: Array[BaseButton] = []
+	for i in range(Stats.MAX_MOVES): # for all 4 buttons
+		moveBtns.append(get_node('MoveButton' + String.num(i + 1)))
+		moveInfoBtns.append(get_node('Move' + String.num(i + 1) + 'InfoButton'))
+	
+	# if both leftwards help buttons are visible: connect them together
+	if moveInfoBtns[0].visible and moveInfoBtns[2].visible:
+		moveInfoBtns[0].focus_neighbor_bottom = moveInfoBtns[0].get_path_to(moveInfoBtns[2])
+		moveInfoBtns[2].focus_neighbor_top = moveInfoBtns[2].get_path_to(moveInfoBtns[0])
+	else:
+		# if both leftwards buttons are not visible, connect them to the corresponding move button below/above
+		moveInfoBtns[0].focus_neighbor_bottom = moveInfoBtns[0].get_path_to(moveBtns[2])
+		moveInfoBtns[2].focus_neighbor_top = moveInfoBtns[2].get_path_to(moveBtns[0])
+	
+	# if both rightwards help buttons are visible: connect them together
+	if moveInfoBtns[1].visible and moveInfoBtns[3].visible:
+		moveInfoBtns[1].focus_neighbor_bottom = moveInfoBtns[1].get_path_to(moveInfoBtns[3])
+		moveInfoBtns[3].focus_neighbor_top = moveInfoBtns[3].get_path_to(moveInfoBtns[1])
+	else:
+		# if both rightwards buttons are not visible, connect them to the corresponding move button below/above
+		moveInfoBtns[1].focus_neighbor_bottom = moveInfoBtns[1].get_path_to(moveBtns[3])
+		moveInfoBtns[3].focus_neighbor_top = moveInfoBtns[3].get_path_to(moveBtns[1])
+	
 	if not setFocus:
 		backButton.grab_focus()
 
