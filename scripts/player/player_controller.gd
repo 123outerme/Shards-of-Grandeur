@@ -87,9 +87,13 @@ func _unhandled_input(event):
 		if inCutscene:
 			# if awaiting player, don't even check if the pause panel can be opened, just stop here
 			if not SceneLoader.cutscenePlayer.awaitingPlayer:
-				SceneLoader.cutscenePlayer.toggle_pause_cutscene()
-				cam.toggle_cutscene_paused_shade()
-				cutscenePaused = cam.cutscenePaused
+				if pausePanel.visible:
+					#animatedBgPanel.visible = false
+					pausePanel.toggle_pause()
+				else:
+					SceneLoader.cutscenePlayer.toggle_pause_cutscene()
+					cam.toggle_cutscene_paused_shade()
+					cutscenePaused = cam.cutscenePaused
 		elif not statsPanel.visible and not inventoryPanel.visible and not questsPanel.visible:
 			animatedBgPanel.visible = true
 			pausePanel.toggle_pause()

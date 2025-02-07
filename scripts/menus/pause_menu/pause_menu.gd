@@ -18,6 +18,8 @@ signal resume_game
 
 const alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
+var settingsOnly: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -46,6 +48,8 @@ func pause_game():
 	visible = true
 	initial_focus()
 	SceneLoader.pause_autonomous_movers()
+	if settingsOnly:
+		_on_settings_button_pressed()
 
 func initial_focus() -> void:
 	resumeButton.grab_focus()
@@ -82,7 +86,10 @@ func _on_quit_button_pressed():
 
 func _on_settings_menu_back_pressed():
 	pauseMenuPage.visible = true
-	settingsButton.grab_focus()
+	if settingsOnly:
+		_on_resume_button_pressed()
+	else:
+		settingsButton.grab_focus()
 
 func _on_codex_menu_back_pressed():
 	pauseMenuPage.visible = true

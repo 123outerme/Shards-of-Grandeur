@@ -176,16 +176,35 @@ alignment = 1
 [node name="ResumeButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SkipButton")
+focus_neighbor_bottom = NodePath(".")
 theme_override_styles/hover = ExtResource("11_f58rg")
 theme_override_styles/normal = ExtResource("10_ofshw")
 text = "Resume"
 
 [node name="SkipButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ResumeButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath(".")
 theme_override_styles/hover = ExtResource("11_f58rg")
 theme_override_styles/normal = ExtResource("10_ofshw")
-text = "Skip Cutscene"
+text = "Skip"
+
+[node name="SettingsButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkipButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_styles/hover = ExtResource("11_f58rg")
+theme_override_styles/normal = ExtResource("10_ofshw")
+text = "Settings"
 
 [node name="PlayerEventCollider" type="Area2D" parent="."]
 collision_layer = 2
@@ -254,6 +273,7 @@ offset_bottom = 360.0
 
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SettingsButton" to="Camera" method="_on_cutscene_settings_button_pressed"]
 [connection signal="console_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_console_pressed"]
 [connection signal="inventory_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_inventory_pressed"]
 [connection signal="pause_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_pause_pressed"]

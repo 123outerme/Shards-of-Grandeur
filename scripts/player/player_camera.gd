@@ -22,6 +22,7 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 
 @onready var cutscenePauseButtons: HBoxContainer = get_node('Shade/ShadeLabel/CutscenePauseButtons')
 @onready var resumeButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/ResumeButton')
+@onready var cutsceneSettingsButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/SettingsButton')
 
 var cutscenePaused: bool = false
 
@@ -236,5 +237,17 @@ func _on_skip_button_pressed():
 	set_alert_panels_lifetime_pause(cutscenePaused)
 	SceneLoader.cutscenePlayer.skip_cutscene()
 
+func _on_cutscene_settings_button_pressed() -> void:
+	player.pausePanel.settingsOnly = true
+	player.pausePanel.resume_game.connect(_cutscene_settings_back)
+	player.animatedBgPanel.visible = true
+	player.pausePanel.pause_game()
+
 func _settings_changed():
 	zoom = Vector2(SettingsHandler.gameSettings.playerCamZoom, SettingsHandler.gameSettings.playerCamZoom)
+
+func _cutscene_settings_back() -> void:
+	cutsceneSettingsButton.grab_focus()
+	player.pausePanel.settingsOnly = false
+	if player.pausePanel.resume_game.is_connected(_cutscene_settings_back):
+		player.pausePanel.resume_game.disconnect(_cutscene_settings_back)
