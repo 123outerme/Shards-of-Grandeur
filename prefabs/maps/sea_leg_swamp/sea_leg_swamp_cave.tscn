@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=4 uid="uid://83b1hyn2uhjy"]
+[gd_scene load_steps=134 format=4 uid="uid://83b1hyn2uhjy"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_u0d82"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
@@ -42,7 +42,6 @@
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="27_skyrd"]
 [ext_resource type="Resource" uid="uid://bd6gwmbcvsaby" path="res://gamedata/cutscenes/sea_leg_swamp/etreus1_defeated.tres" id="27_uu5eo"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="28_aguj4"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_iedog"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="29_ady6b"]
 [ext_resource type="Resource" uid="uid://b2rhsj1klgelg" path="res://gamedata/cutscenes/sea_leg_swamp/east_exit_guarded.tres" id="31_u6cg4"]
 [ext_resource type="Resource" uid="uid://f1d8hssfanlk" path="res://gamedata/cutscenes/sea_leg_swamp/north_exit_guarded.tres" id="32_apshv"]
@@ -832,29 +831,6 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_2ou5y"]
-script = ExtResource("4_klaa4")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(306, -31)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_u0d82")
 metadata/_edit_horizontal_guides_ = [-21.0, -130.0, -210.0, -144.0, -138.0, -31.0]
@@ -1360,24 +1336,6 @@ modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("28_iedog")]
-visible = false
-triggerOrNPC = NodePath("../CaveBlockBottomCutsceneTrigger")
-cutscene = ExtResource("43_45kws")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(306, -31)
-facingLeft = true
-data = SubResource("Resource_2ou5y")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.0353738
-flip_h = true
-
-[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
-
 [editable path="TilemapRoot/Soldier1"]
 [editable path="TilemapRoot/Soldier2"]
 [editable path="TilemapRoot/Soldier3"]
@@ -1408,5 +1366,3 @@ disabled = true
 [editable path="CaveBlockBottomCutsceneTrigger"]
 [editable path="CameraHoldZone"]
 [editable path="EnemyDeaggroZone"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

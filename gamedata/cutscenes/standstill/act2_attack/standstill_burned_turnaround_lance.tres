@@ -1,0 +1,141 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://c1gnx8u0w4s76"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_hotr2"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_6dch5"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_tsh0p"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_gg77l"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_hwbsa"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_wde3k"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_3qqy6"]
+[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_1vbtx"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_t1vt6"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_x5gpj"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_tknwn"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="12_70w8k"]
+
+[sub_resource type="Resource" id="Resource_xkdu8"]
+script = ExtResource("6_3qqy6")
+speaker = "@"
+texts = Array[String](["Lance wanted to speak to me, I should say goodbye before I leave for Giant Steppes."])
+
+[sub_resource type="Resource" id="Resource_8vl45"]
+script = ExtResource("1_hotr2")
+frameLength = 0.1
+annotation = "The player says they need to go talk to Lance"
+actorTweens = Array[ExtResource("5_wde3k")]([])
+actorAnims = Array[ExtResource("3_gg77l")]([])
+actorAnimSets = Array[ExtResource("2_tsh0p")]([])
+actorFaceTargets = Array[ExtResource("4_hwbsa")]([])
+dialogues = Array[ExtResource("6_3qqy6")]([SubResource("Resource_xkdu8")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_nulb0"]
+script = ExtResource("7_1vbtx")
+value = Vector2(298, -72)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+
+[sub_resource type="Resource" id="Resource_6g8vd"]
+script = ExtResource("1_hotr2")
+frameLength = 1.5
+annotation = "walk the player back into Standstill"
+actorTweens = Array[ExtResource("5_wde3k")]([SubResource("Resource_nulb0")])
+actorAnims = Array[ExtResource("3_gg77l")]([ExtResource("7_t1vt6")])
+actorAnimSets = Array[ExtResource("2_tsh0p")]([])
+actorFaceTargets = Array[ExtResource("4_hwbsa")]([])
+dialogues = Array[ExtResource("6_3qqy6")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_p6ebf"]
+script = ExtResource("1_hotr2")
+frameLength = 0.1
+annotation = "make the player stand"
+actorTweens = Array[ExtResource("5_wde3k")]([])
+actorAnims = Array[ExtResource("3_gg77l")]([ExtResource("9_x5gpj")])
+actorAnimSets = Array[ExtResource("2_tsh0p")]([])
+actorFaceTargets = Array[ExtResource("4_hwbsa")]([])
+dialogues = Array[ExtResource("6_3qqy6")]([])
+endTextBoxPauses = false
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_ch71a"]
+script = ExtResource("1_hotr2")
+frameLength = 0.1
+annotation = "wait for dialogue to be closed"
+actorTweens = Array[ExtResource("5_wde3k")]([])
+actorAnims = Array[ExtResource("3_gg77l")]([])
+actorAnimSets = Array[ExtResource("2_tsh0p")]([])
+actorFaceTargets = Array[ExtResource("4_hwbsa")]([])
+dialogues = Array[ExtResource("6_3qqy6")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_66psg"]
+script = ExtResource("12_70w8k")
+minAct = 2
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["standstill_defeated_helia"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_tknwn")]([])
+invalidAfterCompletingQuests = Array[String](["Flames of Combat#They Must Go On"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_tknwn")]([])
+
+[resource]
+script = ExtResource("2_6dch5")
+cutsceneFrames = Array[ExtResource("1_hotr2")]([SubResource("Resource_8vl45"), SubResource("Resource_6g8vd"), SubResource("Resource_p6ebf"), SubResource("Resource_ch71a")])
+saveName = ""
+storyRequirements = SubResource("Resource_66psg")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""
