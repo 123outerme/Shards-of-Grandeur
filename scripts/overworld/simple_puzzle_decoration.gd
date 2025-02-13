@@ -105,9 +105,11 @@ func _puzzle_reqs_updated(playSolving: bool = true):
 			play_solved_anim()
 		if disableCollisionOnSolve:
 			animatedDecoration.collision.collision_layer = 0
+			animatedDecoration.collision.collision_mask = 0
 	else:
 		animatedDecoration.play_animation(unsolvedAnimation)
 		animatedDecoration.collision.collision_layer = 0b01
+		animatedDecoration.collision.collision_mask = 0b01
 	solved = updatedSolved
 
 func _solving_anim_finished():

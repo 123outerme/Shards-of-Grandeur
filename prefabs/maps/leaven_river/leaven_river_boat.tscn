@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="19_4d8kp"]
 [ext_resource type="Resource" uid="uid://bjx2bckf1u5bw" path="res://gamedata/cutscenes/leaven_river/sea_wyrm_attack.tres" id="20_6r0ko"]
 
-[sub_resource type="Resource" id="Resource_t1mcp"]
+[sub_resource type="Resource" id="Resource_6b0rf"]
 script = ExtResource("6_p3ww7")
 saveName = "npc"
 spriteState = "default"
@@ -281,25 +281,34 @@ battleMapPath = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7k3m"]
 size = Vector2(105, 141)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb4jl"]
-size = Vector2(48, 48)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h8ro"]
+size = Vector2(46, 46)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
+vertices = PackedVector2Array(7, 38, 28, -29.1016, 28, 46.1016, 15.0469, 59.0469, 2, 54, 7, 17, 25, -32.1016, -25, 48.1016, -23, 38, -20, 38, -20, 54, -25, 49.1016, 2, 38, 13.8516, 60.2422, 8.35156, 63, 7.64844, 63, 0, 59.1719, -7.64844, 63, -16.1016, 57, 25, -33.1016, -23, 17, 16.1016, -41, 17.1016, -41, 7.64844, -47, 8.35156, -47, 11.8516, -45.25, 0, -43.1719, -12.5938, -44.8672, -8.35156, -47, -7.64844, -47, -15.5, -41, -28, -29.6562, -26.7031, -31.3984, -17.1016, -41, -28, 45.1016, -17.1016, 57, -11.8516, 61.25, -8.35156, 63)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(1, 0, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(4, 12, 0), PackedInt32Array(4, 3, 13, 14, 15, 16), PackedInt32Array(10, 4, 16, 17, 18), PackedInt32Array(19, 6, 5, 20, 21, 22), PackedInt32Array(23, 24, 25, 21, 20, 26), PackedInt32Array(27, 28, 29, 26, 20, 30), PackedInt32Array(31, 32, 33, 30, 20, 34), PackedInt32Array(34, 20, 8, 7), PackedInt32Array(35, 11, 10), PackedInt32Array(18, 35, 10), PackedInt32Array(36, 18, 17, 37)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-39, -33, -15, -56, 14, -55, 38, -32, 39, 50, 13, 72, -11, 73, -37, 49)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tohlk"]
+vertices = PackedVector2Array(10, 52.7812, 10, 46, 15, 46, 20, 42.7812, 15, 9, 20, -25.7812, 17, -28.7891, -20, 9, -20, -26.7812, -13.7812, -33, -11.5, -33, 17, -29.7812, 0, -34.2266, 12.7891, -33, -7.6875, -38.0703, 7.70312, -38.0703, 13.7812, -33)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 5, 4, 7, 8, 9, 10), PackedInt32Array(11, 6, 10, 12, 13), PackedInt32Array(10, 14, 12), PackedInt32Array(12, 15, 13), PackedInt32Array(11, 13, 16)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-40, -32, -17, -55, 16, -55, 40, -31, 38, 49, 17, 69, -9, 73, -38, 49)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 15.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8fg56"]
+vertices = PackedVector2Array(139.852, -121.07, 138.141, 141.922, -127.141, 141.07, -128.844, -121.922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-150, 164, -152, -145, 163, -144, 161, 165)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
-source_geometry_group_name = &"NavigationGroup"
+source_geometry_group_name = &""
 agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
@@ -355,7 +364,7 @@ position = Vector2(9, -48)
 displayName = "Skipper"
 saveName = "lp_boat_skipper"
 loadFlipH = true
-data = SubResource("Resource_t1mcp")
+data = SubResource("Resource_6b0rf")
 dialogueEntries = Array[ExtResource("5_73by5")]([ExtResource("7_e6ktg")])
 
 [node name="NPCSprite" parent="TilemapRoot/Skipper" index="0"]
@@ -390,6 +399,7 @@ spawnerData = SubResource("Resource_ljhce")
 enemyEncounter = SubResource("Resource_wg2oe")
 spawnWhenPlayerLocked = true
 spawnRange = 1.0
+enemyChaseRange = 20.0
 overrideEnemyRanges = true
 tilemap = NodePath("../TilemapRoot")
 
@@ -403,6 +413,7 @@ spawnerData = SubResource("Resource_w1hp4")
 enemyEncounter = SubResource("Resource_71odg")
 spawnWhenPlayerLocked = true
 spawnRange = 1.0
+enemyChaseRange = 20.0
 overrideEnemyRanges = true
 tilemap = NodePath("../TilemapRoot")
 
@@ -416,6 +427,7 @@ spawnerData = SubResource("Resource_vnmg8")
 enemyEncounter = SubResource("Resource_ykyya")
 spawnWhenPlayerLocked = true
 spawnRange = 1.0
+enemyChaseRange = 20.0
 overrideEnemyRanges = true
 tilemap = NodePath("../TilemapRoot")
 
@@ -427,8 +439,8 @@ shape = SubResource("RectangleShape2D_s7k3m")
 position = Vector2(9, -44)
 
 [node name="CollisionShape2D" parent="EnemyDeaggroZone" index="0"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_jb4jl")
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0h8ro")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

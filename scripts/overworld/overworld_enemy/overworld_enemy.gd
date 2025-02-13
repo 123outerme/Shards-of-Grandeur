@@ -23,6 +23,7 @@ var waitUntilNavReady: bool = false
 var runningChaseMode: bool = false
 var lastPlayerChaseUpdateTime: float = 0
 var facesRight: bool = false
+var ignorePlayer: bool = false
 
 var encounterColliderOffset: Vector2 = Vector2.ZERO
 
@@ -133,8 +134,9 @@ func chase_player():
 	patrolling = false
 	navAgent.avoidance_enabled = true
 
-func stop_chasing_player():
+func stop_chasing_player(andIgnorePlayer: bool = false):
 	patrolling = true
+	ignorePlayer = andIgnorePlayer
 	navAgent.avoidance_enabled = false
 	get_next_patrol_target()
 
@@ -154,7 +156,7 @@ func _player_running_changed(playerRunning: bool) -> void:
 		update_speed()
 
 func _on_chase_range_area_entered(area):
-	if area.name == "PlayerEventCollider":
+	if area.name == "PlayerEventCollider" and not ignorePlayer:
 		chase_player()
 		update_speed()
 		lastPlayerChaseUpdateTime = Time.get_unix_time_from_system()

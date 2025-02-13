@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=42 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=41 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
@@ -20,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://hw7nbx3e6ju4" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_inprogress.tres" id="18_nnjal"]
 [ext_resource type="Resource" uid="uid://du7sf8ugk1qfd" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_turnin.tres" id="19_ku84m"]
 [ext_resource type="Resource" uid="uid://bgj3r6v1s045c" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_dock_angry_angler_10_turnin.tres" id="19_ra3jc"]
-[ext_resource type="Resource" uid="uid://du3d0pl18jif2" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_inprogress.tres" id="20_rcyve"]
 [ext_resource type="Resource" uid="uid://dqbdu25qgq7lc" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_turnin.tres" id="22_6pnki"]
 
 [sub_resource type="Resource" id="Resource_b8suq"]
@@ -193,7 +192,7 @@ locations = Array[int]([31, 32])
 type = 2
 count = 2
 objectiveName = "cloud_gull"
-turnInNames = Array[String]([])
+turnInNames = Array[String](["leavenport_skipper"])
 displayObjName = "Cloud Gull"
 displayTurnInName = "Skipper"
 customStatusStr = ""
@@ -252,7 +251,7 @@ displayObjName = "Prime Minister"
 displayTurnInName = "Prime Minister"
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("22_6pnki")])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("20_rcyve")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
 [resource]
 script = ExtResource("1_mhsm3")

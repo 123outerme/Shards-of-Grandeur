@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ds5u8lsvxlg2c"]
+[gd_scene load_steps=18 format=4 uid="uid://ds5u8lsvxlg2c"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_knm7c"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vhfdw"]
@@ -11,9 +11,10 @@
 [ext_resource type="Resource" uid="uid://hbk37tdq7vfe" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_inprogress.tres" id="6_gnje5"]
 [ext_resource type="Resource" uid="uid://bt6conmny3mmo" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_6_inprogress.tres" id="7_80f67"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_gvdlt"]
+[ext_resource type="Resource" uid="uid://du3d0pl18jif2" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_inprogress.tres" id="8_6pepg"]
 [ext_resource type="Resource" uid="uid://dxjxdfgbsk6vg" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_post_takeover1.tres" id="8_us3ll"]
 
-[sub_resource type="Resource" id="Resource_q3pgl"]
+[sub_resource type="Resource" id="Resource_n6hj6"]
 script = ExtResource("4_v8nqt")
 saveName = "npc"
 spriteState = "default"
@@ -98,8 +99,8 @@ tile_set = ExtResource("2_vhfdw")
 position = Vector2(-52, -61)
 displayName = "Prime Minister"
 saveName = "leavenport_pm"
-data = SubResource("Resource_q3pgl")
-dialogueEntries = Array[ExtResource("5_4w8ab")]([ExtResource("6_gnje5"), ExtResource("7_80f67"), ExtResource("5_l0lul"), ExtResource("6_1lenj"), ExtResource("8_us3ll")])
+data = SubResource("Resource_n6hj6")
+dialogueEntries = Array[ExtResource("5_4w8ab")]([ExtResource("6_gnje5"), ExtResource("7_80f67"), ExtResource("8_6pepg"), ExtResource("5_l0lul"), ExtResource("6_1lenj"), ExtResource("8_us3ll")])
 
 [node name="NPCSprite" parent="TilemapRoot/PrimeMinister" index="0"]
 sprite_frames = ExtResource("6_3saiu")
