@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://digivf1opqsj8"]
+[gd_scene load_steps=101 format=4 uid="uid://digivf1opqsj8"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_wyxfu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_he5en"]
@@ -15,14 +15,12 @@
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="9_hyktm"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="10_2xr35"]
 [ext_resource type="Resource" uid="uid://no8jsodv2ba7" path="res://gamedata/combatants/fireclaw/fireclaw.tres" id="14_jam01"]
-[ext_resource type="Resource" uid="uid://bwnakoj6c7o46" path="res://gamedata/cutscenes/hilltop_forest/hilltop_cave_gone.tres" id="14_pqkuw"]
 [ext_resource type="Resource" uid="uid://c8dsnwkhkmu58" path="res://gamedata/combatants/savage_horse/savage_horse.tres" id="15_708u3"]
 [ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="17_hua32"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="17_mtiaa"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="18_16skw"]
 [ext_resource type="Resource" uid="uid://btnde87dlhjhu" path="res://gamedata/combatants/soot_spider/soot_spider.tres" id="18_ajuhk"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="19_t6mci"]
-[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="20_rpbw6"]
+[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="21_dlaov"]
 
 [sub_resource type="Resource" id="Resource_0t6sl"]
 script = ExtResource("4_4cp5i")
@@ -475,29 +473,6 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_fkjet"]
-script = ExtResource("20_rpbw6")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(-440, -140)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_wyxfu")
 metadata/_edit_vertical_guides_ = [-440.0, 864.0]
@@ -683,19 +658,7 @@ navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("rootNode") instance=ExtResource("19_t6mci")]
-visible = false
-cutscene = ExtResource("14_pqkuw")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(-440, -140)
-facingLeft = true
-data = SubResource("Resource_fkjet")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.644771
-flip_h = true
+[node name="TestCamera" parent="." instance=ExtResource("21_dlaov")]
 
 [editable path="EnemySpawner"]
 [editable path="EnemySpawner2"]
@@ -709,5 +672,3 @@ flip_h = true
 [editable path="HilltopForestEastWarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://vqwrgs34ao10"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_pqb50"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_pj13b"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uhgas"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_0lihn"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_7eeys"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_aq11w"]
+[ext_resource type="Resource" uid="uid://c3nyhxft2s0ao" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_dock_board_ship_river.tres" id="4_cafm5"]
+
+[sub_resource type="Resource" id="Resource_x3k55"]
+script = ExtResource("2_uhgas")
+choiceBtn = "Not Right Now."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_7eeys")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_414rn"]
+script = ExtResource("2_uhgas")
+choiceBtn = "Anchors Aweigh!"
+leadsTo = ExtResource("4_cafm5")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_7eeys")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_y4wpo"]
+script = ExtResource("1_pqb50")
+lines = Array[String](["I just barely rowed away with my life! But, I'll be no coward today.", "Will you set back out with me and take on the Sea Wyrms?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_uhgas")]([SubResource("Resource_x3k55"), SubResource("Resource_414rn")])
+
+[sub_resource type="Resource" id="Resource_rqe62"]
+script = ExtResource("2_pj13b")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Angry Angler#Put Out To Sea"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_aq11w")]([])
+invalidAfterCompletingQuests = Array[String](["Angry Angler#Danger on the Leaven River"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_aq11w")]([])
+
+[resource]
+script = ExtResource("3_0lihn")
+entryId = ""
+items = Array[ExtResource("1_pqb50")]([SubResource("Resource_y4wpo")])
+storyRequirements = SubResource("Resource_rqe62")
+ordStoryRequirements = Array[ExtResource("2_pj13b")]([])
+closesDialogue = false
+fullHealsPlayer = false

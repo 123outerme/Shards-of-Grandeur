@@ -1,0 +1,99 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://bjx2bckf1u5bw"]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dhwye"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_crxn0"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_gfm0f"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_8o073"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="3_vkvwj"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_spr71"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_v87j6"]
+[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_4evok"]
+[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_5edw4"]
+
+[sub_resource type="Resource" id="Resource_ywx5k"]
+script = ExtResource("4_v87j6")
+actorTreePath = "TilemapRoot/Skipper"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+
+[sub_resource type="Resource" id="Resource_je76l"]
+script = ExtResource("6_5edw4")
+speaker = "Skipper"
+texts = Array[String](["Wake up, @... I think they're here.", "It's not just one Sea Wyrm, it's a whole brood of the beasts!", "They look angry... If you don't fend them off, they'll split this boat in half!", "Just defeat two, that'll buy enough time to make our escape."])
+
+[sub_resource type="Resource" id="Resource_t7uj0"]
+script = ExtResource("1_dhwye")
+frameLength = 0.1
+annotation = "start the Skipper's dialogue, he faces the player"
+actorTweens = Array[ExtResource("5_4evok")]([])
+actorAnims = Array[ExtResource("3_8o073")]([])
+actorAnimSets = Array[ExtResource("2_crxn0")]([])
+actorFaceTargets = Array[ExtResource("4_v87j6")]([SubResource("Resource_ywx5k")])
+dialogues = Array[ExtResource("6_5edw4")]([SubResource("Resource_je76l")])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_k3hcr"]
+script = ExtResource("1_dhwye")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_4evok")]([])
+actorAnims = Array[ExtResource("3_8o073")]([])
+actorAnimSets = Array[ExtResource("2_crxn0")]([])
+actorFaceTargets = Array[ExtResource("4_v87j6")]([])
+dialogues = Array[ExtResource("6_5edw4")]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+
+[sub_resource type="Resource" id="Resource_uchxg"]
+script = ExtResource("4_spr71")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_vkvwj")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["sea_wyrm_attack"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_vkvwj")]([])
+
+[resource]
+script = ExtResource("2_gfm0f")
+cutsceneFrames = Array[ExtResource("1_dhwye")]([SubResource("Resource_t7uj0"), SubResource("Resource_k3hcr")])
+saveName = "sea_wyrm_attack"
+storyRequirements = SubResource("Resource_uchxg")
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""

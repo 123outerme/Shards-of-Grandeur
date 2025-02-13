@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=37 format=3 uid="uid://bpvf2xv1p41ii"]
+[gd_resource type="Resource" script_class="Quest" load_steps=42 format=3 uid="uid://bpvf2xv1p41ii"]
 
 [ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_mhsm3"]
 [ext_resource type="Resource" uid="uid://cqw21ceu4ppue" path="res://gamedata/dialogue/leavenport/fisherman/fisherman_quest/fisherman_q1_inprogress.tres" id="2_j7ur3"]
@@ -14,9 +14,14 @@
 [ext_resource type="Resource" uid="uid://dcr7qq13h87da" path="res://gamedata/items/armor/fishscale_armor.tres" id="12_jx2pa"]
 [ext_resource type="Resource" uid="uid://c7gg8i8gdkh02" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_turnin.tres" id="13_yxqli"]
 [ext_resource type="Resource" uid="uid://dvape6emtj3ls" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_5_turnin.tres" id="15_31vsn"]
+[ext_resource type="Resource" uid="uid://df5mq7l2ryk7n" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_8_inprogress.tres" id="17_1gup0"]
 [ext_resource type="Resource" uid="uid://pbeqbrc3bv7w" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_turnin.tres" id="17_7l4uy"]
+[ext_resource type="Resource" uid="uid://csskf15dtpd4e" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_8_turnin.tres" id="18_kxtfb"]
 [ext_resource type="Resource" uid="uid://hw7nbx3e6ju4" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_inprogress.tres" id="18_nnjal"]
 [ext_resource type="Resource" uid="uid://du7sf8ugk1qfd" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_turnin.tres" id="19_ku84m"]
+[ext_resource type="Resource" uid="uid://bgj3r6v1s045c" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_dock_angry_angler_10_turnin.tres" id="19_ra3jc"]
+[ext_resource type="Resource" uid="uid://du3d0pl18jif2" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_inprogress.tres" id="20_rcyve"]
+[ext_resource type="Resource" uid="uid://dqbdu25qgq7lc" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_turnin.tres" id="22_6pnki"]
 
 [sub_resource type="Resource" id="Resource_b8suq"]
 script = ExtResource("2_r4tho")
@@ -182,18 +187,18 @@ fullyAttuneCombatantSaveName = ""
 [sub_resource type="Resource" id="Resource_52qh6"]
 script = ExtResource("2_q0b41")
 name = "Birds of a Feather"
-description = "The Skipper wants a down pillow for the Captain's Quarters. Pluck a few feathers from some Cloud Gulls!"
+description = "Can't be a captain without a quill to write with! Pluck a few feathers from some Cloud Gulls."
 reward = SubResource("Resource_4kcii")
 locations = Array[int]([31, 32])
 type = 2
-count = 4
+count = 2
 objectiveName = "cloud_gull"
 turnInNames = Array[String]([])
 displayObjName = "Cloud Gull"
 displayTurnInName = "Skipper"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_ua7ar")]([])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("18_kxtfb")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("17_1gup0")])
 
 [sub_resource type="Resource" id="Resource_j1whn"]
 script = ExtResource("2_q0b41")
@@ -202,7 +207,7 @@ description = "Now that the boat is built, shove off the dock and sail away!"
 locations = Array[int]([30])
 type = 3
 count = 1
-objectiveName = ""
+objectiveName = "board_lp_ship_river"
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
@@ -213,16 +218,16 @@ inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 [sub_resource type="Resource" id="Resource_56dlt"]
 script = ExtResource("2_q0b41")
 name = "Danger on the Leaven River"
-description = "More Sea Wyrms are attacking! Clear them out to free the boat and escape!"
+description = "More Sea Wyrms are attacking! Thin  them out to free the boat and escape!"
 locations = Array[int]([35])
 type = 2
 count = 2
 objectiveName = "sea_wyrm"
-turnInNames = Array[String]([])
+turnInNames = Array[String](["lp_boat_skipper"])
 displayObjName = "Sea Wyrm"
 displayTurnInName = ""
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_ua7ar")]([])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("19_ra3jc")])
 inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
 
 [sub_resource type="Resource" id="Resource_lvoiw"]
@@ -241,13 +246,13 @@ reward = SubResource("Resource_lvoiw")
 locations = Array[int]([30])
 type = 0
 count = 1
-objectiveName = "leavenport_pm#"
+objectiveName = "leavenport_pm#sea_wyrm_report"
 turnInNames = Array[String](["leavenport_pm"])
 displayObjName = "Prime Minister"
 displayTurnInName = "Prime Minister"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_ua7ar")]([])
-inProgressDialogue = Array[ExtResource("3_ua7ar")]([])
+turnInDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("22_6pnki")])
+inProgressDialogue = Array[ExtResource("3_ua7ar")]([ExtResource("20_rcyve")])
 
 [resource]
 script = ExtResource("1_mhsm3")

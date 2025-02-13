@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://du7sf8ugk1qfd"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://du7sf8ugk1qfd"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_18ygx"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_agwjt"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_aymh1"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_mpv4c"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_whyx0"]
+[ext_resource type="Resource" uid="uid://d0ni443ujiyn0" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_7_turnin_yes.tres" id="4_gphjq"]
 
 [sub_resource type="Resource" id="Resource_fms5u"]
 script = ExtResource("2_agwjt")
@@ -14,18 +15,29 @@ randomDialogues = Array[ExtResource("3_mpv4c")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_4yuai"]
+script = ExtResource("2_agwjt")
+choiceBtn = "\"Quill\" Do!"
+leadsTo = ExtResource("4_gphjq")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_mpv4c")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "Angry Angler#Waterproofing"
 isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_rucrk"]
 script = ExtResource("1_18ygx")
-lines = Array[String](["Oh, fit as a fiddle, we are! I'll quickly slather this goop on, so meet me on the docks and we'll get ready to launch this ship on her maiden voyage."])
+lines = Array[String](["Oh, fit as a fiddle, we are! I'll quickly slather this goop on, but in the meantime, I'll need one last thing.", "There can be no Captain of this vessel without a quill. I'll need to record our journey in the Captain's Log, of course!", "Cloud Gull feathers make excellent quills. Could you bring me two feathers for this?"])
 minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_agwjt")]([SubResource("Resource_fms5u")])
+choices = Array[ExtResource("2_agwjt")]([SubResource("Resource_fms5u"), SubResource("Resource_4yuai")])
 
 [resource]
 script = ExtResource("3_whyx0")

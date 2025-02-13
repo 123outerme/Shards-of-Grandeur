@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bs3043v7a1df2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bs3043v7a1df2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_nqc0c"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_r4ovs"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f4jqd"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_hlkya"]
 
 [sub_resource type="Resource" id="Resource_n3lmq"]
 script = ExtResource("1_r4ovs")
 lines = Array[String](["This is the Spelunker's Inn. Since the marble quarry is not too far from here, we have our own inn. Nobody else tends to visit Grandstone!", "Right now, most of the spelunkers are busy at the marble quarry, so it's pretty empty here."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,6 @@ choices = Array[ExtResource("2_f4jqd")]([])
 script = ExtResource("1_nqc0c")
 entryId = ""
 items = Array[ExtResource("1_r4ovs")]([SubResource("Resource_n3lmq")])
+ordStoryRequirements = Array[ExtResource("3_hlkya")]([])
 closesDialogue = false
 fullHealsPlayer = false

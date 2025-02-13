@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cfreapf0xugbq"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_yv2js"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_mpwii"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_v8eh6"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qb17i"]
+
+[sub_resource type="Resource" id="Resource_8l2r0"]
+script = ExtResource("1_yv2js")
+lines = Array[String](["Great! I've already launched the boat into the river. Just head onto the dock, you'll find it there."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_v8eh6")]([])
+
+[resource]
+script = ExtResource("3_qb17i")
+entryId = ""
+items = Array[ExtResource("1_yv2js")]([SubResource("Resource_8l2r0")])
+ordStoryRequirements = Array[ExtResource("2_mpwii")]([])
+closesDialogue = true
+fullHealsPlayer = false

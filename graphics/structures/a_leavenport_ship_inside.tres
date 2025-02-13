@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cu3k0so1hiuvn"]
+
+[ext_resource type="Texture2D" uid="uid://ckkgnyv01068n" path="res://graphics/structures/leavenport_ship_inside.png" id="1_l2fb4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wilvc"]
+atlas = ExtResource("1_l2fb4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h52v2"]
+atlas = ExtResource("1_l2fb4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxko6"]
+atlas = ExtResource("1_l2fb4")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhq5h"]
+atlas = ExtResource("1_l2fb4")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p855"]
+atlas = ExtResource("1_l2fb4")
+region = Rect2(192, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wilvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h52v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxko6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhq5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p855")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://thnl6oq21dd7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://thnl6oq21dd7"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_3e22e"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_qwusi"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_16nhr"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_7rucs"]
 
 [sub_resource type="Resource" id="Resource_48i68"]
 script = ExtResource("1_3e22e")
 lines = Array[String](["This book details the discovery of the Radiant Cave by a Grandstone adventurer.", "\"There exists a magical cave, somewhere across the land. I stumbled into its tunnels myself.\"", "\"Set in the walls are glowing blue crystals, humming a strange note. Some of these Shards contain the images of creatures.\"", "\"I gathered as many Shards as I could carry and took note of the cave's location as I left, but when I returned with a search party, it was gone without a trace.\""])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,6 @@ choices = Array[ExtResource("2_16nhr")]([])
 script = ExtResource("1_qwusi")
 entryId = ""
 items = Array[ExtResource("1_3e22e")]([SubResource("Resource_48i68")])
+ordStoryRequirements = Array[ExtResource("3_7rucs")]([])
 closesDialogue = false
 fullHealsPlayer = false

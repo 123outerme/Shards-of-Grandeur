@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://bv0t00r42br4a"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bv0t00r42br4a"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_67ii6"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_sbgr4"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nx652"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_tkbp6"]
 
 [sub_resource type="Resource" id="Resource_yd2ei"]
 script = ExtResource("1_67ii6")
 lines = Array[String](["This book is about a tribe of warlocks, banished from their home due to their wicked deeds.", "\"There once was a band of warlocks, the most clever magical scholars in their city.\"", "\"They took note of the Radiant Cave, and wanted its vast power for themselves. They studied it intently.\"", "\"After a series of shocking experiments, their city finally exiled the warlock clan. Now it is said they hide away in the Giant Steppes.\""])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,6 @@ choices = Array[ExtResource("2_nx652")]([])
 script = ExtResource("1_sbgr4")
 entryId = ""
 items = Array[ExtResource("1_67ii6")]([SubResource("Resource_yd2ei")])
+ordStoryRequirements = Array[ExtResource("3_tkbp6")]([])
 closesDialogue = false
 fullHealsPlayer = false

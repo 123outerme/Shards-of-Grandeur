@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://dm4mexw2r5a2q"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dm4mexw2r5a2q"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_h2ee2"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_i2udm"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jdnv0"]
 [ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="2_0x5dg"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e5a4o"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_n2shq"]
 
 [sub_resource type="Resource" id="Resource_jbsxe"]
 script = ExtResource("1_i2udm")
@@ -19,6 +20,8 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_ba6vj"]
 script = ExtResource("2_0x5dg")
 opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
 choiceBtn = "Shop"
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_e5a4o")]([])
@@ -30,12 +33,18 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_8fu4q"]
 script = ExtResource("1_h2ee2")
 lines = Array[String](["Welcome to the Grandstone Armory @! What can I get you?"])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("1_i2udm")]([SubResource("Resource_jbsxe"), SubResource("Resource_ba6vj")])
 
 [resource]
 script = ExtResource("1_jdnv0")
 entryId = ""
 items = Array[ExtResource("1_h2ee2")]([SubResource("Resource_8fu4q")])
+ordStoryRequirements = Array[ExtResource("5_n2shq")]([])
 closesDialogue = false
 fullHealsPlayer = false

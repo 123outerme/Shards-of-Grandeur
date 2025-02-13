@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://du3d0pl18jif2"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_jg2qn"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_deail"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qn0rw"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5kabc"]
+[ext_resource type="Resource" uid="uid://dqbdu25qgq7lc" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_turnin.tres" id="3_y608k"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_vfqsn"]
+
+[sub_resource type="Resource" id="Resource_l2nqp"]
+script = ExtResource("2_qn0rw")
+choiceBtn = "You're Welcome."
+leadsTo = ExtResource("3_y608k")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_vfqsn")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_p3xiw"]
+script = ExtResource("1_jg2qn")
+lines = Array[String](["I heard about your exploits on the Leaven River, @. Our fisherman told me everything.", "The Sea Wyrms were going to be a major threat to our fair port, so I appreciate your assistance."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_qn0rw")]([SubResource("Resource_l2nqp")])
+
+[resource]
+script = ExtResource("3_5kabc")
+entryId = "sea_wyrm_report"
+items = Array[ExtResource("1_jg2qn")]([SubResource("Resource_p3xiw")])
+ordStoryRequirements = Array[ExtResource("2_deail")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

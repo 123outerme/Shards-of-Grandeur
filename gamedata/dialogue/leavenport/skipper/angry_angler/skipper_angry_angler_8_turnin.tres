@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://csskf15dtpd4e"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_rbjxq"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_oe1hj"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_orlq5"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ojbu8"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_v3us4"]
+[ext_resource type="Resource" uid="uid://cfreapf0xugbq" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_8_turnin_yes.tres" id="4_7r6q2"]
+
+[sub_resource type="Resource" id="Resource_h5xw3"]
+script = ExtResource("2_orlq5")
+choiceBtn = "Not Yet..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_v3us4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_gvkko"]
+script = ExtResource("2_orlq5")
+choiceBtn = "Here You Are!"
+leadsTo = ExtResource("4_7r6q2")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_v3us4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_w3rq0"]
+script = ExtResource("1_rbjxq")
+lines = Array[String](["Excellent work! I'll shape these into fine quills and meet you outside! We'll take this boat for her maiden voyage."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_orlq5")]([SubResource("Resource_h5xw3"), SubResource("Resource_gvkko")])
+
+[resource]
+script = ExtResource("3_ojbu8")
+entryId = ""
+items = Array[ExtResource("1_rbjxq")]([SubResource("Resource_w3rq0")])
+ordStoryRequirements = Array[ExtResource("2_oe1hj")]([])
+closesDialogue = false
+fullHealsPlayer = false

@@ -1,17 +1,45 @@
-[gd_scene load_steps=16 format=4 uid="uid://ccw35yps5qgs1"]
+[gd_scene load_steps=19 format=4 uid="uid://ccw35yps5qgs1"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_mmxh4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jnb7w"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_adivd"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_ti6yv"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_1nke5"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_hcru3"]
 [ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_jjv6j"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_1308g"]
 [ext_resource type="Resource" uid="uid://danfrkuhowl8k" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper1.tres" id="5_fdnmb"]
 [ext_resource type="SpriteFrames" uid="uid://vjnpidcqa4jj" path="res://graphics/animations/a_skipper.tres" id="5_hu66c"]
 [ext_resource type="Resource" uid="uid://drsqe0bxfl6mn" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_4_inprogress.tres" id="6_j6egc"]
 [ext_resource type="Resource" uid="uid://cm0g3lwugf6vd" path="res://gamedata/dialogue/leavenport/skipper/angry_angler/skipper_angry_angler_6_inprogress.tres" id="7_vqg17"]
 
-[sub_resource type="Resource" id="Resource_m2y2q"]
+[sub_resource type="Resource" id="Resource_ioylo"]
+script = ExtResource("4_1nke5")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_1308g")]([])
+invalidAfterCompletingQuests = Array[String](["Angry Angler#Birds of a Feather"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_1308g")]([])
+
+[sub_resource type="Resource" id="Resource_cj0dh"]
 script = ExtResource("4_jjv6j")
 saveName = "npc"
 spriteState = "default"
@@ -99,7 +127,8 @@ tile_set = ExtResource("2_jnb7w")
 position = Vector2(-42, -50)
 displayName = "Skipper"
 saveName = "leavenport_skipper"
-data = SubResource("Resource_m2y2q")
+orSpawnRequirements = Array[ExtResource("4_1nke5")]([SubResource("Resource_ioylo")])
+data = SubResource("Resource_cj0dh")
 dialogueEntries = Array[ExtResource("4_hcru3")]([ExtResource("6_j6egc"), ExtResource("7_vqg17"), ExtResource("5_fdnmb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Skipper" index="0"]

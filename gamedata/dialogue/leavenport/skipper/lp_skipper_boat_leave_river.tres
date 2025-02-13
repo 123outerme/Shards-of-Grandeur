@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dk3th5u8o2gkn"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0t7o5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_0cxiq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hmf0x"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_v3jco"]
+[ext_resource type="Resource" uid="uid://cdc3cfdimgk8f" path="res://gamedata/cutscenes/leaven_river/depart_leaven_river.tres" id="5_0cc4y"]
+
+[sub_resource type="Resource" id="Resource_6anrc"]
+script = ExtResource("1_0t7o5")
+lines = Array[String](["Pull up the anchor then, we're getting out of here!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_hmf0x")]([])
+
+[resource]
+script = ExtResource("3_v3jco")
+entryId = ""
+items = Array[ExtResource("1_0t7o5")]([SubResource("Resource_6anrc")])
+ordStoryRequirements = Array[ExtResource("2_0cxiq")]([])
+startsCutscene = ExtResource("5_0cc4y")
+closesDialogue = false
+fullHealsPlayer = false

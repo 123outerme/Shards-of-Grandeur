@@ -30,6 +30,9 @@ class_name DialogueEntry
 ## if true, after this dialogue is over, starts a static encounter
 @export var startsStaticEncounter: StaticEncounter = null
 
+## Internal notes usage only; no gameplay effect
+@export_multiline var annotation: String = ''
+
 func _init(
 	i_id = '',
 	i_items: Array[DialogueItem] = [],
@@ -39,6 +42,7 @@ func _init(
 	i_closesDialogue = false,
 	i_fullHealsPlayer = false,
 	i_staticEncounter = null,
+	i_annotation: String = '',
 ):
 	entryId = i_id
 	items = i_items
@@ -48,6 +52,7 @@ func _init(
 	closesDialogue = i_closesDialogue
 	fullHealsPlayer = i_fullHealsPlayer
 	startsStaticEncounter = i_staticEncounter
+	annotation = i_annotation
 
 func can_use_dialogue() -> bool:
 	var requirements: Array[StoryRequirements] = [storyRequirements]

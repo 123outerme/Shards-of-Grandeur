@@ -263,7 +263,7 @@ func _process(delta):
 		#uiRoot.position += cam.get_cam_shaking_offset() # UI doesn't get moved by camera shaking normally (cam handles all of it
 	'''
 	# placed here instead of _physics_process because graphics are updated in sync with _process
-	if velocity.length_squared() > 0 or (inCutscene and sprite.animation == 'walk'):
+	if velocity.length_squared() > 0 or (inCutscene and (sprite.animation == 'walk' || sprite.animation == 'run') and not SceneLoader.cutscenePlayer.skipping):
 		stepSfxTimer += delta
 		if stepSfxTimer > (RUN_STEP_SFX_COOLDOWN if sprite.animation == 'run' else BASE_STEP_SFX_COOLDOWN):
 			# don't choose the SFX we last picked

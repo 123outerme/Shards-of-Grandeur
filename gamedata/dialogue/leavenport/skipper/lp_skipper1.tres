@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=19 format=3 uid="uid://danfrkuhowl8k"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=26 format=3 uid="uid://danfrkuhowl8k"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_an67t"]
 [ext_resource type="Resource" uid="uid://degvt1e84u2hf" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_whats_boathouse.tres" id="2_d0fn4"]
 [ext_resource type="Resource" uid="uid://bx7nwcm0icnmu" path="res://gamedata/dialogue/leavenport/skipper/ask_shroom_bag_quest.tres" id="3_r5rpe"]
 [ext_resource type="Resource" uid="uid://cj622vf85csid" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_1.tres" id="4_bbet3"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_6ht4f"]
+[ext_resource type="Resource" uid="uid://den44nsv81srr" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_dock_setsail.tres" id="6_bt5mi"]
 [ext_resource type="Resource" uid="uid://kiwaeu7fllpl" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_2.tres" id="6_kglhw"]
 [ext_resource type="Resource" uid="uid://lmjp4usobbhv" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_sea_story_3.tres" id="7_02qqd"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="8_hemmw"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="9_7tw7j"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="9_8jgaa"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="10_3f8qa"]
+[ext_resource type="Script" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="10_i837e"]
 
 [sub_resource type="Resource" id="Resource_dil3q"]
 script = ExtResource("1_an67t")
@@ -20,6 +23,44 @@ repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_5e45y"]
+script = ExtResource("9_7tw7j")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Angry Angler"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("10_3f8qa")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("10_3f8qa")]([])
+
+[sub_resource type="Resource" id="Resource_v8id0"]
+script = ExtResource("1_an67t")
+choiceBtn = "Set Sail!"
+storyRequirements = SubResource("Resource_5e45y")
+leadsTo = ExtResource("6_bt5mi")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("5_6ht4f")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_a0eyl"]
 script = ExtResource("1_an67t")
@@ -68,8 +109,47 @@ buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = false
 
-[sub_resource type="Resource" id="Resource_sblfs"]
+[sub_resource type="Resource" id="Resource_0ncei"]
 script = ExtResource("8_hemmw")
+lines = Array[String](["Well, hello again @! What brings you around?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_v8id0"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
+
+[sub_resource type="Resource" id="Resource_py0f3"]
+script = ExtResource("9_7tw7j")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Angry Angler#Birds of a Feather"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("10_3f8qa")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("10_3f8qa")]([])
+
+[sub_resource type="Resource" id="Resource_i2ey1"]
+script = ExtResource("10_i837e")
+alternativeDialogueItems = Array[ExtResource("8_hemmw")]([SubResource("Resource_0ncei")])
+alternativeStoryReqs = Array[ExtResource("9_7tw7j")]([SubResource("Resource_py0f3")])
 lines = Array[String](["Welcome to the Boathouse, landlubber."])
 minShowSecs = Array[float]([])
 animation = "talk"
@@ -77,12 +157,13 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
+choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_v8id0"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
 
 [resource]
 script = ExtResource("9_8jgaa")
 entryId = "lp_skipper1"
-items = Array[ExtResource("8_hemmw")]([SubResource("Resource_sblfs")])
+items = Array[ExtResource("8_hemmw")]([SubResource("Resource_i2ey1")])
 ordStoryRequirements = Array[ExtResource("9_7tw7j")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = "Don't forget: StoryReqsDialogueItem has multiple copies of choices array (one in base obj, one in nested DialogueItems), if you're going to add more items, decide if they should be added to each copy"

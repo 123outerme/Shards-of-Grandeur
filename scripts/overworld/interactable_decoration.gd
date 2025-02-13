@@ -5,22 +5,29 @@ class_name InteractableDecoration
 ## if non-empty, plays the specified animation of the nested AnimatedDecoration's sprite when interacted with
 @export var interactAnim: String = ''
 
-@onready var animatedDecoration: AnimatedDecoration = get_node('AnimatedDecoration')
+var animatedDecorations: Array[AnimatedDecoration] = []
+
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
 var invisible: bool:
 	set(i):
 		visible = not i
-		if animatedDecoration != null:
-			animatedDecoration.invisible = i
+		for decoration: AnimatedDecoration in animatedDecorations:
+			if decoration != null:
+				decoration.invisible = i
 	get:
 		return not visible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not Engine.is_editor_hint():
+		for child: Node in get_children():
+			if child is AnimatedDecoration:
+				animatedDecorations.append(child)
 		super._ready()
-		animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
+		
+		for animatedDecoration: AnimatedDecoration in animatedDecorations:
+			animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
 		show_interact_sprite(false)
 		if SceneLoader.cutscenePlayer != null:
 			SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_check_enable_interact_sprite)
@@ -34,11 +41,13 @@ func show_interact_sprite(showSprite: bool = true):
 
 func play_animation(animName: String):
 	if animName != '':
-		animatedDecoration.play_animation(animName)
+		for animatedDecoration: AnimatedDecoration in animatedDecorations:
+			animatedDecoration.play_animation(animName)
 
 func interact(args: Array = []):
 	if interactAnim != '':
-		animatedDecoration.play_animation(interactAnim)
+		for animatedDecoration: AnimatedDecoration in animatedDecorations:
+			animatedDecoration.play_animation(interactAnim)
 	super.interact(args)
 
 func _on_area_entered(area):

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://0p7c5c1j255n"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_xo0js"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hc8a5"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_1d187"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_6o2f3"]
+[ext_resource type="Resource" uid="uid://ydff1vm7b584" path="res://gamedata/cutscenes/leavenport/board_lp_ship_river.tres" id="5_8i1po"]
+
+[sub_resource type="Resource" id="Resource_qhbn5"]
+script = ExtResource("1_xo0js")
+lines = Array[String](["To fend off that Sea Wyrm lying in the River, we cast off.", "All aboard that's going aboard!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_hc8a5")]([])
+
+[resource]
+script = ExtResource("4_6o2f3")
+entryId = ""
+items = Array[ExtResource("1_xo0js")]([SubResource("Resource_qhbn5")])
+ordStoryRequirements = Array[ExtResource("3_1d187")]([])
+startsCutscene = ExtResource("5_8i1po")
+closesDialogue = true
+fullHealsPlayer = false

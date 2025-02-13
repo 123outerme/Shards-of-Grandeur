@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://dc81ejrkicggd"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dc81ejrkicggd"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5bngr"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_hmdaw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cug5j"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_aqkgd"]
 
 [sub_resource type="Resource" id="Resource_8jdwi"]
 script = ExtResource("1_5bngr")
 lines = Array[String](["This book details a group of nomads that wander from city ruins to city ruins, like vultures.", "\"In the broken streets of fallen cities, one can chance upon a civilization of nomadic settlers.\"", "\"The falls of many great cities in the past 100 years always seem to occur under mysterious circumstances. Perhaps too convenient for the nomads.\"", "\"These nomads wander in search of fallen cities, picking the ruins for necessities and loot alike. They are like vultures in every sense.\""])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,6 @@ choices = Array[ExtResource("2_cug5j")]([])
 script = ExtResource("1_hmdaw")
 entryId = ""
 items = Array[ExtResource("1_5bngr")]([SubResource("Resource_8jdwi")])
+ordStoryRequirements = Array[ExtResource("3_aqkgd")]([])
 closesDialogue = false
 fullHealsPlayer = false

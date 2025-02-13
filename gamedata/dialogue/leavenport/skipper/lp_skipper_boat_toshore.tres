@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://b8s12mmbrllv2"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_pj6sl"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_4js35"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jufut"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_64buq"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_64nbl"]
+[ext_resource type="Resource" uid="uid://dk3th5u8o2gkn" path="res://gamedata/dialogue/leavenport/skipper/lp_skipper_boat_leave_river.tres" id="4_0snwj"]
+[ext_resource type="Script" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="6_m1qte"]
+
+[sub_resource type="Resource" id="Resource_kk7vh"]
+script = ExtResource("2_jufut")
+choiceBtn = "No Way!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_64nbl")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_wc28r"]
+script = ExtResource("2_jufut")
+choiceBtn = "Let's Head Back."
+leadsTo = ExtResource("4_0snwj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_64nbl")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+
+[sub_resource type="Resource" id="Resource_j6rqf"]
+script = ExtResource("1_pj6sl")
+lines = Array[String](["We need to defeat at least two of these Sea Wyrms before we call this voyage a success.", "But if you want, I can probably wrest us free from their grasp long enough to sail back to Leavenport. Want to leave?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_jufut")]([SubResource("Resource_kk7vh"), SubResource("Resource_wc28r")])
+
+[sub_resource type="Resource" id="Resource_e4piq"]
+script = ExtResource("6_m1qte")
+alternativeDialogueItems = Array[ExtResource("1_pj6sl")]([SubResource("Resource_j6rqf")])
+alternativeStoryReqs = Array[ExtResource("2_4js35")]([])
+lines = Array[String](["Are you seasick already, @? Want to go back to Leavenport?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_jufut")]([SubResource("Resource_kk7vh"), SubResource("Resource_wc28r")])
+
+[resource]
+script = ExtResource("3_64buq")
+entryId = ""
+items = Array[ExtResource("1_pj6sl")]([SubResource("Resource_e4piq")])
+ordStoryRequirements = Array[ExtResource("2_4js35")]([])
+closesDialogue = false
+fullHealsPlayer = false
