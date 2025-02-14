@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://c61vwe7dm0in5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_kvuy0"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_qys45"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_wag5c"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_urrpd"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_dfhm7"]
+
+[sub_resource type="Resource" id="Resource_faxte"]
+script = ExtResource("1_kvuy0")
+lines = Array[String](["Grrrr... it's hopeless, the fish just aren't biting. That Sea Wyrm scared them off.", "If you and the Skipper don't take care of this problem, I'm not going to be able to put food on the table -- on any of our tables!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_wag5c")]([])
+
+[sub_resource type="Resource" id="Resource_yc4jd"]
+script = ExtResource("2_qys45")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Angry Angler#See A Storied Sailor"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_dfhm7")]([])
+invalidAfterCompletingQuests = Array[String](["Angry Angler"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_dfhm7")]([])
+
+[resource]
+script = ExtResource("3_urrpd")
+entryId = ""
+items = Array[ExtResource("1_kvuy0")]([SubResource("Resource_faxte")])
+storyRequirements = SubResource("Resource_yc4jd")
+ordStoryRequirements = Array[ExtResource("2_qys45")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
