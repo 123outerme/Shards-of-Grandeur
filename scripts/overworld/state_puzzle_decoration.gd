@@ -21,6 +21,8 @@ class_name StatePuzzleDecoration
 ## the dialogue to show when the player doesn't have the prerequisite story requirements. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var failedPrereqsDialogue: InteractableDialogue = null
 
+@export var disableDialogueSpeakerSprite: bool = false
+
 ## if true, the collision is disabled as soon as the puzzle is solved
 @export var disableCollisionInStates: Array[String] = []
 
@@ -112,7 +114,14 @@ func play_animation(animName: String):
 		queuedAnim = animName
 
 func get_sprite_frames() -> SpriteFrames:
+	if disableDialogueSpeakerSprite:
+		return null
 	return animatedDecoration.get_sprite_frames()
+
+func get_interact_animation() -> String:
+	if not disableDialogueSpeakerSprite and stateAnimations.has(currentState):
+		return stateAnimations[currentState]
+	return ''
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':

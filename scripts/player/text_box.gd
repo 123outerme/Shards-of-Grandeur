@@ -7,25 +7,38 @@ class_name TextBox
 
 var dialogueItem: DialogueItem = null
 var lastDialogueItem: bool = false
-var lastChoiceFocused: Button = null
-var choicesDialogueItemIdxs: Array[int] = []
-# the item at index `idx` will be the dialogueItem corresponding to the button
-var startDialogueTimer: float = 0
-var dialogueItemIdx: int = -1
 
+# Speaker Animated Sprite
+var speakerSpriteFrames: SpriteFrames = null
+var speakerIsPlayer: bool = false
+var speakerSpriteScale: int = 3
+var speakerSpriteOffset: Vector2 = Vector2.ZERO
+var speakerAnim: String = ''
+
+# Choices
+var lastChoiceFocused: Button = null # the item at index `idx` will be the dialogueItem corresponding to the button
+var choicesDialogueItemIdxs: Array[int] = []
 var firstChoiceButton: Button = null
 var lastChoiceButton: Button = null
 
-var chars_per_sec: float = 40
+# Minimum Dialogue Shown Timer
+var startDialogueTimer: float = 0
+var dialogueItemIdx: int = -1 # currently only used to determine how long dialogue timer should keep dialogue item complete from happening
+
+# Text Crawl
+const chars_per_sec: float = 40
 var text_visible_chars_partial: float = 0
 
-var speaker_chars_per_sec: float = 40
+const speaker_chars_per_sec: float = 40
 var speaker_visible_chars_partial: float = 0
 
 static var buttonScene: PackedScene = preload('res://prefabs/ui/sfx_button.tscn')
 
+@onready var speakerSpriteControl: Control = get_node('Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl')
+@onready var speakerSprite: AnimatedSprite2D = get_node('Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl/SpeakerSprite')
+@onready var speakerText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerText")
+
 @onready var TextBoxText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/TextBoxText")
-@onready var SpeakerText: RichTextLabel = get_node("Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerText")
 @onready var ReadySprite: Sprite2D = get_node("Panel/ReadySprite")
 @onready var buttonContainer: HBoxContainer = get_node('Panel/ScrollBetterFollow/HBoxContainer')
 @onready var boxContainerScroller: BoxContainerScroller = get_node('Panel/BoxContainerScroller')
@@ -47,9 +60,9 @@ func _process(delta):
 	if visible and dialogueItem != null:
 		startDialogueTimer += delta # if showing the text box, run the timer
 	
-	if SpeakerText.visible_characters < len(SpeakerText.text):
+	if speakerText.visible_characters < len(speakerText.text):
 		speaker_visible_chars_partial += speaker_chars_per_sec * delta
-		SpeakerText.visible_characters = min(round(speaker_visible_chars_partial), len(SpeakerText.text))
+		speakerText.visible_characters = min(round(speaker_visible_chars_partial), len(speakerText.text))
 	else:
 		if TextBoxText.visible_characters < len(TextBoxText.text):
 			text_visible_chars_partial += chars_per_sec * delta
@@ -64,18 +77,20 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	advance_textbox(text, lastItem)
 	var newSpeaker: bool = false
 	if speaker == '':
-		newSpeaker = SpeakerText.text != ''
-		SpeakerText.text = ''
-	elif SpeakerText.text != TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":":
-		SpeakerText.text = TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":"
+		newSpeaker = speakerText.text != ''
+		speakerText.text = ''
+	elif speakerText.text != TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":":
+		speakerText.text = TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":"
 		newSpeaker = true
+		speakerIsPlayer = speaker == '@' # speaker is player if player-name substitute is used here
+	update_speaker_sprite()
 	delete_choices()
 	visible = true
 	PlayerFinder.player.overworldTouchControls.set_in_dialogue(true)
 	ReadySprite.visible = false
 	lastDialogueItem = lastItem
 	if newSpeaker:
-		SpeakerText.visible_characters = 0
+		speakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 
@@ -84,17 +99,19 @@ func advance_textbox(text: String, lastItem: bool = true, overrideSpeaker: Strin
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	startDialogueTimer = 0
-	if overrideSpeaker != '' and SpeakerText.text != TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":":
-		SpeakerText.text = TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":"
-		SpeakerText.visible_characters = 0
+	if overrideSpeaker != '' and speakerText.text != TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":":
+		speakerText.text = TextUtils.rich_text_substitute(overrideSpeaker, Vector2i(32, 32)) + ":"
+		speakerText.visible_characters = 0
 		speaker_visible_chars_partial = 0
+		speakerIsPlayer = overrideSpeaker == '@' # speaker is player if player-name substitute is used here
+		update_speaker_sprite()
 	ReadySprite.visible = false
 	lastDialogueItem = lastItem
 	delete_choices()
 	SceneLoader.audioHandler.play_sfx(textScrollSfx, -1)
 
 func is_all_text_shown() -> bool:
-	return SpeakerText.visible_characters == len(SpeakerText.text) and TextBoxText.visible_characters == len(TextBoxText.text)
+	return speakerText.visible_characters == len(speakerText.text) and TextBoxText.visible_characters == len(TextBoxText.text)
 
 func is_textbox_complete() -> bool:
 	var pastTime: bool = true # true if the dialogue item has spent its required time onscreen
@@ -102,7 +119,30 @@ func is_textbox_complete() -> bool:
 		pastTime = startDialogueTimer >= dialogueItem.get_min_show_secs(dialogueItemIdx)
 	
 	return pastTime and (is_all_text_shown() or \
-			(len(TextBoxText.text) == 0 and len(SpeakerText.text) == 0))
+			(len(TextBoxText.text) == 0 and len(speakerText.text) == 0))
+
+func update_speaker_sprite() -> void:
+	if speakerSpriteFrames == null or speakerAnim == '':
+		speakerSpriteControl.visible = false
+		speakerSprite.sprite_frames = SpriteFrames.new()
+		speakerSprite.animation = 'default'
+	else:
+		speakerSpriteControl.visible = true
+		var spriteFrames: SpriteFrames = speakerSpriteFrames
+		var spriteScale: int = speakerSpriteScale
+		if speakerIsPlayer:
+			var playerSpriteFrames: SpriteFrames = PlayerFinder.player.get_sprite_frames()
+			if playerSpriteFrames != null:
+				spriteFrames = playerSpriteFrames
+			var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
+			# use idle size since `maxSize` means sprite's canvas size
+			var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
+			# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
+			spriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+		speakerSprite.sprite_frames = spriteFrames
+		speakerSprite.offset = speakerSpriteOffset
+		speakerSprite.play(speakerAnim)
+		speakerSprite.scale = Vector2.ONE * spriteScale
 
 func add_choices():
 	if dialogueItem == null:
@@ -218,15 +258,20 @@ func hide_textbox():
 	dialogueItem = null
 	lastDialogueItem = false
 	lastChoiceFocused = null
-	SpeakerText.text = ''
+	speakerText.text = ''
 	TextBoxText.text = ''
-	SpeakerText.visible_characters = 0
+	speakerText.visible_characters = 0
 	speaker_visible_chars_partial = 0
 	TextBoxText.visible_characters = 0
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
 	delete_choices()
 	PlayerFinder.player.overworldTouchControls.set_in_dialogue(false)
+	speakerSpriteFrames = null
+	speakerIsPlayer = false
+	speakerSpriteScale = 3
+	speakerSpriteOffset = Vector2.ZERO
+	speakerAnim = ''
 
 func show_text_instant():
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
@@ -235,7 +280,7 @@ func show_text_instant():
 		advanceIdx = 1
 	if not is_all_text_shown():
 		SceneLoader.audioHandler.play_sfx(advanceDialogueSfx[advanceIdx])
-	SpeakerText.visible_characters = len(SpeakerText.text)
+	speakerText.visible_characters = len(speakerText.text)
 	TextBoxText.visible_characters = len(TextBoxText.text)
 	if is_textbox_complete():
 		add_choices()
@@ -274,3 +319,9 @@ func _on_box_container_scroller_visibility_changed() -> void:
 		if firstChoiceButton != null and lastChoiceButton != null:
 			firstChoiceButton.focus_neighbor_left = '.'
 			lastChoiceButton.focus_neighbor_right = '.'
+
+
+func _on_speaker_sprite_animation_finished() -> void:
+	await get_tree().create_timer(2).timeout
+	if speakerSprite.is_visible_in_tree():
+		speakerSprite.play()

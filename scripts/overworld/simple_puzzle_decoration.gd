@@ -81,6 +81,9 @@ func play_animation(animName: String):
 func get_sprite_frames() -> SpriteFrames:
 	return animatedDecoration.get_sprite_frames()
 
+func get_interact_animation() -> String:
+	return solvedAnimation if solved else unsolvedAnimation
+
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
 		# add this puzzle to the list of interactables for the player

@@ -13,6 +13,8 @@ class_name Interactable
 ## sfx to play when the player interacts with this Interactable
 @export var interactSfx: AudioStream = null
 
+@export var speakerSpriteOffset: Vector2 = Vector2.ZERO
+
 ## story requirements that dictate if this interactable should be visible or not
 @export var storyRequirements: Array[StoryRequirements] = []
 
@@ -51,6 +53,14 @@ func exit_player_range():
 
 func play_animation(animName: String):
 	print('Warning: Interactable ', name, ' was told to play animation ', animName, ' but play_animation() was not overrided.')
+
+func get_sprite_frames() -> SpriteFrames:
+	print('Warning: Interactable ', name, ' SpriteFrames were queried for, but get_sprite_frames() was not overridden.')
+	return null
+
+func get_interact_animation() -> String:
+	print('Warning: Interactable ', name, ' animation name was queried for, but get_interact_animation() was not overridden.')
+	return ''
 
 func select_choice(choice: DialogueChoice):
 	var curInteractableDialogue: InteractableDialogue = null

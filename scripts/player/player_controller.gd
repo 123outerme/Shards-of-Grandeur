@@ -344,6 +344,7 @@ func repeat_dialogue_item():
 	talkNPC.repeat_dialogue_item()
 	var dialogueText: String = talkNPC.get_cur_dialogue_string()
 	var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item(false)
+	update_npc_speaker_sprite(dialogueItem)
 	textBox.advance_textbox(dialogueText, talkNPC.is_dialogue_item_last(), talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride)
 
 func advance_dialogue(canStart: bool = true):
@@ -371,6 +372,7 @@ func advance_dialogue(canStart: bool = true):
 		var dialogueItem: DialogueItem = talkNPC.get_cur_dialogue_item()
 		var dialogueText: String = talkNPC.get_cur_dialogue_string()
 		if dialogueItem != null: # if there is NPC dialogue to display
+			update_npc_speaker_sprite(dialogueItem)
 			if talkNPC.data.dialogueIndex == 0: # if this is the beginning of the NPC dialogue
 				SceneLoader.pause_autonomous_movers()
 				#SceneLoader.unpauseExcludedMover = talkNPC
@@ -410,10 +412,92 @@ func advance_dialogue(canStart: bool = true):
 					unpause_movement()
 					cam.show_letterbox(false) # disable letterbox
 			else: # otherwise show the new dialogue item
+				update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 				SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 		else: # if it's not done, advance the textbox
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
+
+func update_npc_speaker_sprite(dialogueItem: DialogueItem) -> void:
+	if talkNPC == null or dialogueItem == null:
+		return
+	if dialogueItem.actorAnimation != '':
+		update_overridden_speaker_sprite(dialogueItem)
+	else:
+		var npcSpriteFrames: SpriteFrames = talkNPC.get_sprite_frames()
+		if npcSpriteFrames == null or not npcSpriteFrames.has_animation(dialogueItem.animation):
+			return
+		textBox.speakerSpriteFrames = npcSpriteFrames
+		textBox.speakerAnim = dialogueItem.animation
+		var maxDimensionSize: float = max(talkNPC.spriteSize.x, talkNPC.spriteSize.y)
+		# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
+		textBox.speakerSpriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+		textBox.speakerSpriteOffset = talkNPC.speakerSpriteOffset
+
+func update_interactable_speaker_sprite(dialogueItem: DialogueItem) -> void:
+	if interactable == null or dialogueItem == null:
+		return
+	if dialogueItem.actorAnimation != '':
+		update_overridden_speaker_sprite(dialogueItem)
+	else:
+		var interactableSpriteFrames: SpriteFrames = interactable.get_sprite_frames()
+		var interactAnim: String = interactable.get_interact_animation() if dialogueItem == null or dialogueItem.animation == '' else dialogueItem.animation
+		if interactableSpriteFrames == null or not interactableSpriteFrames.has_animation(interactAnim):
+			return
+		textBox.speakerSpriteFrames = interactableSpriteFrames
+		textBox.speakerAnim = interactAnim
+		textBox.speakerSpriteOffset = interactable.speakerSpriteOffset
+		if interactableSpriteFrames != null:
+			var interactableAnimTexture: Texture2D = interactableSpriteFrames.get_frame_texture(interactAnim, 0)
+			if interactableAnimTexture != null:
+				var maxDimensionSize: float = max(interactableAnimTexture.get_width(), interactableAnimTexture.get_height())
+				# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
+				textBox.speakerSpriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+
+func update_overridden_speaker_sprite(dialogueItem: DialogueItem) -> void:
+	if dialogueItem == null:
+		return
+	var actor: Node = SceneLoader.cutscenePlayer.fetch_actor_node(dialogueItem.animateActorTreePath, dialogueItem.animateActorIsPlayer)
+	if actor != null and actor.has_method('get_sprite_frames'):
+		var actorSpriteFrames: SpriteFrames = actor.call('get_sprite_frames')
+		if actorSpriteFrames == null or not actorSpriteFrames.has_animation(dialogueItem.actorAnimation):
+			return
+		textBox.speakerSpriteFrames = actorSpriteFrames
+		if actorSpriteFrames != null:
+			var animTexture: Texture2D = actorSpriteFrames.get_frame_texture(dialogueItem.actorAnimation, 0)
+			if animTexture != null:
+				var maxDimensionSize: float = max(animTexture.get_width(), animTexture.get_height())
+				# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
+				textBox.speakerSpriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+		textBox.speakerAnim = dialogueItem.actorAnimation
+		if 'speakerSpriteOffset' in actor:
+			textBox.speakerSpriteOffset = actor['speakerSpriteOffset']
+		else:
+			textBox.speakerSpriteOffset = Vector2.ZERO
+
+func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
+	if cutsceneDialogue == null:
+		return
+	var spriteFrames: SpriteFrames = cutsceneDialogue.speakerSpriteFrames
+	var spriteScale: int = cutsceneDialogue.speakerAnimScale
+	if cutsceneDialogue.speakerActorScenePath != '' or cutsceneDialogue.speakerActorIsPlayer:
+		var actorSpriteFrames: SpriteFrames = SceneLoader.cutscenePlayer.fetch_actor_sprite_frames(cutsceneDialogue.speakerActorScenePath, cutsceneDialogue.speakerActorIsPlayer)
+		if actorSpriteFrames != null:
+			spriteFrames = actorSpriteFrames
+	
+	if spriteFrames == null or not spriteFrames.has(cutsceneDialogue.speakerAnim):
+		return
+	
+	if cutsceneDialogue.speakerActorIsPlayer:
+		var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
+		# use idle size since `maxSize` means sprite's canvas size
+		var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
+		# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
+		spriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+	textBox.speakerSpriteFrames = spriteFrames
+	textBox.speakerSpriteOffset = cutsceneDialogue.animSpeakerOffset
+	textBox.speakerAnim = cutsceneDialogue.speakerAnim
+	textBox.speakerSpriteScale = spriteScale
 
 func select_choice(choice: DialogueChoice):
 	makingChoice = false
@@ -723,6 +807,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 
 		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]
 		textBox.dialogueItemIdx = interactableDialogue.savedTextIdx
+		update_interactable_speaker_sprite(textBox.dialogueItem)
 		var dialogueLines: Array[String] = textBox.dialogueItem.get_lines()
 		textBox.set_textbox_text(dialogueLines[interactableDialogue.savedTextIdx], speaker if textBox.dialogueItem.speakerOverride == '' else textBox.dialogueItem.speakerOverride, interactableDialogue.savedItemIdx == len(interactableDialogue.dialogueEntry.items) - 1 and interactableDialogue.savedTextIdx >= len(dialogueLines) - 1)
 	else:

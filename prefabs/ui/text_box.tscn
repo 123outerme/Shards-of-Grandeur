@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx00oa0dadpvj"]
+[gd_scene load_steps=14 format=3 uid="uid://dx00oa0dadpvj"]
 
 [ext_resource type="Script" path="res://scripts/player/text_box.gd" id="1_osatr"]
 [ext_resource type="AudioStream" uid="uid://djrhngjsps35t" path="res://audio/sfx/text_scrolling_mellow_low_note.mp3" id="2_oy0ha"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="9_ck181"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2p22"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_srm4p"]
 
 [node name="TextBoxRoot" type="Node2D" node_paths=PackedStringArray("buttonRow")]
 script = ExtResource("1_osatr")
@@ -50,8 +52,22 @@ theme_override_constants/margin_bottom = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/TextContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="SpeakerText" type="RichTextLabel" parent="Panel/TextContainer/MarginContainer/VBoxContainer"]
+[node name="SpeakerSection" type="HBoxContainer" parent="Panel/TextContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 57)
 layout_mode = 2
+
+[node name="SpeakerSpriteControl" type="Control" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="SpeakerSprite" type="AnimatedSprite2D" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl"]
+position = Vector2(24, 31)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_srm4p")
+
+[node name="SpeakerText" type="RichTextLabel" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection"]
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 1
 theme = ExtResource("3_00gxq")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -121,5 +137,6 @@ position = Vector2(1260, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("4_13uxh")
 
+[connection signal="animation_finished" from="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl/SpeakerSprite" to="." method="_on_speaker_sprite_animation_finished"]
 [connection signal="visibility_changed" from="Panel/BoxContainerScroller" to="." method="_on_box_container_scroller_visibility_changed"]
 [connection signal="visibility_changed" from="Panel/ScrollBetterFollow" to="Panel/ScrollBetterFollow" method="_on_visibility_changed"]

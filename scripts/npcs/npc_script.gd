@@ -33,6 +33,9 @@ class_name NPCScript
 ## visual size of sprite (used for determining NavAgent radius, etc.)
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 
+## how to offset the NPC's sprite when displaying as the speaker in the text box 
+@export var speakerSpriteOffset: Vector2 = Vector2.ZERO
+
 ## if the provided requirements are invalid, the NPC will be freed from the scene
 @export var spawnRequirements: StoryRequirements = null
 
