@@ -45,7 +45,7 @@ func _ready():
 		SettingsHandler.gameSettings.fullscreen = true
 		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	
-	SceneLoader.load_main_menu()
+	SceneLoader.load_main_menu(true)
 	get_window().focus_exited.connect(_on_window_focus_exited)
 	get_viewport().gui_focus_changed.connect(_on_gui_focus_changed)
 

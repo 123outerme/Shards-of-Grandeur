@@ -15,6 +15,7 @@ signal resume_game
 @onready var saveButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/SaveButton')
 
 @onready var alertControl: Control = get_node('Control/AlertControl')
+@onready var shade: ColorRect = get_node('Control/Shade')
 
 const alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
@@ -79,6 +80,7 @@ func _on_save_button_pressed():
 	saveGamePanel.visible = true
 
 func _on_quit_button_pressed():
+	await fade_out_panel()
 	SaveHandler.save_data()
 	PlayerResources.saveFolder = ''
 	PlayerResources.battleSaveFolder = ''
@@ -104,6 +106,16 @@ func show_alert(message: String, lifetime: float = 2):
 	panel.message = message
 	panel.lifetime = lifetime
 	alertControl.add_child(panel)
+
+func fade_out_panel() -> void:
+	SceneLoader.audioHandler.fade_out_music(0.5)
+	if shade == null:
+		return
+	shade.visible = true
+	shade.modulate = Color(0, 0, 0, 0)
+	var shadeTween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	shadeTween.tween_property(shade, 'modulate', Color(0, 0, 0, 1.0), 0.5)
+	await shadeTween.finished
 
 func _on_save_game_panel_game_save_failed():
 	show_alert('Warning: Save error occurred.')

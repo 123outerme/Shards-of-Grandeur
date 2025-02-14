@@ -1,4 +1,5 @@
 extends Control
+class_name MainMenu
 
 @export var mainMenuMusic: AudioStream
 @export var mainMenuLoopMusic: AudioStream
@@ -11,6 +12,9 @@ const DEBUG_CLICKS = 10
 var playerName: String = 'Player'
 var nameInputFocused: bool = false
 
+## true if this is the initial launch of the game (don't fade-in with shade)
+var initial: bool = false
+
 @onready var mainMenuPage: Control = get_node("Panel/MainMenuPage")
 @onready var newGameButton: Button = get_node("Panel/MainMenuPage/VBoxContainer/NewGameButton")
 @onready var resumeGameButton: Button = get_node("Panel/MainMenuPage/VBoxContainer/ResumeGameButton")
@@ -21,11 +25,13 @@ var nameInputFocused: bool = false
 
 @onready var newGameConfirmPanel: Panel = get_node("Panel/NewGameConfirmPanel")
 @onready var overwriteWarningLabel: RichTextLabel = get_node('Panel/NewGameConfirmPanel/OverwriteWarningLabel')
+@onready var newGameConfirmButton: Button = get_node('Panel/NewGameConfirmPanel/HBoxContainer/YesButton')
 @onready var noNewButton: Button = get_node("Panel/NewGameConfirmPanel/HBoxContainer/NoButton")
 
 @onready var playerNamePanel: Panel = get_node("Panel/PlayerNamePanel")
 @onready var nameInput: LineEdit = get_node("Panel/PlayerNamePanel/NameInput")
-@onready var confirmButton: Button = get_node("Panel/PlayerNamePanel/HBoxContainer/ConfirmButton")
+@onready var confirmNewGameButton: Button = get_node("Panel/PlayerNamePanel/HBoxContainer/ConfirmButton")
+@onready var cancelNewGameButton: Button = get_node("Panel/PlayerNamePanel/HBoxContainer/CancelButton")
 @onready var virtualKeyboard: VirtualKeyboard = get_node('Panel/PlayerNamePanel/VirtualKeyboard')
 
 @onready var settingsMenu: SettingsMenu = get_node('SettingsMenu')
@@ -33,6 +39,8 @@ var nameInputFocused: bool = false
 @onready var creditsPanel: CreditsPanel = get_node('Panel/CreditsPanel')
 
 @onready var versionLabel: RichTextLabel = get_node('Panel/MainMenuPage/VersionLabel')
+
+@onready var mainMenuShade: ColorRect = get_node('MainMenuShade')
 
 var debugCounter: int = 0
 
@@ -44,7 +52,10 @@ func _ready():
 	resumeGameButton.visible = loadGamePanel.get_num_saves() != 0
 	set_initial_main_menu_focus()
 	versionLabel.text = 'v' + ProjectSettings.get_setting('application/config/version', 'VERSION?')
-	SceneLoader.audioHandler.play_music(mainMenuMusic)
+	if not initial:
+		fade_in_menu(0.5)
+	# after 0.25 secs, play the game music
+	get_tree().create_timer(0.25).timeout.connect(SceneLoader.audioHandler.play_music.bind(mainMenuMusic))
 	SceneLoader.audioHandler.music_playback_complete.connect(_music_playback_complete)
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 	_on_settings_changed()
@@ -76,6 +87,16 @@ func new_game_name():
 
 func start_new_game():
 	SceneLoader.audioHandler.fade_out_music()
+	
+	# disable "Confirm New Game" buttons
+	newGameConfirmButton.disabled = true
+	noNewButton.disabled = true
+	
+	# disable "Name Character" confirm/cancel buttons
+	cancelNewGameButton.disabled = true
+	confirmNewGameButton.disabled = true
+	
+	await new_game_fade_out()
 	SaveHandler.new_game(playerName)
 	SceneLoader.load_game()
 
@@ -110,7 +131,7 @@ func _on_yes_button_pressed():
 	new_game_name()
 
 func _on_name_input_text_changed(new_text: String):
-	confirmButton.disabled = len(new_text) == 0
+	confirmNewGameButton.disabled = len(new_text) == 0
 
 func _on_name_input_text_submitted(new_text: String):
 	if len(new_text) > 0:
@@ -133,7 +154,7 @@ func _on_settings_menu_back_pressed():
 func _on_name_input_gui_input(event):
 	# if ui cancel (Escape) has been pressed to unfocus the input
 	if event.is_action_pressed('ui_cancel'):
-		confirmButton.grab_focus()
+		confirmNewGameButton.grab_focus()
 
 func _on_virtual_keyboard_key_pressed(character):
 	if playerNamePanel.visible:
@@ -146,10 +167,10 @@ func _on_virtual_keyboard_backspace_pressed():
 		_on_name_input_text_changed(nameInput.text)
 
 func _on_virtual_keyboard_keyboard_hidden():
-	confirmButton.grab_focus()
+	confirmNewGameButton.grab_focus()
 
 func _on_virtual_keyboard_enter_pressed():
-	confirmButton.grab_focus()
+	confirmNewGameButton.grab_focus()
 
 func _on_settings_changed():
 	virtualKeyboard.enabled = SettingsHandler.gameSettings.useVirtualKeyboard
@@ -196,3 +217,21 @@ func _on_debug_click_control_gui_input(event: InputEvent) -> void:
 func _music_playback_complete():
 	SceneLoader.audioHandler.play_music(mainMenuLoopMusic, -1)
 	SceneLoader.audioHandler.music_playback_complete.disconnect(_music_playback_complete)
+
+func new_game_fade_out() -> void:
+	SceneLoader.audioHandler.fade_out_music(0.75)
+	mainMenuShade.visible = true
+	mainMenuShade.modulate = Color(0, 0, 0, 0)
+	var mainMenuTween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	mainMenuTween.tween_property(mainMenuShade, 'modulate', Color(0, 0, 0, 1.0), 0.75)
+	await mainMenuTween.finished
+
+func fade_in_menu(fadeInSecs: float = 0.5) -> void:
+	mainMenuShade.visible = true
+	mainMenuShade.color = Color(0, 0, 0, 1.0)
+	var mainMenuTween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	mainMenuTween.tween_property(mainMenuShade, 'modulate', Color(0, 0, 0, 0), fadeInSecs)
+	mainMenuTween.finished.connect(_fade_in_complete)
+
+func _fade_in_complete() -> void:
+	mainMenuShade.visible = false

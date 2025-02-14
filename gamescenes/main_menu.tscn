@@ -163,9 +163,10 @@ grow_vertical = 0
 mouse_filter = 2
 fit_content = true
 
-[node name="LoadGamePanel" parent="Panel" instance=ExtResource("17_qsm70")]
+[node name="LoadGamePanel" parent="Panel" node_paths=PackedStringArray("shade") instance=ExtResource("17_qsm70")]
 visible = false
 layout_mode = 1
+shade = NodePath("../../MainMenuShade")
 
 [node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
 visible = false
@@ -451,6 +452,16 @@ mouse_filter = 1
 [node name="SettingsMenu" parent="." instance=ExtResource("10_650uu")]
 visible = false
 layout_mode = 1
+
+[node name="MainMenuShade" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenuPage/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

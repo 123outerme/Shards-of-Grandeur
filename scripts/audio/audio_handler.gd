@@ -8,7 +8,8 @@ const MUSIC_DB_HEAD_ROOM = 5
 
 var musicLoops: int = 0
 var sfxLoops: Array[int] = []
-var musicFadeTween: Tween = null
+var musicFadeOutTween: Tween = null
+var musicFadeInTween: Tween = null
 
 var crossFadeTime: float = -1
 var crossFadeAccum: float = 0
@@ -159,29 +160,37 @@ func fade_to_new_music(stream: AudioStream, loops: int = -1, secFadeOut: float =
 	fade_in_new_music(stream, loops, secFadeIn)
 
 func fade_out_music(sec: float = 0.5):
-	if musicFadeTween != null and musicFadeTween.is_valid():
-		musicFadeTween.kill()
-	musicFadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	musicFadeTween.tween_method(set_cur_music_volume, SettingsHandler.gameSettings.musicVolume, 0, sec)
-	musicFadeTween.finished.connect(_fade_music_callback.bind(true))
+	if musicFadeOutTween != null and musicFadeOutTween.is_valid():
+		musicFadeOutTween.kill()
+	musicFadeOutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	musicFadeOutTween.tween_method(set_cur_music_volume, SettingsHandler.gameSettings.musicVolume, 0, sec)
+	musicFadeOutTween.finished.connect(_fade_music_callback.bind(true, get_cur_music_player()))
+	musicFadeOutTween.finished.connect(_fade_out_callback)
 	fadingOutMusic = true
 
+func _fade_out_callback() -> void:
+	musicFadeOutTween = null
+
 func fade_in_music(sec: float = 0.5, loops: int = -1):
-	if musicFadeTween != null and musicFadeTween.is_valid():
-		musicFadeTween.kill()
+	if musicFadeInTween != null and musicFadeInTween.is_valid():
+		musicFadeInTween.kill()
 	musicLoops = loops
 	if sec <= 0:
 		# don't bother with a tween, just do it
 		set_cur_music_volume(SettingsHandler.gameSettings.musicVolume)
 		_fade_music_callback(false)
 		return
-	musicFadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	musicFadeTween.tween_method(set_cur_music_volume, 0, SettingsHandler.gameSettings.musicVolume, sec)
-	musicFadeTween.finished.connect(_fade_music_callback.bind(false))
+	musicFadeInTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	musicFadeInTween.tween_method(set_cur_music_volume, 0, SettingsHandler.gameSettings.musicVolume, sec)
+	musicFadeInTween.finished.connect(_fade_music_callback.bind(false))
+	musicFadeInTween.finished.connect(_fade_in_callback)
 
-func _fade_music_callback(killMusic: bool):
-	musicFadeTween = null
+func _fade_in_callback() -> void:
+	musicFadeInTween = null
+
+func _fade_music_callback(killMusic: bool, musicPlayer: AudioStreamPlayer = null):
 	if killMusic:
+		var killPlayer: AudioStreamPlayer = get_cur_music_player() if musicPlayer == null else musicPlayer
 		get_cur_music_player().stream = null
 	load_audio_settings()
 	fadingOutMusic = false
@@ -189,7 +198,7 @@ func _fade_music_callback(killMusic: bool):
 
 func fade_in_new_music(stream: AudioStream, loops: int, sec: float):
 	if fadingOutMusic:
-		await music_fade_completed
+		musicPlayingOnStream2 = not musicPlayingOnStream2
 	get_cur_music_player().stream = stream
 	get_cur_music_player().play()
 	fade_in_music(sec, loops)

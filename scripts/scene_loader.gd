@@ -34,14 +34,16 @@ func load_overworld(saveFolder: String = ''):
 		PlayerResources.battleSaveFolder = ''
 	call_deferred('load_scene', preload("res://gamescenes/overworld.tscn"))
 	
-func load_main_menu():
+func load_main_menu(initial: bool = false):
 	if PlayerFinder.player != null:
 		PlayerFinder.player.overworldTouchControls.touchVirtualJoystick.release_joystick()
-	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"))
+	call_deferred('load_scene', preload("res://gamescenes/main_menu.tscn"), initial)
 	PlayerResources.timeSinceLastLoad = -1
 
-func load_scene(scene):
+func load_scene(scene, initial: bool = false):
 	var sceneInstance = scene.instantiate()
+	if initial and sceneInstance is MainMenu:
+		sceneInstance.initial = true
 	get_tree().root.call_deferred('add_child', sceneInstance)
 	if currentScene != null:
 		mapLoader = null

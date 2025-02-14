@@ -6,6 +6,7 @@ signal game_save_failed
 signal back_pressed
 
 @export var isLoading: bool = true
+@export var shade: ColorRect = null
 
 var fromSave: String = ''
 var toSave: String = ''
@@ -155,6 +156,7 @@ func save_game(saveFolder: String):
 	load_save_item_panels()
 
 func load_save(saveFolder: String):
+	await fade_out_panel()
 	SaveHandler.load_data(saveFolder)
 	SceneLoader.load_game(saveFolder)
 
@@ -236,6 +238,16 @@ func delete_save(saveFolder: String):
 	SaveHandler.delete_save(saveFolder)
 	load_save_item_panels()
 	initial_focus()
+
+func fade_out_panel() -> void:
+	SceneLoader.audioHandler.fade_out_music(0.5)
+	if shade == null:
+		return
+	shade.visible = true
+	shade.modulate = Color(0, 0, 0, 0)
+	var shadeTween: Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	shadeTween.tween_property(shade, 'modulate', Color(0, 0, 0, 1.0), 0.5)
+	await shadeTween.finished
 
 func _on_back_button_pressed():
 	visible = false
