@@ -66,7 +66,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="BoxContainerScroller" parent="Panel" instance=ExtResource("5_r88w1")]
+[node name="BoxContainerScroller" parent="Panel" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("5_r88w1")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -77,6 +77,9 @@ offset_left = -400.0
 offset_top = 194.0
 offset_right = 400.0
 offset_bottom = 290.0
+scrollContainer = NodePath("../ScrollContainer")
+scrollPx = 160
+bailoutFocusControl = NodePath("../BackButton")
 
 [node name="BackButton" parent="Panel" instance=ExtResource("4_g4bav")]
 custom_minimum_size = Vector2(80, 50)
@@ -92,7 +95,10 @@ offset_right = 25.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_bottom = NodePath("../HBoxContainer/WeaponsButton")
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
 [connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]

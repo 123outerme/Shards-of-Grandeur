@@ -320,7 +320,6 @@ func _on_box_container_scroller_visibility_changed() -> void:
 			firstChoiceButton.focus_neighbor_left = '.'
 			lastChoiceButton.focus_neighbor_right = '.'
 
-
 func _on_speaker_sprite_animation_finished() -> void:
 	await get_tree().create_timer(2).timeout
 	if speakerSprite.is_visible_in_tree():

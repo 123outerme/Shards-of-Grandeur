@@ -65,7 +65,7 @@ func interact(args: Array = []):
 	super.interact(args)
 
 func can_show_interact_sprite() -> bool:
-	return not PlayerFinder.player.inCutscene and dialogue != null and dialogue.can_use_dialogue()
+	return not PlayerFinder.player.inCutscene and has_dialogue()
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':

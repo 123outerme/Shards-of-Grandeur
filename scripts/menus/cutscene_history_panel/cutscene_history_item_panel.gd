@@ -47,6 +47,7 @@ func load_cutscene_history_item_panel() -> void:
 				speakerSprite.scale = Vector2.ONE * spriteScale
 				speakerSpriteControl.visible = true
 			else:
+				printerr('ERROR in load_cutscene_history_item_panel: speaker sprite frames are null: ', spriteFrames == null, ' or does not have animation ', cutsceneDialogue.speakerAnim)
 				speakerSpriteControl.visible = false
 			speakerText.text = TextUtils.rich_text_substitute(cutsceneDialogue.speaker, Vector2i(32, 32)) + ':'
 	else:

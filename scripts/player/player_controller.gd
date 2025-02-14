@@ -129,6 +129,7 @@ func _unhandled_input(event):
 			not cutscenePaused and not startingBattle and not overworldRewardPanel.visible and \
 			# SceneLoader.curMapEntry.isRecoverLocation and \ # uncomment to make the player unable to toggle running while not in a recover location
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
+		var interacted: bool = false
 		if len(interactables) > 0 and not textBox.visible and (event.is_action_pressed("game_interact") or event is InputEventMouseButton):
 			# if the text box isn't open and there's at least one nearby interactable:
 			# find the closest interactable (using squared distance bc faster; the distance only matters relative to other interactables)
@@ -139,9 +140,10 @@ func _unhandled_input(event):
 				if (closestInteractable == null or \
 						(inter.global_position - global_position).length_squared() < (closestInteractable.global_position - global_position).length_squared()):
 					closestInteractable = inter
-			if closestInteractable != null:
+			if closestInteractable != null and closestInteractable.has_dialogue():
 				closestInteractable.interact()
-		elif textBox.is_textbox_complete():
+				interacted = true
+		if not interacted and textBox.is_textbox_complete():
 			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
 		elif textBox.visible:
 			textBox.show_text_instant()
@@ -427,6 +429,7 @@ func update_npc_speaker_sprite(dialogueItem: DialogueItem) -> void:
 	else:
 		var npcSpriteFrames: SpriteFrames = talkNPC.get_sprite_frames()
 		if npcSpriteFrames == null or not npcSpriteFrames.has_animation(dialogueItem.animation):
+			printerr('ERROR in update_npc_speaker_sprite: npc sprite frames are null: ', npcSpriteFrames == null, ' or does not have animation ', dialogueItem.animation)
 			return
 		textBox.speakerSpriteFrames = npcSpriteFrames
 		textBox.speakerAnim = dialogueItem.animation
@@ -444,6 +447,7 @@ func update_interactable_speaker_sprite(dialogueItem: DialogueItem) -> void:
 		var interactableSpriteFrames: SpriteFrames = interactable.get_sprite_frames()
 		var interactAnim: String = interactable.get_interact_animation() if dialogueItem == null or dialogueItem.animation == '' else dialogueItem.animation
 		if interactableSpriteFrames == null or not interactableSpriteFrames.has_animation(interactAnim):
+			printerr('ERROR in update_interactable_speaker_sprite: npc sprite frames are null: ', interactableSpriteFrames == null, ' or does not have animation ', interactAnim)
 			return
 		textBox.speakerSpriteFrames = interactableSpriteFrames
 		textBox.speakerAnim = interactAnim
@@ -457,11 +461,17 @@ func update_interactable_speaker_sprite(dialogueItem: DialogueItem) -> void:
 
 func update_overridden_speaker_sprite(dialogueItem: DialogueItem) -> void:
 	if dialogueItem == null:
+		printerr('ERROR in update_overridden_speaker_sprite: dialogueItem is null')
 		return
 	var actor: Node = SceneLoader.cutscenePlayer.fetch_actor_node(dialogueItem.animateActorTreePath, dialogueItem.animateActorIsPlayer)
-	if actor != null and actor.has_method('get_sprite_frames'):
+	if actor == null:
+		printerr('ERROR in update_overridden_speaker_sprite: actor is null')
+		return
+	
+	if actor.has_method('get_sprite_frames'):
 		var actorSpriteFrames: SpriteFrames = actor.call('get_sprite_frames')
 		if actorSpriteFrames == null or not actorSpriteFrames.has_animation(dialogueItem.actorAnimation):
+			printerr('ERROR in update_overridden_speaker_sprite: actor sprite frames are null: ', actorSpriteFrames == null, ' or does not have animation ', dialogueItem.actorAnimation)
 			return
 		textBox.speakerSpriteFrames = actorSpriteFrames
 		if actorSpriteFrames != null:
@@ -478,6 +488,7 @@ func update_overridden_speaker_sprite(dialogueItem: DialogueItem) -> void:
 
 func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 	if cutsceneDialogue == null:
+		printerr('ERROR in update_cutscene_speaker_sprite: cutsceneDialogue is null')
 		return
 	var spriteFrames: SpriteFrames = cutsceneDialogue.speakerSpriteFrames
 	var spriteScale: int = cutsceneDialogue.speakerAnimScale
@@ -487,6 +498,7 @@ func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 			spriteFrames = actorSpriteFrames
 	
 	if spriteFrames == null or not spriteFrames.has_animation(cutsceneDialogue.speakerAnim):
+		printerr('ERROR in update_cutscene_speaker_sprite: sprite frames are null: ', spriteFrames == null, ' or does not have animation ', cutsceneDialogue.speakerAnim)
 		return
 	
 	if cutsceneDialogue.speakerActorIsPlayer:
