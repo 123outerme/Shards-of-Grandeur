@@ -57,7 +57,7 @@ func _init(
 	tempDisabledAfter = i_tempDisabledAfter
 	notes = i_notes
 
-func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> CutsceneFrame:
+func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null, includeTextBoxHoldingEndFrame: bool = false) -> CutsceneFrame:
 	var accumulator: float = 0
 	var foundPrevFrame: bool = false
 	for frame in cutsceneFrames:
@@ -68,7 +68,7 @@ func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> Cutsc
 		accumulator += frame.frameLength
 	
 	# if a text box is blocking the cutscene from ending, this is the keyframe being played currently
-	if prevFrame != null and foundPrevFrame and time >= accumulator and prevFrame.endTextBoxPauses:
+	if includeTextBoxHoldingEndFrame and prevFrame != null and foundPrevFrame and time >= accumulator and prevFrame.endTextBoxPauses:
 		return prevFrame
 		
 	return null

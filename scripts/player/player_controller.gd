@@ -416,6 +416,7 @@ func advance_dialogue(canStart: bool = true):
 				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 				SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 		else: # if it's not done, advance the textbox
+			update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 
 func update_npc_speaker_sprite(dialogueItem: DialogueItem) -> void:
@@ -485,7 +486,7 @@ func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 		if actorSpriteFrames != null:
 			spriteFrames = actorSpriteFrames
 	
-	if spriteFrames == null or not spriteFrames.has(cutsceneDialogue.speakerAnim):
+	if spriteFrames == null or not spriteFrames.has_animation(cutsceneDialogue.speakerAnim):
 		return
 	
 	if cutsceneDialogue.speakerActorIsPlayer:
@@ -854,6 +855,7 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 	if not textBox.visible:
 		cutsceneTextIndex = len(cutsceneTexts) - 1
 		cutsceneLineIndex = 0
+		update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
 		SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
 

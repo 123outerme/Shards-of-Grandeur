@@ -247,7 +247,7 @@ func _on_cutscene_settings_button_pressed() -> void:
 func open_cutscene_history_panel() -> void:
 	if SceneLoader.cutscenePlayer.cutscene != null and SceneLoader.cutscenePlayer.playing:
 		player.cutsceneHistoryPanel.cutscene = SceneLoader.cutscenePlayer.cutscene
-		var cutsceneFrame: CutsceneFrame = SceneLoader.cutscenePlayer.cutscene.get_keyframe_at_time(SceneLoader.cutscenePlayer.timer, SceneLoader.cutscenePlayer.lastFrame)
+		var cutsceneFrame: CutsceneFrame = SceneLoader.cutscenePlayer.cutscene.get_keyframe_at_time(SceneLoader.cutscenePlayer.timer, SceneLoader.cutscenePlayer.lastFrame, true)
 		player.cutsceneHistoryPanel.currentFrameIdx = SceneLoader.cutscenePlayer.cutscene.get_index_for_frame(cutsceneFrame)
 		player.cutsceneHistoryPanel.load_cutscene_history_panel()
 		if player.cutsceneHistoryPanel.visible:
