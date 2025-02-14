@@ -16,8 +16,13 @@
 
 [sub_resource type="Resource" id="Resource_8jq25"]
 script = ExtResource("1_anga4")
-speaker = ""
+speaker = "@"
 texts = Array[String](["What...? Is the ground shaking?!"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ghke1"]
 script = ExtResource("1_5q5ui")
@@ -217,6 +222,11 @@ transitionType = 0
 script = ExtResource("1_anga4")
 speaker = "Dr. Hudson"
 texts = Array[String](["Was that an earthquake? Quickly, @, check on the Radiant Cave!", "We just got control of it... make sure the entrance to the cave is still accessible!"])
+speakerActorScenePath = "TilemapRoot/DrHudson"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_gmg72"]
 script = ExtResource("1_5q5ui")

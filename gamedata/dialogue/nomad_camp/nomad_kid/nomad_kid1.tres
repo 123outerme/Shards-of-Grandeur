@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://y8r5cuhf482h"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://y8r5cuhf482h"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5tcff"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_0jxhk"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tv0xu"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_n7oi4"]
 
 [sub_resource type="Resource" id="Resource_40ic4"]
 script = ExtResource("1_5tcff")
 lines = Array[String](["Hi adventurer!", "... I'm helping with chores right now. I gotta put these seeds into the ground!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,7 @@ choices = Array[ExtResource("2_tv0xu")]([])
 script = ExtResource("2_0jxhk")
 entryId = ""
 items = Array[ExtResource("1_5tcff")]([SubResource("Resource_40ic4")])
+ordStoryRequirements = Array[ExtResource("3_n7oi4")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

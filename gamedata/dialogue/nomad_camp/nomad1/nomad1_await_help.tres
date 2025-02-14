@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://mvpsd1aadqf2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://mvpsd1aadqf2"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_2mvvf"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7cvje"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jd25s"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_eqx4j"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="5_c55jc"]
 
 [sub_resource type="Resource" id="Resource_7j05e"]
 script = ExtResource("1_2mvvf")
 lines = Array[String](["Take the path out of town to the east, we haven't checked for our elder that way yet!", "Please bring him back safely..."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -26,8 +28,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_c55jc")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["return_elder_nomad"])
@@ -35,12 +39,16 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_c55jc")]([])
 
 [resource]
 script = ExtResource("2_jd25s")
 entryId = ""
 items = Array[ExtResource("1_2mvvf")]([SubResource("Resource_7j05e")])
 storyRequirements = SubResource("Resource_5dr72")
+ordStoryRequirements = Array[ExtResource("3_eqx4j")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

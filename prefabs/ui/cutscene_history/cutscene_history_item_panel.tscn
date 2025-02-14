@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ob6i"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_e5anb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymr2h"]
 
 [node name="CutsceneHistoryItemPanel" type="Panel"]
 custom_minimum_size = Vector2(1280, 131)
@@ -51,7 +51,7 @@ layout_mode = 2
 [node name="SpeakerSprite" type="AnimatedSprite2D" parent="TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl"]
 position = Vector2(24, 31)
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_e5anb")
+sprite_frames = SubResource("SpriteFrames_ymr2h")
 
 [node name="SpeakerText" type="RichTextLabel" parent="TextContainer/MarginContainer/VBoxContainer/SpeakerSection"]
 layout_mode = 2
@@ -84,3 +84,5 @@ text = "Some line of dialogue...
 Line two
 Line three"
 scroll_active = false
+
+[connection signal="animation_finished" from="TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl/SpeakerSprite" to="." method="_on_speaker_sprite_animation_finished"]

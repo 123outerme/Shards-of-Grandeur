@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://cbjmmycmx2h58"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=37 format=3 uid="uid://cbjmmycmx2h58"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dmmds"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_b46e3"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_cye3f"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_n2pi6"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_simhj"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_bw35v"]
 
 [sub_resource type="Resource" id="Resource_jjjeu"]
 script = ExtResource("3_ixu3g")
@@ -30,6 +31,10 @@ targetIsPlayer = false
 script = ExtResource("6_bfl1h")
 speaker = "???"
 texts = Array[String](["Hey, you're awake!"])
+speakerActorScenePath = "TilemapRoot/Nomad1"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_ajo81"]
 script = ExtResource("1_dmmds")
@@ -113,6 +118,10 @@ animation = "talk"
 script = ExtResource("6_bfl1h")
 speaker = "???"
 texts = Array[String](["You got a long way in the desert for someone so bundled up. What brings you out here?"])
+speakerActorScenePath = "TilemapRoot/Nomad1"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_4obgt"]
 script = ExtResource("1_dmmds")
@@ -162,6 +171,10 @@ animation = "stand"
 script = ExtResource("6_bfl1h")
 speaker = "@"
 texts = Array[String](["I'm just trying to get back to my home, Grandstone. Who are you?"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_b7sc7"]
 script = ExtResource("1_dmmds")
@@ -211,11 +224,19 @@ animation = "talk"
 script = ExtResource("6_bfl1h")
 speaker = "???"
 texts = Array[String](["I am a Nomad. We drift from fallen city to ruined town, scavenging what remains."])
+speakerActorScenePath = "TilemapRoot/Nomad1"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_la02y"]
 script = ExtResource("6_bfl1h")
 speaker = "Nomad"
 texts = Array[String](["It's the only way to survive, for those of us who used to live in one of those ruined towns.", "Our duty is to help those we see in need. We adopt this way of life, when we are accepted as Nomads.", "Now, we need that help ourselves... one of our own went missing."])
+speakerActorScenePath = "TilemapRoot/Nomad1"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_utjhk"]
 script = ExtResource("1_dmmds")
@@ -291,8 +312,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_bw35v")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["leave_awaken_house"])
@@ -300,7 +323,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_bw35v")]([])
 
 [resource]
 script = ExtResource("2_b46e3")

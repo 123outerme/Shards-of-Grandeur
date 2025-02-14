@@ -111,6 +111,11 @@ targetIsPlayer = false
 script = ExtResource("3_touku")
 speaker = "Solius"
 texts = Array[String](["Step aside, Chain Legion grunt. Grandstone lays claim to the Cave now!"])
+speakerActorScenePath = "TilemapRoot/Solius"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_vxmux"]
 script = ExtResource("1_8ciat")
@@ -185,6 +190,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("3_touku")
 speaker = "???"
 texts = Array[String](["Oh, do you now?"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_bgldh"]
 script = ExtResource("1_8ciat")
@@ -244,7 +254,7 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_hthqm"]
 script = ExtResource("1_8ciat")
 frameLength = 0.1
-annotation = "Etreus becomes visible"
+annotation = "Etreus becomes visible and faces the player"
 actorTweens = Array[ExtResource("6_ajyo5")]([SubResource("Resource_hnuwo")])
 actorAnims = Array[ExtResource("5_m7dxu")]([])
 actorAnimSets = Array[ExtResource("2_he245")]([])
@@ -304,11 +314,21 @@ animation = "talk"
 script = ExtResource("3_touku")
 speaker = "???"
 texts = Array[String](["Welcome to Steelspire's Radiant Cave, you dogs!"])
+speakerActorScenePath = "TilemapRoot/Etreus"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, -4)
 
 [sub_resource type="Resource" id="Resource_06meb"]
 script = ExtResource("3_touku")
 speaker = "Etreus"
 texts = Array[String](["I am your \"humble\" host, Commander Etreus. I'll be serving you a one-way ticket to the dungeons today!"])
+speakerActorScenePath = "TilemapRoot/Etreus"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, -4)
 
 [sub_resource type="Resource" id="Resource_ydc3b"]
 script = ExtResource("1_8ciat")
@@ -489,6 +509,11 @@ animation = "talk"
 script = ExtResource("3_touku")
 speaker = "Solius"
 texts = Array[String](["Summon a minion and take on Etreus, @! I'll keep their reinforcements off your back!"])
+speakerActorScenePath = "TilemapRoot/Solius"
+speakerActorIsPlayer = true
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_j4s83"]
 script = ExtResource("1_8ciat")
@@ -635,6 +660,11 @@ transitionType = 0
 script = ExtResource("3_touku")
 speaker = "Etreus"
 texts = Array[String](["Grandstone, your pitiful little city, cannot hope to tap into the raw power of the Shards. Yet you chase them so far!", "@, was it? Do you know what these Shards are capable of?", "Long-gone civilizations tell of levelling mountains, bending rivers. Summoning raging flames out of thin air!", "Steelspire has much to accomplish with the power of the Shards, and we won't let Dr. Ildran put them to waste!"])
+speakerActorScenePath = "TilemapRoot/Etreus"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, -4)
 
 [sub_resource type="Resource" id="Resource_i01ww"]
 script = ExtResource("1_8ciat")

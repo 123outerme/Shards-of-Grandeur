@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=214 format=3 uid="uid://76bkyvv3yqid"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=216 format=3 uid="uid://76bkyvv3yqid"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_se7wf"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_4gicn"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="11_85rds"]
 [ext_resource type="AudioStream" uid="uid://c3okt26v0e8er" path="res://audio/sfx/earthquake.mp3" id="11_u8t02"]
 [ext_resource type="Resource" uid="uid://bcpi8vp4styc2" path="res://gamedata/items/key_items/giant_steppes_teleport_stone.tres" id="12_kfbis"]
+[ext_resource type="SpriteFrames" uid="uid://ce05l2rhjwmue" path="res://graphics/animations/a_warlock_agent_disguised.tres" id="13_g5pho"]
 [ext_resource type="AudioStream" uid="uid://c3cl6blk6cvqe" path="res://audio/sfx/teleport.ogg" id="15_24fm0"]
 
 [sub_resource type="Resource" id="Resource_d8n6l"]
@@ -30,6 +31,11 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "Helia"
 texts = Array[String](["You've always been a thorn in our side, @... at every step!", "But with this new Airship, not even an army of adventurers like you would be able to stop us.", "So, in truth, I got what I came here for. Everybody on the ship!"])
+speakerActorScenePath = "TilemapRoot/Helia"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_w2n1t"]
 script = ExtResource("1_se7wf")
@@ -118,6 +124,11 @@ transitionType = 0
 script = ExtResource("6_43wi2")
 speaker = "Helia"
 texts = Array[String](["We'll report our success directly to The General."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = ""
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_4dexv"]
 script = ExtResource("1_se7wf")
@@ -208,7 +219,7 @@ relative = false
 [sub_resource type="Resource" id="Resource_ghhua"]
 script = ExtResource("1_se7wf")
 frameLength = 2.0
-annotation = "All of the Chain Legion Mages and Helia move towards the ship while the camrea follows. Helia continues talking while they load up"
+annotation = "All of the Chain Legion Mages and Helia move towards the ship while the camrea follows. Helia continues talk anim while they load up"
 actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_2dki0"), SubResource("Resource_t12ar"), SubResource("Resource_jgumh"), SubResource("Resource_o3p6p"), SubResource("Resource_pijdi")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_hkynd"), SubResource("Resource_65nnp")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -595,6 +606,11 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "Helia"
 texts = Array[String](["Just remember, Lance, @: we're now one short ride away from ending this war."])
+speakerActorScenePath = "TilemapRoot/Helia"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_hxv47"]
 script = ExtResource("1_se7wf")
@@ -1010,11 +1026,17 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "Chain Legion Mage"
 texts = Array[String](["Well, that certainly was some fine work! Good show, indeed."])
+speakerSpriteFrames = ExtResource("13_g5pho")
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_h213s"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
-annotation = "The disguised Warlock Agent stops and speaks. Hold camrea for next frame cam movement"
+annotation = "The disguised Warlock Agent stops and speaks. Hold camera for next frame cam movement"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_sk64f")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -1070,6 +1092,11 @@ animation = "stand"
 script = ExtResource("6_43wi2")
 speaker = "Lance"
 texts = Array[String](["Now that your buddies have left you behind, you shouldn't be talking so tough. I'll knock some sense into you!"])
+speakerActorScenePath = "TilemapRoot/Lance"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_3jqeq"]
 script = ExtResource("1_se7wf")
@@ -1165,6 +1192,12 @@ animation = "stand"
 script = ExtResource("6_43wi2")
 speaker = "Chain Legion Mage"
 texts = Array[String](["What are you on about...? Oh. I see.", "You misunderstand me, Lance. I am no Chain Legion villain!"])
+speakerSpriteFrames = ExtResource("13_g5pho")
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_rwsuj"]
 script = ExtResource("1_se7wf")
@@ -1245,11 +1278,22 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "???"
 texts = Array[String](["I'm an Agent of the Warlocks, and I've been tracking Helia's movements for a while."])
+speakerSpriteFrames = ExtResource("13_g5pho")
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "reveal_disguise"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_5hho1"]
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
 texts = Array[String](["Young Lance, I was congratulating @ for knocking Helia down a peg. My apologies.", "She is one of my kin, a Warlock. She used to live up on Giant Steppes, where we are all forbidden to leave.", "After she ran away, I was tasked with keeping a tab on her... It's devastating to watch our magic be used like this."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_c376j"]
 script = ExtResource("1_se7wf")
@@ -1293,6 +1337,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
 texts = Array[String](["Now that I have seen you in action, @... I have a formal summons from the top of Giant Steppes. You must visit at once.", "We want to offer you assistance in resisting the Chain Legion's goals and freeing the Radiant Cavern from their hands.", "You even held your own against her highly advanced $highlight{Runes}color$... with our guidance, you will become a great warrior."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_1eh8m"]
 script = ExtResource("1_se7wf")
@@ -1393,11 +1442,16 @@ animation = "stand"
 script = ExtResource("6_43wi2")
 speaker = "@"
 texts = Array[String](["$highlight{Runes}color$? Were those the... floating balls of magic, suspended in the air?"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_uti80"]
 script = ExtResource("1_se7wf")
 frameLength = 0.1
-annotation = "the warlock hand stops talking, the player responds and asks for clarification on Runes"
+annotation = "the warlock agent stops talking, the player responds and asks for clarification on Runes"
 actorTweens = Array[ExtResource("5_h6h1e")]([])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_rkujn")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
@@ -1442,6 +1496,11 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
 texts = Array[String](["Just as the Radiant Cave stores magic power in Shards, our mages have discovered another way to store power.", "This is called a $highlight{Rune, which stores power and increases it, before later activating}color$.", "The spell used to create the Rune will determine its $highlight{Trigger, the condition for activating the Rune}color$, as well as the Rune's effects.", "As a general rule, Runes that are more difficult to activate end up with stronger effects!", "Without the ability to $highlight{Read the Flow of Battle}color$, Runes can quickly overwhelm you. But, I can tell you have that ability.", "I'll make sure the word gets out to your $highlight{Librarian in Grandstone}color$, so you can go to him for any questions."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_uu7wk"]
 script = ExtResource("1_se7wf")
@@ -1491,6 +1550,11 @@ animation = "stand"
 script = ExtResource("6_43wi2")
 speaker = "@"
 texts = Array[String](["I can't believe there was a whole branch of magic dedicated to a delayed store of power, and Grandstone never knew..."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_yi8ts"]
 script = ExtResource("1_se7wf")
@@ -1534,6 +1598,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_43wi2")
 speaker = "@"
 texts = Array[String](["If there's magic like that that I've never heard of, then I'm going to need your aid to stop the Chain Legion. I only want Grandstone to be pieced back together.", "So... I accept your offer! Take me to Giant Steppes, I'm ready to leave."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_i8dov"]
 script = ExtResource("1_se7wf")
@@ -1638,6 +1707,11 @@ targetIsPlayer = false
 script = ExtResource("6_43wi2")
 speaker = "Lance"
 texts = Array[String](["@, shouldn't you tell Dr. Ildran and Dr. Hudson about your new course before you leave?"])
+speakerActorScenePath = "TilemapRoot/Lance"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_yhjno"]
 script = ExtResource("1_se7wf")
@@ -1695,6 +1769,11 @@ targetIsPlayer = false
 script = ExtResource("6_43wi2")
 speaker = "@"
 texts = Array[String](["If Dr. Ildran knows my destination, what will that accomplish besides delaying the journey?", "And besides, if this partnership will end the Radiant War, then anyone in Grandstone would tell me to go."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_6f55t"]
 script = ExtResource("1_se7wf")
@@ -1744,6 +1823,11 @@ animation = "talk"
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
 texts = Array[String](["Either way will do, but none may accompany you to Giant Steppes. We are a secluded people, and do not often interact with outsiders.", "So if you're all ready, take this Teleport Stone and we will return to Giant Steppes at once."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_7yol3"]
 script = ExtResource("1_se7wf")
@@ -1793,6 +1877,11 @@ animation = "stand"
 script = ExtResource("6_43wi2")
 speaker = "@"
 texts = Array[String](["I can't. Commander Etreus cast a spell on me that won't let any Teleport Stones summon their portals."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_tj371"]
 script = ExtResource("1_se7wf")
@@ -1852,6 +1941,11 @@ transitionType = 0
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
 texts = Array[String](["Very well, then. Take the long road to meet us.", "Go $highlight{East of the Hilltop Forest, across the bridge, and due North}color$. We will be awaiting your arrival."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_iqfpn"]
 script = ExtResource("1_se7wf")
@@ -1943,7 +2037,22 @@ transitionType = 0
 [sub_resource type="Resource" id="Resource_kbv3w"]
 script = ExtResource("6_43wi2")
 speaker = "Warlock Agent"
-texts = Array[String](["Farewell, @. We will meet again soon, after you brave the Quiet Tundra.", "The name sounds peaceful, Quiet Tundra... however, it's anything but. The cold will be harsh, and the wildlife dangerous.", "You can turn the tide of your Radiant War, @, I know it. We will make sure this comes to pass!"])
+texts = Array[String](["Farewell, @. We will meet again soon, after you brave the Quiet Tundra.", "The name sounds peaceful, Quiet Tundra... however, it's anything but. The cold will be harsh, and the wildlife dangerous."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_7wad8"]
+script = ExtResource("6_43wi2")
+speaker = "Warlock Agent"
+texts = Array[String](["You can turn the tide of your Radiant War, @, I know it. We will make sure this comes to pass!"])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "teleport"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_dctbf"]
 script = ExtResource("1_se7wf")
@@ -1953,7 +2062,7 @@ actorTweens = Array[ExtResource("5_h6h1e")]([SubResource("Resource_8cltu")])
 actorAnims = Array[ExtResource("3_thpml")]([SubResource("Resource_j568q")])
 actorAnimSets = Array[ExtResource("2_4gicn")]([])
 actorFaceTargets = Array[ExtResource("4_kg844")]([])
-dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_kbv3w")])
+dialogues = Array[ExtResource("6_43wi2")]([SubResource("Resource_kbv3w"), SubResource("Resource_7wad8")])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -2055,6 +2164,11 @@ targetIsPlayer = false
 script = ExtResource("6_43wi2")
 speaker = "Lance"
 texts = Array[String](["I need to take Alessia to the Forge, now. Just... talk to me inside.", "Hopefully she'll wake up soon..."])
+speakerActorScenePath = "TilemapRoot/Lance"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mgtxl"]
 script = ExtResource("1_se7wf")

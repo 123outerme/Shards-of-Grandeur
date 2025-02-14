@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://btkpgo8r4sxar"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://btkpgo8r4sxar"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_7wqtc"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jxji5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_nxwmm"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pctpy"]
 [ext_resource type="Resource" uid="uid://d38sxpfrfyo18" path="res://gamedata/dialogue/nomad_camp/nomad1/nomad1_elder_east.tres" id="3_u4i0u"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_ibk3q"]
 
 [sub_resource type="Resource" id="Resource_as4xd"]
 script = ExtResource("2_l1y40")
@@ -21,6 +22,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_1fiux"]
 script = ExtResource("1_7wqtc")
 lines = Array[String](["We're looking for an older man, he left camp towards the east.", "He didn't go south, obviously, or we would have found him instead of you.", "Help us find our elder, please!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -39,8 +41,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_ibk3q")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -48,12 +52,16 @@ invalidAfterDialogues = Array[String](["nomad1#player_awake"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_ibk3q")]([])
 
 [resource]
 script = ExtResource("2_jxji5")
 entryId = "player_awake"
 items = Array[ExtResource("1_7wqtc")]([SubResource("Resource_1fiux")])
 storyRequirements = SubResource("Resource_6jb4g")
+ordStoryRequirements = Array[ExtResource("3_nxwmm")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

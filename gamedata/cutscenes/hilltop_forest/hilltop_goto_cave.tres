@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://rv435wprw4ok"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=19 format=3 uid="uid://rv435wprw4ok"]
 
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_adr0d"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_hd72m"]
@@ -11,11 +11,16 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_s17y7"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_7g1hk"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_y6fpo"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_pxern"]
 
 [sub_resource type="Resource" id="Resource_exfd1"]
 script = ExtResource("2_kr6t1")
 speaker = "@"
 texts = Array[String](["I think I just saw the cave back there! That's where I'll wait for Dr. Hudson."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_ebtlb"]
 script = ExtResource("1_hd72m")
@@ -94,8 +99,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_pxern")]([])
 invalidAfterCompletingQuests = Array[String](["Protect the Convoy#Ambush!"])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -103,7 +110,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_pxern")]([])
 
 [resource]
 script = ExtResource("1_rd1es")

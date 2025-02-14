@@ -5,6 +5,9 @@ class_name InteractableDecoration
 ## if non-empty, plays the specified animation of the nested AnimatedDecoration's sprite when interacted with
 @export var interactAnim: String = ''
 
+## a SpriteFrames representing all the combined animated decorations' sprites (if more than one)
+@export var combinedSpriteFrames: SpriteFrames = null
+
 var animatedDecorations: Array[AnimatedDecoration] = []
 
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
@@ -43,6 +46,13 @@ func play_animation(animName: String):
 	if animName != '':
 		for animatedDecoration: AnimatedDecoration in animatedDecorations:
 			animatedDecoration.play_animation(animName)
+
+func get_sprite_frames() -> SpriteFrames:
+	if combinedSpriteFrames != null:
+		return combinedSpriteFrames
+	if len(animatedDecorations) > 0:
+		return animatedDecorations[0].get_sprite_frames()
+	return null
 
 func interact(args: Array = []):
 	if interactAnim != '':

@@ -30,6 +30,7 @@ class_name NPCScript
 	'default': null
 }
 
+## visual size of sprite (used for determining NavAgent radius, etc.)
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 
 ## if the provided requirements are invalid, the NPC will be freed from the scene

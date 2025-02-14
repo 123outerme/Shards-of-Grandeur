@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://b4d2wrrbaa21l"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://b4d2wrrbaa21l"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_07ylg"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_cxehe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://uhrjiigdc4cp" path="res://gamedata/dialogue/dr_hudson/hilltop_forest/drh_hilltop_shards_help.tres" id="2_ea06c"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_f4djd"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_wsf8k"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_wp0d3"]
 
 [sub_resource type="Resource" id="Resource_y728j"]
 script = ExtResource("1_cxehe")
@@ -31,6 +32,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_q8tcr"]
 script = ExtResource("1_vgb1i")
 lines = Array[String](["I'll stay here to free the cart. Don't worry about me, clear the path to the cave!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -49,8 +51,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_wp0d3")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["hilltop_ambush"])
@@ -58,12 +62,16 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_wp0d3")]([])
 
 [resource]
 script = ExtResource("1_07ylg")
 entryId = "drh_cart_stuck"
 items = Array[ExtResource("1_vgb1i")]([SubResource("Resource_q8tcr")])
 storyRequirements = SubResource("Resource_suu2u")
+ordStoryRequirements = Array[ExtResource("2_f4djd")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

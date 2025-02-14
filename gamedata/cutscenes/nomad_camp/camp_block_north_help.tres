@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://da6ixck58qpq8"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://da6ixck58qpq8"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_y3e6w"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_nltlv"]
@@ -9,12 +9,17 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_lr2s0"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="8_rw1ol"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="9_6av2f"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="10_bw6bb"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="10_crvl3"]
 
 [sub_resource type="Resource" id="Resource_jx4iv"]
 script = ExtResource("6_sfr76")
 speaker = "@"
 texts = Array[String](["I promised to rescue their elder, I shouldn't leave now.", "Plus, that Ruinous Cavern sounds an awful lot like the Radiant Cave..."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_jnl61"]
 script = ExtResource("1_y3e6w")
@@ -93,8 +98,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("10_bw6bb")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -102,7 +109,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("10_bw6bb")]([])
 
 [resource]
 script = ExtResource("9_6av2f")

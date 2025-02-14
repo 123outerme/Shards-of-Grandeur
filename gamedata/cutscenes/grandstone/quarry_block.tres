@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://67f45roiioow"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=22 format=3 uid="uid://67f45roiioow"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_12ho4"]
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="1_cpis4"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_garfu"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_lyp3r"]
 [ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_e446y"]
@@ -16,28 +15,31 @@
 [ext_resource type="Resource" uid="uid://dgkkrra8rcm82" path="res://gamedata/cutscenes/reused/player_facingRight.tres" id="8_yxprb"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="14_cn8xr"]
 
-[sub_resource type="Resource" id="Resource_bcq1u"]
-script = ExtResource("1_cpis4")
-value = true
+[sub_resource type="Resource" id="Resource_l1fyw"]
+script = ExtResource("4_gdet1")
 actorTreePath = "TilemapRoot/Spelunker2"
 isPlayer = false
-propertyName = "flip_h"
-easeType = 2
-transitionType = 0
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
 
 [sub_resource type="Resource" id="Resource_gk7i5"]
 script = ExtResource("1_12ho4")
 speaker = "Spelunker"
 texts = Array[String](["The road to the quarry is blocked up just up ahead. They're moving a big marble slab down the trail.", "I would wait until they get into the city first."])
+speakerActorScenePath = "TilemapRoot/Spelunker2"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_4ym6f"]
 script = ExtResource("1_garfu")
 frameLength = 0.1
 annotation = "Spelunker2 speaks and faces the player"
-actorTweens = Array[ExtResource("5_50way")]([SubResource("Resource_bcq1u")])
+actorTweens = Array[ExtResource("5_50way")]([])
 actorAnims = Array[ExtResource("3_ojg7p")]([])
 actorAnimSets = Array[ExtResource("2_e446y")]([])
-actorFaceTargets = Array[ExtResource("4_gdet1")]([])
+actorFaceTargets = Array[ExtResource("4_gdet1")]([SubResource("Resource_l1fyw")])
 dialogues = Array[ExtResource("1_12ho4")]([SubResource("Resource_gk7i5")])
 endTextBoxPauses = false
 shakeCamForDuration = false

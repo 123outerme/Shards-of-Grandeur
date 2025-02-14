@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=73 format=3 uid="uid://c8g3p1lo0jdr3"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=74 format=3 uid="uid://c8g3p1lo0jdr3"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="1_2trho"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="1_t8muq"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://k6f4y1hp2ekl" path="res://gamedata/cutscenes/reused/playersprite_right.tres" id="9_ai8ig"]
 [ext_resource type="Resource" uid="uid://dgkkrra8rcm82" path="res://gamedata/cutscenes/reused/player_facingRight.tres" id="10_ru0f4"]
 [ext_resource type="Resource" uid="uid://b2kq5fxmlo6yu" path="res://gamedata/items/shard/rat_shard.tres" id="11_m7w8s"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="17_763ox"]
 
 [sub_resource type="Resource" id="Resource_pyny0"]
 script = ExtResource("1_2trho")
@@ -78,6 +79,10 @@ endStartsShardLearnTutorial = false
 script = ExtResource("4_0n8c1")
 speaker = "Dr. Hudson"
 texts = Array[String](["Here we are, @!"])
+speakerActorScenePath = "TilemapRoot/DrHudson"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_yevn4"]
 script = ExtResource("2_pkwfi")
@@ -194,6 +199,10 @@ animation = "talk"
 script = ExtResource("4_0n8c1")
 speaker = "Dr. Hudson"
 texts = Array[String](["Thanks for clearing the way. I'll bring the spelunking team back up."])
+speakerActorScenePath = "TilemapRoot/DrHudson"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_yfrg5"]
 script = ExtResource("2_pkwfi")
@@ -283,6 +292,10 @@ animation = "talk"
 script = ExtResource("4_0n8c1")
 speaker = "Dr. Hudson"
 texts = Array[String](["SPELUNKING TEAM! IT'S DR. HUDSON SPEAKING. GET UP HERE AT ONCE!"])
+speakerActorScenePath = "TilemapRoot/DrHudson"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_wvafv"]
 script = ExtResource("2_pkwfi")
@@ -427,6 +440,10 @@ targetIsPlayer = false
 script = ExtResource("4_0n8c1")
 speaker = "Spelunker"
 texts = Array[String](["Here you are Doctor, there's more where that came from inside."])
+speakerActorScenePath = "TilemapRoot/Spelunker"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_u0q4i"]
 script = ExtResource("2_pkwfi")
@@ -500,6 +517,10 @@ transitionType = 0
 script = ExtResource("4_0n8c1")
 speaker = "Ambusher"
 texts = Array[String](["Thanks for mining away down there. I'm taking those Shards off your hands now!"])
+speakerActorScenePath = "TilemapRoot/ChainLegionSoldier"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_30vif"]
 script = ExtResource("2_pkwfi")
@@ -583,6 +604,10 @@ animation = "talk"
 script = ExtResource("4_0n8c1")
 speaker = "Spelunker"
 texts = Array[String](["Here, warrior! Take this Shard and defend me with it! It's just a Rat, but that's the only minion I can offer right now!"])
+speakerActorScenePath = "TilemapRoot/Spelunker"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
 
 [sub_resource type="Resource" id="Resource_5edrb"]
 script = ExtResource("2_pkwfi")
@@ -659,8 +684,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("17_763ox")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["hilltop_ambush"])
@@ -668,7 +695,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("17_763ox")]([])
 
 [resource]
 script = ExtResource("1_wyxwv")

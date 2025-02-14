@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://1echdgevusxk"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=19 format=3 uid="uid://1echdgevusxk"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_d16av"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_4bval"]
@@ -11,11 +11,17 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_8ms3t"]
 [ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_kwolp"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_4emi3"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_i3tww"]
 
 [sub_resource type="Resource" id="Resource_sphxo"]
 script = ExtResource("6_8ms3t")
 speaker = "@"
 texts = Array[String](["Gotta get back to Grandstone and gather reinforcements to rescue Solius.", "I'll be reaching Grandstone from the south, and if I remember correctly, there's a large desert somewhere there.", "I just have to cross that desert, and I'll be back home..."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_jf1u7"]
 script = ExtResource("1_d16av")
@@ -94,8 +100,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_i3tww")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["sea_leg_south_escape"])
@@ -103,7 +111,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_i3tww")]([])
 
 [resource]
 script = ExtResource("2_4bval")

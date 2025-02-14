@@ -78,6 +78,9 @@ func play_animation(animName: String):
 	else:
 		queuedAnim = animName
 
+func get_sprite_frames() -> SpriteFrames:
+	return animatedDecoration.get_sprite_frames()
+
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
 		# add this puzzle to the list of interactables for the player

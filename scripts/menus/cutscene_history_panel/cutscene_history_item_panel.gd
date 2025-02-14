@@ -41,6 +41,7 @@ func load_cutscene_history_item_panel() -> void:
 				# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
 				spriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
 			speakerSprite.sprite_frames = spriteFrames
+			speakerSprite.offset = cutsceneDialogue.animSpeakerOffset
 			speakerSprite.play(cutsceneDialogue.speakerAnim)
 			speakerSprite.scale = Vector2.ONE * spriteScale
 		speakerText.text = TextUtils.rich_text_substitute(cutsceneDialogue.speaker, Vector2i(32, 32)) + ':'
@@ -48,3 +49,7 @@ func load_cutscene_history_item_panel() -> void:
 		speakerSection.visible = false
 		custom_minimum_size.y = SPEAKER_HIDDEN_HEIGHT
 	textboxText.text = TextUtils.rich_text_substitute(cutsceneDialogue.texts[textIdx], Vector2i(32, 32))
+
+func _on_speaker_sprite_animation_finished() -> void:
+	await get_tree().create_timer(2).timeout
+	speakerSprite.play(cutsceneDialogue.speakerAnim)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=66 format=3 uid="uid://csdxsrxjaby7w"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=67 format=3 uid="uid://csdxsrxjaby7w"]
 
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_55v27"]
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_5l7i6"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="9_3nerq"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_3xjv0"]
 [ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="9_5j7cy"]
+[ext_resource type="SpriteFrames" uid="uid://bh5ntodb3lou0" path="res://graphics/animations/a_nomad_elder_collapsed.tres" id="10_loiv1"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="14_ko5dt"]
 
 [sub_resource type="Resource" id="Resource_1mi1f"]
@@ -48,6 +49,12 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_25dng")
 speaker = "Elder"
 texts = Array[String](["Mmgh... Rrgh..."])
+speakerSpriteFrames = ExtResource("10_loiv1")
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_usgbb"]
 script = ExtResource("1_55v27")
@@ -119,6 +126,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_25dng")
 speaker = "@"
 texts = Array[String](["Are you alright? Hang on, I've come to rescue you!"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_qkabw"]
 script = ExtResource("1_55v27")
@@ -243,6 +255,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_25dng")
 speaker = "@"
 texts = Array[String](["I don't know if you can hear me, but that should help you feel better.", "(Is this their \"Ruinous Cave\"?)", "(It looks a lot like the collapsed Radiant Cave entrance I saw in Hilltop Forest...)"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_nypkp"]
 script = ExtResource("1_55v27")
@@ -286,6 +303,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_25dng")
 speaker = "???"
 texts = Array[String](["Wraaaaaaughh!!"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_spxck"]
 script = ExtResource("1_55v27")
@@ -435,6 +457,11 @@ animation = "stand"
 script = ExtResource("6_25dng")
 speaker = "Dragon"
 texts = Array[String](["WROOAAAAAARRRR!!"])
+speakerActorScenePath = "TilemapRoot/Dragon"
+speakerActorIsPlayer = false
+speakerAnim = "battle_idle"
+speakerAnimScale = 1
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_p7igu"]
 script = ExtResource("1_55v27")
@@ -497,6 +524,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_25dng")
 speaker = "@"
 texts = Array[String](["Is that a Dragon??! What's it doing here?!"])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_bdc4a"]
 script = ExtResource("1_55v27")

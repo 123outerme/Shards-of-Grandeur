@@ -27,6 +27,11 @@ animation = "battle_idle"
 script = ExtResource("6_wd8k4")
 speaker = "Dragon"
 texts = Array[String](["Wroaaaaughh!!"])
+speakerActorScenePath = "TilemapRoot/Dragon"
+speakerActorIsPlayer = false
+speakerAnim = "battle_idle"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_y7oio"]
 script = ExtResource("1_kd7fi")
@@ -186,6 +191,11 @@ targetIsPlayer = true
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["I'd stand back, adventurer...!"])
+speakerActorScenePath = "TilemapRoot/Nomad2"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_nj2yl"]
 script = ExtResource("1_kd7fi")
@@ -376,6 +386,11 @@ animation = "walk"
 script = ExtResource("6_wd8k4")
 speaker = "Dragon"
 texts = Array[String](["Screeeeaaaghh!!"])
+speakerActorScenePath = "TilemapRoot/Dragon"
+speakerActorIsPlayer = false
+speakerAnim = "walk"
+speakerAnimScale = 1
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_ref47"]
 script = ExtResource("1_kd7fi")
@@ -519,6 +534,11 @@ targetIsPlayer = false
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["Thank you for saving me, adventurer. What's your name?"])
+speakerActorScenePath = "TilemapRoot/Nomad2"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_mt0qu"]
 script = ExtResource("1_kd7fi")
@@ -562,6 +582,11 @@ endStartsShardLearnTutorial = false
 script = ExtResource("6_wd8k4")
 speaker = "@"
 texts = Array[String](["I'm @. I was rescued by your people in the desert, and I'm here to repay the favor."])
+speakerActorScenePath = ""
+speakerActorIsPlayer = true
+speakerAnim = "stand"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_o4rda"]
 script = ExtResource("1_kd7fi")
@@ -617,11 +642,16 @@ animation = "talk"
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["Well, we're not out of this just yet! You can take care of the monsters on the way back to Camp.", "I just chased off the biggest one, so I'll let you handle the rest."])
+speakerActorScenePath = "TilemapRoot/Nomad2"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = null
 
 [sub_resource type="Resource" id="Resource_nrao0"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
-annotation = "The elder needs an escort"
+annotation = "The elder says he needs an escort"
 actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_nvpuc")])
 actorAnimSets = Array[ExtResource("2_45r0i")]([])

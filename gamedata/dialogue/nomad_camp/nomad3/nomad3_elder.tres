@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://ch7bdks1pj2du"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://ch7bdks1pj2du"]
 
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_t6j7e"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_jdyth"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qgbvp"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8atxi"]
 [ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_2td52"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="4_h4ucu"]
 [ext_resource type="Resource" uid="uid://bdykwa0xcvodk" path="res://gamedata/dialogue/nomad_camp/nomad3/nomad3_elder_y.tres" id="5_qkb5l"]
 
 [sub_resource type="Resource" id="Resource_vgq4q"]
@@ -18,8 +19,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_h4ucu")]([])
 invalidAfterCompletingQuests = Array[String](["The Radiant War Begins#Get Your Bearings"])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -27,7 +30,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_h4ucu")]([])
 
 [sub_resource type="Resource" id="Resource_5itmx"]
 script = ExtResource("2_qgbvp")
@@ -51,8 +56,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_h4ucu")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -60,7 +67,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_h4ucu")]([])
 
 [sub_resource type="Resource" id="Resource_1rvnk"]
 script = ExtResource("2_qgbvp")
@@ -77,6 +86,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_gpp2w"]
 script = ExtResource("1_t6j7e")
 lines = Array[String](["Are you going to look for my husband, adventurer?"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -95,8 +105,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_h4ucu")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["return_elder_nomad"])
@@ -104,12 +116,16 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_h4ucu")]([])
 
 [resource]
 script = ExtResource("2_jdyth")
 entryId = ""
 items = Array[ExtResource("1_t6j7e")]([SubResource("Resource_gpp2w")])
 storyRequirements = SubResource("Resource_mapfh")
+ordStoryRequirements = Array[ExtResource("4_2td52")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""
