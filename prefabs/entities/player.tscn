@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=25 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="14_vfyno"]
 [ext_resource type="PackedScene" uid="uid://b7ltlhbnu5jgp" path="res://prefabs/ui/overworld_console.tscn" id="15_u1tpv"]
 [ext_resource type="PackedScene" uid="uid://b5q43n8f33h02" path="res://prefabs/ui/overworld_reward_panel.tscn" id="20_nn2f0"]
+[ext_resource type="PackedScene" uid="uid://bxvdg87okg600" path="res://prefabs/ui/cutscene_history/cutscene_history_panel.tscn" id="21_absrs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
 size = Vector2(13.5, 4)
@@ -164,16 +165,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -334.0
+offset_left = -208.0
 offset_top = 19.0
-offset_right = 334.0
-offset_bottom = 92.0
+offset_right = 622.0
+offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ResumeButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+[node name="SettingsButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -182,29 +184,41 @@ focus_neighbor_right = NodePath("../SkipButton")
 focus_neighbor_bottom = NodePath(".")
 theme_override_styles/hover = ExtResource("11_f58rg")
 theme_override_styles/normal = ExtResource("10_ofshw")
-text = "Resume"
+text = "Settings"
 
 [node name="SkipButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../ResumeButton")
+focus_neighbor_left = NodePath("../SettingsButton")
 focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath(".")
 theme_override_styles/hover = ExtResource("11_f58rg")
 theme_override_styles/normal = ExtResource("10_ofshw")
 text = "Skip"
 
-[node name="SettingsButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+[node name="ResumeButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../SkipButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../HistoryButton")
+focus_neighbor_bottom = NodePath(".")
+theme_override_styles/hover = ExtResource("11_f58rg")
+theme_override_styles/normal = ExtResource("10_ofshw")
+text = "Resume
+"
+
+[node name="HistoryButton" parent="Camera/Shade/ShadeLabel/CutscenePauseButtons" instance=ExtResource("5_354d4")]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../ResumeButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 theme_override_styles/hover = ExtResource("11_f58rg")
 theme_override_styles/normal = ExtResource("10_ofshw")
-text = "Settings"
+text = "History"
 
 [node name="PlayerEventCollider" type="Area2D" parent="."]
 collision_layer = 2
@@ -256,6 +270,13 @@ visible = false
 position = Vector2(-640, -360)
 isPlayer = true
 
+[node name="CutsceneHistoryPanel" parent="UI" instance=ExtResource("21_absrs")]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
 [node name="PauseMenu" parent="UI" instance=ExtResource("9_n4log")]
 visible = false
 position = Vector2(-640, -360)
@@ -271,9 +292,10 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SettingsButton" to="Camera" method="_on_cutscene_settings_button_pressed"]
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/HistoryButton" to="Camera" method="open_cutscene_history_panel"]
 [connection signal="console_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_console_pressed"]
 [connection signal="inventory_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_inventory_pressed"]
 [connection signal="pause_pressed" from="UI/OverworldTouchControls" to="." method="_on_overworld_touch_controls_pause_pressed"]

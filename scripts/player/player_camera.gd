@@ -21,8 +21,9 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 @onready var shadeLabel: RichTextLabel = get_node("Shade/ShadeLabel")
 
 @onready var cutscenePauseButtons: HBoxContainer = get_node('Shade/ShadeLabel/CutscenePauseButtons')
-@onready var resumeButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/ResumeButton')
 @onready var cutsceneSettingsButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/SettingsButton')
+@onready var resumeButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/ResumeButton')
+@onready var cutsceneHistoryButton: Button = get_node('Shade/ShadeLabel/CutscenePauseButtons/HistoryButton')
 
 var cutscenePaused: bool = false
 
@@ -242,6 +243,18 @@ func _on_cutscene_settings_button_pressed() -> void:
 	player.pausePanel.resume_game.connect(_cutscene_settings_back)
 	player.animatedBgPanel.visible = true
 	player.pausePanel.pause_game()
+
+func open_cutscene_history_panel() -> void:
+	if SceneLoader.cutscenePlayer.cutscene != null and SceneLoader.cutscenePlayer.playing:
+		player.cutsceneHistoryPanel.cutscene = SceneLoader.cutscenePlayer.cutscene
+		var cutsceneFrame: CutsceneFrame = SceneLoader.cutscenePlayer.cutscene.get_keyframe_at_time(SceneLoader.cutscenePlayer.timer, SceneLoader.cutscenePlayer.lastFrame)
+		player.cutsceneHistoryPanel.currentFrameIdx = SceneLoader.cutscenePlayer.cutscene.get_index_for_frame(cutsceneFrame)
+		player.cutsceneHistoryPanel.load_cutscene_history_panel()
+		if player.cutsceneHistoryPanel.visible:
+			player.animatedBgPanel.visible = true
+			await player.cutsceneHistoryPanel.back_pressed
+			player.animatedBgPanel.visible = false
+			cutsceneHistoryButton.grab_focus()
 
 func _settings_changed():
 	zoom = Vector2(SettingsHandler.gameSettings.playerCamZoom, SettingsHandler.gameSettings.playerCamZoom)

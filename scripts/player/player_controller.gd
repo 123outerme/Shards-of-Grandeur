@@ -42,6 +42,7 @@ var walkBackwards: bool = false ## flips the walking direction to face backwards
 @onready var inventoryPanel: InventoryMenu = get_node("UI/InventoryPanelNode")
 @onready var questsPanel: QuestsMenu = get_node("UI/QuestsPanelNode")
 @onready var statsPanel: StatsMenu = get_node("UI/StatsPanelNode")
+@onready var cutsceneHistoryPanel: CutsceneHistoryPanel = get_node('UI/CutsceneHistoryPanel')
 @onready var pausePanel: PauseMenu = get_node("UI/PauseMenu")
 @onready var overworldRewardPanel: OverworldRewardPanel = get_node('UI/OverworldRewardPanel')
 @onready var overworldConsole: OverworldConsole = get_node('UI/OverworldConsole')
@@ -92,6 +93,8 @@ func _unhandled_input(event):
 				if pausePanel.visible:
 					#animatedBgPanel.visible = false
 					pausePanel.toggle_pause()
+				elif cutsceneHistoryPanel.visible:
+					cutsceneHistoryPanel.close_panel()
 				else:
 					SceneLoader.cutscenePlayer.toggle_pause_cutscene()
 					cam.toggle_cutscene_paused_shade()
@@ -319,6 +322,9 @@ func enable_event_collisions():
 
 func play_animation(animation: String):
 	sprite.play(animation)
+
+func get_sprite_frames() -> SpriteFrames:
+	return PlayerResources.playerInfo.combatant.get_sprite_frames()
 
 func face_horiz(xDirection: float):
 	if xDirection > 0:

@@ -28,6 +28,7 @@ const UI_REPEAT_ACTIONS_TO_ACTION: Dictionary = {
 
 func _ready():
 	parse_cmdline_args()
+	SceneLoader.mainGame = self
 	SceneLoader.audioHandler = audioHandler
 	SceneLoader.cutscenePlayer = cutscenePlayer
 	

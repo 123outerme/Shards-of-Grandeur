@@ -66,6 +66,11 @@ func get_keyframe_at_time(time: float, prevFrame: CutsceneFrame = null) -> Cutsc
 		if prevFrame == frame:
 			foundPrevFrame = true
 		accumulator += frame.frameLength
+	
+	# if a text box is blocking the cutscene from ending, this is the keyframe being played currently
+	if prevFrame != null and foundPrevFrame and time >= accumulator and prevFrame.endTextBoxPauses:
+		return prevFrame
+		
 	return null
 
 func get_current_frame_time(timer: float, prevFrame: CutsceneFrame = null) -> float:

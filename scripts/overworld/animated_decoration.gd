@@ -42,5 +42,8 @@ func play_animation(animation: String):
 	currentAnim = animation
 	animSprite.play(animation)
 
+func get_sprite_frames() -> SpriteFrames:
+	return animSprite.sprite_frames
+
 func _on_animated_sprite_2d_animation_finished():
 	anim_finished.emit()

@@ -279,6 +279,15 @@ func fetch_actor_node(actorTreePath: String, isPlayer: bool) -> Node:
 		node = rootNode.get_node_or_null(actorTreePath)
 	return node
 
+func fetch_actor_sprite_frames(actorTreePath: String, isPlayer: bool) -> SpriteFrames:
+	var actorNode: Node = fetch_actor_node(actorTreePath, isPlayer)
+	if actorNode == null:
+		return null
+	
+	if actorNode.has_method('get_sprite_frames'):
+		return actorNode.call('get_sprite_frames')
+	return null
+
 func pause_cutscene():
 	for tween in tweens:
 		tween.pause()

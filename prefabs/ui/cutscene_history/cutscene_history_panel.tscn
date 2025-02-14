@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxvdg87okg600"]
+
+[ext_resource type="Script" path="res://scripts/menus/cutscene_history_panel/cutscene_history_panel.gd" id="1_pnltx"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_iyjhc"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="3_0bbbw"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_g4bav"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="5_r88w1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hvom"]
+
+[node name="CutsceneHistoryPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_pnltx")
+metadata/_edit_horizontal_guides_ = [545.0]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2hvom")
+
+[node name="HistoryTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.0
+offset_top = 10.0
+offset_right = 196.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme = ExtResource("2_iyjhc")
+bbcode_enabled = true
+text = "[center]Dialogue History[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -292.0
+offset_right = 640.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+script = ExtResource("3_0bbbw")
+boxContainer = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="BoxContainerScroller" parent="Panel" instance=ExtResource("5_r88w1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 194.0
+offset_right = 400.0
+offset_bottom = 290.0
+
+[node name="BackButton" parent="Panel" instance=ExtResource("4_g4bav")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -56.0
+offset_right = 25.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_bottom = NodePath("../HBoxContainer/WeaponsButton")
+text = "Back"
+
+[connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="scroll_buttons_updated" from="Panel/BoxContainerScroller" to="." method="_on_box_container_scroller_scroll_buttons_updated"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

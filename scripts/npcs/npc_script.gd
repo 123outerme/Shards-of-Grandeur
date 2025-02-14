@@ -554,6 +554,9 @@ func play_animation(animation: String):
 	if animation != '':
 		npcSprite.play(animation)
 
+func get_sprite_frames() -> SpriteFrames:
+	return npcSprite.sprite_frames
+
 func get_stand_animation() -> String:
 	return 'stand' if not combatMode else 'battle_idle'
 

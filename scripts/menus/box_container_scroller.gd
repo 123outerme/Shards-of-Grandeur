@@ -1,6 +1,7 @@
 extends Control
 class_name BoxContainerScroller
 
+## scroll buttons may have been shown or hidden after this signal is emitted; any desired focus neighbors of the buttons should be updated
 signal scroll_buttons_updated
 
 @export var scrollContainer: ScrollContainer

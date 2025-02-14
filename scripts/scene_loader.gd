@@ -7,6 +7,7 @@ var audioHandler: AudioHandler = null
 var cutscenePlayer: CutscenePlayer = null
 var curMapEntry: MapEntry = null
 var debug: bool = false
+var mainGame: MainGame = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
