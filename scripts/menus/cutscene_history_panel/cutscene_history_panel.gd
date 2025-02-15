@@ -51,6 +51,8 @@ func load_cutscene_history_panel() -> void:
 		if curDialogue != itemPanel.cutsceneDialogue:
 			itemPanel.isFirst = true
 			curDialogue = itemPanel.cutsceneDialogue
+		else:
+			itemPanel.isFirst = false
 		vboxContainer.add_child(itemPanel)
 		itemPanel.load_cutscene_history_item_panel.call_deferred()
 	
