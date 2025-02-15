@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=47 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_bwnp0"]
@@ -10,7 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/battle/gateway_into_action.mp3" id="6_e5p5n"]
 [ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="8_x7fe1"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battle_command.gd" id="9_jd22b"]
+[ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="9_qqchu"]
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="9_wpvco"]
+[ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="10_0ecd1"]
 [ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="12_nbu5k"]
 [ext_resource type="Script" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="17_mfbgk"]
@@ -23,7 +25,7 @@
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="20_jje8i"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="21_6efxx"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
-[ext_resource type="Resource" uid="uid://cq4jjoj6ancn0" path="res://gamedata/moves/shade_blast/shade_blast.tres" id="24_56mgk"]
+[ext_resource type="Resource" uid="uid://djpdjv3jnd7ud" path="res://gamedata/moves/marlin_spike/marlin_spike.tres" id="26_ss4d8"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
@@ -43,7 +45,9 @@ script = ExtResource("2_sffs8")
 combatant1Level = 20
 combatant1Moves = Array[ExtResource("4_egeqm")]([])
 combatant1ShardSummoned = false
+combatant2 = ExtResource("9_qqchu")
 combatant2Level = 1
+combatant2Weapon = ExtResource("10_0ecd1")
 combatant2Moves = Array[ExtResource("4_egeqm")]([])
 combatant2ShardSummoned = false
 combatant3 = ExtResource("2_sul0p")
@@ -155,7 +159,7 @@ decisionsRandomNum = -1.0
 [sub_resource type="Resource" id="Resource_2nv1k"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("24_56mgk")
+move = ExtResource("26_ss4d8")
 moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Ally"])

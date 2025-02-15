@@ -99,6 +99,7 @@ func load_children_entries_for_entry(entryStack: Array[CodexEntry]) -> Array[Cod
 		path += entry.id + '/'
 	
 	var codexEntries: Array[CodexEntry] = []
+	var codexEntriesIdMap: Dictionary = {} # map of ID -> codex entry
 	if DirAccess.dir_exists_absolute(path):
 		var files: PackedStringArray = DirAccess.get_files_at(path)
 		if len(files) > 0:
@@ -112,6 +113,10 @@ func load_children_entries_for_entry(entryStack: Array[CodexEntry]) -> Array[Cod
 					resourceFilename += '.tres'
 				var codexEntry: CodexEntry = ResourceLoader.load(path + resourceFilename) as CodexEntry
 				if codexEntry != null:
+					if codexEntriesIdMap.has(codexEntry.id):
+						if codexEntry.priority < codexEntriesIdMap[codexEntry.id].priority:
+							continue
+					codexEntriesIdMap[codexEntry.id] = codexEntry
 					codexEntries.append(codexEntry)
 				else:
 					printerr('Codex entry at ', path, resourceFilename, ' loaded as null.')
