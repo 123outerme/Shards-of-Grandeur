@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://prefabs/test/overworld/overworld_enemy_tester.gd" id="1_0slco"]
 [ext_resource type="PackedScene" uid="uid://cqvhw1vxc0cw" path="res://prefabs/entities/overworld_enemy.tscn" id="2_s020o"]
 [ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_5msn5"]
-[ext_resource type="Resource" uid="uid://byb2678day0jv" path="res://gamedata/combatants/sea_wyrm/sea_wyrm.tres" id="3_i8uyg"]
+[ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="3_spxey"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/overworld_enemy_data.gd" id="3_xrcmv"]
-[ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="4_egdec"]
+[ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="4_fo5cl"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_t2rvi"]
 [ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="6_nlpsh"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="7_lsvak"]
@@ -18,14 +18,14 @@ combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("6_nlpsh")]([])
 combatant2Options = Array[ExtResource("3_5msn5")]([])
 combatant3Options = Array[ExtResource("3_5msn5")]([])
-combatant1Weapon = ExtResource("4_egdec")
+combatant1Weapon = ExtResource("4_fo5cl")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
 
 [sub_resource type="Resource" id="Resource_kqnda"]
 script = ExtResource("3_xrcmv")
-combatant = ExtResource("3_i8uyg")
+combatant = ExtResource("3_spxey")
 position = Vector2(0, 0)
 disableMovement = true
 encounter = SubResource("Resource_hfhwl")

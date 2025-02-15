@@ -25,6 +25,16 @@ class_name CombatantSprite
 ## if largest `idleSize` dimension == 16, use 1. If == 32, use 2. If == 48, use 3.
 @export_flags_2d_navigation var navigationLayer: int = 1
 
+@export_category('Start Move Frames')
+## the frame tweening towards a target starts for the "attack_affinity" animation
+@export var attackAffinityStartMoveFrame: int = 0
+
+## the frame tweening towards a target starts for the "attack_magic" animation
+@export var attackMagicStartMoveFrame: int = 0
+
+## the frame tweening towards a target starts for the "attack_phys" animation
+@export var attackPhysStartMoveFrame: int = 0
+
 @export_category('Arrival Frames')
 ## the "arrival" frame for the "attack_affinity" animation of this combatant. Tweening towards a target combatant use this for timing purposes. 0-indexed, <0 means auto-timed. Frames are counted by amount of time per frame, not by which sprite is being displayed (for cases of frames with increased duration)
 @export var attackAffinityArrivalFrame: int = -1
@@ -76,6 +86,16 @@ func _init(
 	attackPhysArrivalFrame = i_attackPhysArrivalFrame
 	attackMagicArrivalFrame = i_attackMagicArrivalFrame
 	attackAffinityArrivalFrame = i_attackAffinityArrivalFrame
+
+func get_start_move_frame(animName: String) -> int:
+	match animName:
+		'attack_phys':
+			return attackPhysStartMoveFrame
+		'attack_magic':
+			return attackMagicStartMoveFrame
+		'attack_affinity':
+			return attackAffinityStartMoveFrame
+	return 0
 
 func get_impact_frame(animName: String) -> int:
 	match animName:

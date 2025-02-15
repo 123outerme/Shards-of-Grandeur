@@ -460,6 +460,7 @@ func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
 		global_position = returnToPos
 	animateTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	returnToPos = global_position
+	var fps: float = get_animation_fps(animatedSprite.animation)
 	var moveTime: float = ((returnToPos - pos) / global_scale).length() / ANIMATE_MOVE_SPEED
 	var downTime: float = 0
 	# if there's an animation playing:
@@ -468,10 +469,17 @@ func tween_to(pos: Vector2, targetCombatantNode: CombatantNode):
 		var arriveFrame = combatant.get_sprite_obj().get_arrive_frame(animatedSprite.animation)
 		# if no arrive frame (value < 0), auto-time (arrive at the destination with halfway through the animation)
 		if arriveFrame >= 0:
-			# arrive at the chosen arrival frame and wait the remainder of the move time 
-			var fps: float = get_animation_fps(animatedSprite.animation)
+			# arrive at the chosen arrival frame and wait the remainder of the move time
 			downTime = moveTime - (arriveFrame / fps)
 			moveTime = arriveFrame / fps
+	
+	# get the frame that the combatant starts moving at
+	var startMoveFrame: int = combatant.get_sprite_obj().get_start_move_frame(animatedSprite.animation)
+	if startMoveFrame > 0:
+		# if there's any delay to start moving, do nothing
+		var waitTime: float = startMoveFrame / fps
+		animateTween.tween_property(spriteContainer, 'rotation', 0, waitTime) # will not rotate, is doing nothing for the length of the wait time
+
 	# move to target position
 	animateTween.tween_property(spriteContainer, 'global_position', pos, moveTime)
 	# emit that the move was completed
@@ -538,7 +546,7 @@ func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 		nodes = [moveSpriteTargets[0]]
 	# for each target in the list of target nodes at this point, one sprite will be spawned 
 	playedMoveSprites += len(nodes)
-	
+
 	var impactFrame: int = combatant.get_sprite_obj().get_impact_frame(animatedSprite.animation)
 	if impactFrame > 0 and moveAnimSprite.playsOnImpactFrame:
 		# wait to spawn the move sprite until the impact frame arrives

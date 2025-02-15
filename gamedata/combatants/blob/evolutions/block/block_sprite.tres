@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://nwc30xk2rdlw"]
+
+[ext_resource type="Resource" uid="uid://be35x6pwuwths" path="res://gamedata/combatants/blob/evolutions/block/block_overworld.tres" id="1_6y2ot"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_lo1a7"]
+[ext_resource type="SpriteFrames" uid="uid://di11nvkfh43nu" path="res://graphics/animations/a_block.tres" id="3_dm0ir"]
+
+[resource]
+script = ExtResource("1_lo1a7")
+spriteFrames = ExtResource("3_dm0ir")
+combatantOverworld = ExtResource("1_6y2ot")
+maxSize = Vector2(32, 16)
+idleSize = Vector2(29, 13)
+centerPosition = Vector2(15, 9)
+feetPosition = Vector2(15, 15)
+headPosition = Vector2(12, 9)
+spriteFacesRight = false
+navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 3
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 5
+attackAffinityImpactFrame = 3
+attackMagicImpactFrame = 6
+attackPhysImpactFrame = 6

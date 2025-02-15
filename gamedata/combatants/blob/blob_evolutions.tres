@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Evolutions" load_steps=2 format=3 uid="uid://20xg0ht0s1ey"]
+[gd_resource type="Resource" script_class="Evolutions" load_steps=4 format=3 uid="uid://20xg0ht0s1ey"]
 
+[ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="1_6c3si"]
 [ext_resource type="Script" path="res://scripts/battle/combatant/evolutions.gd" id="1_mxs1v"]
+[ext_resource type="Resource" uid="uid://b34vmccoo51wf" path="res://gamedata/combatants/blob/evolutions/block/evolution_block.tres" id="2_drdrl"]
 
 [resource]
 script = ExtResource("1_mxs1v")
-evolutionList = Array[Resource("res://scripts/battle/combatant/evolution.gd")]([])
+evolutionList = Array[ExtResource("1_6c3si")]([ExtResource("2_drdrl")])

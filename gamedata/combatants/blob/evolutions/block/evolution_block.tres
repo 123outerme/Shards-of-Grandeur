@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Evolution" load_steps=12 format=3 uid="uid://b34vmccoo51wf"]
+
+[ext_resource type="Resource" uid="uid://b2rv1hyn8cjuo" path="res://gamedata/combatants/blob/evolutions/block/block_ai.tres" id="1_oynic"]
+[ext_resource type="Resource" uid="uid://nwc30xk2rdlw" path="res://gamedata/combatants/blob/evolutions/block/block_sprite.tres" id="2_qpx87"]
+[ext_resource type="Resource" uid="uid://bl1la07b7lc8o" path="res://gamedata/combatants/blob/evolutions/block/block_effectiveness.tres" id="3_vtpx7"]
+[ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="4_xwb7v"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="5_t62xe"]
+[ext_resource type="Resource" uid="uid://ddjps1e1butv8" path="res://gamedata/combatants/blob/evolutions/block/block_stat_alloc_strategy.tres" id="6_fkq07"]
+[ext_resource type="Resource" uid="uid://cbjx5opvpjdot" path="res://gamedata/combatants/blob/evolutions/block/block_movepool.tres" id="7_jdker"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="8_l08ys"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="9_p6s3k"]
+[ext_resource type="Resource" uid="uid://c7ke3iaavbqwn" path="res://gamedata/combatants/blob/evolutions/block/block_stat_growth.tres" id="10_6c0xa"]
+
+[sub_resource type="Resource" id="Resource_5t7nd"]
+script = ExtResource("9_p6s3k")
+displayName = "Block"
+saveName = "blob"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("10_6c0xa")
+moves = Array[ExtResource("8_l08ys")]([])
+movepool = ExtResource("7_jdker")
+
+[resource]
+script = ExtResource("5_t62xe")
+evolutionSaveName = "block"
+combatantSprite = ExtResource("2_qpx87")
+requiredWeapon = ExtResource("4_xwb7v")
+stats = SubResource("Resource_5t7nd")
+statAllocationStrategy = ExtResource("6_fkq07")
+moveEffectiveness = ExtResource("3_vtpx7")
+ai = ExtResource("1_oynic")
+aiType = 4
+aggroType = 0
+strategy = 0
