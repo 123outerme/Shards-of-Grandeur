@@ -29,12 +29,9 @@ enum Role {
 @export var enemyTeamMarker: Marker2D
 @export var globalMarker: Marker2D
 
-const statusWeights: Dictionary = {
-	StatusEffect.Potency.WEAK: 30,
-	StatusEffect.Potency.STRONG: 45,
-	StatusEffect.Potency.OVERWHELMING: 60
-}
-const ANIMATE_MOVE_SPEED = 90
+const ANIMATE_MOVE_SPEED: float = 90
+const MAX_RUNES_SHOWN: int = 2
+const MULTI_RUNE_DELAY_SECS: float = 0.5
 const moveSpriteScene = preload('res://prefabs/battle/move_sprite.tscn')
 const eventTextScene = preload('res://prefabs/battle/combatant_event_text.tscn')
 
@@ -53,8 +50,8 @@ var returnToPos: Vector2 = Vector2()
 var playedMoveSprites: int = 0
 var moveSpriteTargets: Array[CombatantNode] = []
 var playingMoveSprites: Array[MoveSprite] = []
+var loadedRuneSprites: Array[MoveSprite] = []
 var playingRuneSprites: Array[MoveSprite] = []
-var playingRuneSpriteIdx: int = -1
 var playedEventTexts: int = 0
 var playingEventTexts: Array[CombatantEventText] = []
 var useItemSprite: Texture2D = null
@@ -268,12 +265,13 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 	if combatant == null or not is_alive():
 		return
 	
-	var currentlyPlayingSprite: MoveSprite = \
-		playingRuneSprites[playingRuneSpriteIdx] if \
-			playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites) else \
-			null
-	playingRuneSpriteIdx = -1
+	var currentlyShowingSprites: Array[MoveSprite] = []
+	for runeSpr: MoveSprite in playingRuneSprites:
+		if runeSpr != null:
+			currentlyShowingSprites.append(runeSpr)
+
 	playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
+	loadedRuneSprites = loadedRuneSprites.filter(_filter_out_null)
 	var runes: Array[Rune] = []
 	runes.append_array(combatant.runes)
 	if createTriggered:
@@ -281,7 +279,7 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 	
 	for rune: Rune in runes:
 		var hasSprite: bool = false
-		for runeSprite: MoveSprite in playingRuneSprites:
+		for runeSprite: MoveSprite in loadedRuneSprites:
 			if runeSprite.linkedResource == rune:
 				hasSprite = true
 		if hasSprite or not (createNew or (createTriggered and rune in combatant.triggeredRunes)):
@@ -303,23 +301,48 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 			#spriteNode.halt = true
 		spriteNode.move_sprite_complete.connect(_rune_sprite_complete)
 		add_child(spriteNode)
-		playingRuneSprites.append(spriteNode)
-		#print('Add rune sprite => ' , len(playingRuneSprites))
-		if playingRuneSpriteIdx == -1:
-			playingRuneSpriteIdx = len(playingRuneSprites) - 1
-	if playingRuneSpriteIdx == -1 and currentlyPlayingSprite != null:
-		playingRuneSpriteIdx = playingRuneSprites.find(currentlyPlayingSprite)
+		loadedRuneSprites.append(spriteNode)
+		#print('Add rune sprite => ' , len(loadedRuneSprites))
+		if len(playingRuneSprites) < min(MAX_RUNES_SHOWN, len(loadedRuneSprites)): # if we don't have enough sprites being shown:
+			playingRuneSprites.append(spriteNode) # add this sprite to the list
 	
-	if playingRuneSpriteIdx >= 0 and playingRuneSpriteIdx < len(playingRuneSprites):
-		if targetOfMoveAnimation or (createTriggered and playingRuneSprites[playingRuneSpriteIdx].linkedResource in combatant.triggeredRunes and not playCreatedTriggeredRunes):
-			playingRuneSprites[playingRuneSpriteIdx].halt = true
-			playingRuneSprites[playingRuneSpriteIdx].reset_animation(true)
-			playingRuneSprites[playingRuneSpriteIdx].visible = false
-		else:
-			playingRuneSprites[playingRuneSpriteIdx].halt = false
-			if not playingRuneSprites[playingRuneSpriteIdx].playing:
-				playingRuneSprites[playingRuneSpriteIdx].play_sprite_animation()
-			playingRuneSprites[playingRuneSpriteIdx].visible = true
+	# calc the shortest duration a Rune sprite has been onscreen for:
+	var minPlaySecs: float = -1
+	for runeSpr: MoveSprite in playingRuneSprites:
+		# ignore minPlaySecs of 0 if there is a timer that has ticked onwards
+		if not runeSpr.halt and (minPlaySecs <= 0 or runeSpr.totalTimer < minPlaySecs):
+			minPlaySecs = runeSpr.totalTimer
+
+	# number of runes this update has already started playing
+	var countStartedPlaying: int = 0
+	# for each rune sprite this combatant has:
+	for runeSpr: MoveSprite in loadedRuneSprites:
+		# if this sprite is in the list of showing idxs:
+		if runeSpr in playingRuneSprites:
+			# if this combatant is being targeted in a move animation or we're not yet playing created triggered runes and this was triggered:
+			if targetOfMoveAnimation or \
+					(createTriggered and runeSpr.linkedResource in combatant.triggeredRunes and not playCreatedTriggeredRunes):
+				_set_rune_sprite_playing_and_shown(runeSpr, false)
+			else:
+				# otherwise: this should be shown
+				if runeSpr.playing:
+					# if this rune was just created: increment the started playing counter too
+					if runeSpr.totalTimer == 0:
+						countStartedPlaying += 1
+					continue # unless it's already shown
+				var playWaitTime: float = MULTI_RUNE_DELAY_SECS * countStartedPlaying
+				if minPlaySecs > 0:
+					playWaitTime += minPlaySecs
+
+				if playWaitTime > 0:
+					_set_rune_sprite_playing_and_shown(runeSpr, false)
+					get_tree().create_timer(playWaitTime).timeout.connect(_set_rune_sprite_playing_and_shown.bind(runeSpr, true))
+				else:
+					_set_rune_sprite_playing_and_shown(runeSpr, true)
+				countStartedPlaying += 1
+		elif runeSpr.playing:
+			# otherwise, if this sprite is playing, it shouldn't be anymore
+			_set_rune_sprite_playing_and_shown(runeSpr, false)
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -657,20 +680,55 @@ func _move_sprite_complete(sprite: MoveSprite):
 
 func _rune_sprite_complete(sprite: MoveSprite):
 	if sprite == null:
-		var prevSprite: MoveSprite = playingRuneSprites[playingRuneSpriteIdx]
-		playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
-		playingRuneSpriteIdx = playingRuneSprites.find(prevSprite)
+		# if the sprite was already freed... what can we do here?
+		#var prevSprite: MoveSprite = loadedRuneSprites[playingRuneSpriteIdx]
+		#loadedRuneSprites = loadedRuneSprites.filter(_filter_out_null)
+		#playingRuneSpriteIdx = loadedRuneSprites.find(prevSprite)
 		return
-	sprite.playing = false
-	if len(playingRuneSprites) == 0:
-		playingRuneSpriteIdx = -1
+	_set_rune_sprite_playing_and_shown(sprite, false)
+	var spriteIdx: int = loadedRuneSprites.find(sprite)
+	if len(loadedRuneSprites) == 0:
+		playingRuneSprites = [] # if we're now out of runes; get rid of them all
 	else:
-		playingRuneSpriteIdx = (playingRuneSpriteIdx + 1) % len(playingRuneSprites)
-		if playingRuneSprites[playingRuneSpriteIdx] != null:
-			playingRuneSprites[playingRuneSpriteIdx].halt = false
-			playingRuneSprites[playingRuneSpriteIdx].playing = true
+		# make a new rune sprite show up
+		var showingRuneSpriteIdxs: Array[int] = []
+		for runeSpr: MoveSprite in playingRuneSprites:
+			var sprIdx: int = loadedRuneSprites.find(runeSpr)
+			if sprIdx != -1:
+				showingRuneSpriteIdxs.append(sprIdx)
+
+		if spriteIdx != -1:
+			var nextIdx: int = (showingRuneSpriteIdxs[len(showingRuneSpriteIdxs) - 1] + 1) % len(loadedRuneSprites)
+			playingRuneSprites.erase(sprite)
+			playingRuneSprites.append(loadedRuneSprites[nextIdx])
+			
+			var minPlaySecs: float = -1
+			for runeSpr: MoveSprite in playingRuneSprites:
+				# ignore minPlaySecs of 0 if there is a timer that has ticked onwards
+				if not runeSpr.halt and (minPlaySecs <= 0 or runeSpr.totalTimer < minPlaySecs):
+					minPlaySecs = runeSpr.totalTimer
+			
+			# if the last rune has played MULTI_RUNE_DELAY_SECS ago or more: play instantly, otherwise delay the difference 
+			if minPlaySecs >= MULTI_RUNE_DELAY_SECS:
+				_set_rune_sprite_playing_and_shown(loadedRuneSprites[nextIdx], true)
+			else:
+				get_tree().create_timer(MULTI_RUNE_DELAY_SECS - minPlaySecs).timeout.connect(_set_rune_sprite_playing_and_shown.bind(loadedRuneSprites[nextIdx], true))
 	if not sprite.looping:
 		sprite.destroy(false)
+		loadedRuneSprites.erase(sprite)
+		playingRuneSprites.erase(sprite)
+
+func _set_rune_sprite_playing_and_shown(runeSprite: MoveSprite, playing: bool = true) -> void:
+	if runeSprite == null or runeSprite.destroying:
+		return
+	runeSprite.halt = not playing
+	if playing and not runeSprite.playing:
+		runeSprite.play_sprite_animation()
+	
+	if not playing and runeSprite.playing:
+		runeSprite.reset_animation(true)
+	
+	runeSprite.visible = playing
 
 func _event_text_completed(eventText: CombatantEventText):
 	playedEventTexts -= 1 # a number and an array are both kept track of, in case some texts are freed at this time the erase may not work but the count will

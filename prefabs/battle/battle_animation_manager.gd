@@ -561,7 +561,7 @@ func play_triggered_rune_animations() -> void:
 		combatantNode.update_rune_sprites(false, true)
 		var removingRuneSprites: Array[MoveSprite] = []
 		# gather the list of triggered runes, sort them by the order in which they were actually triggered
-		var triggeredRuneSprites: Array[MoveSprite] = combatantNode.playingRuneSprites.duplicate(false)
+		var triggeredRuneSprites: Array[MoveSprite] = combatantNode.loadedRuneSprites.duplicate(false)
 		triggeredRuneSprites.sort_custom(_sort_triggered_rune_sprites_by_trigger_order.bind(combatantNode))
 		# for each triggered rune:
 		for runeSprite: MoveSprite in triggeredRuneSprites:
@@ -684,7 +684,7 @@ func play_triggered_rune_animations() -> void:
 			for runeSprite: MoveSprite in removingRuneSprites:
 				if runeSprite == null:
 					continue
-				var runeSpriteIdx: int = combatantNode.playingRuneSprites.find(runeSprite)
+				var runeSpriteIdx: int = combatantNode.loadedRuneSprites.find(runeSprite)
 				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
 					runeSprite.destroy()
 

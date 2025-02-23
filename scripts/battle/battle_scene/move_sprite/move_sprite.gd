@@ -27,10 +27,12 @@ var playing: bool = false
 var startOpacity: float = 1
 var moveFrame: int = 0
 var frameTimer: float = 0
+var totalTimer: float = 0
 var startPos: Vector2 = Vector2()
 var targetPos: Vector2 = Vector2()
 var lastPivotPos: Vector2 = Vector2.ZERO
 var halt: bool = false # set to true on construction if we want to instantiate this move sprite but not immediately start it
+var destroying: bool = false
 
 @onready var particleEmitter: Particles = get_node('ParticleEmitter')
 @onready var spritePivot: Node2D = get_node('SpritePivot')
@@ -48,6 +50,7 @@ func _process(delta):
 		visible = true
 		# first, increase the timer by the frame delta
 		frameTimer += delta
+		totalTimer += delta
 		var frame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 		var finishTime: float = frame.get_real_duration(targetPos - startPos)
 		# check if we are over the current frame's duration
@@ -71,6 +74,7 @@ func _process(delta):
 func load_animation():
 	moveFrame = 0
 	frameTimer = 0
+	totalTimer = 0
 	startOpacity = modulate.a
 	animatedSpriteNode.centered = anim.centerSprite
 	lastPivotPos = spritePivot.position
@@ -249,6 +253,7 @@ func next_frame():
 func reset_animation(stop: bool = true):
 	frameTimer = 0
 	moveFrame = 0
+	totalTimer = 0
 	lastPivotPos = spritePivot.position
 	playing = not stop
 	if stop:
@@ -258,6 +263,7 @@ func reset_animation(stop: bool = true):
 func destroy(emitSignal: bool = true):
 	playing = false
 	visible = false
+	destroying = true
 	if emitSignal:
 		move_sprite_complete.emit(self)
 	queue_free()
