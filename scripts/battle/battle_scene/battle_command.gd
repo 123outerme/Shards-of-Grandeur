@@ -145,8 +145,10 @@ static func damage_formula(power: float, atkStat: float, resistanceStat: float, 
 	#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
 	#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
 	var damage: int = roundi( power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * elEffectivenessMultiplier )
-	if power > 0 and damage <= 0:
-		damage = 1 # if move IS a damaging move, make it do at least 1 damage
+	# if move IS a damaging move, make it do at least ceiling[AttackerLv / 2] damage
+	var minDmg: int = ceili(userLv / 2.0)
+	if power > 0 and damage < minDmg:
+		damage = minDmg 
 	return damage
 
 func _init(

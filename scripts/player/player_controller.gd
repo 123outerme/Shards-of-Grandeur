@@ -433,7 +433,7 @@ func update_npc_speaker_sprite(dialogueItem: DialogueItem) -> void:
 			return
 		textBox.speakerSpriteFrames = npcSpriteFrames
 		textBox.speakerAnim = dialogueItem.animation
-		var maxDimensionSize: float = max(talkNPC.spriteSize.x, talkNPC.spriteSize.y)
+		var maxDimensionSize: float = max(talkNPC.get_max_sprite_size().x, talkNPC.get_max_sprite_size().y)
 		# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
 		textBox.speakerSpriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
 		textBox.speakerSpriteOffset = talkNPC.speakerSpriteOffset

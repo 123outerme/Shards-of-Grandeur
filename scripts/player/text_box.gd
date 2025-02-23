@@ -137,8 +137,8 @@ func update_speaker_sprite() -> void:
 			var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
 			# use idle size since `maxSize` means sprite's canvas size
 			var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
-			# scale of 3x if [16x16, 16x16], 2x if (16x16, 32x32], 1x if bigger than that
-			spriteScale = max(1, 4 - ceil(maxDimensionSize / 16.0))
+			# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
+			spriteScale = max(1, 3.0 / ceil(maxDimensionSize / 16.0))
 		speakerSprite.sprite_frames = spriteFrames
 		speakerSprite.offset = speakerSpriteOffset
 		speakerSprite.play(speakerAnim)

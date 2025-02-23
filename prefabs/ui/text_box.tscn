@@ -14,7 +14,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2p22"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_srm4p"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlwpp"]
 
 [node name="TextBoxRoot" type="Node2D" node_paths=PackedStringArray("buttonRow")]
 script = ExtResource("1_osatr")
@@ -57,13 +57,13 @@ custom_minimum_size = Vector2(0, 57)
 layout_mode = 2
 
 [node name="SpeakerSpriteControl" type="Control" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection"]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="SpeakerSprite" type="AnimatedSprite2D" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection/SpeakerSpriteControl"]
-position = Vector2(24, 31)
+position = Vector2(32, 31)
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_srm4p")
+sprite_frames = SubResource("SpriteFrames_nlwpp")
 
 [node name="SpeakerText" type="RichTextLabel" parent="Panel/TextContainer/MarginContainer/VBoxContainer/SpeakerSection"]
 layout_mode = 2
@@ -101,7 +101,9 @@ scroll_active = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
+offset_left = 18.0
 offset_top = -57.0
+offset_right = -17.0
 offset_bottom = -12.0
 grow_vertical = 0
 scrollContainer = NodePath("../ScrollBetterFollow")
@@ -114,9 +116,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 48.0
+offset_left = 66.0
 offset_top = -57.0
-offset_right = -48.0
+offset_right = -65.0
 grow_horizontal = 2
 grow_vertical = 0
 follow_focus = true
@@ -125,7 +127,7 @@ script = ExtResource("9_ck181")
 boxContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollBetterFollow"]
-custom_minimum_size = Vector2(1204, 48)
+custom_minimum_size = Vector2(1169, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("8_5rr3o")

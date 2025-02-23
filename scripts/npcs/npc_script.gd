@@ -33,6 +33,12 @@ class_name NPCScript
 ## visual size of sprite (used for determining NavAgent radius, etc.)
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 
+## if not null, will be the sprite used as the dialogue speaker for this NPC
+@export var overrideSpeakerSprite: SpriteFrames = null
+
+## if `overrideSpeakerSprite` is not null, will be used for scaling the dialogue speaker with the override sprite
+@export var overrideSpeakerSpriteSize: Vector2i = Vector2i(16, 16)
+
 ## how to offset the NPC's sprite when displaying as the speaker in the text box 
 @export var speakerSpriteOffset: Vector2 = Vector2.ZERO
 
@@ -559,7 +565,14 @@ func play_animation(animation: String):
 		npcSprite.play(animation)
 
 func get_sprite_frames() -> SpriteFrames:
+	if overrideSpeakerSprite != null:
+		return overrideSpeakerSprite
 	return npcSprite.sprite_frames
+
+func get_max_sprite_size() -> Vector2i:
+	if overrideSpeakerSprite != null:
+		return overrideSpeakerSpriteSize
+	return spriteSize
 
 func get_stand_animation() -> String:
 	return 'stand' if not combatMode else 'battle_idle'

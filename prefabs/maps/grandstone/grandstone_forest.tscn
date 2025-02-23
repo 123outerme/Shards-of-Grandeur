@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://cx5vc8qdipqwt"]
+[gd_scene load_steps=108 format=4 uid="uid://cx5vc8qdipqwt"]
 
 [ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5k41n"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_prja5"]
@@ -21,6 +21,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="11_85ta7"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="11_xwxnj"]
 [ext_resource type="Resource" uid="uid://ctknt16r3oh1t" path="res://gamedata/dialogue/reusable/horse_neigh.tres" id="12_hw7u3"]
+[ext_resource type="SpriteFrames" uid="uid://d3l8xyop2tpq6" path="res://graphics/animations/a_horse.tres" id="12_wa6i5"]
 [ext_resource type="Resource" uid="uid://c6vfqmrm3umkt" path="res://gamedata/dialogue/grandstone_forest/grandstone_forest_spelunker1.tres" id="13_diivh"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="14_vy2lx"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="17_35igi"]
@@ -32,7 +33,7 @@
 [ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="29_5824o"]
 [ext_resource type="Resource" uid="uid://bvlcefahm8fbf" path="res://gamedata/cutscenes/grandstone_forest/gs_forest_quarry_turnback_demo.tres" id="30_gxywi"]
 
-[sub_resource type="Resource" id="Resource_ttyo1"]
+[sub_resource type="Resource" id="Resource_allat"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -61,7 +62,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_83vtn"]
+[sub_resource type="Resource" id="Resource_yrp3g"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -90,7 +91,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_170h6"]
+[sub_resource type="Resource" id="Resource_3dp2h"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -520,7 +521,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_ttyo1")
+data = SubResource("Resource_allat")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -562,7 +563,9 @@ stateSpritesDict = {
 "shards_cart": ExtResource("11_85ta7")
 }
 spriteSize = Vector2i(64, 32)
-data = SubResource("Resource_83vtn")
+overrideSpeakerSprite = ExtResource("12_wa6i5")
+overrideSpeakerSpriteSize = Vector2i(32, 32)
+data = SubResource("Resource_yrp3g")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -598,7 +601,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_170h6")
+data = SubResource("Resource_3dp2h")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("13_diivh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
