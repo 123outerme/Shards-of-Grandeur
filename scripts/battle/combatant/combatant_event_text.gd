@@ -5,6 +5,7 @@ signal event_text_completed
 
 static var DAMAGE_COLOR: Color = Color(0.82, 0.365, 0.341) # color #d15d57
 static var SUPER_EFFECTIVE_DAMAGE_COLOR: Color = Color(0.976, 0.729, 0.455) # color #f9ba74
+static var NOT_VERY_EFFECTIVE_DAMAGE_COLOR: Color = Color(0.502, 0.486, 0.475) # color #807c79
 static var HEAL_COLOR: Color = Color(0.443, 0.82, 0.394) # color #71d164
 
 static var FADE_IN_SECS: float = 0.15
@@ -20,7 +21,7 @@ var eventTextTween: Tween = null
 var eventCallable: Callable = Callable()
 var callableCalled: bool = false
 
-static func build_damage_text(damage: int, superEffective: bool = false) -> String:
+static func build_damage_text(damage: int, superEffective: bool = false, notVeryEffective: bool = false) -> String:
 	var isHealing: bool = false
 	var prefix: String = '-'
 	if damage < 0:
@@ -30,10 +31,21 @@ static func build_damage_text(damage: int, superEffective: bool = false) -> Stri
 	elif damage == 0:
 		return ''
 	
-	var textColor: Color = HEAL_COLOR if isHealing else (SUPER_EFFECTIVE_DAMAGE_COLOR if superEffective else DAMAGE_COLOR)
+	var textColor: Color = Color.WHITE
+	if isHealing:
+		textColor = HEAL_COLOR
+	else:
+		if superEffective:
+			textColor = SUPER_EFFECTIVE_DAMAGE_COLOR
+		elif notVeryEffective:
+			textColor = NOT_VERY_EFFECTIVE_DAMAGE_COLOR
+		else:
+			textColor = DAMAGE_COLOR
 	var dmgNumberText: String = TextUtils.num_to_comma_string(damage)
 	if superEffective:
 		dmgNumberText += '!'
+	if notVeryEffective:
+		dmgNumberText += '...'
 	
 	var dmgText: String = '[color=' + textColor.to_html() + ']' \
 		+ prefix + dmgNumberText + '[/color]'

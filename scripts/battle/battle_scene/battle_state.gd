@@ -36,6 +36,7 @@ enum Menu {
 @export var calcdStateStrings: Array[String] = []
 @export var calcdStateCombatants: Array[Combatant] = []
 @export var calcdStateDamage: Array[int] = []
+@export var calcdStateDamageEffectiveness: Array[float] = []
 @export var calcdStateStatBoosts: Array[StatChanges] = []
 @export var calcdStateEquipmentProcd: Array = []
 @export var statusEffDamagedCombatants: Array[Combatant] = []
@@ -77,6 +78,7 @@ func _init(
 	i_usedShard = null,
 	i_calcdStateStrings: Array[String] = [],
 	i_calcdStateDamage: Array[int] = [],
+	i_calcdStateDamageEffectiveness: Array[float] = [],
 	i_calcdStateStatBoosts: Array[StatChanges] = [],
 	i_calcdStateEquipmentProcd: Array = [],
 	i_statusEffDamagedCombatants: Array[Combatant] = [],
@@ -104,6 +106,7 @@ func _init(
 	usedShard = i_usedShard
 	calcdStateStrings = i_calcdStateStrings
 	calcdStateDamage = i_calcdStateDamage
+	calcdStateDamageEffectiveness = i_calcdStateDamageEffectiveness
 	calcdStateStatBoosts = i_calcdStateStatBoosts
 	calcdStateEquipmentProcd = i_calcdStateEquipmentProcd
 	statusEffDamagedCombatants = i_statusEffDamagedCombatants

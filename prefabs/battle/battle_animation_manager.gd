@@ -252,6 +252,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var playHitParticles: bool = false
 		var dealtDmg: int = 0
 		var dmgWasSuperEffective: bool = false
+		var dmgWasNotVeryEffective: bool = false
 		var eventTexts: Array[String] = []
 		var eventTextUpdates: Array[Callable] = []
 		var eventTextSfxs: Array[AudioStream] = []
@@ -264,8 +265,12 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if targetIdx >= 0 and targetIdx < len(command.commandResult.damagesDealt):
 			dealtDmg += command.commandResult.damagesDealt[targetIdx]
 			if command.type == BattleCommand.Type.MOVE:
-				if moveEffect.power > 0 and defender.combatant.get_element_effectiveness_multiplier(command.move.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
-					dmgWasSuperEffective = true
+				if moveEffect.power > 0:
+					var effectivenessMultiplier: float = defender.combatant.get_element_effectiveness_multiplier(command.move.element)
+					if effectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective:
+						dmgWasSuperEffective = true
+					elif effectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted:
+						dmgWasNotVeryEffective = true
 			if command.commandResult.damagesDealt[targetIdx] > 0:
 				playHitParticles = true
 		var interceptorIdx: int = command.interceptingTargets.find(defender.combatant)
@@ -282,7 +287,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			defender.play_particles(BattleCommand.get_hit_particles(), 0)
 		# event texts start here: damage
 		if dealtDmg != 0:
-			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective))
+			eventTexts.append(CombatantEventText.build_damage_text(dealtDmg, dmgWasSuperEffective, dmgWasNotVeryEffective))
 			eventTextUpdates.append(defender.change_current_hp.bind(dealtDmg * -1))
 			eventTextSfxs.append(null)
 			eventTextSfxVaryPitches.append(false)
@@ -477,7 +482,10 @@ func play_intermediate_round_animations(state: BattleState):
 		if subjectNode != null:
 			if subjectNode.combatant in state.statusEffDamagedCombatants:
 				subjectNode.play_particles(BattleCommand.get_hit_particles())
-				eventTexts.append(CombatantEventText.build_damage_text(state.calcdStateDamage[state.calcdStateIndex]))
+				# TODO: get element effectiveness info from calcd state damage
+				var superEffective: bool = state.calcdStateDamageEffectiveness[state.calcdStateIndex] == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+				var notVeryEffective: bool = state.calcdStateDamageEffectiveness[state.calcdStateIndex] == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
+				eventTexts.append(CombatantEventText.build_damage_text(state.calcdStateDamage[state.calcdStateIndex], superEffective, notVeryEffective))
 				eventTextUpdates.append(subjectNode.change_current_hp.bind(-1 * state.calcdStateDamage[state.calcdStateIndex]))
 				eventTextSfxs.append(null)
 				eventTextSfxVaryPitches.append(false)
@@ -610,8 +618,10 @@ func play_triggered_rune_animations() -> void:
 				var eventTextUpdates: Array[Callable] = []
 				if combatantNode.combatant.triggeredRunesDmg[runeIdx] != 0:
 					var runeDmg: int = combatantNode.combatant.triggeredRunesDmg[runeIdx]
-					var superEffective: bool = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element) == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
-					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_damage_text(runeDmg, superEffective))
+					var effectivenessMultiplier: float = combatantNode.combatant.get_element_effectiveness_multiplier(rune.element)
+					var superEffective: bool = effectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.superEffective
+					var notVeryEffective: bool = effectivenessMultiplier == Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.resisted
+					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_damage_text(runeDmg, superEffective, notVeryEffective))
 					var hpUpdateCallable: Callable = combatantNode.change_current_hp.bind(runeDmg * -1)
 					combatantTextUpdates[combatantNode.battlePosition].append(hpUpdateCallable)
 					eventTextUpdates.append(hpUpdateCallable)
@@ -620,9 +630,9 @@ func play_triggered_rune_animations() -> void:
 					if combatantNode.combatant.triggeredRunesDmg[runeIdx] > 0:
 						combatantNode.play_particles(BattleCommand.get_hit_particles(), 0)
 					if rune.lifesteal > 0:
-						var lifestealHeal: float = max(1, roundi(runeDmg * max(0, rune.lifesteal)))
+						var lifestealHeal: int = max(1, roundi(runeDmg * max(0, rune.lifesteal)))
 						if casterNode != null:
-							combatantTexts[casterNode.battlePosition].append(CombatantEventText.build_damage_text(lifestealHeal * -1, false))
+							combatantTexts[casterNode.battlePosition].append(CombatantEventText.build_damage_text(lifestealHeal * -1))
 							#print('rune lifesteal heal: ', lifestealHeal, ' / and text: "', eventTexts[len(eventTexts) - 1], '"')
 							var casterHealCallable: Callable = casterNode.change_current_hp.bind(lifestealHeal)
 							combatantTextUpdates[casterNode.battlePosition].append(casterHealCallable)

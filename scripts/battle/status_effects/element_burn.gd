@@ -117,6 +117,11 @@ func get_status_effect_damage(combatant: Combatant, allCombatants: Array[Combata
 		return get_burn_damage(combatant)
 	return 0
 
+func get_status_effect_damage_effectiveness(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> float:
+	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
+		return combatant.get_element_effectiveness_multiplier(element)
+	return Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
+
 func get_icon() -> Texture2D:
 	match element:
 		Move.Element.NONE:

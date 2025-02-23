@@ -291,8 +291,10 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 				var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.BEFORE_ROUND if battleUI.menuState == BattleState.Menu.PRE_ROUND else BattleCommand.ApplyTiming.AFTER_ROUND
 				var statusEffectString: String = ''
 				var dmg: int = 0
+				var dmgEffectiveness: float = Combatant.ELEMENT_EFFECTIVENESS_MULTIPLIERS.effective
 				if combatantNode.combatant.statusEffect != null:
 					dmg = combatantNode.combatant.statusEffect.get_status_effect_damage(combatantNode.combatant, allCombatants, timing)
+					dmgEffectiveness = combatantNode.combatant.statusEffect.get_status_effect_damage_effectiveness(combatantNode.combatant, allCombatants, timing)
 					statusEffectString = combatantNode.combatant.statusEffect.get_status_effect_str(combatantNode.combatant, allCombatants, timing)
 				
 				var equippedWeaponText: String = ''
@@ -323,6 +325,7 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 					battleController.state.calcdStateCombatants.append(combatantNode.combatant)
 					battleController.state.calcdStateEquipmentProcd.append(procdEquipment)
 					battleController.state.calcdStateDamage.append(dmg)
+					battleController.state.calcdStateDamageEffectiveness.append(dmgEffectiveness)
 
 func advance_precalcd_text() -> bool:
 	battleController.state.calcdStateIndex += 1
