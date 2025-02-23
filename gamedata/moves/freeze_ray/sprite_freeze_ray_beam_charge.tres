@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://npr0ha3k2vey"]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_8ikq4"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="2_ps0gt"]
+[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="3_ikubd"]
+[ext_resource type="SpriteFrames" uid="uid://ddmmniehi8lm1" path="res://graphics/moves/water/a_freeze_ray.tres" id="4_1rt74"]
+
+[sub_resource type="Curve" id="Curve_lx0vw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_wbjpd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_lggr2"]
+script = ExtResource("1_8ikq4")
+annotation = "set up position at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 0.77
+spritePivot = Vector2(-94, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_lx0vw")
+yCurve = SubResource("Curve_wbjpd")
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_lv21c"]
+script = ExtResource("1_8ikq4")
+annotation = "play animation, rotated towards target"
+animation = "freeze_ray_beam"
+duration = 0.1
+speed = 1.0
+opacity = 0.77
+spritePivot = Vector2(-94, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_ps0gt")
+
+[sub_resource type="Resource" id="Resource_3kyi4"]
+script = ExtResource("1_8ikq4")
+annotation = "let animation play out"
+animation = ""
+duration = 2.233
+speed = 1.0
+opacity = 0.77
+spritePivot = Vector2(-94, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = true
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[resource]
+script = ExtResource("3_ikubd")
+spriteFrames = ExtResource("4_1rt74")
+centerSprite = true
+maxSize = Vector2(192, 16)
+frames = Array[ExtResource("1_8ikq4")]([SubResource("Resource_lggr2"), SubResource("Resource_lv21c"), SubResource("Resource_3kyi4")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true

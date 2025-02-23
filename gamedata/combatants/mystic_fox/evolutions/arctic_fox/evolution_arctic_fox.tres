@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Evolution" load_steps=12 format=3 uid="uid://bmm8m76mqvf6n"]
+
+[ext_resource type="Resource" uid="uid://dcqey1ru5i72y" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_sprite.tres" id="1_o8sgm"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/evolution.gd" id="1_yh1u5"]
+[ext_resource type="Resource" uid="uid://cl45spglaih82" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_ai.tres" id="1_yrc13"]
+[ext_resource type="Resource" uid="uid://bs04rhqdh4wnv" path="res://gamedata/items/armor/winter_coat.tres" id="2_e5dqk"]
+[ext_resource type="Resource" uid="uid://cd7q32ve1ouqg" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_effectiveness.tres" id="3_okm7f"]
+[ext_resource type="Resource" uid="uid://clac1y6wppme4" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_movepool.tres" id="4_53xcl"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="4_vll2h"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="5_2fpe5"]
+[ext_resource type="Resource" uid="uid://d2pyx2ib0cw2n" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_stat_alloc_strategy.tres" id="6_yqsdy"]
+[ext_resource type="Resource" uid="uid://cx1yd0myolt8c" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_stat_growth.tres" id="7_a67lh"]
+
+[sub_resource type="Resource" id="Resource_tdvx4"]
+script = ExtResource("5_2fpe5")
+displayName = "Arctic Fox"
+saveName = "mystic_fox"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("7_a67lh")
+moves = Array[ExtResource("4_vll2h")]([])
+movepool = ExtResource("4_53xcl")
+
+[resource]
+script = ExtResource("1_yh1u5")
+evolutionSaveName = "arctic_fox"
+combatantSprite = ExtResource("1_o8sgm")
+requiredArmor = ExtResource("2_e5dqk")
+stats = SubResource("Resource_tdvx4")
+statAllocationStrategy = ExtResource("6_yqsdy")
+moveEffectiveness = ExtResource("3_okm7f")
+ai = ExtResource("1_yrc13")
+aiType = 0
+aggroType = 0
+strategy = 0

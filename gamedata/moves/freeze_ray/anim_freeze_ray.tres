@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=8 format=3 uid="uid://bwymkbf0qebgo"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=9 format=3 uid="uid://bwymkbf0qebgo"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_q7fhf"]
+[ext_resource type="Resource" uid="uid://npr0ha3k2vey" path="res://gamedata/moves/freeze_ray/sprite_freeze_ray_beam_charge.tres" id="2_ag7v2"]
+[ext_resource type="Resource" uid="uid://by1o4hgcoeklt" path="res://gamedata/moves/freeze_ray/sprite_freeze_ray_beam_surge.tres" id="2_civxd"]
 [ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_qc3yj"]
-[ext_resource type="Resource" uid="uid://by1o4hgcoeklt" path="res://gamedata/moves/freeze_ray/sprite_freeze_ray_beam.tres" id="2_sp0qp"]
 [ext_resource type="Script" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="3_fobpq"]
 [ext_resource type="Resource" uid="uid://cpixri10eagd8" path="res://gamedata/moves/freeze_ray/sprite_freeze_ray_particles.tres" id="3_yenet"]
 [ext_resource type="Resource" uid="uid://drrdlog14umhu" path="res://gamedata/moves/freeze_ray/sprite_freeze_ray_block.tres" id="6_xenlj"]
@@ -19,6 +20,6 @@ fadeOutSecs = 0.25
 script = ExtResource("2_qc3yj")
 combatantAnimation = "attack_magic"
 makesContact = false
-chargeMoveSprites = Array[ExtResource("1_q7fhf")]([ExtResource("2_sp0qp"), ExtResource("3_yenet")])
-surgeMoveSprites = Array[ExtResource("1_q7fhf")]([ExtResource("2_sp0qp"), ExtResource("6_xenlj"), ExtResource("3_yenet")])
+chargeMoveSprites = Array[ExtResource("1_q7fhf")]([ExtResource("2_ag7v2"), ExtResource("3_yenet")])
+surgeMoveSprites = Array[ExtResource("1_q7fhf")]([ExtResource("2_civxd"), ExtResource("6_xenlj"), ExtResource("3_yenet")])
 surgeBattlefieldShade = SubResource("Resource_xbgu6")

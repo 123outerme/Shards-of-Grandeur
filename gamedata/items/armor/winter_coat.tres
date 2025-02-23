@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=8 format=3 uid="uid://bs04rhqdh4wnv"]
+
+[ext_resource type="Script" path="res://scripts/inventory/items/armor.gd" id="1_frkwo"]
+[ext_resource type="Texture2D" uid="uid://dnmqj4cb1pkah" path="res://graphics/items/armor/winter_coat.png" id="1_o605h"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_o01sy"]
+[ext_resource type="Script" path="res://scripts/battle/combatant/stat_changes.gd" id="4_bujjn"]
+
+[sub_resource type="Resource" id="Resource_6u6f4"]
+script = ExtResource("3_o01sy")
+element = 1
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_kjlnx"]
+script = ExtResource("3_o01sy")
+element = 4
+multiplier = 1.1
+
+[sub_resource type="Resource" id="Resource_jfc6a"]
+script = ExtResource("4_bujjn")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.15
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_o01sy")]([SubResource("Resource_6u6f4"), SubResource("Resource_kjlnx")])
+
+[resource]
+script = ExtResource("1_frkwo")
+statChanges = SubResource("Resource_jfc6a")
+timing = 1
+bonusOrbs = 1
+itemSprite = ExtResource("1_o605h")
+itemName = "Winter Coat"
+itemType = 3
+itemDescription = "A cold-weather coat made out of Arctic Fox fur. This coat has power over the colder elements, keeping snow, rain, and wind away."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
