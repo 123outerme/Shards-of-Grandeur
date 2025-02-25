@@ -16,10 +16,22 @@ signal act_changed
 ## if true, the player cannot change the selected filter
 @export var lockFilters: bool = false
 
+const FILTER_BUTTON_TYPES_ORDER: Array[QuestTracker.Status] = [
+	QuestTracker.Status.ALL,
+	QuestTracker.Status.MAIN_QUEST,
+	QuestTracker.Status.IN_PROGRESS,
+	QuestTracker.Status.READY_TO_TURN_IN_STEP,
+	QuestTracker.Status.COMPLETED,
+	QuestTracker.Status.INCOMPLETE,
+	QuestTracker.Status.FAILED
+]
+
 var rewardNewLvs: int = 0
 
 var lastFocused: Control = null
 var lastInteractedTracker: QuestTracker = null
+
+var FILTER_BUTTONS: Array[Button] = []
 
 @onready var questsPanelControl: Control = get_node('QuestsPanel')
 
@@ -42,12 +54,34 @@ var lastInteractedTracker: QuestTracker = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	FILTER_BUTTONS = [
+		allButton,
+		mainQuestButton,
+		inProgressButton,
+		readyToTurnInButton,
+		completedButton,
+		notCompletedButton,
+		failedButton
+	]
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
 		get_viewport().set_input_as_handled()
 		toggle()
+	
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+		get_viewport().set_input_as_handled()
+		var selectedTypeIdx: int = FILTER_BUTTON_TYPES_ORDER.find(selectedFilter)
+		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
+		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
+		var newTypeIdx: int = wrapi(selectedTypeIdx + direction, 0, len(FILTER_BUTTON_TYPES_ORDER))
+		while selectedTypeIdx != newTypeIdx:
+			if FILTER_BUTTONS[newTypeIdx] != null and not FILTER_BUTTONS[newTypeIdx].disabled:
+				break
+			newTypeIdx = wrapi((newTypeIdx + direction), 0, len(FILTER_BUTTON_TYPES_ORDER))
+		filter_by(FILTER_BUTTON_TYPES_ORDER[newTypeIdx])
+		if FILTER_BUTTONS[newTypeIdx] != null:
+			FILTER_BUTTONS[newTypeIdx].grab_focus()
 
 func toggle():
 	visible = not visible

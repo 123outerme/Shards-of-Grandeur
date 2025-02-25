@@ -20,14 +20,33 @@ var evolutionListItemPanel = load('res://prefabs/ui/inventory/evolution_list_ite
 @onready var moveDetailsPanel: MoveDetailsPanel = get_node("MoveDetailsPanel")
 @onready var backButton: Button = get_node("Panel/BackButton")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline") and not backButton.disabled:
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
+	if visible and evolutionScrollContainer.visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+		get_viewport().set_input_as_handled()
+		var evolutionPanels: Array[Node] = evoHboxContainer.get_children()
+		var selectedEvolutionPanelIdx: int = -1
+		for panelIdx: int in range(len(evolutionPanels)):
+			var panel: Node = evolutionPanels[panelIdx]
+			if panel != null and panel is EvolutionListItemPanel:
+				if panel.evolution == evolution:
+					selectedEvolutionPanelIdx = panelIdx
+					break
+		
+		if selectedEvolutionPanelIdx != -1:
+			var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
+			var newIdx: int = wrapi(selectedEvolutionPanelIdx + direction, 0, len(evolutionPanels))
+			var newPanel: EvolutionListItemPanel = null
+			while selectedEvolutionPanelIdx != newIdx:
+				if evolutionPanels[newIdx] != null and evolutionPanels[newIdx] is EvolutionListItemPanel:
+					newPanel = evolutionPanels[newIdx] as EvolutionListItemPanel
+					_on_evolution_list_item_panel_selected(newPanel)
+					break
+				newIdx = wrapi(newIdx + direction, 0, len(evolutionPanels))
+			if newPanel != null:
+				newPanel.selectButton.grab_focus()
 
 func initial_focus():
 	if movePoolPanel.firstMovePanel != null:
@@ -71,6 +90,7 @@ func load_shard_learn_panel(initialFocus: bool = true, loadEvolutions: bool = tr
 	
 	# initialize known evolutions
 	if combatant.evolutions != null:
+		evolutionScrollContainer.visible = true
 		if loadEvolutions:
 			for panel: Node in evoHboxContainer.get_children():
 				panel.queue_free()

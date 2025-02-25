@@ -72,6 +72,16 @@ var shopInventory: Inventory = null
 @onready var itemConfirmPanel: ItemConfirmPanel = get_node("ItemConfirmPanel")
 @onready var itemCountChoosePanel: ItemCountChoosePanel = get_node('ItemCountChoosePanel')
 
+const FILTER_BUTTON_TYPES_ORDER: Array[Item.Type] = [
+	Item.Type.ALL,
+	Item.Type.HEALING,
+	Item.Type.SHARD,
+	Item.Type.CONSUMABLE,
+	Item.Type.WEAPON,
+	Item.Type.ARMOR,
+	Item.Type.KEY_ITEM
+]
+
 var currentInventory: Inventory = null
 var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
 
@@ -83,14 +93,37 @@ var inShardLearnTutorial: bool = false
 var shardTutorialSlotPanel: InventorySlotPanel = null
 var viewingStatsFromPanel: String = ''
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var FILTER_BUTTONS: Array[Button] = []
+
+func _ready() -> void:
+	FILTER_BUTTONS = [
+		allFilterBtn,
+		healingFilterBtn,
+		shardFilterBtn,
+		consumablesFilterBtn,
+		weaponFilterBtn,
+		armorFilterBtn,
+		keyItemFilterBtn
+	]
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and not inShardLearnTutorial:
 		get_viewport().set_input_as_handled()
 		toggle()
+	
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+		get_viewport().set_input_as_handled()
+		var selectedTypeIdx: int = FILTER_BUTTON_TYPES_ORDER.find(selectedFilter)
+		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
+		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
+		var newTypeIdx: int = wrapi(selectedTypeIdx + direction, 0, len(FILTER_BUTTON_TYPES_ORDER))
+		while selectedTypeIdx != newTypeIdx:
+			if FILTER_BUTTONS[newTypeIdx] != null and not FILTER_BUTTONS[newTypeIdx].disabled:
+				break
+			newTypeIdx = wrapi((newTypeIdx + direction), 0, len(FILTER_BUTTON_TYPES_ORDER))
+		filter_by(FILTER_BUTTON_TYPES_ORDER[newTypeIdx])
+		if FILTER_BUTTONS[newTypeIdx] != null:
+			FILTER_BUTTONS[newTypeIdx].grab_focus()
 
 func toggle():
 	visible = not visible

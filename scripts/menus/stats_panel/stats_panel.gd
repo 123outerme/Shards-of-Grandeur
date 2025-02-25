@@ -104,6 +104,19 @@ func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
+		
+	if visible and isTabbedView and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+		get_viewport().set_input_as_handled()
+		var selectedTab: Control = tabbedViewContainer.get_current_tab_control()
+		var selectedIdx: int = tabbedViewContainer.get_tab_idx_from_control(selectedTab)
+		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
+		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
+		var newTabIdx: int = wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count())
+		var newTab: Control = tabbedViewContainer.get_tab_control(newTabIdx)
+		if newTab != null:
+			selectedTab.visible = false
+			newTab.visible = true
+			initial_focus()
 
 func toggle():
 	visible = not visible
