@@ -30,7 +30,7 @@ static var STORED_ACTIONS = [
 	'game_decline', 'game_quests', 'game_inventory', 'game_stats', 'game_pause',
 	'ui_repeat_up', 'ui_repeat_down', 'ui_repeat_left', 'ui_repeat_right',
 	'ui_up', 'ui_down', 'ui_left', 'ui_right', 'ui_accept', 'ui_select',
-	'game_console'
+	'game_console', 'game_tab_left', 'game_tab_right'
 ]
 
 static var UI_TO_MAKE_REPEATING_ACTION_NAMES = [

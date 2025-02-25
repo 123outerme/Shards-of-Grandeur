@@ -4,19 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://d0khv3xfdmywv" path="res://graphics/ui/exclamation.png" id="2_twvt2"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_bb6at"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_lhx5y"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_vw5qe"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_uv0yo"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_j3c6a"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_q7xnv"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_nvjgn"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_bu8t3"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_x4byv"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_n00dn"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_02k6w"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_dge7q"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_3lo4j"]
 allow_unpress = true
 
 [node name="ControlsSection" type="Control"]
@@ -58,14 +58,14 @@ layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="Buttons" type="Control" parent="TabContainer/Keyboard"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Keyboard/Buttons"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 4.0
-offset_right = 290.0
+offset_right = 370.0
 offset_bottom = 44.0
 theme_override_constants/separation = 12
 
@@ -85,7 +85,7 @@ focus_neighbor_bottom = NodePath("../../../UpKey/ChangeButton1")
 text = "Clear & Set Default"
 
 [node name="Headers" type="Control" parent="TabContainer/Keyboard"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="ActionHeader" type="RichTextLabel" parent="TabContainer/Keyboard/Headers"]
@@ -134,8 +134,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -188.0
+offset_left = -192.0
 offset_top = -18.0
+offset_right = -4.0
 offset_bottom = 18.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -148,7 +149,7 @@ text = "Secondary"
 fit_content = true
 
 [node name="UpKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/UpKey"]
@@ -206,9 +207,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -223,9 +224,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -242,16 +243,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "move_up"
 
 [node name="LeftKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/LeftKey"]
@@ -308,9 +310,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -325,9 +327,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -343,16 +345,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "move_left"
 
 [node name="DownKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/DownKey"]
@@ -410,9 +413,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -427,9 +430,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -445,16 +448,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "move_down"
 
 [node name="RightKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/RightKey"]
@@ -512,9 +516,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -529,9 +533,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -547,19 +551,21 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "move_right"
 
 [node name="InteractKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/InteractKey"]
+custom_minimum_size = Vector2(224, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -613,9 +619,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -630,9 +636,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -648,16 +654,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_interact"
 
 [node name="DeclineKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/DeclineKey"]
@@ -714,9 +721,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -731,9 +738,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -749,16 +756,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_decline"
 
 [node name="InventoryKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/InventoryKey"]
@@ -767,7 +775,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -11.0
-offset_right = 148.0
+offset_right = 224.0
 offset_bottom = 12.0
 grow_vertical = 2
 text = "Inventory key:"
@@ -815,9 +823,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -832,9 +840,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -850,16 +858,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_inventory"
 
 [node name="QuestsKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/QuestsKey"]
@@ -916,9 +925,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -933,9 +942,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -15.5
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 15.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -951,16 +960,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_quests"
 
 [node name="StatsKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/StatsKey"]
@@ -1017,9 +1027,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -1034,9 +1044,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -17.0
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -1052,16 +1062,17 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_stats"
 
 [node name="PauseKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/PauseKey"]
@@ -1118,9 +1129,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.0
+offset_left = -271.0
 offset_top = -11.5
-offset_right = -107.0
+offset_right = -121.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
@@ -1135,9 +1146,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -121.0
 offset_top = -17.0
-offset_right = -34.0
+offset_right = -38.0
 offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -1153,16 +1164,119 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -25.0
+offset_top = -14.5
+offset_right = -4.0
+offset_bottom = 14.5
 grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 metadata/action = "game_pause"
 
+[node name="TabLeftKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/TabLeftKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 224.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Tab Left key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/TabLeftKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Keyboard/TabLeftKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_tab_left"
+metadata/index = 0
+
+[node name="TabRightKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/TabRightKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 224.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Tab Right key:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Keyboard/TabRightKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -11.5
+offset_right = -37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Keyboard/TabRightKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_tab_right"
+metadata/index = 0
+
 [node name="ConsoleKey" type="Control" parent="TabContainer/Keyboard" groups=["KeyboardControlMap"]]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
 [node name="Label" type="RichTextLabel" parent="TabContainer/Keyboard/ConsoleKey"]
@@ -1218,7 +1332,7 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="Buttons" type="Control" parent="TabContainer/Controller"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controller/Buttons"]
@@ -1245,7 +1359,7 @@ focus_neighbor_bottom = NodePath("../../../MovementAction/Change1Group/LeftStick
 text = "Clear & Set Default"
 
 [node name="Headers" type="Control" parent="TabContainer/Controller"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="ActionHeader" type="RichTextLabel" parent="TabContainer/Controller/Headers"]
@@ -1294,8 +1408,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -188.0
+offset_left = -192.0
 offset_top = -18.0
+offset_right = -4.0
 offset_bottom = 18.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -1343,7 +1458,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_lhx5y")
+button_group = SubResource("ButtonGroup_vw5qe")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1351,7 +1466,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_uv0yo")
+button_group = SubResource("ButtonGroup_j3c6a")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change1Group" instance=ExtResource("4_bb6at")]
@@ -1359,7 +1474,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_q7xnv")
+button_group = SubResource("ButtonGroup_nvjgn")
 text = "D-Pad"
 
 [node name="Change2Group" type="HBoxContainer" parent="TabContainer/Controller/MovementAction"]
@@ -1382,7 +1497,7 @@ focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_bu8t3")
+button_group = SubResource("ButtonGroup_x4byv")
 text = "Left Stick"
 
 [node name="RightStickButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1390,7 +1505,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_n00dn")
+button_group = SubResource("ButtonGroup_02k6w")
 text = "Right Stick"
 
 [node name="DPadButton" parent="TabContainer/Controller/MovementAction/Change2Group" instance=ExtResource("4_bb6at")]
@@ -1398,7 +1513,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../Buttons/HBoxContainer/SaveButton")
 focus_neighbor_bottom = NodePath("../../../InteractKey/ChangeButton1")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_dge7q")
+button_group = SubResource("ButtonGroup_3lo4j")
 text = "D-Pad"
 
 [node name="InteractKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
@@ -1708,6 +1823,108 @@ grow_vertical = 2
 toggle_mode = true
 text = "Change"
 metadata/action = "game_pause"
+metadata/index = 1
+
+[node name="TabLeftKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/TabLeftKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 272.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Tab Left button:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/TabLeftKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -11.5
+offset_right = 24.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/TabLeftKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 19.5
+offset_top = -17.0
+offset_right = 102.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_tab_left"
+metadata/index = 1
+
+[node name="TabRightKey" type="Control" parent="TabContainer/Controller" groups=["ControllerControlMap"]]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="TabContainer/Controller/TabRightKey"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 272.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "Tab Right button:"
+fit_content = true
+
+[node name="Value1" type="RichTextLabel" parent="TabContainer/Controller/TabRightKey"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -11.5
+offset_right = 24.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]W[/center]"
+fit_content = true
+
+[node name="ChangeButton1" parent="TabContainer/Controller/TabRightKey" groups=["ChangeButton"] instance=ExtResource("4_bb6at")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 19.5
+offset_top = -17.0
+offset_right = 102.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Change"
+metadata/action = "game_tab_right"
 metadata/index = 1
 
 [connection signal="gui_input" from="CaptureControl" to="." method="_on_capture_control_gui_input"]

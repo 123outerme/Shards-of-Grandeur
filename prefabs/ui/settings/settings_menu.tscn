@@ -12,11 +12,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj8xg"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ynpty"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_dlwjt"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_s3r77"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_vp8pu"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_p1rns"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_3msis"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -94,14 +94,14 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_ynpty")
+button_group = SubResource("ButtonGroup_dlwjt")
 text = "General"
 
 [node name="ControlsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_s3r77")
+button_group = SubResource("ButtonGroup_vp8pu")
 text = "Controls"
 
 [node name="AudioButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
@@ -109,7 +109,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../GameLogsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_p1rns")
+button_group = SubResource("ButtonGroup_3msis")
 text = "Audio"
 
 [node name="GameLogsButton" parent="Panel/VBoxContainer" instance=ExtResource("8_ov783")]
