@@ -28,7 +28,7 @@ func load_data(save_path):
 func save_data(save_path, data) -> int:
 	var err = ResourceSaver.save(data, save_path + get_save_filename())
 	if err != 0:
-		printerr("SpawnerData " + save_path + get_save_filename() + " ResourceSaver error: " + String.num(err))
+		printerr("SpawnerData " + save_path + get_save_filename() + " ResourceSaver error: " + String.num_int64(err))
 	return err
 
 # not sure if I still need the below

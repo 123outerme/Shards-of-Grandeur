@@ -47,14 +47,14 @@ func load_item_details():
 	itemDescription.text = item.itemDescription
 	
 	if item.cost >= 0:
-		itemCost.text = String.num(item.cost)
+		itemCost.text = String.num_int64(item.cost)
 		itemCostGroup.visible = true
 	else:
 		itemCostGroup.visible = false
 	
 	if count > 0:
 		itemCount.visible = true
-		itemCount.text = 'x' + String.num(count) + ' / ' + String.num(item.maxCount)
+		itemCount.text = 'x' + String.num_int64(count) + ' / ' + String.num_int64(item.maxCount)
 	else:
 		itemCount.visible = false
 	backButton.grab_focus()

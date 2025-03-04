@@ -24,7 +24,7 @@ enum AnimationType {
 	EVENT_TEXT = 4,
 }
 
-const originalCombatantZIndices: Dictionary = {
+const originalCombatantZIndices: Dictionary[String, int] = {
 	'You': 3,
 	'Ally': 2,
 	'Center': 2,
@@ -579,10 +579,10 @@ func play_triggered_rune_animations() -> void:
 			var rune: Rune = runeSprite.linkedResource as Rune
 			var runeIdx: int = combatantNode.combatant.triggeredRunes.find(rune)
 			# maps combatant node battle position => array of texts/updates to display
-			var combatantTexts: Dictionary = {}
-			var combatantTextUpdates: Dictionary = {}
-			var combatantTextSfxs: Dictionary = {}
-			var combatantTextSfxVaryPitches: Dictionary = {}
+			var combatantTexts: Dictionary[String, Array] = {}
+			var combatantTextUpdates: Dictionary[String, Array] = {}
+			var combatantTextSfxs: Dictionary[String, Array] = {}
+			var combatantTextSfxVaryPitches: Dictionary[String, Array] = {}
 			if not combatantTexts.has(combatantNode.battlePosition):
 				combatantTexts[combatantNode.battlePosition] = []
 			if not combatantTextUpdates.has(combatantNode.battlePosition):

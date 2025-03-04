@@ -42,7 +42,7 @@ class_name StoryRequirements
 @export var prereqPuzzles: Array[String] = []
 
 ## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
-@export var prereqPuzzleStates: Dictionary = {}
+@export var prereqPuzzleStates: Dictionary[String, Array] = {}
 
 ## specified by "<base combatant save name>#<evolution save name>". If only one entry and blank, will be treated as "have any evolutions been discovered?"
 @export var prereqDiscoveredEvolutions: Array[String] = []
@@ -76,7 +76,7 @@ class_name StoryRequirements
 @export var invalidAfterSolvingPuzzles: Array[String] = []
 
 ## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
-@export var invalidFromPuzzleStates: Dictionary = {}
+@export var invalidFromPuzzleStates: Dictionary[String, Array] = {}
 
 ## specified by "<follower ID>"
 @export var invalidFromHavingFollowers: Array[String] = []
@@ -105,7 +105,7 @@ func _init(
 	i_prereqBattles: Array[String] = [],
 	i_prereqDefeatedEnemies: Array[String] = [],
 	i_prereqPuzzles: Array[String] = [],
-	i_prereqPuzzleStates: Dictionary = {},
+	i_prereqPuzzleStates: Dictionary[String, Array] = {},
 	i_prereqEvos: Array[String] = [],
 	i_prereqFollowers: Array[String] = [],
 	i_prereqItems: Array[InventorySlot] = [],
@@ -116,7 +116,7 @@ func _init(
 	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
-	i_invalidPuzzleStates: Dictionary = {},
+	i_invalidPuzzleStates: Dictionary[String, Array] = {},
 	i_invalidFollowers: Array[String] = [],
 	i_invalidItems: Array[InventorySlot] = [],
 ):

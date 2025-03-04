@@ -8,15 +8,15 @@ class_name StatePuzzleDecoration
 @export var puzzleStateIndex: int = 0
 
 ## a dictionary String -> String, where key is the state string, and value is the animation to play at that state
-@export var stateAnimations: Dictionary = {
+@export var stateAnimations: Dictionary[String, String] = {
 	'default': 'default'
 }
 
 ## a dictionary String -> String, where key is `state1>state2` for a transition from `state1` to `state2`, and value is the animation to play for that transition
-@export var stateTransitionAnimations: Dictionary = {}
+@export var stateTransitionAnimations: Dictionary[String, String] = {}
 
 ## dictionary of String -> InteractableDialogue objects. Each key is a state of the StatePuzzle, each InteractableDialogue the dialogue that will be played when interacting with this decoration in that puzzle state
-@export var stateDialogues: Dictionary = {}
+@export var stateDialogues: Dictionary[String, InteractableDialogue] = {}
 
 ## the dialogue to show when the player doesn't have the prerequisite story requirements. `dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var failedPrereqsDialogue: InteractableDialogue = null

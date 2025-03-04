@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Interception
 
-const PERCENT_DAMAGE_DICT: Dictionary = {
+const PERCENT_DAMAGE_DICT: Dictionary[Potency, float] = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.25,
 	Potency.STRONG: 0.45,

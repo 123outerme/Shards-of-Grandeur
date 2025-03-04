@@ -17,7 +17,7 @@ func _unhandled_input(event):
 
 func initial_focus():
 	for i in range(Stats.MAX_MOVES): # for all 4 buttons
-		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
+		var moveBtn: Button = get_node("MoveButton" + String.num_int64(i + 1))
 		if moveBtn.text != '-----':
 			moveBtn.grab_focus()
 	backButton.grab_focus()
@@ -25,14 +25,14 @@ func initial_focus():
 func load_moves():
 	var setFocus: bool = false
 	for i in range(Stats.MAX_MOVES): # for all 4 buttons
-		var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
-		var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
+		var moveBtn: Button = get_node("MoveButton" + String.num_int64(i + 1))
+		var moveInfoBtn: BaseButton = get_node('Move' + String.num_int64(i + 1) + 'InfoButton')
 		if i < len(battleUI.commandingCombatant.combatant.stats.moves) and battleUI.commandingCombatant.combatant.stats.moves[i] != null: # if this move slot exists
 			var moveEffect: MoveEffect = battleUI.commandingCombatant.combatant.stats.moves[i].\
 					get_effect_of_type(Move.MoveEffectType.CHARGE if battleUI.menuState == BattleState.Menu.CHARGE_MOVES else Move.MoveEffectType.SURGE)
 			moveBtn.text = battleUI.commandingCombatant.combatant.stats.moves[i].moveName
 			if battleUI.battleController.state.moveEffectType == Move.MoveEffectType.SURGE:
-				moveBtn.text += ' (' + String.num(battleUI.commandingCombatant.combatant.stats.moves[i].surgeEffect.orbChange) + ' Orbs)'
+				moveBtn.text += ' (' + String.num_int64(battleUI.commandingCombatant.combatant.stats.moves[i].surgeEffect.orbChange) + ' Orbs)'
 			
 			moveBtn.disabled = (moveEffect.orbChange * -1) > battleUI.commandingCombatant.combatant.orbs
 			if not setFocus:
@@ -57,8 +57,8 @@ func load_moves():
 	var moveBtns: Array[BaseButton] = []
 	var moveInfoBtns: Array[BaseButton] = []
 	for i in range(Stats.MAX_MOVES): # for all 4 buttons
-		moveBtns.append(get_node('MoveButton' + String.num(i + 1)))
-		moveInfoBtns.append(get_node('Move' + String.num(i + 1) + 'InfoButton'))
+		moveBtns.append(get_node('MoveButton' + String.num_int64(i + 1)))
+		moveInfoBtns.append(get_node('Move' + String.num_int64(i + 1) + 'InfoButton'))
 	
 	# if both leftwards help buttons are visible: connect them together
 	if moveInfoBtns[0].visible and moveInfoBtns[2].visible:
@@ -115,11 +115,11 @@ func _on_back_button_pressed():
 func _on_move_details_panel_back_pressed() -> void:
 	for i in range(Stats.MAX_MOVES):
 		if battleUI.commandingCombatant.combatant.stats.moves[i] == moveDetailsPanel.move:
-			var moveInfoBtn: BaseButton = get_node('Move' + String.num(i + 1) + 'InfoButton')
+			var moveInfoBtn: BaseButton = get_node('Move' + String.num_int64(i + 1) + 'InfoButton')
 			if moveInfoBtn != null and moveInfoBtn.visible:
 				moveInfoBtn.grab_focus()
 			else:
-				var moveBtn: Button = get_node("MoveButton" + String.num(i + 1))
+				var moveBtn: Button = get_node("MoveButton" + String.num_int64(i + 1))
 				moveBtn.grab_focus()
 			return
 	backButton.grab_focus()

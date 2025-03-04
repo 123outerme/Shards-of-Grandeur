@@ -35,9 +35,9 @@ func connect_top_setting_to(control: Control):
 
 func update_texts():
 	musicVolumeLabel.text = '[center]Music Volume:[/center]\n[center]' + \
-			String.num(roundi(SettingsHandler.gameSettings.musicVolume * 100)) + '%[/center]'
+			String.num_int64(roundi(SettingsHandler.gameSettings.musicVolume * 100)) + '%[/center]'
 	sfxVolumeLabel.text = '[center]SFX Volume:[/center]\n[center]' + \
-			String.num(roundi(SettingsHandler.gameSettings.sfxVolume * 100)) + '%[/center]'
+			String.num_int64(roundi(SettingsHandler.gameSettings.sfxVolume * 100)) + '%[/center]'
 
 func _on_music_volume_slider_value_changed(value):
 	SettingsHandler.gameSettings.musicVolume = value

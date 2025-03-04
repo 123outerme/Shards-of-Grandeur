@@ -2,7 +2,7 @@ extends StatusEffect
 class_name Mania
 
 # general idea: mania affects turn order positively (increases speed)
-var statChangesDict: Dictionary = {
+var statChangesDict: Dictionary[Potency, StatChanges] = {
 	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
 	Potency.WEAK: StatChanges.new(1, 1, 1, 1, 1.2),
 	Potency.STRONG: StatChanges.new(1, 1, 1, 1, 1.4),

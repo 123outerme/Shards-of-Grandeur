@@ -65,7 +65,7 @@ func load_move_effect_details_panel():
 		var titleText: String = '[center]' + ('Surge Effect' if isSurgeEffect else 'Charge Effect') + ' ('
 		if moveEffect.orbChange > 0:
 			titleText += '+'
-		titleText += String.num(moveEffect.orbChange) + ' $orb'
+		titleText += String.num_int64(moveEffect.orbChange) + ' $orb'
 		if moveEffect.orbChange < 0:
 			titleText += ' Min.'
 		titleText += ')[/center]'
@@ -84,7 +84,7 @@ func load_move_effect_details_panel():
 		movePower.text = str(moveEffect.power * -1) + ' Heal Power'
 	
 	if moveEffect.lifesteal > 0 and moveEffect.power != 0:
-		movePower.text += ' (' + String.num(roundi(max(0, moveEffect.lifesteal) * 100)) + '% Lifesteal)'
+		movePower.text += ' (' + String.num_int64(roundi(max(0, moveEffect.lifesteal) * 100)) + '% Lifesteal)'
 	
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
@@ -114,7 +114,7 @@ func load_move_effect_details_panel():
 					+ ' ' + moveEffect.statusEffect.get_status_type_string()
 		else:
 			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
-		var accuracyString: String = String.num(roundi(moveEffect.statusChance * 100)) + ' Chance'
+		var accuracyString: String = String.num_int64(roundi(moveEffect.statusChance * 100)) + ' Chance'
 		if moveEffect.statusChance >= 1:
 			accuracyString = 'Guaranteed'
 		moveStatusEffect.text += ' (' + accuracyString

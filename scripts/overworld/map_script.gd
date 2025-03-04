@@ -21,11 +21,7 @@ class TileDef:
 
 signal map_loaded
 
-@export var autoAssignTwoLayerTiles: bool:
-	get:
-		return false
-	set(value):
-		_assign_two_layer_tiles()
+@export_tool_button('Auto-Assign Two-Layer Tiles', 'TileMapLayer') var autoAssignTwoLayerTiles: Callable = _assign_two_layer_tiles
 
 func _ready():
 	map_loaded.emit()

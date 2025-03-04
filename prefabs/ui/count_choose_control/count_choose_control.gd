@@ -55,7 +55,7 @@ func initial_focus() -> void:
 
 func set_count_value(newVal: int) -> void:
 	value = enforce_min_max(newVal)
-	lineEdit.text = String.num(value)
+	lineEdit.text = String.num_int64(value)
 	if lineEdit.has_focus():
 		lineEdit.caret_column = len(lineEdit.text)
 	value_changed.emit(value)

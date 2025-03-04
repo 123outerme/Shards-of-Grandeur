@@ -41,7 +41,7 @@ func load_summon_minion_list_panel():
 	shardDetails.visible = shardItemSlot != null
 	unlockedSpriteControl.visible = not shardDetails.visible
 	if shardDetails.visible:
-		shardCount.text = 'x' + String.num(shardItemSlot.count)
+		shardCount.text = 'x' + String.num_int64(shardItemSlot.count)
 		shardSprite.texture = shardItemSlot.item.itemSprite
 	else:
 		unlockedSprite.play('default')

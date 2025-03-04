@@ -91,7 +91,7 @@ func save_data(save_path, data) -> int:
 	version = GameSettings.get_game_version()
 	var err = ResourceSaver.save(data, save_path + get_save_filename())
 	if err != 0:
-		printerr("NPCData/" + saveName + " ResourceSaver error: " + String.num(err))
+		printerr("NPCData/" + saveName + " ResourceSaver error: " + String.num_int64(err))
 	return err
 
 func get_save_filename() -> String:

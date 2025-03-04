@@ -88,7 +88,7 @@ func load_statline_panel(recopyStats: bool = false):
 	
 	statPtsDisplay.visible = not battleStats
 	
-	levelText.text = String.num(statsCopy.level)
+	levelText.text = String.num_int64(statsCopy.level)
 	
 	hpText.text = TextUtils.num_to_comma_string(hp) + ' / ' + TextUtils.num_to_comma_string(statsCopy.maxHp)
 	hpProgressBar.max_value = statsCopy.maxHp
@@ -108,7 +108,7 @@ func load_statline_panel(recopyStats: bool = false):
 	resistanceText.text = TextUtils.num_to_comma_string(statsCopy.resistance)
 	affinityText.text = TextUtils.num_to_comma_string(statsCopy.affinity)
 	speedText.text = TextUtils.num_to_comma_string(statsCopy.speed)
-	statPtsText.text = String.num(statsCopy.statPts)
+	statPtsText.text = String.num_int64(statsCopy.statPts)
 	
 	physAtkBtns.visible = not readOnly
 	magicAtkBtns.visible = not readOnly
@@ -133,13 +133,13 @@ func load_statline_panel(recopyStats: bool = false):
 	if levelUp:
 		var prevLvBase: Stats = Stats.calculate_base_stats(statsCopy, statsCopy.level - newLvs)
 		var newLvBase: Stats = Stats.calculate_base_stats(statsCopy, statsCopy.level)
-		hpLvUp.text = '[right]+' + String.num(newLvBase.maxHp - prevLvBase.maxHp) + '[/right]'
-		physAtkLvUp.text = '[right]+' + String.num(newLvBase.physAttack - prevLvBase.physAttack) + '[/right]'
-		magicAtkLvUp.text = '[right]+' + String.num(newLvBase.magicAttack - prevLvBase.magicAttack) + '[/right]'
-		affinityLvUp.text = '[right]+' + String.num(newLvBase.affinity - prevLvBase.affinity) + '[/right]'
-		resistanceLvUp.text = '[right]+' + String.num(newLvBase.resistance - prevLvBase.resistance) + '[/right]'
-		speedLvUp.text = '[right]+' + String.num(newLvBase.speed - prevLvBase.speed) + '[/right]'
-		statPtsLvUp.text = '[right]+' + String.num(newLvBase.statPts - prevLvBase.statPts) + '[/right]'
+		hpLvUp.text = '[right]+' + String.num_int64(newLvBase.maxHp - prevLvBase.maxHp) + '[/right]'
+		physAtkLvUp.text = '[right]+' + String.num_int64(newLvBase.physAttack - prevLvBase.physAttack) + '[/right]'
+		magicAtkLvUp.text = '[right]+' + String.num_int64(newLvBase.magicAttack - prevLvBase.magicAttack) + '[/right]'
+		affinityLvUp.text = '[right]+' + String.num_int64(newLvBase.affinity - prevLvBase.affinity) + '[/right]'
+		resistanceLvUp.text = '[right]+' + String.num_int64(newLvBase.resistance - prevLvBase.resistance) + '[/right]'
+		speedLvUp.text = '[right]+' + String.num_int64(newLvBase.speed - prevLvBase.speed) + '[/right]'
+		statPtsLvUp.text = '[right]+' + String.num_int64(newLvBase.statPts - prevLvBase.statPts) + '[/right]'
 	else:
 		hpLvUp.text = ''
 		physAtkLvUp.text = ''

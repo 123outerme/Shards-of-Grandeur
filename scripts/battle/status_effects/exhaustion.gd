@@ -2,7 +2,7 @@ extends StatusEffect
 class_name Exhaustion
 
 # general idea: exhaustion affects turn order negatively (reduces speed)
-var statChangesDict: Dictionary = {
+var statChangesDict: Dictionary[Potency, StatChanges] = {
 	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
 	Potency.WEAK: StatChanges.new(1, 1, 1, 1, 0.8),
 	Potency.STRONG: StatChanges.new(1, 1, 1, 1, 0.6),

@@ -266,7 +266,7 @@ func save_from_object(s: Stats):
 	movepool = s.movepool
 
 func print_stats() -> String:
-	return 'Lv: ' + String.num(level) + '\nHP: ' + String.num(maxHp) + '\nPhys: ' + \
-			String.num(physAttack) + '\nMagic: ' + String.num(magicAttack) + '\nAffinity: ' + \
-			String.num(affinity) + '\nResistance: ' + String.num(resistance) + \
-			'\nSpeed: ' + String.num(speed)
+	return 'Lv: ' + String.num_int64(level) + '\nHP: ' + String.num_int64(maxHp) + '\nPhys: ' + \
+			String.num_int64(physAttack) + '\nMagic: ' + String.num_int64(magicAttack) + '\nAffinity: ' + \
+			String.num_int64(affinity) + '\nResistance: ' + String.num_int64(resistance) + \
+			'\nSpeed: ' + String.num_int64(speed)

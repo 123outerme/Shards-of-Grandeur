@@ -8,7 +8,7 @@ class_name StatePuzzle
 @export var solvedStates: Array[String] = ['solved']
 
 ## map of String -> (T extends PuzzleMechanic). Key is in the format `state1>state2`, where `state1` can be a state string or *. * matches all unmatched start states. Value is the puzzle mechanic to be resolved before the transition in the key can occur
-@export var stateTransitionPuzzleMechanics: Dictionary = {}
+@export var stateTransitionPuzzleMechanics: Dictionary[String, PuzzleMechanic] = {}
 
 @export var solvePuzzleMechanic: PuzzleMechanic = null
 
@@ -18,7 +18,7 @@ func _init(
 	i_reward: Reward = null,
 	i_defaultStates: Array[String] = ['default'],
 	i_solvedStates: Array[String] = ['solved'],
-	i_transitionMechanics: Dictionary = {},
+	i_transitionMechanics: Dictionary[String, PuzzleMechanic] = {},
 	i_solveMechanic: PuzzleMechanic = null,
 ):
 	super(i_id, i_prereqRequirements, i_reward)

@@ -94,7 +94,7 @@ func get_effect_texts(short: bool = false) -> Array[String]:
 			else:
 				effectTexts.append('No Items will drop')
 		else:
-			var modifierStr: String = String.num(roundi(rewardItemCountModifier * 100) - 100)
+			var modifierStr: String = String.num_int64(roundi(rewardItemCountModifier * 100) - 100)
 			if rewardItemCountModifier > 1.0:
 				modifierStr = '+' + modifierStr
 			if short:
@@ -109,7 +109,7 @@ func get_effect_texts(short: bool = false) -> Array[String]:
 			else:
 				effectTexts.append('No Exp. will be gained')
 		else:
-			var modifierStr: String = String.num(roundi(rewardExpModifier * 100) - 100)
+			var modifierStr: String = String.num_int64(roundi(rewardExpModifier * 100) - 100)
 			if rewardExpModifier > 1.0:
 				modifierStr = '+' + modifierStr
 			if short:
@@ -124,7 +124,7 @@ func get_effect_texts(short: bool = false) -> Array[String]:
 			else:
 				effectTexts.append('No Gold will be gained')
 		else:
-			var modifierStr: String = String.num(roundi(rewardGoldModifier * 100) - 100)
+			var modifierStr: String = String.num_int64(roundi(rewardGoldModifier * 100) - 100)
 			if rewardGoldModifier > 1.0:
 				modifierStr = '+' + modifierStr
 			if short:
@@ -139,7 +139,7 @@ func get_effect_texts(short: bool = false) -> Array[String]:
 			else:
 				effectTexts.append('The summoned minion will not recieve Attunement')
 		else:
-			var modifierStr: String = String.num(roundi(attunementModifier * 100) - 100)
+			var modifierStr: String = String.num_int64(roundi(attunementModifier * 100) - 100)
 			if attunementModifier > 1.0:
 				modifierStr = '+' + modifierStr
 			if short:

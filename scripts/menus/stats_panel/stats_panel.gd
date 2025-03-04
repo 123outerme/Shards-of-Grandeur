@@ -180,7 +180,7 @@ func load_stats_panel(fromToggle: bool = false):
 	if fromToggle and levelUp and not levelUpAnimPlayed:
 		levelUpAnimPlayer.play('level_up')
 		levelUpAnimPlayed = true
-		newLevelLabel.text = '[center]Level ' + String.num(stats.level) + '![/center]'
+		newLevelLabel.text = '[center]Level ' + String.num_int64(stats.level) + '![/center]'
 		playingLvUpAnim = true
 	else:
 		levelUpPanel.visible = false

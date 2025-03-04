@@ -36,9 +36,9 @@ class_name PlayerInfo
 @export var placesVisited: Array[String] = []
 @export var mapLocationsVisited: Array[WorldLocation.MapLocation] = []
 @export var cutscenesPlayed: Array[String] = []
-@export var dialoguesSeen: Dictionary = {}
+@export var dialoguesSeen: Dictionary[String, Array] = {}
 @export var puzzlesSolved: Array[String] = []
-@export var puzzleStates: Dictionary = {}
+@export var puzzleStates: Dictionary[String, Array] = {}
 @export var codexEntriesSeen: Array[String] = []
 @export var cutscenesTempDisabled: Array[String] = []
 @export var activeFollowers: Array[String] = []
@@ -75,9 +75,9 @@ func _init(
 	i_placesVisited: Array[String] = [],
 	i_mapLocationsVisited: Array[WorldLocation.MapLocation] = [],
 	i_cutscenesPlayed: Array[String] = [],
-	i_dialoguesSeen: Dictionary = {},
+	i_dialoguesSeen: Dictionary[String, Array] = {},
 	i_puzzlesSolved: Array[String] = [],
-	i_puzzleStates: Dictionary = {},
+	i_puzzleStates: Dictionary[String, Array] = {},
 	i_codexEntriesSeen: Array[String] = [],
 	i_cutscenesTempDisabled: Array[String] = [],
 	i_queuedRewards: Array[Reward] = [],

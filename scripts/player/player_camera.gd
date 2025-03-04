@@ -213,7 +213,7 @@ func _fade_in_complete():
 
 func _new_act_fade_out(callback: Callable):
 	shadeLabel.text = '[center]Act ' + \
-			String.num(PlayerResources.questInventory.currentAct) + ': ' + \
+			String.num_int64(PlayerResources.questInventory.currentAct) + ': ' + \
 			PlayerResources.questInventory.actNames[PlayerResources.questInventory.currentAct] + \
 			'[/center]'
 	shadeLabel.visible = true

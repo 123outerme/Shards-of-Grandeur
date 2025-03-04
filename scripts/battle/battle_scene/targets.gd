@@ -104,7 +104,7 @@ func load_targets():
 	update_confirm_btn()
 
 func connect_targetable_combatants_to_each_other(allCombatantNodes: Array[CombatantNode], targetableCombatantNodes: Array[CombatantNode]):
-	var combatantsDict: Dictionary = {}
+	var combatantsDict: Dictionary[String, CombatantNode] = {}
 	
 	for combatantNode: CombatantNode in allCombatantNodes:
 		combatantsDict[combatantNode.battlePosition] = combatantNode

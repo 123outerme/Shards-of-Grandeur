@@ -19,7 +19,7 @@ const UI_REPEAT_ACTION_NAMES_Y = [
 	'ui_repeat_down',
 ]
 
-const UI_REPEAT_ACTIONS_TO_ACTION: Dictionary = {
+const UI_REPEAT_ACTIONS_TO_ACTION: Dictionary[String, String] = {
 	'ui_repeat_up': 'ui_up',
 	'ui_repeat_down': 'ui_down',
 	'ui_repeat_left': 'ui_left',

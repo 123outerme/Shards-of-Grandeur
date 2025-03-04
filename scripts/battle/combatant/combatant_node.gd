@@ -211,7 +211,7 @@ func update_hp_tag():
 	
 	hpTag.visible = not disableHpTag
 	nameText.text = '[center]' + combatant.disp_name() + '[/center]'
-	lvText.text = 'Lv ' + String.num(combatant.stats.level)
+	lvText.text = 'Lv ' + String.num_int64(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(curHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)
 	#hpText.size.x = len(hpText.text) * 13 - 10 # magic number

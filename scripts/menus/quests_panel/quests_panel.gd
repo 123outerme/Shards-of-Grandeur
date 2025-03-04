@@ -225,7 +225,7 @@ func load_quests_panel(fromToggle: bool = false):
 	else:
 		questsTitle.text = '[center]Quests[/center]'
 			
-	actTitle.text = '[center]Act ' + String.num(PlayerResources.questInventory.currentAct) + ':\n' + PlayerResources.questInventory.actNames[PlayerResources.questInventory.currentAct] + '[/center]'
+	actTitle.text = '[center]Act ' + String.num_int64(PlayerResources.questInventory.currentAct) + ':\n' + PlayerResources.questInventory.actNames[PlayerResources.questInventory.currentAct] + '[/center]'
 
 func update_filter_buttons():
 	allButton.button_pressed = selectedFilter == QuestTracker.Status.ALL

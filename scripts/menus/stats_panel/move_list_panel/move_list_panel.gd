@@ -103,7 +103,7 @@ func show_move_list_item_reorder_btns(showing: bool = false):
 	lastPanel.set_buttons_bottom_neighbor('.')
 
 func get_move_list_item(index: int) -> MoveListItemPanel:
-	return get_node("VBoxContainer/MoveListItemPanel" + String.num(index + 1))
+	return get_node("VBoxContainer/MoveListItemPanel" + String.num_int64(index + 1))
 
 func get_index_of_move(move: Move) -> int:
 	for i in range(Stats.MAX_MOVES):

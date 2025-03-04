@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Endure
 
-const MIN_PERCENT_HP_DICT: Dictionary = {
+const MIN_PERCENT_HP_DICT: Dictionary[Potency, float] = {
 	Potency.NONE: 0,
 	Potency.WEAK: 0.01,
 	Potency.STRONG: 0.05,

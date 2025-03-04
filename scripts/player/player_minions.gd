@@ -1,13 +1,13 @@
 extends Resource
 class_name PlayerMinions
 
-var minion_reqs: Dictionary = {
+var minion_reqs: Dictionary[String, StoryRequirements] = {
 	'king_rat': load('res://gamedata/story_requirements/minions/king_rat_reqs.tres') as StoryRequirements
 }
 
 @export var minionList: Array[String] = []
 @export var changedMinions: Array[String] = []
-var minionsDict: Dictionary = {}
+var minionsDict: Dictionary[String, Combatant] = {}
 
 var minions_dir = 'minions/'
 var save_file = 'minions.tres'

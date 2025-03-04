@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Reflect
 
-const PERCENT_DAMAGE_DICT: Dictionary = {
+const PERCENT_DAMAGE_DICT: Dictionary[Potency, float] = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.35,
 	Potency.STRONG: 0.55,

@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name Weakness
 
-var statChangesDict: Dictionary = {
+var statChangesDict: Dictionary[Potency, StatChanges] = {
 	Potency.NONE: StatChanges.new(1, 1, 1, 1, 1),
 	Potency.WEAK: StatChanges.new(0.7, 1, 1, 1, 1),
 	Potency.STRONG: StatChanges.new(0.6, 1, 1, 1, 1),

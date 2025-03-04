@@ -50,5 +50,5 @@ func load_equipment_details_panel():
 		hboxOrbs.visible = false
 	else:
 		hboxOrbs.visible = true
-		orbsText.text = TextUtils.rich_text_substitute('+' + String.num(item.bonusOrbs) + ' $orb At The Start Of Battle', Vector2i(24, 24))
+		orbsText.text = TextUtils.rich_text_substitute('+' + String.num_int64(item.bonusOrbs) + ' $orb At The Start Of Battle', Vector2i(24, 24))
 	

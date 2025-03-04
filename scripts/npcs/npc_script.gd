@@ -26,7 +26,7 @@ class_name NPCScript
 @export var spriteState: String = 'default'
 
 ## String -> SpriteFrames: maps NPC sprite state string to the SpriteFrames for that state
-@export var stateSpritesDict: Dictionary = {
+@export var stateSpritesDict: Dictionary[String, SpriteFrames] = {
 	'default': null
 }
 

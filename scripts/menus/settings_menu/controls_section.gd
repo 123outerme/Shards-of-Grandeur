@@ -16,7 +16,7 @@ class_name ControlsSection
 var secondaryControllerMovement: String = 'dpad'
 var buttonToChange: Button = null
 var trapFocus: bool = false
-var changedInputsMap: Dictionary = {}
+var changedInputsMap: Dictionary[String, Array] = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -299,7 +299,7 @@ func reenable_pause():
 	if PlayerFinder.player != null:
 		PlayerFinder.player.pauseDisabled = false
 
-func replace_controller_movement(actions: Dictionary, secondary: bool):
+func replace_controller_movement(actions: Dictionary[String, InputEvent], secondary: bool):
 	for action in ['move_up', 'move_down', 'move_left', 'move_right']:
 		var actionEvents = InputMap.action_get_events(action)
 		var index = 1
@@ -405,7 +405,7 @@ func _on_left_stick_button_pressed(secondary: bool = false):
 	leftStickRight.axis = JOY_AXIS_LEFT_X
 	leftStickRight.axis_value = 1
 	
-	var leftStickActions = {
+	var leftStickActions: Dictionary[String, InputEvent] = {
 		'move_up': leftStickUp,
 		'move_down': leftStickDown,
 		'move_left': leftStickLeft,
@@ -431,7 +431,7 @@ func _on_right_stick_button_pressed(secondary: bool = false):
 	rightStickRight.axis = JOY_AXIS_RIGHT_X
 	rightStickRight.axis_value = 1
 	
-	var rightStickActions = {
+	var rightStickActions: Dictionary[String, InputEvent] = {
 		'move_up': rightStickUp,
 		'move_down': rightStickDown,
 		'move_left': rightStickLeft,
@@ -452,7 +452,7 @@ func _on_d_pad_button_pressed(secondary: bool = false):
 	var dPadRight: InputEventJoypadButton = InputEventJoypadButton.new()
 	dPadRight.button_index = JOY_BUTTON_DPAD_RIGHT
 	
-	var dPadActions = {
+	var dPadActions: Dictionary[String, InputEvent] = {
 		'move_up': dPadUp,
 		'move_down': dPadDown,
 		'move_left': dPadLeft,

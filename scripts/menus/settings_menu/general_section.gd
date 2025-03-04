@@ -5,7 +5,7 @@ signal resize_complete(ok: bool)
 
 @export var sectionToggleButton: Button
 
-const windowSizeOptions: Dictionary = {
+const windowSizeOptions: Dictionary[int, Vector2i] = {
 	0: Vector2i(1280, 720),
 	1: Vector2i(1920, 1080)
 }
@@ -66,7 +66,7 @@ func _ready():
 	framerateLineEdit.virtual_keyboard_enabled = not SettingsHandler.gameSettings.useVirtualKeyboard
 	windowSizeOptionsMenu = windowOptionsButton.get_popup()
 	for key in windowSizeOptions.keys():
-		windowSizeOptionsMenu.add_radio_check_item(String.num(windowSizeOptions[key].x) + ' x ' + String.num(windowSizeOptions[key].y), key)
+		windowSizeOptionsMenu.add_radio_check_item(String.num_int64(windowSizeOptions[key].x) + ' x ' + String.num_int64(windowSizeOptions[key].y), key)
 	if not windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
 		windowSizeOptionsMenu.id_pressed.connect(_on_window_option_chosen)
 	
@@ -92,7 +92,7 @@ func _process(delta):
 		resizeAccum += delta
 		var timeLeft: int = ceili(resizeWaitTime - resizeAccum)
 		itemConfirmPanel.descriptionLabel.text = '[center]Is this size OK? Resetting in ' + \
-				String.num(timeLeft) + ' second' + ('s' if timeLeft != 1 else '') + \
+				String.num_int64(timeLeft) + ' second' + ('s' if timeLeft != 1 else '') + \
 				'.[/center]'
 		if resizeAccum >= resizeWaitTime:
 			itemConfirmPanel._on_no_button_pressed()
@@ -111,10 +111,10 @@ func toggle_section(toggle: bool):
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
 		touchJoystickTypeToggleButton.button_pressed = SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FIXED
-		windowMenuBtnLabel.text = '[center]' + String.num(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
+		windowMenuBtnLabel.text = '[center]' + String.num_int64(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num_int64(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
 		fullscreenButton.button_pressed = SettingsHandler.gameSettings.fullscreen
 		vsyncButton.button_pressed = SettingsHandler.gameSettings.vsync
-		framerateLineEdit.text = String.num(framerate) + ' FPS'
+		framerateLineEdit.text = String.num_int64(framerate) + ' FPS'
 		
 		onscreenKeyboardButton.focus_neighbor_left = onscreenKeyboardButton.get_path_to(sectionToggleButton)
 		sectionToggleButton.focus_neighbor_right = sectionToggleButton.get_path_to(onscreenKeyboardButton)
@@ -165,7 +165,7 @@ func _on_fullscreen_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.fullscreen = toggled_on
 	SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	itemConfirmPanel.title = 'Window Resized'
-	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num(ceil(resizeWaitTime)) + ' seconds.'
+	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceil(resizeWaitTime)) + ' seconds.'
 	itemConfirmPanel.load_item_confirm_panel()
 	resizeAccum = 0
 	waitingForResizeConfirm = true
@@ -181,7 +181,7 @@ func _on_virtual_keyboard_backspace_pressed():
 		allFramerateTextSelected = false
 	else:
 		framerate = floori(framerate / 10)
-		framerateLineEdit.text = String.num(framerate)
+		framerateLineEdit.text = String.num_int64(framerate)
 
 func _on_virtual_keyboard_enter_pressed():
 	_on_framerate_line_edit_text_submitted(framerateLineEdit.text)
@@ -196,14 +196,14 @@ func _on_virtual_keyboard_key_pressed(character):
 		else:
 			framerate *= 10
 			framerate += charIdx
-		framerateLineEdit.text = String.num(framerate)
+		framerateLineEdit.text = String.num_int64(framerate)
 
 func _on_virtual_keyboard_keyboard_hidden():
-	framerateLineEdit.text = String.num(framerate) + ' FPS'
+	framerateLineEdit.text = String.num_int64(framerate) + ' FPS'
 	vsyncButton.grab_focus()
 
 func _on_framerate_line_edit_focus_entered():
-	framerateLineEdit.text = String.num(framerate)
+	framerateLineEdit.text = String.num_int64(framerate)
 	allFramerateTextSelected = true
 
 func _on_framerate_line_edit_focus_exited():
@@ -231,7 +231,7 @@ func _on_framerate_line_edit_text_submitted(new_text):
 	SettingsHandler.gameSettings.framerate = framerate
 	SettingsHandler.gameSettings.apply_framerate()
 	SettingsHandler.settings_changed.emit()
-	framerateLineEdit.text = String.num(framerate) + ' FPS'
+	framerateLineEdit.text = String.num_int64(framerate) + ' FPS'
 	prevFramerate = framerate
 	deadzoneSlider.grab_focus()
 
@@ -249,14 +249,14 @@ func _on_window_option_chosen(id):
 	SettingsHandler.gameSettings.windowSize = windowSizeOptions[id]
 	SettingsHandler.gameSettings.apply_window_size(get_viewport())
 	itemConfirmPanel.title = 'Window Resized'
-	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num(ceil(resizeWaitTime)) + ' seconds.'
+	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceil(resizeWaitTime)) + ' seconds.'
 	itemConfirmPanel.load_item_confirm_panel()
 	resizeAccum = 0
 	waitingForResizeConfirm = true
 
 func _on_item_confirm_panel_confirm_option(yes):
 	if yes:
-		windowMenuBtnLabel.text = '[center]' + String.num(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
+		windowMenuBtnLabel.text = '[center]' + String.num_int64(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num_int64(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
 		SettingsHandler.settings_changed.emit()
 	else:
 		SettingsHandler.gameSettings.fullscreen = prevFullscreen

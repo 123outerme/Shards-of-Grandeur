@@ -28,19 +28,19 @@ enum MinionStatAllocationMode {
 	AUTOMATIC = 1,
 }
 
-const HP_BAR_COLORS: Dictionary = {
+const HP_BAR_COLORS: Dictionary[String, Color] = {
 	'full': Color(0, 0.870588, 0), #00de00
 	'warn': Color(1, 0.717647, 0), #ffb700
 	'low': Color(0.937255, 0, 0) #ef0000
 }
 
-const ELEMENT_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
+const ELEMENT_EFFECTIVENESS_MULTIPLIERS: Dictionary[String, float] = {
 	'superEffective': 1.5,
 	'effective': 1,
 	'resisted': 0.65
 }
 
-const STATUS_EFFECTIVENESS_MULTIPLIERS: Dictionary = {
+const STATUS_EFFECTIVENESS_MULTIPLIERS: Dictionary[String, float] = {
 	'effective': 1,
 	'resisted': 0.5,
 	'immune': 0
@@ -63,7 +63,7 @@ const MAX_ORBS = 10
 @export var evolutions: Evolutions = null
 
 ## stats for each evolution the combatant has
-@export_storage var evolutionStats: Dictionary = {}
+@export_storage var evolutionStats: Dictionary[String, Stats] = {}
 
 ## whether or not the minion should auto-allocate stat points
 @export_storage var minionStatAllocMode: MinionStatAllocationMode = MinionStatAllocationMode.DEFAULT
@@ -165,7 +165,7 @@ func _init(
 	i_nickname = '',
 	i_stats = Stats.new(),
 	i_evolutions = null,
-	i_evolutionStats = {},
+	i_evolutionStats: Dictionary[String, Stats] = {},
 	i_minionStatAllocMode: MinionStatAllocationMode = MinionStatAllocationMode.DEFAULT,
 	i_curHp = -1,
 	i_statChanges = StatChanges.new(),

@@ -352,10 +352,10 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 			runeText = TextUtils.num_to_comma_string(runeCount) + ' of ' + combatant.disp_name() + "'s Runes were triggered"
 		
 		var accumulatedDmg: int = 0
-		var accumulatedLifesteals: Dictionary = {}
+		var accumulatedLifesteals: Dictionary[String, int] = {}
 		var accumulatedStatChanges: StatChanges = StatChanges.new()
 		var appliedStatus: StatusEffect = null
-		var accumulatedOrbs: Dictionary = {}
+		var accumulatedOrbs: Dictionary[String, int] = {}
 		for idx: int in range(len(combatant.triggeredRunes)):
 			var rune: Rune = combatant.triggeredRunes[idx]
 			accumulatedDmg += combatant.triggeredRunesDmg[idx]
@@ -436,7 +436,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 					casterText += ' gained'
 				else:
 					casterText += ' lost'
-				casterText += ' ' + String.num(min(Combatant.MAX_ORBS, absi(accumulatedOrbs[cNode.battlePosition]))) + ' $orb'
+				casterText += ' ' + String.num_int64(min(Combatant.MAX_ORBS, absi(accumulatedOrbs[cNode.battlePosition]))) + ' $orb'
 			if casterText != '':
 				casterTexts.append(casterText)
 			

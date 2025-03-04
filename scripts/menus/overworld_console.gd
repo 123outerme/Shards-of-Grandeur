@@ -312,9 +312,9 @@ func give_item(itemName: String, count: int = 1):
 						if gave:
 							countGave += 1
 					if countGave == count:
-						print_to_console('Gave player ' + String.num(count) + 'x "' + item.itemName + '".')
+						print_to_console('Gave player ' + String.num_int64(count) + 'x "' + item.itemName + '".')
 					else:
-						print_to_console('Only gave player ' + String.num(countGave) + 'x "' + item.itemName + '". That item slot could be full.')
+						print_to_console('Only gave player ' + String.num_int64(countGave) + 'x "' + item.itemName + '". That item slot could be full.')
 					return
 	print_to_console('Could not find item "' + itemName + '".')
 
@@ -334,34 +334,34 @@ func remove_item(itemName: String, count: int = 1):
 			PlayerResources.inventory.inventorySlots.remove_at(inventorySlotIdx)
 			print_to_console('Removed all of item "' + inventorySlot.item.itemName + '".')
 		else:
-			print_to_console('Removed ' + String.num(count) + 'x of item "' + inventorySlot.item.itemName + '".')
+			print_to_console('Removed ' + String.num_int64(count) + 'x of item "' + inventorySlot.item.itemName + '".')
 		PlayerResources.story_requirements_updated.emit()
 	else:
 		print_to_console('Item "' + itemName + '" not found in player inventory.')
 
 func give_gold(amount: int):
 	PlayerResources.playerInfo.gold += amount
-	print_to_console('Gave player ' + String.num(amount) + ' gold.')
+	print_to_console('Gave player ' + String.num_int64(amount) + ' gold.')
 
 func set_level(lv: int):
 	var lvDiff: int = lv - PlayerResources.playerInfo.combatant.stats.level
 	if lvDiff > 0:
 		PlayerResources.playerInfo.combatant.stats.level_up(lvDiff)
 		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level)
-		print_to_console('Increased player level to ' + String.num(lv) + '.')
+		print_to_console('Increased player level to ' + String.num_int64(lv) + '.')
 	elif lvDiff < 0:
 		PlayerResources.playerInfo.combatant.stats.set_level(lv)
-		print_to_console('Set player level to ' + String.num(lv) + '. Allocated stat points were reset.')
+		print_to_console('Set player level to ' + String.num_int64(lv) + '. Allocated stat points were reset.')
 	else:
-		print_to_console('The player is already at level ' + String.num(lv) + '. Nothing was done.')
+		print_to_console('The player is already at level ' + String.num_int64(lv) + '. Nothing was done.')
 
 func give_exp(xp: int):
 	var lvDiff: int = PlayerResources.playerInfo.combatant.stats.add_exp(xp)
 	if lvDiff > 0:
 		PlayerResources.minions.level_up_minions(PlayerResources.playerInfo.combatant.stats.level)
-		print_to_console('Added ' + String.num(xp) + ' Exp and leveled up ' + String.num(lvDiff) + ' level(s)!')
+		print_to_console('Added ' + String.num_int64(xp) + ' Exp and leveled up ' + String.num_int64(lvDiff) + ' level(s)!')
 	else:
-		print_to_console('Added ' + String.num(xp) + ' Exp.')
+		print_to_console('Added ' + String.num_int64(xp) + ' Exp.')
 
 func puzzle_update(puzzleName: String, clear: bool):
 	if clear:
@@ -449,13 +449,13 @@ func teleport_to(mapName: String):
 func ex_teleport_to(pos: Vector2, mapName: String):
 	if MapLoader.get_world_location_for_name(mapName) != null:
 		SceneLoader.mapLoader.entered_warp(mapName, pos, PlayerFinder.player.position)
-		print_to_console('Teleported to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ') at map "' + mapName + '".')
+		print_to_console('Teleported to (' + String.num_int64(pos.x) + ', ' + String.num_int64(pos.y) + ') at map "' + mapName + '".')
 	else:
 		print_to_console('The map "' + mapName + '" does not exist.')
 
 func move_player_to(pos: Vector2):
 	PlayerFinder.player.position = pos
-	print_to_console('Moved player to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ').')
+	print_to_console('Moved player to (' + String.num_int64(pos.x) + ', ' + String.num_int64(pos.y) + ').')
 
 func set_noclip(enable: bool):
 	if enable:
@@ -470,7 +470,7 @@ func show_game_logs(logFile: String = 'godot.log'):
 	if success:
 		print_to_console('Game logs were opened.')
 	else:
-		print_to_console('Game logs could not be opened. FileAccess error code: ' + String.num(FileAccess.get_open_error()))
+		print_to_console('Game logs could not be opened. FileAccess error code: ' + String.num_int64(FileAccess.get_open_error()))
 
 func list_log_files():
 	var dir: DirAccess = DirAccess.open('user://logs')
@@ -479,7 +479,7 @@ func list_log_files():
 		for filename: String in filenames:
 			print_to_console(filename)
 	else:
-		print_to_console('Game logs directory could not be opened. DirAccess error code: ' + String.num(DirAccess.get_open_error()))
+		print_to_console('Game logs directory could not be opened. DirAccess error code: ' + String.num_int64(DirAccess.get_open_error()))
 
 func _on_line_edit_gui_input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():

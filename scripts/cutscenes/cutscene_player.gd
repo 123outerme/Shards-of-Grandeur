@@ -23,7 +23,7 @@ var awaitingPlayer: bool = false
 var lastFrameCameraPos: Vector2 = Vector2.ZERO
 
 var collisionDisabledNodes: Array = []
-var collisionPrevEnabledNodes: Dictionary = {}
+var collisionPrevEnabledNodes: Dictionary[String, bool] = {}
 
 func _process(delta):
 	if cutscene != null and playing and not isPaused and not awaitingPlayer and skipCutsceneFrameIndex == -1:
@@ -130,7 +130,7 @@ func handle_start_shard_learn_tutorial():
 	PlayerFinder.player.inventoryPanel.learn_shard_tutorial_finished.connect(_learn_shard_tutorial_finished)
 
 func get_all_actor_nodes_in_cutscene() -> Array:
-	var nodeDict: Dictionary = {}
+	var nodeDict: Dictionary[String, Node] = {}
 	for frame: CutsceneFrame in cutscene.cutsceneFrames:
 		for animSet: ActorAnimSet in frame.actorAnimSets:
 			if animSet == null:

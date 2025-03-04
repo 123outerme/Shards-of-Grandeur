@@ -72,7 +72,7 @@ func load_rune_effect_details() -> void:
 		runePowerLabel.text = str(rune.power * -1) + ' Heal Power'
 	
 	if rune.lifesteal > 0 and rune.power != 0:
-		runePowerLabel.text += ' (' + String.num(roundi(100 * max(0, rune.lifesteal))) + '% Lifesteal)'
+		runePowerLabel.text += ' (' + String.num_int64(roundi(100 * max(0, rune.lifesteal))) + '% Lifesteal)'
 	
 	runeCategoryElementLabel.text = '[right]'
 	if rune.element != Move.Element.NONE:

@@ -6,7 +6,7 @@ enum TouchJoystickType {
 	FLOATING = 1,
 }
 
-@export var inputMap: Dictionary = {}
+@export var inputMap: Dictionary[String, Array] = {}
 @export var musicVolume: float = 0.5
 @export var sfxVolume: float = 0.5
 @export var useVirtualKeyboard: bool = false
@@ -23,7 +23,7 @@ enum TouchJoystickType {
 @export var touchJoystickType: TouchJoystickType = TouchJoystickType.FLOATING
 @export var enableExperimentalFeatures: bool = false
 
-var defaultInputMap: Dictionary = {}
+var defaultInputMap: Dictionary[String, Array] = {}
 var save_file = 'game_settings.tres'
 static var STORED_ACTIONS = [
 	'move_up', 'move_down', 'move_left', 'move_right', 'game_interact',
@@ -40,7 +40,7 @@ static var UI_TO_MAKE_REPEATING_ACTION_NAMES = [
 	'ui_right',
 ]
 
-static var UI_ACTIONS_TO_REPEAT_ACTION: Dictionary = {
+static var UI_ACTIONS_TO_REPEAT_ACTION: Dictionary[String, String] = {
 	'ui_up': 'ui_repeat_up',
 	'ui_down': 'ui_repeat_down',
 	'ui_left': 'ui_repeat_left',
@@ -99,7 +99,7 @@ static func touch_joystick_type_to_string(t: TouchJoystickType) -> String:
 	return 'UNKNOWN'
 
 func _init(
-	i_inputMap: Dictionary = {},
+	i_inputMap: Dictionary[String, Array] = {},
 	i_musicVolume = 0.5,
 	i_sfxVolume = 0.5,
 	i_virtualKeyboard = false,
@@ -137,7 +137,7 @@ func _init(
 	if inputMap.size() == 0:
 		inputMap = defaultInputMap.duplicate() # use default if inputs are empty
 
-func save_controls_from_diffs(diffs: Dictionary):
+func save_controls_from_diffs(diffs: Dictionary[String, Array]):
 	for action in diffs.keys():
 		inputMap[action] = diffs[action].duplicate()
 
@@ -149,7 +149,7 @@ func get_default_controls() -> Dictionary:
 	return defaultInputMap
 
 func apply_from_stored_inputs():
-	var fixingInputMap: Dictionary = {}
+	var fixingInputMap: Dictionary[String, Array] = {}
 	for action in inputMap.keys(): # assign input map settings
 		InputMap.action_erase_events(action)
 		for event: InputEvent in inputMap[action]:
@@ -178,8 +178,8 @@ func apply_from_stored_inputs():
 			if not (event in inputMap[repeatAction]):
 					inputMap[repeatAction].append(event)
 
-func apply_from_diffs(diffs: Dictionary):
-	var inputCopy: Dictionary = inputMap.duplicate()
+func apply_from_diffs(diffs: Dictionary[String, Array]):
+	var inputCopy: Dictionary[String, Array] = inputMap.duplicate()
 	for action in diffs.keys():
 		inputCopy[action] = diffs[action].duplicate()
 	

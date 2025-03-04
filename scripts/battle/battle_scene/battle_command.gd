@@ -490,7 +490,7 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += ', gaining '
 			else:
 				resultsText += ', spending '
-			resultsText += String.num(abs(orbChange)) + ' $orb'
+			resultsText += String.num_int64(abs(orbChange)) + ' $orb'
 		
 		# "dealt/healed/afflicted "
 		if moveEffect.power > 0:
@@ -625,9 +625,9 @@ func get_command_results(user: Combatant) -> String:
 						# add a space here so below we don't need to check whether this is empty
 						moveElString += Move.element_to_string(move.element) + ' '
 				resultsText += ' ' + interceptingTargets[interceptingIdx].disp_name() + ' intercepted ' + \
-						String.num(commandResult.damageOnInterceptingTargets[interceptingIdx]) + moveElString + 'damage!'
+						String.num_int64(commandResult.damageOnInterceptingTargets[interceptingIdx]) + moveElString + 'damage!'
 		if type == Type.MOVE and moveEffect.lifesteal > 0 and commandResult.lifestealHeal > 0:
-			resultsText += '\n' + user.disp_name() + ' stole ' + String.num(commandResult.lifestealHeal) + ' HP from the target'
+			resultsText += '\n' + user.disp_name() + ' stole ' + String.num_int64(commandResult.lifestealHeal) + ' HP from the target'
 			if len(targets) != 1:
 				resultsText += 's'
 			resultsText += '!'

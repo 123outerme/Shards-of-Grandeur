@@ -60,20 +60,20 @@ func get_description() -> Array[SurgeChangeDescRow]:
 	if powerPerOrb > 0:
 		
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Power Per Orb:', '+' + String.num(powerPerOrb))
+			SurgeChangeDescRow.new('+ Power Per Orb:', '+' + String.num_int64(powerPerOrb))
 		)
 	elif powerPerOrb < 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Heal Power Per Orb:', '+' + String.num(powerPerOrb * -1))
+			SurgeChangeDescRow.new('+ Heal Power Per Orb:', '+' + String.num_int64(powerPerOrb * -1))
 		)
 	
 	if lifestealPerOrb > 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Lifesteal % Per Orb:' ,'+' + String.num(roundi(lifestealPerOrb * 100)))
+			SurgeChangeDescRow.new('+ Lifesteal % Per Orb:' ,'+' + String.num_int64(roundi(lifestealPerOrb * 100)))
 		)
 	elif lifestealPerOrb < 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('- Lifesteal % Per Orb:', '-' + String.num(roundi(lifestealPerOrb * -100)))
+			SurgeChangeDescRow.new('- Lifesteal % Per Orb:', '-' + String.num_int64(roundi(lifestealPerOrb * -100)))
 		)
 		
 	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
@@ -91,26 +91,26 @@ func get_description() -> Array[SurgeChangeDescRow]:
 	'''
 	if additionalStatusTurnsPerOrb > 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Status Turns Per Orb:', String.num(additionalStatusTurnsPerOrb))
+			SurgeChangeDescRow.new('+ Status Turns Per Orb:', String.num_int64(additionalStatusTurnsPerOrb))
 		)
 	'''
 	
 	if abs(additionalStatusChancePerOrb) > 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Status Chance Per Orb:', ('+' if additionalStatusChancePerOrb > 0 else '-') + String.num(abs(additionalStatusChancePerOrb) * 100))
+			SurgeChangeDescRow.new('+ Status Chance Per Orb:', ('+' if additionalStatusChancePerOrb > 0 else '-') + String.num_int64(abs(additionalStatusChancePerOrb) * 100))
 		)
 	
 	if weakThresholdOrbs > 0 or strongThresholdOrbs > 0 or overwhelmingThresholdOrbs > 0:
 		var thresholdDescription = ''
 		var thresholds: Array[String] = []
 		if weakThresholdOrbs > 0:
-			thresholds.append('Weak at -' + String.num(weakThresholdOrbs) + ' Orbs')
+			thresholds.append('Weak at -' + String.num_int64(weakThresholdOrbs) + ' Orbs')
 			
 		if strongThresholdOrbs > 0:
-			thresholds.append('Strong at -' + String.num(strongThresholdOrbs) + ' Orbs')
+			thresholds.append('Strong at -' + String.num_int64(strongThresholdOrbs) + ' Orbs')
 			
 		if overwhelmingThresholdOrbs > 0:
-			thresholds.append('Overwhelming at -' + String.num(overwhelmingThresholdOrbs) + ' Orbs')
+			thresholds.append('Overwhelming at -' + String.num_int64(overwhelmingThresholdOrbs) + ' Orbs')
 		
 		for idx in range(len(thresholds)):
 			thresholdDescription += thresholds[idx]

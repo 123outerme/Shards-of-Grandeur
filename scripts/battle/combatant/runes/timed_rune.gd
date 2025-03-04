@@ -29,7 +29,7 @@ func get_rune_type() -> String:
 	return 'Timed Rune'
 
 func get_rune_trigger_description() -> String:
-	return 'After ' + String.num(afterTurns - turnCounter) + ' Turns'
+	return 'After ' + String.num_int64(afterTurns - turnCounter) + ' Turns'
 
 func get_rune_tooltip() -> String:
 	return "This Rune's effect triggers after a set number of turns have passed."

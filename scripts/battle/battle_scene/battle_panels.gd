@@ -60,13 +60,13 @@ func _unhandled_input(event):
 		pauseMenu.toggle_pause()
 
 func set_turn_counter(turnCount: int, winCon: WinCon) -> void:
-	turnCounter.text = '[center]Turn ' + String.num(turnCount) + '[/center]'
+	turnCounter.text = '[center]Turn ' + String.num_int64(turnCount) + '[/center]'
 	
 	if winCon != null and winCon is SurviveWinCon:
 		surviveCounterPanel.visible = true
 		var surviveWinCon: SurviveWinCon = winCon as SurviveWinCon
 		var surviveCount: int = max(0, surviveWinCon.minTurns - turnCount)
-		var surviveText: String = '[center]Survive ' + String.num(surviveCount) + ' Turn'
+		var surviveText: String = '[center]Survive ' + String.num_int64(surviveCount) + ' Turn'
 		if surviveCount != 1:
 			surviveText += 's'
 		surviveCounter.text = surviveText + '![/center]'

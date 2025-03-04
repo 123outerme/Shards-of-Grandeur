@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name ElementBurn
 
-const PERCENT_DAMAGE_DICT: Dictionary = {
+const PERCENT_DAMAGE_DICT: Dictionary[Potency, float] = {
 	Potency.NONE: 0.0,
 	Potency.WEAK: 0.5,
 	Potency.STRONG: 0.75,

@@ -95,19 +95,19 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 	var effects: Array[String] = []
 	
 	if orbChange > 0:
-		effects.append('+' + String.num(orbChange) + ' $orb')
+		effects.append('+' + String.num_int64(orbChange) + ' $orb')
 	
 	if power > 0:
-		var powerString: String = String.num(power)
+		var powerString: String = String.num_int64(power)
 		if moveElement != Move.Element.NONE:
 			powerString += ' ' + Move.element_to_string(moveElement)
 		powerString += ' ' + Move.dmg_category_to_string(dmgCategory) + ' Power'
 		effects.append(powerString)
 	elif power < 0:
-		effects.append(String.num(power * -1) + ' Heal Power')
+		effects.append(String.num_int64(power * -1) + ' Heal Power')
 	
 	if lifesteal > 0:
-		effects.append(String.num(roundi(lifesteal * 100)) + '% Lifesteal')
+		effects.append(String.num_int64(roundi(lifesteal * 100)) + '% Lifesteal')
 	
 	if selfStatChanges != null and selfStatChanges.has_stat_changes():
 		var multiplierTexts: Array[StatMultiplierText] = selfStatChanges.get_multipliers_text()
@@ -118,7 +118,7 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 		effects.append('Target: ' + StatMultiplierText.multiplier_text_list_to_string(multiplierTexts))
 	
 	if statusEffect != null:
-		var accuracyString: String = String.num(roundi(statusChance * 100)) + ' Chance'
+		var accuracyString: String = String.num_int64(roundi(statusChance * 100)) + ' Chance'
 		if statusChance >= 1:
 			accuracyString = 'Guaranteed'
 		var statusString: String = StatusEffect.potency_to_string(statusEffect.potency) \
@@ -143,12 +143,12 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 	
 	if abs(changedSurgeEff.power) > abs(power):
 		if changedSurgeEff.power > 0:
-			effects.append(String.num(changedSurgeEff.power) + ' Power')
+			effects.append(String.num_int64(changedSurgeEff.power) + ' Power')
 		elif changedSurgeEff.power < 0:
-			effects.append(String.num(changedSurgeEff.power * -1) + ' Heal Power')
+			effects.append(String.num_int64(changedSurgeEff.power * -1) + ' Heal Power')
 	
 	if changedSurgeEff.lifesteal > lifesteal:
-		effects.append(String.num(roundi(changedSurgeEff.lifesteal * 100)) + '% Lifesteal')
+		effects.append(String.num_int64(roundi(changedSurgeEff.lifesteal * 100)) + '% Lifesteal')
 	
 	if changedSurgeEff.selfStatChanges != null and not changedSurgeEff.selfStatChanges.equals(selfStatChanges):
 		var diffs: StatChanges = changedSurgeEff.selfStatChanges.subtract(selfStatChanges)
@@ -164,7 +164,7 @@ func get_changes_description(spendingOrbs: int) -> Array[String]:
 	
 	if changedSurgeEff.statusEffect != null and (changedSurgeEff.statusChance > statusChance or \
 			changedSurgeEff.statusEffect.potency != statusEffect.potency):
-		var accuracyString: String = String.num(roundi(changedSurgeEff.statusChance * 100)) + ' Chance'
+		var accuracyString: String = String.num_int64(roundi(changedSurgeEff.statusChance * 100)) + ' Chance'
 		if changedSurgeEff.statusChance >= 1:
 			accuracyString = 'Guaranteed'
 		effects.append(
