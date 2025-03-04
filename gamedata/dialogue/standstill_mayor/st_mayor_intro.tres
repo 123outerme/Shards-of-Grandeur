@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://bxbqwna702dj5"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_02txf"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="2_e1qeh"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fbu2e"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_lq0sl"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_xfhtj"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_3hwnb"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_02txf"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="2_e1qeh"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fbu2e"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_lq0sl"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_xfhtj"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_3hwnb"]
 
 [sub_resource type="Resource" id="Resource_2ups0"]
 script = ExtResource("1_02txf")
@@ -20,6 +20,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_5rr6j"]
 script = ExtResource("2_e1qeh")
 lines = Array[String](["Hello, you must be @! I have heard a lot about you from Dr. Hudson and Dr. Ildran.", "So, you've come for the Radiant Cave, have you?"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -30,6 +31,7 @@ choices = Array[ExtResource("1_02txf")]([SubResource("Resource_2ups0")])
 [sub_resource type="Resource" id="Resource_54b51"]
 script = ExtResource("2_e1qeh")
 lines = Array[String](["We have agreed with Grandstone to provide aid while your expedition is in town."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -48,6 +50,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("6_3hwnb")]([])
@@ -58,6 +61,7 @@ invalidAfterDialogues = Array[String](["standstill_mayor#mayor_intro"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("6_3hwnb")]([])
 
@@ -69,3 +73,4 @@ storyRequirements = SubResource("Resource_atd5l")
 ordStoryRequirements = Array[ExtResource("4_xfhtj")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

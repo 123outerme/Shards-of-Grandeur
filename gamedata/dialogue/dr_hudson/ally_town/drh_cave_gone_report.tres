@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://bxkaxgf5v3g62"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_2vnkr"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_2vnkr"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="2_dhkfo"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_kvnu8"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_fbvp4"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_w8dn5"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="5_om4xe"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_yosyj"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="3_kvnu8"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_fbvp4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_w8dn5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_om4xe"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_yosyj"]
 
 [sub_resource type="Resource" id="Resource_j7x0q"]
 script = ExtResource("1_2vnkr")
@@ -22,6 +22,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_vupoq"]
 script = ExtResource("3_kvnu8")
 lines = Array[String](["What did you find?"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -63,3 +64,4 @@ storyRequirements = SubResource("Resource_cpvqu")
 ordStoryRequirements = Array[ExtResource("5_om4xe")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

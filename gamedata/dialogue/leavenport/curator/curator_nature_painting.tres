@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bssacuu5rffpw"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_hx3e8"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_u0uru"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_xoqt5"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_og2y6"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_gtd6w"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_hx3e8"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_u0uru"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_xoqt5"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_og2y6"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_gtd6w"]
 
 [sub_resource type="Resource" id="Resource_y45q0"]
 script = ExtResource("1_hx3e8")
@@ -19,6 +19,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_i83v1"]
 script = ExtResource("1_xoqt5")
 lines = Array[String](["This painting depicts a calm river winding through the land, with a breeze rustling the trees.", "Leavenport aims to preserve these scenes in all ways, including through the fine arts."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -33,3 +34,4 @@ items = Array[ExtResource("1_xoqt5")]([SubResource("Resource_i83v1")])
 ordStoryRequirements = Array[ExtResource("4_gtd6w")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

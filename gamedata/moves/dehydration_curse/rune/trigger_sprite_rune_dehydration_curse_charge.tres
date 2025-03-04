@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://deq4mt22y5vel"]
 
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_hcv2p"]
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mbhg7"]
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_hcv2p"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mbhg7"]
 [ext_resource type="SpriteFrames" uid="uid://bck2i6f7x3xh1" path="res://graphics/moves/water/a_dehydration_curse.tres" id="3_y8yx2"]
 
 [sub_resource type="Curve" id="Curve_xhen1"]
@@ -9,8 +9,7 @@ _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_otrvn"]
-min_value = -0.5
-max_value = 1.5
+_limits = [-0.5, 1.5, 0.0, 1.0]
 _data = [Vector2(0, -0.5), 0.0, 2.8, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 

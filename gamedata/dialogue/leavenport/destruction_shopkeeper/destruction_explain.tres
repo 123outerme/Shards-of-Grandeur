@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://c30vmmj8dg2gp"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_6725h"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_nnrhr"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_txgal"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8op6j"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_ifgek"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_6725h"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_nnrhr"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_txgal"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8op6j"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_ifgek"]
 
 [sub_resource type="Resource" id="Resource_lfy6f"]
 script = ExtResource("1_nnrhr")
@@ -19,6 +19,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_yj177"]
 script = ExtResource("1_6725h")
 lines = Array[String](["The powers of Destruction are the three Elements that govern chaos and ruin.", "These Elements are Fire, Lightning, and Dark.", "Although the number of Elements that make up the cursed powers of Creation is greater, Destruction makes a greater impact."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -33,3 +34,4 @@ items = Array[ExtResource("1_6725h")]([SubResource("Resource_yj177")])
 ordStoryRequirements = Array[ExtResource("4_ifgek")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

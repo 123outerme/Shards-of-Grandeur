@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://c17niy10xw810"]
 
 [ext_resource type="Resource" uid="uid://dwyw6knfggs55" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_overworld.tres" id="1_ig6uo"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_tt54n"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_tt54n"]
 [ext_resource type="SpriteFrames" uid="uid://dolrr71gh2nvo" path="res://graphics/animations/a_sea_wyrm.tres" id="3_8mvpv"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(17, 47)
 headPosition = Vector2(12, 11)
 spriteFacesRight = false
 navigationLayer = 4
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 4
 attackMagicArrivalFrame = 4
 attackPhysArrivalFrame = 2

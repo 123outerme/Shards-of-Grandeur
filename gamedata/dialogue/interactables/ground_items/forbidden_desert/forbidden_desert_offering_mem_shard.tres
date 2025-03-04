@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://ojb4drc1f528"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_rw04f"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jp1up"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_lq5na"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_nqp5x"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_rw04f"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jp1up"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_lq5na"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_nqp5x"]
 
 [sub_resource type="Resource" id="Resource_qspu2"]
 script = ExtResource("1_rw04f")
 lines = Array[String](["This strange red crystal, it holds... memories...", "I can see the woman who placed this, this offering... She was running from a dust storm...", "This area was still green when this memory was made. What happened here?"])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -22,3 +23,4 @@ items = Array[ExtResource("1_rw04f")]([SubResource("Resource_qspu2")])
 ordStoryRequirements = Array[ExtResource("3_lq5na")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

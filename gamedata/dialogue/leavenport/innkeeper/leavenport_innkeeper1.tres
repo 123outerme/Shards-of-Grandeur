@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://r4jmy0mxrwbn"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gfnvw"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jp7ey"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nf34q"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_gfnvw"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jp7ey"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nf34q"]
 [ext_resource type="Resource" uid="uid://caul65lodxx0d" path="res://gamedata/dialogue/leavenport/innkeeper/leavenport_innkeeper_rest.tres" id="2_ufplw"]
-[ext_resource type="Script" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="3_4p5am"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pl88g"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_1btpb"]
+[ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="3_4p5am"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pl88g"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_1btpb"]
 
 [sub_resource type="Resource" id="Resource_hqsis"]
 script = ExtResource("1_gfnvw")
@@ -45,6 +45,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_8tlei"]
 script = ExtResource("1_nf34q")
 lines = Array[String](["Hello, welcome to the Leavenport Inn. We can rent you a room, if you wish to rest here. If you need any basic supplies, we carry some of the essentials!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -59,3 +60,4 @@ items = Array[ExtResource("1_nf34q")]([SubResource("Resource_8tlei")])
 ordStoryRequirements = Array[ExtResource("6_1btpb")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

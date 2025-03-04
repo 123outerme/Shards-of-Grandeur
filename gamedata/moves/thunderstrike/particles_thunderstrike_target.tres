@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://bh0nrgy71xck6" path="res://graphics/particles/lightning/lightning_3.png" id="3_u16bo"]
 [ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys/phys_4.png" id="4_h47hw"]
 [ext_resource type="Material" uid="uid://bdi7ds20ub7nq" path="res://graphics/particles/lightning/lightning_particle_process_mat.tres" id="5_gtvsv"]
-[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="5_h7gef"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="5_h7gef"]
 [ext_resource type="AudioStream" uid="uid://drpioiwvi7nx6" path="res://audio/sfx/moves/lightning/lightning_2.mp3" id="7_sq80a"]
 
 [resource]
 script = ExtResource("5_h7gef")
 emitter = "behind"
 count = 6
-inFrontOfCombatant = true
 lifetime = 0.7
 duration = 0.6
+staggered = false
 processMaterial = ExtResource("5_gtvsv")
 particleTextures = Array[Texture2D]([ExtResource("1_mqbwp"), ExtResource("2_1eluk"), ExtResource("3_u16bo"), ExtResource("4_h47hw")])
 sfx = ExtResource("7_sq80a")

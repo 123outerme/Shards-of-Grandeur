@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://bxpqrsk01nk5p"]
 
 [ext_resource type="Resource" uid="uid://dnfprgaj6piul" path="res://gamedata/combatants/fireclaw/fireclaw_overworld.tres" id="1_2k5c3"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_mw0cj"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_mw0cj"]
 [ext_resource type="SpriteFrames" uid="uid://cdnmljf3y0evw" path="res://graphics/animations/a_fireclaw.tres" id="3_ve5lg"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(17, 30)
 headPosition = Vector2(20, 23)
 spriteFacesRight = false
 navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 3
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 4

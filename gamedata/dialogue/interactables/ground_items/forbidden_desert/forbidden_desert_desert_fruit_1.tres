@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dfexbsstpkiuy"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_vxtbk"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tyq7l"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_5iaah"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_bxjsf"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_vxtbk"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tyq7l"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_5iaah"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_bxjsf"]
 
 [sub_resource type="Resource" id="Resource_c5fua"]
 script = ExtResource("1_vxtbk")
 lines = Array[String](["This oasis... in spite of the creepy visitors, the food sure looks good! I needed a little something."])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -22,3 +23,4 @@ items = Array[ExtResource("1_vxtbk")]([SubResource("Resource_c5fua")])
 ordStoryRequirements = Array[ExtResource("3_5iaah")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

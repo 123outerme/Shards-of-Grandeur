@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://c6c4ckakjjq0h"]
 
-[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="1_ngjm4"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_ngjm4"]
 [ext_resource type="Texture2D" uid="uid://c6lmnvtltbxli" path="res://graphics/particles/hit/hit_1.png" id="1_xy5fb"]
 [ext_resource type="Texture2D" uid="uid://c5oh44v7tr2hl" path="res://graphics/particles/hit/hit_2.png" id="2_3hblq"]
 [ext_resource type="Texture2D" uid="uid://c83is0pmramuv" path="res://graphics/particles/hit/hit_3.png" id="3_oyjhd"]
@@ -12,9 +12,9 @@
 script = ExtResource("1_ngjm4")
 emitter = "hit"
 count = 3
-inFrontOfCombatant = true
 lifetime = 0.5
 duration = 0.5
+staggered = false
 processMaterial = ExtResource("5_rhst4")
 particleTextures = Array[Texture2D]([ExtResource("1_xy5fb"), ExtResource("2_3hblq"), ExtResource("3_oyjhd"), ExtResource("4_x6ax5")])
 sfx = ExtResource("7_3ik1r")

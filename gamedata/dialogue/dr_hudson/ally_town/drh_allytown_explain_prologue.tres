@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cxr66hncv2g4u"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uboej"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_ut6ma"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="3_51m4o"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uboej"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_ut6ma"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="3_51m4o"]
 [ext_resource type="Resource" uid="uid://bndxbpkm53hbu" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_prologue_end.tres" id="3_is37l"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_06lod"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_rdb4t"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="7_gw6rn"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_06lod"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_rdb4t"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_gw6rn"]
 
 [sub_resource type="Resource" id="Resource_m7mbd"]
 script = ExtResource("2_uboej")
@@ -22,6 +22,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_n3ml7"]
 script = ExtResource("3_51m4o")
 lines = Array[String](["With the Chain Legion being this bold, I fear war is upon us.", "Steelspire is a formidable opponent. That city is larger and more influential than Grandstone, but we will have to prevail regardless."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -40,6 +41,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("7_gw6rn")]([])
@@ -50,6 +52,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("7_gw6rn")]([])
 
@@ -61,3 +64,4 @@ storyRequirements = SubResource("Resource_ak28q")
 ordStoryRequirements = Array[ExtResource("4_06lod")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://u8byd3xxx4xv"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://u8byd3xxx4xv"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_wddup"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_wddup"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_38q3q"]
 
 [resource]
 script = ExtResource("1_wddup")
 id = "element_burn"
 title = "Element Burn"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_38q3q")]([])
 description = "Element Burns make the affected combatant take damage at the end of every turn until it wears off. The damage dealt is a fraction of the afflicting move's Power, and the percentage increases for more potent Element Burns. Each element has its owned named variation: Burn for Fire; Soaking for Water; Jolt for Lightning; Gust for Wind; Crush for Earth; Poison for Nature; Frighten for Dark; and Nova for Astral."
-childrenEntries = Array[ExtResource("1_wddup")]([])
+sortOrder = 0
+priority = 0

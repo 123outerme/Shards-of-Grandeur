@@ -1,21 +1,21 @@
 [gd_resource type="Resource" script_class="Cutscene" load_steps=73 format=3 uid="uid://msc76enduo5l"]
 
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kd7fi"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_04xm3"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_45r0i"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_1o5eq"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_eeuyi"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_bnkgo"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_8atbn"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_wd8k4"]
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="7_6nb1q"]
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kd7fi"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_04xm3"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_45r0i"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_1o5eq"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_eeuyi"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_bnkgo"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_8atbn"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_wd8k4"]
+[ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="7_6nb1q"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_o0ptk"]
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_p2ll8"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="8_p2ll8"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="10_ikixo"]
 [ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="11_34aiu"]
-[ext_resource type="Script" path="res://scripts/cutscenes/anim_curve_2d.gd" id="12_nbv28"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="13_txxg2"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="15_sl26r"]
+[ext_resource type="Script" uid="uid://bll87t0wwopow" path="res://scripts/cutscenes/anim_curve_2d.gd" id="12_nbv28"]
+[ext_resource type="Script" uid="uid://cj1jp66j35uba" path="res://scripts/cutscenes/cutscene_camera_movement.gd" id="13_txxg2"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="15_sl26r"]
 
 [sub_resource type="Resource" id="Resource_r7ekr"]
 script = ExtResource("3_eeuyi")
@@ -31,7 +31,7 @@ speakerActorScenePath = "TilemapRoot/Dragon"
 speakerActorIsPlayer = false
 speakerAnim = "battle_idle"
 speakerAnimScale = 3
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_y7oio"]
 script = ExtResource("1_kd7fi")
@@ -195,7 +195,7 @@ speakerActorScenePath = "TilemapRoot/Nomad2"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_nj2yl"]
 script = ExtResource("1_kd7fi")
@@ -390,7 +390,7 @@ speakerActorScenePath = "TilemapRoot/Dragon"
 speakerActorIsPlayer = false
 speakerAnim = "walk"
 speakerAnimScale = 1
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ref47"]
 script = ExtResource("1_kd7fi")
@@ -538,7 +538,7 @@ speakerActorScenePath = "TilemapRoot/Nomad2"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mt0qu"]
 script = ExtResource("1_kd7fi")
@@ -586,7 +586,7 @@ speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
 speakerAnimScale = 3
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_o4rda"]
 script = ExtResource("1_kd7fi")
@@ -646,7 +646,7 @@ speakerActorScenePath = "TilemapRoot/Nomad2"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
-animSpeakerOffset = null
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_nrao0"]
 script = ExtResource("1_kd7fi")

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://b1bhyr6sowiy"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b1bhyr6sowiy"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_hlow5"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e1s2m"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_sg6g2"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_hlow5"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e1s2m"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_sg6g2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_xyqht"]
 
 [sub_resource type="Resource" id="Resource_7k5at"]
 script = ExtResource("1_hlow5")
 lines = Array[String](["This little hut is trashed... I don't think anyone still lives here.", "I'll take this Quenching Water, then."])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,7 @@ choices = Array[ExtResource("2_e1s2m")]([])
 script = ExtResource("2_sg6g2")
 entryId = ""
 items = Array[ExtResource("1_hlow5")]([SubResource("Resource_7k5at")])
+ordStoryRequirements = Array[ExtResource("3_xyqht")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

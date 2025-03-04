@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://c8if1u55s37vs"]
 
 [ext_resource type="Resource" uid="uid://psa2wqosyejo" path="res://gamedata/combatants/cloud_gull/cloud_gull_overworld.tres" id="1_s4nkr"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_wgdh0"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_wgdh0"]
 [ext_resource type="SpriteFrames" uid="uid://g2a5lofal7lw" path="res://graphics/animations/a_cloud_gull.tres" id="2_3h1a6"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(8, 16)
 headPosition = Vector2(5, 4)
 spriteFacesRight = false
 navigationLayer = 1
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 3
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 2

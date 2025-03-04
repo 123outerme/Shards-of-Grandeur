@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://1i3wsoh3o76b" path="res://graphics/particles/affinity/affinity_3.png" id="3_qvmth"]
 [ext_resource type="Texture2D" uid="uid://cujqbu1341sdy" path="res://graphics/particles/affinity/affinity_4.png" id="4_ovfue"]
 [ext_resource type="Material" uid="uid://cmtfovwmira1g" path="res://graphics/particles/affinity/affinity_particle_process_mat.tres" id="5_l2gtt"]
-[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_58q1g"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="6_58q1g"]
 [ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="7_xn5ge"]
 
 [resource]
 script = ExtResource("6_58q1g")
 emitter = "behind"
 count = 4
-inFrontOfCombatant = false
 lifetime = 0.5
 duration = 1.25
+staggered = false
 processMaterial = ExtResource("5_l2gtt")
 particleTextures = Array[Texture2D]([ExtResource("1_pa5wy"), ExtResource("2_cmxg4"), ExtResource("3_qvmth"), ExtResource("4_ovfue")])
 sfx = ExtResource("7_xn5ge")

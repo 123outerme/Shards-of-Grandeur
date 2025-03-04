@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://cj7oh2rsws3y7"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_b74ru"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_qiyhi"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_b74ru"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_qiyhi"]
 
 [resource]
 script = ExtResource("1_b74ru")
@@ -10,3 +10,4 @@ title = "Move Statuses"
 storyRequirements = Array[ExtResource("2_qiyhi")]([])
 description = "Each move has a status effect that it has a chance to inflict. The status chance displayed in the Move Details screen describes the base chance to afflict the status, before being modified by the attacker's Affinity and the defender's Affinity. If the attacker has higher Affinity, the status will be more likely to land. A status chance labeled Guaranteed will always land, regardless of the defender's Affinity."
 sortOrder = 4
+priority = 0

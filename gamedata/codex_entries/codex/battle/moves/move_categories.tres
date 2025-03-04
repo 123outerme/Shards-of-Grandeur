@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://c4p741si30nmx"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_i8ayn"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_3yx62"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_i8ayn"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_3yx62"]
 
 [resource]
 script = ExtResource("1_i8ayn")
@@ -10,3 +10,4 @@ title = "Move Categories"
 storyRequirements = Array[ExtResource("2_3yx62")]([])
 description = "Each move falls into one of three categories: Physical, Magic, or Affinity. Each move uses the associated stat in battle, namely Physical Attack, Magic Attack, or Affinity respectively. The stat assigned to a move's category will control its strength. As well,  Affinity affects how likely a move is to inflict a status effect."
 sortOrder = 3
+priority = 0

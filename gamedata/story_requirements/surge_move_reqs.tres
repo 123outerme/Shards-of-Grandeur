@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StoryRequirements" load_steps=2 format=3 uid="uid://sdnbjpunsbc0"]
+[gd_resource type="Resource" script_class="StoryRequirements" load_steps=3 format=3 uid="uid://sdnbjpunsbc0"]
 
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="1_6hh81"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="1_6hh81"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="1_hfjxl"]
 
 [resource]
 script = ExtResource("1_6hh81")
@@ -13,8 +14,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("1_hfjxl")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -22,4 +25,6 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("1_hfjxl")]([])

@@ -1,14 +1,15 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://cjadv85pgyepl"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jx05f"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_plhmv"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_wfai3"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jx05f"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_plhmv"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_wfai3"]
 [ext_resource type="Resource" uid="uid://da1pe0gmj3wiq" path="res://gamedata/quests/main_quests/act1_main_quest.tres" id="2_ykngq"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_sq0g7"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_sq0g7"]
 
 [sub_resource type="Resource" id="Resource_2rwmp"]
 script = ExtResource("1_plhmv")
 lines = Array[String](["Great, meet with me outside once you've made your preparations for the trip back."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -24,3 +25,4 @@ ordStoryRequirements = Array[ExtResource("3_sq0g7")]([])
 startsQuest = ExtResource("2_ykngq")
 closesDialogue = true
 fullHealsPlayer = false
+annotation = ""

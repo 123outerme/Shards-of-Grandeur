@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://do0a7bcfntx48"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://do0a7bcfntx48"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_45tfh"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cisrq"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xbb5y"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_45tfh"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cisrq"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_xbb5y"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_jdx5j"]
 
 [sub_resource type="Resource" id="Resource_ia316"]
 script = ExtResource("1_45tfh")
 lines = Array[String](["Wow, this is such an old key. I bet this kind of key is locking up an old chest..."])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,7 @@ choices = Array[ExtResource("2_cisrq")]([])
 script = ExtResource("2_xbb5y")
 entryId = ""
 items = Array[ExtResource("1_45tfh")]([SubResource("Resource_ia316")])
+ordStoryRequirements = Array[ExtResource("3_jdx5j")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

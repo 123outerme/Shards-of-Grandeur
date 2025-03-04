@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CombatantRewards" load_steps=2 format=3 uid="uid://bfkpkrjtkr1yh"]
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=3 format=3 uid="uid://bfkpkrjtkr1yh"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_vmoi7"]
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_vmoi7"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_8d58k"]
 
 [resource]
 script = ExtResource("1_vmoi7")
-weightedRewards = Array[Resource("res://scripts/battle/weighted_things/weighted_reward.gd")]([])
+weightedRewards = Array[ExtResource("2_8d58k")]([])

@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://ne2wn43f300"]
 
-[ext_resource type="Script" path="res://prefabs/test/battle/damage_tester.gd" id="1_e74u5"]
-[ext_resource type="Script" path="res://scripts/battle/combatant.gd" id="2_4dq0e"]
+[ext_resource type="Script" uid="uid://pxclfapv03gq" path="res://prefabs/test/battle/damage_tester.gd" id="1_e74u5"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="2_4dq0e"]
 [ext_resource type="Resource" uid="uid://cwbb2w28v3c5l" path="res://gamedata/moves/restore/restore.tres" id="2_g05g4"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="3_dno2x"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/rune.gd" id="4_jbw0r"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="4_jbw0r"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="4_qco8e"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/move.gd" id="5_0ej33"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_0ej33"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="5_3eulm"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/movepool.gd" id="6_pdsug"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/stats.gd" id="7_sxci1"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="6_pdsug"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="7_sxci1"]
 [ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="8_07fob"]
 
 [sub_resource type="Resource" id="Resource_5jl4o"]
@@ -66,6 +66,8 @@ damageAggroType = 0
 strategy = 0
 aiOverrideWeight = 0.0
 downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
 
 [node name="DamageTester" type="Control"]
 layout_mode = 3

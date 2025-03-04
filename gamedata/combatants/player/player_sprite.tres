@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=3 format=3 uid="uid://dvr8s8ujdy6f1"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_l3ygp"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_l3ygp"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_0s3g5"]
 
 [resource]
@@ -13,6 +13,9 @@ feetPosition = Vector2(8, 15)
 headPosition = Vector2(9, 4)
 spriteFacesRight = true
 navigationLayer = 1
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 3
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 2

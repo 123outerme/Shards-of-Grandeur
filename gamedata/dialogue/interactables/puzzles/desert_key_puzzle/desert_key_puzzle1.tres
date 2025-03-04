@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://crjvuwqi43lts"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_s68x2"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0cn7c"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_nopg2"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_4ej8w"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_s68x2"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0cn7c"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_nopg2"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_4ej8w"]
 [ext_resource type="Resource" uid="uid://b26xnxh1rnhut" path="res://gamedata/dialogue/interactables/puzzles/desert_key_puzzle/desert_key_puzzle_solveno.tres" id="3_4hrii"]
-[ext_resource type="Script" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_6oq87"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_6oq87"]
 [ext_resource type="Resource" uid="uid://c5a1cl6yopaya" path="res://gamedata/dialogue/interactables/puzzles/desert_key_puzzle/desert_key_puzzle_solveyes.tres" id="5_0uiv8"]
 [ext_resource type="Resource" uid="uid://dng8o33m8mafg" path="res://gamedata/puzzles/forbidden_desert/desert_locked_chest_puzzle.tres" id="6_s38si"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="7_e1uv5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="7_e1uv5"]
 
 [sub_resource type="Resource" id="Resource_3nssy"]
 script = ExtResource("2_0cn7c")
@@ -54,3 +54,4 @@ items = Array[ExtResource("1_s68x2")]([SubResource("Resource_vns43")])
 ordStoryRequirements = Array[ExtResource("7_e1uv5")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

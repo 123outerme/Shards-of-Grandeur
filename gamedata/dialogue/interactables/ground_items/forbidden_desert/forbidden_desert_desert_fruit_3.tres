@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://djwyy6mursaro"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_lpu5n"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7c3f2"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_dulfk"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_jcpt2"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_lpu5n"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7c3f2"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_dulfk"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_jcpt2"]
 
 [sub_resource type="Resource" id="Resource_xpc1i"]
 script = ExtResource("1_lpu5n")
 lines = Array[String](["This fruit didn't drop from the tree too long ago. This oasis is just too good to be true!"])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -22,3 +23,4 @@ items = Array[ExtResource("1_lpu5n")]([SubResource("Resource_xpc1i")])
 ordStoryRequirements = Array[ExtResource("3_jcpt2")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

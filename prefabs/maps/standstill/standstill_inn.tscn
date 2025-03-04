@@ -1,19 +1,19 @@
 [gd_scene load_steps=27 format=4 uid="uid://bp2s1i6f6s6dw"]
 
-[ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_tslnt"]
+[ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tslnt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_bad68"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_r0a5c"]
 [ext_resource type="Resource" uid="uid://dk6ni0sxklyj5" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_1.tres" id="4_38wkq"]
 [ext_resource type="Resource" uid="uid://bsjr40px1qbp" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_heal.tres" id="4_imxxv"]
-[ext_resource type="Script" path="res://scripts/npcs/npc_data.gd" id="4_ky67y"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="5_1hs1o"]
+[ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_ky67y"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_1hs1o"]
 [ext_resource type="SpriteFrames" uid="uid://bt0tu4j7yxdg" path="res://graphics/animations/a_innkeeper.tres" id="5_e5gl0"]
 [ext_resource type="Resource" uid="uid://b3dyhcxdm73ug" path="res://gamedata/dialogue/standstill_innkeeper/innkeeper_2.tres" id="5_hlk4r"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="6_njaki"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_njaki"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="8_axpn3"]
 [ext_resource type="Resource" uid="uid://cxr66hncv2g4u" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_explain_prologue.tres" id="8_qm568"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_nfbyj"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="10_a5euj"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="10_a5euj"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="10_no4q4"]
 [ext_resource type="Resource" uid="uid://3ombe3v0e8gu" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_inn_sign.tres" id="15_x4sve"]
 [ext_resource type="SpriteFrames" uid="uid://bgr5nld0n0q8t" path="res://graphics/animations/a_inn_sign.tres" id="16_u5a1c"]
@@ -53,6 +53,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("10_a5euj")]([])
@@ -63,6 +64,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("10_a5euj")]([])
 
@@ -100,6 +102,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("10_a5euj")]([])
@@ -110,6 +113,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("10_a5euj")]([])
 

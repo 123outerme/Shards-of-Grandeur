@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://d1303grvlgie"]
 
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_fvoc3"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_i0rmj"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="1_r6atd"]
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_fvoc3"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="1_i0rmj"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="1_r6atd"]
 [ext_resource type="Resource" uid="uid://bfjcisqmdwhov" path="res://gamedata/cutscenes/reused/player_run_anim.tres" id="2_4qdpd"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_mbw8c"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_mbw8c"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="2_t2emd"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_6nxsj"]
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_v6af7"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="5_3vdye"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="6_04jv3"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_6nxsj"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="3_v6af7"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="5_3vdye"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="6_04jv3"]
 [ext_resource type="Resource" uid="uid://bkp6unp7ys28m" path="res://gamedata/story_requirements/main_story/act1/leavenport_takeover.tres" id="11_2j7bb"]
 
 [sub_resource type="Resource" id="Resource_2svxx"]
@@ -20,6 +20,7 @@ speakerActorScenePath = "TilemapRoot/Solius"
 speakerActorIsPlayer = false
 speakerAnim = "battle_idle"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_qf84f"]
 script = ExtResource("1_fvoc3")
@@ -95,6 +96,7 @@ speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_iibfr"]
 script = ExtResource("1_fvoc3")

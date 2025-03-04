@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=24 format=3 uid="uid://da1pe0gmj3wiq"]
 
-[ext_resource type="Script" path="res://scripts/quests/quest.gd" id="1_jiru6"]
-[ext_resource type="Script" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4gvsg"]
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_jiru6"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_8mv8e"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4gvsg"]
 [ext_resource type="Resource" uid="uid://bxkaxgf5v3g62" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_report.tres" id="3_qpgt1"]
 [ext_resource type="Resource" uid="uid://rfvaf3u7qrsn" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_leave_for_grandstone.tres" id="4_0vfgl"]
-[ext_resource type="Script" path="res://scripts/reward/reward.gd" id="4_801qh"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_801qh"]
 [ext_resource type="Resource" uid="uid://birvqvo77y5ec" path="res://gamedata/dialogue/solius/leavenport/spar_inprogress.tres" id="6_c8xco"]
 [ext_resource type="Resource" uid="uid://d37h8d1mf18js" path="res://gamedata/dialogue/solius/leavenport/spar_turnin.tres" id="7_cbync"]
 [ext_resource type="Resource" uid="uid://bhnwqrl4m4c7p" path="res://gamedata/items/healing/brawn_elixir.tres" id="7_redr7"]
@@ -44,6 +44,7 @@ inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 script = ExtResource("4_801qh")
 experience = 40
 gold = 10
+itemCount = 1
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_mrxk6"]
@@ -66,6 +67,7 @@ inProgressDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("3_qpgt1")])
 script = ExtResource("4_801qh")
 experience = 30
 gold = 0
+itemCount = 1
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_dbahe"]
@@ -104,6 +106,7 @@ script = ExtResource("4_801qh")
 experience = 80
 gold = 10
 item = ExtResource("7_redr7")
+itemCount = 1
 fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_efjqq"]

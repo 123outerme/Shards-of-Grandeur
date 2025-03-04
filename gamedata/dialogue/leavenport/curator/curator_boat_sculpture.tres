@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://d0np1lfjlqnta"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_l4sqd"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_n54t0"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_uk52d"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_34wjc"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_hd0vf"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_l4sqd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_n54t0"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_uk52d"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_34wjc"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_hd0vf"]
 
 [sub_resource type="Resource" id="Resource_g5gem"]
 script = ExtResource("1_uk52d")
@@ -19,6 +19,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_ro2ts"]
 script = ExtResource("1_l4sqd")
 lines = Array[String](["That is a bronze boat sculpture resting on a pedestal.", "The people of Leavenport sailed up the river on wooden boats like this one, re-settling here from a faraway place.", "Those boats have all been lost to time, but this reproduction ensures we never forget our origins."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -33,3 +34,4 @@ items = Array[ExtResource("1_l4sqd")]([SubResource("Resource_ro2ts")])
 ordStoryRequirements = Array[ExtResource("4_hd0vf")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

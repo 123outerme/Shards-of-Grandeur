@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://d3urfcu4env61"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://d3urfcu4env61"]
 
 [ext_resource type="Resource" uid="uid://2uiiepy32532" path="res://gamedata/moves/stamina_drain/particles_stamina_drain.tres" id="1_u4rkm"]
-[ext_resource type="Script" path="res://scripts/battle/particles/move_animation.gd" id="2_mc7fc"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_ur1tr"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_mc7fc"]
 
 [resource]
 script = ExtResource("2_mc7fc")
 combatantAnimation = "attack_affinity"
 makesContact = true
 userParticlePreset = ExtResource("1_u4rkm")
-chargeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([])
-surgeMoveSprites = Array[Resource("res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd")]([])
+chargeMoveSprites = Array[ExtResource("1_ur1tr")]([])
+surgeMoveSprites = Array[ExtResource("1_ur1tr")]([])

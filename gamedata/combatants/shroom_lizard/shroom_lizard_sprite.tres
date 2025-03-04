@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://ck3xgd78t8lai"]
 
 [ext_resource type="Resource" uid="uid://rp2h63h1mff" path="res://gamedata/combatants/shroom_lizard/shroom_lizard_overworld.tres" id="1_ojmfh"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_usfco"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_usfco"]
 [ext_resource type="SpriteFrames" uid="uid://bnkxqooepjojc" path="res://graphics/animations/a_shroom_lizard.tres" id="2_puum0"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(15, 15)
 headPosition = Vector2(5, 9)
 spriteFacesRight = false
 navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 2
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 4

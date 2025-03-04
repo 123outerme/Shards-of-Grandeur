@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://2q6d4vkjmq71"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://2q6d4vkjmq71"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_8h0g2"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_5jnjj"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_8h0g2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_5jnjj"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_rpprb"]
 
 [sub_resource type="Resource" id="Resource_wn42s"]
 script = ExtResource("2_5jnjj")
@@ -14,6 +15,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String](["storm_swarm"])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_rpprb")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -21,6 +26,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_rpprb")]([])
 
 [resource]
 script = ExtResource("1_8h0g2")
@@ -28,4 +36,5 @@ id = "storm_swarm"
 title = "Storm Swarm"
 storyRequirements = Array[ExtResource("2_5jnjj")]([SubResource("Resource_wn42s")])
 description = "A 	Storm Swarm is a mass of energetic, glowing bugs that harness Lightning power to fry would-be predators. They are easily disrupted with gusts of Wind, but are not easy to inflict elemental burns upon."
-childrenEntries = Array[ExtResource("1_8h0g2")]([])
+sortOrder = 0
+priority = 0

@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://d01uh7t7qa558"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://d01uh7t7qa558"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jfce2"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_o1v61"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f1kje"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_jfce2"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_o1v61"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f1kje"]
 [ext_resource type="Resource" uid="uid://dcbpdlrd4i5cj" path="res://gamedata/static_encounters/king_rat_encounter.tres" id="3_l1mrd"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_ismcx"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_ismcx"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_xo41l"]
 
 [sub_resource type="Resource" id="Resource_56fvy"]
 script = ExtResource("1_o1v61")
 lines = Array[String](["Once I am done crushing you, I'll flatten that repugnant gravel patch you call a city!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -27,7 +29,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_xo41l")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -35,12 +40,17 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["king_rat_encounter"])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_xo41l")]([])
 
 [resource]
 script = ExtResource("1_jfce2")
 entryId = ""
 items = Array[ExtResource("1_o1v61")]([SubResource("Resource_56fvy")])
 storyRequirements = SubResource("Resource_4h1nn")
+ordStoryRequirements = Array[ExtResource("4_ismcx")]([])
 closesDialogue = false
 fullHealsPlayer = false
 startsStaticEncounter = ExtResource("3_l1mrd")
+annotation = ""

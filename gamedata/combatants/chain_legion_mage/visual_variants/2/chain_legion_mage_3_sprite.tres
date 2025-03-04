@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://ck0abtetye5fi"]
 
 [ext_resource type="Resource" uid="uid://cefcd6oulu2y1" path="res://gamedata/combatants/chain_legion_mage/chain_legion_mage_overworld.tres" id="1_hivq6"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="2_q2e8u"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="2_q2e8u"]
 [ext_resource type="SpriteFrames" uid="uid://ceh6w656rgrl" path="res://graphics/animations/a_chain_legion_mage_3.tres" id="3_2fonr"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(16, 15)
 headPosition = Vector2(17, 5)
 spriteFacesRight = true
 navigationLayer = 1
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 3
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 2

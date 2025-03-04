@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys/phys_3.png" id="3_e0u08"]
 [ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys/phys_4.png" id="4_epox0"]
 [ext_resource type="Material" uid="uid://dwmq4u4v6gdo" path="res://graphics/particles/phys/phys_particle_process_mat.tres" id="5_rny4s"]
-[ext_resource type="Script" path="res://scripts/battle/particles/particle_preset.gd" id="6_ty6f3"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="6_ty6f3"]
 [ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="7_28jyv"]
 
 [resource]
 script = ExtResource("6_ty6f3")
 emitter = "front"
 count = 4
-inFrontOfCombatant = true
 lifetime = 0.5
 duration = 0.5
+staggered = false
 processMaterial = ExtResource("5_rny4s")
 particleTextures = Array[Texture2D]([ExtResource("1_bwvy5"), ExtResource("2_cmut2"), ExtResource("3_e0u08"), ExtResource("4_epox0")])
 sfx = ExtResource("7_28jyv")

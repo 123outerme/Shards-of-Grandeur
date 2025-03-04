@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://bus041kuq2h88"]
 
 [ext_resource type="Resource" uid="uid://cd31k1b4e4xx7" path="res://gamedata/combatants/soot_spider/soot_spider_overworld.tres" id="1_4ov4m"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_gma53"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_gma53"]
 [ext_resource type="SpriteFrames" uid="uid://cas8fs7y1d52a" path="res://graphics/animations/a_soot_spider.tres" id="2_jjjpd"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(8, 15)
 headPosition = Vector2(8, 10)
 spriteFacesRight = false
 navigationLayer = 1
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 5
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 5

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://cjvy7bpksrpdn"]
 
 [ext_resource type="Resource" uid="uid://b0peki1vtv6bj" path="res://gamedata/combatants/blob/blob_overworld.tres" id="1_kopra"]
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_o5uic"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_o5uic"]
 [ext_resource type="SpriteFrames" uid="uid://dk3tso6o32g0d" path="res://graphics/animations/a_blob.tres" id="2_t8x3e"]
 
 [resource]
@@ -15,6 +15,9 @@ feetPosition = Vector2(16, 15)
 headPosition = Vector2(13, 9)
 spriteFacesRight = false
 navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 2
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 4

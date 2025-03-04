@@ -1,14 +1,15 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b1bkqjv81rd8d"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_34do8"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_mcvmd"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_avmt0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_34do8"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_mcvmd"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_avmt0"]
 [ext_resource type="Resource" uid="uid://dqy41ewbyu3fe" path="res://gamedata/static_encounters/act1/solius_spar.tres" id="2_emjhs"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_4mcup"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_4mcup"]
 
 [sub_resource type="Resource" id="Resource_2gqid"]
 script = ExtResource("1_mcvmd")
 lines = Array[String](["Great, let's fight! First one to fold is the loser!"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -24,3 +25,4 @@ ordStoryRequirements = Array[ExtResource("3_4mcup")]([])
 closesDialogue = false
 fullHealsPlayer = false
 startsStaticEncounter = ExtResource("2_emjhs")
+annotation = ""

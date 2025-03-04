@@ -1,10 +1,10 @@
-[gd_scene load_steps=96 format=4 uid="uid://csetgkqaalapc"]
+[gd_scene load_steps=97 format=4 uid="uid://csetgkqaalapc"]
 
-[ext_resource type="Script" path="res://scripts/overworld/map_script.gd" id="1_5qcr2"]
+[ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_5qcr2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_o5f5u"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_j3j2u"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_jq65j"]
-[ext_resource type="Script" path="res://scripts/inventory/picked_up_item.gd" id="4_6xxye"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="4_6xxye"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_12gis"]
 [ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard_1.tres" id="4_cd2vy"]
 [ext_resource type="Resource" uid="uid://bovav4mx2vts6" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_mem_shard.tres" id="4_x6rh6"]
@@ -13,20 +13,21 @@
 [ext_resource type="Resource" uid="uid://dph3i78lm7wh5" path="res://gamedata/dialogue/interactables/ground_items/sea_leg_swamp/sea_leg_south_bronze_sword.tres" id="7_w77x1"]
 [ext_resource type="Resource" uid="uid://o4ngs8kwav3p" path="res://gamedata/items/weapon/bronze_sword.tres" id="8_qri7w"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="9_5kw30"]
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="10_5wear"]
+[ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="10_5wear"]
 [ext_resource type="Resource" uid="uid://bo0vnl5ddbe8p" path="res://gamedata/items/shard/mesa_golem_shard.tres" id="10_esfff"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="11_0slln"]
-[ext_resource type="Script" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="11_oyso1"]
+[ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="11_oyso1"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="12_oenmv"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="13_m7ce4"]
+[ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="13_m7ce4"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="14_juy6k"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="15_m0ukk"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="16_dx7to"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="18_qcpuj"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="19_e7wn2"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="21_ayb5e"]
+[ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="23_7nqbr"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="26_wttjl"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="27_86wyt"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="27_86wyt"]
 [ext_resource type="Resource" uid="uid://1echdgevusxk" path="res://gamedata/cutscenes/sea_leg_swamp/sea_leg_south_escape.tres" id="28_imanj"]
 
 [sub_resource type="Resource" id="Resource_3vw0t"]
@@ -116,11 +117,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 11
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_qfeip"), SubResource("Resource_t12ks"), SubResource("Resource_c4crn")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_o8j2y"), SubResource("Resource_06iga"), SubResource("Resource_uvwed")])
 combatant1 = ExtResource("11_0slln")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr3qf"]
 size = Vector2(200, 262)
@@ -164,11 +167,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 12
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_tv2pq"), SubResource("Resource_cptnq"), SubResource("Resource_uisxy")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_er3q3"), SubResource("Resource_hver7"), SubResource("Resource_ic7o0")])
 combatant1 = ExtResource("18_qcpuj")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qts2q"]
 size = Vector2(394, 177)
@@ -212,11 +217,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 11
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_ye0iw"), SubResource("Resource_sfnay"), SubResource("Resource_ucvky")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_d02dj"), SubResource("Resource_ruxan"), SubResource("Resource_0oypy")])
 combatant1 = ExtResource("15_m0ukk")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ab06"]
 size = Vector2(228, 172)
@@ -260,11 +267,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 12
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_nvkt6"), SubResource("Resource_xn5rq"), SubResource("Resource_02bvk")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_1cy57"), SubResource("Resource_1hwcn"), SubResource("Resource_kjvsw")])
 combatant1 = ExtResource("12_oenmv")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fliki"]
 size = Vector2(151, 279)
@@ -308,11 +317,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 10
 combatantsMaxLevel = 12
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_fvx5m"), SubResource("Resource_qvo50"), SubResource("Resource_w6uvj")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_mgrkm"), SubResource("Resource_m3llo"), SubResource("Resource_y2dc5")])
 combatant1 = ExtResource("14_juy6k")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01o8l"]
 size = Vector2(261, 223)
@@ -356,11 +367,13 @@ script = ExtResource("11_oyso1")
 combatantsMinLevel = 11
 combatantsMaxLevel = 12
 combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("23_7nqbr")]([])
 combatant2Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_5cp5n"), SubResource("Resource_aqwx1"), SubResource("Resource_d06ia")])
 combatant3Options = Array[ExtResource("13_m7ce4")]([SubResource("Resource_s8qp4"), SubResource("Resource_41acy"), SubResource("Resource_j8ixp")])
 combatant1 = ExtResource("12_oenmv")
 specialRules = 0
 customWinText = ""
+battleMapPath = ""
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i45k"]
 radius = 141.004

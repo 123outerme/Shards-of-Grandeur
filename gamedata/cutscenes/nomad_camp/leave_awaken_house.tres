@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="Cutscene" load_steps=37 format=3 uid="uid://cbjmmycmx2h58"]
 
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dmmds"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene.gd" id="2_b46e3"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_yrswj"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_ixu3g"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_talvc"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_face_target.gd" id="4_nk41c"]
-[ext_resource type="Script" path="res://scripts/cutscenes/actor_tween.gd" id="5_yhacm"]
-[ext_resource type="Script" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_bfl1h"]
-[ext_resource type="Script" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_cye3f"]
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_dmmds"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_b46e3"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_yrswj"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_ixu3g"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_talvc"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_nk41c"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_yhacm"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_bfl1h"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_cye3f"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="7_n2pi6"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_simhj"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="11_bw35v"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_bw35v"]
 
 [sub_resource type="Resource" id="Resource_jjjeu"]
 script = ExtResource("3_ixu3g")
@@ -35,6 +35,7 @@ speakerActorScenePath = "TilemapRoot/Nomad1"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ajo81"]
 script = ExtResource("1_dmmds")
@@ -122,6 +123,7 @@ speakerActorScenePath = "TilemapRoot/Nomad1"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_4obgt"]
 script = ExtResource("1_dmmds")
@@ -175,6 +177,7 @@ speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_b7sc7"]
 script = ExtResource("1_dmmds")
@@ -228,6 +231,7 @@ speakerActorScenePath = "TilemapRoot/Nomad1"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_la02y"]
 script = ExtResource("6_bfl1h")
@@ -237,6 +241,7 @@ speakerActorScenePath = "TilemapRoot/Nomad1"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
 speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_utjhk"]
 script = ExtResource("1_dmmds")

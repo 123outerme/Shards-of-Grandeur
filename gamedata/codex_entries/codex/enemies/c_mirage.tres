@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://cot0l5mq02h6j"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://cot0l5mq02h6j"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_ed3im"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_scij8"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_ed3im"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_scij8"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_62j21"]
 
 [sub_resource type="Resource" id="Resource_pmtp0"]
 script = ExtResource("2_scij8")
@@ -14,7 +15,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String](["mirage"])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_62j21")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -22,6 +26,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_62j21")]([])
 
 [resource]
 script = ExtResource("1_ed3im")
@@ -32,3 +39,4 @@ description = "The Mirage is a magical wisp of desert origins. Those lost to the
 
 Mirages are dispelled in the presence of Nature, but cannot be Confused. "
 sortOrder = 0
+priority = 0

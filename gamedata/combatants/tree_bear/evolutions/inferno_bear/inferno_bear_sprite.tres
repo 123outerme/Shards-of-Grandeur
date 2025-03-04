@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://c35tykda3hxjb"]
 
-[ext_resource type="Script" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_0r312"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_0r312"]
 [ext_resource type="Resource" uid="uid://cki8ibrvmkkjb" path="res://gamedata/combatants/tree_bear/tree_bear_overworld.tres" id="1_5lh3y"]
 [ext_resource type="SpriteFrames" uid="uid://bpbrx0q8dff1v" path="res://graphics/animations/a_inferno_bear.tres" id="3_4mg3n"]
 
@@ -12,8 +12,12 @@ maxSize = Vector2(32, 16)
 idleSize = Vector2(32, 16)
 centerPosition = Vector2(16, 6)
 feetPosition = Vector2(16, 15)
+headPosition = Vector2(8, 4)
 spriteFacesRight = false
 navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
 attackAffinityArrivalFrame = 3
 attackMagicArrivalFrame = 2
 attackPhysArrivalFrame = 4

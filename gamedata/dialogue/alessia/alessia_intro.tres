@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d3wbqlm1g5sul"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7h8g6"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_nba2t"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_qftwu"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e4ij4"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_pfw8b"]
-[ext_resource type="Script" path="res://scripts/inventory/inventory_slot.gd" id="6_chqp2"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_7h8g6"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nba2t"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_qftwu"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_e4ij4"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_pfw8b"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_chqp2"]
 
 [sub_resource type="Resource" id="Resource_23lff"]
 script = ExtResource("1_qftwu")
@@ -20,6 +20,7 @@ isDeclineChoice = false
 [sub_resource type="Resource" id="Resource_r86uj"]
 script = ExtResource("1_nba2t")
 lines = Array[String](["Well met, adventurer! Who might you be?"])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -38,6 +39,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("6_chqp2")]([])
@@ -48,6 +50,7 @@ invalidAfterDialogues = Array[String](["alessia_foundry#intro"])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("6_chqp2")]([])
 
@@ -59,3 +62,4 @@ storyRequirements = SubResource("Resource_l17u6")
 ordStoryRequirements = Array[ExtResource("3_pfw8b")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

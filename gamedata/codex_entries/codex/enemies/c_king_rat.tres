@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=4 format=3 uid="uid://difn4enoc7f7q"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://difn4enoc7f7q"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_k7ytn"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_a28lk"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_k7ytn"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_a28lk"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_8n4qh"]
 
 [sub_resource type="Resource" id="Resource_mehpv"]
 script = ExtResource("2_a28lk")
@@ -14,8 +15,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String](["king_rat"])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_8n4qh")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -23,7 +26,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_8n4qh")]([])
 
 [resource]
 script = ExtResource("1_k7ytn")
@@ -32,3 +37,4 @@ title = "King Rat"
 storyRequirements = Array[ExtResource("2_a28lk")]([SubResource("Resource_mehpv")])
 description = "The King Rat is the leader of all Giant Rats. He is a lot larger and tougher than your regular Rat. His weakness lies in the Stars above, but he cannot be made to Bleed easily."
 sortOrder = 0
+priority = 0

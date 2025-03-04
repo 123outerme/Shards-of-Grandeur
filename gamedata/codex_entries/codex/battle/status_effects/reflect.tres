@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CodexEntry" load_steps=2 format=3 uid="uid://doh67bor1q82k"]
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=3 format=3 uid="uid://doh67bor1q82k"]
 
-[ext_resource type="Script" path="res://scripts/codex/codex_entry.gd" id="1_6t34m"]
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_6t34m"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ylld4"]
 
 [resource]
 script = ExtResource("1_6t34m")
 id = "reflect"
 title = "Reflect"
-storyRequirements = Array[Resource("res://scripts/quests/story_requirements.gd")]([])
+storyRequirements = Array[ExtResource("2_ylld4")]([])
 description = "A combatant affected by Reflect will deal retaliatory damage after taking damage from another combatant. The damage dealt is a percentage of the used move's damage, and the percentage increases for more potent Reflect."
-childrenEntries = Array[ExtResource("1_6t34m")]([])
+sortOrder = 0
+priority = 0

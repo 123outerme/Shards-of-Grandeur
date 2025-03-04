@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=5 format=3 uid="uid://befwa1j262l3j"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://befwa1j262l3j"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_88me8"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5n6n6"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_owyel"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_88me8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5n6n6"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_bjos1"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_owyel"]
 
 [sub_resource type="Resource" id="Resource_d5cdq"]
 script = ExtResource("1_88me8")
 lines = Array[String](["I've never seen a creature like the one inside this Shard... it looks like one of these stone figures!"])
+minShowSecs = Array[float]([])
 animation = ""
 speakerOverride = ""
 actorAnimation = ""
@@ -18,5 +20,7 @@ choices = Array[ExtResource("2_5n6n6")]([])
 script = ExtResource("3_owyel")
 entryId = ""
 items = Array[ExtResource("1_88me8")]([SubResource("Resource_d5cdq")])
+ordStoryRequirements = Array[ExtResource("3_bjos1")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

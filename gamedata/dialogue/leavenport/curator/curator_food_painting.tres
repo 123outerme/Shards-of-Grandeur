@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cqd3dle6giuke"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ginh"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="1_iuh1g"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="2_adgdx"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_5jwfb"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="4_svt3p"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ginh"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_iuh1g"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_adgdx"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_5jwfb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_svt3p"]
 
 [sub_resource type="Resource" id="Resource_iqt6b"]
 script = ExtResource("1_iuh1g")
@@ -19,6 +19,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_ktmtn"]
 script = ExtResource("1_0ginh")
 lines = Array[String](["This painting of a fine plate of food on a table illustrates our love of food in Leavenport.", "We pride ourselves on our food. Ensuring that no one goes hungry while in Leavenport is one of our great passions."])
+minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
@@ -33,3 +34,4 @@ items = Array[ExtResource("1_0ginh")]([SubResource("Resource_ktmtn")])
 ordStoryRequirements = Array[ExtResource("4_svt3p")]([])
 closesDialogue = false
 fullHealsPlayer = false
+annotation = ""

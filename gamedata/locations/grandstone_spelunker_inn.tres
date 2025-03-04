@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=9 format=3 uid="uid://dw8xutjlsvfy3"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=10 format=3 uid="uid://dw8xutjlsvfy3"]
 
-[ext_resource type="Script" path="res://scripts/overworld/map_entry.gd" id="1_6276i"]
+[ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_6276i"]
 [ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_da3h1"]
-[ext_resource type="Script" path="res://scripts/overworld/world_location.gd" id="1_jaxbi"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_ymens"]
+[ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_jaxbi"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_x833d"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_ymens"]
 
 [sub_resource type="Resource" id="Resource_app1t"]
 script = ExtResource("3_ymens")
@@ -16,8 +17,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_x833d")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -25,7 +28,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_x833d")]([])
 
 [sub_resource type="Resource" id="Resource_e7p6a"]
 script = ExtResource("1_6276i")
@@ -48,8 +53,10 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
+prereqPuzzleStates = {}
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_x833d")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String]([])
@@ -57,7 +64,9 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = {}
 invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_x833d")]([])
 
 [sub_resource type="Resource" id="Resource_n5hl0"]
 script = ExtResource("1_6276i")

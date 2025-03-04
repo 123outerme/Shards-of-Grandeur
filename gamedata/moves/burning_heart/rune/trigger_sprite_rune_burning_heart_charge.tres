@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://b2bgowbjm3h46"]
 
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0pdi0"]
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0pdi0"]
 [ext_resource type="Resource" uid="uid://cu5shd1po03c0" path="res://gamedata/moves/searing_rune/particles_searing_rune.tres" id="2_q7hqa"]
-[ext_resource type="Script" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_w7l77"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_w7l77"]
 [ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="3_bdy8t"]
 [ext_resource type="SpriteFrames" uid="uid://btc6ppix8u7w5" path="res://graphics/moves/fire/a_burning_heart.tres" id="3_m6ql6"]
 
@@ -11,8 +11,7 @@ _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_im6w0"]
-min_value = -0.5
-max_value = 1.5
+_limits = [-0.5, 1.5, 0.0, 1.0]
 _data = [Vector2(0, -0.5), 0.0, 2.8, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
