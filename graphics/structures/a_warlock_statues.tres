@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c4d0b2l8ygmjk"]
+
+[ext_resource type="Texture2D" uid="uid://bvw65beesuptw" path="res://graphics/structures/warlock_statues.png" id="1_eh7t4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3moy"]
+atlas = ExtResource("1_eh7t4")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jysjh"]
+atlas = ExtResource("1_eh7t4")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxq4r"]
+atlas = ExtResource("1_eh7t4")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78y1e"]
+atlas = ExtResource("1_eh7t4")
+region = Rect2(0, 32, 48, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3moy")
+}],
+"loop": true,
+"name": &"arctic_fox_statue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jysjh")
+}],
+"loop": true,
+"name": &"blob_statue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxq4r")
+}],
+"loop": true,
+"name": &"block_statue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78y1e")
+}],
+"loop": true,
+"name": &"mystic_fox_statue",
+"speed": 5.0
+}]
