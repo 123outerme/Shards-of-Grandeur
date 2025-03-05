@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfe6p810myqp"]
+
+[ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="1_pln0f"]
+[ext_resource type="Script" uid="uid://ct40n7u266jys" path="res://prefabs/test/ui/learn_move_panel_tester.gd" id="1_v03a5"]
+[ext_resource type="Resource" uid="uid://dcsqbgxwc3gv3" path="res://gamedata/items/shard/mystic_scorpion_shard.tres" id="3_tmbir"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="4_xw6y4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_v03a5")
+
+[node name="ItemUsePanel" parent="." instance=ExtResource("1_pln0f")]
+item = ExtResource("3_tmbir")
+
+[node name="AudioHandler" parent="." instance=ExtResource("4_xw6y4")]

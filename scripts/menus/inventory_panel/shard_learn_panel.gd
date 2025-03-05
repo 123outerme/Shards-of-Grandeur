@@ -1,7 +1,7 @@
 extends Control
 class_name ShardLearnPanel
 
-signal learned_move(move: Move)
+signal learned_move(move: Move, evo: Evolution)
 signal evolution_switched(evo: Evolution)
 signal back_pressed
 
@@ -139,7 +139,7 @@ func _on_back_button_pressed():
 
 func _on_move_pool_panel_learn_button_clicked(move: Move):
 	visible = false
-	learned_move.emit(move)
+	learned_move.emit(move, evolution)
 
 func _on_move_pool_panel_details_button_clicked(move):
 	moveDetailsPanel.move = move

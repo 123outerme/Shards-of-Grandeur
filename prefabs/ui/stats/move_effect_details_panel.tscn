@@ -20,12 +20,12 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [node name="MoveEffectDetailsPanel" type="Panel"]
-custom_minimum_size = Vector2(588, 550)
+custom_minimum_size = Vector2(588, 566)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -692.0
-offset_bottom = -170.0
+offset_bottom = -154.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -51,7 +51,7 @@ layout_mode = 2
 theme_override_constants/separation = 7
 
 [node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(540, 550)
+custom_minimum_size = Vector2(540, 566)
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("1_bw5gx")
@@ -74,7 +74,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 38.0
-offset_bottom = 301.0
+offset_bottom = 317.0
 grow_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("4_r1gdv")
@@ -124,7 +124,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -216.0
+offset_top = -230.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 2
@@ -266,7 +267,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="RuneLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow"]
-custom_minimum_size = Vector2(160, 0)
+custom_minimum_size = Vector2(156, 0)
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 15
@@ -277,7 +278,7 @@ theme_override_font_sizes/bold_font_size = 15
 text = "Rune (Target):"
 
 [node name="RuneDetails" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow"]
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(364, 0)
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/bold_italics_font_size = 15
@@ -288,12 +289,29 @@ theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Lightning Damage Rune (Details Below)[/center]"
 
+[node name="Keywords" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -246.5
+offset_top = -26.0
+offset_right = 246.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center]Keywords: Harvest[/center]"
+fit_content = true
+
 [node name="SurgePanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 299.0
-offset_bottom = 550.0
+offset_top = 315.0
+offset_bottom = 566.0
 grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fayj4")

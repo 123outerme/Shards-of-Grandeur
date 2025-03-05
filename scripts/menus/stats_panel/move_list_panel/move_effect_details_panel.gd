@@ -16,6 +16,7 @@ signal tooltip_panel_opened
 @onready var moveTargets: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveTargets")
 @onready var movePower: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MovePower")
 @onready var moveRole: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveRole")
+@onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/Keywords')
 
 @onready var userBoostsRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow')
 @onready var userStatChanges: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow/UserStatChanges")
@@ -43,8 +44,8 @@ signal tooltip_panel_opened
 const SCROLLING_WIDTH: int = 588
 const NO_SCROLLING_WIDTH: int = 540
 
-const CHARGE_HEIGHT: int = 301
-const SURGE_HEIGHT: int = 550
+const CHARGE_HEIGHT: int = 317
+const SURGE_HEIGHT: int = 566
 
 var surgeChangesRowScene: PackedScene = preload('res://prefabs/ui/stats/surge_changes_row.tscn')
 
@@ -88,6 +89,12 @@ func load_move_effect_details_panel():
 	
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
+	
+	if len(moveEffect.keywords) > 0:
+		keywordsLabel.visible = true
+		keywordsLabel.text = '[center]' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ') + '[/center]'
+	else:
+		keywordsLabel.visible = false
 
 	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		var multipliers = moveEffect.selfStatChanges.get_multipliers_text()
@@ -212,6 +219,9 @@ func _on_rune_effect_details_panel_status_button_onscreen_update(isOnscreen: boo
 			boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)
 
 func _on_box_container_scroller_visibility_changed() -> void:
+	if boxContainerScroller == null:
+		print('MoveEffectDetailsPanel Warning: BoxContainerScroller is null')
+		return
 	custom_minimum_size.x = SCROLLING_WIDTH if boxContainerScroller.visible else NO_SCROLLING_WIDTH
 	size.x = custom_minimum_size.x
 

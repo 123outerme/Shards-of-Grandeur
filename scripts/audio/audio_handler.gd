@@ -191,7 +191,7 @@ func _fade_in_callback() -> void:
 func _fade_music_callback(killMusic: bool, musicPlayer: AudioStreamPlayer = null):
 	if killMusic:
 		var killPlayer: AudioStreamPlayer = get_cur_music_player() if musicPlayer == null else musicPlayer
-		get_cur_music_player().stream = null
+		killPlayer.stream = null
 	load_audio_settings()
 	fadingOutMusic = false
 	music_fade_completed.emit()

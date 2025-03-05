@@ -39,10 +39,16 @@ func get_long_rune_type() -> String:
 		return get_rune_type()
 
 func get_rune_trigger_description() -> String:
-	return 'When ' + StatusEffect.potency_to_string(minPotency) + ' Status is Afflicted'
+	if minPotency != StatusEffect.Potency.NONE:
+		return 'When ' + StatusEffect.potency_to_string(minPotency) + ' Status is Afflicted'
+	else:
+		return 'When a Status is Afflicted'
 
 func get_rune_tooltip() -> String:
-	return "This Rune's effect triggers when the enchanted combatant gets afflicted with a Status Effect (of a minimum Potency)."
+	var tooltip: String = "This Rune's effect triggers when the enchanted combatant gets afflicted with a Status Effect"
+	if minPotency != StatusEffect.Potency.NONE:
+		tooltip += " (of at least " + StatusEffect.potency_to_string(minPotency) + " Potency)."
+	return tooltip
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return combatant.statusEffect != currentStatus and combatant.statusEffect != null and combatant.statusEffect.potency >= minPotency

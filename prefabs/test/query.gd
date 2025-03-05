@@ -18,8 +18,8 @@ func create_reports():
 		[csv_combatant_movepool_size, csv_combatant_highest_move_lv, csv_combatant_highest_lv_move, csv_combatant_element_weaknesses, csv_combatant_element_resistances, csv_combatant_status_resistances, csv_combatant_status_immunities]
 	)
 	reports['moves/move_report.csv'] = create_report_for_all_moves_series(
-		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance'],
-		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance]
+		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Rune'],
+		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_rune]
 	)
 	reports['items/equipment_report.csv'] = create_report_for_all_equipment_series(
 		['Stat Changes', 'Timing', 'Bonus Orbs', 'Cost'],
@@ -338,6 +338,13 @@ func csv_move_status_chance(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	if moveEffect.statusChance > 0:
 		return String.num(moveEffect.statusChance * 100) + '%'
+	else:
+		return ''
+
+func csv_move_rune(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	if moveEffect.rune != null:
+		return moveEffect.rune.get_long_rune_type()
 	else:
 		return ''
 

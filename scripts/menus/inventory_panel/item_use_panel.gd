@@ -6,6 +6,7 @@ signal ok_pressed
 @export var item: Item = null
 @export var target: Combatant = null
 @export var learnedMove: Move = null
+@export var learnedFromEvolution: Evolution = null
 
 @onready var itemSprite: Sprite2D = get_node("Panel/ItemSpriteControl/ItemSprite")
 @onready var itemUsedTitle: RichTextLabel = get_node("Panel/ItemUsedTitle")
@@ -57,6 +58,7 @@ func load_item_use_panel():
 			else:
 				var shard: Shard = item as Shard
 				var combatant: Combatant = Combatant.load_combatant_resource(shard.combatantSaveName)
+				combatant.switch_evolution(learnedFromEvolution, null)
 				itemUseText = 'You learned ' + learnedMove.moveName + ' from ' + combatant.disp_name() + ', absorbing its Shard in the process. ' + learnedMove.moveLearnedText
 				moveLearnAnimController.move = learnedMove
 				moveLearnAnimController.shard = shard

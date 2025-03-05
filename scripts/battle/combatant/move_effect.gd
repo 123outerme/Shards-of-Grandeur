@@ -13,6 +13,9 @@ enum Role {
 ## move role (for use in auto-learning moves)
 @export var role: Role = Role.OTHER
 
+## list of keywords this MoveEffect is included in
+@export var keywords: Array[String] = []
+
 ## negative is minimum orb surge, positive is orb charge
 @export_range(-10, 10) var orbChange: int = 0
 

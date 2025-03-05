@@ -550,9 +550,10 @@ func _on_shard_learn_panel_back_pressed():
 	load_inventory_panel(false)
 	restore_last_focus('useButton')
 
-func _on_shard_learn_panel_learned_move(move: Move):
+func _on_shard_learn_panel_learned_move(move: Move, evolution: Evolution):
 	itemUsePanel.target = PlayerResources.playerInfo.combatant
 	itemUsePanel.learnedMove = move
+	itemUsePanel.learnedFromEvolution = evolution
 	itemConfirmPanel.title = 'Learn ' + move.moveName + ' From ' + lastSlotInteracted.item.itemName + '?'
 	itemConfirmPanel.description = 'Learning this move will consume the shard. Learn ' + move.moveName + ' and consume the ' + lastSlotInteracted.item.itemName + '?'
 	itemConfirmPanel.forceConfirm = inShardLearnTutorial
