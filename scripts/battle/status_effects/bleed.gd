@@ -30,7 +30,7 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
-		return combatant.disp_name() + ' takes ' + str(get_bleed_damage(combatant)) + ' bleed damage from ' + status_effect_to_string() + '!'
+		return combatant.disp_name() + ' takes ' + String.num_int64(get_bleed_damage(combatant)) + ' bleed damage from ' + status_effect_to_string() + '!'
 	return ''
 
 func get_status_effect_tooltip():

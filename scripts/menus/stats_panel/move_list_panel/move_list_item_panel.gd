@@ -36,7 +36,7 @@ func _ready():
 func load_move_list_item_panel():
 	if move != null:
 		moveName.text = move.moveName
-		moveLevel.text = ' Lv ' + str(move.requiredLv)
+		moveLevel.text = ' Lv ' + String.num_int64(move.requiredLv)
 		
 		if move.element == Move.Element.NONE:
 			damageType.text = ''

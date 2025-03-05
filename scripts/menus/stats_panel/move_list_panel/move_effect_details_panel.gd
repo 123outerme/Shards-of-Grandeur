@@ -80,9 +80,9 @@ func load_move_effect_details_panel():
 			detailsTitleLabel.text = '[center]Move Effect[/center]'
 	
 	if moveEffect.power >= 0:
-		movePower.text = str(moveEffect.power) + ' Power'
+		movePower.text = String.num_int64(moveEffect.power) + ' Power'
 	else:
-		movePower.text = str(moveEffect.power * -1) + ' Heal Power'
+		movePower.text = String.num_int64(moveEffect.power * -1) + ' Heal Power'
 	
 	if moveEffect.lifesteal > 0 and moveEffect.power != 0:
 		movePower.text += ' (' + String.num_int64(roundi(max(0, moveEffect.lifesteal) * 100)) + '% Lifesteal)'

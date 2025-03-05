@@ -40,7 +40,7 @@ func load_move_details_panel():
 	
 	damageCategory.text += Move.dmg_category_to_string(move.category)
 
-	requiredLv.text = '[right]Required Level: ' + str(move.requiredLv) + '[/right]'
+	requiredLv.text = '[right]Required Level: ' + String.num_int64(move.requiredLv) + '[/right]'
 	moveDescription.text = move.description
 	initial_focus()
 	

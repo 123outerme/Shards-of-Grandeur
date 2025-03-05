@@ -60,16 +60,16 @@ func load_rune_effect_details() -> void:
 			orbText += '+'
 		else:
 			orbText += '-' 
-		orbText += str(absi(rune.orbChange)) + ' $orb)'
+		orbText += String.num_int64(absi(rune.orbChange)) + ' $orb)'
 	
 	detailsTitleLabel.text = TextUtils.rich_text_substitute(titleText + orbText, Vector2i(32, 32))
 	
 	triggerConditionsLabel.text = '[center]' + rune.get_rune_trigger_description() + '[/center]'
 	
 	if rune.power >= 0:
-		runePowerLabel.text = str(rune.power) + ' Power'
+		runePowerLabel.text = String.num_int64(rune.power) + ' Power'
 	else:
-		runePowerLabel.text = str(rune.power * -1) + ' Heal Power'
+		runePowerLabel.text = String.num_int64(rune.power * -1) + ' Heal Power'
 	
 	if rune.lifesteal > 0 and rune.power != 0:
 		runePowerLabel.text += ' (' + String.num_int64(roundi(100 * max(0, rune.lifesteal))) + '% Lifesteal)'
