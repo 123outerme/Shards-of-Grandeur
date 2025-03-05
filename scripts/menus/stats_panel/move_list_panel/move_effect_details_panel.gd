@@ -92,7 +92,10 @@ func load_move_effect_details_panel():
 	
 	if len(moveEffect.keywords) > 0:
 		keywordsLabel.visible = true
-		keywordsLabel.text = '[center]' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ') + '[/center]'
+		var keywordNoun: String = 'Keyword'
+		if len(moveEffect.keywords) != 1:
+			keywordNoun += 's'
+		keywordsLabel.text = '[center]' + keywordNoun + ': ' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ') + '[/center]'
 	else:
 		keywordsLabel.visible = false
 
