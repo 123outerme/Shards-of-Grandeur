@@ -1,9 +1,13 @@
 extends Rune
 class_name DamageRune
 
-# Elemental Damage that triggers the Rune. if None, triggers on any damage type instead.
+## Elemental Damage that triggers the Rune. If None, triggers on any damage type instead.
 @export var triggerElement: Move.Element = Move.Element.NONE
 
+## Damage Category that triggers the Rune. If Any, triggers on any category.
+@export var triggerCategory: Move.DmgCategory = Move.DmgCategory.ANY
+
+## If true, will trigger on receiving healing rather than damage
 @export var isHealRune: bool = false
 
 @export_storage var previousHp: int = -1
@@ -21,11 +25,13 @@ func _init(
 	i_runeSpriteAnim: MoveAnimSprite = null,
 	i_triggerAnim: MoveAnimSprite = null,
 	i_triggerElement: Move.Element = Move.Element.NONE,
+	i_triggerCategory: Move.DmgCategory = Move.DmgCategory.ANY,
 	i_isHealRune: bool = false,
 	i_previousHp: int = -1
 ):
 	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnim)
 	triggerElement = i_triggerElement
+	triggerCategory = i_triggerCategory
 	isHealRune = i_isHealRune
 	previousHp = i_previousHp
 
@@ -41,23 +47,35 @@ func get_rune_type() -> String:
 		return 'Heal Rune'
 
 func get_long_rune_type() -> String:
-	if triggerElement == Move.Element.NONE:
+	if triggerElement == Move.Element.NONE and triggerCategory == Move.DmgCategory.ANY:
 		return get_rune_type()
 	
+	var triggerConditions: Array[String] = []
+	if triggerCategory != Move.DmgCategory.ANY:
+		triggerConditions.append(Move.dmg_category_to_string(triggerCategory))
+	if triggerElement != Move.Element.NONE:
+		triggerConditions.append(Move.element_to_string(triggerElement))
+	
+	var conditionsText: String = TextUtils.string_arr_to_string(triggerConditions, ' ', ' ', ' ')
+	
 	if not isHealRune:
-		return Move.element_to_string(triggerElement) + ' Damage Rune'
+		return conditionsText + ' Damage Rune'
 	else:
-		return Move.element_to_string(triggerElement) + ' Heal Rune'
+		return conditionsText + ' Heal Rune'
 
 func get_rune_trigger_description() -> String:
 	var runeDescString: String = 'When '
 	if not isHealRune:
 		runeDescString += 'Dealt '
+		if triggerCategory != Move.DmgCategory.ANY:
+			runeDescString += Move.dmg_category_to_string(triggerCategory) + ' '
 		if triggerElement != Move.Element.NONE:
 			runeDescString += Move.element_to_string(triggerElement) + ' '
 		runeDescString += 'Damage'
 	else:
 		runeDescString += 'Receiving '
+		if triggerCategory != Move.DmgCategory.ANY:
+			runeDescString += Move.dmg_category_to_string(triggerCategory) + ' '
 		if triggerElement != Move.Element.NONE:
 			runeDescString += Move.element_to_string(triggerElement) + ' '
 		runeDescString += 'Healing'
@@ -67,11 +85,15 @@ func get_rune_tooltip() -> String:
 	var tooltipStr: String = "This Rune's effect is triggered when the enchanted combatant "
 	if not isHealRune:
 		tooltipStr += 'takes '
+		if triggerCategory != Move.DmgCategory.ANY:
+			tooltipStr += Move.dmg_category_to_string(triggerCategory) + ' '
 		if triggerElement != Move.Element.NONE:
 			tooltipStr += Move.element_to_string(triggerElement) + ' '
 		tooltipStr += 'damage'
 	else:
 		tooltipStr += 'receives '
+		if triggerCategory != Move.DmgCategory.ANY:
+			tooltipStr += Move.dmg_category_to_string(triggerCategory) + ' '
 		if triggerElement != Move.Element.NONE:
 			tooltipStr += Move.element_to_string(triggerElement) + ' '
 		tooltipStr += 'healing'
@@ -80,6 +102,7 @@ func get_rune_tooltip() -> String:
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	var triggered: bool = false
 	var matchesElementTrigger: bool = triggerElement == Move.Element.NONE
+	var matchesCategoryTrigger: bool = triggerCategory == Move.DmgCategory.ANY
 	# catches easy cases such as post-round damage, other runes triggering
 	# if previous HP is set: check if the current HP is less (dmg rune) or greater (heal rune)
 	if previousHp != -1:
@@ -104,7 +127,7 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 				matchesElementTrigger = true
 	
 	# if the element trigger has not matched yet but runes were triggered:
-	if not (triggered and matchesElementTrigger) and len(combatant.triggeredRunes) > 0:
+	if not (triggered and matchesElementTrigger and matchesCategoryTrigger) and len(combatant.triggeredRunes) > 0:
 		# check each rune to see if one dealt healing/damage with the matching element
 		for triggeredRune: Rune in combatant.triggeredRunes:
 			if ((triggeredRune.power > 0 and not isHealRune) or (triggeredRune.power < 0 and isHealRune)):
@@ -113,15 +136,19 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 					matchesElementTrigger = true
 	
 	# if the easy case didn't succeed and we're recieving damage:
-	if not (triggered and matchesElementTrigger) and timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG and len(otherCombatants) > 0:
+	if not (triggered and matchesElementTrigger and matchesCategoryTrigger) and timing == BattleCommand.ApplyTiming.AFTER_RECIEVING_DMG and len(otherCombatants) > 0:
 		var user: Combatant = otherCombatants[0] if len(otherCombatants) > 0 else null
 		# if the user has a command that already completed:
 		if user != null and user.command != null and user.command.commandResult != null:
 			var targetIdx: int = user.command.targets.find(combatant)
 			
-			# if this rune only cares about triggering from a certain element, and that element was used for the move:
+			# if this rune cares about triggering from a certain element, and that element was used for the move:
 			if user.command.type == BattleCommand.Type.MOVE and user.command.move.element == triggerElement:
 				matchesElementTrigger = true
+			
+			# if this rune cares about triggering from a certain category, and that category was used for the move:
+			if user.command.move.category == triggerCategory:
+				matchesCategoryTrigger = true
 			
 			# if this combatant was a target, the rune is triggered if this command dealt damage
 			if targetIdx != -1:
@@ -133,7 +160,7 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 				if interceptingIdx != -1:
 					var dmgDealt: int = user.command.commandResult.damageOnInterceptingTargets[interceptingIdx]
 					triggered = triggered or (dmgDealt > 0 and not isHealRune) or (dmgDealt < 0 and isHealRune)
-	return triggered and matchesElementTrigger
+	return triggered and matchesElementTrigger and matchesCategoryTrigger
 
 func copy(copyStorage: bool = false) -> DamageRune:
 	var rune: DamageRune = DamageRune.new(
@@ -149,6 +176,7 @@ func copy(copyStorage: bool = false) -> DamageRune:
 		runeSpriteAnim,
 		triggerAnim,
 		triggerElement,
+		triggerCategory,
 		isHealRune,
 	)
 	

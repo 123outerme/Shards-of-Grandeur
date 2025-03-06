@@ -5,7 +5,7 @@ enum DmgCategory {
 	PHYSICAL = 0, ## Physical
 	MAGIC = 1, ## Magic
 	AFFINITY = 2, ## Affinity
-	ANY = -1, ## only for use in movepool.gd Preferences
+	ANY = -1, ## only for use in movepool.gd Preferences and damage_rune.gd
 }
 
 enum Element {

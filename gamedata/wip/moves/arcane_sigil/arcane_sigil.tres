@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://be6ujc6h8gava"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_00l4n"]
+[ext_resource type="Resource" uid="uid://ctoh8ysac2bo7" path="res://gamedata/wip/moves/arcane_sigil/rune/arcane_sigil_rune_charge.tres" id="1_4q5v1"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_urm5e"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_lq8ow"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_o1eae"]
+[ext_resource type="Resource" uid="uid://d3rm2chofuyks" path="res://gamedata/wip/moves/arcane_sigil/anim_arcane_sigil.tres" id="4_d5v3p"]
+[ext_resource type="Resource" uid="uid://bfvnowxpcdgxp" path="res://gamedata/wip/moves/arcane_sigil/rune/arcane_sigil_rune_surge.tres" id="5_o1eae"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_skwjd"]
+
+[sub_resource type="Resource" id="Resource_skwjd"]
+script = ExtResource("3_o1eae")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.15
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_lq8ow")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_4j55f"]
+script = ExtResource("1_00l4n")
+role = 3
+keywords = Array[String]([])
+orbChange = 1
+power = 0
+lifesteal = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_skwjd")
+selfGetsStatus = false
+statusChance = 0.0
+rune = ExtResource("1_4q5v1")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_d5v3p"]
+script = ExtResource("3_o1eae")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.02
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_lq8ow")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_4q5v1"]
+script = ExtResource("6_skwjd")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_d5v3p")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_o1eae"]
+script = ExtResource("3_o1eae")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.35
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_lq8ow")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_lq8ow"]
+script = ExtResource("1_00l4n")
+role = 3
+keywords = Array[String]([])
+orbChange = -4
+power = 0
+lifesteal = 0.0
+targets = 3
+targetStatChanges = SubResource("Resource_o1eae")
+selfGetsStatus = false
+statusChance = 0.0
+rune = ExtResource("5_o1eae")
+surgeChanges = SubResource("Resource_4q5v1")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_urm5e")
+moveName = "Arcane Sigil"
+requiredLv = 20
+category = 1
+element = 0
+chargeEffect = SubResource("Resource_4j55f")
+surgeEffect = SubResource("Resource_lq8ow")
+description = "Draw a glyph in the air to summon more Magic power. Physical attacks into the glyph activate it again!"
+moveLearnedText = ""
+moveAnimation = ExtResource("4_d5v3p")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
