@@ -43,6 +43,9 @@ enum Role {
 ## Base percentage chance to apply status. 0% is auto-fail, 100% is auto-pass
 @export var statusChance: float = 0.0
 
+## if true, target stat changes will not occur unless status effect is applied
+@export var statusRequiredForTargetStatChanges: bool = false
+
 ## the Rune to set up when the move hits
 @export var rune: Rune = null
 

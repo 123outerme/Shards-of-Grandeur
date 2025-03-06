@@ -1,0 +1,126 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://cnq4ux6s5p8cn"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_tqwfg"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_vymy1"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_7dr7n"]
+[ext_resource type="Script" uid="uid://cietmp7by4sa5" path="res://scripts/battle/status_effects/endure.gd" id="2_dletw"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_2w6vb"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_k2auj"]
+
+[sub_resource type="Resource" id="Resource_4yvy0"]
+script = ExtResource("2_dletw")
+lowestHp = -1
+type = 12
+potency = 3
+overwritesOtherStatuses = false
+turnsLeft = 6
+metadata/_custom_type_script = "uid://cietmp7by4sa5"
+
+[sub_resource type="Resource" id="Resource_dletw"]
+script = ExtResource("3_2w6vb")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 0.9
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.65
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_iym7d"]
+script = ExtResource("1_vymy1")
+role = 4
+keywords = Array[String]([])
+orbChange = 0
+power = 0
+lifesteal = 0.0
+targets = 5
+targetStatChanges = SubResource("Resource_dletw")
+statusEffect = SubResource("Resource_4yvy0")
+selfGetsStatus = false
+statusChance = 0.7
+statusRequiredForTargetStatChanges = true
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_gi7pd"]
+script = ExtResource("2_dletw")
+lowestHp = -1
+type = 0
+potency = 2
+overwritesOtherStatuses = false
+turnsLeft = 6
+metadata/_custom_type_script = "uid://cietmp7by4sa5"
+
+[sub_resource type="Resource" id="Resource_k2auj"]
+script = ExtResource("3_2w6vb")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 0.02
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.02
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_knwbe"]
+script = ExtResource("6_k2auj")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_k2auj")
+weakThresholdOrbs = 7
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = -0.49
+additionalStatusChancePerOrb = 0.045
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_2w6vb"]
+script = ExtResource("3_2w6vb")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 0.8
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.45
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_7dr7n"]
+script = ExtResource("1_vymy1")
+role = 4
+keywords = Array[String]([])
+orbChange = -5
+power = 0
+lifesteal = 0.0
+targets = 5
+targetStatChanges = SubResource("Resource_2w6vb")
+statusEffect = SubResource("Resource_gi7pd")
+selfGetsStatus = false
+statusChance = 0.75
+statusRequiredForTargetStatChanges = true
+surgeChanges = SubResource("Resource_knwbe")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_tqwfg")
+moveName = "Zombify"
+requiredLv = 19
+category = 2
+element = 7
+chargeEffect = SubResource("Resource_iym7d")
+surgeEffect = SubResource("Resource_7dr7n")
+description = "Turn your foe into a weakened, shambling, and persistent mess. Effectively, a zombie."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

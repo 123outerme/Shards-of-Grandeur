@@ -254,7 +254,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 
 		if moveEffect != null and moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes():
 			if not (moveEffect.statusEffect != null and not commandResult.afflictedStatuses[idx] and \
-					(moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY or moveEffect.targets == Targets.SELF)):
+					(moveEffect.statusRequiredForTargetStatChanges or moveEffect.targets == Targets.NON_SELF_ALLY or moveEffect.targets == Targets.ALL_ALLIES or moveEffect.targets == Targets.ALLY or moveEffect.targets == Targets.SELF)):
 				targets[idx].statChanges.stack(moveEffect.targetStatChanges) # apply stat buffs
 				commandResult.wasBoosted[idx] = true
 	
