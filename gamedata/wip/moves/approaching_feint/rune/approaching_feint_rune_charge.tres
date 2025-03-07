@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="KeywordRune" load_steps=5 format=3 uid="uid://dx5albndjc0fa"]
+
+[ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_02xgw"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_cy0pe"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_cgjf3"]
+
+[sub_resource type="Resource" id="Resource_vdwwk"]
+script = ExtResource("3_cgjf3")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.8
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_cy0pe")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_02xgw")
+keyword = "Martial Arts"
+orbChange = 2
+category = 0
+element = 0
+power = 50
+lifesteal = 0.0
+statChanges = SubResource("Resource_vdwwk")
+metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

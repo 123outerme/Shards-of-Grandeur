@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://c5aij8g3t1avl"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_6ueik"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_nvsje"]
+[ext_resource type="Resource" uid="uid://dx5albndjc0fa" path="res://gamedata/wip/moves/approaching_feint/rune/approaching_feint_rune_charge.tres" id="1_svwa5"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_gwtmk"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_yafnv"]
+[ext_resource type="Resource" uid="uid://ctif0uo86axbb" path="res://gamedata/wip/moves/approaching_feint/rune/approaching_feint_rune_surge.tres" id="4_pejx0"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_gwtmk"]
+[ext_resource type="Resource" uid="uid://cvowd6o4p8vk4" path="res://gamedata/wip/moves/approaching_feint/anim_approaching_feint.tres" id="5_ip7oa"]
+
+[sub_resource type="Resource" id="Resource_6rp8i"]
+script = ExtResource("3_yafnv")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.9
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_gwtmk")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_svwa5"]
+script = ExtResource("1_6ueik")
+role = 6
+keywords = Array[String]([])
+orbChange = 0
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+targetStatChanges = SubResource("Resource_6rp8i")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_svwa5")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_0w5jc"]
+script = ExtResource("3_yafnv")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.95
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_gwtmk")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_yafnv"]
+script = ExtResource("5_gwtmk")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_0w5jc")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_ip7oa"]
+script = ExtResource("3_yafnv")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.85
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_gwtmk")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_pejx0"]
+script = ExtResource("1_6ueik")
+role = 6
+keywords = Array[String](["Martial Arts"])
+orbChange = -2
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_ip7oa")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("4_pejx0")
+surgeChanges = SubResource("Resource_yafnv")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_nvsje")
+moveName = "Approaching Feint"
+requiredLv = 1
+category = 0
+element = 0
+chargeEffect = SubResource("Resource_svwa5")
+surgeEffect = SubResource("Resource_pejx0")
+description = "Feint an attack at an opponent, priming them to be caught off-guard by your next strike."
+moveLearnedText = ""
+moveAnimation = ExtResource("5_ip7oa")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

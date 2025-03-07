@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://bl24gads2mf78"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_0xx3r"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_73hxf"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_fqkuv"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_mmor0"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_mmor0"]
+
+[sub_resource type="Resource" id="Resource_yx4rg"]
+script = ExtResource("3_mmor0")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.85
+elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_xb5ms"]
+script = ExtResource("1_73hxf")
+role = 1
+keywords = Array[String](["Ice"])
+orbChange = 1
+power = 50
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+targetStatChanges = SubResource("Resource_yx4rg")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_11yvk"]
+script = ExtResource("3_mmor0")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.95
+elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_sahqu"]
+script = ExtResource("5_mmor0")
+powerPerOrb = 4
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_11yvk")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_mmor0"]
+script = ExtResource("3_mmor0")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 0.75
+elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_fqkuv"]
+script = ExtResource("1_73hxf")
+role = 1
+keywords = Array[String](["Ice"])
+orbChange = -2
+power = 60
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+targetStatChanges = SubResource("Resource_mmor0")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_sahqu")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_0xx3r")
+moveName = "Frost Bite"
+requiredLv = 1
+category = 0
+element = 1
+chargeEffect = SubResource("Resource_xb5ms")
+surgeEffect = SubResource("Resource_fqkuv")
+description = "Become the cold gnawing at your opponents."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

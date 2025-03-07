@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="Move" load_steps=14 format=3 uid="uid://why1ykeri80e"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_6ks3w"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_do041"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_yg6l1"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_2176y"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_gcaew"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="3_y7pvn"]
+
+[sub_resource type="Resource" id="Resource_ch5g0"]
+script = ExtResource("2_yg6l1")
+element = 3
+multiplier = 1.08
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_dx8pq"]
+script = ExtResource("3_gcaew")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_yg6l1")]([SubResource("Resource_ch5g0")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_gcaew"]
+script = ExtResource("3_y7pvn")
+element = 3
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_2176y"]
+script = ExtResource("1_6ks3w")
+role = 1
+keywords = Array[String]([])
+orbChange = 2
+power = 35
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+selfStatChanges = SubResource("Resource_dx8pq")
+statusEffect = SubResource("Resource_gcaew")
+selfGetsStatus = false
+statusChance = 0.6
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_yg6l1"]
+script = ExtResource("3_y7pvn")
+element = 3
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 2
+overwritesOtherStatuses = false
+turnsLeft = 5
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_kwk6q"]
+script = ExtResource("3_2176y")
+powerPerOrb = 10
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 9
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.05
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_y7pvn"]
+script = ExtResource("1_6ks3w")
+role = 2
+keywords = Array[String]([])
+orbChange = -8
+power = 80
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+statusEffect = SubResource("Resource_yg6l1")
+selfGetsStatus = false
+statusChance = 0.75
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_kwk6q")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_do041")
+moveName = "Arc Flash"
+requiredLv = 1
+category = 1
+element = 3
+chargeEffect = SubResource("Resource_2176y")
+surgeEffect = SubResource("Resource_y7pvn")
+description = ""
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

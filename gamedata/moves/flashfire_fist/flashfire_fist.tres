@@ -9,12 +9,15 @@
 [sub_resource type="Resource" id="Resource_plyjx"]
 script = ExtResource("1_78erj")
 role = 1
+keywords = Array[String](["Martial Arts"])
 orbChange = 1
 power = 55
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 5
 selfGetsStatus = false
 statusChance = 0.0
+statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_bv6dh"]
 script = ExtResource("3_io351")
@@ -41,13 +44,16 @@ additionalStatusChancePerOrb = 0.0
 [sub_resource type="Resource" id="Resource_5hi3r"]
 script = ExtResource("1_78erj")
 role = 1
+keywords = Array[String](["Martial Arts"])
 orbChange = -4
 power = 75
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 5
 statusEffect = SubResource("Resource_bv6dh")
 selfGetsStatus = false
 statusChance = 0.7
+statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_f556e")
 
 [resource]
