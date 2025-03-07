@@ -198,6 +198,10 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 		moveEffect = move.get_effect_of_type(moveEffectType)
 		if moveEffectType == Move.MoveEffectType.SURGE: # apply surge effects
 			moveEffect = moveEffect.apply_surge_changes(absi(orbChange))
+		if moveEffect.selfHpSacrifice > 0:
+			var sacrificeDmg: int = roundi(user.stats.maxHp * moveEffect.selfHpSacrifice)
+			commandResult.selfRecoilDmg += sacrificeDmg
+			user.currentHp -= sacrificeDmg
 	
 	get_targets_from_combatant_nodes(combatantNodes)
 	

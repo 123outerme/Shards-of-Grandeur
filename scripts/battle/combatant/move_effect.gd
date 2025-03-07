@@ -25,6 +25,9 @@ enum Role {
 ## <= 0 is no lifesteal, otherwise a percentage of all final damage (including intercepted damage)
 @export var lifesteal: float = 0
 
+## <= is no self-HP sacrificate, otherwise a percentage of max HP to lose when using the move
+@export var selfHpSacrifice: float = 0
+
 ## who this move can target
 @export var targets: BattleCommand.Targets = BattleCommand.Targets.SELF
 

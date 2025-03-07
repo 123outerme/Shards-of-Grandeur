@@ -22,10 +22,12 @@ keywords = Array[String]([])
 orbChange = 2
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 3
 statusEffect = SubResource("Resource_0lnbj")
 selfGetsStatus = false
 statusChance = 1.0
+statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_3s1di"]
 script = ExtResource("2_nhrva")
@@ -80,11 +82,13 @@ keywords = Array[String]([])
 orbChange = -3
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 4
 targetStatChanges = SubResource("Resource_k4hjk")
 statusEffect = SubResource("Resource_3s1di")
 selfGetsStatus = false
 statusChance = 1.0
+statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_p2diw")
 
 [resource]

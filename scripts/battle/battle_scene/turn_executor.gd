@@ -194,7 +194,7 @@ func update_turn_text() -> bool:
 									if not text.ends_with(' '):
 										text += ' '
 									text += afterDmgText
-			if combatant != null and combatant.command != null and combatant.command.commandResult != null and combatant.command.commandResult.selfRecoilDmg != 0 and not combatantHadBerserk and combatant.battleStorageStatus != null and combatant.battleStorageStatus.type == StatusEffect.Type.BERSERK:
+			if combatant != null and combatant.command != null and combatant.command.commandResult != null and combatant.command.commandResult.selfRecoilDmg > 0:
 				if not text.ends_with(' '):
 					text += ' '
 				text += combatant.disp_name() + ' took ' + TextUtils.num_to_comma_string(combatant.command.commandResult.selfRecoilDmg) + ' total recoil damage!'

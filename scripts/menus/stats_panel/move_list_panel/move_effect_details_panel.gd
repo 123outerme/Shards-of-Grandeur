@@ -15,7 +15,6 @@ signal tooltip_panel_opened
 
 @onready var moveTargets: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveTargets")
 @onready var movePower: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MovePower")
-@onready var moveRole: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveRole")
 @onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/Keywords')
 
 @onready var userBoostsRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow')
@@ -79,16 +78,22 @@ func load_move_effect_details_panel():
 		else:
 			detailsTitleLabel.text = '[center]Move Effect[/center]'
 	
+	var powerText: String = '[center]'
 	if moveEffect.power >= 0:
-		movePower.text = String.num_int64(moveEffect.power) + ' Power'
+		powerText += String.num_int64(moveEffect.power) + ' Power'
 	else:
-		movePower.text = String.num_int64(moveEffect.power * -1) + ' Heal Power'
+		powerText += String.num_int64(moveEffect.power * -1) + ' Heal Power'
 	
 	if moveEffect.lifesteal > 0 and moveEffect.power != 0:
-		movePower.text += ' (' + String.num_int64(roundi(max(0, moveEffect.lifesteal) * 100)) + '% Lifesteal)'
+		powerText += ' (' + String.num_int64(roundi(moveEffect.lifesteal * 100)) + '% Lifesteal)'
+	
+	if moveEffect.selfHpSacrifice > 0:
+		powerText += ' (-' + String.num_int64(roundi(moveEffect.selfHpSacrifice * 100)) + '% Self HP)'
+	
+	movePower.text = powerText + '[/center]'
 	
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
-	moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
+	#moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
 	
 	if len(moveEffect.keywords) > 0:
 		keywordsLabel.visible = true
