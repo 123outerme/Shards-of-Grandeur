@@ -1,10 +1,36 @@
-[gd_scene load_steps=11 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=15 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_cp1q1"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_s3l05"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_2j8mv"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_upbwq"]
+[ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_h3fmg"]
+[ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="6_f378v"]
+
+[sub_resource type="Resource" id="Resource_k1cu3"]
+script = ExtResource("5_h3fmg")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5jd3"]
 size = Vector2(34, 8)
@@ -93,6 +119,17 @@ position = Vector2(733, -334)
 [node name="GroundItem6" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(250, -271)
 
+[node name="NPC" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
+position = Vector2(515, -71)
+data = SubResource("Resource_k1cu3")
+
+[node name="NPCSprite" parent="TilemapRoot/NPC" index="0"]
+sprite_frames = ExtResource("6_f378v")
+animation = &"stand"
+
+[node name="MoveTrigger" parent="TilemapRoot/NPC" index="4"]
+visible = false
+
 [node name="Level2WarpZone" parent="." instance=ExtResource("3_s3l05")]
 position = Vector2(448, -391)
 
@@ -118,5 +155,6 @@ navigation_layers = 2
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
+[editable path="TilemapRoot/NPC"]
 [editable path="Level2WarpZone"]
 [editable path="CameraHoldZone"]
