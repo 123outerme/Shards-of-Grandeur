@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://cnginqp8gl1jg"]
+
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_0i7wg"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_gq0s0"]
+[ext_resource type="Resource" uid="uid://dvc280f2bh4fi" path="res://gamedata/items/shard/ice_hound_shard.tres" id="3_1qo2u"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="3_gq0s0"]
+[ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="5_cv65w"]
+
+[sub_resource type="Resource" id="Resource_1qo2u"]
+script = ExtResource("3_gq0s0")
+experience = 52
+gold = 7
+item = ExtResource("3_1qo2u")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_cv65w"]
+script = ExtResource("2_gq0s0")
+reward = SubResource("Resource_1qo2u")
+weight = 0.85
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[sub_resource type="Resource" id="Resource_rwcng"]
+script = ExtResource("3_gq0s0")
+experience = 52
+gold = 7
+item = ExtResource("5_cv65w")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_d5rak"]
+script = ExtResource("2_gq0s0")
+reward = SubResource("Resource_rwcng")
+weight = 0.15
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[resource]
+script = ExtResource("1_0i7wg")
+weightedRewards = Array[ExtResource("2_gq0s0")]([SubResource("Resource_cv65w"), SubResource("Resource_d5rak")])
+metadata/_custom_type_script = "uid://o0eqgjrxwybg"

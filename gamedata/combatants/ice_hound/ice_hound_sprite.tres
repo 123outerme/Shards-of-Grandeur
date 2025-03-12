@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://cud10unwr33ma"]
+
+[ext_resource type="Resource" uid="uid://v3clgucqrkh0" path="res://gamedata/combatants/ice_hound/ice_hound_overworld.tres" id="1_msubn"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_tgwad"]
+[ext_resource type="SpriteFrames" uid="uid://c4mkc32qlnv5d" path="res://graphics/animations/a_ice_hound.tres" id="2_1mlvg"]
+
+[resource]
+script = ExtResource("1_tgwad")
+spriteFrames = ExtResource("2_1mlvg")
+combatantOverworld = ExtResource("1_msubn")
+maxSize = Vector2(32, 32)
+idleSize = Vector2(24, 18)
+centerPosition = Vector2(20, 24)
+feetPosition = Vector2(20, 31)
+headPosition = Vector2(15, 21)
+spriteFacesRight = false
+navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 2
+attackAffinityArrivalFrame = 3
+attackMagicArrivalFrame = 4
+attackPhysArrivalFrame = 5
+attackAffinityImpactFrame = 5
+attackMagicImpactFrame = 6
+attackPhysImpactFrame = 5
+metadata/_custom_type_script = "uid://70gbsrstamsf"

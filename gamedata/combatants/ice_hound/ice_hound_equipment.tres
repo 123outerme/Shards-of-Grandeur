@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://ex8mnbfo6bh7"]
+
+[ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_w2auh"]
+[ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_2cd8s"]
+[ext_resource type="Resource" uid="uid://cjom7udtbr5dg" path="res://gamedata/items/weapon/frozen_spear.tres" id="3_2cd8s"]
+
+[sub_resource type="Resource" id="Resource_w2auh"]
+script = ExtResource("2_2cd8s")
+weight = 0.6
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_ynd6t"]
+script = ExtResource("2_2cd8s")
+weapon = ExtResource("3_2cd8s")
+weight = 0.4
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[resource]
+script = ExtResource("1_w2auh")
+weightedEquipment = Array[ExtResource("2_2cd8s")]([SubResource("Resource_w2auh"), SubResource("Resource_ynd6t")])
+metadata/_custom_type_script = "uid://cynr2ijojwq5x"

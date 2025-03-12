@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=7 format=3 uid="uid://cyrk23bnnxb46"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_5jl0d"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_e4g5d"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_rh6ms"]
+[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="3_2d13a"]
+[ext_resource type="Resource" uid="uid://dt02u3l6jnqkq" path="res://gamedata/moves/final_stand/final_stand.tres" id="4_2d13a"]
+[ext_resource type="Resource" uid="uid://bl24gads2mf78" path="res://gamedata/moves/frost_bite/frost_bite.tres" id="5_ca4yo"]
+
+[resource]
+script = ExtResource("2_e4g5d")
+pool = Array[ExtResource("1_5jl0d")]([ExtResource("2_rh6ms"), ExtResource("4_2d13a"), ExtResource("3_2d13a"), ExtResource("5_ca4yo")])
+signatureMoves = Array[ExtResource("1_5jl0d")]([ExtResource("5_ca4yo")])
+preferredMove1Role = 2
+preferredMove1DmgType = 0
+preferredMove1Element = 1
+preferredMove2Role = 1
+preferredMove2DmgType = 0
+preferredMove2Element = 1
+preferredMove3Role = 0
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0
+metadata/_custom_type_script = "uid://cwh7p05135w7q"

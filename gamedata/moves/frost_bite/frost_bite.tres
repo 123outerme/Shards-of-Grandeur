@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://bl24gads2mf78"]
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://bl24gads2mf78"]
 
-[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_0xx3r"]
-[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_73hxf"]
-[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_fqkuv"]
-[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_mmor0"]
-[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_mmor0"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_0j8qm"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_rkmxs"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_0xggv"]
+[ext_resource type="Resource" uid="uid://ittwxlaxgm5n" path="res://gamedata/moves/frost_bite/anim_frost_bite.tres" id="4_k21lt"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_4326p"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_ksnad"]
 
 [sub_resource type="Resource" id="Resource_yx4rg"]
-script = ExtResource("3_mmor0")
+script = ExtResource("3_0xggv")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -18,11 +19,11 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 0.85
-elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+elementMultipliers = Array[ExtResource("2_rkmxs")]([])
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_xb5ms"]
-script = ExtResource("1_73hxf")
+script = ExtResource("1_0j8qm")
 role = 1
 keywords = Array[String](["Ice"])
 orbChange = 1
@@ -37,7 +38,7 @@ statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_11yvk"]
-script = ExtResource("3_mmor0")
+script = ExtResource("3_0xggv")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -48,11 +49,11 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 0.95
-elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+elementMultipliers = Array[ExtResource("2_rkmxs")]([])
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_sahqu"]
-script = ExtResource("5_mmor0")
+script = ExtResource("6_ksnad")
 powerPerOrb = 4
 lifestealPerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_11yvk")
@@ -64,7 +65,7 @@ additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_mmor0"]
-script = ExtResource("3_mmor0")
+script = ExtResource("3_0xggv")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -75,11 +76,11 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 0.75
-elementMultipliers = Array[ExtResource("2_fqkuv")]([])
+elementMultipliers = Array[ExtResource("2_rkmxs")]([])
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_fqkuv"]
-script = ExtResource("1_73hxf")
+script = ExtResource("1_0j8qm")
 role = 1
 keywords = Array[String](["Ice"])
 orbChange = -2
@@ -95,13 +96,14 @@ surgeChanges = SubResource("Resource_sahqu")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [resource]
-script = ExtResource("1_0xx3r")
+script = ExtResource("5_4326p")
 moveName = "Frost Bite"
-requiredLv = 1
+requiredLv = 17
 category = 0
 element = 1
 chargeEffect = SubResource("Resource_xb5ms")
 surgeEffect = SubResource("Resource_fqkuv")
 description = "Become the cold gnawing at your opponents."
-moveLearnedText = ""
+moveLearnedText = "As the Shard disappears, your teeth grow painfully cold! You gnaw on some bread to ease it, and it freezes over."
+moveAnimation = ExtResource("4_k21lt")
 metadata/_custom_type_script = "uid://dx4lnh4driy7a"

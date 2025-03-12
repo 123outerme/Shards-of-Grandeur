@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://dvsyc2k8ttutb"]
+
+[ext_resource type="Texture2D" uid="uid://cjt8b6bs32pow" path="res://graphics/items/healing/curing_ritual.png" id="1_ejev6"]
+[ext_resource type="Script" uid="uid://ca61xmfba8sif" path="res://scripts/inventory/items/healing.gd" id="2_64s82"]
+
+[resource]
+script = ExtResource("2_64s82")
+healBy = 0
+statusStrengthHeal = 3
+itemSprite = ExtResource("1_ejev6")
+itemName = "Curing Ritual"
+itemType = 0
+itemDescription = "Materials for a traditional ritual of healing. Once performed, it is said to treat any ailment, no matter how severe."
+cost = 50
+maxCount = 5
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3
+metadata/_custom_type_script = "uid://ca61xmfba8sif"

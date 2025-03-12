@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://n81w2at4rejl"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_cfcmg"]
+[ext_resource type="Resource" uid="uid://c8163lckysv27" path="res://gamedata/moves/frost_bite/particles_frost_bite.tres" id="2_2dv2b"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="3_q0np8"]
+[ext_resource type="SpriteFrames" uid="uid://cj60s1m8rmvun" path="res://graphics/moves/water/a_frost_bite.tres" id="4_2dv2b"]
+
+[sub_resource type="Curve" id="Curve_3s6fi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_2j5rx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_s2r7m"]
+script = ExtResource("1_cfcmg")
+annotation = "Set up position"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(2, 0)
+offset = 1
+xCurve = SubResource("Curve_3s6fi")
+yCurve = SubResource("Curve_2j5rx")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Curve" id="Curve_4jyia"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2dv2b"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_fih0b"]
+script = ExtResource("1_cfcmg")
+annotation = "play static teeth animation"
+animation = "teeth"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(-12, 0)
+offset = 16
+xCurve = SubResource("Curve_4jyia")
+yCurve = SubResource("Curve_2dv2b")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+
+[sub_resource type="Resource" id="Resource_4jyia"]
+script = ExtResource("1_cfcmg")
+annotation = "start bite animation"
+animation = "bite"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_2dv2b"]
+script = ExtResource("1_cfcmg")
+annotation = "play particles"
+animation = ""
+duration = 1.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_2dv2b")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("3_q0np8")
+spriteFrames = ExtResource("4_2dv2b")
+centerSprite = true
+maxSize = Vector2(24, 48)
+frames = Array[ExtResource("1_cfcmg")]([SubResource("Resource_s2r7m"), SubResource("Resource_fih0b"), SubResource("Resource_4jyia"), SubResource("Resource_2dv2b")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true
