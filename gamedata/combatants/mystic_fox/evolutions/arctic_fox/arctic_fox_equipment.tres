@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=5 format=3 uid="uid://cpk0658pdwrli"]
+
+[ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_fra35"]
+[ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_fo2ys"]
+[ext_resource type="Resource" uid="uid://bs04rhqdh4wnv" path="res://gamedata/items/armor/winter_coat.tres" id="3_fo2ys"]
+
+[sub_resource type="Resource" id="Resource_fra35"]
+script = ExtResource("2_fo2ys")
+armor = ExtResource("3_fo2ys")
+weight = 1.0
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[resource]
+script = ExtResource("1_fra35")
+weightedEquipment = Array[ExtResource("2_fo2ys")]([SubResource("Resource_fra35")])
+metadata/_custom_type_script = "uid://cynr2ijojwq5x"

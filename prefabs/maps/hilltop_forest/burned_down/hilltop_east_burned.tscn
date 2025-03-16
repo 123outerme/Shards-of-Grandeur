@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=4 uid="uid://d4i0j6b3bb4rt"]
+[gd_scene load_steps=136 format=4 uid="uid://d4i0j6b3bb4rt"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_frkjt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_y8mli"]
@@ -37,7 +37,7 @@
 [ext_resource type="Resource" uid="uid://bidfx3ehukpyo" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_demo_turnback.tres" id="32_4v2yw"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="34_bi7ge"]
 
-[sub_resource type="Resource" id="Resource_sye4u"]
+[sub_resource type="Resource" id="Resource_x4gbv"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -60,7 +60,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_yhfso"]
+[sub_resource type="Resource" id="Resource_cmu5m"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -608,6 +608,9 @@ size = Vector2(121, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgwtf"]
 size = Vector2(20, 146)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmgxs"]
+size = Vector2(122.329, 8)
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_frkjt")
 metadata/_edit_horizontal_guides_ = [1052.0, 1138.0, 1110.0, -212.0, -128.0]
@@ -678,9 +681,8 @@ saveName = "ht_east_sword"
 [node name="ChainLegionSoldier1" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(678, 659)
 loadFlipH = true
-overrideSpeakerSpriteSize = null
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_sye4u")
+data = SubResource("Resource_x4gbv")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -697,9 +699,8 @@ visible = false
 
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(731, 663)
-overrideSpeakerSpriteSize = null
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_yhfso")
+data = SubResource("Resource_cmu5m")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")
@@ -895,8 +896,10 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_1npt8")
 
 [node name="BridgeOutCutsceneTrigger" parent="." instance=ExtResource("29_tcqfy")]
+visible = false
 position = Vector2(1553, -177)
 cutscenes = Array[ExtResource("30_6s5tj")]([ExtResource("32_4v2yw")])
+disabled = true
 
 [node name="CollisionShape2D" parent="BridgeOutCutsceneTrigger" index="0"]
 position = Vector2(11.1412, -10.1326)
@@ -904,15 +907,18 @@ rotation = 0.785398
 shape = SubResource("RectangleShape2D_wq0ev")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_tohlk")
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
@@ -951,6 +957,18 @@ position = Vector2(921, -283)
 [node name="CollisionShape2D" parent="EnemyDeaggroZone5" index="0"]
 position = Vector2(55.5, 0)
 
+[node name="HilltopEastWarpZone" parent="." instance=ExtResource("27_jf1e8")]
+position = Vector2(1597, -236)
+mapName = "quiet_tundra_west"
+mapPos = Vector2(-288, 273)
+useVerticalOffset = true
+useHorizontalOffset = true
+
+[node name="WarpArea" parent="HilltopEastWarpZone" index="0"]
+position = Vector2(7.75, 7.75)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_qmgxs")
+
 [editable path="TilemapRoot/ChainLegionSoldier1"]
 [editable path="TilemapRoot/ChainLegionSoldier2"]
 [editable path="TilemapRoot/FloatingRockColumnDecoration10"]
@@ -977,3 +995,4 @@ position = Vector2(55.5, 0)
 [editable path="EnemyDeaggroZone3"]
 [editable path="EnemyDeaggroZone4"]
 [editable path="EnemyDeaggroZone5"]
+[editable path="HilltopEastWarpZone"]

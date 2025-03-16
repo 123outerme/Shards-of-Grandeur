@@ -9,12 +9,15 @@
 [sub_resource type="Resource" id="Resource_4blb4"]
 script = ExtResource("1_jpw2d")
 role = 1
+keywords = Array[String]([])
 orbChange = 1
 power = 60
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 5
 selfGetsStatus = false
 statusChance = 0.0
+statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_31hk2"]
 script = ExtResource("2_s5o54")
@@ -36,13 +39,16 @@ additionalStatusChancePerOrb = 0.02
 [sub_resource type="Resource" id="Resource_7l7t3"]
 script = ExtResource("1_jpw2d")
 role = 1
+keywords = Array[String]([])
 orbChange = -2
 power = 70
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 5
 statusEffect = SubResource("Resource_31hk2")
 selfGetsStatus = false
 statusChance = 0.85
+statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_hye6y")
 
 [resource]

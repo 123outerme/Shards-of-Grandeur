@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=5 format=3 uid="uid://c0kpj1t0tiaqg"]
+
+[ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_n8u0c"]
+[ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_6b15l"]
+[ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="3_kcek0"]
+
+[sub_resource type="Resource" id="Resource_1ll2e"]
+script = ExtResource("2_6b15l")
+weapon = ExtResource("3_kcek0")
+weight = 1.0
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[resource]
+script = ExtResource("1_n8u0c")
+weightedEquipment = Array[ExtResource("2_6b15l")]([SubResource("Resource_1ll2e")])
+metadata/_custom_type_script = "uid://cynr2ijojwq5x"

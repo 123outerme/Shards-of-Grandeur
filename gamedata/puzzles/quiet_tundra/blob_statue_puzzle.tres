@@ -1,9 +1,19 @@
-[gd_resource type="Resource" script_class="SimplePuzzle" load_steps=3 format=3 uid="uid://lkn8spj54mxr"]
+[gd_resource type="Resource" script_class="SimplePuzzle" load_steps=6 format=3 uid="uid://lkn8spj54mxr"]
 
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="1_1ale8"]
+[ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="2_88k6h"]
 [ext_resource type="Script" uid="uid://cs5x1cjfjxahq" path="res://scripts/overworld/puzzles/simple_puzzle.gd" id="2_erp56"]
+[ext_resource type="Script" uid="uid://6y7m1ycv3tei" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="3_shbpo"]
+
+[sub_resource type="Resource" id="Resource_m3bdo"]
+script = ExtResource("3_shbpo")
+item = ExtResource("2_88k6h")
+requiredCount = 1
+consumeItem = false
+metadata/_custom_type_script = "uid://6y7m1ycv3tei"
 
 [resource]
 script = ExtResource("2_erp56")
+puzzleMechanic = SubResource("Resource_m3bdo")
 id = ""
 prereqStoryRequirements = Array[ExtResource("1_1ale8")]([])

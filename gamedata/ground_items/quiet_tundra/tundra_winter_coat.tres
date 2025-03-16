@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://cy3t2kjmmb6vb"]
+
+[ext_resource type="Resource" uid="uid://cirq74v5fp4c6" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_winter_coat_1.tres" id="1_ri4ka"]
+[ext_resource type="Resource" uid="uid://bs04rhqdh4wnv" path="res://gamedata/items/armor/winter_coat.tres" id="2_c55va"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="3_snfsf"]
+
+[resource]
+script = ExtResource("3_snfsf")
+item = ExtResource("2_c55va")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_ri4ka")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"
