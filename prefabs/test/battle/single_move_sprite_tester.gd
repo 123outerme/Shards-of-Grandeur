@@ -3,6 +3,7 @@ extends Node2D
 @export var moveAnimSprite: MoveAnimSprite = null
 @export var targetCombatant: Combatant = null
 @export var evolution: Evolution = null
+@export var userIsTarget: bool = false
 
 var targetCombatantNode: CombatantNode = null
 var userCombatantNode: CombatantNode = null
@@ -32,7 +33,10 @@ func _on_play_button_pressed() -> void:
 		return
 	playButton.disabled = true
 	swapButton.disabled = true
-	userCombatantNode.moveSpriteTargets = [targetCombatantNode]
+	if userIsTarget:
+		userCombatantNode.moveSpriteTargets = [userCombatantNode]
+	else:
+		userCombatantNode.moveSpriteTargets = [targetCombatantNode]
 	userCombatantNode.play_move_sprite(moveAnimSprite)
 
 func _on_swap_button_toggled(toggled_on: bool) -> void:

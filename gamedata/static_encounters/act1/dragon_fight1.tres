@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=12 format=3 uid="uid://50ylfmea7s1f"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=16 format=3 uid="uid://50ylfmea7s1f"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_6nlll"]
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="2_leily"]
@@ -6,6 +6,10 @@
 [ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="3_3db0c"]
 [ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_y6hm3"]
 [ext_resource type="Resource" uid="uid://dqg27upoc4fmw" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy_boss.tres" id="4_26adn"]
+[ext_resource type="Resource" uid="uid://txe6nx7c22oy" path="res://gamedata/moves/draconic_seal/draconic_seal.tres" id="4_aaffr"]
+[ext_resource type="Resource" uid="uid://c53l41ogdmc8i" path="res://gamedata/moves/hunters_instinct/hunters_instinct.tres" id="5_0y4br"]
+[ext_resource type="Resource" uid="uid://ch4ub4fjauove" path="res://gamedata/moves/gale_force/gale_force.tres" id="6_nj4rb"]
+[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="7_7bksr"]
 [ext_resource type="Script" uid="uid://bdxm8cikhf0o0" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="9_p5b7j"]
 [ext_resource type="Resource" uid="uid://byx1012pocqvt" path="res://gamedata/items/shard/dragon_shard.tres" id="10_p55te"]
 
@@ -35,7 +39,7 @@ escapeText = "You escaped successfully!"
 [resource]
 script = ExtResource("3_y6hm3")
 combatant1Level = 24
-combatant1Moves = Array[ExtResource("1_6nlll")]([])
+combatant1Moves = Array[ExtResource("1_6nlll")]([ExtResource("4_aaffr"), ExtResource("5_0y4br"), ExtResource("6_nj4rb"), ExtResource("7_7bksr")])
 combatant1ShardSummoned = false
 combatant2Level = 1
 combatant2Moves = Array[ExtResource("1_6nlll")]([])

@@ -1,0 +1,118 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://17gg115g0wq7"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_qmbqe"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_lmms5"]
+[ext_resource type="SpriteFrames" uid="uid://byyhkaqve51pl" path="res://graphics/moves/blue_magic/arcane_sigil/a_arcane_sigil.tres" id="3_f2mpk"]
+
+[sub_resource type="Curve" id="Curve_f2mpk"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_4uey2"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_f2mpk"]
+script = ExtResource("1_qmbqe")
+annotation = "setup pos at front of combatant"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(4, 0)
+offset = 1
+xCurve = SubResource("Curve_f2mpk")
+yCurve = SubResource("Curve_4uey2")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_c747i"]
+_data = [Vector2(0, 0), 0.0, 1.84928, 0, 1, Vector2(1, 1), -0.103235, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f3whx"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4uey2"]
+script = ExtResource("1_qmbqe")
+annotation = "drift forward while fading in"
+animation = "rune"
+duration = 0.75
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(8, 0)
+offset = 1
+xCurve = SubResource("Curve_c747i")
+yCurve = SubResource("Curve_f3whx")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_c747i"]
+script = ExtResource("1_qmbqe")
+annotation = "hold here and play the anim"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_f3gym"]
+_data = [Vector2(0, 0), 0.0, 0.108408, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3jyiy"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_f3whx"]
+script = ExtResource("1_qmbqe")
+annotation = "drift back and fade back"
+animation = ""
+duration = 0.75
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_f3gym")
+yCurve = SubResource("Curve_3jyiy")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_lmms5")
+spriteFrames = ExtResource("3_f2mpk")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_qmbqe")]([SubResource("Resource_f2mpk"), SubResource("Resource_4uey2"), SubResource("Resource_c747i"), SubResource("Resource_f3whx")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=7 format=3 uid="uid://d3rm2chofuyks"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_2oyuk"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_dds63"]
+[ext_resource type="Resource" uid="uid://cknf05ugwtxka" path="res://gamedata/moves/arcane_sigil/sprite_arcane_sigil.tres" id="2_t2afs"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="4_yp2lh"]
+[ext_resource type="Resource" uid="uid://wvxs3l5odnvy" path="res://gamedata/moves/arcane_sigil/sprite_arcane_sigil_surge.tres" id="5_mr2ua"]
+
+[sub_resource type="Resource" id="Resource_mr2ua"]
+script = ExtResource("4_yp2lh")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.376471, 0.505882, 0.662745, 0.34902)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[resource]
+script = ExtResource("2_dds63")
+combatantAnimation = "attack_magic"
+makesContact = false
+chargeMoveSprites = Array[ExtResource("1_2oyuk")]([ExtResource("2_t2afs")])
+surgeMoveSprites = Array[ExtResource("1_2oyuk")]([ExtResource("2_t2afs"), ExtResource("5_mr2ua")])
+surgeBattlefieldShade = SubResource("Resource_mr2ua")
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

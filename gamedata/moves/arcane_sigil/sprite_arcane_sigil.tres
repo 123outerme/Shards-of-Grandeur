@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://cknf05ugwtxka"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ykj88"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ndgry"]
+[ext_resource type="SpriteFrames" uid="uid://byyhkaqve51pl" path="res://graphics/moves/blue_magic/arcane_sigil/a_arcane_sigil.tres" id="3_ndgry"]
+
+[sub_resource type="Curve" id="Curve_ndgry"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_g7u37"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ndgry"]
+script = ExtResource("1_ykj88")
+annotation = "setup position near user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(10, 0)
+offset = 1
+xCurve = SubResource("Curve_ndgry")
+yCurve = SubResource("Curve_g7u37")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_g7u37"]
+script = ExtResource("1_ykj88")
+annotation = "play sigil anim"
+animation = "sigil"
+duration = 2.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_ndgry")
+spriteFrames = ExtResource("3_ndgry")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_ykj88")]([SubResource("Resource_ndgry"), SubResource("Resource_g7u37")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

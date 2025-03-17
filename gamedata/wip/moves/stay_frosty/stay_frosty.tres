@@ -1,0 +1,125 @@
+[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://ly63mt2vlvup"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_ah1wp"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_vfn4w"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_ctfec"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_d8ps7"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_oslc1"]
+
+[sub_resource type="Resource" id="Resource_ostya"]
+script = ExtResource("2_ctfec")
+element = 1
+multiplier = 1.05
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_ljfjw"]
+script = ExtResource("3_oslc1")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_ostya")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_d8ps7"]
+script = ExtResource("1_ah1wp")
+role = 5
+keywords = Array[String](["Ice"])
+orbChange = 0
+power = -35
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_ljfjw")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_acvwn"]
+script = ExtResource("2_ctfec")
+element = 1
+multiplier = 1.02
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_2ndic"]
+script = ExtResource("3_oslc1")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_acvwn")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_ctfec"]
+script = ExtResource("3_d8ps7")
+powerPerOrb = -5
+lifestealPerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_2ndic")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_a2sni"]
+script = ExtResource("2_ctfec")
+element = 1
+multiplier = 1.1
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_0q6kc"]
+script = ExtResource("3_oslc1")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_a2sni")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_d8kxc"]
+script = ExtResource("1_ah1wp")
+role = 5
+keywords = Array[String](["Ice"])
+orbChange = -3
+power = -55
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_0q6kc")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_ctfec")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_vfn4w")
+moveName = "Stay Frosty"
+requiredLv = 22
+category = 2
+element = 1
+chargeEffect = SubResource("Resource_d8ps7")
+surgeEffect = SubResource("Resource_d8kxc")
+description = "Nothing to wake you up and keep you in the fight like an ice-cold refreshment."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
