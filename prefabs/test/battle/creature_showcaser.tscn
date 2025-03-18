@@ -1,0 +1,1012 @@
+[gd_scene load_steps=45 format=3 uid="uid://b30y3m18vx5o"]
+
+[ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
+[ext_resource type="PackedScene" uid="uid://dwt3btkr2nys6" path="res://prefabs/battle/battle_maps/forest_battle_map.tscn" id="2_de80j"]
+[ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_ud7cv"]
+[ext_resource type="Script" uid="uid://cxdjuosnjdmdm" path="res://scripts/battle/battle_scene/battle_ui.gd" id="3_53ny3"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="3_ucjnw"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="4_8yxc8"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="4_lutwl"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="5_53ny3"]
+[ext_resource type="StyleBox" uid="uid://cs07s6p0400xl" path="res://themes/battle_text_box/battle_text_box_background.tres" id="5_wuy8n"]
+[ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_02djh"]
+[ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="6_lutwl"]
+[ext_resource type="Script" uid="uid://b36cn68yq58a0" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_hvieh"]
+[ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="7_wuy8n"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_f34sn"]
+[ext_resource type="Script" uid="uid://j40m2j8cvudq" path="res://scripts/battle/battle_scene/all_commands.gd" id="9_jdnii"]
+[ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="10_gkbrp"]
+[ext_resource type="Script" uid="uid://du8h3dkrw4x3g" path="res://scripts/battle/battle_scene/moves_menu.gd" id="11_254jr"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="12_cj6x2"]
+[ext_resource type="Script" uid="uid://bqltkrdelv83g" path="res://scripts/battle/battle_scene/targets.gd" id="13_8p1nk"]
+[ext_resource type="Script" uid="uid://bpj7cmm7j1c8l" path="res://scripts/battle/battle_scene/surge_menu.gd" id="14_qifex"]
+[ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="15_vdlc4"]
+[ext_resource type="Script" uid="uid://vhgw3r68dxl8" path="res://scripts/battle/battle_scene/results.gd" id="16_phs7o"]
+[ext_resource type="PackedScene" uid="uid://bc2kbh31hfy6" path="res://prefabs/ui/rich_text_label_scroller.tscn" id="17_26y4l"]
+[ext_resource type="Script" uid="uid://dcfx8ajp6up23" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="18_a7gfh"]
+[ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="19_fda74"]
+[ext_resource type="AudioStream" uid="uid://bpvsiiko743cd" path="res://audio/music/battle/deathsound.mp3" id="20_wjcxo"]
+[ext_resource type="Script" uid="uid://bxgnfo7io12yx" path="res://scripts/battle/battle_scene/battle_panels.gd" id="21_7pwb1"]
+[ext_resource type="Theme" uid="uid://cdkeyupyiaurh" path="res://themes/battle_survive_counter_theme.tres" id="22_cbcg6"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="23_8rdwt"]
+[ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="24_xjh8w"]
+[ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="25_dmi3s"]
+[ext_resource type="Texture2D" uid="uid://copnjmfswsin0" path="res://graphics/ui/touch_ui_icons/pause_icon.png" id="26_c73tl"]
+[ext_resource type="Script" uid="uid://b0kyxgnoypqw6" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="27_qxkce"]
+[ext_resource type="Script" uid="uid://cbb5diqsv44du" path="res://scripts/battle/battle_scene/turn_executor.gd" id="28_0u2ip"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="29_av008"]
+[ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="30_71qgg"]
+[ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="31_4jx00"]
+[ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="32_0mhiy"]
+[ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="33_qpogj"]
+[ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="34_ljdcp"]
+[ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="35_arf2n"]
+[ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="36_vnsia"]
+[ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="37_u5hre"]
+
+[sub_resource type="Resource" id="Resource_02djh"]
+script = ExtResource("6_lutwl")
+combatant1Level = 10
+combatant1Moves = Array[ExtResource("3_ucjnw")]([])
+combatant1ShardSummoned = false
+combatant2Level = 10
+combatant2Moves = Array[ExtResource("3_ucjnw")]([])
+combatant2ShardSummoned = false
+combatant3Level = 10
+combatant3Moves = Array[ExtResource("3_ucjnw")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 10
+autoAllyMoves = Array[ExtResource("3_ucjnw")]([])
+autoAllyShardSummoned = false
+specialBattleId = ""
+bossBattle = false
+canEscape = true
+rewards = Array[ExtResource("5_53ny3")]([])
+useStaticRewards = false
+combatant1 = ExtResource("4_8yxc8")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""
+metadata/_custom_type_script = "uid://by2yp7g75qdn0"
+
+[node name="CreatureShowcaser" type="Node2D" node_paths=PackedStringArray("globalMarker")]
+script = ExtResource("1_k85it")
+bgMap = ExtResource("2_de80j")
+encounter = SubResource("Resource_02djh")
+_playerCombatant = ExtResource("7_wuy8n")
+playerLv = 10
+globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
+
+[node name="TileMapParent" type="Node2D" parent="."]
+
+[node name="BattleAnimationManager" parent="." instance=ExtResource("2_ud7cv")]
+
+[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
+z_index = 2
+offset = Vector2(0, -8)
+zoom = Vector2(4, 4)
+script = ExtResource("3_53ny3")
+menuState = 8
+battleController = NodePath("..")
+
+[node name="BattleTextBox" type="Node2D" parent="BattleCam"]
+z_index = 3
+
+[node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox"]
+offset_left = -160.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 268.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("4_lutwl")
+theme_override_styles/panel = ExtResource("5_wuy8n")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer"]
+layout_mode = 2
+theme = ExtResource("6_02djh")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+metadata/_edit_lock_ = true
+
+[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("7_hvieh")
+battleUI = NodePath("../../../..")
+
+[node name="SummonPrompt" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_right = 0.498
+offset_left = -325.472
+offset_top = 48.0
+offset_right = 330.528
+offset_bottom = 87.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Would you like to summon a minion?[/center]"
+fit_content = true
+
+[node name="YesSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -25.0
+offset_right = -9.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+text = "Summon"
+
+[node name="NoSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -25.0
+offset_right = 96.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+text = "No"
+
+[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("9_jdnii")
+battleUI = NodePath("../../../..")
+surgeIcon = ExtResource("10_gkbrp")
+
+[node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -370.0
+offset_top = -112.0
+offset_right = 366.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Command Player Name Here[/center]"
+fit_content = true
+
+[node name="ChargeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(180, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -68.0
+offset_right = -8.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+theme_override_font_sizes/font_size = 20
+text = "Charge Moves"
+icon_alignment = 1
+expand_icon = true
+
+[node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(180, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -68.0
+offset_right = 188.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+theme_override_font_sizes/font_size = 20
+text = "Inventory"
+
+[node name="SurgeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(180, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -12.0
+offset_right = -8.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Surge Moves"
+icon = ExtResource("10_gkbrp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(180, 51)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -12.0
+offset_right = 188.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Escape"
+
+[node name="BackToPlayerButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -72.0
+offset_right = 86.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Back to
+Player Command"
+
+[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("11_254jr")
+battleUI = NodePath("../../../..")
+
+[node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -84.0
+offset_right = -8.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+text = "Move Name Goes Here (-10 Orbs)"
+
+[node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -84.0
+offset_right = 368.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+text = "-----"
+
+[node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -24.0
+offset_right = -8.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="MoveButton4" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 368.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-----"
+
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 36.0
+offset_right = 42.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="Move1InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 214.0
+offset_top = 42.0
+offset_right = 234.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_cj6x2")
+icon_alignment = 1
+
+[node name="Move2InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 42.0
+offset_right = 1026.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_cj6x2")
+icon_alignment = 1
+
+[node name="Move3InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 214.0
+offset_top = 102.0
+offset_right = 234.0
+offset_bottom = 122.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_cj6x2")
+icon_alignment = 1
+
+[node name="Move4InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 102.0
+offset_right = 1026.0
+offset_bottom = 122.0
+scale = Vector2(2, 2)
+icon = ExtResource("12_cj6x2")
+icon_alignment = 1
+
+[node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("13_8p1nk")
+battleUI = NodePath("../../../..")
+
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]Combatant Name Here will use Move or Item Name Goes Here.[/center]"
+fit_content = true
+
+[node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -397.0
+offset_top = -104.0
+offset_right = -204.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Targeting:[/center]"
+fit_content = true
+
+[node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -604.0
+offset_top = -60.0
+offset_right = -10.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]Player Name Here, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
+fit_content = true
+
+[node name="EffectDesc" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -100.0
+offset_bottom = 96.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]1
+2
+3
+4
+5
+6
+7[/center]"
+
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = 36.0
+offset_right = -4.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm"
+
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 36.0
+offset_right = 84.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="Surge" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("14_qifex")
+battleUI = NodePath("../../../..")
+
+[node name="OrbDisplay" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("15_vdlc4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -52.0
+offset_right = -90.0
+offset_bottom = -44.0
+scale = Vector2(4, 4)
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_bottom = NodePath("../ConfirmButton")
+alignment = 1
+readOnly = false
+particlesMode = 1
+
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = 36.0
+offset_right = -4.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm"
+
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 36.0
+offset_right = 84.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]Spend Orbs For Surge:[/center]"
+fit_content = true
+
+[node name="SurgeChangesText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -100.0
+offset_bottom = 96.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]1
+2
+3
+4
+5
+6
+7[/center]"
+
+[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+layout_mode = 2
+script = ExtResource("16_phs7o")
+battleUI = NodePath("../../../..")
+
+[node name="RichTextLabelScroller" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("17_26y4l")]
+layout_mode = 1
+offset_right = 2.0
+offset_bottom = -74.0
+label = NodePath("../TextBoxText")
+scrollLinesApprox = 3.0
+bailoutFocusControl = NodePath("../OkButton")
+
+[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.696
+offset_right = -50.0
+offset_bottom = 0.17601
+bbcode_enabled = true
+text = "Combatant Name Here Charged With Move Name Here, gaining 10 [img=32x32]res://graphics/ui/orb_filled.png[/img].
+Combatant Name Here dealt 10,000 super-effective Lightning damage to self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here, afflicting Overwhelming Interception on self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage!
+Combatant Name Here boosted self +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed, and Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed."
+
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -68.0
+offset_right = 40.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "OK"
+
+[node name="BattleComplete" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+visible = false
+layout_mode = 2
+script = ExtResource("18_a7gfh")
+battleUI = NodePath("../../../..")
+winMusic = ExtResource("19_fda74")
+loseMusic = ExtResource("20_wjcxo")
+
+[node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleWinLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 556.0
+grow_vertical = 0
+text = "You won the battle!"
+
+[node name="BattleRewardsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "[right]Battle Rewards! [/right]"
+
+[node name="BattleLoseLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -32.0
+offset_right = 236.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]You were defeated...[/center]"
+
+[node name="BattleEscapeLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -32.0
+offset_right = 244.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]You escaped successfully![/center]"
+
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -68.0
+offset_right = 40.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "OK"
+
+[node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
+z_index = 11
+position = Vector2(0, -8)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("21_7pwb1")
+battleUI = NodePath("..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleCam/UIPanels"]
+custom_minimum_size = Vector2(176, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = -344.0
+offset_right = 105.0
+offset_bottom = -252.0
+grow_horizontal = 2
+
+[node name="SurviveCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer"]
+custom_minimum_size = Vector2(210, 44)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("22_cbcg6")
+
+[node name="SurviveCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/SurviveCounterPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Survive 999 Turns![/center]"
+fit_content = true
+
+[node name="TurnCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer"]
+custom_minimum_size = Vector2(176, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("23_8rdwt")
+
+[node name="TurnCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/TurnCounterPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Turn 9999[/center]"
+fit_content = true
+
+[node name="PanelsButtons" type="HBoxContainer" parent="BattleCam/UIPanels"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -624.0
+offset_top = -344.0
+offset_right = -292.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="QuestsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("24_xjh8w")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_neighbor_left = NodePath("../QuestsOpenButton")
+focus_neighbor_right = NodePath("../PauseButton")
+icon = ExtResource("25_dmi3s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PauseButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_neighbor_left = NodePath("../StatsOpenButton")
+focus_neighbor_right = NodePath("../../FlowOfBattle/ToggleFobButton")
+icon = ExtResource("26_c73tl")
+icon_alignment = 1
+expand_icon = true
+
+[node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" node_paths=PackedStringArray("battleController")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("4_lutwl")
+script = ExtResource("27_qxkce")
+battleController = NodePath("../../..")
+
+[node name="ColorRect" type="ColorRect" parent="BattleCam/UIPanels/FlowOfBattle"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.431373)
+
+[node name="ToggleFobButton" parent="BattleCam/UIPanels/FlowOfBattle" instance=ExtResource("8_f34sn")]
+layout_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 352.0
+offset_top = -344.0
+offset_right = 620.0
+offset_bottom = -260.0
+grow_horizontal = 0
+focus_neighbor_left = NodePath("../../PanelsButtons/PauseButton")
+theme_override_font_sizes/font_size = 28
+toggle_mode = true
+text = "Read the
+Flow of Battle"
+
+[node name="TabContainer" type="TabContainer" parent="BattleCam/UIPanels/FlowOfBattle"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -588.0
+offset_top = -236.0
+offset_right = 592.0
+offset_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedBgPanel" parent="BattleCam/UIPanels" instance=ExtResource("30_71qgg")]
+visible = false
+z_index = 1
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="SummonMinionPanel" parent="BattleCam/UIPanels" instance=ExtResource("31_4jx00")]
+visible = false
+z_index = 1
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("32_0mhiy")]
+visible = false
+z_index = 1
+position = Vector2(-640, -360)
+inBattle = true
+
+[node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("33_qpogj")]
+visible = false
+z_index = 1
+position = Vector2(-640, -360)
+
+[node name="StatsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("34_ljdcp")]
+visible = false
+z_index = 1
+position = Vector2(-640, -360)
+readOnly = true
+
+[node name="PauseMenu" parent="BattleCam/UIPanels" instance=ExtResource("35_arf2n")]
+visible = false
+z_index = 1
+position = Vector2(-640, -360)
+
+[node name="ItemDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("36_vnsia")]
+visible = false
+z_index = 1
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+
+[node name="MoveDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("37_u5hre")]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="TurnExecutor" type="Node" parent="." node_paths=PackedStringArray("battleController", "battleUI")]
+script = ExtResource("28_0u2ip")
+battleController = NodePath("..")
+battleUI = NodePath("../BattleCam")
+
+[node name="AudioHandler" parent="." instance=ExtResource("29_av008")]
+
+[connection signal="combatant_animation_complete" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_complete"]
+[connection signal="combatant_animation_start" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_start"]
+[connection signal="menu_state_changed" from="BattleCam" to="." method="_on_battle_cam_menu_state_changed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/YesSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_yes_summon_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon/NoSummon" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" method="_on_no_summon_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/ChargeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_charge_moves_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/InventoryButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/SurgeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_surge_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/EscapeButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_escape_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands/BackToPlayerButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" method="_on_back_to_player_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton1" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_1_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton2" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_2_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton3" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_3_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/MoveButton4" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_button_4_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_back_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move1InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [0]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move2InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [1]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move3InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [2]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves/Move4InfoButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" method="_on_move_info_button_pressed" binds= [3]]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" method="_on_back_button_pressed"]
+[connection signal="orb_count_change" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/OrbDisplay" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_orb_display_orb_count_change"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/ConfirmButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge/BackButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" method="_on_back_button_pressed"]
+[connection signal="visibility_changed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/RichTextLabelScroller" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_rich_text_label_scroller_visibility_changed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="." method="_on_results_ok_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_ok_button_pressed"]
+[connection signal="pressed" from="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete/OkButton" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" method="_on_ok_button_pressed"]
+[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/QuestsOpenButton" to="BattleCam/UIPanels" method="_on_quests_open_button_pressed"]
+[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/StatsOpenButton" to="BattleCam/UIPanels" method="_on_stats_open_button_pressed"]
+[connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/PauseButton" to="BattleCam/UIPanels" method="_on_pause_button_pressed"]
+[connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]

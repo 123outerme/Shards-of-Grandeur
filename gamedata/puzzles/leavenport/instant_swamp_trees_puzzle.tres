@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="StatePuzzle" load_steps=9 format=3 uid="uid://c54bjmvw5qoa5"]
+[gd_resource type="Resource" script_class="StatePuzzle" load_steps=10 format=3 uid="uid://c54bjmvw5qoa5"]
 
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="1_0yi2h"]
 [ext_resource type="Script" uid="uid://l1a7t2fpf7x4" path="res://scripts/overworld/puzzles/state_puzzle.gd" id="2_a4bpf"]
 [ext_resource type="Resource" uid="uid://bpk0g2nm184vi" path="res://gamedata/items/key_items/swamp_tree_seeds.tres" id="3_e38co"]
 [ext_resource type="Script" uid="uid://6y7m1ycv3tei" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="4_no5rd"]
 [ext_resource type="Script" uid="uid://db0rvatuwdbyr" path="res://scripts/overworld/puzzles/puzzle_mechanics/noop_puzzle_mechanic.gd" id="5_ccsy5"]
+[ext_resource type="Script" uid="uid://2ggfbo5xh0ho" path="res://scripts/overworld/puzzles/puzzle_mechanic.gd" id="5_wyp7k"]
 
 [sub_resource type="Resource" id="Resource_6ru7w"]
 script = ExtResource("4_no5rd")
@@ -22,10 +23,10 @@ script = ExtResource("5_ccsy5")
 script = ExtResource("2_a4bpf")
 defaultStates = Array[String](["default", "default", "default"])
 solvedStates = Array[String](["chopped_down", "chopped_down", "chopped_down"])
-stateTransitionPuzzleMechanics = {
+stateTransitionPuzzleMechanics = Dictionary[String, ExtResource("5_wyp7k")]({
 "default>planted": SubResource("Resource_yf78u"),
 "planted>chopped_down": SubResource("Resource_uewnd")
-}
+})
 solvePuzzleMechanic = SubResource("Resource_6ru7w")
 id = "instant_swamp_trees_lumber"
 prereqStoryRequirements = Array[ExtResource("1_0yi2h")]([])

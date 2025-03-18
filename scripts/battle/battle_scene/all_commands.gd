@@ -19,6 +19,10 @@ func _ready():
 	if PlayerResources.playerInfo.encounter is StaticEncounter:
 		var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
 		escapeButton.disabled = not staticEncounter.canEscape
+	if PlayerResources.playerInfo.encounter == null:
+		printerr('Error: Encounter is null!')
+		return
+	
 	inventoryBtn.disabled = PlayerResources.playerInfo.encounter.has_special_rule(EnemyEncounter.SpecialRules.NO_ITEMS)
 	surgeMovesBtn.disabled = not Combatant.are_surge_moves_allowed()
 	if surgeMovesBtn.disabled:

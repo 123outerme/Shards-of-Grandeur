@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://4ikj2l5roiwc"]
+
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_8rimk"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_aae1t"]
+[ext_resource type="Resource" uid="uid://dh2bn00gcw0c1" path="res://gamedata/items/shard/scout_penguin_shard.tres" id="3_dgble"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_l56md"]
+[ext_resource type="Resource" uid="uid://dvsyc2k8ttutb" path="res://gamedata/items/healing/curing_ritual.tres" id="5_f25oh"]
+
+[sub_resource type="Resource" id="Resource_cfb3q"]
+script = ExtResource("4_l56md")
+experience = 60
+gold = 5
+item = ExtResource("3_dgble")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_1pwwq"]
+script = ExtResource("2_aae1t")
+reward = SubResource("Resource_cfb3q")
+weight = 0.85
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[sub_resource type="Resource" id="Resource_li6fg"]
+script = ExtResource("4_l56md")
+experience = 60
+gold = 5
+item = ExtResource("5_f25oh")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_2lyp0"]
+script = ExtResource("2_aae1t")
+reward = SubResource("Resource_li6fg")
+weight = 0.15
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[resource]
+script = ExtResource("1_8rimk")
+weightedRewards = Array[ExtResource("2_aae1t")]([SubResource("Resource_1pwwq"), SubResource("Resource_2lyp0")])
+metadata/_custom_type_script = "uid://o0eqgjrxwybg"

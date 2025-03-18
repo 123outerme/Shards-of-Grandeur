@@ -9,12 +9,12 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_h3fmg"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="6_f378v"]
 
-[sub_resource type="Resource" id="Resource_k1cu3"]
+[sub_resource type="Resource" id="Resource_upbwq"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(515, -71)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -121,7 +121,7 @@ position = Vector2(250, -271)
 
 [node name="NPC" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
 position = Vector2(515, -71)
-data = SubResource("Resource_k1cu3")
+data = SubResource("Resource_upbwq")
 
 [node name="NPCSprite" parent="TilemapRoot/NPC" index="0"]
 sprite_frames = ExtResource("6_f378v")

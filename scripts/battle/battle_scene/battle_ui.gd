@@ -1,6 +1,8 @@
 extends Camera2D
 class_name BattleUI
 
+signal menu_state_changed(state: BattleState.Menu)
+
 @export var menuState: BattleState.Menu = BattleState.Menu.SUMMON
 @export var commandingMinion: bool = false
 @export var battleController: BattleController
@@ -37,6 +39,7 @@ func set_menu_state(newState: BattleState.Menu, savePrevState: bool = true):
 	battleController.state.menu = newState
 	commandingCombatant = battleController.minionCombatant if commandingMinion else battleController.playerCombatant
 	apply_menu_state()
+	menu_state_changed.emit(newState)
 
 func apply_menu_state():
 	summonMenu.visible = menuState == BattleState.Menu.SUMMON

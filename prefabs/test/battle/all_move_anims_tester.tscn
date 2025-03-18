@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=5 format=3 uid="uid://bhssekm7ehpj2"]
 
-[ext_resource type="Script" uid="uid://1nnb5j8bb75a" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://bl24gads2mf78" path="res://gamedata/moves/frost_bite/frost_bite.tres" id="2_41shn"]
-[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="3_oubfq"]
-[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
+[ext_resource type="Script" uid="uid://bm6a3uuqhdd1d" path="res://prefabs/test/battle/all_move_anims_tester.gd" id="1_gbnfj"]
+[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="1_txnlc"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="2_gbnfj"]
+[ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="2_oe7m0"]
 
-[node name="MoveAnimTester" type="Node2D"]
-script = ExtResource("1_ukfe0")
-move = ExtResource("2_41shn")
-targetCombatant = ExtResource("3_oubfq")
+[node name="AllMoveAnimsTester" type="Node2D"]
+script = ExtResource("1_gbnfj")
+targetCombatant = ExtResource("2_oe7m0")
 
-[node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
+[node name="MoveLearnAnimControl" parent="." instance=ExtResource("1_txnlc")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,36 +50,20 @@ position = Vector2(751, 244)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Button" type="Button" parent="."]
-offset_left = -26.0
-offset_top = 48.0
-offset_right = 26.0
-offset_bottom = 79.0
-text = "Play"
+[node name="AudioHandler" parent="." instance=ExtResource("2_gbnfj")]
 
-[node name="SwapButton" type="Button" parent="."]
-offset_left = 74.0
-offset_top = 48.0
-offset_right = 132.0
-offset_bottom = 79.0
-text = "Swap"
-
-[node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
-
-[node name="SurgeChargeToggle" type="Button" parent="."]
-custom_minimum_size = Vector2(81, 0)
-offset_left = -141.0
-offset_top = 48.0
-offset_right = -60.0
-offset_bottom = 77.0
-toggle_mode = true
-text = "Charge"
+[node name="MoveNameLabel" type="RichTextLabel" parent="."]
+offset_left = -160.0
+offset_top = 30.0
+offset_right = 160.0
+offset_bottom = 70.0
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]Move Name Goes Here[/center]
+[center](Surge)[/center]"
 
 [connection signal="combatant_finished_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_finished_anim"]
 [connection signal="combatant_started_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_started_anim"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
-[connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
 
 [editable path="MoveLearnAnimControl"]
 [editable path="MoveLearnAnimControl/BattlefieldBorder/BattleAnimationManager"]
