@@ -62,6 +62,13 @@ bbcode_enabled = true
 text = "[center]Move Name Goes Here[/center]
 [center](Surge)[/center]"
 
+[node name="StartButton" type="Button" parent="."]
+offset_left = -31.0
+offset_top = 60.0
+offset_right = 32.0
+offset_bottom = 89.0
+text = "Start"
+
 [connection signal="combatant_finished_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_finished_anim"]
 [connection signal="combatant_started_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_started_anim"]
 

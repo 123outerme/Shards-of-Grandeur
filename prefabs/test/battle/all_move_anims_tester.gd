@@ -11,6 +11,7 @@ signal move_anim_complete
 
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
 @onready var moveNameLabel: RichTextLabel = get_node('MoveNameLabel')
+@onready var startButton: Button = get_node('StartButton')
 
 var userNode: CombatantNode = null
 var shadeDown: bool = false
@@ -22,6 +23,8 @@ func _ready():
 	PlayerResources.playerInfo = PlayerInfo.new()
 	moveLearnAnimController.customTarget = targetCombatant
 	moveLearnAnimController.customTargetEvolution = evolution
+	await startButton.pressed
+	startButton.visible = false
 	play_all_moves()
 
 func play_all_moves():

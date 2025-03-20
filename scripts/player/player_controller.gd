@@ -887,9 +887,9 @@ func menu_closed() -> void:
 	if not inventoryPanel.visible and not questsPanel.visible and \
 			not statsPanel.visible and not pausePanel.visible:
 		animatedBgPanel.visible = false
+		overworldTouchControls.set_all_visible()
 		if not textBox.visible:
 			SceneLoader.unpause_autonomous_movers()
-			overworldTouchControls.set_all_visible()
 			if useTeleportStone != null:
 				play_animation('teleport')
 				SceneLoader.audioHandler.play_sfx(teleportSfx)
