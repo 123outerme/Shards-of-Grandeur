@@ -82,13 +82,14 @@ func _unhandled_input(event):
 			_press_caps_lock()
 
 func _show_on_edit(control: Control):
-	if enabled and (control is LineEdit or control is TextEdit or control is SpinBox) and get_parent().is_visible_in_tree():
+	if enabled and (control is LineEdit or control is TextEdit or control is SpinBox) and get_parent().is_visible_in_tree() and not visible:
 		editingControl = control
 		show_keyboard()
 
 func show_keyboard():
 	visible = true
-	focusButton.grab_focus()
+	if focusButton != null:
+		focusButton.grab_focus()
 
 func hide_keyboard():
 	if visible:
