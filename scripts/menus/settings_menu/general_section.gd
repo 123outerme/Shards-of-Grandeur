@@ -40,8 +40,6 @@ var allFramerateTextSelected: bool = false
 
 @onready var battleAnimsButton: CheckButton = get_node('Control/VBoxContainer/BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton')
 
-@onready var crowdedStatsViewButton: CheckButton = get_node('Control/VBoxContainer/CrowdedStatsViewControl/CrowdedStatsViewLabel/CrowdedStatsViewButton')
-
 @onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
 @onready var touchJoystickTypeToggleButton: Button = get_node('Control/VBoxContainer/TouchJoystickTypeControl/TouchJoystickTypeLabel/CenterButtonHBox/TouchJoystickTypeToggleButton')
 
@@ -113,7 +111,6 @@ func toggle_section(toggle: bool):
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		bgMotionButton.button_pressed = SettingsHandler.gameSettings.backgroundMotion
 		battleAnimsButton.button_pressed = SettingsHandler.gameSettings.battleAnims
-		crowdedStatsViewButton.button_pressed = not SettingsHandler.gameSettings.tabbedViewStats
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
 		touchJoystickTypeToggleButton.button_pressed = SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FIXED
@@ -129,7 +126,6 @@ func toggle_section(toggle: bool):
 		bgMotionButton.focus_neighbor_left = bgMotionButton.get_path_to(sectionToggleButton)
 		battleAnimsButton.focus_neighbor_left = battleAnimsButton.get_path_to(sectionToggleButton)
 		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
-		crowdedStatsViewButton.focus_neighbor_left = crowdedStatsViewButton.get_path_to(sectionToggleButton)
 		touchJoystickTypeToggleButton.focus_neighbor_left = touchJoystickTypeToggleButton.get_path_to(sectionToggleButton)
 		windowOptionsButton.focus_neighbor_left = windowOptionsButton.get_path_to(sectionToggleButton)
 		fullscreenButton.focus_neighbor_left = fullscreenButton.get_path_to(sectionToggleButton)
@@ -158,10 +154,6 @@ func _on_background_motion_button_toggled(toggled_on: bool) -> void:
 
 func _on_battle_anims_button_toggled(toggled_on: bool) -> void:
 	SettingsHandler.gameSettings.battleAnims = toggled_on
-	SettingsHandler.settings_changed.emit()
-
-func _on_crowded_stats_view_button_toggled(toggled_on: bool) -> void:
-	SettingsHandler.gameSettings.tabbedViewStats = not toggled_on
 	SettingsHandler.settings_changed.emit()
 
 func _on_fullscreen_button_toggled(toggled_on):

@@ -50,8 +50,6 @@ enum TabbedViewTab {
 
 var levelUpAnimPlayed: bool = false
 
-var isTabbedView: bool = true
-
 var isMinionStats: bool = false
 var minion: Combatant = null
 var savedStats: Stats = null
@@ -62,33 +60,21 @@ var changingCombatant: bool = false
 var previousControl: Control = null
 var previousMoveListSlot: int = -1
 
-var statlinePanel: StatLinePanel = null
-var moveListPanel: MoveListPanel = null
-var equipmentPanel: EquipmentPanel = null
-var minionsPanel: MinionsPanel = null
-
 @onready var statsTitle: RichTextLabel = get_node("StatsPanel/Panel/StatsTitle")
 @onready var levelUpLabel: RichTextLabel = get_node("StatsPanel/Panel/LevelUpLabel")
-
-# --- Single-Page View ---
-@onready var singleViewPanel: Panel = get_node('StatsPanel/Panel/SinglePageView')
-@onready var singleViewCombatantSprite: AnimatedSprite2D = get_node("StatsPanel/Panel/SinglePageView/AnimatedCombatantSprite")
-@onready var singleViewStatlinePanel: StatLinePanel = get_node("StatsPanel/Panel/SinglePageView/StatLinePanel")
-@onready var singleViewMoveListPanel: MoveListPanel = get_node("StatsPanel/Panel/SinglePageView/MoveListPanel")
-@onready var singleViewEquipmentPanel: EquipmentPanel = get_node("StatsPanel/Panel/SinglePageView/EquipmentPanel")
-@onready var singleViewMinionsPanel: MinionsPanel = get_node("StatsPanel/Panel/SinglePageView/MinionsPanel")
-@onready var singleViewBackButton: Button = get_node("StatsPanel/Panel/SinglePageView/BackButton")
 
 # --- Tabbed View ---
 @onready var tabbedViewPanel: Panel = get_node('StatsPanel/Panel/TabbedView')
 @onready var tabbedViewContainer: TabContainer = get_node('StatsPanel/Panel/TabbedView/TabContainer')
 @onready var tabbedViewCombatantSprite: AnimatedSprite2D = get_node('StatsPanel/Panel/TabbedView/AnimatedCombatantSprite')
-@onready var tabbedViewStatlinePanel: StatLinePanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel')
-@onready var tabbedViewMoveListPanel: MoveListPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel')
-@onready var tabbedViewEquipmentPanel: EquipmentPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel')
-@onready var tabbedViewMinionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
-@onready var tabbedViewBackButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
-@onready var tabbedViewMinionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
+
+@onready var statlinePanel: StatLinePanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel')
+@onready var moveListPanel: MoveListPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel')
+@onready var equipmentPanel: EquipmentPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel')
+@onready var minionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
+
+@onready var backButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
+@onready var minionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 
 @onready var levelUpPanel: Panel = get_node('StatsPanel/Panel/LevelUpPanel')
 @onready var newLevelLabel: RichTextLabel = get_node('StatsPanel/Panel/LevelUpPanel/NewLevelLabel')
@@ -105,7 +91,7 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
 		
-	if visible and isTabbedView and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
 		get_viewport().set_input_as_handled()
 		var selectedTab: Control = tabbedViewContainer.get_current_tab_control()
 		var selectedIdx: int = tabbedViewContainer.get_tab_idx_from_control(selectedTab)
@@ -136,10 +122,8 @@ func close_panel():
 	editMovesPanel.visible = false
 	minionsPanel.end_edit_name(false)
 	minionsPanel.reset_reorder_state()
-	singleViewBackButton.disabled = false
-	tabbedViewBackButton.disabled = false
-	if isTabbedView:
-		tabbedViewContainer.current_tab = TabbedViewTab.STATS
+	backButton.disabled = false
+	tabbedViewContainer.current_tab = TabbedViewTab.STATS
 	savedStats = null
 	minion = null
 	previousControl = null
@@ -151,16 +135,7 @@ func close_panel():
 	back_pressed.emit()
 
 func initial_focus():
-	if isTabbedView:
-		tabbedViewContainer.get_tab_bar().grab_focus()
-	else:
-		singleViewBackButton.grab_focus()
-
-func get_back_button() -> Button:
-	if isTabbedView:
-		return tabbedViewBackButton
-	else:
-		return singleViewBackButton
+	tabbedViewContainer.get_tab_bar().grab_focus()
 
 func restore_previous_focus():
 	if previousControl == null:
@@ -185,30 +160,30 @@ func load_stats_panel(fromToggle: bool = false):
 	else:
 		levelUpPanel.visible = false
 	
-	singleViewPanel.visible = not isTabbedView and not playingLvUpAnim
-	tabbedViewPanel.visible = isTabbedView and not playingLvUpAnim
-	if isTabbedView:
-		statlinePanel = tabbedViewStatlinePanel
-		moveListPanel = tabbedViewMoveListPanel
-		equipmentPanel = tabbedViewEquipmentPanel
-		minionsPanel = tabbedViewMinionsPanel
-	else:
-		statlinePanel = singleViewStatlinePanel
-		moveListPanel = singleViewMoveListPanel
-		equipmentPanel = singleViewEquipmentPanel
-		minionsPanel = singleViewMinionsPanel
+	tabbedViewPanel.visible = not playingLvUpAnim
 	
 	var dispName: String = stats.displayName
 	if minion != null:
 		dispName = minion.disp_name()
 	
+	var combatantSprite: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
 	var spriteFrames: SpriteFrames = PlayerResources.playerInfo.combatant.get_sprite_frames()
 	if minion != null:
+		combatantSprite = minion.get_sprite_obj()
 		spriteFrames = minion.get_sprite_frames()
 	
-	var animatedCombatantSprite: AnimatedSprite2D = tabbedViewCombatantSprite if isTabbedView else singleViewCombatantSprite
-	animatedCombatantSprite.sprite_frames = spriteFrames
-	animatedCombatantSprite.play('walk')
+	# scale sprite 3x if max size in max dimension is [16, 32); [32, 48] scale 2x; (48, infinity) scale 1x
+	var spriteScale: float = 3.0
+	if combatantSprite != null:
+		var maxSizeDim: float = max(combatantSprite.maxSize.x, combatantSprite.maxSize.y)
+		if maxSizeDim >= 32.0:
+			spriteScale = 2.0
+		if maxSizeDim > 48.0:
+			spriteScale = 1.0
+	
+	tabbedViewCombatantSprite.sprite_frames = spriteFrames
+	tabbedViewCombatantSprite.scale = Vector2.ONE * spriteScale
+	tabbedViewCombatantSprite.play('walk')
 	
 	statsTitle.text = '[center]' + dispName + ' - Stats[/center]'
 	levelUpLabel.visible = levelUp
@@ -229,13 +204,10 @@ func load_stats_panel(fromToggle: bool = false):
 	moveListPanel.load_move_list_panel()
 	#print('stats ', stats, ' / ', minion.stats)
 	if moveListPanel.firstMovePanel != null:
-		if isTabbedView:
-			var tabBar: TabBar = tabbedViewContainer.get_tab_bar()
-			moveListPanel.firstMovePanel.set_buttons_top_neighbor(moveListPanel.firstMovePanel.detailsButton.get_path_to(tabBar))
-			if not moveListPanel.editMovesButton.visible:
-				moveListPanel.lastMovePanel.set_buttons_bottom_neighbor(moveListPanel.lastMovePanel.detailsButton.get_path_to(get_back_button()))
-		else:
-			moveListPanel.firstMovePanel.set_buttons_top_neighbor('')
+		var tabBar: TabBar = tabbedViewContainer.get_tab_bar()
+		moveListPanel.firstMovePanel.set_buttons_top_neighbor(moveListPanel.firstMovePanel.detailsButton.get_path_to(tabBar))
+		if not moveListPanel.editMovesButton.visible:
+			moveListPanel.lastMovePanel.set_buttons_bottom_neighbor(moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton))
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
 	equipmentPanel.statsPanel = self
@@ -245,17 +217,14 @@ func load_stats_panel(fromToggle: bool = false):
 	minionsPanel.levelUp = levelUp
 	minionsPanel.load_minions_panel()
 	
-	if not isTabbedView:
-		minionsPanel.call_deferred('connect_to_top_control', singleViewBackButton)
+	update_move_list_tab_icon()
+	var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+	if minion != null:
+		minionsControl.name = minion.disp_name()
 	else:
-		update_move_list_tab_icon()
-		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
-		if minion != null:
-			minionsControl.name = minion.disp_name()
-		else:
-			minionsControl.name = 'Minions'
-		update_minions_tab()
-		#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
+		minionsControl.name = 'Minions'
+	update_minions_tab()
+	#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
 	changingCombatant = false
 
 func restore_previous_stats_panel():
@@ -267,8 +236,7 @@ func restore_previous_stats_panel():
 	isMinionStats = false
 	changingCombatant = true
 	load_stats_panel()
-	if isTabbedView:
-		tabbedViewContainer.current_tab = TabbedViewTab.MINIONS
+	tabbedViewContainer.current_tab = TabbedViewTab.MINIONS
 	restore_previous_focus()
 
 func close_minion_stats_auto_alloc() -> void:
@@ -280,53 +248,50 @@ func close_minion_stats_auto_alloc() -> void:
 			statAllocStrategy.allocate_stats(minion.stats)
 
 func update_stats_tab_icon():
-	if isTabbedView:
-		var statsIcon: Texture2D = unspentStatPtsIndicator
-		if stats.statPts == 0:
-			statsIcon = null
-		tabbedViewContainer.set_tab_icon(TabbedViewTab.STATS, statsIcon)
+	var statsIcon: Texture2D = unspentStatPtsIndicator
+	if stats.statPts == 0:
+		statsIcon = null
+	tabbedViewContainer.set_tab_icon(TabbedViewTab.STATS, statsIcon)
 
 func update_move_list_tab_icon():
-	if isTabbedView:
-		var moveListIcon: Texture2D = null
-		if moveListPanel.showNewMoveIndicator:
-			moveListIcon = newMoveIndicator
-		tabbedViewContainer.set_tab_icon(TabbedViewTab.MOVES, moveListIcon)
+	var moveListIcon: Texture2D = null
+	if moveListPanel.showNewMoveIndicator:
+		moveListIcon = newMoveIndicator
+	tabbedViewContainer.set_tab_icon(TabbedViewTab.MOVES, moveListIcon)
 
 func update_minions_tab():
-	if isTabbedView:
-		var minionsTabIcon: Texture2D = null
-		var minionChanged: bool = false
-		var minionHasNewMoves: bool = false
-		var minionHasUnspentStatPts: bool = false
-		if minion == null:
-			tabbedViewMinionsControl.name = 'Minions'
-			for m: Combatant in PlayerResources.minions.get_minion_list():
-				if PlayerResources.minions.is_minion_marked_changed(m.save_name()):
-					minionChanged = true
-					break
-				if m.stats.movepool.has_moves_at_level(m.stats.level) and levelUp:
-					minionHasNewMoves = true
-				elif m.stats.statPts > 0:
-					minionHasUnspentStatPts = true
-		else:
-			tabbedViewMinionsControl.name = minion.disp_name()
-			# currently not showing any icons over the Minions tab
-			#if PlayerResources.minions.is_minion_marked_changed(minion.save_name()):
-			#	minionChanged = true
-			#elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
-			#	minionHasNewMoves = true
-			#elif minion.stats.statPts > 0:
-			#	minionHasUnspentStatPts = true
-			# unspent stat points are apparent on the Stats tab
-		
-		if minionChanged:
-			minionsTabIcon = minionChangedIndicator
-		elif minionHasNewMoves:
-			minionsTabIcon = newMoveIndicator
-		elif minionHasUnspentStatPts:
-			minionsTabIcon = unspentStatPtsIndicator
-		tabbedViewContainer.set_tab_icon(TabbedViewTab.MINIONS, minionsTabIcon)
+	var minionsTabIcon: Texture2D = null
+	var minionChanged: bool = false
+	var minionHasNewMoves: bool = false
+	var minionHasUnspentStatPts: bool = false
+	if minion == null:
+		minionsControl.name = 'Minions'
+		for m: Combatant in PlayerResources.minions.get_minion_list():
+			if PlayerResources.minions.is_minion_marked_changed(m.save_name()):
+				minionChanged = true
+				break
+			if m.stats.movepool.has_moves_at_level(m.stats.level) and levelUp:
+				minionHasNewMoves = true
+			elif m.stats.statPts > 0:
+				minionHasUnspentStatPts = true
+	else:
+		minionsControl.name = minion.disp_name()
+		# currently not showing any icons over the Minions tab
+		#if PlayerResources.minions.is_minion_marked_changed(minion.save_name()):
+		#	minionChanged = true
+		#elif minion.stats.movepool.has_moves_at_level(minion.stats.level) and levelUp:
+		#	minionHasNewMoves = true
+		#elif minion.stats.statPts > 0:
+		#	minionHasUnspentStatPts = true
+		# unspent stat points are apparent on the Stats tab
+	
+	if minionChanged:
+		minionsTabIcon = minionChangedIndicator
+	elif minionHasNewMoves:
+		minionsTabIcon = newMoveIndicator
+	elif minionHasUnspentStatPts:
+		minionsTabIcon = unspentStatPtsIndicator
+	tabbedViewContainer.set_tab_icon(TabbedViewTab.MINIONS, minionsTabIcon)
 
 func reset_panel_to_player():
 	if isMinionStats:
@@ -347,8 +312,7 @@ func _on_stat_line_panel_stats_saved() -> void:
 	update_stats_tab_icon()
 
 func _on_move_list_panel_move_details_visiblity_changed(newVisible: bool, move: Move):
-	singleViewBackButton.disabled = newVisible
-	tabbedViewBackButton.disabled = newVisible
+	backButton.disabled = newVisible
 	if newVisible:
 		previousMoveListSlot = moveListPanel.get_index_of_move(move)
 		previousControl = null
@@ -368,20 +332,17 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		isMinionStats = true
 		changingCombatant = true
 		load_stats_panel()
-		if isTabbedView:
-			tabbedViewContainer.current_tab = TabbedViewTab.STATS
+		tabbedViewContainer.current_tab = TabbedViewTab.STATS
 		initial_focus()
 
 func _on_minions_panel_minion_renamed() -> void:
-	if isTabbedView:
-		var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
-		minionsControl.name = minion.disp_name()
+	var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+	minionsControl.name = minion.disp_name()
 
 func _on_minions_panel_changed_minion_hovered(combatant: Combatant) -> void:
 	if PlayerResources.minions.is_minion_marked_changed(combatant.save_name()):
 		PlayerResources.minions.clear_minion_changed(combatant.save_name())
-		if isTabbedView:
-			update_minions_tab()
+		update_minions_tab()
 
 func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 	# the minion changed should never not be the minion being inspected, but just in case, do nothing
@@ -400,8 +361,7 @@ func _on_minions_panel_minion_auto_alloc_changed(combatant: Combatant) -> void:
 			printerr('Minion ', combatant.save_name(), ' has no defined stat allocation strategy and is being auto-allocated after setting was switched')
 
 func _on_minions_panel_minions_reordered() -> void:
-	if not isTabbedView:
-		minionsPanel.call_deferred('connect_to_top_control', singleViewBackButton)
+	pass
 
 func _on_move_list_panel_edit_moves():
 	previousControl = moveListPanel.editMovesButton
@@ -410,12 +370,10 @@ func _on_move_list_panel_edit_moves():
 	editMovesPanel.level = stats.level
 	editMovesPanel.levelUp = levelUp
 	editMovesPanel.load_edit_moves_panel()
-	singleViewBackButton.disabled = true
-	tabbedViewBackButton.disabled = true
+	backButton.disabled = true
 
 func _on_edit_moves_panel_back_pressed():
-	singleViewBackButton.disabled = false
-	tabbedViewBackButton.disabled = false
+	backButton.disabled = false
 	restore_previous_focus()
 	previousControl = null
 
@@ -457,7 +415,7 @@ func _tab_selected(idx: int) -> void:
 		SceneLoader.audioHandler.play_sfx(tabChangeSfx)
 
 func _settings_changed() -> void:
-	isTabbedView = SettingsHandler.gameSettings.tabbedViewStats
+	pass
 
 func _level_up_anim_start():
 	SceneLoader.audioHandler.play_music(levelUpMusic)
@@ -465,7 +423,7 @@ func _level_up_anim_start():
 	levelUpPanel.visible = true
 
 func _level_up_anim_panel_fade_in():
-	var view: Panel = tabbedViewPanel if isTabbedView else singleViewPanel
+	var view: Panel = tabbedViewPanel
 	var levelUpTween: Tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	
 	view.visible = true

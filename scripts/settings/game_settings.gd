@@ -14,7 +14,6 @@ enum TouchJoystickType {
 @export var backgroundMotion: bool = true
 @export var battleAnims: bool = true
 @export var toggleRun: bool = false
-@export var tabbedViewStats: bool = true
 @export var vsync: bool = false
 @export var deadzone: float = 0.5
 @export var touchJoystickDeadzone: float = 0.2
@@ -108,7 +107,6 @@ func _init(
 	i_backgroundMotion = true,
 	i_battleAnims = true,
 	i_toggleRun = false,
-	i_tabbedViewStats = true,
 	i_vsync = false,
 	i_deadzone = 0.5,
 	i_touchJoystickDeadzone: float = 0.2,
@@ -125,7 +123,6 @@ func _init(
 	backgroundMotion = i_backgroundMotion
 	battleAnims = i_battleAnims
 	toggleRun = i_toggleRun
-	tabbedViewStats = i_tabbedViewStats
 	vsync = i_vsync
 	deadzone = i_deadzone
 	touchJoystickDeadzone = i_touchJoystickDeadzone
