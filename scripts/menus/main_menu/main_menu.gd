@@ -101,7 +101,6 @@ func start_new_game():
 	SceneLoader.load_game()
 
 func _on_quit_button_pressed():
-	SettingsHandler.save_data()
 	get_tree().quit()
 
 func _on_settings_button_pressed():

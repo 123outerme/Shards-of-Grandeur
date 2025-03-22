@@ -14,7 +14,7 @@ func _ready():
 	
 # handle quit requests: save game before quitting
 func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		if get_node_or_null("/root/MainMenu") == null:
 			if PlayerFinder.player == null or not PlayerFinder.player.inCutscene:
 				save_data() # if not in the main menu or in a cutscene, save the game!

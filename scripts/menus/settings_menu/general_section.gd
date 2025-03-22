@@ -45,6 +45,9 @@ var allFramerateTextSelected: bool = false
 @onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
 @onready var touchJoystickTypeToggleButton: Button = get_node('Control/VBoxContainer/TouchJoystickTypeControl/TouchJoystickTypeLabel/CenterButtonHBox/TouchJoystickTypeToggleButton')
 
+@onready var touchJoystickDeadzoneControl: Control = get_node('Control/VBoxContainer/TouchJoystickDeadzoneControl')
+@onready var touchJoystickDeadzoneSlider: HSlider = get_node('Control/VBoxContainer/TouchJoystickDeadzoneControl/TouchDeadzoneLabel/TouchDeadzoneSlider')
+
 @onready var windowControl: Control = get_node('Control/VBoxContainer/WindowControl')
 @onready var windowOptionsButton: MenuButton = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton')
 @onready var windowMenuBtnLabel: RichTextLabel = get_node('Control/VBoxContainer/WindowControl/WindowLabel/WindowOptionsButton/WindowMenuBtnLabel')
@@ -70,17 +73,20 @@ func _ready():
 	if not windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
 		windowSizeOptionsMenu.id_pressed.connect(_on_window_option_chosen)
 	
-	if SettingsHandler.isMobile:
+	if not SettingsHandler.isMobile:
 		runToggleControl.visible = false
 		windowControl.visible = false
 		fullscreenControl.visible = false
 		vsyncControl.visible = false
 		touchJoystickTypeControl.visible = true
+		touchJoystickDeadzoneControl.visible = true
 		onscreenKeyboardButton.focus_neighbor_bottom = onscreenKeyboardButton.get_path_to(screenShakeButton)
 		screenShakeButton.focus_neighbor_top = screenShakeButton.get_path_to(onscreenKeyboardButton)
 		deadzoneSlider.focus_neighbor_bottom = deadzoneSlider.get_path_to(touchJoystickTypeToggleButton)
+		framerateLineEdit.focus_neighbor_top = framerateLineEdit.get_path_to(touchJoystickDeadzoneSlider)
 	else:
 		touchJoystickTypeControl.visible = false
+		touchJoystickDeadzoneControl.visible = false
 
 func _exit_tree():
 	#if windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
@@ -111,6 +117,7 @@ func toggle_section(toggle: bool):
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
 		touchJoystickTypeToggleButton.button_pressed = SettingsHandler.gameSettings.touchJoystickType == GameSettings.TouchJoystickType.FIXED
+		touchJoystickDeadzoneSlider.value = roundi(SettingsHandler.gameSettings.touchJoystickDeadzone * 100)
 		windowMenuBtnLabel.text = '[center]' + String.num_int64(SettingsHandler.gameSettings.windowSize.x) + ' x ' + String.num_int64(SettingsHandler.gameSettings.windowSize.y) + '[/center]'
 		fullscreenButton.button_pressed = SettingsHandler.gameSettings.fullscreen
 		vsyncButton.button_pressed = SettingsHandler.gameSettings.vsync
@@ -273,3 +280,14 @@ func _on_touch_joystick_type_toggle_button_toggled(toggled_on: bool):
 	SettingsHandler.gameSettings.touchJoystickType = GameSettings.TouchJoystickType.FIXED if toggled_on else GameSettings.TouchJoystickType.FLOATING
 	touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
 	SettingsHandler.settings_changed.emit()
+
+func _on_touch_deadzone_slider_focus_exited() -> void:
+	SettingsHandler.gameSettings.touchJoystickDeadzone = touchJoystickDeadzoneSlider.value / 100.0
+	print(SettingsHandler.gameSettings.touchJoystickDeadzone)
+	SettingsHandler.settings_changed.emit()
+
+func _on_deadzone_slider_drag_ended(value_changed: bool) -> void:
+	_on_deadzone_slider_focus_exited()
+
+func _on_touch_deadzone_slider_drag_ended(value_changed: bool) -> void:
+	_on_touch_deadzone_slider_focus_exited()

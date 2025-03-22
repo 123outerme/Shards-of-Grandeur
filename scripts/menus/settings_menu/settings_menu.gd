@@ -60,6 +60,7 @@ func _on_back_button_pressed():
 	visible = false
 	controlsSection._on_cancel_button_pressed()
 	_on_general_button_toggled(true)
+	SettingsHandler.save_data()
 	back_pressed.emit()
 
 func _on_general_button_toggled(toggled_on):

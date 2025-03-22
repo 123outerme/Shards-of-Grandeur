@@ -36,7 +36,7 @@ func _physics_process(_delta):
 		stickPosition.y = min(baseTexture.size.y / 2.0, max(-baseTexture.size.y / 2.0, stickPosition.y))
 		
 		stickTexture.position = stickPosition
-		if (stickTexture.position.length()) / baseTexture.size.x > SettingsHandler.gameSettings.deadzone:
+		if (stickTexture.position.length()) / baseTexture.size.x > SettingsHandler.gameSettings.touchJoystickDeadzone:
 			var actions: Array[String] = eight_dir_move_actions(stickPosition)
 			for action: String in actions:
 				if not action in actionsBeingSent:

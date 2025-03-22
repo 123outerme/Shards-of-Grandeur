@@ -17,6 +17,7 @@ enum TouchJoystickType {
 @export var tabbedViewStats: bool = true
 @export var vsync: bool = false
 @export var deadzone: float = 0.5
+@export var touchJoystickDeadzone: float = 0.2
 @export var framerate: int = 60
 @export var windowSize: Vector2i = Vector2i(1280, 720)
 @export var fullscreen: bool = false
@@ -110,6 +111,7 @@ func _init(
 	i_tabbedViewStats = true,
 	i_vsync = false,
 	i_deadzone = 0.5,
+	i_touchJoystickDeadzone: float = 0.2,
 	i_framerate = 60,
 	i_windowSize = Vector2i(1280, 720),
 	i_fullscreen = false,
@@ -126,6 +128,7 @@ func _init(
 	tabbedViewStats = i_tabbedViewStats
 	vsync = i_vsync
 	deadzone = i_deadzone
+	touchJoystickDeadzone = i_touchJoystickDeadzone
 	framerate = i_framerate
 	windowSize = i_windowSize
 	fullscreen = i_fullscreen
