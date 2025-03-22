@@ -73,7 +73,7 @@ func _ready():
 	if not windowSizeOptionsMenu.id_pressed.is_connected(_on_window_option_chosen):
 		windowSizeOptionsMenu.id_pressed.connect(_on_window_option_chosen)
 	
-	if not SettingsHandler.isMobile:
+	if SettingsHandler.isMobile:
 		runToggleControl.visible = false
 		windowControl.visible = false
 		fullscreenControl.visible = false
