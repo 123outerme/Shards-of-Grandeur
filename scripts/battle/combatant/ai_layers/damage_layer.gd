@@ -27,12 +27,19 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var targetElementEffectiveness: float = target.combatant.get_element_effectiveness_multiplier(move.element)
 	var percentElementBoost: float = user.combatant.statChanges.get_element_multiplier(move.element)
+
+	var damageMultiplier: float = targetElementEffectiveness * percentElementBoost
+
+	var keywordMultiplier: float = 1.0
+	for keyword: String in moveEffect.keywords:
+		keywordMultiplier *= user.combatant.statChanges.get_keyword_multiplier(keyword)
+	damageMultiplier += keywordMultiplier - 1.0
 	
 	var userBoostedStats: Stats = user.combatant.statChanges.apply(user.combatant.stats)
 	var targetStats: Stats = target.combatant.statChanges.apply(target.combatant.stats)
 	var attackStat: float = userBoostedStats.get_stat_for_dmg_category(move.category)
 	
-	var calcdDamage: float = BattleCommand.damage_formula(moveEffect.power, attackStat, targetStats.resistance, user.combatant.stats.level, target.combatant.stats.level, targetElementEffectiveness * percentElementBoost)
+	var calcdDamage: float = BattleCommand.damage_formula(moveEffect.power, attackStat, targetStats.resistance, user.combatant.stats.level, target.combatant.stats.level, damageMultiplier)
 	if healLayer:
 		calcdDamage *= -1
 	

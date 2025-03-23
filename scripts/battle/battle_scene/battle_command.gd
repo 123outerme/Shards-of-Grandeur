@@ -130,7 +130,7 @@ static func dmg_logistic(userLv: int, targetLv: int) -> float:
 	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
 	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
 
-static func damage_formula(power: float, atkStat: float, resistanceStat: float, userLv: int, targetLv: int, elEffectivenessMultiplier: float) -> int:
+static func damage_formula(power: float, atkStat: float, resistanceStat: float, userLv: int, targetLv: int, damageMultiplier: float) -> int:
 	var atkExpression: float = round(atkStat * 1.1)
 	if power < 0:
 		atkExpression *= 2.5 # 2.5x heal multiplier
@@ -144,7 +144,7 @@ static func damage_formula(power: float, atkStat: float, resistanceStat: float, 
 	var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
 	#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
 	#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
-	var damage: int = roundi( power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * elEffectivenessMultiplier )
+	var damage: int = roundi( power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * damageMultiplier )
 	# if move IS a damaging move, make it do at least ceiling[AttackerLv / 2] damage
 	var minDmg: int = ceili(userLv / 2.0)
 	if power > 0 and damage < minDmg:
@@ -340,14 +340,21 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 	var targetStatChanges = StatChanges.new()
 	targetStatChanges.stack(target.statChanges)
 	var moveEffect: MoveEffect = null
-	var elEffectivenessMultiplier: float = 1.0
+	var damageMultiplier: float = 1.0
 	if move != null:
 		moveEffect = move.get_effect_of_type(moveEffectType)
 		# don't consider element effectiveness matchup with healing moves
 		if power > 0:
-			elEffectivenessMultiplier = target.get_element_effectiveness_multiplier(move.element)
+			damageMultiplier = target.get_element_effectiveness_multiplier(move.element)
 		# but do consider the elemental multiplier
-		elEffectivenessMultiplier *= user.statChanges.get_element_multiplier(move.element)
+		damageMultiplier *= user.statChanges.get_element_multiplier(move.element)
+
+		# gather total keyword multiplier:
+		var keywordMultiplier: float = 1.0
+		for keyword: String in moveEffect.keywords:
+			keywordMultiplier *= user.statChanges.get_keyword_multiplier(keyword)
+		# and ADD it into the final damage multiplier
+		damageMultiplier += keywordMultiplier - 1.0
 
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)
@@ -371,7 +378,7 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 			atkStat = userStats.magicAttack # use magic for magic attacks
 		if move.category == Move.DmgCategory.AFFINITY:
 			atkStat = userStats.affinity # use affinity for affinity-based attacks
-		return BattleCommand.damage_formula(power, atkStat, targetStats.resistance, user.stats.level, target.stats.level, elEffectivenessMultiplier)
+		return BattleCommand.damage_formula(power, atkStat, targetStats.resistance, user.stats.level, target.stats.level, damageMultiplier)
 	if type == Type.USE_ITEM and target.currentHp > 0: # if item and current target is still alive
 		if slot.item is Healing: # if healing
 			var healItem: Healing = slot.item as Healing

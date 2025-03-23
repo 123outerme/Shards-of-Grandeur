@@ -527,10 +527,10 @@ func apply_rune_effect(rune: Rune) -> void:
 	var atkStat: float = attackerStats.get_stat_for_dmg_category(rune.category)
 	var resStat: float = defenderStats.resistance
 	
-	var elementalMultiplier: float = rune.caster.statChanges.get_element_multiplier(rune.element) * \
+	var damageMultiplier: float = rune.caster.statChanges.get_element_multiplier(rune.element) * \
 			get_element_effectiveness_multiplier(rune.element)
 	
-	var damage: int = BattleCommand.damage_formula(rune.power, atkStat, resStat, attackerStats.level, stats.level, elementalMultiplier)
+	var damage: int = BattleCommand.damage_formula(rune.power, atkStat, resStat, attackerStats.level, stats.level, damageMultiplier)
 	
 	if damage > 0:
 		if rune.caster.currentHp > 0 and rune.lifesteal > 0: # if caster is still alive and this rune has lifesteal:
