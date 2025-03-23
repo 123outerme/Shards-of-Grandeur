@@ -57,17 +57,14 @@ fit_content = true
 layout_mode = 1
 anchors_preset = 0
 offset_left = 28.0
-offset_top = 28.0
-offset_right = 132.0
-offset_bottom = 108.0
+offset_top = 20.0
+offset_right = 153.0
+offset_bottom = 71.0
 
 [node name="GoldLabel" type="RichTextLabel" parent="InventoryPanel/Panel/GoldCountGroup"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = 15.0
+offset_right = 119.0
 offset_bottom = 23.0
-grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0.0823529, 0.0862745, 0.294118, 1)
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
@@ -77,13 +74,12 @@ fit_content = true
 [node name="GoldSprControl" type="Control" parent="InventoryPanel/Panel/GoldCountGroup"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -16.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
 offset_right = 32.0
-offset_bottom = 16.0
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 
 [node name="GoldSprite" type="Sprite2D" parent="InventoryPanel/Panel/GoldCountGroup/GoldSprControl"]
@@ -94,14 +90,13 @@ texture = ExtResource("4_7ietu")
 [node name="GoldCount" type="RichTextLabel" parent="InventoryPanel/Panel/GoldCountGroup"]
 clip_contents = false
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 32.0
-offset_top = -13.0
+offset_top = -26.0
 offset_right = 126.0
-offset_bottom = 13.0
-grow_vertical = 2
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0.0823529, 0.0862745, 0.294118, 1)
 theme_override_constants/outline_size = 4
 text = "456,789"
@@ -131,50 +126,56 @@ offset_top = 80.0
 offset_right = 350.0
 offset_bottom = 120.0
 grow_horizontal = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="AllButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
 text = "All"
 
 [node name="HealingButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Healing"
 
 [node name="ShardsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
-text = "Shards"
+text = "Shard"
 
 [node name="ConsumablesButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(160, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
-text = "Consumables"
+text = "Consumable"
 
 [node name="WeaponsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
-text = "Weapons"
+text = "Weapon"
 
 [node name="ArmorButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Armor"
 
-[node name="KeyItemsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
-custom_minimum_size = Vector2(110, 0)
+[node name="AccessoryButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 toggle_mode = true
-text = "Key Items"
+text = "Accessory"
+
+[node name="KeyItemsButton" parent="InventoryPanel/Panel/HBoxContainer" instance=ExtResource("9_vr3fk")]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Key Item"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/Panel" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
@@ -286,6 +287,7 @@ offset_bottom = 720.0
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ConsumablesButton" to="." method="_on_consumables_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/WeaponsButton" to="." method="_on_weapons_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/ArmorButton" to="." method="_on_armor_button_toggled"]
+[connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/AccessoryButton" to="." method="_on_accessory_button_toggled"]
 [connection signal="toggled" from="InventoryPanel/Panel/HBoxContainer/KeyItemsButton" to="." method="_on_key_items_button_toggled"]
 [connection signal="visibility_changed" from="InventoryPanel/Panel/ScrollContainer" to="InventoryPanel/Panel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="InventoryPanel/Panel/BackButton" to="." method="_on_back_button_pressed"]

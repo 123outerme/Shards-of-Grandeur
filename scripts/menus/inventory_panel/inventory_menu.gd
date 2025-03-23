@@ -42,7 +42,7 @@ var shopInventory: Inventory = null
 ## the stats object to equip equipment to if clicked in from the Stats menu
 @export var equipContextStats: Stats = null
 
-@export_category("InvnetoryPanel - SFX and Misc")
+@export_category("InventoryPanel - SFX and Misc")
 @export var buySellSfx: AudioStream
 
 @onready var scrollContainer: ScrollContainer = get_node('InventoryPanel/Panel/ScrollContainer')
@@ -57,6 +57,7 @@ var shopInventory: Inventory = null
 @onready var consumablesFilterBtn: Button = get_node('InventoryPanel/Panel/HBoxContainer/ConsumablesButton')
 @onready var weaponFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/WeaponsButton")
 @onready var armorFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/ArmorButton")
+@onready var accessoryFilterBtn: Button = get_node('InventoryPanel/Panel/HBoxContainer/AccessoryButton')
 @onready var keyItemFilterBtn: Button = get_node("InventoryPanel/Panel/HBoxContainer/KeyItemsButton")
 @onready var backButton: Button = get_node("InventoryPanel/Panel/BackButton")
 
@@ -79,6 +80,7 @@ const FILTER_BUTTON_TYPES_ORDER: Array[Item.Type] = [
 	Item.Type.CONSUMABLE,
 	Item.Type.WEAPON,
 	Item.Type.ARMOR,
+	Item.Type.ACCESSORY,
 	Item.Type.KEY_ITEM
 ]
 
@@ -103,6 +105,7 @@ func _ready() -> void:
 		consumablesFilterBtn,
 		weaponFilterBtn,
 		armorFilterBtn,
+		accessoryFilterBtn,
 		keyItemFilterBtn
 	]
 
@@ -164,7 +167,7 @@ func initial_focus():
 	backButton.grab_focus()
 
 func get_centermost_filter() -> Button:
-	# order: consumables -> weapon -> shard -> armor -> healing -> key items
+	# order: consumables -> weapon -> shard -> armor -> accessory -> key item -> healing
 	if not consumablesFilterBtn.disabled:
 		return consumablesFilterBtn
 	
@@ -179,12 +182,15 @@ func get_centermost_filter() -> Button:
 	
 	if not healingFilterBtn.disabled:
 		return healingFilterBtn
+	
+	if not accessoryFilterBtn.disabled:
+		return accessoryFilterBtn
+	
+	if not allFilterBtn.disabled:
+		return allFilterBtn
 		
 	if not keyItemFilterBtn.disabled:
 		return keyItemFilterBtn
-		
-	if not allFilterBtn.disabled:
-		return allFilterBtn
 	
 	return null
 
@@ -241,6 +247,10 @@ func load_inventory_panel(rebuild: bool = true):
 		armorFilterBtn.disabled = true
 		armorFilterBtn.focus_neighbor_top = armorFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
 		armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(backButton)
+		
+		accessoryFilterBtn.disabled = true
+		accessoryFilterBtn.focus_neighbor_top = accessoryFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
+		accessoryFilterBtn.focus_neighbor_bottom = accessoryFilterBtn.get_path_to(backButton)
 		
 		keyItemFilterBtn.disabled = true
 		keyItemFilterBtn.focus_neighbor_top = keyItemFilterBtn.get_path_to(toggleShopButton if toggleShopButton.visible else backButton)
@@ -308,6 +318,8 @@ func load_inventory_panel(rebuild: bool = true):
 				weaponFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.WEAPON
 			if slot.item.itemType == Item.Type.ARMOR:
 				armorFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.ARMOR
+			if slot.item.itemType == Item.Type.ACCESSORY:
+				accessoryFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.ACCESSORY
 			if slot.item.itemType == Item.Type.KEY_ITEM:
 				keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
 		if firstPanel != null: # if focus still not grabbed by another panel
@@ -317,6 +329,7 @@ func load_inventory_panel(rebuild: bool = true):
 			consumablesFilterBtn.focus_neighbor_bottom = consumablesFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+			accessoryFilterBtn.focus_neighbor_bottom = accessoryFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(firstPanel.get_leftmost_button())
 			firstPanel.detailsButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
 			firstPanel.buyButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
@@ -417,6 +430,7 @@ func update_filter_buttons():
 	consumablesFilterBtn.button_pressed = selectedFilter == Item.Type.CONSUMABLE
 	weaponFilterBtn.button_pressed = selectedFilter == Item.Type.WEAPON
 	armorFilterBtn.button_pressed = selectedFilter == Item.Type.ARMOR
+	accessoryFilterBtn.button_pressed = selectedFilter == Item.Type.ACCESSORY
 	keyItemFilterBtn.button_pressed = selectedFilter == Item.Type.KEY_ITEM
 
 func _on_toggle_shop_inventory_button_pressed():
@@ -487,6 +501,14 @@ func _on_armor_button_toggled(button_pressed):
 	if button_pressed:
 		filter_by(Item.Type.ARMOR)
 	elif selectedFilter == Item.Type.ARMOR:
+		filter_by()
+
+func _on_accessory_button_toggled(button_pressed: bool) -> void:
+	if lockFilters: # ignore toggle if filters are supposed to be locked
+		return
+	if button_pressed:
+		filter_by(Item.Type.ACCESSORY)
+	elif selectedFilter == Item.Type.ACCESSORY:
 		filter_by()
 
 func _on_key_items_button_toggled(button_pressed):
