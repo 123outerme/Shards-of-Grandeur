@@ -164,7 +164,7 @@ func _on_fullscreen_button_toggled(toggled_on):
 	SettingsHandler.gameSettings.fullscreen = toggled_on
 	SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
 	itemConfirmPanel.title = 'Window Resized'
-	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceil(resizeWaitTime)) + ' seconds.'
+	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceili(resizeWaitTime)) + ' seconds.'
 	itemConfirmPanel.load_item_confirm_panel()
 	resizeAccum = 0
 	waitingForResizeConfirm = true
@@ -248,7 +248,7 @@ func _on_window_option_chosen(id):
 	SettingsHandler.gameSettings.windowSize = windowSizeOptions[id]
 	SettingsHandler.gameSettings.apply_window_size(get_viewport())
 	itemConfirmPanel.title = 'Window Resized'
-	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceil(resizeWaitTime)) + ' seconds.'
+	itemConfirmPanel.description = 'Is this size OK? Resetting in ' + String.num_int64(ceili(resizeWaitTime)) + ' seconds.'
 	itemConfirmPanel.load_item_confirm_panel()
 	resizeAccum = 0
 	waitingForResizeConfirm = true

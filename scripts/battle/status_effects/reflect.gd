@@ -18,7 +18,7 @@ func _init(
 	super(Type.REFLECT, i_potency, i_overwrites, i_turnsLeft)
 
 func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int, justCalc: bool = false) -> int:
-	var damage: int = 0
+	var damage: float = 0
 	if attackerIdx < 0 or attackerIdx >= len(allCombatants) or allCombatants[attackerIdx].command == null or allCombatants[attackerIdx].command.commandResult == null:
 		#printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
 		# emergency bail out of recoil dmg calculation

@@ -36,7 +36,7 @@ static func get_elapsed_time(secs: float) -> String:
 	var hours: int = floori(temp / 60.0)
 	secs = floori(secs) % 60
 	
-	return String.num_int64(hours) + 'h ' + String.num_int64(mins) + 'm ' + String.num_int64(secs) + 's'
+	return String.num_int64(hours) + 'h ' + String.num_int64(mins) + 'm ' + String.num_int64(roundi(secs)) + 's'
 
 static func string_arr_to_string(strings: Array[String], twoSeparator: String = ' and ', middleSeparator: String = ', ', finalSeparator: String = ', and ', prefix: String = '', suffix: String = '') -> String:
 	var finalString: String = ''

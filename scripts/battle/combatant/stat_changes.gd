@@ -16,6 +16,7 @@ class_name StatChanges
 @export var speedMultiplier: float = 1.0
 
 @export var elementMultipliers: Array[ElementMultiplier] = []
+@export var keywordMultipliers: Dictionary[String, float] = {}
 
 func _init(
 	i_physM = 1.0,
@@ -29,6 +30,7 @@ func _init(
 	i_resistanceN = 0,
 	i_speedN = 0,
 	i_elementMults: Array[ElementMultiplier] = [],
+	i_keywordMults: Dictionary[String, float] = {},
 ):
 	physAttackIncrease = i_physN
 	magicAttackIncrease = i_magicN
@@ -41,6 +43,7 @@ func _init(
 	resistanceMultiplier = i_resistanceM
 	speedMultiplier = i_speedM
 	elementMultipliers = i_elementMults
+	keywordMultipliers = i_keywordMults
 
 func reset():
 	physAttackIncrease = 0
@@ -54,6 +57,7 @@ func reset():
 	resistanceMultiplier = 1.0
 	speedMultiplier = 1.0
 	elementMultipliers = []
+	keywordMultipliers = {}
 
 func stack(changes: StatChanges):
 	if changes == null:
@@ -85,6 +89,12 @@ func stack(changes: StatChanges):
 			var newMult: ElementMultiplier = changesMult.duplicate()
 			if newMult.multiplier != 1.0:
 				elementMultipliers.append(newMult)
+	
+	for changesKeyword: String in changes.keywordMultipliers.keys():
+		if keywordMultipliers.has(changesKeyword):
+			keywordMultipliers[changesKeyword] += changes.keywordMultipliers[changesKeyword] - 1.0
+		else:
+			keywordMultipliers[changesKeyword] = changes.keywordMultipliers[changesKeyword]
 
 func subtract(changes: StatChanges) -> StatChanges:
 	var newChanges: StatChanges = copy()
@@ -118,6 +128,12 @@ func subtract(changes: StatChanges) -> StatChanges:
 				# only add the multiplier if it's not 1x
 				if newMult.multiplier != 1.0:
 					newChanges.elementMultipliers.append(newMult)
+		
+		for changesKeyword: String in changes.keywordMultipliers.keys():
+			if newChanges.keywordMultipliers.has(changesKeyword):
+				newChanges.keywordMultipliers[changesKeyword] -= changes.keywordMultipliers[changesKeyword] - 1.0
+			else:
+				newChanges.keywordMultipliers[changesKeyword] = 1.0 - (changes.keywordMultipliers[changesKeyword] - 1.0)
 	
 	return newChanges
 
@@ -136,6 +152,9 @@ func times(x: float):
 	
 	for mult: ElementMultiplier in elementMultipliers:
 		mult.multiplier = (mult.multiplier - 1.0) * x + 1
+	
+	for keyword: String in keywordMultipliers.keys():
+		keywordMultipliers[keyword] = (keywordMultipliers[keyword] - 1.0) * x + 1
 
 func equals(changes: StatChanges) -> bool:
 	if changes == null:
@@ -167,7 +186,7 @@ func equals(changes: StatChanges) -> bool:
 		return false
 	
 	for changesMult: ElementMultiplier in changes.elementMultipliers:
-		var found = false
+		var found: bool = false
 		for mult: ElementMultiplier in elementMultipliers:
 			if mult.element == changesMult.element:
 				found = true
@@ -176,8 +195,23 @@ func equals(changes: StatChanges) -> bool:
 		if not found and changesMult.multiplier != 1.0:
 			return false
 	
+	for keyword: String in changes.keywordMultipliers.keys():
+		if keywordMultipliers.has(keyword):
+			if changes.keywordMultipliers[keyword] != keywordMultipliers[keyword]:
+				return false
+		elif changes.keywordMultipliers[keyword] != 1.0:
+			return false
+	
+	for keyword: String in keywordMultipliers.keys():
+		if changes.keywordMultipliers.has(keyword):
+			if changes.keywordMultipliers[keyword] != keywordMultipliers[keyword]:
+				return false
+		elif keywordMultipliers[keyword] != 1.0:
+			return false
+	
 	return true
 
+## same as subtract(changes), but applies it to this instance instead of creating a new StatChanges
 func undo_changes(changes: StatChanges):
 	if changes == null:
 		return
@@ -209,6 +243,12 @@ func undo_changes(changes: StatChanges):
 			newMult.multiplier -= newMult.multiplier - 1.0
 			if newMult.multiplier != 1.0:
 				elementMultipliers.append(newMult)
+	
+	for changesKeyword: String in changes.keywordMultipliers.keys():
+		if keywordMultipliers.has(changesKeyword):
+			keywordMultipliers[changesKeyword] -= changes.keywordMultipliers[changesKeyword] - 1.0
+		else:
+			keywordMultipliers[changesKeyword] = 1.0 - (changes.keywordMultipliers[changesKeyword] - 1.0)
 
 func apply(s: Stats) -> Stats:
 	var newStats = s.copy()
@@ -225,7 +265,7 @@ func apply(s: Stats) -> Stats:
 	newStats.resistance = max(1, roundi(newStats.resistance * resistanceMultiplier))
 	newStats.speed = max(1, roundi(newStats.speed * speedMultiplier))
 	
-	# element multipliers are not stored in the stats object, so ignore those
+	# element, keyword multipliers are not stored in the stats object, so ignore those
 	return newStats
 
 func get_element_multiplier(e: Move.Element) -> float:
@@ -233,6 +273,11 @@ func get_element_multiplier(e: Move.Element) -> float:
 		if mult.element == e:
 			return mult.multiplier
 	
+	return 1.0
+
+func get_keyword_multiplier(keyword: String) -> float:
+	if keywordMultipliers.has(keyword):
+		return keywordMultipliers[keyword]
 	return 1.0
 
 func get_attack_percent_boost_for_category(c: Move.DmgCategory) -> float:
@@ -269,6 +314,11 @@ func has_stat_changes() -> bool:
 	# check if any element multipliers exist that aren't 1x. If there is at least one, this obj has stat changes
 	for mult: ElementMultiplier in elementMultipliers:
 		if mult.multiplier != 1.0:
+			return true
+	
+	# check if any keyword multipliers exist that aren't 1x. If so, this object has stat changes
+	for keyword: String in keywordMultipliers.keys():
+		if keywordMultipliers[keyword] != 1.0:
 			return true
 	
 	return physAttackIncrease != 0 \
@@ -320,6 +370,15 @@ func get_element_multiplier_texts() -> Array[StatMultiplierText]:
 			)
 	return texts
 
+func get_keyword_multiplier_texts() -> Array[StatMultiplierText]:
+	var texts: Array[StatMultiplierText] = []
+	for keyword: String in keywordMultipliers.keys():
+		if keywordMultipliers[keyword] != 1.0:
+			texts.append( \
+				StatMultiplierText.new(keyword, 0, keywordMultipliers[keyword]) \
+			)
+	return texts
+
 func get_stat_multiplier_texts() -> Array[StatMultiplierText]:
 	var texts: Array[StatMultiplierText] = []
 	
@@ -344,6 +403,7 @@ func get_multipliers_text() -> Array[StatMultiplierText]:
 	var texts: Array[StatMultiplierText] = []
 	texts.append_array(get_stat_multiplier_texts())
 	texts.append_array(get_element_multiplier_texts())
+	texts.append_array(get_keyword_multiplier_texts())
 
 	return texts
 

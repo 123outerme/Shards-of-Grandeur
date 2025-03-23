@@ -85,8 +85,8 @@ func _on_toggle_fob_button_toggled(button_pressed: bool):
 		fobButton.grab_focus.call_deferred()
 
 func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
-	panel.equipmentPanel.itemDetailsPanel.position = Vector2(-662, -256)
-	panel.equipmentPanel.itemDetailsPanel.z_index = 1
+	panel.equipmentIconsPanel.itemDetailsPanel.position = Vector2(-62, -614)
+	panel.equipmentIconsPanel.itemDetailsPanel.z_index = 1
 	panel.battleRunesPanel.set_deferred('size', Vector2(1280, 718))
 	panel.battleRunesPanel.z_index = 1
 	panel.battleRunesPanel.position = Vector2(-52, -155)

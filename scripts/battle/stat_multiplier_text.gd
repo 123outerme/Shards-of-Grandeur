@@ -5,7 +5,7 @@ var increase: int = 0
 var multiplier: float = 1.0
 
 static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplierText]) -> String:
-	var multipliersStr = ''
+	var multipliersStr: String = ''
 	for idx in range(len(multiplierTexts)):
 		multipliersStr += multiplierTexts[idx].print_multiplier()
 		if idx < len(multiplierTexts) - 1:
@@ -14,6 +14,14 @@ static func multiplier_text_list_to_string(multiplierTexts: Array[StatMultiplier
 			if idx == len(multiplierTexts) - 2:
 				multipliersStr += ' and'
 			multipliersStr += ' '
+	return multipliersStr
+
+static func multiplier_text_list_to_newlined_string(multiplierTexts: Array[StatMultiplierText]) -> String:
+	var multipliersStr: String = ''
+	for idx in range(len(multiplierTexts)):
+		multipliersStr += multiplierTexts[idx].print_multiplier()
+		if idx < len(multiplierTexts) - 1:
+			multipliersStr += '\n'
 	return multipliersStr
 
 func _init(i_name = '', i_increase = 0, i_multiplier = 1.0):

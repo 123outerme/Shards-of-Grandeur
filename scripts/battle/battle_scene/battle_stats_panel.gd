@@ -13,9 +13,11 @@ class_name BattleStatsPanel
 @onready var runesButton: Button = get_node('RunesButton')
 @onready var orbDisplay: OrbDisplay = get_node('OrbDisplay')
 @onready var statLinePanel: StatLinePanel = get_node("StatLinePanel")
-@onready var elementEffectivenessText: RichTextLabel = get_node('ElementEffectivenessPanel/ElementEffectivenessText')
-@onready var elementDmgMultText: RichTextLabel = get_node('ElementDmgMultPanel/ElementDmgMultText')
-@onready var equipmentPanel: EquipmentPanel = get_node("EquipmentPanel")
+@onready var elementWeaknessesText: RichTextLabel = get_node('ElementEffectivenessPanel/ElementWeaknessesText')
+@onready var elementResistancesText: RichTextLabel = get_node('ElementEffectivenessPanel/ElementResistancesText')
+@onready var elementDmgMultText: RichTextLabel = get_node('DmgBoostsMultPanel/HBoxContainer/ElementDmgMultText')
+@onready var keywordDmgMultText: RichTextLabel = get_node('DmgBoostsMultPanel/HBoxContainer/KeywordDmgMultText')
+@onready var equipmentIconsPanel: EquipmentIconsPanel = get_node("EquipmentIconsPanel")
 @onready var battleRunesPanel: BattleRunesPanel = get_node('BattleRunesPanel')
 @onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
 
@@ -52,47 +54,47 @@ func load_battle_stats_panel():
 	
 	runesButton.visible = len(combatant.runes) > 0
 	
-	equipmentPanel.weapon = combatant.stats.equippedWeapon
-	equipmentPanel.armor = combatant.stats.equippedArmor
+	equipmentIconsPanel.weapon = combatant.stats.equippedWeapon
+	equipmentIconsPanel.armor = combatant.stats.equippedArmor
 	
-	var elMultTexts: Array[StatMultiplierText] = []
 	if combatant.statChanges != null:
-		elMultTexts = combatant.statChanges.get_element_multiplier_texts()
-	elementDmgMultText.text = '[center]Element Damage Boosts:\n' \
-			+ StatMultiplierText.multiplier_text_list_to_string(elMultTexts) + '[/center]'
+		var elMultTexts: Array[StatMultiplierText] = combatant.statChanges.get_element_multiplier_texts()
+		elementDmgMultText.text = '[center]' \
+			+ StatMultiplierText.multiplier_text_list_to_newlined_string(elMultTexts) + '[/center]'
+		var keywordMultTexts: Array[StatMultiplierText] = combatant.statChanges.get_keyword_multiplier_texts()
+		keywordDmgMultText.text ='[center]' \
+			+ StatMultiplierText.multiplier_text_list_to_newlined_string(keywordMultTexts) + '[/center]'
 	
 	var hasBeatenStoryReq: StoryRequirements = StoryRequirements.new()
 	hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
 	if hasBeatenStoryReq.is_valid() or combatant.save_name() == 'player':
-		elementEffectivenessText.text = '[center]'
-		var hasText: bool = false
+		elementWeaknessesText.text = '[center]'
 		var elementWeaknesses: Array[Move.Element] = combatant.get_element_weaknesses()
 		if len(elementWeaknesses) > 0:
-			hasText = true
-			elementEffectivenessText.text += 'Weak to '
+			elementWeaknessesText.text += 'Weak to '
 			for idx in range(len(elementWeaknesses)):
-				elementEffectivenessText.text += Move.element_to_string(elementWeaknesses[idx])
+				elementWeaknessesText.text += Move.element_to_string(elementWeaknesses[idx])
 				if idx < len(elementWeaknesses) - 1:
-					elementEffectivenessText.text += ', '
-			elementEffectivenessText.text += '\n'
+					elementWeaknessesText.text += ', '
+			elementWeaknessesText.text += '[/center]'
+		else:
+			elementWeaknessesText.text = '[center]No Weaknesses[/center]'
+		elementResistancesText.text = '[center]'
 		var elementResistances: Array[Move.Element] = combatant.get_element_resistances()
 		if len(elementResistances) > 0:
-			hasText = true
-			elementEffectivenessText.text += 'Resistant to '
+			elementResistancesText.text += 'Resistant to '
 			for idx in range(len(elementWeaknesses)):
-				elementEffectivenessText.text += Move.element_to_string(elementResistances[idx])
+				elementResistancesText.text += Move.element_to_string(elementResistances[idx])
 				if idx < len(elementResistances) - 1:
-					elementEffectivenessText.text += ', '
-			elementEffectivenessText.text += '\n'
-		
-		if not hasText:
-			elementEffectivenessText.text += 'No Weaknesses or Resistances'
-		
-		elementEffectivenessText.text += '[/center]'
+					elementResistancesText.text += ', '
+			elementResistancesText.text += '[/center]'
+		else:
+			elementResistancesText.text = '[center]No Resistances[/center]'
 	else:
-		elementEffectivenessText.text = '[center]Weak to ???\nResistant to ???[/center]'
+		elementWeaknessesText.text = '[center]Weak to ???[/center]'
+		elementResistancesText.text = '[center]Resistant to ???[/center]'
 	
-	equipmentPanel.load_equipment_panel()
+	equipmentIconsPanel.load_equipment_icons_panel()
 
 func _on_status_help_button_pressed():
 	if combatant.statusEffect != null:

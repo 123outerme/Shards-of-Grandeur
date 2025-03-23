@@ -449,13 +449,13 @@ func teleport_to(mapName: String):
 func ex_teleport_to(pos: Vector2, mapName: String):
 	if MapLoader.get_world_location_for_name(mapName) != null:
 		SceneLoader.mapLoader.entered_warp(mapName, pos, PlayerFinder.player.position)
-		print_to_console('Teleported to (' + String.num_int64(pos.x) + ', ' + String.num_int64(pos.y) + ') at map "' + mapName + '".')
+		print_to_console('Teleported to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ') at map "' + mapName + '".')
 	else:
 		print_to_console('The map "' + mapName + '" does not exist.')
 
 func move_player_to(pos: Vector2):
 	PlayerFinder.player.position = pos
-	print_to_console('Moved player to (' + String.num_int64(pos.x) + ', ' + String.num_int64(pos.y) + ').')
+	print_to_console('Moved player to (' + String.num(pos.x) + ', ' + String.num(pos.y) + ').')
 
 func set_noclip(enable: bool):
 	if enable:

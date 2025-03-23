@@ -22,7 +22,7 @@ func _init(
 	lastAdjustedDmg = i_lastAdjustedDmg
 
 func get_recoil_damage(combatant: Combatant) -> int:
-	var damage: int = 0
+	var damage: float = 0
 	# Assumption: targets are already fetched
 	if combatant.command != null and combatant.command.commandResult != null:
 		# calculate total damage dealt from this command

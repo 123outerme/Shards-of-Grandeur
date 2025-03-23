@@ -218,11 +218,11 @@ func load_stats_panel(fromToggle: bool = false):
 	minionsPanel.load_minions_panel()
 	
 	update_move_list_tab_icon()
-	var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+	var minionsCtrl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
 	if minion != null:
-		minionsControl.name = minion.disp_name()
+		minionsCtrl.name = minion.disp_name()
 	else:
-		minionsControl.name = 'Minions'
+		minionsCtrl.name = 'Minions'
 	update_minions_tab()
 	#minionsPanel.call_deferred('connect_to_bottom_control', tabbedViewBackButton)
 	changingCombatant = false
@@ -336,8 +336,8 @@ func _on_minions_panel_stats_clicked(combatant: Combatant):
 		initial_focus()
 
 func _on_minions_panel_minion_renamed() -> void:
-	var minionsControl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
-	minionsControl.name = minion.disp_name()
+	var minionsCtrl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)
+	minionsCtrl.name = minion.disp_name()
 
 func _on_minions_panel_changed_minion_hovered(combatant: Combatant) -> void:
 	if PlayerResources.minions.is_minion_marked_changed(combatant.save_name()):
