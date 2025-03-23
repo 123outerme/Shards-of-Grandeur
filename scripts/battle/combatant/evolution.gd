@@ -7,6 +7,7 @@ class_name Evolution
 @export_category("Evolution - Equipment")
 @export var requiredArmor: Armor = null
 @export var requiredWeapon: Weapon = null
+@export var requiredAccessory: Accessory = null
 
 @export_category("Evolution - Stats")
 @export var stats: Stats = Stats.new()
@@ -22,6 +23,7 @@ func _init(
 	i_sprite = null,
 	i_requiredArmor = null,
 	i_requiredWeapon = null,
+	i_requiredAccessory: Accessory = null,
 	i_stats = Stats.new(),
 	i_statAllocStrat: StatAllocationStrategy = null,
 	i_moveEffectiveness = null,
@@ -34,6 +36,7 @@ func _init(
 	combatantSprite = i_sprite
 	requiredArmor = i_requiredArmor
 	requiredWeapon = i_requiredWeapon
+	requiredAccessory = i_requiredAccessory
 	stats = i_stats
 	statAllocationStrategy = i_statAllocStrat
 	moveEffectiveness = i_moveEffectiveness
@@ -43,7 +46,7 @@ func _init(
 	strategy = i_strategy
 
 func combatant_can_evolve(combatant: Combatant) -> bool:
-	if requiredArmor == null and requiredWeapon == null:
+	if requiredArmor == null and requiredWeapon == null and requiredAccessory == null:
 		return false
 
 	if requiredArmor != null and (combatant.stats.equippedArmor == null or \
@@ -52,6 +55,10 @@ func combatant_can_evolve(combatant: Combatant) -> bool:
 
 	if requiredWeapon != null and (combatant.stats.equippedWeapon == null or \
 			combatant.stats.equippedWeapon.itemName != requiredWeapon.itemName):
+		return false
+	
+	if requiredAccessory != null and (combatant.stats.equippedAccessory == null or \
+			combatant.stats.equippedAccessory.itemName != requiredAccessory.itemName):
 		return false
 
 	return true

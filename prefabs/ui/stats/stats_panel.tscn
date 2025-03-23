@@ -283,9 +283,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hatjo")
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Stats" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -303,7 +304,6 @@ offset_bottom = 189.0
 grow_vertical = 2
 
 [node name="Equipment" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -314,94 +314,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -461.5
-offset_top = -267.5
+offset_top = -267.0
 offset_right = 458.5
-offset_bottom = 212.5
+offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
-showEquipmentDetailsPanels = true
 
-[node name="WeaponControl" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="0"]
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 236.0
-grow_vertical = 1
-
-[node name="WeaponLabel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="0"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 97.0
-offset_bottom = 28.0
-
-[node name="WeaponSprite" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="1"]
-offset_left = 98.0
-offset_top = 2.0
-offset_right = 130.0
-offset_bottom = 34.0
-
-[node name="WeaponName" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="2"]
-offset_left = 140.0
-offset_top = 4.0
-offset_right = 412.0
-offset_bottom = 28.0
-
-[node name="WeaponEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="3"]
-visible = false
-
-[node name="WeaponDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/WeaponControl" index="4"]
-visible = true
-offset_left = -2.0
-offset_right = 928.0
-
-[node name="Line2D" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/Control" index="0"]
-points = PackedVector2Array(2, 0, 918, 0)
-
-[node name="ArmorControl" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="2"]
-anchors_preset = 12
-anchor_top = 1.0
-offset_left = 0.0
-offset_top = -225.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_vertical = 0
-
-[node name="ArmorLabel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="0"]
-offset_left = 2.0
-offset_right = 82.0
-
-[node name="ArmorSprite" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="1"]
-offset_left = 98.0
-offset_right = 130.0
-
-[node name="ArmorName" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="2"]
-offset_left = 140.0
-offset_right = 412.0
-
-[node name="ArmorEffects" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="3"]
-visible = false
-
-[node name="ArmorDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ArmorControl" index="4"]
-visible = true
-
-[node name="ItemDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="3"]
+[node name="ItemDetailsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel" index="5"]
 offset_left = -179.0
 offset_top = -113.0
-offset_right = -179.0
-offset_bottom = -113.0
-
-[node name="ColorRect" parent="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ItemDetailsPanel" index="0"]
-anchors_preset = -1
-anchor_left = -0.004
-anchor_top = -0.003
-anchor_right = 2.282
-anchor_bottom = 2.275
-offset_left = 3.68
-offset_top = 1.44
-offset_right = -819.44
-offset_bottom = -372.0
+offset_right = 181.0
+offset_bottom = 81.0
 
 [node name="Moves" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
 visible = false
@@ -531,6 +454,5 @@ layout_mode = 1
 [connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]
 
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel"]
-[editable path="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel/ItemDetailsPanel"]
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel"]
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel"]

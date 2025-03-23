@@ -324,6 +324,7 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 	# copy over equipment
 	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
 	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
+	stats.equippedAccessory = evolutionStats[prevIdx].equippedAccessory
 	# if the movepool changed: alert the player
 	if stats.movepool != evolutionStats[prevIdx].movepool:
 		returnCode += 0b00010
@@ -472,6 +473,8 @@ func get_starting_orbs() -> int:
 		bonusOrbs += stats.equippedWeapon.bonusOrbs
 	if stats.equippedArmor != null:
 		bonusOrbs += stats.equippedArmor.bonusOrbs
+	if stats.equippedAccessory != null:
+		bonusOrbs += stats.equippedAccessory.bonusOrbs
 	
 	return max(0, min(Combatant.MAX_ORBS, bonusOrbs)) # bounded [0, max]
 
@@ -811,9 +814,11 @@ func pick_equipment():
 		var equipmentChoice: WeightedEquipment = weightedEquipment.weightedEquipment[choice]
 		stats.equippedWeapon = equipmentChoice.weapon
 		stats.equippedArmor = equipmentChoice.armor
+		stats.equippedAccessory = equipmentChoice.accessory
 	else:
 		stats.equippedWeapon = null
 		stats.equippedArmor = null
+		stats.equippedAccessory = null
 
 func validate_allocation_strategy_non_null():
 	if statAllocationStrategy == null:

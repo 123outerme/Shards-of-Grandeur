@@ -115,26 +115,36 @@ func equip_item(inventorySlot: InventorySlot, equip: bool, contextStats: Stats =
 		contextStats = PlayerResources.playerInfo.combatant.stats
 	
 	var minionEquipped: String = PlayerResources.minions.which_minion_equipped(item)
-	if inventorySlot.item is Weapon:
+	if item is Weapon:
 		if equip:
 			contextStats.equippedWeapon = item
 		else:
 			if minionEquipped != '':
 				contextStats = PlayerResources.minions.get_minion(minionEquipped).stats
 			contextStats.equippedWeapon = null
-	if inventorySlot.item is Armor:
+	if item is Armor:
 		if equip:
 			contextStats.equippedArmor = item
 		else:
 			if minionEquipped != '':
 				contextStats = PlayerResources.minions.get_minion(minionEquipped).stats
 			contextStats.equippedArmor = null
+	if item is Accessory:
+		if equip:
+			contextStats.equippedAccessory = item
+		else:
+			if minionEquipped != '':
+				contextStats = PlayerResources.minions.get_minion(minionEquipped).stats
+			contextStats.equippedAccessory = null
+
 
 func is_equipped(item: Item) -> bool:
 	if item is Weapon:
 		return PlayerResources.playerInfo.combatant.stats.equippedWeapon == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	if item is Armor:
 		return PlayerResources.playerInfo.combatant.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
+	if item is Accessory:
+		return PlayerResources.playerInfo.combatant.stats.equippedAccessory == item or  PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
 func is_slot_for_item_full(item: Item) -> bool:

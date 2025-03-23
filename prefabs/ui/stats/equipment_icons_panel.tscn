@@ -106,6 +106,7 @@ offset_right = -48.0
 offset_bottom = 32.0
 grow_horizontal = 0
 focus_neighbor_left = NodePath("../../WeaponControl/WeaponSprite")
+focus_neighbor_right = NodePath("../../AccessoryControl/AccessorySprite")
 texture_normal = ExtResource("4_dt2r4")
 texture_disabled = ExtResource("2_sscxu")
 texture_focused = ExtResource("5_iww1a")
@@ -132,7 +133,6 @@ text = "Item Name Goes Here"
 fit_content = true
 
 [node name="AccessoryControl" type="Control" parent="HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3

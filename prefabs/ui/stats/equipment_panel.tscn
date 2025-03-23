@@ -15,24 +15,23 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mivc8"]
 
 [node name="EquipmentPanel" type="Panel"]
-offset_right = 560.0
-offset_bottom = 316.0
+offset_right = 920.0
+offset_bottom = 524.0
 theme = ExtResource("1_75e18")
 theme_override_styles/panel = ExtResource("2_8n2sy")
 script = ExtResource("3_xcqx6")
 notEquippedSprite = ExtResource("4_27fs2")
+showEquipmentDetailsPanels = true
 
 [node name="WeaponControl" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = -4.0
-offset_bottom = -178.0
+offset_bottom = 224.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WeaponLabel" type="RichTextLabel" parent="WeaponControl"]
 layout_mode = 0
@@ -43,8 +42,8 @@ fit_content = true
 
 [node name="WeaponSprite" parent="WeaponControl" instance=ExtResource("8_e7n8f")]
 layout_mode = 1
-offset_left = 96.0
-offset_right = 128.0
+offset_left = 154.0
+offset_right = 186.0
 offset_bottom = 32.0
 texture_normal = ExtResource("6_xgebg")
 texture_disabled = ExtResource("4_27fs2")
@@ -54,14 +53,15 @@ stretch_mode = 0
 [node name="WeaponName" type="RichTextLabel" parent="WeaponControl"]
 clip_contents = false
 layout_mode = 0
-offset_left = 138.0
+offset_left = 196.0
 offset_top = 2.0
-offset_right = 410.0
+offset_right = 468.0
 offset_bottom = 26.0
 text = "Item Name Goes Here"
 fit_content = true
 
 [node name="WeaponEffects" type="RichTextLabel" parent="WeaponControl"]
+visible = false
 layout_mode = 0
 offset_top = 32.0
 offset_right = 552.0
@@ -71,38 +71,34 @@ text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
 
 [node name="WeaponDetailsPanel" parent="WeaponControl" instance=ExtResource("8_peacu")]
-visible = false
 layout_mode = 0
 offset_top = 36.0
 offset_right = 930.0
 offset_bottom = 220.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5uww8")
 
-[node name="Control" type="Control" parent="."]
+[node name="LineControl" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
+offset_top = 225.0
+offset_bottom = 225.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="Line2D" type="Line2D" parent="Control"]
-points = PackedVector2Array(2, 0, 558, 0)
+[node name="Line2D" type="Line2D" parent="LineControl"]
+points = PackedVector2Array(2, 0, 918, 0)
 width = 2.0
 default_color = Color(0, 0, 0, 0.631373)
 
 [node name="ArmorControl" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 178.0
+offset_top = 228.0
 offset_right = -4.0
-offset_bottom = -4.0
+offset_bottom = 448.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ArmorLabel" type="RichTextLabel" parent="ArmorControl"]
 layout_mode = 0
@@ -113,8 +109,8 @@ fit_content = true
 
 [node name="ArmorSprite" parent="ArmorControl" instance=ExtResource("8_e7n8f")]
 layout_mode = 0
-offset_left = 96.0
-offset_right = 128.0
+offset_left = 154.0
+offset_right = 186.0
 offset_bottom = 32.0
 texture_normal = ExtResource("6_xgebg")
 texture_disabled = ExtResource("4_27fs2")
@@ -124,14 +120,15 @@ stretch_mode = 0
 [node name="ArmorName" type="RichTextLabel" parent="ArmorControl"]
 clip_contents = false
 layout_mode = 0
-offset_left = 138.0
+offset_left = 196.0
 offset_top = 2.0
-offset_right = 410.0
+offset_right = 468.0
 offset_bottom = 26.0
 text = "Item Name Goes Here"
 fit_content = true
 
 [node name="ArmorEffects" type="RichTextLabel" parent="ArmorControl"]
+visible = false
 layout_mode = 0
 offset_top = 32.0
 offset_right = 552.0
@@ -141,7 +138,6 @@ text = "[center]While Equipped, Before The User's Turn Starts:
 +100% Phys Atk, +100% Magic Atk, +100% Resistance, +100% Affinity, and +100% Speed[/center]"
 
 [node name="ArmorDetailsPanel" parent="ArmorControl" instance=ExtResource("8_peacu")]
-visible = false
 layout_mode = 0
 offset_left = -2.0
 offset_top = 36.0
@@ -149,10 +145,83 @@ offset_right = 928.0
 offset_bottom = 220.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mivc8")
 
+[node name="LineControl2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 449.0
+offset_bottom = 449.0
+grow_horizontal = 2
+
+[node name="Line2D" type="Line2D" parent="LineControl2"]
+points = PackedVector2Array(2, 0, 918, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 0.631373)
+
+[node name="AccessoryControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 451.0
+offset_right = -4.0
+offset_bottom = 491.0
+grow_horizontal = 2
+
+[node name="AccessoryLabel" type="RichTextLabel" parent="AccessoryControl"]
+layout_mode = 0
+offset_right = 133.0
+offset_bottom = 26.0
+text = "Accessory:"
+fit_content = true
+
+[node name="AccessorySprite" parent="AccessoryControl" instance=ExtResource("8_e7n8f")]
+layout_mode = 0
+offset_left = 154.0
+offset_right = 186.0
+offset_bottom = 32.0
+texture_normal = ExtResource("6_xgebg")
+texture_disabled = ExtResource("4_27fs2")
+texture_focused = ExtResource("6_p8706")
+stretch_mode = 0
+
+[node name="AccessoryName" type="RichTextLabel" parent="AccessoryControl"]
+clip_contents = false
+layout_mode = 0
+offset_left = 196.0
+offset_top = 2.0
+offset_right = 468.0
+offset_bottom = 26.0
+text = "Item Name Goes Here"
+fit_content = true
+
+[node name="HBoxOrbs" type="HBoxContainer" parent="AccessoryControl"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 36.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="OrbsLabel" type="RichTextLabel" parent="AccessoryControl/HBoxOrbs"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.28
+text = "Orbs Gained:"
+fit_content = true
+
+[node name="OrbsText" type="RichTextLabel" parent="AccessoryControl/HBoxOrbs"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "+10 [img=24x24]res://graphics/ui/orb_filled.png[/img] At The Start Of Battle"
+
 [node name="ItemDetailsPanel" parent="." instance=ExtResource("6_7fgnm")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="WeaponControl/WeaponSprite" to="." method="_on_weapon_sprite_pressed"]
 [connection signal="pressed" from="ArmorControl/ArmorSprite" to="." method="_on_armor_sprite_pressed"]
+[connection signal="pressed" from="AccessoryControl/AccessorySprite" to="." method="_on_armor_sprite_pressed"]
 [connection signal="back_pressed" from="ItemDetailsPanel" to="." method="_on_item_details_panel_back_pressed"]

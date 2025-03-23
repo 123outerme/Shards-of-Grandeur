@@ -70,6 +70,10 @@ func load_equip_combatant_panel():
 		if combatant.stats.equippedArmor != null:
 			currentEquipment = combatant.stats.equippedArmor
 			curEquipmentSprite = combatant.stats.equippedArmor.itemSprite
+	elif item is Accessory:
+		if combatant.stats.equippedAccessory != null:
+			currentEquipment = combatant.stats.equippedAccessory
+			curEquipmentSprite = combatant.stats.equippedAccessory.itemSprite
 	if curEquipmentSprite == noCurrentEquipmentSprite:
 		otherEquipDetailsButton.disabled = true
 	

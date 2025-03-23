@@ -11,6 +11,7 @@ enum SpecialRules {
 @export var combatant1: Combatant = null
 @export var combatant1Weapon: Weapon = null
 @export var combatant1Armor: Armor = null
+@export var combatant1Accessory: Accessory = null
 @export var combatant1StatAllocStrat: StatAllocationStrategy = null
 @export_flags('No Items:1', 'No Summons:2', 'Restand On Defeat:4') var specialRules: int = SpecialRules.NONE
 @export var winCon: WinCon = null
@@ -21,6 +22,7 @@ func _init(
 	i_combatant1: Combatant = null,
 	i_combatant1Weapon: Weapon = null,
 	i_combatant1Armor: Armor = null,
+	i_combatant1Accessory: Accessory = null,
 	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
 	i_specialRules: int = SpecialRules.NONE,
 	i_winCon: WinCon = null,
@@ -28,6 +30,9 @@ func _init(
 	i_battleMap: String = '',
 ):
 	combatant1 = i_combatant1
+	combatant1Armor = i_combatant1Armor
+	combatant1Weapon = i_combatant1Weapon
+	combatant1Accessory = i_combatant1Accessory
 	combatant1StatAllocStrat = i_combatant1StatAllocStrat
 	specialRules = i_specialRules
 	winCon = i_winCon

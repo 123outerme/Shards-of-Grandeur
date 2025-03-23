@@ -31,6 +31,7 @@ func load_equipment_details_panel():
 			boostsText.text = StatMultiplierText.multiplier_text_list_to_string(statMultipliersText)
 		
 		var elMultipliersText: Array[StatMultiplierText] = statChanges.get_element_multiplier_texts()
+		elMultipliersText.append_array(statChanges.get_keyword_multiplier_texts())
 		if len(elMultipliersText) == 0:
 			hboxElBoosts.visible = false
 		else:

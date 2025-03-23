@@ -60,6 +60,7 @@ func load_move_learn_animation(playSurge: bool = false) -> void:
 	if customTarget != null and customTargetEvolution != null:
 		targetCombatant.stats.equippedArmor = customTargetEvolution.requiredArmor
 		targetCombatant.stats.equippedWeapon = customTargetEvolution.requiredWeapon
+		targetCombatant.stats.equippedAccessory = customTargetEvolution.requiredAccessory
 		targetCombatant.switch_evolution(customTargetEvolution, null)
 	
 	userNode.combatant = PlayerResources.playerInfo.combatant if not swapUsersAndTargets else targetCombatant.copy()

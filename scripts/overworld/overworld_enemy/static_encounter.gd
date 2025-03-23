@@ -10,6 +10,7 @@ class_name StaticEncounter
 @export var combatant2Level: int = 1
 @export var combatant2Armor: Armor = null
 @export var combatant2Weapon: Weapon = null
+@export var combatant2Accessory: Accessory = null
 @export var combatant2Moves: Array[Move] = []
 @export var combatant2Ai: CombatantAi = null
 @export var combatant2ShardSummoned: bool = false
@@ -18,6 +19,7 @@ class_name StaticEncounter
 @export var combatant3Level: int = 1
 @export var combatant3Armor: Armor = null
 @export var combatant3Weapon: Weapon = null
+@export var combatant3Accessory: Accessory = null
 @export var combatant3Moves: Array[Move] = []
 @export var combatant3Ai: CombatantAi = null
 @export var combatant3ShardSummoned: bool = false
@@ -26,6 +28,7 @@ class_name StaticEncounter
 @export var autoAllyLevel: int = 1
 @export var autoAllyArmor: Armor = null
 @export var autoAllyWeapon: Weapon = null
+@export var autoAllyAccessory: Accessory = null
 @export var autoAllyMoves: Array[Move] = []
 @export var autoAllyShardSummoned: bool = false
 @export var specialBattleId: String = ''
@@ -39,6 +42,7 @@ func _init(
 	i_combatant1 = null,
 	i_combatant1Weapon: Weapon = null,
 	i_combatant1Armor: Armor = null,
+	i_combatant1Accessory: Accessory = null,
 	i_combatant1StatAllocStrat: StatAllocationStrategy = null,
 	i_specialRules = SpecialRules.NONE,
 	i_winCon = null,
@@ -52,6 +56,7 @@ func _init(
 	i_combatant2Lv = 1,
 	i_combatant2Armor = null,
 	i_combatant2Weapon = null,
+	i_combatant2Accessory: Accessory = null,
 	i_combatant2Moves: Array[Move] = [],
 	i_combatant2Ai: CombatantAi = null,
 	i_combatant2ShardSummoned = false,
@@ -60,6 +65,7 @@ func _init(
 	i_combatant3Lv = 1,
 	i_combatant3Armor = null,
 	i_combatant3Weapon = null,
+	i_combatant3Accessory: Accessory = null,
 	i_combatant3Moves: Array[Move] = [],
 	i_combatant3Ai: CombatantAi = null,
 	i_combatant3ShardSummoned = false,
@@ -68,6 +74,7 @@ func _init(
 	i_autoAllyLv = 1,
 	i_autoAllyArmor = null,
 	i_autoAllyWeapon = null,
+	i_autoAllyAccessory: Accessory = null,
 	i_autoAllyMoves: Array[Move] = [],
 	i_autoAllyShardSummoned = false,
 	i_specialBattleId = '',
@@ -76,10 +83,8 @@ func _init(
 	i_useRewards = false,
 	i_battleMusic = null,
 ):
-	super(i_combatant1, i_combatant1Weapon, i_combatant1Armor, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
+	super(i_combatant1, i_combatant1Weapon, i_combatant1Armor, i_combatant1Accessory, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
 	combatant1Level = i_combatant1Lv
-	combatant1Armor = i_combatant1Armor
-	combatant1Weapon = i_combatant1Weapon
 	combatant1Moves = i_combatant1Moves
 	combatant1Ai = i_combatant1Ai
 	combatant1ShardSummoned = i_combatant1ShardSummoned
@@ -89,6 +94,7 @@ func _init(
 	combatant2Level = i_combatant2Lv
 	combatant2Armor = i_combatant2Armor
 	combatant2Weapon = i_combatant2Weapon
+	combatant2Accessory = i_combatant2Accessory
 	combatant2Moves = i_combatant2Moves
 	combatant2Ai = i_combatant2Ai
 	combatant2ShardSummoned = i_combatant2ShardSummoned
@@ -98,6 +104,7 @@ func _init(
 	combatant3Level = i_combatant3Lv
 	combatant3Armor = i_combatant3Armor
 	combatant3Weapon = i_combatant3Weapon
+	combatant3Accessory = i_combatant3Accessory
 	combatant3Moves = i_combatant3Moves
 	combatant3Ai = i_combatant3Ai
 	combatant3ShardSummoned = i_combatant3ShardSummoned
@@ -107,6 +114,7 @@ func _init(
 	autoAllyLevel = i_autoAllyLv
 	autoAllyArmor = i_autoAllyArmor
 	autoAllyWeapon = i_autoAllyWeapon
+	autoAllyAccessory = i_autoAllyAccessory
 	autoAllyMoves = i_autoAllyMoves
 	autoAllyShardSummoned = i_autoAllyShardSummoned
 	

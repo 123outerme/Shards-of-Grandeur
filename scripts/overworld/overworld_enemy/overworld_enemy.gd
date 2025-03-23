@@ -41,6 +41,7 @@ func _ready():
 	if enemyData.encounter != null:
 		combatant.stats.equippedArmor = enemyData.encounter.combatant1Armor
 		combatant.stats.equippedWeapon = enemyData.encounter.combatant1Weapon
+		combatant.stats.equippedAccessory = enemyData.encounter.combatant1Accessory
 	var evolution: Evolution = combatant.get_evolution()
 	if combatant.get_evolution() != null:
 		combatant.switch_evolution(evolution, null)

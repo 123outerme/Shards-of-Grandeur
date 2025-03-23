@@ -5,8 +5,8 @@ signal attempt_equip_weapon
 signal attempt_equip_armor
 
 @export var weapon: Weapon = null
-
 @export var armor: Armor = null
+@export var accessory: Accessory = null
 
 @export var notEquippedSprite: Texture = null
 
@@ -24,6 +24,11 @@ var statsPanel: StatsMenu = null
 @onready var armorName: RichTextLabel = get_node("ArmorControl/ArmorName")
 @onready var armorEffects: RichTextLabel = get_node("ArmorControl/ArmorEffects")
 @onready var armorDetailsPanel: EquipmentDetailsPanel = get_node('ArmorControl/ArmorDetailsPanel')
+
+@onready var accessorySprite:  TextureButton = get_node("AccessoryControl/AccessorySprite")
+@onready var accessoryName: RichTextLabel = get_node("AccessoryControl/AccessoryName")
+@onready var accessoryOrbsHbox: HBoxContainer = get_node("AccessoryControl/HBoxOrbs")
+@onready var accessoryOrbsText: RichTextLabel = get_node("AccessoryControl/HBoxOrbs/OrbsText")
 
 @onready var itemDetailsPanel: ItemDetailsPanel = get_node("ItemDetailsPanel")
 
@@ -65,6 +70,16 @@ func load_equipment_panel():
 		armorName.text = 'None Equipped'
 		armorEffects.text = ''
 		armorDetailsPanel.visible = false
+	
+	if accessory != null:
+		accessorySprite.texture_normal = accessory.itemSprite
+		accessoryName.text = accessory.itemName
+		accessoryOrbsText.text = TextUtils.rich_text_substitute('+' + String.num_int64(accessory.bonusOrbs) + ' $orb At The Start Of Battle', Vector2i(24, 24))
+		accessoryOrbsHbox.visible = true
+	else:
+		accessorySprite.texture_normal = notEquippedSprite
+		accessoryName.text = 'None Equipped'
+		accessoryOrbsHbox.visible = false
 
 func hide_panel():
 	itemDetailsPanel.visible = false

@@ -82,14 +82,18 @@ func load_into_battle():
 		playerCombatant.combatant.orbs = playerCombatant.combatant.get_starting_orbs()
 		playerCombatant.combatant.update_battle_storage()
 		minionCombatant.combatant = null
+		# load enemy 1 (always defined statically)
+		enemyCombatant1.combatant = PlayerResources.playerInfo.encounter.combatant1.copy().initialize()
+		# if static encounter:
 		if PlayerResources.playerInfo.encounter is StaticEncounter:
 			var staticEncounter: StaticEncounter = PlayerResources.playerInfo.encounter as StaticEncounter
-			enemyCombatant1.combatant = staticEncounter.combatant1.copy().initialize()
 			enemyCombatant1.combatant.stats.equippedArmor = staticEncounter.combatant1Armor
 			enemyCombatant1.combatant.stats.equippedWeapon = staticEncounter.combatant1Weapon
+			enemyCombatant1.combatant.stats.equippedAccessory = staticEncounter.combatant1Accessory
 			# stats start out in base form, this will evolve the combatant
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
+			
 			if staticEncounter.combatant1Ai != null:
 				enemyCombatant1.battleAi = staticEncounter.combatant1Ai.copy()
 			else:
@@ -107,6 +111,7 @@ func load_into_battle():
 				enemyCombatant2.combatant = staticEncounter.combatant2.copy().initialize()
 				enemyCombatant2.combatant.stats.equippedArmor = staticEncounter.combatant2Armor
 				enemyCombatant2.combatant.stats.equippedWeapon = staticEncounter.combatant2Weapon
+				enemyCombatant2.combatant.stats.equippedAccessory = staticEncounter.combatant2Accessory
 				# stats start out in base form, this will evolve the combatant
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)
@@ -127,6 +132,7 @@ func load_into_battle():
 				enemyCombatant3.combatant = staticEncounter.combatant3.copy().initialize()
 				enemyCombatant3.combatant.stats.equippedArmor = staticEncounter.combatant3Armor
 				enemyCombatant3.combatant.stats.equippedWeapon = staticEncounter.combatant3Weapon
+				enemyCombatant3.combatant.stats.equippedAccessory = staticEncounter.combatant3Accessory
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				if staticEncounter.combatant3Ai != null:
@@ -147,6 +153,7 @@ func load_into_battle():
 				minionCombatant.combatant = staticEncounter.autoAlly.copy().initialize()
 				minionCombatant.combatant.stats.equippedArmor = staticEncounter.autoAllyArmor
 				minionCombatant.combatant.stats.equippedWeapon = staticEncounter.autoAllyWeapon
+				minionCombatant.combatant.stats.equippedAccessory = staticEncounter.autoAllyAccessory
 				if minionCombatant.combatant.get_evolution() != null:
 					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
@@ -159,20 +166,22 @@ func load_into_battle():
 				minionCombatant.shardSummoned = staticEncounter.autoAllyShardSummoned
 		else:
 			var randomEncounter: RandomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter
-			# load enemy 1
-			enemyCombatant1.combatant = randomEncounter.combatant1.copy().initialize()
 			if randomEncounter.combatant1Equipment != null:
 				var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 				if equipmentIdx > -1:
 					enemyCombatant1.combatant.stats.equippedArmor = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].armor
 					enemyCombatant1.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
+					enemyCombatant1.combatant.stats.equippedAccessory = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].accessory
 			else:
 				enemyCombatant1.combatant.pick_equipment()
-			# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
+			
 			if randomEncounter.combatant1Armor != null:
 				enemyCombatant1.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
 			if randomEncounter.combatant1Weapon != null:
 				enemyCombatant1.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
+			if randomEncounter.combatant1Accessory != null:
+				enemyCombatant1.combatant.stats.equippedAccessory = randomEncounter.combatant1Accessory
+				
 			if enemyCombatant1.combatant.get_evolution() != null:
 				enemyCombatant1.combatant.switch_evolution(enemyCombatant1.combatant.get_evolution(), null)
 			enemyCombatant1.battleAi = enemyCombatant1.combatant.get_ai().copy()
@@ -191,6 +200,7 @@ func load_into_battle():
 					if equipmentIdx > -1:
 						enemyCombatant2.combatant.stats.equippedArmor = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].armor
 						enemyCombatant2.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
+						enemyCombatant2.combatant.stats.equippedAccessory = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].accessory
 				else:
 					enemyCombatant2.combatant.pick_equipment()
 				# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
@@ -198,6 +208,8 @@ func load_into_battle():
 					enemyCombatant2.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
 				if randomEncounter.combatant1Weapon != null:
 					enemyCombatant2.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
+				if randomEncounter.combatant1Weapon != null:
+					enemyCombatant2.combatant.stats.equippedAccessory = randomEncounter.combatant1Accessory
 			else:
 				var rngBeginnerNoEnemy: float = randf() - 0.5 + \
 						(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_TWO_ENEMIES) - MIN_LV_TWO_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_TWO_ENEMIES else 1.0
@@ -213,6 +225,7 @@ func load_into_battle():
 						if equipmentIdx > -1:
 							enemyCombatant2.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
 							enemyCombatant2.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+							enemyCombatant2.combatant.stats.equippedAccessory = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].accessory
 						else:
 							enemyCombatant2.combatant.pick_equipment()
 			if enemyCombatant2.combatant != null:
@@ -234,6 +247,7 @@ func load_into_battle():
 					if equipmentIdx > -1:
 						enemyCombatant3.combatant.stats.equippedArmor = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].armor
 						enemyCombatant3.combatant.stats.equippedWeapon = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].weapon
+						enemyCombatant3.combatant.stats.equippedAccessory = randomEncounter.combatant1Equipment.weightedEquipment[equipmentIdx].accessory
 				else:
 					enemyCombatant3.combatant.pick_equipment()
 				# override random equipment with static equipment (intended for use in making combatant1 a specific evolution):
@@ -241,6 +255,8 @@ func load_into_battle():
 					enemyCombatant3.combatant.stats.equippedArmor = randomEncounter.combatant1Armor
 				if randomEncounter.combatant1Weapon != null:
 					enemyCombatant3.combatant.stats.equippedWeapon = randomEncounter.combatant1Weapon
+				if randomEncounter.combatant1Weapon != null:
+					enemyCombatant3.combatant.stats.equippedAccessory = randomEncounter.combatant1Accessory
 			else:
 				var rngBeginnerNoEnemy: float = randf() - 0.5 + \
 						(0.1 * (max(playerCombatant.combatant.stats.level, MIN_LV_THREE_ENEMIES) - MIN_LV_THREE_ENEMIES)) if playerCombatant.combatant.stats.level < MAX_LV_THREE_ENEMIES else 1.0
@@ -256,6 +272,7 @@ func load_into_battle():
 						if equipmentIdx > -1:
 							enemyCombatant3.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
 							enemyCombatant3.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
+							enemyCombatant3.combatant.stats.equippedAccessory = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].accessory
 					else:
 						enemyCombatant3.combatant.pick_equipment()
 			if enemyCombatant3.combatant != null:

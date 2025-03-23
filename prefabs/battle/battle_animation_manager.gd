@@ -335,7 +335,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 						if equipment.itemType == Item.Type.WEAPON:
 							statChanges.stack((equipment as Weapon).statChanges)
 							# TODO: play weapon proc animation
-						else:
+						elif equipment.itemType == Item.Type.WEAPON:
 							statChanges.stack((equipment as Armor).statChanges)
 							# TODO: play armor proc animation
 			elif command.type == BattleCommand.Type.USE_ITEM:

@@ -8,6 +8,7 @@ enum Type {
 	ARMOR = 3,
 	KEY_ITEM = 4,
 	CONSUMABLE = 5,
+	ACCESSORY = 6,
 	ALL = -1,
 }
 
@@ -21,6 +22,8 @@ static func type_to_string(t: Type) -> String:
 			return "Weapon"
 		Type.ARMOR:
 			return "Armor"
+		Type.ACCESSORY:
+			return "Accessory"
 		Type.KEY_ITEM:
 			return "Key Item"
 		Type.CONSUMABLE:
@@ -90,6 +93,8 @@ func get_as_subclass():
 		return self as Weapon
 	if itemType == Type.ARMOR:
 		return self as Armor
+	if itemType == Type.ACCESSORY:
+		return self as Accessory
 	if itemType == Type.KEY_ITEM:
 		return (self as KeyItem).get_as_key_item_type()
 	return self

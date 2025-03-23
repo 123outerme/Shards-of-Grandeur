@@ -56,6 +56,7 @@ func load_battle_stats_panel():
 	
 	equipmentIconsPanel.weapon = combatant.stats.equippedWeapon
 	equipmentIconsPanel.armor = combatant.stats.equippedArmor
+	equipmentIconsPanel.accessory = combatant.stats.equippedAccessory
 	
 	if combatant.statChanges != null:
 		var elMultTexts: Array[StatMultiplierText] = combatant.statChanges.get_element_multiplier_texts()

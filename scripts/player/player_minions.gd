@@ -96,7 +96,9 @@ func add_friendship(minionName: String, wasDowned: bool = true, friendshipMultip
 func which_minion_equipped(item: Item) -> String:
 	var saveName: String = ''
 	for minion: Combatant in get_minion_list():
-		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or (minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName):
+		if (minion.stats.equippedWeapon != null and minion.stats.equippedWeapon.itemName == item.itemName) or \
+				(minion.stats.equippedArmor != null and minion.stats.equippedArmor.itemName == item.itemName) or \
+				(minion.stats.equippedAccessory != null and minion.stats.equippedAccessory.itemName == item.itemName):
 			saveName = minion.save_name()
 	return saveName
 

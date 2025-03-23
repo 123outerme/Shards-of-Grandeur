@@ -32,6 +32,7 @@ const MAX_MOVES: int = 4
 @export_category("Stats - Equipment")
 @export var equippedWeapon: Weapon = null
 @export var equippedArmor: Armor = null
+@export var equippedAccessory: Accessory = null
 
 @export_category("Stats - Moves")
 @export var moves: Array[Move] = []
@@ -71,6 +72,7 @@ func _init(
 	i_statGrowth = StatGrowth.new(),
 	i_weapon = null,
 	i_armor = null,
+	i_accessory = null,
 	i_moves: Array[Move] = [load("res://gamedata/moves/slice/slice.tres") as Move],
 	i_movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move]),
 ):
@@ -88,6 +90,7 @@ func _init(
 	statGrowth = i_statGrowth
 	equippedWeapon = i_weapon
 	equippedArmor = i_armor
+	equippedAccessory = i_accessory
 	moves = i_moves
 	movepool = i_movepool
 
@@ -107,6 +110,7 @@ static func calculate_base_stats(oldStats: Stats, newLv: int) -> Stats:
 		oldStats.statGrowth.duplicate(false),
 		oldStats.equippedWeapon,
 		oldStats.equippedArmor,
+		oldStats.equippedAccessory,
 		oldStats.moves,
 		oldStats.movepool,
 	)
@@ -165,19 +169,23 @@ func set_level(lv: int):
 	statPts = pts
 
 func is_item_equipped(item: Item):
-	return equippedWeapon == item or equippedArmor == item
+	return equippedWeapon == item or equippedArmor == item or equippedAccessory == item
 
 func equip_item(item: Item):
 	if item is Weapon:
 		equippedWeapon = item
 	elif item is Armor:
 		equippedArmor = item
+	elif item is Accessory:
+		equippedAccessory = item
 
 func unequip_item(item: Item):
 	if item == equippedWeapon:
 		equippedWeapon = null
 	elif item == equippedArmor:
 		equippedArmor = null
+	elif item == equippedAccessory:
+		equippedAccessory = null
 
 func add_move_to_pool(move: Move):
 	movepool.pool.append(move)
@@ -262,6 +270,7 @@ func save_from_object(s: Stats):
 	statGrowth = s.statGrowth
 	equippedWeapon = s.equippedWeapon
 	equippedArmor = s.equippedArmor
+	equippedAccessory = s.equippedAccessory
 	moves = s.moves.duplicate(false)
 	movepool = s.movepool
 
