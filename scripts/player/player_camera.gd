@@ -264,3 +264,13 @@ func _cutscene_settings_back() -> void:
 	player.pausePanel.settingsOnly = false
 	if player.pausePanel.resume_game.is_connected(_cutscene_settings_back):
 		player.pausePanel.resume_game.disconnect(_cutscene_settings_back)
+
+func _on_onscreen_area_area_entered(area: Area2D) -> void:
+	var areaParent: Node = area.get_parent()
+	if areaParent != null and areaParent.has_method('set_is_onscreen'):
+		areaParent.call('set_is_onscreen', true)
+
+func _on_onscreen_area_area_exited(area: Area2D) -> void:
+	var areaParent: Node = area.get_parent()
+	if areaParent != null and areaParent.has_method('set_is_onscreen'):
+		areaParent.call('set_is_onscreen', false)

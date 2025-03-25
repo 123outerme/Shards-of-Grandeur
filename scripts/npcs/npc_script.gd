@@ -69,6 +69,7 @@ class_name NPCScript
 
 var acceptableQuests: Array[Quest] = []
 var turningInSteps: Array[QuestStep] = []
+var isOnscreen: bool = false
 
 @onready var npcSprite: AnimatedSprite2D = get_node("NPCSprite")
 @onready var talkAlertSprite: Sprite2D = get_node("NPCSprite/TalkAlertSprite")
@@ -307,6 +308,9 @@ func _set_flip_h(value: bool):
 
 func get_collision_size() -> Vector2:
 	return (colliderShape.shape as RectangleShape2D).get_rect().size
+
+func set_is_onscreen(onscreen: bool = true) -> void:
+	isOnscreen = onscreen
 
 func _on_move_trigger_area_entered(area):
 	if area.name == "PlayerEventCollider":

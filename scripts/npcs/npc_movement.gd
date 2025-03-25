@@ -10,11 +10,20 @@ class_name NPCMovement
 @export var disableMovement: bool = false
 @export var maxSpeed = 40
 
+@export_category('NPCMovement - SFX')
+## step sfxs to play
+@export var stepSfx: Array[AudioStream] = []
+
+## min time in secs between two step sfx's playing
+@export var stepSfxCooldownSecs: float = 0.5714 # default calc'd from Player animations
+
 var reachedTarget: bool = false
 var afterMoveWaitAccum: float = 0
 var followerMode: bool = false
 var returnToFollowerHome: bool = false
 var lastNonzeroPlayerVelocity: Vector2
+var stepSfxTimer: float = 0
+var lastStepIdx: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,13 +66,31 @@ func _physics_process(delta):
 			if NPC.walkBackwards:
 				flip = not flip # if walking backwards and would flip, don't
 			NPC.npcSprite.flip_h = flip
-		if vel.length() > 0:
+		if vel.length_squared() > 0:
 			if NPC.walkBackwards:
 				NPC.npcSprite.play_backwards('walk')
 			else:
 				NPC.npcSprite.play('walk')
 		else:
 			NPC.npcSprite.play(NPC.get_stand_animation())
+		# handle step sfx: if moving via nav agent or cutscene animation:
+		if NPC.isOnscreen and len(stepSfx) > 0:
+			if vel.length_squared() > 0 or (SceneLoader.cutscenePlayer.playing and NPC.npcSprite.animation == 'walk' and not SceneLoader.cutscenePlayer.skipping):
+				stepSfxTimer += delta
+				if stepSfxTimer > stepSfxCooldownSecs:
+					# don't choose the SFX we last picked
+					var stepChoiceIdxs: Array = range(len(stepSfx))
+					if lastStepIdx != -1:
+						stepChoiceIdxs.remove_at(lastStepIdx)
+					if len(stepChoiceIdxs) > 0:
+						lastStepIdx = stepChoiceIdxs.pick_random() as int
+					else:
+						lastStepIdx = 0
+					SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx], 0, true)
+					stepSfxTimer = 0
+			else:
+				# play a step sound the next time the NPC moves
+				stepSfxTimer = stepSfxCooldownSecs
 
 func set_target_pos():
 	if not followerMode and not returnToFollowerHome:

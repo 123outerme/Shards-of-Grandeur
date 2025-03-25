@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bg5qq63652kwu"]
+[gd_scene load_steps=26 format=3 uid="uid://bg5qq63652kwu"]
 
 [ext_resource type="Script" uid="uid://d05q1kw2bharu" path="res://scripts/player/player_controller.gd" id="1_nw80b"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="2_csrsl"]
@@ -24,6 +24,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwn8i"]
 size = Vector2(13.5, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dq8g"]
+size = Vector2(320, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lcm7"]
 size = Vector2(16, 16)
@@ -53,6 +56,16 @@ zoom = Vector2(4, 4)
 process_callback = 0
 position_smoothing_speed = 48.0
 script = ExtResource("3_r2wma")
+
+[node name="OnscreenArea" type="Area2D" parent="Camera"]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/OnscreenArea"]
+shape = SubResource("RectangleShape2D_0dq8g")
+debug_color = Color(0.684343, 0.294406, 1, 0.42)
 
 [node name="AlertControl" type="Control" parent="Camera"]
 z_index = 3
@@ -292,6 +305,8 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
+[connection signal="area_entered" from="Camera/OnscreenArea" to="Camera" method="_on_onscreen_area_area_entered"]
+[connection signal="area_exited" from="Camera/OnscreenArea" to="Camera" method="_on_onscreen_area_area_exited"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SettingsButton" to="Camera" method="_on_cutscene_settings_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/SkipButton" to="Camera" method="_on_skip_button_pressed"]
 [connection signal="pressed" from="Camera/Shade/ShadeLabel/CutscenePauseButtons/ResumeButton" to="Camera" method="_on_resume_button_pressed"]

@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=13 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" uid="uid://cr2tvfn348vex" path="res://scripts/npcs/npc_script.gd" id="1_1dp2i"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="2_8xmgr"]
 [ext_resource type="Texture2D" uid="uid://ybgaeplkp4q0" path="res://graphics/ui/talk_indicator_standard.png" id="2_ejx50"]
 [ext_resource type="Script" uid="uid://dfsq4f80e2bal" path="res://scripts/npcs/npc_movement.gd" id="2_fvlbl"]
+[ext_resource type="AudioStream" uid="uid://bj0i1vekyc0vn" path="res://audio/sfx/step1.ogg" id="5_j1v18"]
+[ext_resource type="AudioStream" uid="uid://cm2q5q5k4y6aa" path="res://audio/sfx/step2.ogg" id="6_qf463"]
+[ext_resource type="AudioStream" uid="uid://djue6exjyyyhj" path="res://audio/sfx/step3.ogg" id="7_jivhs"]
 
-[sub_resource type="Resource" id="Resource_wldfu"]
+[sub_resource type="Resource" id="Resource_ngafu"]
 script = ExtResource("2_8xmgr")
 saveName = "npc"
 spriteState = "default"
@@ -43,7 +46,7 @@ size = Vector2(32, 32)
 z_index = -10
 motion_mode = 1
 script = ExtResource("1_1dp2i")
-data = SubResource("Resource_wldfu")
+data = SubResource("Resource_ngafu")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_518hb")
@@ -67,11 +70,11 @@ neighbor_distance = 100.0
 max_neighbors = 5
 max_speed = 2.0
 script = ExtResource("2_fvlbl")
+stepSfx = Array[AudioStream]([ExtResource("5_j1v18"), ExtResource("6_qf463"), ExtResource("7_jivhs")])
 
 [node name="TalkArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
-monitorable = false
 
 [node name="TalkAreaShape" type="CollisionShape2D" parent="TalkArea"]
 shape = SubResource("RectangleShape2D_ycftu")
