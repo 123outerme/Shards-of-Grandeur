@@ -44,6 +44,12 @@ func _assign_two_layer_tiles():
 			TileDef.new('Midground', 1, Vector2i(0,5)), # trees.png, 1st burned tree base
 			TileDef.new('Midground', 1, Vector2i(1,5)), # trees.png, 2nd burned tree base
 			TileDef.new('Midground', 1, Vector2i(2,5)), # trees.png, 3rd burned tree base
+			TileDef.new('Midground', 1, Vector2i(0,7)), # trees.png, 1st submerged tree shadow
+			TileDef.new('Midground', 1, Vector2i(1,7)), # trees.png, 2nd submerged tree shadow
+			TileDef.new('Midground', 1, Vector2i(2,7)), # trees.png, 3rd submerged tree shadow
+			TileDef.new('Midground', 1, Vector2i(4,7)), # trees.png, 4th submerged tree shadow
+			TileDef.new('Midground', 1, Vector2i(5,7)), # trees.png, 5th submerged tree shadow
+			TileDef.new('Midground', 1, Vector2i(6,7)), # trees.png, 6th submerged tree shadow
 			TileDef.new('Midground', 2, Vector2i(0,1)), # house.png, 1st left house
 			TileDef.new('Midground', 2, Vector2i(1,1)), # house.png, 1st middle house
 			TileDef.new('Midground', 2, Vector2i(2,1)), # house.png, 1st right house
@@ -76,6 +82,12 @@ func _assign_two_layer_tiles():
 			TileDef.new('Foreground', 1, Vector2i(0,4)), # trees.png, 1st burned tree top
 			TileDef.new('Foreground', 1, Vector2i(1,4)), # trees.png, 2nd burned tree top
 			TileDef.new('Foreground', 1, Vector2i(2,4)), # trees.png, 3rd burned tree top
+			TileDef.new('Foreground', 1, Vector2i(0,6)), # trees.png, 1st submerged tree top
+			TileDef.new('Foreground', 1, Vector2i(1,6)), # trees.png, 2nd submerged tree top
+			TileDef.new('Foreground', 1, Vector2i(2,6)), # trees.png, 3rd submerged tree top
+			TileDef.new('Foreground', 1, Vector2i(4,6)), # trees.png, 4th submerged tree top
+			TileDef.new('Foreground', 1, Vector2i(5,6)), # trees.png, 5th submerged tree top
+			TileDef.new('Foreground', 1, Vector2i(6,6)), # trees.png, 6th submerged tree top
 			TileDef.new('Foreground', 2, Vector2i(0,0)), # house.png, 1st left house roof
 			TileDef.new('Foreground', 2, Vector2i(1,0)), # house.png, 1st middle house roof
 			TileDef.new('Foreground', 2, Vector2i(2,0)), # house.png, 1st right house roof 
@@ -108,6 +120,12 @@ func _assign_two_layer_tiles():
 			Vector2i(0, -1), # shift trees.png, 1st burned tree top up 1
 			Vector2i(0, -1), # shift trees.png, 2nd burned tree top up 1
 			Vector2i(0, -1), # shift trees.png, 3rd burned tree top up 1
+			Vector2i(0, -1), # shift trees.png, 1st submerged tree top up 1
+			Vector2i(0, -1), # shift trees.png, 2nd submerged tree top up 1
+			Vector2i(0, -1), # shift trees.png, 3rd submerged tree top up 1
+			Vector2i(0, -1), # shift trees.png, 4th submerged tree top up 1
+			Vector2i(0, -1), # shift trees.png, 5th submerged tree top up 1
+			Vector2i(0, -1), # shift trees.png, 6th submerged tree top up 1
 			Vector2i(0, -1), # shift house.png, 1st left house roof up 1
 			Vector2i(0, -1), # shift house.png, 1st middle house roof up 1
 			Vector2i(0, -1), # shift house.png, 1st right house roof up 1
