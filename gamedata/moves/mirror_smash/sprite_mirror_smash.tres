@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://cp0o8n408v5eo"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ro3or"]
+[ext_resource type="AudioStream" uid="uid://d2p05r8lgdhol" path="res://audio/sfx/moves/ice/glass_shattering.mp3" id="2_08f03"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_uer5k"]
+[ext_resource type="SpriteFrames" uid="uid://0l6n6n31a5yw" path="res://graphics/moves/dark/a_mirror_smash.tres" id="3_uer5k"]
+
+[sub_resource type="Curve" id="Curve_uer5k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_08f03"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_uer5k"]
+script = ExtResource("1_ro3or")
+annotation = "position sprite at target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(-8, 0)
+offset = 1
+xCurve = SubResource("Curve_uer5k")
+yCurve = SubResource("Curve_08f03")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_08f03"]
+script = ExtResource("1_ro3or")
+annotation = "play mirror smash anim"
+animation = "mirror_smash"
+duration = 2.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_08f03")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_uer5k")
+spriteFrames = ExtResource("3_uer5k")
+centerSprite = true
+maxSize = Vector2(32, 24)
+frames = Array[ExtResource("1_ro3or")]([SubResource("Resource_uer5k"), SubResource("Resource_08f03")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

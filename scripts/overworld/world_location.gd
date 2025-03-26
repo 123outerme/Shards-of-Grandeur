@@ -11,6 +11,7 @@ enum MapLocation {
 	LEAVENPORT = 30, ## Leavenport
 	SEA_LEG_SWAMP_EAST = 31, ## Sea Leg Swamp, east of Leavenport
 	SEA_LEG_SWAMP_SOUTH = 32, ## Sea Leg Swamp, south of Leavenport
+	SEA_LEG_SWAMP_NORTH = 33, ## Sea Leg Swamp, north-east of Leavenport
 	LEAVEN_RIVER = 35, ## on the Leaven River, north of Leavenport
 	NOMAD_CAMP = 40, ## Nomad Camp
 	FORBIDDEN_DESERT_SOUTH = 41, ## Forbidden Desert, south of Nomad Camp

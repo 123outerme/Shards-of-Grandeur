@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://dhnp254t7bsa6"]
+
+[ext_resource type="Resource" uid="uid://bi7ee4nim7itg" path="res://gamedata/moves/spike_trap/rune/charge_rune_spike_trap.tres" id="1_iosp8"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="2_iq7xk"]
+[ext_resource type="Resource" uid="uid://ciupjbx5a1wdg" path="res://gamedata/moves/spike_trap/anim_spike_trap.tres" id="3_bm02i"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="4_q8c4b"]
+[ext_resource type="Resource" uid="uid://d367qc6r3qktb" path="res://gamedata/moves/spike_trap/rune/surge_rune_spike_trap.tres" id="5_7uqqf"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_7dh5w"]
+
+[sub_resource type="Resource" id="Resource_ccn77"]
+script = ExtResource("2_iq7xk")
+role = 0
+keywords = Array[String]([])
+orbChange = 1
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_iosp8")
+
+[sub_resource type="Resource" id="Resource_xbpex"]
+script = ExtResource("6_7dh5w")
+powerPerOrb = 2
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+
+[sub_resource type="Resource" id="Resource_8qy7h"]
+script = ExtResource("2_iq7xk")
+role = 0
+keywords = Array[String]([])
+orbChange = -1
+power = 20
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("5_7uqqf")
+surgeChanges = SubResource("Resource_xbpex")
+
+[resource]
+script = ExtResource("4_q8c4b")
+moveName = "Spike Trap"
+requiredLv = 14
+category = 0
+element = 0
+chargeEffect = SubResource("Resource_ccn77")
+surgeEffect = SubResource("Resource_8qy7h")
+description = "Prepare a pointy surprise for an opponent who dares to dream big."
+moveLearnedText = "You feel a prick in your foot... ouch! You pull it out, and see a sharp scrap of iron sticking into your boot. When did you step on that?"
+moveAnimation = ExtResource("3_bm02i")

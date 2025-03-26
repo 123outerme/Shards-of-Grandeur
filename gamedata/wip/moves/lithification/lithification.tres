@@ -24,6 +24,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.2
 speedMultiplier = 0.8
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_jgo02")])
+keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_jtlm6"]
 script = ExtResource("1_reocm")
@@ -32,10 +33,12 @@ keywords = Array[String]([])
 orbChange = 1
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 3
 targetStatChanges = SubResource("Resource_i1a4g")
 selfGetsStatus = false
 statusChance = 0.0
+statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_x34ub"]
 script = ExtResource("3_o1ptt")
@@ -55,6 +58,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
 speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_x34ub")])
+keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_xkmvu"]
 script = ExtResource("6_auavx")
@@ -85,6 +89,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 1.25
 speedMultiplier = 0.75
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_8xe22")])
+keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_f0qp3"]
 script = ExtResource("1_reocm")
@@ -93,10 +98,12 @@ keywords = Array[String]([])
 orbChange = -2
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
 targets = 3
 targetStatChanges = SubResource("Resource_dv6sf")
 selfGetsStatus = false
 statusChance = 0.0
+statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_xkmvu")
 
 [resource]
