@@ -38,6 +38,8 @@ func create_reports():
 	
 	reports['combatants/stat_growths.csv'] = create_report_for_all_combatants_stat_growth()
 	
+	reports['moves/owners_report.csv'] = create_move_owners_report()
+	
 	if not DirAccess.dir_exists_absolute(TEST_DIR):
 		DirAccess.make_dir_recursive_absolute(TEST_DIR)
 		
@@ -192,6 +194,42 @@ func csv_combatant_avg_reward_gold(combatant: Combatant) -> String:
 			sum += reward.reward.gold
 			count += 1
 	return String.num(sum / count)
+
+# special CSV query for report
+func create_move_owners_report() -> String:
+	var combatantsPath = 'res://gamedata/combatants/'
+	var combatantDirs: PackedStringArray = DirAccess.get_directories_at(combatantsPath)
+	var combatantMovepools: Dictionary[String, MovePool] = {}
+	for dir: String in combatantDirs:
+		var combatant: Combatant = Combatant.load_combatant_resource(dir)
+		if combatant != null:
+			combatantMovepools[combatant.disp_name()] = combatant.stats.movepool
+			if combatant.evolutions:
+				for evolution: Evolution in combatant.evolutions.evolutionList:
+					combatantMovepools[evolution.stats.displayName + ' (evo ' + combatant.disp_name() + ')'] = evolution.stats.movepool
+	
+	var moves: Array[Move] = []
+	var movesPath = 'res://gamedata/moves/'
+	var moveDirs: PackedStringArray = DirAccess.get_directories_at(movesPath)
+	for dir: String in moveDirs:
+		var move: Move = load(movesPath + dir + '/' + dir + '.tres') as Move
+		if move != null:
+			moves.append(move)
+	
+	var reportContents: String = 'Move'
+	for combatantName: String in combatantMovepools.keys():
+		reportContents += ',' + combatantName
+	
+	reportContents += '\n'
+	for move: Move in moves:
+		reportContents += move.moveName + ','
+		for movepool: MovePool in combatantMovepools.values():
+			if move in movepool.pool:
+				reportContents += 'X'
+			reportContents += ','
+		reportContents += '\n'
+	
+	return reportContents
 
 # special CSV query for reporting (one random instance of a) combatant's stats at all levels
 func create_report_for_all_combatants_lvs(maxLv: int = 100) -> String:
