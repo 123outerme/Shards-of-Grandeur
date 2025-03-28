@@ -1,9 +1,11 @@
 extends Camera2D
 class_name TestCamera
 
-const speed = 80
+const WALK_SPEED = 80
+const RUN_SPEED = 120
 
 var fullscreenTimeout: float = 0
+var speed: float = WALK_SPEED
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,3 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_ESCAPE:
 		SettingsHandler.gameSettings.fullscreen = false
 		SettingsHandler.gameSettings.apply_fullscreen(get_viewport())
+	if event.is_action_pressed('game_decline'):
+		speed = RUN_SPEED if speed == WALK_SPEED else WALK_SPEED
+	if event.is_action_pressed("game_console"):
+		print(position)

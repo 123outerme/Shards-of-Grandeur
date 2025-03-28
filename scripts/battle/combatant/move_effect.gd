@@ -74,29 +74,35 @@ static func role_to_string(r: Role) -> String:
 	return 'UNKOWN'
 
 func _init(
-	i_role = Role.OTHER,
-	i_power = 0,
-	i_orbChange = 0,
-	i_lifesteal = 0.0,
-	i_targets = BattleCommand.Targets.SELF,
-	i_selfStatChanges = StatChanges.new(),
-	i_targetStatChanges = StatChanges.new(),
-	i_statusEffect = null,
-	i_selfGetsStatus = false,
-	i_statusChance = 0.0,
+	i_role: Role = Role.OTHER,
+	i_keywords: Array[String] = [],
+	i_power: int = 0,
+	i_orbChange: int = 0,
+	i_lifesteal: float = 0.0,
+	i_selfHpSacrifice: float = 0.0,
+	i_targets: BattleCommand.Targets = BattleCommand.Targets.SELF,
+	i_selfStatChanges: StatChanges = StatChanges.new(),
+	i_targetStatChanges: StatChanges = StatChanges.new(),
+	i_statusEffect: StatusEffect = null,
+	i_selfGetsStatus: bool = false,
+	i_statusChance: float = 0.0,
+	i_statusRequiredForTargetStatChanges: bool = false,
 	i_rune: Rune = null,
-	i_surgeChanges = null,
+	i_surgeChanges: SurgeChanges = null,
 ):
 	role = i_role
+	keywords = i_keywords
 	power = i_power
 	orbChange = i_orbChange
 	lifesteal = i_lifesteal
+	selfHpSacrifice = i_selfGetsStatus
 	targets = i_targets
 	selfStatChanges = i_selfStatChanges
 	targetStatChanges = i_targetStatChanges
 	statusEffect = i_statusEffect
 	selfGetsStatus = i_selfGetsStatus
 	statusChance = i_statusChance
+	statusRequiredForTargetStatChanges = i_statusRequiredForTargetStatChanges
 	rune = i_rune
 	surgeChanges = i_surgeChanges
 
@@ -114,6 +120,9 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 		effects.append(powerString)
 	elif power < 0:
 		effects.append(String.num_int64(power * -1) + ' Heal Power')
+	
+	if selfHpSacrifice > 0:
+		effects.append('-' + String.num_int64(roundi(selfHpSacrifice * 100)) + '% Self HP')
 	
 	if lifesteal > 0:
 		effects.append(String.num_int64(roundi(lifesteal * 100)) + '% Lifesteal')
@@ -227,15 +236,18 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 func copy() -> MoveEffect:
 	var newEffect: MoveEffect = MoveEffect.new(
 		role,
+		keywords,
 		power,
 		orbChange,
 		lifesteal,
+		selfGetsStatus,
 		targets,
 		selfStatChanges.copy() if selfStatChanges != null else null,
 		targetStatChanges.copy() if targetStatChanges != null else null,
 		statusEffect.copy() if statusEffect != null else null,
 		selfGetsStatus,
 		statusChance,
+		statusRequiredForTargetStatChanges,
 		rune.copy() if rune != null else null,
 		surgeChanges
 	)

@@ -167,18 +167,26 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if moveAnimation.makesContact and SettingsHandler.gameSettings.battleAnims:
 		var moveToPos: Vector2 = user.global_position # fallback: self (no movement)
 		var moveToCombatantNode: CombatantNode = user
-		var multiIsAllies: bool = false
-		var multiIsEnemies: bool = false
-		if len(targets) == 1:
+		
+		# determine if move anim is multi-targeting or is an anim that should tween the combatant to a "team" target position
+		# global overrides this logic to always move to the global position (targets both enemies and allies, for the sake of this algorithm)
+		var multiIsAllies: bool = moveAnimation.makesContactTarget == MoveAnimation.AnimContactTarget.GLOBAL
+		var multiIsEnemies: bool = moveAnimation.makesContactTarget == MoveAnimation.AnimContactTarget.GLOBAL
+		
+		# if there's only one target and we wish to only tween to the singular target:
+		if len(targets) == 1 and moveAnimation.makesContactTarget == MoveAnimation.AnimContactTarget.TARGET:
+			# determine if the target is an enemy (attack pos) or an ally (assist pos)
 			moveToCombatantNode = targets[0]
 			if moveToCombatantNode != user:
-				if moveToCombatantNode.leftSide != user.leftSide:
+				if moveToCombatantNode.role != user.role:
 					moveToPos = moveToCombatantNode.onAttackMarker.global_position
 				else:
 					moveToPos = moveToCombatantNode.onAssistMarker.global_position
 		else:
+			# if there's more than one target, or if a multi-target tween pos should be used:
+			# determine if should move to ally team, enemy team, or global marker
 			for targetNode: CombatantNode in targets:
-				if targetNode.leftSide != user.leftSide:
+				if targetNode.role != user.role:
 					multiIsEnemies = true
 				else:
 					multiIsAllies = true
@@ -191,6 +199,14 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					moveToPos = user.allyTeamMarker.global_position # use ally team pos
 				else: # multiIsEnemies
 					moveToPos = user.enemyTeamMarker.global_position # use enemy team pos
+		
+		moveToPos.y += moveAnimation.makesContactPosOffset.y
+		# reverse X offset if user is on the right side
+		if user.leftSide:
+			moveToPos.x += moveAnimation.makesContactPosOffset.x
+		else:
+			moveToPos.x -= moveAnimation.makesContactPosOffset.x
+		
 		if moveToPos != user.global_position:
 			tweenToCallbackFunc = _on_combatant_animation_unit_complete.bind(AnimationType.TWEEN_TO_TARGET, false)
 			user.tween_to_target_finished.connect(tweenToCallbackFunc)

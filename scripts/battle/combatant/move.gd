@@ -91,6 +91,7 @@ func _init(
 	i_surgeEffect = null,
 	i_description = '',
 	i_moveLearnedText = '',
+	i_moveAnim: MoveAnimation = null,
 	
 ):
 	moveName = i_moveName
@@ -101,6 +102,7 @@ func _init(
 	surgeEffect = i_surgeEffect
 	description = i_description
 	moveLearnedText = i_moveLearnedText
+	moveAnimation = i_moveAnim
 
 func get_effect_of_type(t: MoveEffectType) -> MoveEffect:
 	if t == MoveEffectType.CHARGE:
