@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Move" load_steps=9 format=3 uid="uid://c23g6agjxkfpg"]
+
+[ext_resource type="Resource" uid="uid://cmf7y46gnxclb" path="res://gamedata/wip/moves/quicksand_snare/rune/charge_rune_quicksand_snare.tres" id="1_gj8a4"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_no3t1"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_rdeba"]
+[ext_resource type="Resource" uid="uid://6ugbneedulir" path="res://gamedata/wip/moves/quicksand_snare/rune/surge_rune_quicksand_snare.tres" id="4_c18w2"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_nlo12"]
+
+[sub_resource type="Resource" id="Resource_gj8a4"]
+script = ExtResource("1_rdeba")
+role = 6
+keywords = Array[String](["Sand"])
+orbChange = 0
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_gj8a4")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_c18w2"]
+script = ExtResource("4_nlo12")
+powerPerOrb = 5
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_nlo12"]
+script = ExtResource("1_rdeba")
+role = 1
+keywords = Array[String](["Sand"])
+orbChange = -2
+power = 30
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("4_c18w2")
+surgeChanges = SubResource("Resource_c18w2")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_no3t1")
+moveName = "Quicksand Snare"
+requiredLv = 1
+category = 2
+element = 5
+chargeEffect = SubResource("Resource_gj8a4")
+surgeEffect = SubResource("Resource_nlo12")
+description = "Prepare a quicksand pit that will weighed down your enemies."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

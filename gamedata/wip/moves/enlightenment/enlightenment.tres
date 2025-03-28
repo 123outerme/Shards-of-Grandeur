@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://c3qoub4icp7ft"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_3bres"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_7ycr8"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_jlp6t"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_ipl4b"]
+
+[sub_resource type="Resource" id="Resource_wfe5n"]
+script = ExtResource("2_jlp6t")
+element = 8
+multiplier = 1.1
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_rahj1"]
+script = ExtResource("3_ipl4b")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_jlp6t")]([SubResource("Resource_wfe5n")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_meu2x"]
+script = ExtResource("1_3bres")
+role = 3
+keywords = Array[String]([])
+orbChange = 0
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_rahj1")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_3bres"]
+script = ExtResource("3_ipl4b")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.2
+resistanceMultiplier = 1.1
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_jlp6t")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_47yje"]
+script = ExtResource("1_3bres")
+role = 5
+keywords = Array[String]([])
+orbChange = -5
+power = -45
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+targetStatChanges = SubResource("Resource_3bres")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_7ycr8")
+moveName = "Enlightenment"
+requiredLv = 1
+category = 2
+element = 8
+chargeEffect = SubResource("Resource_meu2x")
+surgeEffect = SubResource("Resource_47yje")
+description = "Shed your shackles to the physical world, and attain a grander understanding of reality."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

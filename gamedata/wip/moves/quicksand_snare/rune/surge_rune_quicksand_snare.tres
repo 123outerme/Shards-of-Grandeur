@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="KeywordRune" load_steps=6 format=3 uid="uid://6ugbneedulir"]
+
+[ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_hhh8d"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="2_da36w"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_iv6h3"]
+
+[sub_resource type="Resource" id="Resource_iv6h3"]
+script = ExtResource("2_da36w")
+element = 5
+power = 50.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 2
+overwritesOtherStatuses = false
+turnsLeft = 4
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_8i3oi"]
+script = ExtResource("3_iv6h3")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 6
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[resource]
+script = ExtResource("1_hhh8d")
+keyword = "Sand"
+orbChange = 0
+category = 2
+element = 5
+power = 0
+lifesteal = 0.0
+statusEffect = SubResource("Resource_iv6h3")
+surgeChanges = SubResource("Resource_8i3oi")
+metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

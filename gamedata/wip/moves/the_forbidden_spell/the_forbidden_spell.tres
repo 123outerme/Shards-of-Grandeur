@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://b05fw1glo3vam"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_2y23l"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_lp5xd"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_62gml"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_c206w"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_55oxi"]
+
+[sub_resource type="Resource" id="Resource_62gml"]
+script = ExtResource("1_lp5xd")
+role = 2
+keywords = Array[String]([])
+orbChange = 1
+power = 35
+lifesteal = 0.0
+selfHpSacrifice = 0.1
+targets = 6
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_nrc5y"]
+script = ExtResource("4_55oxi")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.2
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_c206w")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_0cptq"]
+script = ExtResource("4_55oxi")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.02
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_c206w")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_c206w"]
+script = ExtResource("3_62gml")
+powerPerOrb = 5
+lifestealPerOrb = 0.05
+selfStatChangesPerOrb = SubResource("Resource_0cptq")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_np7c3"]
+script = ExtResource("1_lp5xd")
+role = 2
+keywords = Array[String]([])
+orbChange = -5
+power = 70
+lifesteal = 0.4
+selfHpSacrifice = 0.0
+targets = 7
+selfStatChanges = SubResource("Resource_nrc5y")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_c206w")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_2y23l")
+moveName = "The Forbidden Spell"
+requiredLv = 66
+category = 1
+element = 7
+chargeEffect = SubResource("Resource_62gml")
+surgeEffect = SubResource("Resource_np7c3")
+description = "This spell is so horrible, there are no words that can do it justice."
+moveLearnedText = "Trading your own pain for power, inflicting pain on others for power... The only thing stopping a mage from committing these acts: the mage. This, you now know."
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
