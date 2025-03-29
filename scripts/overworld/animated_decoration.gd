@@ -31,6 +31,7 @@ func load_decoration() -> void:
 		return
 	if currentAnim == '':
 		currentAnim = animName
+	animSprite.set_frame_and_progress(0, 0)
 	play_animation(currentAnim)
 
 func update_collision():

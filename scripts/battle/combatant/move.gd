@@ -83,14 +83,14 @@ static func move_effect_type_to_string(t: MoveEffectType) -> String:
 	return 'UNKNOWN'
 
 func _init(
-	i_moveName = '',
-	i_requiredLv = 1,
-	i_category = DmgCategory.PHYSICAL,
-	i_element = Element.NONE,
-	i_chargeEffect = null,
-	i_surgeEffect = null,
-	i_description = '',
-	i_moveLearnedText = '',
+	i_moveName: String = '',
+	i_requiredLv: int = 1,
+	i_category: DmgCategory = DmgCategory.PHYSICAL,
+	i_element: Element = Element.NONE,
+	i_chargeEffect: MoveEffect = null,
+	i_surgeEffect: MoveEffect = null,
+	i_description: String = '',
+	i_moveLearnedText: String = '',
 	i_moveAnim: MoveAnimation = null,
 	
 ):

@@ -16,7 +16,14 @@ var tempMove: Move = null
 func _ready() -> void:
 	SceneLoader.audioHandler = get_node('AudioHandler')
 	PlayerResources.playerInfo = PlayerInfo.new()
-	var tempEffect: MoveEffect = MoveEffect.new(MoveEffect.Role.OTHER, 0, 0, 0, BattleCommand.Targets.ENEMY)
+	var tempEffect: MoveEffect = MoveEffect.new(
+		MoveEffect.Role.OTHER,
+		[],
+		0,
+		0,
+		0,
+		BattleCommand.Targets.ENEMY
+	)
 	tempMove = Move.new('Temp Move', 1, Move.DmgCategory.PHYSICAL, Move.Element.NONE, tempEffect, tempEffect)
 	moveLearnAnimController.move = tempMove
 	moveLearnAnimController.customTarget = targetCombatant
