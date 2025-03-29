@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c7m1ysimxbjus" path="res://prefabs/test/overworld/overworld_enemy_tester.gd" id="1_0slco"]
 [ext_resource type="PackedScene" uid="uid://cqvhw1vxc0cw" path="res://prefabs/entities/overworld_enemy.tscn" id="2_s020o"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_5msn5"]
-[ext_resource type="Resource" uid="uid://c23es3y2q44ce" path="res://gamedata/combatants/scout_penguin/scout_penguin.tres" id="3_m6q7y"]
+[ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="3_m6q7y"]
 [ext_resource type="Script" uid="uid://c0ve121q8iver" path="res://scripts/overworld/overworld_enemy/overworld_enemy_data.gd" id="3_xrcmv"]
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="4_fo5cl"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_t2rvi"]
@@ -34,6 +34,13 @@ runningChase = false
 [node name="OverworldEnemyTester" type="Node2D"]
 script = ExtResource("1_0slco")
 
+[node name="CenterPixel" type="Line2D" parent="."]
+points = PackedVector2Array(-0.25, 0, 0.25, 0)
+width = 0.5
+
+[node name="TestCamera" parent="." instance=ExtResource("7_lsvak")]
+lockMovement = true
+
 [node name="OverworldEnemy" parent="." instance=ExtResource("2_s020o")]
 enemyData = SubResource("Resource_kqnda")
 
@@ -42,8 +49,6 @@ debug_color = Color(1, 0, 0, 0.42)
 
 [node name="CollisionShape" parent="OverworldEnemy" index="4"]
 debug_color = Color(0, 0, 0, 0.42)
-
-[node name="TestCamera" parent="." instance=ExtResource("7_lsvak")]
 
 [node name="ReloadButton" type="Button" parent="."]
 offset_left = 53.0
@@ -55,14 +60,25 @@ text = "Reload"
 
 [node name="WalkStandToggle" type="Button" parent="."]
 offset_left = -84.0
-offset_top = 70.0
+offset_top = 69.0
 offset_right = -17.0
-offset_bottom = 99.0
+offset_bottom = 98.0
 scale = Vector2(0.5, 0.5)
 toggle_mode = true
 text = "Walk"
 
+[node name="FlipToggle" type="Button" parent="."]
+custom_minimum_size = Vector2(135, 0)
+offset_left = -33.0
+offset_top = 69.0
+offset_right = 102.0
+offset_bottom = 98.0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+text = "Facing Right"
+
 [connection signal="pressed" from="ReloadButton" to="." method="_on_reload_button_pressed"]
 [connection signal="toggled" from="WalkStandToggle" to="." method="_on_walk_stand_toggle_toggled"]
+[connection signal="toggled" from="FlipToggle" to="." method="_on_flip_toggle_toggled"]
 
 [editable path="OverworldEnemy"]

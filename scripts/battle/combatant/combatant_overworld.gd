@@ -4,8 +4,11 @@ class_name CombatantOverworld
 ## the dimensions of the rectangle for the encounter collision box
 @export var encounterCollisionSize: Vector2 = Vector2(16, 16)
 
-## the offset from the center of the sprite that the encounter collision should be at
+## the offset from the center of the sprite (after taking into account `encounterSpriteOffset`) that the encounter collision should be at
 @export var encounterCollisionCenter: Vector2 = Vector2.ZERO
+
+## the offset from the center of the sprite's canvas to its visual center
+@export var encounterSpriteOffset: Vector2 = Vector2.ZERO
 
 ## the radius at which the enemy starts chasing the player
 @export var chaseRange: float = 48
@@ -22,6 +25,7 @@ class_name CombatantOverworld
 func _init(
 	i_encounterSize: Vector2 = Vector2(16, 16),
 	i_encounterCenter: Vector2 = Vector2.ZERO,
+	i_encounterSpriteOffset: Vector2 = Vector2.ZERO,
 	i_chaseRange: float = 48,
 	i_runningChaseRange: float = 96,
 	i_maxSpeed: float = 40,
@@ -29,6 +33,7 @@ func _init(
 ):
 	encounterCollisionSize = i_encounterSize
 	encounterCollisionCenter = i_encounterCenter
+	encounterSpriteOffset = i_encounterSpriteOffset
 	chaseRange = i_chaseRange
 	runningChaseRange = i_runningChaseRange
 	maxSpeed = i_maxSpeed

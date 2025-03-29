@@ -26,6 +26,7 @@ var facesRight: bool = false
 var ignorePlayer: bool = false
 
 var encounterColliderOffset: Vector2 = Vector2.ZERO
+var spriteOffset: Vector2 = Vector2.ZERO
 
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
@@ -48,6 +49,8 @@ func _ready():
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	facesRight = combatant.get_sprite_obj().spriteFacesRight
 	enemySprite.flip_h = facesRight
+	if enemySprite.flip_h != facesRight:
+		enemySprite.offset.x *= -1
 	enemySprite.play('stand')
 	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
 	if combatantOverworld != null:
@@ -57,13 +60,17 @@ func _ready():
 		if not overrideRanges:
 			chaseRange = combatantOverworld.chaseRange
 			runningChaseRange = combatantOverworld.runningChaseRange
+		
+		encounterColliderOffset = combatantOverworld.encounterCollisionCenter
+		spriteOffset = combatantOverworld.encounterSpriteOffset
+		
 		var colliderRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
 		colliderRect.size = combatantOverworld.encounterCollisionSize - Vector2(1, 1) # 1 px smaller than encounter collider
-		collisionShape.position = combatantOverworld.encounterCollisionCenter
+		collisionShape.position = encounterColliderOffset
 		var encounterColliderRect: RectangleShape2D = encounterColliderShape.shape as RectangleShape2D
 		encounterColliderRect.size = combatantOverworld.encounterCollisionSize
-		encounterColliderShape.position = combatantOverworld.encounterCollisionCenter
-		encounterColliderOffset = combatantOverworld.encounterCollisionCenter
+		encounterColliderShape.position = encounterColliderOffset
+		enemySprite.offset = spriteOffset
 	
 	position = get_point_around_home() # throw out position and load from random point near home
 	#position = enemyData.position
@@ -93,15 +100,26 @@ func _process(delta):
 			vel = vel.normalized() * navAgent.max_speed * delta
 		position += vel
 		if vel.x < 0:
+			if enemySprite.flip_h != facesRight:
+				update_facing()
 			enemySprite.flip_h = facesRight
 		if vel.x > 0:
+			if enemySprite.flip_h == facesRight:
+				update_facing()
 			enemySprite.flip_h = not facesRight
-			encounterColliderShape.position.x = -1 * encounterColliderOffset.x
-			collisionShape.position.x = -1 * encounterColliderOffset.x
 		if vel.length() > 0:
 			enemySprite.play('walk')
 		else:
 			enemySprite.play('stand')
+
+func update_facing() -> void:
+		encounterColliderShape.position = encounterColliderOffset
+		collisionShape.position = encounterColliderOffset
+		enemySprite.offset = spriteOffset
+		if enemySprite.flip_h != facesRight:
+			enemySprite.offset.x *= -1
+			encounterColliderShape.position.x *= -1
+			collisionShape.position.x *= -1
 
 func get_next_patrol_target():
 	if SceneLoader.mapLoader != null and not SceneLoader.mapLoader.mapNavReady:

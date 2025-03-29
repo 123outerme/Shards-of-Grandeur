@@ -4,6 +4,8 @@ class_name TestCamera
 const WALK_SPEED = 80
 const RUN_SPEED = 120
 
+@export var lockMovement: bool = false
+
 var fullscreenTimeout: float = 0
 var speed: float = WALK_SPEED
 
@@ -14,8 +16,9 @@ func _ready():
 		queue_free()
 
 func _physics_process(delta):
-	var velocity: Vector2 = eight_dir_movement(Input.get_vector("move_left", "move_right", "move_up", "move_down")) * speed
-	position += velocity * delta
+	if not lockMovement:
+		var velocity: Vector2 = eight_dir_movement(Input.get_vector("move_left", "move_right", "move_up", "move_down")) * speed
+		position += velocity * delta
 	if fullscreenTimeout > 0:
 		fullscreenTimeout -= delta
 

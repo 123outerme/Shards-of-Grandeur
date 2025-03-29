@@ -33,6 +33,9 @@ class_name NPCScript
 ## visual size of sprite (used for determining NavAgent radius, etc.)
 @export var spriteSize: Vector2i = Vector2i(16, 16)
 
+## the offset to display the sprite by (flipping x when sprite is flipped)
+@export var spriteOffset: Vector2 = Vector2.ZERO
+
 ## if not null, will be the sprite used as the dialogue speaker for this NPC
 @export var overrideSpeakerSprite: SpriteFrames = null
 
@@ -138,6 +141,7 @@ func _ready():
 		inventory = Inventory.new()
 	data.inventory = inventory
 	data.spriteState = spriteState
+	npcSprite.offset = spriteOffset
 	call_deferred("fetch_player")
 	
 	if not Engine.is_editor_hint():
@@ -299,10 +303,12 @@ func _set_flip_h(value: bool):
 		talkAlertSprite.position.x = -1.0 * initialTalkAlertSprPos.x
 		talkArea.position.x = -1.0 * initialTalkAreaPos.x
 		talkAreaShape.position.x = -1.0 * initialTalkAreaShapePos.x
+		npcSprite.offset.x = -1.0 * spriteOffset.x
 	else:
 		talkAlertSprite.position.x = initialTalkAlertSprPos.x
 		talkArea.position.x = initialTalkAreaPos.x
 		talkAreaShape.position.x = initialTalkAreaShapePos.x
+		npcSprite.offset.x = spriteOffset.x
 		
 	npcSprite.flip_h = value
 

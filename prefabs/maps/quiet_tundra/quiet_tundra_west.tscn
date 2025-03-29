@@ -36,7 +36,7 @@
 size = Vector2(31, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucrs1"]
-size = Vector2(23, 12.5)
+size = Vector2(29, 12.5)
 
 [sub_resource type="Resource" id="Resource_caxh6"]
 script = ExtResource("7_qkweq")
@@ -411,7 +411,7 @@ use_parent_material = true
 tile_set = ExtResource("2_wgf4x")
 
 [node name="FoxStatuePuzzle" parent="TilemapRoot" instance=ExtResource("4_8hka6")]
-position = Vector2(372, -2786)
+position = Vector2(372, -2789)
 puzzle = ExtResource("7_6yrgo")
 unsolvedAnimation = "mystic_fox_statue"
 solvedAnimation = "arctic_fox_statue"
@@ -429,7 +429,7 @@ position = Vector2(0.5, 8.5)
 shape = SubResource("RectangleShape2D_034jo")
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatuePuzzle" index="1"]
-position = Vector2(0.5, 10.25)
+position = Vector2(-2.5, 10.25)
 shape = SubResource("RectangleShape2D_ucrs1")
 
 [node name="FoxStatueEnergyWall" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
@@ -448,7 +448,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_1"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_1gwlf")
 
 [node name="AnimatedDecoration2" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -462,7 +461,7 @@ animation = &"energy_wall_side"
 flip_h = true
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration2/Collision" index="0"]
-position = Vector2(3.5, 8)
+position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_8c8yf")
 
 [node name="AnimatedDecoration3" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -475,7 +474,7 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_side"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration3/Collision" index="0"]
-position = Vector2(-3.5, 8)
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_yqpcr")
 
 [node name="AnimatedDecoration4" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -488,7 +487,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_no_sparks"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration4/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ffwqc")
 
 [node name="AnimatedDecoration5" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -501,7 +499,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_1"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration5/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_b133f")
 
 [node name="AnimatedDecoration6" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -514,7 +511,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_2"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration6/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_al2hv")
 
 [node name="AnimatedDecoration7" parent="TilemapRoot/FoxStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -527,7 +523,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_no_sparks"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration7/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ehvst")
 
 [node name="BlobStatuePuzzle" parent="TilemapRoot" instance=ExtResource("4_8hka6")]
@@ -568,7 +563,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_1"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_1gwlf")
 
 [node name="AnimatedDecoration2" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -582,7 +576,7 @@ animation = &"energy_wall_side"
 flip_h = true
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration2/Collision" index="0"]
-position = Vector2(3.5, 8)
+position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_8c8yf")
 
 [node name="AnimatedDecoration3" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -595,7 +589,7 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_side"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration3/Collision" index="0"]
-position = Vector2(-3.5, 8)
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_yqpcr")
 
 [node name="AnimatedDecoration4" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -608,7 +602,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_2"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration4/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ffwqc")
 
 [node name="AnimatedDecoration5" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -621,7 +614,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_no_sparks"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration5/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_b133f")
 
 [node name="AnimatedDecoration6" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -634,7 +626,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_no_sparks"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration6/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_al2hv")
 
 [node name="AnimatedDecoration7" parent="TilemapRoot/BlobStatueEnergyWall" instance=ExtResource("7_sqoo7")]
@@ -647,7 +638,6 @@ sprite_frames = ExtResource("7_2scif")
 animation = &"energy_wall_1"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7/Collision" index="0"]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ehvst")
 
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("12_0jhss")]
