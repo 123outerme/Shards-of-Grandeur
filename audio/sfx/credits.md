@@ -30,6 +30,9 @@ This is the place where I will properly catalogue the creators and/or licenses o
 - `ice/glass_shattering.mp3`: Authored by C_Rogers -- https://freesound.org/s/203375 -- License: Creative Commons 0
 - `wind/wind_whoosh.mp3`: Copyright (c) 2022 EminYILDIRIM -- https://freesound.org/s/634365/ -- License: Attribution 4.0
 
+## `npc` Subdirectory
+- `horse/horse_step_``(1-16)``.mp3`: Copyright (c) 2025 James Odom.
+
 ## `ui` Subdirectory
 - `acquire_ping.mp3`: Authored by Kenneth_Cooney -- https://freesound.org/s/781199/ -- License: Creative Commons 0
 - `shop_buy_sell.mp3`: Authored by Sabacky -- https://freesound.org/s/766069/ -- License: Attribution 4.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=4 uid="uid://cx5vc8qdipqwt"]
+[gd_scene load_steps=124 format=4 uid="uid://cx5vc8qdipqwt"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_5k41n"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_prja5"]
@@ -23,17 +23,33 @@
 [ext_resource type="Resource" uid="uid://ctknt16r3oh1t" path="res://gamedata/dialogue/reusable/horse_neigh.tres" id="12_hw7u3"]
 [ext_resource type="SpriteFrames" uid="uid://d3l8xyop2tpq6" path="res://graphics/animations/a_horse.tres" id="12_wa6i5"]
 [ext_resource type="Resource" uid="uid://c6vfqmrm3umkt" path="res://gamedata/dialogue/grandstone_forest/grandstone_forest_spelunker1.tres" id="13_diivh"]
+[ext_resource type="AudioStream" uid="uid://d4j5tkrv4qmgv" path="res://audio/sfx/npc/horse/horse_step_1.mp3" id="14_px386"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="14_vy2lx"]
+[ext_resource type="AudioStream" uid="uid://dysa3qyxp44ex" path="res://audio/sfx/npc/horse/horse_step_2.mp3" id="15_j2uxd"]
+[ext_resource type="AudioStream" uid="uid://cp5cb22x66lr5" path="res://audio/sfx/npc/horse/horse_step_3.mp3" id="16_v6jr2"]
+[ext_resource type="AudioStream" uid="uid://2uhg5d3k0hej" path="res://audio/sfx/npc/horse/horse_step_4.mp3" id="17_5wmah"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="17_35igi"]
+[ext_resource type="AudioStream" uid="uid://bf8of4u47gboy" path="res://audio/sfx/npc/horse/horse_step_5.mp3" id="18_kr6e1"]
+[ext_resource type="AudioStream" uid="uid://dtn3p2nhgajo2" path="res://audio/sfx/npc/horse/horse_step_6.mp3" id="19_u2mfi"]
+[ext_resource type="AudioStream" uid="uid://dj04mfnop3hoy" path="res://audio/sfx/npc/horse/horse_step_7.mp3" id="20_chrs7"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="21_77mmf"]
+[ext_resource type="AudioStream" uid="uid://bppomf4dnqjx8" path="res://audio/sfx/npc/horse/horse_step_8.mp3" id="21_oe77o"]
 [ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="22_0oryc"]
+[ext_resource type="AudioStream" uid="uid://b80pl65boiv84" path="res://audio/sfx/npc/horse/horse_step_9.mp3" id="22_3hhc4"]
+[ext_resource type="AudioStream" uid="uid://cuc7p8j7qko2e" path="res://audio/sfx/npc/horse/horse_step_10.mp3" id="23_3ivq7"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="23_kq2oq"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="24_7wtt2"]
+[ext_resource type="AudioStream" uid="uid://cgi0jlqskd0wh" path="res://audio/sfx/npc/horse/horse_step_11.mp3" id="24_hj1dy"]
+[ext_resource type="AudioStream" uid="uid://dflm0e3o0rqfb" path="res://audio/sfx/npc/horse/horse_step_12.mp3" id="25_p8o52"]
+[ext_resource type="AudioStream" uid="uid://crdl3x3j8aikk" path="res://audio/sfx/npc/horse/horse_step_13.mp3" id="26_c80pf"]
+[ext_resource type="AudioStream" uid="uid://qque12ftatdi" path="res://audio/sfx/npc/horse/horse_step_14.mp3" id="27_4sllm"]
+[ext_resource type="AudioStream" uid="uid://cksboxo3b2lig" path="res://audio/sfx/npc/horse/horse_step_15.mp3" id="28_d1og8"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="28_dptko"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="29_5824o"]
+[ext_resource type="AudioStream" uid="uid://cw87dvihj0h8p" path="res://audio/sfx/npc/horse/horse_step_16.mp3" id="29_whha7"]
 [ext_resource type="Resource" uid="uid://bvlcefahm8fbf" path="res://gamedata/cutscenes/grandstone_forest/gs_forest_quarry_turnback_demo.tres" id="30_gxywi"]
 
-[sub_resource type="Resource" id="Resource_53fny"]
+[sub_resource type="Resource" id="Resource_lrr4a"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -62,7 +78,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1g4p"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_4rcfr"]
+[sub_resource type="Resource" id="Resource_t554k"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
@@ -91,7 +107,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyxv8"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_vx0jb"]
+[sub_resource type="Resource" id="Resource_d1bmm"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "default"
@@ -521,7 +537,7 @@ tile_set = ExtResource("2_prja5")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_47wx8")]
 position = Vector2(-352, -338)
 displayName = "Sign"
-data = SubResource("Resource_53fny")
+data = SubResource("Resource_lrr4a")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("6_aotmy")])
 facesPlayer = false
 
@@ -565,7 +581,7 @@ stateSpritesDict = Dictionary[String, SpriteFrames]({
 spriteSize = Vector2i(64, 32)
 overrideSpeakerSprite = ExtResource("12_wa6i5")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_4rcfr")
+data = SubResource("Resource_t554k")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("12_hw7u3")])
 facesPlayer = false
 
@@ -583,6 +599,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="NavAgent" parent="TilemapRoot/HorseMarble" index="2"]
 disableMovement = true
+stepSfx = Array[AudioStream]([ExtResource("14_px386"), ExtResource("15_j2uxd"), ExtResource("16_v6jr2"), ExtResource("17_5wmah"), ExtResource("18_kr6e1"), ExtResource("19_u2mfi"), ExtResource("20_chrs7"), ExtResource("21_oe77o"), ExtResource("22_3hhc4"), ExtResource("23_3ivq7"), ExtResource("24_hj1dy"), ExtResource("25_p8o52"), ExtResource("26_c80pf"), ExtResource("27_4sllm"), ExtResource("28_d1og8"), ExtResource("29_whha7")])
 
 [node name="TalkArea" parent="TilemapRoot/HorseMarble" index="3"]
 position = Vector2(18, 8)
@@ -601,7 +618,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-600, -291)
 displayName = "Spelunker"
 saveName = "gs_forest_spelunker"
-data = SubResource("Resource_vx0jb")
+data = SubResource("Resource_d1bmm")
 dialogueEntries = Array[ExtResource("5_2nmss")]([ExtResource("13_diivh")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://b00sfqpi5yyqq"]
+[gd_scene load_steps=103 format=4 uid="uid://b00sfqpi5yyqq"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_5pw44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_4gtvx"]
@@ -16,29 +16,45 @@
 [ext_resource type="Resource" uid="uid://vhnccnobqc45" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_allytown_leave_2.tres" id="11_j5vtg"]
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="11_lx2nn"]
 [ext_resource type="SpriteFrames" uid="uid://5hlep364xhxg" path="res://graphics/animations/a_lance.tres" id="12_uy85b"]
+[ext_resource type="AudioStream" uid="uid://d4j5tkrv4qmgv" path="res://audio/sfx/npc/horse/horse_step_1.mp3" id="13_8ikpt"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="13_eiipr"]
 [ext_resource type="Resource" uid="uid://dgjuv25wgvitl" path="res://gamedata/dialogue/dr_hudson/ally_town/drh_cave_gone_wait.tres" id="13_k8mkq"]
 [ext_resource type="Resource" uid="uid://crqjbksl25fej" path="res://gamedata/dialogue/lance/lance_intro.tres" id="13_spupx"]
+[ext_resource type="AudioStream" uid="uid://dysa3qyxp44ex" path="res://audio/sfx/npc/horse/horse_step_2.mp3" id="14_e4jk8"]
 [ext_resource type="Resource" uid="uid://e4m48vmk6ybn" path="res://gamedata/dialogue/lance/lance_1.tres" id="14_ltynh"]
 [ext_resource type="Resource" uid="uid://wjv7ut6a0hx1" path="res://gamedata/items/key_items/haybale.tres" id="14_rvd28"]
 [ext_resource type="Resource" uid="uid://dn2k5t18luj5d" path="res://gamedata/dialogue/lance/lance_after_apprenticeship.tres" id="15_jfo1y"]
+[ext_resource type="AudioStream" uid="uid://cp5cb22x66lr5" path="res://audio/sfx/npc/horse/horse_step_3.mp3" id="15_mvl82"]
 [ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="15_obbqa"]
 [ext_resource type="Texture2D" uid="uid://e6b4xqqnncgm" path="res://graphics/items/key_items/haybale.png" id="16_07cud"]
+[ext_resource type="AudioStream" uid="uid://2uhg5d3k0hej" path="res://audio/sfx/npc/horse/horse_step_4.mp3" id="16_tpedv"]
+[ext_resource type="AudioStream" uid="uid://bf8of4u47gboy" path="res://audio/sfx/npc/horse/horse_step_5.mp3" id="17_2v4dc"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="17_xdako"]
+[ext_resource type="AudioStream" uid="uid://dtn3p2nhgajo2" path="res://audio/sfx/npc/horse/horse_step_6.mp3" id="18_0gqgy"]
+[ext_resource type="AudioStream" uid="uid://dj04mfnop3hoy" path="res://audio/sfx/npc/horse/horse_step_7.mp3" id="19_f47xq"]
 [ext_resource type="Script" uid="uid://bhe5dt53rj7mf" path="res://scripts/npcs/npc_move_point.gd" id="19_tr26g"]
+[ext_resource type="AudioStream" uid="uid://bppomf4dnqjx8" path="res://audio/sfx/npc/horse/horse_step_8.mp3" id="20_53cwi"]
 [ext_resource type="Resource" uid="uid://bds0jxde1x3l3" path="res://gamedata/dialogue/interactables/ground_items/standstill/standstill_hay.tres" id="21_1qo0e"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="21_24wd4"]
+[ext_resource type="AudioStream" uid="uid://b80pl65boiv84" path="res://audio/sfx/npc/horse/horse_step_9.mp3" id="21_fdsfl"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="21_prdt8"]
 [ext_resource type="Resource" uid="uid://b24w5xoh6mv6w" path="res://gamedata/dialogue/spelunker/standstill/spelunker_new_armor.tres" id="22_3cvl6"]
 [ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="22_g7o8t"]
 [ext_resource type="Resource" uid="uid://drqc7ms1tgy62" path="res://gamedata/cutscenes/standstill/standstill_enter.tres" id="22_nx0ge"]
+[ext_resource type="AudioStream" uid="uid://cuc7p8j7qko2e" path="res://audio/sfx/npc/horse/horse_step_10.mp3" id="22_v8j0h"]
 [ext_resource type="Resource" uid="uid://c131ky3wsh8qx" path="res://gamedata/cutscenes/standstill/standstill_leave.tres" id="23_pq6ae"]
+[ext_resource type="AudioStream" uid="uid://cgi0jlqskd0wh" path="res://audio/sfx/npc/horse/horse_step_11.mp3" id="23_slgfd"]
+[ext_resource type="AudioStream" uid="uid://dflm0e3o0rqfb" path="res://audio/sfx/npc/horse/horse_step_12.mp3" id="24_cxmje"]
+[ext_resource type="AudioStream" uid="uid://crdl3x3j8aikk" path="res://audio/sfx/npc/horse/horse_step_13.mp3" id="25_3xelg"]
 [ext_resource type="Texture2D" uid="uid://d1bmf0ej146c1" path="res://graphics/particles/phys/phys_1.png" id="25_dhpow"]
 [ext_resource type="Resource" uid="uid://cblip8at1gm6p" path="res://gamedata/cutscenes/standstill/standstill_return_prologue.tres" id="25_mm3hq"]
 [ext_resource type="Texture2D" uid="uid://dmvn4mvlg7d4f" path="res://graphics/particles/phys/phys_2.png" id="26_q8o5m"]
+[ext_resource type="AudioStream" uid="uid://qque12ftatdi" path="res://audio/sfx/npc/horse/horse_step_14.mp3" id="26_seb0k"]
+[ext_resource type="AudioStream" uid="uid://cksboxo3b2lig" path="res://audio/sfx/npc/horse/horse_step_15.mp3" id="27_hdw1j"]
 [ext_resource type="Texture2D" uid="uid://drq3ealtshd7v" path="res://graphics/particles/phys/phys_3.png" id="27_l1rmm"]
 [ext_resource type="Resource" uid="uid://d1qhj1lkn2cj3" path="res://gamedata/cutscenes/standstill/standstill_back_to_drh.tres" id="28_5llnp"]
 [ext_resource type="Texture2D" uid="uid://d25xbkynhasfh" path="res://graphics/particles/phys/phys_4.png" id="28_hkmkd"]
+[ext_resource type="AudioStream" uid="uid://cw87dvihj0h8p" path="res://audio/sfx/npc/horse/horse_step_16.mp3" id="28_pcoqv"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="29_4t60x"]
 [ext_resource type="Resource" uid="uid://bp8ei02gccf15" path="res://gamedata/cutscenes/standstill/standstill_back_to_town.tres" id="29_8rjn2"]
 [ext_resource type="Resource" uid="uid://dtt34f0s8607w" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_general_store_sign.tres" id="33_d8vww"]
@@ -51,7 +67,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bgr5nld0n0q8t" path="res://graphics/animations/a_inn_sign.tres" id="37_3n8qw"]
 [ext_resource type="Resource" uid="uid://3ombe3v0e8gu" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_inn_sign.tres" id="37_oj77b"]
 
-[sub_resource type="Resource" id="Resource_g4qph"]
+[sub_resource type="Resource" id="Resource_auwbd"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -80,7 +96,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j24gd"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_y12j5"]
+[sub_resource type="Resource" id="Resource_0yeqh"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -109,7 +125,7 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ekot"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_awifv"]
+[sub_resource type="Resource" id="Resource_5sjvq"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -132,7 +148,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1m5po"]
+[sub_resource type="Resource" id="Resource_0m7o2"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -179,7 +195,7 @@ position = Vector2(216, -160)
 relativeToCurrentPos = false
 pauseSecs = 1.5
 
-[sub_resource type="Resource" id="Resource_dxu2p"]
+[sub_resource type="Resource" id="Resource_rmb7u"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -222,7 +238,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -233,7 +249,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
@@ -248,7 +264,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -259,7 +275,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
@@ -274,7 +290,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -285,11 +301,11 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
-[sub_resource type="Resource" id="Resource_2sy3j"]
+[sub_resource type="Resource" id="Resource_n70ex"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -312,7 +328,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_8u2n6"]
+[sub_resource type="Resource" id="Resource_4hgy4"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -335,7 +351,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_embih"]
+[sub_resource type="Resource" id="Resource_60y52"]
 script = ExtResource("4_lkmuy")
 saveName = "npc"
 spriteState = "default"
@@ -372,7 +388,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -383,7 +399,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
@@ -401,7 +417,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -412,7 +428,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
@@ -430,7 +446,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("29_4t60x")]([])
@@ -441,7 +457,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("29_4t60x")]([])
 
@@ -476,12 +492,18 @@ source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_s05lj"]
+vertices = PackedVector2Array(33, 20, 33, 81, 13.7891, 81, -1, 78, -1, 33, 113, -28, 113, 4, 111, -2, 111, -47, -113, 148, -27.1016, 78, 2, 92.7891, -113, 164, 97, 4, 84.8984, -2, 257, -177, 257, -129, 239, -130, 239, -164, -33, -98, 289, -129, 289, -81, 191, -44, 145, -44, 79, -130, 129, -130, 33, -130, -33, -143, 33, -166, -1020.4, 116, -1020.41, 111, -289, 111, -1009, 116, 207, -164, 207, -175, 305, -81, 305, -65, 239, -28, 191, -28, 433, -65, 433, -49, 383, -12, 239, -12, 449, -49, 449, -33, 431, 20, 399, 4, 465, -33, 465, -17, 511, -17, 511, -33, 513, -33, 513, -17, 705, -17, 705, -1, 577, 20, 575, 20, 769, -1, 769, 20, 577, 36, 575, 36, 513, 20, 513, 36, 511, 36, 511, 20, 465, 20, 465, 36, 431, 36, 399, 20, 383, 4, 145, -28, 66.0938, -4, 77.9062, -4, 97, 20, 59.1016, -2, 33, -2, 2, 164, -129, 148, -129, 132, -79, 78, -52.8984, 78, -319, 132, -319, 148, -321, 148, -321, 132, -1009, 132, -289, 95, -273, 95, -273, 79, -241, 79, -241, 63, -225, 63, -225, 15, -209, 15, -79, 33, -209, -97, -193, -97, -193, -113, -145, -113, -145, -129, -129, -129, -111, -98, 175, -177, 175, -193, 193, -193, 193, -177, -45.9062, 76, -34.0938, 76, 33, -47, 129, -175, -49, -177, -59.1016, -98, -77.9062, -100, -66.0938, -100, -84.8984, -98, -111, -143, -129, -145, -49, -145, 79, -166, 155.102, -130, 162.094, -132, 173.906, -132, 180.898, -130)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 3, 2, 11, 12), PackedInt32Array(7, 6, 13, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 16, 20, 21, 22, 23, 8), PackedInt32Array(16, 19, 24, 25), PackedInt32Array(26, 24, 19), PackedInt32Array(26, 19, 27, 28), PackedInt32Array(29, 30, 31, 32), PackedInt32Array(18, 33, 34, 15), PackedInt32Array(22, 21, 35, 36, 37, 38), PackedInt32Array(37, 36, 39, 40, 41, 42), PackedInt32Array(40, 43, 44, 45, 46, 41), PackedInt32Array(44, 47, 48, 45), PackedInt32Array(49, 50, 51, 52), PackedInt32Array(52, 53, 54, 55, 56), PackedInt32Array(54, 57, 58, 55), PackedInt32Array(55, 59, 60, 56), PackedInt32Array(52, 56, 61, 49), PackedInt32Array(61, 62, 63, 64), PackedInt32Array(49, 61, 64, 48), PackedInt32Array(48, 64, 65), PackedInt32Array(65, 66, 67, 45), PackedInt32Array(48, 65, 45), PackedInt32Array(45, 68, 46), PackedInt32Array(46, 69, 41), PackedInt32Array(23, 70, 5, 8), PackedInt32Array(71, 72, 14, 13, 73, 0, 74), PackedInt32Array(75, 74, 0, 4), PackedInt32Array(11, 76, 12), PackedInt32Array(9, 77, 78, 79, 80), PackedInt32Array(81, 82, 83, 84), PackedInt32Array(84, 85, 32, 31), PackedInt32Array(81, 84, 31), PackedInt32Array(78, 81, 31), PackedInt32Array(31, 86, 87, 78), PackedInt32Array(87, 88, 89, 78), PackedInt32Array(78, 89, 90, 91, 79), PackedInt32Array(79, 91, 92, 93, 94), PackedInt32Array(93, 95, 96, 94), PackedInt32Array(96, 97, 98, 94), PackedInt32Array(94, 98, 99, 100, 101), PackedInt32Array(102, 103, 104, 105), PackedInt32Array(106, 107, 10, 9, 80), PackedInt32Array(19, 8, 108), PackedInt32Array(105, 15, 34, 109), PackedInt32Array(102, 105, 109), PackedInt32Array(110, 102, 109), PackedInt32Array(19, 108, 75, 4, 94, 111), PackedInt32Array(112, 113, 111, 94, 114), PackedInt32Array(101, 114, 94), PackedInt32Array(115, 101, 100, 116), PackedInt32Array(115, 116, 117, 27), PackedInt32Array(27, 117, 110, 28), PackedInt32Array(28, 110, 109, 118), PackedInt32Array(118, 109, 25, 24), PackedInt32Array(16, 25, 119), PackedInt32Array(119, 120, 121, 122), PackedInt32Array(16, 119, 122), PackedInt32Array(16, 122, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-445, -319, 831, -308, 845, 221, -1035, 230, -1036, -58, -459, -55)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 15.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cgvup"]
+vertices = PackedVector2Array(10.4688, 73, 7, 76.4688, 7, 25, 25, 12, -28.2188, 86, -2.53125, 86, -6, 89.4688, -105, 156, -105, 140, 87, -122, 87, -169, 121, -169, 121, -122, 119, -55, 247, -122, 247, -169, 249, -169, 249, -121, 199, -52, 281, -121, 281, -73, 247, -36, 199, -36, 297, -73, 297, -57, 425, -57, 425, -41, 391, -20, 247, -20, 441, -41, 441, -25, 439, 12, 407, -4, 457, -25, 457, -9, 697, -9, 697, 7, 457, 12, 761, 7, 761, 12, 457, 28, 439, 28, 407, 12, 391, -4, 137, -52, 137, -36, 119, -36, 83.7812, 6, 89, 6, 89, 12, 76.7734, 4, 60.2188, 6, 25, 73, -6, 156, -44.7734, 84, -35.2266, 84, -51.7812, 86, -121, 124, -87, 86, -121, 140, -1001, 124, -1001, 119, -281, 119, -281, 103, -265, 103, -265, 87, -233, 87, -233, 71, -217, 71, -217, 23, -201, 23, -87, 25, -201, -89, -185, -89, -185, -105, -137, -105, -119, -90, -137, -121, -121, -121, -121, -137, -119, -137, -25, -151, -41, -151, -41, -169, 25, -169, 25, -122, -25, -90, -83.7812, -90, -76.7734, -92, -67.2266, -92, -60.2188, -90, 25, 6, 179.781, -122, 163.227, -124, 172.773, -124, 156.219, -122, 25, -55, 67.2266, 4, 185, -183, 183, -183, 183, -185, 185, -185)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 19, 20, 21, 22), PackedInt32Array(20, 23, 24, 21), PackedInt32Array(21, 24, 25, 26, 27, 28), PackedInt32Array(26, 29, 30, 31, 32, 27), PackedInt32Array(30, 33, 34, 31), PackedInt32Array(34, 35, 36, 37, 31), PackedInt32Array(36, 38, 39, 37), PackedInt32Array(37, 40, 41, 31), PackedInt32Array(31, 42, 32), PackedInt32Array(32, 43, 27), PackedInt32Array(44, 45, 46, 13, 12), PackedInt32Array(47, 48, 49, 3), PackedInt32Array(50, 47, 3, 51), PackedInt32Array(3, 52, 0), PackedInt32Array(6, 53, 7), PackedInt32Array(54, 55, 4, 8, 56), PackedInt32Array(57, 58, 56, 8, 59), PackedInt32Array(57, 60, 61, 62), PackedInt32Array(62, 63, 64, 57), PackedInt32Array(64, 65, 66, 57), PackedInt32Array(66, 67, 68, 57), PackedInt32Array(58, 57, 68, 69, 70, 71), PackedInt32Array(70, 72, 73, 71), PackedInt32Array(71, 73, 74, 75, 76), PackedInt32Array(75, 77, 78, 76), PackedInt32Array(78, 79, 80, 76), PackedInt32Array(81, 82, 83, 84), PackedInt32Array(81, 84, 85, 86), PackedInt32Array(71, 76, 87, 2), PackedInt32Array(2, 87, 88, 89, 90), PackedInt32Array(3, 2, 90, 86, 91), PackedInt32Array(92, 14, 17, 18, 44), PackedInt32Array(93, 94, 92, 44, 95), PackedInt32Array(12, 95, 44), PackedInt32Array(85, 9, 13, 96, 86), PackedInt32Array(86, 96, 91), PackedInt32Array(3, 91, 51), PackedInt32Array(50, 51, 97), PackedInt32Array(98, 99, 100, 101)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-460, -335, 850, -318, 854, 237, -1029, 251, -1033, -57, -446, -65)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
@@ -530,8 +552,7 @@ tile_set = ExtResource("2_4gtvx")
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_ekhjv")]
 position = Vector2(-256, 80)
 displayName = "Sign"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_g4qph")
+data = SubResource("Resource_auwbd")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("6_rhhx0")])
 facesPlayer = false
 
@@ -566,14 +587,14 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-15, 128)
 displayName = "Horse"
 saveName = "horse_cart_standstill"
-stateSpritesDict = {
+stateSpritesDict = Dictionary[String, SpriteFrames]({
 "default": ExtResource("9_ygb36"),
 "shards_cart": ExtResource("10_mbkh4")
-}
+})
 spriteSize = Vector2i(64, 32)
 overrideSpeakerSprite = ExtResource("11_6oa3h")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_y12j5")
+data = SubResource("Resource_0yeqh")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("8_oaplt")])
 facesPlayer = false
 
@@ -591,6 +612,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="NavAgent" parent="TilemapRoot/HorseCart" index="2"]
 disableMovement = true
+stepSfx = Array[AudioStream]([ExtResource("13_8ikpt"), ExtResource("14_e4jk8"), ExtResource("15_mvl82"), ExtResource("16_tpedv"), ExtResource("17_2v4dc"), ExtResource("18_0gqgy"), ExtResource("19_f47xq"), ExtResource("20_53cwi"), ExtResource("21_fdsfl"), ExtResource("22_v8j0h"), ExtResource("23_slgfd"), ExtResource("24_cxmje"), ExtResource("25_3xelg"), ExtResource("26_seb0k"), ExtResource("27_hdw1j"), ExtResource("28_pcoqv")])
 
 [node name="TalkArea" parent="TilemapRoot/HorseCart" index="3"]
 position = Vector2(18, 8)
@@ -609,8 +631,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8, 88)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_standstill"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_awifv")
+data = SubResource("Resource_5sjvq")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("10_4ix1i"), ExtResource("11_j5vtg"), ExtResource("13_k8mkq")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -637,8 +658,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(216, -160)
 displayName = "Lance"
 saveName = "lance_standstill"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_1m5po")
+data = SubResource("Resource_0m7o2")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("13_spupx"), ExtResource("14_ltynh"), ExtResource("15_jfo1y")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -673,8 +693,7 @@ position = Vector2(778, 0)
 collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_standstill"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_dxu2p")
+data = SubResource("Resource_rmb7u")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("22_3cvl6")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -711,8 +730,7 @@ texture = ExtResource("16_07cud")
 [node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_ekhjv")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_2sy3j")
+data = SubResource("Resource_n70ex")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("33_d8vww")])
 facesPlayer = false
 
@@ -746,8 +764,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_ekhjv")]
 position = Vector2(147, -146)
 displayName = "Sign"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_8u2n6")
+data = SubResource("Resource_4hgy4")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("35_pcmec")])
 facesPlayer = false
 
@@ -781,8 +798,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ekhjv")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-overrideSpeakerSpriteSize = null
-data = SubResource("Resource_embih")
+data = SubResource("Resource_60y52")
 dialogueEntries = Array[ExtResource("5_bcrfs")]([ExtResource("37_oj77b")])
 facesPlayer = false
 
@@ -938,15 +954,18 @@ shape = SubResource("RectangleShape2D_7x6ra")
 position = Vector2(-46, 0)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 top_level = true
 navigation_polygon = SubResource("NavigationPolygon_ne1fr")
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_s05lj")
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_cgvup")
 navigation_layers = 4
 
