@@ -29,8 +29,8 @@ enum CameraFade {
 ## dialogues to play when this frame ends
 @export var dialogues: Array[CutsceneDialogue] = []
 
-## SFX to play at the start of this frame
-@export var playSfx: AudioStream = null
+## SFXs to play at the start of this frame
+@export var playSfxs: Array[AudioStream] = []
 
 ## pause until an already-open textbox is closed (does not count if dialogues were just opened this frame)
 @export var endTextBoxPauses: bool = true
@@ -76,7 +76,7 @@ func _init(
 	i_actorAnimSets: Array[ActorAnimSet] = [],
 	i_actorFaceTargets: Array[ActorFaceTarget] = [],
 	i_dialogues: Array[CutsceneDialogue] = [],
-	i_playSfx = null,
+	i_playSfxs: Array[AudioStream] = [],
 	i_endTextPauses = true,
 	i_shakeCamForDuration = false,
 	i_endHoldCam = false,
@@ -93,7 +93,7 @@ func _init(
 	actorAnimSets = i_actorAnimSets
 	actorFaceTargets = i_actorFaceTargets
 	dialogues = i_dialogues
-	playSfx = i_playSfx
+	playSfxs = i_playSfxs
 	endTextBoxPauses = i_endTextPauses
 	shakeCamForDuration = i_shakeCamForDuration
 	endHoldCamera = i_endHoldCam

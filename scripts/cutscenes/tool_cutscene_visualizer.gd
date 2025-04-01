@@ -100,9 +100,10 @@ func handle_camera(frame: CutsceneFrame):
 		shownTextNotPaused = false
 		call_deferred('pause_cutscene') # do so
 
-func handle_play_sfx(sfx: AudioStream):
-	if sfx != null:
-		print('Play SFX ' + sfx.resource_name)
+func handle_play_sfx(sfxs: Array[AudioStream]):
+	for sfx: AudioStream in sfxs:
+		if sfx != null:
+			print('Play SFX ' + sfx.resource_name)
 
 func handle_start_cam_shake():
 	mockPlayer.start_cam_shake()

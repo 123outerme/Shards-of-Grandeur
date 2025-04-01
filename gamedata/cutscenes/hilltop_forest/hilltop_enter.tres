@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://1kie7pkiqtcx"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://1kie7pkiqtcx"]
 
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="1_100mj"]
 [ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="1_wd36c"]
@@ -12,9 +12,11 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="3_kfmox"]
 [ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="5_7t6ip"]
 [ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="6_amj3h"]
-[ext_resource type="AudioStream" uid="uid://dlthfjrrttfpw" path="res://audio/sfx/cart_crash.mp3" id="8_6xe81"]
 [ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="8_y6h7m"]
 [ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="9_k7nwe"]
+[ext_resource type="AudioStream" uid="uid://d2hnr7w1dv0c4" path="res://audio/sfx/npc/horse/cart_axle_break.mp3" id="10_r8ye2"]
+[ext_resource type="AudioStream" uid="uid://bbeupf5ut6uw2" path="res://audio/sfx/npc/horse/cart_crack.mp3" id="11_8a034"]
+[ext_resource type="AudioStream" uid="uid://ch5k4tikok0uu" path="res://audio/sfx/npc/horse/cart_noise.mp3" id="12_omnfu"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="15_f4scx"]
 
 [sub_resource type="Resource" id="Resource_ufme0"]
@@ -60,7 +62,7 @@ transitionType = 0
 script = ExtResource("8_y6h7m")
 speaker = "Cart"
 texts = Array[String](["*Crunch!!*"])
-textboxSfx = ExtResource("8_6xe81")
+textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = ""
 speakerActorIsPlayer = false
 speakerAnim = "talk"
@@ -76,6 +78,7 @@ actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_ufme0"), SubRe
 actorAnimSets = Array[ExtResource("2_55u0d")]([])
 actorFaceTargets = Array[ExtResource("5_7t6ip")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_pkwtl")])
+playSfxs = Array[AudioStream]([ExtResource("10_r8ye2"), ExtResource("11_8a034"), ExtResource("12_omnfu")])
 endTextBoxPauses = false
 shakeCamForDuration = false
 endHoldCamera = false
@@ -107,6 +110,7 @@ actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_4iel7"), SubRe
 actorAnimSets = Array[ExtResource("2_55u0d")]([])
 actorFaceTargets = Array[ExtResource("5_7t6ip")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([])
+playSfxs = Array[AudioStream]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -133,6 +137,7 @@ animation = "stand"
 script = ExtResource("8_y6h7m")
 speaker = "Dr. Hudson"
 texts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime.", "When you defeat a creature in this area, it might drop a Shard. Remember, Dr. Ildran encourages you to use any spare Shards for our defense."])
+textboxSfxs = null
 speakerActorScenePath = "TilemapRoot/DrHudson"
 speakerActorIsPlayer = false
 speakerAnim = "talk"
@@ -148,6 +153,7 @@ actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_cvims"), SubRe
 actorAnimSets = Array[ExtResource("2_55u0d")]([])
 actorFaceTargets = Array[ExtResource("5_7t6ip")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([SubResource("Resource_j4tnp")])
+playSfxs = Array[AudioStream]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -167,6 +173,7 @@ actorAnims = Array[ExtResource("1_wd36c")]([])
 actorAnimSets = Array[ExtResource("2_55u0d")]([])
 actorFaceTargets = Array[ExtResource("5_7t6ip")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([])
+playSfxs = Array[AudioStream]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false
@@ -201,6 +208,7 @@ actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_i4ctb")])
 actorAnimSets = Array[ExtResource("2_55u0d")]([])
 actorFaceTargets = Array[ExtResource("5_7t6ip")]([])
 dialogues = Array[ExtResource("8_y6h7m")]([])
+playSfxs = Array[AudioStream]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
 endHoldCamera = false

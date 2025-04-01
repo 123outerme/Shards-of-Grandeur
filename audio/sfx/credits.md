@@ -32,6 +32,9 @@ This is the place where I will properly catalogue the creators and/or licenses o
 
 ## `npc` Subdirectory
 - `horse/horse_step_``(1-16)``.mp3`: Copyright (c) 2025 James Odom.
+- `horse/cart_axle_break.mp3`: Copyright (c) 2025 James Odom.
+- `horse/cart_crack.mp3`: Copyright (c) 2025 James Odom.
+- `horse/cart_noise.mp3`: Copyright (c) 2025 James Odom.
 
 ## `ui` Subdirectory
 - `acquire_ping.mp3`: Authored by Kenneth_Cooney -- https://freesound.org/s/781199/ -- License: Creative Commons 0

@@ -416,7 +416,9 @@ func advance_dialogue(canStart: bool = true):
 			else: # otherwise show the new dialogue item
 				update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 				textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
-				SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
+				if cutsceneTexts[cutsceneTextIndex].textboxSfxs != null:
+					for sfx: AudioStream in cutsceneTexts[cutsceneTextIndex].textboxSfxs:
+						SceneLoader.audioHandler.play_sfx(sfx)
 		else: # if it's not done, advance the textbox
 			update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 			textBox.advance_textbox(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
@@ -869,7 +871,9 @@ func queue_cutscene_texts(cutsceneDialogue: CutsceneDialogue):
 		cutsceneLineIndex = 0
 		update_cutscene_speaker_sprite(cutsceneTexts[cutsceneTextIndex])
 		textBox.set_textbox_text(cutsceneTexts[cutsceneTextIndex].texts[cutsceneLineIndex], cutsceneTexts[cutsceneTextIndex].speaker, cutsceneLineIndex == len(cutsceneTexts[cutsceneTextIndex].texts) - 1 and cutsceneTextIndex == len(cutsceneTexts) - 1)
-		SceneLoader.audioHandler.play_sfx(cutsceneTexts[cutsceneTextIndex].textboxSfx)
+		if cutsceneTexts[cutsceneTextIndex].textboxSfxs != null:
+			for sfx: AudioStream in cutsceneTexts[cutsceneTextIndex].textboxSfxs:
+				SceneLoader.audioHandler.play_sfx(sfx)
 
 func fade_in_unlock_cutscene(cutscene: Cutscene): # for use when faded-out cutscene must end after loading back in
 	inCutscene = false

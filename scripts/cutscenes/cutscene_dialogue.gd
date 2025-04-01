@@ -9,7 +9,7 @@ class_name CutsceneDialogue
 @export_multiline var texts: Array[String] = []
 
 ## SFX to play when the textbox opens
-@export var textboxSfx: AudioStream = null
+@export var textboxSfxs: Array[AudioStream] = []
 
 ## for display in cutscene dialogue history, next to speaker name
 @export var speakerSpriteFrames: SpriteFrames = null
@@ -31,7 +31,7 @@ class_name CutsceneDialogue
 func _init(
 	i_speaker = '',
 	i_texts: Array[String] = [],
-	i_textboxSfx = null,
+	i_textboxSfxs = Array[AudioStream],
 	i_speakerSprite: SpriteFrames = null,
 	i_speakerPath: String = '',
 	i_speakerActorIsPlayer: bool = false,
@@ -41,7 +41,7 @@ func _init(
 ):
 	speaker = i_speaker
 	texts = i_texts
-	textboxSfx = i_textboxSfx
+	textboxSfxs = i_textboxSfxs
 	speakerSpriteFrames = i_speakerSprite
 	speakerActorScenePath = i_speakerPath
 	speakerActorIsPlayer = i_speakerActorIsPlayer

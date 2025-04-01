@@ -8,10 +8,10 @@ class_name CutsceneDialogueAlternative
 func _init(
 	i_speaker: String = '',
 	i_texts: Array[String] = [],
-	i_textboxSfx: AudioStream = null,
+	i_textboxSfxs: Array[AudioStream] = [],
 	i_storyReqs: Array[StoryRequirements] = [],
 ):
-	super(i_speaker, i_texts, i_textboxSfx)
+	super(i_speaker, i_texts, i_textboxSfxs)
 	storyRequirements = i_storyReqs
 
 func is_valid() -> bool:

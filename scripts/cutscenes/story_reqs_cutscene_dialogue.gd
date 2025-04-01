@@ -7,10 +7,10 @@ class_name StoryReqsCutsceneDialogue
 func _init(
 	i_speaker = '',
 	i_texts: Array[String] = [],
-	i_textboxSfx = null,
+	i_textboxSfxs: Array[AudioStream] = [],
 	i_alternatives: Array[CutsceneDialogueAlternative] = [],
 ) -> void:
-	super(i_speaker, i_texts, i_textboxSfx)
+	super(i_speaker, i_texts, i_textboxSfxs)
 	storyReqsAlternatives = i_alternatives
 
 func get_cutscene_dialogue() -> CutsceneDialogue:

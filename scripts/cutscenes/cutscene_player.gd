@@ -37,8 +37,8 @@ func _process(delta):
 		
 		if lastFrame != null and frame != lastFrame:
 			handle_camera(frame)
-			if frame != null:
-				handle_play_sfx(frame.playSfx)
+			if frame != null and frame.playSfxs != null:
+				handle_play_sfx(frame.playSfxs)
 			
 			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
 					and not lastFrame.get_text_was_triggered():
@@ -92,8 +92,9 @@ func handle_camera(frame: CutsceneFrame) -> void:
 	if lastFrame.shakeCamForDuration and (frame == null or not frame.shakeCamForDuration):
 		PlayerFinder.player.cam.stop_cam_shake()
 
-func handle_play_sfx(sfx: AudioStream):
-	SceneLoader.audioHandler.play_sfx(sfx)
+func handle_play_sfx(sfxs: Array[AudioStream]):
+	for sfx: AudioStream in sfxs:
+		SceneLoader.audioHandler.play_sfx(sfx)
 
 func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 	PlayerFinder.player.queue_cutscene_texts(item)
