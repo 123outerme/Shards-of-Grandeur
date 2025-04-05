@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://chqxx1cfbkd4l"]
 
-[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ibatg"]
-[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_bp35o"]
-[ext_resource type="SpriteFrames" uid="uid://d3gq5h0mplcla" path="res://graphics/moves/water/a_stay_frosty.tres" id="3_bp35o"]
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_mrjt3"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4r2e4"]
+[ext_resource type="SpriteFrames" uid="uid://d3gq5h0mplcla" path="res://graphics/moves/water/a_stay_frosty.tres" id="3_0bxe4"]
 
 [sub_resource type="Curve" id="Curve_bp35o"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -13,7 +13,7 @@ _data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
 point_count = 1
 
 [sub_resource type="Resource" id="Resource_bp35o"]
-script = ExtResource("1_ibatg")
+script = ExtResource("1_mrjt3")
 annotation = "Set up position at target"
 animation = ""
 duration = 0.1
@@ -21,8 +21,8 @@ speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(12, -8)
-offset = 5
+position = Vector2(16, -8)
+offset = 16
 xCurve = SubResource("Curve_bp35o")
 yCurve = SubResource("Curve_l1ffi")
 rotate = false
@@ -33,7 +33,7 @@ trackRotationTarget = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_l1ffi"]
-script = ExtResource("1_ibatg")
+script = ExtResource("1_mrjt3")
 annotation = "play stay frosty anim"
 animation = "stay_frosty"
 duration = 3.0
@@ -51,7 +51,7 @@ trackRotationTarget = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_dss7r"]
-script = ExtResource("1_ibatg")
+script = ExtResource("1_mrjt3")
 annotation = "fade out glass"
 animation = ""
 duration = 0.5
@@ -69,11 +69,11 @@ trackRotationTarget = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
-script = ExtResource("2_bp35o")
-spriteFrames = ExtResource("3_bp35o")
+script = ExtResource("2_4r2e4")
+spriteFrames = ExtResource("3_0bxe4")
 centerSprite = true
 maxSize = Vector2(24, 24)
-frames = Array[ExtResource("1_ibatg")]([SubResource("Resource_bp35o"), SubResource("Resource_l1ffi"), SubResource("Resource_dss7r")])
+frames = Array[ExtResource("1_mrjt3")]([SubResource("Resource_bp35o"), SubResource("Resource_l1ffi"), SubResource("Resource_dss7r")])
 delayedUntilReposition = false
 playsOnImpactFrame = false
 onePerTarget = true

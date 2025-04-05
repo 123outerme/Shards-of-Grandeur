@@ -22,7 +22,8 @@ func _ready() -> void:
 		0,
 		0,
 		0,
-		BattleCommand.Targets.ENEMY
+		0,
+		BattleCommand.Targets.ENEMY if not userIsTarget else BattleCommand.Targets.SELF
 	)
 	tempMove = Move.new('Temp Move', 1, Move.DmgCategory.PHYSICAL, Move.Element.NONE, tempEffect, tempEffect)
 	moveLearnAnimController.move = tempMove

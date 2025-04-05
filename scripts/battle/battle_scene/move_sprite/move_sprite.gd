@@ -173,6 +173,7 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 	
 	if spriteTarget != MoveAnimSpriteFrame.MoveSpriteTarget.CURRENT_POSITION:
 		var centerPos: Vector2 = cNode.combatant.get_center_pos()
+		var maxSize: Vector2 = cNode.combatant.get_max_size()
 		var feetPosTranslation: Vector2 = cNode.get_feet_pos_translation()
 		if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.HEAD - 1)) & 1 == 1: # if the head offset bit is set: play at the head
 			# remove the feet position translation to get top-left
@@ -193,10 +194,16 @@ func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarg
 				pos.x += round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
 			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BEHIND - 1)) & 1 == 1:
 				pos.x -= round(0.5 * centerPos.x) if cNode.leftSide else round(-0.5 * centerPos.x)
+				# true other side of sprite; change above to pos.x += ... and then uncomment below
+				# seems to be wrong, though...
+				#pos.x -= maxSize.x if cNode.leftSide else -1 * maxSize.x
 			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.ABOVE - 1)) & 1 == 1:
-				pos.y -= round(0.5 * centerPos.y)
+				pos.y += 8
+				pos.y -= maxSize.y
 			if (posOffset >> (MoveAnimSpriteFrame.MoveSpriteOffset.BELOW - 1)) & 1 == 1:
-				pos.y += round(0.5 * centerPos.y)
+				pos.y += 8 # pos.y is set at position of combatant node...
+				# combatant node coordinate is 8px above feet position...
+				# so just add 8px
 	return pos
 
 func calc_rotation(sprFrame: MoveAnimSpriteFrame):

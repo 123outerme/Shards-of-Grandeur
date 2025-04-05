@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://dn8bj8a54leh5"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_cuuwi"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_dhq2b"]
+[ext_resource type="SpriteFrames" uid="uid://cj5nsphxvou2b" path="res://graphics/moves/earth/a_quicksand_snare.tres" id="3_tjc3u"]
+
+[sub_resource type="Curve" id="Curve_xej43"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_tedt8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_xej43"]
+script = ExtResource("1_cuuwi")
+annotation = "position underneath target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 2)
+offset = 8
+xCurve = SubResource("Curve_xej43")
+yCurve = SubResource("Curve_tedt8")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_tedt8"]
+script = ExtResource("1_cuuwi")
+annotation = "play anim"
+animation = "quicksand_snare"
+duration = 1.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_dhq2b")
+spriteFrames = ExtResource("3_tjc3u")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_cuuwi")]([SubResource("Resource_xej43"), SubResource("Resource_tedt8")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://d4l0mu7qiukw5"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_cp1e8"]
+[ext_resource type="Resource" uid="uid://dn8bj8a54leh5" path="res://gamedata/moves/quicksand_snare/sprite_quicksand_snare.tres" id="2_cwi3l"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_dxsw0"]
+
+[resource]
+script = ExtResource("2_dxsw0")
+combatantAnimation = "attack_affinity"
+makesContact = false
+makesContactTarget = 1
+makesContactPosOffset = Vector2(0, 0)
+chargeMoveSprites = Array[ExtResource("1_cp1e8")]([ExtResource("2_cwi3l")])
+surgeMoveSprites = Array[ExtResource("1_cp1e8")]([ExtResource("2_cwi3l")])
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"
