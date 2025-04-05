@@ -31,7 +31,7 @@ class_name CutsceneDialogue
 func _init(
 	i_speaker = '',
 	i_texts: Array[String] = [],
-	i_textboxSfxs = Array[AudioStream],
+	i_textboxSfxs: Array[AudioStream] = [],
 	i_speakerSprite: SpriteFrames = null,
 	i_speakerPath: String = '',
 	i_speakerActorIsPlayer: bool = false,
