@@ -1,19 +1,20 @@
-[gd_resource type="Resource" script_class="Move" load_steps=15 format=3 uid="uid://ly63mt2vlvup"]
+[gd_resource type="Resource" script_class="Move" load_steps=16 format=3 uid="uid://ly63mt2vlvup"]
 
-[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_ah1wp"]
-[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_vfn4w"]
-[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_ctfec"]
-[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_d8ps7"]
-[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_oslc1"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_00ern"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_y73w4"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_63ovl"]
+[ext_resource type="Resource" uid="uid://c00w12piicmuy" path="res://gamedata/moves/stay_frosty/anim_stay_frosty.tres" id="4_vsuqq"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_rwo5r"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_pqbjt"]
 
 [sub_resource type="Resource" id="Resource_ostya"]
-script = ExtResource("2_ctfec")
+script = ExtResource("2_y73w4")
 element = 1
 multiplier = 1.05
 metadata/_custom_type_script = "uid://b8q40qhoufelh"
 
 [sub_resource type="Resource" id="Resource_ljfjw"]
-script = ExtResource("3_oslc1")
+script = ExtResource("3_63ovl")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -24,11 +25,12 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_ostya")])
+elementMultipliers = Array[ExtResource("2_y73w4")]([SubResource("Resource_ostya")])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_d8ps7"]
-script = ExtResource("1_ah1wp")
+script = ExtResource("1_00ern")
 role = 5
 keywords = Array[String](["Ice"])
 orbChange = 0
@@ -43,13 +45,13 @@ statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_acvwn"]
-script = ExtResource("2_ctfec")
+script = ExtResource("2_y73w4")
 element = 1
 multiplier = 1.02
 metadata/_custom_type_script = "uid://b8q40qhoufelh"
 
 [sub_resource type="Resource" id="Resource_2ndic"]
-script = ExtResource("3_oslc1")
+script = ExtResource("3_63ovl")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -60,11 +62,12 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_acvwn")])
+elementMultipliers = Array[ExtResource("2_y73w4")]([SubResource("Resource_acvwn")])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_ctfec"]
-script = ExtResource("3_d8ps7")
+script = ExtResource("6_pqbjt")
 powerPerOrb = -5
 lifestealPerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_2ndic")
@@ -76,13 +79,13 @@ additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_a2sni"]
-script = ExtResource("2_ctfec")
+script = ExtResource("2_y73w4")
 element = 1
 multiplier = 1.1
 metadata/_custom_type_script = "uid://b8q40qhoufelh"
 
 [sub_resource type="Resource" id="Resource_0q6kc"]
-script = ExtResource("3_oslc1")
+script = ExtResource("3_63ovl")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -93,11 +96,12 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.0
 resistanceMultiplier = 1.0
 speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_ctfec")]([SubResource("Resource_a2sni")])
+elementMultipliers = Array[ExtResource("2_y73w4")]([SubResource("Resource_a2sni")])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_d8kxc"]
-script = ExtResource("1_ah1wp")
+script = ExtResource("1_00ern")
 role = 5
 keywords = Array[String](["Ice"])
 orbChange = -3
@@ -113,7 +117,7 @@ surgeChanges = SubResource("Resource_ctfec")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [resource]
-script = ExtResource("1_vfn4w")
+script = ExtResource("5_rwo5r")
 moveName = "Stay Frosty"
 requiredLv = 22
 category = 2
@@ -121,5 +125,6 @@ element = 1
 chargeEffect = SubResource("Resource_d8ps7")
 surgeEffect = SubResource("Resource_d8kxc")
 description = "Nothing to wake you up and keep you in the fight like an ice-cold refreshment."
-moveLearnedText = ""
+moveLearnedText = "Your journey has left you exhausted. You drink some water, but remain parched. Just as you wish you had a cold drink, floating in the sky is a chilled glass of water...!"
+moveAnimation = ExtResource("4_vsuqq")
 metadata/_custom_type_script = "uid://dx4lnh4driy7a"
