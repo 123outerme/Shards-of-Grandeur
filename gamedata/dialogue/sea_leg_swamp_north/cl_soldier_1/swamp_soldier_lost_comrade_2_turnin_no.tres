@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://daoce3d71tcwm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ihoe"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_0pwyc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_h7vhf"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_h7vhf"]
+
+[sub_resource type="Resource" id="Resource_0pwyc"]
+script = ExtResource("1_0ihoe")
+lines = Array[String](["Hey, that's fair! I don't want to impede, but after visiting the Quiet Tundra, I'm bored stiff, and frozen stiff too!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_h7vhf")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_h7vhf")
+entryId = ""
+items = Array[ExtResource("1_0ihoe")]([SubResource("Resource_0pwyc")])
+ordStoryRequirements = Array[ExtResource("2_0pwyc")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

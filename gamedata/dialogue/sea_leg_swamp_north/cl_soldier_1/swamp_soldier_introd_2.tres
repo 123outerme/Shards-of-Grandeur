@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://x52o43h51guu"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_brvxw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_faia7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_xmrlf"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_j4fkb"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_xmrlf"]
+
+[sub_resource type="Resource" id="Resource_1wq1n"]
+script = ExtResource("2_xmrlf")
+choiceBtn = "Scouting?"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_j4fkb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_j4fkb"]
+script = ExtResource("1_brvxw")
+lines = Array[String](["I'm totally sure. I just pulled myself out of that big swampy lake, after nearly freezing in the Quiet Tundra!", "I'm sopping wet, freezing cold, and miserable. This \"scouting\" mission they gave me was just to get rid of me."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_xmrlf")]([SubResource("Resource_1wq1n")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_tpk0f"]
+script = ExtResource("2_xmrlf")
+choiceBtn = "@."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_j4fkb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_xmrlf"]
+script = ExtResource("1_brvxw")
+lines = Array[String](["Yeah. The General and Etreus are looking for a way to get into Giant Steppes.", "They sent me to check out the Frozen Tundra a while ago, but that place is just too harsh. I've tried to cross it many times already.", "Anyways, enough about me. What's your name, stranger?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_xmrlf")]([SubResource("Resource_tpk0f")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_251q7"]
+script = ExtResource("1_brvxw")
+lines = Array[String](["@? Nice to meet you! I'll be here warming up by the fire if you want to chat some more."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_xmrlf")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_xmrlf")
+entryId = ""
+items = Array[ExtResource("1_brvxw")]([SubResource("Resource_j4fkb"), SubResource("Resource_xmrlf"), SubResource("Resource_251q7")])
+ordStoryRequirements = Array[ExtResource("2_faia7")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

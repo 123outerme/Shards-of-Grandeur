@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://d2g6cin26xn3n"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_32045"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_d320i"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_d320i"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_h41vw"]
+[ext_resource type="Resource" uid="uid://dx5cjkeg1n81g" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_lost_comrade_2_turnin.tres" id="3_paal5"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_paal5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_2w32n"]
+
+[sub_resource type="Resource" id="Resource_h41vw"]
+script = ExtResource("2_d320i")
+choiceBtn = "Wow... Thanks."
+leadsTo = ExtResource("3_paal5")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_d320i")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_5bxgx"]
+script = ExtResource("1_32045")
+lines = Array[String](["Solius? I haven't heard that name before. If you're missing someone, I did see a cloaked adventurer much like yourself pass by here.", "He was seriously beat up, I'm quite frankly surprised he was still moving!", "I begged him to sit by the fire and let me help him, but he gave me a cold glare and kept limping along.", "He was headed to the Quiet Tundra... I hope you find him before the Ice Hounds do."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_d320i")]([SubResource("Resource_h41vw")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_d34ie"]
+script = ExtResource("3_h41vw")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["A Lost Comrade"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_paal5")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["cl_soldier_swamp_north_1#swamp_north_soldier_solius_clue"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_paal5")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("5_2w32n")
+entryId = "swamp_north_soldier_solius_clue"
+items = Array[ExtResource("1_32045")]([SubResource("Resource_5bxgx")])
+ordStoryRequirements = Array[ExtResource("3_h41vw")]([SubResource("Resource_d34ie")])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

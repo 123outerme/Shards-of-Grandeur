@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=68 format=3 uid="uid://ccf5vxiigjqru"]
+[gd_resource type="TileSet" load_steps=70 format=3 uid="uid://ccf5vxiigjqru"]
 
 [ext_resource type="Texture2D" uid="uid://cw74wj0lme24k" path="res://graphics/terrain/grass.png" id="1_twi3w"]
 [ext_resource type="Texture2D" uid="uid://bbrbj4xgtnrrm" path="res://graphics/structures/trees.png" id="2_u6f08"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://c8p8w0b7mm02o" path="res://graphics/terrain/mushroom_dimension.png" id="25_lsaj0"]
 [ext_resource type="Texture2D" uid="uid://che2t57luhg5f" path="res://graphics/terrain/shard_interior.png" id="26_b5x3x"]
 [ext_resource type="Texture2D" uid="uid://dpgkcnworasme" path="res://graphics/terrain/leavenport_ship_terrain.png" id="27_3krdq"]
+[ext_resource type="Texture2D" uid="uid://bsnboga23r8m7" path="res://graphics/structures/campfire.png" id="28_u8w3j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_67n43"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -2260,6 +2261,15 @@ texture = ExtResource("27_3krdq")
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, 4, 8, 0, 0, -8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bltb0"]
+texture = ExtResource("28_u8w3j")
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 0.167
+0:0/animation_frame_1/duration = 0.167
+0:0/animation_frame_2/duration = 0.167
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, 1, 8, 1, 8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c7tua"]
 texture = ExtResource("6_0sk6s")
 1:1/0 = 0
@@ -3042,3 +3052,4 @@ sources/29 = SubResource("TileSetAtlasSource_n4dnq")
 sources/30 = SubResource("TileSetAtlasSource_xie6v")
 sources/31 = SubResource("TileSetAtlasSource_wiiyj")
 sources/32 = SubResource("TileSetAtlasSource_mto11")
+sources/33 = SubResource("TileSetAtlasSource_bltb0")

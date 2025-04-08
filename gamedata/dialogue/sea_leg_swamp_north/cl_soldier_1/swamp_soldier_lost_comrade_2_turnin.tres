@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dx5cjkeg1n81g"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_065eg"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1xyqb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_dtfh0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_1xyqb"]
+[ext_resource type="Resource" uid="uid://daoce3d71tcwm" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_lost_comrade_2_turnin_no.tres" id="3_l1sqx"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_usenm"]
+[ext_resource type="Resource" uid="uid://ivhotfx2rkc8" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_lost_comrade_2_turnin_ok.tres" id="5_l1sqx"]
+
+[sub_resource type="Resource" id="Resource_l1sqx"]
+script = ExtResource("2_1xyqb")
+choiceBtn = "I Don't Know..."
+leadsTo = ExtResource("3_l1sqx")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_usenm")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_eyv38"]
+script = ExtResource("2_1xyqb")
+choiceBtn = "Ok... Deal."
+leadsTo = ExtResource("5_l1sqx")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_usenm")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_usenm"]
+script = ExtResource("1_065eg")
+lines = Array[String](["I know how you can thank me for this piece of information...", "Once you find Solius, come back here, and let's chat by the fire."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_1xyqb")]([SubResource("Resource_l1sqx"), SubResource("Resource_eyv38")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_1xyqb")
+entryId = ""
+items = Array[ExtResource("1_065eg")]([SubResource("Resource_usenm")])
+ordStoryRequirements = Array[ExtResource("2_dtfh0")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
