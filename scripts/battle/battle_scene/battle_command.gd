@@ -352,9 +352,9 @@ func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMo
 		# gather total keyword multiplier:
 		var keywordMultiplier: float = 1.0
 		for keyword: String in moveEffect.keywords:
-			keywordMultiplier *= user.statChanges.get_keyword_multiplier(keyword)
-		# and ADD it into the final damage multiplier
-		damageMultiplier += keywordMultiplier - 1.0
+			keywordMultiplier += user.statChanges.get_keyword_multiplier(keyword) - 1.0
+		# and multiply it into the final damage multiplier
+		damageMultiplier *= keywordMultiplier
 
 	if ignoreMoveStatChanges and move != null: # ignore most recent move stat changes if move is after turn has been executed
 		var isEnemyTargeting: bool = BattleCommand.is_command_enemy_targeting(moveEffect.targets)

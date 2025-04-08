@@ -32,8 +32,8 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 
 	var keywordMultiplier: float = 1.0
 	for keyword: String in moveEffect.keywords:
-		keywordMultiplier *= user.combatant.statChanges.get_keyword_multiplier(keyword)
-	damageMultiplier += keywordMultiplier - 1.0
+		keywordMultiplier += user.combatant.statChanges.get_keyword_multiplier(keyword) - 1.0
+	damageMultiplier *= keywordMultiplier
 	
 	var userBoostedStats: Stats = user.combatant.statChanges.apply(user.combatant.stats)
 	var targetStats: Stats = target.combatant.statChanges.apply(target.combatant.stats)
@@ -90,7 +90,12 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		var otherAttackStat: float = userBoostedStats.get_stat_for_dmg_category(otherMove.category)
 		var otherTargetElEff: float = target.combatant.get_element_effectiveness_multiplier(otherMove.element)
 		var otherElementBoost: float = user.combatant.statChanges.get_element_multiplier(otherMove.element)
-		var otherDmg: int = BattleCommand.damage_formula(otherMoveEffect.power, otherAttackStat, targetStats.resistance, user.combatant.stats.level, target.combatant.stats.level, otherTargetElEff * otherElementBoost)
+		
+		var otherKeywordBoost: float = 1.0
+		for keyword: String in otherMoveEffect.keywords:
+			otherKeywordBoost += user.combatant.statChanges.get_keyword_multiplier(keyword) - 1.0
+		
+		var otherDmg: int = BattleCommand.damage_formula(otherMoveEffect.power, otherAttackStat, targetStats.resistance, user.combatant.stats.level, target.combatant.stats.level, otherTargetElEff * otherElementBoost * otherKeywordBoost)
 		#var otherTargets: Array = user.get_targetable_combatant_nodes(battleState)
 		if healLayer:
 			otherDmg *= -1
