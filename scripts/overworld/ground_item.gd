@@ -1,3 +1,4 @@
+@tool
 extends Interactable
 class_name GroundItem
 
@@ -22,30 +23,31 @@ var disabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null or saveName == '':
-		printerr('GroundItem ERR: PickedUpItem not defined properly')
-		queue_free()
-		return
-	
-	_story_reqs_updated()
-	if PlayerResources.playerInfo.has_picked_up(saveName):
-		set_disabled(true)
-	
-	show_pick_up_sprite(false)
-	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+	if not Engine.is_editor_hint():
+		if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null or saveName == '':
+			printerr('GroundItem ERR: PickedUpItem not defined properly')
+			queue_free()
+			return
+		
+		_story_reqs_updated()
+		if PlayerResources.playerInfo.has_picked_up(saveName):
+			set_disabled(true)
+		
+		show_pick_up_sprite(false)
+		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
 	
 	if invisible:
 		sprite.texture = null
 	elif disguiseSprite != null:
 		sprite.texture = disguiseSprite
-	else:
+	elif pickedUpItem != null and pickedUpItem.item != null:
 		sprite.texture = pickedUpItem.item.itemSprite
-	
-	if len(particleTextures) > 0:
-		var newPreset: ParticlePreset = particleEmitter.preset.duplicate(false)
-		newPreset.particleTextures = particleTextures
-		particleEmitter.preset = newPreset
-	particleEmitter.set_make_particles(true)
+	if not Engine.is_editor_hint():
+		if len(particleTextures) > 0:
+			var newPreset: ParticlePreset = particleEmitter.preset.duplicate(false)
+			newPreset.particleTextures = particleTextures
+			particleEmitter.preset = newPreset
+		particleEmitter.set_make_particles(true)
 
 func show_pick_up_sprite(showSprite: bool = true):
 	pickUpSprite.visible = showSprite
