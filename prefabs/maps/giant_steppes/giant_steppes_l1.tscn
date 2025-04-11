@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=29 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_h3fmg"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="6_f378v"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="7_h3fmg"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="8_0aigu"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="8_f378v"]
 [ext_resource type="SpriteFrames" uid="uid://c4mkc32qlnv5d" path="res://graphics/animations/a_ice_hound.tres" id="8_ku0es"]
+[ext_resource type="Resource" uid="uid://bhlphav7l7lyf" path="res://gamedata/dialogue/giant_steppes/ice_hound/ice_hound_bark.tres" id="9_b2mwp"]
 [ext_resource type="SpriteFrames" uid="uid://dgvna83psq8yc" path="res://graphics/animations/a_giant_steppes_inn_sign.tres" id="9_k1cu3"]
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="10_6tmxv"]
 
@@ -193,6 +195,12 @@ data = SubResource("Resource_ku0es")
 sprite_frames = ExtResource("6_f378v")
 animation = &"stand"
 
+[node name="ColliderShape" parent="TilemapRoot/Warlock1" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TilemapRoot/Warlock1" index="3"]
+position = Vector2(0, 4)
+
 [node name="MoveTrigger" parent="TilemapRoot/Warlock1" index="4"]
 visible = false
 
@@ -224,6 +232,7 @@ spriteSize = Vector2i(32, 32)
 spriteOffset = Vector2(-4, -8)
 speakerSpriteOffset = Vector2(-4, -8)
 data = SubResource("Resource_0aigu")
+dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("9_b2mwp")])
 
 [node name="NPCSprite" parent="TilemapRoot/IceHound" index="0"]
 sprite_frames = ExtResource("8_ku0es")
@@ -231,7 +240,6 @@ animation = &"attack_affinity"
 offset = Vector2(-4, -8)
 
 [node name="TalkAlertSprite" parent="TilemapRoot/IceHound/NPCSprite" index="0"]
-visible = true
 position = Vector2(-1, -14)
 
 [node name="ColliderShape" parent="TilemapRoot/IceHound" index="1"]
