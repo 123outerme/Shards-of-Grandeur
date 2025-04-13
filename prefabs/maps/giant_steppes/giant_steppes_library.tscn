@@ -1,7 +1,33 @@
-[gd_scene load_steps=6 format=4 uid="uid://d86tyj0eydeo"]
+[gd_scene load_steps=10 format=4 uid="uid://d86tyj0eydeo"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_aldqd"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_30rpl"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_seghd"]
+[ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_dpsuv"]
+[ext_resource type="SpriteFrames" uid="uid://b26seowjsmlyl" path="res://graphics/animations/a_keeper_of_history.tres" id="5_dpsuv"]
+
+[sub_resource type="Resource" id="Resource_6y554"]
+script = ExtResource("4_dpsuv")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -59,6 +85,25 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_30rpl")
 
+[node name="KeeperOfHistory" parent="TilemapRoot" instance=ExtResource("3_seghd")]
+position = Vector2(73, -154)
+displayName = "Keeper of History"
+saveName = "keeper_of_history_library"
+data = SubResource("Resource_6y554")
+
+[node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
+sprite_frames = ExtResource("5_dpsuv")
+animation = &"walk"
+
+[node name="ColliderShape" parent="TilemapRoot/KeeperOfHistory" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TilemapRoot/KeeperOfHistory" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TilemapRoot/KeeperOfHistory" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -69,3 +114,5 @@ navigation_layers = 2
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
+
+[editable path="TilemapRoot/KeeperOfHistory"]
