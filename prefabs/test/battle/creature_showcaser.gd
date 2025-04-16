@@ -1,8 +1,10 @@
 extends BattleController
 
 signal results_ok_pressed
+signal start_next_round
 
 @export var bgMap: PackedScene
+@export var bgMusic: AudioStream
 
 @export var useBattleAnims: bool = true
 @export var allowSurge: bool = true
@@ -42,6 +44,8 @@ signal results_ok_pressed
 
 @onready var initialOkButton: Button = $BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/InitialOKButton
 
+var simStarted: bool = false
+
 func _ready() -> void:
 	tilemapParent = get_node('TileMapParent')
 	battleAnimationManager = get_node('BattleAnimationManager')
@@ -49,6 +53,7 @@ func _ready() -> void:
 	var map: Node = bgMap.instantiate()
 	tilemapParent.add_child(map)
 	SceneLoader.audioHandler = get_node('AudioHandler')
+	SceneLoader.audioHandler.play_music(bgMusic, -1)
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
 	if allowSurge:
@@ -134,6 +139,7 @@ func _ready() -> void:
 	battleUI.battlePanels.set_turn_counter(1, encounter.winCon)
 	await results_ok_pressed
 	
+	simStarted = true
 	while battleUI.battleController.turnExecutor.result == WinCon.TurnResult.NOTHING:
 		# get player and ally command (since normally it isn't auto calculated)
 		battleUI.battleController.playerCombatant.get_command(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
@@ -143,16 +149,15 @@ func _ready() -> void:
 		battleUI.commandingMinion = true # sets up state so complete_command will start pre-round
 		battleUI.complete_command() # start pre-round
 		
-		await battleUI.battleController.turnExecutor.round_complete
+		await start_next_round
 		
 		# advance turn number
 		battleUI.battleController.state.turnNumber += 1
 		battleUI.battlePanels.set_turn_counter(battleUI.battleController.state.turnNumber, encounter.winCon)
 
 func _on_battle_cam_menu_state_changed(state: BattleState.Menu) -> void:
-	pass
-	#if state == BattleState.Menu.ALL_COMMANDS:
-	#	battleUI.set_menu_state(BattleState.Menu.BATTLE_COMPLETE)
+	if state == BattleState.Menu.ALL_COMMANDS and simStarted:
+		start_next_round.emit()
 
 func _on_results_ok_button_pressed() -> void:
 	initialOkButton.visible = false

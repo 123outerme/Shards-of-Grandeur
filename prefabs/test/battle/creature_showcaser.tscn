@@ -1,9 +1,10 @@
-[gd_scene load_steps=80 format=3 uid="uid://b30y3m18vx5o"]
+[gd_scene load_steps=81 format=3 uid="uid://b30y3m18vx5o"]
 
 [ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
 [ext_resource type="PackedScene" uid="uid://dwt3btkr2nys6" path="res://prefabs/battle/battle_maps/forest_battle_map.tscn" id="2_de80j"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_ud7cv"]
 [ext_resource type="Script" uid="uid://cxdjuosnjdmdm" path="res://scripts/battle/battle_scene/battle_ui.gd" id="3_53ny3"]
+[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="3_ljdcp"]
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="3_ucjnw"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="4_8yxc8"]
 [ext_resource type="Resource" uid="uid://gsk7qwlmuwdb" path="res://gamedata/items/armor/warrior_headband.tres" id="4_cj6x2"]
@@ -228,6 +229,7 @@ metadata/_custom_type_script = "uid://w2owehn7fmot"
 [node name="CreatureShowcaser" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_k85it")
 bgMap = ExtResource("2_de80j")
+bgMusic = ExtResource("3_ljdcp")
 encounter = SubResource("Resource_02djh")
 _playerCombatant = SubResource("Resource_evrjj")
 playerLv = 10
@@ -1188,3 +1190,4 @@ battleUI = NodePath("../BattleCam")
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/StatsOpenButton" to="BattleCam/UIPanels" method="_on_stats_open_button_pressed"]
 [connection signal="pressed" from="BattleCam/UIPanels/PanelsButtons/PauseButton" to="BattleCam/UIPanels" method="_on_pause_button_pressed"]
 [connection signal="toggled" from="BattleCam/UIPanels/FlowOfBattle/ToggleFobButton" to="BattleCam/UIPanels/FlowOfBattle" method="_on_toggle_fob_button_toggled"]
+[connection signal="resume_game" from="BattleCam/UIPanels/PauseMenu" to="BattleCam/UIPanels" method="_on_pause_menu_resume_game"]
