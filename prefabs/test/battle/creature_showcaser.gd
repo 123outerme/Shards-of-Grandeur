@@ -40,6 +40,8 @@ signal results_ok_pressed
 @export var enemy3Runes: Array[Rune] = []
 @export var enemy3RuneCasterPositions: Array[String] = []
 
+@onready var initialOkButton: Button = $BattleCam/BattleTextBox/TextContainer/MarginContainer/Results/InitialOKButton
+
 func _ready() -> void:
 	tilemapParent = get_node('TileMapParent')
 	battleAnimationManager = get_node('BattleAnimationManager')
@@ -66,6 +68,7 @@ func _ready() -> void:
 	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
 	var combatantAis: Array[CombatantAi] = [playerAi, null, null, null, null]
 	if encounter is StaticEncounter:
+		combatantAis[1] = encounter.autoAllyAi
 		combatantAis[2] = encounter.combatant1Ai
 		combatantAis[3] = encounter.combatant2Ai
 		combatantAis[4] = encounter.combatant3Ai
@@ -101,6 +104,7 @@ func _ready() -> void:
 		if combatantAis[idx] != null:
 			get_all_combatant_nodes()[idx].battleAi = combatantAis[idx].copy()
 		get_all_combatant_nodes()[idx].combatant = combatant
+		get_all_combatant_nodes()[idx].role = CombatantNode.Role.ENEMY if idx > 1 else CombatantNode.Role.ALLY
 		get_all_combatant_nodes()[idx].update_current_tag_stats(true)
 		get_all_combatant_nodes()[idx].load_combatant_node()
 	
@@ -120,19 +124,30 @@ func _ready() -> void:
 			combatantNode.update_rune_sprites(true)
 			#print(len(combatantNode.combatant.runes), ' runes were placed on ', combatantNode.combatant.disp_name(), ' / ', combatantNode.battlePosition)
 	
+	battleUI.allCommands._ready() # run the ready function again now that we're set up
+	battleUI.results.okBtn.visible = false # make invisible so that we can use the other OK button to wait for the recorder to be ready
+	
 	state = BattleState.new()
-	# get command for each combatant, if that combatant is alive and hasn't made a command, get one
+	
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
-		if combatantNode.combatant != null and combatantNode.is_alive() and combatantNode.combatant.command == null:
-			combatantNode.get_command(get_all_combatant_nodes(), state)
 		combatantNode.update_hp_tag()
 	battleUI.battlePanels.set_turn_counter(1, encounter.winCon)
-	
 	await results_ok_pressed
 	
-	battleUI.menuState = BattleState.Menu.PRE_ROUND
-	battleUI.commandingMinion = true # sets up state so complete_command will start pre-round
-	battleUI.complete_command() # start pre-round
+	while battleUI.battleController.turnExecutor.result == WinCon.TurnResult.NOTHING:
+		# get player and ally command (since normally it isn't auto calculated)
+		battleUI.battleController.playerCombatant.get_command(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
+		battleUI.battleController.minionCombatant.get_command(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
+		
+		battleUI.menuState = BattleState.Menu.PRE_ROUND
+		battleUI.commandingMinion = true # sets up state so complete_command will start pre-round
+		battleUI.complete_command() # start pre-round
+		
+		await battleUI.battleController.turnExecutor.round_complete
+		
+		# advance turn number
+		battleUI.battleController.state.turnNumber += 1
+		battleUI.battlePanels.set_turn_counter(battleUI.battleController.state.turnNumber, encounter.winCon)
 
 func _on_battle_cam_menu_state_changed(state: BattleState.Menu) -> void:
 	pass
@@ -140,4 +155,6 @@ func _on_battle_cam_menu_state_changed(state: BattleState.Menu) -> void:
 	#	battleUI.set_menu_state(BattleState.Menu.BATTLE_COMPLETE)
 
 func _on_results_ok_button_pressed() -> void:
+	initialOkButton.visible = false
+	battleUI.results.okBtn.visible = true
 	results_ok_pressed.emit()

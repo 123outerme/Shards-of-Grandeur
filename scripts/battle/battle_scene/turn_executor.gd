@@ -1,6 +1,8 @@
 extends Node
 class_name TurnExecutor
 
+signal round_complete
+
 @export var battleController: BattleController
 @export var battleUI: BattleUI
 
@@ -128,6 +130,7 @@ func play_turn():
 					combatantNode.combatant.stats.equippedArmor.apply_effects(combatantNode.combatant, BattleCommand.ApplyTiming.AFTER_ROUND)
 				combatantNode.combatant.update_runes([], battleController.state, BattleCommand.ApplyTiming.AFTER_ROUND)
 		battleUI.set_menu_state(BattleState.Menu.POST_ROUND)
+		round_complete.emit()
 	
 func update_turn_text() -> bool:
 	var allCombatantNodes: Array[CombatantNode] = battleController.get_all_combatant_nodes()

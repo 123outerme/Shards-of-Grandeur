@@ -30,6 +30,7 @@ class_name StaticEncounter
 @export var autoAllyWeapon: Weapon = null
 @export var autoAllyAccessory: Accessory = null
 @export var autoAllyMoves: Array[Move] = []
+@export var autoAllyAi: CombatantAi = null
 @export var autoAllyShardSummoned: bool = false
 @export var specialBattleId: String = ''
 @export var bossBattle: bool = false
@@ -76,6 +77,7 @@ func _init(
 	i_autoAllyWeapon = null,
 	i_autoAllyAccessory: Accessory = null,
 	i_autoAllyMoves: Array[Move] = [],
+	i_autoAllyAi: CombatantAi = null,
 	i_autoAllyShardSummoned = false,
 	i_specialBattleId = '',
 	i_canEscape = true,
@@ -116,6 +118,7 @@ func _init(
 	autoAllyWeapon = i_autoAllyWeapon
 	autoAllyAccessory = i_autoAllyAccessory
 	autoAllyMoves = i_autoAllyMoves
+	autoAllyAi = i_autoAllyAi
 	autoAllyShardSummoned = i_autoAllyShardSummoned
 	
 	specialBattleId = i_specialBattleId

@@ -156,6 +156,10 @@ func load_into_battle():
 				minionCombatant.combatant.stats.equippedAccessory = staticEncounter.autoAllyAccessory
 				if minionCombatant.combatant.get_evolution() != null:
 					minionCombatant.combatant.switch_evolution(minionCombatant.combatant.get_evolution(), null)
+				if staticEncounter.autoAllyAi != null:
+					minionCombatant.battleAi = staticEncounter.autoAllyAi.copy()
+				else:
+					minionCombatant.battleAi = staticEncounter.autoAlly.get_ai().copy()
 				minionCombatant.initialCombatantLv = minionCombatant.combatant.stats.level
 				minionCombatant.combatant.level_up_nonplayer(staticEncounter.autoAllyLevel, staticEncounter.autoAllyStatAllocStrat)
 				minionCombatant.combatant.orbs = minionCombatant.combatant.get_starting_orbs()
