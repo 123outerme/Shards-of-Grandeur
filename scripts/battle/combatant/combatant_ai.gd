@@ -51,8 +51,11 @@ func get_command_for_turn(user: CombatantNode, allCombatantNodes: Array[Combatan
 			if len(targets) == 0:
 				continue
 			var orbs: int = moveEffect.orbChange
-			if effectType == Move.MoveEffectType.SURGE and could_combatant_surge(user.combatant, moveEffect):
-				orbs = get_orbs_amount(user.combatant, moveEffect)
+			if effectType == Move.MoveEffectType.SURGE:
+				if could_combatant_surge(user.combatant, moveEffect):
+					orbs = get_orbs_amount(user.combatant, moveEffect)
+				else:
+					continue
 			var moveWeight: float = 1 if len(targets) > 0 else -1
 			var highestWeightedTarget: CombatantNode = null
 			for target: CombatantNode in targets:
@@ -179,7 +182,7 @@ func get_orbs_amount(combatant: Combatant, effect: MoveEffect) -> int:
 			var spendRatio: float = 0.75
 			if (combatant.currentHp as float) / combatant.stats.maxHp <= 0.45:
 				spendRatio = 1.0
-			return max(-1 * Combatant.MAX_ORBS, min(effect.orbChange, floori(combatant.orbs * spendRatio)))
+			return max(-1 * Combatant.MAX_ORBS, min(effect.orbChange, floori(combatant.orbs * spendRatio * -1)))
 	return effect.orbChange
 
 func copy(copyStorage: bool = false) -> CombatantAi:

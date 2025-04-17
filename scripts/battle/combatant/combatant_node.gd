@@ -184,7 +184,10 @@ func change_current_orbs(orbChange: int) -> void:
 	update_hp_tag()
 
 func change_current_status(newStatus: StatusEffect) -> void:
-	curStatus = newStatus
+	if newStatus.type == StatusEffect.Type.NONE:
+		curStatus = null # cleanse status
+	else:
+		curStatus = newStatus
 	update_hp_tag()
 
 func update_current_tag_stats(updateBattleStorage: bool = true) -> void:

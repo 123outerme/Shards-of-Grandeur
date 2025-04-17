@@ -1,48 +1,49 @@
-[gd_scene load_steps=81 format=3 uid="uid://b30y3m18vx5o"]
+[gd_scene load_steps=95 format=3 uid="uid://b30y3m18vx5o"]
 
 [ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
 [ext_resource type="PackedScene" uid="uid://dwt3btkr2nys6" path="res://prefabs/battle/battle_maps/forest_battle_map.tscn" id="2_de80j"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_ud7cv"]
 [ext_resource type="Script" uid="uid://cxdjuosnjdmdm" path="res://scripts/battle/battle_scene/battle_ui.gd" id="3_53ny3"]
-[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="3_ljdcp"]
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="3_ucjnw"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="4_8yxc8"]
-[ext_resource type="Resource" uid="uid://gsk7qwlmuwdb" path="res://gamedata/items/armor/warrior_headband.tres" id="4_cj6x2"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="4_lutwl"]
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="5_53ny3"]
-[ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="5_254jr"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="5_gkbrp"]
 [ext_resource type="StyleBox" uid="uid://cs07s6p0400xl" path="res://themes/battle_text_box/battle_text_box_background.tres" id="5_wuy8n"]
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_02djh"]
 [ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="6_lutwl"]
 [ext_resource type="Script" uid="uid://b36cn68yq58a0" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_hvieh"]
+[ext_resource type="Resource" uid="uid://cwbb2w28v3c5l" path="res://gamedata/moves/restore/restore.tres" id="7_vnsia"]
 [ext_resource type="Script" uid="uid://cjglmk70bbxxm" path="res://scripts/battle/combatant/ai_layers/move_ordered_layer.gd" id="8_71qgg"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_f34sn"]
+[ext_resource type="Resource" uid="uid://cul2ps2aecpnj" path="res://gamedata/moves/purify/purify.tres" id="8_u5hre"]
 [ext_resource type="Script" uid="uid://j40m2j8cvudq" path="res://scripts/battle/battle_scene/all_commands.gd" id="9_jdnii"]
 [ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="10_53ntj"]
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="10_gkbrp"]
 [ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="11_71qgg"]
 [ext_resource type="Script" uid="uid://du8h3dkrw4x3g" path="res://scripts/battle/battle_scene/moves_menu.gd" id="11_254jr"]
+[ext_resource type="Resource" uid="uid://bwsv5hh8mitat" path="res://gamedata/items/armor/turtle_plate.tres" id="11_arf2n"]
 [ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="12_4jx00"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="12_cj6x2"]
+[ext_resource type="Resource" uid="uid://dipib564w65n" path="res://gamedata/items/weapon/charmed_bracelet.tres" id="12_vnsia"]
 [ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="13_0mhiy"]
 [ext_resource type="Script" uid="uid://bqltkrdelv83g" path="res://scripts/battle/battle_scene/targets.gd" id="13_8p1nk"]
+[ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="14_kw1uj"]
 [ext_resource type="Resource" uid="uid://dtf1txvaxx3vc" path="res://gamedata/moves/druidic_pulse/druidic_pulse.tres" id="14_ljdcp"]
 [ext_resource type="Script" uid="uid://bpj7cmm7j1c8l" path="res://scripts/battle/battle_scene/surge_menu.gd" id="14_qifex"]
 [ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="14_qpogj"]
+[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="14_u5hre"]
 [ext_resource type="Resource" uid="uid://bi44lny7wl8lx" path="res://gamedata/moves/shield_wall/shield_wall.tres" id="15_arf2n"]
 [ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="15_ljdcp"]
 [ext_resource type="PackedScene" uid="uid://bmbx4qteugtm0" path="res://prefabs/battle/orb_display.tscn" id="15_vdlc4"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="16_arf2n"]
 [ext_resource type="Script" uid="uid://vhgw3r68dxl8" path="res://scripts/battle/battle_scene/results.gd" id="16_phs7o"]
-[ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="16_vnsia"]
 [ext_resource type="PackedScene" uid="uid://bc2kbh31hfy6" path="res://prefabs/ui/rich_text_label_scroller.tscn" id="17_26y4l"]
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="17_vnsia"]
 [ext_resource type="Script" uid="uid://dcfx8ajp6up23" path="res://scripts/battle/battle_scene/battle_complete_menu.gd" id="18_a7gfh"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="18_u5hre"]
 [ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="19_fda74"]
 [ext_resource type="Resource" uid="uid://dtco7uib2bx3l" path="res://gamedata/moves/impale/impale.tres" id="19_kw1uj"]
-[ext_resource type="Resource" uid="uid://poj2favclae8" path="res://gamedata/moves/battle_trance/battle_trance.tres" id="20_gp340"]
 [ext_resource type="AudioStream" uid="uid://bpvsiiko743cd" path="res://audio/music/battle/deathsound.mp3" id="20_wjcxo"]
 [ext_resource type="Script" uid="uid://bxgnfo7io12yx" path="res://scripts/battle/battle_scene/battle_panels.gd" id="21_7pwb1"]
 [ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="21_utb7i"]
@@ -61,18 +62,24 @@
 [ext_resource type="Script" uid="uid://cbb5diqsv44du" path="res://scripts/battle/battle_scene/turn_executor.gd" id="28_0u2ip"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="29_av008"]
 [ext_resource type="PackedScene" uid="uid://dq5sjy2lo7i5i" path="res://prefabs/ui/animated_bg_panel.tscn" id="30_71qgg"]
+[ext_resource type="Resource" uid="uid://bkye5pxmqsb6m" path="res://gamedata/moves/draining_bolt/draining_bolt.tres" id="30_gp340"]
 [ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="31_4jx00"]
+[ext_resource type="Resource" uid="uid://dxwkpv5vlcigq" path="res://gamedata/moves/thunderstrike/thunderstrike.tres" id="31_utb7i"]
 [ext_resource type="PackedScene" uid="uid://drjv6mqrkwq3n" path="res://prefabs/ui/inventory/inventory_panel.tscn" id="32_0mhiy"]
+[ext_resource type="Script" uid="uid://dwp1xuvcmi88j" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation.gd" id="32_arf2n"]
 [ext_resource type="PackedScene" uid="uid://cxln0q5pum4mm" path="res://prefabs/ui/quests/quests_panel.tscn" id="33_qpogj"]
+[ext_resource type="Script" uid="uid://chtagsu3ofpvu" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation_strategy.gd" id="33_vnsia"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="34_ljdcp"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="35_arf2n"]
+[ext_resource type="Script" uid="uid://dw68jtuc0bxvn" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="35_fsle4"]
+[ext_resource type="Script" uid="uid://0ddrq70do5nq" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="36_nybcs"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="36_vnsia"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="37_u5hre"]
 
 [sub_resource type="Resource" id="Resource_4jx00"]
 script = ExtResource("8_71qgg")
-moveList = Array[ExtResource("3_ucjnw")]([ExtResource("20_gp340"), ExtResource("19_kw1uj"), ExtResource("21_utb7i")])
-moveListAttemptSurge = Array[bool]([false, false, true])
+moveList = Array[ExtResource("3_ucjnw")]([ExtResource("15_arf2n"), ExtResource("7_vnsia"), ExtResource("8_u5hre"), ExtResource("14_ljdcp")])
+moveListAttemptSurge = Array[bool]([])
 loop = true
 moveIdx = 0
 weight = 1.0
@@ -88,14 +95,21 @@ lastMovesEffect = 0
 timesUsedLastMove = 0
 metadata/_custom_type_script = "uid://w2owehn7fmot"
 
+[sub_resource type="Resource" id="Resource_fsle4"]
+script = ExtResource("25_ebkvn")
+aggroStrategy = 1
+weight = 1.0
+subLayers = Array[ExtResource("23_nybcs")]([])
+metadata/_custom_type_script = "uid://0yxyfr70qvwu"
+
 [sub_resource type="Resource" id="Resource_u5hre"]
 script = ExtResource("8_71qgg")
-moveList = Array[ExtResource("3_ucjnw")]([ExtResource("14_ljdcp"), ExtResource("15_arf2n"), ExtResource("16_vnsia")])
-moveListAttemptSurge = Array[bool]([])
+moveList = Array[ExtResource("3_ucjnw")]([ExtResource("14_kw1uj"), ExtResource("19_kw1uj"), ExtResource("21_utb7i")])
+moveListAttemptSurge = Array[bool]([false, false, true])
 loop = true
 moveIdx = 0
 weight = 1.0
-subLayers = Array[ExtResource("23_nybcs")]([])
+subLayers = Array[ExtResource("23_nybcs")]([SubResource("Resource_fsle4")])
 metadata/_custom_type_script = "uid://cjglmk70bbxxm"
 
 [sub_resource type="Resource" id="Resource_kw1uj"]
@@ -107,10 +121,21 @@ lastMovesEffect = 0
 timesUsedLastMove = 0
 metadata/_custom_type_script = "uid://w2owehn7fmot"
 
+[sub_resource type="Resource" id="Resource_nybcs"]
+script = ExtResource("32_arf2n")
+allocations = Array[int]([0, 3])
+forStatPoints = 2
+metadata/_custom_type_script = "uid://dwp1xuvcmi88j"
+
+[sub_resource type="Resource" id="Resource_yikgk"]
+script = ExtResource("33_vnsia")
+allocations = Array[ExtResource("32_arf2n")]([SubResource("Resource_nybcs")])
+metadata/_custom_type_script = "uid://chtagsu3ofpvu"
+
 [sub_resource type="Resource" id="Resource_02djh"]
 script = ExtResource("6_lutwl")
-combatant1Level = 10
-combatant1Moves = Array[ExtResource("3_ucjnw")]([])
+combatant1Level = 14
+combatant1Moves = Array[ExtResource("3_ucjnw")]([ExtResource("14_kw1uj"), ExtResource("19_kw1uj"), ExtResource("21_utb7i"), ExtResource("16_arf2n")])
 combatant1Ai = SubResource("Resource_kw1uj")
 combatant1ShardSummoned = false
 combatant2Level = 10
@@ -119,11 +144,11 @@ combatant2ShardSummoned = false
 combatant3Level = 10
 combatant3Moves = Array[ExtResource("3_ucjnw")]([])
 combatant3ShardSummoned = false
-autoAlly = ExtResource("4_8yxc8")
-autoAllyLevel = 10
-autoAllyArmor = ExtResource("4_cj6x2")
-autoAllyWeapon = ExtResource("5_254jr")
-autoAllyMoves = Array[ExtResource("3_ucjnw")]([])
+autoAlly = ExtResource("5_gkbrp")
+autoAllyLevel = 13
+autoAllyArmor = ExtResource("11_arf2n")
+autoAllyWeapon = ExtResource("12_vnsia")
+autoAllyMoves = Array[ExtResource("3_ucjnw")]([ExtResource("14_ljdcp"), ExtResource("7_vnsia"), ExtResource("8_u5hre"), ExtResource("15_arf2n")])
 autoAllyAi = SubResource("Resource_0mhiy")
 autoAllyShardSummoned = false
 specialBattleId = ""
@@ -131,7 +156,9 @@ bossBattle = false
 canEscape = true
 rewards = Array[ExtResource("5_53ny3")]([])
 useStaticRewards = false
-combatant1 = ExtResource("5_gkbrp")
+battleMusic = ExtResource("14_u5hre")
+combatant1 = ExtResource("4_8yxc8")
+combatant1StatAllocStrat = SubResource("Resource_yikgk")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
@@ -168,7 +195,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("22_fsle4")
-moves = Array[ExtResource("3_ucjnw")]([ExtResource("16_arf2n"), ExtResource("19_kw1uj"), ExtResource("20_gp340"), ExtResource("21_utb7i")])
+moves = Array[ExtResource("3_ucjnw")]([ExtResource("17_vnsia"), ExtResource("30_gp340"), ExtResource("31_utb7i"), ExtResource("16_arf2n")])
 movepool = SubResource("Resource_5jl4o")
 
 [sub_resource type="Resource" id="Resource_evrjj"]
@@ -211,6 +238,19 @@ weight = 0.65
 subLayers = Array[ExtResource("23_nybcs")]([SubResource("Resource_shm7h")])
 metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
 
+[sub_resource type="Resource" id="Resource_v7kfw"]
+script = ExtResource("35_fsle4")
+mostOrbsWeight = 1.15
+weight = 0.35
+subLayers = Array[ExtResource("23_nybcs")]([])
+metadata/_custom_type_script = "uid://dw68jtuc0bxvn"
+
+[sub_resource type="Resource" id="Resource_ebkvn"]
+script = ExtResource("36_nybcs")
+weight = 0.25
+subLayers = Array[ExtResource("23_nybcs")]([])
+metadata/_custom_type_script = "uid://0ddrq70do5nq"
+
 [sub_resource type="Resource" id="Resource_c0vv4"]
 script = ExtResource("26_yikgk")
 weight = 0.3
@@ -219,22 +259,33 @@ metadata/_custom_type_script = "uid://dim2s6pbuqjth"
 
 [sub_resource type="Resource" id="Resource_lta2o"]
 script = ExtResource("27_55col")
-layers = Array[ExtResource("23_nybcs")]([SubResource("Resource_xosfc"), SubResource("Resource_c0vv4")])
+layers = Array[ExtResource("23_nybcs")]([SubResource("Resource_xosfc"), SubResource("Resource_v7kfw"), SubResource("Resource_ebkvn"), SubResource("Resource_c0vv4")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.4
 lastMovesEffect = 0
 timesUsedLastMove = 0
 metadata/_custom_type_script = "uid://w2owehn7fmot"
 
+[sub_resource type="Resource" id="Resource_gp340"]
+script = ExtResource("32_arf2n")
+allocations = Array[int]([1, 2, 4])
+forStatPoints = 3
+metadata/_custom_type_script = "uid://dwp1xuvcmi88j"
+
+[sub_resource type="Resource" id="Resource_utb7i"]
+script = ExtResource("33_vnsia")
+allocations = Array[ExtResource("32_arf2n")]([SubResource("Resource_gp340")])
+metadata/_custom_type_script = "uid://chtagsu3ofpvu"
+
 [node name="CreatureShowcaser" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_k85it")
 bgMap = ExtResource("2_de80j")
-bgMusic = ExtResource("3_ljdcp")
 encounter = SubResource("Resource_02djh")
 _playerCombatant = SubResource("Resource_evrjj")
-playerLv = 10
+playerLv = 13
 playerAi = SubResource("Resource_lta2o")
-minionOrbs = 2
+playerStatAllocStrat = SubResource("Resource_utb7i")
+enemy1Orbs = 1
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 
 [node name="TileMapParent" type="Node2D" parent="."]

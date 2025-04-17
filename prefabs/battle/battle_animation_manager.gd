@@ -316,14 +316,21 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		# status effect text here
 		if targetIdx > -1 and command.commandResult.afflictedStatuses[targetIdx]:
 			var statusEffect: StatusEffect = defender.combatant.statusEffect
-			if statusEffect == null and command.type == BattleCommand.Type.USE_ITEM:
-				var healing: Healing = command.slot.item as Healing
-				if healing.statusStrengthHeal != StatusEffect.Potency.NONE:
-					statusEffect = StatusEffect.new(StatusEffect.Type.NONE, healing.statusStrengthHeal, true)
-			eventTexts.append(CombatantEventText.build_status_get_text(statusEffect))
-			eventTextUpdates.append(defender.change_current_status.bind(statusEffect))
-			eventTextSfxs.append(null)
-			eventTextSfxVaryPitches.append(false)
+			if statusEffect == null:
+				if command.type == BattleCommand.Type.MOVE \
+						and moveEffect != null and moveEffect.statusEffect != null \
+						and moveEffect.statusEffect.type == StatusEffect.Type.NONE:
+					statusEffect = moveEffect.statusEffect # if status is a cleanse; show this
+				if command.type == BattleCommand.Type.USE_ITEM:
+					# if item cleansed status; show this
+					var healing: Healing = command.slot.item as Healing
+					if healing.statusStrengthHeal != StatusEffect.Potency.NONE:
+						statusEffect = StatusEffect.new(StatusEffect.Type.NONE, healing.statusStrengthHeal, true)
+			if statusEffect != null:
+				eventTexts.append(CombatantEventText.build_status_get_text(statusEffect))
+				eventTextUpdates.append(defender.change_current_status.bind(statusEffect))
+				eventTextSfxs.append(null)
+				eventTextSfxVaryPitches.append(false)
 		# stat changes text here
 		if targetIdx > -1 and (command.commandResult.wasBoosted[targetIdx] or len(command.commandResult.equipmentProcd[targetIdx]) > 0):
 			var statChanges: StatChanges = null
@@ -351,7 +358,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 						if equipment.itemType == Item.Type.WEAPON:
 							statChanges.stack((equipment as Weapon).statChanges)
 							# TODO: play weapon proc animation
-						elif equipment.itemType == Item.Type.WEAPON:
+						elif equipment.itemType == Item.Type.ARMOR:
 							statChanges.stack((equipment as Armor).statChanges)
 							# TODO: play armor proc animation
 			elif command.type == BattleCommand.Type.USE_ITEM:

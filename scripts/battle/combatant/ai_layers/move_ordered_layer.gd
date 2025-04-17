@@ -33,7 +33,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	var weight: float = 1
 	
 	if len(moveList) == 0 or moveIdx >= len(moveList):
-		return 1
+		return baseWeight
 	
 	if move == moveList[moveIdx]:
 		weight = 1.4

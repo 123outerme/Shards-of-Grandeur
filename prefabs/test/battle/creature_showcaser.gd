@@ -4,7 +4,6 @@ signal results_ok_pressed
 signal start_next_round
 
 @export var bgMap: PackedScene
-@export var bgMusic: AudioStream
 
 @export var useBattleAnims: bool = true
 @export var allowSurge: bool = true
@@ -53,7 +52,7 @@ func _ready() -> void:
 	var map: Node = bgMap.instantiate()
 	tilemapParent.add_child(map)
 	SceneLoader.audioHandler = get_node('AudioHandler')
-	SceneLoader.audioHandler.play_music(bgMusic, -1)
+	SceneLoader.audioHandler.play_music(encounter.battleMusic, -1)
 	PlayerResources.playerInfo = PlayerInfo.new()
 	PlayerResources.playerInfo.encounter = encounter
 	if allowSurge:
@@ -72,11 +71,18 @@ func _ready() -> void:
 	var combatantCommands: Array[BattleCommand] = [playerCommand, minionCommand, enemy1Command, enemy2Command, enemy3Command]
 	var combatantStatuses: Array[StatusEffect] = [playerStatus, minionStatus, enemy1Status, enemy2Status, enemy3Status]
 	var combatantAis: Array[CombatantAi] = [playerAi, null, null, null, null]
+	var combatantStatAllocStrats: Array[StatAllocationStrategy] = [playerStatAllocStrat, null, null, null, null]
+	var combatantMoves: Array[Array] = [[], encounter.autoAllyMoves, encounter.combatant1Moves, encounter.combatant2Moves, encounter.combatant3Moves]
 	if encounter is StaticEncounter:
 		combatantAis[1] = encounter.autoAllyAi
 		combatantAis[2] = encounter.combatant1Ai
 		combatantAis[3] = encounter.combatant2Ai
 		combatantAis[4] = encounter.combatant3Ai
+		
+		combatantStatAllocStrats[1] = encounter.autoAllyStatAllocStrat
+		combatantStatAllocStrats[2] = encounter.combatant1StatAllocStrat
+		combatantStatAllocStrats[3] = encounter.combatant2StatAllocStrat
+		combatantStatAllocStrats[4] = encounter.combatant3StatAllocStrat
 	var combatantRunes: Array = [playerRunes, minionRunes, enemy1Runes, enemy2Runes, enemy3Runes]
 	var combatantRuneCasters: Array = [playerRuneCasterPositions, minionRuneCasterPositions, enemy1RuneCasterPositions, enemy2RuneCasterPositions, enemy3RuneCasterPositions]
 	var currentHps: Array[int] = [currentPlayerHp, -1, -1, -1, -1]
@@ -89,11 +95,12 @@ func _ready() -> void:
 			if combatant.get_evolution() != null:
 				combatant.switch_evolution(combatant.get_evolution(), null)
 			if combatantLvs[idx] > combatant.stats.level:
-				combatant.level_up_nonplayer(combatantLvs[idx])
-			if combatant == _playerCombatant and playerStatAllocStrat != null:
-				playerStatAllocStrat.allocate_stats(combatant.stats)
+				combatant.level_up_nonplayer(combatantLvs[idx], combatantStatAllocStrats[idx])
 			if len(combatant.stats.moves) == 0:
-				combatant.assign_moves_nonplayer()
+				if combatantMoves[idx] != null and len(combatantMoves[idx]) > 0:
+					combatant.stats.moves = combatantMoves[idx].duplicate(false)
+				else:
+					combatant.assign_moves_nonplayer()
 			for move: Move in combatant.stats.moves:
 				print(combatant.disp_name(), ': ', move.moveName)
 			if currentHps[idx] == -1:
