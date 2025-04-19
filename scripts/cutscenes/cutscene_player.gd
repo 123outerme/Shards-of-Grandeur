@@ -18,7 +18,7 @@ var isFadedOut: bool = false
 var isFadingIn: bool = false
 var completeAfterFadeIn: bool = false
 var skipCutsceneFrameIndex: int = -1
-var skipping: bool = true
+var skipping: bool = false
 var awaitingPlayer: bool = false
 var lastFrameCameraPos: Vector2 = Vector2.ZERO
 
@@ -35,37 +35,38 @@ func _process(delta):
 				timer -= delta
 			return
 		
-		if lastFrame != null and frame != lastFrame:
-			handle_camera(frame)
+		if frame != lastFrame:
 			if frame != null and frame.playSfxs != null:
 				handle_play_sfx(frame.playSfxs)
-			
-			if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
-					and not lastFrame.get_text_was_triggered():
-				for item in lastFrame.dialogues:
-					queue_text(item.get_cutscene_dialogue(), frame)
-				lastFrame.set_text_was_triggered()
+
+			if lastFrame != null:
+				handle_camera(frame)
+				if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
+						and not lastFrame.get_text_was_triggered():
+					for item in lastFrame.dialogues:
+						queue_text(item.get_cutscene_dialogue(), frame)
+					lastFrame.set_text_was_triggered()
+					
+				if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
+					handle_fade_out()
 				
-			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_OUT and not isFadedOut:
-				handle_fade_out()
-			
-			if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_IN:
-				handle_fade_in()
-			
-			if lastFrame.givesItem != null:
-				handle_give_item()
-			
-			if lastFrame.healsPlayer:
-				handle_heal_player()
-			
-			if lastFrame.addsFollowerId != '':
-				handle_add_follower()
-			
-			if lastFrame.removesFollowerId != '':
-				handle_remove_follower()
-			
-			if lastFrame.endStartsShardLearnTutorial:
-				handle_start_shard_learn_tutorial()
+				if lastFrame.endFade == CutsceneFrame.CameraFade.FADE_IN:
+					handle_fade_in()
+				
+				if lastFrame.givesItem != null:
+					handle_give_item()
+				
+				if lastFrame.healsPlayer:
+					handle_heal_player()
+				
+				if lastFrame.addsFollowerId != '':
+					handle_add_follower()
+				
+				if lastFrame.removesFollowerId != '':
+					handle_remove_follower()
+				
+				if lastFrame.endStartsShardLearnTutorial:
+					handle_start_shard_learn_tutorial()
 		
 		if frame == null: # end of cutscene
 			end_cutscene()

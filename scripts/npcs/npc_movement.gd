@@ -74,23 +74,23 @@ func _physics_process(delta):
 		else:
 			NPC.npcSprite.play(NPC.get_stand_animation())
 		# handle step sfx: if moving via nav agent or cutscene animation:
-		if NPC.isOnscreen and len(stepSfx) > 0:
-			if vel.length_squared() > 0 or (SceneLoader.cutscenePlayer.playing and NPC.npcSprite.animation == 'walk' and not SceneLoader.cutscenePlayer.skipping):
-				stepSfxTimer += delta
-				if stepSfxTimer > stepSfxCooldownSecs:
-					# don't choose the SFX we last picked
-					var stepChoiceIdxs: Array = range(len(stepSfx))
-					if lastStepIdx != -1:
-						stepChoiceIdxs.remove_at(lastStepIdx)
-					if len(stepChoiceIdxs) > 0:
-						lastStepIdx = stepChoiceIdxs.pick_random() as int
-					else:
-						lastStepIdx = 0
-					SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx], 0, true)
-					stepSfxTimer = 0
-			else:
-				# play a step sound the next time the NPC moves
-				stepSfxTimer = stepSfxCooldownSecs
+	if NPC.isOnscreen and len(stepSfx) > 0:
+		if vel.length_squared() > 0 or (SceneLoader.cutscenePlayer.playing and NPC.npcSprite.animation == 'walk' and not SceneLoader.cutscenePlayer.skipping):
+			stepSfxTimer += delta
+			if stepSfxTimer > stepSfxCooldownSecs:
+				# don't choose the SFX we last picked
+				var stepChoiceIdxs: Array = range(len(stepSfx))
+				if lastStepIdx != -1:
+					stepChoiceIdxs.remove_at(lastStepIdx)
+				if len(stepChoiceIdxs) > 0:
+					lastStepIdx = stepChoiceIdxs.pick_random() as int
+				else:
+					lastStepIdx = 0
+				SceneLoader.audioHandler.play_sfx(stepSfx[lastStepIdx], 0, true)
+				stepSfxTimer = 0
+		else:
+			# play a step sound the next time the NPC moves
+			stepSfxTimer = stepSfxCooldownSecs
 
 func set_target_pos():
 	if not followerMode and not returnToFollowerHome:

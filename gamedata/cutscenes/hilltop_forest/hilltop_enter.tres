@@ -71,7 +71,7 @@ animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_wytgg"]
 script = ExtResource("2_l6aqg")
-frameLength = 3.0
+frameLength = 3.7
 annotation = "Walk slightly before announcing cart getting stuck"
 actorTweens = Array[ExtResource("6_amj3h")]([SubResource("Resource_ed41o"), SubResource("Resource_osdbe"), SubResource("Resource_begh3")])
 actorAnims = Array[ExtResource("1_wd36c")]([SubResource("Resource_ufme0"), SubResource("Resource_ccsh7"), ExtResource("2_r1eiw")])
@@ -137,7 +137,7 @@ animation = "stand"
 script = ExtResource("8_y6h7m")
 speaker = "Dr. Hudson"
 texts = Array[String](["Great... the cart is stuck. Go forward and whittle down the creatures on the path and head north towards the cave. You can't possibly miss it! I'll free the cart in the meantime.", "When you defeat a creature in this area, it might drop a Shard. Remember, Dr. Ildran encourages you to use any spare Shards for our defense."])
-textboxSfxs = null
+textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/DrHudson"
 speakerActorIsPlayer = false
 speakerAnim = "talk"

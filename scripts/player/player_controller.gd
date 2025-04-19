@@ -491,6 +491,8 @@ func update_overridden_speaker_sprite(dialogueItem: DialogueItem) -> void:
 func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 	if cutsceneDialogue == null:
 		printerr('ERROR in update_cutscene_speaker_sprite: cutsceneDialogue is null')
+		textBox.speakerSpriteFrames = SpriteFrames.new()
+		textBox.speakerAnim = 'default'
 		return
 	var spriteFrames: SpriteFrames = cutsceneDialogue.speakerSpriteFrames
 	var spriteScale: int = cutsceneDialogue.speakerAnimScale
@@ -500,7 +502,9 @@ func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 			spriteFrames = actorSpriteFrames
 	
 	if spriteFrames == null or not spriteFrames.has_animation(cutsceneDialogue.speakerAnim):
-		printerr('ERROR in update_cutscene_speaker_sprite: sprite frames are null: ', spriteFrames == null, ' or does not have animation ', cutsceneDialogue.speakerAnim)
+		#print('WARNING in update_cutscene_speaker_sprite: sprite frames are null: ', spriteFrames == null, ' or does not have animation ', cutsceneDialogue.speakerAnim)
+		textBox.speakerSpriteFrames = SpriteFrames.new()
+		textBox.speakerAnim = 'default'
 		return
 	
 	if cutsceneDialogue.speakerActorIsPlayer:

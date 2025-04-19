@@ -27,7 +27,8 @@ var lastSfxIdx: int = -1
 	get_node('SfxStreamPlayer2'),
 	get_node('SfxStreamPlayer3'),
 	get_node('SfxStreamPlayer4'),
-	get_node('SfxStreamPlayer5')
+	get_node('SfxStreamPlayer5'),
+	get_node('SfxStreamPlayer6')
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -124,6 +125,9 @@ func play_sfx(stream: AudioStream, loops: int = 0, varyPitch: bool = false, sfxP
 		openSfxPlayers[idx] = false
 		sfxStreamPlayers[idx].play()
 		lastSfxIdx = idx
+		#print('Playing sfx ', stream.resource_path, ' on channel ', idx)
+	#else:
+		#print('Warning: No open sfx players for audio ', stream.resource_path)
 	return idx
 
 func stop_sfx(stream: AudioStream):
@@ -242,7 +246,4 @@ func get_first_open_sfx_player_idx() -> int:
 		if openSfxPlayers[idx]:
 			return idx
 	
-	if lastSfxIdx != -1:
-		return (lastSfxIdx + 1) % len(sfxStreamPlayers) 
-	
-	return 0 # play on the first player if they're all taken
+	return -1 # don't play if they're all taken up

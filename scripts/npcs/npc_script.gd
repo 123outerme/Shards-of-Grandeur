@@ -552,7 +552,7 @@ func add_dialogue_entry_in_dialogue(dialogueEntry: DialogueEntry, repeat: bool =
 
 func pause_movement():
 	NavAgent.disableMovement = true
-	if self != PlayerFinder.player.talkNPC:
+	if self != PlayerFinder.player.talkNPC and not (SceneLoader.cutscenePlayer.playing and not SceneLoader.cutscenePlayer.skipping):
 		play_animation(get_stand_animation())
 	
 func unpause_movement():

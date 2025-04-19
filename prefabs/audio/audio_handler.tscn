@@ -27,6 +27,9 @@ bus = &"sfx"
 [node name="SfxStreamPlayer5" type="AudioStreamPlayer" parent="."]
 bus = &"sfx"
 
+[node name="SfxStreamPlayer6" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
+
 [connection signal="finished" from="MusicStreamPlayer1" to="." method="_on_music_stream_player_1_finished"]
 [connection signal="finished" from="MusicStreamPlayer2" to="." method="_on_music_stream_player_2_finished"]
 [connection signal="finished" from="SfxStreamPlayer1" to="." method="_on_sfx_stream_player_finished" binds= [0]]
@@ -34,3 +37,4 @@ bus = &"sfx"
 [connection signal="finished" from="SfxStreamPlayer3" to="." method="_on_sfx_stream_player_finished" binds= [2]]
 [connection signal="finished" from="SfxStreamPlayer4" to="." method="_on_sfx_stream_player_finished" binds= [3]]
 [connection signal="finished" from="SfxStreamPlayer5" to="." method="_on_sfx_stream_player_finished" binds= [4]]
+[connection signal="finished" from="SfxStreamPlayer6" to="." method="_on_sfx_stream_player_finished" binds= [5]]
