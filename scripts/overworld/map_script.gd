@@ -59,6 +59,9 @@ func _assign_two_layer_tiles():
 			TileDef.new('Midground', 2, Vector2i(0,3)), # house.png, Standstill burned left house
 			TileDef.new('Midground', 2, Vector2i(1,3)), # house.png, Standstill burned middle house
 			TileDef.new('Midground', 2, Vector2i(2,3)), # house.png, Standstill burned right house
+			TileDef.new('Midground', 2, Vector2i(3,3)), # house.png, snowy left house
+			TileDef.new('Midground', 2, Vector2i(4,3)), # house.png, snowy middle house
+			TileDef.new('Midground', 2, Vector2i(5,3)), # house.png, snowy right house
 			TileDef.new('Midground', 5, Vector2i(0,1)), # well.png, 1st well base
 			TileDef.new('Midground', 5, Vector2i(1,1)), # well.png, 2nd well base
 			TileDef.new('Midground', 22, Vector2i(2,1)), # ruined_castle.png, 1st house left
@@ -97,6 +100,9 @@ func _assign_two_layer_tiles():
 			TileDef.new('Foreground', 2, Vector2i(0,2)), # house.png, Standstill burned left house roof
 			TileDef.new('Foreground', 2, Vector2i(1,2)), # house.png, Standstill burned middle house roof
 			TileDef.new('Foreground', 2, Vector2i(2,2)), # house.png, Standstill burned right house roof
+			TileDef.new('Foreground', 2, Vector2i(3,2)), # house.png, snowy left house roof
+			TileDef.new('Foreground', 2, Vector2i(4,2)), # house.png, snowy middle house roof
+			TileDef.new('Foreground', 2, Vector2i(5,2)), # house.png, snowy right house roof
 			TileDef.new('Foreground', 5, Vector2i(0,0)), # well.png, 1st well roof
 			TileDef.new('Foreground', 5, Vector2i(1,0)), # well.png, 2nd well roof
 			TileDef.new('Foreground', 22, Vector2i(2,0)), # ruined_castle.png, 1st house left roof
