@@ -68,7 +68,8 @@ func _process(delta):
 			text_visible_chars_partial += chars_per_sec * delta
 			TextBoxText.visible_characters = min(round(text_visible_chars_partial), len(TextBoxText.text))
 		else:
-			SceneLoader.audioHandler.stop_sfx(textScrollSfx)
+			if SceneLoader.audioHandler != null:
+				SceneLoader.audioHandler.stop_sfx(textScrollSfx)
 			if is_textbox_complete():
 				add_choices()
 				ReadySprite.visible = true
