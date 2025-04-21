@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=4 uid="uid://83b1hyn2uhjy"]
+[gd_scene load_steps=137 format=4 uid="uid://83b1hyn2uhjy"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_u0d82"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8l8p"]
@@ -334,6 +334,33 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_fij8e"]
+script = ExtResource("28_aguj4")
+minAct = 0
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("29_ady6b")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("29_ady6b")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_sfmpp"]
 script = ExtResource("4_klaa4")
@@ -792,6 +819,9 @@ size = Vector2(101, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bquq6"]
 size = Vector2(8, 95)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjwct"]
+size = Vector2(96, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ug4r8"]
 size = Vector2(20, 44)
 
@@ -800,6 +830,9 @@ size = Vector2(20, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yutwr"]
 size = Vector2(56, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6ui5"]
+size = Vector2(96, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmdlv"]
 size = Vector2(20, 96)
@@ -833,7 +866,7 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_u0d82")
-metadata/_edit_horizontal_guides_ = [-21.0, -130.0, -210.0, -144.0, -138.0, -31.0]
+metadata/_edit_horizontal_guides_ = [-21.0, -130.0, -210.0, -144.0, -138.0, -31.0, -570.0]
 metadata/_edit_vertical_guides_ = [-194.0, 511.0, 722.0, 660.0, 686.0, -373.0, 306.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
@@ -1154,6 +1187,7 @@ collision_layer = 0
 displayName = "Chain Legion Soldier"
 saveName = "swamp_soldier_11"
 loadFlipH = true
+spawnRequirements = SubResource("Resource_fij8e")
 data = SubResource("Resource_sfmpp")
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier11" index="0"]
@@ -1289,6 +1323,15 @@ useVerticalOffset = true
 [node name="WarpArea" parent="LeavenportWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_bquq6")
 
+[node name="SeaLegNorthWarpZone" parent="." instance=ExtResource("3_ufdam")]
+position = Vector2(-48, -598)
+mapName = "sea_leg_swamp_north"
+mapPos = Vector2(336, 402)
+useHorizontalOffset = true
+
+[node name="WarpArea" parent="SeaLegNorthWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_fjwct")
+
 [node name="CaveBlockTopCutsceneTrigger" parent="." instance=ExtResource("14_7fjos")]
 position = Vector2(305, -106)
 cutscenes = Array[ExtResource("25_2vbkt")]([ExtResource("47_hcpa4")])
@@ -1315,6 +1358,14 @@ shape = SubResource("RectangleShape2D_yutwr")
 
 [node name="PlayerWarpCamPos" parent="CameraHoldZone" index="1"]
 position = Vector2(10, 0)
+
+[node name="CameraHoldZone2" parent="." instance=ExtResource("4_b2n1i")]
+position = Vector2(-48, -592)
+holdX = false
+
+[node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_k6ui5")
 
 [node name="EnemyDeaggroZone" parent="." instance=ExtResource("39_w2fe8")]
 position = Vector2(-275, -20)
@@ -1366,7 +1417,9 @@ navigation_layers = 4
 [editable path="EastTurnaroundCutsceneTrigger"]
 [editable path="NorthTurnaroundCutsceneTrigger"]
 [editable path="LeavenportWarpZone"]
+[editable path="SeaLegNorthWarpZone"]
 [editable path="CaveBlockTopCutsceneTrigger"]
 [editable path="CaveBlockBottomCutsceneTrigger"]
 [editable path="CameraHoldZone"]
+[editable path="CameraHoldZone2"]
 [editable path="EnemyDeaggroZone"]

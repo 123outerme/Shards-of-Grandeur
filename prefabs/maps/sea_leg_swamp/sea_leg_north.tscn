@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://c2stj2e7k8167"]
+[gd_scene load_steps=82 format=4 uid="uid://c2stj2e7k8167"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_6bca4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_pq7tu"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="16_vm6dd"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="17_qvhip"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="18_tp6mj"]
+[ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="20_exfcx"]
 
 [sub_resource type="Resource" id="Resource_6v8br"]
 script = ExtResource("4_b8dfc")
@@ -395,6 +396,15 @@ agent_radius = 23.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qceu"]
 size = Vector2(8, 72)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdkxl"]
+size = Vector2(98, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtr3b"]
+size = Vector2(56, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ss7bh"]
+size = Vector2(98, 56)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2y88d"]
 size = Vector2(273, 37)
 
@@ -406,6 +416,7 @@ size = Vector2(89, 67)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_6bca4")
+metadata/_edit_horizontal_guides_ = [426.0, 402.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -554,6 +565,31 @@ useVerticalOffset = true
 position = Vector2(-4, 4)
 shape = SubResource("RectangleShape2D_1qceu")
 
+[node name="SeaLegCenterWarpZone" parent="." instance=ExtResource("9_1qceu")]
+position = Vector2(336, 430)
+mapName = "sea_leg_swamp"
+mapPos = Vector2(-48, -570)
+useHorizontalOffset = true
+
+[node name="WarpArea" parent="SeaLegCenterWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_tdkxl")
+
+[node name="CameraHoldZone" parent="." instance=ExtResource("20_exfcx")]
+position = Vector2(-914, -528)
+holdY = false
+
+[node name="CollisionShape2D" parent="CameraHoldZone" index="0"]
+position = Vector2(18, 13)
+shape = SubResource("RectangleShape2D_dtr3b")
+
+[node name="CameraHoldZone2" parent="." instance=ExtResource("20_exfcx")]
+position = Vector2(336, 424)
+holdX = false
+
+[node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_ss7bh")
+
 [node name="EnemyDeaggroZone" parent="." instance=ExtResource("3_xolf8")]
 position = Vector2(334, 284)
 
@@ -582,6 +618,9 @@ shape = SubResource("RectangleShape2D_0csbw")
 [editable path="EnemySpawners/EnemySpawner6"]
 [editable path="EnemySpawners/EnemySpawner7"]
 [editable path="TundraWestWarpZone"]
+[editable path="SeaLegCenterWarpZone"]
+[editable path="CameraHoldZone"]
+[editable path="CameraHoldZone2"]
 [editable path="EnemyDeaggroZone"]
 [editable path="EnemyDeaggroZone2"]
 [editable path="EnemyDeaggroZone3"]

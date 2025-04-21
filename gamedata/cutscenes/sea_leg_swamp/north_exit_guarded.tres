@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=20 format=3 uid="uid://f1d8hssfanlk"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://f1d8hssfanlk"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_6c65v"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="1_kkp8q"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="6_0scg6"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="6_v5ivx"]
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_mdeqk"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_6rr0r"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="12_j6fhl"]
 
 [sub_resource type="Resource" id="Resource_586vd"]
 script = ExtResource("2_huk8q")
@@ -131,10 +133,38 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_qenij"]
+script = ExtResource("12_j6fhl")
+minAct = 0
+maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("11_6rr0r")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("11_6rr0r")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("1_rpbyp")
 cutsceneFrames = Array[ExtResource("1_6c65v")]([SubResource("Resource_plj8s"), SubResource("Resource_nltmn"), SubResource("Resource_b75pj"), SubResource("Resource_n5r3w")])
 saveName = ""
+storyRequirements = SubResource("Resource_qenij")
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String]([])
