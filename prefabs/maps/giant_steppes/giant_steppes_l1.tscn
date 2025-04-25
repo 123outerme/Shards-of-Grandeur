@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=36 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -106,6 +106,9 @@ size = Vector2(34, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8al7g"]
 size = Vector2(34, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvtkq"]
+size = Vector2(66, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0aigu"]
 size = Vector2(8, 1)
 
@@ -120,6 +123,9 @@ size = Vector2(8, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t0jvn"]
 size = Vector2(8, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6hud"]
+size = Vector2(66, 56)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -325,6 +331,15 @@ position = Vector2(448, -389)
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_8al7g")
 
+[node name="TundraWestWarpZone" parent="." instance=ExtResource("3_s3l05")]
+position = Vector2(384, 973)
+mapName = "quiet_tundra_west"
+mapPos = Vector2(1216, -4906)
+useHorizontalOffset = true
+
+[node name="WarpArea" parent="TundraWestWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_vvtkq")
+
 [node name="InnWarpZone" parent="." instance=ExtResource("3_s3l05")]
 position = Vector2(200, -178)
 mapPos = Vector2(-8, 4)
@@ -365,6 +380,13 @@ warpEnabled = false
 [node name="WarpArea" parent="WarpZone3" index="0"]
 shape = SubResource("RectangleShape2D_t0jvn")
 
+[node name="CameraHoldZone2" parent="." instance=ExtResource("4_2j8mv")]
+position = Vector2(384, 949)
+holdX = false
+
+[node name="CollisionShape2D" parent="CameraHoldZone2" index="0"]
+shape = SubResource("RectangleShape2D_n6hud")
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -385,8 +407,10 @@ navigation_layers = 4
 [editable path="TilemapRoot/ShopSign/AnimatedDecoration"]
 [editable path="Level2WarpZone"]
 [editable path="CameraHoldZone"]
+[editable path="TundraWestWarpZone"]
 [editable path="InnWarpZone"]
 [editable path="GeneralStoreWarpZone"]
 [editable path="WarpZone"]
 [editable path="WarpZone2"]
 [editable path="WarpZone3"]
+[editable path="CameraHoldZone2"]
