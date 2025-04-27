@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://wjuku7pv2var"]
+
+[ext_resource type="Resource" uid="uid://bvxb5v6tpl870" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_ai.tres" id="1_hlohp"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="1_kqm13"]
+[ext_resource type="Resource" uid="uid://dndbbqfstk7ow" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_rewards.tres" id="2_gndl7"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="2_uwdcx"]
+[ext_resource type="Resource" uid="uid://ra1ukicnr8gc" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_evolutions.tres" id="3_4uxj7"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="3_scud3"]
+[ext_resource type="Resource" uid="uid://cmt2h3bwgy80e" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_effectiveness.tres" id="4_1gyca"]
+[ext_resource type="Resource" uid="uid://p230k8l5d53p" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_sprite.tres" id="5_7ne4q"]
+[ext_resource type="Resource" uid="uid://br4swfxaginkk" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_movepool.tres" id="6_4uxj7"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="6_tt4ij"]
+[ext_resource type="Resource" uid="uid://ddeo6xa50i6t6" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_stat_growth.tres" id="8_1gyca"]
+[ext_resource type="Resource" uid="uid://u56etri1xiah" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_stat_alloc_strategy.tres" id="9_0sbgv"]
+[ext_resource type="Resource" uid="uid://xcf14stcuuqi" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_equipment.tres" id="11_bi15a"]
+
+[sub_resource type="Resource" id="Resource_4uxj7"]
+script = ExtResource("1_kqm13")
+displayName = "Wasteland Hawk"
+saveName = "wasteland_hawk"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("8_1gyca")
+moves = Array[ExtResource("6_tt4ij")]([])
+movepool = ExtResource("6_4uxj7")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("3_scud3")
+sprite = ExtResource("5_7ne4q")
+nickname = ""
+stats = SubResource("Resource_4uxj7")
+evolutions = ExtResource("3_4uxj7")
+evolutionStats = Dictionary[String, ExtResource("1_kqm13")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("2_uwdcx")]([])
+triggeredRunes = Array[ExtResource("2_uwdcx")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+version = ""
+ai = ExtResource("1_hlohp")
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("4_1gyca")
+weightedEquipment = ExtResource("11_bi15a")
+dropTable = ExtResource("2_gndl7")
+statAllocationStrategy = ExtResource("9_0sbgv")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+metadata/_custom_type_script = "uid://dyckeornewpwi"

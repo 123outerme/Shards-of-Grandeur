@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://p230k8l5d53p"]
+
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_ojcpf"]
+[ext_resource type="Resource" uid="uid://thaswy7afvxr" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk_overworld.tres" id="1_qqf4v"]
+[ext_resource type="SpriteFrames" uid="uid://bo0bc6vgihkhk" path="res://graphics/animations/a_wasteland_hawk.tres" id="2_xsv73"]
+
+[resource]
+script = ExtResource("1_ojcpf")
+spriteFrames = ExtResource("2_xsv73")
+combatantOverworld = ExtResource("1_qqf4v")
+maxSize = Vector2(32, 32)
+idleSize = Vector2(29, 24)
+centerPosition = Vector2(18, 18)
+feetPosition = Vector2(18, 31)
+headPosition = Vector2(12, 10)
+spriteFacesRight = false
+navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 3
+attackPhysArrivalFrame = 3
+attackAffinityImpactFrame = 3
+attackMagicImpactFrame = 5
+attackPhysImpactFrame = 4
+metadata/_custom_type_script = "uid://70gbsrstamsf"

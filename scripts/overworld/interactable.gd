@@ -72,7 +72,7 @@ func select_choice(choice: DialogueChoice):
 			dialogueEntry = curInteractableDialogue.dialogueEntry
 		if dialogueEntry != null and saveName != '' and dialogueEntry.entryId != '':
 			# if the entry is found, the saveName of this interactable is defined, and so is the dialogue entry ID: set this dialogue seen
-			print(dialogueEntry.entryId, ': dialogue seen being set for ', saveName, '')
+			#print(dialogueEntry.entryId, ': dialogue seen being set for ', saveName, '')
 			PlayerResources.playerInfo.set_dialogue_seen(saveName, dialogueEntry.entryId)
 			PlayerResources.questInventory.progress_quest(saveName + '#' + dialogueEntry.entryId, QuestStep.Type.TALK)
 		elif dialogueEntry == null:

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=5 format=3 uid="uid://xcf14stcuuqi"]
+
+[ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_lk6nu"]
+[ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_fin27"]
+
+[sub_resource type="Resource" id="Resource_lk6nu"]
+script = ExtResource("2_fin27")
+weight = 0.0
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_fin27"]
+script = ExtResource("2_fin27")
+weight = 0.0
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[resource]
+script = ExtResource("1_lk6nu")
+weightedEquipment = Array[ExtResource("2_fin27")]([SubResource("Resource_lk6nu"), SubResource("Resource_fin27")])
+metadata/_custom_type_script = "uid://cynr2ijojwq5x"

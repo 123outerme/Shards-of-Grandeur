@@ -23,6 +23,8 @@ func _on_reload_button_pressed() -> void:
 	overworldEnemy._ready()
 	overworldEnemy.position = Vector2.ZERO
 	_on_walk_stand_toggle_toggled(walkStandToggle.button_pressed)
+	overworldEnemy.enemySprite.flip_h = flipToggle.button_pressed
+	overworldEnemy.update_facing()
 
 func _on_walk_stand_toggle_toggled(toggled_on: bool) -> void:
 	overworldEnemy.enemySprite.play('stand' if toggled_on else 'walk')

@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://cj7lwrxa3kp4w"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_5x06b"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_b0r1q"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="3_61jee"]
+[ext_resource type="Resource" uid="uid://crqc6f026nfwa" path="res://gamedata/wip/moves/downdraft/anim_downdraft.tres" id="3_t0ftw"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_t0ftw"]
+
+[sub_resource type="Resource" id="Resource_t0ftw"]
+script = ExtResource("3_61jee")
+element = 4
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_rxamx"]
+script = ExtResource("1_5x06b")
+role = 1
+keywords = Array[String]([])
+orbChange = 1
+power = 45
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 1
+statusEffect = SubResource("Resource_t0ftw")
+selfGetsStatus = false
+statusChance = 0.6
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_06vth"]
+script = ExtResource("3_61jee")
+element = 4
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_4b4g4"]
+script = ExtResource("4_t0ftw")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = -3
+overwhelmingThresholdOrbs = -6
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.05
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_61jee"]
+script = ExtResource("1_5x06b")
+role = 1
+keywords = Array[String]([])
+orbChange = -2
+power = 55
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+statusEffect = SubResource("Resource_06vth")
+selfGetsStatus = false
+statusChance = 0.7
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_4b4g4")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_b0r1q")
+moveName = "Downdraft"
+requiredLv = 8
+category = 2
+element = 4
+chargeEffect = SubResource("Resource_rxamx")
+surgeEffect = SubResource("Resource_61jee")
+description = "Redirect the winds to blow towards the ground at shearing speeds."
+moveLearnedText = ""
+moveAnimation = ExtResource("3_t0ftw")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

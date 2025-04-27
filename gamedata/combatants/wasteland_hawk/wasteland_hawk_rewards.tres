@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://dndbbqfstk7ow"]
+
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_ssaxe"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_8uj0d"]
+[ext_resource type="Resource" uid="uid://ddifrande7bmx" path="res://gamedata/items/shard/wasteland_hawk_shard.tres" id="3_38lva"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_ojahf"]
+[ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="5_ojahf"]
+
+[sub_resource type="Resource" id="Resource_wtuhl"]
+script = ExtResource("4_ojahf")
+experience = 44
+gold = 16
+item = ExtResource("3_38lva")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_ssaxe"]
+script = ExtResource("2_8uj0d")
+reward = SubResource("Resource_wtuhl")
+weight = 0.85
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[sub_resource type="Resource" id="Resource_bxkhw"]
+script = ExtResource("4_ojahf")
+experience = 44
+gold = 16
+item = ExtResource("5_ojahf")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_8uj0d"]
+script = ExtResource("2_8uj0d")
+reward = SubResource("Resource_bxkhw")
+weight = 0.15
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[resource]
+script = ExtResource("1_ssaxe")
+weightedRewards = Array[ExtResource("2_8uj0d")]([SubResource("Resource_ssaxe"), SubResource("Resource_8uj0d")])
+metadata/_custom_type_script = "uid://o0eqgjrxwybg"

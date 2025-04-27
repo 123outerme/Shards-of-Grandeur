@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_igro0"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="8_t4gxd"]
 
-[sub_resource type="Resource" id="Resource_xr4ay"]
+[sub_resource type="Resource" id="Resource_d6pke"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -131,7 +131,7 @@ tile_set = ExtResource("2_ksxva")
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-103, -105)
 displayName = "Village Inn"
-data = SubResource("Resource_xr4ay")
+data = SubResource("Resource_d6pke")
 
 [node name="NPCSprite" parent="TilemapRoot/InnSign" index="0"]
 sprite_frames = ExtResource("5_is10d")

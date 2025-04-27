@@ -1,8 +1,26 @@
-[gd_resource type="Resource" script_class="WeightedRandomAllocationStrategy" load_steps=3 format=3 uid="uid://d2pyx2ib0cw2n"]
+[gd_resource type="Resource" script_class="WeightedRandomAllocationStrategy" load_steps=6 format=3 uid="uid://d2pyx2ib0cw2n"]
 
 [ext_resource type="Script" uid="uid://spinf5kv548q" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="1_ovkhv"]
 [ext_resource type="Script" uid="uid://b1w8kitcsyx7d" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="2_lq8o0"]
 
+[sub_resource type="Resource" id="Resource_ayq2p"]
+script = ExtResource("1_ovkhv")
+category = 1
+weight = 0.45
+metadata/_custom_type_script = "uid://spinf5kv548q"
+
+[sub_resource type="Resource" id="Resource_g1hy7"]
+script = ExtResource("1_ovkhv")
+category = 2
+weight = 0.3
+metadata/_custom_type_script = "uid://spinf5kv548q"
+
+[sub_resource type="Resource" id="Resource_tjlyf"]
+script = ExtResource("1_ovkhv")
+category = 3
+weight = 0.25
+metadata/_custom_type_script = "uid://spinf5kv548q"
+
 [resource]
 script = ExtResource("2_lq8o0")
-categories = Array[ExtResource("1_ovkhv")]([])
+categories = Array[ExtResource("1_ovkhv")]([SubResource("Resource_ayq2p"), SubResource("Resource_g1hy7"), SubResource("Resource_tjlyf")])
