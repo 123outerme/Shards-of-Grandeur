@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://bq28cyj0tp1qk"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_phls6"]
+[ext_resource type="Resource" uid="uid://jgndi8bvd1ca" path="res://gamedata/combatants/melee_merchant/melee_merchant.tres" id="2_awtux"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="2_mbjfl"]
+[ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="3_awtux"]
+[ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="3_i0dn1"]
+[ext_resource type="Resource" uid="uid://cjom7udtbr5dg" path="res://gamedata/items/weapon/frozen_spear.tres" id="4_g8qoj"]
+[ext_resource type="Script" uid="uid://dbngrb7ibw487" path="res://scripts/battle/win_conditions/weaken_enemy_win_con.gd" id="7_g8qoj"]
+
+[sub_resource type="Resource" id="Resource_g8qoj"]
+script = ExtResource("2_mbjfl")
+experience = 135
+gold = 0
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_gn1r1"]
+script = ExtResource("7_g8qoj")
+enemyPosition = "Center"
+targetPercentHp = 0.2
+winText = "#opp surrendered!"
+loseText = "You surrendered to #opp..."
+escapeText = "You escaped successfully!"
+metadata/_custom_type_script = "uid://dbngrb7ibw487"
+
+[resource]
+script = ExtResource("3_awtux")
+combatant1Level = 20
+combatant1Moves = Array[ExtResource("1_phls6")]([])
+combatant1ShardSummoned = false
+combatant2Level = 1
+combatant2Moves = Array[ExtResource("1_phls6")]([])
+combatant2ShardSummoned = false
+combatant3Level = 1
+combatant3Moves = Array[ExtResource("1_phls6")]([])
+combatant3ShardSummoned = false
+autoAllyLevel = 1
+autoAllyMoves = Array[ExtResource("1_phls6")]([])
+autoAllyShardSummoned = false
+specialBattleId = "melee_merchant_1"
+bossBattle = false
+canEscape = true
+rewards = Array[ExtResource("2_mbjfl")]([SubResource("Resource_g8qoj")])
+useStaticRewards = true
+combatant1 = ExtResource("2_awtux")
+combatant1Weapon = ExtResource("4_g8qoj")
+combatant1Armor = ExtResource("3_i0dn1")
+specialRules = 0
+winCon = SubResource("Resource_gn1r1")
+customWinText = "Okay, no more! My wares are open to you, now."
+battleMapPath = "tundra_battle_map"
+metadata/_custom_type_script = "uid://by2yp7g75qdn0"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://c2stj2e7k8167"]
+[gd_scene load_steps=83 format=4 uid="uid://c2stj2e7k8167"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_6bca4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_pq7tu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_u2x51"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="7_o1d7x"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="8_b8dfc"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="8_dtr3b"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_1qceu"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="10_hqwcv"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="12_4pw14"]
@@ -475,6 +476,9 @@ position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TilemapRoot/Soldier1" index="4"]
 visible = false
+
+[node name="GroundItem" parent="TilemapRoot" instance=ExtResource("8_dtr3b")]
+position = Vector2(-710, -231)
 
 [node name="EnemySpawners" type="Node" parent="."]
 

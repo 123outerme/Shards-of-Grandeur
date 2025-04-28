@@ -642,21 +642,27 @@ shape = SubResource("RectangleShape2D_eomtu")
 position = Vector2(35, 0)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_c266l")
 use_edge_connections = false
+metadata/_edit_lock_ = true
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_g0g8f")
 use_edge_connections = false
 navigation_layers = 2
+metadata/_edit_lock_ = true
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
+metadata/_edit_lock_ = true
 
 [node name="TestCamera" parent="." instance=ExtResource("21_dlaov")]
 

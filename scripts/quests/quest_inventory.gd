@@ -104,16 +104,28 @@ func auto_update_quests(recursiveCall: bool = false) -> bool:
 	var emitChanges: bool = false
 	for tracker in quests:
 		var step: QuestStep = tracker.get_current_step()
-		if len(step.turnInNames) == 0 or \
-				tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or \
+		# NOTE: `len(step.turnInNames) == 0` was here, introduced in commit hash 83da49aca. 
+		# Seems to not be checking for what the comment was suggesting: # skip this quest if an NPC turns this in, or it's already completed or failed
+		# The commit message specified that this was a fix to quest turn-in, but there was no relevant quest at the time that would have necessitated this check.
+		# If something is weird with quest turn-in in future, check here.
+		if tracker.get_step_status(step) == QuestTracker.Status.COMPLETED or \
 				tracker.get_step_status(step) == QuestTracker.Status.FAILED:
-			continue # skip this quest if an NPC turns this in, or it's already completed or failed
+			continue # skip this quest if it's already completed or failed
 		if step.type == QuestStep.Type.COLLECT_ITEM or step.type == QuestStep.Type.ACQUIRE_ITEM:
 			var count: int = 0
 			for slot in PlayerResources.inventory.inventorySlots:
 				if slot.item.itemName == step.objectiveName:
 					count += slot.count
 			tracker.set_current_step_progress(count)
+		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP and \
+				len(step.turnInNames) == 0 and \
+				not (step.type == QuestStep.Type.STATIC_ENCOUNTER or \
+					step.type == QuestStep.Type.SOLVE_PUZZLE or \
+					step.type == QuestStep.Type.CUTSCENE):
+			# if step is completed and no NPC accepts the step and it's not one that will be auto-turned in below:
+			# auto turn in the quest step
+			turn_in_cur_step(tracker, true)
+			emitChanges = true
 	for specialBattle in PlayerResources.playerInfo.completedSpecialBattles:
 		if PlayerResources.playerInfo.has_completed_special_battle(specialBattle):
 			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
@@ -123,6 +135,7 @@ func auto_update_quests(recursiveCall: bool = false) -> bool:
 	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
 		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
 		emitChanges = emitChanges or auto_turn_in_cutscene_steps(cutscene)
+	
 	if emitChanges:
 		# prevent more than one recursive call from happening to update quest states
 		if not recursiveCall:

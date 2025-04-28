@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_5msn5"]
 [ext_resource type="Script" uid="uid://c0ve121q8iver" path="res://scripts/overworld/overworld_enemy/overworld_enemy_data.gd" id="3_xrcmv"]
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="4_fo5cl"]
-[ext_resource type="Resource" uid="uid://wjuku7pv2var" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk.tres" id="4_m6q7y"]
+[ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="4_m6q7y"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_t2rvi"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="6_nlpsh"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="7_lsvak"]
@@ -42,6 +42,7 @@ width = 0.5
 lockMovement = true
 
 [node name="OverworldEnemy" parent="." instance=ExtResource("2_s020o")]
+disableMovement = true
 enemyData = SubResource("Resource_kqnda")
 
 [node name="EncounterColliderShape" parent="OverworldEnemy/EnemyEncounterCollider" index="0"]

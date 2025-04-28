@@ -49,8 +49,7 @@ func _ready():
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	facesRight = combatant.get_sprite_obj().spriteFacesRight
 	enemySprite.flip_h = facesRight
-	if enemySprite.flip_h != facesRight:
-		enemySprite.offset.x *= -1
+	update_facing()
 	enemySprite.play('stand')
 	var combatantOverworld: CombatantOverworld = combatant.get_sprite_obj().combatantOverworld
 	if combatantOverworld != null:
@@ -99,14 +98,15 @@ func _process(delta):
 		if vel.length() > navAgent.max_speed * delta:
 			vel = vel.normalized() * navAgent.max_speed * delta
 		position += vel
+		var lastFlip: bool = enemySprite.flip_h
 		if vel.x < 0:
-			if enemySprite.flip_h != facesRight:
-				update_facing()
 			enemySprite.flip_h = facesRight
-		if vel.x > 0:
-			if enemySprite.flip_h == facesRight:
+			if lastFlip != facesRight:
 				update_facing()
+		if vel.x > 0:
 			enemySprite.flip_h = not facesRight
+			if lastFlip == facesRight:
+				update_facing()
 		if vel.length() > 0:
 			enemySprite.play('walk')
 		else:

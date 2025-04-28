@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://du6kxnqe0l1mv"]
+
+[ext_resource type="Resource" uid="uid://8uwb28ibgjp3" path="res://gamedata/combatants/melee_merchant/melee_merchant_overworld.tres" id="1_gdwd6"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_rnusl"]
+[ext_resource type="SpriteFrames" uid="uid://clqgmpaluch0c" path="res://graphics/animations/a_melee_merchant.tres" id="3_gr61c"]
+
+[resource]
+script = ExtResource("1_rnusl")
+spriteFrames = ExtResource("3_gr61c")
+combatantOverworld = ExtResource("1_gdwd6")
+maxSize = Vector2(32, 16)
+idleSize = Vector2(16, 16)
+centerPosition = Vector2(16, 8)
+feetPosition = Vector2(16, 15)
+headPosition = Vector2(16, 4)
+spriteFacesRight = true
+navigationLayer = 1
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
+attackAffinityArrivalFrame = 4
+attackMagicArrivalFrame = 4
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 5
+attackMagicImpactFrame = 10
+attackPhysImpactFrame = 12
+metadata/_custom_type_script = "uid://70gbsrstamsf"

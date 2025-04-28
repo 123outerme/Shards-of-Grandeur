@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://dxmk05kx6pq2u"]
+
+[ext_resource type="Resource" uid="uid://dnd4yqbnekeaq" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_west_distilled_potion_1.tres" id="1_t1g3x"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="2_kv4a7"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="3_st228"]
+
+[resource]
+script = ExtResource("3_st228")
+item = ExtResource("2_kv4a7")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_t1g3x")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

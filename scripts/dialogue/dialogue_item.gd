@@ -3,6 +3,7 @@ class_name DialogueItem
 
 @export_multiline var lines: Array[String]
 
+## For the line of the matching array index, prevents the textbox from being advanced past that line for that many seconds.
 @export var minShowSecs: Array[float] = []
 
 ## for NPCs using this dialogue item, the actor will play this animation until all this item's text is advanced. For Interactables, will tell the interactable to play this animation once this item's text is shown.

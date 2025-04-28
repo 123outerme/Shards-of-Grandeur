@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://dokumpaau3yey"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_b8gp8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_prgnm"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_u7245"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_prgnm"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_t3wnm"]
+[ext_resource type="Resource" uid="uid://dxega4vgb1pv2" path="res://gamedata/dialogue/quiet_tundra/melee_merchant/melee_merchant_spar_1.tres" id="4_t3wnm"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_g1230"]
+[ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="5_sywvo"]
+
+[sub_resource type="Resource" id="Resource_sywvo"]
+script = ExtResource("2_prgnm")
+choiceBtn = "Goodbye!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_t3wnm")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_v7sjm"]
+script = ExtResource("2_u7245")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String](["melee_merchant_1"])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_g1230")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_g1230")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_8a6ew"]
+script = ExtResource("5_sywvo")
+opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
+choiceBtn = "Shop!"
+storyRequirements = SubResource("Resource_v7sjm")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_t3wnm")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
+
+[sub_resource type="Resource" id="Resource_g1230"]
+script = ExtResource("2_prgnm")
+choiceBtn = "Spar!"
+leadsTo = ExtResource("4_t3wnm")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_t3wnm")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_t3wnm"]
+script = ExtResource("1_b8gp8")
+lines = Array[String](["Welcome to Spar 'n' Shop, @! How can I help you?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_prgnm")]([SubResource("Resource_sywvo"), SubResource("Resource_8a6ew"), SubResource("Resource_g1230")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_prgnm")
+entryId = ""
+items = Array[ExtResource("1_b8gp8")]([SubResource("Resource_t3wnm")])
+ordStoryRequirements = Array[ExtResource("2_u7245")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -2,6 +2,8 @@
 extends CharacterBody2D
 class_name NPCScript
 
+const npcsDir: String = "npcs/"
+
 @export_category("NPC General Data")
 
 ## name used in dialogue
@@ -123,7 +125,6 @@ var initialTalkAreaShapePos: Vector2 = Vector2()
 var unfollowMakeNewHome: bool = false
 
 var player: PlayerController = null
-var npcsDir: String = "npcs/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -181,6 +182,8 @@ func save_data(save_path) -> int:
 	if NavAgent.reachedTarget:
 		data.afterMoveWaitAccum += 0.0001
 	data.inventory = inventory
+	if npcShop != null and npcShop.id != '':
+		PlayerResources.save_npc_shared_inventory(save_path, npcShop.id, inventory)
 	data.visible = visible
 	return data.save_data(save_path + npcsDir, data)
 	
@@ -191,6 +194,7 @@ func load_data(save_path):
 	data.saveName = saveName
 	if saveName == '':
 		return
+	var newInventory: bool = false
 	var newData = data.load_data(save_path + npcsDir)
 	if newData != null:
 		data = newData
@@ -217,14 +221,16 @@ func load_data(save_path):
 		inventory = data.inventory
 		if inventory == null:
 			inventory = Inventory.new()
+			newInventory = true
 		if npcShop != null:
-			add_shop_items_to_inventory()
+			add_shop_items_to_inventory(save_path, newInventory)
 			inventory.inventorySlots.sort_custom(_sort_shop_items)
 		invisible = not data.visible
 	else:
 		if npcShop != null and inventory == null:
 			inventory = Inventory.new()
-		add_shop_items_to_inventory()
+			newInventory = true
+		add_shop_items_to_inventory(save_path, newInventory)
 		if inventory != null and npcShop != null:
 			inventory.inventorySlots.sort_custom(_sort_shop_items)
 	if not data.followerHomeSet:
@@ -233,21 +239,32 @@ func load_data(save_path):
 	if followerId != '':
 		set_following_player(PlayerResources.playerInfo.has_active_follower(followerId), true)
 
-func add_shop_items_to_inventory():
-	if not npcShop != null or inventory == null:
+func add_shop_items_to_inventory(savePath: String, newInventory: bool):
+	if npcShop == null or inventory == null:
 		return
 	
+	if npcShop.id != '' and newInventory:
+		var sharedInv: Inventory = PlayerResources.load_npc_shared_inventory(savePath, npcShop.id)
+		if sharedInv != null:
+			for slot: InventorySlot in sharedInv.inventorySlots:
+				inventory.add_slot(slot)
+	
 	# for each item in the NPC's shop, if it's a shop slot and the NPC shop object has no record of it: remove it
-	var removeSlots: Array[int] = []
-	for idx in range(len(inventory.inventorySlots)):
-		var itemSlot: InventorySlot = inventory.inventorySlots[idx]
-		if itemSlot is ShopInventorySlot and not (npcShop.has_item_in_shop(itemSlot.item)):
-			removeSlots.append(idx)
-			print('NPC ' + saveName + ' no longer carries ' + itemSlot.item.itemName + '. Removing')
+	var removeSlots: Array[InventorySlot] = []
+	for itemSlot: InventorySlot in inventory.inventorySlots:
+		# if the item is null or a shop slot that is no longer being sold: mark for removal
+		if itemSlot == null or (itemSlot is ShopInventorySlot and not (npcShop.has_item_in_shop(itemSlot.item))):
+			removeSlots.append(itemSlot)
+			if itemSlot != null:
+				print('NPC ' + saveName + ' no longer carries ' + itemSlot.item.itemName + '. Removing')
+			else:
+				print('NPC ' + saveName + ' has a null inventory slot. Removing')
 
-	# for each recorded index to remove, remove that slot
-	for idx in removeSlots:
-		inventory.inventorySlots.remove_at(idx)
+	# for each recorded slot to remove, find its index and remove that slot
+	for slot: InventorySlot in removeSlots:
+		var idx: int = inventory.inventorySlots.find(slot)
+		if idx != -1:
+			inventory.inventorySlots.remove_at(idx)
 
 	# for each shop item slot in the NPC shop object:
 	for shopItemSlot: ShopInventorySlot in npcShop.shopItemSlots:
@@ -354,7 +371,7 @@ func get_cur_dialogue_item(updateTextBox: bool = true) -> DialogueItem:
 	
 	if updateTextBox:
 		player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
-		player.textBox.dialogueItemIdx = data.dialogueItemIdx
+		player.textBox.dialogueItemIdx = data.dialogueLine
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 
@@ -365,7 +382,7 @@ func get_cur_dialogue_string() -> String:
 		return ''
 	
 	player.textBox.dialogueItem = data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
-	player.textBox.dialogueItemIdx = data.dialogueItemIdx
+	player.textBox.dialogueItemIdx = data.dialogueLine
 	
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].get_lines()[data.dialogueLine]
 

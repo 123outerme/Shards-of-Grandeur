@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://dh5iir7a3xr2f"]
+
+[ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/combatant_ai_layer.gd" id="1_40pkh"]
+[ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_f6gkw"]
+[ext_resource type="Script" uid="uid://w2owehn7fmot" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_hu3s8"]
+[ext_resource type="Script" uid="uid://isq1ycq00u4s" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="3_baka7"]
+[ext_resource type="Script" uid="uid://dw68jtuc0bxvn" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="4_nwrcu"]
+[ext_resource type="Script" uid="uid://0ddrq70do5nq" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="5_hiiyu"]
+[ext_resource type="Script" uid="uid://ocu7mpk38fmc" path="res://scripts/battle/combatant/ai_layers/rune_layer.gd" id="6_tcpmx"]
+[ext_resource type="Script" uid="uid://b1f1xty1kium3" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="7_ax6vo"]
+[ext_resource type="Script" uid="uid://dim2s6pbuqjth" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="8_st101"]
+
+[sub_resource type="Resource" id="Resource_fyo3x"]
+script = ExtResource("2_f6gkw")
+healLayer = false
+weight = 0.65
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
+
+[sub_resource type="Resource" id="Resource_syrmp"]
+script = ExtResource("3_baka7")
+buffStrategy = 1
+weight = 0.35
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://isq1ycq00u4s"
+
+[sub_resource type="Resource" id="Resource_dusa2"]
+script = ExtResource("4_nwrcu")
+mostOrbsWeight = 1.15
+weight = 0.4
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://dw68jtuc0bxvn"
+
+[sub_resource type="Resource" id="Resource_lyqxv"]
+script = ExtResource("5_hiiyu")
+weight = 0.25
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://0ddrq70do5nq"
+
+[sub_resource type="Resource" id="Resource_7meh1"]
+script = ExtResource("6_tcpmx")
+triggerWeight = 1.25
+setWeight = 1.15
+healPowerWeight = 0.7
+damagePowerWeight = 1.0
+weight = 0.35
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://ocu7mpk38fmc"
+
+[sub_resource type="Resource" id="Resource_wt1rf"]
+script = ExtResource("7_ax6vo")
+signatureWeight = 1.25
+weight = 0.35
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://b1f1xty1kium3"
+
+[sub_resource type="Resource" id="Resource_u17nt"]
+script = ExtResource("8_st101")
+weight = 0.3
+subLayers = Array[ExtResource("1_40pkh")]([])
+metadata/_custom_type_script = "uid://dim2s6pbuqjth"
+
+[resource]
+script = ExtResource("2_hu3s8")
+layers = Array[ExtResource("1_40pkh")]([SubResource("Resource_fyo3x"), SubResource("Resource_syrmp"), SubResource("Resource_dusa2"), SubResource("Resource_lyqxv"), SubResource("Resource_7meh1"), SubResource("Resource_wt1rf"), SubResource("Resource_u17nt")])
+orbSpendStrategy = 1
+stalenessTolerance = 1.4
+lastMovesEffect = 0
+timesUsedLastMove = 0
+metadata/_custom_type_script = "uid://w2owehn7fmot"

@@ -5,7 +5,7 @@ var save_exists_file: String = "playerinfo.tres" # this file should always exist
 var battle_file = "battle.tres" # this file should exist if the game was saved in battle
 var battle_node_path = '/root/Battle' # this node should exist in the saved scripts if the Battle scene is loaded
 
-var subdirs: Array = ["npcs/", "enemies/", "minions/", ""] # last one is root save folder
+var subdirs: Array[String] = ["npcs/", "enemies/", "minions/", "sharedshops/", ""] # last one is root save folder
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

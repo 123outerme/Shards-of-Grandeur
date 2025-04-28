@@ -9,10 +9,12 @@ var spriteFacesRight: bool = false
 
 func _ready() -> void:
 	if overworldEnemy.enemyData != null:
+		overworldEnemy.disableMovement = true
 		overworldEnemy.position = Vector2.ZERO
 		overworldEnemy.homePoint = overworldEnemy.enemyData.position
 		overworldEnemy.enemySprite.play('walk')
-		spriteFacesRight = overworldEnemy.combatant.get_sprite_obj().spriteFacesRight 
+		spriteFacesRight = overworldEnemy.combatant.get_sprite_obj().spriteFacesRight
+		overworldEnemy.update_facing()
 		update_flip_button()
 
 func update_flip_button() -> void:
@@ -21,6 +23,7 @@ func update_flip_button() -> void:
 func _on_reload_button_pressed() -> void:
 	SignalBus.player_run_toggled.disconnect(overworldEnemy._player_running_changed)
 	overworldEnemy._ready()
+	overworldEnemy.disableMovement = true
 	overworldEnemy.position = Vector2.ZERO
 	_on_walk_stand_toggle_toggled(walkStandToggle.button_pressed)
 	overworldEnemy.enemySprite.flip_h = flipToggle.button_pressed

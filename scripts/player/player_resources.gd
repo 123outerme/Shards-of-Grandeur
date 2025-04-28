@@ -2,6 +2,8 @@ extends Node
 signal story_requirements_updated
 signal act_changed
 
+const NPC_SHARED_SHOP_PATH: String = ''
+
 @export var playerInfo: PlayerInfo = PlayerInfo.new()
 @export var inventory: Inventory = Inventory.new()
 @export var questInventory: QuestInventory = QuestInventory.new()
@@ -165,3 +167,18 @@ func name_player(save_path, characterName: String):
 	playerInfo.combatant.stats.displayName = characterName
 	playerInfo.combatant.nickname = characterName
 	playerInfo.save_data(save_path, playerInfo)
+
+func save_npc_shared_inventory(savePath: String, id: String, inventory: Inventory) -> int:
+	var err: int = ResourceSaver.save(inventory, savePath + 'sharedshops/' + id + '.tres')
+	if err != 0:
+		printerr('save_npc_shared_inventory ERROR: Could not save NPC inventory for ', savePath, ', at ID ', id, ', error: ', error_string(err))
+	return err
+
+func load_npc_shared_inventory(savePath: String, id: String) -> Inventory:
+	var inv: Inventory = ResourceLoader.load(savePath + 'sharedshops/' + id + '.tres') as Inventory
+	if inv == null:
+		printerr('load_npc_shared_inventory ERROR: Could not load NPC inventory for ', savePath, ', at ID ', id)
+		return Inventory.new()
+	return inv
+	
+	

@@ -898,6 +898,7 @@ shape = SubResource("RectangleShape2D_1npt8")
 [node name="BridgeOutCutsceneTrigger" parent="." instance=ExtResource("29_tcqfy")]
 position = Vector2(1553, -177)
 cutscenes = Array[ExtResource("30_6s5tj")]([ExtResource("32_4v2yw")])
+disabled = true
 
 [node name="CollisionShape2D" parent="BridgeOutCutsceneTrigger" index="0"]
 position = Vector2(11.1412, -10.1326)
@@ -908,18 +909,21 @@ shape = SubResource("RectangleShape2D_wq0ev")
 visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
+metadata/_edit_lock_ = true
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_tohlk")
 navigation_layers = 2
+metadata/_edit_lock_ = true
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
+metadata/_edit_lock_ = true
 
 [node name="EnemyDeaggroZone" parent="." instance=ExtResource("34_bi7ge")]
 position = Vector2(1275, -93)

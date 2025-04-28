@@ -404,10 +404,12 @@ func create_report_for_all_equipment_series(columns: Array[String], queries: Arr
 		printerr('Equipment CSV report error: mismatched column and query lengths')
 		return ''
 	
-	var armorPath = 'res://gamedata/items/armor/'
-	var weaponPath = 'res://gamedata/items/weapon/'
+	var armorPath: String = 'res://gamedata/items/armor/'
+	var weaponPath: String = 'res://gamedata/items/weapon/'
+	var accessoryPath: String = 'res://gamedata/items/accessory'
 	var armors: PackedStringArray = DirAccess.get_files_at(armorPath)
 	var weapons: PackedStringArray = DirAccess.get_files_at(weaponPath)
+	var accessories: PackedStringArray = DirAccess.get_files_at(accessoryPath)
 	
 	var reportContents = 'Name,Type,'
 	for column in columns:
@@ -427,6 +429,14 @@ func create_report_for_all_equipment_series(columns: Array[String], queries: Arr
 			reportContents += weapon.itemName.replace(',', ' | ') + ',Weapon,'
 			for query in queries:
 				var val: String = query.call(weapon)
+				reportContents += val + ','
+			reportContents += '\n'
+	for accessoryFile: String in accessories:
+		var accessory: Accessory = load(accessoryPath + accessoryFile) as Accessory
+		if accessory != null:
+			reportContents += accessory.itemName.replace(',', ' | ') + ',Accessory,'
+			for query in queries:
+				var val: String = query.call(accessory)
 				reportContents += val + ','
 			reportContents += '\n'
 	
@@ -461,11 +471,15 @@ func csv_equipment_orbs(equipment: Item) -> String:
 	if equipment.itemType == Item.Type.ARMOR:
 		var armor: Armor = equipment as Armor
 		if armor != null:
-			text = String.num(armor.bonusOrbs)
+			text = String.num_int64(armor.bonusOrbs)
 	elif equipment.itemType == Item.Type.WEAPON:
 		var weapon: Weapon = equipment as Weapon
 		if weapon != null:
-			text = String.num(weapon.bonusOrbs)
+			text = String.num_int64(weapon.bonusOrbs)
+	elif equipment.itemType == Item.Type.ACCESSORY:
+		var accessory: Accessory = equipment as Accessory
+		if accessory != null:
+			text = String.num_int64(accessory.bonusOrbs)
 	return text
 
 # CSV item queries

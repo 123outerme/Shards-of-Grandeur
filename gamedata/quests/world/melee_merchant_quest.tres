@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://d23rbyomiregc"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_v5d4w"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_exe4j"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_exe4j"]
+
+[sub_resource type="Resource" id="Resource_bi17m"]
+script = ExtResource("2_exe4j")
+name = "I'll Make You Pay"
+description = "The Melee Merchant wants to test your strength. Let him have it!"
+locations = Array[int]([51])
+type = 4
+count = 1
+objectiveName = "melee_merchant_1"
+turnInNames = Array[String]([])
+displayObjName = "Melee Merchant"
+displayTurnInName = "Melee Merchant"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_exe4j")]([])
+inProgressDialogue = Array[ExtResource("3_exe4j")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_mt61l"]
+script = ExtResource("2_exe4j")
+name = "TBD"
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_exe4j")]([])
+inProgressDialogue = Array[ExtResource("3_exe4j")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[resource]
+script = ExtResource("1_v5d4w")
+questName = "The Melee Merchant"
+description = "A strange merchant sells incredible wares, but only once you defeat him in combat."
+steps = Array[ExtResource("2_exe4j")]([SubResource("Resource_bi17m"), SubResource("Resource_mt61l")])
+isMainQuest = false
+advanceActAfterComplete = false
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"

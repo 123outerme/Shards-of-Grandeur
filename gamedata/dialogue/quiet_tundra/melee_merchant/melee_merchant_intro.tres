@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://cw33pthjr4ian"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_xvitr"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_633ki"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_j3v2g"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_2u172"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_633ki"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_j3v2g"]
+[ext_resource type="Resource" uid="uid://d23rbyomiregc" path="res://gamedata/quests/world/melee_merchant_quest.tres" id="7_lxa2i"]
+
+[sub_resource type="Resource" id="Resource_lxa2i"]
+script = ExtResource("2_633ki")
+choiceBtn = "Uh... @."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2u172")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_2u172"]
+script = ExtResource("1_xvitr")
+lines = Array[String](["Hello and welcome to Spar 'n' Shop, customer! You can call me the Melee Merchant.", "So, what might your name be?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_633ki")]([SubResource("Resource_lxa2i")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_m183g"]
+script = ExtResource("2_633ki")
+choiceBtn = "Are You Serious?"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2u172")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ajslt"]
+script = ExtResource("1_xvitr")
+lines = Array[String](["Well, @! You look like a pretty tough customer, if I do say so myself.", "That's a good thing, too, because I only serve tough customers. In fact, you have to prove it to me!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_633ki")]([SubResource("Resource_m183g")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_gxya6"]
+script = ExtResource("2_633ki")
+choiceBtn = "Okay..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2u172")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_xxy8o"]
+script = ExtResource("1_xvitr")
+lines = Array[String](["I'M COMPLETELY SERIOUS.", "And if you beat me, you only get to shop from my most basic goods!", "So when you're ready to throw down, just let me know!"])
+minShowSecs = Array[float]([1.5, 0.0, 0.0])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_633ki")]([SubResource("Resource_gxya6")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_633ki"]
+script = ExtResource("2_j3v2g")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_j3v2g")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["melee_merchant_tundra_west#melee_merchant_intro"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_j3v2g")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_633ki")
+entryId = "melee_merchant_intro"
+items = Array[ExtResource("1_xvitr")]([SubResource("Resource_2u172"), SubResource("Resource_ajslt"), SubResource("Resource_xxy8o")])
+ordStoryRequirements = Array[ExtResource("2_j3v2g")]([SubResource("Resource_633ki")])
+startsQuest = ExtResource("7_lxa2i")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
