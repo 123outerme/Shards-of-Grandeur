@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bd1s60b77lplv"]
+
+[ext_resource type="Texture2D" uid="uid://dj806oubn8v3f" path="res://graphics/furniture/giant_steppes_furniture.png" id="1_cov4r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cq0l"]
+atlas = ExtResource("1_cov4r")
+region = Rect2(80, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cq0l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cq0l")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cq0l")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
