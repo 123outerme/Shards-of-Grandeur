@@ -11,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="8_b0dip"]
 [ext_resource type="Resource" uid="uid://c6c4gmfi4dvyh" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/astrolabe.tres" id="8_cf7cu"]
 
-[sub_resource type="Resource" id="Resource_b0dip"]
+[sub_resource type="Resource" id="Resource_cf7cu"]
 script = ExtResource("4_xtnma")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(73, -52)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -108,7 +108,7 @@ position = Vector2(73, -52)
 displayName = "The Stargazer"
 saveName = "stargazer_warlock"
 loadFlipH = true
-data = SubResource("Resource_b0dip")
+data = SubResource("Resource_cf7cu")
 
 [node name="NPCSprite" parent="TilemapRoot/StargazerWarlock" index="0"]
 sprite_frames = ExtResource("5_xtnma")

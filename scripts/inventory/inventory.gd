@@ -195,6 +195,7 @@ func get_sorted_slots() -> Array[InventorySlot]:
 	return slots
 
 func sort_inventory(a: InventorySlot, b: InventorySlot) -> bool:
+	#'''
 	var aEquipped: bool = is_equipped(a.item)
 	var bEquipped: bool = is_equipped(b.item)
 	if aEquipped and not bEquipped:
@@ -205,6 +206,7 @@ func sort_inventory(a: InventorySlot, b: InventorySlot) -> bool:
 		return true
 	if not (a.item.usable or a.item.battleUsable or a.item.equippable) and (b.item.usable or b.item.battleUsable or b.item.equippable):
 		return false
+	#'''
 	return a.item.itemName.naturalnocasecmp_to(b.item.itemName) < 0 # compare names (including natural number comparisons)
 
 func load_data(save_path):

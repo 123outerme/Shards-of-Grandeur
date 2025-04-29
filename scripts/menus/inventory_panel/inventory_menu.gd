@@ -87,6 +87,8 @@ const FILTER_BUTTON_TYPES_ORDER: Array[Item.Type] = [
 var currentInventory: Inventory = null
 var otherInventory: Inventory = null # player inventory if looking at NPC shop; NPC inventory if looking at player inventory inside NPC shop
 
+var slotPanels: Array[InventorySlotPanel] = []
+
 var lastFocused: Control = null
 var lastSlotInteracted: InventorySlot = null
 var confirmingAction: String = ''
@@ -135,7 +137,7 @@ func toggle():
 			selectedFilter = Item.Type.ALL
 		get_display_inventory()
 		check_filters()
-		load_inventory_panel()
+		load_inventory_panel(true)
 		initial_focus()
 	else:
 		cleanup_inventory_panel_state()
@@ -217,7 +219,7 @@ func get_display_inventory():
 		else:
 			otherInventory = shopInventory
 
-func load_inventory_panel(rebuild: bool = true):
+func load_inventory_panel(rebuild: bool = false):
 	get_display_inventory()
 	update_toggle_inv_button()
 	update_filter_buttons()
@@ -266,17 +268,15 @@ func load_inventory_panel(rebuild: bool = true):
 			inventoryTitle.text = '[center]Your Inventory[/center]'
 	
 	if rebuild:
-		for panel in get_tree().get_nodes_in_group("InventorySlotPanel"):
+		for panel in slotPanels:
 			panel.queue_free()
+		slotPanels = []
 		
-		var previousPanel: InventorySlotPanel = null
-		var firstPanel: InventorySlotPanel = null
 		var invSlotPanel = load("res://prefabs/ui/inventory/inventory_slot_panel.tscn")
 		var inventorySlots: Array[InventorySlot] = currentInventory.inventorySlots
-		if showPlayerInventory:
+		if showPlayerInventory or not inShop:
 			inventorySlots = currentInventory.get_sorted_slots() # if player inventory, get sorted inventory
 		
-		var slotPanelIdx: int = 0
 		for slotIdx: int in range(len(inventorySlots)):
 			var slot: InventorySlot = inventorySlots[slotIdx]
 			if slot.count == 0:
@@ -285,28 +285,17 @@ func load_inventory_panel(rebuild: bool = true):
 				var shopSlot: ShopInventorySlot = slot as ShopInventorySlot
 				if not shopSlot.is_valid():
 					continue
-			if (selectedFilter == Item.Type.ALL or selectedFilter == slot.item.itemType) and slot.is_valid():
-				slotPanelIdx += 1
-				var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
-				instantiatedPanel.isShopItem = inShop
-				instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
-				instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item) or (instantiatedPanel.isPlayerItem and PlayerResources.minions.which_minion_equipped(slot.item) != '')
-				instantiatedPanel.inBattle = inBattle
-				instantiatedPanel.summoning = summoning
-				instantiatedPanel.inventoryMenu = self
-				instantiatedPanel.inventorySlot = slot
-				instantiatedPanel.queuedForBattleUse = slotQueuedForBattleUse == slot
-				if otherInventory != null:
-					instantiatedPanel.canOtherPartyHold = not otherInventory.is_slot_for_item_full(slot.item)
-				instantiatedPanel.equipContextStats = equipContextStats
-				# consider it to be onscreen if the panel would fit even partially inside the viewport
-				instantiatedPanel.onscreen = slotPanelIdx <= ceili(vboxViewport.get_parent().size.y / instantiatedPanel.MIN_HEIGHT_PX)
-				vboxViewport.add_child(instantiatedPanel)
-				if firstPanel == null:
-					firstPanel = instantiatedPanel
-				backButton.focus_neighbor_top = backButton.get_path_to(instantiatedPanel.get_leftmost_button()) # last panel keeps the focus neighbor of the back button				
-				instantiatedPanel.connect_button_focus_to(previousPanel)
-				previousPanel = instantiatedPanel
+			
+			var instantiatedPanel: InventorySlotPanel = invSlotPanel.instantiate()
+			instantiatedPanel.isShopItem = inShop
+			instantiatedPanel.isPlayerItem = showPlayerInventory or not inShop
+			instantiatedPanel.isEquipped = currentInventory.is_equipped(slot.item) or (instantiatedPanel.isPlayerItem and PlayerResources.minions.which_minion_equipped(slot.item) != '')
+			instantiatedPanel.inBattle = inBattle
+			instantiatedPanel.inventoryMenu = self
+			instantiatedPanel.inventorySlot = slot
+			instantiatedPanel.summoning = summoning
+			instantiatedPanel.queuedForBattleUse = slotQueuedForBattleUse == slot
+			slotPanels.append(instantiatedPanel)
 			# unlock filter button for filter of item's type
 			if slot.item.itemType == Item.Type.HEALING:
 				healingFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.HEALING
@@ -322,31 +311,68 @@ func load_inventory_panel(rebuild: bool = true):
 				accessoryFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.ACCESSORY
 			if slot.item.itemType == Item.Type.KEY_ITEM:
 				keyItemFilterBtn.disabled = lockFilters and selectedFilter != Item.Type.KEY_ITEM
-		if firstPanel != null: # if focus still not grabbed by another panel
-			allFilterBtn.focus_neighbor_bottom = allFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			consumablesFilterBtn.focus_neighbor_bottom = consumablesFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			accessoryFilterBtn.focus_neighbor_bottom = accessoryFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(firstPanel.get_leftmost_button())
-			firstPanel.detailsButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-			firstPanel.buyButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-			firstPanel.sellButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-			firstPanel.equipButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-			firstPanel.trashButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
-		else:
-			# no item panels exist
-			if toggleShopButton.visible:
-				backButton.focus_neighbor_bottom = backButton.get_path_to(toggleShopButton)
-			elif get_centermost_filter() != null:
-				backButton.focus_neighbor_bottom = backButton.get_path_to(get_centermost_filter())
-			else:
-				backButton.focus_neighbor_bottom = backButton.get_path_to(consumablesFilterBtn)
-	else:
-		for panel: InventorySlotPanel in get_tree().get_nodes_in_group("InventorySlotPanel"):
+	
+	var lastPanel: InventorySlotPanel = null
+	var firstPanel: InventorySlotPanel = null
+	var slotPanelIdx: int = 0
+	backButton.focus_neighbor_top = backButton.get_path_to(get_centermost_filter())
+	for panel: InventorySlotPanel in slotPanels:
+		if vboxViewport.get_children().has(panel):
+			vboxViewport.remove_child(panel)
+		if (selectedFilter == Item.Type.ALL or selectedFilter == panel.inventorySlot.item.itemType) and panel.inventorySlot.is_valid():
+			slotPanelIdx += 1
+			if firstPanel == null:
+				firstPanel = panel
+			
+			panel.isPlayerItem = showPlayerInventory or not inShop
+			panel.isEquipped = currentInventory.is_equipped(panel.inventorySlot.item) or (panel.isPlayerItem and PlayerResources.minions.which_minion_equipped(panel.inventorySlot.item) != '')
+			if otherInventory != null:
+				panel.canOtherPartyHold = not otherInventory.is_slot_for_item_full(panel.inventorySlot.item)
+			panel.summoning = summoning
+			panel.queuedForBattleUse = slotQueuedForBattleUse == panel.inventorySlot
+			panel.equipContextStats = equipContextStats
+			# consider it to be onscreen if the panel would fit even partially inside the viewport
+			panel.onscreen = slotPanelIdx <= ceili(vboxViewport.get_parent().size.y / panel.MIN_HEIGHT_PX)
+			vboxViewport.add_child(panel)
 			panel.load_inventory_slot_panel()
+			panel.connect_button_focus_to(lastPanel)
+			lastPanel = panel
+	
+	if firstPanel != null: # if focus still not grabbed by another panel
+		allFilterBtn.focus_neighbor_bottom = allFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		healingFilterBtn.focus_neighbor_bottom = healingFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		shardFilterBtn.focus_neighbor_bottom = shardFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		consumablesFilterBtn.focus_neighbor_bottom = consumablesFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		weaponFilterBtn.focus_neighbor_bottom = weaponFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		armorFilterBtn.focus_neighbor_bottom = armorFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		accessoryFilterBtn.focus_neighbor_bottom = accessoryFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		keyItemFilterBtn.focus_neighbor_bottom = keyItemFilterBtn.get_path_to(firstPanel.get_leftmost_button())
+		firstPanel.useButton.focus_neighbor_top = firstPanel.useButton.get_path_to(get_centermost_filter())
+		firstPanel.detailsButton.focus_neighbor_top = firstPanel.detailsButton.get_path_to(get_centermost_filter())
+		firstPanel.buyButton.focus_neighbor_top = firstPanel.buyButton.get_path_to(get_centermost_filter())
+		firstPanel.sellButton.focus_neighbor_top = firstPanel.sellButton.get_path_to(get_centermost_filter())
+		firstPanel.equipButton.focus_neighbor_top = firstPanel.equipButton.get_path_to(get_centermost_filter())
+		firstPanel.trashButton.focus_neighbor_top = firstPanel.trashButton.get_path_to(get_centermost_filter())
+	else:
+		# no item panels exist
+		if toggleShopButton.visible:
+			backButton.focus_neighbor_bottom = backButton.get_path_to(toggleShopButton)
+		elif get_centermost_filter() != null:
+			backButton.focus_neighbor_bottom = backButton.get_path_to(get_centermost_filter())
+		else:
+			backButton.focus_neighbor_bottom = backButton.get_path_to(consumablesFilterBtn)
+	
+	if lastPanel != null:
+		# connect last panel's buttons to the back button
+		lastPanel.useButton.focus_neighbor_bottom = lastPanel.useButton.get_path_to(backButton)
+		lastPanel.detailsButton.focus_neighbor_bottom = lastPanel.detailsButton.get_path_to(backButton)
+		lastPanel.buyButton.focus_neighbor_bottom = lastPanel.buyButton.get_path_to(backButton)
+		lastPanel.sellButton.focus_neighbor_bottom = lastPanel.sellButton.get_path_to(backButton)
+		lastPanel.equipButton.focus_neighbor_bottom = lastPanel.equipButton.get_path_to(backButton)
+		lastPanel.trashButton.focus_neighbor_bottom = lastPanel.trashButton.get_path_to(backButton)
+		
+		# connect the back button to the last panel's left-most available button
+		backButton.focus_neighbor_top = backButton.get_path_to(lastPanel.get_leftmost_button())
 	
 func buy_item(slot: InventorySlot):
 	lastSlotInteracted = slot
@@ -435,7 +461,7 @@ func update_filter_buttons():
 
 func _on_toggle_shop_inventory_button_pressed():
 	showPlayerInventory = not showPlayerInventory
-	load_inventory_panel()
+	load_inventory_panel(true)
 
 func _on_back_button_pressed():
 	toggle() # hide inventory panel
@@ -609,7 +635,7 @@ func _on_item_confirm_panel_confirm_option(yes: bool):
 				restore_last_focus('useButton')
 
 func _on_equip_panel_close_equip_panel():
-	load_inventory_panel()
+	load_inventory_panel(false)
 	restore_last_focus('equipButton')
 	equipPanel.visible = false
 	backButton.disabled = false
@@ -676,8 +702,9 @@ func _on_stat_reset_panel_close_stat_reset_panel(combatant: Combatant):
 			var last = PlayerResources.inventory.use_item_from_slot(lastSlotInteracted, combatant)
 			if last:
 				lastSlotInteracted = null
+			#load_inventory_panel(last) # TODO: this was not present before, is this OK to leave out?
 	else:
-		load_inventory_panel()
+		load_inventory_panel(false)
 		restore_last_focus('useButton')
 	statResetPanel.visible = false
 	backButton.disabled = false
