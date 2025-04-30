@@ -20,8 +20,8 @@ To launch the game:
 - Linux: Execute `./ShardsOfGrandeur.sh`. You may first need to give this script executable permissions.
 
 ### Android
-1. Find the release `.apk` file and download it to your phone.
-2. Once downloaded, use a file explorer app to install the app.
+1. Find the release `ShardsOfGrandeur.apk` file and download it to your phone.
+2. Once downloaded, use a file explorer app to install the `.apk` file.
 3. You may be prompted by Android to scan the app. I would always recommend scanning apps not verified by Google Play.
 4. Once installed, you can open the app to start playing!
 
@@ -38,6 +38,8 @@ To build Shards of Grandeur for yourself, you need to have [Godot Engine](https:
 6. Select a platform to export for, or click the Export All button at the bottom.
 7. Once the export is finished, you will find the build output in the `release/` directory of the project.
 
+Each platform binary will be built to an appropriate subdirectory (i.e. `windows` for Windows, etc).
+
 ### There Were Import Errors!
 There is an enemy AI script that nests instances of itself. Depending on the load order of these scripts when loading the project for the first time, this may cause load errors. This MUST be fixed before export, or all of the enemies' AI behavior could be corrupted. To fix this:
 
@@ -49,8 +51,6 @@ There is an enemy AI script that nests instances of itself. Depending on the loa
 5. Scroll to the very top of the file.
 6. Paste this JSON object as the first element of this JSON array, adding a comma afterwards if necessary.
 7. Relaunch the Godot editor and open the project again. If all goes well, there should be no more import errors!
-
-Each platform binary will be built to an appropriate subdirectory (i.e. `windows` for Windows, etc.)
 
 ### Create Release `.zip` Files
 To create `.zip` files automatically for the release of a build of Shards of Grandeur, follow these steps on a Linux device:  
@@ -64,7 +64,7 @@ To create `.zip` files automatically for the release of a build of Shards of Gra
 ## LICENSE INFORMATION
 The code is licensed under GPL 3.0, as found in the repository's root `LICENSE` file.   
 All original artwork is provided under the CC-BY-NC-SA-4.0 License. Font file provided by fontget.com. See the `graphics/LICENSE` file for more information on these items.  
-All original audio, including music and sound effects, are not licensed for general public use. See the `audio/LICENSE` file for more information.  
+All original audio, including music and sound effects, are not licensed for general public use. Non-original audio has been used according to each file's respective license, each of which noted. See the `audio/LICENSE` file for more information on these items.  
 For all original non-code, non-audio, and non-artwork content or data, including story events, dialogue, and characters: these things are Copyright (c) 2024 Stephen Policelli.  
   
 This game uses Godot Engine, available under the following license:
