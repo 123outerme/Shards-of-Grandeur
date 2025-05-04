@@ -386,7 +386,7 @@ func get_triggered_runes_text(combatant: Combatant) -> String:
 				else:
 					accumulatedOrbs[casterNode.battlePosition] = rune.orbChange 
 		
-		# TODO print results of runes being triggered
+		# print results of runes being triggered
 		runeText += ', '
 		var resultsTexts: Array[String] = []
 		if accumulatedDmg != 0:

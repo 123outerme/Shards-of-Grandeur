@@ -12,7 +12,7 @@ signal evolution_selected(evoListItemPanel: EvolutionListItemPanel)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_evolution_list_item_panel() # TODO: remove. TEMP
+	pass #load_evolution_list_item_panel() # TEMP testing evolution list item panel
 
 func load_evolution_list_item_panel() -> void:
 	if combatant == null:

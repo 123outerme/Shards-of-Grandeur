@@ -23,7 +23,6 @@ func _init(
 	moveListAttemptSurge = i_moveListAttemptSurge.duplicate(false)
 	moveIdx = i_moveIdx
 
-# TODO: can I use Combatant/CombatantNode here instead of Variant?
 ## returns 1.5 if the move is the next move in the order, otherwise 0.5
 func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, targets: Array[CombatantNode], battleState: BattleState, allCombatantNodes: Array[CombatantNode]) -> float:
 	var baseWeight: float = super.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)

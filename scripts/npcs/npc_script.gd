@@ -519,7 +519,6 @@ func fetch_quest_dialogue_info():
 
 func update_dialogues_in_between():
 	fetch_quest_dialogue_info()
-	# TODO test
 	for questTracker in PlayerResources.questInventory.quests:
 		if questTracker != null:
 			var curStep = questTracker.get_current_step()
@@ -540,7 +539,6 @@ func update_dialogues_in_between():
 					continue
 				if dialogue.can_use_dialogue():
 					add_dialogue_entry_in_dialogue(dialogue, false)
-	# TODO test end
 	for dialogue in dialogueEntries:
 		if dialogue == null:
 			continue
@@ -635,7 +633,7 @@ func set_following_player(following: bool, onLoad: bool = false):
 		# the NPC is not a follower now
 		if onLoad:
 			if data.followingPlayer:
-				position = data.followerHomePosition # TODO: this NPC has been unset to follow the player while unloaded; snap it back to its home
+				position = data.followerHomePosition # this NPC has been unset to follow the player while unloaded; snap it back to its home
 		else:
 			if data.followingPlayer:
 				# if the NPC should make this place their new home when unfollowing instead of going back to their old home

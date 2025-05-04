@@ -31,7 +31,7 @@ func can_solve() -> bool:
 	return false
 
 func solve() -> bool:
-	# TODO give player the reward for solving the puzzle, then potentially handle level ups or full inventory (?)
+	# give player the reward for solving the puzzle
 	SignalBus.give_overworld_rewards(solvedReward, 'Puzzle Rewards')
 	PlayerResources.playerInfo.set_puzzle_solved(id)
 	PlayerResources.questInventory.auto_update_quests()

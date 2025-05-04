@@ -405,7 +405,6 @@ func sell_item(slot: InventorySlot):
 func equip_pressed(slot: InventorySlot, alreadyEquipped: bool):
 	lastSlotInteracted = slot
 	if alreadyEquipped:
-		# TODO: see if we can jam in the evolution logic either somewhere here or in the inventory_slot_panel
 		load_inventory_panel()
 		restore_last_focus('equipButton')
 	else:
