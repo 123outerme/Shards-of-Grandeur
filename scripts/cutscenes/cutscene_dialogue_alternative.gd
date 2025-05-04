@@ -1,3 +1,4 @@
+@tool
 extends CutsceneDialogue
 class_name CutsceneDialogueAlternative
 ## Useless as a sub-resource of a cutscene; this should only be the sub-resource of a StoryReqsCutsceneDialogue

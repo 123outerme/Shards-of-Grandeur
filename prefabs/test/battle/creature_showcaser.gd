@@ -162,8 +162,8 @@ func _ready() -> void:
 		battleUI.battleController.state.turnNumber += 1
 		battleUI.battlePanels.set_turn_counter(battleUI.battleController.state.turnNumber, encounter.winCon)
 
-func _on_battle_cam_menu_state_changed(state: BattleState.Menu) -> void:
-	if state == BattleState.Menu.ALL_COMMANDS and simStarted:
+func _on_battle_cam_menu_state_changed(battleState: BattleState.Menu) -> void:
+	if battleState == BattleState.Menu.ALL_COMMANDS and simStarted:
 		start_next_round.emit()
 
 func _on_results_ok_button_pressed() -> void:

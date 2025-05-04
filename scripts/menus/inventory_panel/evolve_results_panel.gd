@@ -7,10 +7,14 @@ class_name EvolveResultsPanel
 @export var equipment: Item
 @export var switchEvolutionFlags: int = 0
 @export var combatantLosingEvolving: Combatant = null
+@export var evolveSfx: AudioStream = null
 
 @onready var combatantSprite: AnimatedSprite2D = get_node('Panel/CombatantSpriteControl/CombatantSprite')
+@onready var evolveSprite: AnimatedSprite2D = get_node('Panel/CombatantSpriteControl/EvolveSprite')
 @onready var evolveChangesText: RichTextLabel = get_node('Panel/EvolveChangesText')
 @onready var evolveChangesUnderline: Line2D = get_node('Panel/EvolveChangesText/Line2D')
+
+var evolveAnimTween: Tween = null
 
 func load_evolve_results_panel():
 	var prevEvolutionStats: Stats = combatant.get_evolution_stats(prevEvolution)
@@ -66,6 +70,40 @@ func load_evolve_results_panel():
 		evolveChangesText.text = ''
 		evolveChangesUnderline.visible = false
 	
+	var prevCombatantSprite: CombatantSprite = combatant.sprite
+	if prevEvolution != null:
+		prevCombatantSprite = prevEvolution.combatantSprite
+	
+	combatantSprite.sprite_frames = prevCombatantSprite.spriteFrames
+	if prevCombatantSprite.idleSize.y <= 32:
+		combatantSprite.scale = Vector2(3, 3)
+	elif prevCombatantSprite.idleSize.y < 48:
+		combatantSprite.scale = Vector2(2, 2)
+	else:
+		combatantSprite.scale = Vector2(2, 2)
+	combatantSprite.play('battle_idle')
+	evolveSprite.visible = false
+	okButton.disabled = true
+	play_evolve_anim()
+	load_tooltip_panel()
+
+func play_evolve_anim() -> void:
+	if evolveAnimTween != null:
+		evolveAnimTween.kill()
+	
+	evolveAnimTween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	evolveAnimTween.tween_property(combatantSprite, 'rotation', 0, 1.5) # no-op to wait 1.5s
+	evolveAnimTween.tween_callback(_play_evolution_sprite_animation)
+	evolveAnimTween.tween_property(combatantSprite, 'rotation', 0, 0.5) # no-op to wait 0.5s (4 frames at 8 FPS [evolve sprite animation])
+	evolveAnimTween.tween_callback(_update_combatant_sprite)
+	evolveSprite.animation_finished.connect(_evolve_tween_finished)
+
+func _play_evolution_sprite_animation() -> void:
+	evolveSprite.visible = true
+	evolveSprite.play('default')
+	SceneLoader.audioHandler.play_sfx(evolveSfx)
+
+func _update_combatant_sprite() -> void:
 	combatantSprite.sprite_frames = combatant.get_sprite_frames()
 	if combatant.get_idle_size().y <= 32:
 		combatantSprite.scale = Vector2(3, 3)
@@ -74,4 +112,10 @@ func load_evolve_results_panel():
 	else:
 		combatantSprite.scale = Vector2(2, 2)
 	combatantSprite.play('battle_idle')
-	load_tooltip_panel()
+
+func _evolve_tween_finished() -> void:
+	evolveSprite.visible = false
+	okButton.disabled = false
+	if evolveAnimTween != null:
+		evolveAnimTween.kill()
+	evolveAnimTween = null

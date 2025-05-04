@@ -73,6 +73,7 @@ func advance_intermediate_state(result: WinCon.TurnResult = WinCon.TurnResult.NO
 			else:
 				round_complete()
 				return
+	# TODO: newMenuState is unused... WHAT is going on here? Is there a problem with that?
 
 func update_downed():
 	for combatantNode in battleController.get_all_combatant_nodes():

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=12 format=3 uid="uid://cx6pa7afrlvl5"]
+[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://cx6pa7afrlvl5"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_yroho"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_wseo8"]
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 [sub_resource type="Resource" id="Resource_6c35l"]
 script = ExtResource("2_wseo8")
 name = "Pick Up On His Trail"
-description = "Start looking around for Solius. You should be able to find clues somewhere!"
+description = "Start looking around for Solius. You should be able to find clues somewhere nearby!"
 reward = SubResource("Resource_y6qed")
 locations = Array[int]([0])
 type = 0
@@ -49,10 +49,42 @@ inProgressDialogue = Array[ExtResource("3_ffpf8")]([])
 
 [sub_resource type="Resource" id="Resource_3fr47"]
 script = ExtResource("2_wseo8")
-name = "Trail's Gone Cold?"
-description = ""
+name = "Retrace His Steps"
+description = "The friendly Chain Legion Solider said Solius was heading north to the Quiet Tundra. Track him!"
 locations = Array[int]([51])
 type = 3
+count = 1
+objectiveName = "solius_tattered_cloth#cloth_found"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "Find The Next Clue!"
+turnInDialogue = Array[ExtResource("3_ffpf8")]([])
+inProgressDialogue = Array[ExtResource("3_ffpf8")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_3dyc3"]
+script = ExtResource("2_wseo8")
+name = "Village Inquiry"
+description = "Ask around in Frostmint Village if they've seen Solius pass through!"
+locations = Array[int]([55])
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_ffpf8")]([])
+inProgressDialogue = Array[ExtResource("3_ffpf8")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_8tqfv"]
+script = ExtResource("2_wseo8")
+name = "Trail's Gone Cold?"
+description = ""
+locations = Array[int]([])
+type = 0
 count = 1
 objectiveName = "---"
 turnInNames = Array[String]([])
@@ -67,6 +99,6 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_yroho")
 questName = "A Lost Comrade"
 description = "When I got back to Leavenport, Solius was gone... I hope he's okay. I'll track him down and rescue him, no matter what!"
-steps = Array[ExtResource("2_wseo8")]([SubResource("Resource_880a0"), SubResource("Resource_6c35l"), SubResource("Resource_3fr47")])
+steps = Array[ExtResource("2_wseo8")]([SubResource("Resource_880a0"), SubResource("Resource_6c35l"), SubResource("Resource_3fr47"), SubResource("Resource_3dyc3"), SubResource("Resource_8tqfv")])
 isMainQuest = false
 advanceActAfterComplete = false

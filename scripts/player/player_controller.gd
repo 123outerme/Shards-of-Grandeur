@@ -140,7 +140,7 @@ func _unhandled_input(event):
 				if (closestInteractable == null or \
 						(inter.global_position - global_position).length_squared() < (closestInteractable.global_position - global_position).length_squared()):
 					closestInteractable = inter
-			if closestInteractable != null and closestInteractable.has_dialogue():
+			if closestInteractable != null and closestInteractable.has_dialogue() and closestInteractable.is_visible_in_tree():
 				closestInteractable.interact()
 				interacted = true
 		if not interacted and textBox.is_textbox_complete():

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="TeleportStone" load_steps=3 format=3 uid="uid://cb17351uxj3ie"]
+
+[ext_resource type="Texture2D" uid="uid://c1u3nh1i1h2a" path="res://graphics/items/key_items/frostmint_village_teleport_stone.png" id="1_qddnh"]
+[ext_resource type="Script" uid="uid://cib64tenrcfgu" path="res://scripts/inventory/items/key_items/teleport_stone.gd" id="1_ysn6s"]
+
+[resource]
+script = ExtResource("1_ysn6s")
+targetMap = "frostmint_village"
+targetPos = Vector2(-72, -86)
+keyItemType = 1
+useMessage = "The stone opens a swirling portal, bringing you back to Frostmint Village..."
+effectText = "Teleports you to Frostmint Village!"
+itemSprite = ExtResource("1_qddnh")
+itemName = "Frostmint Village Teleport Stone"
+itemType = 5
+itemDescription = "This enchanted stone can open a portal to Frostmint Village at a moment's notice. Once done, it becomes inert and returns to being an ordinary rock."
+cost = 50
+maxCount = 3
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 0
+metadata/_custom_type_script = "uid://cib64tenrcfgu"

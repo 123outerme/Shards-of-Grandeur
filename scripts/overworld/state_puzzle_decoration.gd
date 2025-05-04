@@ -98,12 +98,12 @@ func interact(_args: Array = []):
 
 func has_dialogue() -> bool:
 	if not puzzle.passes_prereqs():
-		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue()
+		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue() and not invisible
 	else:
 		var state: String = get_decoration_state()
 		if stateDialogues.has(state):
 			var stateDialogue: InteractableDialogue = stateDialogues[state] as InteractableDialogue
-			return stateDialogue != null and stateDialogue.can_use_dialogue()
+			return stateDialogue != null and stateDialogue.can_use_dialogue() and not invisible
 		return false
 	#return super.has_dialogue()
 
@@ -122,6 +122,10 @@ func get_interact_animation() -> String:
 	if not disableDialogueSpeakerSprite and stateAnimations.has(currentState):
 		return stateAnimations[currentState]
 	return ''
+
+func set_invisible(value: bool) -> void:
+	super.set_invisible(value)
+	animatedDecoration.invisible = value
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':

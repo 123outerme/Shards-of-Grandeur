@@ -66,9 +66,9 @@ func interact(_args: Array = []):
 
 func has_dialogue() -> bool:
 	if puzzle.is_solved():
-		return solvedDialogue != null and solvedDialogue.can_use_dialogue()
+		return solvedDialogue != null and solvedDialogue.can_use_dialogue() and not invisible
 	elif not puzzle.passes_prereqs():
-		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue()
+		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue() and not invisible
 	
 	return super.has_dialogue()
 
@@ -83,6 +83,10 @@ func get_sprite_frames() -> SpriteFrames:
 
 func get_interact_animation() -> String:
 	return solvedAnimation if solved else unsolvedAnimation
+
+func set_invisible(value: bool) -> void:
+	super.set_invisible(value)
+	animatedDecoration.invisible = value
 
 func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':

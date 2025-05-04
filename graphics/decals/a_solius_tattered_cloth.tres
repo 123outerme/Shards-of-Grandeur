@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://ev32uso5jyy8"]
+
+[ext_resource type="Texture2D" uid="uid://b5cmsinodx2qj" path="res://graphics/decals/solius_tattered_cloth.png" id="1_stsqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bck6c"]
+atlas = ExtResource("1_stsqm")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bck6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

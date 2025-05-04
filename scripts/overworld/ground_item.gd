@@ -9,7 +9,7 @@ class_name GroundItem
 @export var disguiseSprite: Texture = null
 
 ## if true, the item will be invisible on the ground (except for particles)
-@export var invisible: bool = false
+@export var spriteInvisible: bool = false
 
 ## define up to 4 particle textures to be emitted to draw attention to the item. If empty, default gold particles will appear
 @export var particleTextures: Array[Texture2D] = []
@@ -29,14 +29,13 @@ func _ready():
 			queue_free()
 			return
 		
-		_story_reqs_updated()
 		if PlayerResources.playerInfo.has_picked_up(saveName):
 			set_disabled(true)
 		
 		show_pick_up_sprite(false)
-		PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+		super._ready()
 	
-	if invisible:
+	if spriteInvisible:
 		sprite.texture = null
 	elif disguiseSprite != null:
 		sprite.texture = disguiseSprite
@@ -70,7 +69,7 @@ func has_dialogue() -> bool:
 
 func set_disabled(value: bool):
 	disabled = value
-	visible = not value
+	invisible = value
 	if disabled:
 		staticBody.collision_layer = 0b00
 	else:
@@ -88,16 +87,15 @@ func _on_area_exited(area):
 		exit_player_range()
 		show_pick_up_sprite(false)
 
-func _story_reqs_updated():
-	visible = len(storyRequirements) == 0 # false if any requirements, otherwise true
-	for requirement in storyRequirements:
-		visible = requirement.is_valid() or visible
-	if PlayerResources.playerInfo.has_picked_up(saveName):
-		visible = false
-	set_disabled(not visible)
+func _story_requirements_updated(initializing: bool = false):
+	var shouldDisable: bool = false
+	if not StoryRequirements.list_is_valid(storyRequirements) or PlayerResources.playerInfo.has_picked_up(saveName):
+		shouldDisable = true
+	set_disabled(shouldDisable)
 	if disabled:
 		exit_player_range()
 		show_pick_up_sprite(false)
+		deactivate()
 
 func finished_dialogue():
 	var playerPickedUp: bool = false
@@ -110,3 +108,7 @@ func finished_dialogue():
 		PlayerResources.playerInfo.pickedUpItems.append(saveName)
 		set_disabled(true)
 		exit_player_range()
+
+func deactivate() -> void:
+	super.deactivate()
+	queue_free()

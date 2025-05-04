@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cksd5oyh48til"]
+[gd_scene load_steps=7 format=3 uid="uid://cksd5oyh48til"]
 
 [ext_resource type="Script" uid="uid://de4tkfprcxjdy" path="res://scripts/menus/inventory_panel/evolve_results_panel.gd" id="1_ybpwj"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_hrvd2"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="3_u040c"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_3t0y0"]
+[ext_resource type="SpriteFrames" uid="uid://mbd018rweefd" path="res://graphics/ui/a_evolution.tres" id="5_1cwd8"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pwvb3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cwd8"]
 
 [node name="EvolveResultsPanel" type="Control"]
 layout_mode = 3
@@ -141,6 +142,14 @@ grow_horizontal = 2
 [node name="CombatantSprite" type="AnimatedSprite2D" parent="Panel/CombatantSpriteControl"]
 position = Vector2(48, 48)
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_pwvb3")
+sprite_frames = SubResource("SpriteFrames_1cwd8")
+
+[node name="EvolveSprite" type="AnimatedSprite2D" parent="Panel/CombatantSpriteControl"]
+visible = false
+position = Vector2(48, 48)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("5_1cwd8")
+frame = 15
+frame_progress = 1.0
 
 [connection signal="pressed" from="Panel/OkButton" to="." method="_on_ok_button_pressed"]

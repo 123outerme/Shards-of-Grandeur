@@ -1,4 +1,4 @@
-[gd_scene load_steps=333 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=337 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -10,7 +10,6 @@
 [ext_resource type="SpriteFrames" uid="uid://clqgmpaluch0c" path="res://graphics/animations/a_melee_merchant.tres" id="5_a0boj"]
 [ext_resource type="Resource" uid="uid://lkn8spj54mxr" path="res://gamedata/puzzles/quiet_tundra/blob_statue_puzzle.tres" id="5_ejdgh"]
 [ext_resource type="Resource" uid="uid://bkaqwyajkp8en" path="res://gamedata/dialogue/interactables/puzzles/mystic_fox_statue_puzzle/mystic_fox_statue.tres" id="5_lpkwk"]
-[ext_resource type="SpriteFrames" uid="uid://c4d0b2l8ygmjk" path="res://graphics/structures/a_warlock_statues.tres" id="6_67yeu"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="6_ip85o"]
 [ext_resource type="Resource" uid="uid://bfbesw5pba6cx" path="res://gamedata/dialogue/interactables/puzzles/mystic_fox_statue_puzzle/mystic_fox_statue_solved.tres" id="6_qiulm"]
 [ext_resource type="Resource" uid="uid://cw33pthjr4ian" path="res://gamedata/dialogue/quiet_tundra/melee_merchant/melee_merchant_intro.tres" id="6_seivo"]
@@ -27,6 +26,7 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="9_fwu82"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="12_0jhss"]
 [ext_resource type="Resource" uid="uid://cy3t2kjmmb6vb" path="res://gamedata/ground_items/quiet_tundra/tundra_winter_coat.tres" id="14_1q1dn"]
+[ext_resource type="SpriteFrames" uid="uid://bhaq132c4gyug" path="res://graphics/structures/a_mystic_fox_statue_puzzle.tres" id="14_57w4p"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="14_jdsus"]
 [ext_resource type="Resource" uid="uid://bcaupef0hubwv" path="res://gamedata/dialogue/interactables/puzzles/blob_statue_puzzle/blob_statue_solved.tres" id="14_lpkwk"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="14_p7apj"]
@@ -41,6 +41,7 @@
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="20_7mgps"]
 [ext_resource type="Resource" uid="uid://cpk0658pdwrli" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_equipment.tres" id="21_r7qac"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="22_8c8yf"]
+[ext_resource type="SpriteFrames" uid="uid://dgvq4im6yvtel" path="res://graphics/structures/a_blob_statue_puzzle.tres" id="25_57w4p"]
 [ext_resource type="Resource" uid="uid://q13ivcb0m22b" path="res://gamedata/ground_items/quiet_tundra/tundra_ice_gem.tres" id="25_r8tee"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="25_yqpcr"]
 [ext_resource type="Resource" uid="uid://c75rbvndekrau" path="res://gamedata/ground_items/quiet_tundra/tundra_curing_ritual.tres" id="26_brkob"]
@@ -60,6 +61,8 @@
 [ext_resource type="Resource" uid="uid://cjn4vum6bltcg" path="res://gamedata/ground_items/quiet_tundra/tundra_storm_ampule.tres" id="36_2eeqf"]
 [ext_resource type="Resource" uid="uid://c3moyl5hvwbcp" path="res://gamedata/ground_items/quiet_tundra/tundra_west_snow_berries_2.tres" id="37_j17o5"]
 [ext_resource type="Resource" uid="uid://b4uij3810su0a" path="res://gamedata/ground_items/quiet_tundra/tundra_west_invis_distilled_potion.tres" id="37_ysoej"]
+[ext_resource type="SpriteFrames" uid="uid://ev32uso5jyy8" path="res://graphics/decals/a_solius_tattered_cloth.tres" id="40_6gvpo"]
+[ext_resource type="Resource" uid="uid://crvr5uqkq5pep" path="res://gamedata/dialogue/interactables/flavor_objs/quiet_tundra_west/solius_tattered_cloth.tres" id="40_y7mw8"]
 [ext_resource type="Resource" uid="uid://vv2kakvi8mq3" path="res://gamedata/combatants/mystic_fox/mystic_fox_rewards_distilled_potion.tres" id="48_s0p11"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
@@ -174,6 +177,9 @@ invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_1gwlf")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_716ng"]
+size = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8htmm"]
 size = Vector2(17, 17)
@@ -1928,17 +1934,18 @@ position = Vector2(372, -2789)
 puzzle = ExtResource("7_6yrgo")
 failedPrereqsDialogue = ExtResource("5_lpkwk")
 solvedDialogue = ExtResource("6_qiulm")
-unsolvedAnimation = "mystic_fox_statue"
-solvedAnimation = "arctic_fox_statue"
+unsolvedAnimation = "unsolved"
+solvingAnimation = "evolving"
+solvedAnimation = "solved"
 saveName = "mystic_fox_statue_puzzle"
 dialogue = ExtResource("5_lpkwk")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/FoxStatuePuzzle" index="0"]
-animName = "blob_statue"
+animName = "unsolved"
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatuePuzzle/AnimatedDecoration" index="0"]
-sprite_frames = ExtResource("6_67yeu")
-animation = &"mystic_fox_statue"
+sprite_frames = ExtResource("14_57w4p")
+animation = &"evolving"
 
 [node name="CollisionShape2D" parent="TilemapRoot/FoxStatuePuzzle/AnimatedDecoration/Collision" index="0"]
 position = Vector2(0.5, 8.5)
@@ -2050,17 +2057,18 @@ position = Vector2(1109, -4546)
 puzzle = ExtResource("5_ejdgh")
 failedPrereqsDialogue = ExtResource("15_r8tee")
 solvedDialogue = ExtResource("14_lpkwk")
-unsolvedAnimation = "blob_statue"
-solvedAnimation = "block_statue"
+unsolvedAnimation = "unsolved"
+solvingAnimation = "evolving"
+solvedAnimation = "solved"
 saveName = "blob_statue_puzzle"
 dialogue = ExtResource("15_r8tee")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/BlobStatuePuzzle" index="0"]
-animName = "blob_statue"
+animName = "unsolved"
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatuePuzzle/AnimatedDecoration" index="0"]
-sprite_frames = ExtResource("6_67yeu")
-animation = &"blob_statue"
+sprite_frames = ExtResource("25_57w4p")
+animation = &"evolving"
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatuePuzzle/AnimatedDecoration/Collision" index="0"]
 position = Vector2(0.5, 7.5)
@@ -2074,6 +2082,7 @@ shape = SubResource("RectangleShape2D_r87l4")
 position = Vector2(1192, -4581)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("16_odtt7")
+fadeOutOnRequirementsInvalidated = true
 saveName = "blob_statue_energy_wall"
 dialogue = ExtResource("7_y4hg8")
 storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_yup33")])
@@ -2167,7 +2176,21 @@ animation = &"energy_wall_1"
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7/Collision" index="0"]
 shape = SubResource("RectangleShape2D_ehvst")
 
+[node name="SoliusTatteredCloth" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
+z_index = -18
+position = Vector2(1165, -1828)
+saveName = "solius_tattered_cloth"
+dialogue = ExtResource("40_y7mw8")
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("40_6gvpo")
+
+[node name="CollisionShape2D" parent="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration/Collision" index="0"]
+shape = SubResource("RectangleShape2D_716ng")
+disabled = true
+
 [node name="GtlFootprints" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
+z_index = -18
 position = Vector2(680, -3671)
 saveName = "gtl_footprints"
 dialogue = ExtResource("32_flbv4")
@@ -2262,7 +2285,7 @@ saveName = "tundra_storm_ampule"
 [node name="GroundItem7" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(1449, -3847)
 pickedUpItem = ExtResource("37_ysoej")
-invisible = true
+spriteInvisible = true
 saveName = "tundra_west_invis_distilled_potion"
 
 [node name="CollisionShape2D" parent="TilemapRoot/GroundItem7/StaticBody2D" index="0"]
@@ -2726,6 +2749,8 @@ navigation_layers = 4
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration5"]
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration6"]
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7"]
+[editable path="TilemapRoot/SoliusTatteredCloth"]
+[editable path="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration"]
 [editable path="TilemapRoot/GtlFootprints"]
 [editable path="TilemapRoot/GtlFootprints/AnimatedDecoration"]
 [editable path="TilemapRoot/VillageSign"]

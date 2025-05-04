@@ -8,18 +8,13 @@ class_name InteractableDecoration
 ## a SpriteFrames representing all the combined animated decorations' sprites (if more than one). Overrides default `get_sprite_frames` logic of returning the first decoration's SpriteFrames
 @export var combinedSpriteFrames: SpriteFrames = null
 
+## ifi true, will start a fadeout animation that then 
+@export var fadeOutOnRequirementsInvalidated: bool = false
+
 var animatedDecorations: Array[AnimatedDecoration] = []
+var fadeoutTween: Tween = null
 
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
-
-var invisible: bool:
-	set(i):
-		visible = not i
-		for decoration: AnimatedDecoration in animatedDecorations:
-			if decoration != null:
-				decoration.invisible = i
-	get:
-		return not visible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,8 +28,7 @@ func _ready():
 			animatedDecoration.anim_finished.connect(animatedDecoration.play_animation.bind(animatedDecoration.animName))
 		show_interact_sprite(false)
 		if SceneLoader.cutscenePlayer != null:
-			SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_check_enable_interact_sprite)
-		PlayerResources.story_requirements_updated.connect(_check_enable_interact_sprite)
+			SceneLoader.cutscenePlayer.cutscene_fadeout_done.connect(_story_requirements_updated)
 
 func show_interact_sprite(showSprite: bool = true):
 	interactSprite.visible = showSprite
@@ -78,6 +72,27 @@ func _on_area_exited(area):
 		show_interact_sprite(false)
 		exit_player_range()
 
-func _check_enable_interact_sprite():
+func set_invisible(value: bool) -> void:
+	super.set_invisible(value)
+	for decoration: AnimatedDecoration in animatedDecorations:
+		if decoration != null:
+			decoration.invisible = value
+
+func _story_requirements_updated(initializing: bool = false) -> void:
+	if not StoryRequirements.list_is_valid(storyRequirements):
+		if initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
+			fadeoutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+			fadeoutTween.tween_property(self, 'modulate', Color(0,0,0,0), 1.0)
+			fadeoutTween.tween_callback(deactivate)
+		else:
+			deactivate()
+	
+	## check if interact sprite can be shown
 	if self in PlayerFinder.player.interactables and can_show_interact_sprite():
 		show_interact_sprite()
+
+func deactivate() -> void:
+	invisible = true
+	show_interact_sprite(false)
+	modulate = Color(1, 1, 1, 1) # reset modulate if faded out
+	fadeoutTween = null

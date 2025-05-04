@@ -18,9 +18,15 @@ class_name Interactable
 ## story requirements that dictate if this interactable should be visible or not
 @export var storyRequirements: Array[StoryRequirements] = []
 
+var invisible: bool:
+	set(val):
+		set_invisible(val)
+	get():
+		return not visible
+
 func _ready() -> void:
 	PlayerResources.story_requirements_updated.connect(_story_requirements_updated)
-	_story_requirements_updated()
+	_story_requirements_updated(true)
 
 func interact(_args: Array = []):
 	var interactableDialogue: InteractableDialogue = null
@@ -33,7 +39,7 @@ func interact(_args: Array = []):
 		SceneLoader.audioHandler.play_sfx(interactSfx)
 
 func has_dialogue() -> bool:
-	return dialogue != null and dialogue.can_use_dialogue()
+	return dialogue != null and dialogue.can_use_dialogue() and not invisible
 
 func enter_player_range():
 	var idx: int = PlayerFinder.player.interactables.find(self)
@@ -155,12 +161,13 @@ func select_choice(choice: DialogueChoice):
 func finished_dialogue():
 	pass
 
-func destroy_interactable():
+func deactivate():
 	exit_player_range()
-	queue_free()
-	visible = false
+	invisible = true
 
-func _story_requirements_updated():
-	var storyReqsPassed: bool = StoryRequirements.list_is_valid(storyRequirements)
-	if not storyReqsPassed:
-		destroy_interactable()
+func set_invisible(value: bool) -> void:
+	visible = not value
+
+func _story_requirements_updated(initializing: bool = false):
+	if not StoryRequirements.list_is_valid(storyRequirements):
+		deactivate()

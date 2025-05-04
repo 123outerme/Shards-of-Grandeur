@@ -168,8 +168,8 @@ func name_player(save_path, characterName: String):
 	playerInfo.combatant.nickname = characterName
 	playerInfo.save_data(save_path, playerInfo)
 
-func save_npc_shared_inventory(savePath: String, id: String, inventory: Inventory) -> int:
-	var err: int = ResourceSaver.save(inventory, savePath + 'sharedshops/' + id + '.tres')
+func save_npc_shared_inventory(savePath: String, id: String, npcInventory: Inventory) -> int:
+	var err: int = ResourceSaver.save(npcInventory, savePath + 'sharedshops/' + id + '.tres')
 	if err != 0:
 		printerr('save_npc_shared_inventory ERROR: Could not save NPC inventory for ', savePath, ', at ID ', id, ', error: ', error_string(err))
 	return err
