@@ -292,6 +292,7 @@ func build_rewards() -> Array[Reward]:
 					rewards.append(reward)
 		else:
 			# otherwise, we probably have random encounter rewards
+			var spawnsThreeFaceCombatant: bool = PlayerResources.playerInfo.get_spawns_three_face_combatant()
 			var randomEncounter: RandomEncounter = null
 			if PlayerResources.playerInfo.encounter is RandomEncounter:
 				randomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter 
@@ -304,11 +305,11 @@ func build_rewards() -> Array[Reward]:
 					var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
 					if dropIdx > -1:
 						reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
-				elif battleController.enemyCombatant1.combatant.dropTable != null:
+				elif battleController.enemyCombatant1.combatant.get_drop_table() != null:
 					# second, the combatant's own drop table:
-					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.dropTable.weightedRewards)
+					var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant1.combatant.get_drop_table().weightedRewards)
 					if dropIdx > -1:
-						reward = battleController.enemyCombatant1.combatant.dropTable.weightedRewards[dropIdx].reward
+						reward = battleController.enemyCombatant1.combatant.get_drop_table().weightedRewards[dropIdx].reward
 				if reward != null:
 					# if there was a reward, scale it up by the combatant's level
 					reward = reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
@@ -320,16 +321,26 @@ func build_rewards() -> Array[Reward]:
 			# if enemy 2 was present, get rewards (if defeated, otherwise null)
 			if battleController.enemyCombatant2.combatant != null:
 				if not battleController.enemyCombatant2.is_alive():
-					# first, if the encounter had a drop table set for this combatant, use that:
-					if randomEncounter != null and randomEncounter.combatant2Rewards != null and len(randomEncounter.combatant2Rewards.weightedRewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Rewards.weightedRewards)
+					var randomIdx: int = battleController.state.randomEnemy2Id
+					# first, if the encounter was modified to use only combatant 1's combatant type, and combatant 1 had a modified drop table:
+					if spawnsThreeFaceCombatant and randomEncounter != null and randomEncounter.combatant1Rewards != null and len(randomEncounter.combatant1Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
 						if dropIdx > -1:
-							reward = randomEncounter.combatant2Rewards.weightedRewards[dropIdx].reward
-					elif battleController.enemyCombatant2.combatant.dropTable != null:
-						# second, if the combatant has its own drop table, use that
-						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.dropTable.weightedRewards)
+							reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
+					elif randomEncounter != null and \
+							randomEncounter.combatant2Options != null and \
+							randomIdx > -1 and \
+							randomEncounter.combatant2Options[randomIdx].dropTable and \
+							len(randomEncounter.combatant2Options[randomIdx].dropTable.weightedRewards) > 0:
+						# second, if the encounter had a drop table set for this combatant, use that:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant2Options[randomIdx].dropTable.weightedRewards)
 						if dropIdx > -1:
-							reward = battleController.enemyCombatant2.combatant.dropTable.weightedRewards[dropIdx].reward
+							reward = randomEncounter.combatant2Options[randomIdx].dropTable.weightedRewards[dropIdx].reward
+					elif battleController.enemyCombatant2.combatant.get_drop_table() != null:
+						# third, if the combatant has its own drop table, use that
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant2.combatant.get_drop_table().weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant2.combatant.get_drop_table().weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
 						reward = reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
@@ -340,16 +351,26 @@ func build_rewards() -> Array[Reward]:
 			# if enemy 3 was present, get rewards (if defeated, otherwise null)
 			if battleController.enemyCombatant3.combatant != null:
 				if not battleController.enemyCombatant3.is_alive():
-					# first, if the encounter had a drop table set for this combatant, use that:
-					if randomEncounter != null and randomEncounter.combatant3Rewards != null and len(randomEncounter.combatant3Rewards.weightedRewards) > 0:
-						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Rewards.weightedRewards)
+					var randomIdx: int = battleController.state.randomEnemy3Id
+					# first, if the encounter was modified to use only combatant 1's combatant type, and combatant 1 had a modified drop table:
+					if spawnsThreeFaceCombatant and randomEncounter != null and randomEncounter.combatant1Rewards != null and len(randomEncounter.combatant1Rewards.weightedRewards) > 0:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant1Rewards.weightedRewards)
 						if dropIdx > -1:
-							reward = randomEncounter.combatant3Rewards.weightedRewards[dropIdx].reward
-					elif battleController.enemyCombatant3.combatant.dropTable != null:
-						# second, if the combatant has its own drop table, use that
-						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.dropTable.weightedRewards)
+							reward = randomEncounter.combatant1Rewards.weightedRewards[dropIdx].reward
+					elif randomEncounter != null and \
+							randomEncounter.combatant3Options != null and \
+							randomIdx > -1 and \
+							randomEncounter.combatant3Options[randomIdx].dropTable and \
+							len(randomEncounter.combatant3Options[randomIdx].dropTable.weightedRewards) > 0:
+						# second, if the encounter had a drop table set for this combatant, use that:
+						var dropIdx = WeightedThing.pick_item(randomEncounter.combatant3Options[randomIdx].dropTable.weightedRewards)
 						if dropIdx > -1:
-							reward = battleController.enemyCombatant3.combatant.dropTable.weightedRewards[dropIdx].reward
+							reward = randomEncounter.combatant3Options[randomIdx].dropTable.weightedRewards[dropIdx].reward
+					elif battleController.enemyCombatant3.combatant.get_drop_table() != null:
+						# third, if the combatant has its own drop table, use that
+						var dropIdx = WeightedThing.pick_item(battleController.enemyCombatant3.combatant.get_drop_table().weightedRewards)
+						if dropIdx > -1:
+							reward = battleController.enemyCombatant3.combatant.get_drop_table().weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
 						reward = reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \

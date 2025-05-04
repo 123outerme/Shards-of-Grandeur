@@ -1,37 +1,12 @@
-[gd_resource type="Resource" script_class="InteractableDialogue" load_steps=8 format=3 uid="uid://m301biwxn2c1"]
+[gd_resource type="Resource" script_class="InteractableDialogue" load_steps=3 format=3 uid="uid://m301biwxn2c1"]
 
+[ext_resource type="Resource" uid="uid://bp5xknewt6l73" path="res://gamedata/dialogue/interactables/flavor_objs/quiet_tundra_west/energy_wall_1.tres" id="1_0ckf4"]
 [ext_resource type="Script" uid="uid://py7dqrwagbxi" path="res://scripts/overworld/interactable_dialogue.gd" id="1_1y2ro"]
-[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_fmsd7"]
-[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_axert"]
-[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_nv712"]
-[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_fq3wr"]
-
-[sub_resource type="Resource" id="Resource_8s53m"]
-script = ExtResource("1_fmsd7")
-lines = Array[String](["What a weird barrier... it's a wall of magical energy, like nothing else I've ever seen.", "Is that statue projecting it?"])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_axert")]([])
-metadata/_custom_type_script = "uid://grt2yrupha8c"
-
-[sub_resource type="Resource" id="Resource_m6mj4"]
-script = ExtResource("4_fq3wr")
-entryId = ""
-items = Array[ExtResource("1_fmsd7")]([SubResource("Resource_8s53m")])
-ordStoryRequirements = Array[ExtResource("3_nv712")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
-metadata/_custom_type_script = "uid://1n6mppc7hmmf"
 
 [resource]
 script = ExtResource("1_1y2ro")
 speaker = "@"
-dialogueEntry = SubResource("Resource_m6mj4")
+dialogueEntry = ExtResource("1_0ckf4")
 savedItemIdx = 0
 savedTextIdx = 0
 metadata/_custom_type_script = "uid://py7dqrwagbxi"

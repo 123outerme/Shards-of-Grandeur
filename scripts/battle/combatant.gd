@@ -387,6 +387,12 @@ func get_stat_allocation_strategy() -> StatAllocationStrategy:
 		return evolution.statAllocationStrategy
 	return statAllocationStrategy
 
+func get_drop_table() -> CombatantRewards:
+	var evolution: Evolution = get_evolution()
+	if evolution != null:
+		return evolution.dropTable
+	return dropTable
+
 func get_sprite_obj() -> CombatantSprite:
 	var evolution: Evolution = get_evolution()
 	if evolution != null:

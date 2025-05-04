@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://c8g45dfa46g46"]
+
+[ext_resource type="Resource" uid="uid://ba86xyy4n7thx" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_west_1_snow_berries_1.tres" id="1_841hn"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="1_c3sw4"]
+[ext_resource type="Resource" uid="uid://mkdpogf63wcq" path="res://gamedata/items/healing/snow_berries.tres" id="2_e6pnt"]
+
+[resource]
+script = ExtResource("1_c3sw4")
+item = ExtResource("2_e6pnt")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_841hn")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

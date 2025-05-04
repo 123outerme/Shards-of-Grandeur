@@ -17,6 +17,7 @@ class_name Evolution
 @export var aiType: Combatant.AiType = Combatant.AiType.NONE
 @export var aggroType: Combatant.AggroType = Combatant.AggroType.LOWEST_HP
 @export var strategy: Combatant.ResourceStrategy = Combatant.ResourceStrategy.GREEDY
+@export var dropTable: CombatantRewards = null
 
 func _init(
 	i_evoSaveName = '',
@@ -31,6 +32,7 @@ func _init(
 	i_aiType = Combatant.AiType.NONE,
 	i_aggroType = Combatant.AggroType.LOWEST_HP,
 	i_strategy = Combatant.ResourceStrategy.GREEDY,
+	i_dropTable: CombatantRewards = null
 ):
 	evolutionSaveName = i_evoSaveName
 	combatantSprite = i_sprite
@@ -44,6 +46,7 @@ func _init(
 	aiType = i_aiType
 	aggroType = i_aggroType
 	strategy = i_strategy
+	dropTable = i_dropTable
 
 func combatant_can_evolve(combatant: Combatant) -> bool:
 	if requiredArmor == null and requiredWeapon == null and requiredAccessory == null:

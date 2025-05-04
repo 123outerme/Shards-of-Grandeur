@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=54 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -16,13 +16,14 @@
 [ext_resource type="SpriteFrames" uid="uid://dgvna83psq8yc" path="res://graphics/animations/a_giant_steppes_inn_sign.tres" id="9_k1cu3"]
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="10_6tmxv"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="14_0n6sp"]
+[ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="14_dv8db"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="15_t0jvn"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="16_b2mwp"]
 [ext_resource type="Resource" uid="uid://btqsykfbbhfiv" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive.tres" id="16_vvtkq"]
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="17_qw8te"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="18_1iokg"]
 
-[sub_resource type="Resource" id="Resource_b2mwp"]
+[sub_resource type="Resource" id="Resource_n6hud"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -45,12 +46,12 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_0n6sp"]
+[sub_resource type="Resource" id="Resource_dv8db"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(262, -62)
+position = Vector2(257, -83)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -71,7 +72,7 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f378v"]
 size = Vector2(15.5, 13)
 
-[sub_resource type="Resource" id="Resource_kcjp4"]
+[sub_resource type="Resource" id="Resource_eb6g7"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -251,7 +252,7 @@ position = Vector2(250, -271)
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
 position = Vector2(150, -332)
-data = SubResource("Resource_b2mwp")
+data = SubResource("Resource_n6hud")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("6_f378v")
@@ -270,7 +271,7 @@ visible = false
 position = Vector2(257, -83)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes"
-data = SubResource("Resource_0n6sp")
+data = SubResource("Resource_dv8db")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("7_h3fmg")
@@ -293,7 +294,7 @@ saveName = "ice_hound_giant_steppes"
 spriteSize = Vector2i(32, 32)
 spriteOffset = Vector2(-4, -8)
 speakerSpriteOffset = Vector2(-4, -8)
-data = SubResource("Resource_kcjp4")
+data = SubResource("Resource_eb6g7")
 dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("9_b2mwp")])
 
 [node name="NPCSprite" parent="TilemapRoot/IceHound" index="0"]
@@ -359,6 +360,7 @@ disabled = true
 
 [node name="NorthEnergyWall" parent="TilemapRoot" instance=ExtResource("8_f378v")]
 position = Vector2(1441, 18)
+combinedSpriteFrames = ExtResource("14_dv8db")
 
 [node name="CollisionShape2D" parent="TilemapRoot/NorthEnergyWall" index="0"]
 position = Vector2(0, 9.75)

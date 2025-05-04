@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=3 format=3 uid="uid://mkdpogf63wcq"]
+
+[ext_resource type="Script" uid="uid://ca61xmfba8sif" path="res://scripts/inventory/items/healing.gd" id="1_71tod"]
+[ext_resource type="Texture2D" uid="uid://c22ghr2wv8p3m" path="res://graphics/items/healing/snow_berries.png" id="1_r61re"]
+
+[resource]
+script = ExtResource("1_71tod")
+healBy = 180
+statusStrengthHeal = 0
+itemSprite = ExtResource("1_r61re")
+itemName = "Snow Berries"
+itemType = 0
+itemDescription = "A bunch of red berries that grow underneath the snow that blankets the Quiet Tundra. Tastes so sweet, even your allies will want some!"
+cost = 12
+maxCount = 30
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 4
+metadata/_custom_type_script = "uid://ca61xmfba8sif"

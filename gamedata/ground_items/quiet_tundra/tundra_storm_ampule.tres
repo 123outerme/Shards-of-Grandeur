@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://cjn4vum6bltcg"]
+
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="1_2sqe6"]
+[ext_resource type="Resource" uid="uid://baxahxj1rxfy1" path="res://gamedata/items/weapon/storm_ampule.tres" id="1_5xsjs"]
+[ext_resource type="Resource" uid="uid://ca748ecc8vmqc" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_storm_ampule_1.tres" id="1_vmc6c"]
+
+[resource]
+script = ExtResource("1_2sqe6")
+item = ExtResource("1_5xsjs")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_vmc6c")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

@@ -5,7 +5,7 @@ class_name InteractableDecoration
 ## if non-empty, plays the specified animation of the nested AnimatedDecoration's sprite when interacted with
 @export var interactAnim: String = ''
 
-## a SpriteFrames representing all the combined animated decorations' sprites (if more than one)
+## a SpriteFrames representing all the combined animated decorations' sprites (if more than one). Overrides default `get_sprite_frames` logic of returning the first decoration's SpriteFrames
 @export var combinedSpriteFrames: SpriteFrames = null
 
 var animatedDecorations: Array[AnimatedDecoration] = []

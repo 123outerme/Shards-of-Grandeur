@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ExpItem" load_steps=3 format=3 uid="uid://cdttq0nf5mnns"]
+
+[ext_resource type="Texture2D" uid="uid://dgnevg37j5r7r" path="res://graphics/items/key_items/memory_shard_2.png" id="1_5ktd7"]
+[ext_resource type="Script" uid="uid://cduthtpab1k5p" path="res://scripts/inventory/items/key_items/exp_item.gd" id="2_765c3"]
+
+[resource]
+script = ExtResource("2_765c3")
+experience = 500
+keyItemType = 2
+useMessage = "With the Memory Shard in your hand, you absorb its magical power to gain 500 Experience."
+effectText = "Use outside of battle to gain 500 Experience!"
+itemSprite = ExtResource("1_5ktd7")
+itemName = "Memory Shard II"
+itemType = 5
+itemDescription = "This red-tinted Shard doesn't seem like it will summon any type of creature. There's a strong glow at the center, reflecting memories of a time past..."
+cost = 35
+maxCount = 10
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 1

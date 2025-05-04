@@ -221,6 +221,7 @@ func load_into_battle():
 				var eCombatant2Idx: int = WeightedThing.pick_item(randomEncounter.combatant2Options)
 				if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
 					# load enemy 2
+					state.randomEnemy2Id = eCombatant2Idx
 					var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
 					enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
 					combatant2StatAllocStrat = combatantOption.statAllocationStrategy
@@ -268,6 +269,7 @@ func load_into_battle():
 				var eCombatant3Idx: int = WeightedThing.pick_item(randomEncounter.combatant3Options)
 				if eCombatant3Idx > -1 and randomEncounter.combatant3Options[eCombatant3Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
 					# load enemy 3
+					state.randomEnemy3Id = eCombatant3Idx
 					var combatantOption: WeightedCombatant = randomEncounter.combatant3Options[eCombatant3Idx]
 					enemyCombatant3.combatant = combatantOption.combatant.copy().initialize()
 					combatant3StatAllocStrat = combatantOption.statAllocationStrategy

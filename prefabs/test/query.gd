@@ -8,6 +8,8 @@ const TEST_DIR: String = 'res://test/'
 func _ready():
 	create_reports()
 	#print_report()
+	for i: int in range(2, 101):
+		print('XP to reach lv ', i, ': ', Stats.get_required_exp(i))
 
 func create_reports():
 	closeButton.disabled = true

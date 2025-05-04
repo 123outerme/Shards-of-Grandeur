@@ -8,9 +8,7 @@ class_name RandomEncounter
 @export var combatant1Equipment: CombatantEquipment = null
 @export var combatant1Rewards: CombatantRewards = null
 @export var combatant2Options: Array[WeightedCombatant] = []
-@export var combatant2Rewards: CombatantRewards = null
 @export var combatant3Options: Array[WeightedCombatant] = []
-@export var combatant3Rewards: CombatantRewards = null
 
 func _init(
 	i_combatant1 = null,
@@ -28,9 +26,7 @@ func _init(
 	i_combatant1Equipment = null,
 	i_combatant1Rewards = null,
 	i_combatant2Options: Array[WeightedCombatant] = [],
-	i_combatant2Rewards = null,
 	i_combatant3Options: Array[WeightedCombatant] = [],
-	i_combatant3Rewards = null,
 ):
 	super(i_combatant1, i_combatant1Weapon, i_combatant1Armor, i_combatant1Accessory, i_combatant1StatAllocStrat, i_specialRules, i_winCon, i_customWinText)
 	combatantsMinLevel = i_minLevel
@@ -40,9 +36,7 @@ func _init(
 	combatant1Equipment = i_combatant1Equipment
 	combatant1Rewards = i_combatant1Rewards
 	combatant2Options = i_combatant2Options
-	combatant2Rewards = i_combatant2Rewards
 	combatant3Options = i_combatant3Options
-	combatant3Rewards = i_combatant3Rewards
 	
 func get_combatant_level() -> int:
 	'''

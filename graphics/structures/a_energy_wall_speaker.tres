@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://d2twvpugfcflu"]
+
+[ext_resource type="Texture2D" uid="uid://cwl4y8rkg13ax" path="res://graphics/structures/energy_wall_speaker.png" id="1_jh5kd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo0mb"]
+atlas = ExtResource("1_jh5kd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lygmj"]
+atlas = ExtResource("1_jh5kd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ikfc"]
+atlas = ExtResource("1_jh5kd")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo0mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lygmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ikfc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]

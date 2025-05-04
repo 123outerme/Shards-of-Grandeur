@@ -1,4 +1,4 @@
-[gd_scene load_steps=321 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=333 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -24,7 +24,6 @@
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="8_1gwlf"]
 [ext_resource type="Resource" uid="uid://d1cg03p00q5xt" path="res://gamedata/shops/melee_merchant/melee_merchant_1.tres" id="8_te8x8"]
 [ext_resource type="Resource" uid="uid://bp012ntebm61n" path="res://gamedata/dialogue/quiet_tundra/sign/frostmint_village_sign.tres" id="9_3j4q5"]
-[ext_resource type="SpriteFrames" uid="uid://dpyxv7b1mo3o3" path="res://graphics/animations/a_signpost.tres" id="9_de1ag"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="9_fwu82"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="12_0jhss"]
 [ext_resource type="Resource" uid="uid://cy3t2kjmmb6vb" path="res://gamedata/ground_items/quiet_tundra/tundra_winter_coat.tres" id="14_1q1dn"]
@@ -35,6 +34,7 @@
 [ext_resource type="Resource" uid="uid://bu5pflhd2vjiq" path="res://gamedata/dialogue/interactables/puzzles/blob_statue_puzzle/blob_statue.tres" id="15_r8tee"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="16_7mgps"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="16_kxg45"]
+[ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="16_odtt7"]
 [ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="16_r7qac"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="17_7mgps"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="18_r7qac"]
@@ -44,14 +44,23 @@
 [ext_resource type="Resource" uid="uid://q13ivcb0m22b" path="res://gamedata/ground_items/quiet_tundra/tundra_ice_gem.tres" id="25_r8tee"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="25_yqpcr"]
 [ext_resource type="Resource" uid="uid://c75rbvndekrau" path="res://gamedata/ground_items/quiet_tundra/tundra_curing_ritual.tres" id="26_brkob"]
+[ext_resource type="SpriteFrames" uid="uid://bybjlkysux754" path="res://graphics/animations/a_snowy_sign.tres" id="26_odtt7"]
 [ext_resource type="Resource" uid="uid://dxmk05kx6pq2u" path="res://gamedata/ground_items/quiet_tundra/tundra_west_1_distilled_potion.tres" id="26_qiulm"]
 [ext_resource type="Resource" uid="uid://bs04rhqdh4wnv" path="res://gamedata/items/armor/winter_coat.tres" id="28_1gwlf"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="28_ffwqc"]
 [ext_resource type="Resource" uid="uid://c23es3y2q44ce" path="res://gamedata/combatants/scout_penguin/scout_penguin.tres" id="31_al2hv"]
+[ext_resource type="SpriteFrames" uid="uid://c7oc42v378nfg" path="res://graphics/terrain/a_astronaut_footprints.tres" id="32_7ke06"]
 [ext_resource type="Resource" uid="uid://dqfilgeyd3ody" path="res://gamedata/combatants/mystic_fox/mystic_fox_equipment.tres" id="32_b133f"]
+[ext_resource type="Resource" uid="uid://ddkuqivyroat7" path="res://gamedata/dialogue/interactables/flavor_objs/quiet_tundra_west/gtl_footprints.tres" id="32_flbv4"]
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="34_ehvst"]
 [ext_resource type="Resource" uid="uid://wjuku7pv2var" path="res://gamedata/combatants/wasteland_hawk/wasteland_hawk.tres" id="34_yup33"]
+[ext_resource type="Resource" uid="uid://huxf7ajn67du" path="res://gamedata/ground_items/quiet_tundra/tundra_west_memory_shard.tres" id="35_0f81w"]
 [ext_resource type="Resource" uid="uid://c0kpj1t0tiaqg" path="res://gamedata/combatants/blob/evolutions/block/block_equipment.tres" id="35_caxh6"]
+[ext_resource type="Resource" uid="uid://c8g45dfa46g46" path="res://gamedata/ground_items/quiet_tundra/tundra_west_snow_berries_1.tres" id="35_xttr3"]
+[ext_resource type="Resource" uid="uid://cjn4vum6bltcg" path="res://gamedata/ground_items/quiet_tundra/tundra_storm_ampule.tres" id="36_2eeqf"]
+[ext_resource type="Resource" uid="uid://c3moyl5hvwbcp" path="res://gamedata/ground_items/quiet_tundra/tundra_west_snow_berries_2.tres" id="37_j17o5"]
+[ext_resource type="Resource" uid="uid://b4uij3810su0a" path="res://gamedata/ground_items/quiet_tundra/tundra_west_invis_distilled_potion.tres" id="37_ysoej"]
+[ext_resource type="Resource" uid="uid://vv2kakvi8mq3" path="res://gamedata/combatants/mystic_fox/mystic_fox_rewards_distilled_potion.tres" id="48_s0p11"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
 script = ExtResource("9_fwu82")
@@ -166,6 +175,12 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_1gwlf")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8htmm"]
+size = Vector2(17, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dct7q"]
+size = Vector2(1, 1)
+
 [sub_resource type="Resource" id="Resource_m0egd"]
 script = ExtResource("9_fwu82")
 saveName = "npc"
@@ -194,6 +209,9 @@ size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip85o"]
 size = Vector2(24, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51540"]
+size = Vector2(1, 1)
 
 [sub_resource type="Resource" id="Resource_0f81w"]
 script = ExtResource("15_p7apj")
@@ -263,6 +281,7 @@ metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 [sub_resource type="Resource" id="Resource_gqbah"]
 script = ExtResource("16_kxg45")
 combatant = ExtResource("20_7mgps")
+dropTable = ExtResource("48_s0p11")
 weight = 0.5
 metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 
@@ -286,6 +305,7 @@ metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 [sub_resource type="Resource" id="Resource_s0p11"]
 script = ExtResource("16_kxg45")
 combatant = ExtResource("20_7mgps")
+dropTable = ExtResource("48_s0p11")
 weight = 0.35
 metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 
@@ -300,6 +320,7 @@ combatantsMinLevel = 21
 combatantsMaxLevel = 22
 combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("17_7mgps")]([])
+combatant1Rewards = ExtResource("48_s0p11")
 combatant2Options = Array[ExtResource("16_kxg45")]([SubResource("Resource_gqbah"), SubResource("Resource_flbv4"), SubResource("Resource_odtt7")])
 combatant3Options = Array[ExtResource("16_kxg45")]([SubResource("Resource_j17o5"), SubResource("Resource_s0p11"), SubResource("Resource_6gvpo")])
 combatant1 = ExtResource("20_7mgps")
@@ -332,12 +353,12 @@ metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 [sub_resource type="Resource" id="Resource_2scif"]
 script = ExtResource("16_kxg45")
 combatant = ExtResource("16_r7qac")
-weight = 0.8
+weight = 0.35
 metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 
 [sub_resource type="Resource" id="Resource_qkweq"]
 script = ExtResource("16_kxg45")
-weight = 0.2
+weight = 0.65
 metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
 
 [sub_resource type="Resource" id="Resource_ip85o"]
@@ -1929,6 +1950,9 @@ shape = SubResource("RectangleShape2D_ucrs1")
 
 [node name="FoxStatueEnergyWall" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
 position = Vector2(311, -2821)
+interactAnim = "default"
+combinedSpriteFrames = ExtResource("16_odtt7")
+saveName = "fox_statue_energy_wall"
 dialogue = ExtResource("7_y4hg8")
 storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_caxh6")])
 
@@ -2048,6 +2072,9 @@ shape = SubResource("RectangleShape2D_r87l4")
 
 [node name="BlobStatueEnergyWall" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
 position = Vector2(1192, -4581)
+interactAnim = "default"
+combinedSpriteFrames = ExtResource("16_odtt7")
+saveName = "blob_statue_energy_wall"
 dialogue = ExtResource("7_y4hg8")
 storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_yup33")])
 
@@ -2140,38 +2167,56 @@ animation = &"energy_wall_1"
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7/Collision" index="0"]
 shape = SubResource("RectangleShape2D_ehvst")
 
-[node name="Signpost" parent="TilemapRoot" instance=ExtResource("12_0jhss")]
+[node name="GtlFootprints" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
+position = Vector2(680, -3671)
+saveName = "gtl_footprints"
+dialogue = ExtResource("32_flbv4")
+
+[node name="CollisionShape2D" parent="TilemapRoot/GtlFootprints" index="0"]
+shape = SubResource("RectangleShape2D_8htmm")
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/GtlFootprints/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("32_7ke06")
+
+[node name="CollisionShape2D" parent="TilemapRoot/GtlFootprints/AnimatedDecoration/Collision" index="0"]
+shape = SubResource("RectangleShape2D_dct7q")
+disabled = true
+
+[node name="InteractSprite" parent="TilemapRoot/GtlFootprints" index="2"]
+position = Vector2(0, -12)
+
+[node name="VillageSign" parent="TilemapRoot" instance=ExtResource("12_0jhss")]
 position = Vector2(1232, -1951)
 displayName = "Sign"
 data = SubResource("Resource_m0egd")
 dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("9_3j4q5")])
 facesPlayer = false
 
-[node name="NPCSprite" parent="TilemapRoot/Signpost" index="0"]
-sprite_frames = ExtResource("9_de1ag")
-animation = &"stand"
+[node name="NPCSprite" parent="TilemapRoot/VillageSign" index="0"]
+sprite_frames = ExtResource("26_odtt7")
+animation = &"talk"
 
-[node name="TalkAlertSprite" parent="TilemapRoot/Signpost/NPCSprite" index="0"]
+[node name="TalkAlertSprite" parent="TilemapRoot/VillageSign/NPCSprite" index="0"]
 texture = ExtResource("16_7mgps")
 
-[node name="ColliderShape" parent="TilemapRoot/Signpost" index="1"]
+[node name="ColliderShape" parent="TilemapRoot/VillageSign" index="1"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_1q1dn")
 
-[node name="NavAgent" parent="TilemapRoot/Signpost" index="2"]
+[node name="NavAgent" parent="TilemapRoot/VillageSign" index="2"]
 disableMovement = true
 
-[node name="TalkArea" parent="TilemapRoot/Signpost" index="3"]
+[node name="TalkArea" parent="TilemapRoot/VillageSign" index="3"]
 position = Vector2(0, 5)
 
-[node name="TalkAreaShape" parent="TilemapRoot/Signpost/TalkArea" index="0"]
+[node name="TalkAreaShape" parent="TilemapRoot/VillageSign/TalkArea" index="0"]
 shape = SubResource("RectangleShape2D_ip85o")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="MoveTrigger" parent="TilemapRoot/Signpost" index="4"]
+[node name="MoveTrigger" parent="TilemapRoot/VillageSign" index="4"]
 visible = false
 
-[node name="MoveTriggerShape" parent="TilemapRoot/Signpost/MoveTrigger" index="0"]
+[node name="MoveTriggerShape" parent="TilemapRoot/VillageSign/MoveTrigger" index="0"]
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="WinterCoatGroundItem" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
@@ -2196,19 +2241,36 @@ saveName = "tundra_west_curing_ritual"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(153, -2171)
+pickedUpItem = ExtResource("35_xttr3")
+saveName = "tundra_west_snow_berries_1"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(378, -2346)
+pickedUpItem = ExtResource("35_0f81w")
+saveName = "tundra_west_mem_shard"
 
 [node name="GroundItem5" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(703, -1412)
+pickedUpItem = ExtResource("37_j17o5")
+saveName = "tundra_west_snow_berries_2"
 
 [node name="GroundItem6" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(823, -4398)
+pickedUpItem = ExtResource("36_2eeqf")
+saveName = "tundra_storm_ampule"
 
 [node name="GroundItem7" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(1449, -3847)
+pickedUpItem = ExtResource("37_ysoej")
 invisible = true
+saveName = "tundra_west_invis_distilled_potion"
+
+[node name="CollisionShape2D" parent="TilemapRoot/GroundItem7/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_51540")
+disabled = true
+
+[node name="Sprite2D" parent="TilemapRoot/GroundItem7" index="2"]
+texture = null
 
 [node name="EnemySpawners" type="Node" parent="."]
 
@@ -2664,7 +2726,10 @@ navigation_layers = 4
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration5"]
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration6"]
 [editable path="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7"]
-[editable path="TilemapRoot/Signpost"]
+[editable path="TilemapRoot/GtlFootprints"]
+[editable path="TilemapRoot/GtlFootprints/AnimatedDecoration"]
+[editable path="TilemapRoot/VillageSign"]
+[editable path="TilemapRoot/GroundItem7"]
 [editable path="EnemySpawners/EnemySpawner"]
 [editable path="EnemySpawners/EnemySpawner2"]
 [editable path="EnemySpawners/EnemySpawner3"]

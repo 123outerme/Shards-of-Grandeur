@@ -23,6 +23,8 @@ enum Menu {
 @export var enemyCombatant1: Combatant = null
 @export var enemyCombatant2: Combatant = null
 @export var enemyCombatant3: Combatant = null
+@export var randomEnemy2Id: int = -1
+@export var randomEnemy3Id: int = -1
 @export var enemyAi1: CombatantAi = null
 @export var enemyAi2: CombatantAi = null
 @export var enemyAi3: CombatantAi = null
@@ -61,6 +63,8 @@ func _init(
 	i_enemyCombatant1 = null,
 	i_enemyCombatant2 = null,
 	i_enemyCombatant3 = null,
+	i_randomEnemy2Id: int = -1,
+	i_randomEnemy3Id: int = -1,
 	i_enemyAi1: CombatantAi = null,
 	i_enemyAi2: CombatantAi = null,
 	i_enemyAi3: CombatantAi = null,
@@ -89,6 +93,8 @@ func _init(
 	enemyCombatant1 = i_enemyCombatant1
 	enemyCombatant2 = i_enemyCombatant2
 	enemyCombatant3 = i_enemyCombatant3
+	randomEnemy2Id = i_randomEnemy2Id
+	randomEnemy3Id = i_randomEnemy3Id
 	enemyAi1 = i_enemyAi1
 	enemyAi2 = i_enemyAi2
 	enemyAi3 = i_enemyAi3

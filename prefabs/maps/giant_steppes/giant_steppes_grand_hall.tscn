@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://w03n0q23odu8" path="res://gamedata/cutscenes/giant_steppes/gis_round_table_meeting_1.tres" id="10_4bgll"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_yrpot"]
 
-[sub_resource type="Resource" id="Resource_n4dhd"]
+[sub_resource type="Resource" id="Resource_1drip"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -36,12 +36,12 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_yrpot"]
+[sub_resource type="Resource" id="Resource_4bgll"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(73, -52)
+position = Vector2(117, -113)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -62,12 +62,12 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmmis"]
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_qmmis"]
+[sub_resource type="Resource" id="Resource_s1sea"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(-23, -154)
+position = Vector2(75, -113)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -152,7 +152,7 @@ position = Vector2(96, -138)
 displayName = "Warlock King"
 saveName = "warlock_king_grand_hall"
 loadFlipH = true
-data = SubResource("Resource_n4dhd")
+data = SubResource("Resource_1drip")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockKing" index="0"]
 sprite_frames = ExtResource("5_ja0tc")
@@ -172,10 +172,11 @@ visible = false
 [node name="StargazerWarlock" parent="TilemapRoot" instance=ExtResource("3_omamc")]
 visible = false
 position = Vector2(117, -113)
+collision_layer = 0
 displayName = "The Stargazer"
 saveName = "stargazer_warlock_grand_hall"
 loadFlipH = true
-data = SubResource("Resource_yrpot")
+data = SubResource("Resource_4bgll")
 
 [node name="NPCSprite" parent="TilemapRoot/StargazerWarlock" index="0"]
 sprite_frames = ExtResource("6_th416")
@@ -194,9 +195,10 @@ visible = false
 [node name="KeeperOfHistory" parent="TilemapRoot" instance=ExtResource("3_omamc")]
 visible = false
 position = Vector2(75, -113)
+collision_layer = 0
 displayName = "Keeper of History"
 saveName = "keeper_of_history_grand_hall"
-data = SubResource("Resource_qmmis")
+data = SubResource("Resource_s1sea")
 
 [node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
 sprite_frames = ExtResource("7_n4dhd")
