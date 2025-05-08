@@ -1,3 +1,4 @@
+@tool
 extends CutsceneDialogue
 class_name StoryReqsCutsceneDialogue
 

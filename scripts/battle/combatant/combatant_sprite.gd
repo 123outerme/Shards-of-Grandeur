@@ -78,6 +78,7 @@ func _init(
 	idleSize = i_idleSize
 	centerPosition = i_centerPosition
 	feetPosition = i_feetPosition
+	headPosition = i_headPosition
 	spriteFacesRight = i_facesRight
 	navigationLayer = i_navLayer
 	attackPhysImpactFrame = i_attackPhysImpactFrame

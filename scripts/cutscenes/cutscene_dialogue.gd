@@ -35,7 +35,7 @@ func _init(
 	i_speakerSprite: SpriteFrames = null,
 	i_speakerPath: String = '',
 	i_speakerActorIsPlayer: bool = false,
-	i_speakerAnim: String = '',
+	i_speakerAnim: String = 'talk',
 	i_speakerScale: int = 3,
 	i_speakerOffset: Vector2 = Vector2.ZERO,
 ):

@@ -95,7 +95,7 @@ func _init(
 	power = i_power
 	orbChange = i_orbChange
 	lifesteal = i_lifesteal
-	selfHpSacrifice = i_selfGetsStatus
+	selfHpSacrifice = i_selfHpSacrifice
 	targets = i_targets
 	selfStatChanges = i_selfStatChanges
 	targetStatChanges = i_targetStatChanges

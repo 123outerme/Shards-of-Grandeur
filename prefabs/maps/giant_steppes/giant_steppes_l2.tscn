@@ -1,11 +1,37 @@
-[gd_scene load_steps=15 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=19 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_61dmr"]
+[ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_f4x3h"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_kcajg"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_e3j1f"]
+[ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_qw015"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="5_e3j1f"]
+[ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="5_ro6wv"]
+
+[sub_resource type="Resource" id="Resource_44juo"]
+script = ExtResource("4_qw015")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(150, -332)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -85,6 +111,23 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_tarat")
 
+[node name="Warlock1" parent="TilemapRoot" instance=ExtResource("3_f4x3h")]
+position = Vector2(-298, 84)
+data = SubResource("Resource_44juo")
+
+[node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
+sprite_frames = ExtResource("5_ro6wv")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Warlock1" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TilemapRoot/Warlock1" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TilemapRoot/Warlock1" index="4"]
+visible = false
+
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
 position = Vector2(-568, 75)
 
@@ -155,6 +198,7 @@ shape = SubResource("RectangleShape2D_qw015")
 [node name="TestCamera" parent="." instance=ExtResource("5_e3j1f")]
 position = Vector2(0, 96)
 
+[editable path="TilemapRoot/Warlock1"]
 [editable path="Level1WarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="LibraryWarpZone"]

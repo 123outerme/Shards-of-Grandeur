@@ -179,6 +179,7 @@ func _init(
 	selfRandomNum = i_selfRandomNum
 	if selfRandomNum == -1:
 		selfRandomNum = randf()
+	decisionsRandomNum = i_decisionsRandomNum
 	if decisionsRandomNum == -1:
 		decisionsRandomNum = randf()
 	commandResult = i_commandResult
