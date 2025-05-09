@@ -3,6 +3,8 @@ extends CutscenePlayer
 class_name CutsceneVisualizer
 
 @export var triggerOrNPC: Node
+@export var customStartPos: Vector2 = Vector2.ZERO
+@export var useCustomStartPos: bool = false
 
 @export var useRealNpcs: bool = false
 @export var resetRealNpcsAfterComplete: bool = true
@@ -13,9 +15,6 @@ class_name CutsceneVisualizer
 	set(value):
 		if value and playing:
 			return
-		
-		if triggerOrNPC:
-			mockPlayer.global_position = triggerOrNPC.position
 		start_visualizing()
 
 @export var pauseVisualization: bool:
@@ -146,6 +145,11 @@ func handle_start_shard_learn_tutorial():
 	print('Start Shard Learn Tutorial Here')
 
 func start_visualizing():
+	if useCustomStartPos:
+		mockPlayer.position = customStartPos
+	elif triggerOrNPC != null:
+		mockPlayer.position = triggerOrNPC.position
+	
 	mockPlayer.mockShadeCenter.modulate.a = 0.0
 	mockPlayer.snap_camera_back_to_player()
 	cutscene.reset_internals()

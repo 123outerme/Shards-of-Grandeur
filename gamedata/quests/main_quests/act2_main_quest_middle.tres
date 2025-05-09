@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://bqap3r2hhv5w2"]
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://bqap3r2hhv5w2"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_b7v4m"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ex5ee"]
@@ -27,7 +27,23 @@ description = "You have been summoned to the Warlocks' Round Table! Hear what th
 locations = Array[int]([])
 type = 3
 count = 1
-objectiveName = "--"
+objectiveName = "gis_round_table_meeting_1"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_e4sjh")]([])
+inProgressDialogue = Array[ExtResource("3_e4sjh")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_i7exl"]
+script = ExtResource("2_ex5ee")
+name = ""
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = ""
 turnInNames = Array[String]([])
 displayObjName = ""
 displayTurnInName = ""
@@ -40,6 +56,6 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_b7v4m")
 questName = "An Ancient Ally"
 description = "The Warlocks, a secluded society of magic, have offered to help you fight against the Chain Legion. Pursue this newly opened avenue!"
-steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv")])
+steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl")])
 isMainQuest = true
 advanceActAfterComplete = false

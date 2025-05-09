@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=31 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
@@ -9,13 +9,20 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_qw015"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="5_e3j1f"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="5_ro6wv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_10q5v"]
+[ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="6_qw015"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_x858i"]
+[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_44juo"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="11_ou0gu"]
+[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="11_ro6wv"]
+[ext_resource type="Resource" uid="uid://dyj8w3r046uik" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive_l2.tres" id="12_5hxps"]
 
-[sub_resource type="Resource" id="Resource_44juo"]
+[sub_resource type="Resource" id="Resource_10q5v"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(150, -332)
+position = Vector2(-298, 84)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -32,6 +39,59 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_8vcfh"]
+script = ExtResource("6_10q5v")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_x858i")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["giant_steppes_arrive_l2"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_x858i")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_x858i"]
+script = ExtResource("4_qw015")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 62)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhq6u"]
+size = Vector2(15.5, 13)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -66,9 +126,36 @@ size = Vector2(8, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qw015"]
 size = Vector2(8, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44juo"]
+size = Vector2(34, 20)
+
+[sub_resource type="Resource" id="Resource_u2q4f"]
+script = ExtResource("4_qw015")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 81)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_s3o63")
-metadata/_edit_horizontal_guides_ = [24.0]
+metadata/_edit_horizontal_guides_ = [24.0, 81.0, -12.0, -28.0]
+metadata/_edit_vertical_guides_ = [-56.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -113,7 +200,7 @@ tile_set = ExtResource("2_tarat")
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("3_f4x3h")]
 position = Vector2(-298, 84)
-data = SubResource("Resource_44juo")
+data = SubResource("Resource_10q5v")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("5_ro6wv")
@@ -126,6 +213,27 @@ position = Vector2(0, 3.5)
 position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TilemapRoot/Warlock1" index="4"]
+visible = false
+
+[node name="WarlockAgent" parent="TilemapRoot" instance=ExtResource("3_f4x3h")]
+position = Vector2(0, 62)
+displayName = "Warlock Agent"
+saveName = "warlock_agent_giant_steppes_l2"
+orSpawnRequirements = Array[ExtResource("6_10q5v")]([SubResource("Resource_8vcfh")])
+data = SubResource("Resource_x858i")
+
+[node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
+sprite_frames = ExtResource("6_qw015")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/WarlockAgent" index="1"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_vhq6u")
+
+[node name="TalkAreaShape" parent="TilemapRoot/WarlockAgent/TalkArea" index="0"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TilemapRoot/WarlockAgent" index="4"]
 visible = false
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
@@ -195,12 +303,43 @@ warpEnabled = false
 [node name="WarpArea" parent="AstrolabeWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_qw015")
 
+[node name="CutsceneTrigger" parent="." instance=ExtResource("10_44juo")]
+position = Vector2(0, 102)
+cutscenes = Array[ExtResource("11_ou0gu")]([ExtResource("12_5hxps")])
+
+[node name="CollisionShape2D" parent="CutsceneTrigger" index="0"]
+shape = SubResource("RectangleShape2D_44juo")
+
 [node name="TestCamera" parent="." instance=ExtResource("5_e3j1f")]
 position = Vector2(0, 96)
 
+[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("11_ro6wv")]
+triggerOrNPC = NodePath("../CutsceneTrigger")
+customStartPos = Vector2(0, 81)
+useCustomStartPos = true
+cutscene = ExtResource("12_5hxps")
+rootNode = NodePath("..")
+
+[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
+position = Vector2(-56, -27.8955)
+facingLeft = true
+data = SubResource("Resource_u2q4f")
+
+[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
+animation = &"walk"
+frame_progress = 0.543148
+flip_h = true
+
+[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
+disabled = true
+
 [editable path="TilemapRoot/Warlock1"]
+[editable path="TilemapRoot/WarlockAgent"]
 [editable path="Level1WarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="LibraryWarpZone"]
 [editable path="GrandHallWarpZone"]
 [editable path="AstrolabeWarpZone"]
+[editable path="CutsceneTrigger"]
+[editable path="ToolCutsceneVisualizer"]
+[editable path="ToolCutsceneVisualizer/MockPlayer"]

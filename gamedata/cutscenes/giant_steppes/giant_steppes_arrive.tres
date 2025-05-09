@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=38 format=3 uid="uid://btqsykfbbhfiv"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=60 format=3 uid="uid://btqsykfbbhfiv"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_1phdu"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_dxhyv"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_o5vhx"]
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_fcsrf"]
 [ext_resource type="SpriteFrames" uid="uid://gcii401b383q" path="res://graphics/animations/a_player.tres" id="10_fcsrf"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="12_mtkfp"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="13_qw2a6"]
 
 [sub_resource type="Resource" id="Resource_skd4h"]
 script = ExtResource("3_o5vhx")
@@ -54,7 +56,7 @@ script = ExtResource("1_1phdu")
 frameLength = 0.1
 annotation = "Agent greets player, they face each other"
 actorTweens = Array[ExtResource("5_njja7")]([])
-actorAnims = Array[ExtResource("3_o5vhx")]([SubResource("Resource_skd4h")])
+actorAnims = Array[ExtResource("3_o5vhx")]([ExtResource("9_fcsrf"), SubResource("Resource_skd4h")])
 actorAnimSets = Array[ExtResource("2_ry2s7")]([])
 actorFaceTargets = Array[ExtResource("4_aydr2")]([SubResource("Resource_ry2s7"), SubResource("Resource_bvlb8")])
 dialogues = Array[ExtResource("6_fcsrf")]([SubResource("Resource_o5vhx")])
@@ -389,10 +391,291 @@ removesFollowerId = ""
 endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
+[sub_resource type="Resource" id="Resource_ka4gx"]
+script = ExtResource("3_o5vhx")
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_ti1is"]
+script = ExtResource("7_o5vhx")
+value = Vector2(304, -144)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_3n6ug"]
+script = ExtResource("7_o5vhx")
+value = Vector2(304, -176)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_dksu6"]
+script = ExtResource("1_1phdu")
+frameLength = 1.25
+annotation = "The player and warlock agent move up the stairs"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_ti1is"), SubResource("Resource_3n6ug")])
+actorAnims = Array[ExtResource("3_o5vhx")]([ExtResource("7_njja7"), SubResource("Resource_ka4gx")])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_0wmnl"]
+script = ExtResource("7_o5vhx")
+value = Vector2(304, -200)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_v16gb"]
+script = ExtResource("7_o5vhx")
+value = Vector2(304, -240)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ic3b2"]
+script = ExtResource("1_1phdu")
+frameLength = 1.25
+annotation = "The player and warlock agent continue up the stairs"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_0wmnl"), SubResource("Resource_v16gb")])
+actorAnims = Array[ExtResource("3_o5vhx")]([])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ia222"]
+script = ExtResource("7_o5vhx")
+value = Vector2(304, -240)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_55cfy"]
+script = ExtResource("7_o5vhx")
+value = Vector2(332, -240)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ne0ia"]
+script = ExtResource("1_1phdu")
+frameLength = 0.75
+annotation = "the agent turns right towards the next set of steps, the player reaches the top of the steps"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_ia222"), SubResource("Resource_55cfy")])
+actorAnims = Array[ExtResource("3_o5vhx")]([])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_kwe0w"]
+script = ExtResource("7_o5vhx")
+value = Vector2(412, -250)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ixuey"]
+script = ExtResource("7_o5vhx")
+value = Vector2(448, -250)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_6db1f"]
+script = ExtResource("1_1phdu")
+frameLength = 2.75
+annotation = "The player and warlock agent both walk to the next set of steps"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_kwe0w"), SubResource("Resource_ixuey")])
+actorAnims = Array[ExtResource("3_o5vhx")]([])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_v5223"]
+script = ExtResource("7_o5vhx")
+value = Vector2(448, -250)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_155fb"]
+script = ExtResource("7_o5vhx")
+value = Vector2(448, -282)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_shyfd"]
+script = ExtResource("1_1phdu")
+frameLength = 0.75
+annotation = "the warlock agent starts to walk up the second set of stairs as the player gets to the stairs"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_v5223"), SubResource("Resource_155fb")])
+actorAnims = Array[ExtResource("3_o5vhx")]([])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_sy7q6"]
+script = ExtResource("7_o5vhx")
+value = Vector2(448, -335)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_6tsjl"]
+script = ExtResource("7_o5vhx")
+value = Vector2(448, -354)
+actorTreePath = "TilemapRoot/WarlockAgent"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ipyaa"]
+script = ExtResource("1_1phdu")
+frameLength = 1.5
+annotation = "the warlock agent and player both climb the second set of stairs into the warp zone"
+actorTweens = Array[ExtResource("5_njja7")]([SubResource("Resource_sy7q6"), SubResource("Resource_6tsjl")])
+actorAnims = Array[ExtResource("3_o5vhx")]([])
+actorAnimSets = Array[ExtResource("2_ry2s7")]([])
+actorFaceTargets = Array[ExtResource("4_aydr2")]([])
+dialogues = Array[ExtResource("6_fcsrf")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_oa2fl"]
+script = ExtResource("13_qw2a6")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("12_mtkfp")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["giant_steppes_arrive"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("12_mtkfp")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("2_dxhyv")
-cutsceneFrames = Array[ExtResource("1_1phdu")]([SubResource("Resource_25ie0"), SubResource("Resource_iungc"), SubResource("Resource_aydr2"), SubResource("Resource_njja7"), SubResource("Resource_qw2a6"), SubResource("Resource_uyooj"), SubResource("Resource_3ngls"), SubResource("Resource_wxqp4"), SubResource("Resource_of7ha"), SubResource("Resource_wj1nx"), SubResource("Resource_vfj1n")])
+cutsceneFrames = Array[ExtResource("1_1phdu")]([SubResource("Resource_25ie0"), SubResource("Resource_iungc"), SubResource("Resource_aydr2"), SubResource("Resource_njja7"), SubResource("Resource_qw2a6"), SubResource("Resource_uyooj"), SubResource("Resource_3ngls"), SubResource("Resource_wxqp4"), SubResource("Resource_of7ha"), SubResource("Resource_wj1nx"), SubResource("Resource_vfj1n"), SubResource("Resource_dksu6"), SubResource("Resource_ic3b2"), SubResource("Resource_ne0ia"), SubResource("Resource_6db1f"), SubResource("Resource_shyfd"), SubResource("Resource_ipyaa")])
 saveName = "giant_steppes_arrive"
+storyRequirements = SubResource("Resource_oa2fl")
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String]([])

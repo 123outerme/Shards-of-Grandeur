@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cxww0nor8nidu"]
+[gd_scene load_steps=29 format=4 uid="uid://cxww0nor8nidu"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_kppd7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wacvl"]
@@ -9,11 +9,38 @@
 [ext_resource type="SpriteFrames" uid="uid://diwgg48f5d5va" path="res://graphics/animations/a_stargazer_warlock.tres" id="6_th416"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="7_eiq33"]
 [ext_resource type="SpriteFrames" uid="uid://b26seowjsmlyl" path="res://graphics/animations/a_keeper_of_history.tres" id="7_n4dhd"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="8_1rbw4"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="9_1drip"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="9_wdsmp"]
+[ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="10_2vi1i"]
 [ext_resource type="Resource" uid="uid://w03n0q23odu8" path="res://gamedata/cutscenes/giant_steppes/gis_round_table_meeting_1.tres" id="10_4bgll"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_yrpot"]
+[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="16_wdsmp"]
 
-[sub_resource type="Resource" id="Resource_1drip"]
+[sub_resource type="Resource" id="Resource_wdsmp"]
+script = ExtResource("4_ja0tc")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_1gen1"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -36,7 +63,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_4bgll"]
+[sub_resource type="Resource" id="Resource_40018"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -62,7 +89,7 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmmis"]
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_s1sea"]
+[sub_resource type="Resource" id="Resource_k20px"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -84,6 +111,59 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_8vcfh"]
+script = ExtResource("8_1rbw4")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("9_wdsmp")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String](["giant_steppes_arrive_l2"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("9_wdsmp")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_fxukv"]
+script = ExtResource("4_ja0tc")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 62)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oe55d"]
+size = Vector2(15.5, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpot"]
 size = Vector2(44, 38)
@@ -111,6 +191,16 @@ script = ExtResource("1_kppd7")
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="ToolCutsceneVisualizer" parent="TilemapRoot" node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("16_wdsmp")]
+triggerOrNPC = NodePath("../../DoorCutsceneTrigger")
+customStartPos = Vector2(-8, 4)
+cutscene = ExtResource("10_4bgll")
+rootNode = NodePath("../..")
+
+[node name="MockPlayer" parent="TilemapRoot/ToolCutsceneVisualizer" index="0"]
+position = Vector2(-8, 4)
+data = SubResource("Resource_wdsmp")
 
 [node name="Background" type="TileMapLayer" parent="TilemapRoot"]
 z_index = -20
@@ -152,7 +242,7 @@ position = Vector2(96, -138)
 displayName = "Warlock King"
 saveName = "warlock_king_grand_hall"
 loadFlipH = true
-data = SubResource("Resource_1drip")
+data = SubResource("Resource_1gen1")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockKing" index="0"]
 sprite_frames = ExtResource("5_ja0tc")
@@ -176,7 +266,7 @@ collision_layer = 0
 displayName = "The Stargazer"
 saveName = "stargazer_warlock_grand_hall"
 loadFlipH = true
-data = SubResource("Resource_4bgll")
+data = SubResource("Resource_40018")
 
 [node name="NPCSprite" parent="TilemapRoot/StargazerWarlock" index="0"]
 sprite_frames = ExtResource("6_th416")
@@ -198,7 +288,7 @@ position = Vector2(75, -113)
 collision_layer = 0
 displayName = "Keeper of History"
 saveName = "keeper_of_history_grand_hall"
-data = SubResource("Resource_s1sea")
+data = SubResource("Resource_k20px")
 
 [node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
 sprite_frames = ExtResource("7_n4dhd")
@@ -211,6 +301,28 @@ position = Vector2(0, 3.5)
 position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TilemapRoot/KeeperOfHistory" index="4"]
+visible = false
+
+[node name="WarlockAgent" parent="TilemapRoot" instance=ExtResource("3_omamc")]
+position = Vector2(-8, -36)
+displayName = "Warlock Agent"
+saveName = "warlock_agent_grand_hall"
+loadFlipH = true
+orSpawnRequirements = Array[ExtResource("8_1rbw4")]([SubResource("Resource_8vcfh")])
+data = SubResource("Resource_fxukv")
+
+[node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
+sprite_frames = ExtResource("10_2vi1i")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/WarlockAgent" index="1"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_oe55d")
+
+[node name="TalkAreaShape" parent="TilemapRoot/WarlockAgent/TalkArea" index="0"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TilemapRoot/WarlockAgent" index="4"]
 visible = false
 
 [node name="DoorCutsceneTrigger" parent="." instance=ExtResource("10_yrpot")]
@@ -240,7 +352,10 @@ mapPos = Vector2(-56, -9)
 [node name="TestCamera" parent="." instance=ExtResource("7_eiq33")]
 position = Vector2(-8, -5)
 
+[editable path="TilemapRoot/ToolCutsceneVisualizer"]
+[editable path="TilemapRoot/ToolCutsceneVisualizer/MockPlayer"]
 [editable path="TilemapRoot/WarlockKing"]
 [editable path="TilemapRoot/StargazerWarlock"]
 [editable path="TilemapRoot/KeeperOfHistory"]
+[editable path="TilemapRoot/WarlockAgent"]
 [editable path="DoorCutsceneTrigger"]
