@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name StatusCombatantAiLayer
 
 const AVERAGE_STATUS_CHANCE: float = 0.65
@@ -19,7 +19,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	var selfGetsStatus: bool = moveEffect.selfGetsStatus
 	var statusChance: float = min(1, max(0, moveEffect.statusChance))
 	
-	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+	for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
 		if rune.statusEffect != null and (statusEffect == null or rune.statusEffect.overwritesOtherStatuses):
 			statusEffect = rune.statusEffect
 			selfGetsStatus = false

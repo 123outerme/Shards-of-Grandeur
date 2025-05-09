@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name MoveOrderedCombatantAiLayer
 
 ## the list of specific moves to attempt to use in sequence
@@ -13,7 +13,7 @@ class_name MoveOrderedCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_moveList: Array[Move] = [],
 	i_moveListAttemptSurge: Array[bool] = [],
 	i_moveIdx: int = 0,

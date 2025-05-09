@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name DebuffCombatantAiLayer
 
 enum DebuffStrategy {
@@ -10,7 +10,7 @@ enum DebuffStrategy {
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_debuffStrategy: DebuffStrategy = DebuffStrategy.DEBUFF_STRONGEST,
 ) -> void:
 	super(i_weight, i_subLayers)
@@ -67,7 +67,7 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 		for elementBoost: ElementMultiplier in user.combatant.statChanges.elementMultipliers:
 			currentHighestElementBoost = max(currentHighestElementBoost, elementBoost.multiplier)
 	# stack boosts from any runes that this move could trigger
-	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+	for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
 		statChanges.stack(rune.statChanges)
 	# apply directly to stats (includes current stat changes)
 	var targetStats: Stats = statChanges.apply(target.combatant.stats)
@@ -109,7 +109,7 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 		for elementBoost: ElementMultiplier in user.combatant.statChanges.elementMultipliers:
 			selfCurrentElementBoost = max(selfCurrentElementBoost, elementBoost.multiplier)
 	# stack boosts from any runes that this move could trigger
-	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes):
+	for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes):
 		selfStatChanges.stack(rune.statChanges)
 	# get the highest boost after applying this move's boosts
 	var selfHighestElementBoost: float = 1.0

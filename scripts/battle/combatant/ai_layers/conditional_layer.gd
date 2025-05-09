@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name ConditionalCombatantAiLayer
 
 enum ConditionalType {
@@ -38,7 +38,7 @@ enum ConditionalType {
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_notMetWeight: float = 0,
 	i_metWeight: float = 1,
 	i_condition: ConditionalType = ConditionalType.NONE,

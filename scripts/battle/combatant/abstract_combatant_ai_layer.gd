@@ -1,11 +1,11 @@
 extends Resource
-class_name CombatantAiLayer
+class_name AbstractCombatantAiLayer
 
 ## the amount of weight this layer has on the final decision of the AI
 @export var weight: float = 1.0
 
 ## sub-layers that act as additional weighting on this layer
-@export var subLayers: Array[CombatantAiLayer] = []
+@export var subLayers: Array[AbstractCombatantAiLayer] = []
 
 static func get_runes_on_combatant_move_triggers(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState, runes: Array[Rune]) -> Array[Rune]:
 	var triggeredRunes: Array[Rune] = []
@@ -61,7 +61,7 @@ static func will_move_effect_trigger_rune(user: CombatantNode, move: Move, effec
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 ) -> void:
 	weight = i_weight
 	subLayers = i_subLayers
@@ -75,7 +75,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		return -1
 	
 	var subLayersWeight: float = 1
-	for layer: CombatantAiLayer in subLayers:
+	for layer: AbstractCombatantAiLayer in subLayers:
 		if layer == null:
 			continue
 		
@@ -90,11 +90,11 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 	pass # NOTE subclasses that care about what move was used should implement this method
 
-func copy(copyStorage: bool = false) -> CombatantAiLayer:
-	return CombatantAiLayer.new(weight, copy_sublayers(copyStorage))
+func copy(copyStorage: bool = false) -> AbstractCombatantAiLayer:
+	return AbstractCombatantAiLayer.new(weight, copy_sublayers(copyStorage))
 
-func copy_sublayers(copyStorage: bool = false) -> Array[CombatantAiLayer]:
-	var newLayers: Array[CombatantAiLayer] = []
-	for layer: CombatantAiLayer in subLayers:
+func copy_sublayers(copyStorage: bool = false) -> Array[AbstractCombatantAiLayer]:
+	var newLayers: Array[AbstractCombatantAiLayer] = []
+	for layer: AbstractCombatantAiLayer in subLayers:
 		newLayers.append(layer.copy(copyStorage))
 	return newLayers

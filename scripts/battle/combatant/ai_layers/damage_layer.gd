@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name DamageCombatantAiLayer
 
 const NO_OTHER_DMG_MOVES_WEIGHT: float = 1.25
@@ -8,7 +8,7 @@ const NO_OTHER_DMG_MOVES_WEIGHT: float = 1.25
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_healLayer: bool = false,
 ) -> void:
 	super(i_weight, i_subLayers)
@@ -54,7 +54,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 			var runeElementBoost: float = rune.caster.statChanges.get_element_multiplier(rune.element)
 			runeDmgs.append(BattleCommand.damage_formula(rune.power, runeAtkStat, targetStats.resistance, rune.caster.stats.level, target.combatant.stats.level, runeElEffectiveness * runeElementBoost))
 	
-	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+	for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
 		moveTriggersRuneIdxs.append(target.combatant.runes.find(rune))
 	
 	#if len(runeDmgs) > 0:
@@ -82,7 +82,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 				continue # otherwise, skip this move; it can't use it
 		
 		var otherMoveTriggersRuneIdxs: Array[int] = []
-		for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, otherMove, effectType, otherOrbs, target, battleState, target.combatant.runes):
+		for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, otherMove, effectType, otherOrbs, target, battleState, target.combatant.runes):
 			otherMoveTriggersRuneIdxs.append(target.combatant.runes.find(rune))
 		var otherMoveEffect: MoveEffect = otherMove.get_effect_of_type(effectType)
 		if effectType == Move.MoveEffectType.SURGE:

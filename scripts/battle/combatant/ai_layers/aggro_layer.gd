@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name AggroCombatantAiLayer
 
 enum AggroStrategy {
@@ -12,7 +12,7 @@ enum AggroStrategy {
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_aggroStrategy: AggroStrategy = AggroStrategy.HIGHEST_HP,
 ) -> void:
 	super(i_weight, i_subLayers)

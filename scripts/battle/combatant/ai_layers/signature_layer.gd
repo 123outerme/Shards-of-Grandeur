@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name SignatureCombatantAiLayer
 
 ## the multiplier for weighting to use when the move is a signature move
@@ -6,7 +6,7 @@ class_name SignatureCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_signatureWeight: float = 1.25,
 ) -> void:
 	super(i_weight, i_subLayers)

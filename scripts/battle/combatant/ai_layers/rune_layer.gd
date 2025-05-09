@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name RuneCombatantAiLayer
 
 ## the extra multiplier for the rune effect weight if that target's rune can be triggered with this move. Other AI layers care about their specific results they can achieve through activating Runes, as well
@@ -15,7 +15,7 @@ class_name RuneCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_triggerWeight: float = 1.25,
 	i_setWeight: float = 1.15,
 	i_healPowerWeight: float = 1.0,
@@ -46,8 +46,8 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 	
 	var finalTriggerWeight: float = triggerWeight
 	
-	var targetRunesTriggered: Array[Rune] = CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes)
-	var userRunesTriggered: Array[Rune] = targetRunesTriggered if user == target else CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes)
+	var targetRunesTriggered: Array[Rune] = AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes)
+	var userRunesTriggered: Array[Rune] = targetRunesTriggered if user == target else AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, user.combatant.runes)
 	
 	for rune: Rune in targetRunesTriggered:
 		finalTriggerWeight *= get_rune_weight_on_target(user, rune, target, targets, battleState)

@@ -46,7 +46,7 @@ There is an enemy AI script that nests instances of itself. Depending on the loa
 1. After the project has fully loaded, close the Godot editor, go into the project directory, then the `.godot` subdirectory.
 2. Edit the `global_script_class_cache.cfg` file with a text editor.
 3. Search for the following text:
-```"class": &"CombatantAiLayer```
+```"class": &"AbstractCombatantAiLayer```
 4. Find the opening/closing braces of this JSON object, and cut the whole object out of its place. As this whole file is one big JSON array, make sure the extra comma left behind is removed to preserve the JSON syntax.
 5. Scroll to the very top of the file.
 6. Paste this JSON object as the first element of this JSON array, adding a comma afterwards if necessary.

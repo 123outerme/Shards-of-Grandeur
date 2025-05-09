@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name OrbsCombatantAiLayer
 
 # the weight to apply when this move gives the most orbs
@@ -6,7 +6,7 @@ class_name OrbsCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[CombatantAiLayer] = [],
+	i_subLayers: Array[AbstractCombatantAiLayer] = [],
 	i_mostOrbsWeight: float = 1.15,
 ) -> void:
 	super(i_weight, i_subLayers)
@@ -19,7 +19,7 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		return -1
 	
 	var orbsWeight: float = 1
-	for rune: Rune in CombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
+	for rune: Rune in AbstractCombatantAiLayer.get_runes_on_combatant_move_triggers(user, move, effectType, orbs, target, battleState, target.combatant.runes):
 		if rune.caster == user.combatant:
 			orbsWeight *= 1 + (0.05 * rune.orbChange)
 	

@@ -1,4 +1,4 @@
-extends CombatantAiLayer
+extends AbstractCombatantAiLayer
 class_name RandomCombatantAiLayer
 
 ## the weight is effectively random in the range [0.5, 1.5]

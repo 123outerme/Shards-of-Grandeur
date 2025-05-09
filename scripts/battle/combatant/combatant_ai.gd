@@ -8,7 +8,7 @@ enum OrbSpendStrategy {
 }
 
 ## the AI Layers that make up the combatant's battle logic
-@export var layers: Array[CombatantAiLayer] = []
+@export var layers: Array[AbstractCombatantAiLayer] = []
 
 ## the strategy to use when weighing a Surge move, to account for how many orbs should be spent
 @export var orbSpendStrategy: OrbSpendStrategy = OrbSpendStrategy.GREEDY
@@ -21,7 +21,7 @@ enum OrbSpendStrategy {
 @export_storage var timesUsedLastMove: int = 0
 
 func _init(
-	i_layers: Array[CombatantAiLayer] = [],
+	i_layers: Array[AbstractCombatantAiLayer] = [],
 	i_orbSpendStrategy: OrbSpendStrategy = OrbSpendStrategy.GREEDY,
 	i_stalenessTolerance: float = 1.4,
 	i_lastMove: Move = null,
@@ -107,7 +107,7 @@ func get_move_effect_on_target_weight(user: CombatantNode, move: Move, effectTyp
 		return -1
 	
 	for idx in range(len(layers)):
-		var layer: CombatantAiLayer = layers[idx]
+		var layer: AbstractCombatantAiLayer = layers[idx]
 		if layer == null:
 			continue
 		var layerWeight: float = layer.weight_move_effect_on_target(user, move, effectType, orbs, target, targets, battleState, allCombatantNodes)
@@ -136,7 +136,7 @@ func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 		lastMovesEffect = effectType
 		timesUsedLastMove = 1
 	
-	for layer: CombatantAiLayer in layers:
+	for layer: AbstractCombatantAiLayer in layers:
 		layer.set_move_used(move, effectType)
 
 func could_combatant_surge(combatant: Combatant, effect: MoveEffect) -> bool:
@@ -186,8 +186,8 @@ func get_orbs_amount(combatant: Combatant, effect: MoveEffect) -> int:
 	return effect.orbChange
 
 func copy(copyStorage: bool = false) -> CombatantAi:
-	var newLayers: Array[CombatantAiLayer] = []
-	for layer: CombatantAiLayer in layers:
+	var newLayers: Array[AbstractCombatantAiLayer] = []
+	for layer: AbstractCombatantAiLayer in layers:
 		newLayers.append(layer.copy(copyStorage))
 	
 	var newAi: CombatantAi = CombatantAi.new(
