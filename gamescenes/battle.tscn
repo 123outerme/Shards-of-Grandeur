@@ -249,7 +249,6 @@ text = "Back to
 Player Command"
 
 [node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI", "moveDetailsPanel")]
-visible = false
 layout_mode = 2
 script = ExtResource("9_fgnxg")
 battleUI = NodePath("../../../..")
@@ -270,6 +269,8 @@ offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_right = NodePath("../MoveButton2")
+focus_neighbor_bottom = NodePath("../MoveButton3")
 text = "Move Name Goes Here (-10 Orbs)"
 
 [node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
@@ -286,7 +287,9 @@ offset_right = 368.0
 offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../MoveButton1")
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
+focus_neighbor_bottom = NodePath("../MoveButton4")
 text = "-----"
 
 [node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
@@ -303,6 +306,9 @@ offset_right = -8.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../MoveButton1")
+focus_neighbor_right = NodePath("../MoveButton4")
+focus_neighbor_bottom = NodePath("../BackButton")
 text = "-----"
 
 [node name="MoveButton4" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
@@ -319,6 +325,9 @@ offset_right = 368.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../MoveButton3")
+focus_neighbor_top = NodePath("../MoveButton2")
+focus_neighbor_bottom = NodePath("../BackButton")
 text = "-----"
 
 [node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]
@@ -335,6 +344,9 @@ offset_right = 42.0
 offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../MoveButton3")
+focus_neighbor_top = NodePath("../MoveButton3")
+focus_neighbor_right = NodePath("../MoveButton4")
 text = "Back"
 
 [node name="Move1InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_oisw1")]

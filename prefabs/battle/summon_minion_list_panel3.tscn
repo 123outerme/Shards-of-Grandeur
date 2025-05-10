@@ -1,38 +1,38 @@
-[gd_scene load_steps=17 format=3 uid="uid://chvnypy23ib4r"]
+[gd_scene load_steps=17 format=3 uid="uid://1rft5oqdpat4"]
 
-[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_8b8lx"]
-[ext_resource type="Script" uid="uid://bqsk2u7eqh8vh" path="res://scripts/battle/battle_scene/summon_minion_list_panel.gd" id="1_igi3n"]
-[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_70krk"]
-[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="3_igvxn"]
-[ext_resource type="Texture2D" uid="uid://35ye7k3xtbym" path="res://graphics/items/shards/rat_shard.png" id="5_7cnl6"]
-[ext_resource type="Theme" uid="uid://b0ww42iu2x1o8" path="res://themes/attunement_bar_theme.tres" id="5_o6kci"]
-[ext_resource type="Texture2D" uid="uid://ctdllnet8oklb" path="res://graphics/ui/unlocked_shard_flicker.png" id="6_pprgt"]
-[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_yix20"]
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_82ayt"]
+[ext_resource type="Script" uid="uid://bqsk2u7eqh8vh" path="res://scripts/battle/battle_scene/summon_minion_list_panel.gd" id="2_afd2x"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_q47na"]
+[ext_resource type="Theme" uid="uid://b0ww42iu2x1o8" path="res://themes/attunement_bar_theme.tres" id="4_6s023"]
+[ext_resource type="Texture2D" uid="uid://35ye7k3xtbym" path="res://graphics/items/shards/rat_shard.png" id="5_b46ma"]
+[ext_resource type="Texture2D" uid="uid://ctdllnet8oklb" path="res://graphics/ui/unlocked_shard_flicker.png" id="6_sbfme"]
+[ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="7_djyq6"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_w76y1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t8smm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3j7uu"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgkgc"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hie4"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nx6qa"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6htul"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntiif"]
-atlas = ExtResource("6_pprgt")
+atlas = ExtResource("6_sbfme")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8srpv"]
@@ -66,8 +66,8 @@ custom_minimum_size = Vector2(1120, 152)
 offset_right = 1120.0
 offset_bottom = 76.0
 mouse_filter = 1
-theme = ExtResource("1_8b8lx")
-script = ExtResource("1_igi3n")
+theme = ExtResource("1_82ayt")
+script = ExtResource("2_afd2x")
 
 [node name="SpriteControl" type="Control" parent="."]
 custom_minimum_size = Vector2(96, 96)
@@ -100,7 +100,7 @@ alignment = 1
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
-theme = ExtResource("3_70krk")
+theme = ExtResource("3_q47na")
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
@@ -110,17 +110,10 @@ text = "Minion Name Goes Here"
 fit_content = true
 
 [node name="AttunementDetails" type="Control" parent="."]
-custom_minimum_size = Vector2(204, 0)
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 71.0
-offset_right = 275.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_70krk")
+anchors_preset = 0
+offset_right = 476.0
+offset_bottom = 152.0
+theme = ExtResource("3_q47na")
 
 [node name="AttunementLabel" type="RichTextLabel" parent="AttunementDetails"]
 layout_mode = 1
@@ -129,10 +122,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -31.0
-offset_right = 75.0
-offset_bottom = -7.0
+offset_left = -132.0
+offset_top = 28.0
+offset_right = 11.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -146,25 +139,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -96.5
-offset_top = -9.0
-offset_right = 103.5
-offset_bottom = 19.0
+offset_left = 16.5
+offset_top = 26.0
+offset_right = 216.5
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_o6kci")
+theme = ExtResource("4_6s023")
 value = 50.0
 rounded = true
 
 [node name="SummonDetails" type="Control" parent="."]
-custom_minimum_size = Vector2(204, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -132.0
-offset_right = 71.0
+offset_left = -65.0
+offset_right = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -219,7 +212,7 @@ mouse_filter = 1
 [node name="ShardSprite" type="Sprite2D" parent="SummonDetails/ShardDetails/ShardSpriteControl"]
 position = Vector2(16, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("5_7cnl6")
+texture = ExtResource("5_b46ma")
 
 [node name="UnlockedSpriteControl" type="Control" parent="SummonDetails"]
 layout_mode = 1
@@ -275,15 +268,15 @@ alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
 layout_mode = 2
-theme = ExtResource("3_igvxn")
+theme = ExtResource("7_djyq6")
 alignment = 2
 
-[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_yix20")]
+[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_w76y1")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Stats"
 
-[node name="SummonButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_yix20")]
+[node name="SummonButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("8_w76y1")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Summon"

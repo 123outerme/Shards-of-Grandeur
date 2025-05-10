@@ -14,6 +14,11 @@ class_name GroundItem
 ## define up to 4 particle textures to be emitted to draw attention to the item. If empty, default gold particles will appear
 @export var particleTextures: Array[Texture2D] = []
 
+## dialogue speaker sprite for picking-up dialogue
+@export var speakerSprite: SpriteFrames = null
+
+@export var speakerSpriteAnimation: String = ''
+
 @onready var sprite: Sprite2D = get_node('Sprite2D')
 @onready var staticBody: StaticBody2D = get_node('StaticBody2D')
 @onready var particleEmitter: Particles = get_node('ParticleEmitter')
@@ -66,6 +71,12 @@ func has_dialogue() -> bool:
 		return pickedUpItem.dialogueEntry.can_use_dialogue()
 	
 	return false
+
+func get_sprite_frames() -> SpriteFrames:
+	return speakerSprite
+
+func get_interact_animation() -> String:
+	return speakerSpriteAnimation
 
 func set_disabled(value: bool):
 	disabled = value

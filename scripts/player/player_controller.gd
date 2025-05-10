@@ -450,7 +450,7 @@ func update_interactable_speaker_sprite(dialogueItem: DialogueItem) -> void:
 		var interactableSpriteFrames: SpriteFrames = interactable.get_sprite_frames()
 		var interactAnim: String = interactable.get_interact_animation() if dialogueItem == null or dialogueItem.animation == '' else dialogueItem.animation
 		if interactableSpriteFrames == null or not interactableSpriteFrames.has_animation(interactAnim):
-			printerr('ERROR in update_interactable_speaker_sprite: npc sprite frames are null: ', interactableSpriteFrames == null, ' or does not have animation ', interactAnim)
+			printerr('ERROR in update_interactable_speaker_sprite: interactable sprite frames are null: ', interactableSpriteFrames == null, ' or does not have animation ', interactAnim, '; for ', interactable.saveName)
 			return
 		textBox.speakerSpriteFrames = interactableSpriteFrames
 		textBox.speakerAnim = interactAnim

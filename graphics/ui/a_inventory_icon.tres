@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bk0dylal3rmom"]
+
+[ext_resource type="Texture2D" uid="uid://btyf2cpk0mbbr" path="res://graphics/ui/touch_ui_icons/inventory_icon.png" id="1_hmp7y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjf56"]
+atlas = ExtResource("1_hmp7y")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjf56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

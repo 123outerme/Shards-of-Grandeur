@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://caa7gv3qwahs"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_hlexp"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_fdl1k"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ljdqb"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_diyvt"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ljdqb"]
+[ext_resource type="Resource" uid="uid://xic1tadk0osh" path="res://gamedata/dialogue/quiet_tundra/melee_merchant/melee_merchant_spar_1_turnin_wait.tres" id="3_xojlj"]
+
+[sub_resource type="Resource" id="Resource_xojlj"]
+script = ExtResource("2_ljdqb")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_xojlj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_diyvt")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_8tuu2"]
+script = ExtResource("2_ljdqb")
+choiceBtn = "Sounds Good!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_diyvt")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "The Melee Merchant#I'll Make You Pay"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_diyvt"]
+script = ExtResource("1_hlexp")
+lines = Array[String](["Congratulations, @! You have passed your first Combat Trial at my store. This makes you a Tier 1 Customer!", "I will now sell you my more basic goods. I will give you opportunities to increase your Tier in the future, too!", "The higher your Tier, the more I will sell to you. But...", "I TAKE HIGHER TIER BATTLES MORE SERIOUSLY."])
+minShowSecs = Array[float]([0.0, 0.0, 0.0, 1.5, 0.0])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ljdqb")]([SubResource("Resource_xojlj"), SubResource("Resource_8tuu2")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ljdqb")
+entryId = ""
+items = Array[ExtResource("1_hlexp")]([SubResource("Resource_diyvt")])
+ordStoryRequirements = Array[ExtResource("2_fdl1k")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

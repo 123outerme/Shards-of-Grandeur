@@ -10,6 +10,8 @@ class_name SummonMinionListPanel
 @onready var shardDetails: Control = get_node('SummonDetails/ShardDetails')
 @onready var shardCount: RichTextLabel = get_node('SummonDetails/ShardDetails/ShardCount')
 @onready var shardSprite: Sprite2D = get_node('SummonDetails/ShardDetails/ShardSpriteControl/ShardSprite')
+@onready var attunementDetails: Control = get_node('AttunementDetails')
+@onready var friendshipBar: ProgressBar = get_node('AttunementDetails/FriendshipBar')
 @onready var unlockedSpriteControl: Control = get_node('SummonDetails/UnlockedSpriteControl')
 @onready var unlockedSprite: AnimatedSprite2D = get_node('SummonDetails/UnlockedSpriteControl/UnlockedSprite')
 @onready var statsButton: Button = get_node('CenterButtons/HBoxContainer/StatsButton')
@@ -39,10 +41,13 @@ func load_summon_minion_list_panel():
 	minionName.text = minion.disp_name()
 	
 	shardDetails.visible = shardItemSlot != null
+	attunementDetails.visible = shardDetails.visible
 	unlockedSpriteControl.visible = not shardDetails.visible
 	if shardDetails.visible:
 		shardCount.text = 'x' + String.num_int64(shardItemSlot.count)
 		shardSprite.texture = shardItemSlot.item.itemSprite
+		friendshipBar.max_value = minion.maxFriendship
+		friendshipBar.value = minion.friendship
 	else:
 		unlockedSprite.play('default')
 	

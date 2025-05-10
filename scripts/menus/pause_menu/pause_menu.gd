@@ -20,17 +20,20 @@ signal resume_game
 const alertPanelPrefab = preload('res://prefabs/ui/alert_panel.tscn')
 
 var settingsOnly: bool = false
+var quitPressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed('game_decline'):
+	if visible and event.is_action_pressed('game_decline') and not quitPressed:
 		get_viewport().set_input_as_handled()
 		toggle_pause()
 
 func toggle_pause():
+	if isPaused and quitPressed:
+		return
 	isPaused = not isPaused
 	if isPaused:
 		pause_game()
@@ -80,6 +83,8 @@ func _on_save_button_pressed():
 	saveGamePanel.visible = true
 
 func _on_quit_button_pressed():
+	quitPressed = true
+	get_viewport().gui_release_focus() # release focus so player can't spam quit button
 	await fade_out_panel()
 	SaveHandler.save_data()
 	PlayerResources.saveFolder = ''

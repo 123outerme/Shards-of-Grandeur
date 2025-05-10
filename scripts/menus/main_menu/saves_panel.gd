@@ -12,6 +12,7 @@ var fromSave: String = ''
 var toSave: String = ''
 var deleteSaveFolder: String = ''
 var savingFolder: String = ''
+var loadPressed: bool = false
 
 @onready var savesPanelLabel: RichTextLabel = get_node('SavesPanelLabel')
 @onready var savePanelVbox: VBoxContainer = get_node('ScrollContainer/VBoxContainer')
@@ -25,7 +26,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if visible:
-		if event.is_action_pressed('game_decline'):
+		if event.is_action_pressed('game_decline') and not loadPressed:
 			_on_back_button_pressed()
 			get_viewport().set_input_as_handled()
 
@@ -156,6 +157,10 @@ func save_game(saveFolder: String):
 	load_save_item_panels()
 
 func load_save(saveFolder: String):
+	if loadPressed:
+		return
+	loadPressed = true
+	get_viewport().gui_release_focus() # release focus so player can't spam load button
 	await fade_out_panel()
 	SaveHandler.load_data(saveFolder)
 	SceneLoader.load_game(saveFolder)
@@ -195,6 +200,8 @@ func copy_save_pressed(saveFolder: String, isCopyTo: bool):
 	update_focus_neighbors()
 
 func copy_save(yes: bool = true):
+	if loadPressed:
+		return
 	if fromSave == '' or toSave == '':
 		fromSave = ''
 		toSave = ''
@@ -235,6 +242,8 @@ func delete_save_pressed(saveFolder: String):
 	confirmPanel.load_item_confirm_panel()
 
 func delete_save(saveFolder: String):
+	if loadPressed:
+		return
 	SaveHandler.delete_save(saveFolder)
 	load_save_item_panels()
 	initial_focus()
@@ -250,6 +259,8 @@ func fade_out_panel() -> void:
 	await shadeTween.finished
 
 func _on_back_button_pressed():
+	if loadPressed:
+		return
 	visible = false
 	if fromSave != '':
 		copy_save_pressed(fromSave, true) # resets state from "copy save" being mid-action
