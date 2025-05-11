@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cfj1ohstjqbv0" path="res://scripts/cutscenes/mock_player.gd" id="3_dsl0g"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_jf0m3"]
 
-[sub_resource type="Resource" id="Resource_emrum"]
+[sub_resource type="Resource" id="Resource_ptllw"]
 script = ExtResource("4_jf0m3")
 saveName = "npc"
 spriteState = "default"
@@ -44,12 +44,13 @@ border_color = Color(1, 1, 1, 1)
 bg_color = Color(0, 0, 0, 0.65098)
 
 [node name="ToolCutsceneVisualizer" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_vxik6")
 
 [node name="MockPlayer" parent="." instance=ExtResource("2_edynv")]
 script = ExtResource("3_dsl0g")
 facingLeft = false
-data = SubResource("Resource_emrum")
+data = SubResource("Resource_ptllw")
 
 [node name="NPCSprite" parent="MockPlayer" index="0"]
 sprite_frames = ExtResource("3_0pscs")

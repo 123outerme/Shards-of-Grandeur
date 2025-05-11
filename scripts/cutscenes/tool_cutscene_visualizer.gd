@@ -145,6 +145,9 @@ func handle_start_shard_learn_tutorial():
 	print('Start Shard Learn Tutorial Here')
 
 func start_visualizing():
+	if cutscene == null:
+		print('no cutscene.')
+		return
 	if useCustomStartPos:
 		mockPlayer.position = customStartPos
 	elif triggerOrNPC != null:
