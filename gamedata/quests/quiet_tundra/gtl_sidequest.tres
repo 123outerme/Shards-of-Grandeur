@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://clm41yh71mltb"]
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://clm41yh71mltb"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_3afq0"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ustke"]
@@ -11,10 +11,26 @@ description = "The Stargazer in Giant Steppes may know what the dust is."
 locations = Array[int]([])
 type = 0
 count = 1
-objectiveName = "---"
-turnInNames = Array[String]([])
+objectiveName = "stargazer_warlock_observatory#dusty_footprints"
+turnInNames = Array[String](["stargazer_warlock_observatory"])
 displayObjName = "The Stargazer"
 displayTurnInName = "The Stargazer"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ustke")]([])
+inProgressDialogue = Array[ExtResource("3_ustke")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_ustke"]
+script = ExtResource("2_ustke")
+name = "TBD"
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
 customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_ustke")]([])
 inProgressDialogue = Array[ExtResource("3_ustke")]([])
@@ -24,7 +40,7 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_3afq0")
 questName = "A Pile of Stardust"
 description = "Some dusty footprints were discovered on a hill in Giant Steppes. What, or who, made those prints?"
-steps = Array[ExtResource("2_ustke")]([SubResource("Resource_fqqb4")])
+steps = Array[ExtResource("2_ustke")]([SubResource("Resource_fqqb4"), SubResource("Resource_ustke")])
 isMainQuest = false
 advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

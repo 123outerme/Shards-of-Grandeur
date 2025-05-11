@@ -83,7 +83,7 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	elif speakerText.text != TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":":
 		speakerText.text = TextUtils.rich_text_substitute(speaker, Vector2i(32, 32)) + ":"
 		newSpeaker = true
-		speakerIsPlayer = speaker == '@' # speaker is player if player-name substitute is used here
+	speakerIsPlayer = speaker == '@' # speaker is player if player-name substitute is used here
 	update_speaker_sprite()
 	delete_choices()
 	visible = true

@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://6p6tmimcdctv"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_e4yt6"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2dxev"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_5qe67"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_2dxev"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_dkqc4"]
+[ext_resource type="Resource" uid="uid://djjs5ibstvrgc" path="res://gamedata/dialogue/giant_steppes/stargazer/stargazer_q_evolution.tres" id="4_dkqc4"]
+
+[sub_resource type="Resource" id="Resource_7musv"]
+script = ExtResource("2_2dxev")
+choiceBtn = "Never Mind."
+returnsToParentId = "stargazer_obs_1"
+randomDialogues = Array[ExtResource("3_dkqc4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_34sk2"]
+script = ExtResource("2_2dxev")
+choiceBtn = "Evolution."
+leadsTo = ExtResource("4_dkqc4")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_dkqc4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_2dxev"]
+script = ExtResource("2_2dxev")
+choiceBtn = "Astral Magic."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_dkqc4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_dkqc4"]
+script = ExtResource("1_e4yt6")
+lines = Array[String](["Very well. What would you like to know more about?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_2dxev")]([SubResource("Resource_7musv"), SubResource("Resource_34sk2"), SubResource("Resource_2dxev")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_2dxev")
+entryId = "stargazer_questions_1"
+items = Array[ExtResource("1_e4yt6")]([SubResource("Resource_dkqc4")])
+ordStoryRequirements = Array[ExtResource("2_5qe67")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

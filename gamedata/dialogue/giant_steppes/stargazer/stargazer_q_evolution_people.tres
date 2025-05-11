@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://c1o77xv25tn13"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_orlne"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_4xm2n"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kmknk"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kmknk"]
+[ext_resource type="Resource" uid="uid://cmdfdwv184yef" path="res://gamedata/quests/giant_steppes/player_evolution_quest.tres" id="4_4xm2n"]
+
+[sub_resource type="Resource" id="Resource_bgg3y"]
+script = ExtResource("1_orlne")
+lines = Array[String](["I have long theorized this is possible, yes. People may be able to Evolve, but I have never discovered an object to trigger it.", "Each of us is so unique, that there may not be a single Equipment that triggers Evolution for every person.", "Furthermore, the magic of the Radiant Cave seems to be a factor, as the only creatures I've seen Evolve were embued with Magic by the Cave.", "If you would like to aid my research, we can discover the secrets of Evolution together. This may be an excellent way to add to your strength for confronting the Chain Legion.", "TODO Explain first step of quest..."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_kmknk")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_kmknk")
+entryId = ""
+items = Array[ExtResource("1_orlne")]([SubResource("Resource_bgg3y")])
+ordStoryRequirements = Array[ExtResource("2_4xm2n")]([])
+startsQuest = ExtResource("4_4xm2n")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://bvwok5wd1wkck"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_12lto"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ldqod"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ldqod"]
+
+[sub_resource type="Resource" id="Resource_y0mys"]
+script = ExtResource("2_ldqod")
+name = "TBD"
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_ldqod")]([])
+inProgressDialogue = Array[ExtResource("3_ldqod")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[resource]
+script = ExtResource("1_12lto")
+questName = "A Shrouded History"
+description = "The Keeper of History seems open to permitting you access to read accounts of the Warlocks' past."
+steps = Array[ExtResource("2_ldqod")]([SubResource("Resource_y0mys")])
+isMainQuest = false
+advanceActAfterComplete = false
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"

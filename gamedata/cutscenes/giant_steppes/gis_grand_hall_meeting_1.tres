@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=96 format=3 uid="uid://w03n0q23odu8"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=97 format=3 uid="uid://w03n0q23odu8"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_w7lbq"]
 [ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_efp8n"]
@@ -739,7 +739,7 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 [sub_resource type="Resource" id="Resource_rpaqp"]
 script = ExtResource("6_wrlth")
 speaker = "Warlock King"
-texts = Array[String](["Excellent. Now, we can talk business.", "@, my Agent was tracking Helia, the Warlock you fought. She fled our mountain and sought out the Chain Legion.", "We have  been watching the Chain Legion, and have noticed two things.", "The first is, your skill in combat is well noted, and you have been the only thorn in their plans.", "This is not a complement I give often. But, having said that, you have much more to learn.", "Secondly, we have noticed the path of destruction that the Chain Legion has carved.", "The circumstances of our own past obligate us to put a stop to them.", "Our Keeper of History will explain."])
+texts = Array[String](["Excellent. Now, we can talk business.", "@, my Agent was tracking Helia, the Warlock you fought. She fled our mountain and sought out the Chain Legion.", "We have  been watching the Chain Legion, and have noticed two things.", "The first is, your skill in combat is well noted, and you have been the only thorn in their side thus far.", "This is not a complement I give often. But, having said that, you have much more to learn.", "Secondly, we have noticed the path of destruction that the Chain Legion has carved.", "The circumstances of our own past obligate us to put a stop to them.", "Our Keeper of History will explain."])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/WarlockKing"
 speakerActorIsPlayer = false
@@ -825,7 +825,7 @@ metadata/_custom_type_script = "uid://8oxtwxpqllgd"
 [sub_resource type="Resource" id="Resource_tw4v8"]
 script = ExtResource("6_wrlth")
 speaker = "Keeper of History"
-texts = Array[String](["As the Keeper of History, it is my duty to preserve the knowledge of the past and apply it to the present.", "The Warlocks hold many extensive writings on our beginnings as a city, as a people.", "From reading these texts, like the Keepers before me, I have been entrusted with sway over the King's decisions.", "I take no joy in telling you, @, but our most secret texts reveal the Warlocks have had many dark days in our history.", "Giant Steppes was founded as a city, and the mountain terraformed into being, for one reason.", "We cut ourselves off from the world as punishment for our most evil deeds.", "And so, the Warlocks have sworn an oath to remain on the mountain and watch over the rest of the world in silence.", "However, we wish to not repeat the pain and suffering felt when the Shards are used as tools of destruction.", "We must break our oath of isolation and defeat Steelspire. For the good of this land."])
+texts = Array[String](["As the Keeper of History, it is my duty to preserve the knowledge of the past and apply it to the present.", "My library holds many extensive writings on our beginnings as a city, as a people. Only a Keeper is allowed to read these.", "From reading these secret texts, like the Keepers before me, I have been entrusted with sway over the King's decisions.", "I take no joy in telling you, @, but the Warlocks have had many dark days in our history.", "Giant Steppes was founded as a city, and the mountain terraformed into being, for one reason.", "We cut ourselves off from the world as punishment for our most evil deeds.", "And so, the Warlocks have sworn an oath to remain on the mountain and watch over the rest of the world in silence.", "However, we wish to not repeat the pain and suffering felt when the Shards are used as tools of destruction.", "We must break our oath of isolation and defeat Steelspire. For the good of this land."])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/KeeperOfHistory"
 speakerActorIsPlayer = false
@@ -1025,7 +1025,7 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 [sub_resource type="Resource" id="Resource_qb584"]
 script = ExtResource("6_wrlth")
 speaker = "Warlock King"
-texts = Array[String](["Excellent news! Then I will now share the plan with you.", "My Agent has discovered $highlight{a hole in the walls of Steelspire}color$, so to speak.", "He will take you inside Steelspire and to the Chain Legion's Spire, where you are to make $highlight{a first and final strike}color$ on their command center.", "They are not expecting to fight a war on their turf. The creation of the Airship proves that much.", "Make your preparations, then we shall begin your training. You are dismissed."])
+texts = Array[String](["I see. My Agent's report of a flying machine also gave me great concern.", "Since we are in agreement, I will now share the plan with you.", "My Agent has discovered $highlight{a hole in the walls of Steelspire}color$, so to speak.", "He will take you inside Steelspire and to the Chain Legion's Spire, where you are to make $highlight{a first and final strike}color$ on their command center.", "They are not expecting to fight a war on their turf. The creation of the Airship proves that much.", "Make your preparations, then we shall begin your training. You are dismissed."])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/WarlockKing"
 speakerActorIsPlayer = false
@@ -1055,6 +1055,27 @@ removesFollowerId = ""
 endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
+[sub_resource type="Resource" id="Resource_f17qy"]
+script = ExtResource("1_w7lbq")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_52chb")]([])
+actorAnims = Array[ExtResource("3_p8b1k")]([])
+actorAnimSets = Array[ExtResource("2_efp8n")]([])
+actorFaceTargets = Array[ExtResource("4_k1fde")]([])
+dialogues = Array[ExtResource("6_wrlth")]([])
+playSfxs = Array[AudioStream]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
 [sub_resource type="Resource" id="Resource_ef3t3"]
 script = ExtResource("4_ql6a6")
 minAct = 0
@@ -1072,7 +1093,7 @@ prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("3_1mml8")]([])
 invalidAfterCompletingQuests = Array[String]([])
 invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String](["gis_round_table_meeting_1"])
+invalidAfterCutscenes = Array[String](["gis_grand_hall_meeting_1"])
 invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
@@ -1084,8 +1105,8 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("2_y80rl")
-cutsceneFrames = Array[ExtResource("1_w7lbq")]([SubResource("Resource_wrlth"), SubResource("Resource_vxja8"), SubResource("Resource_6evbb"), SubResource("Resource_02nwf"), SubResource("Resource_f1fq7"), SubResource("Resource_rbikb"), SubResource("Resource_ec6b5"), SubResource("Resource_xvucm"), SubResource("Resource_uitvu"), SubResource("Resource_m184q"), SubResource("Resource_r70lq"), SubResource("Resource_kv2u0"), SubResource("Resource_ktu5v"), SubResource("Resource_ofedf"), SubResource("Resource_7gqjx"), SubResource("Resource_jcrvc"), SubResource("Resource_n4a60"), SubResource("Resource_e4iqk"), SubResource("Resource_in8uv"), SubResource("Resource_au60d"), SubResource("Resource_exbx6"), SubResource("Resource_0xach"), SubResource("Resource_c2cdc"), SubResource("Resource_5wtv8"), SubResource("Resource_a62hg"), SubResource("Resource_l1qba"), SubResource("Resource_tiy2q"), SubResource("Resource_lpytr"), SubResource("Resource_6aneh")])
-saveName = "gis_round_table_meeting_1"
+cutsceneFrames = Array[ExtResource("1_w7lbq")]([SubResource("Resource_wrlth"), SubResource("Resource_vxja8"), SubResource("Resource_6evbb"), SubResource("Resource_02nwf"), SubResource("Resource_f1fq7"), SubResource("Resource_rbikb"), SubResource("Resource_ec6b5"), SubResource("Resource_xvucm"), SubResource("Resource_uitvu"), SubResource("Resource_m184q"), SubResource("Resource_r70lq"), SubResource("Resource_kv2u0"), SubResource("Resource_ktu5v"), SubResource("Resource_ofedf"), SubResource("Resource_7gqjx"), SubResource("Resource_jcrvc"), SubResource("Resource_n4a60"), SubResource("Resource_e4iqk"), SubResource("Resource_in8uv"), SubResource("Resource_au60d"), SubResource("Resource_exbx6"), SubResource("Resource_0xach"), SubResource("Resource_c2cdc"), SubResource("Resource_5wtv8"), SubResource("Resource_a62hg"), SubResource("Resource_l1qba"), SubResource("Resource_tiy2q"), SubResource("Resource_lpytr"), SubResource("Resource_6aneh"), SubResource("Resource_f17qy")])
+saveName = "gis_grand_hall_meeting_1"
 storyRequirements = SubResource("Resource_ef3t3")
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])

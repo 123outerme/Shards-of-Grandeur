@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://ccpc8at6wwa6g"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_am32g"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_gomlq"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_pvn6b"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_gomlq"]
+
+[sub_resource type="Resource" id="Resource_bcc0f"]
+script = ExtResource("1_am32g")
+lines = Array[String](["Our alliance will be very fruitful in ending this war. With a swift enough strike at the Chain Legion's center, we minimize casualties.", "Know this: I do not wish for the larger Steelspire population to come to harm. Our only target is their military."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gomlq")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_gomlq")
+entryId = ""
+items = Array[ExtResource("1_am32g")]([SubResource("Resource_bcc0f")])
+ordStoryRequirements = Array[ExtResource("2_pvn6b")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

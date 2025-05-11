@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dlpx873n1vqog"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_e0aqq"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_iyxd4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ruso0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ruso0"]
+
+[sub_resource type="Resource" id="Resource_lyjhd"]
+script = ExtResource("1_e0aqq")
+lines = Array[String](["As I previously mentioned, I am the librarian on Giant Steppes. My library is the building to the west of here, with the scroll engraving.", "Come see me if you have any questions about the Warlocks, Giant Steppes, and my knowledge.", "As you understand, there are some secrets I cannot share with you, but I will answer as much as I am able."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ruso0")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ruso0")
+entryId = ""
+items = Array[ExtResource("1_e0aqq")]([SubResource("Resource_lyjhd")])
+ordStoryRequirements = Array[ExtResource("2_iyxd4")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

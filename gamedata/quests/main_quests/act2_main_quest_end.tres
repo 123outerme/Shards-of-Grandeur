@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://dkrl0ex6saesw"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_d8o55"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ovfod"]
+
+[resource]
+script = ExtResource("1_d8o55")
+questName = "Steel Invasion"
+description = "The day has come; Steelspire has left itself open for invasion. Attack!"
+steps = Array[ExtResource("2_ovfod")]([])
+isMainQuest = true
+advanceActAfterComplete = true
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"

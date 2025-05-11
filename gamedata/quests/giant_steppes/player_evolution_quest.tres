@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://cmdfdwv184yef"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_6j1bg"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_focpo"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_focpo"]
+
+[sub_resource type="Resource" id="Resource_1plid"]
+script = ExtResource("2_focpo")
+name = "Self-Discovery"
+description = "TBD"
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_focpo")]([])
+inProgressDialogue = Array[ExtResource("3_focpo")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[resource]
+script = ExtResource("1_6j1bg")
+questName = "Achieve Evolution"
+description = "The Stargazer has theorized that people can Evolve, just like the creatures that roam the lands. Test this theory!"
+steps = Array[ExtResource("2_focpo")]([SubResource("Resource_1plid")])
+isMainQuest = false
+advanceActAfterComplete = false
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"
