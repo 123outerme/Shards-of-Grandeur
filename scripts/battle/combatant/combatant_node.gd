@@ -259,10 +259,14 @@ func update_select_btn(showing: bool, disable: bool = false):
 	selectCombatantBtn.disabled = disable
 	selectCombatantBtn.z_index = 1 if selectCombatantBtn.button_pressed else 0
 	
-	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(12, 12) # set size of selecting button to sprite size + 8px
+	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(14, 14) # set size of selecting button to sprite size + 8px
+	
+	# button has to bottom out at the combatant's feet position, and the top must be at the top of the idle boundaries
 	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
-	# update the position to be centered on the combatant's full sprite boundaries (not its center of mass)
-	selectCombatantBtn.position += animatedSprite.offset + (combatant.get_max_size() / 2)
+	selectCombatantBtn.position.y -= combatant.get_idle_size().y / 2 - 6
+	
+	# update the position to be centered on the combatant's idle sprite boundaries (not its center of mass)
+	#selectCombatantBtn.position += animatedSprite.offset + (combatant.get_idle_size() / 2)
 
 func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, playCreatedTriggeredRunes: bool = false) -> void:
 	if combatant == null or not is_alive():

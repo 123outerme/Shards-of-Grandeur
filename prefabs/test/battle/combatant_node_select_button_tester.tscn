@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi6m2b3o7yu8v"]
+
+[ext_resource type="Script" uid="uid://cns50k7v4i6gq" path="res://prefabs/test/battle/combatant_node_select_button_tester.gd" id="1_b77ru"]
+[ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="2_2rcy4"]
+[ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="2_sm5xh"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="4_sm5xh"]
+
+[node name="CombatantNodeSelectButtonTester" type="Node2D"]
+script = ExtResource("1_b77ru")
+combatant = ExtResource("2_sm5xh")
+
+[node name="CombatantNode" parent="." instance=ExtResource("2_2rcy4")]
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+
+[node name="ReloadButton" type="Button" parent="."]
+offset_left = 267.0
+offset_top = 568.0
+offset_right = 344.0
+offset_bottom = 597.0
+scale = Vector2(2, 2)
+text = "Reload"
+
+[node name="FlipButton" type="Button" parent="."]
+custom_minimum_size = Vector2(108, 0)
+offset_left = 445.0
+offset_top = 569.0
+offset_right = 553.0
+offset_bottom = 598.0
+scale = Vector2(2, 2)
+toggle_mode = true
+text = "Right Side"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 728.0
+offset_top = 572.0
+offset_right = 894.0
+offset_bottom = 602.0
+scale = Vector2(2, 2)
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+
+[node name="EvoLineEdit" type="LineEdit" parent="."]
+offset_left = 731.0
+offset_top = 644.0
+offset_right = 897.0
+offset_bottom = 674.0
+scale = Vector2(2, 2)
+
+[node name="LoadButton" type="Button" parent="."]
+offset_left = 1091.0
+offset_top = 571.0
+offset_right = 1147.0
+offset_bottom = 600.0
+scale = Vector2(2, 2)
+text = "Load"
+
+[node name="AudioHandler" parent="." instance=ExtResource("4_sm5xh")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 629.0
+offset_top = 649.0
+offset_right = 679.0
+offset_bottom = 671.0
+scale = Vector2(2, 2)
+text = "Evo:"
+fit_content = true
+
+[node name="CenterPixel" type="Line2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+points = PackedVector2Array(-0.25, 0, 0.25, 0)
+width = 0.5
+
+[connection signal="pressed" from="ReloadButton" to="." method="_on_reload_button_pressed"]
+[connection signal="toggled" from="FlipButton" to="." method="_on_flip_button_toggled"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_load_button_pressed"]
+[connection signal="text_submitted" from="EvoLineEdit" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="LoadButton" to="." method="_on_load_button_pressed"]

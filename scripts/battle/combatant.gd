@@ -143,8 +143,12 @@ static var useSurgeReqs: StoryRequirements = load('res://gamedata/story_requirem
 static var runeReqs: StoryRequirements = load('res://gamedata/story_requirements/rune_reqs.tres') as StoryRequirements
 
 static func load_combatant_resource(saveName: String) -> Combatant:
-	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres").copy()
-	combatant.initialize()
+	var combatant: Combatant = load("res://gamedata/combatants/" + saveName + '/' + saveName + ".tres")
+	if combatant != null:
+		combatant = combatant.copy()
+		combatant.initialize()
+	else:
+		printerr('Combatant.load_combatant_resource ERROR: combatant ', saveName, ' could not be loaded')
 	return combatant
 
 static func get_hp_bar_color(curHp: float, maxHp: float) -> Color:
@@ -292,10 +296,10 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 		PlayerResources.playerInfo.mark_evolution_found(save_name() + '#' + evolution.evolutionSaveName)
 	
 	# if this is a player evolution, keep learned moves and add moves granted by new evolution
-	if save_name() == 'player':
+	if save_name() == 'player' and evolution != null:
 		# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution
 		print('adjust movepool for player evo')
-		var movepool: MovePool = get_evolution_stats(null).stats.movepool.copy()
+		var movepool: MovePool = get_evolution_stats(null).movepool.copy()
 		# for each move granted by this evolution, if not in the movepool, add it
 		for move: Move in evolution.stats.movepool.pool:
 			if not (move in movepool.pool):
