@@ -37,14 +37,14 @@ func _unhandled_input(event):
 			statsMenu.visible = false
 			summonMinionPanel.visible = false
 
-	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused and battleUI.menuState != BattleState.Menu.LEVEL_UP:
+	if event.is_action_pressed("game_quests") and not pauseMenu.isPaused and battleUI.menuState != BattleState.Menu.LEVEL_UP and not battleUI.moves.moveDetailsPanel.visible:
 		animatedBgPanel.visible = true
 		questsMenu.toggle()
 		inventoryMenu.visible = false
 		statsMenu.visible = false
 		summonMinionPanel.visible = false
 		
-	if event.is_action_pressed("game_stats") and not pauseMenu.isPaused:
+	if event.is_action_pressed("game_stats") and not pauseMenu.isPaused and not battleUI.moves.moveDetailsPanel.visible:
 		statsMenu.stats = battleUI.battleController.playerCombatant.combatant.stats
 		statsMenu.curHp = battleUI.battleController.playerCombatant.combatant.currentHp
 		statsMenu.readOnly = true
@@ -55,7 +55,7 @@ func _unhandled_input(event):
 		questsMenu.visible = false
 		summonMinionPanel.visible = false
 	
-	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible:
+	if event.is_action_pressed("game_pause") and not inventoryMenu.visible and not questsMenu.visible and not statsMenu.visible and not summonMinionPanel.visible and not battleUI.moves.moveDetailsPanel.visible:
 		animatedBgPanel.visible = true
 		pauseMenu.toggle_pause()
 
