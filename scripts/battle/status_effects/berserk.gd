@@ -38,9 +38,7 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC:
 		if combatant.currentHp > 0:
 			var damage: int = get_recoil_damage(combatant)
-			var adjustedDmg: int = damage
-			if damage >= combatant.currentHp:
-				adjustedDmg = max(0, combatant.currentHp - 1) # this recoil can never knock you out!
+			var adjustedDmg: int = min(damage, combatant.currentHp - 1)
 			combatant.currentHp = min(combatant.stats.maxHp, combatant.currentHp - adjustedDmg)
 			if damage > 0:
 				dealtDmgCombatants = [combatant]

@@ -152,6 +152,9 @@ func load_stats_panel(fromToggle: bool = false):
 		return
 	
 	var playingLvUpAnim: bool = false
+	if fromToggle:
+		tabbedViewContainer.current_tab = TabbedViewTab.STATS # auto-select Stats when opening menu
+	
 	if fromToggle and levelUp and not levelUpAnimPlayed:
 		levelUpAnimPlayer.play('level_up')
 		levelUpAnimPlayed = true

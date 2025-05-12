@@ -80,7 +80,7 @@ func set_invisible(value: bool) -> void:
 
 func _story_requirements_updated(initializing: bool = false) -> void:
 	if not StoryRequirements.list_is_valid(storyRequirements):
-		if initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
+		if not initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
 			fadeoutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 			fadeoutTween.tween_property(self, 'modulate', Color(0,0,0,0), 1.0)
 			fadeoutTween.tween_callback(deactivate)

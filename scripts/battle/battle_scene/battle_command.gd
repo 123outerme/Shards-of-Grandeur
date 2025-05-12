@@ -446,7 +446,6 @@ func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	elif moveEffect.statusEffect.type == StatusEffect.Type.NONE:
 		return false # cannot cure status if there is no status
 	
-	
 	var statusEffectivenessMultiplier: float = 1
 	if user != target:
 		statusEffectivenessMultiplier = target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type)

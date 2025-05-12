@@ -93,36 +93,23 @@ func _ready():
 	initialEventTextContainerPos = eventTextContainer.position
 
 func load_combatant_node():
-	if not is_alive():
-		visible = false
-	else:
-		visible = true
+	if combatant != null:
 		curHp = combatant.battleStorageHp
 		curOrbs = combatant.battleStorageOrbs
 		curStatus = combatant.battleStorageStatus
+		animatedSprite.sprite_frames = combatant.get_sprite_frames()
 		if combatant.statChanges == null:
 			combatant.statChanges = StatChanges.new()
-		animatedSprite.sprite_frames = combatant.get_sprite_frames()
 		if combatant.get_sprite_frames() == null:
-			animatedSprite.sprite_frames = load("res://graphics/animations/a_missingno.tres") # prevent crashing
+			animatedSprite.sprite_frames = load("res://graphics/animations/a_missingno.tres") # show something
 		spriteFacesRight = combatant.get_faces_right()
 		var feetOffset: Vector2 = get_feet_pos_translation()
 		feetOffset.y += 8
 		animatedSprite.offset = feetOffset
 		play_animation('battle_idle')
-		if shardSummoned:
-			animatedSprite.visible = false
-		else:
-			animatedSprite.visible = true
-		shardSummonAnimSprite.visible = false
-		
-		update_select_btn(false)
-		weakenTargetHp.visible = false
 		hpProgressBar.max_value = combatant.stats.maxHp
 		hpProgressBar.value = curHp
 		hpProgressBar.tint_progress = Combatant.get_hp_bar_color(curHp, combatant.stats.maxHp)
-		update_hp_tag()
-		
 		behindParticleContainer.scale.x = get_behind_particle_scale()
 		behindParticleContainer.scale.y = behindParticleContainer.scale.x
 		
@@ -133,7 +120,6 @@ func load_combatant_node():
 		frontParticles.set_make_particles(false)
 		hitParticles.set_make_particles(false)
 		shardParticles.set_make_particles(false)
-		
 		# nudge the attack marker away from sprite by any amount over 16 wide
 		if onAttackMarker.position.x < position.x:
 			onAttackMarker.position.x = initialAttackMarkerPos.x - (combatant.get_idle_size().x - 16) / 2
@@ -145,6 +131,19 @@ func load_combatant_node():
 			onAssistMarker.position.y = initialAssistMarkerPos.y - (combatant.get_idle_size().y - 16) / 2
 		elif onAssistMarker.position.y > position.y:
 			onAssistMarker.position.y = initialAssistMarkerPos.y + (combatant.get_idle_size().y - 16) / 2
+	
+	if not is_alive():
+		visible = false
+	else:
+		visible = true
+		if shardSummoned:
+			animatedSprite.visible = false
+		else:
+			animatedSprite.visible = true
+		shardSummonAnimSprite.visible = false
+		update_select_btn(false)
+		weakenTargetHp.visible = false
+		update_hp_tag()
 	
 	eventTextContainer.position = initialEventTextContainerPos
 	if combatant != null and combatant.get_idle_size().y > 16:
@@ -173,7 +172,8 @@ func change_current_hp(hpChange: int) -> void:
 		var curEndure: Endure = curStatus as Endure
 		var lowestHp: int = max(1, min(curEndure.lowestHp, roundi(combatant.stats.maxHp * curEndure.get_min_hp_percent())))
 		#print('HP change: ', hpChange, ' / lowest HP calcd: ', lowestHp, ' / curEndure lowest: ', curEndure.lowestHp, ' / min HP from status: ', roundi(combatant.stats.maxHp * curEndure.get_min_hp_percent()))
-		if curHp + hpChange < lowestHp:
+		# if endured and the lowest HP was reduced below the lowest, set the change so that the next current HP will be the lowest Endured HP
+		if curHp + hpChange < lowestHp and curEndure.endured:
 			hpChange = lowestHp - curHp
 		
 	curHp = min(combatant.stats.maxHp, max(0, curHp + hpChange))
@@ -213,7 +213,9 @@ func update_hp_tag():
 			return
 	
 	hpTag.visible = not disableHpTag
-	nameText.text = '[center]' + combatant.disp_name() + '[/center]'
+	var alignTag: String = 'right' if leftSide else 'left'
+	nameText.text = '[' + alignTag + ']' + combatant.disp_name() + '[/' + alignTag + ']'
+	nameText.position.x = -10 if leftSide else 0
 	lvText.text = 'Lv ' + String.num_int64(combatant.stats.level)
 	lvText.size.x = len(lvText.text) * 13 # about 13 pixels per character
 	hpText.text = TextUtils.num_to_comma_string(curHp) + ' / ' + TextUtils.num_to_comma_string(combatant.stats.maxHp)

@@ -32,13 +32,13 @@ func save_data(save_path, data) -> int:
 	return err
 
 # not sure if I still need the below
-'''
-func delete_data(save_path):
+func delete_data(save_path) -> int:
 	if FileAccess.file_exists(save_path + get_save_filename()):
 		var err = DirAccess.remove_absolute(save_path + get_save_filename())
 		if err != 0:
 			printerr("SpawnerData DirAccess remove error: ", err)
-'''
+			return err
+	return 0
 
 func get_save_filename() -> String:
 	return spawnerId + '_enemy.tres'

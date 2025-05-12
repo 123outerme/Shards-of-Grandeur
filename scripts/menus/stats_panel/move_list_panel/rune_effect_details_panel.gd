@@ -101,6 +101,16 @@ func load_rune_effect_details() -> void:
 	else:
 		statusEffectRow.visible = false
 	
+	# if charge effect; currently the charge effect + rune fits nicely on one line, no scrolling;
+	# add focus neighbors to the buttons if they're both active (they don't need to be taken away later)
+	# (and instantiation does not trigger an update event)
+	if not isSurgeEffect:
+		runeHelpButtonOnscreen = true
+		if statusHelpButton.visible:
+			statusHelpButtonOnscreen = true
+			statusHelpButton.focus_neighbor_top = statusHelpButton.get_path_to(runeHelpButton)
+			runeHelpButton.focus_neighbor_bottom = runeHelpButton.get_path_to(statusHelpButton)
+	
 	if isSurgeEffect and rune.surgeChanges != null:
 		var changes: Array[SurgeChanges.SurgeChangeDescRow] = rune.surgeChanges.get_description()
 		for change: SurgeChanges.SurgeChangeDescRow in changes:

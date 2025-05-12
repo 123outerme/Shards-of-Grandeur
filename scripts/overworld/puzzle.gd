@@ -34,5 +34,7 @@ func solve() -> bool:
 	# give player the reward for solving the puzzle
 	SignalBus.give_overworld_rewards(solvedReward, 'Puzzle Rewards')
 	PlayerResources.playerInfo.set_puzzle_solved(id)
-	PlayerResources.questInventory.auto_update_quests()
+	var emitted: bool = PlayerResources.questInventory.auto_update_quests()
+	if not emitted:
+		PlayerResources.story_requirements_updated.emit()
 	return true

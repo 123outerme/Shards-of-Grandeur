@@ -143,10 +143,12 @@ func _unhandled_input(event):
 			if closestInteractable != null and closestInteractable.has_dialogue() and closestInteractable.is_visible_in_tree():
 				closestInteractable.interact()
 				interacted = true
-		if not interacted and textBox.is_textbox_complete():
-			advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
-		elif textBox.visible:
-			textBox.show_text_instant()
+		if not interacted:
+			# if a new interactable wasn't chosen for dialogue this frame: advance or show the full text
+			if textBox.is_textbox_complete():
+				advance_dialogue(event.is_action_pressed("game_interact") or event is InputEventMouseButton)
+			elif textBox.visible:
+				textBox.show_text_instant()
 	
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \

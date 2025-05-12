@@ -164,8 +164,11 @@ func update_turn_text() -> bool:
 				if not interceptor in defenders:
 					defenders.append(interceptor)
 			var combatantHadBerserk: bool = false
+			var combatantBerserkRecoilDmg: int = 0
 			if combatant.statusEffect != null:
 				combatantHadBerserk = combatant.statusEffect.type == StatusEffect.Type.BERSERK
+				if combatantHadBerserk:
+					combatantBerserkRecoilDmg = (combatant.statusEffect as Berserk).get_recoil_damage(combatant)
 				if not text.ends_with(' '):
 					text += ' '
 				text += combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
@@ -198,9 +201,11 @@ func update_turn_text() -> bool:
 										text += ' '
 									text += afterDmgText
 			if combatant != null and combatant.command != null and combatant.command.commandResult != null and combatant.command.commandResult.selfRecoilDmg > 0:
-				if not text.ends_with(' '):
-					text += ' '
-				text += combatant.disp_name() + ' took ' + TextUtils.num_to_comma_string(combatant.command.commandResult.selfRecoilDmg) + ' total recoil damage!'
+				# if this recoil damage is not exactly equal to the self-recoil dealt by Berserk, then add a message describing total recoil dealt
+				if not (combatantHadBerserk and combatant.command.commandResult.selfRecoilDmg == combatantBerserkRecoilDmg):
+					if not text.ends_with(' '):
+						text += ' '
+					text += combatant.disp_name() + ' took ' + TextUtils.num_to_comma_string(combatant.command.commandResult.selfRecoilDmg) + ' total recoil damage!'
 			for combatantNode: CombatantNode in allCombatantNodes:
 				var runesText: String = get_triggered_runes_text(combatantNode.combatant)
 				if runesText != '':

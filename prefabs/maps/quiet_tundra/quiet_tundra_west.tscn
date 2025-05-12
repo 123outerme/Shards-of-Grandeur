@@ -1959,6 +1959,7 @@ shape = SubResource("RectangleShape2D_ucrs1")
 position = Vector2(311, -2821)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("16_odtt7")
+fadeOutOnRequirementsInvalidated = true
 saveName = "fox_statue_energy_wall"
 dialogue = ExtResource("7_y4hg8")
 storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_caxh6")])
@@ -2179,19 +2180,25 @@ shape = SubResource("RectangleShape2D_ehvst")
 [node name="SoliusTatteredCloth" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
 z_index = -18
 position = Vector2(1165, -1828)
+interactAnim = "stand"
 saveName = "solius_tattered_cloth"
 dialogue = ExtResource("40_y7mw8")
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("40_6gvpo")
+animation = &"stand"
 
 [node name="CollisionShape2D" parent="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration/Collision" index="0"]
 shape = SubResource("RectangleShape2D_716ng")
 disabled = true
 
+[node name="InteractSprite" parent="TilemapRoot/SoliusTatteredCloth" index="2"]
+z_index = 9
+
 [node name="GtlFootprints" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
 z_index = -18
 position = Vector2(680, -3671)
+interactAnim = "stand"
 saveName = "gtl_footprints"
 dialogue = ExtResource("32_flbv4")
 
@@ -2206,6 +2213,7 @@ shape = SubResource("RectangleShape2D_dct7q")
 disabled = true
 
 [node name="InteractSprite" parent="TilemapRoot/GtlFootprints" index="2"]
+z_index = 9
 position = Vector2(0, -12)
 
 [node name="VillageSign" parent="TilemapRoot" instance=ExtResource("12_0jhss")]

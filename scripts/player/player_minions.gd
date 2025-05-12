@@ -206,6 +206,7 @@ func save_data(save_path, data) -> int:
 		printerr("PlayerMinions ResourceSaver error: ", err)
 		return err
 	for minion: Combatant in minionsDict.values():
+		minion.version = GameSettings.get_game_version()
 		err = ResourceSaver.save(minion, save_path + minions_dir + minion.save_name() + '.tres')
 		if err != 0:
 			printerr("PlayerMinions save minion ", minion.save_name(), " ResourceSaver error: ", err)
