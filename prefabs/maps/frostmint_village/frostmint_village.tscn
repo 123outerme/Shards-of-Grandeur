@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://b8g5gdcmy67cl"]
+[gd_scene load_steps=36 format=4 uid="uid://b8g5gdcmy67cl"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d6pke"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ksxva"]
@@ -13,8 +13,9 @@
 [ext_resource type="Resource" uid="uid://cd28dn4q8sv8d" path="res://gamedata/dialogue/frostmint_village/village_sign/frostmint_village_sign_1.tres" id="9_is10d"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="9_ksxva"]
 [ext_resource type="SpriteFrames" uid="uid://bybjlkysux754" path="res://graphics/animations/a_snowy_sign.tres" id="10_q5eok"]
+[ext_resource type="SpriteFrames" uid="uid://dwh8kq6iqbgvp" path="res://graphics/animations/a_tundra_man_1.tres" id="11_igro0"]
 
-[sub_resource type="Resource" id="Resource_q5eok"]
+[sub_resource type="Resource" id="Resource_t4gxd"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -43,7 +44,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrij5"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_igro0"]
+[sub_resource type="Resource" id="Resource_dg8ii"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -72,7 +73,7 @@ size = Vector2(15.5, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5eok"]
 size = Vector2(24, 15)
 
-[sub_resource type="Resource" id="Resource_t4gxd"]
+[sub_resource type="Resource" id="Resource_3gbuk"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -95,7 +96,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_dg8ii"]
+[sub_resource type="Resource" id="Resource_fggv6"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -211,7 +212,7 @@ tile_set = ExtResource("2_ksxva")
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-103, -105)
 displayName = "Sign"
-data = SubResource("Resource_q5eok")
+data = SubResource("Resource_t4gxd")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("6_is10d")])
 facesPlayer = false
 
@@ -237,7 +238,7 @@ visible = false
 [node name="VillageSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-435, 78)
 displayName = "Sign"
-data = SubResource("Resource_igro0")
+data = SubResource("Resource_dg8ii")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("9_is10d")])
 facesPlayer = false
 
@@ -260,13 +261,32 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TilemapRoot/VillageSign" index="4"]
 visible = false
 
-[node name="NPC" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
+[node name="Villager" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-36, 127)
-data = SubResource("Resource_t4gxd")
+displayName = "Villager"
+saveName = "frostmint_villager_1"
+data = SubResource("Resource_3gbuk")
 
-[node name="NPC2" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
+[node name="NPCSprite" parent="TilemapRoot/Villager" index="0"]
+sprite_frames = ExtResource("11_igro0")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Villager" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkArea" parent="TilemapRoot/Villager" index="3"]
+position = Vector2(0, 4)
+
+[node name="MoveTrigger" parent="TilemapRoot/Villager" index="4"]
+visible = false
+
+[node name="Villager2" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(256, -143)
-data = SubResource("Resource_dg8ii")
+displayName = "Villager"
+data = SubResource("Resource_fggv6")
+
+[node name="MoveTrigger" parent="TilemapRoot/Villager2" index="4"]
+visible = false
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
@@ -366,6 +386,8 @@ position = Vector2(48, -376)
 
 [editable path="TilemapRoot/InnSign"]
 [editable path="TilemapRoot/VillageSign"]
+[editable path="TilemapRoot/Villager"]
+[editable path="TilemapRoot/Villager2"]
 [editable path="TundraWestWarpZone"]
 [editable path="MansionRoadWarpZone"]
 [editable path="InnWarpZone"]
