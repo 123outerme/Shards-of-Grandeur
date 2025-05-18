@@ -1,10 +1,42 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=3 format=3 uid="uid://yrgg4xx4vorm"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=11 format=3 uid="uid://yrgg4xx4vorm"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_fit41"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_wfdin"]
+[ext_resource type="Resource" uid="uid://mkdpogf63wcq" path="res://gamedata/items/healing/snow_berries.tres" id="3_wfdin"]
+[ext_resource type="Resource" uid="uid://c2bdh1g33vs52" path="res://gamedata/items/healing/frostmint_tea.tres" id="3_wmnea"]
+[ext_resource type="Resource" uid="uid://cu5gyajcfnp4b" path="res://gamedata/items/healing/quenching_water.tres" id="4_2lmke"]
+[ext_resource type="Resource" uid="uid://bgwbbpulv7yov" path="res://gamedata/items/healing/steak.tres" id="6_mewf5"]
+
+[sub_resource type="Resource" id="Resource_mewf5"]
+script = ExtResource("2_wfdin")
+sinceVersion = "0.3.6"
+item = ExtResource("3_wmnea")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_2lmke"]
+script = ExtResource("2_wfdin")
+sinceVersion = "0.3.6"
+item = ExtResource("3_wfdin")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_wmnea"]
+script = ExtResource("2_wfdin")
+sinceVersion = ""
+item = ExtResource("4_2lmke")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_6i3nb"]
+script = ExtResource("2_wfdin")
+sinceVersion = "0.3.6"
+item = ExtResource("6_mewf5")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
 [resource]
 script = ExtResource("1_fit41")
 id = ""
-shopItemSlots = Array[ExtResource("2_wfdin")]([])
+shopItemSlots = Array[ExtResource("2_wfdin")]([SubResource("Resource_mewf5"), SubResource("Resource_2lmke"), SubResource("Resource_wmnea"), SubResource("Resource_6i3nb")])
 metadata/_custom_type_script = "uid://c02s6f1mg2nhw"

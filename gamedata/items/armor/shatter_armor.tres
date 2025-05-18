@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=6 format=3 uid="uid://cg5uhtjvh6yjq"]
+
+[ext_resource type="Script" uid="uid://cwfx5xp76uvtt" path="res://scripts/inventory/items/armor.gd" id="1_53qvx"]
+[ext_resource type="Texture2D" uid="uid://cfjrenqnxqip0" path="res://graphics/items/armor/shatter_armor.png" id="1_bqq72"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_pd54p"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_piowo"]
+
+[sub_resource type="Resource" id="Resource_8keha"]
+script = ExtResource("4_piowo")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.08
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 0.9
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_pd54p")]([])
+keywordMultipliers = Dictionary[String, float]({
+"Shatter": 1.05
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_53qvx")
+statChanges = SubResource("Resource_8keha")
+timing = 6
+bonusOrbs = 1
+itemSprite = ExtResource("1_bqq72")
+itemName = "Shatter Armor"
+itemType = 3
+itemDescription = "A strange chestplate made of glass. As the wearer takes damage, pieces of the glass break off and become pointed fragments to use in attacks."
+cost = 32
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://cwfx5xp76uvtt"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=5 format=3 uid="uid://da31i7x4n58d0"]
+
+[ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_sldww"]
+[ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_xs4mo"]
+[ext_resource type="Resource" uid="uid://cg5uhtjvh6yjq" path="res://gamedata/items/armor/shatter_armor.tres" id="3_xs4mo"]
+
+[sub_resource type="Resource" id="Resource_rjx1k"]
+script = ExtResource("2_xs4mo")
+sinceVersion = "0.3.6"
+item = ExtResource("3_xs4mo")
+count = 1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[resource]
+script = ExtResource("1_sldww")
+id = ""
+shopItemSlots = Array[ExtResource("2_xs4mo")]([SubResource("Resource_rjx1k")])
+metadata/_custom_type_script = "uid://c02s6f1mg2nhw"

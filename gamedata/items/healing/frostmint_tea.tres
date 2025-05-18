@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Healing" load_steps=6 format=3 uid="uid://c2bdh1g33vs52"]
+
+[ext_resource type="Script" uid="uid://ca61xmfba8sif" path="res://scripts/inventory/items/healing.gd" id="1_8hove"]
+[ext_resource type="Texture2D" uid="uid://qjpnr6vv7wmb" path="res://graphics/items/healing/frostmint_tea.png" id="1_qkkhe"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_6cy5x"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_61r2e"]
+
+[sub_resource type="Resource" id="Resource_udk25"]
+script = ExtResource("4_61r2e")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.1
+resistanceMultiplier = 1.0
+speedMultiplier = 0.8
+elementMultipliers = Array[ExtResource("3_6cy5x")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_8hove")
+healBy = 600
+statusStrengthHeal = 0
+statChanges = SubResource("Resource_udk25")
+itemSprite = ExtResource("1_qkkhe")
+itemName = "Frostmint Tea"
+itemType = 0
+itemDescription = "Frostmint Village's most famous drink, this tea is brewed with only the coldest Frostmint leaves. Once drank, you'll feel like having a nap by the fire."
+cost = 20
+maxCount = 30
+usable = true
+battleUsable = true
+consumable = true
+equippable = false
+battleTargets = 3
+metadata/_custom_type_script = "uid://ca61xmfba8sif"
