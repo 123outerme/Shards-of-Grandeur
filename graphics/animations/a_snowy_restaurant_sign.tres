@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dmkuefcc7vivn"]
+
+[ext_resource type="Texture2D" uid="uid://dcjo0kik5p4mc" path="res://graphics/structures/shop_signs.png" id="1_hccyn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4mmv"]
+atlas = ExtResource("1_hccyn")
+region = Rect2(32, 48, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mmv")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mmv")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]

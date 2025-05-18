@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://b8g5gdcmy67cl"]
+[gd_scene load_steps=43 format=4 uid="uid://b8g5gdcmy67cl"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d6pke"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ksxva"]
@@ -6,18 +6,21 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_lgyjh"]
 [ext_resource type="SpriteFrames" uid="uid://bu1m3t7vrjkm6" path="res://graphics/animations/a_snowy_inn_sign.tres" id="5_is10d"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_lgyjh"]
-[ext_resource type="Resource" uid="uid://cbhbtp44n5xen" path="res://gamedata/dialogue/frostmint_village/inn_sign/frostmint_village_inn_1.tres" id="6_is10d"]
+[ext_resource type="Resource" uid="uid://cbhbtp44n5xen" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_inn_1.tres" id="6_is10d"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="6_q5eok"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_igro0"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="8_t4gxd"]
-[ext_resource type="Resource" uid="uid://cd28dn4q8sv8d" path="res://gamedata/dialogue/frostmint_village/village_sign/frostmint_village_sign_1.tres" id="9_is10d"]
+[ext_resource type="Resource" uid="uid://cd28dn4q8sv8d" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_sign_1.tres" id="9_is10d"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="9_ksxva"]
 [ext_resource type="SpriteFrames" uid="uid://bybjlkysux754" path="res://graphics/animations/a_snowy_sign.tres" id="10_q5eok"]
 [ext_resource type="SpriteFrames" uid="uid://dwh8kq6iqbgvp" path="res://graphics/animations/a_tundra_man_1.tres" id="11_igro0"]
 [ext_resource type="SpriteFrames" uid="uid://c4hrbfako7xfn" path="res://graphics/animations/a_tundra_lady_1.tres" id="12_t4gxd"]
+[ext_resource type="Resource" uid="uid://cbclxeqvr1rk" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_armory_sign_1.tres" id="13_4cqnv"]
 [ext_resource type="SpriteFrames" uid="uid://bbhes1mj3tsjf" path="res://graphics/animations/a_snowy_armory_sign.tres" id="13_dg8ii"]
+[ext_resource type="SpriteFrames" uid="uid://dmkuefcc7vivn" path="res://graphics/animations/a_snowy_restaurant_sign.tres" id="14_3gbuk"]
+[ext_resource type="Resource" uid="uid://dqfwj065uoeey" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_tavern_sign_1.tres" id="14_fggv6"]
 
-[sub_resource type="Resource" id="Resource_igro0"]
+[sub_resource type="Resource" id="Resource_3gbuk"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -46,7 +49,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrij5"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_t4gxd"]
+[sub_resource type="Resource" id="Resource_fggv6"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -75,7 +78,7 @@ size = Vector2(15.5, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5eok"]
 size = Vector2(24, 15)
 
-[sub_resource type="Resource" id="Resource_dg8ii"]
+[sub_resource type="Resource" id="Resource_4cqnv"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -98,7 +101,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_3gbuk"]
+[sub_resource type="Resource" id="Resource_6ldjy"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -121,12 +124,35 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_fggv6"]
+[sub_resource type="Resource" id="Resource_a08oj"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(-103, -105)
+position = Vector2(153, -169)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_80hg6"]
+script = ExtResource("4_lgyjh")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-262, -169)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -237,7 +263,7 @@ tile_set = ExtResource("2_ksxva")
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-103, -105)
 displayName = "Sign"
-data = SubResource("Resource_igro0")
+data = SubResource("Resource_3gbuk")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("6_is10d")])
 facesPlayer = false
 
@@ -263,7 +289,7 @@ visible = false
 [node name="VillageSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-435, 78)
 displayName = "Sign"
-data = SubResource("Resource_t4gxd")
+data = SubResource("Resource_fggv6")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("9_is10d")])
 facesPlayer = false
 
@@ -290,7 +316,7 @@ visible = false
 position = Vector2(-36, 127)
 displayName = "Villager"
 saveName = "frostmint_villager_1"
-data = SubResource("Resource_dg8ii")
+data = SubResource("Resource_4cqnv")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager" index="0"]
 sprite_frames = ExtResource("11_igro0")
@@ -308,7 +334,8 @@ visible = false
 [node name="Villager2" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(256, -143)
 displayName = "Villager"
-data = SubResource("Resource_3gbuk")
+saveName = "frostmint_villager_2"
+data = SubResource("Resource_6ldjy")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager2" index="0"]
 sprite_frames = ExtResource("12_t4gxd")
@@ -327,11 +354,13 @@ visible = false
 position = Vector2(153, -169)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_fggv6")
+data = SubResource("Resource_a08oj")
+dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("13_4cqnv")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/ArmorySign" index="0"]
 sprite_frames = ExtResource("13_dg8ii")
+animation = &"talk"
 
 [node name="TalkAlertSprite" parent="TilemapRoot/ArmorySign/NPCSprite" index="0"]
 texture = ExtResource("6_q5eok")
@@ -346,6 +375,33 @@ shape = SubResource("RectangleShape2D_vrij5")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/ArmorySign" index="4"]
+visible = false
+
+[node name="TavernSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
+position = Vector2(-262, -169)
+displayName = "Sign"
+loadFlipH = true
+data = SubResource("Resource_80hg6")
+dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("14_fggv6")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/TavernSign" index="0"]
+sprite_frames = ExtResource("14_3gbuk")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/TavernSign/NPCSprite" index="0"]
+texture = ExtResource("6_q5eok")
+
+[node name="ColliderShape" parent="TilemapRoot/TavernSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_deutl")
+
+[node name="TalkAreaShape" parent="TilemapRoot/TavernSign/TalkArea" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_vrij5")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/TavernSign" index="4"]
 visible = false
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
@@ -385,12 +441,12 @@ mapPos = Vector2(-8, 4)
 [node name="WarpArea" parent="InnWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_ktwc3")
 
-[node name="WarpZone" parent="." instance=ExtResource("7_igro0")]
+[node name="TavernWarpZone" parent="." instance=ExtResource("7_igro0")]
 position = Vector2(-296.5, -174)
+mapName = "frostbite_tavern"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="WarpZone" index="0"]
+[node name="WarpArea" parent="TavernWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_4hm8l")
 
 [node name="WarpZone3" parent="." instance=ExtResource("7_igro0")]
@@ -449,10 +505,11 @@ position = Vector2(48, -376)
 [editable path="TilemapRoot/Villager"]
 [editable path="TilemapRoot/Villager2"]
 [editable path="TilemapRoot/ArmorySign"]
+[editable path="TilemapRoot/TavernSign"]
 [editable path="TundraWestWarpZone"]
 [editable path="MansionRoadWarpZone"]
 [editable path="InnWarpZone"]
-[editable path="WarpZone"]
+[editable path="TavernWarpZone"]
 [editable path="WarpZone3"]
 [editable path="WarpZone4"]
 [editable path="WarpZone5"]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=31 format=4 uid="uid://dyya5ljxgcvlx"]
+[gd_scene load_steps=32 format=4 uid="uid://dyya5ljxgcvlx"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2ghcv"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_kph06"]
+[ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="3_6mgvh"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_55211"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_eo5tj"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_fmisr"]
 [ext_resource type="Resource" uid="uid://cb8c43nbn53ao" path="res://gamedata/dialogue/standstill/standstill_sign/alessias_forge_sign.tres" id="6_iexth"]
 [ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="7_6f7de"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="8_7bh2q"]
+[ext_resource type="SpriteFrames" uid="uid://faygv0aomiqm" path="res://graphics/furniture/a_stone_furnace.tres" id="8_wrv16"]
 [ext_resource type="SpriteFrames" uid="uid://bwkavw4libfps" path="res://graphics/animations/a_alessia_burned_collapsed.tres" id="9_ls1j7"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="10_bjjly"]
 [ext_resource type="SpriteFrames" uid="uid://b0ldevl74c07y" path="res://graphics/animations/a_alessia_in_bed.tres" id="10_p0awk"]
@@ -35,7 +37,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("17_mm255")]([])
@@ -46,16 +48,12 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("17_mm255")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ps5la"]
 size = Vector2(16, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tthk"]
-atlas = ExtResource("16_ev6bm")
-region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="Resource" id="Resource_hm6gc"]
 script = ExtResource("18_joowq")
@@ -68,7 +66,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("17_mm255")]([])
@@ -79,14 +77,14 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("17_mm255")]([])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ov4v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrv16"]
 size = Vector2(16, 5)
 
-[sub_resource type="Resource" id="Resource_nkb21"]
+[sub_resource type="Resource" id="Resource_o2viv"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "default"
@@ -115,7 +113,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsmwf"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_ehtsm"]
+[sub_resource type="Resource" id="Resource_kbqqb"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
@@ -138,7 +136,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_okoxs"]
+[sub_resource type="Resource" id="Resource_gg67x"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
@@ -210,20 +208,21 @@ storyRequirements = Array[ExtResource("18_joowq")]([SubResource("Resource_w3dsr"
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_ps5la")
 
-[node name="LitFurnace" parent="TilemapRoot" instance=ExtResource("15_1tpat")]
+[node name="LitFurnace" parent="TilemapRoot" instance=ExtResource("3_6mgvh")]
 visible = false
 position = Vector2(-8, -104)
-texture = SubResource("AtlasTexture_2tthk")
 storyRequirements = Array[ExtResource("18_joowq")]([SubResource("Resource_hm6gc")])
 
+[node name="AnimatedSprite2D" parent="TilemapRoot/LitFurnace" index="0"]
+sprite_frames = ExtResource("8_wrv16")
+
 [node name="CollisionShape2D" parent="TilemapRoot/LitFurnace/Collision" index="0"]
-position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_3ov4v")
+shape = SubResource("RectangleShape2D_wrv16")
 
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_55211")]
 position = Vector2(-68, 16)
 displayName = "Sign"
-data = SubResource("Resource_nkb21")
+data = SubResource("Resource_o2viv")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -259,12 +258,12 @@ position = Vector2(-88, -22)
 displayName = "Alessia"
 saveName = "alessia_standstill_foundry_burned"
 spriteState = "in_bed"
-stateSpritesDict = {
+stateSpritesDict = Dictionary[String, SpriteFrames]({
 "burned_collapsed": ExtResource("9_ls1j7"),
 "default": null,
 "in_bed": ExtResource("10_p0awk")
-}
-data = SubResource("Resource_ehtsm")
+})
+data = SubResource("Resource_kbqqb")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 position = Vector2(0, -6)
@@ -289,11 +288,11 @@ position = Vector2(-8, -89)
 displayName = "Lance"
 saveName = "lance_standstill_foundry_burned"
 spriteState = "burned"
-stateSpritesDict = {
+stateSpritesDict = Dictionary[String, SpriteFrames]({
 "burned": ExtResource("10_yywe0"),
 "default": ExtResource("11_pb102")
-}
-data = SubResource("Resource_okoxs")
+})
+data = SubResource("Resource_gg67x")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 

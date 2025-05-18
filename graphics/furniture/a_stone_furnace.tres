@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://faygv0aomiqm"]
+
+[ext_resource type="Texture2D" uid="uid://s20cyrljt6q4" path="res://graphics/furniture/fireplaces.png" id="1_kj0co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p8gd"]
+atlas = ExtResource("1_kj0co")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ccs"]
+atlas = ExtResource("1_kj0co")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehl58"]
+atlas = ExtResource("1_kj0co")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p8gd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56ccs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehl58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
