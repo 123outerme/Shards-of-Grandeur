@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bae274ej7dl8i"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_wgxhq"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_a31o4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_u38pd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_u38pd"]
+
+[sub_resource type="Resource" id="Resource_h6nbc"]
+script = ExtResource("1_wgxhq")
+lines = Array[String](["Here are some extra-warm blankets for your sleep."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_u38pd")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_u38pd")
+entryId = ""
+items = Array[ExtResource("1_wgxhq")]([SubResource("Resource_h6nbc")])
+ordStoryRequirements = Array[ExtResource("2_a31o4")]([])
+closesDialogue = true
+fullHealsPlayer = true
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://cyimkxja06fvy"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_fjihb"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_cydog"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_cydog"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_8lb2m"]
+
+[sub_resource type="Resource" id="Resource_y21ip"]
+script = ExtResource("4_8lb2m")
+experience = 180
+gold = 5
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_8lb2m"]
+script = ExtResource("2_cydog")
+name = "Be the Messenger"
+description = "The storekeeper gave you a contract for the Leavenport Restaurant. Deliver it to the Owner!"
+reward = SubResource("Resource_y21ip")
+locations = Array[int]([30])
+type = 0
+count = 1
+objectiveName = "leavenport_restaurant_owner#TBD"
+turnInNames = Array[String]([])
+displayObjName = "Restaurant Owner"
+displayTurnInName = "Restaurant Owner"
+customStatusStr = "Deliver Contract!"
+turnInDialogue = Array[ExtResource("3_cydog")]([])
+inProgressDialogue = Array[ExtResource("3_cydog")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_cydog"]
+script = ExtResource("2_cydog")
+name = ""
+description = ""
+locations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "--"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_cydog")]([])
+inProgressDialogue = Array[ExtResource("3_cydog")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[resource]
+script = ExtResource("1_fjihb")
+questName = "A Good Exchange"
+description = "The general store in Frostmint Village wants to open a trade agreement with Leavenport."
+steps = Array[ExtResource("2_cydog")]([SubResource("Resource_8lb2m"), SubResource("Resource_cydog")])
+isMainQuest = false
+advanceActAfterComplete = false
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"

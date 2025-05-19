@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://crf7e7cn4mgmb"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_01e82"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5qoo4"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_wg2x7"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5qoo4"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cry2a"]
+[ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_evwkq"]
+[ext_resource type="Resource" uid="uid://cdbieyuxmf4th" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/a_good_exchange/a_good_exch_intro.tres" id="5_evwkq"]
+
+[sub_resource type="Resource" id="Resource_vwqur"]
+script = ExtResource("2_5qoo4")
+choiceBtn = "Goodbye."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cry2a")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_4cqcm"]
+script = ExtResource("4_evwkq")
+opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
+choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cry2a")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
+
+[sub_resource type="Resource" id="Resource_evwkq"]
+script = ExtResource("2_5qoo4")
+choiceBtn = "Got Any Work?"
+leadsTo = ExtResource("5_evwkq")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cry2a")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_cry2a"]
+script = ExtResource("1_01e82")
+lines = Array[String](["Welcome to the Blizzard General Store! What can I get for you today?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5qoo4")]([SubResource("Resource_vwqur"), SubResource("Resource_4cqcm"), SubResource("Resource_evwkq")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_5qoo4")
+entryId = ""
+items = Array[ExtResource("1_01e82")]([SubResource("Resource_cry2a")])
+ordStoryRequirements = Array[ExtResource("2_wg2x7")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

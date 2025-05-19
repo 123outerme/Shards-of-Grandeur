@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://bnvirucpq0u8d"]
+
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_dxnet"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_sho01"]
+[ext_resource type="Resource" uid="uid://bo0vnl5ddbe8p" path="res://gamedata/items/shard/mesa_golem_shard.tres" id="3_g5wvc"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_g7ga0"]
+[ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="5_4ytfq"]
+
+[sub_resource type="Resource" id="Resource_uawhw"]
+script = ExtResource("4_g7ga0")
+experience = 50
+gold = 8
+item = ExtResource("3_g5wvc")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_02aiy"]
+script = ExtResource("2_sho01")
+reward = SubResource("Resource_uawhw")
+weight = 0.85
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[sub_resource type="Resource" id="Resource_j0k8b"]
+script = ExtResource("4_g7ga0")
+experience = 50
+gold = 8
+item = ExtResource("5_4ytfq")
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_h7evr"]
+script = ExtResource("2_sho01")
+reward = SubResource("Resource_j0k8b")
+weight = 0.15
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[resource]
+script = ExtResource("1_dxnet")
+weightedRewards = Array[ExtResource("2_sho01")]([SubResource("Resource_02aiy"), SubResource("Resource_h7evr")])
+metadata/_custom_type_script = "uid://o0eqgjrxwybg"

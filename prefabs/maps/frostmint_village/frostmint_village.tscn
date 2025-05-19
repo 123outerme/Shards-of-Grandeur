@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://b8g5gdcmy67cl"]
+[gd_scene load_steps=45 format=4 uid="uid://b8g5gdcmy67cl"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d6pke"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ksxva"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_igro0"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="8_t4gxd"]
 [ext_resource type="Resource" uid="uid://cd28dn4q8sv8d" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_sign_1.tres" id="9_is10d"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="9_ksxva"]
 [ext_resource type="SpriteFrames" uid="uid://bybjlkysux754" path="res://graphics/animations/a_snowy_sign.tres" id="10_q5eok"]
 [ext_resource type="SpriteFrames" uid="uid://dwh8kq6iqbgvp" path="res://graphics/animations/a_tundra_man_1.tres" id="11_igro0"]
 [ext_resource type="SpriteFrames" uid="uid://c4hrbfako7xfn" path="res://graphics/animations/a_tundra_lady_1.tres" id="12_t4gxd"]
@@ -19,6 +18,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bbhes1mj3tsjf" path="res://graphics/animations/a_snowy_armory_sign.tres" id="13_dg8ii"]
 [ext_resource type="SpriteFrames" uid="uid://dmkuefcc7vivn" path="res://graphics/animations/a_snowy_restaurant_sign.tres" id="14_3gbuk"]
 [ext_resource type="Resource" uid="uid://dqfwj065uoeey" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_tavern_sign_1.tres" id="14_fggv6"]
+[ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="17_4cqnv"]
+[ext_resource type="Resource" uid="uid://deu86jwpct8jq" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_shop_sign_1.tres" id="17_6ldjy"]
 
 [sub_resource type="Resource" id="Resource_4cqnv"]
 script = ExtResource("4_lgyjh")
@@ -153,6 +154,29 @@ saveName = "npc"
 spriteState = "default"
 animation = "stand"
 position = Vector2(-262, -169)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_fggv6"]
+script = ExtResource("4_lgyjh")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-103, -105)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -404,6 +428,32 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TilemapRoot/TavernSign" index="4"]
 visible = false
 
+[node name="ShopSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
+position = Vector2(-278, 215)
+displayName = "Sign"
+data = SubResource("Resource_fggv6")
+dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("17_6ldjy")])
+facesPlayer = false
+
+[node name="NPCSprite" parent="TilemapRoot/ShopSign" index="0"]
+sprite_frames = ExtResource("17_4cqnv")
+animation = &"stand"
+
+[node name="TalkAlertSprite" parent="TilemapRoot/ShopSign/NPCSprite" index="0"]
+texture = ExtResource("6_q5eok")
+
+[node name="ColliderShape" parent="TilemapRoot/ShopSign" index="1"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_deutl")
+
+[node name="TalkAreaShape" parent="TilemapRoot/ShopSign/TalkArea" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_vrij5")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/ShopSign" index="4"]
+visible = false
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -465,12 +515,12 @@ warpEnabled = false
 [node name="WarpArea" parent="WarpZone4" index="0"]
 shape = SubResource("RectangleShape2D_tadab")
 
-[node name="WarpZone5" parent="." instance=ExtResource("7_igro0")]
+[node name="GeneralStoreWarpZone" parent="." instance=ExtResource("7_igro0")]
 position = Vector2(-312.5, 210)
+mapName = "frostmint_general_store"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="WarpZone5" index="0"]
+[node name="WarpArea" parent="GeneralStoreWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_jydsf")
 
 [node name="WarpZone6" parent="." instance=ExtResource("7_igro0")]
@@ -497,22 +547,20 @@ holdX = false
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_xr4ay")
 
-[node name="TestCamera" parent="." instance=ExtResource("9_ksxva")]
-position = Vector2(48, -376)
-
 [editable path="TilemapRoot/InnSign"]
 [editable path="TilemapRoot/VillageSign"]
 [editable path="TilemapRoot/Villager"]
 [editable path="TilemapRoot/Villager2"]
 [editable path="TilemapRoot/ArmorySign"]
 [editable path="TilemapRoot/TavernSign"]
+[editable path="TilemapRoot/ShopSign"]
 [editable path="TundraWestWarpZone"]
 [editable path="MansionRoadWarpZone"]
 [editable path="InnWarpZone"]
 [editable path="TavernWarpZone"]
 [editable path="ForgeWarpZone"]
 [editable path="WarpZone4"]
-[editable path="WarpZone5"]
+[editable path="GeneralStoreWarpZone"]
 [editable path="WarpZone6"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]

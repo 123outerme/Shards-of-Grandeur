@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://cdbieyuxmf4th"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_uyymy"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_3bd2h"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_eeb78"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cqrd5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_eeb78"]
+[ext_resource type="Resource" uid="uid://bco7t2bx0mrp7" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/a_good_exchange/a_good_exch_intro_accept.tres" id="4_gaogd"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_eod1t"]
+
+[sub_resource type="Resource" id="Resource_eeb78"]
+script = ExtResource("2_eeb78")
+choiceBtn = "Never Been."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cqrd5")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_gaogd"]
+script = ExtResource("2_eeb78")
+choiceBtn = "I Have!"
+leadsTo = ExtResource("4_gaogd")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cqrd5")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_cqrd5"]
+script = ExtResource("1_uyymy")
+lines = Array[String](["Actually, I've been looking to expand my operations recently. Maybe you can help.", "We can't always get the freshest ingredients out here in the snow. So, I'd like to make a trade agreement with Leavenport.", "I don't suppose you've been to Leavenport before?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_eeb78")]([SubResource("Resource_eeb78"), SubResource("Resource_gaogd")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_dhm86"]
+script = ExtResource("2_3bd2h")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_eod1t")]([])
+invalidAfterCompletingQuests = Array[String](["A Good Exchange#"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_eod1t")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_eeb78")
+entryId = ""
+items = Array[ExtResource("1_uyymy")]([SubResource("Resource_cqrd5")])
+ordStoryRequirements = Array[ExtResource("2_3bd2h")]([SubResource("Resource_dhm86")])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

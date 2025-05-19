@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://cp2xonnwixqog"]
+
+[ext_resource type="Texture2D" uid="uid://cp84a6x7jj4mq" path="res://graphics/items/weapons/orb_of_foretelling.png" id="1_li6r2"]
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_ye2yg"]
+
+[resource]
+script = ExtResource("1_ye2yg")
+timing = 1
+bonusOrbs = 1
+itemSprite = ExtResource("1_li6r2")
+itemName = "Orb of Foretelling"
+itemType = 2
+itemDescription = "An enchanted crystal ball, with shifting shadows portrayed inside. It is said that a wise oracle once used this orb to foresee the fall of a great kingdom."
+cost = 45
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"

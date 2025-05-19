@@ -1,20 +1,45 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://clw3legbkrb4"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://clw3legbkrb4"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_g88vn"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_6bfmo"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_jhaxe"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_6bfmo"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_k660n"]
+[ext_resource type="Resource" uid="uid://bae274ej7dl8i" path="res://gamedata/dialogue/frostmint_village/innkeeper/fm_innkeeper_rest.tres" id="4_k660n"]
+
+[sub_resource type="Resource" id="Resource_7timf"]
+script = ExtResource("2_6bfmo")
+choiceBtn = "Never Mind."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_k660n")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_6bfmo"]
+script = ExtResource("2_6bfmo")
+choiceBtn = "Rest"
+leadsTo = ExtResource("4_k660n")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_k660n")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_k660n"]
 script = ExtResource("1_g88vn")
-lines = Array[String](["Hello, traveller! Welcome to the Frostmint Village Inn."])
+lines = Array[String](["Hello, traveller! Welcome to the Frostmint Village Inn. We have beds, if you would like to rest!"])
 minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_6bfmo")]([])
+choices = Array[ExtResource("2_6bfmo")]([SubResource("Resource_7timf"), SubResource("Resource_6bfmo")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
