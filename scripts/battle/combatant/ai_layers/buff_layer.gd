@@ -11,7 +11,7 @@ enum BuffStrategy {
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_buffStrategy: BuffStrategy = BuffStrategy.BUFF_STRONGEST,
 ) -> void:
 	super(i_weight, i_subLayers)

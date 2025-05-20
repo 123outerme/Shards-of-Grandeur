@@ -13,7 +13,7 @@ class_name MoveOrderedCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_moveList: Array[Move] = [],
 	i_moveListAttemptSurge: Array[bool] = [],
 	i_moveIdx: int = 0,

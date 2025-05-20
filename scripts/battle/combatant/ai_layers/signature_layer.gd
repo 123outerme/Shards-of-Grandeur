@@ -6,7 +6,7 @@ class_name SignatureCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_signatureWeight: float = 1.25,
 ) -> void:
 	super(i_weight, i_subLayers)

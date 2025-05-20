@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=19 format=3 uid="uid://dpdygiw5b5e47"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=20 format=3 uid="uid://dpdygiw5b5e47"]
 
 [ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/abstract_combatant_ai_layer.gd" id="1_uqil7"]
 [ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_giol1"]
 [ext_resource type="Script" uid="uid://w2owehn7fmot" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_mkar3"]
 [ext_resource type="Script" uid="uid://0yxyfr70qvwu" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="3_6crw8"]
+[ext_resource type="Script" uid="uid://bt3pb5c4p23hj" path="res://scripts/battle/combatant/combatant_ai_layer_base.gd" id="3_oldtv"]
 [ext_resource type="Script" uid="uid://dim2s6pbuqjth" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="4_mblox"]
 [ext_resource type="Script" uid="uid://0ddrq70do5nq" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="4_p1srp"]
 [ext_resource type="Script" uid="uid://isq1ycq00u4s" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="4_uoodx"]
@@ -14,48 +15,48 @@
 [sub_resource type="Resource" id="Resource_0vmwm"]
 script = ExtResource("3_6crw8")
 aggroStrategy = 3
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.3
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_2uhwf"]
 script = ExtResource("2_giol1")
 healLayer = false
+subLayers = Array[ExtResource("3_oldtv")]([SubResource("Resource_0vmwm")])
 weight = 0.85
-subLayers = Array[ExtResource("1_uqil7")]([SubResource("Resource_0vmwm")])
 
 [sub_resource type="Resource" id="Resource_d8m4b"]
 script = ExtResource("4_uoodx")
 buffStrategy = 2
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.6
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_1cwo3"]
 script = ExtResource("5_7oigs")
 debuffStrategy = 1
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.35
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_uk37p"]
 script = ExtResource("4_p1srp")
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.3
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_pahih"]
 script = ExtResource("7_t8ylo")
 mostOrbsWeight = 1.15
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.35
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_j42n2"]
 script = ExtResource("4_mblox")
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.2
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [sub_resource type="Resource" id="Resource_adp1x"]
 script = ExtResource("5_65rfu")
 signatureWeight = 1.25
+subLayers = Array[ExtResource("3_oldtv")]([])
 weight = 0.35
-subLayers = Array[ExtResource("1_uqil7")]([])
 
 [resource]
 script = ExtResource("2_mkar3")

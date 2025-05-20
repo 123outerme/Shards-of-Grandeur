@@ -8,7 +8,7 @@ const NO_OTHER_DMG_MOVES_WEIGHT: float = 1.25
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_healLayer: bool = false,
 ) -> void:
 	super(i_weight, i_subLayers)

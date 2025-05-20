@@ -1,11 +1,8 @@
-extends Resource
+extends CombatantAiLayerBase
 class_name AbstractCombatantAiLayer
 
-## the amount of weight this layer has on the final decision of the AI
-@export var weight: float = 1.0
-
 ## sub-layers that act as additional weighting on this layer
-@export var subLayers: Array[AbstractCombatantAiLayer] = []
+@export var subLayers: Array[CombatantAiLayerBase] = []
 
 static func get_runes_on_combatant_move_triggers(user: CombatantNode, move: Move, effectType: Move.MoveEffectType, orbs: int, target: CombatantNode, battleState: BattleState, runes: Array[Rune]) -> Array[Rune]:
 	var triggeredRunes: Array[Rune] = []
@@ -61,9 +58,9 @@ static func will_move_effect_trigger_rune(user: CombatantNode, move: Move, effec
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 ) -> void:
-	weight = i_weight
+	super(i_weight)
 	subLayers = i_subLayers
 
 ## get the weight for a combination of move effect and target
@@ -93,8 +90,8 @@ func set_move_used(move: Move, effectType: Move.MoveEffectType) -> void:
 func copy(copyStorage: bool = false) -> AbstractCombatantAiLayer:
 	return AbstractCombatantAiLayer.new(weight, copy_sublayers(copyStorage))
 
-func copy_sublayers(copyStorage: bool = false) -> Array[AbstractCombatantAiLayer]:
-	var newLayers: Array[AbstractCombatantAiLayer] = []
-	for layer: AbstractCombatantAiLayer in subLayers:
+func copy_sublayers(copyStorage: bool = false) -> Array[CombatantAiLayerBase]:
+	var newLayers: Array[CombatantAiLayerBase] = []
+	for layer: CombatantAiLayerBase in subLayers:
 		newLayers.append(layer.copy(copyStorage))
 	return newLayers

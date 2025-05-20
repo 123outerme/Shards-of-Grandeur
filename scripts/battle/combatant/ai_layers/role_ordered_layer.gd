@@ -11,7 +11,7 @@ class_name RoleOrderedCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_roleList: Array[MoveEffect.Role] = [],
 	i_loop: bool = true,
 	i_roleIdx: int = 0,

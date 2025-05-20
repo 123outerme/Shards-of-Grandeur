@@ -15,7 +15,7 @@ class_name RuneCombatantAiLayer
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_triggerWeight: float = 1.25,
 	i_setWeight: float = 1.15,
 	i_healPowerWeight: float = 1.0,

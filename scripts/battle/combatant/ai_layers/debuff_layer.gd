@@ -10,7 +10,7 @@ enum DebuffStrategy {
 
 func _init(
 	i_weight: float = 1.0,
-	i_subLayers: Array[AbstractCombatantAiLayer] = [],
+	i_subLayers: Array[CombatantAiLayerBase] = [],
 	i_debuffStrategy: DebuffStrategy = DebuffStrategy.DEBUFF_STRONGEST,
 ) -> void:
 	super(i_weight, i_subLayers)
