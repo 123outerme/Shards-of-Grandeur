@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmnoud33o5ku8"]
+
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_8xvqc"]
+[ext_resource type="Script" uid="uid://bycnhmjy8g8ty" path="res://scripts/menus/stats_panel/new_moves_panel/new_moves_panel.gd" id="1_im1mk"]
+[ext_resource type="Script" uid="uid://cqu8qkicb5n1f" path="res://scripts/menus/scroll_better_follow.gd" id="2_7a80i"]
+[ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="3_y2mpy"]
+[ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="6_rqba3"]
+[ext_resource type="PackedScene" uid="uid://ie2m5n6k0qjg" path="res://prefabs/ui/inventory/item_use_panel.tscn" id="7_q3unl"]
+
+[node name="NewMovesPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -320.0
+offset_bottom = -196.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8xvqc")
+script = ExtResource("1_im1mk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_y2mpy")
+
+[node name="Title" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -206.0
+offset_top = 8.0
+offset_right = 205.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[center]New Moves:[/center]"
+fit_content = true
+
+[node name="ScrollBetterFollow" type="ScrollContainer" parent="Panel" node_paths=PackedStringArray("boxContainer")]
+custom_minimum_size = Vector2(940, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -435.0
+offset_top = 42.0
+offset_right = 435.0
+offset_bottom = 515.0
+grow_horizontal = 2
+follow_focus = true
+script = ExtResource("2_7a80i")
+boxContainer = NodePath("VBoxContainer")
+metadata/_custom_type_script = "uid://cqu8qkicb5n1f"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollBetterFollow"]
+layout_mode = 2
+
+[node name="MoveDetailsPanel" parent="." instance=ExtResource("6_rqba3")]
+visible = false
+
+[node name="ItemUsePanel" parent="." instance=ExtResource("7_q3unl")]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="visibility_changed" from="Panel/ScrollBetterFollow" to="Panel/ScrollBetterFollow" method="_on_visibility_changed"]
+[connection signal="back_pressed" from="MoveDetailsPanel" to="." method="_on_move_details_panel_back_pressed"]
+[connection signal="ok_pressed" from="ItemUsePanel" to="." method="_on_item_use_panel_ok_pressed"]

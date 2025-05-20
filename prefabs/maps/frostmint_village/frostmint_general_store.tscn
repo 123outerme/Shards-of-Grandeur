@@ -13,12 +13,12 @@
 [ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="10_xrogf"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="11_wwsvj"]
 
-[sub_resource type="Resource" id="Resource_uuqs6"]
+[sub_resource type="Resource" id="Resource_5nhsa"]
 script = ExtResource("4_jgq3e")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(-8, -78)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -39,12 +39,12 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1smum"]
 size = Vector2(24, 25)
 
-[sub_resource type="Resource" id="Resource_eh51r"]
+[sub_resource type="Resource" id="Resource_xrogf"]
 script = ExtResource("4_jgq3e")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(-278, 215)
+position = Vector2(113, 17)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -112,7 +112,7 @@ tile_set = ExtResource("2_c8s02")
 position = Vector2(-8, -78)
 displayName = "Shopkeeper"
 saveName = "frostmint_general_store_shopkeeper"
-data = SubResource("Resource_uuqs6")
+data = SubResource("Resource_5nhsa")
 dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("6_igwuf")])
 npcShop = ExtResource("5_jgq3e")
 
@@ -133,7 +133,7 @@ visible = false
 [node name="ShopSign" parent="TilemapRoot" instance=ExtResource("3_1smum")]
 position = Vector2(113, 17)
 displayName = "Sign"
-data = SubResource("Resource_eh51r")
+data = SubResource("Resource_xrogf")
 dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("9_5nhsa")])
 facesPlayer = false
 

@@ -59,7 +59,10 @@ func _init(
 	spawnsThreeOfFace = i_spawnsThreeOfFace
 
 func can_be_used_now() -> bool:
-	return self not in PlayerResources.playerInfo.activeBattleModifierItems
+	return not (self in PlayerResources.playerInfo.activeBattleModifierItems)
+
+func get_cant_be_used_message() -> String:
+	return 'Active'
 
 func use(_target: Combatant):
 	if can_be_used_now():

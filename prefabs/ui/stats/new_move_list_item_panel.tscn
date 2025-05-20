@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://ncusxoyc62w7"]
+
+[ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_f70be"]
+[ext_resource type="Script" uid="uid://dsewcbrgrxpnw" path="res://scripts/menus/stats_panel/new_moves_panel/new_move_list_item_panel.gd" id="1_r4vrn"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="2_rwbmu"]
+[ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_f70be"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_hrrkq"]
+
+[node name="NewMoveListItemPanel" type="Panel"]
+custom_minimum_size = Vector2(930, 76)
+offset_right = 800.0
+offset_bottom = 76.0
+mouse_filter = 1
+theme = ExtResource("1_f70be")
+script = ExtResource("1_r4vrn")
+
+[node name="CenterMoveName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = 247.0
+offset_bottom = 5.0
+grow_vertical = 2
+alignment = 1
+
+[node name="MoveName" type="RichTextLabel" parent="CenterMoveName"]
+layout_mode = 2
+mouse_filter = 2
+text = "Move Name Goes Here"
+fit_content = true
+
+[node name="CenterDetails" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 251.0
+offset_top = 3.0
+offset_right = 333.0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="DamageType" type="RichTextLabel" parent="CenterDetails"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[center]Lightning
+Physical[/center]"
+fit_content = true
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(374, 38)
+scale = Vector2(4, 4)
+texture = ExtResource("2_rwbmu")
+
+[node name="CenterItemName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 406.0
+offset_right = 679.0
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemName" type="RichTextLabel" parent="CenterItemName"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_f70be")
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+text = "Item Name Goes Here"
+fit_content = true
+
+[node name="CenterItemCount" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 689.0
+offset_right = 755.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemCount" type="RichTextLabel" parent="CenterItemCount"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_f70be")
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+text = "x999"
+fit_content = true
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -15.5
+offset_right = -8.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="LearnButton" parent="Buttons" instance=ExtResource("4_hrrkq")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../DetailsButton")
+focus_neighbor_bottom = NodePath(".")
+text = "Learn"
+
+[node name="DetailsButton" parent="Buttons" instance=ExtResource("4_hrrkq")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../LearnButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Details"
+
+[connection signal="pressed" from="Buttons/LearnButton" to="." method="_on_learn_button_pressed"]
+[connection signal="pressed" from="Buttons/DetailsButton" to="." method="_on_details_button_pressed"]

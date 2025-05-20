@@ -14,7 +14,7 @@ func load_battle_boosts_panel() -> void:
 	var attunementModifier: float = PlayerResources.playerInfo.get_battle_attunement_modifier()
 	var spawnsThreeOfFace: bool = PlayerResources.playerInfo.get_spawns_three_face_combatant()
 	
-	if not enabled or len(PlayerResources.playerInfo.activeBattleModifierItems) == 0 or \
+	if not enabled or (inBattle and levelUp) or len(PlayerResources.playerInfo.activeBattleModifierItems) == 0 or \
 			(expModifier == 1.0 and goldModifier == 1.0 and attunementModifier == 1.0 and not spawnsThreeOfFace):
 		enabled = false
 		visible = false

@@ -18,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://dyj8w3r046uik" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive_l2.tres" id="12_5hxps"]
 [ext_resource type="Resource" uid="uid://xodejjykgcdx" path="res://gamedata/cutscenes/giant_steppes/gis_after_meeting1.tres" id="17_x858i"]
 
-[sub_resource type="Resource" id="Resource_10q5v"]
+[sub_resource type="Resource" id="Resource_x858i"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -68,7 +68,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("7_x858i")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_x858i"]
+[sub_resource type="Resource" id="Resource_u2q4f"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -130,7 +130,7 @@ size = Vector2(8, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44juo"]
 size = Vector2(34, 20)
 
-[sub_resource type="Resource" id="Resource_u2q4f"]
+[sub_resource type="Resource" id="Resource_c0ybn"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -201,7 +201,7 @@ tile_set = ExtResource("2_tarat")
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("3_f4x3h")]
 position = Vector2(-298, 84)
-data = SubResource("Resource_10q5v")
+data = SubResource("Resource_x858i")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("5_ro6wv")
@@ -221,7 +221,7 @@ position = Vector2(0, 62)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes_l2"
 orSpawnRequirements = Array[ExtResource("6_10q5v")]([SubResource("Resource_8vcfh")])
-data = SubResource("Resource_x858i")
+data = SubResource("Resource_u2q4f")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("6_qw015")
@@ -324,7 +324,7 @@ rootNode = NodePath("..")
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-56, -27.8955)
 facingLeft = true
-data = SubResource("Resource_u2q4f")
+data = SubResource("Resource_c0ybn")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

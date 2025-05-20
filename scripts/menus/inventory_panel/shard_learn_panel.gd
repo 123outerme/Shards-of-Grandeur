@@ -135,6 +135,7 @@ func load_shard_learn_panel(initialFocus: bool = true, loadEvolutions: bool = tr
 
 func _on_back_button_pressed():
 	visible = false
+	evolution = null
 	back_pressed.emit()
 
 func _on_move_pool_panel_learn_button_clicked(move: Move):

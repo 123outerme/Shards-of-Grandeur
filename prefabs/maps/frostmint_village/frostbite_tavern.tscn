@@ -12,7 +12,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dcx82jmg46h18" path="res://graphics/animations/a_tundra_man_5.tres" id="9_l8410"]
 [ext_resource type="SpriteFrames" uid="uid://b4d7lnsoyh78o" path="res://graphics/animations/a_tundra_lady_2.tres" id="9_ofqym"]
 
-[sub_resource type="Resource" id="Resource_ofqym"]
+[sub_resource type="Resource" id="Resource_l8410"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -38,7 +38,7 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfuee"]
 size = Vector2(24, 27)
 
-[sub_resource type="Resource" id="Resource_l8410"]
+[sub_resource type="Resource" id="Resource_c8hbw"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -67,7 +67,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_be5nb"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_c8hbw"]
+[sub_resource type="Resource" id="Resource_vnvfx"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -90,7 +90,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_vnvfx"]
+[sub_resource type="Resource" id="Resource_5qcg2"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -113,7 +113,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_5qcg2"]
+[sub_resource type="Resource" id="Resource_be5nb"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -180,7 +180,7 @@ tile_set = ExtResource("2_no1gd")
 position = Vector2(-8, -78)
 displayName = "Tavern Keeper"
 saveName = "frostmint_village_tavern_keeper"
-data = SubResource("Resource_ofqym")
+data = SubResource("Resource_l8410")
 npcShop = ExtResource("5_na3y2")
 
 [node name="NPCSprite" parent="TilemapRoot/TavernKeeper" index="0"]
@@ -201,7 +201,7 @@ visible = false
 position = Vector2(148, 6)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_l8410")
+data = SubResource("Resource_c8hbw")
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/TavernSign" index="0"]
@@ -227,7 +227,7 @@ visible = false
 position = Vector2(-35, -62)
 displayName = "Villager"
 saveName = "frostmint_villager_3"
-data = SubResource("Resource_c8hbw")
+data = SubResource("Resource_vnvfx")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager3" index="0"]
 sprite_frames = ExtResource("9_l8410")
@@ -247,7 +247,7 @@ position = Vector2(21, -62)
 displayName = "Villager"
 saveName = "frostmint_villager_4"
 loadFlipH = true
-data = SubResource("Resource_vnvfx")
+data = SubResource("Resource_5qcg2")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager4" index="0"]
 sprite_frames = ExtResource("9_ofqym")
@@ -265,7 +265,7 @@ visible = false
 [node name="NPC3" parent="TilemapRoot" instance=ExtResource("3_m24ye")]
 position = Vector2(-88, -30)
 loadFlipH = true
-data = SubResource("Resource_5qcg2")
+data = SubResource("Resource_be5nb")
 
 [node name="ColliderShape" parent="TilemapRoot/NPC3" index="1"]
 position = Vector2(0, 3.5)

@@ -79,6 +79,7 @@ func load_item_use_panel():
 	
 	if itemUseText == '':
 		visible = false
+		_on_ok_button_pressed()
 	else:
 		itemUsedEffects.text = itemUseText
 

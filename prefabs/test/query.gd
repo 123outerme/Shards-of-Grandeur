@@ -20,8 +20,8 @@ func create_reports():
 		[csv_combatant_movepool_size, csv_combatant_highest_move_lv, csv_combatant_highest_lv_move, csv_combatant_element_weaknesses, csv_combatant_element_resistances, csv_combatant_status_resistances, csv_combatant_status_immunities]
 	)
 	reports['moves/move_report.csv'] = create_report_for_all_moves_series(
-		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords'],
-		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords]
+		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords', 'Level'],
+		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords, csv_move_level]
 	)
 	reports['items/equipment_report.csv'] = create_report_for_all_equipment_series(
 		['Stat Changes', 'Timing', 'Bonus Orbs', 'Cost'],
@@ -333,6 +333,9 @@ func csv_move_role(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	return MoveEffect.role_to_string(moveEffect.role)
 
+func csv_move_level(move: Move, isSurge: bool) -> String:
+	return String.num_int64(move.requiredLv)
+
 func csv_move_keywords(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	return TextUtils.string_arr_to_string(moveEffect.keywords).replace(', ', ' | ')
@@ -408,7 +411,7 @@ func create_report_for_all_equipment_series(columns: Array[String], queries: Arr
 	
 	var armorPath: String = 'res://gamedata/items/armor/'
 	var weaponPath: String = 'res://gamedata/items/weapon/'
-	var accessoryPath: String = 'res://gamedata/items/accessory'
+	var accessoryPath: String = 'res://gamedata/items/accessory/'
 	var armors: PackedStringArray = DirAccess.get_files_at(armorPath)
 	var weapons: PackedStringArray = DirAccess.get_files_at(weaponPath)
 	var accessories: PackedStringArray = DirAccess.get_files_at(accessoryPath)

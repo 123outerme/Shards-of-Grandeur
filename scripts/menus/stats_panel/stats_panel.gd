@@ -7,10 +7,11 @@ signal back_pressed
 
 enum TabbedViewTab {
 	STATS = 0,
-	EQUIPMENT = 1,
-	MOVES = 2,
-	MINIONS = 3,
-	BATTLE_BOOSTS = 4,
+	NEW_MOVES = 1,
+	EQUIPMENT = 2,
+	MOVES = 3,
+	MINIONS = 4,
+	BATTLE_BOOSTS = 5,
 	TAB_COUNT,
 }
 
@@ -33,6 +34,9 @@ enum TabbedViewTab {
 
 ## if true, viewing the player's stats (not a minion)
 @export var isPlayer: bool = false
+
+## if true, this stats panel is in the Battle scene
+@export var inBattle: bool = false
 
 @export_category("StatsPanel - Audio")
 
@@ -76,8 +80,9 @@ var previousMoveListSlot: int = -1
 @onready var minionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 @onready var minionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
 
-@onready var battleBoostsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons')
 @onready var battleBoostsPanel: BattleBoostsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel')
+
+@onready var newMovesPanel: NewMovesPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/New Moves/NewMovesPanel')
 
 @onready var backButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
 
@@ -226,8 +231,14 @@ func load_stats_panel(fromToggle: bool = false):
 	minionsPanel.levelUp = levelUp
 	minionsPanel.load_minions_panel()
 	
+	battleBoostsPanel.inBattle = inBattle
+	battleBoostsPanel.levelUp = levelUp
 	battleBoostsPanel.load_battle_boosts_panel()
 	tabbedViewContainer.set_tab_hidden(TabbedViewTab.BATTLE_BOOSTS, not battleBoostsPanel.visible)
+	
+	newMovesPanel.levelUp = levelUp
+	newMovesPanel.load_new_moves_panel()
+	tabbedViewContainer.set_tab_hidden(TabbedViewTab.NEW_MOVES, not newMovesPanel.visible)
 	
 	update_move_list_tab_icon()
 	var minionsCtrl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)

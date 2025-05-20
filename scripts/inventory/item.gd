@@ -84,6 +84,9 @@ func get_effect_text(inBattle: bool = true) -> String:
 func can_be_used_now() -> bool:
 	return true
 
+func get_cant_use_message() -> String:
+	return "Can't use this now..."
+
 func get_as_subclass():
 	if itemType == Type.HEALING:
 		return self as Healing

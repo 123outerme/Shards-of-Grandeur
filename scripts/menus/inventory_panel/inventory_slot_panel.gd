@@ -122,8 +122,8 @@ func load_inventory_slot_panel():
 	else:
 		# if this item can't be used right now, and it's not a shop item or there's no other reason we can't buy it:
 		if not inventorySlot.item.can_be_used_now() and \
-			not (isShopItem and centerBuySellNotes.visible):
-			equippedTo.text = "[right]Can't use this now...[/right]"
+				not (isShopItem and centerBuySellNotes.visible):
+			equippedTo.text = "[right]" + inventorySlot.item.get_cant_use_message() + "[/right]"
 	
 	if inventorySlot.item.cost >= 0:
 		itemCost.text = TextUtils.num_to_comma_string(inventorySlot.item.cost)
