@@ -33,6 +33,10 @@ func load_new_moves_panel() -> void:
 			moveEvolutions.append(null)
 		
 		for evolution: Evolution in minion.evolutions.evolutionList:
+			# if the player hasn't discovered this evolution yet: don't give them a hint
+			if not PlayerResources.playerInfo.has_found_evolution(minion.save_name() + '#' + evolution.evolutionSaveName):
+				continue
+			
 			var evoMoves: Array[Move] = get_new_moves(evolution.stats.movepool)
 			for move: Move in evoMoves:
 				if not (move in minionMoves):
