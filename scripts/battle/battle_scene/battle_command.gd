@@ -11,8 +11,8 @@ enum Targets {
 	ALL_ENEMIES = 6, # multi-target one combatant on enemy side
 	ALL_EXCEPT_SELF = 7, # multi-target every combatant except for self
 	ALL = 8, # multi-target EVERY combatant, including self
-	#ANY = 9, # single-target any combatant
-	#ANY_EXCEPT_SELF = 10, # single-target any except self
+	ANY = 9, # single-target any combatant
+	ANY_EXCEPT_SELF = 10, # single-target any except self
 }
 
 enum Type {
@@ -71,6 +71,10 @@ static func targets_to_string(t: Targets) -> String:
 			return 'All Combatants (Except Self)'
 		Targets.ALL:
 			return 'All Combatants'
+		Targets.ANY:
+			return 'Any Combatant'
+		Targets.ANY_EXCEPT_SELF:
+			return 'Any Combatant (Except Self)'
 	return 'UNKNOWN'
 
 static func apply_timing_to_string(t: ApplyTiming) -> String:
@@ -92,10 +96,13 @@ static func apply_timing_to_string(t: ApplyTiming) -> String:
 	return 'UNKNOWN'
 
 static func is_command_multi_target(t: Targets) -> bool:
-	return t == BattleCommand.Targets.ALL_ALLIES or t == BattleCommand.Targets.ALL_ENEMIES or t == BattleCommand.Targets.ALL_EXCEPT_SELF or t == BattleCommand.Targets.ALL
+	return t == Targets.ALL_ALLIES or t == Targets.ALL_ENEMIES or t == Targets.ALL_EXCEPT_SELF or t == Targets.ALL
 
 static func is_command_enemy_targeting(t: Targets) -> bool:
-	return t == BattleCommand.Targets.ALL or t == BattleCommand.Targets.ALL_ENEMIES or t == BattleCommand.Targets.ALL_EXCEPT_SELF or t == BattleCommand.Targets.ENEMY
+	return t == Targets.ALL or t == Targets.ALL_ENEMIES or t == Targets.ALL_EXCEPT_SELF or t == Targets.ENEMY or t == Targets.ANY or t == Targets.ANY_EXCEPT_SELF
+
+static func is_command_ally_targeting(t: Targets) -> bool:
+	return t == Targets.ALL or t == Targets.ALL_ALLIES or t == Targets.ALL_EXCEPT_SELF or t == Targets.ALLY or t == Targets.NON_SELF_ALLY or t == Targets.ANY or t == Targets.ANY_EXCEPT_SELF
 
 '''
 static func command_guard(combatantNode: CombatantNode) -> BattleCommand:
@@ -230,12 +237,12 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 					var interceptStatus: Interception = interceptingTargets[interceptIdx].statusEffect as Interception
 					var interceptingPower: float = moveEffect.power * Interception.PERCENT_DAMAGE_DICT[interceptStatus.potency]
 					finalPower -= interceptingPower
-					var interceptedDmg = calculate_damage(user, interceptingTargets[interceptIdx], interceptingPower)
+					var interceptedDmg: int = calculate_damage(user, interceptingTargets[interceptIdx], interceptingPower)
 					totalInflictedDamage += interceptedDmg
 					commandResult.damageOnInterceptingTargets[interceptIdx] += interceptedDmg
 					interceptingTargets[interceptIdx].currentHp = min(max(0, interceptingTargets[interceptIdx].currentHp - interceptedDmg), interceptingTargets[interceptIdx].stats.maxHp)
 					
-		var damage = calculate_damage(user, targets[idx], finalPower)
+		var damage: int = calculate_damage(user, targets[idx], finalPower)
 		totalInflictedDamage += damage
 		commandResult.damagesDealt[idx] += damage
 		if targets[idx].currentHp > 0:

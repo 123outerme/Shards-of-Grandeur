@@ -623,10 +623,10 @@ func get_targetable_combatant_nodes(allCombatantNodes: Array[CombatantNode], tar
 	for combatantNode in allCombatantNodes:
 		if combatantNode == null or not combatantNode.is_alive():
 			continue # skip this combatant if not alive
-		if self == combatantNode and (targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.NON_SELF_ALLY):
+		if self == combatantNode and (targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.NON_SELF_ALLY or targets == BattleCommand.Targets.ANY_EXCEPT_SELF):
 			continue # skip user if user is not targetable
 		
-		if targets == BattleCommand.Targets.ALL or targets == BattleCommand.Targets.ALL_EXCEPT_SELF:
+		if targets == BattleCommand.Targets.ALL or targets == BattleCommand.Targets.ALL_EXCEPT_SELF or targets == BattleCommand.Targets.ANY or targets == BattleCommand.Targets.ANY_EXCEPT_SELF:
 			targetableList.append(combatantNode)
 		else:
 			var targetRole: CombatantNode.Role = combatantNode.role

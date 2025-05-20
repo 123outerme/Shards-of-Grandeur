@@ -21,7 +21,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="17_4cqnv"]
 [ext_resource type="Resource" uid="uid://deu86jwpct8jq" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_shop_sign_1.tres" id="17_6ldjy"]
 
-[sub_resource type="Resource" id="Resource_4cqnv"]
+[sub_resource type="Resource" id="Resource_6ldjy"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -50,7 +50,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrij5"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_6ldjy"]
+[sub_resource type="Resource" id="Resource_a08oj"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -79,7 +79,7 @@ size = Vector2(15.5, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5eok"]
 size = Vector2(24, 15)
 
-[sub_resource type="Resource" id="Resource_a08oj"]
+[sub_resource type="Resource" id="Resource_80hg6"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -102,7 +102,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_80hg6"]
+[sub_resource type="Resource" id="Resource_ge5lr"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -125,7 +125,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ge5lr"]
+[sub_resource type="Resource" id="Resource_24xxo"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -148,7 +148,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_24xxo"]
+[sub_resource type="Resource" id="Resource_puor5"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -171,12 +171,12 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_fggv6"]
+[sub_resource type="Resource" id="Resource_hs4i0"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(-103, -105)
+position = Vector2(-278, 215)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -287,7 +287,7 @@ tile_set = ExtResource("2_ksxva")
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-103, -105)
 displayName = "Sign"
-data = SubResource("Resource_4cqnv")
+data = SubResource("Resource_6ldjy")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("6_is10d")])
 facesPlayer = false
 
@@ -313,7 +313,7 @@ visible = false
 [node name="VillageSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-435, 78)
 displayName = "Sign"
-data = SubResource("Resource_6ldjy")
+data = SubResource("Resource_a08oj")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("9_is10d")])
 facesPlayer = false
 
@@ -340,7 +340,7 @@ visible = false
 position = Vector2(-36, 127)
 displayName = "Villager"
 saveName = "frostmint_villager_1"
-data = SubResource("Resource_a08oj")
+data = SubResource("Resource_80hg6")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager" index="0"]
 sprite_frames = ExtResource("11_igro0")
@@ -359,7 +359,7 @@ visible = false
 position = Vector2(256, -143)
 displayName = "Villager"
 saveName = "frostmint_villager_2"
-data = SubResource("Resource_80hg6")
+data = SubResource("Resource_ge5lr")
 
 [node name="NPCSprite" parent="TilemapRoot/Villager2" index="0"]
 sprite_frames = ExtResource("12_t4gxd")
@@ -378,7 +378,7 @@ visible = false
 position = Vector2(153, -169)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_ge5lr")
+data = SubResource("Resource_24xxo")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("13_4cqnv")])
 facesPlayer = false
 
@@ -405,7 +405,7 @@ visible = false
 position = Vector2(-262, -169)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_24xxo")
+data = SubResource("Resource_puor5")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("14_fggv6")])
 facesPlayer = false
 
@@ -431,7 +431,7 @@ visible = false
 [node name="ShopSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-278, 215)
 displayName = "Sign"
-data = SubResource("Resource_fggv6")
+data = SubResource("Resource_hs4i0")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("17_6ldjy")])
 facesPlayer = false
 

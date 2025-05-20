@@ -51,7 +51,7 @@ func _calc_target_weight(user: CombatantNode, move: Move, effectType: Move.MoveE
 		statChanges.stack(moveEffect.targetStatChanges)
 	if user == target and moveEffect.selfStatChanges != null:
 		var canSelfStack: bool = true
-		if not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
+		if BattleCommand.is_command_ally_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
 			# if the move is ally targetting, the status can't overwrite other statuses, and another status is already present on whoever will receive it: the boost isn't happening
 			if not moveEffect.statusEffect.overwritesOtherStatuses and \
 					((moveEffect.selfGetsStatus and user.combatant.statusEffect != null) or target.combatant.statusEffect != null):
@@ -89,7 +89,7 @@ func _calc_self_weight(user: CombatantNode, move: Move, effectType: Move.MoveEff
 	# if move has self stat changes: stack them
 	if moveEffect.selfStatChanges != null:
 		var canSelfStack: bool = true
-		if not BattleCommand.is_command_enemy_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
+		if BattleCommand.is_command_ally_targeting(moveEffect.targets) and moveEffect.statusEffect != null:
 			# if the move is ally targeting, the status can't overwrite other statuses, and another status is already present on whoever will receive it: the boost isn't happening
 			if not moveEffect.statusEffect.overwritesOtherStatuses and \
 					((moveEffect.selfGetsStatus and user.combatant.statusEffect != null) or target.combatant.statusEffect != null):
