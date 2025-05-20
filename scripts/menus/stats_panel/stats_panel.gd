@@ -10,6 +10,7 @@ enum TabbedViewTab {
 	EQUIPMENT = 1,
 	MOVES = 2,
 	MINIONS = 3,
+	BATTLE_BOOSTS = 4,
 	TAB_COUNT,
 }
 
@@ -71,10 +72,15 @@ var previousMoveListSlot: int = -1
 @onready var statlinePanel: StatLinePanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Stats/StatLinePanel')
 @onready var moveListPanel: MoveListPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel')
 @onready var equipmentPanel: EquipmentPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel')
+
+@onready var minionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 @onready var minionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
 
+@onready var battleBoostsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons')
+@onready var battleBoostsPanel: BattleBoostsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel')
+
 @onready var backButton: Button = get_node("StatsPanel/Panel/TabbedView/BackButton")
-@onready var minionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
+
 
 @onready var levelUpPanel: Panel = get_node('StatsPanel/Panel/LevelUpPanel')
 @onready var newLevelLabel: RichTextLabel = get_node('StatsPanel/Panel/LevelUpPanel/NewLevelLabel')
@@ -219,6 +225,9 @@ func load_stats_panel(fromToggle: bool = false):
 	minionsPanel.readOnly = readOnly
 	minionsPanel.levelUp = levelUp
 	minionsPanel.load_minions_panel()
+	
+	battleBoostsPanel.load_battle_boosts_panel()
+	tabbedViewContainer.set_tab_hidden(TabbedViewTab.BATTLE_BOOSTS, not battleBoostsPanel.visible)
 	
 	update_move_list_tab_icon()
 	var minionsCtrl: Control = tabbedViewContainer.get_tab_control(TabbedViewTab.MINIONS)

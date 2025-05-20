@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhtqpe8pcg80v"]
+[gd_scene load_steps=24 format=3 uid="uid://dhtqpe8pcg80v"]
 
 [ext_resource type="Script" uid="uid://cb5x1u5iay6l4" path="res://scripts/menus/stats_panel/stats_panel.gd" id="1_gd13l"]
 [ext_resource type="AudioStream" uid="uid://c125xdli2pv2h" path="res://audio/music/menus/level_up.mp3" id="2_6ysuc"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dqtu7xjqahxq" path="res://prefabs/ui/stats/minions_panel.tscn" id="8_3o74c"]
 [ext_resource type="PackedScene" uid="uid://cm57i83oiea42" path="res://prefabs/ui/stats/edit_moves_panel.tscn" id="9_ue80h"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="10_sd4fn"]
+[ext_resource type="PackedScene" uid="uid://3oi1i5ioq0pv" path="res://prefabs/ui/stats/battle_boosts_panel.tscn" id="15_rtaie"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpob3"]
 
@@ -376,6 +377,25 @@ offset_left = -319.0
 offset_top = 293.0
 offset_right = 316.0
 offset_bottom = 59.0
+
+[node name="Battle Boons" type="Control" parent="StatsPanel/Panel/TabbedView/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="BattleBoostsPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons" instance=ExtResource("15_rtaie")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -266.0
+offset_right = 300.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
 layout_mode = 1

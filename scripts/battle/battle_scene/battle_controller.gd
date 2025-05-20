@@ -496,7 +496,10 @@ func end_battle():
 	if minionCombatant.combatant != null:
 		minionCombatant.combatant.orbs = 0
 		minionCombatant.combatant.update_battle_storage()
-		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(), minionCombatant.combatant.downed, PlayerResources.playerInfo.get_battle_attunement_modifier())
+		PlayerResources.minions.add_friendship(minionCombatant.combatant.save_name(),
+			minionCombatant.combatant.downed,
+			PlayerResources.playerInfo.get_battle_attunement_modifier() if (battleUI.playerWins or not (PlayerResources.playerInfo.encounter is RandomEncounter)) else 1.0
+		)
 	if PlayerResources.playerInfo.encounter is RandomEncounter:
 		PlayerResources.playerInfo.activeBattleModifierItems = []
 	SceneLoader.audioHandler.fade_out_music()

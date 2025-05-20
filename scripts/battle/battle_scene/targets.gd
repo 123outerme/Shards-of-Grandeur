@@ -62,14 +62,27 @@ func load_targets():
 	
 	var targetableCombatants: Array[CombatantNode] = battleUI.commandingCombatant.get_targetable_combatant_nodes(allCombatantNodes, targets)
 	
+	var anyShouldTargetAlly: bool = false
+	if battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.USE_ITEM:
+		anyShouldTargetAlly = true
+	elif battleUI.commandingCombatant.combatant.command.type == BattleCommand.Type.MOVE and moveEffect != null:
+		anyShouldTargetAlly = moveEffect.role == MoveEffect.Role.BUFF or moveEffect.role == MoveEffect.Role.HEAL
+	
 	var focusedCombatant: CombatantNode = null
 	# prefer targeting the combatant being commanded, if current command can target self
-	if battleUI.commandingCombatant in targetableCombatants:
+	if battleUI.commandingCombatant in targetableCombatants and not (targets == BattleCommand.Targets.ANY or targets == BattleCommand.Targets.ANY_EXCEPT_SELF):
 		focusedCombatant = battleUI.commandingCombatant
 	for targetableCombatant: CombatantNode in targetableCombatants:
 		targetableCombatant.update_select_btn(true, not singleSelect)
 		if focusedCombatant == null:
-			focusedCombatant = targetableCombatant
+			# if the move is any/any except self targeting: prefer targeting an enemy if the command isn't one that's generally ally-friendly
+			# otherwise, target whoever (starting with ally)
+			if not ((targets == BattleCommand.Targets.ANY or targets == BattleCommand.Targets.ANY_EXCEPT_SELF) and not anyShouldTargetAlly and targetableCombatant.role == CombatantNode.Role.ALLY):
+				focusedCombatant = targetableCombatant
+	
+	# failsafe in case no combatant was focused; attempt to focus the first in the list
+	if focusedCombatant == null and len(targetableCombatants) > 0:
+		focusedCombatant = targetableCombatants[0]
 	
 	if focusedCombatant == null or len(targetableCombatants) == 0:
 		initial_focus() # nothing is focusable - means there are no targetable combatants 

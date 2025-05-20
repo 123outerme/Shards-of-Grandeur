@@ -149,8 +149,8 @@ func get_effect_texts(short: bool = false) -> Array[String]:
 	
 	if spawnsThreeOfFace:
 		if short:
-			effectTexts.append('Lures 3x the encountered creature')
+			effectTexts.append('Lures 3x the roaming creature')
 		else:
-			effectTexts.append('Lures 3 of the encountered creature to the battle')
+			effectTexts.append('Lures 3 of the roaming creature to the battle')
 	
 	return effectTexts
