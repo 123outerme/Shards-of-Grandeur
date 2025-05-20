@@ -29,7 +29,11 @@ func load_new_move_list_item_panel() -> void:
 		return
 	
 	moveNameLabel.text = move.moveName
-	damageTypeLabel.text = Move.dmg_category_to_string(move.category)
+	damageTypeLabel.text = ''
+	if move.element != Move.Element.NONE:
+		damageTypeLabel.text += Move.element_to_string(move.element) + '\n'
+	damageTypeLabel.text += Move.dmg_category_to_string(move.category)
+	
 	
 	combatantShardSlot = PlayerResources.inventory.get_shard_slot_for_combatant(combatant.save_name())
 	if combatantShardSlot != null:
