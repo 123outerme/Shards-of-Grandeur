@@ -13,6 +13,9 @@ class_name CombatantSprite
 ## where the center point of the sprite is
 @export var centerPosition: Vector2 = Vector2(8, 8)
 
+## where the center point of the canvas portion for only the battle_idle animation. Used for centering combatants in idle animation in UIs
+@export var idleCanvasCenterPosition: Vector2 = Vector2(8, 8)
+
 ## where the center of the feet are (position where the feet, if any, would be contacting ground)
 @export var feetPosition: Vector2 = Vector2(8, 16)
 

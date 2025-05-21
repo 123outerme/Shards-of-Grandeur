@@ -29,6 +29,11 @@ func load_summon_minion_list_panel():
 		shardItemSlot = null # if there is an item slot, this will clear it
 	
 	minionSprite.sprite_frames = minion.get_sprite_frames()
+	var combatantSprite: CombatantSprite = minion.get_sprite_obj()
+	minionSprite.offset = (combatantSprite.maxSize / 2) - combatantSprite.idleCanvasCenterPosition
+	minionSprite.flip_h = combatantSprite.spriteFacesRight
+	if combatantSprite.spriteFacesRight: # if flipping, invert the X offset
+		minionSprite.offset.x *= -1
 	
 	if minion.get_idle_size().x <= 16 and minion.get_idle_size().y <= 16:
 		minionSprite.scale = Vector2(3, 3)

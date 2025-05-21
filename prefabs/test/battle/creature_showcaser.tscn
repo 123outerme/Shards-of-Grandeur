@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b30y3m18vx5o"]
+[gd_scene load_steps=87 format=3 uid="uid://b30y3m18vx5o"]
 
 [ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
 [ext_resource type="PackedScene" uid="uid://dwt3btkr2nys6" path="res://prefabs/battle/battle_maps/forest_battle_map.tscn" id="2_de80j"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://j40m2j8cvudq" path="res://scripts/battle/battle_scene/all_commands.gd" id="9_jdnii"]
 [ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="10_53ntj"]
 [ext_resource type="Texture2D" uid="uid://ufmhvke6f8x8" path="res://graphics/ui/new_move_indicator.png" id="10_gkbrp"]
+[ext_resource type="Script" uid="uid://bt3pb5c4p23hj" path="res://scripts/battle/combatant/combatant_ai_layer_base.gd" id="10_kw1uj"]
 [ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="11_71qgg"]
 [ext_resource type="Script" uid="uid://du8h3dkrw4x3g" path="res://scripts/battle/battle_scene/moves_menu.gd" id="11_254jr"]
 [ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="12_4jx00"]
@@ -78,8 +79,8 @@ moveList = Array[ExtResource("3_ucjnw")]([ExtResource("6_arf2n"), ExtResource("3
 moveListAttemptSurge = Array[bool]([false, false, true])
 loop = true
 moveIdx = 0
+subLayers = Array[ExtResource("10_kw1uj")]([])
 weight = 1.0
-subLayers = Array[ExtResource("23_nybcs")]([])
 metadata/_custom_type_script = "uid://cjglmk70bbxxm"
 
 [sub_resource type="Resource" id="Resource_0mhiy"]
@@ -182,34 +183,34 @@ battleStorageOrbs = -1
 [sub_resource type="Resource" id="Resource_shm7h"]
 script = ExtResource("25_ebkvn")
 aggroStrategy = 0
+subLayers = Array[ExtResource("10_kw1uj")]([])
 weight = 0.35
-subLayers = Array[ExtResource("23_nybcs")]([])
 metadata/_custom_type_script = "uid://0yxyfr70qvwu"
 
 [sub_resource type="Resource" id="Resource_xosfc"]
 script = ExtResource("24_v7kfw")
 healLayer = false
+subLayers = Array[ExtResource("10_kw1uj")]([SubResource("Resource_shm7h")])
 weight = 0.65
-subLayers = Array[ExtResource("23_nybcs")]([SubResource("Resource_shm7h")])
 metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
 
 [sub_resource type="Resource" id="Resource_v7kfw"]
 script = ExtResource("35_fsle4")
 mostOrbsWeight = 1.15
+subLayers = Array[ExtResource("10_kw1uj")]([])
 weight = 0.35
-subLayers = Array[ExtResource("23_nybcs")]([])
 metadata/_custom_type_script = "uid://dw68jtuc0bxvn"
 
 [sub_resource type="Resource" id="Resource_ebkvn"]
 script = ExtResource("36_nybcs")
+subLayers = Array[ExtResource("10_kw1uj")]([])
 weight = 0.25
-subLayers = Array[ExtResource("23_nybcs")]([])
 metadata/_custom_type_script = "uid://0ddrq70do5nq"
 
 [sub_resource type="Resource" id="Resource_c0vv4"]
 script = ExtResource("26_yikgk")
+subLayers = Array[ExtResource("10_kw1uj")]([])
 weight = 0.3
-subLayers = Array[ExtResource("23_nybcs")]([])
 metadata/_custom_type_script = "uid://dim2s6pbuqjth"
 
 [sub_resource type="Resource" id="Resource_lta2o"]

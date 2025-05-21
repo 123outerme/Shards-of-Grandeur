@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ncusxoyc62w7"]
+[gd_scene load_steps=7 format=3 uid="uid://ncusxoyc62w7"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_f70be"]
 [ext_resource type="Script" uid="uid://dsewcbrgrxpnw" path="res://scripts/menus/stats_panel/new_moves_panel/new_move_list_item_panel.gd" id="1_r4vrn"]
@@ -6,13 +6,16 @@
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_f70be"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_hrrkq"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_f70be"]
+
 [node name="NewMoveListItemPanel" type="Panel"]
-custom_minimum_size = Vector2(930, 76)
+custom_minimum_size = Vector2(930, 100)
 offset_right = 800.0
 offset_bottom = 76.0
 mouse_filter = 1
 theme = ExtResource("1_f70be")
 script = ExtResource("1_r4vrn")
+metadata/_edit_vertical_guides_ = [438.0]
 
 [node name="CenterMoveName" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -55,11 +58,13 @@ Physical[/center]"
 fit_content = true
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
-position = Vector2(374, 38)
+visible = false
+position = Vector2(374, 50)
 scale = Vector2(4, 4)
 texture = ExtResource("2_rwbmu")
 
 [node name="CenterItemName" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -102,6 +107,38 @@ theme_override_font_sizes/mono_font_size = 20
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 text = "x999"
+fit_content = true
+
+[node name="CenterCombatantSprite" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 341.0
+offset_right = 437.0
+grow_vertical = 2
+alignment = 1
+
+[node name="CombatantSpriteControl" type="Control" parent="CenterCombatantSprite"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="CombatantSprite" type="AnimatedSprite2D" parent="CenterCombatantSprite/CombatantSpriteControl"]
+position = Vector2(48, 48)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f70be")
+
+[node name="CenterMinionName" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 451.0
+offset_right = 740.0
+grow_vertical = 2
+alignment = 1
+
+[node name="MinionName" type="RichTextLabel" parent="CenterMinionName"]
+layout_mode = 2
+text = "Minion Name Goes Here"
 fit_content = true
 
 [node name="Buttons" type="HBoxContainer" parent="."]

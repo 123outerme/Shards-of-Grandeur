@@ -29,6 +29,10 @@ func load_evolution_list_item_panel() -> void:
 		evolutionSprite.sprite_frames = load('res://graphics/animations/a_missingno.tres') # prevent crashing
 	# for this menu specifically, this logic is less consistent for sizing BETWEEN DIFFERENT COMBATANTS
 	# but it allows the max rendered sprite size to be 64x64 (32x32 x2) which saves space
+	evolutionSprite.offset = (combatantSprite.maxSize / 2) - combatantSprite.centerPosition
+	evolutionSprite.flip_h = combatantSprite.spriteFacesRight
+	if combatantSprite.spriteFacesRight: # if flipping, invert the X offset
+		evolutionSprite.offset.x *= -1
 	if combatantSprite.idleSize.x > 32 or combatantSprite.idleSize.y > 32:
 		evolutionSprite.scale = Vector2.ONE
 	else:

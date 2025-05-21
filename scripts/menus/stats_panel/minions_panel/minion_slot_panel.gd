@@ -16,7 +16,7 @@ signal changed_minion_hovered(combatant: Combatant)
 var readyCallback: Callable
 
 @onready var minionSprite: AnimatedSprite2D = get_node("SpriteControl/MinionSprite")
-@onready var minionName: RichTextLabel = get_node("MinionName")
+@onready var minionName: RichTextLabel = get_node("CenterMinionName/MinionName")
 @onready var changedIndicator: Control = get_node("HBoxContainer/VBoxContainer3/ChangedIndicatorControl")
 @onready var statPtIndicator: Control = get_node("HBoxContainer/VBoxContainer/StatPtIndicatorControl")
 @onready var newMoveIndicator: Control = get_node("HBoxContainer/VBoxContainer2/MoveIndicatorControl")
@@ -35,6 +35,11 @@ func load_minion_slot_panel():
 	minionSprite.sprite_frames = combatant.get_sprite_frames()
 	if minionSprite.sprite_frames == null:
 		minionSprite.sprite_frames = load('res://graphics/animations/a_missingno.tres') # prevent crashing
+	var combatantSprite: CombatantSprite = combatant.get_sprite_obj()
+	minionSprite.offset = (combatantSprite.maxSize / 2) - combatantSprite.idleCanvasCenterPosition
+	minionSprite.flip_h = combatantSprite.spriteFacesRight
+	if combatantSprite.spriteFacesRight: # if flipping, invert the X offset
+		minionSprite.offset.x *= -1
 	if combatant.get_idle_size().x > 32 and combatant.get_idle_size().y > 32:
 		minionSprite.scale = Vector2.ONE
 	else:

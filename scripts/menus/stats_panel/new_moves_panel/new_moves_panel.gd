@@ -97,26 +97,12 @@ func _panel_learn_pressed(panel: NewMoveListItemPanel) -> void:
 	var shard: Shard = lastFocusedPanel.combatantShardSlot.item as Shard
 	# add Attunement for minion whose shard you used
 	PlayerResources.minions.add_friendship(shard.combatantSaveName)
-	var last: bool = PlayerResources.inventory.trash_item(lastFocusedPanel.combatantShardSlot)
-	if not last:
-		# hide the learn button because we've already learned from this one
-		lastFocusedPanel.hide_learn_button()
-		lastFocusedPanel.load_new_move_list_item_panel()
+	PlayerResources.inventory.trash_item(lastFocusedPanel.combatantShardSlot)
 	
-	# for each other panel that can teach this same move: reload it
+	# for each panel that can teach this same move: reload it
 	for movePanel: NewMoveListItemPanel in panelsByMove[panel.move]:
-		if movePanel != lastFocusedPanel:
-			movePanel.load_new_move_list_item_panel() # reload the panel display; Learn button is guaranteed to be gone
-	if last:
-		var destroyingPanel: NewMoveListItemPanel = lastFocusedPanel
-		lastFocusedPanel = destroyingPanel.aboveListItemPanel
-		var panels: Array[Node] = vboxContainer.get_children()
-		if lastFocusedPanel == null and len(panels) > 0:
-			for otherPanel: Node in panels:
-				if otherPanel != destroyingPanel:
-					lastFocusedPanel = otherPanel as NewMoveListItemPanel
-					break
-		destroyingPanel.destroy() # destroy this panel; it will propagate its changes
+		movePanel.hide_learn_button() # hide the learn button because we've already learned this move
+		movePanel.load_new_move_list_item_panel() # reload the panel display
 
 func _on_move_details_panel_back_pressed() -> void:
 	lastFocusedPanel.detailsButton.grab_focus()

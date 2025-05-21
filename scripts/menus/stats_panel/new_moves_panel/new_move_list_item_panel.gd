@@ -4,7 +4,6 @@ extends Panel
 signal details_pressed(panel: NewMoveListItemPanel)
 signal learn_pressed(panel: NewMoveListItemPanel)
 signal learn_hidden
-signal destroying(abovePanel: NewMoveListItemPanel)
 
 @export var move: Move = null
 @export var combatant: Combatant = null
@@ -20,6 +19,9 @@ var combatantShardSlot: InventorySlot = null
 @onready var itemNameLabel: RichTextLabel = get_node('CenterItemName/ItemName')
 @onready var itemCountLabel: RichTextLabel = get_node('CenterItemCount/ItemCount')
 
+@onready var animatedCombatantSprite: AnimatedSprite2D = get_node('CenterCombatantSprite/CombatantSpriteControl/CombatantSprite')
+@onready var minionNameLabel: RichTextLabel = get_node('CenterMinionName/MinionName')
+
 @onready var detailsButton: Button = get_node('Buttons/DetailsButton')
 @onready var learnButton: Button = get_node('Buttons/LearnButton')
 
@@ -34,20 +36,40 @@ func load_new_move_list_item_panel() -> void:
 		damageTypeLabel.text += Move.element_to_string(move.element) + '\n'
 	damageTypeLabel.text += Move.dmg_category_to_string(move.category)
 	
-	
 	combatantShardSlot = PlayerResources.inventory.get_shard_slot_for_combatant(combatant.save_name())
-	if combatantShardSlot != null:
+	if combatantShardSlot != null and not (move in PlayerResources.playerInfo.combatant.stats.movepool.pool):
 		itemSprite.texture = combatantShardSlot.item.itemSprite
 		itemNameLabel.text = combatantShardSlot.item.itemName
 		itemCountLabel.text = 'x' + TextUtils.num_to_comma_string(combatantShardSlot.count)
 		itemSprite.visible = true
 		itemNameLabel.visible = true
 		itemCountLabel.visible = true
-		learnButton.visible = not (move in PlayerResources.playerInfo.combatant.stats.movepool.pool)
+		
+		animatedCombatantSprite.visible = false
+		minionNameLabel.visible = false
+		learnButton.visible = true
 	else:
 		itemSprite.visible = false
 		itemNameLabel.visible = false
 		itemCountLabel.visible = false
+		
+		var combatantSprite: CombatantSprite = combatant.get_sprite_obj() if evolution == null else evolution.combatantSprite
+		animatedCombatantSprite.sprite_frames = combatantSprite.spriteFrames
+		animatedCombatantSprite.offset = (combatantSprite.maxSize / 2) - combatantSprite.idleCanvasCenterPosition
+		animatedCombatantSprite.flip_h = combatantSprite.spriteFacesRight
+		if combatantSprite.spriteFacesRight: # if flipping, invert the X offset
+			animatedCombatantSprite.offset.x *= -1
+			
+		if combatantSprite.idleSize.x > 32 or combatantSprite.idleSize.y > 32:
+			animatedCombatantSprite.scale = 2 * Vector2.ONE
+		else:
+			animatedCombatantSprite.scale = 3 * Vector2.ONE
+		
+		animatedCombatantSprite.play('battle_idle')
+		minionNameLabel.text = combatant.disp_name() if combatant.nickname != '' or evolution == null else evolution.stats.displayName
+		
+		animatedCombatantSprite.visible = true
+		minionNameLabel.visible = true
 		learnButton.visible = false
 	
 	if learnButton.visible:
@@ -63,7 +85,6 @@ func connect_panel_focus_neighbors(abovePanel: NewMoveListItemPanel) -> void:
 		return
 	
 	abovePanel.learn_hidden.connect(_above_panel_learn_hidden)
-	abovePanel.destroying.connect(_above_panel_destroying)
 	
 	detailsButton.focus_neighbor_top = detailsButton.get_path_to(abovePanel.detailsButton)
 	abovePanel.detailsButton.focus_neighbor_bottom = abovePanel.detailsButton.get_path_to(detailsButton)
@@ -84,17 +105,8 @@ func hide_learn_button() -> void:
 		aboveListItemPanel.learnButton.focus_neighbor_bottom = aboveListItemPanel.learnButton.get_path_to(detailsButton)
 	learn_hidden.emit()
 
-func destroy() -> void:
-	visible = false
-	destroying.emit(aboveListItemPanel)
-	queue_free()
-
 func _above_panel_learn_hidden() -> void:
 	learnButton.focus_neighbor_top = learnButton.get_path_to(aboveListItemPanel.detailsButton)
-
-func _above_panel_destroying(newAbove: NewMoveListItemPanel) -> void:
-	aboveListItemPanel = newAbove
-	connect_panel_focus_neighbors(newAbove)
 
 func _on_details_button_pressed() -> void:
 	details_pressed.emit(self)

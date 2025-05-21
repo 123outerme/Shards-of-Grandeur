@@ -107,7 +107,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_stats") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not (statsPanel.visible and statsPanel.levelUpAnimPlaying) and \
+			not cam.fadedOrFadingOut:
 		statsPanel.stats = PlayerResources.playerInfo.combatant.stats
 		statsPanel.curHp = PlayerResources.playerInfo.combatant.currentHp
 		animatedBgPanel.visible = true
@@ -153,7 +154,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_inventory") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not (statsPanel.visible and statsPanel.levelUpAnimPlaying) and \
+			not cam.fadedOrFadingOut:
 		inventoryPanel.inShop = false
 		inventoryPanel.showPlayerInventory = false
 		inventoryPanel.lockFilters = false
@@ -170,7 +172,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_quests") and not inCutscene and not pausePanel.isPaused and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not inventoryPanel.inShardLearnTutorial and not overworldConsole.visible and \
-			not overworldRewardPanel.visible and not cam.fadedOrFadingOut:
+			not overworldRewardPanel.visible and not (statsPanel.visible and statsPanel.levelUpAnimPlaying) and \
+			not cam.fadedOrFadingOut:
 		questsPanel.turnInTargetName = ''
 		questsPanel.lockFilters = false
 		animatedBgPanel.visible = true
@@ -188,6 +191,7 @@ func _unhandled_input(event):
 			not inventoryPanel.inShardLearnTutorial and not textBox.visible and \
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) and \
 			not cam.fadedOrFadingOut and not overworldRewardPanel.visible and \
+			not (statsPanel.visible and statsPanel.levelUpAnimPlaying) and \
 			SceneLoader.debug:
 		overworldConsole.load_overworld_console()
 		SceneLoader.pause_autonomous_movers()

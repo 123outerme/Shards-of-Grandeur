@@ -54,6 +54,7 @@ enum TabbedViewTab {
 @export var minionChangedIndicator: Texture2D = null
 
 var levelUpAnimPlayed: bool = false
+var levelUpAnimPlaying: bool = false
 
 var isMinionStats: bool = false
 var minion: Combatant = null
@@ -98,7 +99,7 @@ func _ready() -> void:
 	tabbedViewContainer.tab_selected.connect(_tab_selected)
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed('game_decline'):
+	if visible and event.is_action_pressed('game_decline') and not levelUpAnimPlaying:
 		get_viewport().set_input_as_handled()
 		_on_back_button_pressed()
 		
@@ -107,6 +108,10 @@ func _unhandled_input(event):
 		var selectedTab: Control = tabbedViewContainer.get_current_tab_control()
 		var selectedIdx: int = tabbedViewContainer.get_tab_idx_from_control(selectedTab)
 		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
+		# if going to a tab that's hidden; jump one more instead
+		if (selectedIdx + direction == TabbedViewTab.NEW_MOVES and not newMovesPanel.visible) \
+				or (selectedIdx + direction == TabbedViewTab.BATTLE_BOOSTS and not battleBoostsPanel.visible):
+			direction *= 2
 		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
 		var newTabIdx: int = wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count())
 		var newTab: Control = tabbedViewContainer.get_tab_control(newTabIdx)
@@ -171,6 +176,7 @@ func load_stats_panel(fromToggle: bool = false):
 		levelUpAnimPlayed = true
 		newLevelLabel.text = '[center]Level ' + String.num_int64(stats.level) + '![/center]'
 		playingLvUpAnim = true
+		levelUpAnimPlaying = true
 	else:
 		levelUpPanel.visible = false
 	
@@ -457,3 +463,8 @@ func _level_up_anim_panel_fade_in():
 func _level_up_loop_music():
 	SceneLoader.audioHandler.play_music(levelUpLoopMusic, -1)
 	SceneLoader.audioHandler.music_playback_complete.disconnect(_level_up_loop_music)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == 'level_up':
+		levelUpAnimPlaying = false

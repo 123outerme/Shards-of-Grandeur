@@ -506,6 +506,7 @@ layout_mode = 1
 [connection signal="minion_auto_alloc_changed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_auto_alloc_changed"]
 [connection signal="minion_renamed" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_minion_renamed"]
 [connection signal="stats_clicked" from="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel" to="." method="_on_minions_panel_stats_clicked"]
+[connection signal="animation_finished" from="StatsPanel/Panel/LevelUpPanel/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="back_pressed" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_back_pressed"]
 [connection signal="replace_move" from="StatsPanel/Panel/EditMovesPanel" to="." method="_on_edit_moves_panel_replace_move"]
 

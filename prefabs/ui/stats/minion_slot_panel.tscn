@@ -19,6 +19,7 @@ theme = ExtResource("1_nhnmf")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sjlhe")
 script = ExtResource("1_mfddu")
 combatant = ExtResource("3_w1luw")
+metadata/_edit_vertical_guides_ = [306.0]
 
 [node name="SpriteControl" type="Control" parent="."]
 layout_mode = 1
@@ -36,16 +37,17 @@ position = Vector2(48, 48)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xtxvu")
 
-[node name="MinionName" type="RichTextLabel" parent="."]
+[node name="CenterMinionName" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = -22.0
 offset_right = 306.0
-offset_bottom = 24.0
 grow_vertical = 2
+alignment = 1
+
+[node name="MinionName" type="RichTextLabel" parent="CenterMinionName"]
+layout_mode = 2
 mouse_filter = 1
 text = "Minion Name Goes Here"
 fit_content = true
