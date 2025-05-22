@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=31 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_kcajg"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_e3j1f"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_qw015"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="5_e3j1f"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="5_ro6wv"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_10q5v"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="6_qw015"]
@@ -156,7 +155,7 @@ dialogueLine = -1
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_s3o63")
 metadata/_edit_horizontal_guides_ = [24.0, 81.0, -12.0, -28.0]
-metadata/_edit_vertical_guides_ = [-56.0]
+metadata/_edit_vertical_guides_ = [-56.0, 222.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -311,25 +310,20 @@ cutscenes = Array[ExtResource("11_ou0gu")]([ExtResource("12_5hxps")])
 [node name="CollisionShape2D" parent="CutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_44juo")
 
-[node name="TestCamera" parent="." instance=ExtResource("5_e3j1f")]
-position = Vector2(0, 96)
-
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("11_ro6wv")]
-triggerOrNPC = NodePath("../CutsceneTrigger")
-customStartPos = Vector2(0, 81)
+visible = false
+triggerOrNPC = NodePath("../CutsceneTrigger2")
+customStartPos = Vector2(-56, -28)
 useCustomStartPos = true
-cutscene = ExtResource("12_5hxps")
+cutscene = ExtResource("17_x858i")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(-56, -27.8955)
-facingLeft = true
+position = Vector2(192, -12)
 data = SubResource("Resource_c0ybn")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-animation = &"walk"
-frame_progress = 0.543148
-flip_h = true
+frame_progress = 0.820558
 
 [node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
 disabled = true

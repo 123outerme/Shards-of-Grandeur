@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=58 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="14_0n6sp"]
 [ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="14_dv8db"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="15_t0jvn"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="16_b2mwp"]
 [ext_resource type="Resource" uid="uid://btqsykfbbhfiv" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive.tres" id="16_vvtkq"]
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="17_qw8te"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="18_1iokg"]
@@ -612,10 +611,8 @@ navigation_layers = 2
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="TestCamera" parent="." instance=ExtResource("16_b2mwp")]
-position = Vector2(448, -327)
-
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("23_eb6g7")]
+visible = false
 triggerOrNPC = NodePath("../FirstStairsCutsceneTrigger")
 cutscene = ExtResource("16_vvtkq")
 rootNode = NodePath("..")

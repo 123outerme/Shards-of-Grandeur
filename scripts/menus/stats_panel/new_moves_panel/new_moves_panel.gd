@@ -56,6 +56,10 @@ func load_new_moves_panel() -> void:
 			panel.learn_pressed.connect(_panel_learn_pressed)
 			panels.append(panel)
 	
+	if len(panels) == 0:
+		visible = false
+		return
+	
 	var lastPanel: NewMoveListItemPanel = null
 	panels.sort_custom(_sort_panels_by_move_alphabetically)
 	for panel: NewMoveListItemPanel in panels:

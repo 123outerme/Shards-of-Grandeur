@@ -191,7 +191,7 @@ metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 [sub_resource type="Resource" id="Resource_n8077"]
 script = ExtResource("6_fcsrf")
 speaker = "Warlock Agent"
-texts = Array[String](["They oversee this terraformed city at the summit.", "As I previously mentioned, they have taken a strong interest in you.", "Let's go to see them now. They have a gift for you, and a proposition."])
+texts = Array[String](["They oversee this terraformed city at its Summit.", "As I previously mentioned, they have taken a strong interest in you.", "Let's go to see them now. They have a gift for you, and a proposition."])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/WarlockAgent"
 speakerActorIsPlayer = false
@@ -309,18 +309,6 @@ speakerAnimScale = 3
 animSpeakerOffset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://jcu0gq2ns4in"
 
-[sub_resource type="Resource" id="Resource_ffrbi"]
-script = ExtResource("6_fcsrf")
-speaker = "Warlock Agent"
-texts = Array[String](["They have told me no more than that. You will be finding out shortly.", "Follow me up these steps."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = "TilemapRoot/WarlockAgent"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
-metadata/_custom_type_script = "uid://jcu0gq2ns4in"
-
 [sub_resource type="Resource" id="Resource_of7ha"]
 script = ExtResource("1_1phdu")
 frameLength = 0.1
@@ -329,7 +317,7 @@ actorTweens = Array[ExtResource("5_njja7")]([])
 actorAnims = Array[ExtResource("3_o5vhx")]([SubResource("Resource_4a1cl")])
 actorAnimSets = Array[ExtResource("2_ry2s7")]([])
 actorFaceTargets = Array[ExtResource("4_aydr2")]([SubResource("Resource_bhstv")])
-dialogues = Array[ExtResource("6_fcsrf")]([SubResource("Resource_hg11s"), SubResource("Resource_ffrbi")])
+dialogues = Array[ExtResource("6_fcsrf")]([SubResource("Resource_hg11s")])
 playSfxs = Array[AudioStream]([])
 endTextBoxPauses = true
 shakeCamForDuration = false
@@ -348,6 +336,18 @@ actorTreePath = "TilemapRoot/WarlockAgent"
 isPlayer = false
 animation = "talk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_ffrbi"]
+script = ExtResource("6_fcsrf")
+speaker = "Warlock Agent"
+texts = Array[String](["They have told me no more than that. You will be finding out shortly.", "Follow me up these steps."])
+textboxSfxs = Array[AudioStream]([])
+speakerActorScenePath = "TilemapRoot/WarlockAgent"
+speakerActorIsPlayer = false
+speakerAnim = "talk"
+speakerAnimScale = 3
+animSpeakerOffset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
 
 [sub_resource type="Resource" id="Resource_wj1nx"]
 script = ExtResource("1_1phdu")

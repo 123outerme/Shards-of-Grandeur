@@ -53,7 +53,7 @@ func load_new_move_list_item_panel() -> void:
 		itemNameLabel.visible = false
 		itemCountLabel.visible = false
 		
-		var combatantSprite: CombatantSprite = combatant.get_sprite_obj() if evolution == null else evolution.combatantSprite
+		var combatantSprite: CombatantSprite = combatant.sprite if evolution == null else evolution.combatantSprite
 		animatedCombatantSprite.sprite_frames = combatantSprite.spriteFrames
 		animatedCombatantSprite.offset = (combatantSprite.maxSize / 2) - combatantSprite.idleCanvasCenterPosition
 		animatedCombatantSprite.flip_h = combatantSprite.spriteFacesRight
