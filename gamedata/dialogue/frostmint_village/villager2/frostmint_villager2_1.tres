@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://cqhytcih400ai"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_2f3ps"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_1vogc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_d1aky"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_b7vcr"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_d1aky"]
+[ext_resource type="Resource" uid="uid://dlwf5rm3r1v10" path="res://gamedata/dialogue/frostmint_village/villager2/frostmint_villager2_solius.tres" id="4_b7vcr"]
+
+[sub_resource type="Resource" id="Resource_runi4"]
+script = ExtResource("2_d1aky")
+choiceBtn = "Interesting..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_b7vcr")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_4dg7p"]
+script = ExtResource("2_d1aky")
+choiceBtn = "Solius?"
+leadsTo = ExtResource("4_b7vcr")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_b7vcr")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_b7vcr"]
+script = ExtResource("1_2f3ps")
+lines = Array[String](["Down that trail north of here, there's a mysterious mansion. Nobody in the village has ever seen its owner come or go.", "Yet, there are lights on inside, so someone must be there..."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_d1aky")]([SubResource("Resource_runi4"), SubResource("Resource_4dg7p")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_d1aky")
+entryId = ""
+items = Array[ExtResource("1_2f3ps")]([SubResource("Resource_b7vcr")])
+ordStoryRequirements = Array[ExtResource("2_1vogc")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

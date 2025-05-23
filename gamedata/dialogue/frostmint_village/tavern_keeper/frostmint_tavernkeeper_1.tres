@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://rd3wshgebmu1"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://rd3wshgebmu1"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nckfj"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_2jo3q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_008na"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sc18p"]
 [ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_sd8x6"]
+[ext_resource type="Resource" uid="uid://cfftxy08vx2om" path="res://gamedata/dialogue/frostmint_village/tavern_keeper/frostmint_tavernkeeper_solius.tres" id="5_sd8x6"]
 
 [sub_resource type="Resource" id="Resource_ti3hq"]
 script = ExtResource("2_sc18p")
@@ -32,6 +33,18 @@ turnsInQuest = ""
 isDeclineChoice = false
 metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
 
+[sub_resource type="Resource" id="Resource_sd8x6"]
+script = ExtResource("2_sc18p")
+choiceBtn = "Solius?"
+leadsTo = ExtResource("5_sd8x6")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_008na")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_008na"]
 script = ExtResource("1_nckfj")
 lines = Array[String](["Welcome to the Frostbite Tavern, traveller! What can I get you?"])
@@ -41,7 +54,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_sc18p")]([SubResource("Resource_ti3hq"), SubResource("Resource_ub050")])
+choices = Array[ExtResource("2_sc18p")]([SubResource("Resource_ti3hq"), SubResource("Resource_ub050"), SubResource("Resource_sd8x6")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]

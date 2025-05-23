@@ -8,8 +8,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bu1m3t7vrjkm6" path="res://graphics/animations/a_snowy_inn_sign.tres" id="5_vx8b3"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="6_885am"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_885am"]
-[ext_resource type="SpriteFrames" uid="uid://daiug28wjqxnv" path="res://graphics/animations/a_tundra_man_2.tres" id="7_xi00v"]
 [ext_resource type="Resource" uid="uid://clw3legbkrb4" path="res://gamedata/dialogue/frostmint_village/innkeeper/fm_innkeeper_1.tres" id="8_2gjhe"]
+[ext_resource type="SpriteFrames" uid="uid://dv3354mqcmisb" path="res://graphics/animations/a_tundra_lady_3.tres" id="9_885am"]
 
 [sub_resource type="Resource" id="Resource_885am"]
 script = ExtResource("4_xi00v")
@@ -131,11 +131,12 @@ visible = false
 [node name="Innkeeper" parent="TilemapRoot" instance=ExtResource("3_pwnbj")]
 position = Vector2(16, -30)
 displayName = "Innkeeper"
+saveName = "fm_village_innkeeper"
 data = SubResource("Resource_2gjhe")
 dialogueEntries = Array[ExtResource("7_885am")]([ExtResource("8_2gjhe")])
 
 [node name="NPCSprite" parent="TilemapRoot/Innkeeper" index="0"]
-sprite_frames = ExtResource("7_xi00v")
+sprite_frames = ExtResource("9_885am")
 animation = &"stand"
 
 [node name="ColliderShape" parent="TilemapRoot/Innkeeper" index="1"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://b8g5gdcmy67cl"]
+[gd_scene load_steps=47 format=4 uid="uid://b8g5gdcmy67cl"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d6pke"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ksxva"]
@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="8_t4gxd"]
 [ext_resource type="Resource" uid="uid://cd28dn4q8sv8d" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_sign_1.tres" id="9_is10d"]
 [ext_resource type="SpriteFrames" uid="uid://bybjlkysux754" path="res://graphics/animations/a_snowy_sign.tres" id="10_q5eok"]
+[ext_resource type="Resource" uid="uid://bpplroubb54jp" path="res://gamedata/dialogue/frostmint_village/villager1/frostmint_villager1_1.tres" id="11_a08oj"]
 [ext_resource type="SpriteFrames" uid="uid://dwh8kq6iqbgvp" path="res://graphics/animations/a_tundra_man_1.tres" id="11_igro0"]
 [ext_resource type="SpriteFrames" uid="uid://c4hrbfako7xfn" path="res://graphics/animations/a_tundra_lady_1.tres" id="12_t4gxd"]
 [ext_resource type="Resource" uid="uid://cbclxeqvr1rk" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_armory_sign_1.tres" id="13_4cqnv"]
+[ext_resource type="Resource" uid="uid://cqhytcih400ai" path="res://gamedata/dialogue/frostmint_village/villager2/frostmint_villager2_1.tres" id="13_80hg6"]
 [ext_resource type="SpriteFrames" uid="uid://bbhes1mj3tsjf" path="res://graphics/animations/a_snowy_armory_sign.tres" id="13_dg8ii"]
 [ext_resource type="SpriteFrames" uid="uid://dmkuefcc7vivn" path="res://graphics/animations/a_snowy_restaurant_sign.tres" id="14_3gbuk"]
 [ext_resource type="Resource" uid="uid://dqfwj065uoeey" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_tavern_sign_1.tres" id="14_fggv6"]
@@ -341,6 +343,7 @@ position = Vector2(-36, 127)
 displayName = "Villager"
 saveName = "frostmint_villager_1"
 data = SubResource("Resource_80hg6")
+dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("11_a08oj")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager" index="0"]
 sprite_frames = ExtResource("11_igro0")
@@ -360,6 +363,7 @@ position = Vector2(256, -143)
 displayName = "Villager"
 saveName = "frostmint_villager_2"
 data = SubResource("Resource_ge5lr")
+dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("13_80hg6")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager2" index="0"]
 sprite_frames = ExtResource("12_t4gxd")
@@ -507,12 +511,12 @@ mapPos = Vector2(-8, 4)
 [node name="WarpArea" parent="ForgeWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_27ctp")
 
-[node name="WarpZone4" parent="." instance=ExtResource("7_igro0")]
+[node name="House1WarpZone" parent="." instance=ExtResource("7_igro0")]
 position = Vector2(391.5, -46)
+mapName = "frostmint_village_house_1"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="WarpZone4" index="0"]
+[node name="WarpArea" parent="House1WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_tadab")
 
 [node name="GeneralStoreWarpZone" parent="." instance=ExtResource("7_igro0")]
@@ -523,12 +527,12 @@ mapPos = Vector2(-8, 4)
 [node name="WarpArea" parent="GeneralStoreWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_jydsf")
 
-[node name="WarpZone6" parent="." instance=ExtResource("7_igro0")]
+[node name="House2WarpZone" parent="." instance=ExtResource("7_igro0")]
 position = Vector2(455.5, 162)
+mapName = "frostmint_village_house_2"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
-[node name="WarpArea" parent="WarpZone6" index="0"]
+[node name="WarpArea" parent="House2WarpZone" index="0"]
 shape = SubResource("RectangleShape2D_e46bs")
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("8_t4gxd")]
@@ -559,8 +563,8 @@ shape = SubResource("RectangleShape2D_xr4ay")
 [editable path="InnWarpZone"]
 [editable path="TavernWarpZone"]
 [editable path="ForgeWarpZone"]
-[editable path="WarpZone4"]
+[editable path="House1WarpZone"]
 [editable path="GeneralStoreWarpZone"]
-[editable path="WarpZone6"]
+[editable path="House2WarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]

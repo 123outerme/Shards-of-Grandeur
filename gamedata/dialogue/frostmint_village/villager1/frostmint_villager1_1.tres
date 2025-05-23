@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://bpplroubb54jp"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dfou6"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_02ruv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_agt76"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_02ruv"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jk2te"]
+[ext_resource type="Resource" uid="uid://dktoal7ba8ved" path="res://gamedata/dialogue/frostmint_village/villager1/frostmint_villager1_solius.tres" id="4_jk2te"]
+
+[sub_resource type="Resource" id="Resource_t7v3b"]
+script = ExtResource("2_02ruv")
+choiceBtn = "Brr!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jk2te")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ggakg"]
+script = ExtResource("2_02ruv")
+choiceBtn = "Solius?"
+leadsTo = ExtResource("4_jk2te")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jk2te")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jk2te"]
+script = ExtResource("1_dfou6")
+lines = Array[String](["Brr...! It's hard, sweaty work to tend to these fires, but I'm still freezing!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_02ruv")]([SubResource("Resource_t7v3b"), SubResource("Resource_ggakg")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_02ruv")
+entryId = ""
+items = Array[ExtResource("1_dfou6")]([SubResource("Resource_jk2te")])
+ordStoryRequirements = Array[ExtResource("2_agt76")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
