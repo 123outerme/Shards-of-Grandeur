@@ -26,7 +26,15 @@ func apply_stat_change(stats: Stats) -> Stats:
 
 func get_status_effect_str(combatant: Combatant, allCombatants: Array[Combatant], timing: BattleCommand.ApplyTiming) -> String:
 	if timing == BattleCommand.ApplyTiming.BEFORE_ROUND:
-		return combatant.disp_name() + " is moving extremely quickly due to " + status_effect_to_string() + '!'
+		var descriptor: String = 'quicker'
+		match potency:
+			Potency.WEAK:
+				descriptor = 'quicker'
+			Potency.STRONG:
+				descriptor = 'much quicker'
+			Potency.OVERWHELMING:
+				descriptor = 'blindingly quick'
+		return combatant.disp_name() + " is moving " + descriptor + " due to " + status_effect_to_string() + '!'
 	return ''
 
 func get_status_effect_tooltip():

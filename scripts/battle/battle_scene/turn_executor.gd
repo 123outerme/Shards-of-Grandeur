@@ -227,6 +227,8 @@ func finish_turn() -> WinCon.TurnResult:
 	if lastCombatant != null:
 		lastCombatant.command = null # remove the command from the previous turn's combatant
 	
+	turnQueue.reload() # re-sort turn queue to affect turn order based on the results of this turn
+	
 	for cNode: CombatantNode in battleController.get_all_combatant_nodes():
 		cNode.update_current_tag_stats(true) # after the turn is over, update the battle storage variables
 	
