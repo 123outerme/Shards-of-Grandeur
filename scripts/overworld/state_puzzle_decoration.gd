@@ -15,6 +15,9 @@ class_name StatePuzzleDecoration
 ## a dictionary String -> String, where key is `state1>state2` for a transition from `state1` to `state2`, and value is the animation to play for that transition
 @export var stateTransitionAnimations: Dictionary[String, String] = {}
 
+## a dictionary String -> AudioStream, where key is `state1>state2` for a transition from `state1` to `state2`, where `state1` can be a state string or *. * matches all unmatched start states. Value is the SFX to play for that transition
+@export var stateTransitionSfxs: Dictionary[String, AudioStream] = {}
+
 ## dictionary of String -> InteractableDialogue objects. Each key is a state of the StatePuzzle, each InteractableDialogue the dialogue that will be played when interacting with this decoration in that puzzle state
 @export var stateDialogues: Dictionary[String, InteractableDialogue] = {}
 
@@ -148,8 +151,13 @@ func _puzzle_reqs_updated(playTransition: bool = true):
 	if currentState != state:
 		show_interact_sprite(false)
 		var animation: String = stateAnimations[state]
-		if playTransition and stateTransitionAnimations.has(currentState + '>' + state):
-			animation = stateTransitionAnimations[currentState + '>' + state]
+		if playTransition:
+			if stateTransitionAnimations.has(currentState + '>' + state):
+				animation = stateTransitionAnimations[currentState + '>' + state]
+			if stateTransitionSfxs.has(currentState + '>' + state):
+				SceneLoader.audioHandler.play_sfx(stateTransitionSfxs[currentState + '>' + state])
+			elif stateTransitionSfxs.has('*>' + state):
+				SceneLoader.audioHandler.play_sfx(stateTransitionSfxs['*>' + state])
 		if not animatedDecoration.anim_finished.is_connected(_transition_anim_finished):
 			animatedDecoration.anim_finished.connect(_transition_anim_finished)
 		if updateAnimOnTransitionAnimEnd and not animatedDecoration.anim_finished.is_connected(play_current_state_animation):

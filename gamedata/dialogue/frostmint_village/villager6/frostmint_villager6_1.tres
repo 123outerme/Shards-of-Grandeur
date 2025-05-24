@@ -1,14 +1,52 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://btb8eshajbidq"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://btb8eshajbidq"]
 
-[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_cb34k"]
-[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_33lt4"]
-[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ayrkr"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ugyu2"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_npack"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_bd6ti"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_npack"]
+[ext_resource type="Resource" uid="uid://d2qfs2x2ujoa0" path="res://gamedata/dialogue/frostmint_village/villager6/frostmint_villager6_solius.tres" id="4_bd6ti"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_i2nip"]
+
+[sub_resource type="Resource" id="Resource_bd6ti"]
+script = ExtResource("2_npack")
+choiceBtn = "Cool!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_npack")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_i2nip"]
+script = ExtResource("2_npack")
+choiceBtn = "Solius?"
+leadsTo = ExtResource("4_bd6ti")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_npack")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_b66ic"]
+script = ExtResource("1_ugyu2")
+lines = Array[String](["Those Arctic Foxes love to play in the snow. They never seem to be chilly!", "I have to stay all wrapped up in my coat to even brave the cold, and I couldn't even think of burrowing in the snow like they do."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_npack")]([SubResource("Resource_bd6ti"), SubResource("Resource_i2nip")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
-script = ExtResource("3_ayrkr")
+script = ExtResource("4_i2nip")
 entryId = ""
-items = Array[ExtResource("1_cb34k")]([])
-ordStoryRequirements = Array[ExtResource("2_33lt4")]([])
+items = Array[ExtResource("1_ugyu2")]([SubResource("Resource_b66ic")])
+ordStoryRequirements = Array[ExtResource("3_bd6ti")]([])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

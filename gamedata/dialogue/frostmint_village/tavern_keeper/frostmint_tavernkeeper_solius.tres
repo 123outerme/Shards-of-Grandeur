@@ -1,14 +1,69 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://cfftxy08vx2om"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cfftxy08vx2om"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_hnjs8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3dgw8"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ermxr"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3dgw8"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_ermxr"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_twx5t"]
+[ext_resource type="Resource" uid="uid://d1dcvqugkymjd" path="res://gamedata/dialogue/frostmint_village/tavern_keeper/frostmint_tavernkeeper_solius_turnin.tres" id="3_x8nff"]
+
+[sub_resource type="Resource" id="Resource_x8nff"]
+script = ExtResource("2_3dgw8")
+choiceBtn = "Missing an Arm?"
+leadsTo = ExtResource("3_x8nff")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_twx5t")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_twx5t"]
+script = ExtResource("1_hnjs8")
+lines = Array[String](["You're looking for your friend cloaked in red?", "... As a matter of fact, a traveller fitting that description did come by. Is he missing an arm?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_3dgw8")]([SubResource("Resource_x8nff")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_3dgw8"]
+script = ExtResource("2_ermxr")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["A Lost Comrade#Retrace His Steps"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_ermxr")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["frostmint_village_tavern_keeper#"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_ermxr")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_3dgw8")
-entryId = ""
-items = Array[ExtResource("1_hnjs8")]([])
-ordStoryRequirements = Array[ExtResource("2_ermxr")]([])
+entryId = "tavernkeeper_solius"
+items = Array[ExtResource("1_hnjs8")]([SubResource("Resource_twx5t")])
+ordStoryRequirements = Array[ExtResource("2_ermxr")]([SubResource("Resource_3dgw8")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

@@ -1,14 +1,55 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dnxtbpbiug1rp"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dnxtbpbiug1rp"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_lnrbw"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_2dk2j"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_d2f0u"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_d2f0u"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_d2f0u"]
+
+[sub_resource type="Resource" id="Resource_08ana"]
+script = ExtResource("1_lnrbw")
+lines = Array[String](["Yeah, there was a robed guy that stumbled into town. I saw him stumble into town through the window of this tavern.", "He must have gotten into a fight with an Ice Hound or something! He looked pretty banged up.", "I'll bet the Tavernkeep here knows the full story! He knows everyone who rolls in."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_d2f0u")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_5q2t6"]
+script = ExtResource("2_2dk2j")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["A Lost Comrade#Retrace His Steps"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_d2f0u")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_d2f0u")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_d2f0u")
 entryId = ""
-items = Array[ExtResource("1_lnrbw")]([])
-ordStoryRequirements = Array[ExtResource("2_2dk2j")]([])
+items = Array[ExtResource("1_lnrbw")]([SubResource("Resource_08ana")])
+ordStoryRequirements = Array[ExtResource("2_2dk2j")]([SubResource("Resource_5q2t6")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

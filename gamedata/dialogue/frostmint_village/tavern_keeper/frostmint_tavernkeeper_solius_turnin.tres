@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d1dcvqugkymjd"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dngok"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_twexk"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_uex4x"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_4htya"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_twexk"]
+[ext_resource type="Resource" uid="uid://dgrmsqch8olk6" path="res://gamedata/dialogue/frostmint_village/tavern_keeper/frostmint_tavernkeeper_solius_afterturnin.tres" id="4_4htya"]
+
+[sub_resource type="Resource" id="Resource_fyuf5"]
+script = ExtResource("2_twexk")
+choiceBtn = "Maybe Not Him..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_4htya")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_hfbiq"]
+script = ExtResource("2_twexk")
+choiceBtn = "That's Him..."
+leadsTo = ExtResource("4_4htya")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_4htya")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Lost Comrade#Village Inquiry"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_o1038"]
+script = ExtResource("1_dngok")
+lines = Array[String](["Yeah, he was missing a right arm. Missing a sword too. So beaten up, we thought he was going to succumb to the cold.", "But after a few nights of rest, straight, he woke up mostly better. Nothing could fix that arm, though.", "He said he was escaping capture by Steelspire, and, well, I guess by the state was in I believed him."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_twexk")]([SubResource("Resource_fyuf5"), SubResource("Resource_hfbiq")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_twexk")
+entryId = ""
+items = Array[ExtResource("1_dngok")]([SubResource("Resource_o1038")])
+ordStoryRequirements = Array[ExtResource("2_uex4x")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dgrmsqch8olk6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_n7pgo"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_22gj1"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_fm1ge"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fm1ge"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_y4h5x"]
+
+[sub_resource type="Resource" id="Resource_xbag1"]
+script = ExtResource("2_fm1ge")
+choiceBtn = "Thanks, It Does."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_y4h5x")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_y4h5x"]
+script = ExtResource("1_n7pgo")
+lines = Array[String](["After he recovered, lots of dangerous creatures started flooding into the village! Most of them, I'd never seen before, either.", "With no sword, still shaky from the loss of his arm, he fended off this swarm with grace. Not a scratch on him.", "We were so grateful that we forged him a new sword. Without him, our village would have been laid to waste.", "He said it could've been Steelspire's doing, and he took off to the east of here. Shortly after, a huge snow drift fell over and blocked that path.", "You can't go that way now. Not until we clear it, if we ever could. Anyways, hopefully that helps you find him."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_fm1ge")]([SubResource("Resource_xbag1")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_fm1ge")
+entryId = ""
+items = Array[ExtResource("1_n7pgo")]([SubResource("Resource_y4h5x")])
+ordStoryRequirements = Array[ExtResource("2_22gj1")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

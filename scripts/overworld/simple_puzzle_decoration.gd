@@ -18,6 +18,9 @@ class_name SimplePuzzleDecoration
 ## the animation from the loaded SpriteFrames to use when the puzzle is/remains solved
 @export var solvedAnimation: String = ''
 
+## the SFX to play when the puzzle is solved (playing the solving animation)
+@export var solvingSfx: AudioStream = null
+
 ## if true, the collision is disabled as soon as the puzzle is solved
 @export var disableCollisionOnSolve: bool = false
 
@@ -107,6 +110,7 @@ func _puzzle_reqs_updated(playSolving: bool = true):
 		show_interact_sprite(false)
 		if playSolving and not solved:
 			animatedDecoration.play_animation(solvingAnimation)
+			SceneLoader.audioHandler.play_sfx(solvingSfx)
 			playingSolvingAnim = true
 			animatedDecoration.anim_finished.connect(_solving_anim_finished)
 			if updateAnimOnSolve:

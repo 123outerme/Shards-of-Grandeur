@@ -1,13 +1,51 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://dcwpet0qt2gwl"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dcwpet0qt2gwl"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_4kwqg"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_st82i"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_w87w7"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_brwyw"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_w87w7"]
+[ext_resource type="Resource" uid="uid://bg32c0qt5vdsx" path="res://gamedata/dialogue/frostmint_village/villager5/frostmint_villager5_solius.tres" id="4_brwyw"]
+
+[sub_resource type="Resource" id="Resource_tt5x7"]
+script = ExtResource("2_w87w7")
+choiceBtn = "Enjoy!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_brwyw")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_w87w7"]
+script = ExtResource("2_w87w7")
+choiceBtn = "Solius?"
+leadsTo = ExtResource("4_brwyw")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_brwyw")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_brwyw"]
+script = ExtResource("1_4kwqg")
+lines = Array[String](["Oh man, the trip from Leavenport was so worth it! The food here's delicious! And now I have the proper coat to come back!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_w87w7")]([SubResource("Resource_tt5x7"), SubResource("Resource_w87w7")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_w87w7")
 entryId = ""
-items = Array[ExtResource("1_4kwqg")]([])
+items = Array[ExtResource("1_4kwqg")]([SubResource("Resource_brwyw")])
 ordStoryRequirements = Array[ExtResource("2_st82i")]([])
 closesDialogue = false
 fullHealsPlayer = false
