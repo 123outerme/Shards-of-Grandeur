@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://cwxuxmq6m4hsp"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_56ky5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_874po"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_s70i1"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jibt7"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_s70i1"]
+[ext_resource type="Resource" uid="uid://d23dptuvcfof1" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_training_reminder.tres" id="4_jibt7"]
+
+[sub_resource type="Resource" id="Resource_btowp"]
+script = ExtResource("2_s70i1")
+choiceBtn = "Nevermind."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jibt7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_s70i1"]
+script = ExtResource("2_s70i1")
+choiceBtn = "Training?"
+leadsTo = ExtResource("4_jibt7")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_jibt7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jibt7"]
+script = ExtResource("1_56ky5")
+lines = Array[String](["Yes, @, what is it?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_s70i1")]([SubResource("Resource_btowp"), SubResource("Resource_s70i1")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_s70i1")
+entryId = ""
+items = Array[ExtResource("1_56ky5")]([SubResource("Resource_jibt7")])
+ordStoryRequirements = Array[ExtResource("2_874po")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

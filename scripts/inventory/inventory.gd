@@ -15,7 +15,9 @@ func add_slot(slot: InventorySlot) -> bool:
 		return false
 	var found: bool = false
 	for existingSlot in inventorySlots:
-		if existingSlot.item == slot.item:
+		# if there's an existing slot with this item and we aren't inserting a ShopInventorySlot:
+		# NOTE: haven't yet decided to allow this; UI would look weird with no reason why from player's perspective
+		if existingSlot.item == slot.item:# and not (slot is ShopInventorySlot):
 			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
 			# either way we aren't creating a new slot
 			if existingSlot.count < slot.item.maxCount or slot.item.maxCount == 0:

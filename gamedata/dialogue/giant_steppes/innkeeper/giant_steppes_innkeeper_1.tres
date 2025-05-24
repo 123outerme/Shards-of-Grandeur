@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d0dlfixvoetn"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_lclbj"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_8wxkp"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jgu83"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_h8g1r"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jgu83"]
+[ext_resource type="Resource" uid="uid://s4mawwsts3rg" path="res://gamedata/dialogue/giant_steppes/innkeeper/giant_steppes_innkeeper_rest.tres" id="4_h8g1r"]
+
+[sub_resource type="Resource" id="Resource_wyqdi"]
+script = ExtResource("2_jgu83")
+choiceBtn = "Goodbye."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_h8g1r")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jgu83"]
+script = ExtResource("2_jgu83")
+choiceBtn = "Rest"
+leadsTo = ExtResource("4_h8g1r")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_h8g1r")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_h8g1r"]
+script = ExtResource("1_lclbj")
+lines = Array[String](["Welcome to our inn and hospital, outsider. Our beds are enchanted to be extra restorative. Would you like one?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_jgu83")]([SubResource("Resource_wyqdi"), SubResource("Resource_jgu83")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_jgu83")
+entryId = ""
+items = Array[ExtResource("1_lclbj")]([SubResource("Resource_h8g1r")])
+ordStoryRequirements = Array[ExtResource("2_8wxkp")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

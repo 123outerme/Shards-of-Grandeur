@@ -246,6 +246,7 @@ func add_shop_items_to_inventory(savePath: String, newInventory: bool):
 	if npcShop.id != '' and newInventory:
 		var sharedInv: Inventory = PlayerResources.load_npc_shared_inventory(savePath, npcShop.id)
 		if sharedInv != null:
+			# add all slots found in the shared inventory (if any)
 			for slot: InventorySlot in sharedInv.inventorySlots:
 				inventory.add_slot(slot)
 	

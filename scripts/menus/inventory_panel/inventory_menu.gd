@@ -276,6 +276,7 @@ func load_inventory_panel(rebuild: bool = false):
 		var inventorySlots: Array[InventorySlot] = currentInventory.inventorySlots
 		if showPlayerInventory or not inShop:
 			inventorySlots = currentInventory.get_sorted_slots() # if player inventory, get sorted inventory
+			
 		
 		for slotIdx: int in range(len(inventorySlots)):
 			var slot: InventorySlot = inventorySlots[slotIdx]

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://d23dptuvcfof1"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_gctnh"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_73wh8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tnlu8"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_tnlu8"]
+
+[sub_resource type="Resource" id="Resource_t8d51"]
+script = ExtResource("1_gctnh")
+lines = Array[String](["You still have training left to do. Speak with the Stargazer and the Keeper of History to continue.", "We must train you well before our incursion into Steelspire's heart. They are much stronger with the home-field advantage."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_tnlu8")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_tnlu8")
+entryId = ""
+items = Array[ExtResource("1_gctnh")]([SubResource("Resource_t8d51")])
+ordStoryRequirements = Array[ExtResource("2_73wh8")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

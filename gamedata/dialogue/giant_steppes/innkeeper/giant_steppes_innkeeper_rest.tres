@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://s4mawwsts3rg"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_d6t3m"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a0rm8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_kpehc"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_a0rm8"]
+
+[sub_resource type="Resource" id="Resource_ufejn"]
+script = ExtResource("1_d6t3m")
+lines = Array[String](["Even a short nap will leave you fully rejuvinated. Enjoy your rest."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_a0rm8")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_a0rm8")
+entryId = ""
+items = Array[ExtResource("1_d6t3m")]([SubResource("Resource_ufejn")])
+ordStoryRequirements = Array[ExtResource("2_kpehc")]([])
+closesDialogue = false
+fullHealsPlayer = true
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://batp4lhe6kwba"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_wy2at"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_6vyfu"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_k1fib"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_6vyfu"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_oqkvp"]
+[ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_81vpb"]
+
+[sub_resource type="Resource" id="Resource_jwpb6"]
+script = ExtResource("2_6vyfu")
+choiceBtn = "No Thanks."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_oqkvp")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ulnel"]
+script = ExtResource("4_81vpb")
+opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
+choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_oqkvp")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
+
+[sub_resource type="Resource" id="Resource_oqkvp"]
+script = ExtResource("1_wy2at")
+lines = Array[String](["Hello, outsider. Welcome to my Trading Post. Would you like to see what we have?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_6vyfu")]([SubResource("Resource_jwpb6"), SubResource("Resource_ulnel")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_6vyfu")
+entryId = ""
+items = Array[ExtResource("1_wy2at")]([SubResource("Resource_oqkvp")])
+ordStoryRequirements = Array[ExtResource("2_k1fib")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

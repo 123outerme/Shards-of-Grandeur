@@ -140,6 +140,10 @@ func update_speaker_sprite() -> void:
 			var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
 			# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
 			spriteScale = max(1, 3.0 / ceil(maxDimensionSize / 16.0))
+		# NOTE: for "demo end" dialogue purposes only. TODO Remove this in released game
+		if speakerText.text == '<Stephen>':
+			spriteFrames = SpriteFrames.new()
+			speakerAnim = 'default'
 		speakerSprite.sprite_frames = spriteFrames
 		speakerSprite.offset = speakerSpriteOffset
 		speakerSprite.play(speakerAnim)
