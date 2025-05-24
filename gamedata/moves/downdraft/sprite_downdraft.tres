@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://cipwih5hvncej"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_osj53"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4vonw"]
+[ext_resource type="Resource" uid="uid://bbiyv67yws54y" path="res://gamedata/moves/downdraft/particles_downdraft_down.tres" id="2_cw6pb"]
+[ext_resource type="SpriteFrames" uid="uid://td35y4ici4xq" path="res://graphics/moves/wind/a_downdraft.tres" id="3_4vonw"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="3_on55f"]
+[ext_resource type="Resource" uid="uid://7y82g8hpv1o7" path="res://gamedata/moves/downdraft/particles_downdraft_spin.tres" id="3_qvsrd"]
+
+[sub_resource type="Resource" id="Resource_4vonw"]
+script = ExtResource("1_osj53")
+annotation = "position so that wind will land at target's feet"
+animation = "default"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -16)
+offset = 8
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_qvsrd"]
+script = ExtResource("1_osj53")
+annotation = "play downdraft anim, particles shooting straight down"
+animation = "downdraft"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_cw6pb")
+sfx = ExtResource("3_on55f")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_on55f"]
+script = ExtResource("1_osj53")
+annotation = "play particles whipping circularly"
+animation = ""
+duration = 1.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_qvsrd")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_4vonw")
+spriteFrames = ExtResource("3_4vonw")
+centerSprite = true
+maxSize = Vector2(24, 32)
+frames = Array[ExtResource("1_osj53")]([SubResource("Resource_4vonw"), SubResource("Resource_qvsrd"), SubResource("Resource_on55f")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

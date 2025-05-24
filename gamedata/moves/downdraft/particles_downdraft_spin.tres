@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://7y82g8hpv1o7"]
+
+[ext_resource type="Texture2D" uid="uid://cepjbsf6jpl6d" path="res://graphics/particles/wind/wind_1.png" id="1_06ki8"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_pty0b"]
+[ext_resource type="Texture2D" uid="uid://dgwsdmeiqrv1q" path="res://graphics/particles/wind/wind_2.png" id="2_ud7x5"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind/wind_3.png" id="3_svho8"]
+[ext_resource type="Texture2D" uid="uid://cwi43lo4vqxog" path="res://graphics/particles/wind/wind_4.png" id="4_f2d7x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06ki8"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2, 9, 0)
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+orbit_velocity_min = -0.3
+orbit_velocity_max = 0.3
+
+[resource]
+script = ExtResource("1_pty0b")
+emitter = "front"
+count = 3
+lifetime = 1.1
+duration = 1.0
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_06ki8")
+particleTextures = Array[Texture2D]([ExtResource("1_06ki8"), ExtResource("2_ud7x5"), ExtResource("3_svho8"), ExtResource("4_f2d7x")])
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"
