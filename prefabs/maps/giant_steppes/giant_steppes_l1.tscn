@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=60 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -24,6 +24,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="17_qw8te"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="18_1iokg"]
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="23_eb6g7"]
+[ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
 
 [sub_resource type="Resource" id="Resource_wc6h0"]
 script = ExtResource("5_h3fmg")
@@ -162,6 +163,9 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc6h0"]
 size = Vector2(24, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68q3o"]
+size = Vector2(29, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5jd3"]
 size = Vector2(34, 8)
@@ -512,6 +516,14 @@ cutscenes = Array[ExtResource("15_t0jvn")]([ExtResource("16_vvtkq")])
 [node name="CollisionShape2D" parent="FirstStairsCutsceneTrigger" index="0"]
 shape = SubResource("RectangleShape2D_wc6h0")
 
+[node name="DemoBlockCutsceneTrigger" parent="." instance=ExtResource("14_0n6sp")]
+position = Vector2(1008, -121)
+cutscenes = Array[ExtResource("15_t0jvn")]([ExtResource("25_68q3o")])
+
+[node name="CollisionShape2D" parent="DemoBlockCutsceneTrigger" index="0"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_68q3o")
+
 [node name="Level2WarpZone" parent="." instance=ExtResource("3_s3l05")]
 position = Vector2(448, -335)
 mapName = "giant_steppes_l2"
@@ -613,17 +625,16 @@ navigation_layers = 4
 
 [node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("23_eb6g7")]
 visible = false
-triggerOrNPC = NodePath("../FirstStairsCutsceneTrigger")
-cutscene = ExtResource("16_vvtkq")
+triggerOrNPC = NodePath("../DemoBlockCutsceneTrigger")
+cutscene = ExtResource("25_68q3o")
 rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(448, -335)
+position = Vector2(1008, -164)
 data = SubResource("Resource_1iokg")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-animation = &"walk"
-frame_progress = 0.0265451
+frame_progress = 0.560012
 
 [node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
 disabled = true
@@ -644,6 +655,7 @@ disabled = true
 [editable path="TilemapRoot/NorthEnergyWall/AnimatedDecoration6"]
 [editable path="TilemapRoot/NorthEnergyWall/AnimatedDecoration7"]
 [editable path="FirstStairsCutsceneTrigger"]
+[editable path="DemoBlockCutsceneTrigger"]
 [editable path="Level2WarpZone"]
 [editable path="CameraHoldZone"]
 [editable path="TundraWestWarpZone"]
