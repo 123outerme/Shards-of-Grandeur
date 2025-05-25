@@ -1,0 +1,138 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=16 format=3 uid="uid://2plrqbr0o3cs"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_k0fo2"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_hly21"]
+[ext_resource type="Resource" uid="uid://bg3rq1744qmjh" path="res://gamedata/moves/sinister_stare/particles_sinister_stare_target.tres" id="2_jhbf3"]
+[ext_resource type="SpriteFrames" uid="uid://ocrhj3agaqg1" path="res://graphics/moves/dark/a_sinister_stare.tres" id="3_hly21"]
+
+[sub_resource type="Curve" id="Curve_gi3vt"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_trdhw"]
+_data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_hly21"]
+script = ExtResource("1_k0fo2")
+annotation = "start at position above user head"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, -4)
+offset = 16
+xCurve = SubResource("Curve_gi3vt")
+yCurve = SubResource("Curve_trdhw")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_k3ga3"]
+_data = [Vector2(0, 0), 0.0, 2.0, 0, 1, Vector2(0.5, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_g0qkr"]
+_data = [Vector2(0, 0), 0.0, 1.66534, 0, 1, Vector2(0.600775, 1), 2.64139, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_jhbf3"]
+script = ExtResource("1_k0fo2")
+annotation = "play stare anim for a beat"
+animation = "stare"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 16
+xCurve = SubResource("Curve_k3ga3")
+yCurve = SubResource("Curve_g0qkr")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_hly21"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.89396, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jhbf3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.73263, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_k3ga3"]
+script = ExtResource("1_k0fo2")
+annotation = "intensify the stare as it moves to above the target"
+animation = "intensify"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -4)
+offset = 4
+xCurve = SubResource("Curve_hly21")
+yCurve = SubResource("Curve_jhbf3")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_g0qkr"]
+script = ExtResource("1_k0fo2")
+annotation = "keep the intense stare for a beat"
+animation = "intense"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_jhbf3")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_gi3vt"]
+script = ExtResource("1_k0fo2")
+annotation = "quickly fade it out"
+animation = ""
+duration = 0.25
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_hly21")
+spriteFrames = ExtResource("3_hly21")
+centerSprite = true
+maxSize = Vector2(24, 16)
+frames = Array[ExtResource("1_k0fo2")]([SubResource("Resource_hly21"), SubResource("Resource_jhbf3"), SubResource("Resource_k3ga3"), SubResource("Resource_g0qkr"), SubResource("Resource_gi3vt")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

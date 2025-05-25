@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://cfsg6lkhsu7tx"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_0rvdk"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_d2kh3"]
+[ext_resource type="Script" uid="uid://cb5exn7dcp5o7" path="res://scripts/battle/status_effects/bleed.gd" id="2_s43pv"]
+[ext_resource type="Resource" uid="uid://kf7qxyh6g27l" path="res://gamedata/moves/aerial_assault/anim_aerial_assault.tres" id="3_rf48y"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_s43pv"]
+
+[sub_resource type="Resource" id="Resource_rf48y"]
+script = ExtResource("2_s43pv")
+type = 2
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
+
+[sub_resource type="Resource" id="Resource_30hlq"]
+script = ExtResource("1_0rvdk")
+role = 1
+keywords = Array[String]([])
+orbChange = 1
+power = 40
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+statusEffect = SubResource("Resource_rf48y")
+selfGetsStatus = false
+statusChance = 0.6
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_6ncwc"]
+script = ExtResource("2_s43pv")
+type = 2
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
+
+[sub_resource type="Resource" id="Resource_cnpk2"]
+script = ExtResource("4_s43pv")
+powerPerOrb = 2
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 7
+overwhelmingThresholdOrbs = 9
+additionalStatusTurnsPerOrb = 0.34
+additionalStatusChancePerOrb = 0.05
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_s43pv"]
+script = ExtResource("1_0rvdk")
+role = 1
+keywords = Array[String]([])
+orbChange = -4
+power = 80
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+statusEffect = SubResource("Resource_6ncwc")
+selfGetsStatus = false
+statusChance = 0.65
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_cnpk2")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_d2kh3")
+moveName = "Aerial Assault"
+requiredLv = 23
+category = 0
+element = 4
+chargeEffect = SubResource("Resource_30hlq")
+surgeEffect = SubResource("Resource_s43pv")
+description = "Take to the skies and drop down at high speeds on an unsuspecting foe."
+moveLearnedText = "You notice your feet leave the ground, carried by the wind. Your eyes open to being many feet above the ground! The wind gives out, and you impact the ground with force."
+moveAnimation = ExtResource("3_rf48y")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

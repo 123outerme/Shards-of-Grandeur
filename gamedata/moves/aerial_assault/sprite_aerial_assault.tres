@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://cs17e3ttuk0ou"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_eidec"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_1h5e3"]
+[ext_resource type="SpriteFrames" uid="uid://uota75vr7jy6" path="res://graphics/moves/wind/a_aerial_assault.tres" id="3_1h5e3"]
+
+[sub_resource type="Resource" id="Resource_1h5e3"]
+script = ExtResource("1_eidec")
+annotation = "set position to just below user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, -4)
+offset = 8
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_1h5e3"]
+_data = [Vector2(0.16, 0), 0.0, 0.0, 0, 0, Vector2(0.6, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_itrg5"]
+_data = [Vector2(0.16, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_itrg5"]
+script = ExtResource("1_eidec")
+annotation = "play anim and strike target"
+animation = "aerial_assault"
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_1h5e3")
+yCurve = SubResource("Curve_itrg5")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_1h5e3")
+spriteFrames = ExtResource("3_1h5e3")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_eidec")]([SubResource("Resource_1h5e3"), SubResource("Resource_itrg5")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

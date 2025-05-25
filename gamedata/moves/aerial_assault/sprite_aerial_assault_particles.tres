@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://0p4tnrdvx0fg"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_bx03d"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_dkyar"]
+[ext_resource type="Resource" uid="uid://bafd3i58hbdgp" path="res://gamedata/moves/aerial_assault/particles_aerial_assault_hit.tres" id="2_uyfef"]
+[ext_resource type="SpriteFrames" uid="uid://uota75vr7jy6" path="res://graphics/moves/wind/a_aerial_assault.tres" id="3_dkyar"]
+
+[sub_resource type="Resource" id="Resource_uyfef"]
+script = ExtResource("1_bx03d")
+annotation = "setup time of attack sprite + 1/3 of a second (2 frames at 6FPS) to wait for move to get close to hitting"
+animation = "default"
+duration = 0.433
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_dkyar"]
+script = ExtResource("1_bx03d")
+annotation = "Play particles and wait for them to be over"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_uyfef")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_dkyar")
+spriteFrames = ExtResource("3_dkyar")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_bx03d")]([SubResource("Resource_uyfef"), SubResource("Resource_dkyar")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

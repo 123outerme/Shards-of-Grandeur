@@ -6,13 +6,18 @@ extends Node2D
 @onready var audioHandler: AudioHandler = get_node('AudioHandler')
 
 var tooLongLearnTextMoves: Array[Move] = []
+var noLearnTextMoves: Array[Move] = []
 
 func _ready() -> void:
 	SceneLoader.audioHandler = audioHandler
 	if runTests:
 		await run_tests()
-		print('\nMoves with too long of learn text:')
+		print('---------\nMoves with too long of learn text:')
 		for move: Move in tooLongLearnTextMoves:
+			print(move.moveName)
+		print('---------\nMoves with NO learn text:')
+		
+		for move: Move in noLearnTextMoves:
 			print(move.moveName)
 	else:
 		itemUsePanel.load_item_use_panel()
@@ -25,6 +30,8 @@ func run_tests() -> void:
 		if move != null:
 			print('Testing ', move.moveName)
 			itemUsePanel.learnedMove = move
+			if move.moveLearnedText == '':
+				noLearnTextMoves.append(move)
 			itemUsePanel.load_item_use_panel()
 			await get_tree().process_frame
 			test_use_item_learn_move_panel()

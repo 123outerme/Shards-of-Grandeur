@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://uota75vr7jy6"]
+
+[ext_resource type="Texture2D" uid="uid://cm1ubbjkloeg8" path="res://graphics/moves/wind/aerial_assault/aerial_assault.png" id="1_0u550"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvrih"]
+atlas = ExtResource("1_0u550")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo7k4"]
+atlas = ExtResource("1_0u550")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0dol"]
+atlas = ExtResource("1_0u550")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08i1q"]
+atlas = ExtResource("1_0u550")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvrih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo7k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0dol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08i1q")
+}],
+"loop": false,
+"name": &"aerial_assault",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

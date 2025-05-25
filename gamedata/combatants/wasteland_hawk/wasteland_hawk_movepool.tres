@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://br4swfxaginkk"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://br4swfxaginkk"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_khju2"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_bs8w7"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_v6tlc"]
 [ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain/stamina_drain.tres" id="3_fjwn3"]
 [ext_resource type="Resource" uid="uid://ch4ub4fjauove" path="res://gamedata/moves/gale_force/gale_force.tres" id="4_6fh8t"]
+[ext_resource type="Resource" uid="uid://cj7lwrxa3kp4w" path="res://gamedata/moves/downdraft/downdraft.tres" id="4_evc38"]
+[ext_resource type="Resource" uid="uid://cfsg6lkhsu7tx" path="res://gamedata/moves/aerial_assault/aerial_assault.tres" id="6_evc38"]
+[ext_resource type="Resource" uid="uid://dlk1m0g5uucdo" path="res://gamedata/moves/sinister_stare/sinister_stare.tres" id="7_llh3i"]
 
 [resource]
 script = ExtResource("2_bs8w7")
-pool = Array[ExtResource("1_khju2")]([ExtResource("2_v6tlc"), ExtResource("3_fjwn3"), ExtResource("4_6fh8t")])
-signatureMoves = Array[ExtResource("1_khju2")]([])
+pool = Array[ExtResource("1_khju2")]([ExtResource("2_v6tlc"), ExtResource("3_fjwn3"), ExtResource("4_evc38"), ExtResource("4_6fh8t"), ExtResource("7_llh3i"), ExtResource("6_evc38")])
+signatureMoves = Array[ExtResource("1_khju2")]([ExtResource("4_evc38"), ExtResource("6_evc38")])
 preferredMove1Role = 2
 preferredMove1DmgType = 2
 preferredMove1Element = 4

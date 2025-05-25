@@ -145,7 +145,7 @@ func get_last_defined_target() -> MoveAnimSpriteFrame.MoveSpriteTarget:
 #'''
 
 func get_sprite_target_position(spriteTarget: MoveAnimSpriteFrame.MoveSpriteTarget, posOffset: int) -> Vector2:
-	var pos = Vector2()
+	var pos: Vector2 = Vector2()
 	var cNode: CombatantNode = user
 	match spriteTarget:
 			MoveAnimSpriteFrame.MoveSpriteTarget.GLOBAL:

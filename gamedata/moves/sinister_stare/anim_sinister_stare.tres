@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=8 format=3 uid="uid://h2qol1h0asi"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_5m04l"]
+[ext_resource type="Resource" uid="uid://2plrqbr0o3cs" path="res://gamedata/moves/sinister_stare/sprite_sinister_stare.tres" id="2_01hs8"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_dtwy8"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="4_x7noy"]
+[ext_resource type="Resource" uid="uid://bqubyl5wttwji" path="res://gamedata/moves/sinister_stare/particles_sinister_stare_user.tres" id="5_x7noy"]
+
+[sub_resource type="Resource" id="Resource_01hs8"]
+script = ExtResource("4_x7noy")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.101961, 0.0784314, 0.156863, 0.34902)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[sub_resource type="Resource" id="Resource_uk5j2"]
+script = ExtResource("4_x7noy")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.101961, 0.0784314, 0.156863, 0.470588)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[resource]
+script = ExtResource("2_dtwy8")
+combatantAnimation = "attack_affinity"
+makesContact = false
+makesContactTarget = 1
+makesContactPosOffset = Vector2(0, 0)
+userParticlePreset = ExtResource("5_x7noy")
+chargeMoveSprites = Array[ExtResource("1_5m04l")]([ExtResource("2_01hs8")])
+surgeMoveSprites = Array[ExtResource("1_5m04l")]([ExtResource("2_01hs8")])
+chargeBattlefieldShade = SubResource("Resource_01hs8")
+surgeBattlefieldShade = SubResource("Resource_uk5j2")
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

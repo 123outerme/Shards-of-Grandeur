@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://bqubyl5wttwji"]
+
+[ext_resource type="Texture2D" uid="uid://bwrdb6i61dp3b" path="res://graphics/particles/dark/darker_1.png" id="1_84itg"]
+[ext_resource type="Texture2D" uid="uid://ggo3ijh1g3qu" path="res://graphics/particles/dark/darker_2.png" id="2_1kuvo"]
+[ext_resource type="Texture2D" uid="uid://qxxf0yg6ivj2" path="res://graphics/particles/dark/darker_3.png" id="3_bk7of"]
+[ext_resource type="Texture2D" uid="uid://b5b7ib3u5hkit" path="res://graphics/particles/dark/darker_4.png" id="4_qx6ds"]
+[ext_resource type="Material" uid="uid://bbv4xdbtixlsw" path="res://graphics/particles/magic/magic_particle_process_mat.tres" id="5_i3ov6"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="6_n8hal"]
+
+[resource]
+script = ExtResource("6_n8hal")
+emitter = "behind"
+count = 4
+lifetime = 0.5
+duration = 1.0
+staggered = false
+processMaterial = ExtResource("5_i3ov6")
+particleTextures = Array[Texture2D]([ExtResource("1_84itg"), ExtResource("2_1kuvo"), ExtResource("3_bk7of"), ExtResource("4_qx6ds")])

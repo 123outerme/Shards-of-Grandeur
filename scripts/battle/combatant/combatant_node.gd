@@ -540,22 +540,31 @@ func play_particles(preset: ParticlePreset, timingDelay: float = 0):
 	var presetCopy: ParticlePreset = preset.duplicate(true)
 	if leftSide: # particles are designed & saved as they would play on an enemy (right side)
 		presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
+		presetCopy.processMaterial.emission_shape_offset.x *= -1 # invert emission shape X offset direction
+		# flip orbit (tangential) velocity to correspond with flipped sprite
+		var orbitVelMin: float = presetCopy.processMaterial.orbit_velocity_min
+		presetCopy.processMaterial.orbit_velocity_min = -1 * presetCopy.processMaterial.orbit_velocity_max
+		presetCopy.processMaterial.orbit_velocity_max = -1 * orbitVelMin
+		# flip tangential acceleration to correspond with flipped sprite
+		var tangentialAccelMin: float = presetCopy.processMaterial.tangential_accel_min
+		presetCopy.processMaterial.tangential_accel_min = -1 * presetCopy.processMaterial.tangential_accel_max
+		presetCopy.processMaterial.tangential_accel_max = -1 * tangentialAccelMin
 
 	if timingDelay > 0:
 		await get_tree().create_timer(timingDelay).timeout
 	
 	match preset.emitter:
 		'surge':
-			surgeParticles.preset = preset
+			surgeParticles.preset = presetCopy
 			surgeParticles.set_make_particles(true)
 		'behind':
-			behindParticles.preset = preset
+			behindParticles.preset = presetCopy
 			behindParticles.set_make_particles(true)
 		'front':
-			frontParticles.preset = preset
+			frontParticles.preset = presetCopy
 			frontParticles.set_make_particles(true)
 		'hit':
-			hitParticles.preset = preset
+			hitParticles.preset = presetCopy
 			hitParticles.set_make_particles(true)
 		'shard':
 			shardSummonAnimSprite.visible = true
@@ -563,14 +572,14 @@ func play_particles(preset: ParticlePreset, timingDelay: float = 0):
 			await get_tree().create_timer(0.5).timeout # show the shard for 1/4 of a sec before starting the animation
 			shardSummonAnimSprite.play()
 			await get_tree().create_timer(6 / 8.0).timeout # 6 frames into the animation (or 6/8 of a sec)
-			shardParticles.preset = preset
+			shardParticles.preset = presetCopy
 			shardParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(preset.sfx)
+			SceneLoader.audioHandler.play_sfx(presetCopy.sfx)
 			await get_tree().create_timer(3 / 8.0).timeout # +3 frames into the animation (or 9/8 secs total)
 			animatedSprite.visible = true
 			shardSummoned = false
 			return
-	SceneLoader.audioHandler.play_sfx(preset.sfx)
+	SceneLoader.audioHandler.play_sfx(presetCopy.sfx)
 
 func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 	var nodes: Array[CombatantNode] = moveSpriteTargets
