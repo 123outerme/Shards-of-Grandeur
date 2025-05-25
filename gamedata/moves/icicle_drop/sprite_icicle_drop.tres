@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://cu3e28krqf3kd"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_x3xxt"]
+[ext_resource type="Resource" uid="uid://b81wia08rimvb" path="res://gamedata/moves/icicle_drop/particles_icicle_drop.tres" id="2_8ue1e"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mnbk2"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="2_nthxj"]
+[ext_resource type="SpriteFrames" uid="uid://bv2lpxrlpqajg" path="res://graphics/moves/water/a_icicle_drop.tres" id="3_mnbk2"]
+
+[sub_resource type="Resource" id="Resource_mnbk2"]
+script = ExtResource("1_x3xxt")
+annotation = "move so bottom of sprite is at target's feet"
+animation = "default"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -16)
+offset = 8
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_8ue1e"]
+script = ExtResource("1_x3xxt")
+annotation = "play icicle drop anim"
+animation = "icicle_drop"
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_nthxj")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_nthxj"]
+script = ExtResource("1_x3xxt")
+annotation = "start playing particle effects"
+animation = ""
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_8ue1e")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_mnbk2")
+spriteFrames = ExtResource("3_mnbk2")
+centerSprite = true
+maxSize = Vector2(16, 32)
+frames = Array[ExtResource("1_x3xxt")]([SubResource("Resource_mnbk2"), SubResource("Resource_8ue1e"), SubResource("Resource_nthxj")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

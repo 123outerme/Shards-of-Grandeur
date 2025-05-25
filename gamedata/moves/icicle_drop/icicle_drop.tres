@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Move" load_steps=8 format=3 uid="uid://yag7t1tb4sa8"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_nnd1h"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_vw3wt"]
+[ext_resource type="Resource" uid="uid://c3qfj2sbi11nf" path="res://gamedata/moves/icicle_drop/anim_icicle_drop.tres" id="2_kxb6f"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_73mdy"]
+
+[sub_resource type="Resource" id="Resource_kxb6f"]
+script = ExtResource("1_vw3wt")
+role = 1
+keywords = Array[String](["Ice"])
+orbChange = 0
+power = 60
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_n5cts"]
+script = ExtResource("4_73mdy")
+powerPerOrb = 5
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_73mdy"]
+script = ExtResource("1_vw3wt")
+role = 2
+keywords = Array[String](["Ice"])
+orbChange = -5
+power = 65
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 6
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_n5cts")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_nnd1h")
+moveName = "Icicle Drop"
+requiredLv = 18
+category = 1
+element = 1
+chargeEffect = SubResource("Resource_kxb6f")
+surgeEffect = SubResource("Resource_73mdy")
+description = "Summon a rain of icicles over your foe's head!"
+moveLearnedText = "You feel something cold drip onto your neck... freezing cold! When you look up, you see frozen spears suspended above you!"
+moveAnimation = ExtResource("2_kxb6f")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
