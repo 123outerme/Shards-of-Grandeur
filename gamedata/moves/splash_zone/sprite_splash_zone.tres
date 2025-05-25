@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://dr6uh4fyxwmst"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_4gadj"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_oma5d"]
+[ext_resource type="SpriteFrames" uid="uid://clrg6gba2sqfk" path="res://graphics/moves/water/a_splash_zone.tres" id="3_oma5d"]
+
+[sub_resource type="Resource" id="Resource_oma5d"]
+script = ExtResource("1_4gadj")
+annotation = "set up in front of user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_oma5d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tkhev"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_tkhev"]
+script = ExtResource("1_4gadj")
+annotation = "play animation as animation plays towards target"
+animation = "splash_zone"
+duration = 1.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -14)
+offset = 4
+xCurve = SubResource("Curve_oma5d")
+yCurve = SubResource("Curve_tkhev")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_1p3pv"]
+script = ExtResource("1_4gadj")
+annotation = "fade out for the last 3 frames (0.5s at 6FPS)"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_oma5d")
+spriteFrames = ExtResource("3_oma5d")
+centerSprite = true
+maxSize = Vector2(16, 48)
+frames = Array[ExtResource("1_4gadj")]([SubResource("Resource_oma5d"), SubResource("Resource_tkhev"), SubResource("Resource_1p3pv")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

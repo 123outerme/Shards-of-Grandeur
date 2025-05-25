@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://0p4tnrdvx0fg"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://0p4tnrdvx0fg"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_bx03d"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_dkyar"]
 [ext_resource type="Resource" uid="uid://bafd3i58hbdgp" path="res://gamedata/moves/aerial_assault/particles_aerial_assault_hit.tres" id="2_uyfef"]
 [ext_resource type="SpriteFrames" uid="uid://uota75vr7jy6" path="res://graphics/moves/wind/a_aerial_assault.tres" id="3_dkyar"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="3_ft438"]
 
 [sub_resource type="Resource" id="Resource_uyfef"]
 script = ExtResource("1_bx03d")
@@ -40,6 +41,7 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 particles = ExtResource("2_uyfef")
+sfx = ExtResource("3_ft438")
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]

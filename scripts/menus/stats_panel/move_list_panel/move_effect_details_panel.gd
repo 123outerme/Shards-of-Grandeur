@@ -15,7 +15,6 @@ signal tooltip_panel_opened
 
 @onready var moveTargets: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MoveTargets")
 @onready var movePower: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MovePower")
-@onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/Keywords')
 
 @onready var userBoostsRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow')
 @onready var userStatChanges: RichTextLabel = get_node("ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow/UserStatChanges")
@@ -32,6 +31,12 @@ signal tooltip_panel_opened
 
 @onready var runeRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow')
 @onready var runeDetailsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow/RuneDetails')
+
+@onready var miscRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow')
+@onready var priorityLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow/Priority')
+@onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow/Keywords')
+@onready var prioSeparatorPanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel/PrioSeparatorPanel')
+@onready var keywordsSeparatorPanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel/KeywordsSeparatorPanel')
 
 @onready var surgePanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel')
 @onready var surgeVBox: VBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/SurgePanel/VBoxContainer')
@@ -95,14 +100,28 @@ func load_move_effect_details_panel():
 	moveTargets.text = '[center]Targets ' + BattleCommand.targets_to_string(moveEffect.targets) + '[/center]'
 	#moveRole.text = '[right]' + MoveEffect.role_to_string(moveEffect.role) + '[/right]'
 	
+	miscRow.visible = false
 	if len(moveEffect.keywords) > 0:
-		keywordsLabel.visible = true
+		keywordsSeparatorPanel.visible = true
+		miscRow.visible = true
 		var keywordNoun: String = 'Keyword'
 		if len(moveEffect.keywords) != 1:
 			keywordNoun += 's'
-		keywordsLabel.text = '[center]' + keywordNoun + ': ' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ') + '[/center]'
+		keywordsLabel.text = keywordNoun + ': ' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ')
 	else:
-		keywordsLabel.visible = false
+		keywordsLabel.text = ''
+		keywordsSeparatorPanel.visible = false
+
+	if moveEffect.priority != 0:
+		miscRow.visible = true
+		prioSeparatorPanel.visible = true
+		var priorityNum: String = String.num_int64(moveEffect.priority)
+		if moveEffect.priority > 0:
+			priorityNum = '+' + priorityNum
+		priorityLabel.text = 'Spd. Priority: ' + priorityNum
+	else:
+		priorityLabel.text = ''
+		prioSeparatorPanel.visible = false
 
 	if moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes():
 		var multipliers = moveEffect.selfStatChanges.get_multipliers_text()

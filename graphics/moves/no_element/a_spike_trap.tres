@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://dppn5g5p3i8x6"]
+[gd_resource type="SpriteFrames" load_steps=35 format=3 uid="uid://dppn5g5p3i8x6"]
 
 [ext_resource type="Texture2D" uid="uid://c1e2l27xkfaym" path="res://graphics/moves/no_element/spike_trap/spike_trap_set_spike_trap.png" id="1_jljpm"]
 [ext_resource type="Texture2D" uid="uid://cep1wtqg8cyw5" path="res://graphics/moves/no_element/spike_trap/spike_trap_rune.png" id="1_r27ff"]
@@ -36,6 +36,18 @@ region = Rect2(144, 0, 24, 16)
 atlas = ExtResource("1_r27ff")
 region = Rect2(168, 0, 24, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jey58"]
+atlas = ExtResource("1_r27ff")
+region = Rect2(192, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utg63"]
+atlas = ExtResource("1_r27ff")
+region = Rect2(216, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_632yy"]
+atlas = ExtResource("1_r27ff")
+region = Rect2(240, 0, 24, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuvry"]
 atlas = ExtResource("2_b4dhx")
 region = Rect2(0, 0, 24, 16)
@@ -68,33 +80,53 @@ region = Rect2(144, 0, 24, 16)
 atlas = ExtResource("2_b4dhx")
 region = Rect2(168, 0, 24, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gxtq"]
-atlas = ExtResource("1_jljpm")
-region = Rect2(0, 0, 24, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3s1y"]
+atlas = ExtResource("2_b4dhx")
+region = Rect2(192, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddj86"]
+atlas = ExtResource("2_b4dhx")
+region = Rect2(216, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgxty"]
+atlas = ExtResource("2_b4dhx")
+region = Rect2(240, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8472y"]
+atlas = ExtResource("2_b4dhx")
+region = Rect2(264, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r27ff"]
 atlas = ExtResource("1_jljpm")
-region = Rect2(24, 0, 24, 16)
+region = Rect2(0, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4dhx"]
 atlas = ExtResource("1_jljpm")
-region = Rect2(48, 0, 24, 16)
+region = Rect2(24, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lphy3"]
 atlas = ExtResource("1_jljpm")
-region = Rect2(72, 0, 24, 16)
+region = Rect2(48, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2gedw"]
 atlas = ExtResource("1_jljpm")
-region = Rect2(96, 0, 24, 16)
+region = Rect2(72, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mt1af"]
 atlas = ExtResource("1_jljpm")
-region = Rect2(120, 0, 24, 16)
+region = Rect2(96, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lpmn"]
 atlas = ExtResource("1_jljpm")
+region = Rect2(120, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auapi"]
+atlas = ExtResource("1_jljpm")
 region = Rect2(144, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xa8h"]
+atlas = ExtResource("1_jljpm")
+region = Rect2(168, 0, 24, 16)
 
 [resource]
 animations = [{
@@ -130,13 +162,25 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wc0xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jey58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utg63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_632yy")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": true,
 "name": &"spike_trap_rune",
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xuvry")
 }, {
 "duration": 1.0,
@@ -159,15 +203,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_koiw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3s1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddj86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgxty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8472y")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"spike_trap_rune_trigger",
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4gxtq")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r27ff")
 }, {
@@ -183,8 +239,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mt1af")
 }, {
-"duration": 4.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1lpmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auapi")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_7xa8h")
 }],
 "loop": false,
 "name": &"spike_trap_set",

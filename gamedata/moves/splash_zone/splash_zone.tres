@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://dn7iun03bkr0w"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_jgrfl"]
+[ext_resource type="Resource" uid="uid://bv1w0ybp84dfs" path="res://gamedata/moves/splash_zone/rune/rune_splash_zone_charge.tres" id="1_nsg7q"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="2_nsg7q"]
+[ext_resource type="Resource" uid="uid://dxio5ccpx8kh6" path="res://gamedata/moves/splash_zone/anim_splash_zone.tres" id="3_bb6db"]
+[ext_resource type="Resource" uid="uid://ckbm82ug6t0m1" path="res://gamedata/moves/splash_zone/rune/rune_splash_zone_surge.tres" id="4_b1ki5"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_b1ki5"]
+
+[sub_resource type="Resource" id="Resource_bb6db"]
+script = ExtResource("2_nsg7q")
+role = 6
+keywords = Array[String]([])
+orbChange = 0
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_nsg7q")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_druxn"]
+script = ExtResource("5_b1ki5")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_b0i7v"]
+script = ExtResource("2_nsg7q")
+role = 6
+keywords = Array[String]([])
+orbChange = -2
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+targets = 6
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("4_b1ki5")
+surgeChanges = SubResource("Resource_druxn")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_jgrfl")
+moveName = "Splash Zone"
+requiredLv = 24
+category = 1
+element = 1
+chargeEffect = SubResource("Resource_bb6db")
+surgeEffect = SubResource("Resource_b0i7v")
+description = "Send a Rune-powered warning to a target that they are about to be splashed."
+moveLearnedText = "As your eyes close, you foresee globs of water being hurled at you. As they are indeed launched towards you, you dodge them easily... except the last one, suspended over your head this whole time."
+moveAnimation = ExtResource("3_bb6db")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

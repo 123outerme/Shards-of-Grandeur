@@ -158,6 +158,43 @@ static func damage_formula(power: float, atkStat: float, resistanceStat: float, 
 		damage = minDmg 
 	return damage
 
+static func setup_status(user: Combatant, target: Combatant, statusEffect: StatusEffect, power: int, dmgCategory: Move.DmgCategory, element: Move.Element, keywords: Array[String], damage: int) -> void:
+	if statusEffect.type == StatusEffect.Type.NONE:
+		target.statusEffect = null
+	else:
+		target.statusEffect = statusEffect.copy()
+		if statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
+			var elementBurn: ElementBurn = target.statusEffect as ElementBurn
+			# save the attacker's current stats to the element burn
+			var userStatChanges = StatChanges.new()
+			userStatChanges.stack(user.statChanges) # copy stat changes
+			var userStats: Stats = userStatChanges.appmoveEffectly(user.stats)
+			if user.statusEffect != null and user.statusEffect.is_stat_altering():
+				userStats = user.statusEffect.apply_stat_change(userStats)
+			
+			var atkStat: float = userStats.physAttack # use physical for physical attacks
+			if dmgCategory == Move.DmgCategory.MAGIC:
+				atkStat = userStats.magicAttack # use magic for magic attacks
+			if dmgCategory == Move.DmgCategory.AFFINITY:
+				atkStat = userStats.affinity # use affinity for affinity-based attacks
+			# An ally w/ Intercept should NOT reduce the power of the burn
+			var elMultiplier: float = 1.0
+			if user.statChanges != null:
+				elMultiplier = user.statChanges.get_element_multiplier(element)
+			
+			var burnPower: float = power
+			# if the status has preset power, use that instead: 
+			if elementBurn.power > 0:
+				burnPower = elementBurn.power
+			elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
+		elif statusEffect.type == StatusEffect.Type.ENDURE:
+			var endure: Endure = target.statusEffect as Endure
+			# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum)
+			endure.lowestHp = target.currentHp
+			# if a move was damaging, don't consider the currently taken damage for the lowestHp
+			if damage > 0:
+				endure.lowestHp += damage
+
 func _init(
 	i_type = Type.NONE,
 	i_move = null,
@@ -249,7 +286,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 
 		if does_target_get_status(user, idx) and moveEffect.statusEffect != null:
-			setup_status(user, targets[idx], moveEffect, damage)
+			BattleCommand.setup_status(user, targets[idx], moveEffect.statusEffect, moveEffect.power, move.category, moveEffect.element, moveEffect.keywords, damage)
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:
@@ -273,7 +310,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 	if type == Type.MOVE:
 		if moveEffect.selfGetsStatus and user not in targets:
 			if does_target_get_status(user, -1) and moveEffect.statusEffect != null:
-				setup_status(user, user, moveEffect, 0)
+				BattleCommand.setup_status(user, user, moveEffect.statusEffect, moveEffect.power, move.category, moveEffect.element, moveEffect.keywords, 0)
 				commandResult.selfAfflictedStatus = true
 		
 		if moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or not (moveEffect.statusEffect != null and not (commandResult.selfAfflictedStatus or (true in commandResult.afflictedStatuses)))):
@@ -305,42 +342,6 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 			target.runes.append(newRune)
 	
 	return false
-
-func setup_status(user: Combatant, target: Combatant, moveEffect: MoveEffect, damage: int) -> void:
-	if moveEffect.statusEffect.type == StatusEffect.Type.NONE:
-		target.statusEffect = null
-	else:
-		target.statusEffect = moveEffect.statusEffect.copy()
-		if moveEffect.statusEffect.type == StatusEffect.Type.ELEMENT_BURN:
-			var elementBurn: ElementBurn = target.statusEffect as ElementBurn
-			# save the attacker's current stats to the element burn
-			var userStatChanges = StatChanges.new()
-			userStatChanges.stack(user.statChanges) # copy stat changes
-			var userStats: Stats = userStatChanges.apply(user.stats)
-			if user.statusEffect != null and user.statusEffect.is_stat_altering():
-				userStats = user.statusEffect.apply_stat_change(userStats)
-			
-			var atkStat: float = userStats.physAttack # use physical for physical attacks
-			if move.category == Move.DmgCategory.MAGIC:
-				atkStat = userStats.magicAttack # use magic for magic attacks
-			if move.category == Move.DmgCategory.AFFINITY:
-				atkStat = userStats.affinity # use affinity for affinity-based attacks
-			# An ally w/ Intercept should NOT reduce the power of the burn
-			var elMultiplier: float = 1.0
-			if user.statChanges != null:
-				elMultiplier = user.statChanges.get_element_multiplier(move.element)
-			var burnPower: float = moveEffect.power
-			# if the status has preset power, use that instead: 
-			if elementBurn.power > 0:
-				burnPower = elementBurn.power
-			elementBurn.set_burn_damage_parameters(burnPower * elMultiplier, atkStat, user.stats.level)
-		elif moveEffect.statusEffect.type == StatusEffect.Type.ENDURE:
-			var endure: Endure = target.statusEffect as Endure
-			# save the afflicted's current HP to the endure (in case it's already less than the Endure HP minimum
-			endure.lowestHp = target.currentHp
-			# if a move was damaging, don't consider the currently taken damage for the lowestHp
-			if damage > 0:
-				endure.lowestHp += damage
 
 func calculate_damage(user: Combatant, target: Combatant, power: float, ignoreMoveStatChanges: bool = false) -> int:
 	var userStatChanges = StatChanges.new()
@@ -434,6 +435,13 @@ func which_target_prevents_escape(user: Combatant) -> int:
 
 func get_is_escaping(user: Combatant) -> bool:
 	return which_target_prevents_escape(user) < 0
+
+func get_command_priority() -> int:
+	if type == Type.MOVE and move != null:
+		var moveEffect: MoveEffect = move.get_effect_of_type(moveEffectType)
+		if moveEffect:
+			return moveEffect.priority
+	return 0
 
 func does_target_get_status(user: Combatant, targetIdx: int) -> bool:
 	# no move, no status, or no chance: auto-fail

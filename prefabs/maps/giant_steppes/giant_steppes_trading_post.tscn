@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="6_hovep"]
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="7_nhkky"]
 
-[sub_resource type="Resource" id="Resource_86tpj"]
+[sub_resource type="Resource" id="Resource_hovep"]
 script = ExtResource("4_sjsm5")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(0, 0)
+position = Vector2(-8, -84)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -105,7 +105,7 @@ tile_set = ExtResource("2_1qah0")
 position = Vector2(-8, -84)
 displayName = "Trader"
 saveName = "giant_steppes_trader"
-data = SubResource("Resource_86tpj")
+data = SubResource("Resource_hovep")
 npcShop = ExtResource("5_sjsm5")
 
 [node name="ColliderShape" parent="TilemapRoot/Shopkeeper" index="1"]

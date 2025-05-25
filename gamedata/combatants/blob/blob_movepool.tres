@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=8 format=3 uid="uid://dq2jf25b6suci"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=10 format=3 uid="uid://dq2jf25b6suci"]
 
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="1_7or7a"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="1_je06x"]
@@ -7,20 +7,22 @@
 [ext_resource type="Resource" uid="uid://c3gi5b7ajoi3t" path="res://gamedata/moves/hydro_barrier/hydro_barrier.tres" id="3_xfdok"]
 [ext_resource type="Resource" uid="uid://bnlxt86bvm38f" path="res://gamedata/moves/tidal_wave/tidal_wave.tres" id="4_vvs1j"]
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="5_c0w2o"]
+[ext_resource type="Resource" uid="uid://c8cmkchw75c6o" path="res://gamedata/moves/deluge/deluge.tres" id="7_makdx"]
+[ext_resource type="Resource" uid="uid://dn7iun03bkr0w" path="res://gamedata/moves/splash_zone/splash_zone.tres" id="8_5i41n"]
 
 [resource]
 script = ExtResource("1_je06x")
-pool = Array[ExtResource("1_x37en")]([ExtResource("1_7or7a"), ExtResource("5_c0w2o"), ExtResource("2_cwtwf"), ExtResource("3_xfdok"), ExtResource("4_vvs1j")])
-signatureMoves = Array[ExtResource("1_x37en")]([ExtResource("3_xfdok"), ExtResource("4_vvs1j")])
+pool = Array[ExtResource("1_x37en")]([ExtResource("1_7or7a"), ExtResource("5_c0w2o"), ExtResource("2_cwtwf"), ExtResource("3_xfdok"), ExtResource("4_vvs1j"), ExtResource("7_makdx"), ExtResource("8_5i41n")])
+signatureMoves = Array[ExtResource("1_x37en")]([ExtResource("3_xfdok"), ExtResource("4_vvs1j"), ExtResource("8_5i41n")])
 preferredMove1Role = 3
 preferredMove1DmgType = -1
 preferredMove1Element = 0
 preferredMove2Role = 1
 preferredMove2DmgType = -1
 preferredMove2Element = 0
-preferredMove3Role = 0
+preferredMove3Role = 4
 preferredMove3DmgType = -1
 preferredMove3Element = 0
-preferredMove4Role = 4
+preferredMove4Role = 0
 preferredMove4DmgType = -1
 preferredMove4Element = 0

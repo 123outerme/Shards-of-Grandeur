@@ -556,7 +556,7 @@ func apply_rune_effect(rune: Rune) -> void:
 	var appliedStatus: bool = false
 	if rune.statusEffect != null:
 		if statusEffect == null or rune.statusEffect.overwritesOtherStatuses:
-			statusEffect = rune.statusEffect.copy()
+			BattleCommand.setup_status(rune.caster, self, rune.statusEffect, rune.power, rune.category, rune.element, [], damage)
 			appliedStatus = true
 	triggeredRunesStatus.append(appliedStatus)
 

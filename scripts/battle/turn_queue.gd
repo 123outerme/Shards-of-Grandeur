@@ -54,6 +54,12 @@ func combatant_stable_sort(): # insertion sort - there will never be more than 5
 '''
 
 func sort_turns(a: Combatant, b: Combatant) -> bool:
+	var aPriority: int = a.command.get_command_priority() if a.command != null else 0
+	var bPriority: int = b.command.get_command_priority() if b.command != null else 0
+	
+	if aPriority != bPriority:
+		return aPriority >= bPriority # if a's priority is greater than or equal to b, a goes first
+	
 	var aStats: Stats = a.stats
 	if a.statusEffect != null and a.statusEffect.affects_turn_order_calc():
 		aStats = a.statusEffect.apply_stat_change(aStats)
@@ -67,6 +73,6 @@ func sort_turns(a: Combatant, b: Combatant) -> bool:
 	if aStats.speed < bStats.speed:
 		return false # a goes after b
 	# if both have equal speed:
-	if b.disp_name() == PlayerResources.playerInfo.combatant.disp_name():
+	if b.save_name() == PlayerResources.playerInfo.combatant.save_name():
 		return false # prefer the player go first
 	return true # default: a goes before b

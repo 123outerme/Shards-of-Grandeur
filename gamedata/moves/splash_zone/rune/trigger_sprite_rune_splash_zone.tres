@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://2bn48aapuh51"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_2k6ll"]
+[ext_resource type="Resource" uid="uid://cor5jvfk30djd" path="res://gamedata/moves/splash_zone/rune/particles_rune_splash_zone.tres" id="2_ketnv"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_qltsb"]
+[ext_resource type="SpriteFrames" uid="uid://clrg6gba2sqfk" path="res://graphics/moves/water/a_splash_zone.tres" id="3_2k6ll"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="3_ketnv"]
+
+[sub_resource type="Resource" id="Resource_2k6ll"]
+script = ExtResource("1_2k6ll")
+annotation = "setup position above target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -14)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_2k6ll"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qltsb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_qltsb"]
+script = ExtResource("1_2k6ll")
+annotation = "play rune trigger anim"
+animation = "rune_trigger"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -24)
+offset = 8
+xCurve = SubResource("Curve_2k6ll")
+yCurve = SubResource("Curve_qltsb")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ketnv"]
+script = ExtResource("1_2k6ll")
+annotation = "play particles"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_ketnv")
+sfx = ExtResource("3_ketnv")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_qltsb")
+spriteFrames = ExtResource("3_2k6ll")
+centerSprite = true
+maxSize = Vector2(16, 48)
+frames = Array[ExtResource("1_2k6ll")]([SubResource("Resource_2k6ll"), SubResource("Resource_qltsb"), SubResource("Resource_ketnv")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

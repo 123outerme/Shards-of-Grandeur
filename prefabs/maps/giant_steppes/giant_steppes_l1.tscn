@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="23_eb6g7"]
 [ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
 
-[sub_resource type="Resource" id="Resource_68q3o"]
+[sub_resource type="Resource" id="Resource_1iokg"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -79,7 +79,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_m7m11"]
+[sub_resource type="Resource" id="Resource_4hkxj"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -105,7 +105,7 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f378v"]
 size = Vector2(15.5, 13)
 
-[sub_resource type="Resource" id="Resource_1iokg"]
+[sub_resource type="Resource" id="Resource_2yuxa"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -191,12 +191,12 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_2yuxa"]
+[sub_resource type="Resource" id="Resource_p6y5g"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(321, -83)
+position = Vector2(1008, -163)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -271,7 +271,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_4hkxj"]
+[sub_resource type="Resource" id="Resource_okj30"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -361,7 +361,7 @@ position = Vector2(250, -271)
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
 position = Vector2(150, -332)
-data = SubResource("Resource_68q3o")
+data = SubResource("Resource_1iokg")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("6_f378v")
@@ -381,7 +381,7 @@ position = Vector2(321, -83)
 displayName = "Warlock Agent"
 loadFlipH = true
 orSpawnRequirements = Array[ExtResource("7_68q3o")]([SubResource("Resource_o4dl1")])
-data = SubResource("Resource_m7m11")
+data = SubResource("Resource_4hkxj")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("7_h3fmg")
@@ -404,7 +404,7 @@ saveName = "ice_hound_giant_steppes"
 spriteSize = Vector2i(32, 32)
 spriteOffset = Vector2(-4, -8)
 speakerSpriteOffset = Vector2(-4, -8)
-data = SubResource("Resource_1iokg")
+data = SubResource("Resource_2yuxa")
 dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("9_b2mwp")])
 
 [node name="NPCSprite" parent="TilemapRoot/IceHound" index="0"]
@@ -569,7 +569,7 @@ displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes"
 loadFlipH = true
 orSpawnRequirements = Array[ExtResource("7_68q3o")]([SubResource("Resource_qw8te")])
-data = SubResource("Resource_2yuxa")
+data = SubResource("Resource_p6y5g")
 dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("19_m7m11")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent2" index="0"]
@@ -710,7 +710,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1008, -164)
-data = SubResource("Resource_4hkxj")
+data = SubResource("Resource_okj30")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.560012

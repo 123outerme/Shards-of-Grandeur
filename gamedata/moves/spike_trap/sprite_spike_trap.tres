@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://dyctf1ewymyfa"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://dyctf1ewymyfa"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_4gyth"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_jasdm"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_tywy1"]
 [ext_resource type="SpriteFrames" uid="uid://dppn5g5p3i8x6" path="res://graphics/moves/no_element/a_spike_trap.tres" id="3_jasdm"]
 
 [sub_resource type="Curve" id="Curve_jasdm"]
@@ -36,7 +37,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 script = ExtResource("1_4gyth")
 annotation = "play set animation"
 animation = "spike_trap_set"
-duration = 1.167
+duration = 1.333
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -48,6 +49,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_tywy1")
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_ruv4t"]
