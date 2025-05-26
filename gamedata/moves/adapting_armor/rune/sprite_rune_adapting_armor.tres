@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://bg7gb7dbp5fjt"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_1hmee"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_na72i"]
+[ext_resource type="SpriteFrames" uid="uid://dggwg4rkywb1b" path="res://graphics/moves/nature/a_adapting_armor.tres" id="3_na72i"]
+
+[sub_resource type="Resource" id="Resource_na72i"]
+script = ExtResource("1_1hmee")
+annotation = "set up position above target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -10)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_52ybn"]
+script = ExtResource("1_1hmee")
+annotation = "fade in"
+animation = "rune"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_iwkpc"]
+script = ExtResource("1_1hmee")
+annotation = "let animation play out for ~2 loops minus 3 frames (so the last 3 frames can fade out next)"
+animation = ""
+duration = 1.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_w8nbe"]
+script = ExtResource("1_1hmee")
+annotation = "fade out"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_na72i")
+spriteFrames = ExtResource("3_na72i")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_1hmee")]([SubResource("Resource_na72i"), SubResource("Resource_52ybn"), SubResource("Resource_iwkpc"), SubResource("Resource_w8nbe")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

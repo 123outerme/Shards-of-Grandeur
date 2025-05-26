@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="Move" load_steps=12 format=3 uid="uid://bwle6lohj0pwd"]
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://bwle6lohj0pwd"]
 
-[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_gr67o"]
-[ext_resource type="Resource" uid="uid://f1bhptjjqq3l" path="res://gamedata/wip/moves/adapting_armor/rune/rune_adapting_armor_charge.tres" id="1_mu0kw"]
-[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_s28rk"]
-[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_i8h55"]
-[ext_resource type="Resource" uid="uid://ddtvho84gt1gm" path="res://gamedata/wip/moves/adapting_armor/rune/rune_adapting_armor_surge.tres" id="3_wv86t"]
-[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_cmrq2"]
-[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_mu0kw"]
+[ext_resource type="Resource" uid="uid://f1bhptjjqq3l" path="res://gamedata/moves/adapting_armor/rune/rune_adapting_armor_charge.tres" id="1_bwvwb"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="2_m483o"]
+[ext_resource type="Resource" uid="uid://b4k6s22p4kgu7" path="res://gamedata/moves/adapting_armor/anim_adapting_armor.tres" id="3_lnnkl"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="4_3pgfe"]
+[ext_resource type="Resource" uid="uid://ddtvho84gt1gm" path="res://gamedata/moves/adapting_armor/rune/rune_adapting_armor_surge.tres" id="5_2jt8w"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_wyvhp"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="7_fkdir"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="8_410hl"]
 
 [sub_resource type="Resource" id="Resource_waygx"]
-script = ExtResource("1_gr67o")
+script = ExtResource("2_m483o")
 role = 6
 keywords = Array[String]([])
 orbChange = 1
@@ -21,13 +22,14 @@ targets = 3
 selfGetsStatus = false
 statusChance = 0.0
 statusRequiredForTargetStatChanges = false
-rune = ExtResource("1_mu0kw")
+rune = ExtResource("1_bwvwb")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_34m3j"]
-script = ExtResource("4_mu0kw")
+script = ExtResource("6_wyvhp")
 powerPerOrb = 0
 lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
 weakThresholdOrbs = 0
 strongThresholdOrbs = 0
 overwhelmingThresholdOrbs = 0
@@ -36,7 +38,7 @@ additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_wv86t"]
-script = ExtResource("4_cmrq2")
+script = ExtResource("8_410hl")
 physAttackIncrease = 0
 magicAttackIncrease = 0
 affinityIncrease = 0
@@ -47,12 +49,12 @@ magicAttackMultiplier = 1.0
 affinityMultiplier = 1.1
 resistanceMultiplier = 1.05
 speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_i8h55")]([])
+elementMultipliers = Array[ExtResource("7_fkdir")]([])
 keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_i8h55"]
-script = ExtResource("1_gr67o")
+script = ExtResource("2_m483o")
 role = 3
 keywords = Array[String]([])
 orbChange = -3
@@ -65,18 +67,19 @@ targetStatChanges = SubResource("Resource_wv86t")
 selfGetsStatus = false
 statusChance = 0.0
 statusRequiredForTargetStatChanges = false
-rune = ExtResource("3_wv86t")
+rune = ExtResource("5_2jt8w")
 surgeChanges = SubResource("Resource_34m3j")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [resource]
-script = ExtResource("1_s28rk")
+script = ExtResource("4_3pgfe")
 moveName = "Adapting Armor"
-requiredLv = 1
+requiredLv = 22
 category = 2
 element = 6
 chargeEffect = SubResource("Resource_waygx")
 surgeEffect = SubResource("Resource_i8h55")
 description = "Use natural energy to apply armor that responds to being attacked!"
-moveLearnedText = ""
+moveLearnedText = "A seed in your hand starts to sprout. Its exterior harder than bark, it reacts to your touch. As you poke the plant, it hardens in response!"
+moveAnimation = ExtResource("3_lnnkl")
 metadata/_custom_type_script = "uid://dx4lnh4driy7a"

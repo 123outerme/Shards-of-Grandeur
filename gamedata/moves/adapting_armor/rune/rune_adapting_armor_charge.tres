@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DamageRune" load_steps=7 format=3 uid="uid://f1bhptjjqq3l"]
+
+[ext_resource type="Resource" uid="uid://bg7gb7dbp5fjt" path="res://gamedata/moves/adapting_armor/rune/sprite_rune_adapting_armor.tres" id="1_dtoop"]
+[ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="2_q8b6x"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_luqs6"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_d23n7"]
+[ext_resource type="Resource" uid="uid://b2sge4icywjpo" path="res://gamedata/moves/adapting_armor/rune/trigger_sprite_rune_adapting_armor.tres" id="5_desgt"]
+
+[sub_resource type="Resource" id="Resource_sfmn5"]
+script = ExtResource("4_d23n7")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.05
+resistanceMultiplier = 1.1
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_luqs6")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("2_q8b6x")
+triggerElement = 0
+triggerCategory = -1
+isHealRune = false
+previousHp = -1
+orbChange = 1
+category = 0
+element = 0
+power = 0
+lifesteal = 0.0
+statChanges = SubResource("Resource_sfmn5")
+runeSpriteAnim = ExtResource("1_dtoop")
+triggerAnim = ExtResource("5_desgt")
+metadata/_custom_type_script = "uid://byp0t0da4gqvn"
