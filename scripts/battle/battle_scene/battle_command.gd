@@ -286,7 +286,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 			targets[idx].currentHp = min(max(targets[idx].currentHp - damage, 0), targets[idx].stats.maxHp) # bound to be at least 0 and no more than max HP
 
 		if does_target_get_status(user, idx) and moveEffect.statusEffect != null:
-			BattleCommand.setup_status(user, targets[idx], moveEffect.statusEffect, moveEffect.power, move.category, moveEffect.element, moveEffect.keywords, damage)
+			BattleCommand.setup_status(user, targets[idx], moveEffect.statusEffect, moveEffect.power, move.category, move.element, moveEffect.keywords, damage)
 			commandResult.afflictedStatuses[idx] = true
 		
 		if type == Type.USE_ITEM:
@@ -310,7 +310,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 	if type == Type.MOVE:
 		if moveEffect.selfGetsStatus and user not in targets:
 			if does_target_get_status(user, -1) and moveEffect.statusEffect != null:
-				BattleCommand.setup_status(user, user, moveEffect.statusEffect, moveEffect.power, move.category, moveEffect.element, moveEffect.keywords, 0)
+				BattleCommand.setup_status(user, user, moveEffect.statusEffect, moveEffect.power, move.category, move.element, moveEffect.keywords, 0)
 				commandResult.selfAfflictedStatus = true
 		
 		if moveEffect != null and (BattleCommand.is_command_enemy_targeting(moveEffect.targets) or not (moveEffect.statusEffect != null and not (commandResult.selfAfflictedStatus or (true in commandResult.afflictedStatuses)))):
