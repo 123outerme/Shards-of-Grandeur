@@ -25,8 +25,8 @@ func create_reports():
 	write_report(report, 'combatants/movepool_report.csv')
 	
 	report = create_report_for_all_moves_series(
-		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords', 'Level', 'Priority'],
-		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords, csv_move_level, csv_move_priority]
+		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords', 'Level', 'Priority', 'Lifesteal %', 'Self HP Sacrifice %'],
+		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords, csv_move_level, csv_move_priority, csv_move_lifesteal, csv_move_self_hp_sacrifice]
 	)
 	write_report(report, 'moves/move_report.csv')
 	
@@ -369,11 +369,19 @@ func csv_move_priority(move: Move, isSurge: bool) -> String:
 
 func csv_move_power(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
-	return String.num(moveEffect.power)
+	return String.num_int64(moveEffect.power)
 
 func csv_move_orbs(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
-	return String.num(moveEffect.orbChange)
+	return String.num_int64(moveEffect.orbChange)
+
+func csv_move_lifesteal(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	return String.num(moveEffect.lifesteal * 100)
+
+func csv_move_self_hp_sacrifice(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	return String.num(moveEffect.selfHpSacrifice * 100)
 
 func csv_move_self_stat_changes(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
