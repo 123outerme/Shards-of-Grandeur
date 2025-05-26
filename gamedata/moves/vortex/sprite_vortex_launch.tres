@@ -1,0 +1,184 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=16 format=3 uid="uid://c18o5gg0tim4f"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_0u7cf"]
+[ext_resource type="Resource" uid="uid://kghvlv7r1jgw" path="res://gamedata/moves/vortex/particles_vortex.tres" id="2_aaw8v"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_s0ei0"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_t2yv8"]
+[ext_resource type="SpriteFrames" uid="uid://b1y87domplpg8" path="res://graphics/moves/wind/a_vortex.tres" id="3_s0ei0"]
+
+[sub_resource type="Resource" id="Resource_0u7cf"]
+script = ExtResource("1_0u7cf")
+annotation = "set up position at target team"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 3
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_aaw8v"]
+script = ExtResource("1_0u7cf")
+annotation = "wait for form anim to complete"
+animation = ""
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_t2yv8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.852713, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ymoxq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.647287, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_t2yv8"]
+script = ExtResource("1_0u7cf")
+annotation = "move towards target"
+animation = "spin"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_t2yv8")
+yCurve = SubResource("Curve_ymoxq")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_t2yv8")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_s0ei0"]
+script = ExtResource("1_0u7cf")
+annotation = "play hit anim"
+animation = "hit"
+duration = 0.167
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ymoxq"]
+script = ExtResource("1_0u7cf")
+annotation = "play particles"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_aaw8v")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_it17j"]
+script = ExtResource("1_0u7cf")
+annotation = "play particles again"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_aaw8v")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_y4fw7"]
+script = ExtResource("1_0u7cf")
+annotation = "play particles for the last time"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_aaw8v")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_nnhjj"]
+script = ExtResource("1_0u7cf")
+annotation = "wait for anim to complete"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_s0ei0")
+spriteFrames = ExtResource("3_s0ei0")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_0u7cf")]([SubResource("Resource_0u7cf"), SubResource("Resource_aaw8v"), SubResource("Resource_t2yv8"), SubResource("Resource_s0ei0"), SubResource("Resource_ymoxq"), SubResource("Resource_it17j"), SubResource("Resource_y4fw7"), SubResource("Resource_nnhjj")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://kghvlv7r1jgw"]
+
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_l10q4"]
+[ext_resource type="Texture2D" uid="uid://cepjbsf6jpl6d" path="res://graphics/particles/wind/wind_1.png" id="1_p1uxm"]
+[ext_resource type="Texture2D" uid="uid://dgwsdmeiqrv1q" path="res://graphics/particles/wind/wind_2.png" id="2_djyxk"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind/wind_3.png" id="3_d3mgh"]
+[ext_resource type="Texture2D" uid="uid://cwi43lo4vqxog" path="res://graphics/particles/wind/wind_4.png" id="4_q61we"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="6_djyxk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l10q4"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 0, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+radial_velocity_min = 50.0
+radial_velocity_max = 70.0
+gravity = Vector3(0, 0, 0)
+
+[resource]
+script = ExtResource("1_l10q4")
+emitter = "behind"
+count = 3
+lifetime = 0.5
+duration = 0.33
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_l10q4")
+particleTextures = Array[Texture2D]([ExtResource("1_p1uxm"), ExtResource("2_djyxk"), ExtResource("3_d3mgh"), ExtResource("4_q61we")])
+sfx = ExtResource("6_djyxk")
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"
