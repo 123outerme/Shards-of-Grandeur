@@ -29,6 +29,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 0.65
 speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_iym7d"]
@@ -38,6 +39,8 @@ keywords = Array[String]([])
 orbChange = 0
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = -1
 targets = 5
 targetStatChanges = SubResource("Resource_dletw")
 statusEffect = SubResource("Resource_4yvy0")
@@ -68,6 +71,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 0.02
 speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_knwbe"]
@@ -95,6 +99,7 @@ affinityMultiplier = 1.0
 resistanceMultiplier = 0.45
 speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("2_7dr7n")]([])
+keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_7dr7n"]
@@ -104,6 +109,8 @@ keywords = Array[String]([])
 orbChange = -5
 power = 0
 lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = -1
 targets = 5
 targetStatChanges = SubResource("Resource_2w6vb")
 statusEffect = SubResource("Resource_gi7pd")
@@ -121,6 +128,6 @@ category = 2
 element = 7
 chargeEffect = SubResource("Resource_iym7d")
 surgeEffect = SubResource("Resource_7dr7n")
-description = "Turn your foe into a weakened, shambling, and persistent mess. Effectively, a zombie."
+description = "Turn your foe into a weakened, shambling, and persistent mess; effectively, a zombie."
 moveLearnedText = ""
 metadata/_custom_type_script = "uid://dx4lnh4driy7a"

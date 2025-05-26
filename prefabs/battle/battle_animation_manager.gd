@@ -33,6 +33,7 @@ const originalCombatantZIndices: Dictionary[String, int] = {
 }
 
 @export var disableEventTexts: bool = false
+@export var disableHpTags: bool = false
 
 @export_category('BattleAnimationManager - SFX and Misc')
 @export var statChangesTextSfx: AudioStream
@@ -232,6 +233,13 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if tweenToCallbackFunc != Callable():
 			user.tween_to_target_finished.disconnect(tweenToCallbackFunc)
 	
+	if SettingsHandler.gameSettings.battleAnims:
+		if moveAnimation.hideUserHpTag:
+			user.hpTag.visible = false
+		if moveAnimation.hideTargetHpTag:
+			for defender: CombatantNode in defenders:
+				defender.hpTag.visible = false
+	
 	# play sprites that should only play after a tween, if one happened
 	if len(afterTweenSprites) > 0 and SettingsHandler.gameSettings.battleAnims:
 		user.moveSpriteTargets = targets
@@ -251,6 +259,12 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		if cancellingAnimation:
 			cancellingAnimation = false
 			return
+	
+	# show all HP tags hidden (if any were hidden)
+	if not disableHpTags:
+		user.hpTag.visible = true
+		for defender: CombatantNode in defenders:
+			defender.hpTag.visible = true
 	
 	# if a tween was started, return the combatant now (and un-hide while we're at it)
 	if tweenBackCallbackFunc != Callable():
@@ -766,6 +780,7 @@ func cancel_animation():
 	minionCombatantNode.stop_animation(true, true, true, true)
 	enemy1CombatantNode.stop_animation(true, true, true, true)
 	enemy2CombatantNode.stop_animation(true, true, true, true)
+	enemy3CombatantNode.stop_animation(true, true, true, true)
 	battlefieldShade.lift_battlefield_shade()
 	reset_all_combatants_shade_z_indices()
 

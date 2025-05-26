@@ -107,7 +107,7 @@ func load_move_effect_details_panel():
 		var keywordNoun: String = 'Keyword'
 		if len(moveEffect.keywords) != 1:
 			keywordNoun += 's'
-		keywordsLabel.text = keywordNoun + ': ' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ')
+		keywordsLabel.text = '[center]' + keywordNoun + ': ' + TextUtils.string_arr_to_string(moveEffect.keywords, ', ', ', ', ', ') + '[/center]'
 	else:
 		keywordsLabel.text = ''
 		keywordsSeparatorPanel.visible = false

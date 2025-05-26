@@ -28,7 +28,7 @@ enum Role {
 ## <= is no self-HP sacrificate, otherwise a percentage of max HP to lose when using the move
 @export var selfHpSacrifice: float = 0
 
-## Speed priority of move
+## Speed priority of move; higher priority moves go before lower priority moves
 @export_range(-3, 3) var priority: int = 0
 
 ## who this move can target

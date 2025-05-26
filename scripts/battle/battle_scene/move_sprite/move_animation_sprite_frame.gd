@@ -82,6 +82,9 @@ enum MoveSpriteOffset {
 ## sfx to play on this frame
 @export var sfx: AudioStream = null
 
+## if true, emits the complete event for the MoveSprite when this frame is STARTED, rather than when it's ENDED. The rest of the frames in the animation will play on and then the sprite will be freed.
+@export var emitCompleteOnStart: bool = false
+
 func _init(
 	i_annotation = '',
 	i_animation = '',
@@ -100,6 +103,7 @@ func _init(
 	i_trackRotationTarget = false,
 	i_particles = null,
 	i_sfx = null,
+	i_emitCompleteOnStart: bool = false,
 ):
 	annotation = i_annotation
 	animation = i_animation
@@ -118,6 +122,7 @@ func _init(
 	trackRotationTarget = i_trackRotationTarget
 	particles = i_particles
 	sfx = i_sfx
+	emitCompleteOnStart = i_emitCompleteOnStart
 
 func get_real_duration(diff: Vector2):
 	if speed <= 0 or diff.length() == 0:

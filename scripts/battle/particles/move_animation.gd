@@ -20,6 +20,10 @@ enum AnimContactTarget {
 ## the position offset the tween must go to. X direction is reversed if user is on the right side 
 @export var makesContactPosOffset: Vector2 = Vector2.ZERO
 
+@export_category('Hide HP Tags')
+@export var hideUserHpTag: bool = false
+@export var hideTargetHpTag: bool = false
+
 @export_category('Particle Presets')
 @export var userParticlePreset: ParticlePreset = null
 @export var targetsParticlePreset: ParticlePreset = null
@@ -35,6 +39,10 @@ enum AnimContactTarget {
 func _init(
 	i_combatantAnimation = '',
 	i_makesContact = false,
+	i_makesContactTarget: AnimContactTarget = AnimContactTarget.TARGET,
+	i_makesContactPosOffset: Vector2 = Vector2.ZERO,
+	i_hideUserHpTag = false,
+	i_hideTargetHpTag = false,
 	i_userParticles = null,
 	i_targetsParticles = null,
 	i_chargeMoveSprites: Array[MoveAnimSprite] = [],
@@ -44,6 +52,10 @@ func _init(
 ):
 	combatantAnimation = i_combatantAnimation
 	makesContact = i_makesContact
+	makesContactTarget = i_makesContactTarget
+	makesContactPosOffset = i_makesContactPosOffset
+	hideUserHpTag = i_hideUserHpTag
+	hideTargetHpTag = i_hideTargetHpTag
 	userParticlePreset = i_userParticles
 	targetsParticlePreset = i_targetsParticles
 	chargeMoveSprites = i_chargeMoveSprites

@@ -31,6 +31,8 @@ var moveEffect: MoveEffect = null
 
 
 func _ready() -> void:
+	battleAnimManager.disableHpTags = disableHpTags
+	
 	battleAnimManager.playerCombatantNode.leftSide = true
 	battleAnimManager.playerCombatantNode.role = CombatantNode.Role.ALLY
 	battleAnimManager.minionCombatantNode.leftSide = true

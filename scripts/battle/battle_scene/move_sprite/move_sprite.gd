@@ -134,6 +134,9 @@ func load_frame():
 	
 	if sprFrame.sfx != null:
 		SceneLoader.audioHandler.play_sfx(sprFrame.sfx)
+	
+	if sprFrame.emitCompleteOnStart:
+		move_sprite_complete.emit(self)
 
 # unused: attempt at fixing how in get_sprite_target_position(), `user` scales the particles unless the sprite is specifically centered on the (single) target
 '''
@@ -249,6 +252,7 @@ func next_frame():
 			else:
 				destroy()
 			return
+	
 	# continue with some leftover duration (if any)
 	var finishTime: float = anim.frames[moveFrame - 1].get_real_duration(targetPos - startPos)
 	frameTimer = max(0, min(frameTimer, frameTimer - finishTime))

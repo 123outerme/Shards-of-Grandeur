@@ -408,6 +408,8 @@ func play_animation(animationName: String):
 		_on_animated_sprite_animation_finished()
 
 func stop_animation(stopSpriteAnim: bool, stopParticles: bool, stopMoveAnim: bool, stopEventTexts: bool):
+	hpTag.visible = true
+	
 	if stopSpriteAnim:
 		animatedSprite.stop()
 	
@@ -689,6 +691,8 @@ func _on_hp_drain_tween_finished():
 	hpDrainTween = null
 
 func _move_sprite_complete(sprite: MoveSprite):
+	if sprite.move_sprite_complete.is_connected(_move_sprite_complete):
+		sprite.move_sprite_complete.disconnect(_move_sprite_complete)
 	playedMoveSprites -= 1 # a number and an array are both kept track of, in case some sprites are freed at this time the erase may not work but the count will
 	playingMoveSprites.erase(sprite)
 	# if the combatant's sprite animation is done and all move sprites have finished

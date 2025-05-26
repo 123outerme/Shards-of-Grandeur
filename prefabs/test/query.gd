@@ -18,60 +18,46 @@ func create_reports():
 	closeButton.disabled = true
 	var reports: Dictionary = {}
 	# add reports one at a time so we can catch and debug errors on a single report easier
-	reports['combatants/movepool_report.csv'] = create_report_for_all_combatants_series(
+	var report: String = create_report_for_all_combatants_series(
 		['Movepool Size', 'Highest Move Lv', 'Highest Lv Move', 'Element Weaknesses', 'Element Resistances', 'Status Resistances', 'Status Immunities'],
 		[csv_combatant_movepool_size, csv_combatant_highest_move_lv, csv_combatant_highest_lv_move, csv_combatant_element_weaknesses, csv_combatant_element_resistances, csv_combatant_status_resistances, csv_combatant_status_immunities]
 	)
-	reports['moves/move_report.csv'] = create_report_for_all_moves_series(
-		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords', 'Level'],
-		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords, csv_move_level]
+	write_report(report, 'combatants/movepool_report.csv')
+	
+	report = create_report_for_all_moves_series(
+		['Power', 'Orbs', 'Role', 'Dmg Category', 'Element', 'Self Stat Changes', 'Target Stat Changes', 'Status Effect', 'Status Potency', 'Status Chance', 'Status Turns', 'Rune', 'Keywords', 'Level', 'Priority'],
+		[csv_move_power, csv_move_orbs, csv_move_role, csv_move_dmg_category, csv_move_element, csv_move_self_stat_changes, csv_move_target_stat_changes, csv_move_status, csv_move_status_potency, csv_move_status_chance, csv_move_status_turns, csv_move_rune, csv_move_keywords, csv_move_level, csv_move_priority]
 	)
-	reports['items/equipment_report.csv'] = create_report_for_all_equipment_series(
+	write_report(report, 'moves/move_report.csv')
+	
+	
+	report = create_report_for_all_equipment_series(
 		['Stat Changes', 'Timing', 'Bonus Orbs', 'Cost'],
 		[csv_equipment_stat_boosts, csv_equipment_timing, csv_equipment_orbs, csv_item_cost]
 	)
-	reports['items/item_report.csv'] = create_report_for_all_items_series(
+	write_report(report, 'items/equipment_report.csv')
+	
+	report = create_report_for_all_items_series(
 		['Cost', 'Max Count'],
 		[csv_item_cost, csv_item_max_count]
 	)
-	reports['combatants/reward_report.csv'] = create_report_for_all_combatants_series(
+	write_report(report, 'items/item_report.csv')
+	
+	report = create_report_for_all_combatants_series(
 		['Avg Reward Exp', 'Avg Reward Gold'],
 		[csv_combatant_avg_reward_xp, csv_combatant_avg_reward_gold]
 	)
+	write_report(report, 'combatants/reward_report.csv')
 	
-	reports['combatants/levels.csv'] = create_report_for_all_combatants_lvs(100)
+	report = create_report_for_all_combatants_lvs(100)
+	write_report(report, 'combatants/levels.csv')
 	
-	reports['combatants/stat_growths.csv'] = create_report_for_all_combatants_stat_growth()
+	report = create_report_for_all_combatants_stat_growth()
+	write_report(report, 'combatants/stat_growths.csv')
 	
-	reports['moves/owners_report.csv'] = create_move_owners_report()
+	report = create_move_owners_report()
+	write_report(report, 'moves/owners_report.csv')
 	
-	if not DirAccess.dir_exists_absolute(TEST_DIR):
-		DirAccess.make_dir_recursive_absolute(TEST_DIR)
-		
-	if not FileAccess.file_exists(TEST_DIR + '.gdignore'):
-		var gdIgnoreFile = FileAccess.open(TEST_DIR + '.gdignore', FileAccess.WRITE)
-		gdIgnoreFile.close()
-	
-	for filename: String in reports.keys():
-		var subdirs: PackedStringArray = filename.split('/')
-		subdirs.remove_at(len(subdirs) - 1) # remove the filename
-		var subdir: String = ''
-		for subdirPiece in subdirs:
-			subdir += subdirPiece + '/'
-		#print(subdir)
-		
-		if not DirAccess.dir_exists_absolute(TEST_DIR + subdir):
-			DirAccess.make_dir_recursive_absolute(TEST_DIR + subdir)
-		
-		var file = FileAccess.open(TEST_DIR + filename, FileAccess.WRITE)
-		if file != null:
-			file.store_string(reports[filename])
-			if file.get_error() != OK:
-				printerr('FileAccess error writing CSV content to file ', TEST_DIR + filename, ' (error ', file.get_error(), ')')
-			file.close()
-		else:
-			if FileAccess.get_open_error() != OK:
-				printerr('FileAccess error opening file ', TEST_DIR + filename, ' (error ', FileAccess.get_open_error(), ')')
 	print('All CSV reports have been saved.')
 	label.text = '[center]All CSV reports have been saved.[/center]'
 	closeButton.disabled = false
@@ -83,6 +69,37 @@ func print_report():
 	#for_all_moves(print_move_element)
 	#for_all_moves_series([print_move_effects_overview, print_move_role])
 	pass
+
+func write_report(contents: String, filename: String) -> int:
+	if not DirAccess.dir_exists_absolute(TEST_DIR):
+		DirAccess.make_dir_recursive_absolute(TEST_DIR)
+		
+	if not FileAccess.file_exists(TEST_DIR + '.gdignore'):
+		var gdIgnoreFile = FileAccess.open(TEST_DIR + '.gdignore', FileAccess.WRITE)
+		gdIgnoreFile.close()
+	
+	var subdirs: PackedStringArray = filename.split('/')
+	subdirs.remove_at(len(subdirs) - 1) # remove the filename
+	var subdir: String = ''
+	for subdirPiece in subdirs:
+		subdir += subdirPiece + '/'
+	#print(subdir)
+	
+	if not DirAccess.dir_exists_absolute(TEST_DIR + subdir):
+		DirAccess.make_dir_recursive_absolute(TEST_DIR + subdir)
+	
+	var file = FileAccess.open(TEST_DIR + filename, FileAccess.WRITE)
+	if file != null:
+		file.store_string(contents)
+		if file.get_error() != OK:
+			printerr('FileAccess error writing CSV content to file ', TEST_DIR + filename, ' (error ', file.get_error(), ')')
+			return file.get_error()
+		file.close()
+	else:
+		if FileAccess.get_open_error() != OK:
+			printerr('FileAccess error opening file ', TEST_DIR + filename, ' (error ', FileAccess.get_open_error(), ')')
+			return FileAccess.get_open_error()
+	return 0
 
 # CSV combatant queries
 func create_report_for_all_combatants_series(columns: Array[String], queries: Array[Callable]) -> String:
@@ -230,7 +247,10 @@ func create_move_owners_report() -> String:
 		reportContents += move.moveName + ','
 		for movepool: MovePool in combatantMovepools.values():
 			if move in movepool.pool:
-				reportContents += 'X'
+				if move in movepool.signatureMoves:
+					reportContents += 'S'
+				else:
+					reportContents += 'X'
 			reportContents += ','
 		reportContents += '\n'
 	
@@ -342,6 +362,10 @@ func csv_move_level(move: Move, isSurge: bool) -> String:
 func csv_move_keywords(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
 	return TextUtils.string_arr_to_string(moveEffect.keywords).replace(', ', ' | ')
+
+func csv_move_priority(move: Move, isSurge: bool) -> String:
+	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect
+	return String.num_int64(moveEffect.priority)
 
 func csv_move_power(move: Move, isSurge: bool) -> String:
 	var moveEffect: MoveEffect = move.surgeEffect if isSurge else move.chargeEffect

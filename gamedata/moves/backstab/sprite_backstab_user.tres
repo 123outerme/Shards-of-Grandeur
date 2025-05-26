@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://dnxx87sm5ohqj"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_rj2aa"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_82db6"]
+[ext_resource type="SpriteFrames" uid="uid://bt024uwlykk7i" path="res://graphics/moves/dark/a_backstab_smoke.tres" id="3_82db6"]
+
+[sub_resource type="Resource" id="Resource_82db6"]
+script = ExtResource("1_rj2aa")
+annotation = "set up position at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_yjqy2"]
+script = ExtResource("1_rj2aa")
+annotation = "Play smoke anim"
+animation = "smoke"
+duration = 1.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_dxxi7"]
+script = ExtResource("1_rj2aa")
+annotation = "wait for backstab anim to complete"
+animation = "default"
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ubtx8"]
+script = ExtResource("1_rj2aa")
+annotation = "play smoke anim again, emit complete event on start so user re-appears in the smoke"
+animation = "smoke"
+duration = 1.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = true
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_82db6")
+spriteFrames = ExtResource("3_82db6")
+centerSprite = true
+maxSize = Vector2(48, 48)
+frames = Array[ExtResource("1_rj2aa")]([SubResource("Resource_82db6"), SubResource("Resource_yjqy2"), SubResource("Resource_dxxi7"), SubResource("Resource_ubtx8")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = false
+metadata/_custom_type_script = "uid://mk6loduurcg4"
