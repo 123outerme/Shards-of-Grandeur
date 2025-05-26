@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Move" load_steps=7 format=3 uid="uid://b4am2j05niiq4"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_83x5q"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_vjf68"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_ob72e"]
+
+[sub_resource type="Resource" id="Resource_ob72e"]
+script = ExtResource("1_vjf68")
+role = 5
+keywords = Array[String]([])
+orbChange = 0
+power = -25
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 1
+targets = 2
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_q5kb2"]
+script = ExtResource("3_ob72e")
+powerPerOrb = -4
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_6ht7i"]
+script = ExtResource("1_vjf68")
+role = 5
+keywords = Array[String]([])
+orbChange = -4
+power = -35
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 1
+targets = 3
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_q5kb2")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_83x5q")
+moveName = "Speedy Recovery"
+requiredLv = 1
+category = 2
+element = 6
+chargeEffect = SubResource("Resource_ob72e")
+surgeEffect = SubResource("Resource_6ht7i")
+description = "Swiftly embue an ally in natural energies in order to heal their most critical wounds."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

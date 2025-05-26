@@ -211,6 +211,9 @@ func apply_surge_changes(orbsSpent: int) -> MoveEffect:
 	
 	newEffect.lifesteal = max(0, newEffect.lifesteal + surgeChanges.lifestealPerOrb * additionalOrbs)
 	
+	# NOTE: should max self HP sacrifice be 100%? 99%? 95%?
+	newEffect.selfHpSacrifice = min(1, max(0, newEffect.selfHpSacrifice + surgeChanges.selfHpSacrificePerOrb * additionalOrbs))
+	
 	var finalSelfStatChanges: StatChanges = surgeChanges.selfStatChangesPerOrb.duplicate(true) if surgeChanges.selfStatChangesPerOrb else StatChanges.new()
 	finalSelfStatChanges.times(additionalOrbs)
 	if newEffect.selfStatChanges == null:

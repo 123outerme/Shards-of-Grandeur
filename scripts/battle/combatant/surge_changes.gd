@@ -11,6 +11,7 @@ class SurgeChangeDescRow:
 
 @export var powerPerOrb: int = 0
 @export var lifestealPerOrb: float = 0
+@export var selfHpSacrificePerOrb: float = 0
 @export var selfStatChangesPerOrb: StatChanges = StatChanges.new()
 @export var targetStatChangesPerOrb: StatChanges = StatChanges.new()
 @export var weakThresholdOrbs: int = 0
@@ -22,6 +23,7 @@ class SurgeChangeDescRow:
 func _init(
 	i_powerPerOrb = 0,
 	i_lifestealPerOrb = 0,
+	i_selfHpSacrificePerOrb = 0,
 	i_selfStatChangesPerOrb = StatChanges.new(),
 	i_targetStatChangesPerOrb = StatChanges.new(),
 	i_weakThresholdOrbs = 0,
@@ -32,6 +34,7 @@ func _init(
 ):
 	powerPerOrb = i_powerPerOrb
 	lifestealPerOrb = i_lifestealPerOrb
+	selfHpSacrificePerOrb = i_selfHpSacrificePerOrb
 	selfStatChangesPerOrb = i_selfStatChangesPerOrb
 	targetStatChangesPerOrb = i_targetStatChangesPerOrb
 	weakThresholdOrbs = i_weakThresholdOrbs
@@ -75,7 +78,12 @@ func get_description() -> Array[SurgeChangeDescRow]:
 		descriptionLines.append(
 			SurgeChangeDescRow.new('- Lifesteal % Per Orb:', '-' + String.num_int64(roundi(lifestealPerOrb * -100)))
 		)
-		
+	
+	if selfHpSacrificePerOrb > 0:
+		descriptionLines.append(
+			SurgeChangeDescRow.new('- % Self HP Per Orb:', '-' + String.num_int64(roundi(selfHpSacrificePerOrb * 100)))
+		)
+	
 	if selfStatChangesPerOrb != null and selfStatChangesPerOrb.has_stat_changes():
 		var multipliers = selfStatChangesPerOrb.get_multipliers_text()
 		descriptionLines.append(
@@ -91,7 +99,7 @@ func get_description() -> Array[SurgeChangeDescRow]:
 	'''
 	if additionalStatusTurnsPerOrb > 0:
 		descriptionLines.append(
-			SurgeChangeDescRow.new('+ Status Turns Per Orb:', String.num_int64(additionalStatusTurnsPerOrb))
+			SurgeChangeDescRow.new('+ Status Turns Per Orb:', String.num(additionalStatusTurnsPerOrb))
 		)
 	'''
 	

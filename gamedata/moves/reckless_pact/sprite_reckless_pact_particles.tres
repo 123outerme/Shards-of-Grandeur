@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://dga6oiv4twvs6"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_dy1r6"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4nwa2"]
+[ext_resource type="Resource" uid="uid://blc44xbc6y2ya" path="res://gamedata/moves/reckless_pact/particles_reckless_pact.tres" id="2_q3an2"]
+[ext_resource type="SpriteFrames" uid="uid://6fxqahauyjsu" path="res://graphics/moves/dark/a_reckless_pact.tres" id="3_4nwa2"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="3_ijlel"]
+
+[sub_resource type="Resource" id="Resource_q3an2"]
+script = ExtResource("1_dy1r6")
+annotation = "set up position at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ijlel"]
+script = ExtResource("1_dy1r6")
+annotation = "wait most of the animation"
+animation = ""
+duration = 2.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_2gsyf"]
+script = ExtResource("1_dy1r6")
+annotation = "play particles"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_q3an2")
+sfx = ExtResource("3_ijlel")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_4nwa2")
+spriteFrames = ExtResource("3_4nwa2")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_dy1r6")]([SubResource("Resource_q3an2"), SubResource("Resource_ijlel"), SubResource("Resource_2gsyf")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

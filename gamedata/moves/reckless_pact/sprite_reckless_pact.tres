@@ -1,0 +1,125 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://cnjbgx6obot0n"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_84cn2"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_3yyhs"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_147j6"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_wp3xf"]
+[ext_resource type="SpriteFrames" uid="uid://6fxqahauyjsu" path="res://graphics/moves/dark/a_reckless_pact.tres" id="3_wp3xf"]
+
+[sub_resource type="Resource" id="Resource_147j6"]
+script = ExtResource("1_84cn2")
+annotation = "set up position at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_wp3xf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.751938, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_147j6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_3yyhs"]
+script = ExtResource("1_84cn2")
+annotation = "play sprite anim, move to above user's head"
+animation = "reckless_pact"
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, -9)
+offset = 16
+xCurve = SubResource("Curve_wp3xf")
+yCurve = SubResource("Curve_147j6")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_3yyhs")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_x5syv"]
+script = ExtResource("1_84cn2")
+annotation = "wait for the animation to approach sfx timing"
+animation = ""
+duration = 0.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_5gl2c"]
+script = ExtResource("1_84cn2")
+annotation = "play sfx"
+animation = ""
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_147j6")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_wp3xf"]
+script = ExtResource("1_84cn2")
+annotation = "quickly fade out"
+animation = ""
+duration = 0.25
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_wp3xf")
+spriteFrames = ExtResource("3_wp3xf")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_84cn2")]([SubResource("Resource_147j6"), SubResource("Resource_3yyhs"), SubResource("Resource_x5syv"), SubResource("Resource_5gl2c"), SubResource("Resource_wp3xf")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

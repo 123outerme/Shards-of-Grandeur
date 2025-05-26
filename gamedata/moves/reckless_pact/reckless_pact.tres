@@ -1,0 +1,133 @@
+[gd_resource type="Resource" script_class="Move" load_steps=16 format=3 uid="uid://b6n834o6wy5o7"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_lawei"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_wlgjm"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_bevp2"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_yp6ic"]
+[ext_resource type="Resource" uid="uid://ba0xomab67kd7" path="res://gamedata/moves/reckless_pact/anim_reckless_pact.tres" id="4_0jsem"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_yp6ic"]
+
+[sub_resource type="Resource" id="Resource_0jsem"]
+script = ExtResource("2_bevp2")
+element = 7
+multiplier = 1.1
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_48jjq"]
+script = ExtResource("3_yp6ic")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.1
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_bevp2")]([SubResource("Resource_0jsem")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_bkm5m"]
+script = ExtResource("1_wlgjm")
+role = 3
+keywords = Array[String]([])
+orbChange = 1
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.15
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_48jjq")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_co5vc"]
+script = ExtResource("2_bevp2")
+element = 7
+multiplier = 1.03
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_u6j8j"]
+script = ExtResource("3_yp6ic")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.03
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_bevp2")]([SubResource("Resource_co5vc")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_n1uve"]
+script = ExtResource("5_yp6ic")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.01
+targetStatChangesPerOrb = SubResource("Resource_u6j8j")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_jmf6l"]
+script = ExtResource("2_bevp2")
+element = 7
+multiplier = 1.2
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_eit3i"]
+script = ExtResource("3_yp6ic")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.2
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_bevp2")]([SubResource("Resource_jmf6l")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_bevp2"]
+script = ExtResource("1_wlgjm")
+role = 3
+keywords = Array[String]([])
+orbChange = -2
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.3
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_eit3i")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_n1uve")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_lawei")
+moveName = "Reckless Pact"
+requiredLv = 19
+category = 1
+element = 7
+chargeEffect = SubResource("Resource_bkm5m")
+surgeEffect = SubResource("Resource_bevp2")
+description = "Strike a bargain for Magic power, at the cost of your own health."
+moveLearnedText = "Your fingers grow numb. Your legs ache. Your head throbs. But just as the peak of your pain is reached, you swell with Magic power, and the Darkness of many moonless nights."
+moveAnimation = ExtResource("4_0jsem")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
