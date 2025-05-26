@@ -7,6 +7,7 @@ extends Node2D
 @onready var moveDetailsPanel: MoveDetailsPanel = get_node('MoveDetailsPanel')
 
 var tooLongDescriptionMoves: Array[Move] = []
+var noDescriptionMoves: Array[Move] = []
 
 func _ready() -> void:
 	if allowSurge:
@@ -17,8 +18,11 @@ func _ready() -> void:
 		PlayerResources.playerInfo.set_cutscene_seen('standstill_helia_approach')
 	if runTests:
 		await run_tests()
-		print('\nMoves with too long a description:')
+		print('--------\nMoves with too long a description:')
 		for move: Move in tooLongDescriptionMoves:
+			print(move.moveName)
+		print('--------\nMoves with NO description:')
+		for move: Move in noDescriptionMoves:
 			print(move.moveName)
 	else:
 		moveDetailsPanel.load_move_details_panel()
@@ -30,6 +34,8 @@ func run_tests() -> void:
 		var move: Move = load(movesPath + dir + '/' + dir + '.tres') as Move
 		if move != null:
 			print('Testing ', move.moveName)
+			if move.description == '':
+				noDescriptionMoves.append(move)
 			moveDetailsPanel.move = move
 			moveDetailsPanel.load_move_details_panel()
 			await get_tree().process_frame

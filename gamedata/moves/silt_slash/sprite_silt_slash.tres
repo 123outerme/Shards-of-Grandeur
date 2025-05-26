@@ -1,0 +1,128 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://bog5a7l5o2sni"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_lodug"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_5n22w"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_wfh5k"]
+[ext_resource type="Resource" uid="uid://dv2gbp7den4y" path="res://gamedata/moves/silt_slash/particles_silt_slash_first.tres" id="3_64as2"]
+[ext_resource type="SpriteFrames" uid="uid://b3wgkdisxadh5" path="res://graphics/moves/earth/a_silt_slash.tres" id="3_wfh5k"]
+[ext_resource type="Resource" uid="uid://rnvc5oyi3eej" path="res://gamedata/moves/silt_slash/particles_silt_slash_second.tres" id="4_pbrih"]
+
+[sub_resource type="Resource" id="Resource_wfh5k"]
+script = ExtResource("1_lodug")
+annotation = "set up position in front of user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_wfh5k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8xnlg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_8xnlg"]
+script = ExtResource("1_lodug")
+annotation = "play anim as attacks move to in front of target"
+animation = "silt_slash"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 1
+xCurve = SubResource("Curve_wfh5k")
+yCurve = SubResource("Curve_8xnlg")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_5n22w")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_5n22w"]
+script = ExtResource("1_lodug")
+annotation = "play first slash particles"
+animation = ""
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_64as2")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_lqdek"]
+script = ExtResource("1_lodug")
+annotation = "play second particles, wait for anim to end (3 frames at 6 FPS)"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("4_pbrih")
+sfx = ExtResource("2_5n22w")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_64as2"]
+script = ExtResource("1_lodug")
+annotation = "wait for particles to disappear"
+animation = "default"
+duration = 0.33
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_wfh5k")
+spriteFrames = ExtResource("3_wfh5k")
+centerSprite = true
+maxSize = Vector2(32, 16)
+frames = Array[ExtResource("1_lodug")]([SubResource("Resource_wfh5k"), SubResource("Resource_8xnlg"), SubResource("Resource_5n22w"), SubResource("Resource_lqdek"), SubResource("Resource_64as2")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"
