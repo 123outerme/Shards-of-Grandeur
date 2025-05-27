@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://d27toivdbk5u8"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qe1dw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_5j4qf"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_awm15"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_1vrdn"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_awm15"]
+
+[sub_resource type="Resource" id="Resource_5mr0k"]
+script = ExtResource("2_awm15")
+choiceBtn = "Okay."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_1vrdn")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_1vrdn"]
+script = ExtResource("1_qe1dw")
+lines = Array[String](["I think you should $highlight{complete your combat training with the Stargazer}color$ first, before you study with me.", "I would like for the history of Steelspire and the knowledge of their weaknesses to be fresh in your mind for the attack."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_awm15")]([SubResource("Resource_5mr0k")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_awm15")
+entryId = ""
+items = Array[ExtResource("1_qe1dw")]([SubResource("Resource_1vrdn")])
+ordStoryRequirements = Array[ExtResource("2_5j4qf")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bbgwe8pu4vh0u"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_k1dd1"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5hjd4"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_8ke3b"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_uu6y1"]
+
+[sub_resource type="Resource" id="Resource_mu28d"]
+script = ExtResource("1_k1dd1")
+lines = Array[String](["I would love for your to start your training, but the stars have not yet aligned."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5hjd4")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_k1dd1"]
+script = ExtResource("1_k1dd1")
+lines = Array[String](["Thank you for playing Shards of Grandeur! This is all of the content that is completed currently.", "Please look forward to the full release!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = "<Stephen>"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5hjd4")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_5hjd4"]
+script = ExtResource("1_k1dd1")
+lines = Array[String](["The heavens are speaking?! What does this all mean?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5hjd4")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_uu6y1")
+entryId = ""
+items = Array[ExtResource("1_k1dd1")]([SubResource("Resource_mu28d"), SubResource("Resource_k1dd1"), SubResource("Resource_5hjd4")])
+ordStoryRequirements = Array[ExtResource("3_8ke3b")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -40,8 +40,11 @@ func update_collision():
 		staticBody.collision_mask = visibleCollisionMask if visible else 0
 
 func play_animation(animation: String):
-	currentAnim = animation
-	animSprite.play(animation)
+	if animSprite.sprite_frames.has_animation(animation):
+		currentAnim = animation
+		animSprite.play(animation)
+	else:
+		pass # print('AnimatedDecoration play_animation WARNING: ', animation, ' is not a known animation')
 
 func get_sprite_frames() -> SpriteFrames:
 	return animSprite.sprite_frames

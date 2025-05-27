@@ -2070,13 +2070,14 @@ animName = "unsolved"
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatuePuzzle/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("25_57w4p")
 animation = &"evolving"
+flip_h = true
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatuePuzzle/AnimatedDecoration/Collision" index="0"]
-position = Vector2(0.5, 7.5)
+position = Vector2(-0.5, 7.5)
 shape = SubResource("RectangleShape2D_87ci6")
 
 [node name="CollisionShape2D" parent="TilemapRoot/BlobStatuePuzzle" index="1"]
-position = Vector2(0.5, 10.25)
+position = Vector2(-0.5, 10.25)
 shape = SubResource("RectangleShape2D_r87l4")
 
 [node name="BlobStatueEnergyWall" parent="TilemapRoot" instance=ExtResource("6_ip85o")]
@@ -2652,7 +2653,7 @@ shape = SubResource("RectangleShape2D_caxh6")
 [node name="GiantSteppesWarpZone" parent="." instance=ExtResource("5_46r8r")]
 position = Vector2(1216, -4930)
 mapName = "giant_steppes_l1"
-mapPos = Vector2(360, 720)
+mapPos = Vector2(384, 696)
 useHorizontalOffset = true
 
 [node name="WarpArea" parent="GiantSteppesWarpZone" index="0"]

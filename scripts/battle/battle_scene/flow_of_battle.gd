@@ -90,6 +90,6 @@ func _set_battle_stats_item_details_panel_pos(panel: BattleStatsPanel):
 	panel.battleRunesPanel.set_deferred('size', Vector2(1280, 718))
 	panel.battleRunesPanel.z_index = 1
 	panel.battleRunesPanel.position = Vector2(-52, -155)
-	# NOTE: these coordinates are magic numbers to make the item details panel centered.
-	# we can't center it in the Equipment Panel because that would affect the centering elsewhere
-	# needs to be called deferred so the equipment panel can be @onready 'd, same for the item details panel
+	# NOTE: these coordinates are magic numbers to make the panels centered.
+	# we can't center it in the Battle Stats Panel because that would affect the centering elsewhere
+	# needs to be called deferred so these things can be @onready 'd

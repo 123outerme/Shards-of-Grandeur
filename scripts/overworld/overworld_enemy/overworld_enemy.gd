@@ -28,6 +28,17 @@ var ignorePlayer: bool = false
 var encounterColliderOffset: Vector2 = Vector2.ZERO
 var spriteOffset: Vector2 = Vector2.ZERO
 
+var disabled: bool:
+	set(d):
+		_disabled = d
+		visible = not d
+		if encounterColliderShape != null:
+			encounterColliderShape.set_deferred('disabled', d)
+	get:
+		return _disabled
+
+var _disabled: bool = false
+
 @onready var enemySprite: AnimatedSprite2D = get_node("AnimatedEnemySprite")
 @onready var navAgent: NavigationAgent2D = get_node("NavAgent")
 @onready var chaseRangeShape: CollisionShape2D = get_node("ChaseRange/ChaseRangeShape")
@@ -83,6 +94,9 @@ func _ready():
 		get_next_patrol_target()
 
 func _process(delta):
+	if disabled:
+		return
+	
 	if spawner != null and (PlayerFinder.player.global_position - global_position).length() > despawnRange:
 		spawner.delete_enemy()
 		return

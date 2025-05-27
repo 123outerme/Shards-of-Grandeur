@@ -1,9 +1,34 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://btlvvnwqh7s20"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://btlvvnwqh7s20"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_wbygi"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_57f15"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kmchu"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kmchu"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_o6pwf"]
+[ext_resource type="Resource" uid="uid://d27toivdbk5u8" path="res://gamedata/dialogue/giant_steppes/keeper_of_history/keeper_of_history_training_rejected.tres" id="4_o6pwf"]
+
+[sub_resource type="Resource" id="Resource_7471o"]
+script = ExtResource("2_kmchu")
+choiceBtn = "Never Mind."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_o6pwf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_kmchu"]
+script = ExtResource("2_kmchu")
+choiceBtn = "Training?"
+leadsTo = ExtResource("4_o6pwf")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_o6pwf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_o6pwf"]
 script = ExtResource("1_wbygi")
@@ -14,7 +39,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_kmchu")]([])
+choices = Array[ExtResource("2_kmchu")]([SubResource("Resource_7471o"), SubResource("Resource_kmchu")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]

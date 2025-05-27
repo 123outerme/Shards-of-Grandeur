@@ -105,12 +105,14 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_sg3xs")
 
 [node name="SeparatorPanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel"]
+layout_mode = 0
 offset_right = 168.0
 offset_bottom = 234.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ijy7b")
 
 [node name="PrioSeparatorPanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel"]
+layout_mode = 0
 offset_top = 208.0
 offset_right = 167.0
 offset_bottom = 233.0
@@ -118,6 +120,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ryayj")
 
 [node name="KeywordsSeparatorPanel" type="Panel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel"]
+layout_mode = 0
 offset_left = 168.0
 offset_top = 208.0
 offset_right = 540.0
@@ -326,12 +329,15 @@ bbcode_enabled = true
 text = "[center]Physical Lightning Damage Rune
 (Details Below)[/center]"
 
-[node name="MiscRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
+[node name="MiscRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 custom_minimum_size = Vector2(0, 21)
-layout_mode = 2
+offset_left = 8.0
+offset_top = 254.0
+offset_right = 532.0
+offset_bottom = 275.0
 alignment = 1
 
-[node name="Priority" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow"]
+[node name="Priority" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -342,7 +348,7 @@ theme_override_font_sizes/normal_font_size = 15
 theme_override_font_sizes/bold_font_size = 15
 text = "Spd. Priority: +3"
 
-[node name="Keywords" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow"]
+[node name="Keywords" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow"]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1

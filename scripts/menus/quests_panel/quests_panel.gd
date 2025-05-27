@@ -34,6 +34,7 @@ var lastInteractedTracker: QuestTracker = null
 var FILTER_BUTTONS: Array[Button] = []
 
 var questSlotPanels: Array[QuestSlotPanel] = []
+var questSlotPanelsByTracker: Dictionary[QuestTracker, QuestSlotPanel] = {}
 
 @onready var questsPanelControl: Control = get_node('QuestsPanel')
 
@@ -173,15 +174,17 @@ func load_quests_panel(rebuild: bool = false, fromToggle: bool = false):
 		for panel: QuestSlotPanel in questSlotPanels:
 			panel.queue_free()
 		questSlotPanels = []
+		questSlotPanelsByTracker = {}
 	
 		var questSlotPanel = load("res://prefabs/ui/quests/quest_slot_panel.tscn")
-		for questTracker in PlayerResources.questInventory.get_sorted_trackers():
+		for questTracker: QuestTracker in PlayerResources.questInventory.get_sorted_trackers():
 			var trackerStatus: QuestTracker.Status = questTracker.get_current_status()
 			var instantiatedPanel: QuestSlotPanel = questSlotPanel.instantiate()
 			instantiatedPanel.questTracker = questTracker
 			instantiatedPanel.turnInName = turnInTargetName
 			instantiatedPanel.questsMenu = self
 			questSlotPanels.append(instantiatedPanel)
+			questSlotPanelsByTracker[questTracker] = instantiatedPanel
 			if questTracker.quest.isMainQuest:
 				mainQuestButton.disabled = lockFilters
 			if trackerStatus == QuestTracker.Status.IN_PROGRESS:
@@ -198,7 +201,13 @@ func load_quests_panel(rebuild: bool = false, fromToggle: bool = false):
 	
 	var firstPanel: QuestSlotPanel = null
 	var lastPanel: QuestSlotPanel = null
-	for panel: QuestSlotPanel in questSlotPanels:
+	#for panel: QuestSlotPanel in questSlotPanels:
+	for questTracker in PlayerResources.questInventory.get_sorted_trackers():
+		var panel: QuestSlotPanel = null
+		if questSlotPanelsByTracker.has(questTracker):
+			panel = questSlotPanelsByTracker[questTracker]
+		else:
+			continue
 		if vboxViewport.get_children().has(panel):
 			vboxViewport.remove_child(panel)
 		var trackerStatus: QuestTracker.Status = panel.questTracker.get_current_status()

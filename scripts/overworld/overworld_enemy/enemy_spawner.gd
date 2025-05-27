@@ -67,17 +67,28 @@ func _ready():
 	if enemyEncounter.combatant1 == null:
 		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no combatant1 provided')
 		queue_free()
+	
+	spawn_enemy()
 
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and (not PlayerFinder.player.disableMovement or spawnWhenPlayerLocked):
+		spawn_enemy()
+	if enemy != null and enemy.disabled:
+		enemy.disabled = false
 		var angleRadians = randf_range(0, 2 * PI)
 		var radius: float = randf_range(0, spawnRange / 2.0) # range in diameter, so half of that
 		var enemyPos: Vector2 = position + (Vector2(cos(angleRadians), sin(angleRadians)).normalized() * radius)
 		# generate random point on unit circle and ensure it's exactly on the circle, multiplied by a random radius
 		# all for a random position inside a circle of size `spawnRange` centered around the spawner
+		enemy.position = enemyPos
+		enemy.enemyData.position = enemyPos
+
+func spawn_enemy() -> void:
+	if enemy == null and enemyEncounter != null and enemyEncounter.combatant1 != null:
 		enemy = overworldEnemyScene.instantiate()
+		enemy.disabled = true
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemyPos, false, enemyEncounter, false)
+		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, Vector2.ZERO, false, enemyEncounter, false)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		enemy.despawnRange = enemyDespawnRange
@@ -88,13 +99,13 @@ func _on_area_2d_area_entered(area):
 		enemy.runningMaxSpeed = enemyRunningMaxSpeed
 		enemy.overrideSpeeds = overrideEnemySpeeds
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
-		#print('spawned new enemy')
+		print('spawned new enemy')
 
 func save_data(save_path) -> int:
 	if spawnerData != null:
 		spawnerData.enemyData = null
 		if enemy != null and not enemy.encounteredPlayer:
-			spawnerData.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemy.position, enemy.disableMovement, enemyEncounter, enemy.runningChaseMode)
+			spawnerData.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, enemy.position, enemy.disableMovement, enemyEncounter, enemy.runningChaseMode, enemy.disabled)
 		return spawnerData.save_data(save_path + enemiesDir, spawnerData)
 	else:
 		return 0
@@ -108,21 +119,15 @@ func load_data(save_path):
 			var staticEncounter: StaticEncounter = enemyEncounter as StaticEncounter
 			importantFight = staticEncounter.bossBattle or not staticEncounter.canEscape
 		if spawnerData.enemyData != null:
-			enemy = overworldEnemyScene.instantiate()
-			enemy.spawner = self
-			enemy.enemyData = spawnerData.enemyData
-			enemy.homePoint = position
-			enemy.patrolRange = enemyPatrolRange
-			enemy.despawnRange = enemyDespawnRange
-			enemy.chaseRange = enemyChaseRange
-			enemy.runningChaseRange = enemyRunningChaseRange
-			enemy.overrideRanges = overrideEnemyRanges
-			enemy.maxSpeed = enemyMaxSpeed
-			enemy.runningMaxSpeed = enemyRunningMaxSpeed
-			enemy.overrideSpeeds = overrideEnemySpeeds
-			tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
-		if spawnerData.disabled or importantFight:
-			spawnerData.disabled = false # re-enable if this is the second time it's loaded after causing an encounter
+			if enemy == null:
+				spawn_enemy()
+			if enemy != null:
+				enemy.disabled = spawnerData.enemyData.disabled
+				enemy.spawner = self
+				enemy.enemyData = spawnerData.enemyData
+				enemy.position = spawnerData.enemyData.position
+			if spawnerData.disabled or importantFight:
+				spawnerData.disabled = false # re-enable if this is the second time it's loaded after causing an encounter
 		if spawnerData.spawnedLastEncounter:
 			spawnerData.spawnedLastEncounter = false
 			if not importantFight:

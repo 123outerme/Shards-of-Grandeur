@@ -84,7 +84,7 @@ func load_battle_stats_panel():
 		var elementResistances: Array[Move.Element] = combatant.get_element_resistances()
 		if len(elementResistances) > 0:
 			elementResistancesText.text += 'Resistant to '
-			for idx in range(len(elementWeaknesses)):
+			for idx in range(len(elementResistances)):
 				elementResistancesText.text += Move.element_to_string(elementResistances[idx])
 				if idx < len(elementResistances) - 1:
 					elementResistancesText.text += ', '

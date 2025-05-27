@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bene4itf8dh30"]
+[gd_scene load_steps=26 format=4 uid="uid://bene4itf8dh30"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d7r44"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_no1gd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_6lodd"]
 [ext_resource type="SpriteFrames" uid="uid://d2q05nbwwc7ox" path="res://graphics/animations/a_frostmint_tavernkeeper.tres" id="5_k7wou"]
 [ext_resource type="Resource" uid="uid://yrgg4xx4vorm" path="res://gamedata/shops/frostmint_village/frostbite_tavern.tres" id="5_na3y2"]
+[ext_resource type="Resource" uid="uid://rd3wshgebmu1" path="res://gamedata/dialogue/frostmint_village/tavern_keeper/frostmint_tavernkeeper_1.tres" id="6_pc05e"]
 [ext_resource type="SpriteFrames" uid="uid://dmkuefcc7vivn" path="res://graphics/animations/a_snowy_restaurant_sign.tres" id="7_l8410"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="8_c8hbw"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="9_5qcg2"]
@@ -17,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://cv4gytb7pwarg" path="res://gamedata/dialogue/frostmint_village/villager4/frostmint_villager4_1.tres" id="12_be5nb"]
 [ext_resource type="Resource" uid="uid://dcwpet0qt2gwl" path="res://gamedata/dialogue/frostmint_village/villager5/frostmint_villager5_1.tres" id="14_calmu"]
 
-[sub_resource type="Resource" id="Resource_calmu"]
+[sub_resource type="Resource" id="Resource_123dj"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -43,7 +44,7 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfuee"]
 size = Vector2(24, 27)
 
-[sub_resource type="Resource" id="Resource_pc05e"]
+[sub_resource type="Resource" id="Resource_0hvce"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -72,7 +73,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_be5nb"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_123dj"]
+[sub_resource type="Resource" id="Resource_asf55"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -95,7 +96,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_0hvce"]
+[sub_resource type="Resource" id="Resource_y827x"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -118,7 +119,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_asf55"]
+[sub_resource type="Resource" id="Resource_6weh3"]
 script = ExtResource("4_6lodd")
 saveName = "npc"
 spriteState = "default"
@@ -185,7 +186,8 @@ tile_set = ExtResource("2_no1gd")
 position = Vector2(-8, -78)
 displayName = "Tavern Keeper"
 saveName = "frostmint_village_tavern_keeper"
-data = SubResource("Resource_calmu")
+data = SubResource("Resource_123dj")
+dialogueEntries = Array[ExtResource("9_5qcg2")]([ExtResource("6_pc05e")])
 npcShop = ExtResource("5_na3y2")
 
 [node name="NPCSprite" parent="TilemapRoot/TavernKeeper" index="0"]
@@ -206,7 +208,7 @@ visible = false
 position = Vector2(148, 6)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_pc05e")
+data = SubResource("Resource_0hvce")
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/TavernSign" index="0"]
@@ -232,7 +234,7 @@ visible = false
 position = Vector2(-35, -62)
 displayName = "Villager"
 saveName = "frostmint_villager_3_tavern"
-data = SubResource("Resource_123dj")
+data = SubResource("Resource_asf55")
 dialogueEntries = Array[ExtResource("9_5qcg2")]([ExtResource("10_be5nb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager3" index="0"]
@@ -253,7 +255,7 @@ position = Vector2(21, -62)
 displayName = "Villager"
 saveName = "frostmint_villager_4_tavern"
 loadFlipH = true
-data = SubResource("Resource_0hvce")
+data = SubResource("Resource_y827x")
 dialogueEntries = Array[ExtResource("9_5qcg2")]([ExtResource("12_be5nb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager4" index="0"]
@@ -274,7 +276,7 @@ position = Vector2(-88, -30)
 displayName = "Villager"
 saveName = "frostmint_villager_5_tavern"
 loadFlipH = true
-data = SubResource("Resource_asf55")
+data = SubResource("Resource_6weh3")
 dialogueEntries = Array[ExtResource("9_5qcg2")]([ExtResource("14_calmu")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager5" index="0"]
@@ -292,6 +294,8 @@ visible = false
 
 [node name="WarpZone" parent="." instance=ExtResource("3_dfuee")]
 position = Vector2(-8.5, 18)
+mapName = "frostmint_village"
+mapPos = Vector2(-296, -150)
 
 [editable path="TilemapRoot/TavernKeeper"]
 [editable path="TilemapRoot/TavernSign"]

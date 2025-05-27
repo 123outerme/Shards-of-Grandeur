@@ -32,9 +32,9 @@ signal tooltip_panel_opened
 @onready var runeRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow')
 @onready var runeDetailsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow/RuneDetails')
 
-@onready var miscRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow')
-@onready var priorityLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow/Priority')
-@onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/MiscRow/Keywords')
+@onready var miscRow: HBoxContainer = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow')
+@onready var priorityLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow/Priority')
+@onready var keywordsLabel: RichTextLabel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow/Keywords')
 @onready var prioSeparatorPanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel/PrioSeparatorPanel')
 @onready var keywordsSeparatorPanel: Panel = get_node('ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/SeparatorPanel/KeywordsSeparatorPanel')
 

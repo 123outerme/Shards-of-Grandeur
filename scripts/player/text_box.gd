@@ -141,12 +141,15 @@ func update_speaker_sprite() -> void:
 			# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
 			spriteScale = max(1, 3.0 / ceil(maxDimensionSize / 16.0))
 		# NOTE: for "demo end" dialogue purposes only. TODO Remove this in released game
-		if speakerText.text == '<Stephen>':
+		if speakerText.text == '<Stephen>:':
 			spriteFrames = SpriteFrames.new()
 			speakerAnim = 'default'
 		speakerSprite.sprite_frames = spriteFrames
 		speakerSprite.offset = speakerSpriteOffset
-		speakerSprite.play(speakerAnim)
+		if speakerSprite.sprite_frames.has_animation(speakerAnim):
+			speakerSprite.play(speakerAnim)
+		else:
+			print('update_speaker_sprite WARNING: animation ', speakerAnim, ' not found')
 		speakerSprite.scale = Vector2.ONE * spriteScale
 
 func add_choices():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=30 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_e3j1f"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_qw015"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="5_ro6wv"]
-[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_10q5v"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="6_qw015"]
-[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_x858i"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="8_8vcfh"]
 [ext_resource type="Resource" uid="uid://cwxuxmq6m4hsp" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_l2_1.tres" id="9_u2q4f"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_44juo"]
@@ -41,33 +39,6 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
-
-[sub_resource type="Resource" id="Resource_8vcfh"]
-script = ExtResource("6_10q5v")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_x858i")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String](["giant_steppes_arrive_l2"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_x858i")]([])
-metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_c0ybn"]
 script = ExtResource("4_qw015")
@@ -221,7 +192,6 @@ visible = false
 position = Vector2(0, 62)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes_l2"
-orSpawnRequirements = Array[ExtResource("6_10q5v")]([SubResource("Resource_8vcfh")])
 data = SubResource("Resource_c0ybn")
 dialogueEntries = Array[ExtResource("8_8vcfh")]([ExtResource("9_u2q4f")])
 
@@ -283,7 +253,6 @@ shape = SubResource("RectangleShape2D_kshme")
 position = Vector2(-264, -66)
 mapName = "giant_steppes_library"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
 [node name="WarpArea" parent="LibraryWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_s3s6a")
@@ -292,7 +261,6 @@ shape = SubResource("RectangleShape2D_s3s6a")
 position = Vector2(-56, -34)
 mapName = "giant_steppes_grand_hall"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
 [node name="WarpArea" parent="GrandHallWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_f4x3h")
@@ -301,7 +269,6 @@ shape = SubResource("RectangleShape2D_f4x3h")
 position = Vector2(136, -66)
 mapName = "giant_steppes_observatory"
 mapPos = Vector2(-8, 4)
-warpEnabled = false
 
 [node name="WarpArea" parent="ObservatoryWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_qw015")
