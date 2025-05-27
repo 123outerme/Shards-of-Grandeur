@@ -99,7 +99,7 @@ func spawn_enemy() -> void:
 		enemy.runningMaxSpeed = enemyRunningMaxSpeed
 		enemy.overrideSpeeds = overrideEnemySpeeds
 		tilemap.call_deferred('add_child', enemy) # add enemy to tilemap so it can be y-sorted, etc.
-		print('spawned new enemy')
+		#print('spawned new enemy')
 
 func save_data(save_path) -> int:
 	if spawnerData != null:
