@@ -172,10 +172,11 @@ func update_turn_text() -> bool:
 				if not text.ends_with(' '):
 					text += ' '
 				text += combatant.statusEffect.get_status_effect_str(combatant, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
-			var defenderHadReflect: bool = false
+			var defendersWithReflect: int = 0
 			for defender in defenders:
 				if not defender == combatant and defender.statusEffect != null:
-					defenderHadReflect = defenderHadReflect or defender.statusEffect.type == StatusEffect.Type.REFLECT
+					if defender.statusEffect.type == StatusEffect.Type.REFLECT:
+						defendersWithReflect += 1
 					if not text.ends_with(' '):
 						text += ' '
 					text += defender.statusEffect.get_status_effect_str(defender, allCombatants, BattleCommand.ApplyTiming.AFTER_DMG_CALC)
@@ -202,7 +203,7 @@ func update_turn_text() -> bool:
 									text += afterDmgText
 			if combatant != null and combatant.command != null and combatant.command.commandResult != null and combatant.command.commandResult.selfRecoilDmg > 0:
 				# if this recoil damage is not exactly equal to the self-recoil dealt by Berserk, then add a message describing total recoil dealt
-				if not (combatantHadBerserk and combatant.command.commandResult.selfRecoilDmg == combatantBerserkRecoilDmg):
+				if not ((combatantHadBerserk and combatant.command.commandResult.selfRecoilDmg == combatantBerserkRecoilDmg and defendersWithReflect == 0) or (not combatantHadBerserk and defendersWithReflect == 1)):
 					if not text.ends_with(' '):
 						text += ' '
 					text += combatant.disp_name() + ' took ' + TextUtils.num_to_comma_string(combatant.command.commandResult.selfRecoilDmg) + ' total recoil damage!'

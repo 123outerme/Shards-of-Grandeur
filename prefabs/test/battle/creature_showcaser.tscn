@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://b30y3m18vx5o"]
+[gd_scene load_steps=107 format=3 uid="uid://b30y3m18vx5o"]
 
 [ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
 [ext_resource type="PackedScene" uid="uid://cwqmkje2dmch5" path="res://prefabs/battle/battle_maps/swamp_battle_map.tscn" id="2_arf2n"]
@@ -12,7 +12,6 @@
 [ext_resource type="Theme" uid="uid://c505sel4brci5" path="res://themes/battle_text_box/battle_text_box_menu_theme.tres" id="6_02djh"]
 [ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="6_lutwl"]
 [ext_resource type="Resource" uid="uid://c3gi5b7ajoi3t" path="res://gamedata/moves/hydro_barrier/hydro_barrier.tres" id="6_v7kfw"]
-[ext_resource type="Resource" uid="uid://c8cmkchw75c6o" path="res://gamedata/moves/deluge/deluge.tres" id="7_ebkvn"]
 [ext_resource type="Script" uid="uid://b36cn68yq58a0" path="res://scripts/battle/battle_scene/summon_menu.gd" id="7_hvieh"]
 [ext_resource type="Script" uid="uid://cjglmk70bbxxm" path="res://scripts/battle/combatant/ai_layers/move_ordered_layer.gd" id="8_71qgg"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="8_f34sn"]
@@ -81,12 +80,11 @@
 [ext_resource type="Script" uid="uid://b1w8kitcsyx7d" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="37_utb7i"]
 [ext_resource type="Resource" uid="uid://dtf1txvaxx3vc" path="res://gamedata/moves/druidic_pulse/druidic_pulse.tres" id="37_xosfc"]
 [ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="38_c0vv4"]
-[ext_resource type="Resource" uid="uid://b66evvjheyyx8" path="res://gamedata/moves/mind_fog/mind_fog.tres" id="39_lta2o"]
 
 [sub_resource type="Resource" id="Resource_fsle4"]
 script = ExtResource("8_71qgg")
-moveList = Array[ExtResource("3_ucjnw")]([ExtResource("6_v7kfw"), ExtResource("7_ebkvn"), ExtResource("25_vnsia"), ExtResource("7_ebkvn")])
-moveListAttemptSurge = Array[bool]([false, false, true, false])
+moveList = Array[ExtResource("3_ucjnw")]([ExtResource("6_v7kfw"), ExtResource("25_vnsia")])
+moveListAttemptSurge = Array[bool]([false, true])
 loop = true
 moveIdx = 0
 subLayers = Array[ExtResource("10_kw1uj")]([])
@@ -102,13 +100,20 @@ lastMovesEffect = 0
 timesUsedLastMove = 0
 metadata/_custom_type_script = "uid://w2owehn7fmot"
 
+[sub_resource type="Resource" id="Resource_rr07g"]
+script = ExtResource("25_ebkvn")
+aggroStrategy = 1
+subLayers = Array[ExtResource("10_kw1uj")]([])
+weight = 1.0
+metadata/_custom_type_script = "uid://0yxyfr70qvwu"
+
 [sub_resource type="Resource" id="Resource_yqnvp"]
 script = ExtResource("8_71qgg")
-moveList = Array[ExtResource("3_ucjnw")]([ExtResource("14_v7kfw"), ExtResource("16_yikgk"), ExtResource("15_ebkvn"), ExtResource("16_yikgk"), ExtResource("15_ebkvn")])
+moveList = Array[ExtResource("3_ucjnw")]([ExtResource("14_v7kfw"), ExtResource("15_ebkvn"), ExtResource("16_yikgk")])
 moveListAttemptSurge = Array[bool]([])
 loop = true
 moveIdx = 0
-subLayers = Array[ExtResource("10_kw1uj")]([])
+subLayers = Array[ExtResource("10_kw1uj")]([SubResource("Resource_rr07g")])
 weight = 1.0
 metadata/_custom_type_script = "uid://cjglmk70bbxxm"
 
@@ -121,13 +126,20 @@ lastMovesEffect = 0
 timesUsedLastMove = 0
 metadata/_custom_type_script = "uid://w2owehn7fmot"
 
+[sub_resource type="Resource" id="Resource_y2g24"]
+script = ExtResource("25_ebkvn")
+aggroStrategy = 0
+subLayers = Array[ExtResource("10_kw1uj")]([])
+weight = 1.0
+metadata/_custom_type_script = "uid://0yxyfr70qvwu"
+
 [sub_resource type="Resource" id="Resource_4wjox"]
 script = ExtResource("8_71qgg")
 moveList = Array[ExtResource("3_ucjnw")]([ExtResource("19_yikgk"), ExtResource("20_55col"), ExtResource("30_gp340"), ExtResource("31_utb7i")])
 moveListAttemptSurge = Array[bool]([])
 loop = true
 moveIdx = 0
-subLayers = Array[ExtResource("10_kw1uj")]([])
+subLayers = Array[ExtResource("10_kw1uj")]([SubResource("Resource_y2g24")])
 weight = 1.0
 metadata/_custom_type_script = "uid://cjglmk70bbxxm"
 
@@ -153,13 +165,13 @@ metadata/_custom_type_script = "uid://chtagsu3ofpvu"
 
 [sub_resource type="Resource" id="Resource_02djh"]
 script = ExtResource("6_lutwl")
-combatant1Level = 17
+combatant1Level = 14
 combatant1Moves = Array[ExtResource("3_ucjnw")]([ExtResource("14_v7kfw"), ExtResource("15_ebkvn"), ExtResource("16_yikgk"), ExtResource("17_55col")])
 combatant1Ai = SubResource("Resource_uj3av")
 combatant1ShardSummoned = false
 combatant2 = ExtResource("18_yikgk")
 combatant2StatAllocStrat = SubResource("Resource_kw1uj")
-combatant2Level = 17
+combatant2Level = 13
 combatant2Moves = Array[ExtResource("3_ucjnw")]([ExtResource("20_55col"), ExtResource("19_yikgk"), ExtResource("31_utb7i"), ExtResource("30_gp340")])
 combatant2Ai = SubResource("Resource_6xsyd")
 combatant2ShardSummoned = false
@@ -167,7 +179,7 @@ combatant3Level = 10
 combatant3Moves = Array[ExtResource("3_ucjnw")]([])
 combatant3ShardSummoned = false
 autoAlly = ExtResource("3_u5hre")
-autoAllyLevel = 17
+autoAllyLevel = 13
 autoAllyMoves = Array[ExtResource("3_ucjnw")]([])
 autoAllyAi = SubResource("Resource_nybcs")
 autoAllyShardSummoned = false
@@ -214,7 +226,7 @@ affinity = 1
 speed = 1
 statPts = 0
 statGrowth = ExtResource("22_fsle4")
-moves = Array[ExtResource("3_ucjnw")]([ExtResource("36_shm7h"), ExtResource("37_xosfc"), ExtResource("38_c0vv4"), ExtResource("39_lta2o")])
+moves = Array[ExtResource("3_ucjnw")]([ExtResource("36_shm7h"), ExtResource("37_xosfc"), ExtResource("38_c0vv4"), ExtResource("16_yikgk")])
 movepool = SubResource("Resource_5jl4o")
 
 [sub_resource type="Resource" id="Resource_evrjj"]
@@ -257,6 +269,20 @@ subLayers = Array[ExtResource("10_kw1uj")]([SubResource("Resource_shm7h")])
 weight = 0.65
 metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
 
+[sub_resource type="Resource" id="Resource_c0vv4"]
+script = ExtResource("25_ebkvn")
+aggroStrategy = 1
+subLayers = Array[ExtResource("10_kw1uj")]([])
+weight = 1.0
+metadata/_custom_type_script = "uid://0yxyfr70qvwu"
+
+[sub_resource type="Resource" id="Resource_g1k2y"]
+script = ExtResource("24_v7kfw")
+healLayer = true
+subLayers = Array[ExtResource("10_kw1uj")]([SubResource("Resource_c0vv4")])
+weight = 0.65
+metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
+
 [sub_resource type="Resource" id="Resource_v7kfw"]
 script = ExtResource("35_fsle4")
 mostOrbsWeight = 1.15
@@ -279,7 +305,7 @@ metadata/_custom_type_script = "uid://0ddrq70do5nq"
 
 [sub_resource type="Resource" id="Resource_lta2o"]
 script = ExtResource("27_55col")
-layers = Array[ExtResource("23_nybcs")]([SubResource("Resource_xosfc"), SubResource("Resource_v7kfw"), SubResource("Resource_ebkvn")])
+layers = Array[ExtResource("23_nybcs")]([SubResource("Resource_xosfc"), SubResource("Resource_g1k2y"), SubResource("Resource_v7kfw"), SubResource("Resource_ebkvn")])
 orbSpendStrategy = 0
 stalenessTolerance = 1.4
 lastMovesEffect = 0
@@ -315,7 +341,7 @@ bgMap = ExtResource("2_arf2n")
 allowRunes = false
 encounter = SubResource("Resource_02djh")
 _playerCombatant = SubResource("Resource_evrjj")
-playerLv = 17
+playerLv = 13
 playerOrbs = 1
 playerAi = SubResource("Resource_lta2o")
 playerStatAllocStrat = SubResource("Resource_7jsjh")

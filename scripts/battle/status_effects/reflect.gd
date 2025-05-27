@@ -33,7 +33,7 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int, justCa
 			damage += max(0, allCombatants[attackerIdx].command.commandResult.damageOnInterceptingTargets[interceptIdx]) # do not go negative
 	damage *= Reflect.PERCENT_DAMAGE_DICT[potency]
 	if not justCalc:
-		allCombatants[attackerIdx].command.commandResult.selfRecoilDmg += damage
+		allCombatants[attackerIdx].command.commandResult.selfRecoilDmg += roundi(damage)
 	return roundi(damage)
 
 func find_attacker_idx(combatant, allCombatants: Array) -> int:

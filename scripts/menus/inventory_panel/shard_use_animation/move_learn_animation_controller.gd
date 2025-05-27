@@ -176,7 +176,8 @@ func play_move_animation(userNode: CombatantNode, playSurge: bool = false):
 		moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes(),
 		0,
 		selfAfflictedStatus,
-		10 if moveEffect.lifesteal > 0 else 0
+		10 if moveEffect.lifesteal > 0 else 0,
+		roundi(userNode.combatant.stats.maxHp * moveEffect.selfHpSacrifice)
 	)
 	
 	var command: BattleCommand = BattleCommand.new(

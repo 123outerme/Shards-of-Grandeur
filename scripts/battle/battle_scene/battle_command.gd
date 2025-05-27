@@ -245,7 +245,7 @@ func execute_command(user: Combatant, combatantNodes: Array[CombatantNode], batt
 			moveEffect = moveEffect.apply_surge_changes(absi(orbChange))
 		if moveEffect.selfHpSacrifice > 0:
 			var sacrificeDmg: int = roundi(user.stats.maxHp * moveEffect.selfHpSacrifice)
-			commandResult.selfRecoilDmg += sacrificeDmg
+			commandResult.selfHpSacrificed += sacrificeDmg
 			user.currentHp -= sacrificeDmg
 	
 	get_targets_from_combatant_nodes(combatantNodes)
@@ -518,6 +518,9 @@ func get_command_results(user: Combatant) -> String:
 				resultsText += ', spending '
 			resultsText += String.num_int64(abs(orbChange)) + ' $orb'
 		
+		if commandResult.selfHpSacrificed > 0:
+			resultsText += ', and sacrificing ' + TextUtils.num_to_comma_string(commandResult.selfHpSacrificed) + ' HP'
+
 		# "dealt/healed/afflicted "
 		if moveEffect.power > 0:
 			resultsText += '.\n' + user.disp_name() + ' dealt '

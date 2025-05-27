@@ -128,6 +128,23 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	
 	user.change_current_orbs(command.orbChange)
 	
+	# if user sacrifices some HP, show that before any move anim plays
+	if user.combatant.command.commandResult.selfHpSacrificed > 0:
+		var sacrificeHpUpdate: Callable = user.change_current_hp.bind(-1 * user.combatant.command.commandResult.selfHpSacrificed)
+		if SettingsHandler.gameSettings.battleAnims:
+			user.play_particles(BattleCommand.get_hit_particles(), 0)
+			var eventText: String = CombatantEventText.build_damage_text(user.combatant.command.commandResult.selfHpSacrificed)
+			user.play_event_text(eventText, sacrificeHpUpdate, 0, true, null, false)
+			get_tree().create_timer(CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
+				.timeout.connect(_on_combatant_animation_unit_complete.bind(AnimationType.EVENT_TEXT))
+			totalWaitingForSignals.append(AnimationType.EVENT_TEXT)
+			await animation_waiting_complete
+			if cancellingAnimation:
+				cancellingAnimation = false
+				return
+		else:
+			sacrificeHpUpdate.call()
+	
 	# play animation sprite if not none or battle idle
 	if moveAnimation.combatantAnimation != '' and moveAnimation.combatantAnimation != 'battle_idle' and SettingsHandler.gameSettings.battleAnims:
 		user.play_animation(moveAnimation.combatantAnimation)
@@ -323,8 +340,17 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 			eventTextSfxVaryPitches.append(false)
 		if defender == user:
 			if command.commandResult.lifestealHeal > 0:
+				# lifesteal occurs before any self-recoil triggers (recoil is statuses only)
 				eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
-				eventTextUpdates.append(defender.change_current_hp.bind(command.commandResult.lifestealHeal))
+				eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.lifestealHeal))
+				eventTextSfxs.append(null)
+				eventTextSfxVaryPitches.append(false)
+			if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
+				# self-recoil is caused only by statuses, which are processed after most of the command is already processed
+				if not playHitParticles:
+					user.play_particles(BattleCommand.get_hit_particles(), 0)
+				eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
+				eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.selfRecoilDmg * -1))
 				eventTextSfxs.append(null)
 				eventTextSfxVaryPitches.append(false)
 		# status effect text here
@@ -414,15 +440,17 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		var eventTextSfxs: Array[AudioStream] = []
 		var eventTextSfxVaryPitches: Array[bool] = []
 		# start event texts: damage
+		if command.commandResult.lifestealHeal > 0:
+			# lifesteal occurs in command execution before taking any self-recoil (statuses cause recoiil)
+			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
+			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.lifestealHeal))
+			eventTextSfxs.append(null)
+			eventTextSfxVaryPitches.append(false)
 		if user in statusDamagedCombatants or command.commandResult.selfRecoilDmg > 0:
+			# self-recoil exists exclusively as statuses which occur after most of the command execution has completed
 			user.play_particles(BattleCommand.get_hit_particles(), 0)
 			eventTexts.append(CombatantEventText.build_damage_text(command.commandResult.selfRecoilDmg))
 			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.selfRecoilDmg * -1))
-			eventTextSfxs.append(null)
-			eventTextSfxVaryPitches.append(false)
-		if command.commandResult.lifestealHeal > 0:
-			eventTexts.append(CombatantEventText.build_damage_text(-1 * command.commandResult.lifestealHeal))
-			eventTextUpdates.append(user.change_current_hp.bind(command.commandResult.lifestealHeal))
 			eventTextSfxs.append(null)
 			eventTextSfxVaryPitches.append(false)
 		# status effect text + stat changes text
