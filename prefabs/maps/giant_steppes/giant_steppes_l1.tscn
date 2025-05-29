@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=63 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -26,7 +26,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="17_qw8te"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="18_1iokg"]
 [ext_resource type="Resource" uid="uid://ded2gogbnwnnt" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_training_block_demo_end.tres" id="19_m7m11"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="23_eb6g7"]
 [ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
 
 [sub_resource type="Resource" id="Resource_1iokg"]
@@ -270,29 +269,6 @@ parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
-
-[sub_resource type="Resource" id="Resource_okj30"]
-script = ExtResource("5_h3fmg")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(1008, -164)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_tdh71")
@@ -703,22 +679,6 @@ navigation_layers = 2
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("23_eb6g7")]
-visible = false
-triggerOrNPC = NodePath("../DemoBlockCutsceneTrigger")
-cutscene = ExtResource("25_68q3o")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(1008, -164)
-data = SubResource("Resource_okj30")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.560012
-
-[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
-
 [editable path="TilemapRoot/Warlock1"]
 [editable path="TilemapRoot/WarlockAgent"]
 [editable path="TilemapRoot/IceHound"]
@@ -748,5 +708,3 @@ disabled = true
 [editable path="TundraEastWarpZone"]
 [editable path="CameraHoldZone2"]
 [editable path="CameraHoldZone3"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

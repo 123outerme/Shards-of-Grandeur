@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://cxww0nor8nidu"]
+[gd_scene load_steps=33 format=4 uid="uid://cxww0nor8nidu"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_kppd7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wacvl"]
@@ -9,7 +9,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dpo7f7sial4im" path="res://graphics/animations/a_vampire_king.tres" id="5_ja0tc"]
 [ext_resource type="Resource" uid="uid://ccpc8at6wwa6g" path="res://gamedata/dialogue/giant_steppes/warlock_king/warlock_king_pretraining_1.tres" id="6_40018"]
 [ext_resource type="SpriteFrames" uid="uid://diwgg48f5d5va" path="res://graphics/animations/a_stargazer_warlock.tres" id="6_th416"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="7_eiq33"]
 [ext_resource type="SpriteFrames" uid="uid://b26seowjsmlyl" path="res://graphics/animations/a_keeper_of_history.tres" id="7_n4dhd"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="8_1rbw4"]
 [ext_resource type="Resource" uid="uid://dd8j2ugpcy7t8" path="res://gamedata/dialogue/giant_steppes/stargazer/stargazer_grand_hall_1.tres" id="8_k20px"]
@@ -20,9 +19,8 @@
 [ext_resource type="Resource" uid="uid://w03n0q23odu8" path="res://gamedata/cutscenes/giant_steppes/gis_grand_hall_meeting_1.tres" id="10_4bgll"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_yrpot"]
 [ext_resource type="Resource" uid="uid://5sf6xmh80jjs" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_grand_hall_1.tres" id="14_fxukv"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="16_wdsmp"]
 
-[sub_resource type="Resource" id="Resource_fxukv"]
+[sub_resource type="Resource" id="Resource_40018"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -72,7 +70,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("9_wdsmp")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_oe55d"]
+[sub_resource type="Resource" id="Resource_k20px"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -125,7 +123,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("9_wdsmp")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_x3wsu"]
+[sub_resource type="Resource" id="Resource_fxukv"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -175,7 +173,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("9_wdsmp")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_6r1r5"]
+[sub_resource type="Resource" id="Resource_oe55d"]
 script = ExtResource("4_ja0tc")
 saveName = "npc"
 spriteState = "default"
@@ -200,29 +198,6 @@ dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oe55d"]
 size = Vector2(15.5, 13)
-
-[sub_resource type="Resource" id="Resource_rixw4"]
-script = ExtResource("4_ja0tc")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(96, -84)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpot"]
 size = Vector2(44, 38)
@@ -291,7 +266,7 @@ position = Vector2(96, -138)
 displayName = "Warlock King"
 saveName = "warlock_king_grand_hall"
 loadFlipH = true
-data = SubResource("Resource_fxukv")
+data = SubResource("Resource_40018")
 dialogueEntries = Array[ExtResource("5_1gen1")]([ExtResource("6_40018")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockKing" index="0"]
@@ -316,7 +291,7 @@ displayName = "The Stargazer"
 saveName = "stargazer_warlock_grand_hall"
 loadFlipH = true
 orSpawnRequirements = Array[ExtResource("8_1rbw4")]([SubResource("Resource_bo0u8")])
-data = SubResource("Resource_oe55d")
+data = SubResource("Resource_k20px")
 dialogueEntries = Array[ExtResource("5_1gen1")]([ExtResource("8_k20px")])
 
 [node name="NPCSprite" parent="TilemapRoot/StargazerWarlock" index="0"]
@@ -339,7 +314,7 @@ collision_layer = 0
 displayName = "Keeper of History"
 saveName = "keeper_of_history_grand_hall"
 orSpawnRequirements = Array[ExtResource("8_1rbw4")]([SubResource("Resource_kc8ku")])
-data = SubResource("Resource_x3wsu")
+data = SubResource("Resource_fxukv")
 dialogueEntries = Array[ExtResource("5_1gen1")]([ExtResource("9_40018")])
 
 [node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
@@ -360,7 +335,7 @@ position = Vector2(-8, -36)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_grand_hall"
 orSpawnRequirements = Array[ExtResource("8_1rbw4")]([SubResource("Resource_8vcfh")])
-data = SubResource("Resource_6r1r5")
+data = SubResource("Resource_oe55d")
 dialogueEntries = Array[ExtResource("5_1gen1")]([ExtResource("14_fxukv")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
@@ -376,23 +351,6 @@ position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TilemapRoot/WarlockAgent" index="4"]
 visible = false
-
-[node name="ToolCutsceneVisualizer" parent="TilemapRoot" node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("16_wdsmp")]
-triggerOrNPC = NodePath("../../DoorCutsceneTrigger")
-customStartPos = Vector2(-8, 4)
-useCustomStartPos = true
-cutscene = ExtResource("10_4bgll")
-rootNode = NodePath("../..")
-
-[node name="MockPlayer" parent="TilemapRoot/ToolCutsceneVisualizer" index="0"]
-position = Vector2(96, -84)
-data = SubResource("Resource_rixw4")
-
-[node name="NPCSprite" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.899029
-
-[node name="ColliderShape" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
 
 [node name="DoorCutsceneTrigger" parent="." instance=ExtResource("10_yrpot")]
 position = Vector2(-8, 4)
@@ -418,13 +376,8 @@ position = Vector2(-8, 18)
 mapName = "giant_steppes_l2"
 mapPos = Vector2(-56, -9)
 
-[node name="TestCamera" parent="." instance=ExtResource("7_eiq33")]
-position = Vector2(-8, -5)
-
 [editable path="TilemapRoot/WarlockKing"]
 [editable path="TilemapRoot/StargazerWarlock"]
 [editable path="TilemapRoot/KeeperOfHistory"]
 [editable path="TilemapRoot/WarlockAgent"]
-[editable path="TilemapRoot/ToolCutsceneVisualizer"]
-[editable path="TilemapRoot/ToolCutsceneVisualizer/MockPlayer"]
 [editable path="DoorCutsceneTrigger"]

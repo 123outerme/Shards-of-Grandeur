@@ -168,7 +168,7 @@ static func setup_status(user: Combatant, target: Combatant, statusEffect: Statu
 			# save the attacker's current stats to the element burn
 			var userStatChanges = StatChanges.new()
 			userStatChanges.stack(user.statChanges) # copy stat changes
-			var userStats: Stats = userStatChanges.appmoveEffectly(user.stats)
+			var userStats: Stats = userStatChanges.apply(user.stats)
 			if user.statusEffect != null and user.statusEffect.is_stat_altering():
 				userStats = user.statusEffect.apply_stat_change(userStats)
 			

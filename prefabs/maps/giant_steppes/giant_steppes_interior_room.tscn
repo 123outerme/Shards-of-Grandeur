@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://y1byopircr8n"]
+[gd_scene load_steps=7 format=4 uid="uid://y1byopircr8n"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_7j1sy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_3cndv"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_p8y8w"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="6_dw2ld"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -76,6 +75,3 @@ navigation_layers = 4
 
 [node name="WarpZone" parent="." instance=ExtResource("3_p8y8w")]
 position = Vector2(-8, 18)
-
-[node name="TestCamera" parent="." instance=ExtResource("6_dw2ld")]
-position = Vector2(-125, -124)

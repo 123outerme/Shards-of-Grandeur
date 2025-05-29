@@ -1,16 +1,15 @@
-[gd_scene load_steps=17 format=4 uid="uid://cdbijlyp6y7hc"]
+[gd_scene load_steps=16 format=4 uid="uid://cdbijlyp6y7hc"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_g2khu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_1qah0"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_i56hx"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_wvudg"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="4_1qah0"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_sjsm5"]
 [ext_resource type="Resource" uid="uid://btgbmsxpha4ua" path="res://gamedata/shops/giant_steppes/giant_steppes_trading_post.tres" id="5_sjsm5"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="6_hovep"]
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="7_nhkky"]
 
-[sub_resource type="Resource" id="Resource_hovep"]
+[sub_resource type="Resource" id="Resource_86tpj"]
 script = ExtResource("4_sjsm5")
 saveName = "npc"
 spriteState = "default"
@@ -105,7 +104,7 @@ tile_set = ExtResource("2_1qah0")
 position = Vector2(-8, -84)
 displayName = "Trader"
 saveName = "giant_steppes_trader"
-data = SubResource("Resource_hovep")
+data = SubResource("Resource_86tpj")
 npcShop = ExtResource("5_sjsm5")
 
 [node name="ColliderShape" parent="TilemapRoot/Shopkeeper" index="1"]
@@ -154,9 +153,6 @@ navigation_layers = 4
 position = Vector2(-8, 18)
 mapName = "giant_steppes_l1"
 mapPos = Vector2(424, -138)
-
-[node name="TestCamera" parent="." instance=ExtResource("4_1qah0")]
-position = Vector2(-125, -124)
 
 [editable path="TilemapRoot/Shopkeeper"]
 [editable path="TilemapRoot/ShopSign"]
