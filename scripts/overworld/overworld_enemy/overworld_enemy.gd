@@ -32,6 +32,8 @@ var disabled: bool:
 	set(d):
 		_disabled = d
 		visible = not d
+		collision_layer = 0x00 if d else 0x01
+		collision_mask = 0x00 if d else 0x01
 		if encounterColliderShape != null:
 			encounterColliderShape.set_deferred('disabled', d)
 	get:
@@ -96,10 +98,8 @@ func _ready():
 func _process(delta):
 	if disabled:
 		return
-	
 	if spawner != null and (PlayerFinder.player.global_position - global_position).length() > despawnRange:
-		spawner.delete_enemy()
-		return
+		return # skip the update if the player isn't close enough for it to matter
 	
 	if waitUntilNavReady:
 		get_next_patrol_target()
@@ -215,17 +215,16 @@ func _on_nav_agent_target_reached():
 	get_next_patrol_target()
 
 func _on_encounter_collider_area_entered(area):
-	if area.name == "PlayerBattleCollider" and spawner != null:
+	if area.name == "PlayerBattleCollider" and spawner != null and not disabled:
 		if not PlayerFinder.player.inCutscene:
 			# start battle encounter
 			spawner.spawnerData.spawnedLastEncounter = true
 			PlayerResources.playerInfo.encounter = enemyData.encounter
 			encounteredPlayer = true
+			enemySprite.play('battle_idle')
 			PlayerFinder.player.start_battle()
 			SceneLoader.pause_autonomous_movers()
 		else:
-			 # despawn enemy if encountered during a cutscene
-			if spawner != null:
-				spawner.delete_enemy()
-			else:
-				queue_free()
+			 # disable enemy if encountered during a cutscene
+			disabled = true
+			enemyData.disabled = true

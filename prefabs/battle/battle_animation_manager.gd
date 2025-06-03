@@ -129,7 +129,8 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	user.change_current_orbs(command.orbChange)
 	
 	# if user sacrifices some HP, show that before any move anim plays
-	if user.combatant.command.commandResult.selfHpSacrificed > 0:
+	if user.combatant.command != null and user.combatant.command.commandResult != null \
+			and user.combatant.command.commandResult.selfHpSacrificed > 0:
 		var sacrificeHpUpdate: Callable = user.change_current_hp.bind(-1 * user.combatant.command.commandResult.selfHpSacrificed)
 		if SettingsHandler.gameSettings.battleAnims:
 			user.play_particles(BattleCommand.get_hit_particles(), 0)

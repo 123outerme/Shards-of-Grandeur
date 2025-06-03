@@ -53,8 +53,7 @@ func entered_warp(newMapName: String, newMapPos: Vector2, warpPos: Vector2, isUn
 	SceneLoader.cutscenePlayer.end_cutscene(true)
 	if player.holdCameraX or player.holdCameraY:
 		player.snap_camera_back_to_player(0.1)
-	for spawner in get_tree().get_nodes_in_group('EnemySpawner'):
-		spawner.delete_enemy()
+	destroy_overworld_enemies() # destroy overworld enemies so moving player around doesn't trigger a battle by accident
 	load_map(newMapName)
 
 func load_recover_map():
