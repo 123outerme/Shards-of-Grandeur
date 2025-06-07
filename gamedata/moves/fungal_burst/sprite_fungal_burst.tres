@@ -1,0 +1,125 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://cmk6pjqnra8om"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_dv6ny"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_2q6vw"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_cqef7"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_rnpxe"]
+[ext_resource type="SpriteFrames" uid="uid://cjntaymdf81o" path="res://graphics/moves/nature/a_fungal_burst.tres" id="3_rnpxe"]
+
+[sub_resource type="Resource" id="Resource_rnpxe"]
+script = ExtResource("1_dv6ny")
+annotation = "set up pos at user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_2q6vw"]
+script = ExtResource("1_dv6ny")
+annotation = "play burst anim"
+animation = "burst"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_cqef7")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_cqef7"]
+script = ExtResource("1_dv6ny")
+annotation = "play spore cloud anim"
+animation = "spore_cloud"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_8v440"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xper6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.286822, 0.491028), 0.0, 0.0, 0, 0, Vector2(0.46124, 0.448613), 0.0, 0.0, 0, 0, Vector2(0.639535, 0.766721), 0.0, 0.0, 0, 0, Vector2(0.813954, 0.692496), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_jjkox"]
+script = ExtResource("1_dv6ny")
+annotation = "move cloud towards target"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_8v440")
+yCurve = SubResource("Curve_xper6")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_vbcna"]
+script = ExtResource("1_dv6ny")
+annotation = "play grow anim on target"
+animation = "grow"
+duration = 1.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_2q6vw")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_rnpxe")
+spriteFrames = ExtResource("3_rnpxe")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_dv6ny")]([SubResource("Resource_rnpxe"), SubResource("Resource_2q6vw"), SubResource("Resource_cqef7"), SubResource("Resource_jjkox"), SubResource("Resource_vbcna")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

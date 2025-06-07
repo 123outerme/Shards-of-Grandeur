@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://dfent5dqdb0go"]
+
+[ext_resource type="Texture2D" uid="uid://c1d3si87dh4n5" path="res://graphics/particles/lightning/lightning_1.png" id="1_7ngrm"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_dfgx3"]
+[ext_resource type="Texture2D" uid="uid://ltgrccpbk4ce" path="res://graphics/particles/lightning/stormcloud_2.png" id="2_7oic0"]
+[ext_resource type="Texture2D" uid="uid://dbybu8oxd7u26" path="res://graphics/particles/wind/wind_3.png" id="3_2a5gn"]
+[ext_resource type="Texture2D" uid="uid://can3odjx8d6px" path="res://graphics/particles/water/water_4.png" id="4_wndi3"]
+[ext_resource type="AudioStream" uid="uid://drpioiwvi7nx6" path="res://audio/sfx/moves/lightning/lightning_2.mp3" id="7_7oic0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ngrm"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(6, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 6.0
+damping_max = 16.0
+attractor_interaction_enabled = false
+
+[resource]
+script = ExtResource("1_dfgx3")
+emitter = "front"
+count = 6
+lifetime = 0.5
+duration = 1.0
+staggered = true
+processMaterial = SubResource("ParticleProcessMaterial_7ngrm")
+particleTextures = Array[Texture2D]([ExtResource("1_7ngrm"), ExtResource("2_7oic0"), ExtResource("3_2a5gn"), ExtResource("4_wndi3")])
+sfx = ExtResource("7_7oic0")
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

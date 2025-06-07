@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Move" load_steps=6 format=3 uid="uid://vpf44op2decs"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_ssd32"]
+[ext_resource type="Resource" uid="uid://bdt825aavdumq" path="res://gamedata/moves/fungal_burst/anim_fungal_burst.tres" id="2_vvud6"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="3_auvnx"]
+
+[sub_resource type="Resource" id="Resource_am7c5"]
+script = ExtResource("1_ssd32")
+role = 1
+keywords = Array[String](["Shroom"])
+orbChange = 1
+power = 40
+lifesteal = 0.25
+selfHpSacrifice = 0.0
+priority = 0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_bevfh"]
+script = ExtResource("1_ssd32")
+role = 2
+keywords = Array[String](["Shroom"])
+orbChange = -5
+power = 50
+lifesteal = 0.2
+selfHpSacrifice = 0.0
+priority = 0
+targets = 6
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("3_auvnx")
+moveName = "Fungal Burst"
+requiredLv = 21
+category = 2
+element = 6
+chargeEffect = SubResource("Resource_am7c5")
+surgeEffect = SubResource("Resource_bevfh")
+description = "Fungal spores spread around opponents, leeching their life force in order to grow."
+moveLearnedText = "You suddenly sneeze, and mushroom spores spread into the air. They drain the Affinity flowing through the air, and restore your energy."
+moveAnimation = ExtResource("2_vvud6")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
