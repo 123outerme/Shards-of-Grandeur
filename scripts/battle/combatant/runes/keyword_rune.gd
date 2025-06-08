@@ -3,6 +3,8 @@ class_name KeywordRune
 
 @export var keyword: String = ''
 
+@export var mustDealDamage: bool = false
+
 func _init(
 	i_orbChange: int = 0,
 	i_category: Move.DmgCategory = Move.DmgCategory.PHYSICAL,
@@ -16,9 +18,11 @@ func _init(
 	i_runeSpriteAnim: MoveAnimSprite = null,
 	i_triggerAnim: MoveAnimSprite = null,
 	i_keyword: String = '',
+	i_mustDealDamage: bool = false,
 ):
 	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnim)
 	keyword = i_keyword
+	mustDealDamage = i_mustDealDamage
 
 func get_rune_type() -> String:
 	return 'Keyword Rune'
@@ -28,33 +32,39 @@ func get_long_rune_type() -> String:
 
 func get_rune_trigger_description() -> String:
 	var singularArticle: String = 'A'
-	var keywordLower: String = keyword.to_lower()
-	if keywordLower.begins_with('a') or \
-			keywordLower.begins_with('e') or \
-			keywordLower.begins_with('i') or \
-			keywordLower.begins_with('o') or \
-			keywordLower.begins_with('u'):
-		singularArticle = 'An'
+	if not mustDealDamage:
+		var keywordLower: String = keyword.to_lower()
+		if keywordLower.begins_with('a') or \
+				keywordLower.begins_with('e') or \
+				keywordLower.begins_with('i') or \
+				keywordLower.begins_with('o') or \
+				keywordLower.begins_with('u'):
+			singularArticle = 'An'
 	
-	return 'When ' + singularArticle + ' ' + keyword + ' Move is Used'
+	return 'When ' + singularArticle + ' ' + \
+			('Damaging ' if mustDealDamage else '') + \
+			keyword + ' Move is Used'
 
 func get_rune_tooltip() -> String:
 	var singularArticle: String = 'a'
-	var keywordLower: String = keyword.to_lower()
-	if keywordLower.begins_with('a') or \
-			keywordLower.begins_with('e') or \
-			keywordLower.begins_with('i') or \
-			keywordLower.begins_with('o') or \
-			keywordLower.begins_with('u'):
-		singularArticle = 'an'
+	if not mustDealDamage:
+		var keywordLower: String = keyword.to_lower()
+		if keywordLower.begins_with('a') or \
+				keywordLower.begins_with('e') or \
+				keywordLower.begins_with('i') or \
+				keywordLower.begins_with('o') or \
+				keywordLower.begins_with('u'):
+			singularArticle = 'an'
 	
-	return "This Rune's effect triggers when " + singularArticle + " " + keyword + " Move is used on the enchanted combatant."
+	return "This Rune's effect triggers when " + singularArticle + " " + \
+			("Damaging " if mustDealDamage else "") + \
+			keyword + " Move is used on the enchanted combatant."
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and combatant.command != null and combatant.command.type == BattleCommand.Type.MOVE:
 		var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
 		if moveEffect != null:
-			return keyword in moveEffect.keywords
+			return keyword in moveEffect.keywords and (not mustDealDamage or moveEffect.power > 0)
 		
 	return false
 
@@ -71,7 +81,8 @@ func copy(copyStorage: bool = false) -> KeywordRune:
 		caster if copyStorage else null,
 		runeSpriteAnim,
 		triggerAnim,
-		keyword
+		keyword,
+		mustDealDamage,
 	)
 	
 	return rune

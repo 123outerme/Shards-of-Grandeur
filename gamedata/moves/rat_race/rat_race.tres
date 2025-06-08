@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://bdb03a6ibprre"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_rvlg4"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_n3rtc"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_roo48"]
+[ext_resource type="Resource" uid="uid://dllqmgfiipgk1" path="res://gamedata/moves/rat_race/anim_rat_race.tres" id="4_6janm"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_okenv"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_jd881"]
+
+[sub_resource type="Resource" id="Resource_1myc4"]
+script = ExtResource("3_roo48")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.2
+elementMultipliers = Array[ExtResource("2_n3rtc")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_rhw4n"]
+script = ExtResource("1_rvlg4")
+role = 3
+keywords = Array[String]([])
+orbChange = 1
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 4
+targetStatChanges = SubResource("Resource_1myc4")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_fcyyk"]
+script = ExtResource("3_roo48")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.05
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.05
+elementMultipliers = Array[ExtResource("2_n3rtc")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_jooc2"]
+script = ExtResource("6_jd881")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_fcyyk")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_hehlw"]
+script = ExtResource("3_roo48")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.15
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.25
+elementMultipliers = Array[ExtResource("2_n3rtc")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_0m3g1"]
+script = ExtResource("1_rvlg4")
+role = 3
+keywords = Array[String]([])
+orbChange = -3
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 4
+targetStatChanges = SubResource("Resource_hehlw")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_jooc2")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("5_okenv")
+moveName = "Rat Race"
+requiredLv = 22
+category = 0
+element = 7
+chargeEffect = SubResource("Resource_rhw4n")
+surgeEffect = SubResource("Resource_0m3g1")
+description = "Charge alongside your allies in an agility-boosting sprint towards your foes."
+moveLearnedText = "To participate in the race, is to learn to do it faster the next time. With a rush of speed, you can encourage your allies to follow your swiftness and strike at the opponent sooner."
+moveAnimation = ExtResource("4_6janm")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

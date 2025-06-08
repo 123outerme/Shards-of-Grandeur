@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=3 format=3 uid="uid://ctcxsurvwpbdl"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_ty5uc"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_vv2tj"]
+
+[resource]
+script = ExtResource("2_vv2tj")
+combatantAnimation = "attack_affinity"
+makesContact = false
+makesContactTarget = 1
+makesContactPosOffset = Vector2(0, 0)
+hideUserHpTag = false
+hideTargetHpTag = false
+chargeMoveSprites = Array[ExtResource("1_ty5uc")]([])
+surgeMoveSprites = Array[ExtResource("1_ty5uc")]([])
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ChainRune" load_steps=4 format=3 uid="uid://reuv6w8akl7n"]
+
+[ext_resource type="Script" uid="uid://clyhxa26qtjnb" path="res://scripts/battle/combatant/runes/chain_rune.gd" id="1_rh6du"]
+[ext_resource type="Script" uid="uid://m4ui8a70p15x" path="res://scripts/battle/status_effects/berserk.gd" id="2_di871"]
+
+[sub_resource type="Resource" id="Resource_310pg"]
+script = ExtResource("2_di871")
+lastAdjustedDmg = 0
+type = 3
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+metadata/_custom_type_script = "uid://m4ui8a70p15x"
+
+[resource]
+script = ExtResource("1_rh6du")
+orbChange = 0
+category = 0
+element = 0
+power = 0
+lifesteal = 0.0
+statusEffect = SubResource("Resource_310pg")
+metadata/_custom_type_script = "uid://b5mhqq6ioek3x"

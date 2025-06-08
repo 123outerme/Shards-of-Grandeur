@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="Move" load_steps=11 format=3 uid="uid://b0qktp2rwgumg"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_4vx61"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_htyxs"]
+[ext_resource type="Script" uid="uid://m4ui8a70p15x" path="res://scripts/battle/status_effects/berserk.gd" id="2_85gag"]
+[ext_resource type="Resource" uid="uid://db0jcke4u2onp" path="res://gamedata/moves/mud_sling/anim_mud_sling.tres" id="3_3mqyq"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_85gag"]
+
+[sub_resource type="Resource" id="Resource_lrjx5"]
+script = ExtResource("2_85gag")
+lastAdjustedDmg = 0
+type = 3
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://m4ui8a70p15x"
+
+[sub_resource type="Resource" id="Resource_3mqyq"]
+script = ExtResource("1_4vx61")
+role = 1
+keywords = Array[String]([])
+orbChange = 1
+power = 50
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 5
+statusEffect = SubResource("Resource_lrjx5")
+selfGetsStatus = false
+statusChance = 0.7
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_3yx75"]
+script = ExtResource("2_85gag")
+lastAdjustedDmg = 0
+type = 3
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 4
+metadata/_custom_type_script = "uid://m4ui8a70p15x"
+
+[sub_resource type="Resource" id="Resource_qj6ye"]
+script = ExtResource("3_85gag")
+powerPerOrb = 3
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 4
+overwhelmingThresholdOrbs = 6
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.05
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_ig6i1"]
+script = ExtResource("1_4vx61")
+role = 1
+keywords = Array[String]([])
+orbChange = -2
+power = 60
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 5
+statusEffect = SubResource("Resource_3yx75")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_qj6ye")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_htyxs")
+moveName = "Mud-Sling"
+requiredLv = 25
+category = 0
+element = 5
+chargeEffect = SubResource("Resource_3mqyq")
+surgeEffect = SubResource("Resource_ig6i1")
+description = "Hurl a ball of mud at your enemy. Equal parts painful and insulting!"
+moveLearnedText = "You stare at your muddy boots, and think to clean them. As you scrape off the stuff, it forms a hefty clump in your hand... perfect for a mean-spirited attack!"
+moveAnimation = ExtResource("3_3mqyq")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

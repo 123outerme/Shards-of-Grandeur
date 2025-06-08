@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Move" load_steps=9 format=3 uid="uid://b55xj6c8ek4fw"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_8iuuf"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_lducw"]
+[ext_resource type="Resource" uid="uid://reuv6w8akl7n" path="res://gamedata/wip/moves/insult_to_injury/rune/rune_insult_to_injury_charge.tres" id="1_ox6uv"]
+[ext_resource type="Resource" uid="uid://bh1jxre36i8dn" path="res://gamedata/wip/moves/insult_to_injury/rune/rune_insult_to_injury_surge.tres" id="4_n7bkh"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_n7bkh"]
+
+[sub_resource type="Resource" id="Resource_hy7t4"]
+script = ExtResource("1_lducw")
+role = 1
+keywords = Array[String]([])
+orbChange = 2
+power = 35
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 5
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_ox6uv")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_00y8y"]
+script = ExtResource("5_n7bkh")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_ox6uv"]
+script = ExtResource("1_lducw")
+role = 6
+keywords = Array[String]([])
+orbChange = -2
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 6
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("4_n7bkh")
+surgeChanges = SubResource("Resource_00y8y")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_8iuuf")
+moveName = "Insult to Injury"
+requiredLv = 1
+category = 0
+element = 7
+chargeEffect = SubResource("Resource_hy7t4")
+surgeEffect = SubResource("Resource_ox6uv")
+description = "Use not only a painful strike, but also a choice word or two! That'll linger for a while."
+moveLearnedText = ""
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
