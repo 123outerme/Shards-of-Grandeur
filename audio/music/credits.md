@@ -19,3 +19,4 @@ Here is where I will credit the artist who created each individual track used in
 - `standstill.mp3`: By Ian Groat.
 - `hilltop_forest.mp3`: By Henry Guckes.
 - `tundra.mp3`: By Henry Guckes.
+- `sea_leg_swamp.mp3`: By Henry Guckes.
