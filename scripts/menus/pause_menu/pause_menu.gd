@@ -26,7 +26,8 @@ var quitPressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	SignalBus.show_map_for_location.connect(_on_show_map_for_location)
+	SignalBus.return_from_quest_map_location.connect(_on_return_from_quest_map_location)
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and not quitPressed:
@@ -40,22 +41,26 @@ func toggle_pause():
 	if isPaused:
 		pause_game()
 	else:
-		pauseMenuPage.visible = true
-		if codexMenu.visible:
-			codexMenu.toggle_codex_menu(false)
-		if saveGamePanel.visible:
-			saveGamePanel.toggle_saves_panel(false)
-		if settingsMenu.visible:
-			settingsMenu.toggle_settings_menu(false)
-		_on_resume_button_pressed()
+		unpause_game()
 
 func pause_game():
+	pauseMenuPage.visible = true
 	isPaused = true
 	visible = true
 	initial_focus()
 	SceneLoader.pause_autonomous_movers()
 	if settingsOnly:
 		_on_settings_button_pressed()
+
+func unpause_game() -> void:
+	pauseMenuPage.visible = true
+	if codexMenu.visible:
+		codexMenu.toggle_codex_menu(false)
+	if saveGamePanel.visible:
+		saveGamePanel.toggle_saves_panel(false)
+	if settingsMenu.visible:
+		settingsMenu.toggle_settings_menu(false)
+	_on_resume_button_pressed()
 
 func initial_focus() -> void:
 	resumeButton.grab_focus()
@@ -99,8 +104,9 @@ func _on_quit_button_pressed():
 	SceneLoader.load_main_menu()
 
 func _on_map_panel_back_pressed() -> void:
-	pauseMenuPage.visible = true
-	mapButton.grab_focus()
+	if mapPanel.fromQuestsPanelQuest == null:
+		pauseMenuPage.visible = true
+		mapButton.grab_focus()
 
 func _on_settings_menu_back_pressed():
 	pauseMenuPage.visible = true
@@ -138,3 +144,10 @@ func _on_save_game_panel_game_save_failed():
 
 func _on_save_game_panel_game_saved():
 	show_alert('Save Successful!')
+
+func _on_show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: Quest):
+	pause_game()
+	pauseMenuPage.visible = false
+
+func _on_return_from_quest_map_location(quest: Quest) -> void:
+	unpause_game()

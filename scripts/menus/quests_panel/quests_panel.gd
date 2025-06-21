@@ -66,6 +66,8 @@ func _ready():
 		notCompletedButton,
 		failedButton
 	]
+	SignalBus.show_map_for_location.connect(_on_show_map_for_location)
+	SignalBus.return_from_quest_map_location.connect(_on_return_from_quest_map_location)
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline'):
@@ -348,3 +350,9 @@ func _on_quest_details_panel_panel_hidden():
 	backButton.disabled = false
 	questsPanelControl.visible = true
 	restore_previous_focus('detailsButton')
+
+func _on_show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: Quest):
+	visible = false
+
+func _on_return_from_quest_map_location(quest: Quest):
+	visible = true

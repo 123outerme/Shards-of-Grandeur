@@ -6,6 +6,12 @@ var lastPlayerRunVal: bool = false
 ## emits once per Reward given during overworld processing (except Quest turnins)
 signal overworld_rewards_given(rewardsTitle: String)
 
+## Emit in the Quests UI when trying to see the location(s) for a quest
+signal show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: Quest)
+
+## Emit in the Map UI when returning back to view the viewed quest's details
+signal return_from_quest_map_location(quest: Quest)
+
 func player_running(running: bool) -> void:
 	lastPlayerRunVal = running
 	player_run_toggled.emit(running)

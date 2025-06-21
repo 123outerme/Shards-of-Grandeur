@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw6gj40op07vr"]
+[gd_scene load_steps=11 format=3 uid="uid://cw6gj40op07vr"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_60ioc"]
 [ext_resource type="Script" uid="uid://p36ontwguscm" path="res://scripts/menus/quests_panel/quest_details_panel.gd" id="2_k8rm2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cqu8qkicb5n1f" path="res://scripts/menus/scroll_better_follow.gd" id="6_6nmhd"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="6_pbljs"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_7airq"]
+[ext_resource type="Texture2D" uid="uid://daudyivk0fi82" path="res://graphics/ui/map_icon.png" id="8_aybby"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snq7j"]
 
@@ -61,6 +62,17 @@ theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
 text = "[center]Quest details go here. I am allowing for quite a bit of details, hopefully I have enough space for everything I want to fit. A little backstory is always cool. But not too much text here![/center]"
+
+[node name="MapButton" parent="Panel" instance=ExtResource("7_7airq")]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 332.0
+offset_right = 1222.0
+offset_bottom = 372.0
+text = "Map"
+icon = ExtResource("8_aybby")
+expand_icon = true
 
 [node name="StepDetailPanel" type="Panel" parent="Panel"]
 layout_mode = 1
@@ -211,6 +223,7 @@ text = "Back"
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="Panel/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="show_item_details" from="Panel/StepDetailPanel/RewardPanel" to="." method="_on_reward_panel_show_item_details"]
 [connection signal="visibility_changed" from="Panel/ScrollContainer" to="Panel/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
