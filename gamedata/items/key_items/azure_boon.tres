@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BattleModifierItem" load_steps=3 format=3 uid="uid://7t2wewwgvuf8"]
+
+[ext_resource type="Texture2D" uid="uid://bdllpvvfm0d6c" path="res://graphics/items/key_items/azure_boon.png" id="1_appuv"]
+[ext_resource type="Script" uid="uid://bia1ohjxor38e" path="res://scripts/inventory/items/key_items/battle_modifier_item.gd" id="1_tf3pf"]
+
+[resource]
+script = ExtResource("1_tf3pf")
+rewardItemCountModifier = 1.0
+rewardExpModifier = 1.0
+rewardGoldModifier = 1.0
+attunementModifier = 1.5
+spawnsThreeOfFace = false
+keyItemType = 4
+useMessage = ""
+effectText = ""
+itemSprite = ExtResource("1_appuv")
+itemName = "Azure Boon"
+itemType = 5
+itemDescription = "A deep-blue mote of magical energy in its purest form. It resonates with a magical hum in a similar way to the Shards."
+cost = 30
+maxCount = 10
+usable = true
+battleUsable = false
+consumable = true
+equippable = false
+battleTargets = 1
+metadata/_custom_type_script = "uid://bia1ohjxor38e"

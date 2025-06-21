@@ -85,7 +85,7 @@ func get_use_message(_target: Combatant) -> String:
 
 func get_effect_text(inBattle: bool = true) -> String:
 	var effectTexts: Array[String] = get_effect_texts()
-	return 'When used outside of Battle, the next Battle will have the following active:\n' \
+	return 'When used outside of Battle, the next roaming encounter will have the following active:\n' \
 			+ TextUtils.string_arr_to_string(effectTexts) + '.'
 
 func get_effect_texts(short: bool = false) -> Array[String]:
