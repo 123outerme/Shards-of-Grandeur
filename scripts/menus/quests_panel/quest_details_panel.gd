@@ -108,10 +108,13 @@ func load_quest_details(rebuild: bool = true):
 			rewardPanel.itemSpriteBtn.focus_neighbor_bottom = rewardPanel.itemSpriteBtn.get_path_to(backButton)
 			if mapButton.visible:
 				mapButton.focus_neighbor_bottom = mapButton.get_path_to(backButton)
-		elif mapButton.visible:
-			backButton.focus_neighbor_top = backButton.get_path_to(mapButton)
-			mapButton.focus_neighbor_left = mapButton.get_path_to(backButton)
-			mapButton.focus_neighbor_bottom = mapButton.get_path_to(backButton)
+		else:
+			if mapButton.visible:
+				backButton.focus_neighbor_top = backButton.get_path_to(mapButton)
+				mapButton.focus_neighbor_left = mapButton.get_path_to(backButton)
+				mapButton.focus_neighbor_bottom = mapButton.get_path_to(backButton)
+			else:
+				backButton.focus_neighbor_top = ''
 	else:
 		backButton.focus_neighbor_top = backButton.get_path_to(lastPanel.viewButton)
 		lastPanel.viewButton.focus_neighbor_bottom = lastPanel.viewButton.get_path_to(backButton)
@@ -120,11 +123,15 @@ func load_quest_details(rebuild: bool = true):
 			firstPanel.viewButton.focus_neighbor_top = firstPanel.viewButton.get_path_to(rewardPanel.itemSpriteBtn)
 			if mapButton.visible:
 				mapButton.focus_neighbor_bottom = mapButton.get_path_to(firstPanel.viewButton)
-		elif mapButton.visible:
-			firstPanel.viewButton.focus_neighbor_top = firstPanel.viewButton.get_path_to(mapButton)
-			firstPanel.viewButton.focus_neighbor_right = firstPanel.viewButton.get_path_to(mapButton)
-			mapButton.focus_neighbor_left = mapButton.get_path_to(firstPanel.viewButton)
-			mapButton.focus_neighbor_bottom = mapButton.get_path_to(firstPanel.viewButton)
+		else:
+			if mapButton.visible:
+				firstPanel.viewButton.focus_neighbor_top = firstPanel.viewButton.get_path_to(mapButton)
+				firstPanel.viewButton.focus_neighbor_right = firstPanel.viewButton.get_path_to(mapButton)
+				mapButton.focus_neighbor_left = mapButton.get_path_to(firstPanel.viewButton)
+				mapButton.focus_neighbor_bottom = mapButton.get_path_to(firstPanel.viewButton)
+			else:
+				firstPanel.viewButton.focus_neighbor_top = '.'
+				firstPanel.viewButton.focus_neighbor_right = ''
 	
 	restore_previous_focus.call_deferred()
 
