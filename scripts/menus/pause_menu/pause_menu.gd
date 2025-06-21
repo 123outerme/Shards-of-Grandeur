@@ -4,12 +4,14 @@ signal resume_game
 
 @export var isPaused: bool = false
 
+@onready var mapPanel: MapPanel = get_node('Control/MapPanel')
 @onready var codexMenu: CodexMenu = get_node('Control/CodexMenu')
 @onready var settingsMenu: SettingsMenu = get_node('Control/SettingsMenu')
 @onready var saveGamePanel: SavesPanel = get_node('Control/SaveGamePanel')
 
 @onready var pauseMenuPage: Control = get_node('Control/Panel/PauseMenuPage')
 @onready var resumeButton: Button = get_node("Control/Panel/PauseMenuPage/VBoxContainer/ResumeButton")
+@onready var mapButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/MapButton')
 @onready var codexButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/CodexButton')
 @onready var settingsButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/SettingsButton')
 @onready var saveButton: Button = get_node('Control/Panel/PauseMenuPage/VBoxContainer/SaveButton')
@@ -61,6 +63,7 @@ func initial_focus() -> void:
 func _on_resume_button_pressed():
 	isPaused = false
 	visible = false
+	mapPanel.visible = false
 	codexMenu.visible = false
 	if settingsMenu.visible:
 		settingsMenu.cancel_changes()
@@ -68,6 +71,10 @@ func _on_resume_button_pressed():
 	if PlayerFinder.player != null and PlayerFinder.player.textBox.visible:
 		PlayerFinder.player.textBox.refocus_choice(PlayerFinder.player.pickedChoice)
 	resume_game.emit()
+
+func _on_map_button_pressed() -> void:
+	pauseMenuPage.visible = false
+	mapPanel.load_map_panel()
 
 func _on_codex_button_pressed():
 	pauseMenuPage.visible = false
@@ -90,6 +97,10 @@ func _on_quit_button_pressed():
 	PlayerResources.saveFolder = ''
 	PlayerResources.battleSaveFolder = ''
 	SceneLoader.load_main_menu()
+
+func _on_map_panel_back_pressed() -> void:
+	pauseMenuPage.visible = true
+	mapButton.grab_focus()
 
 func _on_settings_menu_back_pressed():
 	pauseMenuPage.visible = true

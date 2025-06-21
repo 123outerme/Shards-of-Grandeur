@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxbd23grq477d"]
+[gd_scene load_steps=16 format=3 uid="uid://dxbd23grq477d"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_x0ob1"]
 [ext_resource type="Script" uid="uid://cgs2ugas8g8w8" path="res://scripts/menus/pause_menu/pause_menu.gd" id="2_mu5pd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dg2nx11vaphtq" path="res://prefabs/ui/settings/settings_menu.tscn" id="9_y122n"]
 [ext_resource type="PackedScene" uid="uid://dyippeuidy6q4" path="res://prefabs/ui/codex/codex_menu.tscn" id="10_10tem"]
 [ext_resource type="PackedScene" uid="uid://dadkuus73lmt3" path="res://prefabs/ui/saves_panel.tscn" id="11_kf012"]
+[ext_resource type="PackedScene" uid="uid://cfxdils72sliv" path="res://prefabs/ui/map/map_panel.tscn" id="12_m1ftj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo17n"]
 
@@ -84,7 +85,6 @@ expand_icon = true
 [node name="MapButton" parent="Control/Panel/PauseMenuPage/VBoxContainer" instance=ExtResource("9_clpva")]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
-disabled = true
 text = "Map"
 icon = ExtResource("6_k1jav")
 expand_icon = true
@@ -122,6 +122,10 @@ visible = false
 layout_mode = 1
 isLoading = false
 
+[node name="MapPanel" parent="Control" instance=ExtResource("12_m1ftj")]
+visible = false
+layout_mode = 1
+
 [node name="CodexMenu" parent="Control" instance=ExtResource("10_10tem")]
 visible = false
 layout_mode = 1
@@ -153,6 +157,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]
 [connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/Panel/PauseMenuPage/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
@@ -160,5 +165,6 @@ color = Color(0, 0, 0, 1)
 [connection signal="back_pressed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_back_pressed"]
 [connection signal="game_save_failed" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_save_failed"]
 [connection signal="game_saved" from="Control/SaveGamePanel" to="." method="_on_save_game_panel_game_saved"]
+[connection signal="back_pressed" from="Control/MapPanel" to="." method="_on_map_panel_back_pressed"]
 [connection signal="back_pressed" from="Control/CodexMenu" to="." method="_on_codex_menu_back_pressed"]
 [connection signal="back_pressed" from="Control/SettingsMenu" to="." method="_on_settings_menu_back_pressed"]

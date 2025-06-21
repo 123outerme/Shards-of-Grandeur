@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx1nv23dkg60x"]
+
+[ext_resource type="Script" path="res://scripts/menus/pause_menu/map_marker.gd" id="1_6yad3"]
+[ext_resource type="SpriteFrames" uid="uid://didrugcf2002w" path="res://graphics/ui/a_map_pin.tres" id="1_ld01j"]
+
+[node name="MapMarker" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1248.0
+offset_bottom = -688.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6yad3")
+
+[node name="PinSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_ld01j")
+animation = &"location"

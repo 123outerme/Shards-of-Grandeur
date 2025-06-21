@@ -1,0 +1,325 @@
+[gd_scene load_steps=21 format=3 uid="uid://cfxdils72sliv"]
+
+[ext_resource type="Script" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_rbpfk"]
+[ext_resource type="Texture2D" uid="uid://eol8rfksbw3j" path="res://graphics/ui/map/world_map.png" id="3_ajkb5"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_g45t3"]
+[ext_resource type="PackedScene" uid="uid://cx1nv23dkg60x" path="res://prefabs/ui/map/map_marker.tscn" id="4_w0vni"]
+[ext_resource type="PackedScene" uid="uid://mssyfvag61k" path="res://prefabs/ui/map/map_cloud_layer.tscn" id="5_0xsm1"]
+[ext_resource type="Script" path="res://scripts/menus/scroll_better_follow.gd" id="5_pcbcm"]
+[ext_resource type="Texture2D" uid="uid://bwgmyq2t44sv8" path="res://graphics/ui/map/world_map_hilltop_clouds.png" id="6_r08rx"]
+[ext_resource type="Texture2D" uid="uid://dfxwbr8uk1c8s" path="res://graphics/ui/map/world_map_standstill_clouds.png" id="6_wxfme"]
+[ext_resource type="Texture2D" uid="uid://d3ljqswdy48gy" path="res://graphics/ui/map/world_map_mushroom_grotto_clouds.png" id="7_sbt08"]
+[ext_resource type="Texture2D" uid="uid://dhnjdwo16k56s" path="res://graphics/ui/map/world_map_leavenport_clouds.png" id="8_k3b6f"]
+[ext_resource type="Texture2D" uid="uid://durebm0wji4k3" path="res://graphics/ui/map/world_map_sea_leg_east_clouds.png" id="9_g8ukx"]
+[ext_resource type="Texture2D" uid="uid://dqo7ac6ci1p5i" path="res://graphics/ui/map/world_map_sea_leg_south_clouds.png" id="10_x2kn6"]
+[ext_resource type="Texture2D" uid="uid://bj1lll1qixi77" path="res://graphics/ui/map/world_map_forbidden_desert_south_clouds.png" id="11_wwqaa"]
+[ext_resource type="Texture2D" uid="uid://jle7w0ssttlb" path="res://graphics/ui/map/world_map_nomad_camp_clouds.png" id="12_robpo"]
+[ext_resource type="Texture2D" uid="uid://cecep8lgdhney" path="res://graphics/ui/map/world_map_forbidden_desert_east_clouds.png" id="13_1j61r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6vr2"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_cgq07"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_xdxu8"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_llayp"]
+allow_unpress = true
+
+[node name="MapPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_smrfh")
+
+[node name="MapPanelLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 19.0
+offset_right = 576.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme = ExtResource("2_rbpfk")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]Map[/center]"
+fit_content = true
+
+[node name="MapSpritesControl" type="Panel" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 72.0
+offset_right = -128.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6vr2")
+
+[node name="BaseMap" type="TextureRect" parent="MapSpritesControl"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -768.0
+offset_bottom = -336.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("3_ajkb5")
+stretch_mode = 2
+
+[node name="CloudsControl" type="Control" parent="MapSpritesControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StandstillClouds" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("6_wxfme")
+location = 20
+
+[node name="HilltopCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("6_r08rx")
+location = 21
+
+[node name="MushroomGrottoCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("7_sbt08")
+location = 22
+
+[node name="LeavenportCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("8_k3b6f")
+location = 30
+
+[node name="SeaLegEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("9_g8ukx")
+location = 31
+
+[node name="SeaLegSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("10_x2kn6")
+location = 32
+
+[node name="DesertSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("11_wwqaa")
+location = 41
+
+[node name="NomadCampCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("12_robpo")
+location = 40
+
+[node name="DesertEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+layout_mode = 1
+texture = ExtResource("13_1j61r")
+location = 42
+
+[node name="MarkersControl" type="Control" parent="MapSpritesControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GrandstoneMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 227.0
+offset_top = 210.0
+offset_right = -765.0
+offset_bottom = -206.0
+location = 1
+
+[node name="StandstillMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 329.0
+offset_top = 198.0
+offset_right = -663.0
+offset_bottom = -218.0
+location = 2
+
+[node name="HilltopMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 404.0
+offset_top = 218.0
+offset_right = -588.0
+offset_bottom = -198.0
+location = 3
+
+[node name="MushroomGrottoMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 407.0
+offset_top = 256.0
+offset_right = -585.0
+offset_bottom = -160.0
+location = 5
+
+[node name="LeavenportMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 455.0
+offset_top = 247.0
+offset_right = -537.0
+offset_bottom = -169.0
+location = 4
+
+[node name="SwampEastMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 515.0
+offset_top = 250.0
+offset_right = -477.0
+offset_bottom = -166.0
+location = 6
+
+[node name="SwampSouthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 448.0
+offset_top = 315.0
+offset_right = -544.0
+offset_bottom = -101.0
+location = 7
+
+[node name="NomadCampMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 217.0
+offset_top = 301.0
+offset_right = -775.0
+offset_bottom = -115.0
+location = 9
+
+[node name="DesertSouthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 260.0
+offset_top = 363.0
+offset_right = -732.0
+offset_bottom = -53.0
+location = 8
+
+[node name="DesertEastMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 278.0
+offset_top = 300.0
+offset_right = -714.0
+offset_bottom = -116.0
+location = 10
+
+[node name="LocationsControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 528.0
+offset_right = -128.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="AllButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../LocationsButton")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_cgq07")
+text = "All"
+
+[node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath("../AllButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../QuestsButton")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xdxu8")
+text = "Locations"
+
+[node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+focus_neighbor_left = NodePath("../LocationsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_llayp")
+text = "Quests"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 0
+script = ExtResource("5_pcbcm")
+boxContainer = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl/ScrollContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+alignment = 1
+
+[node name="BackButton" parent="." instance=ExtResource("4_g45t3")]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
+
+[connection signal="toggled" from="LocationsControl/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
+[connection signal="toggled" from="LocationsControl/HBoxContainer/LocationsButton" to="." method="_on_locations_button_toggled"]
+[connection signal="toggled" from="LocationsControl/HBoxContainer/QuestsButton" to="." method="_on_quests_button_toggled"]
+[connection signal="visibility_changed" from="LocationsControl/ScrollContainer" to="LocationsControl/ScrollContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
