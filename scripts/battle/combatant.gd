@@ -96,6 +96,9 @@ const MAX_ORBS = 10
 ## the amount of Attunement needed to reach max
 @export var maxFriendship: float = 30
 
+## if true, this minion can be summoned for free and can follow the player in the Overworld
+@export var fullyAttuned: bool = false
+
 ## game version last saved on
 @export_storage var version: String = ''
 
@@ -180,6 +183,8 @@ func _init(
 	i_triggeredRunesDmg: Array[int] = [],
 	i_triggeredRunesStatus: Array[bool] = [],
 	i_friendship = 0,
+	i_maxFriendship: float = 30.0,
+	i_fullyAttuned: bool = false,
 	i_ai: CombatantAi = null,
 	i_aiType = AiType.NONE,
 	i_damageAggroType = AggroType.LOWEST_HP,
@@ -213,6 +218,8 @@ func _init(
 	triggeredRunesDmg = i_triggeredRunesDmg
 	triggeredRunesStatus = i_triggeredRunesStatus
 	friendship = i_friendship
+	maxFriendship = i_maxFriendship
+	fullyAttuned = i_fullyAttuned
 	aiOverrideWeight = i_overrideWeight
 	moveEffectiveness = i_moveEffectiveness
 	weightedEquipment = i_weightedEquipment

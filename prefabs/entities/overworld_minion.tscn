@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnpvm0ycdnsrs"]
+
+[ext_resource type="Script" uid="uid://5080fucircab" path="res://scripts/overworld/overworld_minion.gd" id="1_ndvnn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0un4h"]
+size = Vector2(0, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndvnn"]
+
+[node name="OverworldMinion" type="CharacterBody2D"]
+z_index = -10
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ndvnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0un4h")
+disabled = true
+
+[node name="MinionSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ndvnn")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
