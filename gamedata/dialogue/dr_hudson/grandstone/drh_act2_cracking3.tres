@@ -1,0 +1,117 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://b2qe2qgnfj0ng"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_djcb8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_o5lpb"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_y7x7t"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_d6lnc"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_y7x7t"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_o5lpb"]
+
+[sub_resource type="Resource" id="Resource_rvkua"]
+script = ExtResource("2_y7x7t")
+choiceBtn = "I Did."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_d6lnc")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_d6lnc"]
+script = ExtResource("1_djcb8")
+lines = Array[String](["@, you've returned! Were you able to reach Giant Steppes?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y7x7t")]([SubResource("Resource_rvkua")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_kru84"]
+script = ExtResource("1_djcb8")
+lines = Array[String](["It was a long and cold journey through the Quiet Tundra, but I finally reached Giant Steppes. Their king had a proposition for us.", "They want to ally with Grandstone, or more specifically, they wanted me. They offered to train me before we invade Steelspire."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y7x7t")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_m47ml"]
+script = ExtResource("1_djcb8")
+lines = Array[String](["INVADE STEELSPIRE?!", "@, whatever have they gotten you into? Steelspire is heavily defended, in the middle of a great plateau. One does not simply invade Steelspire!", "Even if you had a thousand Shards, there wouldn't be enough might to charge into that hornet's nest."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y7x7t")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_u1evj"]
+script = ExtResource("1_djcb8")
+lines = Array[String](["Actually, the Agent of the Warlocks was able to find a hole in their defenses that we are going to use to get inside.", "It sounds to me like we have a good shot of ending this war, from our plan."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y7x7t")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_cic67"]
+script = ExtResource("1_djcb8")
+lines = Array[String](["Well, I sure hope you're right. We could use some good news around here."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y7x7t")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_y7x7t"]
+script = ExtResource("2_o5lpb")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["giant_steppes_arrive"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_o5lpb")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_o5lpb")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_y7x7t")
+entryId = ""
+items = Array[ExtResource("1_djcb8")]([SubResource("Resource_d6lnc"), SubResource("Resource_kru84"), SubResource("Resource_m47ml"), SubResource("Resource_u1evj"), SubResource("Resource_cic67")])
+storyRequirements = SubResource("Resource_y7x7t")
+ordStoryRequirements = Array[ExtResource("2_o5lpb")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

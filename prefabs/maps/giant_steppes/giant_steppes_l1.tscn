@@ -345,9 +345,13 @@ animation = &"stand"
 
 [node name="ColliderShape" parent="TilemapRoot/Warlock1" index="1"]
 position = Vector2(0, 3.5)
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TalkArea" parent="TilemapRoot/Warlock1" index="3"]
 position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Warlock1/TalkArea" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/Warlock1" index="4"]
 visible = false

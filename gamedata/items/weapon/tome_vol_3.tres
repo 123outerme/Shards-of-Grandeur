@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=6 format=3 uid="uid://bh3com2i1gi5m"]
+
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_icncy"]
+[ext_resource type="Texture2D" uid="uid://dxe0mh80qpw86" path="res://graphics/items/weapons/book_vol_3.png" id="1_sqdqr"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_anqcn"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_w44a0"]
+
+[sub_resource type="Resource" id="Resource_ugqcv"]
+script = ExtResource("4_w44a0")
+physAttackIncrease = 0
+magicAttackIncrease = 15
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.1
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_anqcn")]([])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_icncy")
+statChanges = SubResource("Resource_ugqcv")
+timing = 0
+bonusOrbs = 2
+itemSprite = ExtResource("1_sqdqr")
+itemName = "Genesis of Magic, Vol. 3"
+itemType = 2
+itemDescription = "An excerpt from \"Genesis of Magic, Vol. 3\":"
+cost = 30
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"

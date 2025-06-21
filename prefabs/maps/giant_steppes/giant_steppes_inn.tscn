@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://y7mikibo3mht"]
+[gd_scene load_steps=17 format=4 uid="uid://y7mikibo3mht"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_rn3a2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_yehr3"]
@@ -7,6 +7,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dgvna83psq8yc" path="res://graphics/animations/a_giant_steppes_inn_sign.tres" id="4_chkpw"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="5_chkpw"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="6_1sjbe"]
+[ext_resource type="SpriteFrames" uid="uid://bds0h4dlt854u" path="res://graphics/animations/a_warlock_innkeeper.tres" id="7_chkpw"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_em7s3"]
+[ext_resource type="Resource" uid="uid://d0dlfixvoetn" path="res://gamedata/dialogue/giant_steppes/innkeeper/giant_steppes_innkeeper_1.tres" id="8_wba7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sjbe"]
 size = Vector2(13, 13)
@@ -14,7 +17,7 @@ size = Vector2(13, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_em7s3"]
 size = Vector2(12, 8)
 
-[sub_resource type="Resource" id="Resource_tsnrh"]
+[sub_resource type="Resource" id="Resource_1sjbe"]
 script = ExtResource("6_1sjbe")
 saveName = "npc"
 spriteState = "default"
@@ -121,7 +124,12 @@ disabled = true
 position = Vector2(25, -84)
 displayName = "Innkeeper"
 saveName = "giant_steppes_innkeeper"
-data = SubResource("Resource_tsnrh")
+data = SubResource("Resource_1sjbe")
+dialogueEntries = Array[ExtResource("7_em7s3")]([ExtResource("8_wba7w")])
+
+[node name="NPCSprite" parent="TilemapRoot/Innkeeper" index="0"]
+sprite_frames = ExtResource("7_chkpw")
+animation = &"stand"
 
 [node name="ColliderShape" parent="TilemapRoot/Innkeeper" index="1"]
 position = Vector2(0, 3.5)

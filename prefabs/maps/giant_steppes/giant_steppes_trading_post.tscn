@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=4 uid="uid://cdbijlyp6y7hc"]
+[gd_scene load_steps=19 format=4 uid="uid://cdbijlyp6y7hc"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_g2khu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_1qah0"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_i56hx"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_wvudg"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_sjsm5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_nhkky"]
 [ext_resource type="Resource" uid="uid://btgbmsxpha4ua" path="res://gamedata/shops/giant_steppes/giant_steppes_trading_post.tres" id="5_sjsm5"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="6_hovep"]
+[ext_resource type="Resource" uid="uid://batp4lhe6kwba" path="res://gamedata/dialogue/giant_steppes/trader/giant_steppes_trader_1.tres" id="6_rsmun"]
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="7_nhkky"]
+[ext_resource type="SpriteFrames" uid="uid://da4n30msgpyfp" path="res://graphics/animations/a_warlock_trader.tres" id="8_rsmun"]
 
 [sub_resource type="Resource" id="Resource_86tpj"]
 script = ExtResource("4_sjsm5")
@@ -83,7 +86,6 @@ y_sort_enabled = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD//wAABgABAA8AAAAAAAAABgACABAAAwD+/wAABgAAABAAAgABAAAABgACAA8AAAACAAAABgACABAAAAADAAAABgACABAAAAAEAAAABgAAABAAAAD9/wAABgACABAAAAAFAAAABgAAABAAAAAGAAAABgAAABAAAAD6/wAABgAAABAAAAD5/wAABgACABAAAAD4/wAABgACABAAAAD3/wAABgAAABAAAQD3////BgADAA8AAAD3//7/BgADAA8AAAD3//3/BgADAA8AAAD3//f/BgAFABAAAAD3//z/BgADAA8AAAD3//v/BgADAA8AAAD3//r/BgADAA8AAAD3//n/BgADAA8AAAD3//j/BgADAA8AAAD4//f/BgAAABAAAAD5//f/BgAAABAAAAD6//f/BgAAABAAAAD7//f/BgACABAAAAD8//f/BgACABAAAAD9//f/BgAAABAAAAD+//f/BgAAABAAAAD///f/BgACABAAAAAAAPf/BgACABAAAAABAPf/BgAAABAAAAACAPf/BgAAABAAAAADAPf/BgAAABAAAAAEAPf/BgACABAAAAAFAPf/BgAAABAAAAAGAPf/BgAAABAAAAD8/wAABgAAABAAAAD7/wAABgAAAA8AAAAJAAAABgACABAAAAAKAAAABgACABAAAAALAAAABgACABAAAAAMAAAABgACABAAAAANAAAABgAAABAAAAAOAAAABgACABAAAAAPAAAABgACABAAAAAQAAAABgAAABAAAAARAAAABgACABAAAAASAAAABgAAABAAAAATAAAABgAAABAAAAAUAAAABgACABAAAAAVAAAABgAAABAAAAAWAAAABgAAABAAAAAXAAAABgAAABAAAAAYAAAABgACABAAAAAZAAAABgACABAAAAAaAAAABgAAABAAAAD+//v/IgADAAAAAAD///v/IgADAAAAAAAAAPv/IgAEAAAAAAABAPv/IgADAAAAAAACAPv/IgACAAAAABD+//j/IgAGAAIAAAD///j/IgAEAAIAAAAAAPj/IgADAAIAAAABAPj/IgAEAAIAAAD2/wAABgACABAAAAD1/wAABgACABAAAAD0/wAABgAAABAAAADz/wAABgAAABAAAADy/wAABgAAABAAAADx/wAABgACABAAAADw/wAABgAAABAAAADv/wAABgAAABAAAADu/wAABgAAABAAAADt/wAABgACABAAAADs/wAABgAAABAAAADr/wAABgAAABAAAADq/wAABgACABAAAADp/wAABgACABAAAADo/wAABgAAABAAAADn/wAABgACABAAAADm/wAABgAAABAAAADl/wAABgACABAAAADk/wAABgACABAAAADj/wAABgACABAAAAD8//v/IgACAAAAAAD9//v/IgADAAAAAAAHAPf/BgAEABAAAAAHAPj/BgADABAAAAAHAPn/BgADABAAAAAHAPr/BgADABAAAAAHAPv/BgADABAAAAAHAPz/BgADABAAAAAHAP3/BgADABAAAAAHAP7/BgADABAAAAAHAP//BgADABAAAAAHAAAABgACABAAAQAIAAAABgACABAAAAD5//3/IgAAAAAAAAD5//7/IgAAAAEAAAD6//3/IgABAAAAAAD6//7/IgABAAEAAAD4//7/IgACAAEAABD4//3/IgACAAEAABD5//z/JAAAAAIAAAD9//j/IgAFAAIAAAD8//j/IgAGAAIAABD7//j/IgADAAIAAAD6//j/IgAGAAIAAAACAPj/IgAGAAIAAAADAPj/IgAFAAIAABAEAPj/IgAGAAIAABA=")
 tile_set = ExtResource("2_1qah0")
-collision_visibility_mode = 1
 
 [node name="Foreground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 use_parent_material = true
@@ -100,21 +102,26 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_1qah0")
 
-[node name="Shopkeeper" parent="TilemapRoot" instance=ExtResource("3_wvudg")]
+[node name="Trader" parent="TilemapRoot" instance=ExtResource("3_wvudg")]
 position = Vector2(-8, -84)
 displayName = "Trader"
 saveName = "giant_steppes_trader"
 data = SubResource("Resource_86tpj")
+dialogueEntries = Array[ExtResource("5_nhkky")]([ExtResource("6_rsmun")])
 npcShop = ExtResource("5_sjsm5")
 
-[node name="ColliderShape" parent="TilemapRoot/Shopkeeper" index="1"]
+[node name="NPCSprite" parent="TilemapRoot/Trader" index="0"]
+sprite_frames = ExtResource("8_rsmun")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Trader" index="1"]
 position = Vector2(0, 3.5)
 
-[node name="TalkAreaShape" parent="TilemapRoot/Shopkeeper/TalkArea" index="0"]
+[node name="TalkAreaShape" parent="TilemapRoot/Trader/TalkArea" index="0"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_wvudg")
 
-[node name="MoveTrigger" parent="TilemapRoot/Shopkeeper" index="4"]
+[node name="MoveTrigger" parent="TilemapRoot/Trader" index="4"]
 visible = false
 
 [node name="ShopSign" parent="TilemapRoot" instance=ExtResource("6_hovep")]
@@ -154,6 +161,6 @@ position = Vector2(-8, 18)
 mapName = "giant_steppes_l1"
 mapPos = Vector2(424, -138)
 
-[editable path="TilemapRoot/Shopkeeper"]
+[editable path="TilemapRoot/Trader"]
 [editable path="TilemapRoot/ShopSign"]
 [editable path="TilemapRoot/ShopSign/AnimatedDecoration"]
