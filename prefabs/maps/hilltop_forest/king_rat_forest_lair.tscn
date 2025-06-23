@@ -26,7 +26,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("4_cay33")]([])
@@ -37,11 +37,11 @@ invalidAfterDialogues = Array[String](["king_rat_forest#failed_defeated", "king_
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("4_cay33")]([])
 
-[sub_resource type="Resource" id="Resource_6d5n8"]
+[sub_resource type="Resource" id="Resource_cay33"]
 script = ExtResource("4_dewor")
 saveName = "npc"
 spriteState = "default"
@@ -148,8 +148,9 @@ position = Vector2(-6, -148)
 displayName = "King Rat"
 saveName = "king_rat_forest"
 facesRight = false
+spriteSize = Vector2i(32, 32)
 spawnRequirements = SubResource("Resource_pv6tb")
-data = SubResource("Resource_6d5n8")
+data = SubResource("Resource_cay33")
 dialogueEntries = Array[ExtResource("6_ojjv6")]([ExtResource("5_6u2mh"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf"), ExtResource("12_r8bnr")])
 facesPlayer = false
 

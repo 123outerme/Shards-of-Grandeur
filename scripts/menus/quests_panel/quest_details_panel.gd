@@ -163,7 +163,11 @@ func _on_reward_panel_show_item_details(item):
 	itemDetailsPanel.visible = true
 
 func _on_map_button_pressed() -> void:
-	SignalBus.show_map_for_location.emit(questTracker.get_current_step().locations, questTracker.quest)
+	var currentStep: QuestStep = questTracker.get_current_step()
+	var locations: Array[WorldLocation.MapLocation] = currentStep.locations \
+			if questTracker.get_current_status() != QuestTracker.Status.READY_TO_TURN_IN_STEP \
+			else currentStep.turnInLocations
+	SignalBus.show_map_for_location.emit(locations, questTracker.quest)
 
 func _on_return_from_quest_map_location(quest: Quest) -> void:
 	mapButton.grab_focus()

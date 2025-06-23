@@ -136,7 +136,11 @@ func build_quests_options() -> Array[MapPanelLocation]:
 		if status != QuestTracker.Status.COMPLETED and status != QuestTracker.Status.FAILED:
 			var step: QuestStep = questTracker.get_current_step()
 			if step != null:
-				options.append(MapPanelLocation.new(step.locations, questTracker.quest.questName, MapLocationType.QUEST, questTracker.quest))
+				# use the regular locations if the step isn't ready to turn in; otherwise use the turn in locations
+				var locations: Array[WorldLocation.MapLocation] = step.locations \
+						if questTracker.get_current_status() != QuestTracker.Status.READY_TO_TURN_IN_STEP \
+						else step.turnInLocations
+				options.append(MapPanelLocation.new(locations, questTracker.quest.questName, MapLocationType.QUEST, questTracker.quest))
 	return options
 
 func get_current_location() -> MapPanelLocation:
@@ -242,15 +246,14 @@ func _show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: 
 	if quest != null:
 		load_map_panel(true)
 		fromQuestsPanelQuest = quest
-		filter = MapLocationsFilter.QUESTS
 		for option: MapPanelLocation in locationOptions:
 			if option.type == MapLocationType.QUEST and option.quest == quest:
 				if locationButtons.has(option):
 					locationButtons[option].button_pressed = true
 				update_selected_location(option)
 				break
+		filter = MapLocationsFilter.QUESTS
 	else:
-		filter = MapLocationsFilter.LOCATIONS
 		load_map_panel(true)
 		if len(locations) < 1:
 			return
@@ -261,3 +264,4 @@ func _show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: 
 					locationButtons[option].button_pressed = true
 				update_selected_location(option)
 				break
+		filter = MapLocationsFilter.LOCATIONS

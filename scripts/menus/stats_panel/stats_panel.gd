@@ -243,7 +243,10 @@ func load_stats_panel(fromToggle: bool = false):
 	tabbedViewContainer.set_tab_hidden(TabbedViewTab.BATTLE_BOOSTS, not battleBoostsPanel.visible)
 	
 	newMovesPanel.levelUp = levelUp
-	newMovesPanel.load_new_moves_panel()
+	if minion == null:
+		newMovesPanel.load_new_moves_panel()
+	else:
+		newMovesPanel.visible = false
 	tabbedViewContainer.set_tab_hidden(TabbedViewTab.NEW_MOVES, not newMovesPanel.visible)
 	
 	update_move_list_tab_icon()
