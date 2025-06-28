@@ -244,7 +244,11 @@ func update_selected_location(location: MapPanelLocation) -> void:
 			mapMarker.mark_player()
 		else:
 			mapMarker.hide_marker()
-	if location != null and ((len(location.locations) == 0) or (len(location.locations) == 1 and location.locations[0] == WorldLocation.MapLocation.UNKNOWN)):
+			
+	if location != null and location != noneLocationOption and (
+			len(location.locations) == 0 or \
+			(len(location.locations) == 1 and location.locations[0] == WorldLocation.MapLocation.UNKNOWN)
+		):
 		unknownOverlay.visible = true
 
 func _on_all_button_toggled(toggled_on: bool) -> void:
