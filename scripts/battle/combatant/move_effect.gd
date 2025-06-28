@@ -246,7 +246,7 @@ func copy() -> MoveEffect:
 		power,
 		orbChange,
 		lifesteal,
-		selfGetsStatus,
+		selfHpSacrifice,
 		targets,
 		selfStatChanges.copy() if selfStatChanges != null else null,
 		targetStatChanges.copy() if targetStatChanges != null else null,

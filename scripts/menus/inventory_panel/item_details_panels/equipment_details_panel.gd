@@ -17,11 +17,15 @@ class_name EquipmentDetailsPanel
 
 # Called when the node enters the scene tree for the first time.
 func load_equipment_details_panel():
-	if item.itemType != Item.Type.WEAPON and item.itemType != Item.Type.ARMOR:
+	if item.itemType != Item.Type.WEAPON and item.itemType != Item.Type.ARMOR and item.itemType != Item.Type.ACCESSORY:
 		visible = false
 		return
 	visible = true
-	var statChanges: StatChanges = item.statChanges
+	
+	var statChanges: StatChanges = null
+	if item.itemType != Item.Type.ACCESSORY:
+		statChanges = item.statChanges
+	
 	if statChanges != null:
 		var statMultipliersText: Array[StatMultiplierText] = statChanges.get_stat_multiplier_texts()
 		if len(statMultipliersText) == 0:

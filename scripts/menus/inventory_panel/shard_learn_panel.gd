@@ -91,6 +91,7 @@ func load_shard_learn_panel(initialFocus: bool = true, loadEvolutions: bool = tr
 	# initialize known evolutions
 	if combatant.evolutions != null:
 		evolutionScrollContainer.visible = true
+		backButton.focus_neighbor_bottom = '.' # reset back button bottom neighbor (should be set in either branch of this if)
 		if loadEvolutions:
 			for panel: Node in evoHboxContainer.get_children():
 				panel.queue_free()
@@ -154,14 +155,15 @@ func _on_move_details_panel_back_pressed():
 func _deferred_evo_list_item_panel_connect(evoItemPanel: EvolutionListItemPanel, lastPanel: EvolutionListItemPanel) -> void:
 	evoItemPanel.selectButton.button_pressed = evoItemPanel.evolution == evolution
 	
-	movePoolPanel.firstMovePanel.learnButton.focus_neighbor_top = movePoolPanel.firstMovePanel.learnButton.get_path_to(evoItemPanel.selectButton)
 	evoItemPanel.selectButton.focus_neighbor_bottom = evoItemPanel.selectButton.get_path_to(movePoolPanel.firstMovePanel.learnButton)
 	evoItemPanel.selectButton.focus_neighbor_right = '.'
 	evoItemPanel.selectButton.focus_neighbor_top = evoItemPanel.selectButton.get_path_to(backButton)
 	if evolution == evoItemPanel.evolution:
 		movePoolPanel.firstMovePanel.detailsButton.focus_neighbor_top = movePoolPanel.firstMovePanel.detailsButton.get_path_to(evoItemPanel.selectButton)
 		movePoolPanel.firstMovePanel.learnButton.focus_neighbor_top = movePoolPanel.firstMovePanel.learnButton.get_path_to(evoItemPanel.selectButton)
-		backButton.focus_neighbor_top = backButton.get_path_to(evoItemPanel.selectButton)
+		if movePoolPanel.firstMovePanel == null: # if no moves: make it focus the evo select button
+			backButton.focus_neighbor_top = backButton.get_path_to(evoItemPanel.selectButton)
+		backButton.focus_neighbor_bottom = backButton.get_path_to(evoItemPanel.selectButton)
 	if lastPanel != null:
 		evoItemPanel.selectButton.focus_neighbor_left = evoItemPanel.selectButton.get_path_to(lastPanel.selectButton)
 		lastPanel.selectButton.focus_neighbor_right = lastPanel.selectButton.get_path_to(evoItemPanel.selectButton)
