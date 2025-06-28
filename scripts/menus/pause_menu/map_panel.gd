@@ -53,6 +53,7 @@ var fromQuestsPanelQuest: Quest = null
 @onready var questsButton: Button = get_node('LocationsControl/HBoxContainer/QuestsButton')
 
 @onready var buttonsHboxContainer: HBoxContainer = get_node('LocationsControl/ScrollContainer/HBoxContainer')
+@onready var boxContainerScroller: BoxContainerScroller = get_node('LocationsControl/BoxContainerScroller')
 
 @onready var backButton: Button = get_node('BackButton')
 
@@ -110,6 +111,7 @@ func build_map_locations() -> void:
 	
 	locationButtons = {}
 	var lastButton: Button = null
+	var firstButton: Button = null
 	for option: MapPanelLocation in locationOptions:
 		var instantiatedButton: Button = sfxButtonScene.instantiate()
 		instantiatedButton.text = option.buttonText
@@ -118,7 +120,29 @@ func build_map_locations() -> void:
 		buttonsHboxContainer.add_child(instantiatedButton)
 		locationButtons[option] = instantiatedButton
 		_connect_location_button_focus.call_deferred(instantiatedButton, lastButton)
+		if firstButton == null:
+			firstButton = instantiatedButton
 		lastButton = instantiatedButton
+	
+	## make so filter buttons left/right press focus scroll container buttons
+	boxContainerScroller.connect_scroll_left_right_neighbor(allButton)
+	boxContainerScroller.connect_scroll_right_left_neighbor(questsButton)
+	## make so scroll left focus + left wraps around, vice versa
+	boxContainerScroller.connect_scroll_left_left_neighbor(boxContainerScroller.scrollRightBtn)
+	boxContainerScroller.connect_scroll_right_right_neighbor(boxContainerScroller.scrollLeftBtn)
+	## fix back button focus so left goes to left, right goes to right
+	boxContainerScroller.connect_scroll_left_right_neighbor(backButton)
+	boxContainerScroller.connect_scroll_right_left_neighbor(backButton)
+	## fix left/right button focus so they connect to the first/last buttons
+	boxContainerScroller.connect_scroll_left_right_neighbor(firstButton)
+	boxContainerScroller.connect_scroll_right_left_neighbor(lastButton)
+	## let bottom press focus back button
+	boxContainerScroller.connect_scroll_left_bottom_neighbor(backButton)
+	boxContainerScroller.connect_scroll_right_bottom_neighbor(backButton)
+	## let top press focus filter buttons
+	boxContainerScroller.connect_scroll_left_top_neighbor(allButton)
+	boxContainerScroller.connect_scroll_right_top_neighbor(questsButton)
+	backButton.focus_neighbor_top = '' # unset focus neighbor so it's automatic
 
 func build_locations_options() -> Array[MapPanelLocation]:
 	var options: Array[MapPanelLocation] = []
@@ -180,9 +204,9 @@ func _connect_location_button_focus(button: Button, lastButton: Button) -> void:
 		button.focus_neighbor_left = button.get_path_to(lastButton)
 		lastButton.focus_neighbor_right = lastButton.get_path_to(button)
 	else:
-		button.focus_neighbor_left = '.'
+		pass #button.focus_neighbor_left = '.'
 	
-	button.focus_neighbor_right = '.'
+	#button.focus_neighbor_right = '.'
 	button.focus_neighbor_top = button.get_path_to(locationsButton)
 	
 	button.focus_neighbor_bottom = button.get_path_to(backButton)

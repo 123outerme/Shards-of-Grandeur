@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cfxdils72sliv"]
+[gd_scene load_steps=30 format=3 uid="uid://cfxdils72sliv"]
 
 [ext_resource type="Script" uid="uid://bpsykw1b5wnl1" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_rbpfk"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cmt7g0s7uu12y" path="res://graphics/ui/map/world_map_frostmint_village_clouds.png" id="17_q8m2d"]
 [ext_resource type="Texture2D" uid="uid://dle0wsjcefamr" path="res://graphics/ui/map/world_map_giant_steppes_clouds.png" id="18_avs5h"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="22_cvrl2"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="24_gc6op"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6vr2"]
 bg_color = Color(0, 0, 0, 0)
@@ -33,13 +34,13 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_cvrl2"]
-allow_unpress = true
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_gc6op"]
-allow_unpress = true
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_mua6g"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fll8l"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fb6ox"]
 allow_unpress = true
 
 [node name="MapPanel" type="Control"]
@@ -376,7 +377,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../LocationsButton")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_cvrl2")
+button_group = SubResource("ButtonGroup_mua6g")
 text = "All"
 
 [node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -386,7 +387,7 @@ focus_neighbor_left = NodePath("../AllButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../QuestsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_gc6op")
+button_group = SubResource("ButtonGroup_fll8l")
 text = "Locations"
 
 [node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
@@ -396,8 +397,17 @@ focus_neighbor_left = NodePath("../LocationsButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_mua6g")
+button_group = SubResource("ButtonGroup_fb6ox")
 text = "Quests"
+
+[node name="BoxContainerScroller" parent="LocationsControl" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("24_gc6op")]
+layout_mode = 1
+offset_left = -51.0
+offset_top = 64.0
+offset_right = 51.0
+scrollContainer = NodePath("../ScrollContainer")
+scrollPx = 240
+bailoutFocusControl = NodePath("../../BackButton")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
