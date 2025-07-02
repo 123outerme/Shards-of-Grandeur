@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://84wmvuo7jkx3"]
+[gd_scene load_steps=26 format=4 uid="uid://84wmvuo7jkx3"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_pi30f"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wspdn"]
@@ -13,8 +13,11 @@
 [ext_resource type="SpriteFrames" uid="uid://p6ibhgoibhir" path="res://graphics/animations/a_lady4.tres" id="9_02nw7"]
 [ext_resource type="Resource" uid="uid://c4cibo3c6oybp" path="res://gamedata/dialogue/leavenport/restaurant_lady/lp_restaurant_lady1.tres" id="9_3ft4f"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="12_3gk7r"]
+[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="13_ndy6d"]
+[ext_resource type="Resource" uid="uid://7pdcduegxe5m" path="res://gamedata/cutscenes/leavenport/lp_restaurant_trade_deal_dine.tres" id="14_ln4q8"]
+[ext_resource type="SpriteFrames" uid="uid://4kgtjjy5sok6" path="res://graphics/animations/a_tundra_man_4.tres" id="17_cofti"]
 
-[sub_resource type="Resource" id="Resource_3vkbo"]
+[sub_resource type="Resource" id="Resource_ln4q8"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -37,7 +40,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1m21r"]
+[sub_resource type="Resource" id="Resource_ux85e"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -60,12 +63,61 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ndy6d"]
+[sub_resource type="Resource" id="Resource_t3as0"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
 position = Vector2(-19, -78)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_no4ai"]
+script = ExtResource("4_xjgea")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(20, -79)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkc2c"]
+size = Vector2(24, 25)
+
+[sub_resource type="Resource" id="Resource_cofti"]
+script = ExtResource("4_xjgea")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(-43, -15)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -103,6 +155,8 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_pi30f")
+metadata/_edit_vertical_guides_ = [8.0]
+metadata/_edit_horizontal_guides_ = [-60.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -145,7 +199,7 @@ tile_set = ExtResource("2_wspdn")
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_3vkbo")
+data = SubResource("Resource_ln4q8")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("5_qg71i")])
 npcShop = ExtResource("6_fvkvi")
 
@@ -166,7 +220,7 @@ visible = false
 position = Vector2(20, -79)
 displayName = "Man"
 loadFlipH = true
-data = SubResource("Resource_1m21r")
+data = SubResource("Resource_ux85e")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("8_ncx5c")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC" index="0"]
@@ -185,7 +239,7 @@ visible = false
 [node name="NPC2" parent="TilemapRoot" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
 displayName = "Lady"
-data = SubResource("Resource_ndy6d")
+data = SubResource("Resource_t3as0")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("9_3ft4f")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC2" index="0"]
@@ -200,6 +254,50 @@ position = Vector2(0, 4)
 
 [node name="MoveTrigger" parent="TilemapRoot/NPC2" index="4"]
 visible = false
+
+[node name="FrostmintShopkeeper" parent="TilemapRoot" instance=ExtResource("3_o3ng4")]
+visible = false
+position = Vector2(20, -79)
+collision_layer = 0
+displayName = "Shopkeeper"
+saveName = "lp_frostmint_shopkeeper"
+loadFlipH = true
+data = SubResource("Resource_no4ai")
+
+[node name="NPCSprite" parent="TilemapRoot/FrostmintShopkeeper" index="0"]
+sprite_frames = ExtResource("17_cofti")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/FrostmintShopkeeper" index="1"]
+position = Vector2(0, 3.5)
+
+[node name="TalkAreaShape" parent="TilemapRoot/FrostmintShopkeeper/TalkArea" index="0"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_kkc2c")
+
+[node name="MoveTrigger" parent="TilemapRoot/FrostmintShopkeeper" index="4"]
+visible = false
+
+[node name="ToolCutsceneVisualizer" parent="TilemapRoot" node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("13_ndy6d")]
+triggerOrNPC = NodePath("../RestaurantOwner")
+customStartPos = Vector2(-43, -15)
+useCustomStartPos = true
+cutscene = ExtResource("14_ln4q8")
+rootNode = NodePath("../..")
+
+[node name="MockPlayer" parent="TilemapRoot/ToolCutsceneVisualizer" index="0"]
+position = Vector2(-43, -15)
+facingLeft = true
+data = SubResource("Resource_cofti")
+
+[node name="NPCSprite" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer" index="0"]
+flip_h = true
+
+[node name="ColliderShape" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer" index="1"]
+disabled = true
+
+[node name="MockShadeCenter" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer/MockShade" index="0"]
+modulate = Color(1, 1, 1, 1)
 
 [node name="WarpZone" parent="." instance=ExtResource("12_3gk7r")]
 position = Vector2(-8.5, 18)
@@ -220,3 +318,6 @@ navigation_layers = 4
 [editable path="TilemapRoot/RestaurantOwner"]
 [editable path="TilemapRoot/NPC"]
 [editable path="TilemapRoot/NPC2"]
+[editable path="TilemapRoot/FrostmintShopkeeper"]
+[editable path="TilemapRoot/ToolCutsceneVisualizer"]
+[editable path="TilemapRoot/ToolCutsceneVisualizer/MockPlayer"]

@@ -5,6 +5,32 @@ class_name CutscenePlayer
 signal cutscene_fadeout_done
 signal cutscene_completed
 
+class ActorSnapshot:
+	var position: Vector2 = Vector2.ZERO
+	var visible: bool = true
+	var modulate: Color = Color.WHITE
+	var animation: String = ''
+	var animationSet: String = ''
+	var flip_h: bool = false
+	var combatMode: bool = false
+	
+	func _init(
+		i_position: Vector2 = Vector2.ZERO,
+		i_visible: bool = true,
+		i_modulate: Color = Color.WHITE,
+		i_animation: String = '',
+		i_animationSet: String = '',
+		i_flip_h: bool = false,
+		i_combatMode: bool = false,
+	):
+		position = i_position
+		visible = i_visible
+		modulate = i_modulate
+		animation = i_animation
+		animationSet = i_animationSet
+		flip_h = i_flip_h
+		combatMode = i_combatMode
+
 @export var cutscene: Cutscene = null
 @export var playing: bool = false
 @export var rootNode: Node = null
@@ -22,6 +48,8 @@ var skipping: bool = false
 var awaitingPlayer: bool = false
 var lastFrameCameraPos: Vector2 = Vector2.ZERO
 
+var actorSnapshots: Dictionary[String, ActorSnapshot] = {}
+
 var collisionDisabledNodes: Array = []
 var collisionPrevEnabledNodes: Dictionary[String, bool] = {}
 
@@ -35,10 +63,14 @@ func _process(delta):
 				timer -= delta
 			return
 		
+		# first in-game frame with a new CutsceneFrame
 		if frame != lastFrame:
 			if frame != null and frame.playSfxs != null:
 				handle_play_sfx(frame.playSfxs)
-
+			
+			handle_store_snapshots(frame)
+			handle_restore_snapshots(frame)
+			
 			if lastFrame != null:
 				handle_camera(frame)
 				if lastFrame.dialogues != null and len(lastFrame.dialogues) > 0 \
@@ -100,6 +132,70 @@ func handle_play_sfx(sfxs: Array[AudioStream]):
 func queue_text(item: CutsceneDialogue, frame: CutsceneFrame):
 	PlayerFinder.player.queue_cutscene_texts(item)
 
+func handle_store_snapshots(frame: CutsceneFrame):
+	if frame == null:
+		return
+	for actorPath: String in frame.snapshotActorPaths:
+		var actor: Node = fetch_actor_node(actorPath, false)
+		var snapshot: ActorSnapshot = ActorSnapshot.new(actor.position, actor.visible)
+		
+		var actorModulate: Color = Color.WHITE
+		if 'sprite_modulate' in actor:
+			actorModulate = actor.get('sprite_modulate')
+		else:
+			actorModulate = actor.modulate
+		snapshot.modulate = actorModulate
+		
+		if actor.has_method('get_current_animation'):
+			var anim: String = actor.call('get_current_animation')
+			snapshot.animation = anim
+		
+		if 'spriteState' in actor:
+			var animationSet: String = actor.get('spriteState')
+			snapshot.animationSet = animationSet
+		
+		if 'flip_h' in actor:
+			var flip: bool = actor.get('flip_h')
+			snapshot.flip_h = flip
+		
+		if 'combatMode' in actor:
+			var combatMode: bool = actor.get('combatMode')
+			snapshot.combatMode = combatMode
+		
+		actorSnapshots[actorPath] = snapshot
+
+func handle_restore_snapshots(frame: CutsceneFrame):
+	if frame == null:
+		return
+	for actorPath: String in frame.restoreSnapshotActorPaths:
+		if actorSnapshots.has(actorPath):
+			var snapshot: ActorSnapshot = actorSnapshots[actorPath]
+			var actor: Node = fetch_actor_node(actorPath, false)
+			if snapshot != null and actor != null:
+				actor.position = snapshot.position
+				
+				if 'invisible' in actor:
+					actor.set('invsible', not snapshot.visible)
+				else:
+					actor.visible = snapshot.visible
+				
+				if 'sprite_modulate' in actor:
+					actor.set('sprite_modulate', snapshot.modulate)
+				else:
+					actor.modulate = snapshot.modulate
+				
+				if actor.has_method('set_sprite_state') and snapshot.animationSet != '':
+					actor.call('set_sprite_state', snapshot.animationSet)
+				
+				if actor.has_method('play_animation') and snapshot.animation != '':
+					actor.call('play_animation', snapshot.animation)
+				
+				if 'flip_h' in actor:
+					actor.set('flip_h', snapshot.flip_h)
+				
+				if 'combatMode' in actor:
+					actor.set('combatMode', snapshot.combatMode)
+
 func handle_fade_out():
 	PlayerFinder.player.cam.fade_out(_fade_out_complete, lastFrame.endFadeLength if lastFrame.endFadeLength > 0 else 0.5)
 	
@@ -131,7 +227,7 @@ func handle_start_shard_learn_tutorial():
 	PlayerFinder.player.inventoryPanel.start_learn_shard_tutorial()
 	PlayerFinder.player.inventoryPanel.learn_shard_tutorial_finished.connect(_learn_shard_tutorial_finished)
 
-func get_all_actor_nodes_in_cutscene() -> Array:
+func get_all_actor_nodes_in_cutscene() -> Array[Node]:
 	var nodeDict: Dictionary[String, Node] = {}
 	for frame: CutsceneFrame in cutscene.cutsceneFrames:
 		for animSet: ActorAnimSet in frame.actorAnimSets:
@@ -156,6 +252,14 @@ func get_all_actor_nodes_in_cutscene() -> Array:
 			if actorFaceTarget == null:
 				continue
 			var node = fetch_actor_node(actorFaceTarget.actorTreePath, actorFaceTarget.isPlayer)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+		for actorPath: String in frame.snapshotActorPaths:
+			var node =  fetch_actor_node(actorPath, false)
+			if node != null and not nodeDict.has(node.name):
+				nodeDict[node.name] = node
+		for actorPath: String in frame.restoreSnapshotActorPaths:
+			var node =  fetch_actor_node(actorPath, false)
 			if node != null and not nodeDict.has(node.name):
 				nodeDict[node.name] = node
 	return nodeDict.values()
@@ -244,6 +348,7 @@ func start_cutscene(newCutscene: Cutscene):
 			npc.talkAlertSprite.visible = false
 	cutscene = newCutscene
 	cutscene.reset_internals()
+	actorSnapshots = {}
 	timer = 0
 	skipCutsceneFrameIndex = -1
 	cutscene.calc_total_time()
@@ -357,6 +462,7 @@ func complete_cutscene():
 		return
 	
 	lastFrame = null
+	actorSnapshots = {}
 	skipping = false
 	
 	# re-enable the collision for nodes whose collision was enabled

@@ -66,6 +66,15 @@ var sprite_modulate: Color:
 		if sprite != null:
 			sprite.self_modulate = c
 
+var flip_h: bool:
+	get:
+		if sprite != null:
+			return sprite.flip_h
+		return false
+	set(f):
+		if sprite != null:
+			sprite.flip_h = f
+
 func _ready() -> void:
 	if PlayerFinder.player == null:
 		PlayerFinder.player = self
@@ -238,7 +247,7 @@ func _physics_process(_delta):
 			facingLeft = true
 		if velocity.x > 0:
 			facingLeft = false
-		sprite.flip_h = facingLeft
+		flip_h = facingLeft
 		if velocity.length() > 0:
 			if speed == RUN_SPEED:
 				play_animation('run')
@@ -335,17 +344,20 @@ func play_animation(animation: String):
 func get_sprite_frames() -> SpriteFrames:
 	return PlayerResources.playerInfo.combatant.get_sprite_frames()
 
+func get_current_animation() -> String:
+	return sprite.animation
+
 func face_horiz(xDirection: float):
 	if xDirection > 0:
 		# walking to the right:
 		# flip = false if not walking backwards
 		facingLeft = walkBackwards
-		sprite.flip_h = walkBackwards
+		flip_h = walkBackwards
 	if xDirection < 0:
 		# walking to the left:
 		# flip = true if not walking backwards
 		facingLeft = not walkBackwards
-		sprite.flip_h = not walkBackwards
+		flip_h = not walkBackwards
 
 func repeat_dialogue_item():
 	if talkNPC == null:

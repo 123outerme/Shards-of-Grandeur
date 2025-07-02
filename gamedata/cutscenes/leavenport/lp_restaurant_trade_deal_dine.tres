@@ -1,0 +1,322 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://7pdcduegxe5m"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_0eldb"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_0yoc4"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_kcgr3"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_7cnbn"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_uv6rt"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_7scj6"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_uw7wv"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_uv6rt"]
+[ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_7scj6"]
+
+[sub_resource type="Resource" id="Resource_ohjur"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "Snapshot all NPCs in the scene; start fadeout of the scene"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String](["TilemapRoot/RestaurantOwner", "TilemapRoot/NPC", "TilemapRoot/NPC2", "TilemapRoot/FrostmintShopkeeper"])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_7cnbn"]
+script = ExtResource("1_0eldb")
+frameLength = 0.5
+annotation = "Wait for the scene to fade out"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_uw7wv"]
+script = ExtResource("7_uv6rt")
+value = Vector2(8, -62)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_0wu7v"]
+script = ExtResource("7_uv6rt")
+value = Vector2(-19, -78)
+actorTreePath = "TilemapRoot/RestaurantOwner"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_4kdxe"]
+script = ExtResource("8_7scj6")
+value = false
+actorTreePath = "TilemapRoot/FrostmintShopkeeper"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_h5hiy"]
+script = ExtResource("8_7scj6")
+value = true
+actorTreePath = "TilemapRoot/FrostmintShopkeeper"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_rlqmn"]
+script = ExtResource("8_7scj6")
+value = true
+actorTreePath = "TilemapRoot/NPC"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_y6qsp"]
+script = ExtResource("8_7scj6")
+value = true
+actorTreePath = "TilemapRoot/NPC2"
+isPlayer = false
+propertyName = "invisible"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_7scj6"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "Move the restaurant owner and player, show the frostmint shopkeeper and make him face left, hide the other NPCs"
+actorTweens = Array[ExtResource("5_7scj6")]([SubResource("Resource_uw7wv"), SubResource("Resource_0wu7v"), SubResource("Resource_4kdxe"), SubResource("Resource_h5hiy"), SubResource("Resource_rlqmn"), SubResource("Resource_y6qsp")])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_uv6rt"]
+script = ExtResource("1_0eldb")
+frameLength = 0.2
+annotation = "Delay a tiny bit, and fade in after the delay"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ajr5j"]
+script = ExtResource("1_0eldb")
+frameLength = 0.5
+annotation = "wait for fade in"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_n3dj1"]
+script = ExtResource("1_0eldb")
+frameLength = 1.0
+annotation = "TEMP wait frame, just to see how the scene plays out"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_g3mb8"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "Start fade out"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_8l3wo"]
+script = ExtResource("1_0eldb")
+frameLength = 0.5
+annotation = "Wait for fadeout to complete"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_5jc53"]
+script = ExtResource("7_uv6rt")
+value = Vector2(-43, -15)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_kcgr3"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "Restore all snapshots for all NPCs in the scene; move the player back to the counter"
+actorTweens = Array[ExtResource("5_7scj6")]([SubResource("Resource_5jc53")])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String](["TilemapRoot/RestaurantOwner", "TilemapRoot/NPC", "TilemapRoot/NPC2", "TilemapRoot/FrostmintShopkeeper"])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_0xet2"]
+script = ExtResource("1_0eldb")
+frameLength = 0.2
+annotation = "Wait a slight bit before the cutscene is completed"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("2_0yoc4")
+cutsceneFrames = Array[ExtResource("1_0eldb")]([SubResource("Resource_ohjur"), SubResource("Resource_7cnbn"), SubResource("Resource_7scj6"), SubResource("Resource_uv6rt"), SubResource("Resource_ajr5j"), SubResource("Resource_n3dj1"), SubResource("Resource_g3mb8"), SubResource("Resource_8l3wo"), SubResource("Resource_kcgr3"), SubResource("Resource_0xet2")])
+saveName = "lp_restaurant_trade_deal_dine"
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

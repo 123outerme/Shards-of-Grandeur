@@ -32,6 +32,12 @@ enum CameraFade {
 ## SFXs to play at the start of this frame
 @export var playSfxs: Array[AudioStream] = []
 
+## for each actor in this array, snapshot their current state this frame: `position`, `animation`, `flip_h`, etc.
+@export var snapshotActorPaths: Array[String] = []
+
+## for each actor in this array, restore their previously snapshotted state this frame: `position`, `animation`, `flip_h`, etc.
+@export var restoreSnapshotActorPaths: Array[String] = []
+
 ## pause until an already-open textbox is closed (does not count if dialogues were just opened this frame)
 @export var endTextBoxPauses: bool = true
 
@@ -77,6 +83,8 @@ func _init(
 	i_actorFaceTargets: Array[ActorFaceTarget] = [],
 	i_dialogues: Array[CutsceneDialogue] = [],
 	i_playSfxs: Array[AudioStream] = [],
+	i_snapshotActorPaths: Array[String] = [],
+	i_restoreSnapshotActorPaths: Array[String] = [],
 	i_endTextPauses = true,
 	i_shakeCamForDuration = false,
 	i_endHoldCam = false,
@@ -94,6 +102,8 @@ func _init(
 	actorFaceTargets = i_actorFaceTargets
 	dialogues = i_dialogues
 	playSfxs = i_playSfxs
+	snapshotActorPaths = i_snapshotActorPaths
+	restoreSnapshotActorPaths = i_restoreSnapshotActorPaths
 	endTextBoxPauses = i_endTextPauses
 	shakeCamForDuration = i_shakeCamForDuration
 	endHoldCamera = i_endHoldCam

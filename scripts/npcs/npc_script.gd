@@ -595,6 +595,9 @@ func get_sprite_frames() -> SpriteFrames:
 		return overrideSpeakerSprite
 	return npcSprite.sprite_frames
 
+func get_current_animation() -> String:
+	return npcSprite.animation
+
 func get_max_sprite_size() -> Vector2i:
 	if overrideSpeakerSprite != null:
 		return overrideSpeakerSpriteSize
