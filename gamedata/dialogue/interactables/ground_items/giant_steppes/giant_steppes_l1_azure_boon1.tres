@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://drsuwbfg2xysx"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_3ogbb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_7auh7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ojf7o"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ojf7o"]
+
+[sub_resource type="Resource" id="Resource_mp2v8"]
+script = ExtResource("1_3ogbb")
+lines = Array[String](["This brilliant blue mote of light... it reminds me of the magic contained in a Shard.", "I can probably use this to Attune closer to my Minion in the next battle."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ojf7o")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ojf7o")
+entryId = ""
+items = Array[ExtResource("1_3ogbb")]([SubResource("Resource_mp2v8")])
+ordStoryRequirements = Array[ExtResource("2_7auh7")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

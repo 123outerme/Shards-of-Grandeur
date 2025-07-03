@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://vaocsedqiufm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_70g6c"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3e67d"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_smwbn"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3e67d"]
+
+[sub_resource type="Resource" id="Resource_cvk6k"]
+script = ExtResource("1_70g6c")
+lines = Array[String](["This door is locked... I don't see a way to get in."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_3e67d")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_smwbn"]
+script = ExtResource("1_70g6c")
+lines = Array[String](["This area is still under construction. Hope to have this ready soon!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = "<Stephen>"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_3e67d")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_3e67d")
+entryId = ""
+items = Array[ExtResource("1_70g6c")]([SubResource("Resource_cvk6k"), SubResource("Resource_smwbn")])
+ordStoryRequirements = Array[ExtResource("2_smwbn")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

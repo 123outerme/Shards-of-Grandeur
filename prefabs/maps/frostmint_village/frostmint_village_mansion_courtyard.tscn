@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://coqf1qhc110i4"]
+[gd_scene load_steps=17 format=4 uid="uid://coqf1qhc110i4"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_uqa73"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_hflgg"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_7dxqp"]
+[ext_resource type="Resource" uid="uid://cablt5crqf075" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_boon.tres" id="4_44gkq"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="4_gx6ws"]
 [ext_resource type="Resource" uid="uid://b5i3snr35nqus" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_berries.tres" id="4_hflgg"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="5_7dxqp"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="5_44gkq"]
+[ext_resource type="Resource" uid="uid://dqmky7ggxr5nq" path="res://gamedata/dialogue/interactables/flavor_objs/frostmint_village/frostmint_mansion_demo_locked.tres" id="6_gx6ws"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="6_vcqn3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
@@ -82,11 +85,20 @@ tile_set = ExtResource("2_hflgg")
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_7dxqp")]
 position = Vector2(-167, -393)
+pickedUpItem = ExtResource("4_44gkq")
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_7dxqp")]
 position = Vector2(304, -352)
 pickedUpItem = ExtResource("4_hflgg")
 saveName = "frostmint_mansion_courtyard_berries"
+
+[node name="InteractableDecoration" parent="TilemapRoot" instance=ExtResource("5_7dxqp")]
+position = Vector2(0, -746)
+saveName = "mansion_demo_locked_door"
+dialogue = ExtResource("6_gx6ws")
+
+[node name="CollisionShape2D" parent="TilemapRoot/InteractableDecoration/AnimatedDecoration/Collision" index="0"]
+disabled = true
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
@@ -125,6 +137,8 @@ shape = SubResource("RectangleShape2D_lhrsp")
 [node name="TestCamera" parent="." instance=ExtResource("6_vcqn3")]
 position = Vector2(0, 123)
 
+[editable path="TilemapRoot/InteractableDecoration"]
+[editable path="TilemapRoot/InteractableDecoration/AnimatedDecoration"]
 [editable path="MansionWarpZone"]
 [editable path="VillageWarpZone"]
 [editable path="CameraHoldZone"]
