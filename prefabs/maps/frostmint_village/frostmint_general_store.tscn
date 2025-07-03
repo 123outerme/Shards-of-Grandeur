@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://crp4fb6q2fnd"]
+[gd_scene load_steps=19 format=4 uid="uid://crp4fb6q2fnd"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_4s0py"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8s02"]
@@ -8,7 +8,8 @@
 [ext_resource type="SpriteFrames" uid="uid://4kgtjjy5sok6" path="res://graphics/animations/a_tundra_man_4.tres" id="5_1smum"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_7tdup"]
 [ext_resource type="Resource" uid="uid://is307rht52c8" path="res://gamedata/shops/frostmint_village/blizzard_general_store.tres" id="5_jgq3e"]
-[ext_resource type="Resource" uid="uid://crf7e7cn4mgmb" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/frostmint_general_store_shopkeerp_1.tres" id="6_igwuf"]
+[ext_resource type="Resource" uid="uid://crf7e7cn4mgmb" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/frostmint_general_store_shopkeep_1.tres" id="6_igwuf"]
+[ext_resource type="Resource" uid="uid://cacimsfsw8akg" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/a_good_exchange/a_good_exch_special_delivery_inprogress.tres" id="6_xrogf"]
 [ext_resource type="Resource" uid="uid://deu86jwpct8jq" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_shop_sign_1.tres" id="9_5nhsa"]
 [ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="10_xrogf"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="11_wwsvj"]
@@ -113,7 +114,7 @@ position = Vector2(-8, -78)
 displayName = "Shopkeeper"
 saveName = "frostmint_general_store_shopkeeper"
 data = SubResource("Resource_5nhsa")
-dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("6_igwuf")])
+dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("6_xrogf"), ExtResource("6_igwuf")])
 npcShop = ExtResource("5_jgq3e")
 
 [node name="NPCSprite" parent="TilemapRoot/Shopkeeper" index="0"]

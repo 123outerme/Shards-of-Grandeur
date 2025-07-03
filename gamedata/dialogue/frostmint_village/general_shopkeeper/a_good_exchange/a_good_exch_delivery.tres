@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bblkhngfauhbo"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_el7th"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_hkl7x"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_n1bug"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_gttiw"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_n1bug"]
+
+[sub_resource type="Resource" id="Resource_mawxn"]
+script = ExtResource("2_n1bug")
+choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_gttiw")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_aujmy"]
+script = ExtResource("2_n1bug")
+choiceBtn = "Sure!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_gttiw")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Good Exchange#Deliver the Goods"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_gttiw"]
+script = ExtResource("1_el7th")
+lines = Array[String](["You brought Cloud Gull and Wasteland Hawk? Thanks, @!", "Frankly, I was worried the deal was going to fall through because I didn't have a plan for getting those!", "And I see the signed contract, very good. There's just one more ingredient I need.", "Would you go out and gather 5 Frostmint leaves from around the village? That way, I can start working on preparing the dish.", "You'll know it when you see it, it's the only thing that grows above the snow here!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_n1bug")]([SubResource("Resource_mawxn"), SubResource("Resource_aujmy")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_n1bug")
+entryId = ""
+items = Array[ExtResource("1_el7th")]([SubResource("Resource_gttiw")])
+ordStoryRequirements = Array[ExtResource("2_hkl7x")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

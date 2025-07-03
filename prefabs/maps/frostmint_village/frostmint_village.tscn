@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://b8g5gdcmy67cl"]
+[gd_scene load_steps=69 format=4 uid="uid://b8g5gdcmy67cl"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_d6pke"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ksxva"]
@@ -22,8 +22,16 @@
 [ext_resource type="Resource" uid="uid://dqfwj065uoeey" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_tavern_sign_1.tres" id="14_fggv6"]
 [ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="17_4cqnv"]
 [ext_resource type="Resource" uid="uid://deu86jwpct8jq" path="res://gamedata/dialogue/frostmint_village/signs/frostmint_village_shop_sign_1.tres" id="17_6ldjy"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="21_ge5lr"]
+[ext_resource type="Resource" uid="uid://d20h503sib1ma" path="res://gamedata/ground_items/frostmint_village/frostmint_patch.tres" id="22_24xxo"]
+[ext_resource type="Texture2D" uid="uid://208pvib1man" path="res://graphics/particles/misc/frostmint_1.png" id="23_pkr5o"]
+[ext_resource type="Texture2D" uid="uid://bunec1w6mpcs7" path="res://graphics/particles/misc/frostmint_2.png" id="24_nacxj"]
+[ext_resource type="Texture2D" uid="uid://bbhqr428nj544" path="res://graphics/particles/misc/frostmint_3.png" id="25_347pf"]
+[ext_resource type="Texture2D" uid="uid://d1mucjlh7bbxd" path="res://graphics/particles/misc/frostmint_4.png" id="26_a3054"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="27_a3054"]
+[ext_resource type="Resource" uid="uid://cad1oqcjdkbd5" path="res://gamedata/story_requirements/sidequests/frostmint_patch_gather.tres" id="28_347pf"]
 
-[sub_resource type="Resource" id="Resource_80hg6"]
+[sub_resource type="Resource" id="Resource_a3054"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -52,7 +60,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrij5"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_ge5lr"]
+[sub_resource type="Resource" id="Resource_raxkh"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -81,7 +89,7 @@ size = Vector2(15.5, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5eok"]
 size = Vector2(24, 15)
 
-[sub_resource type="Resource" id="Resource_24xxo"]
+[sub_resource type="Resource" id="Resource_mn3nb"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -104,7 +112,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_puor5"]
+[sub_resource type="Resource" id="Resource_4278e"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -127,7 +135,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_hs4i0"]
+[sub_resource type="Resource" id="Resource_x7ve6"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -150,7 +158,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1fpf6"]
+[sub_resource type="Resource" id="Resource_wdsdi"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -173,7 +181,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_pkr5o"]
+[sub_resource type="Resource" id="Resource_p0y62"]
 script = ExtResource("4_lgyjh")
 saveName = "npc"
 spriteState = "default"
@@ -195,6 +203,48 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3054"]
+size = Vector2(47, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raxkh"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn3nb"]
+size = Vector2(80, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq36h"]
+size = Vector2(47, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2epw"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4278e"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ve6"]
+size = Vector2(31.5, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdsdi"]
+size = Vector2(63, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0y62"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8util"]
+size = Vector2(48, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77rib"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_503k6"]
+size = Vector2(31, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75fip"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31k6r"]
+size = Vector2(48, 48)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -289,7 +339,7 @@ tile_set = ExtResource("2_ksxva")
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-103, -105)
 displayName = "Sign"
-data = SubResource("Resource_80hg6")
+data = SubResource("Resource_a3054")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("6_is10d")])
 facesPlayer = false
 
@@ -315,7 +365,7 @@ visible = false
 [node name="VillageSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-435, 78)
 displayName = "Sign"
-data = SubResource("Resource_ge5lr")
+data = SubResource("Resource_raxkh")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("9_is10d")])
 facesPlayer = false
 
@@ -342,7 +392,7 @@ visible = false
 position = Vector2(-36, 127)
 displayName = "Villager"
 saveName = "frostmint_villager_1"
-data = SubResource("Resource_24xxo")
+data = SubResource("Resource_mn3nb")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("11_a08oj")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager" index="0"]
@@ -362,7 +412,7 @@ visible = false
 position = Vector2(256, -143)
 displayName = "Villager"
 saveName = "frostmint_villager_2"
-data = SubResource("Resource_puor5")
+data = SubResource("Resource_4278e")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("13_80hg6")])
 
 [node name="NPCSprite" parent="TilemapRoot/Villager2" index="0"]
@@ -382,7 +432,7 @@ visible = false
 position = Vector2(153, -169)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_hs4i0")
+data = SubResource("Resource_x7ve6")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("13_4cqnv")])
 facesPlayer = false
 
@@ -409,7 +459,7 @@ visible = false
 position = Vector2(-262, -169)
 displayName = "Sign"
 loadFlipH = true
-data = SubResource("Resource_1fpf6")
+data = SubResource("Resource_wdsdi")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("14_fggv6")])
 facesPlayer = false
 
@@ -435,7 +485,7 @@ visible = false
 [node name="ShopSign" parent="TilemapRoot" instance=ExtResource("3_ove8s")]
 position = Vector2(-278, 215)
 displayName = "Sign"
-data = SubResource("Resource_pkr5o")
+data = SubResource("Resource_p0y62")
 dialogueEntries = Array[ExtResource("5_lgyjh")]([ExtResource("17_6ldjy")])
 facesPlayer = false
 
@@ -457,6 +507,284 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/ShopSign" index="4"]
 visible = false
+
+[node name="FrostmintPatch1" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(-376, 243)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch1"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch1/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch1" index="1"]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_a3054")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch1" index="2"]
+texture = null
+
+[node name="FrostmintPatch2" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(-216, 275)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch2"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch2/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch2" index="1"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_raxkh")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch2" index="2"]
+texture = null
+
+[node name="FrostmintPatch3" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(-268, -232)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch3"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch3/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch3" index="1"]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_mn3nb")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch3" index="2"]
+texture = null
+
+[node name="FrostmintPatch4" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(-73, -170)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch4"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch4/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch4" index="1"]
+position = Vector2(1.5, 3)
+shape = SubResource("RectangleShape2D_fq36h")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch4" index="2"]
+texture = null
+
+[node name="FrostmintPatch5" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(-62, 3)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch5"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch5/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch5" index="1"]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_e2epw")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch5" index="2"]
+texture = null
+
+[node name="FrostmintPatch6" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(159, 11)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch6"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch6/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch6" index="1"]
+position = Vector2(-7, 6)
+shape = SubResource("RectangleShape2D_4278e")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch6" index="2"]
+texture = null
+
+[node name="FrostmintPatch7" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(200, 26)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch7"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch7/StaticBody2D" index="0"]
+disabled = true
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch7" index="2"]
+texture = null
+
+[node name="FrostmintPatch8" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(88, 138)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch8"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch8/StaticBody2D" index="0"]
+disabled = true
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch8" index="2"]
+texture = null
+
+[node name="FrostmintPatch9" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(153, 118)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch9"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch9/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch9" index="1"]
+position = Vector2(7.25, -5)
+shape = SubResource("RectangleShape2D_x7ve6")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch9" index="2"]
+texture = null
+
+[node name="FrostmintPatch10" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(82, 179)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch10"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch10/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch10" index="1"]
+position = Vector2(-1.5, -2)
+shape = SubResource("RectangleShape2D_wdsdi")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch10" index="2"]
+texture = null
+
+[node name="FrostmintPatch11" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(312, 257)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch11"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch11/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch11" index="1"]
+shape = SubResource("RectangleShape2D_p0y62")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch11" index="2"]
+texture = null
+
+[node name="FrostmintPatch12" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(392, 138)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch12"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch12/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch12" index="1"]
+shape = SubResource("RectangleShape2D_8util")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch12" index="2"]
+texture = null
+
+[node name="FrostmintPatch13" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(501, 142)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch13"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch13/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch13" index="1"]
+position = Vector2(-5, 3)
+shape = SubResource("RectangleShape2D_77rib")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch13" index="2"]
+texture = null
+
+[node name="FrostmintPatch14" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(240, -197)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch14"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch14/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch14" index="1"]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_503k6")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch14" index="2"]
+texture = null
+
+[node name="FrostmintPatch15" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(384, -110)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch15"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch15/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch15" index="1"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_75fip")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch15" index="2"]
+texture = null
+
+[node name="FrostmintPatch16" parent="TilemapRoot" instance=ExtResource("21_ge5lr")]
+position = Vector2(424, -86)
+pickedUpItem = ExtResource("22_24xxo")
+spriteInvisible = true
+particleTextures = Array[Texture2D]([ExtResource("23_pkr5o"), ExtResource("24_nacxj"), ExtResource("25_347pf"), ExtResource("26_a3054")])
+saveName = "frostmint_patch16"
+storyRequirements = Array[ExtResource("27_a3054")]([ExtResource("28_347pf")])
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch16/StaticBody2D" index="0"]
+disabled = true
+
+[node name="CollisionShape2D" parent="TilemapRoot/FrostmintPatch16" index="1"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_31k6r")
+
+[node name="Sprite2D" parent="TilemapRoot/FrostmintPatch16" index="2"]
+texture = null
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
@@ -558,6 +886,22 @@ shape = SubResource("RectangleShape2D_xr4ay")
 [editable path="TilemapRoot/ArmorySign"]
 [editable path="TilemapRoot/TavernSign"]
 [editable path="TilemapRoot/ShopSign"]
+[editable path="TilemapRoot/FrostmintPatch1"]
+[editable path="TilemapRoot/FrostmintPatch2"]
+[editable path="TilemapRoot/FrostmintPatch3"]
+[editable path="TilemapRoot/FrostmintPatch4"]
+[editable path="TilemapRoot/FrostmintPatch5"]
+[editable path="TilemapRoot/FrostmintPatch6"]
+[editable path="TilemapRoot/FrostmintPatch7"]
+[editable path="TilemapRoot/FrostmintPatch8"]
+[editable path="TilemapRoot/FrostmintPatch9"]
+[editable path="TilemapRoot/FrostmintPatch10"]
+[editable path="TilemapRoot/FrostmintPatch11"]
+[editable path="TilemapRoot/FrostmintPatch12"]
+[editable path="TilemapRoot/FrostmintPatch13"]
+[editable path="TilemapRoot/FrostmintPatch14"]
+[editable path="TilemapRoot/FrostmintPatch15"]
+[editable path="TilemapRoot/FrostmintPatch16"]
 [editable path="TundraWestWarpZone"]
 [editable path="MansionRoadWarpZone"]
 [editable path="InnWarpZone"]

@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cdp1k3yg2owrx"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_74q2k"]
+[ext_resource type="Resource" uid="uid://hnqci0cslg3j" path="res://gamedata/items/key_items/box_of_goods.tres" id="1_umkhk"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_crjnd"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_q4nre"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_crjnd"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_umkhk"]
+
+[sub_resource type="Resource" id="Resource_fj4w2"]
+script = ExtResource("2_crjnd")
+choiceBtn = "So, What Is It?"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_umkhk")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_cdo8h"]
+script = ExtResource("1_74q2k")
+lines = Array[String](["Wonderful, and that'll complete the dish!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_crjnd")]([SubResource("Resource_fj4w2")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_crjnd"]
+script = ExtResource("2_crjnd")
+choiceBtn = "OK!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_umkhk")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_qvk5f"]
+script = ExtResource("1_74q2k")
+lines = Array[String](["I think it's best if it's a surprise for everyone, @.", "Why don't you go on ahead to Leavenport and meet me at their Restaurant? I've got to balance the books before I make the trip.", "Here's the box of goods for my new trade partner. Bring it there, but don't look inside! I want it to be a surprise for everyone."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_crjnd")]([SubResource("Resource_crjnd")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_crjnd")
+entryId = ""
+items = Array[ExtResource("1_74q2k")]([SubResource("Resource_cdo8h"), SubResource("Resource_qvk5f")])
+ordStoryRequirements = Array[ExtResource("2_q4nre")]([])
+givesItem = ExtResource("1_umkhk")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

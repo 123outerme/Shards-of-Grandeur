@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=13 format=3 uid="uid://is307rht52c8"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=18 format=3 uid="uid://is307rht52c8"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_n5cfn"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_rkt7d"]
 [ext_resource type="Resource" uid="uid://cb17351uxj3ie" path="res://gamedata/items/key_items/frostmint_village_teleport_stone.tres" id="3_rkt7d"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_bunsy"]
+[ext_resource type="Resource" uid="uid://bkj6dcjrm4j8x" path="res://gamedata/items/healing/minty_bird_medley.tres" id="4_nn10t"]
 [ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="4_otbh7"]
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortifying_elixir.tres" id="5_m3k4h"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_nn10t"]
 [ext_resource type="Resource" uid="uid://dgoptaxlcekod" path="res://gamedata/items/healing/swift_elixir.tres" id="6_m3k4h"]
 [ext_resource type="Resource" uid="uid://bhnwqrl4m4c7p" path="res://gamedata/items/healing/brawn_elixir.tres" id="7_8yg2d"]
 
@@ -12,6 +15,41 @@
 script = ExtResource("2_rkt7d")
 sinceVersion = "0.3.6"
 item = ExtResource("3_rkt7d")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_vbf7v"]
+script = ExtResource("5_nn10t")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["A Good Exchange"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_bunsy")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_bunsy")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_bo5a1"]
+script = ExtResource("2_rkt7d")
+storyRequirements = SubResource("Resource_vbf7v")
+sinceVersion = "0.3.6"
+item = ExtResource("4_nn10t")
 count = -1
 metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
@@ -46,5 +84,5 @@ metadata/_custom_type_script = "uid://dvhu11n6qar12"
 [resource]
 script = ExtResource("1_n5cfn")
 id = ""
-shopItemSlots = Array[ExtResource("2_rkt7d")]([SubResource("Resource_q78tc"), SubResource("Resource_8yg2d"), SubResource("Resource_nn10t"), SubResource("Resource_gusqr"), SubResource("Resource_bunsy")])
+shopItemSlots = Array[ExtResource("2_rkt7d")]([SubResource("Resource_q78tc"), SubResource("Resource_bo5a1"), SubResource("Resource_8yg2d"), SubResource("Resource_nn10t"), SubResource("Resource_gusqr"), SubResource("Resource_bunsy")])
 metadata/_custom_type_script = "uid://c02s6f1mg2nhw"

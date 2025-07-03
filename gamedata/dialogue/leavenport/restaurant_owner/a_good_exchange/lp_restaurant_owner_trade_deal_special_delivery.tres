@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://duchi55le36xo"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qlyu0"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7teff"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ug8cr"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_7teff"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_ug8cr"]
+[ext_resource type="Resource" uid="uid://7pdcduegxe5m" path="res://gamedata/cutscenes/leavenport/lp_restaurant_trade_deal_dine.tres" id="6_f62d4"]
+
+[sub_resource type="Resource" id="Resource_f62d4"]
+script = ExtResource("1_qlyu0")
+lines = Array[String](["Hello, @! What do you have here? A box of goods from the Blizzard General Store?", ""])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_7teff")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_7teff"]
+script = ExtResource("2_ug8cr")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["A Good Exchange#Minty Fresh"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_ug8cr")]([])
+invalidAfterCompletingQuests = Array[String](["A Good Exchange#Special Delivery"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_ug8cr")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_7teff")
+entryId = ""
+items = Array[ExtResource("1_qlyu0")]([SubResource("Resource_f62d4")])
+ordStoryRequirements = Array[ExtResource("2_ug8cr")]([SubResource("Resource_7teff")])
+startsCutscene = ExtResource("6_f62d4")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

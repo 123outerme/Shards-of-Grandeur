@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dikqh6cumkmay"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dn24o"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_gjpmn"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_qjv5k"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_gjpmn"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_i6aoj"]
+[ext_resource type="Resource" uid="uid://jy2aqg4b1ybu" path="res://gamedata/dialogue/leavenport/restaurant_owner/a_good_exchange/lp_restaurant_owner_trade_deal2.tres" id="4_i6aoj"]
+
+[sub_resource type="Resource" id="Resource_i6aoj"]
+script = ExtResource("1_dn24o")
+lines = Array[String](["I bring a message from Frostmint Village.", "The owner of the Blizzard General Store would like to propose a trade deal."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gjpmn")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_umbdn"]
+script = ExtResource("2_gjpmn")
+choiceBtn = "No."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_i6aoj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_35u4t"]
+script = ExtResource("2_gjpmn")
+choiceBtn = "Yes, Here."
+leadsTo = ExtResource("4_i6aoj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_i6aoj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Good Exchange#Be the Messenger"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_qjv5k"]
+script = ExtResource("1_dn24o")
+lines = Array[String](["Intriguing. This would be the first time we've done business with Frostmint Village. Do you bring a contract?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gjpmn")]([SubResource("Resource_umbdn"), SubResource("Resource_35u4t")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_gjpmn")
+entryId = "lp_restaurant_trade_deal"
+items = Array[ExtResource("1_dn24o")]([SubResource("Resource_i6aoj"), SubResource("Resource_qjv5k")])
+ordStoryRequirements = Array[ExtResource("2_qjv5k")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

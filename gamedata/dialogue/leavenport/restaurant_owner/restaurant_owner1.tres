@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://cavschyk5vxg2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=23 format=3 uid="uid://cavschyk5vxg2"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_3uxcm"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_5tgvs"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_j7i12"]
 [ext_resource type="Resource" uid="uid://bf050uvxxgcqh" path="res://gamedata/dialogue/leavenport/restaurant_owner/fishermans_usual.tres" id="3_piwbi"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_7chek"]
+[ext_resource type="Resource" uid="uid://dikqh6cumkmay" path="res://gamedata/dialogue/leavenport/restaurant_owner/a_good_exchange/lp_restaurant_owner_trade_deal1.tres" id="8_wacyo"]
+[ext_resource type="Resource" uid="uid://4nyvuk1kcc34" path="res://gamedata/items/key_items/trade_contract.tres" id="9_qvywo"]
+[ext_resource type="Resource" uid="uid://jd4tcikg6rq5" path="res://gamedata/dialogue/leavenport/restaurant_owner/a_good_exchange/lp_restaurant_owner_trade_deal2_plus_reminder.tres" id="10_t0v4e"]
+[ext_resource type="Resource" uid="uid://duchi55le36xo" path="res://gamedata/dialogue/leavenport/restaurant_owner/a_good_exchange/lp_restaurant_owner_trade_deal_special_delivery.tres" id="11_t0v4e"]
 
 [sub_resource type="Resource" id="Resource_muqwh"]
 script = ExtResource("1_5tgvs")
@@ -70,6 +74,76 @@ buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = false
 
+[sub_resource type="Resource" id="Resource_t0v4e"]
+script = ExtResource("6_7chek")
+item = ExtResource("9_qvywo")
+count = 1
+metadata/_custom_type_script = "uid://fw22o8hbosnk"
+
+[sub_resource type="Resource" id="Resource_qvywo"]
+script = ExtResource("3_j7i12")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_7chek")]([SubResource("Resource_t0v4e")])
+invalidAfterCompletingQuests = Array[String](["A Good Exchange#Be the Messenger"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_7chek")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_wacyo"]
+script = ExtResource("1_5tgvs")
+choiceBtn = "A Trade Deal..."
+storyRequirements = SubResource("Resource_qvywo")
+leadsTo = ExtResource("8_wacyo")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_bja2j")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_8rv1i"]
+script = ExtResource("1_5tgvs")
+choiceBtn = "Trade Deal?"
+leadsTo = ExtResource("10_t0v4e")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_bja2j")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_075be"]
+script = ExtResource("1_5tgvs")
+choiceBtn = "Trade Deal!"
+leadsTo = ExtResource("11_t0v4e")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_bja2j")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_q0y6r"]
 script = ExtResource("1_3uxcm")
 lines = Array[String](["Welcome to my humble restaurant! Please, sit down and eat something."])
@@ -79,7 +153,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("1_5tgvs")]([SubResource("Resource_muqwh"), SubResource("Resource_1hnul"), SubResource("Resource_8rmat")])
+choices = Array[ExtResource("1_5tgvs")]([SubResource("Resource_muqwh"), SubResource("Resource_1hnul"), SubResource("Resource_8rmat"), SubResource("Resource_wacyo"), SubResource("Resource_8rv1i"), SubResource("Resource_075be")])
 
 [resource]
 script = ExtResource("1_8ukjo")
