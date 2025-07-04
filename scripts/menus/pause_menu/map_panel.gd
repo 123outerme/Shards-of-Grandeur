@@ -53,6 +53,7 @@ var fromQuestsPanelQuest: Quest = null
 @onready var questsButton: Button = get_node('LocationsControl/HBoxContainer/QuestsButton')
 
 @onready var buttonsHboxContainer: HBoxContainer = get_node('LocationsControl/ScrollContainer/HBoxContainer')
+@onready var scrollContainer: ScrollContainer = get_node('LocationsControl/ScrollContainer')
 @onready var boxContainerScroller: BoxContainerScroller = get_node('LocationsControl/BoxContainerScroller')
 
 @onready var backButton: Button = get_node('BackButton')
@@ -175,8 +176,10 @@ func get_current_location() -> MapPanelLocation:
 	return MapPanelLocation.new([], TextUtils.substitute_playername('@')) # this is a problem if this returns!
 
 func update_filter(newFilter: MapLocationsFilter) -> void:
-	filter = newFilter
-	load_map_panel(false)
+	if filter != newFilter:
+		filter = newFilter
+		load_map_panel(false)
+		scrollContainer.scroll_horizontal = 0 # reset scroll when filter is changed
 	restore_filter_button_focus(newFilter)
 	if allButton.button_pressed and newFilter != MapLocationsFilter.ALL:
 		allButton.button_pressed = false
