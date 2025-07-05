@@ -200,24 +200,9 @@ func load_data(save_path):
 		data = newData
 		# only load the new NPC data if it exists
 		
-		# load sprite state: check dictionary for auto-applied states with higher priority than the current one
-		var newSpriteState: String = data.spriteState
-		var highestPriority: int = Vector2i.MIN.x # minimum integer value
-		var chosenSpriteState: NpcSpriteState = null
-		if spriteStatesDict.has(data.spriteState):
-			chosenSpriteState = spriteStatesDict[data.spriteState]
+		# load sprite state, depending on auto-states may be different than `data.spriteState`
+		update_sprite_state(data.spriteState)
 		
-		for state: NpcSpriteState in spriteStatesDict.values():
-			if state.autoApplyState:
-				if state.priority > highestPriority or (
-							state.priority == highestPriority and \
-							not NpcSpriteState.compare(chosenSpriteState, state)
-						):
-					chosenSpriteState = state
-					newSpriteState = state.id
-					highestPriority = state.priority
-		
-		set_sprite_state(newSpriteState)
 		npcSprite.play(data.animation)
 		position = data.position
 		combatMode = data.combatMode
@@ -604,6 +589,26 @@ func set_sprite_state(state: String):
 	else:
 		printerr('NPC sprite state error: NPC at ', get_path(), ' (save name ', saveName, ') does not have sprite state "', state, '"')
 
+func update_sprite_state(curState: String) -> void:
+	# check dictionary for auto-applied states with higher priority than the current state
+	var newSpriteState: String = curState
+	var highestPriority: int = Vector2i.MIN.x # minimum integer value
+	var chosenSpriteState: NpcSpriteState = null
+	if spriteStatesDict.has(curState):
+		chosenSpriteState = spriteStatesDict[curState]
+	
+	for state: NpcSpriteState in spriteStatesDict.values():
+		if state.autoApplyState:
+			if state.priority > highestPriority or (
+						state.priority == highestPriority and \
+						not NpcSpriteState.compare(chosenSpriteState, state)
+					):
+				chosenSpriteState = state
+				newSpriteState = state.id
+				highestPriority = state.priority
+		
+		set_sprite_state(newSpriteState)
+
 func play_animation(animation: String):
 	if animation != '':
 		npcSprite.play(animation)
@@ -684,6 +689,8 @@ func _story_reqs_updated():
 	var setFollower: bool = PlayerResources.playerInfo.has_active_follower(followerId)
 	if setFollower != data.followingPlayer and visible:
 		set_following_player(setFollower)
+	
+	update_sprite_state(spriteState)
 
 func _filter_out_null(v) -> bool:
 	return v != null
